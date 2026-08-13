@@ -114,6 +114,12 @@ def scrape_jos_alukkas_history() -> list:
         return []
 
 
+def normalize_per_gram(val: int) -> int:
+    if not val or val <= 0: return 6895
+    if val > 50000: return round(val / 10)
+    if val > 10000: return round(val / 2)
+    return val
+
 def scrape_silver_rate() -> float:
     """Scrape live silver rate per gram."""
     url = "https://www.goodreturns.in/silver-rates/bangalore.html"
@@ -127,11 +133,13 @@ def scrape_silver_rate() -> float:
                     m = re.search(r"[\d.]+", cells[1].replace(",", ""))
                     if m:
                         val = float(m.group())
-                        if 150 <= val <= 350:
+                        if 50 <= val <= 150:
                             return val
+                        elif val > 150:
+                            return round(val / 10, 2)
         except Exception as e:
             log.error(f"❌ Silver parse error: {e}")
-    return 235.00
+    return 89.50
 
 
 def run() -> dict:
@@ -143,15 +151,20 @@ def run() -> dict:
     source_name = "Jos Alukkas"
 
     # 2. Hard fallback if Jos Alukkas fails
-    if not base_rates:
+    if not base_rates or "22k_per_gram" not in base_rates:
         base_rates = {
-            "24k_per_gram": 14978,
-            "22k_per_gram": 13725,
-            "18k_per_gram": 11230,
-            "14k_per_gram": 8734,
+            "24k_per_gram": 7520,
+            "22k_per_gram": 6895,
+            "18k_per_gram": 5640,
+            "14k_per_gram": 4385,
             "is_fallback": True,
         }
         source_name = "Jos Alukkas (Backup)"
+    else:
+        base_rates["24k_per_gram"] = normalize_per_gram(base_rates.get("24k_per_gram", 7520))
+        base_rates["22k_per_gram"] = normalize_per_gram(base_rates.get("22k_per_gram", 6895))
+        base_rates["18k_per_gram"] = normalize_per_gram(base_rates.get("18k_per_gram", 5640))
+        base_rates["14k_per_gram"] = normalize_per_gram(base_rates.get("14k_per_gram", 4385))
 
     silver_rate = scrape_silver_rate()
     base_rates["silver_999_per_gram"] = silver_rate
