@@ -6,8 +6,10 @@
 (function(exports) {
   let fs, path;
   if (typeof window === 'undefined') {
-    fs = require('fs');
-    path = require('path');
+    try {
+      fs = eval("require('fs')");
+      path = eval("require('path')");
+    } catch(e) {}
   }
 
   const SECRET_PAYLOAD_KEY = "NK_SECURE_KEY_2026_KARNATA";
