@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏛️ ವಿಜಯನಗರ (Vijayanagara) — ಶಾಸನಸಭೆ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶಗಳು 1978 - 2023 | Karnata.in</title>
+  <meta name="description" content="ವಿಜಯನಗರ (Vijayanagara) ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಚುನಾವಣಾ ಇತಿಹಾಸ, ವಿಜೇತ ಅಭ್ಯರ್ಥಿಗಳು, ಪಕ್ಷಗಳ ಜಯ ಹಾಗೂ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../karnata-theme.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
+    }
+    .hero-minimal {
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      padding: 24px 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+    .seat-title {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .seat-subtitle {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 14px;
+    }
+    .chip-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media(max-width: 900px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+    .dash-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      margin-bottom: 20px;
+    }
+    .dash-head {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 8px;
+    }
+    #constituency-map {
+      height: 360px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #CBD5E1;
+      background: #F1F5F9;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+    }
+    .elections-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .elections-table th {
+      background: #F8FAFC;
+      color: #475569;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-bottom: 2px solid #E2E8F0;
+      white-space: nowrap;
+    }
+    .elections-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #F1F5F9;
+      white-space: nowrap;
+    }
+    .elections-table tr:hover {
+      background: #F1F5F9;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="k-nav"></div>
+
+  <header class="hero-minimal">
+    <div class="wrap">
+      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #90</div>
+      <h1 class="seat-title">🏛️ ವಿಜಯನಗರ (Vijayanagara)</h1>
+      <p class="seat-subtitle">ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</p>
+      
+      <div class="chip-bar">
+        <span class="chip">ವರ್ಗ: ಸಾಮಾನ್ಯ</span>
+        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ವಿಜೇತರು: ಎಚ್. ಆರ್. Gaviyappa (ಕಾಂಗ್ರೆಸ್ (INC))</span>
+        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +33,723</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 0 16px 24px;">
+    
+    <div class="grid-layout">
+      <!-- MAP & WINNER SUMMARY -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
+          <div id="constituency-map"></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಕಾಂಗ್ರೆಸ್ (INC): <span style="color:#C0392B;">6 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಬಿಜೆಪಿ (BJP): <span style="color:#C0392B;">2 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ದಳ (JD): <span style="color:#C0392B;">1 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಸಿಪಿಎಂ (CPM): <span style="color:#C0392B;">1 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ಪಕ್ಷ (JNP): <span style="color:#C0392B;">1 ಜಯ</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELECTION HISTORY TABLE -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">📊 ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</div>
+          <div class="table-wrapper">
+            <table class="elections-table">
+              <thead>
+                <tr>
+                  <th>ವರ್ಷ</th>
+                  <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
+                  <th>ಪಕ್ಷ</th>
+                  <th>ಮತಗಳು</th>
+                  <th>ಪಾಲು (%)</th>
+                  <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+                  <th>ಅಂತರ</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2023</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಚ್. ಆರ್. Gaviyappa</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">104,863</td>
+          <td style="color:#16A34A; font-weight:800;">58.5%</td>
+          <td style="color:#475569;">Siddharth Singh ಎ. Thakur (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+33,723</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2018</td>
+          <td style="font-weight:800; color:#0F172A;">ಆನಂದ್ Singh</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">83,214</td>
+          <td style="color:#16A34A; font-weight:800;">50.6%</td>
+          <td style="color:#475569;">ಎಚ್. ಆರ್. Gaviyappa (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+8,228</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2013</td>
+          <td style="font-weight:800; color:#0F172A;">ಆನಂದ್ Singh</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">69,995</td>
+          <td style="color:#16A34A; font-weight:800;">56.1%</td>
+          <td style="color:#475569;">ಎಚ್. Abdul Wahab (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+30,637</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2008</td>
+          <td style="font-weight:800; color:#0F172A;">ಆನಂದ್ Singh</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">52,418</td>
+          <td style="color:#16A34A; font-weight:800;">48.5%</td>
+          <td style="color:#475569;">ಎಚ್. ಆರ್. Gaviappa (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+26,497</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2004</td>
+          <td style="font-weight:800; color:#0F172A;">Krishnappa ಎ.</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">127,490</td>
+          <td style="color:#16A34A; font-weight:800;">49.5%</td>
+          <td style="color:#475569;">Ashwatha Narayana ರೆಡ್ಡಿ (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+13,138</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1999</td>
+          <td style="font-weight:800; color:#0F172A;">ಎ. Krishnappa</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">109,076</td>
+          <td style="color:#16A34A; font-weight:800;">51.1%</td>
+          <td style="color:#475569;">Ashwathnarayana ರೆಡ್ಡಿ (JD(U))</td>
+          <td style="color:#DC2626; font-weight:800;">+26,101</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1994</td>
+          <td style="font-weight:800; color:#0F172A;">Aswathanarayana ರೆಡ್ಡಿ</td>
+          <td><span style="background:#2ca02c; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ದಳ (JD)</span></td>
+          <td style="font-weight:700; color:#0F172A;">87,295</td>
+          <td style="color:#16A34A; font-weight:800;">51.2%</td>
+          <td style="color:#475569;">ಎ. Krishnappa (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+28,210</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1989</td>
+          <td style="font-weight:800; color:#0F172A;">ಎ. Krishnappa</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">69,586</td>
+          <td style="color:#16A34A; font-weight:800;">48.3%</td>
+          <td style="color:#475569;">Ashwathnarayana ರೆಡ್ಡಿ (ಜನತಾ ದಳ (JD))</td>
+          <td style="color:#DC2626; font-weight:800;">+7,211</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1985</td>
+          <td style="font-weight:800; color:#0F172A;">ಎ. Krishnappa</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">30,242</td>
+          <td style="color:#16A34A; font-weight:800;">33.8%</td>
+          <td style="color:#475569;">Aswathanarayana ರೆಡ್ಡಿ (ಪಕ್ಷೇತರ (IND))</td>
+          <td style="color:#DC2626; font-weight:800;">+98</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1983</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಸ್. Suryanarayana ರಾವ್</td>
+          <td><span style="background:#a50f15; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಸಿಪಿಎಂ (CPM)</span></td>
+          <td style="font-weight:700; color:#0F172A;">48,344</td>
+          <td style="color:#16A34A; font-weight:800;">59.1%</td>
+          <td style="color:#475569;">ಬಿ. ವಿ. Ramachandra ರೆಡ್ಡಿ (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+19,811</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1978</td>
+          <td style="font-weight:800; color:#0F172A;">ಬಿ. ವಿ. Ramachandra ರೆಡ್ಡಿ</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ಪಕ್ಷ (JNP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">28,613</td>
+          <td style="color:#16A34A; font-weight:800;">41.1%</td>
+          <td style="color:#475569;">ಎಚ್. ಟಿ. Somashekara ರೆಡ್ಡಿ (ಕಾಂಗ್ರೆಸ್ ಐ (INC-I))</td>
+          <td style="color:#DC2626; font-weight:800;">+9,312</td>
+        </tr>
+        
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../nav-component.js"></script>
+  <script>
+    const featureData = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[76.6098695995668, 15.26811124247583], [76.63512233762975, 15.24206456559193], [76.62957524200257, 15.23772033519125], [76.61548675677192, 15.20215738213287], [76.60361215394666, 15.1953137938096], [76.57281184218056, 15.19325448640849], [76.55572140332465, 15.20205331843555], [76.55030275690311, 15.1918778015072], [76.53513149728936, 15.19890673106277], [76.5180933336966, 15.18152024908395], [76.50948048424944, 15.18590146906306], [76.4997233615649, 15.18174645342117], [76.48024542875507, 15.20991476599674], [76.4482932878793, 15.22101437595982], [76.43216278772735, 15.23307381179511], [76.42789594646497, 15.22510151858641], [76.43135871621469, 15.21736021780981], [76.40934557615361, 15.19400902759549], [76.38248682596358, 15.22161319085935], [76.36132500961298, 15.21334819339081], [76.33123712195314, 15.21828245246006], [76.31317295004017, 15.23762433726791], [76.32558897498441, 15.24875366157941], [76.33657232325822, 15.26803790591765], [76.3573613740233, 15.32232456244096], [76.38795242131371, 15.32878131308403], [76.40205400515133, 15.32234478298095], [76.43035595275181, 15.33519646498884], [76.44681942287067, 15.33585498924271], [76.46139877140622, 15.34250450673969], [76.4676006360262, 15.34046641945047], [76.48034653535606, 15.34655040500447], [76.49429381421002, 15.34401775552213], [76.54125362455794, 15.37963157656977], [76.55631352577582, 15.36875122197372], [76.55052368648788, 15.34758774153021], [76.55405666379147, 15.31867241997596], [76.58836160920649, 15.30657152727889], [76.57524832626476, 15.2654842765754], [76.58077954963585, 15.25487180554075], [76.60663426811595, 15.26129828224794], [76.6098695995668, 15.26811124247583]]]}, "properties": {"stroke": "#ff0000", "stroke-opacity": 1, "fill-opacity": 0, "ST_CODE": "29", "ST_NAME": "KARNATAKA", "DT_CODE": "12", "DIST_NAME": "BELLARY", "AC_NO": "90", "AC_NAME": "Vijayanagara", "PC_NO": "9", "PC_NAME": "BELLARY (ST)", "PC_ID": "2909", "Shape_Leng": "107401.15890900001", "Shape_Area": "410198047.10200000000", "MaxSimpTol": "300.00000000000", "MinSimpTol": "300.00000000000", "visibility": "0"}};
+
+    if (featureData) {
+      const map = L.map('constituency-map', {
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(map);
+
+      const layer = L.geoJson(featureData, {
+        style: {
+          fillColor: '#1f77b4',
+          weight: 2,
+          opacity: 1,
+          color: '#C0392B',
+          fillOpacity: 0.65
+        }
+      }).addTo(map);
+
+      map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+    } else {
+      document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
+    }
+  </script>
+</body>
+</html>

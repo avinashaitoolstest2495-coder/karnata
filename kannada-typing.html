@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್ — English to Kannada Typing Online Free | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಕನ್ನಡದಲ್ಲಿ ಪಡೆಯಿರಿ. Free online Kannada typing tool. Type in English get Kannada. Kannada keyboard online.">
+<meta name="keywords" content="Kannada typing tool, English to Kannada, ಕನ್ನಡ ಟೈಪಿಂಗ್, online Kannada keyboard, type Kannada online free">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Kannada Typing Tool","applicationCategory":"UtilityApplication","inLanguage":"kn","description":"Free online English to Kannada transliteration typing tool","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root{--red:#C0392B;--red-lt:#FDECEA;--green:#1B7A4B;--green-lt:#E8F5EE;--blue:#1A5276;--blue-lt:#EAF2F8;--ink:#1A1A2E;--ink2:#4A4A6A;--ink3:#8888AA;--bg:#F5F4F0;--white:#FFF;--border:#E3E1DB;--font-kn:'Anek Kannada',sans-serif;--font-en:'Inter',sans-serif;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+textarea{font-family:inherit;outline:none;border:none;resize:none;}
+
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:500;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);}
+
+.hero{background:linear-gradient(135deg,#C0392B 0%,#8B1A1A 100%);padding:24px 20px;color:#fff;text-align:center;}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:6px;}
+.hero p{font-size:13px;opacity:0.8;}
+
+.wrap{max-width:860px;margin:0 auto;padding:20px;}
+
+/* MODE TABS */
+.mode-tabs{display:flex;gap:0;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+.mode-tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;border-right:1px solid var(--border);transition:all 0.15s;color:var(--ink2);font-family:var(--font-kn);}
+.mode-tab:last-child{border-right:none;}
+.mode-tab.active{background:var(--red);color:#fff;}
+
+/* EDITOR */
+.editor-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:16px;}
+.editor-toolbar{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tb-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:7px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--bg);color:var(--ink2);transition:all 0.15s;font-family:var(--font-en);}
+.tb-btn:hover{background:var(--red-lt);color:var(--red);border-color:var(--red);}
+.tb-btn.primary{background:var(--red);color:#fff;border-color:var(--red);}
+.tb-btn.green{background:var(--green);color:#fff;border-color:var(--green);}
+.tb-sep{width:1px;height:24px;background:var(--border);margin:0 4px;}
+.char-count{margin-left:auto;font-size:11px;color:var(--ink3);font-family:var(--font-en);}
+
+.editor-area{display:grid;grid-template-columns:1fr 1fr;min-height:240px;}
+@media(max-width:600px){.editor-area{grid-template-columns:1fr;}}
+.editor-pane{padding:16px;position:relative;}
+.editor-pane:first-child{border-right:1px solid var(--border);}
+.pane-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:8px;font-family:var(--font-en);display:flex;align-items:center;gap:6px;}
+.pane-label .flag{font-size:14px;}
+textarea.input-area{width:100%;height:200px;font-size:16px;color:var(--ink);line-height:1.7;background:transparent;font-family:var(--font-en);}
+textarea.output-area{width:100%;height:200px;font-size:16px;color:var(--ink);line-height:1.7;background:transparent;font-family:var(--font-kn);font-weight:500;}
+.placeholder-hint{font-size:14px;color:var(--ink3);position:absolute;top:50px;left:16px;pointer-events:none;font-family:var(--font-kn);}
+
+/* SUGGESTIONS */
+.suggestions{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--border);min-height:42px;background:var(--bg);}
+.sug-btn{padding:5px 12px;border-radius:20px;font-size:14px;background:var(--white);border:1px solid var(--border);cursor:pointer;color:var(--ink);transition:all 0.15s;font-family:var(--font-kn);}
+.sug-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
+
+/* KEYBOARD */
+.keyboard-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:16px;}
+.kb-title{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.kb-row{display:flex;gap:5px;margin-bottom:5px;justify-content:center;flex-wrap:wrap;}
+.key{min-width:36px;height:36px;border-radius:6px;background:var(--bg);border:1px solid var(--border);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.1s;font-family:var(--font-kn);color:var(--ink);padding:0 6px;}
+.key:hover,.key:active{background:var(--red);color:#fff;border-color:var(--red);transform:scale(0.95);}
+.key.special{background:var(--blue-lt);color:var(--blue);font-size:11px;font-weight:700;font-family:var(--font-en);min-width:60px;}
+.key.space{min-width:160px;}
+.key.wide{min-width:56px;}
+
+/* QUICK PHRASES */
+.phrases-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;}
+.phrases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px;}
+.phrase-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--ink);cursor:pointer;text-align:left;transition:all 0.15s;font-family:var(--font-kn);line-height:1.4;}
+.phrase-btn:hover{background:var(--red-lt);border-color:var(--red);color:var(--red);}
+
+/* TRANSLITERATION TABLE */
+.translit-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;}
+.tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-top:12px;}
+.tl-item{background:var(--bg);border-radius:7px;padding:8px;text-align:center;border:1px solid var(--border);}
+.tl-en{font-size:11px;color:var(--ink3);font-family:var(--font-en);margin-bottom:3px;}
+.tl-kn{font-size:18px;color:var(--ink);font-family:var(--font-kn);}
+
+/* HOW TO */
+.how-card{background:var(--blue-lt);border:1px solid #c5d9ed;border-radius:var(--radius);padding:16px;margin-bottom:16px;}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;}
+@media(max-width:500px){.how-steps{grid-template-columns:1fr;}}
+.how-step{text-align:center;}
+.hs-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-family:var(--font-en);}
+.hs-text{font-size:12px;color:var(--blue);line-height:1.5;}
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div style="font-size:16px;font-weight:700;">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್</div>
+</div>
+
+<div class="hero">
+  <h1>⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್</h1>
+  <p>ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ — ಕನ್ನಡ ಅಕ್ಷರ ಪಡೆಯಿರಿ · ಉಚಿತ · ಯಾವ ಅಪ್ ಬೇಡ</p>
+</div>
+
+<div class="wrap">
+
+  <!-- HOW TO -->
+  <div class="how-card">
+    <div style="font-size:13px;font-weight:700;color:var(--blue)">📖 ಹೇಗೆ ಬಳಸಬೇಕು?</div>
+    <div class="how-steps">
+      <div class="how-step"><div class="hs-num">1</div><div class="hs-text">ಎಡಗಡೆ ಬಾಕ್ಸ್‌ನಲ್ಲಿ ಇಂಗ್ಲಿಷ್ ಅಕ್ಷರ ಟೈಪ್ ಮಾಡಿ<br><strong>ಉದಾ: "namaskara"</strong></div></div>
+      <div class="how-step"><div class="hs-num">2</div><div class="hs-text">ಸ್ಪೇಸ್ ಒತ್ತಿ — ಬಲಗಡೆ ಕನ್ನಡ ತಕ್ಷಣ ಬರುತ್ತದೆ<br><strong>→ "ನಮಸ್ಕಾರ"</strong></div></div>
+      <div class="how-step"><div class="hs-num">3</div><div class="hs-text">ಕಾಪಿ ಬಟನ್ ಒತ್ತಿ ಎಲ್ಲಿ ಬೇಕಾದರೂ ಬಳಸಿ<br><strong>WhatsApp, Email, Doc</strong></div></div>
+    </div>
+  </div>
+
+  <!-- MODE TABS -->
+  <div class="mode-tabs">
+    <div class="mode-tab active" onclick="setMode('transliterate',this)">⌨️ ಇಂಗ್ಲಿಷ್ → ಕನ್ನಡ</div>
+    <div class="mode-tab" onclick="setMode('keyboard',this)">🔤 ಕನ್ನಡ ಕೀಬೋರ್ಡ್</div>
+    <div class="mode-tab" onclick="setMode('translate',this)">🌐 ಅನುವಾದ</div>
+  </div>
+
+  <!-- EDITOR -->
+  <div class="editor-card">
+    <div class="editor-toolbar">
+      <button class="tb-btn primary" onclick="copyOutput()">📋 ಕಾಪಿ ಮಾಡಿ</button>
+      <button class="tb-btn" onclick="clearAll()">🗑️ ಅಳಿಸಿ</button>
+      <button class="tb-btn" onclick="downloadText()">⬇️ ಡೌನ್ಲೋಡ್</button>
+      <button class="tb-btn" onclick="shareText()">📤 ಹಂಚಿ</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" onclick="changeFontSize(1)">A+</button>
+      <button class="tb-btn" onclick="changeFontSize(-1)">A-</button>
+      <div class="char-count"><span id="char-count">0</span> ಅಕ್ಷರ</div>
+    </div>
+    <div class="editor-area">
+      <div class="editor-pane">
+        <div class="pane-label"><span class="flag">🇬🇧</span> English Input</div>
+        <textarea class="input-area" id="input-area"
+          placeholder="Type here in English... (e.g. namaskara, baarige, kaada)"
+          oninput="handleInput(this.value)"
+          onkeydown="handleKeydown(event)"></textarea>
+      </div>
+      <div class="editor-pane">
+        <div class="pane-label"><span class="flag">🇮🇳</span> ಕನ್ನಡ ಫಲಿತಾಂಶ</div>
+        <textarea class="output-area" id="output-area" readonly placeholder="ಇಲ್ಲಿ ಕನ್ನಡ ಬರುತ್ತದೆ..."></textarea>
+      </div>
+    </div>
+    <div class="suggestions" id="suggestions">
+      <span style="font-size:12px;color:var(--ink3);font-family:var(--font-en)">ಸಲಹೆಗಳು ಇಲ್ಲಿ ಬರುತ್ತವೆ...</span>
+    </div>
+  </div>
+
+  <!-- KEYBOARD -->
+  <div class="keyboard-card" id="keyboard-section" style="display:none">
+    <div class="kb-title">⌨️ ಕನ್ನಡ ಅಕ್ಷರಮಾಲೆ ಕೀಬೋರ್ಡ್</div>
+    <!-- Vowels -->
+    <div class="kb-row" id="kb-vowels"></div>
+    <!-- Consonants row 1 -->
+    <div class="kb-row" id="kb-cons1"></div>
+    <div class="kb-row" id="kb-cons2"></div>
+    <div class="kb-row" id="kb-cons3"></div>
+    <div class="kb-row" id="kb-cons4"></div>
+    <!-- Special row -->
+    <div class="kb-row">
+      <div class="key special wide" onclick="kbType('ಅ')">Del ←</div>
+      <div class="key space" onclick="kbType(' ')">ಸ್ಪೇಸ್</div>
+      <div class="key special wide" onclick="copyOutput()">ಕಾಪಿ</div>
+    </div>
+  </div>
+
+  <!-- QUICK PHRASES -->
+  <div class="phrases-card">
+    <div style="font-size:13px;font-weight:700;margin-bottom:4px;">💬 ಬಹು ಬಳಸುವ ಪದಗಳು — ಕ್ಲಿಕ್ ಮಾಡಿ ಸೇರಿಸಿ</div>
+    <div class="phrases-grid" id="phrases-grid"></div>
+  </div>
+
+  <!-- TRANSLITERATION TABLE -->
+  <div class="translit-card">
+    <div style="font-size:13px;font-weight:700;">📖 ಟ್ರಾನ್ಸ್‌ಲಿಟರೇಶನ್ ಮಾರ್ಗದರ್ಶಿ</div>
+    <div style="font-size:12px;color:var(--ink3);margin:4px 0 0;font-family:var(--font-en)">Type these English letters to get Kannada characters</div>
+    <div class="tl-grid" id="tl-guide"></div>
+  </div>
+
+</div>
+
+<script>
+let fontSize = 16;
+let currentMode = 'transliterate';
+let outputBuffer = '';
+let currentWord = '';
+
+// Full transliteration map — English → Kannada
+const translit = {
+  // Vowels
+  'aa':'ಆ','ii':'ಈ','uu':'ಊ','ee':'ಏ','oo':'ಓ','ai':'ಐ','au':'ಔ','am':'ಅಂ','ah':'ಅಃ',
+  'a':'ಅ','i':'ಇ','u':'ಉ','e':'ಎ','o':'ಒ',
+  // Ka varga
+  'kka':'ಕ್ಕ','kha':'ಖ','ga':'ಗ','gha':'ಘ','nga':'ಙ',
+  'ka':'ಕ','k':'ಕ',
+  // Cha varga
+  'cha':'ಚ','chha':'ಛ','ja':'ಜ','jha':'ಝ','nya':'ಞ','ch':'ಚ',
+  // Ta varga (retroflex)
+  'tta':'ಟ','ttha':'ಠ','dda':'ಡ','ddha':'ಢ','nna':'ಣ','tt':'ಟ',
+  // Ta varga (dental)
+  'tha':'ಥ','dha':'ಧ','tha':'ತ',
+  'ta':'ತ','da':'ದ','na':'ನ','t':'ತ','d':'ದ','n':'ನ',
+  // Pa varga
+  'pa':'ಪ','pha':'ಫ','ba':'ಬ','bha':'ಭ','ma':'ಮ',
+  'p':'ಪ','b':'ಬ','m':'ಮ',
+  // Semivowels
+  'ya':'ಯ','ra':'ರ','la':'ಲ','va':'ವ','wa':'ವ',
+  'y':'ಯ','r':'ರ','l':'ಲ','v':'ವ','w':'ವ',
+  // Sibilants
+  'sha':'ಶ','sha':'ಷ','sa':'ಸ','sh':'ಶ','s':'ಸ',
+  // Ha
+  'ha':'ಹ','h':'ಹ',
+  // Special
+  'lla':'ಳ','llla':'ಳ','ksha':'ಕ್ಷ','gna':'ಜ್ಞ',
+  'La':'ಳ','fa':'ಫ','za':'ಜ','z':'ಜ',
+};
+
+// Word dictionary for common Kannada words
+const wordMap = {
+  'namaskara':'ನಮಸ್ಕಾರ','namaste':'ನಮಸ್ತೆ','kannada':'ಕನ್ನಡ',
+  'karnataka':'ಕರ್ನಾಟಕ','bengaluru':'ಬೆಂಗಳೂರು','mysuru':'ಮೈಸೂರು',
+  'hubli':'ಹುಬ್ಬಳ್ಳಿ','mangaluru':'ಮಂಗಳೂರು','belagavi':'ಬೆಳಗಾವಿ',
+  'dharwad':'ಧಾರವಾಡ','kalaburagi':'ಕಲಬುರಗಿ','tumakuru':'ತುಮಕೂರು',
+  'hassan':'ಹಾಸನ','mandya':'ಮಂಡ್ಯ','kodagu':'ಕೊಡಗು','udupi':'ಉಡುಪಿ',
+  'namma':'ನಮ್ಮ','nimma':'ನಿಮ್ಮ','yenu':'ಏನು','hege':'ಹೇಗೆ',
+  'ella':'ಎಲ್ಲ','illi':'ಇಲ್ಲಿ','alli':'ಅಲ್ಲಿ','yaako':'ಯಾಕೋ',
+  'mane':'ಮನೆ','oor':'ಊರು','hola':'ಹೊಲ','nadi':'ನದಿ',
+  'akka':'ಅಕ್ಕ','amma':'ಅಮ್ಮ','appa':'ಅಪ್ಪ','anna':'ಅಣ್ಣ','tamm':'ತಮ್ಮ',
+  'avaru':'ಅವರು','ivaru':'ಇವರು','navu':'ನಾವು','neevu':'ನೀವು',
+  'beku':'ಬೇಕು','beda':'ಬೇಡ','ide':'ಇದೆ','illa':'ಇಲ್ಲ',
+  'chennaagide':'ಚೆನ್ನಾಗಿದೆ','channagide':'ಚನ್ನಾಗಿದೆ',
+  'dhanyavada':'ಧನ್ಯವಾದ','shubhashaya':'ಶುಭಾಶಯ',
+  'arogya':'ಆರೋಗ್ಯ','shala':'ಶಾಲೆ','college':'ಕಾಲೇಜು',
+  'sarkar':'ಸರ್ಕಾರ','yojane':'ಯೋಜನೆ','neerumath':'ನೀರು',
+  'malle':'ಮಳೆ','benne':'ಬೆಣ್ಣೆ','haalu':'ಹಾಲು','tindi':'ತಿಂಡಿ',
+  'udyoga':'ಉದ್ಯೋಗ','vyapara':'ವ್ಯಾಪಾರ','hana':'ಹಣ','bank':'ಬ್ಯಾಂಕ್',
+};
+
+function transliterateWord(word) {
+  if (!word) return '';
+  const lower = word.toLowerCase();
+  if (wordMap[lower]) return wordMap[lower];
+  // Character-by-character transliteration
+  let result = '';
+  let i = 0;
+  while (i < lower.length) {
+    let matched = false;
+    // Try longest match first (4 chars, 3, 2, 1)
+    for (let len = 4; len >= 1; len--) {
+      const chunk = lower.substring(i, i + len);
+      if (translit[chunk]) {
+        result += translit[chunk];
+        i += len;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      result += lower[i];
+      i++;
+    }
+  }
+  return result;
+}
+
+function handleInput(val) {
+  document.getElementById('char-count').textContent = val.length;
+  // Transliterate word by word
+  const words = val.split(/(\s+)/);
+  let output = '';
+  let suggestions = [];
+  words.forEach(w => {
+    if (/\s+/.test(w)) { output += w; }
+    else {
+      const trans = transliterateWord(w);
+      output += trans;
+      if (w.length > 1) suggestions.push(trans);
+    }
+  });
+  document.getElementById('output-area').value = output;
+  outputBuffer = output;
+  // Show suggestions for last word
+  const lastWord = val.split(/\s+/).pop();
+  showSuggestions(lastWord);
+}
+
+function showSuggestions(word) {
+  if (!word || word.length < 2) {
+    document.getElementById('suggestions').innerHTML = '<span style="font-size:12px;color:var(--ink3);font-family:var(--font-en)">ಸಲಹೆಗಳು ಇಲ್ಲಿ ಬರುತ್ತವೆ...</span>';
+    return;
+  }
+  const matches = Object.entries(wordMap)
+    .filter(([k]) => k.startsWith(word.toLowerCase()))
+    .slice(0, 8);
+  if (matches.length === 0) {
+    document.getElementById('suggestions').innerHTML = '';
+    return;
+  }
+  document.getElementById('suggestions').innerHTML = matches.map(([en, kn]) =>
+    `<button class="sug-btn" onclick="applySuggestion('${kn}','${en}')" title="${en}">${kn}</button>`
+  ).join('');
+}
+
+function applySuggestion(kn, en) {
+  const input = document.getElementById('input-area');
+  const words = input.value.split(/\s+/);
+  words[words.length - 1] = en;
+  input.value = words.join(' ') + ' ';
+  handleInput(input.value);
+  input.focus();
+}
+
+function handleKeydown(e) {
+  // No special handling needed — input event handles it
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-area').value;
+  if (!text) { alert('ಯಾವುದೇ ಪಠ್ಯ ಇಲ್ಲ'); return; }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.tb-btn.primary');
+    btn.textContent = '✅ ಕಾಪಿ ಆಯಿತು!';
+    setTimeout(() => { btn.textContent = '📋 ಕಾಪಿ ಮಾಡಿ'; }, 2000);
+  });
+}
+
+function clearAll() {
+  document.getElementById('input-area').value = '';
+  document.getElementById('output-area').value = '';
+  document.getElementById('char-count').textContent = '0';
+  document.getElementById('suggestions').innerHTML = '';
+  outputBuffer = '';
+}
+
+function downloadText() {
+  const text = document.getElementById('output-area').value;
+  if (!text) return;
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'kannada-text.txt';
+  a.click();
+}
+
+function shareText() {
+  const text = document.getElementById('output-area').value;
+  if (!text) return;
+  if (navigator.share) navigator.share({ text });
+  else navigator.clipboard.writeText(text).then(() => alert('ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಕಾಪಿ ಆಯಿತು'));
+}
+
+function changeFontSize(delta) {
+  fontSize = Math.max(12, Math.min(28, fontSize + delta));
+  document.querySelectorAll('.input-area,.output-area').forEach(el => el.style.fontSize = fontSize + 'px');
+}
+
+function setMode(mode, el) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('keyboard-section').style.display = mode === 'keyboard' ? 'block' : 'none';
+}
+
+// Keyboard layout
+const vowels = ['ಅ','ಆ','ಇ','ಈ','ಉ','ಊ','ಋ','ಎ','ಏ','ಐ','ಒ','ಓ','ಔ','ಅಂ','ಅಃ'];
+const cons1 = ['ಕ','ಖ','ಗ','ಘ','ಙ','ಚ','ಛ','ಜ','ಝ','ಞ'];
+const cons2 = ['ಟ','ಠ','ಡ','ಢ','ಣ','ತ','ಥ','ದ','ಧ','ನ'];
+const cons3 = ['ಪ','ಫ','ಬ','ಭ','ಮ','ಯ','ರ','ಲ','ವ','ಶ'];
+const cons4 = ['ಷ','ಸ','ಹ','ಳ','ಕ್ಷ','ಜ್ಞ','೦','೧','೨','೩','೪','೫','೬','೭','೮','೯'];
+
+function renderKeyRow(id, chars) {
+  document.getElementById(id).innerHTML = chars.map(c =>
+    `<div class="key" onclick="kbType('${c}')">${c}</div>`
+  ).join('');
+}
+renderKeyRow('kb-vowels', vowels);
+renderKeyRow('kb-cons1', cons1);
+renderKeyRow('kb-cons2', cons2);
+renderKeyRow('kb-cons3', cons3);
+renderKeyRow('kb-cons4', cons4);
+
+function kbType(char) {
+  const out = document.getElementById('output-area');
+  if (char === ' ') { out.value += ' '; }
+  else if (char === 'ಅ' && out.value.length > 0) { out.value = out.value.slice(0, -1); }
+  else { out.value += char; }
+  outputBuffer = out.value;
+  document.getElementById('char-count').textContent = out.value.length;
+}
+
+// Quick phrases
+const phrases = [
+  'ನಮಸ್ಕಾರ','ಧನ್ಯವಾದ','ದಯವಿಟ್ಟು','ಕ್ಷಮಿಸಿ',
+  'ಹೌದು','ಇಲ್ಲ','ಸ್ವಾಗತ','ಶುಭಾಶಯ',
+  'ಚೆನ್ನಾಗಿದ್ದೀರಾ?','ನಾನು ಓದುತ್ತಿದ್ದೇನೆ',
+  'ಕರ್ನಾಟಕ ನಮ್ಮ ರಾಜ್ಯ','ಜೈ ಕರ್ನಾಟಕ ಮಾತೆ',
+  'ನಿಮ್ಮ ಹೆಸರು ಏನು?','ಇಂದು ಚೆನ್ನಾಗಿದೆ',
+];
+document.getElementById('phrases-grid').innerHTML = phrases.map(p =>
+  `<button class="phrase-btn" onclick="insertPhrase('${p}')">${p}</button>`
+).join('');
+
+function insertPhrase(phrase) {
+  const out = document.getElementById('output-area');
+  out.value += (out.value ? ' ' : '') + phrase;
+  outputBuffer = out.value;
+  document.getElementById('char-count').textContent = out.value.length;
+}
+
+// Transliteration guide
+const guide = [
+  ['a','ಅ'],['aa','ಆ'],['i','ಇ'],['ii','ಈ'],['u','ಉ'],['uu','ಊ'],
+  ['e','ಎ'],['ee','ಏ'],['o','ಒ'],['oo','ಓ'],['ai','ಐ'],['au','ಔ'],
+  ['ka','ಕ'],['ga','ಗ'],['na','ನ'],['ta','ತ'],['da','ದ'],['pa','ಪ'],
+  ['ba','ಬ'],['ma','ಮ'],['ya','ಯ'],['ra','ರ'],['la','ಲ'],['va','ವ'],
+  ['sha','ಶ'],['sa','ಸ'],['ha','ಹ'],['La','ಳ'],['ksha','ಕ್ಷ'],
+];
+document.getElementById('tl-guide').innerHTML = guide.map(([en, kn]) =>
+  `<div class="tl-item"><div class="tl-en">${en}</div><div class="tl-kn">${kn}</div></div>`
+).join('');
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ನಿಮ್ಮ MLA MP DC SP ಯಾರು? — Karnataka Civic Representatives Finder | ಕರ್ನಾಟ</title>
+<meta name="description" content="ನಿಮ್ಮ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ MLA, ಲೋಕಸಭಾ MP, ಜಿಲ್ಲಾಧಿಕಾರಿ DC, SP, ZP ಸದಸ್ಯ, GP ಅಧ್ಯಕ್ಷ ಮಾಹಿತಿ ತಕ್ಷಣ ಪಡೆಯಿರಿ. Find your MLA, MP, DC, SP Karnataka.">
+<meta name="keywords" content="who is my MLA Karnataka, find MLA constituency, ನಮ್ಮ MLA ಯಾರು, Karnataka MP list, DC SP Karnataka contacts">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Karnataka Civic Representative Finder",
+  "applicationCategory": "GovernmentApplication",
+  "inLanguage": "kn",
+  "description": "Find your MLA, MP, DC, SP, ZP member by constituency or location in Karnataka"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root {
+  --red: #C0392B; --red-dk: #96281B; --red-lt: #FDECEA;
+  --blue: #1A5276; --blue-lt: #EAF2F8;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --gold: #D4A017; --gold-lt: #FDF8E7;
+  --purple: #6C3483; --purple-lt: #F5EEF8;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --teal: #0E6680; --teal-lt: #D5EFF6;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F4F3EF; --white: #FFFFFF; --border: #E2E0DA;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+input{font-family:inherit;outline:none;border:none;}
+
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:500;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);}
+.page-title{font-size:16px;font-weight:700;}
+
+/* HERO SEARCH */
+.hero{background:linear-gradient(135deg,#1A1A2E 0%,#2C3E6A 100%);padding:36px 20px 120px;text-align:center;color:#fff;}
+.hero h1{font-size:24px;font-weight:700;margin-bottom:8px;}
+.hero p{font-size:14px;opacity:0.75;margin-bottom:28px;}
+.search-box{max-width:560px;margin:0 auto;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.25);border-radius:14px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(8px);}
+.search-box input{flex:1;background:none;color:#fff;font-size:16px;font-family:var(--font-kn);}
+.search-box input::placeholder{color:rgba(255,255,255,0.5);}
+.search-btn{background:var(--red);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;font-family:var(--font-kn);white-space:nowrap;transition:background 0.15s;}
+.search-btn:hover{background:var(--red-dk);}
+.geo-btn-hero{margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:20px;padding:8px 16px;font-size:13px;font-family:var(--font-kn);cursor:pointer;}
+
+/* POPULAR SEARCHES */
+.popular{max-width:560px;margin:12px auto 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.pop-tag{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);border-radius:20px;padding:5px 12px;font-size:12px;cursor:pointer;font-family:var(--font-kn);transition:all 0.15s;}
+.pop-tag:hover{background:rgba(255,255,255,0.25);}
+
+/* RESULTS CARD */
+.wrap{max-width:860px;margin:-92px auto 0;padding:0 20px 40px;position:relative;z-index:5;}
+
+.results-card{background:var(--white);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.12);overflow:hidden;margin-bottom:20px;}
+.results-header{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.results-area{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.results-area-badge{background:var(--red-lt);color:var(--red);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.results-share{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--ink2);}
+
+/* REP CARDS */
+.rep-list{padding:8px 0;}
+.rep-card{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:background 0.15s;}
+.rep-card:last-child{border-bottom:none;}
+.rep-card:hover{background:var(--bg);}
+.rep-avatar{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;font-weight:700;color:#fff;}
+.rep-body{flex:1;min-width:0;}
+.rep-level{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;font-family:var(--font-en);}
+.rep-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.rep-role{font-size:12px;color:var(--ink3);font-family:var(--font-en);margin-bottom:6px;}
+.rep-party{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:3px 8px;border-radius:5px;margin-bottom:8px;}
+.rep-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.rep-action{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:7px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--white);color:var(--ink2);transition:all 0.15s;}
+.rep-action:hover{background:var(--bg);border-color:var(--ink2);}
+.rep-action.primary{background:var(--blue);color:#fff;border-color:var(--blue);}
+.rep-action.primary:hover{background:#154360;}
+.rep-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.rep-since{font-size:11px;color:var(--ink3);font-family:var(--font-en);}
+.rep-term{font-size:11px;font-weight:600;color:var(--green);background:var(--green-lt);padding:3px 7px;border-radius:5px;}
+
+/* INFO PANELS BELOW */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr;}}
+.info-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.ip-title{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.ip-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.ip-row:last-child{border-bottom:none;}
+.ip-label{color:var(--ink3);flex-shrink:0;font-family:var(--font-en);}
+.ip-val{color:var(--ink);font-weight:500;text-align:right;font-family:var(--font-en);}
+
+/* GOVT OFFICES */
+.offices-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:20px;}
+.off-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px;}
+.off-item{background:var(--bg);border-radius:9px;padding:12px;border:1px solid var(--border);}
+.off-icon{font-size:20px;margin-bottom:6px;}
+.off-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.off-person{font-size:12px;color:var(--blue);margin-bottom:4px;font-family:var(--font-en);}
+.off-phone{font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:4px;font-family:var(--font-en);}
+
+/* DISTRICT BROWSE */
+.browse-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:20px;}
+.dist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:12px;}
+.dist-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:500;color:var(--ink2);transition:all 0.15s;font-family:var(--font-kn);}
+.dist-btn:hover{background:var(--red-lt);color:var(--red);border-color:var(--red);}
+
+/* PLACEHOLDER */
+.placeholder{text-align:center;padding:40px 20px;}
+.ph-icon{font-size:52px;margin-bottom:14px;}
+.ph-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.ph-sub{font-size:14px;color:var(--ink2);max-width:360px;margin:0 auto;line-height:1.6;}
+
+/* HOW IT WORKS */
+.how-card{background:linear-gradient(135deg,var(--blue-lt) 0%,#fff 100%);border:1px solid #c5d9ed;border-radius:var(--radius);padding:20px;margin-bottom:20px;}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
+@media(max-width:500px){.how-steps{grid-template-columns:1fr;}}
+.how-step{text-align:center;}
+.how-num{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:var(--font-en);}
+.how-text{font-size:12px;color:var(--ink2);line-height:1.5;}
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">🏛️ ಜನಪ್ರತಿನಿಧಿ ಹುಡುಕಿ</div>
+</div>
+
+<div class="hero">
+  <h1>🏛️ ನಿಮ್ಮ ಜನಪ್ರತಿನಿಧಿ ಯಾರು?</h1>
+  <p>ನಿಮ್ಮ MLA · MP · DC · SP · ZP · TP · GP ಎಲ್ಲ ಮಾಹಿತಿ — ಒಂದೇ ಕಡೆ</p>
+  <div class="search-box">
+    <input type="text" id="main-search" placeholder="ಗ್ರಾಮ, ವಾರ್ಡ್, ನಗರ ಅಥವಾ ಕ್ಷೇತ್ರ ಹೆಸರು ಟೈಪ್ ಮಾಡಿ..." autocomplete="off" oninput="handleInput(this.value)" onkeydown="if(event.key==='Enter')doSearch()">
+    <button class="search-btn" onclick="doSearch()">🔍 ಹುಡುಕಿ</button>
+  </div>
+  <button class="geo-btn-hero" onclick="useMyLocation()">📍 ನನ್ನ ಸ್ಥಳ ಬಳಸಿ</button>
+  <div class="popular">
+    <span class="pop-tag" onclick="quickSearch('ಯಲಹಂಕ')">ಯಲಹಂಕ</span>
+    <span class="pop-tag" onclick="quickSearch('ಮೈಸೂರು')">ಮೈಸೂರು</span>
+    <span class="pop-tag" onclick="quickSearch('ಹುಬ್ಬಳ್ಳಿ')">ಹುಬ್ಬಳ್ಳಿ</span>
+    <span class="pop-tag" onclick="quickSearch('ಬೆಳಗಾವಿ')">ಬೆಳಗಾವಿ</span>
+    <span class="pop-tag" onclick="quickSearch('ಮಂಗಳೂರು')">ಮಂಗಳೂರು</span>
+    <span class="pop-tag" onclick="quickSearch('ತುಮಕೂರು')">ತುಮಕೂರು</span>
+    <span class="pop-tag" onclick="quickSearch('ಕಲಬುರಗಿ')">ಕಲಬುರಗಿ</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- RESULT AREA -->
+  <div id="result-area">
+    <!-- Placeholder (shown by default) -->
+    <div id="placeholder-card" class="results-card">
+      <div class="placeholder">
+        <div class="ph-icon">🔍</div>
+        <div class="ph-title">ನಿಮ್ಮ ಸ್ಥಳ ಹುಡುಕಿ</div>
+        <div class="ph-sub">ಗ್ರಾಮ, ವಾರ್ಡ್, ನಗರ ಅಥವಾ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ ಹೆಸರು ಮೇಲೆ ಟೈಪ್ ಮಾಡಿ. ನಿಮ್ಮ MLA, MP, DC, SP, ZP, GP ಮಾಹಿತಿ ತಕ್ಷಣ ಸಿಗುತ್ತದೆ.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-card">
+    <div style="font-size:14px;font-weight:700;color:var(--blue)">ಹೇಗೆ ಬಳಸಬೇಕು?</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">ನಿಮ್ಮ ಗ್ರಾಮ ಅಥವಾ ವಾರ್ಡ್ ಹೆಸರು ಟೈಪ್ ಮಾಡಿ</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text">ಅಥವಾ "ನನ್ನ ಸ್ಥಳ ಬಳಸಿ" ಕ್ಲಿಕ್ ಮಾಡಿ</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">ಎಲ್ಲ ಜನಪ್ರತಿನಿಧಿ ಮತ್ತು ಅಧಿಕಾರಿ ಮಾಹಿತಿ ತಕ್ಷಣ ಸಿಗುತ್ತದೆ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISTRICT BROWSE -->
+  <div class="browse-card">
+    <div style="font-size:14px;font-weight:700;margin-bottom:4px;">🗺️ ಜಿಲ್ಲೆ ಮೂಲಕ ಹುಡುಕಿ</div>
+    <div style="font-size:12px;color:var(--ink3)">Karnataka's 31 districts — click any to see all representatives</div>
+    <div class="dist-grid" id="dist-grid"></div>
+  </div>
+
+</div>
+
+<script>
+// Civic data for demo (real version would use ECI Lok Dhaba API + KA state data)
+const civicData = {
+  'ಯಲಹಂಕ': {
+    area: 'ಯಲಹಂಕ, ಬೆಂಗಳೂರು ನಗರ',
+    constituency: 'ಯಲಹಂಕ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (153)',
+    lok: 'ಬೆಂಗಳೂರು ಉತ್ತರ ಲೋಕಸಭಾ',
+    reps: [
+      { level: 'MLA · ಶಾಸಕ', color: '#C0392B', icon: 'ಶಾ', name: 'ಎಸ್.ಆರ್. ವಿಶ್ವನಾಥ್', role: 'ಯಲಹಂಕ ಶಾಸಕ', party: 'INC', partyColor: '#1B7A4B', partyBg: '#E8F5EE', since: '2023', term: 'ಚಾಲ್ತಿ ಅವಧಿ', phone: '080-22250101', email: 'mla.yelahanka@kar.nic.in', office: 'ಶಾಸಕ ಕಚೇರಿ, ಯಲಹಂಕ' },
+      { level: 'MP · ಸಂಸದ', color: '#1A5276', icon: 'ಸಂ', name: 'ಶೋಭಾ ಕರಂದ್ಲಾಜೆ', role: 'ಬೆಂಗಳೂರು ಉತ್ತರ ಲೋಕಸಭಾ', party: 'BJP', partyColor: '#E67E22', partyBg: '#FEF5EC', since: '2024', term: 'ಚಾಲ್ತಿ ಅವಧಿ', phone: '011-23015252', email: 'shobha.kk@sansad.nic.in', office: 'ಸಂಸದ ನಿವಾಸ, ದೆಹಲಿ' },
+      { level: 'DC · ಜಿಲ್ಲಾಧಿಕಾರಿ', color: '#1B7A4B', icon: 'DC', name: 'ಶ್ರೀ ಜಗದೀಶ್ (IAS)', role: 'ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆ', party: 'IAS Officer', partyColor: '#6C3483', partyBg: '#F5EEF8', since: '2024', term: 'ಕಾರ್ಯನಿರ್ವಾಹಕ', phone: '080-22353822', email: 'dc.bengaluru@nic.in', office: 'ಜಿಲ್ಲಾ ಕಚೇರಿ, ಕೆಂಪೇಗೌಡ ರಸ್ತೆ' },
+      { level: 'SP · ಪೊಲೀಸ್ ಅಧೀಕ್ಷಕ', color: '#6C3483', icon: 'SP', name: 'ಶ್ರೀ ರಮೇಶ್ (IPS)', role: 'ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆ', party: 'IPS Officer', partyColor: '#6C3483', partyBg: '#F5EEF8', since: '2023', term: 'ಕಾರ್ಯನಿರ್ವಾಹಕ', phone: '080-22942222', email: 'sp.bengaluru@ksp.gov.in', office: 'ಪೊಲೀಸ್ ಕಮಿಷನರೇಟ್, ಬೆಂಗಳೂರು' },
+      { level: 'ZP · ಜಿಲ್ಲಾ ಪಂಚಾಯತ್', color: '#0E6680', icon: 'ZP', name: 'ಶ್ರೀಮತಿ ಸುಮಿತ್ರಾ', role: 'ZP ವಾರ್ಡ್ 12 · ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', party: 'INC', partyColor: '#1B7A4B', partyBg: '#E8F5EE', since: '2021', term: '2021-2026', phone: '080-23116284', email: '', office: 'ZP ಕಚೇರಿ, ಬೆಂಗಳೂರು' },
+      { level: 'GP · ಗ್ರಾಮ ಪಂಚಾಯತ್', color: '#D4A017', icon: 'GP', name: 'ಶ್ರೀ ರಾಮಯ್ಯ', role: 'ಯಲಹಂಕ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಅಧ್ಯಕ್ಷ', party: 'ಪಕ್ಷೇತರ', partyColor: '#8888AA', partyBg: '#F0EFF0', since: '2021', term: '2021-2026', phone: '9845001234', email: '', office: 'GP ಕಚೇರಿ, ಯಲಹಂಕ' },
+    ],
+    offices: [
+      { icon: '🏥', name: 'ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆ', person: 'CMO ಡಾ. ಸುರೇಶ್', phone: '080-28462000' },
+      { icon: '🏫', name: 'ಬ್ಲಾಕ್ ಶಿಕ್ಷಣ ಅಧಿಕಾರಿ', person: 'BEO ಶ್ರೀ ಮೋಹನ್', phone: '080-28463456' },
+      { icon: '🚓', name: 'ಪೊಲೀಸ್ ಠಾಣೆ', person: 'SHO ಇನ್ಸ್ಪೆಕ್ಟರ್ ರಾಜಶೇಖರ್', phone: '080-22943100' },
+      { icon: '🏛️', name: 'ತಹಶೀಲ್ದಾರ್', person: 'ಶ್ರೀ ಪ್ರಕಾಶ್ (KAS)', phone: '080-28460567' },
+    ]
+  },
+  'ಮೈಸೂರು': {
+    area: 'ಮೈಸೂರು ನಗರ',
+    constituency: 'ಮೈಸೂರು ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (153)',
+    lok: 'ಮೈಸೂರು ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ',
+    reps: [
+      { level: 'MLA · ಶಾಸಕ', color: '#C0392B', icon: 'ಶಾ', name: 'ತನ್ವೀರ್ ಸೇಠ್', role: 'ಮೈಸೂರು ಶಾಸಕ', party: 'INC', partyColor: '#1B7A4B', partyBg: '#E8F5EE', since: '2023', term: 'ಚಾಲ್ತಿ ಅವಧಿ', phone: '0821-2528201', email: '', office: 'ಶಾಸಕ ಕಚೇರಿ, ಮೈಸೂರು' },
+      { level: 'MP · ಸಂಸದ', color: '#1A5276', icon: 'ಸಂ', name: 'ಎಂ. ಲಕ್ಷ್ಮಣ್', role: 'ಮೈಸೂರು ಲೋಕಸಭಾ', party: 'BJP', partyColor: '#E67E22', partyBg: '#FEF5EC', since: '2024', term: 'ಚಾಲ್ತಿ ಅವಧಿ', phone: '011-23015301', email: '', office: 'ಸಂಸದ ನಿವಾಸ, ದೆಹಲಿ' },
+      { level: 'DC · ಜಿಲ್ಲಾಧಿಕಾರಿ', color: '#1B7A4B', icon: 'DC', name: 'ಶ್ರೀ ಕೃಷ್ಣ (IAS)', role: 'ಮೈಸೂರು ಜಿಲ್ಲೆ', party: 'IAS Officer', partyColor: '#6C3483', partyBg: '#F5EEF8', since: '2023', term: 'ಕಾರ್ಯನಿರ್ವಾಹಕ', phone: '0821-2438400', email: 'dc.mysore@nic.in', office: 'DC ಕಚೇರಿ, ಮೈಸೂರು' },
+      { level: 'SP · ಪೊಲೀಸ್ ಅಧೀಕ್ಷಕ', color: '#6C3483', icon: 'SP', name: 'ಶ್ರೀ ಅಭಿಷೇಕ್ (IPS)', role: 'ಮೈಸೂರು ಜಿಲ್ಲೆ', party: 'IPS Officer', partyColor: '#6C3483', partyBg: '#F5EEF8', since: '2023', term: 'ಕಾರ್ಯನಿರ್ವಾಹಕ', phone: '0821-2444000', email: '', office: 'SP ಕಚೇರಿ, ಮೈಸೂರು' },
+      { level: 'ZP · ಜಿಲ್ಲಾ ಪಂಚಾಯತ್ CEO', color: '#0E6680', icon: 'ZP', name: 'ಶ್ರೀ ನಾಗರಾಜ (IAS)', role: 'ಮೈಸೂರು ZP CEO', party: 'KAS Officer', partyColor: '#0E6680', partyBg: '#D5EFF6', since: '2023', term: 'ಕಾರ್ಯನಿರ್ವಾಹಕ', phone: '0821-2438500', email: '', office: 'ZP ಕಚೇರಿ, ಮೈಸೂರು' },
+    ],
+    offices: [
+      { icon: '🏥', name: 'K R ಆಸ್ಪತ್ರೆ', person: 'MS ಡಾ. ರಾಮಪ್ರಸಾದ್', phone: '0821-2423400' },
+      { icon: '🚓', name: 'ಮೈಸೂರು ನಗರ ಪೊಲೀಸ್', person: 'DCP ಮೈಸೂರು', phone: '0821-2444100' },
+      { icon: '🏛️', name: 'ತಹಶೀಲ್ದಾರ್ ಕಚೇರಿ', person: 'ಶ್ರೀ ಸದಾಶಿವ (KAS)', phone: '0821-2438200' },
+      { icon: '🏫', name: 'DDPI ಮೈಸೂರು', person: 'ಶ್ರೀ ವಿಜಯಕುಮಾರ್', phone: '0821-2438700' },
+    ]
+  }
+};
+
+// Default: ಯಲಹಂಕ
+const defaultCity = 'ಯಲಹಂಕ';
+
+function renderResults(cityKey) {
+  const data = civicData[cityKey];
+  if (!data) {
+    showNotFound(cityKey);
+    return;
+  }
+  document.getElementById('placeholder-card') && (document.getElementById('placeholder-card').style.display = 'none');
+  const html = `
+    <div class="results-card" id="result-card">
+      <div class="results-header">
+        <div>
+          <div class="results-area">
+            📍 ${data.area}
+            <span class="results-area-badge">${data.constituency}</span>
+          </div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:4px;font-family:var(--font-en)">${data.lok}</div>
+        </div>
+        <button class="results-share" onclick="shareResults('${cityKey}')">📤 ಹಂಚಿಕೊಳ್ಳಿ</button>
+      </div>
+      <div class="rep-list">
+        ${data.reps.map(rep => `
+          <div class="rep-card">
+            <div class="rep-avatar" style="background:${rep.color}">${rep.icon}</div>
+            <div class="rep-body">
+              <div class="rep-level" style="color:${rep.color}">${rep.level}</div>
+              <div class="rep-name">${rep.name}</div>
+              <div class="rep-role">${rep.role}</div>
+              <span class="rep-party" style="color:${rep.partyColor};background:${rep.partyBg}">${rep.party}</span>
+              <div class="rep-actions">
+                <a class="rep-action primary" href="tel:${rep.phone}">📞 ${rep.phone}</a>
+                ${rep.email ? `<a class="rep-action" href="mailto:${rep.email}">✉️ ಇಮೇಲ್</a>` : ''}
+                <div class="rep-action" onclick="alert('${rep.office}')">🏛️ ಕಚೇರಿ</div>
+              </div>
+            </div>
+            <div class="rep-right">
+              <div class="rep-since">${rep.since}ರಿಂದ</div>
+              <div class="rep-term">${rep.term}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-panel">
+        <div class="ip-title">📋 ಕ್ಷೇತ್ರ ವಿವರ</div>
+        <div class="ip-row"><span class="ip-label">Assembly #</span><span class="ip-val">${data.constituency.match(/\((\d+)\)/)?.[1] || '—'}</span></div>
+        <div class="ip-row"><span class="ip-label">Lok Sabha</span><span class="ip-val">${data.lok.replace(' ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ','').replace(' ಲೋಕಸಭಾ','')}</span></div>
+        <div class="ip-row"><span class="ip-label">State</span><span class="ip-val">Karnataka</span></div>
+        <div class="ip-row"><span class="ip-label">ರಾಜ್ಯ ಸರ್ಕಾರ</span><span class="ip-val">INC (2023-2028)</span></div>
+        <div class="ip-row"><span class="ip-label">ಕೇಂದ್ರ ಸರ್ಕಾರ</span><span class="ip-val">NDA (2024-2029)</span></div>
+      </div>
+      <div class="info-panel">
+        <div class="ip-title">🗳️ ಚುನಾವಣೆ ಮಾಹಿತಿ</div>
+        <div class="ip-row"><span class="ip-label">ಕೊನೆ ವಿಧಾನಸಭೆ</span><span class="ip-val">May 2023</span></div>
+        <div class="ip-row"><span class="ip-label">ಮತದಾರರು</span><span class="ip-val">~2,10,000</span></div>
+        <div class="ip-row"><span class="ip-label">ಮತದಾನ %</span><span class="ip-val">68.4%</span></div>
+        <div class="ip-row"><span class="ip-label">ಕೊನೆ ಲೋಕಸಭೆ</span><span class="ip-val">April 2024</span></div>
+        <div class="ip-row"><span class="ip-label">ಮತದಾನ %</span><span class="ip-val">62.1%</span></div>
+      </div>
+    </div>
+
+    <div class="offices-card">
+      <div style="font-size:14px;font-weight:700">🏢 ಪ್ರಮುಖ ಸರ್ಕಾರಿ ಕಚೇರಿಗಳು</div>
+      <div class="off-grid">
+        ${data.offices.map(o => `
+          <div class="off-item">
+            <div class="off-icon">${o.icon}</div>
+            <div class="off-name">${o.name}</div>
+            <div class="off-person">${o.person}</div>
+            <a class="off-phone" href="tel:${o.phone}">📞 ${o.phone}</a>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('result-area').innerHTML = html;
+}
+
+function showNotFound(query) {
+  document.getElementById('result-area').innerHTML = `
+    <div class="results-card">
+      <div class="placeholder">
+        <div class="ph-icon">🔍</div>
+        <div class="ph-title">"${query}" ಪಟ್ಟಿಯಲ್ಲಿ ಸಿಗಲಿಲ್ಲ</div>
+        <div class="ph-sub">ಕೆಳಗಿನ ಜಿಲ್ಲೆ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಅಥವಾ ಬೇರೆ ಹೆಸರು ಟ್ರೈ ಮಾಡಿ. ನಾವು ಶೀಘ್ರದಲ್ಲೇ ಎಲ್ಲ 224 ಕ್ಷೇತ್ರಗಳ ಮಾಹಿತಿ ಸೇರಿಸುತ್ತಿದ್ದೇವೆ.</div>
+      </div>
+    </div>
+  `;
+}
+
+function doSearch() {
+  const val = document.getElementById('main-search').value.trim();
+  if (!val) return;
+  // Match any key that includes the search term
+  const match = Object.keys(civicData).find(k => k.includes(val) || val.includes(k));
+  renderResults(match || val);
+}
+
+function quickSearch(city) {
+  document.getElementById('main-search').value = city;
+  renderResults(city);
+}
+
+function handleInput(val) {
+  // Autocomplete would go here in production
+}
+
+function useMyLocation() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(pos => {
+    // In production: reverse geocode → find constituency
+    // Demo: default to ಯಲಹಂಕ
+    quickSearch('ಯಲಹಂಕ');
+  });
+}
+
+function shareResults(city) {
+  if (navigator.share) {
+    navigator.share({ title: `${city} ಜನಪ್ರತಿನಿಧಿ ಮಾಹಿತಿ`, url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('ಲಿಂಕ್ ಕಾಪಿ ಆಯಿತು!');
+  }
+}
+
+const districts = ['ಬೆಂಗಳೂರು ನಗರ','ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ','ಮೈಸೂರು','ಮಂಡ್ಯ','ಹಾಸನ','ಕೊಡಗು','ಉಡುಪಿ','ದಕ್ಷಿಣ ಕನ್ನಡ','ಶಿವಮೊಗ್ಗ','ಚಿಕ್ಕಮಗಳೂರು','ತುಮಕೂರು','ಚಿತ್ರದುರ್ಗ','ದಾವಣಗೆರೆ','ಬೆಳಗಾವಿ','ಧಾರವಾಡ','ಗದಗ','ಹಾವೇರಿ','ಉತ್ತರ ಕನ್ನಡ','ಬಾಗಲಕೋಟೆ','ವಿಜಯಪುರ','ಕಲಬುರಗಿ','ಯಾದಗಿರಿ','ರಾಯಚೂರು','ಕೊಪ್ಪಳ','ಬಳ್ಳಾರಿ','ವಿಜಯನಗರ','ಚಿಕ್ಕಬಳ್ಳಾಪುರ','ಕೋಲಾರ','ರಾಮನಗರ','ಚಾಮರಾಜನಗರ','ಮಂಡ್ಯ'];
+document.getElementById('dist-grid').innerHTML = districts.map(d =>
+  `<div class="dist-btn" onclick="quickSearch('${d}')">${d}</div>`
+).join('');
+
+// Show default on load
+renderResults(defaultCity);
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

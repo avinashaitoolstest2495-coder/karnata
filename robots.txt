@@ -1,0 +1,27 @@
+# Karnata.in Robots.txt for Search Engines & AI Crawlers (GEO / AI SEO)
+
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /api/
+
+# AI Crawlers for AI Search Engine Optimization (GEO - Perplexity, ChatGPT, Gemini, Claude)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://karnata.in/sitemap.xml

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್ ಹೂಡಿಕೆ ಲೆಕ್ಕ | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕನ್ನಡದಲ್ಲಿ SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್. ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್ ಹೂಡಿಕೆ ಲಾಭ ಲೆಕ್ಕ ಹಾಕಿ. Mutual fund SIP calculator in Kannada with Step-up and lumpsum features.">
+<meta name="keywords" content="SIP calculator Kannada, mutual fund calculator, SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್, step up SIP, lump sum">
+<link rel="canonical" href="https://karnata.in/sip-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+  "applicationCategory": "FinanceApplication",
+  "inLanguage": "kn",
+  "description": "Mutual Fund SIP, Step-up SIP, and Lump Sum calculator in Kannada",
+  "url": "https://karnata.in/sip-calculator.html",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1B7A4B; --green-dark: #125533; --green-light: #E8F5EE;
+  --blue: #1A5276; --blue-lt: #EAF2F8;
+  --gold: #D4A017; --gold-lt: #FDF8E7;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F7F6F2; --white: #FFFFFF; --border: #E5E4DF;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+/* NAV */
+.topnav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  position: sticky; top: 0; z-index: 50;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--ink2); font-size: 13px; font-weight: 500;
+  background: var(--bg); border-radius: 7px;
+  padding: 6px 12px; border: 1px solid var(--border);
+}
+.page-title { font-size: 16px; font-weight: 700; }
+.breadcrumb { font-size: 12px; color: var(--ink3); margin-left: auto; font-family: var(--font-en); }
+
+/* LAYOUT */
+.wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+.hero { text-align: center; margin-bottom: 28px; background: linear-gradient(135deg, var(--green-light) 0%, #D4E6DF 100%); padding: 30px 20px; border-radius: var(--radius); }
+.hero h1 { font-size: 26px; font-weight: 800; color: var(--green-dark); margin-bottom: 8px; }
+.hero p { font-size: 15px; color: var(--green-dark); opacity: 0.8; }
+
+/* TABS */
+.calc-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.calc-tab {
+  flex: 1; min-width: 120px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+}
+.calc-tab:hover { border-color: var(--green); }
+.calc-tab.active { border-color: var(--green); background: var(--green-light); box-shadow: 0 2px 8px rgba(27,122,75,0.15); }
+.ct-icon { font-size: 24px; margin-bottom: 6px; }
+.ct-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+
+/* MAIN GRID */
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 720px) { .calc-grid { grid-template-columns: 1fr; } }
+
+/* CALCULATOR CARD */
+.calc-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+}
+.card-title { font-size: 16px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+
+/* SLIDERS */
+.field { margin-bottom: 24px; }
+.field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.field-label { font-size: 14px; color: var(--ink2); font-weight: 600; }
+.field-value {
+  font-size: 16px; font-weight: 800; color: var(--green-dark);
+  font-family: var(--font-en);
+  background: var(--green-light); border: 1.5px solid #a8d9c0;
+  border-radius: 8px; padding: 4px 12px;
+}
+input[type=range] {
+  width: 100%; height: 6px;
+  background: linear-gradient(to right, var(--green) 0%, var(--green) var(--pct, 50%), var(--border) var(--pct, 50%));
+  border-radius: 3px; outline: none; -webkit-appearance: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px;
+  background: var(--green); border-radius: 50%; border: 3px solid var(--white);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:active { transform: scale(1.15); }
+.range-minmax { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink3); margin-top: 6px; font-family: var(--font-en); font-weight: 500; }
+
+#stepup-field { display: none; }
+
+/* RESULTS */
+.result-card {
+  background: linear-gradient(135deg, var(--green-dark) 0%, #0c3822 100%);
+  color: #fff; border-radius: var(--radius); padding: 28px;
+  box-shadow: 0 10px 25px rgba(18,85,51,0.3);
+}
+.result-total { text-align: center; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.rt-label { font-size: 13px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-family: var(--font-en); font-weight: 600; }
+.rt-value { font-size: 42px; font-weight: 800; font-family: var(--font-en); letter-spacing: -1px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.rt-sub { font-size: 14px; opacity: 0.8; margin-top: 6px; font-weight: 500; }
+
+.result-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.result-row:last-child { border-bottom: none; }
+.rr-label { font-size: 14px; opacity: 0.9; }
+.rr-value { font-size: 16px; font-weight: 700; font-family: var(--font-en); }
+.rr-value.highlight { color: #F7DC6F; font-size: 18px; }
+
+/* DONUT CHART */
+.chart-wrap { margin: 20px 0; display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.1); padding: 16px; border-radius: 12px; }
+.pie-chart { position: relative; width: 80px; height: 80px; flex-shrink: 0; }
+.pie-svg { transform: rotate(-90deg); }
+.pie-legend { flex: 1; }
+.pie-leg-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.pie-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.pie-leg-label { font-size: 13px; opacity: 0.9; }
+.pie-leg-val { margin-left: auto; font-size: 14px; font-weight: 700; font-family: var(--font-en); }
+
+/* DISCLAIMER */
+.disclaimer {
+  background: var(--amber-lt); border-left: 4px solid var(--amber);
+  padding: 12px 16px; font-size: 13px; color: #935116; border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top: 24px; line-height: 1.5; font-weight: 500;
+}
+
+/* GROWTH TABLE */
+.table-section { margin-top: 32px; background: var(--white); border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.table-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--ink); }
+.growth-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.growth-table th { background: var(--bg); padding: 12px; text-align: right; font-weight: 700; color: var(--ink2); font-family: var(--font-en); border-bottom: 2px solid var(--border); }
+.growth-table th:first-child { text-align: left; }
+.growth-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); font-family: var(--font-en); color: var(--ink2); }
+.growth-table td:first-child { text-align: left; color: var(--ink); font-weight: 600; }
+.growth-table td:last-child { color: var(--green); font-weight: 700; }
+.growth-table tr:hover td { background: var(--green-light); }
+
+/* INFO SECTION */
+.info-section { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 600px) { .info-section { grid-template-columns: 1fr; } }
+.info-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.info-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--green-dark); }
+.info-card p { font-size: 14px; color: var(--ink2); line-height: 1.6; margin-bottom: 10px; }
+.info-card ul { padding-left: 20px; font-size: 14px; color: var(--ink2); line-height: 1.6; }
+.info-card li { margin-bottom: 6px; }
+
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">📈 SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್</div>
+  <div class="breadcrumb">Home › Tools › SIP Calculator</div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್ SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್</h1>
+    <p>ನಿಮ್ಮ ಹೂಡಿಕೆಯ ಮೇಲಿನ ಲಾಭವನ್ನು ಲೆಕ್ಕ ಹಾಕಿ ಹಾಗೂ ಭವಿಷ್ಯದ ಮೌಲ್ಯ ತಿಳಿಯಿರಿ</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="calc-tabs">
+    <div class="calc-tab active" onclick="setMode('sip', this)">
+      <div class="ct-icon">💸</div>
+      <div class="ct-name">SIP ಹೂಡಿಕೆ</div>
+    </div>
+    <div class="calc-tab" onclick="setMode('stepup', this)">
+      <div class="ct-icon">📈</div>
+      <div class="ct-name">ಸ್ಟೆಪ್-ಅಪ್ SIP</div>
+    </div>
+    <div class="calc-tab" onclick="setMode('lumpsum', this)">
+      <div class="ct-icon">💰</div>
+      <div class="ct-name">ಒಟ್ಟು ಹೂಡಿಕೆ (Lump Sum)</div>
+    </div>
+  </div>
+
+  <div class="calc-grid">
+    <!-- INPUT CARD -->
+    <div class="calc-card">
+      <div class="card-title">⚙️ ಹೂಡಿಕೆ ವಿವರ ನಮೂದಿಸಿ</div>
+
+      <div class="field" id="amt-field">
+        <div class="field-header">
+          <span class="field-label" id="amt-label">ಮಾಸಿಕ ಹೂಡಿಕೆ</span>
+          <span class="field-value" id="lbl-amt">₹5,000</span>
+        </div>
+        <input type="range" id="sl-amt" min="500" max="200000" step="500" value="5000"
+          oninput="updateSlider(this,'lbl-amt','amt'); calculate()">
+        <div class="range-minmax"><span id="rmin-amt">₹500</span><span id="rmax-amt">₹2 L</span></div>
+      </div>
+
+      <div class="field" id="stepup-field">
+        <div class="field-header">
+          <span class="field-label">ವಾರ್ಷಿಕ ಏರಿಕೆ (Step-Up)</span>
+          <span class="field-value" id="lbl-step">10%</span>
+        </div>
+        <input type="range" id="sl-step" min="1" max="50" step="1" value="10"
+          oninput="updateSlider(this,'lbl-step','step'); calculate()">
+        <div class="range-minmax"><span>1%</span><span>50%</span></div>
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-label">ಹೂಡಿಕೆ ಅವಧಿ</span>
+          <span class="field-value" id="lbl-yr">10 ವರ್ಷ</span>
+        </div>
+        <input type="range" id="sl-yr" min="1" max="40" step="1" value="10"
+          oninput="updateSlider(this,'lbl-yr','yr'); calculate()">
+        <div class="range-minmax"><span>1 ವರ್ಷ</span><span>40 ವರ್ಷ</span></div>
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-label">ನಿರೀಕ್ಷಿತ ವಾರ್ಷಿಕ ರಿಟರ್ನ್</span>
+          <span class="field-value" id="lbl-rt">12%</span>
+        </div>
+        <input type="range" id="sl-rt" min="1" max="30" step="0.5" value="12"
+          oninput="updateSlider(this,'lbl-rt','rt'); calculate()">
+        <div class="range-minmax"><span>1%</span><span>30%</span></div>
+      </div>
+
+      <div class="disclaimer">
+        ⚠️ <strong>ಗಮನಿಸಿ:</strong> ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್ ಹೂಡಿಕೆ ಮಾರುಕಟ್ಟೆಯ ಅಪಾಯಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತದೆ. ಈ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಕೇವಲ ಅಂದಾಜು ಲಾಭವನ್ನು ತೋರಿಸುತ್ತದೆ.
+      </div>
+    </div>
+
+    <!-- RESULT CARD -->
+    <div>
+      <div class="result-card">
+        <div class="result-total">
+          <div class="rt-label">ಒಟ್ಟು ಭವಿಷ್ಯದ ಮೌಲ್ಯ</div>
+          <div class="rt-value" id="res-total">₹11,61,695</div>
+          <div class="rt-sub" id="res-sub">10 ವರ್ಷ · 12% ರಿಟರ್ನ್</div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="pie-chart">
+            <svg class="pie-svg" width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="16"/>
+              <circle id="pie-inv" cx="40" cy="40" r="32" fill="none" stroke="#2ECC71"
+                stroke-width="16" stroke-dasharray="201 201" stroke-linecap="round"/>
+              <circle id="pie-gain" cx="40" cy="40" r="32" fill="none" stroke="#F7DC6F"
+                stroke-width="16" stroke-dasharray="201 201" stroke-dashoffset="0" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pie-legend">
+            <div class="pie-leg-row"><div class="pie-dot" style="background:#2ECC71"></div><div class="pie-leg-label">ಹೂಡಿಕೆ</div><div class="pie-leg-val" id="pie-p-inv">52%</div></div>
+            <div class="pie-leg-row"><div class="pie-dot" style="background:#F7DC6F"></div><div class="pie-leg-label">ಲಾಭ</div><div class="pie-leg-val" id="pie-p-gain">48%</div></div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <span class="rr-label">ಒಟ್ಟು ಹೂಡಿಕೆ ಮೊತ್ತ</span>
+          <span class="rr-value" id="res-invested">₹6,00,000</span>
+        </div>
+        <div class="result-row">
+          <span class="rr-label">ಅಂದಾಜು ಲಾಭ (Gain)</span>
+          <span class="rr-value highlight" id="res-gain">₹5,61,695</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROWTH TABLE -->
+  <div class="table-section">
+    <div class="table-title">📅 ವರ್ಷವಾರು ಹೂಡಿಕೆ ಬೆಳವಣಿಗೆ</div>
+    <div style="overflow-x:auto">
+      <table class="growth-table">
+        <thead>
+          <tr>
+            <th>ವರ್ಷ</th>
+            <th>ವರ್ಷದ ಹೂಡಿಕೆ</th>
+            <th>ಒಟ್ಟು ಹೂಡಿಕೆ</th>
+            <th>ಸಂಚಿತ ಲಾಭ</th>
+            <th>ವರ್ಷಾಂತ್ಯದ ಮೌಲ್ಯ</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- INFO SECTION -->
+  <div class="info-section">
+    <div class="info-card">
+      <h3>💡 SIP ಎಂದರೇನು? (What is SIP?)</h3>
+      <p>SIP (Systematic Investment Plan) ಎಂದರೆ ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್‌ಗಳಲ್ಲಿ ನಿಯಮಿತವಾಗಿ ಒಂದು ನಿರ್ದಿಷ್ಟ ಮೊತ್ತವನ್ನು ಹೂಡಿಕೆ ಮಾಡುವ ವಿಧಾನ. ಇದು ಬ್ಯಾಂಕಿನ RD (Recurring Deposit) ಯಂತೆಯೇ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಆದರೆ ಮಾರುಕಟ್ಟೆ ಆಧಾರಿತ ರಿಟರ್ನ್ಸ್ ನೀಡುತ್ತದೆ.</p>
+      <ul>
+        <li>ಕೇವಲ ₹500 ರಿಂದ ಹೂಡಿಕೆ ಆರಂಭಿಸಬಹುದು</li>
+        <li>ರೂಪಾಯಿ ಸರಾಸರಿ (Rupee Cost Averaging) ಲಾಭ</li>
+        <li>ಕಾಂಪೌಂಡಿಂಗ್ (Compounding) ಶಕ್ತಿಯಿಂದ ದೀರ್ಘಾವಧಿಯಲ್ಲಿ ದೊಡ್ಡ ಮೊತ್ತ</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>📈 ಸ್ಟೆಪ್-ಅಪ್ SIP ಎಂದರೇನು?</h3>
+      <p>ನಿಮ್ಮ ಆದಾಯ ಹೆಚ್ಚಾದಂತೆ, ಪ್ರತಿ ವರ್ಷ ನಿಮ್ಮ SIP ಮೊತ್ತವನ್ನು ಒಂದು ನಿರ್ದಿಷ್ಟ ಶೇಕಡಾವಾರು (ಉದಾಹರಣೆಗೆ 10%) ಹೆಚ್ಚಿಸುವ ವಿಧಾನವೇ ಸ್ಟೆಪ್-ಅಪ್ SIP. ಇದು ಹಣದುಬ್ಬರವನ್ನು ಮೀರಿ ಉತ್ತಮ ಸಂಪತ್ತು ಸೃಷ್ಟಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.</p>
+      <p><strong>Lump Sum (ಒಟ್ಟು ಹೂಡಿಕೆ):</strong> ನಿಮ್ಮ ಬಳಿ ದೊಡ್ಡ ಮೊತ್ತದ ಹಣ ಒಟ್ಟಿಗೆ ಇದ್ದಾಗ, ಅದನ್ನು ಏಕಕಾಲದಲ್ಲಿ ಮ್ಯೂಚ್ಯುಯಲ್ ಫಂಡ್‌ನಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡುವುದು.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let mode = 'sip'; // sip, stepup, lumpsum
+
+function setMode(m, el) {
+  mode = m;
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  
+  const stepField = document.getElementById('stepup-field');
+  const amtLabel = document.getElementById('amt-label');
+  const slAmt = document.getElementById('sl-amt');
+  
+  if (mode === 'lumpsum') {
+    stepField.style.display = 'none';
+    amtLabel.textContent = 'ಒಟ್ಟು ಹೂಡಿಕೆ';
+    slAmt.min = 5000; slAmt.max = 5000000; slAmt.step = 5000;
+    slAmt.value = 100000;
+    document.getElementById('rmin-amt').textContent = '₹5K';
+    document.getElementById('rmax-amt').textContent = '₹50 L';
+  } else if (mode === 'stepup') {
+    stepField.style.display = 'block';
+    amtLabel.textContent = 'ಆರಂಭಿಕ ಮಾಸಿಕ ಹೂಡಿಕೆ';
+    slAmt.min = 500; slAmt.max = 200000; slAmt.step = 500;
+    slAmt.value = 5000;
+    document.getElementById('rmin-amt').textContent = '₹500';
+    document.getElementById('rmax-amt').textContent = '₹2 L';
+  } else {
+    stepField.style.display = 'none';
+    amtLabel.textContent = 'ಮಾಸಿಕ ಹೂಡಿಕೆ';
+    slAmt.min = 500; slAmt.max = 200000; slAmt.step = 500;
+    slAmt.value = 5000;
+    document.getElementById('rmin-amt').textContent = '₹500';
+    document.getElementById('rmax-amt').textContent = '₹2 L';
+  }
+  
+  updateSlider(slAmt, 'lbl-amt', 'amt');
+  calculate();
+}
+
+function updateSlider(el, lblId, type) {
+  const v = parseFloat(el.value);
+  const min = parseFloat(el.min), max = parseFloat(el.max);
+  const pct = ((v - min) / (max - min)) * 100;
+  el.style.setProperty('--pct', pct + '%');
+  
+  if (type === 'amt') {
+    if (v >= 100000) document.getElementById(lblId).textContent = '₹' + (v/100000).toFixed(v%100000===0?0:2) + ' L';
+    else document.getElementById(lblId).textContent = '₹' + v.toLocaleString('en-IN');
+  } else if (type === 'yr') {
+    document.getElementById(lblId).textContent = v + ' ವರ್ಷ';
+  } else if (type === 'rt' || type === 'step') {
+    document.getElementById(lblId).textContent = v + '%';
+  }
+}
+
+function formatCurrency(n) {
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function calculate() {
+  const P = parseFloat(document.getElementById('sl-amt').value);
+  const Y = parseFloat(document.getElementById('sl-yr').value);
+  const R = parseFloat(document.getElementById('sl-rt').value);
+  const stepRate = parseFloat(document.getElementById('sl-step').value) / 100;
+  
+  let totalInvested = 0;
+  let totalValue = 0;
+  let yearlyData = [];
+  
+  const mRate = R / 12 / 100;
+  
+  if (mode === 'lumpsum') {
+    totalInvested = P;
+    totalValue = P * Math.pow(1 + (R/100), Y);
+    let curVal = P;
+    for(let y=1; y<=Y; y++) {
+      curVal = curVal * (1 + (R/100));
+      yearlyData.push({ year: y, yearInv: y===1?P:0, totInv: P, val: curVal });
+    }
+  } else if (mode === 'stepup') {
+    let currentP = P;
+    for(let y=1; y<=Y; y++) {
+      let yearInv = 0;
+      for(let m=1; m<=12; m++) {
+        totalInvested += currentP;
+        yearInv += currentP;
+        totalValue = (totalValue + currentP) * (1 + mRate);
+      }
+      yearlyData.push({ year: y, yearInv: yearInv, totInv: totalInvested, val: totalValue });
+      currentP = currentP * (1 + stepRate);
+    }
+  } else {
+    // Normal SIP
+    for(let y=1; y<=Y; y++) {
+      let yearInv = 0;
+      for(let m=1; m<=12; m++) {
+        totalInvested += P;
+        yearInv += P;
+        totalValue = (totalValue + P) * (1 + mRate);
+      }
+      yearlyData.push({ year: y, yearInv: yearInv, totInv: totalInvested, val: totalValue });
+    }
+  }
+  
+  const totalGain = totalValue - totalInvested;
+  
+  document.getElementById('res-total').textContent = formatCurrency(totalValue);
+  document.getElementById('res-sub').textContent = `${Y} ವರ್ಷ · ${R}% ರಿಟರ್ನ್`;
+  document.getElementById('res-invested').textContent = formatCurrency(totalInvested);
+  document.getElementById('res-gain').textContent = formatCurrency(totalGain);
+  
+  // Donut chart
+  const invPct = Math.round(totalInvested / totalValue * 100);
+  const gainPct = 100 - invPct;
+  const circ = 2 * Math.PI * 32; // 201.06
+  
+  document.getElementById('pie-inv').setAttribute('stroke-dasharray', `${circ * invPct / 100} ${circ}`);
+  document.getElementById('pie-gain').setAttribute('stroke-dasharray', `${circ * gainPct / 100} ${circ}`);
+  document.getElementById('pie-gain').setAttribute('stroke-dashoffset', `-${circ * invPct / 100}`);
+  
+  document.getElementById('pie-p-inv').textContent = invPct + '%';
+  document.getElementById('pie-p-gain').textContent = gainPct + '%';
+  
+  // Table
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = yearlyData.map(d => `
+    <tr>
+      <td>${d.year} ವರ್ಷ</td>
+      <td>${formatCurrency(d.yearInv)}</td>
+      <td>${formatCurrency(d.totInv)}</td>
+      <td>${formatCurrency(d.val - d.totInv)}</td>
+      <td>${formatCurrency(d.val)}</td>
+    </tr>
+  `).join('');
+}
+
+// Initialize
+document.querySelectorAll('input[type=range]').forEach(el => {
+  const type = el.id === 'sl-amt' ? 'amt' : el.id === 'sl-yr' ? 'yr' : el.id === 'sl-rt' ? 'rt' : 'step';
+  const lbl = el.id.replace('sl-', 'lbl-');
+  updateSlider(el, lbl, type);
+});
+calculate();
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

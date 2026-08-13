@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🗳️ ಕರ್ನಾಟಕ ವಿಧಾನಸಭೆ ಚುನಾವಣಾ ಡ್ಯಾಶ್ಬೋರ್ಡ್ (1978 – 2023)</title>
+  <meta name="description" content="ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣೆಗಳ ಸಮಗ್ರ ಫಲಿತಾಂಶಗಳ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ — 1978 ರಿಂದ 2023 ರವರೆಗಿನ 224 ಕ್ಷೇತ್ರಗಳ ಸಜೀವ ಸೀಟು ಹಂಚಿಕೆ, ಪಕ್ಷಗಳ ಬಲ ಹಾಗೂ ಅಕ್ಷಾಂಶ ಸೀಮೆ ನಕ್ಷೆ.">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="karnata-theme.css">
+  
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --font-kn: 'Tiro Kannada', 'Plus Jakarta Sans', serif;
+      --bg-page: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E8F0;
+      --text-dark: #0F172A;
+      --text-muted: #475569;
+      --k-red: #C0392B;
+    }
+    
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
+    }
+
+    .k-hero-light {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      border-bottom: 3px solid var(--k-red);
+      padding: 32px 16px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    .k-hero-title {
+      font-family: var(--font-kn);
+      font-size: 32px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .k-hero-subtitle {
+      font-size: 15px;
+      color: #CBD5E1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .year-select-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .year-select-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .year-select {
+      background: #FFFFFF;
+      color: var(--k-red);
+      border: 2px solid var(--k-red);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Metric Cards Grid */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--k-red);
+      box-shadow: 0 8px 24px rgba(192, 57, 43, 0.12);
+    }
+
+    .metric-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--k-red);
+    }
+
+    /* Section Cards */
+    .dash-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .dash-head {
+      font-family: var(--font-kn);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 12px;
+    }
+
+    /* Charts Grid */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .charts-grid { grid-template-columns: 1fr; }
+    }
+
+    .chart-container {
+      position: relative;
+      height: 320px;
+      width: 100%;
+    }
+
+    /* Leaflet Map Styling */
+    #election-map {
+      height: 650px;
+      width: 100%;
+      border-radius: 12px;
+      background: #F1F5F9;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Custom Leaflet Tooltip */
+    .leaflet-tooltip-karnata {
+      background: #FFFFFF !important;
+      border: 2px solid var(--k-red) !important;
+      color: #0F172A !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 13.5px !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    /* Table Styling */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .elections-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .elections-table th {
+      background: #F8FAFC;
+      color: #334155;
+      font-weight: 800;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .elections-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #0F172A;
+      white-space: nowrap;
+    }
+
+    .elections-table tr:hover {
+      background: #F1F5F9;
+    }
+
+    .party-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .search-box {
+      background: #F8FAFC;
+      border: 1.5px solid var(--border-color);
+      color: #0F172A;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      outline: none;
+      width: 280px;
+      transition: all 0.2s;
+    }
+    .search-box:focus { border-color: var(--k-red); background: #FFF; }
+  </style>
+</head>
+<body>
+
+  <!-- GLOBAL NAV BAR -->
+  <div id="k-nav"></div>
+
+  <!-- HERO SECTION -->
+  <header class="k-hero-light">
+    <div class="wrap">
+      <h1 class="k-hero-title">🗳️ ಕರ್ನಾಟಕ ವಿಧಾನಸಭೆ ಚುನಾವಣಾ ಡ್ಯಾಶ್ಬೋರ್ಡ್</h1>
+      <p class="k-hero-subtitle">ವಿಧಾನಸಭಾ ಚುನಾವಣಾ ಫಲಿತಾಂಶಗಳ ವಿಶ್ಲೇಷಣೆ (1978 – 2023)</p>
+      
+      <div class="year-select-wrapper">
+        <span class="year-select-label">🗓️ ಚುನಾವಣಾ ವರ್ಷ:</span>
+        <select id="yearSelect" class="year-select" onchange="onYearChange(this.value)">
+          <option value="2023">2023</option>
+          <option value="2018">2018</option>
+          <option value="2013">2013</option>
+          <option value="2008">2008</option>
+          <option value="2004">2004</option>
+          <option value="1999">1999</option>
+          <option value="1994">1994</option>
+          <option value="1989">1989</option>
+          <option value="1985">1985</option>
+          <option value="1983">1983</option>
+          <option value="1978">1978</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="wrap" style="padding: 24px 16px;">
+    
+    <!-- METRIC CARDS (KPIs) -->
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-title">ಒಟ್ಟು ಕ್ಷೇತ್ರಗಳು</div>
+        <div class="metric-value" id="kpiTotalSeats">224</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">ಗೆದ್ದವರ ಒಟ್ಟು ಮತಗಳು</div>
+        <div class="metric-value" id="kpiWinnerVotes" style="color:#2563EB;">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">ಅಂದಾಜು ಒಟ್ಟು ಮತಗಳು</div>
+        <div class="metric-value" id="kpiEstTotalVotes" style="color:#059669;">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">ಚುನಾವಣಾ ವರ್ಷ</div>
+        <div class="metric-value" id="kpiYear" style="color:#D97706;">2023</div>
+      </div>
+    </div>
+
+    <!-- CHARTS SECTION -->
+    <div class="dash-card">
+      <div class="dash-head">
+        <span>📊 ಪಕ್ಷವಾರು ಬಲ ಮತ್ತು ಸ್ಥಾನಗಳ ಹಂಚಿಕೆ</span>
+        <span style="font-size: 13px; font-weight: 700; color: var(--text-muted);">Donut & Bar Charts</span>
+      </div>
+      <div class="charts-grid">
+        <div>
+          <div style="font-size: 14px; font-weight: 800; color: #334155; text-align: center; margin-bottom: 10px;">ಗೆದ್ದ ಸ್ಥಾನಗಳ ಶೇಕಡಾವಾರು (Donut Chart)</div>
+          <div class="chart-container">
+            <canvas id="donutChart"></canvas>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 14px; font-weight: 800; color: #334155; text-align: center; margin-bottom: 10px;">ಪಕ್ಷವಾರು ಒಟ್ಟು ಸ್ಥಾನಗಳು (Bar Chart)</div>
+          <div class="chart-container">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP SECTION -->
+    <div class="dash-card">
+      <div class="dash-head">
+        <span>🗺️ ಕರ್ನಾಟಕ — ಪ್ರತಿಯೊಂದು ಕ್ಷೇತ್ರದ ವಿಜೇತರು (Interactive Map)</span>
+        <span id="mapMatchInfo" style="font-size: 13px; font-weight: 800; color: #059669;">224/224 ಕ್ಷೇತ್ರಗಳು ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾಗಿದೆ</span>
+      </div>
+      <div id="election-map"></div>
+    </div>
+
+    <!-- CONSTITUENCY DATA TABLE -->
+    <div class="dash-card">
+      <div class="dash-head">
+        <span>📋 ಪೂರ್ಣ ಫಲಿತಾಂಶಗಳ ವಿವರ (224 Constituencies Data Table)</span>
+        <input type="text" id="tableSearch" class="search-box" placeholder="🔍 ಕ್ಷೇತ್ರ / ಅಭ್ಯರ್ಥಿ ಹುಡುಕಿ..." onkeyup="filterTable()">
+      </div>
+      
+      <div class="table-wrapper">
+        <table class="elections-table">
+          <thead>
+            <tr>
+              <th>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ</th>
+              <th>ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ</th>
+              <th>ವರ್ಗ</th>
+              <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
+              <th>ಪಕ್ಷ</th>
+              <th>ಮತಗಳು</th>
+              <th>ಪಾಲು (%)</th>
+              <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+              <th>ಅಂತರ</th>
+              <th>ವಿವರಣೆ</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="10" style="text-align:center; padding: 24px;">ಫಲಿತಾಂಶಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="nav-component.js"></script>
+  <script src="data-loader.js"></script>
+
+  <script>
+    let masterData = null;
+    let geojsonData = null;
+    let leafletMap = null;
+    let geojsonLayer = null;
+    let donutChartInst = null;
+    let barChartInst = null;
+    let currentYearRecords = [];
+
+    const PARTY_COLORS = {
+      "INC": "#1f77b4", "INC(I)": "#3182bd",
+      "BJP": "#ff7f0e", "JNP": "#ff7f0e",
+      "JD": "#2ca02c", "JD(S)": "#31a354",
+      "KRPP": "#9467bd", "SKP": "#e377c2",
+      "IND": "#7f7f7f",
+      "CPI": "#de2d26", "CPM": "#a50f15",
+      "RPI": "#8c564b"
+    };
+    const DEFAULT_COLOR = "#64748b";
+
+    const PARTY_KANNADA = {
+      "INC": "ಕಾಂಗ್ರೆಸ್ (INC)",
+      "INC(I)": "ಕಾಂಗ್ರೆಸ್ ಐ (INC-I)",
+      "BJP": "ಬಿಜೆಪಿ (BJP)",
+      "JNP": "ಜನತಾ ಪಕ್ಷ (JNP)",
+      "JD(S)": "ಜೆಡಿಎಸ್ (JD-S)",
+      "JD": "ಜನತಾ ದಳ (JD)",
+      "IND": "ಪಕ್ಷೇತರ (IND)",
+      "KRPP": "ಕೆಆರ್‌ಪಿಪಿ (KRPP)",
+      "SKP": "ಎಸ್‌.ಕೆ.ಪಿ (SKP)",
+      "CPI": "ಸಿಪಿಐ (CPI)",
+      "CPM": "ಸಿಪಿಎಂ (CPM)"
+    };
+
+    function cleanStr(val) {
+      if (!val) return "";
+      return String(val).toLowerCase().replace(/\s*\((sc|st)\)/g, '').replace(/[^a-z0-9]/g, '');
+    }
+
+    async function initDashboard() {
+      leafletMap = L.map('election-map', {
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+      
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        maxZoom: 18
+      }).addTo(leafletMap);
+
+      leafletMap.fitBounds([[11.5, 74.0], [18.5, 78.5]]);
+
+      try {
+        const [geoResp, electData] = await Promise.all([
+          fetch('/karnataka_assembly_224.json').then(r => r.json()),
+          NK.elections()
+        ]);
+
+        geojsonData = geoResp;
+        masterData = electData;
+
+        if (geojsonData && geojsonData.features) {
+          geojsonData.features.forEach(f => {
+            const props = f.properties;
+            const rawName = props.AC_NAME || props.ac_name || props.NAME || "";
+            props.clean_name = cleanStr(rawName);
+            props.parsed_ac_no = props.AC_NO || props.ac_no || props.AC_NUM || null;
+          });
+        }
+
+        renderDashboard('2023');
+
+      } catch (err) {
+        console.error("Dashboard init error:", err);
+      }
+    }
+
+    function onYearChange(year) {
+      renderDashboard(year);
+    }
+
+    function renderDashboard(year) {
+      if (!masterData || !masterData.records) return;
+      const records = masterData.records[year] || [];
+      currentYearRecords = records;
+
+      document.getElementById('kpiYear').textContent = year;
+      document.getElementById('kpiTotalSeats').textContent = records.length;
+
+      let sumWinnerVotes = 0;
+      let sumRunnerVotes = 0;
+
+      records.forEach(r => {
+        sumWinnerVotes += (r.winner_votes || 0);
+        sumRunnerVotes += (r.runner_up_votes || 0);
+      });
+
+      document.getElementById('kpiWinnerVotes').textContent = sumWinnerVotes.toLocaleString('en-IN');
+      document.getElementById('kpiEstTotalVotes').textContent = (sumWinnerVotes + sumRunnerVotes).toLocaleString('en-IN');
+
+      renderCharts(records);
+      renderMap(records, parseInt(year));
+      renderTable(records);
+    }
+
+    function renderCharts(records) {
+      const partyCounts = {};
+      records.forEach(r => {
+        const p = r.winner_party_kn || r.winner_party;
+        partyCounts[p] = (partyCounts[p] || 0) + 1;
+      });
+
+      const sortedParties = Object.entries(partyCounts).sort((a, b) => b[1] - a[1]);
+      const labels = sortedParties.map(x => x[0]);
+      const dataVals = sortedParties.map(x => x[1]);
+      const colors = labels.map(label => {
+        const origParty = Object.keys(PARTY_KANNADA).find(k => PARTY_KANNADA[k] === label) || label;
+        return PARTY_COLORS[origParty] || DEFAULT_COLOR;
+      });
+
+      // Donut Chart
+      if (donutChartInst) donutChartInst.destroy();
+      const ctxDonut = document.getElementById('donutChart').getContext('2d');
+      donutChartInst = new Chart(ctxDonut, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: dataVals,
+            backgroundColor: colors,
+            borderWidth: 2,
+            borderColor: '#FFFFFF'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: '#0F172A', font: { size: 12, weight: 'bold' } } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const total = ctx.dataset.data.reduce((a,b)=>a+b, 0);
+                  const val = ctx.raw;
+                  const pct = ((val/total)*100).toFixed(1);
+                  return `${ctx.label}: ${val} ಸ್ಥಾನಗಳು (${pct}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Bar Chart
+      if (barChartInst) barChartInst.destroy();
+      const ctxBar = document.getElementById('barChart').getContext('2d');
+      barChartInst = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'ಗೆದ್ದ ಸ್ಥಾನಗಳು',
+            data: dataVals,
+            backgroundColor: colors,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `ಗೆದ್ದ ಸ್ಥಾನಗಳು: ${ctx.raw}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'ರಾಜಕೀಯ ಪಕ್ಷಗಳು', color: '#475569', font: { weight: 'bold' } },
+              ticks: { color: '#0F172A', font: { weight: 'bold' } },
+              grid: { color: '#E2E8F0' }
+            },
+            y: {
+              title: { display: true, text: 'ಗೆದ್ದ ಸ್ಥಾನಗಳು', color: '#475569', font: { weight: 'bold' } },
+              ticks: { color: '#0F172A', font: { weight: 'bold' } },
+              grid: { color: '#E2E8F0' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderMap(records, year) {
+      if (!geojsonData) return;
+      if (geojsonLayer) leafletMap.removeLayer(geojsonLayer);
+
+      const useAcNo = year >= 2008;
+      const acMap = {};
+      const nameMap = {};
+
+      records.forEach(r => {
+        if (r.ac_no) acMap[r.ac_no] = r;
+        if (r.clean_constituency) nameMap[r.clean_constituency] = r;
+      });
+
+      let matchedCount = 0;
+
+      geojsonLayer = L.geoJson(geojsonData, {
+        style: function(feature) {
+          const p = feature.properties;
+          let row = null;
+          if (useAcNo && p.parsed_ac_no && acMap[p.parsed_ac_no]) {
+            row = acMap[p.parsed_ac_no];
+          } else if (p.clean_name && nameMap[p.clean_name]) {
+            row = nameMap[p.clean_name];
+          }
+
+          const party = row ? row.winner_party : "";
+          const color = PARTY_COLORS[party] || DEFAULT_COLOR;
+
+          return {
+            fillColor: color,
+            weight: 1.2,
+            opacity: 1,
+            color: '#334155',
+            fillOpacity: 0.8
+          };
+        },
+        onEachFeature: function(feature, layer) {
+          const p = feature.properties;
+          let row = null;
+          if (useAcNo && p.parsed_ac_no && acMap[p.parsed_ac_no]) {
+            row = acMap[p.parsed_ac_no];
+          } else if (p.clean_name && nameMap[p.clean_name]) {
+            row = nameMap[p.clean_name];
+          }
+
+          if (row) matchedCount++;
+
+          const cName = row ? row.constituency_kn : (p.AC_NAME || "ಕ್ಷೇತ್ರ");
+          const winner = row ? `${row.winner_kn} (${row.winner_party_kn})` : "ಮಾಹಿತಿಯಿಲ್ಲ";
+          const runner = row ? `${row.runner_up_kn} (${row.runner_up_party_kn})` : "ಮಾಹಿತಿಯಿಲ್ಲ";
+          const margin = row ? row.margin.toLocaleString('en-IN') : "0";
+
+          const tooltipHtml = `
+            <div style="font-family:'Plus Jakarta Sans', sans-serif;">
+              <div style="font-size:15px; font-weight:900; color:#C0392B; margin-bottom:4px;">🏛️ ${cName}</div>
+              <div style="font-size:12.5px; margin-bottom:2px;"><strong>🏆 ವಿಜೇತರು:</strong> ${winner}</div>
+              <div style="font-size:12.5px; margin-bottom:2px;"><strong>🥈 ಸಮೀಪದ ಸ್ಪರ್ಧಿ:</strong> ${runner}</div>
+              <div style="font-size:12.5px;"><strong>📊 ಮತಗಳ ಅಂತರ:</strong> ${margin}</div>
+            </div>
+          `;
+
+          layer.bindTooltip(tooltipHtml, { className: 'leaflet-tooltip-karnata', sticky: true });
+
+          layer.on({
+            mouseover: function(e) {
+              const l = e.target;
+              l.setStyle({ weight: 3, color: '#C0392B', fillOpacity: 0.95 });
+              l.bringToFront();
+            },
+            mouseout: function(e) {
+              geojsonLayer.resetStyle(e.target);
+            },
+            click: function() {
+              if (row && row.slug) {
+                window.location.href = `mla/${row.slug}.html`;
+              }
+            }
+          });
+        }
+      }).addTo(leafletMap);
+
+      document.getElementById('mapMatchInfo').textContent = `📍 ${matchedCount} / 224 ಕ್ಷೇತ್ರಗಳು ಯಶಸ್ವಿಯಾಗಿ ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾಗಿದೆ`;
+    }
+
+    function renderTable(records) {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = records.map(r => {
+        const color = PARTY_COLORS[r.winner_party] || DEFAULT_COLOR;
+        const slug = r.slug || `${r.clean_constituency}_assembly_constituency`;
+        return `
+          <tr>
+            <td style="font-weight:900; color:#C0392B;">#${r.ac_no}</td>
+            <td><a href="mla/${slug}.html" style="color:#2563EB; font-weight:800; text-decoration:none;">${r.constituency_kn}</a></td>
+            <td><span style="background:#F1F5F9; border:1px solid #CBD5E1; color:#0F172A; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700;">${r.category_kn}</span></td>
+            <td style="font-weight:700; color:#0F172A;">${r.winner_kn}</td>
+            <td><span class="party-pill" style="background:${color};">${r.winner_party_kn}</span></td>
+            <td style="font-weight:700; color:#0F172A;">${r.winner_votes.toLocaleString('en-IN')}</td>
+            <td style="color:#059669; font-weight:800;">${r.vote_share}%</td>
+            <td style="color:#475569;">${r.runner_up_kn} (${r.runner_up_party_kn})</td>
+            <td style="color:#DC2626; font-weight:800;">+${r.margin.toLocaleString('en-IN')}</td>
+            <td><a href="mla/${slug}.html" style="background:#C0392B; color:#FFF; padding:4px 12px; border-radius:12px; font-size:11px; text-decoration:none; font-weight:800; display:inline-block; box-shadow:0 2px 6px rgba(192,57,43,0.3);">ನೋಡಿ →</a></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterTable() {
+      const query = document.getElementById('tableSearch').value.toLowerCase();
+      const filtered = currentYearRecords.filter(r => 
+        r.constituency_kn.toLowerCase().includes(query) ||
+        r.constituency.toLowerCase().includes(query) ||
+        r.winner_kn.toLowerCase().includes(query) ||
+        r.winner_party_kn.toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    }
+
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+</body>
+</html>

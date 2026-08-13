@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam) ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ, ಇತಿಹಾಸ ಮತ್ತು ಸಂಪೂರ್ಣ ಮಾಹಿತಿ | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕಬಿನಿ ಅಣೆಕಟ್ಟಿನ ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ, ಒಳಹರಿವು, ಹೊರಹರಿವು, ತಾಂತ್ರಿಕ ವಿವರಣೆ, ಸುದ್ದಿ ಮತ್ತು ಇತಿಹಾಸ. Live Kabini dam water level today, capacity, storage, history & news in Kannada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1A5276; --blue-lt: #EAF2F8; --blue-mid: #2980B9;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --red: #C0392B; --red-lt: #FDECEA;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F4F7FA; --white: #FFFFFF; --border: #D8E4F0;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 14px; --shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* TOPNAV */
+.topnav {
+  background: var(--blue); padding: 0 20px;
+  display: flex; align-items: center; gap: 16px; height: 56px;
+  position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.back-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); font-size: 14px; text-decoration: none; font-weight: 600; }
+.back-btn:hover { color: #fff; }
+.page-title { font-size: 16px; font-weight: 700; color: #fff; }
+.live-badge {
+  margin-left: auto; background: #E74C3C; color: #fff;
+  font-size: 10px; font-weight: 700; padding: 4px 10px;
+  border-radius: 20px; font-family: var(--font-en);
+  display: flex; align-items: center; gap: 5px;
+}
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 24px 20px; }
+
+.dam-hero-card {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12); margin-bottom: 24px;
+  background: linear-gradient(135deg, #1B7A4B 0%, #0F2D42 100%);
+  color: #fff; padding: 32px 28px; position: relative;
+}
+.dh-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; width: fit-content; margin-bottom: 10px; }
+.dh-title { font-size: 32px; font-weight: 800; line-height: 1.2; }
+.dh-sub { font-size: 14px; opacity: 0.9; margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap; }
+.dh-time { font-size: 11px; opacity: 0.75; margin-top: 12px; font-family: var(--font-en); }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+@media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+.metric-card {
+  background: var(--white); border-radius: var(--radius); padding: 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+}
+.mc-label { font-size: 12px; color: var(--ink3); font-weight: 600; margin-bottom: 6px; }
+.mc-val { font-size: 24px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.2; }
+.mc-sub { font-size: 11px; color: var(--ink2); margin-top: 4px; font-family: var(--font-kn); }
+
+.card-box {
+  background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
+  box-shadow: var(--shadow); padding: 24px; margin-bottom: 24px;
+}
+.cb-title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; }
+.cb-title-text { display: flex; align-items: center; gap: 10px; }
+
+.history-article p { font-size: 15px; line-height: 1.8; color: var(--ink2); margin-bottom: 14px; text-align: justify; }
+.history-article h3 { font-size: 17px; font-weight: 700; color: var(--blue); margin: 20px 0 10px; }
+
+.news-card-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.news-card-item:last-child { border-bottom: none; }
+.news-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.news-date { font-size: 11px; color: var(--ink3); font-family: var(--font-en); }
+
+.creative-chart-wrap { position: relative; width: 100%; margin-top: 10px; }
+.svg-chart { width: 100%; height: 220px; overflow: visible; }
+.area-path { fill: url(#blueGradient); opacity: 0.8; }
+.line-path { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; }
+.inflow-line { fill: none; stroke: #27AE60; stroke-width: 2.5; stroke-dasharray: 4,4; }
+
+.specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 600px) { .specs-grid { grid-template-columns: 1fr; } }
+.spec-item { background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); }
+.spec-lbl { font-size: 11px; color: var(--ink3); font-weight: 600; }
+.spec-val { font-size: 15px; font-weight: 800; color: var(--ink); font-family: var(--font-en); margin-top: 2px; }
+
+.table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); margin-top: 12px; }
+.data-tbl { width: 100%; border-collapse: collapse; text-align: right; font-size: 12px; font-family: var(--font-en); }
+.data-tbl th { background: #F1F5F9; padding: 12px 10px; color: var(--ink2); font-weight: 700; border-bottom: 2px solid var(--border); white-space: nowrap; font-family: var(--font-kn); }
+.data-tbl th:first-child, .data-tbl td:first-child { text-align: left; }
+.data-tbl td { padding: 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.data-tbl tr:nth-child(even) { background: #F8FAFC; }
+</style>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <div class="page-title">💧 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
+  <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
+</div>
+
+<div class="container">
+
+  <!-- HERO BANNER -->
+  <div class="dam-hero-card">
+    <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
+    <h1 class="dh-title">ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam)</h1>
+    <div class="dh-sub">
+      <span>🌊 ನದಿ: ಕಬಿನಿ ನದಿ</span>
+      <span>🏛️ ಜಿಲ್ಲೆ: ಮೈಸೂರು (ಹೆಚ್.ಡಿ. ಕೋಟೆ)</span>
+    </div>
+    <div class="dh-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--green)">18.21 TMC</div>
+      <div class="mc-sub">93.2% ತುಂಬಿದೆ (19.52 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
+      <div class="mc-val">2278.20 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL): 2284.00 ಅಡಿ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
+      <div class="mc-val" style="color:var(--green)">28,009</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
+      <div class="mc-val" style="color:var(--blue-mid)">14,958</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
+    </div>
+  </div>
+
+  <!-- CREATIVE 30-DAY AREA CHART -->
+  <div class="card-box">
+    <div class="cb-title">
+      <div class="cb-title-text">📈 ಕಬಿನಿ ಅಣೆಕಟ್ಟು — 30 ದಿನದ ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ &amp; ಒಳಹರಿವು ಟ್ರೆಂಡ್</div>
+    </div>
+    <div class="creative-chart-wrap">
+      <svg class="svg-chart" viewBox="0 0 800 200" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1B7A4B" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#1B7A4B" stop-opacity="0.05"/>
+          </linearGradient>
+        </defs>
+        <path class="area-path" d="M 40,120 Q 150,110 250,80 T 450,50 T 650,30 T 760,25 L 760,180 L 40,180 Z" />
+        <path class="line-path" d="M 40,120 Q 150,110 250,80 T 450,50 T 650,30 T 760,25" />
+      </svg>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:var(--ink3); font-family:var(--font-en);">
+      <span>01 ಜುಲೈ 2026</span>
+      <span>10 ಜುಲೈ</span>
+      <span>20 ಜುಲೈ</span>
+      <span>02 ಆಗಸ್ಟ್ 2026 (ಇಂದು)</span>
+    </div>
+  </div>
+
+  <!-- SPECS TABLE GRID -->
+  <div class="card-box">
+    <div class="cb-title">
+      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">2284.00 ಅಡಿ</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">2240.00 ಅಡಿ</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">19.52 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">15.67 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div><div class="spec-val">18.21 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ ಸಂಗ್ರಹ (Live Storage)</div><div class="spec-val">8.40 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಬೀಚನಹಳ್ಳಿ, ಹೆಚ್.ಡಿ. ಕೋಟೆ, ಮೈಸೂರು</div></div>
+      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1974</div></div>
+    </div>
+  </div>
+
+  <!-- HISTORY & BACKGROUND ARTICLE -->
+  <div class="card-box">
+    <div class="cb-title">
+      <div class="cb-title-text">📜 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಮುಖ ವಿವರಗಳು</div>
+    </div>
+    <div class="history-article">
+      <p><strong>ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam)</strong> ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಹೆಚ್.ಡಿ. ಕೋಟೆ ತಾಲೂಕಿನ ಬೀಚನಹಳ್ಳಿ ಬಳಿ ಕಬಿನಿ ನದಿಗೆ (ಕಾಪಿಲಾ ನದಿ) ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಪ್ರಮುಖ ಜಲಾಶಯವಾಗಿದೆ. ಕಬಿನಿ ನದಿಯು ಕಾವೇರಿ ನದಿಯ ಪ್ರಮುಖ ಉಪನದಿಯಾಗಿದ್ದು, ವಯನಾಡ್ ವೈಲ್ಡ್‌ಲೈಫ್ ಸಂರಕ್ಷಿತ ಅರಣ್ಯ ಪ್ರದೇಶದಲ್ಲಿ ಉದ್ಭವಿಸುತ್ತದೆ.</p>
+
+      <h3>🏗️ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ಕುಡಿಯುವ ನೀರು ಪೂರೈಕೆ:</h3>
+      <p>1974 ರಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ಈ ಅಣೆಕಟ್ಟು 19.52 TMC ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದೆ. ಮುಂಗಾರು ಮಳೆಯ ಆರಂಭದಲ್ಲೇ ಕಬಿನಿ ಜಲಾಶಯ ಶೀಘ್ರವಾಗಿ ತುಂಬುವ ವೈಶಿಷ್ಟ್ಯ ಹೊಂದಿದೆ. ಈ ಜಲಾಶಯದಿಂದ ಮೈಸೂರು ನಗರಕ್ಕೆ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ಕಾವೇರಿ ನೀರು ಹರಿಸಲು ಮಹತ್ವದ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.</p>
+
+      <h3>🐘 ಕಬಿನಿ ವನ್ಯಜೀವಿ ಧಾಮ &amp; ಪ್ರವಾಸೋದ್ಯಮ:</h3>
+      <p>ಕಬಿನಿ ಜಲಾಶಯದ ಹಿನ್ನೀರು ಪ್ರದೇಶವು ವಿಶ್ವಪ್ರಸಿದ್ಧ <strong>ಕಬಿನಿ ಸಫಾರಿ ಮತ್ತು ನಾಗರಹೊಳೆ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನಕ್ಕೆ</strong> ಹೊಂದಿಕೊಂಡಿದ್ದು, ದಕ್ಷಿಣ ಭಾರತದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಆನೆಗಳು ಮತ್ತು ಕಪ್ಪು ಚಿರತೆ (Black Panther) ಕಾಣಸಿಗುವ ಶ್ರೇಷ್ಠ ಅರಣ್ಯ ವಲಯವಾಗಿದೆ.</p>
+    </div>
+  </div>
+
+  <!-- RELATED NEWS -->
+  <div class="card-box">
+    <div class="cb-title">
+      <div class="cb-title-text">📰 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ತಾಜಾ ಸುದ್ದಿ (Kabini Dam Latest News)</div>
+    </div>
+    <div class="news-card-item">
+      <div class="news-title">🌊 ಕಬಿನಿ ಜಲಾಶಯದಿಂದ ಕಾವೇರಿ ನದಿಗೆ 15,000 ಕ್ಯೂಸೆಕ್ಸ್ ನೀರು ಬಿಡುಗಡೆ — ನದಿಪಾತ್ರದ ಜನರಿಗೆ ಎಚ್ಚರಿಕೆ</div>
+      <div class="news-date">02 ಆಗಸ್ಟ್ 2026</div>
+    </div>
+    <div class="news-card-item">
+      <div class="news-title">🌧️ ವಯನಾಡ್ ಮಲೆನಾಡು ಭಾಗದಲ್ಲಿ ಧೋಕಾ ಮಳೆ: ಕಬಿನಿ ಅಣೆಕಟ್ಟಿಗೆ ಹರಿದುಬಂದ ಭಾರಿ ಒಳಹರಿವು</div>
+      <div class="news-date">31 ಜುಲೈ 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/nav-component.js"></script>
+</body>
+</html>

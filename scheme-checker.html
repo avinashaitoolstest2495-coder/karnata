@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಸರ್ಕಾರಿ ಯೋಜನೆ ಅರ್ಹತೆ ಪರಿಶೀಲಕ — Karnataka Government Schemes</title>
+<meta name="description" content="Check eligibility for Karnataka Government Schemes. Gruha Lakshmi, Anna Bhagya, Yuva Nidhi, Raita Siri, Pension schemes.">
+<meta name="keywords" content="Karnataka Government Schemes, Gruha Lakshmi eligibility, Anna Bhagya, Yuva Nidhi, Raita Siri, Karnataka scheme checker">
+<link rel="canonical" href="https://karnata.in/scheme-checker.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Karnataka Government Schemes Eligibility Checker",
+  "applicationCategory": "GovernmentApplication",
+  "inLanguage": "kn",
+  "description": "Check your eligibility for various Karnataka Government schemes like Gruha Lakshmi, Anna Bhagya, Yuva Nidhi and more."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root {
+  --red: #C0392B; --red-dk: #96281B; --red-lt: #FDECEA;
+  --blue: #1A5276; --blue-lt: #EAF2F8;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --gold: #D4A017; --gold-lt: #FDF8E7;
+  --purple: #6C3483; --purple-dk: #4A235A; --purple-lt: #F5EEF8;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --teal: #0E6680; --teal-lt: #D5EFF6;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F4F3EF; --white: #FFFFFF; --border: #E2E0DA;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+input,select{font-family:inherit;outline:none;border:none;}
+
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:500;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);}
+.page-title{font-size:16px;font-weight:700;}
+
+/* HERO SECTION */
+.hero{background:linear-gradient(135deg,#4A235A 0%,#6C3483 100%);padding:36px 20px 120px;text-align:center;color:#fff;}
+.hero h1{font-size:24px;font-weight:700;margin-bottom:8px;}
+.hero p{font-size:14px;opacity:0.85;margin-bottom:28px;}
+
+/* MAIN WRAPPER */
+.wrap{max-width:860px;margin:-92px auto 0;padding:0 20px 40px;position:relative;z-index:5;}
+
+.tool-card{background:var(--white);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.12);overflow:hidden;margin-bottom:20px; border:1px solid var(--border);}
+.tc-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--purple-lt);}
+.tc-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--purple-dk);}
+.tc-body{padding:20px;}
+
+/* FORM FIELDS */
+.scheme-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
+@media(max-width:700px){.scheme-form{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.scheme-form{grid-template-columns:1fr;}}
+.form-field{}
+.form-label{font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;display:block;}
+.form-select,.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:var(--bg);color:var(--ink);font-family:var(--font-kn);transition:all 0.15s;}
+.form-select:focus,.form-input:focus{border-color:var(--purple);background:var(--white);box-shadow:0 0 0 3px var(--purple-lt);}
+.check-btn{background:var(--purple);color:#fff;border-radius:10px;padding:14px 24px;font-size:16px;font-weight:700;font-family:var(--font-kn);width:100%;transition:background 0.15s;box-shadow:0 4px 12px rgba(108,52,131,0.3);}
+.check-btn:hover{background:var(--purple-dk);transform:translateY(-1px);}
+
+/* RESULTS */
+.scheme-results{display:none;margin-top:24px;padding-top:24px;border-top:1px dashed var(--border);}
+.scheme-results.show{display:block;}
+.scheme-result-header{font-size:15px;color:var(--ink);margin-bottom:16px;padding:12px 16px;background:var(--green-lt);border:1px solid #c3e6d3;border-radius:10px;font-family:var(--font-kn);display:flex;align-items:center;gap:8px;}
+
+/* FILTER TAGS */
+.filter-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;display:none;}
+.filter-tags.show{display:flex;}
+.filter-tag{background:var(--bg);border:1px solid var(--border);color:var(--ink2);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;font-family:var(--font-kn);}
+.filter-tag:hover{background:var(--purple-lt);color:var(--purple);border-color:var(--purple);}
+.filter-tag.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+.scheme-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.scheme-item-result{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:flex-start;transition:all 0.15s;}
+.scheme-item-result:hover{box-shadow:0 4px 16px rgba(0,0,0,0.06);border-color:#d0cedb;}
+.sir-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.sir-body{flex:1;}
+.sir-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.sir-tags{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
+.sir-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:var(--font-en);text-transform:uppercase;letter-spacing:0.05em;}
+.sir-desc{font-size:13px;color:var(--ink2);margin-bottom:10px;line-height:1.5;}
+.sir-benefit{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--green);background:var(--green-lt);padding:6px 12px;border-radius:8px;}
+.sir-apply{background:var(--purple);color:#fff;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;font-family:var(--font-kn);white-space:nowrap;margin-top:auto;}
+.sir-apply:hover{background:var(--purple-dk);}
+.sir-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;}
+
+@media(max-width:550px){
+  .scheme-item-result{flex-direction:column;}
+  .sir-right{width:100%;}
+  .sir-apply{width:100%;text-align:center;}
+}
+
+.not-eligible{background:var(--red-lt);border:1px solid #f5c6c2;border-radius:10px;padding:16px;font-size:14px;color:var(--red-dk);text-align:center;font-weight:500;}
+
+/* HOW IT WORKS / INFO */
+.info-card{background:linear-gradient(135deg,var(--purple-lt) 0%,#fff 100%);border:1px solid #e1d4e6;border-radius:16px;padding:24px;margin-bottom:20px;}
+.info-title{font-size:16px;font-weight:700;color:var(--purple-dk);margin-bottom:16px;}
+.info-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:600px){.info-steps{grid-template-columns:1fr;}}
+.info-step{background:var(--white);border-radius:12px;padding:16px;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,0.03);}
+.info-icon{width:40px;height:40px;border-radius:10px;background:var(--purple-lt);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px;}
+.info-stitle{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--ink);}
+.info-sdesc{font-size:12px;color:var(--ink2);line-height:1.6;}
+
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">📋 ಯೋಜನೆ ಅರ್ಹತೆ</div>
+</div>
+
+<div class="hero">
+  <h1>📋 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಪರಿಶೀಲಿಸಿ</h1>
+  <p>ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ನೀವು ಯಾವ ಯೋಜನೆಗಳಿಗೆ ಅರ್ಹರಾಗಿದ್ದೀರಿ ಎಂಬುದನ್ನು ತಕ್ಷಣ ತಿಳಿಯಿರಿ.</p>
+</div>
+
+<div class="wrap">
+  <div class="tool-card">
+    <div class="tc-head">
+      <div class="tc-title">✨ ನಿಮ್ಮ ಅರ್ಹತೆ ಪರಿಶೀಲಿಸಿ</div>
+      <div style="font-size:12px;color:var(--ink2);font-weight:600;font-family:var(--font-en)">15+ Schemes</div>
+    </div>
+    <div class="tc-body">
+      <div class="scheme-form">
+        <div class="form-field">
+          <label class="form-label">ವಯಸ್ಸು (Age)</label>
+          <input class="form-input" type="number" id="s-age" placeholder="ಉದಾ: 35" min="1" max="100">
+        </div>
+        <div class="form-field">
+          <label class="form-label">ಲಿಂಗ (Gender)</label>
+          <select class="form-select" id="s-gender">
+            <option value="">ಆಯ್ಕೆ ಮಾಡಿ</option>
+            <option value="female">ಮಹಿಳೆ</option>
+            <option value="male">ಪುರುಷ</option>
+            <option value="other">ಇತರ</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">ವಾರ್ಷಿಕ ಆದಾಯ (Income)</label>
+          <select class="form-select" id="s-income">
+            <option value="">ಆಯ್ಕೆ ಮಾಡಿ</option>
+            <option value="bpl">₹1.2 ಲಕ್ಷಕ್ಕಿಂತ ಕಡಿಮೆ (BPL)</option>
+            <option value="low">₹1.2 - 2.5 ಲಕ್ಷ</option>
+            <option value="mid">₹2.5 - 5 ಲಕ್ಷ</option>
+            <option value="high">₹5 ಲಕ್ಷಕ್ಕಿಂತ ಹೆಚ್ಚು</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">ವರ್ಗ (Category)</label>
+          <select class="form-select" id="s-cat">
+            <option value="">ಆಯ್ಕೆ ಮಾಡಿ</option>
+            <option value="gen">ಸಾಮಾನ್ಯ</option>
+            <option value="sc">SC</option>
+            <option value="st">ST</option>
+            <option value="obc">OBC</option>
+            <option value="min">ಅಲ್ಪಸಂಖ್ಯಾತ</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">ಉದ್ಯೋಗ (Occupation)</label>
+          <select class="form-select" id="s-occ">
+            <option value="">ಆಯ್ಕೆ ಮಾಡಿ</option>
+            <option value="farmer">ರೈತ</option>
+            <option value="student">ವಿದ್ಯಾರ್ಥಿ</option>
+            <option value="unemployed">ನಿರುದ್ಯೋಗಿ</option>
+            <option value="daily">ದಿನಗೂಲಿ</option>
+            <option value="govt">ಸರ್ಕಾರಿ ನೌಕರ</option>
+            <option value="private">ಖಾಸಗಿ</option>
+            <option value="weaver">ನೇಕಾರ</option>
+            <option value="fisher">ಮೀನುಗಾರ</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">ವಿಶೇಷ ಮಾನದಂಡ</label>
+          <select class="form-select" id="s-special">
+            <option value="none">ಯಾವುದೂ ಇಲ್ಲ</option>
+            <option value="disabled">ಅಂಗವಿಕಲ</option>
+            <option value="widow">ವಿಧವೆ</option>
+            <option value="pregnant">ಗರ್ಭಿಣಿ/ಬಾಣಂತಿ</option>
+            <option value="senior">ಹಿರಿಯ ನಾಗರಿಕ (60+)</option>
+          </select>
+        </div>
+      </div>
+      <button class="check-btn" onclick="checkEligibility()">🔍 ಅರ್ಹ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ</button>
+      
+      <div class="scheme-results" id="scheme-results">
+        <div class="filter-tags" id="filter-tags">
+          <div class="filter-tag active" onclick="filterResults('all', this)">All</div>
+          <div class="filter-tag" onclick="filterResults('women', this)">👩 Women</div>
+          <div class="filter-tag" onclick="filterResults('farmers', this)">🌾 Farmers</div>
+          <div class="filter-tag" onclick="filterResults('students', this)">🎓 Students</div>
+          <div class="filter-tag" onclick="filterResults('seniors', this)">👴 Senior Citizens</div>
+        </div>
+        <div id="results-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-title">💡 ಯೋಜನೆಗಳಿಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸುವುದು ಹೇಗೆ?</div>
+    <div class="info-steps">
+      <div class="info-step">
+        <div class="info-icon">📄</div>
+        <div class="info-stitle">1. ದಾಖಲೆಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಿ</div>
+        <div class="info-sdesc">ಆಧಾರ್ ಕಾರ್ಡ್, ರೇಷನ್ ಕಾರ್ಡ್ (BPL/APL), ಬ್ಯಾಂಕ್ ಪಾಸ್‌ಬುಕ್, ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ ಮತ್ತು ಫೋಟೋಗಳನ್ನು ಸಿದ್ಧವಾಗಿಡಿ.</div>
+      </div>
+      <div class="info-step">
+        <div class="info-icon">🏢</div>
+        <div class="info-stitle">2. ಸೇವಾ ಕೇಂದ್ರಗಳಿಗೆ ಭೇಟಿ ನೀಡಿ</div>
+        <div class="info-sdesc">ಹತ್ತಿರದ ಗ್ರಾಮ ಒನ್ (Grama One), ಕರ್ನಾಟಕ ಒನ್ (Karnataka One), ಅಥವಾ ನಾಡಕಛೇರಿಗೆ ಭೇಟಿ ನೀಡಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.</div>
+      </div>
+      <div class="info-step">
+        <div class="info-icon">📱</div>
+        <div class="info-stitle">3. ಆನ್‌ಲೈನ್ ಮೂಲಕ ಅರ್ಜಿ</div>
+        <div class="info-sdesc">ಅನೇಕ ಯೋಜನೆಗಳಿಗೆ ಸೇವಾಸಿಂಧು (Seva Sindhu) ಪೋರ್ಟಲ್ ಮೂಲಕ ಮನೆಯಿಂದಲೇ ಅರ್ಜಿ ಸಲ್ಲಿಸಬಹುದು.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Schemes data
+const schemes = [
+  { id: 's1', name: 'ಗೃಹ ಲಕ್ಷ್ಮಿ ಯೋಜನೆ', tags: ['Women', 'Guarantee'], cat: 'women', icon: '👩', iconBg: '#E8F5EE', color: '#1B7A4B', desc: 'ಮನೆಯ ಯಜಮಾನಿಗೆ ಪ್ರತಿ ತಿಂಗಳು ಆರ್ಥಿಕ ನೆರವು.', benefit: '₹2,000 / ತಿಂಗಳು', cond: p => p.gender==='female' && (p.income==='bpl'||p.income==='low') },
+  { id: 's2', name: 'ಅನ್ನ ಭಾಗ್ಯ ಯೋಜನೆ', tags: ['Food', 'Guarantee'], cat: 'all', icon: '🍚', iconBg: '#FDF8E7', color: '#D4A017', desc: 'ಬಿಪಿಎಲ್ ಮತ್ತು ಅಂತ್ಯೋದಯ ಕಾರ್ಡ್ ಹೊಂದಿರುವ ಕುಟುಂಬದ ಪ್ರತಿಯೊಬ್ಬ ಸದಸ್ಯರಿಗೆ ಉಚಿತ ಅಕ್ಕಿ.', benefit: '10 ಕೆಜಿ ಅಕ್ಕಿ / ತಿಂಗಳು', cond: p => p.income==='bpl' },
+  { id: 's3', name: 'ಯುವ ನಿಧಿ ಯೋಜನೆ', tags: ['Youth', 'Guarantee'], cat: 'students', icon: '🎓', iconBg: '#EAF2F8', color: '#1A5276', desc: 'ಪದವೀಧರ ಮತ್ತು ಡಿಪ್ಲೊಮಾ ನಿರುದ್ಯೋಗಿಗಳಿಗೆ ನಿರುದ್ಯೋಗ ಭತ್ಯೆ.', benefit: '₹3,000 / ತಿಂಗಳು', cond: p => p.occ==='unemployed' && p.age >= 18 && p.age <= 35 },
+  { id: 's4', name: 'ಶಕ್ತಿ ಯೋಜನೆ', tags: ['Women', 'Guarantee'], cat: 'women', icon: '🚌', iconBg: '#F5EEF8', color: '#6C3483', desc: 'ರಾಜ್ಯದ ಮಹಿಳೆಯರಿಗೆ ಸರ್ಕಾರಿ ಬಸ್‌ಗಳಲ್ಲಿ ಉಚಿತ ಪ್ರಯಾಣ.', benefit: 'ಉಚಿತ ಬಸ್ ಪ್ರಯಾಣ', cond: p => p.gender==='female' },
+  { id: 's5', name: 'ಗೃಹ ಜ್ಯೋತಿ ಯೋಜನೆ', tags: ['Power', 'Guarantee'], cat: 'all', icon: '💡', iconBg: '#FEF5EC', color: '#E67E22', desc: 'ರಾಜ್ಯದ ಎಲ್ಲಾ ಮನೆಗಳಿಗೆ 200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್.', benefit: '200 ಯೂನಿಟ್ ಉಚಿತ', cond: p => true },
+  
+  { id: 's6', name: 'ರೈತ ಸಿರಿ ಯೋಜನೆ', tags: ['Farmer'], cat: 'farmers', icon: '🌾', iconBg: '#E8F5EE', color: '#1B7A4B', desc: 'ಸಿರಿಧಾನ್ಯ ಬೆಳೆಯುವ ರೈತರಿಗೆ ಪ್ರೋತ್ಸಾಹ ಧನ.', benefit: '₹10,000 / ಹೆಕ್ಟೇರ್‌ಗೆ', cond: p => p.occ==='farmer' },
+  { id: 's7', name: 'ರೈತ ವಿದ್ಯಾನಿಧಿ', tags: ['Student', 'Farmer'], cat: 'students', icon: '🎒', iconBg: '#EAF2F8', color: '#1A5276', desc: 'ರೈತರ ಮಕ್ಕಳಿಗೆ ಉನ್ನತ ಶಿಕ್ಷಣಕ್ಕಾಗಿ ವಿದ್ಯಾರ್ಥಿ ವೇತನ.', benefit: '₹2,500 ದಿಂದ ₹11,000 / ವರ್ಷ', cond: p => p.occ==='student' },
+  { id: 's8', name: 'ಅಂಗವಿಕಲ ಪಿಂಚಣಿ (ಮೈತ್ರಿ)', tags: ['Pension', 'Disabled'], cat: 'all', icon: '♿', iconBg: '#FDECEA', color: '#C0392B', desc: 'ಅಂಗವಿಕಲರಿಗೆ ಮಾಸಿಕ ಆರ್ಥಿಕ ನೆರವು.', benefit: '₹1,400 ದಿಂದ ₹3,000 / ತಿಂಗಳು', cond: p => p.special==='disabled' },
+  { id: 's9', name: 'ಸಂಧ್ಯಾ ಸುರಕ್ಷಾ ಯೋಜನೆ', tags: ['Pension', 'Seniors'], cat: 'seniors', icon: '👴', iconBg: '#FEF5EC', color: '#E67E22', desc: '65 ವರ್ಷ ಮೇಲ್ಪಟ್ಟ ವೃದ್ಧರಿಗೆ ಮಾಸಿಕ ಪಿಂಚಣಿ.', benefit: '₹1,200 / ತಿಂಗಳು', cond: p => p.age >= 65 || p.special==='senior' },
+  { id: 's10', name: 'ವಿಧವಾ ಪಿಂಚಣಿ', tags: ['Pension', 'Women'], cat: 'women', icon: '🙏', iconBg: '#FDECEA', color: '#C0392B', desc: 'ವಿಧವೆಯರಿಗೆ ಆರ್ಥಿಕ ಭದ್ರತೆ ಒದಗಿಸಲು ಮಾಸಿಕ ಪಿಂಚಣಿ.', benefit: '₹800 / ತಿಂಗಳು', cond: p => p.special==='widow' && p.gender==='female' },
+  
+  { id: 's11', name: 'ಭಾಗ್ಯಲಕ್ಷ್ಮಿ ಯೋಜನೆ', tags: ['Girl Child', 'BPL'], cat: 'women', icon: '👧', iconBg: '#F5EEF8', color: '#6C3483', desc: 'ಬಿಪಿಎಲ್ ಕುಟುಂಬದಲ್ಲಿ ಜನಿಸಿದ ಹೆಣ್ಣು ಮಕ್ಕಳಿಗೆ ಆರ್ಥಿಕ ಭದ್ರತೆ.', benefit: '₹1 ಲಕ್ಷ (18 ವರ್ಷ ತುಂಬಿದಾಗ)', cond: p => p.income==='bpl' },
+  { id: 's12', name: 'ಮಾತೃ ವಂದನಾ ಯೋಜನೆ (PMMVY)', tags: ['Women', 'Health'], cat: 'women', icon: '🤱', iconBg: '#FDF8E7', color: '#D4A017', desc: 'ಮೊದಲನೇ ಮಗುವಿನ ಗರ್ಭಿಣಿ ಮತ್ತು ಬಾಣಂತಿಯರಿಗೆ ಪೌಷ್ಟಿಕಾಂಶಕ್ಕಾಗಿ.', benefit: '₹5,000', cond: p => p.special==='pregnant' && p.gender==='female' },
+  { id: 's13', name: 'SC/ST ವಿದ್ಯಾರ್ಥಿ ವೇತನ', tags: ['Education', 'SC/ST'], cat: 'students', icon: '📚', iconBg: '#EAF2F8', color: '#1A5276', desc: 'ಪರಿಶಿಷ್ಟ ಜಾತಿ ಮತ್ತು ಪಂಗಡದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಪೋಸ್ಟ್ ಮೆಟ್ರಿಕ್ ಸ್ಕಾಲರ್‌ಶಿಪ್.', benefit: 'ವಿದ್ಯಾರ್ಥಿ ವೇತನ', cond: p => (p.cat==='sc'||p.cat==='st') && p.occ==='student' },
+  { id: 's14', name: 'ಗಂಗಾ ಕಲ್ಯಾಣ ಯೋಜನೆ', tags: ['Farmer', 'Irrigation'], cat: 'farmers', icon: '💧', iconBg: '#D5EFF6', color: '#0E6680', desc: 'ಸಣ್ಣ ಮತ್ತು ಅತಿ ಸಣ್ಣ ರೈತರಿಗೆ ಉಚಿತ ಕೊಳವೆ ಬಾವಿ.', benefit: 'ಉಚಿತ ಬೋರ್‌ವೆಲ್', cond: p => p.occ==='farmer' && (p.cat==='sc'||p.cat==='st'||p.cat==='min') },
+  { id: 's15', name: 'ನೇಕಾರ ಸಮ್ಮಾನ್ ಯೋಜನೆ', tags: ['Weavers'], cat: 'all', icon: '🧵', iconBg: '#E8F5EE', color: '#1B7A4B', desc: 'ಕೈಮಗ್ಗ ನೇಕಾರರಿಗೆ ವಾರ್ಷಿಕ ಆರ್ಥಿಕ ನೆರವು.', benefit: '₹5,000 / ವರ್ಷ', cond: p => p.occ==='weaver' },
+  { id: 's16', name: 'ಮತ್ಸ್ಯ ಆಶ್ರಯ ಯೋಜನೆ', tags: ['Fishermen'], cat: 'all', icon: '🐟', iconBg: '#D5EFF6', color: '#0E6680', desc: 'ಮೀನುಗಾರರಿಗೆ ವಸತಿ ಸೌಕರ್ಯ ನಿರ್ಮಾಣಕ್ಕೆ ಸಹಾಯಧನ.', benefit: 'ಮನೆ ನಿರ್ಮಾಣಕ್ಕೆ ಸಹಾಯ', cond: p => p.occ==='fisher' },
+];
+
+let eligibleSchemes = [];
+let currentFilter = 'all';
+
+function checkEligibility() {
+  const age = parseInt(document.getElementById('s-age').value);
+  const gender = document.getElementById('s-gender').value;
+  const income = document.getElementById('s-income').value;
+  const cat = document.getElementById('s-cat').value;
+  const occ = document.getElementById('s-occ').value;
+  const special = document.getElementById('s-special').value;
+
+  if(!age && !gender && !income && !cat && !occ && special === 'none') {
+    alert('ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಕೆಲವು ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ.');
+    return;
+  }
+
+  const params = { age: age || 0, gender, income, cat, occ, special };
+  
+  eligibleSchemes = schemes.filter(s => s.cond(params));
+  currentFilter = 'all';
+  
+  document.getElementById('scheme-results').classList.add('show');
+  
+  // reset filters
+  document.querySelectorAll('.filter-tag').forEach(el => el.classList.remove('active'));
+  document.querySelector('.filter-tag[onclick*="all"]').classList.add('active');
+  
+  if (eligibleSchemes.length > 0) {
+    document.getElementById('filter-tags').classList.add('show');
+  } else {
+    document.getElementById('filter-tags').classList.remove('show');
+  }
+
+  renderResultsUI();
+}
+
+function filterResults(cat, el) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-tag').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  renderResultsUI();
+}
+
+function renderResultsUI() {
+  const container = document.getElementById('results-container');
+  
+  let toShow = eligibleSchemes;
+  if (currentFilter !== 'all') {
+    toShow = eligibleSchemes.filter(s => s.cat === currentFilter || s.tags.some(t => t.toLowerCase().includes(currentFilter.replace('s','')))); 
+  }
+
+  if (eligibleSchemes.length === 0) {
+    container.innerHTML = '<div class="not-eligible">❌ ನಮೂದಿಸಿದ ವಿವರಗಳ ಆಧಾರದ ಮೇಲೆ ಯಾವುದೇ ಯೋಜನೆಗೆ ನೇರ ಅರ್ಹತೆ ಕಂಡುಬಂದಿಲ್ಲ. ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ಸ್ಥಳೀಯ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಅಥವಾ ತಾಲೂಕು ಕಚೇರಿ ಸಂಪರ್ಕಿಸಿ.</div>';
+    return;
+  }
+
+  if (toShow.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--ink2);">ಈ ವಿಭಾಗದಲ್ಲಿ ಯಾವುದೇ ಯೋಜನೆಗಳಿಲ್ಲ.</div>';
+    return;
+  }
+
+  const headerHtml = `<div class="scheme-result-header">✅ ನಿಮ್ಮ ವಿವರಗಳ ಪ್ರಕಾರ <strong>${eligibleSchemes.length} ಯೋಜನೆ</strong>ಗಳಿಗೆ ನೀವು ಅರ್ಹರಾಗಿರಬಹುದು:</div>`;
+  
+  const listHtml = `
+    <div class="scheme-grid">
+      ${toShow.map(s => `
+        <div class="scheme-item-result">
+          <div class="sir-icon" style="background:${s.iconBg}">${s.icon}</div>
+          <div class="sir-body">
+            <div class="sir-name">${s.name}</div>
+            <div class="sir-tags">
+              ${s.tags.map(t => `<span class="sir-tag" style="background:${s.iconBg};color:${s.color}">${t}</span>`).join('')}
+            </div>
+            <div class="sir-desc">${s.desc}</div>
+            <div class="sir-benefit">💰 ಪ್ರಯೋಜನ: ${s.benefit}</div>
+          </div>
+          <div class="sir-right">
+            <button class="sir-apply" onclick="alert('${s.name} ಯೋಜನೆಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸುವ ಲಿಂಕ್ ಶೀಘ್ರದಲ್ಲೇ ಲಭ್ಯವಾಗಲಿದೆ. ಹತ್ತಿರದ ಗ್ರಾಮ ಒನ್ ಅಥವಾ ಸೇವಾ ಸಿಂಧು ವೆಬ್‌ಸೈಟ್ ಭೇಟಿ ನೀಡಿ.')">ಅರ್ಜಿ ಸಲ್ಲಿಸಿ →</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  container.innerHTML = headerHtml + listHtml;
+}
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

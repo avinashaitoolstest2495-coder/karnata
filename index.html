@@ -1,0 +1,2236 @@
+<!-- NammaHub v6 dynamic-landmark-design 2026-07-31 -->
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕರ್ನಾಟ — ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ | Karnata.in</title>
+<meta name="description" content="ಕರ್ನಾಟಕದ ಲೈವ್ ಮಾಹಿತಿ — ಚಿನ್ನ ಬೆಲೆ, ಅಣೆಕಟ್ಟು ಮಟ್ಟ, MLA, ಹವಾಮಾನ, APMC. ನಿಮ್ಮ ಜಿಲ್ಲೆ, ನಿಮ್ಮ ಮಾಹಿತಿ.">
+<link rel="canonical" href="https://karnata.in/">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#E11D48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="/onesignal-init.js" defer></script>
+<script src="/geo_data.js"></script>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+<style>
+/* ══════════════════════════════════════════════════════
+   NAMMAHUB v6 — DYNAMIC LANDMARK & BENTO DASHBOARD
+══════════════════════════════════════════════════════ */
+:root {
+  /* Dynamic Palette */
+  --bg-dark:    #0F172A;
+  --bg-surface: #F8FAFC;
+  --card-bg:    #FFFFFF;
+  
+  /* Brand Karnataka Colors */
+  --k-red:      #E11D48;
+  --k-red-hover:#BE123C;
+  --k-red-glow: rgba(225, 29, 72, 0.15);
+  --k-yellow:   #F59E0B;
+  
+  /* Feature Accents */
+  --gold-accent: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --blue-accent: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  --cyan-accent: linear-gradient(135deg, #0284C7 0%, #06B6D4 100%);
+  --emerald-accent: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --purple-accent: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  
+  /* Text & Borders */
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-muted:     #94A3B8;
+  --border-light:   #E2E8F0;
+  --border-hover:   #CBD5E1;
+  
+  /* Shadows & Radii */
+  --radius-sm:  12px;
+  --radius-md:  18px;
+  --radius-lg:  24px;
+  --shadow-flat: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-hover: 0 20px 30px -10px rgba(15, 23, 42, 0.12);
+  --shadow-glow:  0 10px 25px -5px rgba(225, 29, 72, 0.2);
+  --font:       'Anek Kannada', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+input { font-family: var(--font); outline: none; border: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+
+/* ══════════════════════════════════════════════════════
+   LIVE TICKER BAR — Glowing Dark Terminal
+══════════════════════════════════════════════════════ */
+.ticker-wrap {
+  background: var(--bg-dark);
+  overflow: hidden;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.ticker-label {
+  background: linear-gradient(135deg, var(--k-red), #F43F5E);
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 2;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.3);
+}
+.ticker-label .pulse-ring {
+  width: 8px; height: 8px;
+  background: #FFF;
+  border-radius: 50%;
+  animation: pulse-ring 1.6s infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker-scroll 36s linear infinite;
+  white-space: nowrap;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #E2E8F0;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.ticker-item .t-val {
+  color: #FACC15;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: rgba(250, 204, 21, 0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+/* ══════════════════════════════════════════════════════
+   MASTHEAD — Frosted Glass Header
+══════════════════════════════════════════════════════ */
+.masthead {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.masthead-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 68px;
+  padding: 0 20px;
+  gap: 16px;
+}
+.mh-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.mh-icon-box {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--k-red) 0%, var(--k-yellow) 100%);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-weight: 900;
+  font-size: 22px;
+  box-shadow: var(--shadow-glow);
+}
+.mh-logo-text { display: flex; flex-direction: column; }
+.mh-logo-kn {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.mh-logo-en {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--k-red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.mh-tagline {
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-left: 2px solid var(--border-light);
+  padding-left: 14px;
+  line-height: 1.4;
+  display: none;
+  font-weight: 600;
+}
+@media(min-width:720px){ .mh-tagline { display: block; } }
+
+.mh-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mh-loc-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFF;
+  border: 1.5px solid var(--border-light);
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-flat);
+}
+.mh-loc-btn:hover {
+  border-color: var(--k-red);
+  color: var(--k-red);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+.loc-pulse {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  animation: locpulse 2s infinite;
+}
+@keyframes locpulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.mh-notif {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-light);
+  background: #FFF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: var(--shadow-flat);
+}
+.mh-notif:hover {
+  border-color: var(--k-red);
+  background: var(--k-red-glow);
+  transform: scale(1.05);
+}
+.notif-dot {
+  position: absolute; top: 2px; right: 2px;
+  width: 10px; height: 10px;
+  background: var(--k-red);
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  display: none;
+}
+
+/* ══════════════════════════════════════════════════════
+   NAV TABS BAR
+══════════════════════════════════════════════════════ */
+.nav-tabs {
+  background: #FFF;
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tabs-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  padding: 10px 20px;
+  gap: 8px;
+}
+.nav-tab {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border-radius: 24px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #F1F5F9;
+}
+.nav-tab:hover {
+  background: var(--k-red-glow);
+  color: var(--k-red);
+}
+.nav-tab.active {
+  background: linear-gradient(135deg, var(--k-red), #BE123C);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3);
+}
+
+/* ══════════════════════════════════════════════════════
+   DYNAMIC LANDMARK HERO BANNER
+══════════════════════════════════════════════════════ */
+.hero-banner {
+  position: relative;
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 120px;
+  background: linear-gradient(135deg, #0B253C 0%, #0F3A5D 50%, #1A4B75 100%) !important;
+  box-shadow: var(--shadow-flat);
+  overflow: hidden;
+}
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.15) 0%, transparent 60%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+.hero-landmark-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #FACC15;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.hero-content h1 {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+.hero-content p {
+  font-size: 13px;
+  color: #E2E8F0;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.hero-badge {
+  position: absolute;
+  top: 14px; right: 16px;
+  z-index: 2;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 11px;
+  font-weight: 800;
+  color: #94A3B8;
+}
+@media(max-width:640px){
+  .hero-banner { padding: 16px; min-height: 140px; }
+  .hero-content h1 { font-size: 18px; }
+}
+
+/* ══════════════════════════════════════════════════════
+   ALERT STRIP
+══════════════════════════════════════════════════════ */
+.alert-strip {
+  display: none;
+  background: linear-gradient(90deg, #DC2626, #991B1B);
+  color: #FFF;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow-flat);
+}
+.alert-strip.show { display: flex; }
+.alert-strip.info { background: linear-gradient(90deg, #1D4ED8, #1E40AF); }
+
+/* ══════════════════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════════════════ */
+.main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+/* CRITICAL: Without this, the 1fr column doesn't shrink */
+.main > .left {
+  min-width: 0;
+  overflow: hidden;
+}
+@media(max-width:960px) {
+  .main { grid-template-columns: 1fr; padding: 16px; }
+  .main > .left { overflow: visible; }
+  .sidebar { display: none; }
+}
+
+/* Section Headings */
+.sh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.sh-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sh-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--k-red-glow);
+  color: var(--k-red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.sh-link {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--k-red);
+  background: #FFF;
+  border: 1px solid var(--border-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-flat);
+}
+.sh-link:hover {
+  background: var(--k-red);
+  color: #FFF;
+  border-color: var(--k-red);
+}
+
+/* ══════════════════════════════════════════════════════
+   LIVE DATA BENTO CARDS
+══════════════════════════════════════════════════════ */
+.live-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+@media(max-width:640px) {
+  .live-row { flex-wrap: wrap; }
+  .live-row .live-card { flex: 1 1 calc(33% - 8px); }
+}
+
+.live-card {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-flat);
+  position: relative;
+  overflow: hidden;
+}
+.live-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--border-light);
+}
+.live-card.card-gold::before   { background: var(--gold-accent); }
+.live-card.card-petrol::before { background: var(--blue-accent); }
+.live-card.card-weather::before{ background: var(--emerald-accent); }
+.live-card.card-dam::before    { background: var(--cyan-accent); }
+.live-card.card-silver::before { background: var(--purple-accent); }
+
+.live-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.lc-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.lc-emoji { font-size: 18px; }
+.lc-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lc-val {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lc-val.red    { color: var(--k-red); }
+.lc-val.forest { color: #059669; }
+.lc-val.amber  { color: #D97706; }
+.lc-val.blue   { color: #2563EB; }
+
+.lc-change {
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: #F1F5F9;
+}
+.lc-change.up   { color: #059669; background: #ECFDF5; }
+.lc-change.dn   { color: var(--k-red); background: #FEF2F2; }
+.lc-change.nc   { color: #64748B; background: #F1F5F9; }
+
+/* ══════════════════════════════════════════════════════
+   TOOLS GRID
+══════════════════════════════════════════════════════ */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+@media(max-width:600px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.tool-tile {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-flat);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.tool-tile:hover {
+  border-color: var(--k-red);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.tt-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: transform 0.2s ease;
+}
+.tool-tile:hover .tt-icon-wrap { transform: scale(1.12); }
+
+.bg-t-1 { background: #EEF2FF; color: #4F46E5; }
+.bg-t-2 { background: #ECFDF5; color: #10B981; }
+.bg-t-3 { background: #FFFBEB; color: #F59E0B; }
+.bg-t-4 { background: #FEF2F2; color: #EF4444; }
+.bg-t-5 { background: #EFF6FF; color: #3B82F6; }
+.bg-t-6 { background: #F5F3FF; color: #8B5CF6; }
+.bg-t-7 { background: #FFF1F2; color: #F43F5E; }
+.bg-t-8 { background: #ECFEFF; color: #06B6D4; }
+
+.tt-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* ══════════════════════════════════════════════════════
+   DAM LEVELS — Water Gauge Cards
+══════════════════════════════════════════════════════ */
+.dam-chips {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 36px;
+  padding-bottom: 6px;
+}
+.dam-chips::-webkit-scrollbar { display: none; }
+
+.dam-chip {
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-flat);
+  min-width: 220px;
+}
+.dam-chip:hover { border-color: #0284C7; box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.dc-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dc-storage-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.dc-big-val {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.dc-unit {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2563EB;
+}
+.dc-pct-badge {
+  font-size: 12px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-family: var(--font);
+}
+.dc-bar {
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.dc-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.dc-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.dc-gross { font-weight: 800; color: var(--text-secondary); }
+.dc-river { font-weight: 700; color: var(--text-muted); }
+
+/* ══════════════════════════════════════════════════════
+   NEWS LAYOUT
+══════════════════════════════════════════════════════ */
+.news-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+@media(max-width:600px) { .news-layout { grid-template-columns: 1fr; } }
+
+.news-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-flat);
+  display: flex;
+  flex-direction: column;
+}
+.news-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-hover); transform: translateY(-2px); }
+.news-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 24px;
+  align-items: center;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 100%);
+  border-left: 5px solid var(--k-red);
+}
+@media(max-width:640px) { .news-card.featured { grid-template-columns: 1fr; } }
+
+.nc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.ey-red    { background: #FEF2F2; color: var(--k-red); }
+.ey-forest { background: #ECFDF5; color: #059669; }
+.ey-amber  { background: #FFFBEB; color: #D97706; }
+.ey-blue   { background: #EFF6FF; color: #2563EB; }
+
+.nc-headline {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.news-card.featured .nc-headline {
+  font-size: 22px;
+  line-height: 1.35;
+}
+.nc-summary {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.nc-meta {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+.nc-meta span + span::before {
+  content: '·';
+  margin-right: 8px;
+}
+
+.nc-visual {
+  background: linear-gradient(135deg, var(--k-red), #F43F5E);
+  border-radius: var(--radius-md);
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: #FFF;
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.25);
+}
+@media(max-width:640px) { .nc-visual { display: none; } }
+
+/* Local News Strip */
+.local-news-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 36px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-flat);
+}
+.local-item {
+  display: block;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.local-item:last-child { border-bottom: none; }
+.local-item:hover { background: #F8FAFC; }
+.li-source {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--k-red);
+  background: rgba(225, 29, 72, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.li-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+.li-time { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+#local-news-section { display: none; }
+
+/* ══════════════════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════════════════ */
+.sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+.sb-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-flat);
+}
+.sb-head {
+  background: var(--bg-dark);
+  color: #FFF;
+  padding: 14px 18px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sb-body { padding: 18px; }
+
+/* Dynamic Sky Weather Card with City Landmark Header Image */
+.sb-card-weather {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-flat);
+  border: 1px solid var(--border-light);
+}
+.sb-weather-banner {
+  position: relative;
+  background: linear-gradient(180deg, rgba(11, 37, 60, 0.7) 0%, rgba(15, 58, 93, 0.9) 100%), url('https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+  color: #FFF;
+  padding: 0 0 16px 0;
+  transition: background-image 0.5s ease-in-out;
+}
+.sb-weather-banner .sb-head {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.weather-center { text-align: center; padding: 14px 14px 4px; }
+.wc-icon { font-size: 50px; display: block; margin-bottom: 2px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+.wc-temp {
+  font-size: 46px;
+  font-weight: 900;
+  color: #FFF;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.wc-desc { font-size: 14px; font-weight: 700; color: #E0F2FE; margin: 4px 0 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+.wc-loc  { font-size: 13px; font-weight: 800; color: #7DD3FC; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+
+.weather-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 14px 14px;
+  background: #FFFFFF;
+}
+.ws-cell {
+  text-align: center; background: #F8FAFC; padding: 10px 4px;
+  border-radius: var(--radius-sm); border: 1px solid #E2E8F0;
+}
+.ws-v { font-size: 14px; font-weight: 900; color: var(--text-primary); }
+.ws-l { font-size: 10px; color: var(--text-muted); font-weight: 800; text-transform: uppercase; margin-top: 2px; }
+
+/* APMC Table */
+.apmc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.apmc-row:last-child { border-bottom: none; }
+.ar-crop { font-size: 14px; font-weight: 800; color: var(--text-primary); }
+.ar-mkt  { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+.ar-price { font-size: 15px; font-weight: 900; color: #D97706; }
+.ar-ch   { font-size: 11px; font-weight: 800; }
+.ar-ch.up { color: #059669; }
+.ar-ch.dn { color: var(--k-red); }
+
+/* Petrol Table */
+.petrol-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.petrol-row:last-child { border-bottom: none; }
+.pr-city { font-size: 13px; font-weight: 800; color: var(--text-primary); }
+.pr-vals { display: flex; gap: 10px; }
+.pr-p { font-size: 13px; font-weight: 900; color: var(--k-red); background: #FEF2F2; padding: 3px 8px; border-radius: 6px; }
+.pr-d { font-size: 13px; font-weight: 900; color: #2563EB; background: #EFF6FF; padding: 3px 8px; border-radius: 6px; }
+
+/* Civic Search */
+.civic-mini input {
+  width: 100%;
+  background: #F8FAFC;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  transition: border-color 0.15s;
+}
+.civic-mini input:focus { border-color: var(--k-red); background: #FFF; }
+.civic-btn {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, var(--k-red), #BE123C);
+  color: #FFF;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: var(--shadow-glow);
+  transition: opacity 0.15s;
+}
+.civic-btn:hover { opacity: 0.95; }
+
+/* ══════════════════════════════════════════════════════
+   GEO BOTTOM SHEET & NOTIF
+══════════════════════════════════════════════════════ */
+.geo-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 500;
+  align-items: flex-end;
+  justify-content: center;
+}
+.geo-overlay.show { display: flex; }
+.geo-sheet {
+  background: #FFF;
+  border-radius: 28px 28px 0 0;
+  padding: 12px 28px 40px;
+  width: 100%;
+  max-width: 520px;
+  animation: sheetup 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+}
+@keyframes sheetup { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.gs-handle {
+  width: 44px; height: 5px;
+  background: var(--border-light);
+  border-radius: 3px;
+  margin: 8px auto 22px;
+}
+.gs-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.gs-body { font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; }
+.gs-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+.gs-chip {
+  padding: 8px 18px;
+  border-radius: 24px;
+  border: 1.5px solid var(--border-light);
+  background: #F8FAFC;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.gs-chip:hover { border-color: var(--k-red); color: var(--k-red); background: #FEF2F2; }
+.gs-allow {
+  width: 100%;
+  background: linear-gradient(135deg, var(--k-red), #BE123C);
+  color: #FFF;
+  border-radius: 14px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-glow);
+}
+.gs-skip {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* NOTIF BANNER */
+.notif-banner {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  background: #FFF;
+  border: 1px solid var(--border-light);
+  border-top: 5px solid var(--k-red);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  max-width: 400px;
+  width: calc(100vw - 32px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.nb-title { font-size: 17px; font-weight: 900; color: var(--text-primary); margin-bottom: 6px; }
+.nb-body  { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 18px; }
+.nb-actions { display: flex; gap: 10px; }
+.nb-yes {
+  flex: 1;
+  background: var(--k-red);
+  color: #FFF;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+.nb-no {
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-light);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  background: #F8FAFC;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  top: 80px; right: 20px;
+  z-index: 400;
+  background: var(--bg-dark);
+  color: #FFF;
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: none;
+}
+.toast.show { display: block; }
+.toast-title { font-size: 14px; font-weight: 900; margin-bottom: 2px; }
+.toast-body  { font-size: 12px; color: #94A3B8; }
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════ */
+.footer {
+  background: var(--bg-dark);
+  color: #94A3B8;
+  padding: 48px 20px 28px;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+@media(max-width:640px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer-brand { font-size: 24px; font-weight: 900; color: #FFF; margin-bottom: 10px; }
+.footer-desc  { font-size: 13px; line-height: 1.7; }
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #FFF;
+  margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  font-size: 13px;
+  color: #CBD5E1;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: #FFF; }
+.footer-bottom {
+  max-width: 1240px;
+  margin: 36px auto 0;
+  padding: 24px 20px 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE BOTTOM NAV
+══════════════════════════════════════════════════════ */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #FFF;
+  border-top: 1px solid var(--border-light);
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  z-index: 99;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+}
+@media(max-width:860px) {
+  .mobile-nav { display: block; }
+  body { padding-bottom: 70px; }
+}
+.mn-grid { display: grid; grid-template-columns: repeat(5,1fr); }
+.mn-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 2px; }
+.mn-icon { font-size: 22px; }
+.mn-label { font-size: 10px; font-weight: 800; color: var(--text-muted); }
+.mn-btn.active .mn-label { color: var(--k-red); }
+</style>
+</head>
+<body>
+
+<!-- ══ LIVE TICKER ═════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-label"><div class="pulse-ring"></div>🔴 ಲೈವ್‌</div>
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹13,069/g</span></span>
+    <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹110.93/L</span></span>
+    <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">41%</span></span>
+    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">24°C 🌤️</span></span>
+    <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹203.40/g</span></span>
+    <span class="ticker-item">🌾 ಟೊಮ್ಯಾಟೋ <span class="t-val t-val-tomato">₹28/kg</span></span>
+    <!-- Loop clone -->
+    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹13,069/g</span></span>
+    <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹110.93/L</span></span>
+    <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">41%</span></span>
+    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">24°C 🌤️</span></span>
+    <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹203.40/g</span></span>
+    <span class="ticker-item">🌾 ಟೊಮ್ಯಾಟೋ <span class="t-val t-val-tomato">₹28/kg</span></span>
+  </div>
+</div>
+
+<!-- ══ MASTHEAD ════════════════════════════════════════════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="index.html" class="mh-logo">
+      <img src="/karnata-logo.png" alt="Karnata.in Logo" style="height:42px; object-fit:contain; border-radius:6px;">
+      <div class="mh-logo-text">
+        <span class="mh-logo-kn">ಕರ್ನಾಟ</span>
+        <span class="mh-logo-en">KARNATA.IN</span>
+      </div>
+    </a>
+    <div class="mh-tagline">Universe Of Karnataka<br>ನಿಮ್ಮ ಜಿಲ್ಲೆ · ನಿಮ್ಮ ಭಾಷೆ · ನಿಮ್ಮ ಮಾಹಿತಿ</div>
+    <div class="mh-right">
+      <button class="mh-loc-btn" onclick="showGeoSheet()">
+        <div class="loc-pulse"></div>
+        <span id="loc-text">ಸ್ಥಳ ಆಯ್ಕೆ</span>
+      </button>
+      <button class="mh-notif" onclick="showNotif()" title="ಅಧಿಸೂಚನೆ">
+        🔔<div class="notif-dot" id="notif-dot"></div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══════════════════════════════════════════ -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <a href="gold-rate.html"         class="nav-tab">🥇 ಚಿನ್ನ</a>
+    <a href="petrol-price.html"      class="nav-tab">⛽ ಪೆಟ್ರೋಲ್</a>
+    <a href="dam-levels.html"        class="nav-tab">💧 ಅಣೆಕಟ್ಟು</a>
+    <a href="weather.html"           class="nav-tab">🌧️ ಹವಾಮಾನ</a>
+    <a href="apmc-prices.html"       class="nav-tab">🌾 APMC</a>
+    <a href="mla-mp.html" class="nav-tab">🏛️ MLA/MP</a>
+    <a href="emi-calculator.html"    class="nav-tab">🏦 EMI</a>
+    <a href="sip-calculator.html"    class="nav-tab">📈 SIP</a>
+    <a href="salary-calculator.html" class="nav-tab">💰 ಸಂಬಳ</a>
+    <a href="scheme-checker.html"    class="nav-tab">📋 ಯೋಜನೆ</a>
+    <a href="news-explainers.html"   class="nav-tab">📰 ಸುದ್ದಿ</a>
+    <a href="more-tools.html"        class="nav-tab">🛠️ ಇನ್ನಷ್ಟು</a>
+  </div>
+</nav>
+
+<!-- ══ ALERT STRIP ══════════════════════════════════════ -->
+<div class="alert-strip" id="alert-strip">
+  <span>⚠️</span><span id="alert-msg"></span>
+</div>
+
+<!-- ══ MAIN DASHBOARD ════════════════════════════════════ -->
+<main class="main">
+  <div class="left">
+
+    <!-- KARNATA SMART SEARCH SECTION -->
+    <div class="smart-search-wrapper" style="margin-top:10px; margin-bottom:20px;">
+      <div class="smart-search-box">
+        <div class="smart-search-icon">🔍</div>
+        <input type="text" id="smart-search-input" class="smart-search-input" placeholder="ಕರ್ನಾಟಕದ ಯಾವುದೇ ವಿಷಯವನ್ನು ಇಲ್ಲಿ ಹುಡುಕಿ... (ಉದಾ: ಚಿನ್ನದ ಬೆಲೆ, KRS ನೀರು, ಕೊಪ್ಪಳ MP, ಮಂಡ್ಯ weather...)" autocomplete="off">
+        <button class="smart-search-btn" onclick="window.KarnataSmartEngine.search(document.getElementById('smart-search-input').value)">ಹುಡುಕಿ</button>
+      </div>
+    </div>
+
+    <!-- SMART SEARCH RESULTS CONTAINER -->
+    <div id="smart-search-results" class="smart-search-results"></div>
+
+    <!-- LIVE BENTO ROW -->
+    <div class="sh">
+      <div class="sh-title"><div class="sh-icon">📊</div>ಇಂದಿನ ಮುಖ್ಯ ದರ & ಲೈವ್ ಮಾಹಿತಿ</div>
+    </div>
+
+    <div class="live-row">
+      <div class="live-card card-gold" onclick="location.href='gold-rate.html'">
+        <div class="lc-top"><span class="lc-emoji">🥇</span></div>
+        <div class="lc-label">22K ಚಿನ್ನ / ಗ್ರಾಂ</div>
+        <div class="lc-val red" id="lc-gold">—</div>
+        <div class="lc-change" id="lc-gold-ch">—</div>
+      </div>
+      <div class="live-card card-petrol" onclick="location.href='more-tools.html'">
+        <div class="lc-top"><span class="lc-emoji">⛽</span></div>
+        <div class="lc-label" id="lc-petrol-city">ಪೆಟ್ರೋಲ್ / ಲೀ</div>
+        <div class="lc-val blue" id="lc-petrol">—</div>
+        <div class="lc-change nc" id="lc-petrol-ch">ಇಂದು</div>
+      </div>
+      <div class="live-card card-weather" onclick="location.href='weather.html'">
+        <div class="lc-top"><span class="lc-emoji" id="lc-w-icon">🌤️</span></div>
+        <div class="lc-label" id="lc-w-city">ಹವಾಮಾನ</div>
+        <div class="lc-val forest" id="lc-temp">—</div>
+        <div class="lc-change nc" id="lc-w-desc">ಲೋಡ್...</div>
+      </div>
+      <div class="live-card card-dam" onclick="location.href='dam-levels.html'">
+        <div class="lc-top"><span class="lc-emoji">💧</span></div>
+        <div class="lc-label">KRS ಅಣೆಕಟ್ಟು</div>
+        <div class="lc-val amber" id="lc-dam">—</div>
+        <div class="lc-change" id="lc-dam-st">ಲೋಡ್...</div>
+      </div>
+      <div class="live-card card-silver" onclick="location.href='gold-rate.html'">
+        <div class="lc-top"><span class="lc-emoji">🥈</span></div>
+        <div class="lc-label">ಬೆಳ್ಳಿ / ಗ್ರಾಂ</div>
+        <div class="lc-val" id="lc-silver">—</div>
+        <div class="lc-change nc">ಇಂದು</div>
+      </div>
+    </div>
+
+    <!-- TOOLS GRID -->
+    <div class="sh">
+      <div class="sh-title"><div class="sh-icon">🛠️</div>ಉಪಯುಕ್ತ ಸೇವೆಗಳು</div>
+      <a href="more-tools.html" class="sh-link">ಎಲ್ಲವೂ →</a>
+    </div>
+
+    <div class="tools-grid">
+      <a href="emi-calculator.html"    class="tool-tile">
+        <div class="tt-icon-wrap bg-t-1">🏦</div>
+        <span class="tt-label">EMI ಲೆಕ್ಕಾಚಾರ</span>
+      </a>
+      <a href="more-tools.html"        class="tool-tile">
+        <div class="tt-icon-wrap bg-t-2">📈</div>
+        <span class="tt-label">SIP ಲೆಕ್ಕಾಚಾರ</span>
+      </a>
+      <a href="salary-calculator.html" class="tool-tile">
+        <div class="tt-icon-wrap bg-t-3">💰</div>
+        <span class="tt-label">ಸಂಬಳದ ಲೆಕ್ಕ</span>
+      </a>
+      <a href="mla-mp.html"            class="tool-tile">
+        <div class="tt-icon-wrap bg-t-4">🏛️</div>
+        <span class="tt-label">MLA / MP ವಿವರ</span>
+      </a>
+      <a href="status-checker.html"    class="tool-tile">
+        <div class="tt-icon-wrap bg-t-5">🚗</div>
+        <span class="tt-label">DL / RTC ಸ್ಥಿತಿ</span>
+      </a>
+      <a href="kannada-typing.html"    class="tool-tile">
+        <div class="tt-icon-wrap bg-t-6">⌨️</div>
+        <span class="tt-label">ಕನ್ನಡ ಟೈಪಿಂಗ್</span>
+      </a>
+      <a href="districts/index.html"   class="tool-tile">
+        <div class="tt-icon-wrap bg-t-7">🗺️</div>
+        <span class="tt-label">31 ಜಿಲ್ಲೆಗಳು</span>
+      </a>
+      <a href="more-tools.html"        class="tool-tile">
+        <div class="tt-icon-wrap bg-t-8">🌾</div>
+        <span class="tt-label">APMC ದರ ಪಟ್ಟಿ</span>
+      </a>
+    </div>
+
+    <!-- DAMS -->
+    <div class="sh">
+      <div class="sh-title"><div class="sh-icon">💧</div>ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ಇಂದಿನ ನೀರಿನ ಮಟ್ಟ</div>
+      <a href="dam-levels.html" class="sh-link">ಎಲ್ಲ ಅಣೆಕಟ್ಟುಗಳು →</a>
+    </div>
+    <div class="dam-chips" id="dam-chips">
+      <div style="color:var(--text-muted);font-size:13px;padding:20px;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+    </div>
+
+    <!-- NEWS EXPLAINERS -->
+    <div class="sh">
+      <div class="sh-title"><div class="sh-icon">📰</div>ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಸುದ್ದಿ ವಿವರಣೆ</div>
+      <a href="news-explainers.html" class="sh-link">ಎಲ್ಲ ಸುದ್ದಿ →</a>
+    </div>
+
+    <div class="news-layout" id="top-news-layout">
+      <a href="https://tv9kannada.com/karnataka/dakshina-kannada/karnataka-rain-alert-imd-forecasts-heavy-monsoon-rains-across-coastal-malnad-and-south-regions-today-1221700.html" target="_blank" rel="noopener" class="news-card featured">
+        <div class="nc-content">
+          <span class="nc-eyebrow ey-blue">🌧️ ಹವಾಮಾನ ವರದಿ</span>
+          <div class="nc-headline">ಕರ್ನಾಟಕ ಹವಾಮಾನ ವರದಿ: ಕರಾವಳಿ ಮತ್ತು ಮಲೆನಾಡಿನಲ್ಲಿ ಮಳೆಯ ಆರ್ಭಟ, ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳಿಗೆ ಅಲರ್ಟ್</div>
+          <div class="nc-summary">ಹವಾಮಾನ ಇಲಾಖೆಯಿಂದ ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಿಗೆ ಯೆಲ್ಲೋ ಅಲರ್ಟ್ — ಪ್ರಮುಖ ಕೆರೆ-ಜಲಾಶಯಗಳಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಏರಿಕೆ.</div>
+          <div class="nc-meta"><span>ಇಂದು (Live)</span><span>TV9 ಕನ್ನಡ</span></div>
+        </div>
+        <div class="nc-visual">🌧️</div>
+      </a>
+      <a href="https://tv9kannada.com/karnataka/uttara-kannada/land-record-scam-alleged-in-mundgod-25-farmers-find-land-area-reduced-overnight-in-rtc-petition-uttara-kannada-dc-1221592.html" target="_blank" rel="noopener" class="news-card">
+        <span class="nc-eyebrow ey-amber">📍 ಸ್ಥಳೀಯ ತನಿಖೆ</span>
+        <div class="nc-headline">ರೈತರ ಜಮೀನು ಕಬಳಿಸಲು ಅಧಿಕಾರಿಗಳಿಂದಲೇ ಸಂಚು?: ಪಹಣಿ ಪತ್ರದಲ್ಲಿ ರಾತ್ರೋ ರಾತ್ರಿ ಇಳಿಕೆ ಕಂಡ ಜಾಗ!</div>
+        <div class="nc-meta"><span>ಇಂದು (Live)</span><span>ಉತ್ತರ ಕನ್ನಡ ವರದಿ</span></div>
+      </a>
+      <a href="https://tv9kannada.com/karnataka/karnataka-arecanut-productivity-falls-37-percent-despite-32-percent-rise-in-cultivation-area-1221760.html" target="_blank" rel="noopener" class="news-card">
+        <span class="nc-eyebrow ey-forest">🌾 ಕೃಷಿ & APMC</span>
+        <div class="nc-headline">ಕರ್ನಾಟಕದಲ್ಲಿ ಅಡಿಕೆ ಉತ್ಪಾದನೆ, ಉತ್ಪಾದಕತೆ ಭಾರೀ ಕುಸಿತ! ಶಿರಸಿ-ಶಿವಮೊಗ್ಗ ಮಾರುಕಟ್ಟೆ ವರದಿ</div>
+        <div class="nc-meta"><span>ಇಂದು (Live)</span><span>APMC ಸಮಾಚಾರ</span></div>
+      </a>
+      <a href="https://kannada.news18.com" target="_blank" rel="noopener" class="news-card">
+        <span class="nc-eyebrow ey-blue">💧 ಜಲಾಶಯ ಸಮಾಚಾರ</span>
+        <div class="nc-headline">KRS ಹಾಗೂ ಆಲಮಟ್ಟಿ ಜಲಾಶಯಕ್ಕೆ ಒಳಹರಿವು ಭಾರಿ ಏರಿಕೆ — ಕಾವೇರಿ-ಕೃಷ್ಣಾ ತೀರದ ರೈತರಿಗೆ ಸಂತಸ</div>
+        <div class="nc-meta"><span>ಇಂದು (Live)</span><span>ಲೈವ್ ಡೇಟಾ</span></div>
+      </a>
+    </div>
+
+    <!-- LOCAL NEWS -->
+    <div id="local-news-section">
+      <div class="sh">
+        <div class="sh-title"><div class="sh-icon">📍</div><span id="local-news-title">ಸ್ಥಳೀಯ ಸುದ್ದಿ</span></div>
+        <a href="news-explainers.html" class="sh-link">ಎಲ್ಲ →</a>
+      </div>
+      <div class="local-news-list" id="local-news-list"></div>
+      <a id="dist-page-link" href="#" style="display:none;margin-top:12px;padding:14px;background:var(--k-red-glow);border:1.5px solid rgba(225,29,72,0.2);border-radius:var(--radius-sm);font-size:14px;font-weight:900;color:var(--k-red);text-align:center;"></a>
+    </div>
+
+    <!-- OUTSIDE KARNATAKA -->
+    <div id="outside-section" style="display:none;">
+      <div class="sh"><div class="sh-title"><div class="sh-icon">🗺️</div>ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ</div></div>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">ನೀವು ಕರ್ನಾಟಕದ ಹೊರಗಿದ್ದೀರಿ — ಯಾವ ಜಿಲ್ಲೆಯ ಮಾಹಿತಿ ಬೇಕು?</p>
+      <div id="outside-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;"></div>
+    </div>
+
+  </div><!-- end left -->
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════ -->
+  <aside class="sidebar">
+
+    <!-- DYNAMIC SKY WEATHER CARD WITH CITY LANDMARK IMAGE HEADER -->
+    <div class="sb-card sb-card-weather" id="sb-card-weather">
+      <div class="sb-weather-banner" id="sb-weather-banner">
+        <div class="sb-head">🌦️ ನಿಮ್ಮ ಊರಿನ ಹವಾಮಾನ</div>
+        <div class="weather-center">
+          <span class="wc-icon" id="sb-icon">⛅</span>
+          <div class="wc-temp"><span id="sb-temp">24</span>°C</div>
+          <div class="wc-desc" id="sb-desc">ಭಾಗಶಃ ಮೋಡ</div>
+          <div class="wc-loc" id="sb-loc">📍 ಬೆಂಗಳೂರು</div>
+        </div>
+      </div>
+      <div class="sb-body">
+        <div class="weather-stats">
+          <div class="ws-cell"><div class="ws-v" id="sb-hum">70%</div><div class="ws-l">ತೇವಾಂಶ</div></div>
+          <div class="ws-cell"><div class="ws-v" id="sb-wind">14 km/h</div><div class="ws-l">ಗಾಳಿ</div></div>
+          <div class="ws-cell"><div class="ws-v" id="sb-rain">35%</div><div class="ws-l">ಮಳೆ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APMC MARKET -->
+    <div class="sb-card">
+      <div class="sb-head">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರ</div>
+      <div class="sb-body" id="apmc-sb">
+        <div style="text-align:center;color:var(--text-muted);font-size:13px;padding:12px;">ಲೋಡ್...</div>
+      </div>
+      <div style="padding:0 18px 18px;"><a href="more-tools.html" style="display:block;text-align:center;font-size:12px;font-weight:900;color:var(--k-red);">ಎಲ್ಲ ಬೆಲೆ ನೋಡಿ →</a></div>
+    </div>
+
+    <!-- PETROL MATRIX -->
+    <div class="sb-card">
+      <div class="sb-head">⛽ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ</div>
+      <div class="sb-body" id="petrol-sb">
+        <div style="text-align:center;color:var(--text-muted);font-size:13px;padding:12px;">ಲೋಡ್...</div>
+      </div>
+    </div>
+
+    <!-- CIVIC FINDER WIDGET -->
+    <div class="sb-card">
+      <div class="sb-head">🏛️ ನಿಮ್ಮ ಕ್ಷೇತ್ರದ MLA ಯಾರು?</div>
+      <div class="sb-body civic-mini">
+        <input type="text" id="civic-in" placeholder="ಉದಾ: ಗಂಗಾವತಿ, ಮಂಡ್ಯ, ಗೋಕಾಕ್..." onkeydown="if(event.key==='Enter') location.href='mla-mp.html?q='+encodeURIComponent(this.value)">
+        <button class="civic-btn" style="border:none;cursor:pointer;" onclick="location.href='mla-mp.html?q='+encodeURIComponent(document.getElementById('civic-in').value)">ಹುಡುಕಿ →</button>
+      </div>
+    </div>
+
+  </aside>
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ಕರ್ನಾಟ — Karnata.in</div>
+      <div class="footer-desc">Universe Of Karnataka — ಕರ್ನಾಟಕದ ಕನ್ನಡಿಗರಿಗಾಗಿ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ. ಚಿನ್ನ ಬೆಲೆ, ಪೆಟ್ರೋಲ್, ಅಣೆಕಟ್ಟು, MLA, ಹವಾಮಾನ, APMC — ಪ್ರತಿ ದಿನ ನವೀಕರಣ.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">ಲೈವ್ ಡೇಟಾ</div>
+      <div class="footer-links">
+        <a href="gold-rate.html"    class="footer-link">🥇 ಚಿನ್ನ / ಬೆಳ್ಳಿ ಬೆಲೆ</a>
+        <a href="petrol-price.html" class="footer-link">⛽ ಪೆಟ್ರೋಲ್ ಬೆಲೆ</a>
+        <a href="dam-levels.html"   class="footer-link">💧 ಅಣೆಕಟ್ಟು ಮಟ್ಟ</a>
+        <a href="apmc-prices.html"   class="footer-link">🌾 APMC ಧಾರಣೆ</a>
+        <a href="weather.html"      class="footer-link">🌧️ ಹವಾಮಾನ</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">ಸೇವೆಗಳು</div>
+      <div class="footer-links">
+        <a href="civic-finder.html"      class="footer-link">🏛️ MLA / MP ಹುಡುಕಿ</a>
+        <a href="emi-calculator.html"    class="footer-link">🏦 EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್</a>
+        <a href="sip-calculator.html"    class="footer-link">📈 SIP ಕ್ಯಾಲ್ಕುಲೇಟರ್</a>
+        <a href="salary-calculator.html" class="footer-link">💰 ಸಂಬಳ ಲೆಕ್ಕ</a>
+        <a href="scheme-checker.html"    class="footer-link">📋 ಸರ್ಕಾರಿ ಯೋಜನೆ</a>
+        <a href="districts/index.html"   class="footer-link">🗺️ 31 ಜಿಲ್ಲೆಗಳು</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Policies & Terms</div>
+      <div class="footer-links">
+        <a href="/about.html"          class="footer-link">About Us</a>
+        <a href="/contact.html"        class="footer-link">Contact Us</a>
+        <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
+        <a href="/terms.html"          class="footer-link">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Karnata.in · Universe Of Karnataka</span>
+    <span>ಮೂಲ: IBJA · Karnataka Water Resources · Open-Meteo · agmarknet.gov.in</span>
+  </div>
+</footer>
+
+<!-- ══ MOBILE NAV ══════════════════════════════════════ -->
+<nav class="mobile-nav">
+  <div class="mn-grid">
+    <a href="index.html"           class="mn-btn active"><span class="mn-icon">🏠</span><span class="mn-label">ಮುಖಪುಟ</span></a>
+    <a href="dam-levels.html"      class="mn-btn"><span class="mn-icon">💧</span><span class="mn-label">ಅಣೆಕಟ್ಟು</span></a>
+    <a href="gold-rate.html"       class="mn-btn"><span class="mn-icon">🥇</span><span class="mn-label">ಚಿನ್ನ</span></a>
+    <a href="civic-finder.html"    class="mn-btn"><span class="mn-icon">🏛️</span><span class="mn-label">MLA/MP</span></a>
+    <a href="news-explainers.html" class="mn-btn"><span class="mn-icon">📰</span><span class="mn-label">ಸುದ್ದಿ</span></a>
+  </div>
+</nav>
+
+<!-- ══ GEO BOTTOM SHEET ══════════════════════════════ -->
+<div class="geo-overlay" id="geo-overlay">
+  <div class="geo-sheet">
+    <div class="gs-handle"></div>
+    <div class="gs-title">📍 ನಿಮ್ಮ ಜಿಲ್ಲೆ ಅಥವಾ ತಾಲ್ಲೂಕು ಆಯ್ಕೆ ಮಾಡಿ</div>
+    <div class="gs-body">ನಿಮ್ಮ ಊರಿನ ತತ್ಕ್ಷಣದ ಹವಾಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಸುದ್ದಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.</div>
+    <div class="gs-chips" id="geo-chips"></div>
+    <button class="gs-allow" id="geo-btn" onclick="requestGeo()">📍 ನನ್ನ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಿ</button>
+    <span class="gs-skip" onclick="closeGeoSheet()">ನಂತರ ಆಯ್ಕೆ ಮಾಡುತ್ತೇನೆ</span>
+  </div>
+</div>
+
+<!-- ══ NOTIF BANNER ══════════════════════════════════ -->
+<div class="notif-banner" id="notif-banner">
+  <div class="nb-title">🔔 ಉಚಿತ ಅಧಿಸೂಚನೆ ಪಡೆಯಿರಿ</div>
+  <div class="nb-body">ಚಿನ್ನದ ಬೆಲೆ ಬದಲಾದಾಗ, ಅಣೆಕಟ್ಟು ಭರ್ತಿಯಾದಾಗ ಮತ್ತು ನಿಮ್ಮ ಜಿಲ್ಲೆಯಲ್ಲಿ ಭಾರೀ ಮಳೆಯ ಮುನ್ನೆಚ್ಚರಿಕೆ ಬಂದಾಗ ತಕ್ಷಣ ನೋಟಿಫಿಕೇಶನ್ ಸಿಗಲಿದೆ.</div>
+  <div class="nb-actions">
+    <button class="nb-yes" onclick="requestPush()">✅ ಚಾಲು ಮಾಡಿ</button>
+    <button class="nb-no" onclick="closeNotif()">ನಂತರ</button>
+  </div>
+</div>
+
+<!-- ══ TOAST ══════════════════════════════════════════ -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-t"></div>
+  <div class="toast-body"  id="toast-b"></div>
+</div>
+
+<script>
+/* NammaHub v6 — Dynamic Landmark Imagery & Core Logic */
+
+// Dynamic Landmark Images Database per District
+const DISTRICT_LANDMARKS = {
+  'bengaluru-urban': { title: 'ವಿಧಾನಸೌಧ, ಬೆಂಗಳೂರು', img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80' },
+  'bengaluru-rural': { title: 'ದೇವನಹಳ್ಳಿ ಕೋಟೆ, ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80' },
+  'mysuru': { title: 'ಮೈಸೂರು ಅರಮನೆ, ಮೈಸೂರು', img: 'https://images.unsplash.com/photo-1600100397608-f090742f4fa4?auto=format&fit=crop&w=1200&q=80' },
+  'vijayanagara': { title: 'ಕಲ್ಲಿನ ರಥ, ಹಂಪಿ (ವಿಜಯನಗರ)', img: 'https://images.unsplash.com/photo-1627894099065-923105747688?auto=format&fit=crop&w=1200&q=80' },
+  'ballari': { title: 'ಬಳ್ಳಾರಿ ಕೋಟೆ, ಬಳ್ಳಾರಿ', img: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80' },
+  'dakshina-kannada': { title: 'ಪಣಂಬೂರು ಕಡಲತೀರ, ಮಂಗಳೂರು', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80' },
+  'udupi': { title: 'ಮಾಲ್ಪೆ ಬೀಚ್ & ಕೃಷ್ಣ ಮಠ, ಉಡುಪಿ', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80' },
+  'uttara-kannada': { title: 'ಮುರುಡೇಶ್ವರ ದೇವಾಲಯ, ಉತ್ತರ ಕನ್ನಡ', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80' },
+  'shivamogga': { title: 'ಜೋಗ ಜಲಪಾತ, ಶಿವಮೊಗ್ಗ', img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80' },
+  'mandya': { title: 'KRS ಅಣೆಕಟ್ಟು, ಮಂಡ್ಯ', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80' },
+  'hassan': { title: 'ಬೇಲೂರು ಚನ್ನಕೇಶವ ದೇವಾಲಯ, ಹಾಸನ', img: 'https://images.unsplash.com/photo-1609946782780-6677157961cc?auto=format&fit=crop&w=1200&q=80' },
+  'chikkamagaluru': { title: 'ಮುಳ್ಳಯ್ಯನಗಿರಿ, ಚಿಕ್ಕಮಗಳೂರು', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80' },
+  'kodagu': { title: 'ಮಡಿಕೇರಿ ಬೆಟ್ಟಗಳು, ಕೊಡಗು', img: 'https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=1200&q=80' },
+  'belagavi': { title: 'ಸುವರ್ಣ ವಿಧಾನಸೌಧ, ಬೆಳಗಾವಿ', img: 'https://images.unsplash.com/photo-1562670652-e5947bddb335?auto=format&fit=crop&w=1200&q=80' },
+  'dharwad': { title: 'ಉಣಕಲ್ ಕೆರೆ, ಧಾರವಾಡ', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80' },
+  'kalaburagi': { title: 'ಗುಲ್ಬರ್ಗಾ ಕೋಟೆ, ಕಲಬುರಗಿ', img: 'https://images.unsplash.com/photo-1599571234909-29ed5d532323?auto=format&fit=crop&w=1200&q=80' },
+  'vijayapura': { title: 'ಗೋಲ್ ಗುಂಬಜ್, ವಿಜಯಪುರ', img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80' },
+  'koppal': { title: 'ಅಂಜನಾದ್ರಿ ಬೆಟ್ಟ, ಕೊಪ್ಪಳ', img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80' },
+  'chitradurga': { title: 'ಚಿತ್ರದುರ್ಗದ ಕಲ್ಲಿನ ಕೋಟೆ', img: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80' },
+  'tumakuru': { title: 'ದೇವರಾಯನದುರ್ಗ, ತುಮಕೂರು', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80' },
+  'chikkaballapura': { title: 'ನಂದಿ ಬೆಟ್ಟ, ಚಿಕ್ಕಬಳ್ಳಾಪುರ', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80' },
+  'chamarajanagar': { title: 'ಬಂಡೀಪುರ ಅಭಯಾರಣ್ಯ, ಚಾಮರಾಜನಗರ', img: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80' },
+  'bengaluru-urban': { title: 'ವಿಧಾನಸೌಧ, ಬೆಂಗಳೂರು ನಗರ', img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80' },
+  'bengaluru-rural': { title: 'ದೇವನಹಳ್ಳಿ ಕೋಟೆ, ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80' },
+  'bidar': { title: 'ಬೀದರ್ ಕೋಟೆ', img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80' },
+  'default': { title: 'ವಿಧಾನಸೌಧ, ಬೆಂಗಳೂರು ನಗರ', img: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80' }
+};
+
+function setTickerVals(cls, val) {
+  document.querySelectorAll('.' + cls).forEach(el => {
+    if (el) el.textContent = val;
+  });
+}
+
+function updateHeroBanner(distKey, distKn){
+  const banner = $('hero-banner');
+  const tag = $('hero-landmark-tag');
+  const title = $('hero-title');
+  const desc = $('hero-desc');
+  
+  if(!banner) return;
+  const landmark = DISTRICT_LANDMARKS[distKey] || DISTRICT_LANDMARKS['default'];
+  
+  // Clean dark gradient without image thumbnail on hero
+  banner.style.background = `linear-gradient(135deg, #0B253C 0%, #0F3A5D 50%, #1A4B75 100%) !important`;
+  
+  if(tag) tag.textContent = '📍 ' + landmark.title;
+  if(title) title.textContent = (distKn || 'ಕರ್ನಾಟಕ') + ' — ಇಂದಿನ ಲೈವ್ ಮಾಹಿತಿ';
+  if(desc) desc.textContent = (distKn || 'ನಿಮ್ಮ ಊರಿನ') + ' ಚಿನ್ನದ ಬೆಲೆ, ಅಣೆಕಟ್ಟು ನೀರು, ಹವಾಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಸುದ್ದಿಗಳು.';
+
+  // Update City Landmark Image Header on Weather Card Report
+  const wBanner = $('sb-weather-banner');
+  if (wBanner) {
+    const imgUrl = landmark.img || 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80';
+    wBanner.style.background = `linear-gradient(180deg, rgba(11, 37, 60, 0.7) 0%, rgba(15, 58, 93, 0.9) 100%), url('${imgUrl}') center/cover no-repeat`;
+  }
+}
+
+// ── State ──────────────────────────────────────────────
+const S = {
+  district:null, districtKn:null, taluk:null, pushEnabled:false,
+  load(){ try{Object.assign(this,JSON.parse(localStorage.getItem('nk_s3')||'{}'))}catch(e){} },
+  save(){ try{localStorage.setItem('nk_s3',JSON.stringify({district:this.district,districtKn:this.districtKn,taluk:this.taluk,pushEnabled:this.pushEnabled}))}catch(e){} }
+};
+S.load();
+
+const $ = id => document.getElementById(id) || document.getElementById('nk-' + id) || { textContent: '', innerHTML: '', style: {}, classList: { add(){}, remove(){} } };
+const fmt=n=>n==null?'—':'₹'+Math.round(n).toLocaleString('en-IN');
+
+// ── Toast ──────────────────────────────────────────────
+function toast(title,body,dur=3200){
+  $('toast-t').textContent=title;
+  $('toast-b').textContent=body;
+  $('toast').classList.add('show');
+  clearTimeout(toast._t);
+  toast._t=setTimeout(()=>$('toast').classList.remove('show'),dur);
+}
+
+// ── Date ───────────────────────────────────────────────
+function setDate(){
+  const now=new Date();
+  const t=now.toLocaleTimeString('kn-IN',{hour:'2-digit',minute:'2-digit'});
+  $('updated-time').textContent='ನವೀಕರಣ: '+t;
+}
+setDate(); setInterval(setDate,60000);
+
+// ── JSON loader with cache ─────────────────────────────
+const _c={};
+async function loadJ(key,file,ttl=300000){
+  if(_c[key]&&Date.now()-_c[key].t<ttl) return _c[key].d;
+  try{
+    let r = await fetch('./data/'+file+'?v='+Date.now()).catch(()=>null);
+    if (!r || !r.ok) r = await fetch('/data/'+file+'?v='+Date.now()).catch(()=>null);
+    if(!r || !r.ok) return null;
+    let d=await r.json();
+    if (d && d.payload && typeof window.decryptPayload === 'function') {
+      d = window.decryptPayload(d.payload);
+    }
+    _c[key]={d,t:Date.now()};
+    return d;
+  }catch(e){return null;}
+}
+
+// ── WMO weather codes ──────────────────────────────────
+const wmoIco={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',61:'🌧️',63:'🌧️',65:'🌧️',80:'🌦️',95:'⛈️'};
+const wmoKn ={0:'ಶುಭ ಹವಾಮಾನ',1:'ಹೆಚ್ಚಾಗಿ ಶುಭ',2:'ಭಾಗಶಃ ಮೋಡ',3:'ಮೋಡ',45:'ಮಂಜು',51:'ತುಂತುರು ಮಳೆ',61:'ಮಳೆ',63:'ಭಾರೀ ಮಳೆ',80:'ಮಳೆ ಸಾಧ್ಯತೆ',95:'ಗುಡುಗು ಮಳೆ'};
+
+// ── Load all live data ──────────────────────────────────
+async function loadAll(){
+  // Gold — reads baseGold[22] schema (gold-rate.html format)
+  // Falls back to live currency API (same as gold-rate.html) if JSON is stale
+  let p22 = null, silverGram = null, goldChange = 0;
+  try {
+    const gRes = await fetch('/data/gold_rates.json?v=' + Date.now());
+    if (gRes.ok) {
+      let g = await gRes.json();
+      if (g && g.payload && typeof window.decryptPayload === 'function') {
+        g = window.decryptPayload(g.payload);
+      }
+      // Support both schema formats
+      const bg = g?.baseGold || g?.base;
+      const bs = g?.baseSilver || g?.silver;
+      const raw22 = bg?.[22] || bg?.['22k_per_gram'];
+      const rawSilver = bs?.[999] || bs?.['999_per_gram'];
+      if (raw22 && raw22 > 5000) { p22 = raw22; goldChange = g?.change?.['22k'] || 0; }
+      if (rawSilver && rawSilver > 30) silverGram = rawSilver;
+    }
+  } catch(e) {}
+  // If JSON had wrong/stale data, fetch live from currency API (free, no key)
+  if (!p22 || p22 < 5000) {
+    try {
+      const xauRes = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/xau.json');
+      if (xauRes.ok) {
+        const xd = await xauRes.json();
+        if (xd?.xau?.inr > 0) {
+          const g24 = Math.round((xd.xau.inr / 31.1035) * 1.15);
+          if (g24 > 5000) p22 = Math.round(g24 * 0.916);
+        }
+      }
+    } catch(e) {}
+  }
+  if (!silverGram || silverGram < 30) {
+    try {
+      const xagRes = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/xag.json');
+      if (xagRes.ok) {
+        const sd = await xagRes.json();
+        if (sd?.xag?.inr > 0) silverGram = Math.round(((sd.xag.inr / 31.1035) * 1.15) * 10) / 10;
+      }
+    } catch(e) {}
+  }
+  if (p22 && p22 > 5000) {
+    $('lc-gold').textContent = fmt(p22);
+    $('lc-gold-ch').textContent = (goldChange >= 0 ? '▲' : '▼') + ' ₹' + Math.abs(goldChange) + ' ಇಂದು';
+    $('lc-gold-ch').className = 'lc-change ' + (goldChange > 0 ? 'up' : goldChange < 0 ? 'dn' : 'nc');
+    setTickerVals('t-val-gold', fmt(p22) + '/g');
+  }
+  if (silverGram && silverGram > 30) {
+    $('lc-silver').textContent = fmt(silverGram);
+    setTickerVals('t-val-silver', fmt(silverGram) + '/g');
+  }
+
+  // Petrol — match selected district/city
+  const p=await loadJ('petrol','petrol_rates.json',1800000);
+  if(p?.cities){
+    const distClean = (S.district || 'bengaluru-urban').toLowerCase().replace(/[^a-z]/g, '');
+    const matchedCityKey = Object.keys(p.cities).find(k => distClean.includes(k) || k.includes(distClean)) || 'bangalore';
+    const c = p.cities[matchedCityKey] || p.cities['bangalore'] || Object.values(p.cities)[0];
+    if(c){
+      $('lc-petrol').textContent='₹'+c.petrol;
+      $('lc-petrol-city').textContent=(c.name_kn||'ಬೆಂಗಳೂರು')+' / ಲೀ';
+      setTickerVals('t-val-petrol', '₹'+c.petrol+'/L');
+    }
+    renderPetrol(p.cities);
+  }
+
+  // Dams — key in JSON is 'k.r.sagara_dam' (not 'krs')
+  const d=await loadJ('dam','dam_levels.json',900000);
+  if(d?.dams){
+    const krs = d.dams['k.r.sagara_dam'] || d.dams.krs || Object.values(d.dams).find(x=>(x.name_en||'').toLowerCase().includes('sagara'));
+    if(krs){
+      $('lc-dam').textContent = krs.storage_pct + '%';
+      $('lc-dam-st').textContent = krs.status_kn || '';
+      $('lc-dam-st').className = 'lc-change nc';
+      if(krs.flood_alert){
+        const a=$('alert-strip'); a.classList.add('show');
+        $('alert-msg').textContent='🚨 KRS 95%+ ತುಂಬಿದೆ — ಪ್ರವಾಹ ಮುನ್ನೆಚ್ಚರಿಕೆ';
+      }
+      setTickerVals('t-val-dam', 'KRS ' + krs.storage_pct + '%');
+    }
+    renderDams(d.dams);
+  }
+
+  // APMC
+  const a=await loadJ('apmc','apmc_prices.json',3600000);
+  if(a?.best_prices){
+    renderApmc(a.best_prices);
+    const tomato=a.best_prices['Tomato'];
+    if(tomato) setTickerVals('t-val-tomato', '₹'+tomato.modal_per_kg+'/kg');
+  }
+
+  // Weather — use selected district's lat/lon!
+  const currentCity = S.districtKn || 'ಬೆಂಗಳೂರು';
+  const distData = (S.district && typeof GeoData !== 'undefined') ? GeoData.getDistrict(S.district) : null;
+  const lat = distData ? distData.lat : 12.9716;
+  const lon = distData ? distData.lon : 77.5946;
+  loadWeather(lat, lon, currentCity);
+}
+
+async function loadWeather(lat,lon,city){
+  try {
+    const wData = await loadJ('weather', 'weather.json', 300000);
+    const distKey = (S.district || 'bengaluru_urban').replace('-', '_');
+    const dist = wData?.districts?.[distKey] || wData?.districts?.bengaluru_urban || {};
+    const cur = dist.current || wData?.bengaluru_summary;
+
+    if (cur && cur.temp_c != null) {
+      const ico = cur.icon || wmoIco[cur.weather_code] || '🌤️';
+      const desc = cur.desc_kn || wmoKn[cur.weather_code] || 'ಭಾಗಶಃ ಮೋಡ';
+      const temp = Math.round(cur.temp_c);
+      const hum = cur.humidity || 70;
+      const wind = Math.round(cur.wind_kmh || 14);
+      const rain = cur.rain_chance || 0;
+
+      if ($('lc-w-icon')) $('lc-w-icon').textContent = ico;
+      if ($('lc-temp')) $('lc-temp').textContent = temp + '°C';
+      if ($('lc-w-desc')) $('lc-w-desc').textContent = desc;
+      if ($('lc-w-city')) $('lc-w-city').textContent = city;
+
+      if ($('sb-icon')) $('sb-icon').textContent = ico;
+      if ($('sb-temp')) $('sb-temp').textContent = temp;
+      if ($('sb-desc')) $('sb-desc').textContent = desc;
+      if ($('sb-loc')) $('sb-loc').textContent = '📍 ' + city;
+      if ($('sb-hum')) $('sb-hum').textContent = hum + '%';
+      if ($('sb-wind')) $('sb-wind').textContent = wind + ' km/h';
+      if ($('sb-rain')) $('sb-rain').textContent = rain + '%';
+
+      setTickerVals('t-val-temp', temp + '°C ' + ico);
+      return;
+    }
+  } catch(e) {}
+
+  try{
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`);
+    let d = null;
+    if (r.ok) d = await r.json();
+    const c = d?.current || {};
+    const wc = c.weather_code !== undefined ? c.weather_code : 2;
+    const ico = wmoIco[wc] || '🌤️';
+    const desc = wmoKn[wc] || 'ಭಾಗಶಃ ಮೋಡ';
+    const temp = c.temperature_2m !== undefined ? Math.round(c.temperature_2m) : 24;
+    const hum = c.relative_humidity_2m !== undefined ? c.relative_humidity_2m : 70;
+    const wind = c.wind_speed_10m !== undefined ? Math.round(c.wind_speed_10m) : 14;
+
+    if ($('lc-w-icon')) $('lc-w-icon').textContent = ico;
+    if ($('lc-temp')) $('lc-temp').textContent = temp+'°C';
+    if ($('lc-w-desc')) $('lc-w-desc').textContent = desc;
+    if ($('lc-w-city')) $('lc-w-city').textContent = city;
+
+    if ($('sb-icon')) $('sb-icon').textContent = ico;
+    if ($('sb-temp')) $('sb-temp').textContent = temp;
+    if ($('sb-desc')) $('sb-desc').textContent = desc;
+    if ($('sb-loc')) $('sb-loc').textContent = '📍 '+city;
+    if ($('sb-hum')) $('sb-hum').textContent = hum+'%';
+    if ($('sb-wind')) $('sb-wind').textContent = wind+' km/h';
+    if ($('sb-rain')) $('sb-rain').textContent = '35%';
+
+    setTickerVals('t-val-temp', temp+'°C '+ico);
+  }catch(e){
+    if ($('lc-temp')) $('lc-temp').textContent = '24°C';
+    if ($('lc-w-desc')) $('lc-w-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
+    if ($('sb-temp')) $('sb-temp').textContent = '24';
+    if ($('sb-desc')) $('sb-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
+    if ($('sb-loc')) $('sb-loc').textContent = '📍 '+city;
+    if ($('sb-hum')) $('sb-hum').textContent = '70%';
+    if ($('sb-wind')) $('sb-wind').textContent = '14 km/h';
+    if ($('sb-rain')) $('sb-rain').textContent = '35%';
+    setTickerVals('t-val-temp', '24°C 🌤️');
+  }
+}
+
+// ── Hydrological Dam Priority Mapping per District ─────────
+const DISTRICT_DAM_PRIORITY = {
+  'bengaluru-urban': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru_urban': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru-rural': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru_rural': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'mysuru': ['krs', 'kabini', 'harangi', 'hemavathi'],
+  'mandya': ['krs', 'hemavathi', 'harangi', 'kabini'],
+  'ramanagara': ['krs', 'hemavathi', 'harangi', 'kabini'],
+  'chamarajanagara': ['krs', 'kabini', 'harangi'],
+  'chikkaballapura': ['krs', 'hemavathi'],
+  'kolar': ['krs', 'hemavathi'],
+
+  'koppal': ['tungabhadra', 'almatti', 'bhadra', 'narayanapura'],
+  'ballari': ['tungabhadra', 'almatti', 'bhadra'],
+  'vijayanagara': ['tungabhadra', 'bhadra', 'almatti'],
+  'raichur': ['tungabhadra', 'narayanapura', 'almatti'],
+  'haveri': ['tungabhadra', 'bhadra', 'almatti'],
+
+  'vijayapura': ['almatti', 'narayanapura', 'ghataprabha', 'malaprabha'],
+  'bagalkote': ['almatti', 'ghataprabha', 'malaprabha', 'narayanapura'],
+  'belagavi': ['almatti', 'ghataprabha', 'malaprabha', 'supa'],
+  'gadag': ['almatti', 'malaprabha', 'tungabhadra'],
+
+  'hassan': ['hemavathi', 'harangi', 'krs'],
+  'tumakuru': ['hemavathi', 'vanivilasa', 'krs'],
+
+  'kodagu': ['harangi', 'krs', 'hemavathi'],
+
+  'chikkamagaluru': ['bhadra', 'hemavathi', 'linganamakki'],
+  'davanagere': ['bhadra', 'tungabhadra'],
+  'shivamogga': ['linganamakki', 'bhadra', 'supa', 'harangi'],
+
+  'uttara-kannada': ['supa', 'linganamakki', 'bhadra'],
+  'uttara_kannada': ['supa', 'linganamakki', 'bhadra'],
+  'dakshina-kannada': ['harangi', 'krs', 'supa'],
+  'dakshina_kannada': ['harangi', 'krs', 'supa'],
+  'udupi': ['harangi', 'linganamakki', 'supa'],
+
+  'yadgir': ['narayanapura', 'almatti'],
+  'kalaburagi': ['narayanapura', 'almatti'],
+
+  'dharwad': ['malaprabha', 'almatti', 'tungabhadra'],
+
+  'chitradurga': ['vanivilasa', 'bhadra', 'tungabhadra'],
+};
+
+let rawDamsData = null;
+
+// ── Render dams with Geolocation Priority ──────────────────
+function renderDams(dams){
+  if (dams) rawDamsData = dams;
+  else dams = rawDamsData;
+  if (!dams) return;
+
+  const currentDistKey = (S.district || 'bengaluru-urban').toLowerCase();
+  const currentDistKn = (S.districtKn || '').toLowerCase();
+
+  let priority = DISTRICT_DAM_PRIORITY[currentDistKey] || DISTRICT_DAM_PRIORITY[currentDistKey.replace('-', '_')];
+  if (!priority) {
+    if (currentDistKn.includes('ಕೊಪ್ಪಳ')) priority = DISTRICT_DAM_PRIORITY['koppal'];
+    else if (currentDistKn.includes('ಹಾಸನ')) priority = DISTRICT_DAM_PRIORITY['hassan'];
+    else if (currentDistKn.includes('ವಿಜಯಪುರ')) priority = DISTRICT_DAM_PRIORITY['vijayapura'];
+    else if (currentDistKn.includes('ಶಿವಮೊಗ್ಗ')) priority = DISTRICT_DAM_PRIORITY['shivamogga'];
+    else if (currentDistKn.includes('ಚಿತ್ರದುರ್ಗ')) priority = DISTRICT_DAM_PRIORITY['chitradurga'];
+    else priority = DISTRICT_DAM_PRIORITY['bengaluru-urban'];
+  }
+
+  const damEntries = Object.entries(dams);
+  damEntries.sort(([keyA], [keyB]) => {
+    const idxA = priority.indexOf(keyA);
+    const idxB = priority.indexOf(keyB);
+    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+    if (idxA !== -1) return -1;
+    if (idxB !== -1) return 1;
+    return 0;
+  });
+
+  const colorFor = p => p >= 75 ? '#059669' : p >= 40 ? '#D97706' : '#E11D48';
+  const chips = damEntries.slice(0, 12).map(([k, d]) => {
+    const present = (d.present_storage_tmc !== undefined ? d.present_storage_tmc : (d.gross_storage_tmc !== undefined ? d.gross_storage_tmc : (d.storage_tmc !== undefined ? d.storage_tmc : d.storage))) || 0;
+    const maxCap = (d.gross_capacity_tmc !== undefined ? d.gross_capacity_tmc : (d.max_storage_tmc !== undefined ? d.max_storage_tmc : d.maxStorage)) || 0;
+    const pct = d.storage_pct !== undefined ? d.storage_pct : Math.round(((present)/(maxCap||1))*100);
+    const c = colorFor(pct);
+    
+    return `<div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">${d.name_kn||k}</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">${present} <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:${c};background:${c}15">${pct}%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: ${maxCap} TMC</span>
+        <span class="dc-river">${d.river_kn||''}</span>
+      </div>
+    </div>`;
+  }).join('');
+  $('dam-chips').innerHTML = chips;
+}
+
+// ── Render APMC sidebar ────────────────────────────────
+function renderApmc(prices){
+  const rows=Object.entries(prices).slice(0,6).map(([,d])=>{
+    const ch=d.change||0;
+    return `<div class="apmc-row">
+      <div><div class="ar-crop">${d.name_kn||''}</div><div class="ar-mkt">${d.market_kn||''}</div></div>
+      <div style="text-align:right"><div class="ar-price">₹${d.modal_per_kg||0}/kg</div>
+      <div class="ar-ch ${ch>0?'up':'dn'}">${ch>0?'▲':'▼'}₹${Math.abs(ch)}</div></div>
+    </div>`;
+  }).join('');
+  $('apmc-sb').innerHTML=rows;
+}
+
+// ── Render petrol sidebar ──────────────────────────────
+function renderPetrol(cities){
+  const rows=Object.values(cities).slice(0,5).map(c=>
+    `<div class="petrol-row">
+      <div class="pr-city">${c.name_kn||''}</div>
+      <div class="pr-vals"><span class="pr-p">₹${c.petrol}</span><span class="pr-d">₹${c.diesel}</span></div>
+    </div>`
+  ).join('');
+  $('petrol-sb').innerHTML=rows;
+}
+
+// ── Local news renderer ────────────────────────────────
+function renderLocalNews(articles, distKn) {
+  let cmsArticles = [];
+  try {
+    const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    cmsArticles = store.filter(a => a.status === 'published').map(a => {
+      const cat = (a.category || 'politics').toLowerCase();
+      const slug = a.slug || a.id;
+      return {
+        title: a.title_kn,
+        url: `/news/${cat}/${slug}`,
+        published: a.updated_at || new Date().toISOString(),
+        is_cms: true
+      };
+    });
+  } catch(e) {}
+
+  const merged = [...cmsArticles, ...(articles || [])];
+  if (!merged || !merged.length) return;
+  
+  const valid = merged.filter(a => {
+    let t = (a.title || '').trim();
+    t = t.replace(/<[^>]+>/g, "");
+    t = t.replace(/\s*Last\s*Updated.*$/i, "");
+    t = t.replace(/\s*[-–—|:]+$/g, "");
+    return t.length >= 10;
+  });
+
+  if (!valid.length) return;
+
+  $('local-news-list').innerHTML = valid.slice(0, 6).map(a => {
+    let title = (a.title || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
+    title = title.replace(/<[^>]+>/g, "");
+    title = title.replace(/\s*Last\s*Updated.*$/i, "");
+    title = title.replace(/\s*[-–—|:]+$/g, "");
+
+    const time = timeAgo(a.published || a.published_at);
+    return `
+      <a href="${a.url || a.link || '#'}" target="_blank" rel="noopener" class="local-item" style="padding:14px 18px; border-bottom:1px solid var(--border-light); text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+        <div style="font-size:15px; font-weight:800; color:#0F172A; line-height:1.45; flex:1;">${title}</div>
+        <span style="font-size:11px; font-weight:700; color:#64748B; background:#F1F5F9; padding:4px 10px; border-radius:20px; white-space:nowrap; flex-shrink:0;">⏱️ ${time}</span>
+      </a>`;
+  }).join('');
+  $('local-news-title').textContent = (distKn || 'ಬೆಂಗಳೂರು ನಗರ') + ' ಸ್ಥಳೀಯ ಸುದ್ದಿ';
+  $('local-news-section').style.display = 'block';
+}
+
+function timeAgo(iso){
+  try{
+    const h=Math.floor((Date.now()-new Date(iso))/3600000);
+    return h<1?'ಈಗಷ್ಟೇ':h<24?h+' ಗಂಟೆ ಹಿಂದೆ':Math.floor(h/24)+' ದಿನ ಹಿಂದೆ';
+  }catch(e){return 'ಇಂದು';}
+}
+
+// ── Geolocation ────────────────────────────────────────
+function showGeoSheet(){$('geo-overlay').classList.add('show');}
+function closeGeoSheet(){$('geo-overlay').classList.remove('show');}
+
+// Quick chips
+const quickNames=['ಬೆಂಗಳೂರು','ಮೈಸೂರು','ಮಂಡ್ಯ','ಹಾಸನ','ಕೊಪ್ಪಳ','ಧಾರವಾಡ','ಬೆಳಗಾವಿ','ಕಲಬುರಗಿ','ಮಂಗಳೂರು','ರಾಯಚೂರು'];
+$('geo-chips').innerHTML=quickNames.map(n=>`<button class="gs-chip" onclick="pickDistrict('${n}')">${n}</button>`).join('');
+
+function pickDistrict(nameKn){
+  closeGeoSheet();
+  const key=typeof GeoData!='undefined'?GeoData.resolveDistrict(nameKn)||'bengaluru-urban':'bengaluru-urban';
+  const data=typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
+  S.district=key; S.districtKn=nameKn; S.save();
+  $('loc-text').textContent=nameKn;
+  updateHeroBanner(key, nameKn);
+  toast('📍 '+nameKn,'ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ...');
+  renderDams();
+  if(data) { loadWeather(data.lat,data.lon,nameKn); loadLocal(key,data); }
+  if(S.pushEnabled) tagOS();
+}
+
+function requestGeo(){
+  if(!navigator.geolocation){toast('⚠️','Browser ಬೆಂಬಲಿಸುವುದಿಲ್ಲ');return;}
+  $('geo-btn').textContent='⏳ ಪತ್ತೆ ಮಾಡುತ್ತಿದ್ದೇವೆ...';
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      closeGeoSheet();
+      const {latitude:lat,longitude:lng}=pos.coords;
+      const cityName = S.taluk || S.districtKn || 'ನಿಮ್ಮ ಊರು';
+      loadWeather(lat,lng, cityName);
+      reverseGeo(lat,lng);
+    },
+    ()=>{
+      $('geo-btn').textContent='📍 ನನ್ನ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಿ';
+      toast('⚠️ ಸ್ಥಳ ತಿಳಿಯಲಿಲ್ಲ','ಮೇಲಿನ ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಬಳಸಿ');
+    },
+    {timeout:8000,maximumAge:300000}
+  );
+}
+
+function reverseGeo(lat,lng){
+  fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&accept-language=kn,en`)
+    .then(r=>r.json())
+    .then(d=>{
+      const addr=d.address||{};
+      const taluk=addr.suburb||addr.town||addr.village||'';
+      const city=addr.city||addr.town||addr.village||'ಕರ್ನಾಟಕ';
+      const inKar=typeof GeoData!='undefined'?GeoData.isInKarnataka(lat,lng):(addr.state||'').toLowerCase().includes('karnataka');
+      if(!inKar){
+        $('outside-section').style.display='block';
+        toast('🌍 ಕರ್ನಾಟಕದ ಹೊರಗೆ','ಕೆಳಗಡೆ ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ');
+        return;
+      }
+      const key=typeof GeoData!='undefined'?(GeoData.resolveDistrict(taluk)||GeoData.resolveDistrict(city)||GeoData.nearestDistrict(lat,lng)):null;
+      const data=key&&typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
+      const displayName=taluk||city;
+      S.taluk=taluk; S.district=key; S.districtKn=data?data.kn:'ಕರ್ನಾಟಕ'; S.save();
+      $('loc-text').textContent=displayName;
+      updateHeroBanner(key || 'bengaluru-urban', displayName);
+      toast('📍 '+displayName,(data?data.kn+' ಜಿಲ್ಲೆ':'ಕರ್ನಾಟಕ')+' · ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಲೋಡ್');
+      renderDams();
+      if(key&&data) loadLocal(key,data);
+      if(S.pushEnabled) tagOS();
+    })
+    .catch(()=>{
+      if(typeof GeoData!='undefined'){
+        const key=GeoData.nearestDistrict(lat,lng);
+        const data=GeoData.getDistrict(key);
+        S.district=key; S.districtKn=data?data.kn:'ಕರ್ನಾಟಕ'; S.save();
+        $('loc-text').textContent=data?data.kn:'ಕರ್ನಾಟಕ';
+        updateHeroBanner(key, data?data.kn:'ಕರ್ನಾಟಕ');
+        renderDams();
+        if(key&&data) loadLocal(key,data);
+      }
+    });
+}
+
+async function loadLocal(key, data){
+  try{
+    let n = await loadJ('local_news', 'local_news.json', 7200000);
+    if (n && n.payload && typeof window.decryptPayload === 'function') {
+      n = window.decryptPayload(n.payload);
+    }
+    const buckets = (n && (n.district_buckets || n.news)) || {};
+    
+    // Strict district lookup
+    let local = buckets[key] || buckets[key.replace('-', '_')] || buckets[key.replace('_', '-')] || [];
+    if (!local.length) {
+      Object.keys(buckets).forEach(k => {
+        if (k.includes(key) || key.includes(k)) local.push(...buckets[k]);
+      });
+    }
+    if (!local.length) {
+      local = buckets['_statewide'] || buckets['bengaluru-urban'] || [];
+    }
+
+    renderLocalNews(local.slice(0, 6), data ? data.kn : (key ? key.replace('-', ' ').toUpperCase() : 'ಕರ್ನಾಟಕ'));
+  }catch(e){
+    console.error("Local news load error:", e);
+  }
+  const link = $('dist-page-link');
+  if(link && data){
+    link.href = 'districts/' + key + '.html';
+    link.textContent = data.kn + ' ಜಿಲ್ಲೆಯ ಸಂಪೂರ್ಣ ಸುದ್ದಿ & ಮಾಹಿತಿ ವೀಕ್ಷಿಸಿ →';
+    link.style.display = 'block';
+  }
+}
+
+function selectDistKey(key){
+  const data=typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
+  S.district=key; S.districtKn=data?data.kn:key; S.save();
+  const name=data?data.kn:key;
+  $('loc-text').textContent=name;
+  updateHeroBanner(key, name);
+  $('outside-section').style.display='none';
+  toast('🗺️ '+name,'ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ');
+  renderDams();
+  if(data){loadWeather(data.lat,data.lon,name);loadLocal(key,data);}
+  if(S.pushEnabled) tagOS();
+}
+
+// Outside district grid
+(function(){
+  const grid=$('outside-grid');
+  if(!grid||typeof GeoData==='undefined') return;
+  grid.innerHTML=Object.entries(GeoData.DISTRICTS).map(([k,d])=>
+    `<button onclick="selectDistKey('${k}')" style="
+      background:#FFF;border:1px solid var(--border-light);border-radius:12px;
+      padding:12px;font-size:13px;font-weight:800;color:var(--text-primary);
+      cursor:pointer;font-family:var(--font);
+      transition:all 0.15s;"
+      onmouseover="this.style.borderColor='var(--k-red)';this.style.color='var(--k-red)'"
+      onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--text-primary)'">${d.kn}</button>`
+  ).join('');
+})();
+
+// ── Notifications ──────────────────────────────────────
+function showNotif(){
+  const banner = $('notif-banner');
+  if(banner) banner.style.display = 'block';
+  requestPush();
+}
+function closeNotif(){
+  const banner = $('notif-banner');
+  if(banner) banner.style.display = 'none';
+}
+
+function requestPush(){
+  if (!('Notification' in window)) {
+    toast('⚠️', 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆ ಸಪೋರ್ಟ್ ಇಲ್ಲ');
+    return;
+  }
+
+  if (Notification.permission === 'granted') {
+    S.pushEnabled = true; S.save(); closeNotif(); tagOS();
+    toast('✅ ಅಧಿಸೂಚನೆ ಸಕ್ರಿಯವಾಗಿದೆ', 'ಮಳೆ, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು ಮುನ್ನೆಚ್ಚರಿಕೆ ಚಾಲು ಇದೆ');
+    return;
+  }
+
+  if (Notification.permission === 'denied') {
+    toast('ℹ️', 'ಅಧಿಸೂಚನೆ ನಿರಾಕರಿಸಲಾಗಿದೆ. Browser Settings → Notifications ನಲ್ಲಿ Allow ಮಾಡಿ.');
+    return;
+  }
+
+  // Direct native browser permission request — always works
+  Notification.requestPermission().then(perm => {
+    if (perm === 'granted') {
+      S.pushEnabled = true; S.save(); closeNotif();
+      // Also register with OneSignal if available
+      if (typeof OneSignal !== 'undefined' && OneSignal.Notifications) {
+        OneSignal.Notifications.requestPermission().catch(() => {});
+      }
+      tagOS();
+      toast('✅ ಅಧಿಸೂಚನೆ ಚಾಲು!', 'ಮಳೆ, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು ಮುನ್ನೆಚ್ಚರಿಕೆ ಸಿಗಲಿದೆ');
+    } else {
+      toast('ℹ️', 'ಅಧಿಸೂಚನೆ ನಿಷ್ಕ್ರಿಯ. Settings ನಲ್ಲಿ Allow ಮಾಡಬಹುದು.');
+    }
+  });
+}
+
+function nativePushFallback() {
+  requestPush();
+}
+
+function tagOS(){
+  if(typeof OneSignal==='undefined') return;
+  OneSignal.User.addTags({district:S.district||'unknown'});
+}
+
+// ── Restore state ──────────────────────────────────────
+function restore(){
+  if(S.taluk && typeof GeoData !== 'undefined') {
+    const resolved = GeoData.resolveDistrict(S.taluk);
+    if(resolved && resolved !== S.district) {
+      S.district = resolved;
+      const dData = GeoData.getDistrict(resolved);
+      S.districtKn = dData ? dData.kn : resolved;
+      S.save();
+    }
+  }
+  if(S.district){
+    const data=typeof GeoData!='undefined'?GeoData.getDistrict(S.district):null;
+    const name=S.taluk||S.districtKn||(data?data.kn:'ಕರ್ನಾಟಕ');
+    $('loc-text').textContent=name;
+    updateHeroBanner(S.district, name);
+    if(S.district&&data) loadLocal(S.district,data);
+  } else {
+    updateHeroBanner('bengaluru-urban', 'ಬೆಂಗಳೂರು');
+    setTimeout(showGeoSheet,1800);
+    setTimeout(()=>{if(!S.pushEnabled) showNotif();},9000);
+  }
+}
+
+// ── Init ───────────────────────────────────────────────
+restore();
+loadAll();
+</script>
+
+<!-- KARNATA SMART DATA ENGINE SCRIPTS -->
+<script src="/js/engine/entity-resolver.js"></script>
+<script src="/js/engine/smart-query-router.js"></script>
+<script src="/js/engine/data-provider.js"></script>
+<script src="/js/engine/calculator-engine.js"></script>
+<script src="/js/engine/multi-data-engine.js"></script>
+<script src="/js/engine/ai-provider.js"></script>
+<script src="/js/engine/smart-result-ui.js"></script>
+<script src="/js/engine/search-suggestions.js"></script>
+<script src="/js/engine/session-context.js"></script>
+<script src="/js/engine/pipeline-manager.js"></script>
+<script src="/js/engine/karnata-smart-engine.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.KarnataSmartEngine) {
+      window.KarnataSmartEngine.attachUI();
+    }
+  });
+</script>
+</body>
+</html>

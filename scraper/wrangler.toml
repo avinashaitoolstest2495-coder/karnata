@@ -1,0 +1,27 @@
+name = "karnata-scraper"
+main = "cloudflare_worker.js"
+compatibility_date = "2024-01-01"
+
+# ─── KV Namespace for data storage ───────────────────────────
+[[kv_namespaces]]
+binding = "NK_DATA"
+id = "e8bb97f5898245daacfd93aa560586ab"
+
+# ─── 5 Cloudflare Cron Triggers (Exact IST Schedule -> UTC Crons) ─
+# 1. 06:10 AM IST (00:40 UTC)  -> Petrol & Morning APMC
+# 2. 10:00 AM IST (04:30 UTC)  -> Gold (10:10 AM), Dam (10 AM), APMC (10 AM)
+# 3. 05:00 & 06:00 PM IST (11:30 & 12:30 UTC) -> Gold (5 PM), Dam (5 PM), APMC (6 PM)
+# 4. 07 AM, 01 PM, 08 PM IST (01:30, 07:30, 14:30 UTC) -> Dam & APMC
+# 5. Every Hour (0 * * * *)   -> Weather (Hourly & KSNDMC X Telemetry)
+[triggers]
+crons = [
+  "40 0 * * *",
+  "30 4 * * *",
+  "30 11,12 * * *",
+  "30 1,7,14 * * *",
+  "0 * * * *"
+]
+
+[vars]
+ENVIRONMENT = "production"
+SITE_NAME = "Karnata"

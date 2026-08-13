@@ -1,0 +1,34 @@
+name = "karnata-cms"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# ─── KV — reuse the SAME namespace the scraper uses ──────────
+# Find the id with: wrangler kv:namespace list
+# (it's the same NK_DATA id you already put in ../scraper/wrangler.toml)
+# The CMS only ever touches keys prefixed "cms_" plus reads the
+# existing "news_articles" key — it will never overwrite scraper data.
+[[kv_namespaces]]
+binding = "NK_DATA"
+id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# ─── R2 bucket for uploaded images ────────────────────────────
+# Create it first:  wrangler r2 bucket create karnata-media
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "karnata-media"
+
+# ─── Secrets — set these, do NOT put them in this file ────────
+#   wrangler secret put ADMIN_PASSWORD
+#   wrangler secret put SESSION_SECRET
+#
+# ADMIN_PASSWORD — the password you'll type into the /admin login
+#   screen. Pick something you don't use anywhere else.
+#
+# SESSION_SECRET — any long random string (32+ characters). This
+#   signs login cookies; it is NOT something you type in anywhere,
+#   it just needs to exist and stay the same. Generate one with:
+#     openssl rand -hex 32
+#   (or any password generator — length matters, memorability doesn't)
+
+[vars]
+ENVIRONMENT = "production"

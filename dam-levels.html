@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕರ್ನಾಟಕ ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Karnataka Dam Water Levels Today) | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳ ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ, ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ, ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವು ಮಾಹಿತಿ. Live Karnataka Dam Water Levels today in TMC & Feet in Kannada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #0F3A5D; --blue-lt: #EBF5FB; --blue-mid: #2980B9; --cyan: #00D2FF;
+  --green: #10B981; --green-lt: #ECFDF5;
+  --amber: #F59E0B; --amber-lt: #FFFBEB;
+  --red: #EF4444; --red-lt: #FEF2F2;
+  --ink: #0F172A; --ink2: #334155; --ink3: #64748B;
+  --bg: #F1F5F9; --white: #FFFFFF; --border: #D8E4F0;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 16px; --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* TOPNAV */
+.topnav {
+  background: #0B253C; padding: 0 24px;
+  display: flex; align-items: center; gap: 16px; height: 60px;
+  position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.back-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); font-size: 14px; text-decoration: none; font-weight: 600; }
+.back-btn:hover { color: var(--cyan); }
+.page-title { font-size: 16px; font-weight: 700; color: #fff; }
+.live-badge {
+  margin-left: auto; background: linear-gradient(135deg, #EF4444, #DC2626); color: #fff;
+  font-size: 10px; font-weight: 800; padding: 5px 12px;
+  border-radius: 20px; font-family: var(--font-en); letter-spacing: 0.05em;
+  display: flex; align-items: center; gap: 6px; box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+}
+.live-dot2 { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: pulseGlow 1.2s infinite; }
+@keyframes pulseGlow { 0%,100%{ opacity: 1; transform: scale(1); } 50%{ opacity: 0.4; transform: scale(1.3); } }
+
+/* HERO HEADER WITH REALISTIC ANIMATED SVG WAVES */
+.dam-hero {
+  background: linear-gradient(135deg, #071927 0%, #0F3A5D 50%, #1A4B75 100%);
+  color: #fff; padding: 36px 20px 120px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.dam-hero h1 {
+  font-size: 28px; font-weight: 800; margin-bottom: 8px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #D0F1FF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+.dam-hero p { font-size: 14px; color: #E0F2FE; opacity: 0.9; }
+.update-time { font-size: 11px; color: #BAE6FD; margin-top: 8px; font-family: var(--font-en); font-weight: 500; }
+
+/* SVG ANIMATED WAVES OVERLAY */
+.waves-container {
+  position: absolute; width: 100%; height: 75px;
+  bottom: 0; left: 0; right: 0; pointer-events: none;
+}
+.waves { width: 100%; height: 100%; }
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+@keyframes move-forever {
+  0% { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px, 0, 0); }
+}
+
+/* CENTRAL CONTAINER CONSTRAINTS */
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 1040px;
+  margin: -70px auto 0;
+  padding: 0 20px;
+  position: relative; z-index: 10;
+}
+@media (max-width: 840px) { .summary-strip { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 580px) { .summary-strip { grid-template-columns: repeat(2, 1fr); } }
+
+.sum-card {
+  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
+  border-radius: var(--radius); padding: 18px 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1); text-align: center;
+  border: 1px solid rgba(255,255,255,0.8);
+  border-top: 3px solid var(--cyan);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.sum-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 16px 36px rgba(0, 210, 255, 0.2); }
+.sum-icon { font-size: 24px; margin-bottom: 6px; display: inline-block; animation: floatIcon 3s ease-in-out infinite; }
+@keyframes floatIcon { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-5px); } }
+
+.sum-val { font-size: 28px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.2; }
+.sum-label { font-size: 12px; color: var(--ink3); margin-top: 3px; font-family: var(--font-kn); font-weight: 600; }
+.sum-change { font-size: 11px; font-weight: 700; margin-top: 4px; }
+
+/* CLEAN CREATIVE NARRATIVE BRIEF ANALYSIS */
+.alert-container { max-width: 1040px; margin: 24px auto 0; padding: 0 20px; }
+.hydro-lines {
+  background: #FFFFFF; border: 1px solid var(--border); border-left: 4px solid var(--blue-mid);
+  border-radius: 14px; padding: 14px 20px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.brief-analysis-badge {
+  background: #E0F2FE; color: #0284C7; font-size: 11px; font-weight: 800;
+  padding: 6px 14px; border-radius: 20px; font-family: var(--font-kn);
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0; white-space: nowrap;
+}
+.brief-analysis-text {
+  font-size: 13.5px; color: var(--ink2); line-height: 1.6; font-family: var(--font-kn); flex: 1;
+}
+
+/* FILTER BAR CENTRAL ALIGNMENT (NO FILTER WORD) */
+.filter-bar {
+  max-width: 1040px; margin: 24px auto 18px; padding: 0 20px;
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center;
+}
+.filter-btn {
+  padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700;
+  border: 1.5px solid var(--border); background: var(--white);
+  color: var(--ink2); cursor: pointer; transition: all 0.2s ease;
+  font-family: var(--font-kn); box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.filter-btn.active, .filter-btn:hover {
+  background: linear-gradient(135deg, #0F3A5D, #1A5276); color: #fff;
+  border-color: #0F3A5D; box-shadow: 0 4px 12px rgba(15, 58, 93, 0.25);
+}
+
+/* DAM GRID WRAPPER */
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px 50px; }
+.dam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+
+/* CREATIVE DAM CARD WITH HIGH-VISIBILITY WATER WAVE ANIMATION */
+.dam-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+}
+.dam-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -8px rgba(15, 58, 93, 0.22);
+  border-color: #93C5FD;
+}
+
+/* HIGH-VISIBILITY WATER WAVE DIRECTLY INSIDE DAM CARD BODY */
+.dam-card-wave-bg {
+  position: absolute; top: 65px; left: 0; right: 0; height: 90px;
+  pointer-events: none; overflow: hidden; z-index: 1; opacity: 0.9;
+}
+.card-wave { width: 100%; height: 100%; display: block; }
+
+.dam-card-header {
+  padding: 18px 20px 12px; position: relative; z-index: 3;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  border-bottom: 1px solid #F1F5F9; background: linear-gradient(180deg, #FAFCFF 0%, #FFFFFF 100%);
+}
+.dam-name-wrap { flex: 1; }
+.dam-name { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.dam-river { font-size: 12px; color: var(--ink3); font-family: var(--font-en); font-weight: 500; }
+.dam-district { font-size: 12px; color: var(--blue-mid); font-weight: 700; font-family: var(--font-en); }
+
+.dam-status-badge {
+  font-size: 11px; font-weight: 800; padding: 5px 12px;
+  border-radius: 20px; white-space: nowrap; position: relative; z-index: 3;
+}
+.status-full { background: var(--green-lt); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
+.status-good { background: #E0F2FE; color: #0284C7; border: 1px solid rgba(2, 132, 199, 0.3); }
+.status-medium { background: var(--amber-lt); color: #D97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+.status-low { background: var(--red-lt); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* CREATIVE STORAGE DISPLAY ON TOP OF WAVE */
+.dam-card-body { padding: 18px 20px; position: relative; z-index: 3; }
+
+.dam-storage-creative {
+  display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 14px;
+}
+.sc-main-val { display: flex; align-items: baseline; gap: 6px; }
+.sc-big { font-size: 42px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+.sc-unit { font-size: 16px; font-weight: 800; color: var(--blue-mid); font-family: var(--font-en); }
+.sc-sub-info { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.sc-pct-badge {
+  font-size: 13px; font-weight: 800; color: var(--green); background: var(--green-lt);
+  padding: 4px 12px; border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.sc-gross { font-size: 13px; color: var(--ink2); font-family: var(--font-en); font-weight: 700; }
+
+/* ANIMATED LIQUID WAVE FILL METER */
+.dam-progress { padding: 0 20px; margin-bottom: 16px; position: relative; z-index: 3; }
+.prog-bg { height: 14px; background: #E2E8F0; border-radius: 7px; overflow: hidden; position: relative; }
+.prog-fill {
+  height: 100%; border-radius: 7px; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative; overflow: hidden;
+}
+.prog-fill::after {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0) 100%);
+  animation: waterShimmer 2s infinite linear;
+}
+@keyframes waterShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* 2 COL STATS WITH FLOW PULSE */
+.dam-stats-row-2col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border); padding: 14px 20px;
+  background: #F8FAFC; gap: 12px;
+  position: relative; z-index: 3;
+}
+.ds-item {
+  background: #FFFFFF; padding: 12px 10px; border-radius: 10px; border: 1px solid #E2E8F0; text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+.ds-val { font-size: 22px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.1; }
+.ds-val.flowing-in { animation: flowPulse 2.5s ease-in-out infinite; }
+.ds-val.flowing-out { animation: flowPulseBlue 2.5s ease-in-out infinite; }
+@keyframes flowPulse { 0%,100% { text-shadow: 0 0 0 transparent; } 50% { text-shadow: 0 0 10px rgba(16, 185, 129, 0.6); } }
+@keyframes flowPulseBlue { 0%,100% { text-shadow: 0 0 0 transparent; } 50% { text-shadow: 0 0 10px rgba(41, 128, 185, 0.6); } }
+
+.ds-label { font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 700; margin-top: 3px; }
+
+/* KNOW MORE BUTTON */
+.know-more-btn {
+  padding: 12px 16px; background: #F1F5F9; border-top: 1px solid var(--border);
+  text-align: center; font-size: 13px; font-weight: 700; color: var(--blue-mid);
+  transition: all 0.25s ease; font-family: var(--font-kn);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  position: relative; z-index: 3;
+}
+.dam-card:hover .know-more-btn {
+  background: linear-gradient(135deg, #0F3A5D, #1A5276); color: #fff;
+}
+.km-arrow { transition: transform 0.2s ease; }
+.dam-card:hover .km-arrow { transform: translateX(5px); }
+</style>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">💧 ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ</div>
+  <div class="live-badge"><div class="live-dot2"></div> LIVE</div>
+</div>
+
+<!-- HERO HEADER WITH REALISTIC ANIMATED WATER WAVES -->
+<div class="dam-hero">
+  <h1>💧 ಕರ್ನಾಟಕ ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Live Dam Levels)</h1>
+  <p>ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳ ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ — KSNDMC (ದಿನಕ್ಕೆ 2 ಬಾರಿ ನವೀಕರಣ: ಬೆಳಿಗ್ಗೆ 9:00 &amp; ಮಧ್ಯಾಹ್ನ 12:00)</p>
+  <div class="update-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+
+  <!-- SVG ANIMATED WATER WAVES -->
+  <div class="waves-container">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.15)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.25)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.35)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--bg)" />
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- 5 SUMMARY CARDS STRIP -->
+<div class="summary-strip">
+  <div class="sum-card">
+    <div class="sum-icon">🌊</div>
+    <div class="sum-val" id="sum-avg">70%</div>
+    <div class="sum-label">ಸರಾಸರಿ ಮಟ್ಟ</div>
+    <div class="sum-change" style="color:var(--green)">▲ 3.2% ಈ ವಾರ</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-icon">✅</div>
+    <div class="sum-val" id="sum-full">6</div>
+    <div class="sum-label">75%+ ತುಂಬಿದವು</div>
+    <div class="sum-change" style="color:var(--green)">ಉತ್ತಮ ಸ್ಥಿತಿ</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-icon">⚠️</div>
+    <div class="sum-val" id="sum-low">1</div>
+    <div class="sum-label">40%ಕ್ಕಿಂತ ಕಡಿಮೆ</div>
+    <div class="sum-change" style="color:var(--amber)">ಗಮನ ಬೇಕು</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-icon">💧</div>
+    <div class="sum-val" id="sum-present-tmc">590.9 TMC</div>
+    <div class="sum-label">ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ</div>
+    <div class="sum-change" style="color:var(--blue-mid)">Present Storage</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-icon">🏗️</div>
+    <div class="sum-val" id="sum-gross-cap">864.1 TMC</div>
+    <div class="sum-label">ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ</div>
+    <div class="sum-change" style="color:var(--ink2)">Gross Capacity</div>
+  </div>
+</div>
+
+<!-- CLEAN CREATIVE NARRATIVE BRIEF ANALYSIS -->
+<div class="alert-container">
+  <div class="hydro-lines" id="dynamic-analysis-lines"></div>
+</div>
+
+<!-- CENTERED FILTER BAR (NO FILTER WORD) -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterDams('all', this)">ಎಲ್ಲ</button>
+  <button class="filter-btn" onclick="filterDams('cauvery', this)">ಕಾವೇರಿ</button>
+  <button class="filter-btn" onclick="filterDams('krishna', this)">ಕೃಷ್ಣ</button>
+  <button class="filter-btn" onclick="filterDams('high', this)">75%+</button>
+  <button class="filter-btn" onclick="filterDams('low', this)">ಕಡಿಮೆ</button>
+</div>
+
+<!-- DAM GRID WRAPPER -->
+<div class="wrap">
+  <div class="dam-grid" id="dam-grid"></div>
+</div>
+
+<script>
+let allDamsList = [];
+
+function getPct(d) {
+  if (d.storage_pct !== undefined && d.storage_pct !== null) return d.storage_pct;
+  const storage = d.present_storage_tmc || d.gross_storage_tmc || d.storage_tmc || d.storage || 0;
+  const maxStorage = d.gross_capacity_tmc || d.max_storage_tmc || d.maxStorage || 1;
+  return Math.min(100, Math.round((storage / maxStorage) * 100));
+}
+
+function getStatus(pct, isLive) {
+  if (pct >= 90) return { label: 'ತುಂಬಿದೆ', cls: 'status-full' };
+  if (pct >= 75) return { label: 'ಉತ್ತಮ', cls: 'status-good' };
+  if (pct >= 50) return { label: 'ಸಾಮಾನ್ಯ', cls: 'status-medium' };
+  return { label: 'ಕಡಿಮೆ', cls: 'status-low' };
+}
+
+function getBarColor(pct) {
+  if (pct >= 90) return '#10B981';
+  if (pct >= 75) return '#00D2FF';
+  if (pct >= 50) return '#F59E0B';
+  return '#EF4444';
+}
+
+const DISTRICT_KN_MAP = {
+  'Mandya': 'ಮಂಡ್ಯ', 'Mysuru': 'ಮೈಸೂರು', 'H.D. Kote': 'ಮೈಸೂರು',
+  'Kodagu': 'ಕೊಡಗು', 'Hassan': 'ಹಾಸನ', 'Vijayanagara': 'ವಿಜಯನಗರ', 'Hospet': 'ವಿಜಯನಗರ',
+  'Shivamogga': 'ಶಿವಮೊಗ್ಗ', 'Sagar': 'ಶಿವಮೊಗ್ಗ', 'Vijayapura': 'ವಿಜಯಪುರ',
+  'Yadgir': 'ಯಾದಗಿರಿ', 'Belagavi': 'ಬೆಳಗಾವಿ', 'Chikkamagaluru': 'ಚಿಕ್ಕಮಗಳೂರು',
+  'Uttara Kannada': 'ಉತ್ತರ ಕನ್ನಡ', 'Udupi': 'ಉಡುಪಿ', 'Chitradurga': 'ಚಿತ್ರದುರ್ಗ',
+  'Kalaburagi': 'ಕಲಬುರಗಿ', 'Bidar': 'ಬೀದರ್'
+};
+
+function renderDam(d) {
+  const pct = getPct(d);
+  const color = getBarColor(pct);
+  const st = getStatus(pct, d.is_live);
+  
+  const name = d.name_kn || d.name || 'ಅಣೆಕಟ್ಟು';
+  const river = d.river_kn || d.river || '';
+  const distRaw = d.district_kn || d.district || '';
+  const distKn = DISTRICT_KN_MAP[distRaw] || distRaw;
+  const presentStorage = (d.present_storage_tmc !== undefined ? d.present_storage_tmc : (d.gross_storage_tmc !== undefined ? d.gross_storage_tmc : (d.storage_tmc !== undefined ? d.storage_tmc : d.storage))) || 0;
+  const maxStorage = (d.gross_capacity_tmc !== undefined ? d.gross_capacity_tmc : (d.max_storage_tmc !== undefined ? d.max_storage_tmc : d.maxStorage)) || 0;
+  const inflow = d.inflow_cusecs !== undefined ? d.inflow_cusecs : (d.inflow || 0);
+  const outflow = d.outflow_cusecs !== undefined ? d.outflow_cusecs : (d.outflow || 0);
+
+  const rawId = (d.id || d.key || (d.name_en ? d.name_en.toLowerCase() : '')).trim();
+  let damId = 'almatti';
+  if (rawId.includes('krs') || rawId.includes('sagara')) damId = 'krs';
+  else if (rawId.includes('tungabhadra')) damId = 'tungabhadra';
+  else if (rawId.includes('kabini')) damId = 'kabini';
+  else if (rawId.includes('hemavat')) damId = 'hemavathi';
+  else if (rawId.includes('harangi')) damId = 'harangi';
+  else if (rawId.includes('bhadra')) damId = 'bhadra';
+  else if (rawId.includes('lingan')) damId = 'linganamakki';
+  else if (rawId.includes('ghataprabha') || rawId.includes('hidkal')) damId = 'ghataprabha';
+  else if (rawId.includes('malaprabha')) damId = 'malaprabha';
+  else if (rawId.includes('narayanapura') || rawId.includes('narayanpur')) damId = 'narayanapura';
+  else if (rawId.includes('supa')) damId = 'supa';
+  else if (rawId.includes('vanivilas')) damId = 'vanivilasa';
+  else if (rawId.includes('almatti')) damId = 'almatti';
+  else damId = rawId;
+
+  const customPages = {
+    'almatti': '/dam-levels/almatti-dam.html',
+    'krs': '/dam-levels/krs-dam.html',
+    'tungabhadra': '/dam-levels/tungabhadra-dam.html',
+    'kabini': '/dam-levels/kabini-dam.html',
+    'hemavathi': '/dam-levels/hemavathi-dam.html',
+    'harangi': '/dam-levels/harangi-dam.html',
+    'bhadra': '/dam-levels/bhadra-dam.html',
+    'linganamakki': '/dam-levels/linganamakki-dam.html',
+    'ghataprabha': '/dam-levels/ghataprabha-dam.html',
+    'malaprabha': '/dam-levels/malaprabha-dam.html',
+    'narayanapura': '/dam-levels/narayanapura-dam.html',
+    'supa': '/dam-levels/supa-dam.html',
+    'vanivilasa': '/dam-levels/vanivilasa-dam.html',
+  };
+  const targetUrl = customPages[damId] || `/dam-details.html?id=${damId}`;
+
+  // Vibrant SVG Wave color based on status
+  const waveHex = pct >= 90 ? '#10B981' : (pct >= 75 ? '#00D2FF' : (pct >= 50 ? '#F59E0B' : '#EF4444'));
+
+  return `
+    <div class="dam-card" data-basin="${d.basin}" data-pct="${pct}" onclick="location.href='${targetUrl}'">
+      
+      <!-- ANIMATED SVG WATER WAVES VISIBLE RIGHT BEHIND NUMBERS -->
+      <div class="dam-card-wave-bg">
+        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="${waveHex}" opacity="0.18">
+            <animate attributeName="d" dur="6s" repeatCount="indefinite"
+              values="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z;
+                      M0,25 C200,-5 300,45 500,15 L500,60 L0,60 Z;
+                      M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" />
+          </path>
+          <path d="M0,30 C200,5 300,45 500,25 L500,60 L0,60 Z" fill="${waveHex}" opacity="0.30">
+            <animate attributeName="d" dur="4s" repeatCount="indefinite"
+              values="M0,30 C200,5 300,45 500,25 L500,60 L0,60 Z;
+                      M0,15 C150,45 350,5 500,30 L500,60 L0,60 Z;
+                      M0,30 C200,5 300,45 500,25 L500,60 L0,60 Z" />
+          </path>
+        </svg>
+      </div>
+
+      <div>
+        <!-- CLEAN ELEGANT HEADER -->
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">${name}</div>
+            <div class="dam-river">${river} · <span class="dam-district">${distKn}</span></div>
+          </div>
+          <span class="dam-status-badge ${st.cls}">${st.label}</span>
+        </div>
+        
+        <div class="dam-card-body">
+          <div class="dam-storage-creative">
+            <div class="sc-main-val">
+              <span class="sc-big">${presentStorage}</span>
+              <span class="sc-unit">TMC</span>
+            </div>
+            <div class="sc-sub-info">
+              <span class="sc-pct-badge">${pct}% ತುಂಬಿದೆ</span>
+              <span class="sc-gross">ಒಟ್ಟು: ${maxStorage} TMC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dam-progress">
+          <div class="prog-bg">
+            <div class="prog-fill" style="width:${pct}%;background:${color}"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="dam-stats-row-2col">
+          <div class="ds-item">
+            <div class="ds-val flowing-in" style="color:var(--green)">${inflow >= 1000 ? (inflow/1000).toFixed(1) + 'K' : inflow}</div>
+            <div class="ds-label">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="ds-item">
+            <div class="ds-val flowing-out" style="color:var(--blue-mid)">${outflow >= 1000 ? (outflow/1000).toFixed(1) + 'K' : outflow}</div>
+            <div class="ds-label">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+
+        <div class="know-more-btn">
+          <span>ಹೆಚ್ಚಿನ ವಿವರ ತಿಳಿಯಿರಿ</span> <span class="km-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAllDams(list) {
+  const container = document.getElementById('dam-grid');
+  if (container) {
+    container.innerHTML = list.map(renderDam).join('');
+  }
+  updateSummary(list);
+  updateDynamicAlert(list);
+}
+
+function filterDams(filter, el) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  
+  let filtered = allDamsList;
+  if (filter === 'cauvery') {
+    filtered = allDamsList.filter(d => d.basin === 'cauvery');
+  } else if (filter === 'krishna') {
+    filtered = allDamsList.filter(d => d.basin === 'krishna');
+  } else if (filter === 'high') {
+    filtered = allDamsList.filter(d => getPct(d) >= 75);
+  } else if (filter === 'low') {
+    filtered = allDamsList.filter(d => getPct(d) < 40);
+  }
+  renderAllDams(filtered);
+}
+
+function updateSummary(list) {
+  if (!list || list.length === 0) return;
+  const avg = Math.round(list.reduce((s, d) => s + getPct(d), 0) / list.length);
+  const full = list.filter(d => getPct(d) >= 75).length;
+  const low = list.filter(d => getPct(d) < 40).length;
+  const presentTmc = Math.round(list.reduce((s, d) => s + ((d.present_storage_tmc !== undefined ? d.present_storage_tmc : (d.gross_storage_tmc !== undefined ? d.gross_storage_tmc : (d.storage_tmc !== undefined ? d.storage_tmc : d.storage))) || 0), 0) * 10) / 10;
+  const maxTmc = Math.round(list.reduce((s, d) => s + ((d.gross_capacity_tmc !== undefined ? d.gross_capacity_tmc : (d.max_storage_tmc !== undefined ? d.max_storage_tmc : d.maxStorage)) || 0), 0) * 10) / 10;
+  
+  const elAvg = document.getElementById('sum-avg');
+  const elFull = document.getElementById('sum-full');
+  const elLow = document.getElementById('sum-low');
+  const elPresent = document.getElementById('sum-present-tmc');
+  const elGross = document.getElementById('sum-gross-cap');
+  
+  if (elAvg) elAvg.textContent = avg + '%';
+  if (elFull) elFull.textContent = full;
+  if (elLow) elLow.textContent = low;
+  if (elPresent) elPresent.textContent = presentTmc + ' TMC';
+  if (elGross) elGross.textContent = maxTmc + ' TMC';
+}
+
+function updateDynamicAlert(list) {
+  const container = document.getElementById('dynamic-analysis-lines');
+  if (!container || !list || list.length === 0) return;
+
+  const presentTmc = Math.round(list.reduce((s, d) => s + ((d.present_storage_tmc !== undefined ? d.present_storage_tmc : (d.gross_storage_tmc !== undefined ? d.gross_storage_tmc : (d.storage_tmc !== undefined ? d.storage_tmc : d.storage))) || 0), 0) * 10) / 10;
+  const maxTmc = Math.round(list.reduce((s, d) => s + ((d.gross_capacity_tmc !== undefined ? d.gross_capacity_tmc : (d.max_storage_tmc !== undefined ? d.max_storage_tmc : d.maxStorage)) || 0), 0) * 10) / 10;
+  const avgPct = Math.round((presentTmc / (maxTmc || 1)) * 100);
+
+  const fullCount = list.filter(d => getPct(d) >= 75).length;
+  
+  // Sort dams by inflow to find heavy inflow reservoirs
+  const topInflowDams = [...list].sort((a, b) => (b.inflow_cusecs || b.inflow || 0) - (a.inflow_cusecs || a.inflow || 0));
+  const topInflow = topInflowDams.slice(0, 2).map(d => d.name_kn || d.name).join(' ಮತ್ತು ');
+
+  let briefNarrative = ``;
+  if (topInflow) {
+    briefNarrative = `<strong>ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ:</strong> ${topInflow} ಜಲಾಶಯಗಳಲ್ಲಿ ಅಧಿಕ ಒಳಹರಿವು ದಾಖಲಾಗಿದೆ. ಕರ್ನಾಟಕದ ಒಟ್ಟು 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ಪ್ರಸ್ತುತ <strong>${presentTmc} TMC (${avgPct}%)</strong> ನೀರು ಸಂಗ್ರಹವಾಗಿದ್ದು, <strong>${fullCount}</strong> ಜಲಾಶಯಗಳು 75%+ ಭರ್ತಿಯಾಗಿವೆ.`;
+  } else {
+    briefNarrative = `<strong>ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ:</strong> ಕರ್ನಾಟಕದ ಒಟ್ಟು 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ಪ್ರಸ್ತುತ <strong>${presentTmc} TMC (${avgPct}%)</strong> ನೀರು ಸಂಗ್ರಹವಾಗಿದ್ದು, ಎಲ್ಲಾ ಪ್ರಮುಖ ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ ಜಲಮಟ್ಟ ಸುಸ್ಥಿತಿಯಲ್ಲಿದೆ.`;
+  }
+
+  container.innerHTML = `
+    <div class="brief-analysis-badge">📌 ಸಾರಾಂಶ</div>
+    <div class="brief-analysis-text">${briefNarrative}</div>
+  `;
+}
+
+function refreshTimeDisplay() {
+  const now = new Date();
+  const timeEl = document.getElementById('update-time');
+  if (timeEl) {
+    timeEl.textContent = `ಕೊನೆ ನವೀಕರಣ: ${now.toLocaleDateString('kn-IN')} (ದಿನಕ್ಕೆ 2 ಬಾರಿ ನವೀಕರಣ: ಬೆಳಿಗ್ಗೆ 9:00 & ಮಧ್ಯಾಹ್ನ 12:00 — KSNDMC)`;
+  }
+}
+
+const DISTRICT_DAM_PRIORITY = {
+  'bengaluru-urban': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru_urban': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru-rural': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'bengaluru_rural': ['krs', 'harangi', 'hemavathi', 'kabini', 'almatti', 'tungabhadra'],
+  'mysuru': ['krs', 'kabini', 'harangi', 'hemavathi'],
+  'mandya': ['krs', 'hemavathi', 'harangi', 'kabini'],
+  'ramanagara': ['krs', 'hemavathi', 'harangi', 'kabini'],
+  'chamarajanagara': ['krs', 'kabini', 'harangi'],
+  'chikkaballapura': ['krs', 'hemavathi'],
+  'kolar': ['krs', 'hemavathi'],
+
+  'koppal': ['tungabhadra', 'almatti', 'bhadra', 'narayanapura'],
+  'ballari': ['tungabhadra', 'almatti', 'bhadra'],
+  'vijayanagara': ['tungabhadra', 'bhadra', 'almatti'],
+  'raichur': ['tungabhadra', 'narayanapura', 'almatti'],
+  'haveri': ['tungabhadra', 'bhadra', 'almatti'],
+
+  'vijayapura': ['almatti', 'narayanapura', 'ghataprabha', 'malaprabha'],
+  'bagalkote': ['almatti', 'ghataprabha', 'malaprabha', 'narayanapura'],
+  'belagavi': ['almatti', 'ghataprabha', 'malaprabha', 'supa'],
+  'gadag': ['almatti', 'malaprabha', 'tungabhadra'],
+
+  'hassan': ['hemavathi', 'harangi', 'krs'],
+  'tumakuru': ['hemavathi', 'vanivilasa', 'krs'],
+
+  'kodagu': ['harangi', 'krs', 'hemavathi'],
+
+  'chikkamagaluru': ['bhadra', 'hemavathi', 'linganamakki'],
+  'davanagere': ['bhadra', 'tungabhadra'],
+  'shivamogga': ['linganamakki', 'bhadra', 'supa', 'harangi'],
+
+  'uttara-kannada': ['supa', 'linganamakki', 'bhadra'],
+  'uttara_kannada': ['supa', 'linganamakki', 'bhadra'],
+  'dakshina-kannada': ['harangi', 'krs', 'supa'],
+  'dakshina_kannada': ['harangi', 'krs', 'supa'],
+  'udupi': ['harangi', 'linganamakki', 'supa'],
+
+  'yadgir': ['narayanapura', 'almatti'],
+  'kalaburagi': ['narayanapura', 'almatti'],
+
+  'dharwad': ['malaprabha', 'almatti', 'tungabhadra'],
+
+  'chitradurga': ['vanivilasa', 'bhadra', 'tungabhadra'],
+};
+
+window.loadDamData = async function loadDamData() {
+  let loadedData = null;
+  try {
+    if (typeof NK !== 'undefined') {
+      loadedData = await NK.dams();
+    }
+  } catch (e) {}
+
+  if (!loadedData) {
+    try {
+      const res = await fetch('/data/dam_levels.json?v=' + Date.now());
+      if (res.ok) {
+        let d = await res.json();
+        if (d && d.payload && typeof window.decryptPayload === 'function') {
+          d = window.decryptPayload(d.payload);
+        }
+        loadedData = d;
+      }
+    } catch (e) {}
+  }
+
+  if (loadedData && loadedData.dams) {
+    if (Array.isArray(loadedData.dams)) {
+      allDamsList = loadedData.dams.map((v, i) => ({ id: v.id || v.key || `dam_${i}`, key: v.key || v.id, ...v }));
+    } else {
+      allDamsList = Object.entries(loadedData.dams).map(([k, v]) => ({ id: v.id || v.key || k, key: k, ...v }));
+    }
+  } else if (typeof dams !== 'undefined') {
+    allDamsList = Array.isArray(dams) ? dams : Object.entries(dams).map(([k, v]) => ({ id: k, key: k, ...v }));
+  }
+
+  // Sort dams based on user's district hydrological priority
+  const userDist = (localStorage.getItem('karnata_user_district') || 'bengaluru_urban').toLowerCase();
+  const priority = DISTRICT_DAM_PRIORITY[userDist] || DISTRICT_DAM_PRIORITY['bengaluru_urban'];
+  if (priority) {
+    allDamsList.sort((a, b) => {
+      const keyA = (a.key || a.id || '').toLowerCase();
+      const keyB = (b.key || b.id || '').toLowerCase();
+      const idxA = priority.indexOf(keyA);
+      const idxB = priority.indexOf(keyB);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return 0;
+    });
+  }
+  
+  renderAllDams(allDamsList);
+  refreshTimeDisplay();
+}
+
+// Initial load (updated twice daily at 9:00 AM and 12:00 PM)
+loadDamData();
+</script>
+<script src="/data-loader.js"></script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — Take Home Salary Calculator Karnataka 2025 | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕನ್ನಡದಲ್ಲಿ ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್. PF, TDS, ESI ಕಳೆದ ನಂತರ ಕೈಗೆ ಬರುವ ಸಂಬಳ ಲೆಕ್ಕ ಹಾಕಿ. In-hand salary calculator 2025 Karnataka. HRA, DA, Special Allowance breakdown.">
+<meta name="keywords" content="salary calculator Kannada, take home salary Karnataka, ಸಂಬಳ ಲೆಕ್ಕ, PF deduction calculator, TDS salary 2025, in hand salary calculator India">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್","applicationCategory":"FinanceApplication","inLanguage":"kn","description":"Take-home salary calculator in Kannada with PF, TDS, ESI deductions","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root{--red:#C0392B;--red-lt:#FDECEA;--green:#1B7A4B;--green-lt:#E8F5EE;--blue:#1A5276;--blue-lt:#EAF2F8;--gold:#D4A017;--gold-lt:#FDF8E7;--amber:#E67E22;--amber-lt:#FEF5EC;--ink:#1A1A2E;--ink2:#4A4A6A;--ink3:#8888AA;--bg:#F5F4F0;--white:#FFF;--border:#E3E1DB;--font-kn:'Anek Kannada',sans-serif;--font-en:'Inter',sans-serif;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;font-family:inherit;border:none;outline:none;}input,select{font-family:inherit;outline:none;}
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:500;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);}
+.hero{background:linear-gradient(135deg,#1B7A4B 0%,#0F5C37 100%);padding:24px 20px;color:#fff;text-align:center;}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:6px;}
+.hero p{font-size:13px;opacity:0.8;}
+.wrap{max-width:920px;margin:0 auto;padding:20px;}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:700px){.main-grid{grid-template-columns:1fr;}}
+
+/* INPUT CARD */
+.input-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.card-title{font-size:15px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.regime-tabs{display:flex;gap:0;border:1.5px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:18px;}
+.regime-tab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;color:var(--ink2);font-family:var(--font-kn);}
+.regime-tab.active{background:var(--green);color:#fff;}
+.field{margin-bottom:16px;}
+.field-label{font-size:12px;color:var(--ink2);margin-bottom:5px;display:flex;justify-content:space-between;}
+.field-label span{color:var(--ink3);font-size:11px;font-family:var(--font-en);}
+.field-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-weight:600;color:var(--ink);background:var(--bg);transition:border-color 0.15s;font-family:var(--font-en);}
+.field-input:focus{border-color:var(--green);background:var(--white);}
+.field-select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--ink);background:var(--white);cursor:pointer;}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.toggle-row:last-child{border-bottom:none;}
+.toggle-label{font-size:13px;color:var(--ink2);}
+.toggle{width:38px;height:20px;background:var(--border);border-radius:10px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0;}
+.toggle.on{background:var(--green);}
+.toggle::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
+.toggle.on::after{transform:translateX(18px);}
+.calc-btn{width:100%;background:var(--green);color:#fff;border-radius:9px;padding:13px;font-size:16px;font-weight:700;font-family:var(--font-kn);margin-top:16px;transition:background 0.15s;}
+.calc-btn:hover{background:#0F5C37;}
+
+/* RESULT CARD */
+.result-card{background:linear-gradient(135deg,#1A1A2E 0%,#1B4B3A 100%);color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.takehome-display{text-align:center;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);margin-bottom:16px;}
+.th-label{font-size:12px;opacity:0.6;text-transform:uppercase;letter-spacing:0.08em;font-family:var(--font-en);}
+.th-value{font-size:38px;font-weight:800;font-family:var(--font-en);letter-spacing:-1px;color:#2ECC71;margin:4px 0;}
+.th-annual{font-size:14px;opacity:0.7;}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.breakdown-row:last-child{border-bottom:none;}
+.br-label{font-size:13px;opacity:0.75;}
+.br-val{font-size:14px;font-weight:600;font-family:var(--font-en);}
+.br-val.green{color:#2ECC71;}
+.br-val.red{color:#E74C3C;}
+.br-val.gold{color:#F7DC6F;}
+.br-val.blue{color:#5DADE2;}
+
+/* CHART */
+.chart-section{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.15);}
+.chart-title{font-size:12px;opacity:0.6;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;font-family:var(--font-en);}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.bar-label{font-size:11px;opacity:0.7;width:90px;flex-shrink:0;}
+.bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
+.bar-pct{font-size:11px;opacity:0.7;width:36px;text-align:right;font-family:var(--font-en);}
+
+/* BOTTOM SECTIONS */
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+@media(max-width:600px){.bottom-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
+.ic-title{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--ink);display:flex;align-items:center;gap:6px;}
+.ic-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.ic-row:last-child{border-bottom:none;}
+.ic-label{color:var(--ink3);}
+.ic-val{font-weight:600;color:var(--ink);font-family:var(--font-en);}
+.tip-item{display:flex;gap:8px;margin-bottom:10px;font-size:13px;color:var(--ink2);align-items:flex-start;line-height:1.5;}
+.tip-icon{font-size:15px;flex-shrink:0;}
+.slab-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+.slab-table th{background:var(--bg);padding:7px 10px;text-align:left;font-weight:600;color:var(--ink2);border-bottom:1px solid var(--border);font-family:var(--font-en);}
+.slab-table td{padding:7px 10px;border-bottom:1px solid var(--border);font-family:var(--font-en);color:var(--ink2);}
+.slab-table tr.active-slab td{background:var(--green-lt);color:var(--green);font-weight:600;}
+.slab-table tr:last-child td{border-bottom:none;}
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div style="font-size:16px;font-weight:700;">💰 ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್</div>
+</div>
+<div class="hero">
+  <h1>💰 ತೆಗೆದುಕೊಳ್ಳುವ ಸಂಬಳ ಲೆಕ್ಕ ಹಾಕಿ</h1>
+  <p>PF · TDS · ESI · HRA · Professional Tax — ಎಲ್ಲ ಕಡಿತ ನಂತರ ಕೈಗೆ ಬರುವ ಸಂಬಳ</p>
+</div>
+<div class="wrap">
+  <div class="main-grid">
+    <!-- INPUT -->
+    <div class="input-card">
+      <div class="card-title">⚙️ ಸಂಬಳ ವಿವರ ನಮೂದಿಸಿ</div>
+      <!-- Tax Regime -->
+      <div class="regime-tabs">
+        <div class="regime-tab active" onclick="setRegime('new',this)">ಹೊಸ ತೆರಿಗೆ (2025)</div>
+        <div class="regime-tab" onclick="setRegime('old',this)">ಹಳೆ ತೆರಿಗೆ</div>
+      </div>
+      <div class="field">
+        <div class="field-label">ವಾರ್ಷಿಕ CTC <span>Cost to Company</span></div>
+        <input class="field-input" type="number" id="ctc" placeholder="ಉದಾ: 600000" value="600000" oninput="calculate()">
+      </div>
+      <div class="field">
+        <div class="field-label">HRA ಪ್ರಮಾಣ <span>% of Basic</span></div>
+        <select class="field-select" id="hra-pct" onchange="calculate()">
+          <option value="50">50% — ಮೆಟ್ರೋ ನಗರ (Bengaluru, Mumbai)</option>
+          <option value="40" selected>40% — ನಾನ್-ಮೆಟ್ರೋ ನಗರ</option>
+          <option value="0">0% — HRA ಇಲ್ಲ</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Basic Salary <span>% of CTC</span></div>
+        <select class="field-select" id="basic-pct" onchange="calculate()">
+          <option value="50" selected>50% of CTC (ಸಾಮಾನ್ಯ)</option>
+          <option value="40">40% of CTC</option>
+          <option value="60">60% of CTC</option>
+        </select>
+      </div>
+      <!-- Deduction toggles -->
+      <div style="margin-top:4px;">
+        <div class="toggle-row">
+          <div class="toggle-label">🏦 PF (Provident Fund 12%)</div>
+          <div class="toggle on" id="tog-pf" onclick="toggleDed('pf')"></div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">🏥 ESI (ಆರೋಗ್ಯ ವಿಮೆ 0.75%)</div>
+          <div class="toggle" id="tog-esi" onclick="toggleDed('esi')"></div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">🏛️ Professional Tax (₹200/mo)</div>
+          <div class="toggle on" id="tog-pt" onclick="toggleDed('pt')"></div>
+        </div>
+        <div class="toggle-row" id="sec80c-row">
+          <div class="toggle-label">📋 80C ಹೂಡಿಕೆ (₹1.5L)</div>
+          <div class="toggle on" id="tog-80c" onclick="toggleDed('80c')"></div>
+        </div>
+        <div class="toggle-row" id="sec80d-row">
+          <div class="toggle-label">🏥 80D ಆರೋಗ್ಯ ವಿಮೆ (₹25K)</div>
+          <div class="toggle" id="tog-80d" onclick="toggleDed('80d')"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calculate()">💰 ಸಂಬಳ ಲೆಕ್ಕ ಹಾಕಿ</button>
+    </div>
+
+    <!-- RESULT -->
+    <div>
+      <div class="result-card">
+        <div class="takehome-display">
+          <div class="th-label">ಕೈಗೆ ಬರುವ ಮಾಸಿಕ ಸಂಬಳ</div>
+          <div class="th-value" id="res-takehome">₹0</div>
+          <div class="th-annual" id="res-annual">ವಾರ್ಷಿಕ: ₹0</div>
+        </div>
+        <!-- Breakdown -->
+        <div class="breakdown-row"><span class="br-label">💼 ಒಟ್ಟು CTC</span><span class="br-val green" id="res-ctc">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">🏦 Basic Salary</span><span class="br-val blue" id="res-basic">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">🏠 HRA</span><span class="br-val blue" id="res-hra">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">✨ Special Allowance</span><span class="br-val blue" id="res-special">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">🏦 PF (Employee)</span><span class="br-val red" id="res-pf">-₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">🏥 ESI</span><span class="br-val red" id="res-esi">-₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">🏛️ Professional Tax</span><span class="br-val red" id="res-pt">-₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">📊 Income Tax (TDS)</span><span class="br-val red" id="res-tds">-₹0</span></div>
+        <!-- Bar chart -->
+        <div class="chart-section">
+          <div class="chart-title">Salary Breakdown</div>
+          <div class="bar-row"><div class="bar-label">Take Home</div><div class="bar-bg"><div class="bar-fill" id="bar-th" style="background:#2ECC71;width:0%"></div></div><div class="bar-pct" id="bpct-th">0%</div></div>
+          <div class="bar-row"><div class="bar-label">Income Tax</div><div class="bar-bg"><div class="bar-fill" id="bar-tds" style="background:#E74C3C;width:0%"></div></div><div class="bar-pct" id="bpct-tds">0%</div></div>
+          <div class="bar-row"><div class="bar-label">PF</div><div class="bar-bg"><div class="bar-fill" id="bar-pf" style="background:#F39C12;width:0%"></div></div><div class="bar-pct" id="bpct-pf">0%</div></div>
+          <div class="bar-row"><div class="bar-label">Other</div><div class="bar-bg"><div class="bar-fill" id="bar-other" style="background:#95A5A6;width:0%"></div></div><div class="bar-pct" id="bpct-other">0%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM INFO -->
+  <div class="bottom-grid">
+    <!-- Monthly breakdown -->
+    <div class="info-card">
+      <div class="ic-title">📅 ಮಾಸಿಕ ವಿವರ</div>
+      <div class="ic-row"><span class="ic-label">Gross Monthly</span><span class="ic-val" id="inf-gross">₹0</span></div>
+      <div class="ic-row"><span class="ic-label">ಒಟ್ಟು ಕಡಿತ</span><span class="ic-val" id="inf-deductions">₹0</span></div>
+      <div class="ic-row"><span class="ic-label">TDS ಪ್ರತಿ ತಿಂಗಳು</span><span class="ic-val" id="inf-tds-mo">₹0</span></div>
+      <div class="ic-row"><span class="ic-label">PF (ಉದ್ಯೋಗಿ)</span><span class="ic-val" id="inf-pf-mo">₹0</span></div>
+      <div class="ic-row"><span class="ic-label">PF (ಉದ್ಯೋಗದಾತ)</span><span class="ic-val" id="inf-epf-mo">₹0</span></div>
+      <div class="ic-row" style="font-weight:700;"><span class="ic-label">🟢 Net Take Home</span><span class="ic-val" style="color:var(--green)" id="inf-net">₹0</span></div>
+    </div>
+
+    <!-- Tax slabs -->
+    <div class="info-card">
+      <div class="ic-title">📊 ತೆರಿಗೆ ಸ್ಲ್ಯಾಬ್ (2025-26)</div>
+      <table class="slab-table" id="slab-table"></table>
+    </div>
+
+    <!-- Tips -->
+    <div class="info-card">
+      <div class="ic-title">💡 ತೆರಿಗೆ ಉಳಿಸುವ ಸಲಹೆ</div>
+      <div class="tip-item"><span class="tip-icon">📋</span><span><b>80C:</b> PF, PPF, ELSS, LIC — ₹1.5 ಲಕ್ಷ ಉಳಿಸಬಹುದು</span></div>
+      <div class="tip-item"><span class="tip-icon">🏥</span><span><b>80D:</b> ಆರೋಗ್ಯ ವಿಮೆ — ₹25,000 ಕಡಿತ</span></div>
+      <div class="tip-item"><span class="tip-icon">🏠</span><span><b>HRA:</b> ಬಾಡಿಗೆ ರಶೀತಿ ಉಳಿಸಿ — ಹಳೆ regime ನಲ್ಲಿ ಉಪಯೋಗ</span></div>
+      <div class="tip-item"><span class="tip-icon">🏦</span><span><b>NPS (80CCD):</b> ₹50,000 ಹೆಚ್ಚುವರಿ ಕಡಿತ</span></div>
+      <div class="tip-item"><span class="tip-icon">⚡</span><span>New Tax Regime ₹7L ವರೆಗೆ <b>ಸೊನ್ನೆ ತೆರಿಗೆ</b> (Rebate u/s 87A)</span></div>
+    </div>
+
+    <!-- CTC vs In-hand comparison -->
+    <div class="info-card">
+      <div class="ic-title">📊 CTC vs ಕೈ ಸಂಬಳ ಹೋಲಿಕೆ</div>
+      <table class="slab-table">
+        <thead><tr><th>ವಾರ್ಷಿಕ CTC</th><th>ಕೈ ಸಂಬಳ/ತಿಂಗಳು</th><th>ಟ್ಯಾಕ್ಸ್</th></tr></thead>
+        <tbody>
+          <tr><td>₹3,00,000</td><td>₹23,500</td><td>ಶೂನ್ಯ</td></tr>
+          <tr><td>₹5,00,000</td><td>₹38,200</td><td>ಶೂನ್ಯ</td></tr>
+          <tr><td>₹7,00,000</td><td>₹53,000</td><td>ಶೂನ್ಯ (87A)</td></tr>
+          <tr><td>₹10,00,000</td><td>₹72,500</td><td>₹15,000</td></tr>
+          <tr id="current-row"><td id="current-ctc-cell">—</td><td id="current-net-cell">—</td><td id="current-tax-cell">—</td></tr>
+          <tr><td>₹15,00,000</td><td>₹1,01,500</td><td>₹45,000</td></tr>
+          <tr><td>₹20,00,000</td><td>₹1,27,000</td><td>₹90,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+let regime = 'new';
+const deductions = { pf: true, esi: false, pt: true, '80c': true, '80d': false };
+
+function setRegime(r, el) {
+  regime = r;
+  document.querySelectorAll('.regime-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  // Show/hide old regime deductions
+  const show = r === 'old';
+  ['sec80c-row','sec80d-row'].forEach(id => {
+    document.getElementById(id).style.display = show ? 'flex' : 'none';
+  });
+  calculate();
+}
+
+function toggleDed(key) {
+  deductions[key] = !deductions[key];
+  const el = document.getElementById('tog-' + key);
+  el.classList.toggle('on', deductions[key]);
+  calculate();
+}
+
+function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function fmtM(n) { return '₹' + Math.round(n / 12).toLocaleString('en-IN'); }
+
+function calcTaxNew(taxable) {
+  // New regime 2025-26 slabs
+  const slabs = [
+    [300000, 0],     // 0-3L: 0%
+    [400000, 0.05],  // 3-7L: 5% (but 87A rebate up to 7L)
+    [400000, 0.10],  // 7-11L: 10% — wait, updated slabs
+    [400000, 0.15],
+    [400000, 0.20],
+    [Infinity, 0.30],
+  ];
+  // Correct new regime 2025 slabs:
+  // 0-3L: 0%, 3-7L: 5%, 7-10L: 10%, 10-12L: 15%, 12-15L: 20%, 15L+: 30%
+  const slabs2 = [
+    [300000, 0.00],
+    [400000, 0.05],
+    [300000, 0.10],
+    [200000, 0.15],
+    [300000, 0.20],
+    [Infinity, 0.30],
+  ];
+  let tax = 0, remaining = Math.max(0, taxable);
+  for (const [limit, rate] of slabs2) {
+    if (remaining <= 0) break;
+    const chunk = Math.min(remaining, limit);
+    tax += chunk * rate;
+    remaining -= chunk;
+  }
+  // Section 87A rebate: if total income <= 7,00,000 under new regime, tax = 0
+  if (taxable <= 700000) tax = 0;
+  // Surcharge 4% cess
+  return Math.round(tax * 1.04);
+}
+
+function calcTaxOld(taxable, ded80c, ded80d) {
+  // Old regime: apply deductions
+  let deductible = 50000; // Standard deduction
+  if (deductions['80c']) deductible += 150000;
+  if (deductions['80d']) deductible += 25000;
+  const net = Math.max(0, taxable - deductible);
+  // Old regime slabs
+  let tax = 0;
+  if (net <= 250000) tax = 0;
+  else if (net <= 500000) tax = (net - 250000) * 0.05;
+  else if (net <= 1000000) tax = 12500 + (net - 500000) * 0.20;
+  else tax = 112500 + (net - 1000000) * 0.30;
+  // 87A rebate under old: if net <= 5L
+  if (net <= 500000) tax = 0;
+  return Math.round(tax * 1.04);
+}
+
+function calculate() {
+  const ctcAnnual = parseFloat(document.getElementById('ctc').value) || 0;
+  const basicPct = parseFloat(document.getElementById('basic-pct').value) / 100;
+  const hraPct = parseFloat(document.getElementById('hra-pct').value) / 100;
+
+  const basicAnnual = ctcAnnual * basicPct;
+  const hraAnnual = basicAnnual * hraPct;
+  const specialAnnual = ctcAnnual - basicAnnual - hraAnnual;
+
+  // PF: 12% of Basic (employee) + 12% employer (part of CTC)
+  const pfEmployee = deductions.pf ? Math.min(basicAnnual * 0.12, 21600) : 0; // max 1800/month
+  const pfEmployer = deductions.pf ? Math.min(basicAnnual * 0.12, 21600) : 0;
+
+  // ESI: 0.75% of gross if gross < 21000/month
+  const grossMonthly = ctcAnnual / 12;
+  const esiEmployee = (deductions.esi && grossMonthly <= 21000) ? ctcAnnual * 0.0075 : 0;
+
+  // Professional Tax: ₹200/month if enabled
+  const ptAnnual = deductions.pt ? 2400 : 0;
+
+  // Gross (before tax)
+  const grossAnnual = basicAnnual + hraAnnual + specialAnnual;
+
+  // Taxable income (new regime: only standard deduction 50K)
+  const stdDed = 50000;
+  const taxableIncome = Math.max(0, grossAnnual - stdDed - pfEmployee);
+
+  const tdsAnnual = regime === 'new'
+    ? calcTaxNew(taxableIncome)
+    : calcTaxOld(taxableIncome, 150000, 25000);
+
+  const totalDeductions = pfEmployee + esiEmployee + ptAnnual + tdsAnnual;
+  const takeHomeAnnual = grossAnnual - totalDeductions;
+  const takeHomeMonthly = takeHomeAnnual / 12;
+
+  // Update UI
+  const s = id => document.getElementById(id);
+  s('res-takehome').textContent = fmt(takeHomeMonthly);
+  s('res-annual').textContent = 'ವಾರ್ಷಿಕ: ' + fmt(takeHomeAnnual);
+  s('res-ctc').textContent = fmt(ctcAnnual);
+  s('res-basic').textContent = fmt(basicAnnual / 12) + '/mo';
+  s('res-hra').textContent = fmt(hraAnnual / 12) + '/mo';
+  s('res-special').textContent = fmt(specialAnnual / 12) + '/mo';
+  s('res-pf').textContent = '-' + fmt(pfEmployee / 12) + '/mo';
+  s('res-esi').textContent = esiEmployee > 0 ? '-' + fmt(esiEmployee / 12) + '/mo' : '₹0 (ಅನ್ವಯಿಸುವುದಿಲ್ಲ)';
+  s('res-pt').textContent = '-' + fmt(ptAnnual / 12) + '/mo';
+  s('res-tds').textContent = '-' + fmt(tdsAnnual / 12) + '/mo';
+
+  // Info rows
+  s('inf-gross').textContent = fmt(grossMonthly);
+  s('inf-deductions').textContent = fmt(totalDeductions / 12);
+  s('inf-tds-mo').textContent = fmt(tdsAnnual / 12);
+  s('inf-pf-mo').textContent = fmt(pfEmployee / 12);
+  s('inf-epf-mo').textContent = fmt(pfEmployer / 12);
+  s('inf-net').textContent = fmt(takeHomeMonthly);
+
+  // Bar chart
+  const pTH = Math.round(takeHomeAnnual / ctcAnnual * 100);
+  const pTDS = Math.round(tdsAnnual / ctcAnnual * 100);
+  const pPF = Math.round(pfEmployee / ctcAnnual * 100);
+  const pOther = Math.max(0, 100 - pTH - pTDS - pPF);
+  [['th',pTH],['tds',pTDS],['pf',pPF],['other',pOther]].forEach(([k,v]) => {
+    s('bar-'+k).style.width = v + '%';
+    s('bpct-'+k).textContent = v + '%';
+  });
+
+  // Current in comparison table
+  s('current-ctc-cell').textContent = fmt(ctcAnnual) + ' (ನೀವು)';
+  s('current-net-cell').textContent = fmt(takeHomeMonthly);
+  s('current-tax-cell').textContent = fmt(tdsAnnual / 12);
+
+  // Tax slab table
+  const slabs = regime === 'new'
+    ? [['₹0 – ₹3,00,000','0%'],['₹3,00,001 – ₹7,00,000','5%'],['₹7,00,001 – ₹10,00,000','10%'],['₹10,00,001 – ₹12,00,000','15%'],['₹12,00,001 – ₹15,00,000','20%'],['₹15,00,001+','30%']]
+    : [['₹0 – ₹2,50,000','0%'],['₹2,50,001 – ₹5,00,000','5%'],['₹5,00,001 – ₹10,00,000','20%'],['₹10,00,001+','30%']];
+
+  s('slab-table').innerHTML = '<thead><tr><th>ಆದಾಯ</th><th>ತೆರಿಗೆ</th></tr></thead><tbody>' +
+    slabs.map(([range, rate]) => `<tr><td>${range}</td><td>${rate}</td></tr>`).join('') +
+    '</tbody>';
+}
+
+// Init
+document.getElementById('sec80c-row').style.display = 'none';
+document.getElementById('sec80d-row').style.display = 'none';
+calculate();
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

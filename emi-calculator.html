@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಕನ್ನಡ — ಗೃಹ, ವಾಹನ, ವೈಯಕ್ತಿಕ ಸಾಲ | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕನ್ನಡದಲ್ಲಿ EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್. ಗೃಹ ಸಾಲ, ವಾಹನ ಸಾಲ, ವೈಯಕ್ತಿಕ ಸಾಲ EMI ಲೆಕ್ಕ ಹಾಕಿ. Home loan EMI calculator in Kannada.">
+<meta name="keywords" content="EMI calculator Kannada, home loan calculator, ಗೃಹ ಸಾಲ EMI, ಕಾರು ಸಾಲ, personal loan Karnataka">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+  "applicationCategory": "FinanceApplication",
+  "inLanguage": "kn",
+  "description": "Loan EMI calculator in Kannada for home, car and personal loans",
+  "url": "https://karnata.in/tools/emi-calculator",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root {
+  --red: #C0392B; --red-dark: #96281B; --red-light: #FDECEA;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --blue: #1A5276; --blue-lt: #EAF2F8;
+  --gold: #D4A017; --gold-lt: #FDF8E7;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F7F6F2; --white: #FFFFFF; --border: #E5E4DF;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+/* NAV */
+.topnav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  position: sticky; top: 0; z-index: 50;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--ink2); font-size: 13px; font-weight: 500;
+  background: var(--bg); border-radius: 7px;
+  padding: 6px 12px; border: 1px solid var(--border);
+}
+.page-title { font-size: 16px; font-weight: 700; }
+.breadcrumb { font-size: 12px; color: var(--ink3); margin-left: auto; font-family: var(--font-en); }
+
+/* LAYOUT */
+.wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+.hero { text-align: center; margin-bottom: 28px; }
+.hero h1 { font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.hero p { font-size: 14px; color: var(--ink2); }
+
+/* LOAN TYPE TABS */
+.loan-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.loan-tab {
+  flex: 1; min-width: 100px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+}
+.loan-tab:hover { border-color: var(--red); }
+.loan-tab.active { border-color: var(--red); background: var(--red-light); }
+.lt-icon { font-size: 24px; margin-bottom: 4px; }
+.lt-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.lt-rate { font-size: 11px; color: var(--ink3); margin-top: 2px; font-family: var(--font-en); }
+
+/* MAIN GRID */
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 680px) { .calc-grid { grid-template-columns: 1fr; } }
+
+/* CALCULATOR CARD */
+.calc-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+/* SLIDERS */
+.field { margin-bottom: 20px; }
+.field-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.field-label { font-size: 13px; color: var(--ink2); }
+.field-value {
+  font-size: 16px; font-weight: 700; color: var(--red);
+  font-family: var(--font-en);
+  background: var(--red-light); border: 1.5px solid #f5c6c2;
+  border-radius: 7px; padding: 3px 10px;
+}
+input[type=range] {
+  width: 100%; height: 5px;
+  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--pct, 50%), var(--border) var(--pct, 50%));
+  border-radius: 3px; outline: none; -webkit-appearance: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  background: var(--red); border-radius: 50%; border: 3px solid var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.range-minmax { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink3); margin-top: 4px; font-family: var(--font-en); }
+
+/* RESULTS */
+.result-card {
+  background: linear-gradient(135deg, var(--ink) 0%, #2C3E6A 100%);
+  color: #fff; border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow);
+}
+.result-emi { text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.emi-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; font-family: var(--font-en); }
+.emi-value { font-size: 38px; font-weight: 800; font-family: var(--font-en); letter-spacing: -1px; }
+.emi-sub { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+.result-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.result-row:last-child { border-bottom: none; }
+.rr-label { font-size: 13px; opacity: 0.75; }
+.rr-value { font-size: 15px; font-weight: 600; font-family: var(--font-en); }
+.rr-value.highlight { color: #F39C12; }
+.rr-value.red { color: #E74C3C; }
+.rr-value.green { color: #2ECC71; }
+
+/* PIE CHART */
+.pie-wrap { margin: 16px 0; display: flex; align-items: center; gap: 16px; }
+.pie-chart { position: relative; width: 80px; height: 80px; flex-shrink: 0; }
+.pie-svg { transform: rotate(-90deg); }
+.pie-legend { flex: 1; }
+.pie-leg-row { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.pie-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.pie-leg-label { font-size: 12px; opacity: 0.8; }
+.pie-leg-val { margin-left: auto; font-size: 13px; font-weight: 600; font-family: var(--font-en); }
+
+/* AMORTIZATION TABLE */
+.amort-section { margin-top: 20px; }
+.amort-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.amort-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.amort-table th { background: var(--bg); padding: 8px 10px; text-align: right; font-weight: 600; color: var(--ink2); font-family: var(--font-en); border-bottom: 1px solid var(--border); }
+.amort-table th:first-child { text-align: left; }
+.amort-table td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); font-family: var(--font-en); color: var(--ink2); }
+.amort-table td:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+.amort-table tr:hover td { background: var(--bg); }
+.amort-table tr.highlight-row td { background: var(--green-lt); color: var(--green); font-weight: 600; }
+
+/* AFFORDABILITY */
+.afford-card {
+  background: var(--green-lt); border: 1px solid #a8d9c0;
+  border-radius: var(--radius); padding: 16px; margin-top: 16px;
+}
+.afford-title { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+.afford-row { display: flex; gap: 10px; }
+.afford-item { flex: 1; background: var(--white); border-radius: 8px; padding: 10px 12px; }
+.afford-label { font-size: 11px; color: var(--ink3); font-family: var(--font-en); }
+.afford-val { font-size: 16px; font-weight: 700; color: var(--ink); font-family: var(--font-en); margin-top: 2px; }
+
+/* AFFILIATE CARDS */
+.affiliate-section { margin-top: 24px; }
+.aff-title { font-size: 13px; font-weight: 700; color: var(--ink2); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.aff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.aff-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px; cursor: pointer;
+  transition: all 0.15s; display: flex; flex-direction: column; gap: 6px;
+}
+.aff-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+.aff-bank { font-size: 13px; font-weight: 700; color: var(--ink); }
+.aff-rate { font-size: 20px; font-weight: 800; color: var(--green); font-family: var(--font-en); }
+.aff-rate-label { font-size: 10px; color: var(--ink3); font-family: var(--font-en); }
+.aff-tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+.aff-apply {
+  background: var(--blue); color: #fff; border-radius: 7px;
+  padding: 7px; text-align: center; font-size: 12px; font-weight: 600;
+  margin-top: 4px; font-family: var(--font-en);
+}
+
+/* TIPS */
+.tips-card {
+  background: var(--gold-lt); border: 1px solid #e8d080;
+  border-radius: var(--radius); padding: 16px; margin-top: 16px;
+}
+.tips-title { font-size: 13px; font-weight: 700; color: #8B6914; margin-bottom: 10px; }
+.tip-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; color: var(--ink2); align-items: flex-start; }
+.tip-icon { font-size: 15px; flex-shrink: 0; }
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">🏦 EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್</div>
+  <div class="breadcrumb">Home › Tools › EMI Calculator</div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>📊 ಸಾಲ EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್</h1>
+    <p>ಗೃಹ ಸಾಲ, ವಾಹನ ಸಾಲ, ವೈಯಕ್ತಿಕ ಸಾಲ — ತಕ್ಷಣ EMI ಲೆಕ್ಕ ಹಾಕಿ</p>
+  </div>
+
+  <!-- LOAN TYPE SELECTOR -->
+  <div class="loan-tabs">
+    <div class="loan-tab active" onclick="setLoanType('home', this)">
+      <div class="lt-icon">🏠</div>
+      <div class="lt-name">ಗೃಹ ಸಾಲ</div>
+      <div class="lt-rate">8.5% ರಿಂದ</div>
+    </div>
+    <div class="loan-tab" onclick="setLoanType('car', this)">
+      <div class="lt-icon">🚗</div>
+      <div class="lt-name">ವಾಹನ ಸಾಲ</div>
+      <div class="lt-rate">8.9% ರಿಂದ</div>
+    </div>
+    <div class="loan-tab" onclick="setLoanType('personal', this)">
+      <div class="lt-icon">💼</div>
+      <div class="lt-name">ವೈಯಕ್ತಿಕ ಸಾಲ</div>
+      <div class="lt-rate">10.5% ರಿಂದ</div>
+    </div>
+    <div class="loan-tab" onclick="setLoanType('education', this)">
+      <div class="lt-icon">🎓</div>
+      <div class="lt-name">ಶಿಕ್ಷಣ ಸಾಲ</div>
+      <div class="lt-rate">8.0% ರಿಂದ</div>
+    </div>
+    <div class="loan-tab" onclick="setLoanType('gold', this)">
+      <div class="lt-icon">🥇</div>
+      <div class="lt-name">ಚಿನ್ನ ಸಾಲ</div>
+      <div class="lt-rate">7.5% ರಿಂದ</div>
+    </div>
+  </div>
+
+  <div class="calc-grid">
+
+    <!-- INPUT CARD -->
+    <div class="calc-card">
+      <div class="card-title">⚙️ ಸಾಲ ವಿವರ ನಮೂದಿಸಿ</div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-label">💰 ಸಾಲದ ಮೊತ್ತ</span>
+          <span class="field-value" id="lbl-amount">₹30,00,000</span>
+        </div>
+        <input type="range" id="sl-amount" min="100000" max="10000000" step="50000" value="3000000"
+          oninput="updateSlider(this,'lbl-amount','amount'); calculate()">
+        <div class="range-minmax"><span>₹1L</span><span>₹1 Cr</span></div>
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-label">📅 ಅವಧಿ (ವರ್ಷ)</span>
+          <span class="field-value" id="lbl-tenure">20 ವರ್ಷ</span>
+        </div>
+        <input type="range" id="sl-tenure" min="1" max="30" step="1" value="20"
+          oninput="updateSlider(this,'lbl-tenure','tenure'); calculate()">
+        <div class="range-minmax"><span>1 ವರ್ಷ</span><span>30 ವರ್ಷ</span></div>
+      </div>
+
+      <div class="field">
+        <div class="field-header">
+          <span class="field-label">📈 ಬಡ್ಡಿ ದರ (ವಾರ್ಷಿಕ)</span>
+          <span class="field-value" id="lbl-rate">8.50%</span>
+        </div>
+        <input type="range" id="sl-rate" min="5" max="24" step="0.25" value="8.5"
+          oninput="updateSlider(this,'lbl-rate','rate'); calculate()">
+        <div class="range-minmax"><span>5%</span><span>24%</span></div>
+      </div>
+
+      <!-- Affordability Check -->
+      <div class="afford-card">
+        <div class="afford-title">💡 ನೀವು ಸಾಲ ತೆಗೆಯಬಹುದೇ?</div>
+        <div class="afford-row">
+          <div class="afford-item">
+            <div class="afford-label">ಬೇಕಾದ ಕನಿಷ್ಠ ಸಂಬಳ</div>
+            <div class="afford-val" id="min-salary">₹75,000</div>
+          </div>
+          <div class="afford-item">
+            <div class="afford-label">EMI/ಸಂಬಳ ಅನುಪಾತ</div>
+            <div class="afford-val" id="emi-ratio">40%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="tips-card">
+        <div class="tips-title">💡 ಉಪಯುಕ್ತ ಸಲಹೆಗಳು</div>
+        <div class="tip-item"><span class="tip-icon">✅</span><span id="tip1">EMI ನಿಮ್ಮ ಮಾಸಿಕ ಆದಾಯದ 40%ಕ್ಕಿಂತ ಹೆಚ್ಚಿರಬಾರದು</span></div>
+        <div class="tip-item"><span class="tip-icon">⚡</span><span>ಅವಧಿ ಕಡಿಮೆ ಮಾಡಿದಷ್ಟೂ ಒಟ್ಟು ಬಡ್ಡಿ ಕಡಿಮೆ ಆಗುತ್ತದೆ</span></div>
+        <div class="tip-item"><span class="tip-icon">🏦</span><span>CIBIL ಸ್ಕೋರ್ 750+ ಇದ್ದರೆ ಉತ್ತಮ ಬಡ್ಡಿ ದರ ಸಿಗುತ್ತದೆ</span></div>
+      </div>
+    </div>
+
+    <!-- RESULT CARD -->
+    <div>
+      <div class="result-card">
+        <div class="result-emi">
+          <div class="emi-label">ಮಾಸಿಕ EMI</div>
+          <div class="emi-value" id="res-emi">₹26,035</div>
+          <div class="emi-sub" id="res-sub">240 ತಿಂಗಳು · 20 ವರ್ಷ</div>
+        </div>
+
+        <!-- Pie chart -->
+        <div class="pie-wrap">
+          <div class="pie-chart">
+            <svg class="pie-svg" width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="16"/>
+              <circle id="pie-principal" cx="40" cy="40" r="30" fill="none" stroke="#2ECC71"
+                stroke-width="16" stroke-dasharray="188.5 188.5" stroke-linecap="round"/>
+              <circle id="pie-interest" cx="40" cy="40" r="30" fill="none" stroke="#E74C3C"
+                stroke-width="16" stroke-dasharray="188.5 188.5"
+                stroke-dashoffset="0" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pie-legend">
+            <div class="pie-leg-row"><div class="pie-dot" style="background:#2ECC71"></div><div class="pie-leg-label">ಅಸಲು</div><div class="pie-leg-val" id="pie-p-pct">47%</div></div>
+            <div class="pie-leg-row"><div class="pie-dot" style="background:#E74C3C"></div><div class="pie-leg-label">ಬಡ್ಡಿ</div><div class="pie-leg-val" id="pie-i-pct">53%</div></div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <span class="rr-label">ಅಸಲು ಮೊತ್ತ</span>
+          <span class="rr-value green" id="res-principal">₹30,00,000</span>
+        </div>
+        <div class="result-row">
+          <span class="rr-label">ಒಟ್ಟು ಬಡ್ಡಿ</span>
+          <span class="rr-value red" id="res-interest">₹32,48,400</span>
+        </div>
+        <div class="result-row">
+          <span class="rr-label">ಒಟ್ಟು ಪಾವತಿ</span>
+          <span class="rr-value highlight" id="res-total">₹62,48,400</span>
+        </div>
+        <div class="result-row">
+          <span class="rr-label">ಪ್ರತಿ ವರ್ಷ ಪಾವತಿ</span>
+          <span class="rr-value" id="res-yearly">₹3,12,420</span>
+        </div>
+      </div>
+
+      <!-- Affiliate: Best loan offers -->
+      <div class="affiliate-section">
+        <div class="aff-title">🏦 ಉತ್ತಮ ಸಾಲ ಆಫರ್‌ಗಳು <span style="font-size:10px;color:var(--ink3);font-weight:400;font-family:var(--font-en)">(Sponsored)</span></div>
+        <div class="aff-grid" id="aff-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMORTIZATION TABLE -->
+  <div class="calc-card amort-section" style="margin-top:20px;">
+    <div class="amort-title">📅 ವರ್ಷವಾರು EMI ವಿವರ (Amortization)</div>
+    <div style="overflow-x:auto">
+      <table class="amort-table">
+        <thead>
+          <tr>
+            <th>ವರ್ಷ</th>
+            <th>ಅಸಲು (₹)</th>
+            <th>ಬಡ್ಡಿ (₹)</th>
+            <th>ಒಟ್ಟು EMI (₹)</th>
+            <th>ಬಾಕಿ (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="amort-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const loanDefaults = {
+  home:      { amount: 3000000, tenure: 20, rate: 8.5 },
+  car:       { amount: 700000,  tenure: 7,  rate: 8.9 },
+  personal:  { amount: 300000,  tenure: 5,  rate: 12.0 },
+  education: { amount: 500000,  tenure: 10, rate: 8.0 },
+  gold:      { amount: 200000,  tenure: 3,  rate: 7.5 },
+};
+
+const affiliates = {
+  home: [
+    { bank: 'SBI Home Loan', rate: '8.50%', tag: '🟢 Lowest Rate', color: '#1B7A4B', url: '#' },
+    { bank: 'HDFC Bank', rate: '8.65%', tag: '⭐ Most Popular', color: '#1A5276', url: '#' },
+    { bank: 'Bajaj Housing', rate: '8.55%', tag: '⚡ Quick Approval', color: '#E67E22', url: '#' },
+  ],
+  car: [
+    { bank: 'HDFC Car Loan', rate: '8.90%', tag: '🟢 Best Rate', color: '#1A5276', url: '#' },
+    { bank: 'SBI Car Loan', rate: '9.15%', tag: '⭐ Trusted', color: '#1B7A4B', url: '#' },
+    { bank: 'Axis Bank', rate: '9.25%', tag: '⚡ Fast Process', color: '#8B1A1A', url: '#' },
+  ],
+  personal: [
+    { bank: 'HDFC Personal', rate: '10.50%', tag: '⚡ Instant', color: '#1A5276', url: '#' },
+    { bank: 'Bajaj Finserv', rate: '11.00%', tag: '🟢 No Collateral', color: '#E67E22', url: '#' },
+    { bank: 'KreditBee', rate: '12.00%', tag: '📱 100% Online', color: '#7B2D8B', url: '#' },
+  ],
+  education: [
+    { bank: 'SBI Scholar', rate: '8.00%', tag: '🟢 Best for Edu', color: '#1B7A4B', url: '#' },
+    { bank: 'Union Bank', rate: '8.40%', tag: '⭐ Govt Bank', color: '#1A5276', url: '#' },
+    { bank: 'Axis Bank', rate: '8.80%', tag: '⚡ Abroad Loan', color: '#8B1A1A', url: '#' },
+  ],
+  gold: [
+    { bank: 'Muthoot Finance', rate: '7.50%', tag: '🥇 Gold Expert', color: '#D4A017', url: '#' },
+    { bank: 'IIFL Gold Loan', rate: '7.75%', tag: '⚡ 30 Min Process', color: '#E67E22', url: '#' },
+    { bank: 'Manappuram', rate: '8.00%', tag: '🟢 High LTV', color: '#1B7A4B', url: '#' },
+  ],
+};
+
+let currentType = 'home';
+
+function setLoanType(type, el) {
+  currentType = type;
+  document.querySelectorAll('.loan-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const d = loanDefaults[type];
+  document.getElementById('sl-amount').value = d.amount;
+  document.getElementById('sl-tenure').value = d.tenure;
+  document.getElementById('sl-rate').value = d.rate;
+  updateSlider(document.getElementById('sl-amount'), 'lbl-amount', 'amount');
+  updateSlider(document.getElementById('sl-tenure'), 'lbl-tenure', 'tenure');
+  updateSlider(document.getElementById('sl-rate'), 'lbl-rate', 'rate');
+  renderAffiliates(type);
+  calculate();
+}
+
+function updateSlider(el, lblId, type) {
+  const v = parseFloat(el.value);
+  const min = parseFloat(el.min), max = parseFloat(el.max);
+  const pct = ((v - min) / (max - min)) * 100;
+  el.style.setProperty('--pct', pct + '%');
+  if (type === 'amount') document.getElementById(lblId).textContent = formatAmount(v);
+  else if (type === 'tenure') document.getElementById(lblId).textContent = v + ' ವರ್ಷ';
+  else if (type === 'rate') document.getElementById(lblId).textContent = v + '%';
+}
+
+function formatAmount(n) {
+  if (n >= 10000000) return '₹' + (n/10000000).toFixed(1) + ' Cr';
+  if (n >= 100000) return '₹' + (n/100000).toFixed(1) + ' L';
+  return '₹' + n.toLocaleString('en-IN');
+}
+
+function formatCurrency(n) {
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function calculate() {
+  const P = parseFloat(document.getElementById('sl-amount').value);
+  const Y = parseFloat(document.getElementById('sl-tenure').value);
+  const R = parseFloat(document.getElementById('sl-rate').value);
+  const N = Y * 12;
+  const r = R / 12 / 100;
+  const emi = P * r * Math.pow(1 + r, N) / (Math.pow(1 + r, N) - 1);
+  const totalPayment = emi * N;
+  const totalInterest = totalPayment - P;
+
+  document.getElementById('res-emi').textContent = formatCurrency(emi);
+  document.getElementById('res-sub').textContent = `${N} ತಿಂಗಳು · ${Y} ವರ್ಷ`;
+  document.getElementById('res-principal').textContent = formatCurrency(P);
+  document.getElementById('res-interest').textContent = formatCurrency(totalInterest);
+  document.getElementById('res-total').textContent = formatCurrency(totalPayment);
+  document.getElementById('res-yearly').textContent = formatCurrency(emi * 12);
+
+  // Affordability
+  const minSalary = Math.round(emi / 0.4);
+  document.getElementById('min-salary').textContent = formatCurrency(minSalary);
+  document.getElementById('emi-ratio').textContent = '40% ನಿಯಮ';
+
+  // Pie chart
+  const pPct = Math.round(P / totalPayment * 100);
+  const iPct = 100 - pPct;
+  const circ = 2 * Math.PI * 30;
+  document.getElementById('pie-principal').setAttribute('stroke-dasharray', `${circ * pPct / 100} ${circ}`);
+  document.getElementById('pie-interest').setAttribute('stroke-dasharray', `${circ * iPct / 100} ${circ}`);
+  document.getElementById('pie-interest').setAttribute('stroke-dashoffset', `-${circ * pPct / 100}`);
+  document.getElementById('pie-p-pct').textContent = pPct + '%';
+  document.getElementById('pie-i-pct').textContent = iPct + '%';
+
+  // Amortization
+  renderAmortization(P, r, emi, N, Y);
+}
+
+function renderAmortization(P, r, emi, N, Y) {
+  let balance = P;
+  const tbody = document.getElementById('amort-body');
+  let rows = '';
+  for (let y = 1; y <= Y; y++) {
+    let yearPrincipal = 0, yearInterest = 0;
+    for (let m = 0; m < 12 && (y - 1) * 12 + m < N; m++) {
+      const intPay = balance * r;
+      const prinPay = emi - intPay;
+      yearInterest += intPay;
+      yearPrincipal += prinPay;
+      balance -= prinPay;
+    }
+    const highlight = y === Math.ceil(Y / 2) ? 'highlight-row' : '';
+    rows += `<tr class="${highlight}">
+      <td>${y} ವರ್ಷ</td>
+      <td>₹${Math.round(yearPrincipal).toLocaleString('en-IN')}</td>
+      <td>₹${Math.round(yearInterest).toLocaleString('en-IN')}</td>
+      <td>₹${Math.round((yearPrincipal + yearInterest)).toLocaleString('en-IN')}</td>
+      <td>₹${Math.max(0, Math.round(balance)).toLocaleString('en-IN')}</td>
+    </tr>`;
+  }
+  tbody.innerHTML = rows;
+}
+
+function renderAffiliates(type) {
+  const list = affiliates[type] || affiliates.home;
+  document.getElementById('aff-grid').innerHTML = list.map(a => `
+    <div class="aff-card" onclick="window.open('${a.url}','_blank')">
+      <div class="aff-bank">${a.bank}</div>
+      <div>
+        <div class="aff-rate">${a.rate}</div>
+        <div class="aff-rate-label">p.a. interest rate</div>
+      </div>
+      <span class="aff-tag" style="background:${a.color}22;color:${a.color}">${a.tag}</span>
+      <div class="aff-apply">ಅರ್ಜಿ ಸಲ್ಲಿಸಿ →</div>
+    </div>
+  `).join('');
+}
+
+// Initialize
+document.querySelectorAll('input[type=range]').forEach(el => {
+  const type = el.id === 'sl-amount' ? 'amount' : el.id === 'sl-tenure' ? 'tenure' : 'rate';
+  const lbl = el.id === 'sl-amount' ? 'lbl-amount' : el.id === 'sl-tenure' ? 'lbl-tenure' : 'lbl-rate';
+  updateSlider(el, lbl, type);
+});
+renderAffiliates('home');
+calculate();
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

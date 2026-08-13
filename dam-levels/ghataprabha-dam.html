@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು (Ghataprabha Hidkal Dam) ಇಂದಿನ ನೀರಿನ ಮಟ್ಟ ಮತ್ತು ವಿವರಗಳು | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಘಟಪ್ರಭಾ ಹಿಡ್ಕಲ್ ಅಣೆಕಟ್ಟಿನ ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ, ಒಳಹರಿವು, ಹೊರಹರಿವು, ತಾಂತ್ರಿಕ ವಿವರಣೆ ಮತ್ತು ಇತಿಹಾಸ. Live Ghataprabha dam water level today in Kannada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1A5276; --blue-lt: #EAF2F8; --blue-mid: #2980B9;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --red: #C0392B; --red-lt: #FDECEA;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F4F7FA; --white: #FFFFFF; --border: #D8E4F0;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 14px; --shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+.topnav {
+  background: var(--blue); padding: 0 20px;
+  display: flex; align-items: center; gap: 16px; height: 56px;
+  position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.back-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); font-size: 14px; text-decoration: none; font-weight: 600; }
+.back-btn:hover { color: #fff; }
+.page-title { font-size: 16px; font-weight: 700; color: #fff; }
+.live-badge {
+  margin-left: auto; background: #E74C3C; color: #fff;
+  font-size: 10px; font-weight: 700; padding: 4px 10px;
+  border-radius: 20px; font-family: var(--font-en);
+  display: flex; align-items: center; gap: 5px;
+}
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 24px 20px; }
+
+.dam-hero-card {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12); margin-bottom: 24px;
+  background: #000; position: relative;
+}
+.hero-img-wrap { width: 100%; height: 320px; position: relative; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+.hero-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0; top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(15,45,66,0.95) 100%);
+  padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+}
+.dh-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; width: fit-content; margin-bottom: 8px; }
+.dh-title { font-size: 32px; font-weight: 800; line-height: 1.2; }
+.dh-sub { font-size: 14px; opacity: 0.9; margin-top: 6px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+@media (max-width: 840px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 580px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.metric-card {
+  background: var(--white); border-radius: var(--radius); padding: 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+}
+.mc-label { font-size: 12px; color: var(--ink3); font-weight: 600; margin-bottom: 6px; }
+.mc-val { font-size: 24px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.2; }
+.mc-sub { font-size: 11px; color: var(--ink2); margin-top: 4px; font-family: var(--font-kn); }
+
+.card-box {
+  background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
+  box-shadow: var(--shadow); padding: 24px; margin-bottom: 24px;
+}
+.cb-title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 18px; }
+.history-article p { font-size: 15px; line-height: 1.8; color: var(--ink2); margin-bottom: 14px; text-align: justify; }
+
+.specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 600px) { .specs-grid { grid-template-columns: 1fr; } }
+.spec-item { background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); }
+.spec-lbl { font-size: 11px; color: var(--ink3); font-weight: 600; }
+.spec-val { font-size: 15px; font-weight: 800; color: var(--ink); font-family: var(--font-en); margin-top: 2px; }
+</style>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <div class="page-title">💧 ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು</div>
+  <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
+</div>
+
+<div class="container">
+
+  <!-- HERO BANNER WITH IMAGE -->
+  <div class="dam-hero-card">
+    <div class="hero-img-wrap">
+      <img src="/images/ghataprabha_dam.jpg" alt="ಘಟಪ್ರಭಾ ಅಣೆಕಟ್ಟು" class="hero-img">
+      <div class="hero-overlay">
+        <div class="dh-tag">📍 ಜಲಾನಯನ: ಕೃಷ್ಣಾ (Krishna Basin)</div>
+        <h1 class="dh-title">ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು (Ghataprabha Dam)</h1>
+        <div class="dh-sub">
+          <span>🌊 ನದಿ: ಘಟಪ್ರಭಾ ನದಿ</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಬೆಳಗಾವಿ (ಹುಕ್ಕೇರಿ)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 METRIC CARDS -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--blue)">36.78 TMC</div>
+      <div class="mc-sub">72.1% ತುಂಬಿದೆ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val">51.00 TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
+      <div class="mc-val">2155.93 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 2175.00 ಅಡಿ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
+      <div class="mc-val" style="color:var(--green)">21,170</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
+      <div class="mc-val" style="color:var(--blue-mid)">1,550</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
+    </div>
+  </div>
+
+  <!-- SPECS TABLE GRID -->
+  <div class="card-box">
+    <div class="cb-title">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
+    <div class="specs-grid">
+      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">2175.00 ಅಡಿ</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">2100.00 ಅಡಿ</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">51.00 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">48.90 TMC</div></div>
+      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಹಿಡ್ಕಲ್, ಬೆಳಗಾವಿ ಜಿಲ್ಲೆ</div></div>
+      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1977</div></div>
+    </div>
+  </div>
+
+  <!-- HISTORY ARTICLE -->
+  <div class="card-box">
+    <div class="cb-title">📜 ಘಟಪ್ರಭಾ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ</div>
+    <div class="history-article">
+      <p><strong>ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು (Ghataprabha Dam)</strong> ಬೆಳಗಾವಿ ಜಿಲ್ಲೆಯ ಹುಕ್ಕೇರಿ ತಾಲೂಕಿನ ಹಿಡ್ಕಲ್ ಗ್ರಾಮದ ಬಳಿ ಘಟಪ್ರಭಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಜಲಾಶಯವಾಗಿದೆ. 1977 ರಲ್ಲಿ ಪೂರ್ಣಗೊಂಡ ಈ ಯೋಜನೆ 51 TMC ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದೆ.</p>
+      <p>ಬೆಳಗಾವಿ, ಬಾಗಲಕೋಟೆ ಮತ್ತು ವಿಜಯಪುರ ಜಿಲ್ಲೆಗಳ 3.3 ಲಕ್ಷ ಹೆಕ್ಟೇರ್ ಭೂಮಿಗೆ ನೀರಾವರಿ ಒದಗಿಸುತ್ತದೆ.</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="/nav-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karnata — Data Health Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<style>
+  body {
+    background: #0F172A !important;
+    color: #F8FAFC !important;
+    font-family: 'Inter', 'Anek Kannada', sans-serif !important;
+    margin: 0; padding: 24px;
+  }
+  .dh-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .dh-title { font-size: 24px; font-weight: 900; color: #FFF; display: flex; align-items: center; gap: 10px; }
+  .dh-subtitle { font-size: 13px; color: #94A3B8; }
+  .dh-summary-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto 24px;
+  }
+  .dh-stat-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .dh-stat-val { font-size: 28px; font-weight: 900; margin-top: 4px; }
+  .status-healthy-text { color: #10B981; }
+  .status-stale-text { color: #F59E0B; }
+  .status-failed-text { color: #EF4444; }
+
+  .dh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .dh-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dh-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 4px;
+  }
+  .dh-card.healthy::before { background: #10B981; }
+  .dh-card.stale::before { background: #F59E0B; }
+  .dh-card.failed::before { background: #EF4444; }
+
+  .dh-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .dh-dname { font-size: 16px; font-weight: 800; color: #FFF; }
+  .dh-status-pill {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .pill-healthy { background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .pill-stale { background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .pill-failed { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+  .dh-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    font-size: 12px;
+    color: #CBD5E1;
+    margin-bottom: 12px;
+  }
+  .dh-lbl { color: #94A3B8; font-weight: 600; }
+  .dh-val { font-weight: 700; }
+
+  .dh-err-box {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #FCA5A5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    margin-top: 8px;
+  }
+  .dh-auth-overlay {
+    position: fixed; inset: 0;
+    background: #0F172A;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .auth-box {
+    background: #1E293B;
+    border: 1px solid #334155;
+    padding: 32px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 360px;
+  }
+  .auth-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+    background: #0F172A;
+    color: #FFF;
+    font-size: 14px;
+    margin: 16px 0;
+    box-sizing: border-box;
+  }
+  .auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: #E11D48;
+    color: #FFF;
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- AUTH OVERLAY -->
+<div id="auth-overlay" class="dh-auth-overlay">
+  <div class="auth-box">
+    <h2>🔒 Admin Data Health Portal</h2>
+    <p style="font-size:12px;color:#94A3B8;">Enter Karnata Admin Key to access internal dashboard</p>
+    <input type="password" id="auth-pass" class="auth-input" placeholder="Admin Passcode...">
+    <button class="auth-btn" onclick="verifyAuth()">Unlock Dashboard</button>
+  </div>
+</div>
+
+<div class="dh-header">
+  <div>
+    <div class="dh-title">🛡️ Karnata Data Health & Pipeline Monitor</div>
+    <div class="dh-subtitle">Internal Monitoring for 12 Core Karnata Datasets</div>
+  </div>
+  <a href="/index.html" style="color:#38BDF8;font-weight:700;font-size:13px;text-decoration:none;">← Return to Main Site</a>
+</div>
+
+<div class="dh-summary-row">
+  <div class="dh-stat-card">
+    <div class="dh-lbl">Total Datasets</div>
+    <div class="dh-stat-val">12</div>
+  </div>
+  <div class="dh-stat-card">
+    <div class="dh-lbl">Healthy (🟢)</div>
+    <div class="dh-stat-val status-healthy-text" id="healthy-cnt">12</div>
+  </div>
+  <div class="dh-stat-card">
+    <div class="dh-lbl">Stale Warning (🟡)</div>
+    <div class="dh-stat-val status-stale-text" id="stale-cnt">0</div>
+  </div>
+  <div class="dh-stat-card">
+    <div class="dh-lbl">Failed (🔴)</div>
+    <div class="dh-stat-val status-failed-text" id="failed-cnt">0</div>
+  </div>
+</div>
+
+<div class="dh-grid" id="dh-grid"></div>
+
+<script src="/js/engine/pipeline-manager.js"></script>
+<script>
+  function verifyAuth() {
+    const pass = document.getElementById('auth-pass').value;
+    if (pass === 'karnata2026' || pass === 'admin') {
+      document.getElementById('auth-overlay').style.display = 'none';
+      renderDashboard();
+    } else {
+      alert('Invalid passcode. Access denied.');
+    }
+  }
+
+  function renderDashboard() {
+    const report = window.KarnataPipelineManager ? window.KarnataPipelineManager.getHealthReport() : [];
+    const grid = document.getElementById('dh-grid');
+    if (!grid) return;
+
+    let hCnt = 0, sCnt = 0, fCnt = 0;
+
+    grid.innerHTML = report.map(item => {
+      let pillCls = 'pill-healthy';
+      let icon = '🟢 Healthy';
+      if (item.status === 'stale') { pillCls = 'pill-stale'; icon = '🟡 Stale'; sCnt++; }
+      else if (item.status === 'failed') { pillCls = 'pill-failed'; icon = '🔴 Failed'; fCnt++; }
+      else { hCnt++; }
+
+      return `
+        <div class="dh-card ${item.status}">
+          <div class="dh-card-head">
+            <span class="dh-dname">${item.name}</span>
+            <span class="dh-status-pill ${pillCls}">${icon}</span>
+          </div>
+          <div class="dh-info-grid">
+            <div><span class="dh-lbl">Source:</span> <span class="dh-val">${item.source}</span></div>
+            <div><span class="dh-lbl">Records:</span> <span class="dh-val">${item.record_count}</span></div>
+            <div><span class="dh-lbl">Last Success:</span> <span class="dh-val">${item.last_success}</span></div>
+            <div><span class="dh-lbl">Next Expected:</span> <span class="dh-val">${item.next_expected}</span></div>
+            <div><span class="dh-lbl">Cron Schedule:</span> <span class="dh-val"><code>${item.cron}</code></span></div>
+          </div>
+          ${item.error ? `<div class="dh-err-box">⚠️ ${item.error}</div>` : ''}
+        </div>
+      `;
+    }).join('');
+
+    document.getElementById('healthy-cnt').textContent = hCnt;
+    document.getElementById('stale-cnt').textContent = sCnt;
+    document.getElementById('failed-cnt').textContent = fCnt;
+  }
+</script>
+</body>
+</html>

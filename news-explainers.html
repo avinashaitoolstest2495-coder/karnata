@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಸುದ್ದಿ ವಿಶ್ಲೇಷಣೆ — Karnataka News Explainers | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕರ್ನಾಟಕ ಮತ್ತು ರಾಷ್ಟ್ರೀಯ ಸುದ್ದಿಗಳ ಸರಳ ಕನ್ನಡ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ನೈಜ ಮಾಹಿತಿ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800" rel="stylesheet">
+<style>
+:root{--red:#C0392B;--red-dk:#96281B;--red-lt:#FDECEA;--blue:#1A5276;--blue-lt:#EAF2F8;--green:#1B7A4B;--green-lt:#E8F5EE;--amber:#E67E22;--amber-lt:#FEF5EC;--purple:#6C3483;--purple-lt:#F5EEF8;--teal:#0E6680;--teal-lt:#D5EFF6;--ink:#1A1A2E;--ink2:#4A4A6A;--ink3:#8888AA;--bg:#F6F5F1;--white:#FFF;--border:#E3E1DB;--font-kn:'Anek Kannada',sans-serif;--font-en:'Inter',sans-serif;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:500;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);}
+.page-title{font-size:16px;font-weight:700;}
+
+/* HERO */
+.hero{background:var(--ink);padding:24px 20px 16px;color:#fff;}
+.hero-inner{max-width:900px;margin:0 auto;}
+.hero-label{font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;font-family:var(--font-en);}
+.hero-title{font-size:22px;font-weight:700;margin-bottom:10px;}
+
+/* CATEGORY PILLS */
+.cat-bar{background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.1);overflow-x:auto;scrollbar-width:none;}
+.cat-bar::-webkit-scrollbar{display:none;}
+.cat-inner{max-width:900px;margin:0 auto;padding:0 20px 12px;display:flex;gap:8px;}
+.cat-pill{flex-shrink:0;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.65);font-family:var(--font-kn);}
+.cat-pill.active,.cat-pill:hover{border-color:var(--red);background:var(--red);color:#fff;}
+
+/* TODAY STRIP */
+.today-strip{background:var(--red);color:#fff;padding:10px 20px;}
+.ts-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:10px;font-size:13px;}
+.ts-badge{background:rgba(255,255,255,0.25);border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700;font-family:var(--font-en);}
+
+/* LAYOUT */
+.wrap{max-width:900px;margin:0 auto;padding:20px;}
+.content-grid{display:grid;grid-template-columns:1fr 280px;gap:20px;}
+@media(max-width:780px){.content-grid{grid-template-columns:1fr;}.sidebar{order:-1;}}
+
+/* FEATURED */
+.featured-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);cursor:pointer;transition:all 0.2s;}
+.featured-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.12);transform:translateY(-1px);}
+.feat-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;}
+.feat-cat-badge{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;font-family:var(--font-en);}
+.feat-reading{position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.5);color:#fff;font-size:10px;padding:3px 8px;border-radius:5px;font-family:var(--font-en);}
+.feat-body{padding:16px;}
+.feat-title{font-size:18px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:8px;}
+.feat-summary{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:12px;}
+.feat-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--ink3);font-family:var(--font-en);}
+.feat-tag{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;}
+
+/* NEWS CARDS */
+.news-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;gap:12px;cursor:pointer;transition:all 0.15s;}
+.news-card:hover{border-color:var(--border);box-shadow:var(--shadow);}
+.nc-thumb{width:76px;height:62px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+.nc-body{flex:1;min-width:0;}
+.nc-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;font-family:var(--font-en);}
+.nc-title{font-size:14px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.nc-meta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink3);font-family:var(--font-en);flex-wrap:wrap;}
+.nc-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;}
+
+/* 5-POINT BRIEFING */
+.briefing-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.bc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-bottom: 1.5px solid #F1F5F9;
+  padding-bottom: 8px;
+}
+.bc-title { font-size: 16px; font-weight: 800; color: #0F172A; }
+.bc-date { font-size: 12px; color: #64748B; font-weight: 700; font-family: var(--font-en); }
+.brief-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F1F5F9;
+  align-items: flex-start;
+}
+.brief-item:last-child { border-bottom: none; }
+.brief-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-en);
+}
+.brief-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.brief-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  background: var(--red-lt);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--font-kn);
+}
+
+/* FACT CHECK */
+.factcheck-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.fc-header{background:var(--green-lt);padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:7px;}
+.fc-item{padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.fc-item:last-child{border-bottom:none;}
+.fc-claim{font-size:13px;color:var(--ink2);margin-bottom:6px;font-style:italic;}
+.fc-verdict{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:5px;}
+.vc-true{background:var(--green-lt);color:var(--green);}
+.vc-false{background:var(--red-lt);color:var(--red);}
+.vc-partly{background:var(--amber-lt);color:#8B5000;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:14px;}
+.sb-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.sb-header{padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.sb-body{padding:10px 14px;}
+.trending-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.trending-item:last-child{border-bottom:none;}
+.t-num{width:20px;font-size:13px;font-weight:800;color:var(--red);font-family:var(--font-en);flex-shrink:0;}
+.t-title{font-size:13px;color:var(--ink);line-height:1.4;}
+.t-cat{font-size:10px;color:var(--ink3);margin-top:2px;font-family:var(--font-en);}
+.district-news-item{padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.district-news-item:last-child{border-bottom:none;}
+.dn-district{font-size:10px;font-weight:700;color:var(--blue);font-family:var(--font-en);text-transform:uppercase;letter-spacing:0.05em;}
+.dn-title{font-size:13px;color:var(--ink);margin-top:3px;}
+
+/* LOAD MORE */
+.load-more{text-align:center;margin:16px 0;}
+.load-btn{background:var(--white);border:1.5px solid var(--border);border-radius:9px;padding:11px 28px;font-size:14px;font-weight:600;color:var(--ink2);transition:all 0.15s;font-family:var(--font-kn);}
+.load-btn:hover{background:var(--red-lt);color:var(--red);border-color:var(--red);}
+
+/* ARTICLE VIEW */
+.article-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:flex-end;}
+.article-overlay.open{display:flex;}
+.article-sheet{background:var(--white);border-radius:16px 16px 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:20px;}
+.art-close{float:right;font-size:24px;cursor:pointer;color:var(--ink3);background:none;margin-top:-4px;}
+.art-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-family:var(--font-en);}
+.art-title{font-size:20px;font-weight:700;line-height:1.4;margin-bottom:10px;}
+.art-meta{font-size:12px;color:var(--ink3);margin-bottom:16px;font-family:var(--font-en);display:flex;gap:12px;}
+.art-thumb{width:100%;height:160px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:16px;}
+.art-body{font-size:15px;color:var(--ink2);line-height:1.8;}
+.art-body p{margin-bottom:14px;}
+.art-body h3{font-size:16px;font-weight:700;color:var(--ink);margin:16px 0 8px;}
+.art-body .highlight-box{background:var(--blue-lt);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:14px;color:var(--blue);}
+.art-body .impact-box{background:var(--amber-lt);border-left:3px solid var(--amber);padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:14px;color:#8B5000;}
+.art-share{display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.art-share-btn{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:700;border:1px solid var(--border);color:var(--ink2);background:var(--bg);text-align:center;font-family:var(--font-kn);}
+</style>
+<script src="/seo.js" defer></script>
+<link rel="stylesheet" href="/karnata-theme.css">
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">📰 ಸುದ್ದಿ ವಿಶ್ಲೇಷಣೆ</div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Simple Kannada News</div>
+    <div class="hero-title">📰 ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಸುದ್ದಿ ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಿ</div>
+  </div>
+</div>
+
+<div class="cat-bar">
+  <div class="cat-inner">
+    <div class="cat-pill active" onclick="filterDistrict('all',this)">🌍 ಎಲ್ಲ ಜಿಲ್ಲಾ ಸುದ್ದಿ</div>
+    <div class="cat-pill" onclick="filterDistrict('bengaluru',this)">📍 ಬೆಂಗಳೂರು</div>
+    <div class="cat-pill" onclick="filterDistrict('mysuru',this)">📍 ಮೈಸೂರು</div>
+    <div class="cat-pill" onclick="filterDistrict('dakshina-kannada',this)">📍 ದಕ್ಷಿಣ ಕನ್ನಡ / ಮಂಗಳೂರು</div>
+    <div class="cat-pill" onclick="filterDistrict('belagavi',this)">📍 ಬೆಳಗಾವಿ</div>
+    <div class="cat-pill" onclick="filterDistrict('shivamogga',this)">📍 ಶಿವಮೊಗ್ಗ</div>
+    <div class="cat-pill" onclick="filterDistrict('udupi',this)">📍 ಉಡುಪಿ</div>
+    <div class="cat-pill" onclick="filterDistrict('kalaburagi',this)">📍 ಕಲಬುರಗಿ</div>
+    <div class="cat-pill" onclick="filterDistrict('mandya',this)">📍 ಮಂಡ್ಯ</div>
+  </div>
+</div>
+
+<div class="today-strip">
+  <div class="ts-inner">
+    <span class="ts-badge">ಇಂದು</span>
+    <span id="today-banner-date"></span> — ಕರ್ನಾಟಕ ಮತ್ತು ರಾಷ್ಟ್ರೀಯ ಪ್ರಮುಖ ಸುದ್ದಿ
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="content-grid">
+    <div class="left-col">
+
+      <!-- TODAY'S BRIEFING -->
+      <div class="briefing-card">
+        <div class="bc-header">
+          <div class="bc-title">⚡ ಇಂದಿನ 5 ಮುಖ್ಯ ಸುದ್ದಿ</div>
+          <div class="bc-date" id="briefing-date"></div>
+        </div>
+        <div id="briefing-list"></div>
+      </div>
+
+      <!-- FEATURED ARTICLE -->
+      <div class="featured-card" onclick="openArticle('cauvery')">
+        <div class="feat-thumb" style="background:linear-gradient(135deg,#D5EFF6,#EAF2F8)">
+          🌊
+          <span class="feat-cat-badge" style="background:var(--blue);color:#fff">ವಿಶ್ಲೇಷಣೆ</span>
+          <span class="feat-reading">8 ನಿಮಿಷ</span>
+        </div>
+        <div class="feat-body">
+          <span class="feat-tag" style="background:var(--blue-lt);color:var(--blue)">💧 ನೀರು · ಕಾನೂನು</span>
+          <div class="feat-title" style="margin-top:8px">ಕಾವೇರಿ ನ್ಯಾಯಮಂಡಳಿ ತೀರ್ಪು: ಕರ್ನಾಟಕಕ್ಕೆ ಅನ್ಯಾಯವಾ? ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಿ</div>
+          <div class="feat-summary">ಸುಪ್ರೀಂ ಕೋರ್ಟ್ ಮತ್ತು ಕಾವೇರಿ ನ್ಯಾಯಮಂಡಳಿ ಏನು ಹೇಳಿದೆ? ಕರ್ನಾಟಕಕ್ಕೆ ಎಷ್ಟು ನೀರು ಸಿಗುತ್ತದೆ? ತಮಿಳುನಾಡಿಗೆ ಎಷ್ಟು? ಸಾಮಾನ್ಯ ಜನರ ಮೇಲೆ ಏನು ಪರಿಣಾಮ? — ಎಲ್ಲ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರ ಇಲ್ಲಿದೆ.</div>
+          <div class="feat-meta">
+            <span>📅 June 27, 2025</span>
+            <span>👁️ 12,450 ಓದುಗರು</span>
+            <span>💬 234 ಪ್ರತಿಕ್ರಿಯೆ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWS LIST -->
+      <div class="news-list" id="news-list"></div>
+
+      <!-- FACT CHECK SECTION -->
+      <div class="factcheck-card">
+        <div class="fc-header">✅ ಇಂದಿನ ಪರಿಶೀಲಿಸಿದ ವರದಿಗಳು — Fact Check</div>
+        <div id="factcheck-list"></div>
+      </div>
+
+      <div class="load-more">
+        <button class="load-btn" onclick="loadMore()">⬇️ ಇನ್ನಷ್ಟು ಸುದ್ದಿ ನೋಡಿ</button>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-card">
+        <div class="sb-header">🔥 ಟ್ರೆಂಡಿಂಗ್</div>
+        <div class="sb-body" id="trending-list"></div>
+      </div>
+      <div class="sb-card">
+        <div class="sb-header">🗺️ ಜಿಲ್ಲಾ ಸುದ್ದಿ</div>
+        <div class="sb-body" id="district-news-list"></div>
+      </div>
+      <div class="sb-card" style="background:var(--red-lt);border-color:var(--red);">
+        <div class="sb-header" style="color:var(--red);border-color:var(--red);">📲 ಸುದ್ದಿ ಅಧಿಸೂಚನೆ</div>
+        <div class="sb-body">
+          <p style="font-size:13px;color:var(--ink2);margin-bottom:12px;line-height:1.6">ಪ್ರತಿ ಬೆಳಿಗ್ಗೆ 8 ಗಂಟೆಗೆ ಇಂದಿನ 5 ಮುಖ್ಯ ಸುದ್ದಿ ನಿಮ್ಮ ಫೋನಿಗೆ ಬರುತ್ತದೆ</p>
+          <button style="width:100%;background:var(--red);color:#fff;border-radius:9px;padding:11px;font-size:14px;font-weight:700;font-family:var(--font-kn)" onclick="subscribeNews()">🔔 ಚಂದಾದಾರರಾಗಿ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE OVERLAY -->
+<div class="article-overlay" id="article-overlay" onclick="closeArticle(event)">
+  <div class="article-sheet" id="article-sheet">
+    <button class="art-close" onclick="closeArticle()">×</button>
+    <div id="article-content"></div>
+  </div>
+</div>
+
+<script>
+// Inline standalone decryptPayload helper for 100% reliability
+function safeDecryptPayload(encodedStr) {
+  if (!encodedStr || typeof encodedStr !== 'string') return null;
+  try {
+    const raw = atob(encodedStr);
+    const key = "NK_SECURE_KEY_2026_KARNATA";
+    let res = "";
+    for (let i = 0; i < raw.length; i++) {
+      res += String.fromCharCode(raw.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    }
+    return JSON.parse(decodeURIComponent(escape(res)));
+  } catch(e) {
+    try {
+      const raw = atob(encodedStr);
+      const key = "NK_SECURE_KEY_2026_KARNATA";
+      let res = "";
+      for (let i = 0; i < raw.length; i++) {
+        res += String.fromCharCode(raw.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      return JSON.parse(res);
+    } catch(err) { return null; }
+  }
+}
+
+const now = new Date();
+const dateOpts = { day: 'numeric', month: 'long', year: 'numeric' };
+const todayKnStr = now.toLocaleDateString('kn-IN', dateOpts) || now.toLocaleDateString('en-IN', dateOpts);
+
+const CATEGORY_META = {
+  water:     { emoji:'💧', bg:'#EAF2F8', color:'#1A5276', label:'ನೀರು' },
+  finance:   { emoji:'💰', bg:'#FDF8E7', color:'#D4A017', label:'ಹಣಕಾಸು' },
+  weather:   { emoji:'🌧️', bg:'#EAF2F8', color:'#1A5276', label:'ಹವಾಮಾನ' },
+  scheme:    { emoji:'📋', bg:'#E8F5EE', color:'#1B7A4B', label:'ಯೋಜನೆ' },
+  politics:  { emoji:'🏛️', bg:'#F5EEF8', color:'#6C3483', label:'ರಾಜಕೀಯ' },
+  factcheck: { emoji:'✅', bg:'#E8F5EE', color:'#1B7A4B', label:'ಪರಿಶೀಲಿಸಿದ ವರದಿ' },
+  explainer: { emoji:'📖', bg:'#EAF2F8', color:'#1A5276', label:'ವಿಶ್ಲೇಷಣೆ' },
+  general:   { emoji:'📄', bg:'#F3F2ED', color:'#4A3828', label:'ಸಾಮಾನ್ಯ' },
+};
+function catMeta(cat) { return CATEGORY_META[cat] || CATEGORY_META.general; }
+
+function timeAgo(iso) {
+  if (!iso) return 'ಇತ್ತೀಚೆಗೆ';
+  const h = Math.floor((Date.now() - new Date(iso)) / 3600000);
+  if (h < 1) return 'ಈಗ';
+  if (h < 24) return h + ' ಗಂಟೆ';
+  const d = Math.floor(h / 24);
+  return d === 1 ? 'ನಿನ್ನೆ' : d + ' ದಿನ';
+}
+
+let allArticles = [];
+let districtBucketsStore = {};
+let activeDistrictFilter = 'all';
+let visibleCount = 8;
+
+async function loadArticleData() {
+  const briefingDateEl = document.getElementById('briefing-date');
+  if (briefingDateEl) briefingDateEl.textContent = todayKnStr;
+  const todayBannerEl = document.getElementById('today-banner-date');
+  if (todayBannerEl) todayBannerEl.textContent = todayKnStr;
+
+  try {
+    const res = await fetch('/data/local_news.json?v=' + Date.now());
+    if (res.ok) {
+      let raw = await res.json();
+      if (raw && raw.payload) {
+        const decFn = window.decryptPayload || safeDecryptPayload;
+        raw = decFn(raw.payload);
+      }
+      if (raw && raw.district_buckets) {
+        districtBucketsStore = raw.district_buckets;
+      } else if (raw && raw.news) {
+        districtBucketsStore = raw.news;
+      }
+    }
+  } catch (e) {}
+
+  filterDistrict('all', document.querySelector('.cat-pill.active'));
+}
+
+function filterDistrict(distKey, el) {
+  activeDistrictFilter = distKey;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  visibleCount = 8;
+  let items = [];
+
+  if (distKey === 'all' || !distKey) {
+    Object.values(districtBucketsStore).forEach(arr => {
+      if (Array.isArray(arr)) items.push(...arr);
+    });
+  } else {
+    items = districtBucketsStore[distKey] || [];
+    if (items.length === 0) {
+      // Partial matching for district keys
+      Object.keys(districtBucketsStore).forEach(k => {
+        if (k.includes(distKey) || distKey.includes(k)) {
+          items.push(...districtBucketsStore[k]);
+        }
+      });
+    }
+  }
+
+  let cmsArticles = [];
+  try {
+    const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    cmsArticles = store.filter(a => a.status === 'published').map(a => ({
+      id: a.id,
+      title_kn: a.title_kn,
+      title: a.title_kn,
+      summary_kn: a.summary_kn || a.title_kn,
+      summary: a.summary_kn || a.title_kn,
+      body_html: a.body_html,
+      published: a.updated_at || new Date().toISOString(),
+      source_name: a.author || 'ಕರ್ನಾಟ CMS',
+      source: a.author || 'ಕರ್ನಾಟ CMS',
+      is_cms: true
+    }));
+  } catch(e) {}
+
+  if (items.length > 0 || cmsArticles.length > 0) {
+    renderLiveNewsView([...cmsArticles, ...items]);
+  } else {
+    document.getElementById('news-list').innerHTML = `
+      <div style="padding:40px; text-align:center; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; margin:20px 0;">
+        <div style="font-size:32px; margin-bottom:8px;">📍</div>
+        <div style="font-size:16px; font-weight:800; color:#0F172A;">ಈ ಜಿಲ್ಲೆಯ ಇತ್ತೀಚಿನ ವರದಿಗಳು ಸಂಗ್ರಹವಾಗುತ್ತಿವೆ</div>
+        <div style="font-size:13px; color:#64748B; margin-top:4px;">ತಾಜಾ ಸ್ಥಳೀಯ ಸುದ್ದಿಗಳು ಶೀಘ್ರದಲ್ಲೇ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.</div>
+      </div>`;
+    const btn = document.querySelector('.load-btn');
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+function renderLiveNewsView(items) {
+  // 1. Top 5 Briefings
+  const top5 = items.slice(0, 5);
+  const briefEl = document.getElementById('briefing-list');
+  if (briefEl) {
+    briefEl.innerHTML = top5.map((b, i) => `
+      <div class="brief-item" style="cursor:pointer;" onclick="openItemLink('${b.url || b.link || ''}', '${b.id || ''}')">
+        <div class="brief-num">${i + 1}</div>
+        <div>
+          <div class="brief-text">${b.title_kn || b.title}</div>
+          <div class="brief-tag">${b.source_name || b.source || 'ತಾಜಾ ಸುದ್ದಿ'}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 2. Featured Article
+  if (items[0]) {
+    const feat = items[0];
+    const featEl = document.querySelector('.featured-card');
+    if (featEl) {
+      featEl.innerHTML = `
+        <div class="feat-thumb" style="background:linear-gradient(135deg,#D5EFF6,#EAF2F8)">
+          📰
+          <span class="feat-cat-badge" style="background:var(--red);color:#fff">ಪ್ರಮುಖ ಸುದ್ದಿ</span>
+          <span class="feat-reading">3 ನಿಮಿಷ</span>
+        </div>
+        <div class="feat-body">
+          <span class="feat-tag" style="background:var(--blue-lt);color:var(--blue)">📍 ${feat.source_name || feat.source || 'ಕರ್ನಾಟಕ'}</span>
+          <div class="feat-title" style="margin-top:8px; font-weight:800; color:#0F172A;">${feat.title_kn || feat.title}</div>
+          <div class="feat-summary" style="color:#334155;">${feat.summary_kn || feat.summary || feat.title}</div>
+          <div class="feat-meta">
+            <span>📅 ${todayKnStr}</span>
+            <span>⚡ ${feat.source_name || feat.source || 'Live Feed'}</span>
+          </div>
+        </div>
+      `;
+      featEl.onclick = () => openItemLink(feat.url || feat.link || '', feat.id || '');
+    }
+  }
+
+  // 3. Main Stream
+  allArticles = items.slice(1).map((item, idx) => ({
+    id: item.id || `live-${idx}`,
+    title_kn: item.title_kn || item.title,
+    summary_kn: item.summary_kn || item.summary || item.title,
+    category: item.district ? 'karnataka' : 'general',
+    published_at: item.published || item.published_at || new Date().toISOString(),
+    source: item.source_name || item.source || 'Kannada RSS',
+    link: item.url || item.link
+  }));
+
+  window._articleMap = {};
+  allArticles.forEach(a => { window._articleMap[a.id] = a; });
+  renderNewsPage();
+
+  // 4. Sidebar Trending (Real Internet Viral/Statewide News - No duplication with Top 5 Briefings)
+  const trendEl = document.getElementById('trending-list');
+  if (trendEl) {
+    const statewide = (districtBucketsStore && districtBucketsStore['_statewide']) || [];
+    let trendingItems = statewide.length >= 5 ? statewide.slice(0, 5) : items.slice(5, 10);
+    if (!trendingItems || trendingItems.length < 3) {
+      trendingItems = items.slice(5, 10);
+    }
+    trendEl.innerHTML = trendingItems.map((t, i) => `
+      <div class="trending-item" style="cursor:pointer;" onclick="openItemLink('${t.url || t.link || ''}')">
+        <div class="t-num">${i + 1}</div>
+        <div>
+          <div class="t-title" style="font-weight:700; color:#0F172A;">${t.title_kn || t.title}</div>
+          <div class="t-cat" style="color:#64748B;">⚡ ${t.source_name || t.source || 'ಟ್ರೆಂಡಿಂಗ್'}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 5. Sidebar District News
+  const distEl = document.getElementById('district-news-list');
+  if (distEl) {
+    const distItems = items.filter(x => x.district).slice(0, 5);
+    const renderList = distItems.length > 0 ? distItems : items.slice(5, 10);
+    distEl.innerHTML = renderList.map(d => `
+      <div class="district-news-item" style="cursor:pointer;" onclick="openItemLink('${d.url || d.link || ''}')">
+        <div class="dn-district" style="color:#0284C7; font-weight:800;">${(d.district || d.source_name || 'KARNATAKA').toUpperCase()}</div>
+        <div class="dn-title" style="font-weight:700; color:#0F172A;">${d.title_kn || d.title}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function slugify(text) {
+  if (!text) return '';
+  return text.toString().toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function openItemLink(link, id, category) {
+  if (id) {
+    const cat = (category || 'politics').toLowerCase();
+    const slug = slugify(id) || id;
+    window.location.href = `/news/${cat}/${slug}`;
+    return;
+  }
+  if (link && link.startsWith('http')) {
+    window.open(link, '_blank');
+  } else {
+    window.location.href = '/news/politics/latest';
+  }
+}
+
+function newsCardHtml(a) {
+  const m = catMeta(a.category);
+  const srcName = (a.source && a.source !== 'Kannada RSS') ? a.source : 'ಸಮಾಚಾರ';
+  const fcBadge = a.fact_checked ? `<span class="nc-badge" style="background:#E8F5EE;color:#1B7A4B;margin-left:6px;">✅ ತಥ್ಯ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</span>` : '';
+  const clickFn = `openItemLink('${a.link || ''}', '${a.id || ''}')`;
+  return `
+    <div class="news-card" onclick="${clickFn}" style="cursor:pointer;">
+      <div class="nc-thumb" style="background:${m.bg}">${m.emoji}</div>
+      <div class="nc-body">
+        <div class="nc-cat" style="color:${m.color}">${srcName} ${fcBadge}</div>
+        <div class="nc-title" style="font-weight:800; color:#0F172A;">${a.title_kn}</div>
+        <div class="nc-meta">
+          <span class="nc-badge" style="background:${m.bg};color:${m.color}">${srcName}</span>
+          <span>${timeAgo(a.published_at)} ಹಿಂದೆ</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderNewsPage() {
+  const listEl = document.getElementById('news-list');
+  if (listEl) {
+    listEl.innerHTML = allArticles.slice(0, visibleCount).map(newsCardHtml).join('');
+  }
+  const btn = document.querySelector('.load-btn');
+  if (btn) btn.style.display = visibleCount >= allArticles.length ? 'none' : '';
+}
+
+function loadMore() {
+  visibleCount += 6;
+  renderNewsPage();
+}
+
+function openArticle(id) {
+  try {
+    const cmsStore = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const cms = cmsStore.find(x => x.id === id);
+    if (cms) {
+      document.getElementById('article-content').innerHTML = `
+        <div class="art-cat" style="color:#C0392B; font-weight:800; font-size:14px; text-transform:uppercase; margin-bottom:8px;">📰 ${cms.category || 'ಪ್ರಮುಖ ಲೇಖನ'}</div>
+        <div class="art-title" style="font-size:24px; font-weight:900; color:#0F172A; line-height:1.35; margin-bottom:12px;">${cms.title_kn}</div>
+        <div class="art-meta" style="font-size:12px; color:#64748B; margin-bottom:20px; border-bottom:1px solid #E2E8F0; padding-bottom:12px;">
+          <span>📅 ${new Date(cms.updated_at || Date.now()).toLocaleDateString('kn-IN')}</span> &nbsp;·&nbsp; 
+          <span>✍️ ${cms.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ'}</span>
+        </div>
+        <div class="art-body" style="font-size:16px; line-height:1.85; color:#1E293B;">${cms.body_html || cms.summary_kn || ''}</div>
+        <div style="margin-top:30px; padding-top:20px; border-top:1px solid #E2E8F0; display:flex; gap:12px;">
+          <button onclick="navigator.clipboard.writeText(window.location.href); alert('ಲಿಂಕ್ ನಕಲಿಸಲಾಗಿದೆ!');" style="background:#C0392B; color:#fff; border:none; padding:10px 18px; border-radius:8px; font-weight:700; font-size:13px; cursor:pointer;">🔗 ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಿ</button>
+        </div>
+      `;
+      document.getElementById('article-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+  } catch(e) {}
+
+  const a = window._articleMap && window._articleMap[id];
+  if (!a) return;
+  const m = catMeta(a.category);
+  document.getElementById('article-content').innerHTML = `
+    <div class="art-cat" style="color:${m.color}">${m.emoji} ${m.label}</div>
+    <div class="art-title" style="font-size:24px; font-weight:900; color:#0F172A; margin:12px 0;">${a.title_kn}</div>
+    <div class="art-meta"><span>📅 ${a.published_at ? timeAgo(a.published_at) : ''} · ✍️ ${a.source || 'ಕರ್ನಾಟ ಸಮಾಚಾರ'}</span></div>
+    <div class="art-body" style="font-size:16px; line-height:1.8; color:#334155;">${a.body_html || a.summary_kn || a.title_kn}</div>
+  `;
+  document.getElementById('article-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeArticle(e) {
+  if (!e || e.target === document.getElementById('article-overlay') || e.target.classList.contains('art-close')) {
+    document.getElementById('article-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+    document.getElementById('article-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+function filterCat(cat, el) {
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  visibleCount = 6;
+  if (cat === 'all' || !CATEGORY_META[cat]) {
+    renderNewsPage();
+  } else {
+    const filtered = allArticles.filter(a => a.category === cat);
+    document.getElementById('news-list').innerHTML = filtered.length
+      ? filtered.slice(0, visibleCount).map(newsCardHtml).join('')
+      : '<div style="padding:24px;color:#8A7565;font-size:13px;text-align:center;">ಈ ವಿಭಾಗದಲ್ಲಿ ಇನ್ನೂ ಲೇಖನ ಇಲ್ಲ</div>';
+    const btn = document.querySelector('.load-btn');
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadArticleData);
+window.addEventListener('load', loadArticleData);
+
+function subscribeNews() {
+  if (Notification.permission === 'granted') alert('ನೀವು ಈಗಾಗಲೇ ಚಂದಾದಾರರಾಗಿದ್ದೀರಿ!');
+  else Notification.requestPermission();
+}
+function shareArticle() { if (navigator.share) navigator.share({ title: 'ಕರ್ನಾಟ ಸುದ್ದಿ', url: window.location.href }); }
+function copyLink() { navigator.clipboard.writeText(window.location.href); alert('ಲಿಂಕ್ ಕಾಪಿ ಆಯಿತು!'); }
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

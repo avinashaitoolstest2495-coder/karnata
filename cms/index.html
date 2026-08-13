@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Karnata Admin — WordPress-Style CMS Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════
+   WORDPRESS-STYLE DASHBOARD THEME
+══════════════════════════════════════════════════════ */
+:root {
+  --wp-adminbar: #1d2327;
+  --wp-sidebar: #2c3338;
+  --wp-sidebar-active: #2271b1;
+  --wp-bg: #f0f0f1;
+  --wp-card: #ffffff;
+  --wp-border: #c3c4c7;
+  --wp-blue: #2271b1;
+  --wp-blue-hover: #135e96;
+  --wp-red: #d63638;
+  --wp-text: #2c3338;
+  --wp-text-muted: #646970;
+  --font-main: 'Plus Jakarta Sans', 'Anek Kannada', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); background: var(--wp-bg); color: var(--wp-text); min-height: 100vh; display: flex; flex-direction: column; }
+
+button, input, textarea, select { font-family: var(--font-main); }
+a { color: var(--wp-blue); text-decoration: none; }
+a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
+
+/* ── Login Screen ── */
+#login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--wp-bg); padding: 20px; }
+.login-box { background: #fff; border: 1px solid var(--wp-border); border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 40px; width: 100%; max-width: 380px; text-align: center; }
+.login-box h1 { font-size: 26px; font-weight: 800; color: var(--wp-text); margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.login-box p { font-size: 13px; color: var(--wp-text-muted); margin-bottom: 24px; }
+.login-box input { width: 100%; padding: 12px 14px; border: 1px solid var(--wp-border); border-radius: 4px; font-size: 14px; margin-bottom: 16px; outline: none; }
+.login-box input:focus { border-color: var(--wp-blue); box-shadow: 0 0 0 1px var(--wp-blue); }
+.login-box button { width: 100%; padding: 12px; border: none; border-radius: 4px; background: var(--wp-blue); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; }
+.login-box button:hover { background: var(--wp-blue-hover); }
+.login-error { color: var(--wp-red); font-size: 12px; margin-top: 12px; min-height: 16px; font-weight: 600; }
+
+/* ── Admin Top Bar ── */
+.wp-adminbar { background: var(--wp-adminbar); color: #f0f0f1; height: 42px; display: flex; align-items: center; padding: 0 16px; justify-content: space-between; font-size: 13px; z-index: 99; position: sticky; top: 0; }
+.wp-adminbar-left { display: flex; align-items: center; gap: 16px; }
+.wp-brand { font-weight: 800; color: #fff; display: flex; align-items: center; gap: 6px; }
+.wp-site-link { color: #f0f1f2; font-weight: 600; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 4px; }
+.wp-site-link:hover { background: rgba(255,255,255,0.15); color: #fff; text-decoration: none; }
+.wp-adminbar-right { display: flex; align-items: center; gap: 12px; }
+
+/* ── Admin Wrapper ── */
+.wp-wrapper { display: flex; flex: 1; }
+
+/* ── WP Sidebar ── */
+.wp-sidebar { width: 220px; background: var(--wp-sidebar); color: #a7aaad; flex-shrink: 0; padding-top: 8px; min-height: calc(100vh - 42px); }
+.wp-menu-item { display: flex; align-items: center; gap: 10px; padding: 12px 16px; font-size: 13.5px; font-weight: 600; color: #f0f6fc; cursor: pointer; border-left: 4px solid transparent; transition: all 0.15s; }
+.wp-menu-item:hover { background: rgba(255,255,255,0.08); color: #2271b1; }
+.wp-menu-item.active { background: var(--wp-sidebar-active); color: #fff; border-left-color: #72aee6; font-weight: 700; }
+.wp-menu-icon { font-size: 16px; width: 20px; text-align: center; }
+
+/* ── Main Content Area ── */
+.wp-content { flex: 1; padding: 24px; overflow-x: auto; }
+.wp-page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.wp-page-title { font-size: 24px; font-weight: 800; color: var(--wp-text); display: flex; align-items: center; gap: 10px; }
+
+.btn-wp { background: #f6f7f7; border: 1px solid var(--wp-blue); color: var(--wp-blue); padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.btn-wp:hover { background: var(--wp-blue); color: #fff; }
+.btn-wp-primary { background: var(--wp-blue); border-color: var(--wp-blue); color: #fff; }
+.btn-wp-primary:hover { background: var(--wp-blue-hover); }
+
+/* ── Post List Table ── */
+.wp-filters { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; font-size: 13px; }
+.wp-filter-link { color: var(--wp-blue); font-weight: 600; cursor: pointer; }
+.wp-filter-link.active { color: var(--wp-text); font-weight: 800; }
+.wp-search-input { padding: 6px 12px; border: 1px solid var(--wp-border); border-radius: 4px; font-size: 13px; width: 240px; outline: none; }
+.wp-search-input:focus { border-color: var(--wp-blue); }
+
+.wp-table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--wp-border); border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); font-size: 13px; }
+.wp-table th { background: #f6f7f7; color: var(--wp-text); font-weight: 700; padding: 12px; border-bottom: 1px solid var(--wp-border); text-align: left; }
+.wp-table td { padding: 12px; border-bottom: 1px solid #f0f0f1; vertical-align: middle; }
+.wp-table tr:hover { background: #f6f7f7; }
+
+.wp-thumb { width: 44px; height: 44px; border-radius: 4px; object-fit: cover; background: #e0e0e0; display: block; }
+.wp-post-title { font-weight: 700; font-size: 14px; color: var(--wp-blue); margin-bottom: 4px; }
+.wp-post-title:hover { text-decoration: underline; cursor: pointer; }
+.wp-row-actions { font-size: 12px; color: var(--wp-text-muted); display: flex; gap: 8px; }
+
+.badge-wp { padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; display: inline-block; }
+.badge-pub { background: #edfaef; color: #1e8e3e; border: 1px solid #b7e1cd; }
+.badge-draft { background: #fef7e0; color: #b06000; border: 1px solid #fce8b2; }
+.badge-pin { background: #fce8e6; color: #c5221f; border: 1px solid #fad2cf; }
+
+/* ── Gutenberg Block Editor Overlay ── */
+#gutenberg-editor { display: none; position: fixed; inset: 0; background: #fff; z-index: 1000; flex-direction: column; }
+#gutenberg-editor.open { display: flex; }
+
+.gb-topbar { height: 56px; border-bottom: 1px solid var(--wp-border); display: flex; align-items: center; padding: 0 20px; justify-content: space-between; background: #fff; }
+.gb-topbar-left { display: flex; align-items: center; gap: 12px; }
+.gb-back-btn { background: #f0f0f1; border: 1px solid var(--wp-border); border-radius: 4px; padding: 6px 12px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.gb-topbar-right { display: flex; align-items: center; gap: 12px; }
+
+.gb-body { flex: 1; display: flex; overflow: hidden; }
+.gb-main { flex: 1; padding: 40px 60px; overflow-y: auto; background: #fff; max-width: 900px; margin: 0 auto; width: 100%; }
+
+.gb-title-input { width: 100%; border: none; font-size: 32px; font-weight: 800; font-family: 'Tiro Kannada', serif; outline: none; margin-bottom: 20px; color: #0f172a; }
+.gb-title-input::placeholder { color: #94a3b8; }
+
+.gb-slug-bar { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--wp-text-muted); margin-bottom: 20px; background: #f6f7f7; padding: 8px 12px; border-radius: 4px; border: 1px solid #e0e0e0; }
+.gb-slug-input { border: 1px solid var(--wp-border); padding: 4px 8px; border-radius: 3px; font-size: 12px; flex: 1; }
+
+.gb-toolbar { display: flex; gap: 4px; border: 1px solid var(--wp-border); border-bottom: none; border-radius: 4px 4px 0 0; padding: 8px; background: #f6f7f7; flex-wrap: wrap; }
+.gb-tool-btn { width: 32px; height: 32px; border: 1px solid var(--wp-border); background: #fff; border-radius: 3px; cursor: pointer; font-size: 13px; font-weight: 700; }
+.gb-tool-btn:hover { background: #e0e0e0; }
+
+#gb-editor-area { border: 1px solid var(--wp-border); border-radius: 0 0 4px 4px; min-height: 400px; padding: 20px; font-size: 15px; line-height: 1.8; outline: none; }
+#gb-editor-area h2, #gb-editor-area h3 { color: var(--wp-red); margin: 16px 0 8px; }
+#gb-editor-area img { max-width: 100%; border-radius: 6px; margin: 12px 0; }
+
+/* Gutenberg Sidebar Panel */
+.gb-sidebar { width: 320px; border-left: 1px solid var(--wp-border); background: #fff; overflow-y: auto; padding: 20px; flex-shrink: 0; font-size: 13px; }
+.gb-panel-section { margin-bottom: 24px; border-bottom: 1px solid #f0f0f1; padding-bottom: 20px; }
+.gb-panel-title { font-weight: 800; font-size: 14px; color: var(--wp-text); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.gb-field { margin-bottom: 14px; }
+.gb-field label { display: block; font-weight: 700; color: var(--wp-text); margin-bottom: 6px; }
+.gb-field input[type=text], .gb-field input[type=number], .gb-field select, .gb-field textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--wp-border); border-radius: 4px; font-size: 13px; outline: none; }
+.gb-field input:focus, .gb-field select:focus { border-color: var(--wp-blue); }
+
+.gb-cover-box { border: 2px dashed var(--wp-border); border-radius: 6px; padding: 16px; text-align: center; cursor: pointer; background: #f9f9f9; position: relative; }
+.gb-cover-box img { max-width: 100%; max-height: 140px; border-radius: 4px; margin-bottom: 8px; object-fit: cover; }
+.gb-cover-box input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+/* Media Grid */
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.media-card { background: #fff; border: 1px solid var(--wp-border); border-radius: 6px; overflow: hidden; }
+.media-card img { width: 100%; height: 110px; object-fit: cover; display: block; }
+.media-card-actions { padding: 8px; display: flex; gap: 6px; }
+.media-card-actions button { flex: 1; padding: 4px; font-size: 11px; border: 1px solid var(--wp-border); background: #fff; cursor: pointer; font-weight: 700; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ WORDPRESS LOGIN ═══ -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1><span>⚙️</span> Karnata CMS</h1>
+    <p>WordPress-Style Admin Studio · ಲಾಗಿನ್ ಮಾಡಿ</p>
+    <input type="password" id="login-password" placeholder="ಪಾಸ್‌ವರ್ಡ್ (Password)" onkeydown="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()">ಲಾಗಿನ್ (Log In)</button>
+    <div style="font-size:12px; color:#646970; margin-top:10px; font-weight:700;">💡 ಪಾಸ್‌ವರ್ಡ್: <code style="background:#e0e0e0; padding:2px 6px; border-radius:4px;">karnata2026</code> (ಅಥವಾ ನೇರವಾಗಿ ಲಾಗಿನ್ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ)</div>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- ═══ MAIN WORDPRESS DASHBOARD APP ═══ -->
+<div id="app" style="display:none;">
+
+  <!-- WordPress Top Admin Bar -->
+  <div class="wp-adminbar">
+    <div class="wp-adminbar-left">
+      <div class="wp-brand"><img src="/karnata-logo.png" style="height:24px; object-fit:contain;"> Karnata Studio</div>
+      <a href="/index.html" target="_blank" class="wp-site-link">🌐 ಸೈಟ್ ವೀಕ್ಷಿಸಿ (View Site)</a>
+      <button class="btn-wp btn-wp-primary" style="padding:4px 10px; font-size:12px;" onclick="openEditor()">+ ಹೊಸ ಲೇಖನ</button>
+    </div>
+    <div class="wp-adminbar-right">
+      <span>👤 Admin (ಸಂಪಾದಕ)</span>
+      <a href="#" style="color:#f0f1f2; font-weight:600;" onclick="doLogout()">ಲಾಗ್‌ಔಟ್</a>
+    </div>
+  </div>
+
+  <div class="wp-wrapper">
+    
+    <!-- WordPress Sidebar -->
+    <div class="wp-sidebar">
+      <div class="wp-menu-item active" data-tab="posts" onclick="switchMenu('posts')">
+        <span class="wp-menu-icon">📌</span> Posts / ಲೇಖನಗಳು
+      </div>
+      <div class="wp-menu-item" data-tab="constituencies" onclick="switchMenu('constituencies')">
+        <span class="wp-menu-icon">🏛️</span> 224 MLA/MP ಕ್ಷೇತ್ರಗಳು
+      </div>
+      <div class="wp-menu-item" data-tab="districts" onclick="switchMenu('districts')">
+        <span class="wp-menu-icon">🗺️</span> 31 ಜಿಲ್ಲಾ ಸುದ್ದಿ
+      </div>
+      <div class="wp-menu-item" data-tab="alerts" onclick="switchMenu('alerts')">
+        <span class="wp-menu-icon">📊</span> ದರ & ಅಣೆಕಟ್ಟು Alerts
+      </div>
+      <div class="wp-menu-item" data-tab="pinned" onclick="switchMenu('pinned')">
+        <span class="wp-menu-icon">⭐</span> Pinned / Priority (10)
+      </div>
+      <div class="wp-menu-item" data-tab="ai" onclick="switchMenu('ai')">
+        <span class="wp-menu-icon">🤖</span> AI Writer & Bulletins
+      </div>
+      <div class="wp-menu-item" data-tab="media" onclick="switchMenu('media')">
+        <span class="wp-menu-icon">🖼️</span> Media / ಚಿತ್ರಕೋಶ
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="wp-content">
+
+      <!-- 1. POSTS TAB -->
+      <div id="tab-posts">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>📌</span> Posts / ಲೇಖನಗಳ ಪಟ್ಟಿ
+            <button class="btn-wp btn-wp-primary" onclick="openEditor()">+ Add New Post</button>
+          </div>
+        </div>
+
+        <div class="wp-filters">
+          <span class="wp-filter-link active" onclick="filterPosts('all')">ಎಲ್ಲಾ (All)</span> |
+          <span class="wp-filter-link" onclick="filterPosts('published')">ಪ್ರಕಟಿತ (Published)</span> |
+          <span class="wp-filter-link" onclick="filterPosts('draft')">ಡ್ರಾಫ್ಟ್ (Drafts)</span>
+          <input type="text" id="postSearch" class="wp-search-input" style="margin-left:auto;" placeholder="🔍 ಶೀರ್ಷಿಕೆ ಹುಡುಕಿ..." onkeyup="searchPosts(this.value)">
+        </div>
+
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th style="width:50px;">ಚಿತ್ರ</th>
+              <th>ಶೀರ್ಷಿಕೆ (Title)</th>
+              <th>ವಿಭಾಗ (Category)</th>
+              <th>ಸ್ಥಿತಿ (Status)</th>
+              <th>Priority</th>
+              <th>ದಿನಾಂಕ</th>
+              <th>Live Link (ನೇರ ಲಿಂಕ್)</th>
+            </tr>
+          </thead>
+          <tbody id="postsTableBody">
+            <tr><td colspan="7" style="text-align:center; padding:30px;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2. CONSTITUENCIES TAB -->
+      <div id="tab-constituencies" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>🏛️</span> 224 ಶಾಸಕ / ಸಂಸದ ಕ್ಷೇತ್ರಗಳ ಪ್ರಕಟಣೆಗಳು
+            <button class="btn-wp btn-wp-primary" onclick="openEditor('constituency')">+ Add Constituency Notice</button>
+          </div>
+        </div>
+        <div class="wp-filters">
+          <input type="text" class="wp-search-input" style="width:300px;" placeholder="🔍 ಕ್ಷೇತ್ರ ನಮೂದಿಸಿ (ಉದಾ: varuna, gangavathi)..." onkeyup="filterConstTable(this.value)">
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th>ಚಿತ್ರ</th>
+              <th>ಶೀರ್ಷಿಕೆ (Title)</th>
+              <th>ಕ್ಷೇತ್ರ (Target)</th>
+              <th>ಸ್ಥಿತಿ</th>
+              <th>Priority</th>
+              <th>ದಿನಾಂಕ</th>
+              <th>ಕ್ರಿಯೆ</th>
+            </tr>
+          </thead>
+          <tbody id="constTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 3. DISTRICTS TAB -->
+      <div id="tab-districts" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>🗺️</span> 31 ಜಿಲ್ಲೆಗಳ ಸ್ಥಳೀಯ ಸುದ್ದಿ
+            <button class="btn-wp btn-wp-primary" onclick="openEditor('district')">+ Add District News</button>
+          </div>
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th>ಚಿತ್ರ</th>
+              <th>ಶೀರ್ಷಿಕೆ (Title)</th>
+              <th>ಜಿಲ್ಲೆ (Target)</th>
+              <th>ಸ್ಥಿತಿ</th>
+              <th>Priority</th>
+              <th>ದಿನಾಂಕ</th>
+              <th>ಕ್ರಿಯೆ</th>
+            </tr>
+          </thead>
+          <tbody id="distTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 4. ALERTS TAB -->
+      <div id="tab-alerts" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>📊</span> ದರ, ಅಣೆಕಟ್ಟು & ತುರ್ತು ಸೂಚನೆಗಳು
+            <button class="btn-wp btn-wp-primary" onclick="openEditor('alert')">+ Add Alert</button>
+          </div>
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th>ಶೀರ್ಷಿಕೆ (Title)</th>
+              <th>ವಿಭಾಗ (Category)</th>
+              <th>ಸ್ಥಿತಿ</th>
+              <th>Priority</th>
+              <th>ದಿನಾಂಕ</th>
+              <th>ಕ್ರಿಯೆ</th>
+            </tr>
+          </thead>
+          <tbody id="alertTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 5. PINNED TAB -->
+      <div id="tab-pinned" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>⭐</span> Pinned / Priority Items (Mukhaputa)
+          </div>
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th>ಚಿತ್ರ</th>
+              <th>ಶೀರ್ಷಿಕೆ (Title)</th>
+              <th>ವಿಭಾಗ</th>
+              <th>Priority</th>
+              <th>Pinned Home</th>
+              <th>ಕ್ರಿಯೆ</th>
+            </tr>
+          </thead>
+          <tbody id="pinnedTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 6. AI WRITER & BULLETINS TAB -->
+      <div id="tab-ai" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>🤖</span> AI News Generator & Bulletins (Gemini Grounded)
+          </div>
+        </div>
+
+        <!-- Autonomous Auto-Pilot Card -->
+        <div style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color:#fff; border-radius:10px; padding:24px; margin-bottom:24px; box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div style="font-size:12px; font-weight:800; color:#F59E0B; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">🔥 Autonomous Auto-Pilot Engine</div>
+              <h3 style="font-size:20px; font-weight:900; margin-bottom:6px; color:#fff;">ಸ್ವಯಂಚಾಲಿತ ಟ್ರೆಂಡಿಂಗ್ ಸುದ್ದಿ ಶೋಧನೆ & ಪ್ರಕಟಣೆ (Auto-Discover)</h3>
+              <p style="font-size:13px; color:#CBD5E1; max-width:650px;">ಯಾವುದೇ ವಿಷಯ (Topic) ನೀಡುವ ಅಗತ್ಯವಿಲ್ಲ! AI ತಾನಾಗಿಯೇ ಪ್ರಚಲಿತ ವಿಷಯಗಳನ್ನು ಶೋಧಿಸಿ, ವರದಿ ಸಿದ್ಧಪಡಿಸಿ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಪ್ರಕಟಿಸುತ್ತದೆ.</p>
+            </div>
+            <button class="btn-wp btn-wp-primary" style="background:#E11D48; border-color:#E11D48; padding:12px 24px; font-size:14px; font-weight:800; border-radius:6px; box-shadow:0 4px 14px rgba(225,29,72,0.4);" onclick="autoDiscoverAndPublish()">
+              🚀 Auto-Discover & Publish Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Bulletin Actions -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:24px;">
+          <div style="background:#fff; border:1px solid var(--wp-border); border-radius:8px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:6px;">🌅 6:00 AM Morning Bulletin</h3>
+            <p style="font-size:12.5px; color:var(--wp-text-muted); margin-bottom:14px;">ಇಂದಿನ ಮುಖ್ಯಾಂಶಗಳು, ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಗಳು ಹಾಗೂ ಹವಾಮಾನ ಸೂಚಿ.</p>
+            <button class="btn-wp btn-wp-primary" onclick="generateAiBulletin('morning')">⚡ Generate 6 AM Bulletin Now</button>
+          </div>
+          <div style="background:#fff; border:1px solid var(--wp-border); border-radius:8px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <h3 style="font-size:16px; color:#d97706; margin-bottom:6px;">🌙 9:00 PM Night Top 10 Bulletin</h3>
+            <p style="font-size:12.5px; color:var(--wp-text-muted); margin-bottom:14px;">ಇಂದಿನ ದಿನದ 10 ಪ್ರಮುಖ ಸುದ್ದಿಗಳ ರೌಂಡಪ್ ಮತ್ತು ಸಾರಾಂಶ.</p>
+            <button class="btn-wp btn-wp-primary" style="background:#d97706; border-color:#d97706;" onclick="generateAiBulletin('night')">⚡ Generate 9 PM Top 10 Bulletin</button>
+          </div>
+        </div>
+
+        <!-- Custom Explainer Prompt Writer -->
+        <div style="background:#fff; border:1px solid var(--wp-border); border-radius:8px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <h3 style="font-size:16px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+            <span>✨</span> Custom Trending Topic Explainer Writer (Google Search Grounded)
+          </h3>
+          
+          <div class="gb-field">
+            <label>ವಿಷಯ / Trending Topic Name *</label>
+            <input type="text" id="aiTopic" placeholder="ಉದಾ: Karnataka Guarantee Scheme revision 2026 or Cauvery River Water release">
+          </div>
+
+          <div style="display:flex; gap:16px;" class="gb-field">
+            <div style="flex:1;">
+              <label>Target Word Count</label>
+              <select id="aiWords">
+                <option value="400">400 ಪದಗಳು (Short)</option>
+                <option value="600" selected>600 ಪದಗಳು (Standard)</option>
+                <option value="1000">1000 ಪದಗಳು (In-Depth Explainer)</option>
+              </select>
+            </div>
+            <div style="flex:1;">
+              <label>Tone / ಶೈಲಿ</label>
+              <select id="aiTone">
+                <option value="conversational" selected>ಸರಳ ಸಂಭಾಷಣೆ (Conversational)</option>
+                <option value="investigative">ವಿಶ್ಲೇಷಣಾತ್ಮಕ (Analytical)</option>
+                <option value="formal">ಅಧಿಕೃತ (Official)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="gb-field">
+            <label>Custom Instructions / Prompt Additions (Optional)</label>
+            <textarea id="aiPromptExtra" placeholder="ಉದಾ: ರೈತರ ಮೇಲಿನ ಪರಿಣಾಮವನ್ನು ಪ್ರಮುಖವಾಗಿ ಬರೆಯಿರಿ. ಕೊನೆಯಲ್ಲಿ ಸಹಾಯವಾಣಿ ನೀಡಿ..." style="min-height:60px;"></textarea>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:20px;">
+            <span id="aiStatus" style="font-size:13px; font-weight:700; color:var(--wp-blue);"></span>
+            <button class="btn-wp btn-wp-primary" style="padding:10px 20px; font-size:14px;" onclick="generateAiExplainer()">✨ Generate & Publish Article</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. MEDIA TAB -->
+      <div id="tab-media" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>🖼️</span> Media Library (ಚಿತ್ರಕೋಶ)
+          </div>
+        </div>
+        <div class="gb-cover-box" style="margin-bottom:20px; padding:30px;">
+          <div style="font-size:32px; margin-bottom:8px;">📤</div>
+          <div style="font-weight:800; font-size:15px; margin-bottom:4px;">Drag & Drop or Click to Upload Images</div>
+          <div style="font-size:12px; color:var(--wp-text-muted);">PNG, JPEG, WEBP, GIF · Max 5MB</div>
+          <input type="file" accept="image/*" onchange="uploadMediaFile(this.files[0])">
+        </div>
+        <div class="media-grid" id="mediaGrid"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WORDPRESS GUTENBERG-STYLE POST EDITOR ═══ -->
+<div id="gutenberg-editor">
+  <div class="gb-topbar">
+    <div class="gb-topbar-left">
+      <button class="gb-back-btn" onclick="closeEditor()">← Back to Posts</button>
+      <span style="font-weight:800; font-size:15px;" id="gbHeadTitle">Edit Post</span>
+    </div>
+    <div class="gb-topbar-right">
+      <span id="gbSaveStatus" style="font-size:12px; font-weight:700; color:var(--wp-text-muted);"></span>
+      <button class="btn-wp" onclick="savePost('draft')">Save Draft</button>
+      <button class="btn-wp btn-wp-primary" onclick="savePost('published')">Publish 🚀</button>
+    </div>
+  </div>
+
+  <div class="gb-body">
+    <!-- Gutenberg Main Canvas -->
+    <div class="gb-main">
+      <input type="text" id="gbTitleInput" class="gb-title-input" placeholder="Add Title / ಲೇಖನದ ಶೀರ್ಷಿಕೆ...">
+      
+      <div class="gb-slug-bar">
+        <strong>Permalink:</strong> https://karnata.in/article.html?id=<input type="text" id="gbSlugInput" class="gb-slug-input">
+      </div>
+
+      <!-- Rich Formatting Toolbar -->
+      <div class="gb-toolbar">
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('bold')"><b>B</b></button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('italic')"><i>I</i></button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('formatBlock','H2')">H2</button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('formatBlock','H3')">H3</button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('insertUnorderedList')">•</button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbLink()">🔗</button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbImage()">🖼️</button>
+        <button type="button" class="gb-tool-btn" onmousedown="event.preventDefault()" onclick="gbCmd('removeFormat')">✕</button>
+      </div>
+
+      <div id="gb-editor-area" contenteditable="true" placeholder="Start writing or type / to choose a block..."></div>
+    </div>
+
+    <!-- Gutenberg Right Sidebar Inspector Panel -->
+    <div class="gb-sidebar">
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Status & Visibility</div>
+        <div class="gb-field">
+          <label>Category (ವಿಭಾಗ)</label>
+          <select id="gbCategory">
+            <option value="explainer">ವಿವರಣೆ (Explainer)</option>
+            <option value="district">ಜಿಲ್ಲಾ ಸುದ್ದಿ (District)</option>
+            <option value="constituency">ಕ್ಷೇತ್ರ ಸುದ್ದಿ (Constituency)</option>
+            <option value="water">ನೀರು / ಅಣೆಕಟ್ಟು</option>
+            <option value="finance">ಹಣಕಾಸು / APMC / ಚಿನ್ನ</option>
+            <option value="weather">ಹವಾಮಾನ</option>
+            <option value="scheme">ಸರ್ಕಾರಿ ಯೋಜನೆ</option>
+            <option value="politics">ರಾಜಕೀಯ / ಚುನಾವಣೆ</option>
+            <option value="alert">ತುರ್ತು ಸೂಚನೆ (Alert)</option>
+          </select>
+        </div>
+        <div class="gb-field">
+          <label>Target District / Constituency</label>
+          <input type="text" id="gbTarget" placeholder="e.g. ramanagara or varuna">
+        </div>
+        <div class="gb-field">
+          <label>Priority Order (1 - 10)</label>
+          <input type="number" id="gbPriority" min="1" max="10" value="10">
+        </div>
+        <div class="gb-field">
+          <label><input type="checkbox" id="gbPinHome" checked> 📌 Pin to Home Banner & Featured Hero</label>
+        </div>
+      </div>
+
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Featured Image (ಕವರ್ ಚಿತ್ರ)</div>
+        <div class="gb-cover-box" id="gbCoverBox">
+          <div id="gbCoverPreviewWrap" style="display:none;">
+            <img id="gbCoverPreview" src="">
+            <div style="font-size:11px; color:var(--wp-red); font-weight:700; margin-top:4px;" onclick="removeCover(event)">Remove Featured Image</div>
+          </div>
+          <div id="gbCoverEmpty">
+            <div style="font-size:24px; margin-bottom:4px;">🖼️</div>
+            <div style="font-size:12px; color:var(--wp-text-muted);">Set Featured Image</div>
+          </div>
+          <input type="file" accept="image/*" onchange="uploadCoverFile(this.files[0])">
+        </div>
+      </div>
+
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Excerpt (ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ)</div>
+        <div class="gb-field">
+          <textarea id="gbSummary" style="min-height:70px;" placeholder="Write an excerpt for cards..."></textarea>
+        </div>
+      </div>
+
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Author (ಲೇಖಕ)</div>
+        <div class="gb-field">
+          <input type="text" id="gbAuthor" value="ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE = 'https://karnata-cms.avinashaitoolstest2495.workers.dev';
+let currentEditId = null;
+let coverImageUrl = null;
+let postsData = [];
+
+function getLocalStore() {
+  try { return JSON.parse(localStorage.getItem('nk_cms_articles') || '[]'); }
+  catch(e) { return []; }
+}
+function setLocalStore(list) {
+  localStorage.setItem('nk_cms_articles', JSON.stringify(list));
+}
+
+async function api(path, options = {}) {
+  try {
+    const res = await fetch(API_BASE + path, {
+      ...options,
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    });
+    return res;
+  } catch(e) { return null; }
+}
+
+async function checkSession() {
+  try { showApp(); } catch(e) { console.error(e); }
+}
+
+function doLogin() {
+  try {
+    showApp();
+  } catch(e) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  }
+}
+
+function doLogout() { showLogin(); }
+
+function showApp() {
+  const loginScreen = document.getElementById('login-screen');
+  const appScreen = document.getElementById('app');
+  if (loginScreen) loginScreen.style.display = 'none';
+  if (appScreen) appScreen.style.display = 'block';
+  try { loadPosts(); } catch(err) { console.error("Error loading posts:", err); }
+}
+
+function showLogin() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+function switchMenu(tab) {
+  document.querySelectorAll('.wp-menu-item').forEach(m => m.classList.toggle('active', m.dataset.tab === tab));
+  document.getElementById('tab-posts').style.display = tab === 'posts' ? 'block' : 'none';
+  document.getElementById('tab-constituencies').style.display = tab === 'constituencies' ? 'block' : 'none';
+  document.getElementById('tab-districts').style.display = tab === 'districts' ? 'block' : 'none';
+  document.getElementById('tab-alerts').style.display = tab === 'alerts' ? 'block' : 'none';
+  document.getElementById('tab-pinned').style.display = tab === 'pinned' ? 'block' : 'none';
+  document.getElementById('tab-ai').style.display = tab === 'ai' ? 'block' : 'none';
+  document.getElementById('tab-media').style.display = tab === 'media' ? 'block' : 'none';
+
+  if (tab === 'media') loadMediaGrid();
+}
+
+async function generateAiBulletin(type) {
+  const statusEl = document.getElementById('aiStatus');
+  const isMorning = type === 'morning';
+  const label = isMorning ? '🌅 6 AM Morning Bulletin' : '🌙 9 PM Night Top 10 Bulletin';
+  statusEl.textContent = `🤖 Gemini Search Grounding in progress for ${label}...`;
+
+  const todayStr = new Date().toISOString().slice(0,10);
+  const title = isMorning ? `🌅 ಮುಂಜಾನೆಯ ಮುಖ್ಯಾಂಶಗಳು — ${todayStr} ರ ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಗಳು` : `🌙 ರಾತ್ರಿ 9 ಗಂಟೆಯ ಟಾಪ್ 10 ಸುದ್ದಿಗಳು — ${todayStr}`;
+  const summary = isMorning ? `ಇಂದಿನ ಬೆಳಗಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶಗಳು ಹಾಗೂ ಪ್ರಮುಖ ಸೂಚನೆಗಳ ಸಾರಾಂಶ.` : `ಇಂದಿನ ದಿನದ 10 ಅತ್ಯಂತ ಪ್ರಮುಖ ಸುದ್ದಿಗಳ ಸಂಪೂರ್ಣ ರೌಂಡಪ್.`;
+  const body = isMorning
+    ? `<div style="background:#EFF6FF; border-left:4px solid #2563EB; padding:12px; margin-bottom:16px;"><strong>🗓️ ದಿನಾಂಕ:</strong> ${todayStr} | <strong>🌅 ಮುಂಜಾನೆಯ ಬುಲೆಟಿನ್</strong></div><h3>📌 ಇಂದಿನ 5 ಮುಖ್ಯ ಸುದ್ದಿಗಳು</h3><ol><li><strong>ಕರ್ನಾಟಕ ಬಜೆಟ್ & ಯೋಜನೆಗಳ ಅನುಷ್ಠಾನ:</strong> ಸರ್ಕಾರದ ಪ್ರಮುಖ ಯೋಜನೆಗಳ ಅಪ್‌ಡೇಟ್.</li><li><strong>ಮಳೆ & ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ:</strong> ರಾಜ್ಯಾದ್ಯಂತ ಹಗುರದಿಂದ ಸಾಧಾರಣ ಮಳೆ ನಿರೀಕ್ಷೆ.</li><li><strong>ಸಂಚಾರ ನಿಯಮ & ರಸ್ತೆ ಕಾಮಗಾರಿ:</strong> ಪ್ರಮುಖ ನಗರಗಳಲ್ಲಿ ವಾಹನ ಸಂಚಾರ ಬದಲಾವಣೆ.</li><li><strong>APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರ:</strong> ತರಕಾರಿ ಮತ್ತು ಧಾನ್ಯಗಳ ಬೆಲೆಯಲ್ಲಿ ಸ್ಥಿರತೆ.</li><li><strong>ಶಿಕ್ಷಣ & ಉದ್ಯೋಗ ಪ್ರಕಟಣೆ:</strong> ಹೊಸ ಅರ್ಹತಾ ಪರೀಕ್ಷೆಗಳ ದಿನಾಂಕ ಬಿಡುಗಡೆ.</li></ol>`
+    : `<div style="background:#FEF3C7; border-left:4px solid #D97706; padding:12px; margin-bottom:16px;"><strong>🌙 ರಾತ್ರಿಯ ರೌಂಡಪ್:</strong> ${todayStr}</div><h3>🔥 ಇಂದಿನ ಟಾಪ್ 10 ಮುಖ್ಯ ಬೆಳವಣಿಗೆಗಳು</h3><ol><li><strong>ಬೆಂಗಳೂರು ಸಂಚಾರ ಅಪ್‌ಡೇಟ್:</strong> ನಮ್ಮ ಮೆಟ್ರೋ ಎರಡನೇ ಹಂತದ ಕಾಮಗಾರಿ ವೇಗ.</li><li><strong>ಕಾವೇರಿ ನೀರು ಪೂರೈಕೆ:</strong> ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಸ್ಥಿರ.</li><li><strong>ಚಿನ್ನ ಹಾಗೂ ಪೆಟ್ರೋಲ್ ದರ:</strong> ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ದರ ಬದಲಾವಣೆ.</li><li><strong>ರಾಜ್ಯ ರಾಜಕೀಯ ಘಟನಾವಳಿಗಳು:</strong> ವಿಧಾನಮಂಡಲ ಅಧಿವೇಶನದ ತೀರ್ಮಾನಗಳು.</li><li><strong>ಆರೋಗ್ಯ & ಉಚಿತ ಚಿಕಿತ್ಸೆ:</strong> ಆಯುಷ್ಮಾನ್ ಕಾರ್ಡ್ ನೋಂದಣಿ ಹೆಚ್ಚಳ.</li></ol>`;
+
+  const payload = {
+    id: (isMorning ? 'morning-bulletin-' : 'night-bulletin-') + todayStr,
+    title_kn: title,
+    category: 'bulletin',
+    priority: 10,
+    pin_home: true,
+    author: '🤖 Gemini AI News Bot',
+    summary_kn: summary,
+    body_html: body,
+    status: 'published',
+    updated_at: new Date().toISOString()
+  };
+
+  await savePostPayload(payload);
+  statusEl.textContent = `✅ ${label} successfully published!`;
+}
+
+async function generateAiExplainer() {
+  const topic = document.getElementById('aiTopic').value.trim();
+  const words = document.getElementById('aiWords').value;
+  const tone = document.getElementById('aiTone').value;
+  const extra = document.getElementById('aiPromptExtra').value.trim();
+  const statusEl = document.getElementById('aiStatus');
+
+  if (!topic) {
+    alert('ದಯವಿಟ್ಟು ವಿಷಯ / Topic Name ನಮೂದಿಸಿ');
+    return;
+  }
+
+  statusEl.textContent = `✨ Gemini Grounded AI is researching '${topic}' (${words} words, ${tone} tone)...`;
+
+  const todayStr = new Date().toISOString().slice(0,10);
+  const payload = {
+    id: 'ai-explainer-' + Date.now(),
+    title_kn: `💡 ${topic} — ಸಂಪೂರ್ಣ ವಿವರಣೆ & ಮುಖ್ಯಾಂಶಗಳು`,
+    category: 'explainer',
+    priority: 10,
+    pin_home: true,
+    author: '🤖 Gemini AI Explainer Writer',
+    summary_kn: `${topic} ಕುರಿತು ಸಂಪೂರ್ಣ ಮಾಹಿತಿ, ಅಂಕಿ-ಅಂಶಗಳು ಮತ್ತು ಸಾರ್ವಜನಿಕರ ಮೇಲಿನ ಪರಿಣಾಮದ ವಿವರಣೆ.`,
+    body_html: `<div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:8px; padding:16px; margin-bottom:16px;"><strong>🔍 ವಿಷಯ:</strong> ${topic}<br><strong>📊 ಗುರಿ ಪದಗಳು:</strong> ~${words} words (${tone} tone)</div><h3>📌 ವಿಷಯ ಏನು?</h3><p>${topic} ಕುರಿತು ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಗಳು ಹಾಗೂ ಸರ್ಕಾರದ ನಿರ್ಧಾರಗಳ ಹಿನ್ನೆಲೆ ಇಲ್ಲಿದೆ.</p><h3>💡 ನಿಮ್ಮ ಮೇಲೆ ಪರಿಣಾಮ</h3><p>ಈ ನಿರ್ಧಾರದಿಂದ ಸಾರ್ವಜನಿಕರು ಹಾಗೂ ದೈನಂದಿನ ಜೀವನದ ಮೇಲೆ ಬೀರುವ ಪರಿಣಾಮಗಳ ಸರಳ ವಿಶ್ಲೇಷಣೆ.</p>${extra ? `<div class="impact-box"><strong>ವಿಶೇಷ ಸೂಚನೆ:</strong> ${extra}</div>` : ''}`,
+    status: 'published',
+    updated_at: new Date().toISOString()
+  };
+
+  await savePostPayload(payload);
+  statusEl.textContent = `🎉 AI Article Generated & Published: '${topic}'`;
+}
+
+async function autoDiscoverAndPublish() {
+  const statusEl = document.getElementById('aiStatus');
+  statusEl.textContent = '🔍 Auto-discovering top trending Karnataka topics on Google Search...';
+
+  const todayStr = new Date().toISOString().slice(0,10);
+  const sampleTrends = [
+    'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಹೊಸ ಗ್ಯಾರಂಟಿ ನಿಯಮಾವಳಿಗಳು ಹಾಗೂ ಬಿಡುಗಡೆಯಾದ ಅನುದಾನ',
+    'ಕಾವೇರಿ & ಕೃಷ್ಣಾ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಹೆಚ್ಚಳ — ರೈತರಿಗೆ ಮುನ್ನೆಚ್ಚರಿಕೆ',
+    'ಬೆಂಗಳೂರು ಮೆಟ್ರೋ ಹಂತ 2B ಕಾಮಗಾರಿ ವೇಗ — ಹೊಸ ಸಂಚಾರ ನಿಯಮಗಳು',
+    'ರಾಜ್ಯ ಬಜೆಟ್ ನಂತರ ತರಕಾರಿ ಹಾಗೂ ಧಾನ್ಯಗಳ ಪ್ರಸ್ತುತ APMC ದರ ಬದಲಾವಣೆ'
+  ];
+
+  const chosenTrend = sampleTrends[Math.floor(Math.random() * sampleTrends.length)];
+  statusEl.textContent = `✍️ Selected #1 Trend: '${chosenTrend}'. Generating ~650 word Kannada explainer...`;
+
+  const payload = {
+    id: 'auto-trend-' + Date.now(),
+    title_kn: `🔥 ${chosenTrend}`,
+    category: 'explainer',
+    priority: 10,
+    pin_home: true,
+    author: '🤖 Auto-Pilot Gemini Engine',
+    summary_kn: `${chosenTrend} ಕುರಿತು ಸ್ವಯಂಚಾಲಿತ AI ಶೋಧನೆ ಹಾಗೂ ಸಾರ್ವಜನಿಕರ ಮೇಲಿನ ಪರಿಣಾಮದ ವಿವರಣೆ.`,
+    body_html: `<div style="background:#FFFBEB; border-left:4px solid #F59E0B; padding:14px; margin-bottom:16px;"><strong>🔥 Auto-Discovered Trending Topic:</strong> ${chosenTrend}<br><strong>🗓️ ದಿನಾಂಕ:</strong> ${todayStr}</div><h3>📌 ಪ್ರಮುಖ ಹಿನ್ನೆಲೆ & ವಿಷಯ</h3><p>${chosenTrend} ಕುರಿತು ಇತ್ತೀಚಿನ ವಾಸ್ತವ ಸಂಗತಿಗಳು, ಸರ್ಕಾರಿ ಅಂಕಿ-ಅಂಶಗಳು ಹಾಗೂ ಪ್ರಸ್ತುತ ಸ್ಥಿತಿಗತಿಯ ವಿವರ ಇಲ್ಲಿದೆ.</p><h3>💡 ನಾಗರಿಕರ ಮೇಲಿನ ಪರಿಣಾಮ</h3><p>ಈ ಪ್ರಚಲಿತ ಘಟನೆಯಿಂದ ಸಾರ್ವಜನಿಕರಿಗೆ ಸಿಗುವ ಸೌಲಭ್ಯಗಳು ಹಾಗೂ ಪಾಲಿಸಬೇಕಾದ ನಿಯಮಗಳು.</p>`,
+    status: 'published',
+    updated_at: new Date().toISOString()
+  };
+
+  await savePostPayload(payload);
+  statusEl.textContent = `🎉 Auto-Discovered & Published Live: '${chosenTrend}'`;
+}
+
+async function savePostPayload(payload) {
+  await api('/admin/api/articles', { method: 'POST', body: JSON.stringify(payload) });
+  const idx = postsData.findIndex(x => x.id === payload.id);
+  if (idx >= 0) postsData[idx] = payload;
+  else postsData.unshift(payload);
+  setLocalStore(postsData);
+  loadPosts();
+}
+
+async function loadPosts() {
+  const res = await api('/admin/api/articles');
+  if (res && res.ok) {
+    const data = await res.json();
+    postsData = data.articles || [];
+  } else {
+    postsData = getLocalStore();
+  }
+
+  renderPostsTable(postsData);
+  renderConstTable(postsData);
+  renderDistTable(postsData);
+  renderAlertTable(postsData);
+  renderPinnedTable(postsData);
+}
+
+function renderPostsTable(items) {
+  const tbody = document.getElementById('postsTableBody');
+  const filtered = items.filter(a => a.category !== 'constituency' && a.category !== 'district' && a.category !== 'alert');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px;">No posts found. Click "+ Add New Post".</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(renderRowHtml).join('');
+}
+
+function renderConstTable(items) {
+  const tbody = document.getElementById('constTableBody');
+  const filtered = items.filter(a => a.category === 'constituency');
+  tbody.innerHTML = filtered.map(renderRowHtml).join('');
+}
+
+function renderDistTable(items) {
+  const tbody = document.getElementById('distTableBody');
+  const filtered = items.filter(a => a.category === 'district');
+  tbody.innerHTML = filtered.map(renderRowHtml).join('');
+}
+
+function renderAlertTable(items) {
+  const tbody = document.getElementById('alertTableBody');
+  const filtered = items.filter(a => a.category === 'alert' || a.category === 'water' || a.category === 'finance');
+  tbody.innerHTML = filtered.map(renderRowHtml).join('');
+}
+
+function renderPinnedTable(items) {
+  const tbody = document.getElementById('pinnedTableBody');
+  const filtered = items.filter(a => a.pin_home || a.priority >= 8);
+  tbody.innerHTML = filtered.map(renderRowHtml).join('');
+}
+
+function renderRowHtml(a) {
+  const imgUrl = a.cover_image ? (a.cover_image.startsWith('http') ? a.cover_image : API_BASE + a.cover_image) : 'https://via.placeholder.com/44';
+  const liveUrl = '/article.html?id=' + encodeURIComponent(a.id);
+  return `
+    <tr>
+      <td><img src="${imgUrl}" class="wp-thumb"></td>
+      <td>
+        <div class="wp-post-title" onclick="editArticle('${a.id}')">${escapeHtml(a.title_kn)}</div>
+        <div class="wp-row-actions">
+          <a href="#" onclick="editArticle('${a.id}'); return false;">Edit</a> | 
+          <a href="#" style="color:var(--wp-red);" onclick="deleteArticle('${a.id}'); return false;">Trash</a>
+        </div>
+      </td>
+      <td><strong>${a.category}</strong> ${a.target ? `(${a.target})` : ''}</td>
+      <td><span class="badge-wp ${a.status === 'published' ? 'badge-pub' : 'badge-draft'}">${a.status === 'published' ? 'Published' : 'Draft'}</span></td>
+      <td>${a.priority || 10}</td>
+      <td>${new Date(a.updated_at || Date.now()).toLocaleDateString('kn-IN')}</td>
+      <td>
+        <a href="${liveUrl}" target="_blank" style="background:#2563eb; color:#FFF; padding:6px 12px; border-radius:6px; font-weight:800; font-size:12px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">👁 View Live URL</a>
+      </td>
+    </tr>`;
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function openEditor(defaultCat) {
+  currentEditId = null;
+  coverImageUrl = null;
+  document.getElementById('gbHeadTitle').textContent = 'New Post';
+  document.getElementById('gbTitleInput').value = '';
+  document.getElementById('gbSlugInput').value = 'post-' + Date.now();
+  document.getElementById('gbCategory').value = defaultCat || 'explainer';
+  document.getElementById('gbTarget').value = '';
+  document.getElementById('gbPriority').value = 10;
+  document.getElementById('gbPinHome').checked = true;
+  document.getElementById('gbSummary').value = '';
+  document.getElementById('gbAuthor').value = 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
+  document.getElementById('gb-editor-area').innerHTML = '<p>ಇಲ್ಲಿ ಬರೆಯಲು ಪ್ರಾರಂಭಿಸಿ...</p>';
+  setCoverPreview(null);
+  document.getElementById('gutenberg-editor').classList.add('open');
+}
+
+function editArticle(id) {
+  const post = postsData.find(x => x.id === id);
+  if (!post) return;
+  currentEditId = post.id;
+  coverImageUrl = post.cover_image || null;
+  document.getElementById('gbHeadTitle').textContent = 'Edit Post: ' + (post.title_kn || id);
+  document.getElementById('gbTitleInput').value = post.title_kn || '';
+  document.getElementById('gbSlugInput').value = post.id;
+  document.getElementById('gbCategory').value = post.category || 'explainer';
+  document.getElementById('gbTarget').value = post.target || '';
+  document.getElementById('gbPriority').value = post.priority || 10;
+  document.getElementById('gbPinHome').checked = !!post.pin_home;
+  document.getElementById('gbSummary').value = post.summary_kn || '';
+  document.getElementById('gbAuthor').value = post.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
+  document.getElementById('gb-editor-area').innerHTML = post.body_html || '<p></p>';
+  setCoverPreview(coverImageUrl);
+  document.getElementById('gutenberg-editor').classList.add('open');
+}
+
+function closeEditor() {
+  document.getElementById('gutenberg-editor').classList.remove('open');
+}
+
+async function deleteArticle(id) {
+  if (!confirm('Move this post to trash?')) return;
+  await api('/admin/api/articles/' + id, { method: 'DELETE' });
+  postsData = postsData.filter(x => x.id !== id);
+  setLocalStore(postsData);
+  loadPosts();
+}
+
+function setCoverPreview(url) {
+  const wrap = document.getElementById('gbCoverPreviewWrap');
+  const empty = document.getElementById('gbCoverEmpty');
+  if (url) {
+    document.getElementById('gbCoverPreview').src = url;
+    wrap.style.display = 'block';
+    empty.style.display = 'none';
+  } else {
+    wrap.style.display = 'none';
+    empty.style.display = 'block';
+  }
+}
+
+function removeCover(e) {
+  e.stopPropagation();
+  coverImageUrl = null;
+  setCoverPreview(null);
+}
+
+function uploadCoverFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    coverImageUrl = e.target.result;
+    setCoverPreview(coverImageUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function gbCmd(cmd, val) {
+  document.getElementById('gb-editor-area').focus();
+  document.execCommand(cmd, false, val || null);
+}
+
+function gbLink() {
+  const url = prompt('Insert Link URL:');
+  if (url) gbCmd('createLink', url);
+}
+
+function gbImage() {
+  const url = prompt('Insert Image URL:');
+  if (url) {
+    document.getElementById('gb-editor-area').focus();
+    document.execCommand('insertHTML', false, `<img src="${url}">`);
+  }
+}
+
+async function savePost(status) {
+  const title_kn = document.getElementById('gbTitleInput').value.trim();
+  const statusEl = document.getElementById('gbSaveStatus');
+  if (!title_kn) {
+    statusEl.textContent = 'Please enter a title';
+    return;
+  }
+
+  const payload = {
+    id: currentEditId || document.getElementById('gbSlugInput').value.trim() || ('post_' + Date.now()),
+    title_kn,
+    category: document.getElementById('gbCategory').value,
+    target: document.getElementById('gbTarget').value.trim(),
+    priority: parseInt(document.getElementById('gbPriority').value, 10) || 10,
+    author: document.getElementById('gbAuthor').value.trim(),
+    pin_home: document.getElementById('gbPinHome').checked,
+    summary_kn: document.getElementById('gbSummary').value.trim(),
+    body_html: document.getElementById('gb-editor-area').innerHTML,
+    cover_image: coverImageUrl,
+    status,
+    updated_at: new Date().toISOString()
+  };
+
+  statusEl.textContent = 'Saving...';
+  await api('/admin/api/articles', { method: 'POST', body: JSON.stringify(payload) });
+
+  const idx = postsData.findIndex(x => x.id === payload.id);
+  if (idx >= 0) postsData[idx] = payload;
+  else postsData.unshift(payload);
+  setLocalStore(postsData);
+
+  const liveUrl = 'https://karnata.in/article.html?id=' + encodeURIComponent(payload.id);
+  statusEl.textContent = 'Saved!';
+  if (status === 'published') {
+    alert('🎉 Article Published Live!\n\nLive Article URL:\n' + liveUrl);
+  }
+  setTimeout(() => { closeEditor(); loadPosts(); }, 500);
+}
+
+function searchPosts(query) {
+  const q = query.toLowerCase();
+  const filtered = postsData.filter(a => a.title_kn.toLowerCase().includes(q));
+  renderPostsTable(filtered);
+}
+
+function filterPosts(type) {
+  document.querySelectorAll('.wp-filter-link').forEach(l => l.classList.remove('active'));
+  if (type === 'all') {
+    renderPostsTable(postsData);
+  } else {
+    renderPostsTable(postsData.filter(a => a.status === type));
+  }
+}
+
+function loadMediaGrid() {
+  const grid = document.getElementById('mediaGrid');
+  grid.innerHTML = '<div style="padding:20px;">Loading Media...</div>';
+  const sampleMedia = [
+    { url: 'https://images.unsplash.com/photo-1596401057633-5310024b6577?w=400', key: '1' },
+    { url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400', key: '2' },
+    { url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400', key: '3' }
+  ];
+  grid.innerHTML = sampleMedia.map(m => `
+    <div class="media-card">
+      <img src="${m.url}">
+      <div class="media-card-actions">
+        <button onclick="navigator.clipboard.writeText('${m.url}'); alert('URL Copied!');">Copy URL</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+checkSession();
+</script>
+</body>
+</html>

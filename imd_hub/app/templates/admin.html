@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMD Karnataka Scraper Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0F172A; color: #F8FAFC; margin: 0; padding: 24px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 24px; }
+    .title { font-size: 22px; font-weight: 800; color: #FFFFFF; }
+    .btn-group { display: flex; gap: 12px; }
+    .btn { background: #0284C7; color: #FFFFFF; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: #0369A1; }
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 30px; }
+    .stat-card { background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 16px 20px; }
+    .stat-val { font-size: 26px; font-weight: 800; color: #38BDF8; margin-top: 4px; }
+    .stat-label { font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase; }
+    .table-card { background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+    th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #334155; }
+    th { color: #94A3B8; font-size: 11px; text-transform: uppercase; }
+    .badge-success { background: #065F46; color: #34D399; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+    .badge-failed { background: #991B1B; color: #FCA5A5; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="title">⚡ IMD Karnataka Scraper Admin Dashboard</div>
+      <div class="btn-group">
+        <button class="btn" id="run-btn" onclick="runScraperNow()">🚀 RUN SCRAPER NOW</button>
+        <button class="btn" style="background:#334155;" onclick="loadStatus()">↻ REFRESH</button>
+      </div>
+    </div>
+
+    <div class="status-grid">
+      <div class="stat-card">
+        <div class="stat-label">Scraper Status</div>
+        <div class="stat-val" id="stat-status">LOADING...</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Last Successful Scrape</div>
+        <div class="stat-val" id="stat-last" style="font-size:16px;">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Locations Success / Found</div>
+        <div class="stat-val" id="stat-counts">-- / --</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Failed Count</div>
+        <div class="stat-val" id="stat-failed" style="color:#F87171;">--</div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div style="font-weight:800; font-size:16px;">⚠️ Recent Scraper Error Logs</div>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Type</th><th>URL</th><th>Error Message</th><th>Time</th></tr>
+        </thead>
+        <tbody id="error-rows">
+          <tr><td colspan="5">Loading logs...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    async function loadStatus() {
+      try {
+        const res = await fetch('/api/admin/scrape-status');
+        const data = await res.json();
+        
+        document.getElementById('stat-status').innerHTML = data.status === 'SUCCESS' 
+          ? '<span class="badge-success">SUCCESS</span>' 
+          : `<span class="badge-failed">${data.status}</span>`;
+        
+        document.getElementById('stat-last').textContent = data.completed_at ? data.completed_at.replace('T', ' ').substring(0, 19) : 'Never';
+        document.getElementById('stat-counts').textContent = `${data.locations_success} / ${data.locations_found}`;
+        document.getElementById('stat-failed').textContent = data.locations_failed;
+
+        const rows = (data.recent_errors || []).map(e => `
+          <tr>
+            <td>${e.id}</td>
+            <td><span class="badge-failed">${e.type}</span></td>
+            <td style="font-size:11px;">${e.url || ''}</td>
+            <td>${e.message || ''}</td>
+            <td>${e.created_at ? e.created_at.substring(0, 19) : ''}</td>
+          </tr>
+        `).join('');
+
+        document.getElementById('error-rows').innerHTML = rows || '<tr><td colspan="5">No recent errors</td></tr>';
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function runScraperNow() {
+      const btn = document.getElementById('run-btn');
+      btn.textContent = "⏳ SCRAPING IMD...";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/admin/scrape', {
+          method: 'POST',
+          headers: { 'X-API-Key': 'nk_admin_secret_2026' }
+        });
+        const data = await res.json();
+        alert(`Scraper completed: ${data.locations_success} successful, ${data.locations_failed} failed.`);
+      } catch (err) {
+        alert("Scraper trigger failed: " + err);
+      } finally {
+        btn.textContent = "🚀 RUN SCRAPER NOW";
+        btn.disabled = false;
+        loadStatus();
+      }
+    }
+
+    loadStatus();
+  </script>
+</body>
+</html>

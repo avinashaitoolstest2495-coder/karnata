@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏛️ ಹೊಸಕೋಟೆ (Hosakote) — ಶಾಸನಸಭೆ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶಗಳು 1978 - 2023 | Karnata.in</title>
+  <meta name="description" content="ಹೊಸಕೋಟೆ (Hosakote) ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಚುನಾವಣಾ ಇತಿಹಾಸ, ವಿಜೇತ ಅಭ್ಯರ್ಥಿಗಳು, ಪಕ್ಷಗಳ ಜಯ ಹಾಗೂ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../karnata-theme.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
+    }
+    .hero-minimal {
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      padding: 24px 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+    .seat-title {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .seat-subtitle {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 14px;
+    }
+    .chip-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media(max-width: 900px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+    .dash-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      margin-bottom: 20px;
+    }
+    .dash-head {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 8px;
+    }
+    #constituency-map {
+      height: 360px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #CBD5E1;
+      background: #F1F5F9;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+    }
+    .elections-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .elections-table th {
+      background: #F8FAFC;
+      color: #475569;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-bottom: 2px solid #E2E8F0;
+      white-space: nowrap;
+    }
+    .elections-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #F1F5F9;
+      white-space: nowrap;
+    }
+    .elections-table tr:hover {
+      background: #F1F5F9;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="k-nav"></div>
+
+  <header class="hero-minimal">
+    <div class="wrap">
+      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #178</div>
+      <h1 class="seat-title">🏛️ ಹೊಸಕೋಟೆ (Hosakote)</h1>
+      <p class="seat-subtitle">ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</p>
+      
+      <div class="chip-bar">
+        <span class="chip">ವರ್ಗ: ಸಾಮಾನ್ಯ</span>
+        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ವಿಜೇತರು: Sharath ಕುಮಾರ್ Bachegowda (ಕಾಂಗ್ರೆಸ್ (INC))</span>
+        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +5,075</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 0 16px 24px;">
+    
+    <div class="grid-layout">
+      <!-- MAP & WINNER SUMMARY -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
+          <div id="constituency-map"></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಕಾಂಗ್ರೆಸ್ (INC): <span style="color:#C0392B;">3 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಬಿಜೆಪಿ (BJP): <span style="color:#C0392B;">3 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ದಳ (JD): <span style="color:#C0392B;">2 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ಪಕ್ಷ (JNP): <span style="color:#C0392B;">2 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಪಕ್ಷೇತರ (IND): <span style="color:#C0392B;">1 ಜಯ</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELECTION HISTORY TABLE -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">📊 ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</div>
+          <div class="table-wrapper">
+            <table class="elections-table">
+              <thead>
+                <tr>
+                  <th>ವರ್ಷ</th>
+                  <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
+                  <th>ಪಕ್ಷ</th>
+                  <th>ಮತಗಳು</th>
+                  <th>ಪಾಲು (%)</th>
+                  <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+                  <th>ಅಂತರ</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2023</td>
+          <td style="font-weight:800; color:#0F172A;">Sharath ಕುಮಾರ್ Bachegowda</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">107,220</td>
+          <td style="color:#16A34A; font-weight:800;">50.2%</td>
+          <td style="color:#475569;">ಎನ್. Nagaraju (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+5,075</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2018</td>
+          <td style="font-weight:800; color:#0F172A;">ಎನ್. Nagaraju ( ಎಂ. ಟಿ. ಬಿ. )</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">98,824</td>
+          <td style="color:#16A34A; font-weight:800;">51.3%</td>
+          <td style="color:#475569;">Sharath ಕುಮಾರ್ Bachegowda (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+7,597</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2013</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಂ. ಟಿ. ಬಿ. Nagaraj</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">85,238</td>
+          <td style="color:#16A34A; font-weight:800;">51.2%</td>
+          <td style="color:#475569;">ಬಿ. ಎನ್. Bachegowda (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+7,139</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2008</td>
+          <td style="font-weight:800; color:#0F172A;">ಬಿ. ಎನ್. Bachhe ಗೌಡ</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">71,069</td>
+          <td style="color:#16A34A; font-weight:800;">50.1%</td>
+          <td style="color:#475569;">ಎಂ. ಟಿ. ಬಿ. Nagaraju (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+3,878</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2004</td>
+          <td style="font-weight:800; color:#0F172A;">Chikkanagoudra Siddanagouda Ishwaragouda</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">28,065</td>
+          <td style="color:#16A34A; font-weight:800;">26.9%</td>
+          <td style="color:#475569;">Babusab ಕೆ. Kashimanavar (JP)</td>
+          <td style="color:#DC2626; font-weight:800;">+1,958</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1999</td>
+          <td style="font-weight:800; color:#0F172A;">Chikkanagoudra Siddana Gouda Ishwara Gouda</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">32,977</td>
+          <td style="color:#16A34A; font-weight:800;">36.1%</td>
+          <td style="color:#475569;">Babusab Kashimasab Kashimanavar (ಪಕ್ಷೇತರ (IND))</td>
+          <td style="color:#DC2626; font-weight:800;">+3,712</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1994</td>
+          <td style="font-weight:800; color:#0F172A;">Shiddanagoudra Parvatagouda Chanaveeragouda</td>
+          <td><span style="background:#2ca02c; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ದಳ (JD)</span></td>
+          <td style="font-weight:700; color:#0F172A;">25,392</td>
+          <td style="color:#16A34A; font-weight:800;">29.6%</td>
+          <td style="color:#475569;">Khesnarao Marutirao Yadav (KRRS)</td>
+          <td style="color:#DC2626; font-weight:800;">+10,674</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1989</td>
+          <td style="font-weight:800; color:#0F172A;">Shiddanagoudar Parwat Agouda Chanaveeragouda</td>
+          <td><span style="background:#2ca02c; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ದಳ (JD)</span></td>
+          <td style="font-weight:700; color:#0F172A;">19,417</td>
+          <td style="color:#16A34A; font-weight:800;">27.4%</td>
+          <td style="color:#475569;">Kelageri ಮಹಾದೇವಪ್ಪ ಸಂಗ್ಲಪ್ಪ (KRS)</td>
+          <td style="color:#DC2626; font-weight:800;">+717</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1985</td>
+          <td style="font-weight:800; color:#0F172A;">Shiddanagoudar Parvatagouda Chanaveragouda</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ಪಕ್ಷ (JNP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">34,211</td>
+          <td style="color:#16A34A; font-weight:800;">56.5%</td>
+          <td style="color:#475569;">Gurushantagouda Chennappagouda ಪಾಟೀಲ್ (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+9,580</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1983</td>
+          <td style="font-weight:800; color:#0F172A;">Fathar Jacob Pallipurathu</td>
+          <td><span style="background:#7f7f7f; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಪಕ್ಷೇತರ (IND)</span></td>
+          <td style="font-weight:700; color:#0F172A;">23,664</td>
+          <td style="color:#16A34A; font-weight:800;">46.6%</td>
+          <td style="color:#475569;">ಪಾಟೀಲ್ Fakiragouda Shivanagouda (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+496</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1978</td>
+          <td style="font-weight:800; color:#0F172A;">ಪಾಟೀಲ್ Fakiragouda Shivangouda</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ಪಕ್ಷ (JNP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">23,789</td>
+          <td style="color:#16A34A; font-weight:800;">48.7%</td>
+          <td style="color:#475569;">Kurawatti Chana Basappa Basappa (ಕಾಂಗ್ರೆಸ್ ಐ (INC-I))</td>
+          <td style="color:#DC2626; font-weight:800;">+6,053</td>
+        </tr>
+        
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../nav-component.js"></script>
+  <script>
+    const featureData = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[77.92808224014595, 13.23720308630342], [77.94856430597076, 13.24716237967606], [77.96585484728973, 13.23703196082679], [77.96388935992597, 13.22936883578563], [77.94532854085405, 13.21374999338976], [77.95087781658464, 13.21180685585002], [77.95159283707612, 13.21577805434818], [77.95828124419273, 13.2168365199105], [77.95550630616899, 13.19854113397946], [77.96152527866145, 13.19660411880767], [77.96188488737084, 13.18150804093207], [77.95608444660601, 13.17518051012892], [77.95328887354778, 13.15861561462154], [77.95933618783387, 13.15427015375087], [77.95599687224922, 13.13890773722593], [77.95824129584693, 13.12344262380818], [77.9502440647949, 13.12409303397113], [77.94618938767316, 13.11934003303563], [77.93857054483706, 13.12269075910261], [77.93737660013532, 13.10855440406579], [77.92458314888336, 13.10892715584138], [77.9230480831804, 13.11430143469541], [77.91521751608502, 13.11581321620823], [77.91291663789795, 13.10718207183307], [77.90020928177866, 13.09940189425572], [77.91115328870463, 13.09305255699305], [77.91640535613229, 13.07682972272013], [77.92675415804939, 13.08062334101023], [77.926654866923, 13.07431530812978], [77.93025165687747, 13.07321105606805], [77.9420510977549, 13.08315732730854], [77.94342342779167, 13.06700453269595], [77.92628088246795, 13.0666280667066], [77.91455066674939, 13.04654009309886], [77.89980598656824, 13.04710969849703], [77.89604699300814, 13.05193669207266], [77.8926110695643, 13.04966063426132], [77.88645779383569, 13.03480179282993], [77.89261613327517, 13.03057734201269], [77.88614899783231, 13.02202014814324], [77.88601182126152, 13.00964366084997], [77.8731230196338, 12.99564936551533], [77.87150967011029, 12.97398533805829], [77.86331907304057, 12.97280415190814], [77.87109831593068, 12.95885607387853], [77.86624641034417, 12.95059984167251], [77.87352755948965, 12.94512363075959], [77.87206918674131, 12.9415482959089], [77.86778258406972, 12.93459261727977], [77.85911497086308, 12.93627423486353], [77.84654624564422, 12.92634826202127], [77.8399311599564, 12.9262970805611], [77.84228059140877, 12.91442074448307], [77.86194847459431, 12.91504456826147], [77.85225687388385, 12.89102004307841], [77.85453267807297, 12.8769672344359], [77.86666871873896, 12.87599860805198], [77.86673565538693, 12.86774344993798], [77.85044396509373, 12.86586186644627], [77.83564466602215, 12.87135629829399], [77.82949051400708, 12.87867304884879], [77.82995333427824, 12.88776686150006], [77.8209218357319, 12.90182705981272], [77.82200505062686, 12.91095889015557], [77.81084076325075, 12.93343012713655], [77.8033894558603, 12.91799716679467], [77.79737512907153, 12.91816421732366], [77.79788056761551, 12.92465450204315], [77.77824546606767, 12.92922149127838], [77.77448493947212, 12.93889017350827], [77.76767476321061, 12.94081459777627], [77.76516604004408, 12.94508585444181], [77.7720949696561, 12.95049132287636], [77.766891041395, 12.95904689094637], [77.77188713374953, 12.96448616158471], [77.78346016996699, 12.96627919341841], [77.77439389126653, 12.97673856218644], [77.77747666534633, 13.01465880560132], [77.78475316000801, 13.02905189643274], [77.78195524955476, 13.0471067264656], [77.76947581200217, 13.05141478854577], [77.76326288136913, 13.06659846736768], [77.76117206881571, 13.07626035003263], [77.76682061006656, 13.08893039746033], [77.76062238723662, 13.11350792424765], [77.7589633940227, 13.12353286758092], [77.76703501967664, 13.14861549990927], [77.78299929287523, 13.16852486334369], [77.78124947084953, 13.18586720372767], [77.7865342420797, 13.19210325135166], [77.78772087345324, 13.21141962481206], [77.81270759390485, 13.20886609701998], [77.81713764121666, 13.22838069640264], [77.82652712815586, 13.22712842608722], [77.83402380681798, 13.24615573331667], [77.85116691288111, 13.2390251086499], [77.84893220616922, 13.21952689951297], [77.85583865277252, 13.21708378093886], [77.86454963441354, 13.23912862234765], [77.87005780933374, 13.23109754286405], [77.87845863089075, 13.23137155790975], [77.87509712556133, 13.2415553164356], [77.89152103212453, 13.25359017783824], [77.90686092437232, 13.24906656641981], [77.89220710919808, 13.23171190205429], [77.9133505068968, 13.22829310149396], [77.9152321119278, 13.23767927300048], [77.92808224014595, 13.23720308630342]]]}, "properties": {"stroke": "#ff0000", "stroke-opacity": 1, "fill-opacity": 0, "ST_CODE": "29", "ST_NAME": "KARNATAKA", "DT_CODE": "21", "DIST_NAME": "BANGALORE RURAL", "AC_NO": "178", "AC_NAME": "Hosakote", "PC_NO": "27", "PC_NAME": "CHIKKBALLAPUR", "PC_ID": "2927", "Shape_Leng": "170131.96233300000", "Shape_Area": "541982011.85899997000", "MaxSimpTol": "300.00000000000", "MinSimpTol": "300.00000000000", "visibility": "0"}};
+
+    if (featureData) {
+      const map = L.map('constituency-map', {
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(map);
+
+      const layer = L.geoJson(featureData, {
+        style: {
+          fillColor: '#1f77b4',
+          weight: 2,
+          opacity: 1,
+          color: '#C0392B',
+          fillOpacity: 0.65
+        }
+      }).addTo(map);
+
+      map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+    } else {
+      document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟಕ ಹವಾಮಾನ ವರದಿ | Karnataka IMD Weather Data Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284C7;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #0F172A;
+      --subtext: #64748B;
+      --border: #E2E8F0;
+    }
+    body {
+      font-family: 'Anek Kannada', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .title { font-size: 24px; font-weight: 800; color: var(--text); }
+    .updated-tag { font-size: 13px; color: var(--subtext); font-weight: 600; }
+    .attribution { font-size: 12px; color: var(--primary); font-weight: 700; background: #E0F2FE; padding: 4px 12px; border-radius: 20px; }
+    
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.15s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .card-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .card-kn { color: var(--primary); }
+    .card-en { font-size: 12px; color: var(--subtext); font-weight: 600; }
+    .temp-row { display: flex; align-items: baseline; gap: 12px; margin: 10px 0; }
+    .temp-max { font-size: 28px; font-weight: 800; color: #D97706; }
+    .temp-min { font-size: 18px; font-weight: 700; color: var(--subtext); }
+    .desc { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .stats-row { display: flex; gap: 12px; font-size: 11px; color: var(--subtext); font-weight: 600; border-top: 1px solid #F1F5F9; padding-top: 8px; }
+    .footer-attr { text-align: center; margin-top: 40px; font-size: 12px; color: var(--subtext); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="title">⛅ ಕರ್ನಾಟಕ ಸಜೀವ ಹವಾಮಾನ ವರದಿ</div>
+      <div class="updated-tag">ಉಲ್ಲೇಖಿತ ಸಮಯ: {{ data.updated_at[:16].replace('T', ' ') }}</div>
+    </div>
+    <div class="attribution">Source: India Meteorological Department (IMD)</div>
+  </div>
+
+  <div class="grid">
+    {% for loc in data.locations %}
+    <div class="card" onclick="window.location.href='/weather/karnataka/{{ loc.normalized_name }}'" style="cursor:pointer;">
+      <div class="card-title">
+        <span class="card-kn">{{ loc.name_kn }}</span>
+        <span class="card-en">{{ loc.name_en }}</span>
+      </div>
+      <div class="temp-row">
+        <span class="temp-max">{{ loc.max_temp if loc.max_temp is not none else '--' }}°C</span>
+        <span class="temp-min">Min: {{ loc.min_temp if loc.min_temp is not none else '--' }}°C</span>
+      </div>
+      <div class="desc">{{ loc.weather_condition_kn }}</div>
+      <div class="stats-row">
+        <span>💧 ಮಳೆ: {{ loc.rainfall_24h if loc.rainfall_24h is not none else '0' }} mm</span>
+        <span>💦 ತೇವಾಂಶ: {{ loc.humidity['0830'] if loc.humidity['0830'] is not none else '--' }}%</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="footer-attr">
+    Data fetched directly from official India Meteorological Department (IMD) source.
+  </div>
+
+</body>
+</html>

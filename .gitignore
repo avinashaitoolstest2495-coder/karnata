@@ -1,0 +1,23 @@
+# Environment & Secrets
+.env
+.env.local
+*.secret
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Node / Cloudflare
+node_modules/
+.wrangler/
+dist/
+
+# Logs & Temporary Files
+*.log
+scraper/auto_deploy.log
+scraper/scraper.log
+scratch/

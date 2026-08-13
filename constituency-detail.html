@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕ್ಷೇತ್ರದ ಚುನಾವಣಾ ಇತಿಹಾಸ (1952 - 2026) | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕರ್ನಾಟಕ ಚುನಾವಣಾ ಇತಿಹಾಸ — ಶಾಸಕರು, ಸಂಸದರು, 1952 ರಿಂದ 2026 ರವರೆಗಿನ ಸಮಗ್ರ ಚುನಾವಣಾ ಫಲಿತಾಂಶಗಳು ಮತ್ತು ವಿಶ್ಲೇಷಣೆ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --k-red: #E11D48; --k-gold: #F59E0B; --k-dark: #0F172A;
+  --inc-green: #059669; --bjp-saffron: #EA580C; --jds-green: #16A34A;
+  --bg: #F8FAFC; --card-bg: #FFFFFF; --border: #E2E8F0;
+  --text-main: #0F172A; --text-muted: #64748B;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 16px; --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--text-main); -webkit-font-smoothing: antialiased; }
+
+/* TOPNAV BACK BUTTON */
+.top-bar { background: var(--k-dark); color: #FFF; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+.back-btn { color: #FFF; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+.back-btn:hover { color: var(--k-gold); }
+
+/* HERO DETAIL HEADER */
+.hero { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: #FFF; padding: 36px 20px; text-align: center; }
+.const-badge { display: inline-block; background: rgba(225,29,72,0.2); border: 1px solid rgba(225,29,72,0.4); color: #FDA4AF; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; font-family: var(--font-en); margin-bottom: 10px; }
+.hero-title { font-size: 32px; font-weight: 900; margin-bottom: 4px; }
+.hero-dist { font-size: 15px; color: #94A3B8; font-weight: 600; }
+
+.wrap { max-width: 1000px; margin: -20px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
+
+/* CURRENT REPRESENTATIVE HERO CARD */
+.rep-hero-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 24px; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; }
+@media(max-width: 640px) { .rep-hero-card { grid-template-columns: 1fr; text-align: center; justify-items: center; } }
+
+.rh-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--k-red), #F43F5E); color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; }
+.rh-name { font-size: 22px; font-weight: 900; color: var(--k-dark); }
+.rh-sub { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+.party-tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-family: var(--font-en); font-size: 12px; margin-top: 4px; }
+.party-INC { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+.party-BJP { background: #FFF7ED; color: #EA580C; border: 1px solid #FFEDD5; }
+.party-JDS { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+
+.rh-stats { display: flex; gap: 16px; text-align: right; }
+@media(max-width: 640px) { .rh-stats { text-align: center; } }
+.rhs-item { background: #F8FAFC; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border); }
+.rhs-val { font-size: 18px; font-weight: 800; font-family: var(--font-en); color: var(--k-dark); }
+.rhs-lbl { font-size: 11px; color: var(--text-muted); }
+
+/* ANALYSIS SECTION */
+.sec-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 24px; }
+.sec-title { font-size: 18px; font-weight: 800; color: var(--k-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.analysis-narrative { font-size: 14.5px; line-height: 1.7; color: #334155; background: #FAF5F5; border-left: 4px solid var(--k-red); padding: 14px 18px; border-radius: 8px; }
+
+/* HISTORICAL ELECTIONS TABLE */
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.history-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 700px; }
+.history-table th { background: #F1F5F9; padding: 12px 14px; text-align: left; font-weight: 800; color: var(--text-main); font-family: var(--font-kn); border-bottom: 2px solid var(--border); }
+.history-table td { padding: 12px 14px; border-bottom: 1px solid #F1F5F9; font-family: var(--font-kn); }
+.history-table tr:hover td { background: #FAFDFB; }
+.year-badge { font-weight: 800; font-family: var(--font-en); color: var(--k-dark); }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="mla-mp.html" class="back-btn">← ಶಾಸಕ / ಸಂಸದರ ಪಟ್ಟಿಗೆ ಹಿಂತಿರುಗಿ</a>
+  <span style="font-size: 13px; font-weight:700; color:#94A3B8;">ಕರ್ನಾಟಕ ಚುನಾವಣಾ ಆರ್ಕೈವ್</span>
+</div>
+
+<div class="hero">
+  <div class="const-badge" id="const-code">ಕ್ಷೇತ್ರ #135</div>
+  <h1 class="hero-title" id="const-title">ವರುಣ (Varuna)</h1>
+  <div class="hero-dist" id="const-dist">📍 ಮೈಸೂರು ಜಿಲ್ಲೆ · ಸಾಮಾನ್ಯ ಕ್ಷೇತ್ರ (GEN)</div>
+</div>
+
+<div class="wrap">
+  <!-- SITTING REPRESENTATIVE HERO CARD -->
+  <div class="rep-hero-card">
+    <div class="rh-avatar" id="rh-initial">ಸ</div>
+    <div>
+      <div class="rh-name" id="rh-name">ಸಿದ್ದರಾಮಯ್ಯ (ಮುಖ್ಯಮಂತ್ರಿ)</div>
+      <div class="rh-sub">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
+      <span class="party-tag party-INC" id="rh-party">INC</span>
+    </div>
+    <div class="rh-stats">
+      <div class="rhs-item">
+        <div class="rhs-val" id="rhs-margin">46,163</div>
+        <div class="rhs-lbl">ಗೆಲುವಿನ ಅಂತರ (Margin)</div>
+      </div>
+      <div class="rhs-item">
+        <div class="rhs-val" id="rhs-votes">1,19,816</div>
+        <div class="rhs-lbl">ಗಳಿಸಿದ ಮತಗಳು (Votes)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ELECTORAL ANALYSIS & NARRATIVE -->
+  <div class="sec-card">
+    <div class="sec-title">📊 ಚುನಾವಣಾ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ರಾಜಕೀಯ ಹಾದಿ (Electoral Analysis)</div>
+    <div class="analysis-narrative" id="analysis-text">
+      ಲೋಡ್ ಆಗುತ್ತಿದೆ...
+    </div>
+  </div>
+
+  <!-- HISTORICAL ELECTIONS TABLE (1952 - 2026) -->
+  <div class="sec-card">
+    <div class="sec-title">📜 ಎಲ್ಲಾ ಚುನಾವಣಾ ಫಲಿತಾಂಶಗಳ ವಿವರ (1952 - 2026 Elections History)</div>
+    <div class="table-wrap">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>ವರ್ಷ (Year)</th>
+            <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</th>
+            <th>ಪಕ್ಷ (Party)</th>
+            <th>ಮತಗಳು (Votes)</th>
+            <th>ಅಂತರ (Margin)</th>
+            <th>ರನ್ನರ್-ಅಪ್ (Runner-Up)</th>
+            <th>ಮತದಾನ %</th>
+          </tr>
+        </thead>
+        <tbody id="history-tbody">
+          <tr><td colspan="7" style="text-align:center; padding:20px;">ಚುನಾವಣಾ ದಾಖಲೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="/data-loader.js"></script>
+<script>
+async function loadConstituencyDetail() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const type = urlParams.get('type') || 'mla';
+  const code = urlParams.get('code');
+  const query = (urlParams.get('q') || urlParams.get('constituency') || urlParams.get('slug') || '').toLowerCase().trim();
+
+  try {
+    const db = await NK.constituencies();
+    if (!db) return;
+
+    const dataset = type === 'mla' ? db.mla : db.mp;
+    const list = Object.values(dataset);
+
+    let item = null;
+    if (code) {
+      item = dataset[code];
+    }
+    if (!item && query) {
+      item = list.find(d => 
+        (d.name_en || '').toLowerCase() === query ||
+        (d.name_kn || '') === query ||
+        (d.name_en || '').toLowerCase().includes(query) ||
+        (d.id || '').toLowerCase().includes(query) ||
+        query.includes((d.name_en || '').toLowerCase())
+      );
+    }
+    if (!item) {
+      item = list[0];
+    }
+
+    // Set Page Header
+    document.getElementById('const-code').textContent = `${type === 'mla' ? 'ವಿಧಾನಸಭಾ' : 'ಲೋಕಸಭಾ'} ಕ್ಷೇತ್ರ #${item.code}`;
+    document.getElementById('const-title').textContent = `${item.name_kn} (${item.name_en})`;
+    document.getElementById('const-dist').textContent = `📍 ${item.district_kn || item.district} ಜಿಲ್ಲೆ · ${item.category || 'GEN'}`;
+
+    // Sitting Representative Card
+    const repName = item.mla_name_kn || item.mp_name_kn || item.mla_name_en || item.mp_name_en;
+    document.getElementById('rh-initial').textContent = repName.charAt(0);
+    document.getElementById('rh-name').textContent = repName;
+    document.getElementById('rh-party').textContent = item.party;
+    document.getElementById('rh-party').className = `party-tag party-${(item.party || 'IND').replace(/[^a-zA-Z]/g, '')}`;
+    document.getElementById('rhs-margin').textContent = (item.margin || 0).toLocaleString('en-IN');
+    document.getElementById('rhs-votes').textContent = (item.votes || 0).toLocaleString('en-IN');
+
+    // Analysis Brief
+    const history = item.elections_history || [];
+    const winsMap = {};
+    history.forEach(h => { winsMap[h.party] = (winsMap[h.party] || 0) + 1; });
+    const topParty = Object.keys(winsMap).sort((a,b) => winsMap[b] - winsMap[a])[0];
+
+    const narrative = `<b>${item.name_kn}</b> ಕ್ಷೇತ್ರವು ${item.district_kn} ಜಿಲ್ಲೆಯ ಅತ್ಯಂತ ಪ್ರಮುಖ ರಾಜಕೀಯ ಕೇಂದ್ರವಾಗಿದೆ. 1952 ರಿಂದ 2026 ರವರೆಗಿನ ಚುನಾವಣಾ ಇತಿಹಾಸದಲ್ಲಿ <b>${topParty}</b> ಪಕ್ಷವು ಅತ್ಯಂತ ಹೆಚ್ಚು ಜಯ ದಾಖಲಿಸಿದೆ (${winsMap[topParty]} ಬಾರಿ ಗೆಲುವು). ಪ್ರಸ್ತುತ <b>${repName} (${item.party})</b> ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿದ್ದು, ${item.margin.toLocaleString('en-IN')} ಮತಗಳ ಬೃಹತ್ ಅಂತರದಿಂದ ಗೆಲುವು ಸಾಧಿಸಿದ್ದಾರೆ.`;
+    document.getElementById('analysis-text').innerHTML = narrative;
+
+    // Render Historical Table
+    const tbody = document.getElementById('history-tbody');
+    tbody.innerHTML = history.map(h => {
+      const pClass = `party-${(h.party || 'IND').replace(/[^a-zA-Z]/g, '')}`;
+      return `
+        <tr>
+          <td class="year-badge">${h.year}</td>
+          <td><b>${h.winner}</b></td>
+          <td><span class="party-tag ${pClass}">${h.party}</span></td>
+          <td>${(h.votes || 0).toLocaleString('en-IN')}</td>
+          <td><span style="color:#059669; font-weight:700;">+${(h.margin || 0).toLocaleString('en-IN')}</span></td>
+          <td style="color:#64748B;">${h.runner_up} (${h.runner_party})</td>
+          <td><span style="font-weight:700; font-family:var(--font-en);">${h.turnout_pct}%</span></td>
+        </tr>
+      `;
+    }).join('');
+
+  } catch (e) {
+    console.error("Error loading constituency detail:", e);
+  }
+}
+
+loadConstituencyDetail();
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏛️ ಮಾಗಡಿ (Magadi) — ಶಾಸನಸಭೆ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶಗಳು 1978 - 2023 | Karnata.in</title>
+  <meta name="description" content="ಮಾಗಡಿ (Magadi) ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಚುನಾವಣಾ ಇತಿಹಾಸ, ವಿಜೇತ ಅಭ್ಯರ್ಥಿಗಳು, ಪಕ್ಷಗಳ ಜಯ ಹಾಗೂ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../karnata-theme.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
+    }
+    .hero-minimal {
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      padding: 24px 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+    .seat-title {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .seat-subtitle {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 14px;
+    }
+    .chip-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media(max-width: 900px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+    .dash-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      margin-bottom: 20px;
+    }
+    .dash-head {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 8px;
+    }
+    #constituency-map {
+      height: 360px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #CBD5E1;
+      background: #F1F5F9;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+    }
+    .elections-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .elections-table th {
+      background: #F8FAFC;
+      color: #475569;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-bottom: 2px solid #E2E8F0;
+      white-space: nowrap;
+    }
+    .elections-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #F1F5F9;
+      white-space: nowrap;
+    }
+    .elections-table tr:hover {
+      background: #F1F5F9;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="k-nav"></div>
+
+  <header class="hero-minimal">
+    <div class="wrap">
+      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #182</div>
+      <h1 class="seat-title">🏛️ ಮಾಗಡಿ (Magadi)</h1>
+      <p class="seat-subtitle">ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</p>
+      
+      <div class="chip-bar">
+        <span class="chip">ವರ್ಗ: ಸಾಮಾನ್ಯ</span>
+        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ವಿಜೇತರು: ಎಚ್. ಸಿ. Balakrishna (ಕಾಂಗ್ರೆಸ್ (INC))</span>
+        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +11,839</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 0 16px 24px;">
+    
+    <div class="grid-layout">
+      <!-- MAP & WINNER SUMMARY -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
+          <div id="constituency-map"></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜೆಡಿಎಸ್ (JD-S): <span style="color:#C0392B;">4 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಪಕ್ಷೇತರ (IND): <span style="color:#C0392B;">3 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಕಾಂಗ್ರೆಸ್ (INC): <span style="color:#C0392B;">1 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಬಿಜೆಪಿ (BJP): <span style="color:#C0392B;">1 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ದಳ (JD): <span style="color:#C0392B;">1 ಜಯ</span></span><span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">ಜನತಾ ಪಕ್ಷ (JNP): <span style="color:#C0392B;">1 ಜಯ</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELECTION HISTORY TABLE -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-head">📊 ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</div>
+          <div class="table-wrapper">
+            <table class="elections-table">
+              <thead>
+                <tr>
+                  <th>ವರ್ಷ</th>
+                  <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
+                  <th>ಪಕ್ಷ</th>
+                  <th>ಮತಗಳು</th>
+                  <th>ಪಾಲು (%)</th>
+                  <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+                  <th>ಅಂತರ</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2023</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಚ್. ಸಿ. Balakrishna</td>
+          <td><span style="background:#1f77b4; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಕಾಂಗ್ರೆಸ್ (INC)</span></td>
+          <td style="font-weight:700; color:#0F172A;">94,650</td>
+          <td style="color:#16A34A; font-weight:800;">46.9%</td>
+          <td style="color:#475569;">ಎ. Manjunath (ಜೆಡಿಎಸ್ (JD-S))</td>
+          <td style="color:#DC2626; font-weight:800;">+11,839</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2018</td>
+          <td style="font-weight:800; color:#0F172A;">ಎ. Manjunath</td>
+          <td><span style="background:#31a354; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜೆಡಿಎಸ್ (JD-S)</span></td>
+          <td style="font-weight:700; color:#0F172A;">119,492</td>
+          <td style="color:#16A34A; font-weight:800;">61.8%</td>
+          <td style="color:#475569;">ಎಚ್. ಸಿ. Balakrishna (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+51,425</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2013</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಚ್. ಸಿ. Balakrishna</td>
+          <td><span style="background:#31a354; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜೆಡಿಎಸ್ (JD-S)</span></td>
+          <td style="font-weight:700; color:#0F172A;">74,821</td>
+          <td style="color:#16A34A; font-weight:800;">44.0%</td>
+          <td style="color:#475569;">ಎ. Manjunath (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+14,359</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2008</td>
+          <td style="font-weight:800; color:#0F172A;">ಎಚ್. ಸಿ. Balakrishna</td>
+          <td><span style="background:#31a354; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜೆಡಿಎಸ್ (JD-S)</span></td>
+          <td style="font-weight:700; color:#0F172A;">75,991</td>
+          <td style="color:#16A34A; font-weight:800;">52.8%</td>
+          <td style="color:#475569;">ಪಿ. Nagaraju (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+24,919</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">2004</td>
+          <td style="font-weight:800; color:#0F172A;">ಪಾಟೀಲ್ ಬಿ. ಸಿ.</td>
+          <td><span style="background:#31a354; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜೆಡಿಎಸ್ (JD-S)</span></td>
+          <td style="font-weight:700; color:#0F172A;">39,237</td>
+          <td style="color:#16A34A; font-weight:800;">35.1%</td>
+          <td style="color:#475569;">Banakar Ujaneshwar Basavanappa (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+4,990</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1999</td>
+          <td style="font-weight:800; color:#0F172A;">Bh Rannikod</td>
+          <td><span style="background:#7f7f7f; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಪಕ್ಷೇತರ (IND)</span></td>
+          <td style="font-weight:700; color:#0F172A;">34,160</td>
+          <td style="color:#16A34A; font-weight:800;">35.5%</td>
+          <td style="color:#475569;">Ub Banakar (ಬಿಜೆಪಿ (BJP))</td>
+          <td style="color:#DC2626; font-weight:800;">+3,928</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1994</td>
+          <td style="font-weight:800; color:#0F172A;">ಯು. ಬಿ. Banakar</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಬಿಜೆಪಿ (BJP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">32,248</td>
+          <td style="color:#16A34A; font-weight:800;">35.6%</td>
+          <td style="color:#475569;">ಬಿ. ಎಚ್. Bannikod (ಜನತಾ ದಳ (JD))</td>
+          <td style="color:#DC2626; font-weight:800;">+9,393</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1989</td>
+          <td style="font-weight:800; color:#0F172A;">ಬಿ. ಎಚ್. Bannikod</td>
+          <td><span style="background:#2ca02c; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ದಳ (JD)</span></td>
+          <td style="font-weight:700; color:#0F172A;">34,093</td>
+          <td style="color:#16A34A; font-weight:800;">39.7%</td>
+          <td style="color:#475569;">ಜಿ. ಬಿ. Shankar ರಾವ್ (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+3,138</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1985</td>
+          <td style="font-weight:800; color:#0F172A;">ಬಿ. ಜಿ. Banakar</td>
+          <td><span style="background:#ff7f0e; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಜನತಾ ಪಕ್ಷ (JNP)</span></td>
+          <td style="font-weight:700; color:#0F172A;">36,164</td>
+          <td style="color:#16A34A; font-weight:800;">52.2%</td>
+          <td style="color:#475569;">ಡಿ. ಎಂ. Sali (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+5,519</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1983</td>
+          <td style="font-weight:800; color:#0F172A;">Bankar Basavannappa Gadlappa</td>
+          <td><span style="background:#7f7f7f; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಪಕ್ಷೇತರ (IND)</span></td>
+          <td style="font-weight:700; color:#0F172A;">32,268</td>
+          <td style="color:#16A34A; font-weight:800;">51.2%</td>
+          <td style="color:#475569;">Gubbi Shankarrao Basalingappagouda (ಕಾಂಗ್ರೆಸ್ (INC))</td>
+          <td style="color:#DC2626; font-weight:800;">+4,751</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:900; color:#C0392B;">1978</td>
+          <td style="font-weight:800; color:#0F172A;">Gubbi Shankararao Basalingappagouda</td>
+          <td><span style="background:#7f7f7f; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">ಪಕ್ಷೇತರ (IND)</span></td>
+          <td style="font-weight:700; color:#0F172A;">32,103</td>
+          <td style="color:#16A34A; font-weight:800;">52.8%</td>
+          <td style="color:#475569;">Banakar Basavanappa Gadlappa (ಕಾಂಗ್ರೆಸ್ ಐ (INC-I))</td>
+          <td style="color:#DC2626; font-weight:800;">+8,408</td>
+        </tr>
+        
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../nav-component.js"></script>
+  <script>
+    const featureData = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[77.20329236563926, 13.18411167922332], [77.21630585678469, 13.16206206389238], [77.21332534943097, 13.14991719088448], [77.21749666178633, 13.14511608374327], [77.23222541414289, 13.14676245937275], [77.23479682804427, 13.13939028156378], [77.22977785146483, 13.14264879427352], [77.21988328301057, 13.13839517301214], [77.21129409188596, 13.14068331074044], [77.20671717793135, 13.13469005255901], [77.21840418056469, 13.12539488143934], [77.2337751412036, 13.12348005284409], [77.2237436579316, 13.10568185584197], [77.21244649409385, 13.10709459503481], [77.20413925196672, 13.08964214553493], [77.22031147349367, 13.08633982572998], [77.2252545076013, 13.06785071258267], [77.22102796182371, 13.04778342719201], [77.25295338396137, 13.03424699800401], [77.25640152604524, 13.03875554478744], [77.26589184777069, 13.02982089122546], [77.27268786482287, 13.01881184001698], [77.26416841086103, 12.97994025446975], [77.27348203139697, 12.97651020457287], [77.28403216490383, 12.97844705709498], [77.2949633633796, 12.97093441589745], [77.2993651586045, 12.9788989462383], [77.31783423549469, 12.97169120783451], [77.32923837707095, 12.97886949087614], [77.32949372168352, 12.97521109755917], [77.33234701661834, 12.94818206175272], [77.34457149480305, 12.94249302803252], [77.33770919472776, 12.93512237258947], [77.3378582578052, 12.92961097027502], [77.34149499754126, 12.92938371723762], [77.34108570732647, 12.91492587296028], [77.33672609275972, 12.91004619676967], [77.34785782107592, 12.86877530625409], [77.36584789506347, 12.87206513700501], [77.37723852974881, 12.85467295765886], [77.39348913468062, 12.86303886751187], [77.39630671396255, 12.87040906086976], [77.40190471260887, 12.86503841887196], [77.40431252833365, 12.87253232880704], [77.41194520485674, 12.87700460160535], [77.418721876185, 12.8717421957229], [77.43011849913977, 12.87527855609238], [77.42937787773984, 12.87067038824013], [77.41835564398048, 12.86977329241128], [77.42878711520919, 12.85731364991894], [77.42710006196636, 12.85077168990739], [77.4374824941761, 12.84968842422912], [77.43456925424857, 12.8390159870559], [77.42374992208704, 12.83676979440875], [77.41981226347228, 12.82569127733972], [77.43510416757164, 12.82243795411796], [77.43652354484357, 12.80977086904218], [77.4461661042964, 12.80875082802936], [77.45157835480283, 12.81859692554098], [77.46467685473996, 12.80927832170938], [77.4796828314764, 12.80875142711229], [77.48400041765986, 12.80053180588824], [77.47035155718598, 12.79380808792965], [77.47748113279519, 12.78140693755432], [77.47564875727046, 12.7552758926277], [77.46688067103452, 12.7515467040936], [77.47623683424096, 12.72124102523031], [77.47227981344489, 12.71748881156367], [77.46057022848353, 12.72034322510154], [77.45492719146934, 12.70713633759733], [77.42496142448726, 12.70880269618308], [77.42437448157212, 12.72044551514238], [77.41747985148606, 12.72260934278615], [77.40871412153592, 12.72193525081488], [77.40662282819966, 12.71466781671758], [77.39524200365531, 12.70896143873602], [77.39192270186285, 12.72643399748171], [77.35769444127047, 12.72423830394741], [77.35190437674697, 12.74428218088476], [77.36357572085271, 12.75078165337665], [77.36249281152008, 12.7712773727476], [77.35912826076841, 12.77406558330831], [77.34991267002466, 12.76891803695075], [77.34669400489203, 12.77096265095172], [77.34577018741076, 12.78946394783639], [77.339355136862, 12.79087403694565], [77.33456473157446, 12.8022258882523], [77.3439851334613, 12.80747210821942], [77.344603662043, 12.81201480680701], [77.33312241394133, 12.81697035210923], [77.32719518231292, 12.80530892319754], [77.32312159040042, 12.80824897712879], [77.32547932628836, 12.82494544065101], [77.3416132856386, 12.83045486815673], [77.33822511282277, 12.85221775149066], [77.3430314468982, 12.86080238304935], [77.3365012831445, 12.86108045713742], [77.3246510532603, 12.86102425975285], [77.31871590908123, 12.85197766754237], [77.31436018252136, 12.85594563698762], [77.30032776119718, 12.85157582390455], [77.29123395536647, 12.85427285966418], [77.29141001033524, 12.84125113084662], [77.31181585075095, 12.84058930810856], [77.30871152232116, 12.82659283220223], [77.30074019650593, 12.81587149594031], [77.2835451408581, 12.81157226260541], [77.28568150045677, 12.800807839003], [77.27809087985851, 12.78575496955127], [77.28183639464201, 12.78459936755423], [77.27725274656551, 12.76364493333674], [77.25483220753274, 12.76158663666888], [77.2565874191481, 12.75223187967516], [77.25172800904517, 12.75274213762194], [77.24960768629056, 12.74815346233571], [77.25420739028866, 12.74039489323224], [77.24657081834422, 12.72778108723918], [77.23834051446849, 12.72565465382311], [77.23501383937916, 12.74592899871407], [77.22574501964321, 12.72918492017874], [77.22404421121323, 12.736111022045], [77.21363438984359, 12.74519338539673], [77.20337299238555, 12.73822972827789], [77.20436188445571, 12.73221916521377], [77.19722420233175, 12.72671982000158], [77.18512431078504, 12.72621001267676], [77.17753895504987, 12.7410772609319], [77.1936696506023, 12.762160978211], [77.20362824742499, 12.76240492022015], [77.20684389979156, 12.76964982933474], [77.18996076895222, 12.78651308182616], [77.1771805448255, 12.79242976140985], [77.17524605179683, 12.8020607464757], [77.16181482978689, 12.80206792947845], [77.15086076091664, 12.79221478584133], [77.13963454874816, 12.81218379408704], [77.14261234437512, 12.82029486726547], [77.14791663384983, 12.8195484733063], [77.15905385727983, 12.8272265058898], [77.14977650947095, 12.82998405522913], [77.14951619206745, 12.84831281529227], [77.13138312967945, 12.8596368336065], [77.13256813969767, 12.88895036683655], [77.11877004628197, 12.88495513745736], [77.10713213856843, 12.89450469259378], [77.12441531372016, 12.89891847183627], [77.12484412649393, 12.90298850306942], [77.13266227406932, 12.89826775780009], [77.14056889616569, 12.91805369966004], [77.15838141731007, 12.91356745210988], [77.1661748903967, 12.93005291578559], [77.15654198206221, 12.94262844649922], [77.1578660515446, 12.95784656856531], [77.14203426750744, 12.9638285729692], [77.13062037767122, 12.97572867075327], [77.13266145558859, 12.98576922815212], [77.1446159768126, 12.98721703402332], [77.13559592020837, 12.99537374015993], [77.1382991319692, 12.99843590144351], [77.13460590638562, 13.00538010100556], [77.12323576411758, 13.00729231654252], [77.12863519607478, 12.99534611955322], [77.10384672751597, 12.99341683632005], [77.09823773545138, 12.99955854992761], [77.11809956769218, 13.01467431572213], [77.10917926655739, 13.02301706044692], [77.08992053632544, 13.02984879517572], [77.08181594821306, 13.03957178013469], [77.06990277999377, 13.03986100427205], [77.07891893943368, 13.06283508676047], [77.07365143121866, 13.06149906615611], [77.07020048076286, 13.067862415478], [77.07834308648056, 13.07665585841418], [77.08133249463955, 13.09122244841592], [77.07330805107412, 13.10586997515124], [77.07022788351136, 13.12399133426609], [77.07188950335056, 13.1308101084279], [77.07975152806772, 13.1332810578021], [77.07994108253406, 13.13347676461092], [77.09197406878444, 13.13553806181129], [77.09795566579832, 13.14569267675798], [77.10742229320698, 13.14256184180958], [77.1073969045311, 13.13339589754511], [77.1159205306771, 13.13022574079339], [77.11837955016036, 13.16189664829269], [77.1309817123709, 13.16600011278253], [77.13878812769212, 13.17774997338523], [77.14779100542717, 13.17369958216907], [77.15546386772714, 13.19342422534823], [77.16604964322113, 13.19735489797541], [77.16879879555682, 13.18381157732877], [77.17726231180252, 13.18621154067323], [77.1973699378132, 13.18029679925372], [77.20329236563926, 13.18411167922332]]]}, "properties": {"stroke": "#ff0000", "stroke-opacity": 1, "fill-opacity": 0, "ST_CODE": "29", "ST_NAME": "KARNATAKA", "DT_CODE": "21", "DIST_NAME": "BANGALORE RURAL", "AC_NO": "182", "AC_NAME": "Magadi", "PC_NO": "23", "PC_NAME": "BANGALORE RURAL", "PC_ID": "2923", "Shape_Leng": "308727.16341600002", "Shape_Area": "981815926.39100003000", "MaxSimpTol": "300.00000000000", "MinSimpTol": "300.00000000000", "visibility": "0"}};
+
+    if (featureData) {
+      const map = L.map('constituency-map', {
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(map);
+
+      const layer = L.geoJson(featureData, {
+        style: {
+          fillColor: '#1f77b4',
+          weight: 2,
+          opacity: 1,
+          color: '#C0392B',
+          fillOpacity: 0.65
+        }
+      }).addTo(map);
+
+      map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+    } else {
+      document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
+    }
+  </script>
+</body>
+</html>

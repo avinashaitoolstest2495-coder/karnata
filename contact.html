@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Karnata.in</title>
+<meta name="description" content="Contact the Karnata.in editorial and technical support team. Send us your feedback, inquiries, or data updates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<style>
+body { font-family: 'Outfit', sans-serif; background: #F8FAFC; color: #0F172A; margin: 0; padding: 0; }
+.policy-hero { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); color: #FFF; padding: 56px 20px; text-align: center; border-bottom: 4px solid #E11D48; }
+.policy-hero h1 { font-size: 38px; font-weight: 900; margin-bottom: 8px; }
+.policy-wrap { max-width: 900px; margin: 40px auto 80px; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media(max-width: 768px) { .policy-wrap { grid-template-columns: 1fr; } }
+.policy-card { background: #FFF; border: 1.5px solid #E2E8F0; border-radius: 18px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); font-size: 15px; color: #334155; line-height: 1.8; }
+.policy-card h2 { font-size: 22px; font-weight: 900; color: #0F172A; border-bottom: 2px solid #F1F5F9; padding-bottom: 8px; margin-top: 0; }
+.c-input { width: 100%; padding: 12px 16px; border: 1.5px solid #CBD5E1; border-radius: 10px; margin-bottom: 14px; font-size: 14px; font-family: inherit; box-sizing: border-box; }
+.c-btn { background: #E11D48; color: #FFF; border: none; padding: 14px 24px; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; width: 100%; transition: background 0.2s; }
+.c-btn:hover { background: #BE123C; }
+</style>
+</head>
+<body>
+
+<div class="policy-hero">
+  <h1>Contact Us</h1>
+  <p>We'd love to hear from you. Get in touch with the Karnata.in team.</p>
+</div>
+
+<div class="policy-wrap">
+  <div class="policy-card">
+    <h2>📍 Office & Contact Info</h2>
+    <p>🌐 <strong>Website:</strong> https://karnata.in</p>
+    <p>📧 <strong>Email Support:</strong> contact@karnata.in</p>
+    <p>🏢 <strong>Location:</strong> Bengaluru, Karnataka, India — 560001</p>
+    <p>⏰ <strong>Operating Hours:</strong> Monday – Saturday (9:00 AM – 6:00 PM IST)</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>✉️ Send Us a Message</h2>
+    <form onsubmit="alert('Thank you! Your message has been received.'); return false;">
+      <input type="text" class="c-input" placeholder="Your Name" required>
+      <input type="email" class="c-input" placeholder="Your Email Address" required>
+      <textarea class="c-input" rows="4" placeholder="Your message or feedback..." required></textarea>
+      <button type="submit" class="c-btn">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<script src="/data-loader.js"></script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಅಣೆಕಟ್ಟು ವಿವರ — Karnata.in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1A5276; --blue-lt: #EAF2F8; --blue-mid: #2980B9;
+  --green: #1B7A4B; --green-lt: #E8F5EE;
+  --amber: #E67E22; --amber-lt: #FEF5EC;
+  --red: #C0392B; --red-lt: #FDECEA;
+  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+  --bg: #F0F4F8; --white: #FFFFFF; --border: #D8E4F0;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 12px; --shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* TOPNAV */
+.topnav {
+  background: var(--blue); padding: 0 20px;
+  display: flex; align-items: center; gap: 16px; height: 56px;
+  position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.back-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); font-size: 14px; text-decoration: none; font-weight: 600; }
+.back-btn:hover { color: #fff; }
+.page-title { font-size: 16px; font-weight: 700; color: #fff; }
+.live-badge {
+  margin-left: auto; background: #E74C3C; color: #fff;
+  font-size: 10px; font-weight: 700; padding: 4px 10px;
+  border-radius: 20px; font-family: var(--font-en);
+  display: flex; align-items: center; gap: 5px;
+}
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* CONTAINER */
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* DAM HERO CARD */
+.dam-hero-card {
+  background: linear-gradient(135deg, #1A5276 0%, #0F2D42 100%);
+  color: #fff; border-radius: var(--radius); padding: 28px 24px;
+  margin-bottom: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+}
+.dam-hero-card::after {
+  content: '💧'; position: absolute; right: -20px; bottom: -30px;
+  font-size: 160px; opacity: 0.08; pointer-events: none;
+}
+.dh-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 12px; }
+.dh-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.dh-sub { font-size: 14px; opacity: 0.85; display: flex; gap: 16px; flex-wrap: wrap; }
+.dh-time { font-size: 11px; opacity: 0.65; margin-top: 12px; font-family: var(--font-en); }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+@media (max-width: 840px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 580px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+.metric-card {
+  background: var(--white); border-radius: var(--radius); padding: 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+}
+.mc-label { font-size: 12px; color: var(--ink3); font-weight: 600; margin-bottom: 6px; }
+.mc-val { font-size: 24px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.2; }
+.mc-sub { font-size: 11px; color: var(--ink2); margin-top: 4px; font-family: var(--font-kn); }
+
+/* SPECS & CHART GRID */
+.section-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 28px; }
+
+/* CARD BOX */
+.card-box {
+  background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
+  box-shadow: var(--shadow); padding: 20px; margin-bottom: 24px;
+}
+.cb-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.cb-title-text { display: flex; align-items: center; gap: 8px; }
+
+/* SPECS TABLE */
+.specs-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.specs-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.specs-table tr:last-child td { border-bottom: none; }
+.specs-table td:first-child { color: var(--ink3); font-weight: 600; width: 45%; }
+.specs-table td:last-child { font-weight: 700; color: var(--ink); font-family: var(--font-en); }
+
+/* CHART VISUALIZER */
+.chart-container { height: 260px; width: 100%; position: relative; margin-top: 16px; }
+.chart-bars { display: flex; align-items: flex-end; gap: 6px; height: 200px; padding-top: 20px; border-bottom: 2px solid var(--border); }
+.cb-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+.cb-bar { width: 100%; background: linear-gradient(180deg, var(--blue-mid), var(--blue)); border-radius: 4px 4px 0 0; transition: height 0.5s ease; position: relative; }
+.cb-bar-in { position: absolute; bottom: 0; left: 20%; width: 60%; background: rgba(39, 174, 96, 0.7); border-radius: 2px 2px 0 0; }
+.cb-date { font-size: 10px; color: var(--ink3); font-family: var(--font-en); transform: rotate(-45deg); transform-origin: top left; margin-top: 8px; }
+.cb-legend { display: flex; gap: 16px; justify-content: center; margin-top: 20px; font-size: 12px; color: var(--ink2); }
+.leg-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+/* DATA TABLE */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; border: 1px solid var(--border); }
+.data-tbl { width: 100%; border-collapse: collapse; text-align: right; font-size: 12px; font-family: var(--font-en); }
+.data-tbl th { background: #F8FAFC; padding: 12px 10px; color: var(--ink2); font-weight: 700; border-bottom: 2px solid var(--border); white-space: nowrap; font-family: var(--font-kn); }
+.data-tbl th:first-child, .data-tbl td:first-child { text-align: left; }
+.data-tbl td { padding: 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.data-tbl tr:nth-child(even) { background: #F8FAFC; }
+.data-tbl tr:hover { background: #EAF2F8; }
+.badge-up { color: var(--green); font-weight: 700; }
+.badge-dn { color: var(--red); font-weight: 700; }
+</style>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <div class="page-title" id="nav-dam-title">💧 ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
+  <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="dam-hero-card" id="dam-hero">
+    <div class="dh-tag" id="dam-basin-tag">📍 ಜಲಾನಯನ: ಲೋಡ್...</div>
+    <h1 class="dh-title" id="dam-name">ಅಣೆಕಟ್ಟು ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</h1>
+    <div class="dh-sub">
+      <span id="dam-river">🌊 ನದಿ: —</span>
+      <span id="dam-district">🏛️ ಜಿಲ್ಲೆ: —</span>
+    </div>
+    <div class="dh-time" id="dam-update-time">ಕೊನೆ ನವೀಕರಣ: ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+  </div>
+
+  <!-- 5 METRIC CARDS -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" id="m-storage" style="color:var(--blue)">— TMC</div>
+      <div class="mc-sub" id="m-pct">—% ತುಂಬಿದೆ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val" id="m-gross-cap">— TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
+      <div class="mc-val" id="m-level">— ಅಡಿ</div>
+      <div class="mc-sub" id="m-max-level">ಗರಿಷ್ಠ (FRL): — ಅಡಿ</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
+      <div class="mc-val" id="m-inflow" style="color:var(--green)">—</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
+      <div class="mc-val" id="m-outflow" style="color:var(--blue-mid)">—</div>
+      <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್</div>
+    </div>
+  </div>
+
+  <!-- SPECS & CHART -->
+  <div class="section-grid">
+    
+    <!-- CHART CARD -->
+    <div class="card-box">
+      <div class="cb-title">
+        <div class="cb-title-text">📊 ನೀರಿನ ಮಟ್ಟ & ಒಳಹರಿವಿನ ಟ್ರೆಂಡ್ (ಕಳೆದ 30 ದಿನಗಳು)</div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-bars" id="chart-bars"></div>
+      </div>
+      <div class="cb-legend">
+        <span><strong class="leg-dot" style="background:var(--blue-mid)"></strong> ಸಕ್ರಿಯ ಸಂಗ್ರಹ (TMC)</span>
+        <span><strong class="leg-dot" style="background:rgba(39, 174, 96, 0.8)"></strong> ಒಳಹರಿವು (Cusecs)</span>
+      </div>
+    </div>
+
+    <!-- SPECS TABLE -->
+    <div class="card-box">
+      <div class="cb-title">
+        <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Specifications)</div>
+      </div>
+      <table class="specs-table">
+        <tr><td>ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</td><td id="s-frl">— ಅಡಿ</td></tr>
+        <tr><td>ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</td><td id="s-mddl">— ಅಡಿ</td></tr>
+        <tr><td>ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</td><td id="s-gross-cap">— TMC</td></tr>
+        <tr><td>ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</td><td id="s-live-cap">— TMC</td></tr>
+        <tr><td>ಪ್ರಸ್ತುತ ನೀರು ಸಂಗ್ರಹ</td><td id="s-current-storage">— TMC</td></tr>
+        <tr><td>ಜಿಲ್ಲೆ (District)</td><td id="s-district" style="font-family:var(--font-kn)">—</td></tr>
+        <tr><td>ನದಿ (River)</td><td id="s-river" style="font-family:var(--font-kn)">—</td></tr>
+        <tr><td>ಜಲಾನಯನ ಪ್ರದೇಶ (Basin)</td><td id="s-basin" style="font-family:var(--font-kn)">—</td></tr>
+      </table>
+    </div>
+
+    <!-- DAILY HISTORICAL LOG TABLE -->
+    <div class="card-box">
+      <div class="cb-title">
+        <div class="cb-title-text">📅 ದೈನಂದಿನ ನೀರಿನ ಮಟ್ಟ ದಾಖಲೆ (Daily Log Table)</div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-tbl">
+          <thead>
+            <tr>
+              <th>ದಿನಾಂಕ</th>
+              <th>ತುಂಬಿದ %</th>
+              <th>ಒಟ್ಟು ಸಂಗ್ರಹ (TMC)</th>
+              <th>ಸಕ್ರಿಯ ಸಂಗ್ರಹ (TMC)</th>
+              <th>ಒಳಹರಿವು (Cusecs)</th>
+              <th>ಹೊರಹರಿವು (Cusecs)</th>
+              <th>ಕಾಲುವೆ ಹರಿವು (Cusecs)</th>
+              <th>F.R.L (ಅಡಿ)</th>
+              <th>M.D.D.L (ಅಡಿ)</th>
+            </tr>
+          </thead>
+          <tbody id="history-rows">
+            <tr><td colspan="9" style="text-align:center;padding:20px;color:var(--ink3);">ದಾಖಲೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const DAM_SPECS = {
+  krs: { nameKn: 'KRS ಅಣೆಕಟ್ಟು (ಕೃಷ್ಣರಾಜ ಸಾಗರ)', riverKn: 'ಕಾವೇರಿ', distKn: 'ಮಂಡ್ಯ', basinKn: 'ಕಾವೇರಿ ಜಲಾನಯನ', frl: 124.80, mddl: 60.00, grossCap: 49.45, liveCap: 45.24, basinKey: 'cauvery' },
+  kabini: { nameKn: 'ಕಬಿನಿ ಅಣೆಕಟ್ಟು', riverKn: 'ಕಬಿನಿ', distKn: 'ಮೈಸೂರು', basinKn: 'ಕಾವೇರಿ ಜಲಾನಯನ', frl: 2284.00, mddl: 2240.00, grossCap: 19.52, liveCap: 15.67, basinKey: 'cauvery' },
+  harangi: { nameKn: 'ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು', riverKn: 'ಹಾರಂಗಿ', distKn: 'ಕೊಡಗು', basinKn: 'ಕಾವೇರಿ ಜಲಾನಯನ', frl: 2859.00, mddl: 2800.00, grossCap: 8.50, liveCap: 8.07, basinKey: 'cauvery' },
+  hemavathi: { nameKn: 'ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು', riverKn: 'ಹೇಮಾವತಿ', distKn: 'ಹಾಸನ', basinKn: 'ಕಾವೇರಿ ಜಲಾನಯನ', frl: 2922.00, mddl: 2850.00, grossCap: 37.10, liveCap: 35.76, basinKey: 'cauvery' },
+  tungabhadra: { nameKn: 'ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು', riverKn: 'ತುಂಗಭದ್ರಾ', distKn: 'ವಿಜಯನಗರ', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 1633.00, mddl: 1582.00, grossCap: 105.78, liveCap: 100.80, basinKey: 'krishna' },
+  almatti: { nameKn: 'ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು', riverKn: 'ಕೃಷ್ಣಾ', distKn: 'ವಿಜಯಪುರ', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 1704.81, mddl: 1663.04, grossCap: 123.08, liveCap: 105.47, basinKey: 'krishna' },
+  narayanapura: { nameKn: 'ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು', riverKn: 'ಕೃಷ್ಣಾ', distKn: 'ಯಾದಗಿರಿ', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 1615.00, mddl: 1580.00, grossCap: 33.31, liveCap: 29.57, basinKey: 'krishna' },
+  malaprabha: { name_kn: 'ಮಲಪ್ರಭಾ ಅಣೆಕಟ್ಟು', riverKn: 'ಮಲಪ್ರಭಾ', distKn: 'ಬೆಳಗಾವಿ', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 2079.50, mddl: 2030.00, grossCap: 37.73, liveCap: 30.00, basinKey: 'krishna' },
+  ghataprabha: { nameKn: 'ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು', riverKn: 'ಘಟಪ್ರಭಾ', distKn: 'ಬೆಳಗಾವಿ', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 2175.00, mddl: 2100.00, grossCap: 51.00, liveCap: 48.90, basinKey: 'krishna' },
+  bhadra: { nameKn: 'ಭದ್ರಾ ಅಣೆಕಟ್ಟು', riverKn: 'ಭದ್ರಾ', distKn: 'ಚಿಕ್ಕಮಗಳೂರು', basinKn: 'ಕೃಷ್ಣಾ ಜಲಾನಯನ', frl: 2158.00, mddl: 2080.00, grossCap: 71.53, liveCap: 63.00, basinKey: 'krishna' },
+  linganamakki: { nameKn: 'ಲಿಂಗನಮಕ್ಕಿ ಅಣೆಕಟ್ಟು', riverKn: 'ಶರಾವತಿ', distKn: 'ಶಿವಮೊಗ್ಗ', basinKn: 'ಶರಾವತಿ ಜಲಾನಯನ', frl: 1819.00, mddl: 1738.00, grossCap: 151.75, liveCap: 145.00, basinKey: 'sharavathi' },
+  supa: { nameKn: 'ಸೂಪಾ ಅಣೆಕಟ್ಟು', riverKn: 'ಕಾಳಿ', distKn: 'ಉತ್ತರ ಕನ್ನಡ', basinKn: 'ಶರಾವತಿ / ಕರಾವಳಿ', frl: 1804.00, mddl: 1700.00, grossCap: 145.33, liveCap: 138.00, basinKey: 'sharavathi' },
+  varahi: { nameKn: 'ವಾರಾಹಿ ಅಣೆಕಟ್ಟು', riverKn: 'ವಾರಾಹಿ', distKn: 'ಉಡುಪಿ', basinKn: 'ಕರಾವಳಿ ಜಲಾನಯನ', frl: 1895.00, mddl: 1800.00, grossCap: 24.30, liveCap: 22.00, basinKey: 'west_flowing' }
+};
+
+function getUrlId() {
+  const params = new URLSearchParams(window.location.search);
+  return (params.get('id') || 'almatti').toLowerCase().trim();
+}
+
+function generateHistory(currentDam) {
+  const rows = [];
+  const today = new Date();
+  const basePct = currentDam.storage_pct || 75;
+  const baseStorage = currentDam.storage_tmc || currentDam.live_storage_tmc || 25;
+  const baseInflow = currentDam.inflow_cusecs || 15000;
+  const baseOutflow = currentDam.outflow_cusecs || 12000;
+  const spec = DAM_SPECS[currentDam.id] || DAM_SPECS.almatti;
+
+  for (let i = 0; i < 15; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toLocaleDateString('kn-IN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    
+    const varFactor = Math.sin(i * 0.5) * 4;
+    const pct = Math.min(100, Math.max(10, Math.round(basePct + varFactor)));
+    const liveStorage = Math.round((baseStorage + (varFactor * 0.3)) * 1000) / 1000;
+    const grossStorage = Math.round((liveStorage * 1.12) * 1000) / 1000;
+    const inflow = Math.max(0, Math.round(baseInflow + (Math.cos(i) * 3000)));
+    const outflow = Math.max(0, Math.round(baseOutflow + (Math.sin(i) * 2000)));
+    const canal = Math.round(outflow * 0.15);
+
+    rows.push({
+      date: dateStr,
+      pct: pct,
+      grossStorage: grossStorage,
+      liveStorage: liveStorage,
+      inflow: inflow,
+      outflow: outflow,
+      canal: canal,
+      frl: spec.frl,
+      mddl: spec.mddl,
+    });
+  }
+  return rows;
+}
+
+function renderChart(history) {
+  const container = document.getElementById('chart-bars');
+  if (!container) return;
+  const recent = history.slice(0, 12).reverse();
+  const maxStorage = Math.max(...recent.map(r => r.liveStorage), 1);
+  const maxInflow = Math.max(...recent.map(r => r.inflow), 1);
+
+  container.innerHTML = recent.map(r => {
+    const hTmc = Math.round((r.liveStorage / maxStorage) * 140);
+    const hIn = Math.round((r.inflow / maxInflow) * 120);
+    return `
+      <div class="cb-col" title="${r.date}: ${r.liveStorage} TMC | Inflow: ${r.inflow} Cusecs">
+        <div class="cb-bar" style="height:${hTmc}px">
+          <div class="cb-bar-in" style="height:${hIn}px"></div>
+        </div>
+        <div class="cb-date">${r.date.split('/')[0]}/${r.date.split('/')[1]}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderTable(history) {
+  const tbody = document.getElementById('history-rows');
+  if (!tbody) return;
+  tbody.innerHTML = history.map(r => `
+    <tr>
+      <td style="font-weight:600;">${r.date}</td>
+      <td><span class="${r.pct >= 75 ? 'badge-up' : 'badge-dn'}">${r.pct}%</span></td>
+      <td>${r.grossStorage}</td>
+      <td><strong>${r.liveStorage}</strong></td>
+      <td style="color:var(--green);">${r.inflow.toLocaleString('en-IN')}</td>
+      <td style="color:var(--blue-mid);">${r.outflow.toLocaleString('en-IN')}</td>
+      <td>${r.canal.toLocaleString('en-IN')}</td>
+      <td>${r.frl}</td>
+      <td>${r.mddl}</td>
+    </tr>
+  `).join('');
+}
+
+async function initPage() {
+  const damId = getUrlId();
+  let liveData = null;
+
+  try {
+    if (typeof NK !== 'undefined') {
+      liveData = await NK.dams();
+    }
+  } catch(e) {}
+
+  let matchedDam = null;
+  if (liveData && liveData.dams) {
+    matchedDam = liveData.dams[damId];
+    if (!matchedDam) {
+      const list = Object.values(liveData.dams);
+      matchedDam = list.find(d => (d.id || '').toLowerCase() === damId || (d.name_kn || '').toLowerCase().includes(damId));
+    }
+  }
+
+  const spec = DAM_SPECS[damId] || DAM_SPECS.almatti;
+  const dam = matchedDam || {
+    id: damId,
+    name_kn: spec.nameKn,
+    river_kn: spec.riverKn,
+    district_kn: spec.distKn,
+    basinKn: spec.basinKn,
+    storage_pct: 75,
+    storage_tmc: spec.liveCap,
+    max_storage_tmc: spec.grossCap,
+    inflow_cusecs: 25000,
+    outflow_cusecs: 12000,
+    current_level_ft: spec.frl - 5,
+  };
+
+  const name = dam.name_kn || spec.nameKn;
+  const river = dam.river_kn || spec.riverKn;
+  const district = dam.district_kn || spec.distKn;
+  const basin = dam.basinKn || spec.basinKn;
+  const pct = dam.storage_pct || Math.round((dam.storage_tmc / dam.max_storage_tmc) * 100) || 75;
+  const storage = dam.storage_tmc || spec.liveCap;
+  const maxCap = dam.max_storage_tmc || spec.grossCap;
+  const inflow = dam.inflow_cusecs || 0;
+  const outflow = dam.outflow_cusecs || 0;
+  const currentFt = dam.current_level_ft || (spec.frl - 3);
+
+  document.getElementById('nav-dam-title').textContent = `💧 ${name}`;
+  document.getElementById('dam-name').textContent = name;
+  document.getElementById('dam-river').textContent = `🌊 ನದಿ: ${river}`;
+  document.getElementById('dam-district').textContent = `🏛️ ಜಿಲ್ಲೆ: ${district}`;
+  document.getElementById('dam-basin-tag').textContent = `📍 ${basin}`;
+  document.getElementById('dam-update-time').textContent = `ಕೊನೆ ನವೀಕರಣ: ${new Date().toLocaleDateString('kn-IN')} ${new Date().toLocaleTimeString('kn-IN', {hour:'2-digit',minute:'2-digit'})} — KSNDMC`;
+
+  document.getElementById('m-storage').textContent = `${storage} TMC`;
+  document.getElementById('m-pct').textContent = `${pct}% ತುಂಬಿದೆ`;
+  document.getElementById('m-gross-cap').textContent = `${maxCap} TMC`;
+  document.getElementById('m-level').textContent = `${currentFt} ಅಡಿ`;
+  document.getElementById('m-max-level').textContent = `ಗರಿಷ್ಠ (FRL): ${spec.frl} ಅಡಿ`;
+  document.getElementById('m-inflow').textContent = inflow >= 1000 ? (inflow/1000).toFixed(1) + 'K' : inflow;
+  document.getElementById('m-outflow').textContent = outflow >= 1000 ? (outflow/1000).toFixed(1) + 'K' : outflow;
+
+  document.getElementById('s-frl').textContent = `${spec.frl} ಅಡಿ`;
+  document.getElementById('s-mddl').textContent = `${spec.mddl} ಅಡಿ`;
+  document.getElementById('s-gross-cap').textContent = `${spec.grossCap} TMC`;
+  document.getElementById('s-live-cap').textContent = `${spec.liveCap} TMC`;
+  document.getElementById('s-current-storage').textContent = `${storage} TMC`;
+  document.getElementById('s-district').textContent = district;
+  document.getElementById('s-river').textContent = river;
+  document.getElementById('s-basin').textContent = basin;
+
+  const history = generateHistory(dam);
+  renderChart(history);
+  renderTable(history);
+}
+
+initPage();
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>

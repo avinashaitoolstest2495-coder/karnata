@@ -1,0 +1,390 @@
+/* ============================================================
+   Karnata Weather Radar Module Stylesheet (High-Contrast MSN Style)
+   ============================================================ */
+
+.weather-map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 16px auto 32px;
+  padding: 0;
+  font-family: 'Anek Kannada', 'Inter', sans-serif;
+}
+
+.weather-map-card {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  border: 2px solid #0284C7;
+  background: #F8FAFC;
+}
+
+@media (max-width: 768px) {
+  .weather-map-card {
+    height: 560px;
+    border-radius: 18px;
+  }
+}
+
+/* Map Canvas */
+.wm-map-canvas {
+  width: 100%;
+  height: 100%;
+  background: #F8FAFC;
+  z-index: 1;
+}
+
+/* Base Overlays */
+.wm-overlay {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+/* Top Bar Container */
+.wm-top-bar {
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.wm-top-left, .wm-top-right {
+  pointer-events: auto;
+}
+
+/* MSN Control Pill */
+.msn-map-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0F172A;
+  border: 1.5px solid #0284C7;
+  border-radius: 24px;
+  padding: 4px 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.msn-pill-btn {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.msn-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #38BDF8;
+}
+
+.msn-pill-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Search Box */
+.wm-search-box {
+  position: relative;
+  width: 260px;
+}
+
+@media (max-width: 600px) {
+  .wm-search-box { width: 170px; }
+}
+
+.wm-search-input {
+  width: 100%;
+  background: #0F172A;
+  border: 1.5px solid #0284C7;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 12.5px;
+  font-weight: 600;
+  outline: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+.wm-search-input::placeholder { color: #94A3B8; }
+.wm-search-input:focus { border-color: #38BDF8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3); }
+
+/* Autocomplete Dropdown */
+.ws-results {
+  display: none !important;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  background: #0F172A;
+  border: 1.5px solid #0284C7;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  z-index: 1200;
+}
+
+.ws-item {
+  padding: 10px 14px;
+  color: #F8FAFC;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ws-item:hover { background: rgba(56, 189, 248, 0.2); color: #38BDF8; }
+.ws-item-kn { font-weight: 700; }
+.ws-item-en { font-size: 11px; opacity: 0.75; }
+.ws-no-result { padding: 12px; font-size: 12px; color: #94A3B8; text-align: center; }
+
+/* Layer Menu Dropdown */
+.wc-layer-dropdown { position: relative; }
+
+.wc-layer-menu {
+  display: none !important;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  min-width: 175px;
+  background: #0F172A;
+  border: 1.5px solid #0284C7;
+  border-radius: 14px;
+  padding: 6px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  z-index: 1200;
+}
+
+.wc-layer-menu.show { display: block !important; }
+
+.wc-layer-item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+  color: #E2E8F0;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+}
+
+.wc-layer-item:hover:not(.disabled) { background: rgba(56, 189, 248, 0.2); color: #38BDF8; }
+.wc-layer-item.active { background: #0284C7; color: #FFFFFF; }
+.wc-layer-item.disabled { opacity: 0.5; cursor: not-allowed; }
+.wc-badge-soon { font-size: 9px; background: rgba(255, 255, 255, 0.15); padding: 2px 6px; border-radius: 10px; }
+
+/* Bottom Left High-Contrast Location & Weather Card */
+.msn-bottom-left-card {
+  bottom: 20px;
+  left: 20px;
+  width: 370px;
+  max-width: calc(100% - 40px);
+  pointer-events: auto;
+  background: #FFFFFF;
+  border: 2px solid #0284C7;
+  border-radius: 20px;
+  padding: 16px 20px;
+  color: #0F172A;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.msn-loc-header { margin-bottom: 10px; }
+.msn-loc-title { font-size: 17px; font-weight: 800; color: #0F172A; }
+.msn-loc-sub { font-size: 11px; color: #64748B; margin-top: 2px; font-weight: 600; }
+
+.msn-live-status-box {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.msn-live-weather-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.msn-live-temp { font-size: 22px; font-weight: 800; color: #0284C7; }
+.msn-live-desc { font-size: 13px; color: #0F172A; font-weight: 700; }
+
+.msn-live-details {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: #334155;
+  font-weight: 700;
+}
+
+.msn-rain-dist-tag {
+  font-size: 11px;
+  color: #0284C7;
+  font-weight: 700;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Timeline Controls Inside Location Card */
+.msn-timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #F8FAFC;
+  padding: 8px 12px;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
+}
+
+.wt-btn-play {
+  background: #0284C7;
+  border: none;
+  color: #FFFFFF;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+  transition: transform 0.15s;
+}
+
+.wt-btn-play:hover { transform: scale(1.08); background: #0369A1; }
+
+.wt-slider-container { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.wt-slider { width: 100%; height: 5px; -webkit-appearance: none; background: #CBD5E1; border-radius: 3px; outline: none; cursor: pointer; }
+.wt-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #0284C7; box-shadow: 0 0 8px rgba(2, 132, 199, 0.8); cursor: pointer; }
+
+.wt-ticks-row { display: flex; justify-content: space-between; font-size: 9.5px; color: #64748B; font-weight: 700; }
+.wt-tick-now { color: #0284C7; font-weight: 800; }
+.wt-frame-time { font-size: 11.5px; font-weight: 800; color: #0F172A; min-width: 75px; text-align: right; }
+.wt-now-tag { background: #0284C7; color: #FFFFFF; font-size: 9px; padding: 2px 5px; border-radius: 6px; margin-right: 3px; }
+
+/* Bottom Right Legend Bar */
+.msn-bottom-right-legend {
+  bottom: 20px;
+  right: 20px;
+  pointer-events: auto;
+}
+
+.msn-legend-card {
+  background: #FFFFFF;
+  border: 2px solid #0284C7;
+  border-radius: 14px;
+  padding: 8px 14px;
+  color: #0F172A;
+  min-width: 190px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.msn-legend-header { display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 800; margin-bottom: 4px; color: #0F172A; }
+.msn-legend-sub { font-size: 9px; color: #64748B; font-weight: 600; }
+
+.msn-legend-gradient {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, 
+    #86EFAC 0%, 
+    #22C55E 20%, 
+    #EAB308 45%, 
+    #F97316 65%, 
+    #EF4444 85%, 
+    #A855F7 100%
+  );
+}
+
+.msn-legend-labels { display: flex; justify-content: space-between; font-size: 9px; margin-top: 3px; font-weight: 800; color: #334155; }
+
+/* High-Contrast City Weather Badges */
+.wm-city-badge-wrapper { background: transparent; border: none; }
+
+.wm-city-badge {
+  background: #FFFFFF;
+  border: 1.5px solid #0284C7;
+  border-radius: 12px;
+  padding: 3px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wm-city-badge:hover {
+  transform: scale(1.1);
+  border-color: #38BDF8;
+  background: #F0F9FF;
+}
+
+.wm-cb-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.wm-cb-temp {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #0284C7;
+  background: #E0F2FE;
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.wm-selected-pin-wrapper { position: relative; width: 30px; height: 30px; }
+.wm-pin-core { position: absolute; top: 8px; left: 8px; width: 14px; height: 14px; background: #E11D48; border: 2px solid #FFFFFF; border-radius: 50%; box-shadow: 0 0 12px rgba(225, 29, 72, 0.9); }
+.wm-pin-pulse { position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-radius: 50%; background: rgba(225, 29, 72, 0.4); animation: pulsePin 1.5s infinite; }
+
+@keyframes pulsePin {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Status slot */
+.wc-status-badge { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: #059669; font-weight: 800; }
+.wc-status-dot { width: 7px; height: 7px; border-radius: 50%; animation: pulseDot 2s infinite; }
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Toast */
+.wc-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: #0F172A; color: #FFFFFF; border: 1px solid #38BDF8; padding: 10px 20px; border-radius: 24px; font-size: 13px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; transition: all 0.3s ease; z-index: 9999; }
+.wc-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+@media (max-width: 640px) {
+  .msn-bottom-left-card { left: 10px; bottom: 10px; width: calc(100% - 20px); }
+  .msn-bottom-right-legend { display: none; }
+}
