@@ -1,0 +1,9 @@
+{
+  "name": "karnata-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Karnata.in — Universe of Karnataka Platform",
+  "scripts": {
+    "scrape": "node scripts/scrape_real_karnataka_news.js && node scripts/build_all_district_news.js && node scripts/build_seo_and_monetization.js"
+  }
+}
