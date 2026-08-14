@@ -2,18 +2,18 @@
 Karnata — local_news_scraper.py
 Multi-Source Strict District Local News Scraper with Geolocation & High-Precision Tagging
 
-Aggregates news from top Kannada portals:
-- News18 Kannada (Karnataka, Bengaluru & District RSS Feeds)
-- Asianet Suvarna News (Karnataka Districts Portal & Feed)
-- Prajavani (Public Feed & District Sections)
-- Udayavani (Main & District Feeds)
-- TV9 Kannada (Main, State & District Feeds)
+Aggregates news from all top Kannada & District portals:
+- Vijaya Karnataka (Direct portal scraper)
+- News18 Kannada (Direct portal scraper)
+- Asianet Suvarna News (RSS & district feeds)
+- Prajavani (Public feed & 31 district sections)
+- TV9 Kannada (Main & district feeds)
 - Public TV
 - OneIndia Kannada
-- Star of Mysore, Just Kannada, Mangalorean, Shivamogga Live, All About Belgaum
-
-Enforces STRICT ISOLATION so Bengaluru news never leaks into Davanagere, Mysuru, Ramanagara, etc.
-Includes Geolocation Coordinates for all 31 Districts.
+- Star of Mysore, Just Kannada (Mysuru)
+- Mangalorean (Dakshina Kannada / Udupi)
+- Shivamogga Live (Shivamogga)
+- All About Belgaum (Belagavi)
 """
 
 import os
@@ -26,12 +26,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
+import xml.etree.ElementTree as ET
 
 from utils import store, log, ist_now, ist_date, sanitize_dict, encrypt_payload
 
 DATA_DIR = Path(os.getenv("OUTPUT_DIR", "../data"))
 
-# ─── 31 KARNATAKA DISTRICTS GEOLOCATION METADATA ────────────────
 DISTRICT_GEOLOCATION = {
     "bengaluru-urban": {"name_kn": "ಬೆಂಗಳೂರು ನಗರ", "hq": "Bengaluru", "lat": 12.9716, "lng": 77.5946},
     "bengaluru-rural": {"name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "hq": "Devanahalli", "lat": 13.2257, "lng": 77.5750},
@@ -66,24 +66,16 @@ DISTRICT_GEOLOCATION = {
     "bidar": {"name_kn": "ಬೀದರ್", "hq": "Bidar", "lat": 17.9104, "lng": 77.5199},
 }
 
-# ─── RSS & WEB SOURCES ─────────────────────────────────────────
 RSS_SOURCES = [
-    # ── NEWS18 KANNADA (NEWLY ADDED) ─────────────────────────
-    {"name": "ನ್ಯೂಸ್ 18 ಕನ್ನಡ (News18)", "rss": "https://kannada.news18.com/rss/karnataka.xml", "lang": "kn", "logo": "news18"},
-    {"name": "ನ್ಯೂಸ್ 18 ಕರ್ನಾಟಕ", "rss": "https://kannada.news18.com/rss/state.xml", "lang": "kn", "logo": "news18"},
-    {"name": "ನ್ಯೂಸ್ 18 ಬೆಂಗಳೂರು", "rss": "https://kannada.news18.com/rss/bengaluru.xml", "lang": "kn", "logo": "news18", "district": "bengaluru-urban"},
-    {"name": "ನ್ಯೂಸ್ 18 ಜಿಲ್ಲಾ ಸುದ್ದಿ", "rss": "https://kannada.news18.com/rss/districts.xml", "lang": "kn", "logo": "news18"},
-
-    # ── ASIANET NEWS KANNADA ──────────────────────────────────
+    # Asianet Suvarna
     {"name": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ (Asianet News)", "rss": "https://kannada.asianetnews.com/rss", "lang": "kn", "logo": "asianet"},
 
-    # ── PRAJAVANI, UDAYAVANI, TV9 ────────────────────────────
+    # Prajavani & TV9 Main
     {"name": "ಪ್ರಜಾವಾಣಿ (Prajavani)", "rss": "https://www.prajavani.net/feed", "lang": "kn", "logo": "prajavani"},
-    {"name": "ಉದಯವಾಣಿ (Udayavani)", "rss": "https://www.udayavani.com/feed", "lang": "kn", "logo": "udayavani"},
     {"name": "TV9 ಕನ್ನಡ (TV9 Kannada)", "rss": "https://tv9kannada.com/feed", "lang": "kn", "logo": "tv9"},
     {"name": "TV9 ಕರ್ನಾಟಕ ಸುದ್ದಿ", "rss": "https://tv9kannada.com/karnataka/feed", "lang": "kn", "logo": "tv9"},
 
-    # ── TV9 DISTRICT FEEDS ─────────────────────────────────────
+    # TV9 District Feeds
     {"name": "TV9 ಬೆಂಗಳೂರು", "rss": "https://tv9kannada.com/karnataka/bengaluru/feed", "lang": "kn", "logo": "tv9", "district": "bengaluru-urban"},
     {"name": "TV9 ಮೈಸೂರು", "rss": "https://tv9kannada.com/karnataka/mysuru/feed", "lang": "kn", "logo": "tv9", "district": "mysuru"},
     {"name": "TV9 ಬೆಳಗಾವಿ", "rss": "https://tv9kannada.com/karnataka/belagavi/feed", "lang": "kn", "logo": "tv9", "district": "belagavi"},
@@ -96,19 +88,15 @@ RSS_SOURCES = [
     {"name": "TV9 ಹಾಸನ", "rss": "https://tv9kannada.com/karnataka/hassan/feed", "lang": "kn", "logo": "tv9", "district": "hassan"},
     {"name": "TV9 ಕೊಡಗು", "rss": "https://tv9kannada.com/karnataka/kodagu/feed", "lang": "kn", "logo": "tv9", "district": "kodagu"},
 
-    # ── GOOGLE NEWS KANNADA DISTRICT FEEDS ────────────────────
-    {"name": "ಗೂಗಲ್ ಸುದ್ದಿ (ಬೆಂಗಳೂರು)", "rss": "https://news.google.com/rss/search?q=Bengaluru+Karnataka&hl=kn&gl=IN&ceid=IN:kn", "lang": "kn", "logo": "google", "district": "bengaluru-urban"},
-    {"name": "ಗೂಗಲ್ ಸುದ್ದಿ (ಮೈಸೂರು)", "rss": "https://news.google.com/rss/search?q=Mysuru+Karnataka&hl=kn&gl=IN&ceid=IN:kn", "lang": "kn", "logo": "google", "district": "mysuru"},
-    {"name": "ಗೂಗಲ್ ಸುದ್ದಿ (ಬೆಳಗಾವಿ)", "rss": "https://news.google.com/rss/search?q=Belagavi+Karnataka&hl=kn&gl=IN&ceid=IN:kn", "lang": "kn", "logo": "google", "district": "belagavi"},
-
-    # ── LOCAL & OTHER PORTALS ────────────────────────────────
+    # Public TV & OneIndia
     {"name": "ಪಬ್ಲಿಕ್ ಟಿವಿ (Public TV)", "rss": "https://publictv.in/feed/", "lang": "kn", "logo": "publictv"},
     {"name": "ಒನ್‌ಇಂಡಿಯಾ ಕನ್ನಡ (OneIndia)", "rss": "https://kannada.oneindia.com/rss/kannada-news-fb.xml", "lang": "kn", "logo": "oneindia"},
-    {"name": "ಸ್ಟಾರ್ ಆಫ್ ಮೈಸೂರು (Star of Mysore)", "rss": "https://starofmysore.com/feed/", "lang": "en", "logo": "som", "district": "mysuru"},
-    {"name": "ಜಸ್ಟ್ ಕನ್ನಡ (Just Kannada)", "rss": "https://www.justkannada.in/feed/", "lang": "kn", "logo": "justkannada", "district": "mysuru"},
-    {"name": "ಮಂಗಳೂರಿಯನ್ (Mangalorean)", "rss": "https://www.mangalorean.com/feed/", "lang": "en", "logo": "mangalorean", "district": "dakshina-kannada"},
-    {"name": "ಆಲ್ ಅಬೌಟ್ ಬೆಳಗಾವಿ (All About Belgaum)", "rss": "https://allaboutbelgaum.com/feed/", "lang": "en", "logo": "belgaum", "district": "belagavi"},
+
+    # Local District Portals
     {"name": "ಶಿವಮೊಗ್ಗ ಲೈವ್ (Shivamogga Live)", "rss": "https://shivamoggalive.com/feed/", "lang": "kn", "logo": "shivamoggalive", "district": "shivamogga"},
+    {"name": "ಜಸ್ಟ್ ಕನ್ನಡ (Just Kannada)", "rss": "https://www.justkannada.in/feed/", "lang": "kn", "logo": "justkannada", "district": "mysuru"},
+    {"name": "ಸ್ಟಾರ್ ಆಫ್ ಮೈಸೂರು (Star of Mysore)", "rss": "https://starofmysore.com/feed/", "lang": "en", "logo": "som", "district": "mysuru"},
+    {"name": "ಮಂಗಳೂರಿಯನ್ (Mangalorean)", "rss": "https://www.mangalorean.com/feed/", "lang": "en", "logo": "mangalorean", "district": "dakshina-kannada"}
 ]
 
 PRAJAVANI_DISTRICT_SLUGS = {
@@ -145,465 +133,254 @@ PRAJAVANI_DISTRICT_SLUGS = {
     "bidar": "bidar",
 }
 
-# ─── HIGH-PRECISION DISTRICT GAZETTEER & RULES ─────────────────
-# Fixes Over-matching (e.g., generic "ಮಹಾನಗರ ಪಾಲಿಕೆ" removed)
 STRICT_DISTRICT_RULES = {
-    "bengaluru-urban": {
-        "must": ["bengaluru urban", "ಬೆಂಗಳೂರು ನಗರ", "bbmp", "ಬಿಬಿಎಂಪಿ", "ಬೆಂಗಳೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ", "whitefield", "jayanagar", "yelahanka", "hebbal", "electronic city", "ಮೆಜೆಸ್ಟಿಕ್", "ನಮ್ಮ ಮೆಟ್ರೋ", "ಗ್ರೇಟರ್ ಬೆಂಗಳೂರು"],
-        "must_not": ["bengaluru rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "ramanagara", "ರಾಮನಗರ", "kanakapura", "ಕನಕಪುರ", "channapatna", "ಚನ್ನಪಟ್ಟಣ", "mysuru", "ಮೈಸೂರು", "davanagere", "ದಾವಣಗೆರೆ", "mangaluru", "ಮಂಗಳೂರು", "belagavi", "ಬೆಳಗಾವಿ"]
-    },
-    "bengaluru-rural": {
-        "must": ["bengaluru rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "devanahalli", "ದೇವನಹಳ್ಳಿ", "doddaballapur", "ದೊಡ್ಡಬಳ್ಳಾಪುರ", "nelamangala", "ನೆಲಮಂಗಲ", "hoskote", "ಹೊಸಕೋಟೆ"],
-        "must_not": ["bengaluru urban", "ಬೆಂಗಳೂರು ನಗರ", "bbmp", "ಬಿಬಿಎಂಪಿ"]
-    },
-    "ramanagara": {
-        "must": ["ramanagara", "ರಾಮನಗರ", "kanakapura", "ಕನಕಪುರ", "channapatna", "ಚನ್ನಪಟ್ಟಣ", "magadi", "ಮಾಗಡಿ"],
-        "must_not": ["bengaluru urban", "ಬೆಂಗಳೂರು ನಗರ"]
-    },
-    "mysuru": {
-        "must": ["mysuru", "mysore", "ಮೈಸೂರು", "ಚಾಮುಂಡಿ", "ಮೈಸೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ", "ನಂಜನಗೂಡು", "ಹುಣಸೂರು", "ಕೆಆರ್‌ಎಸ್"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು", "mandya", "ಮಂಡ್ಯ"]
-    },
-    "mandya": {
-        "must": ["mandya", "ಮಂಡ್ಯ", "ಮದ್ದೂರು", "ಶ್ರೀರಂಗಪಟ್ಟಣ", "ಮಳವಳ್ಳಿ", "ಪಾಂಡವಪುರ", "ಕೆಆರ್‌ಎಸ್ ಡ್ಯಾಮ್"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು", "mysuru", "ಮೈಸೂರು"]
-    },
-    "hassan": {
-        "must": ["hassan", "ಹಾಸನ", "ಬೇಲೂರು", "ಹಳೇಬೀಡು", "ಸಕಲೇಶಪುರ", "ಅರಸೀಕೆರೆ", "ಚನ್ನರಾಯಪಟ್ಟಣ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "kodagu": {
-        "must": ["kodagu", "madikeri", "ಕೊಡಗು", "ಮಡಿಕೇರಿ", "ಕುಶಾಲನಗರ", "ವಿರಾಜಪೇಟೆ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "dakshina-kannada": {
-        "must": ["mangaluru", "mangalore", "ಮಂಗಳೂರು", "ದಕ್ಷಿಣ ಕನ್ನಡ", "ಬಂಟ್ವಾಳ", "ಪುತ್ತೂರು", "ಸುಳ್ಯ", "ಧರ್ಮಸ್ಥಳ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "udupi": {
-        "must": ["udupi", "ಉಡುಪಿ", "ಕುಂದಾಪುರ", "ಕಾರ್ಕಳ", "ಮಣಿಪಾಲ", "ಕಾಪು", "ಕೊಲ್ಲೂರು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "shivamogga": {
-        "must": ["shivamogga", "shimoga", "ಶಿವಮೊಗ್ಗ", "ಭದ್ರಾವತಿ", "ಸಾಗರ", "ಶಿಕಾರಿಪುರ", "ಜೋಗ ಜಲಪಾತ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "chikkamagaluru": {
-        "must": ["chikkamagaluru", "chikmagalur", "ಚಿಕ್ಕಮಗಳೂರು", "ಮೂಡಿಗೆರೆ", "ತಾರೀಕೆರೆ", "ಕಡೂರು", "ಮುಳ್ಳಯ್ಯನಗಿರಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "tumakuru": {
-        "must": ["tumakuru", "tumkur", "ತುಮಕೂರು", "ತಿಪಟೂರು", "ಸಿರಾ", "ಮಧುಗಿರಿ", "ಕೊರಟಗೆರೆ", "ಪಾವಗಡ"],
-        "must_not": ["bengaluru urban", "ಬೆಂಗಳೂರು"]
-    },
-    "chitradurga": {
-        "must": ["chitradurga", "ಚಿತ್ರದುರ್ಗ", "ಹಿರಿಯೂರು", "ಹೊಸದುರ್ಗ", "ಚಳ್ಳಕೆರೆ", "ಮೊಳಕಾಲ್ಮೂರು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "davanagere": {
-        "must": ["davanagere", "davangere", "ದಾವಣಗೆರೆ", "ದಾವಣಗೆರೆ ಮಹಾನಗರ ಪಾಲಿಕೆ", "ಹರಿಹರ", "ಚನ್ನಗಿರಿ", "ಹೊನ್ನಾಳಿ", "ಜಗಳೂರು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು", "mysuru", "ಮೈಸೂರು"]
-    },
-    "belagavi": {
-        "must": ["belagavi", "belgaum", "ಬೆಳಗಾವಿ", "ಗೋಕಾಕ್", "ಅಥಣಿ", "ಚಿಕ್ಕೋಡಿ", "ಖಾನಾಪುರ", "ರಾಯಬಾಗ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "dharwad": {
-        "must": ["dharwad", "hubli", "hubballi", "ಧಾರವಾಡ", "ಹುಬ್ಬಳ್ಳಿ", "ಕುಂದಗೋಳ", "ಕಲಘಟಗಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "gadag": {
-        "must": ["gadag", "ಗದಗ", "ನರಗುಂದ", "ರೋಣ", "ಶಿರಹಟ್ಟಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "haveri": {
-        "must": ["haveri", "ಹಾವೇರಿ", "ರಾಣೆಬೆನ್ನೂರು", "ಬ್ಯಾಡಗಿ", "ಶಿಗ್ಗಾಂವಿ", "ಹಾನಗಲ್"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "uttara-kannada": {
-        "must": ["karwar", "sirsi", "ಉತ್ತರ ಕನ್ನಡ", "ಕಾರವಾರ", "ಶಿರಸಿ", "ಭಟ್ಕಳ", "ಕುಮಟಾ", "ಅಂಕೋಲಾ", "ಹೊನ್ನಾವರ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "bagalkote": {
-        "must": ["bagalkote", "ಬಾಗಲಕೋಟೆ", "ಬಾದಾಮಿ", "ಮುಧೋಳ", "ಜಮಖಂಡಿ", "ಹುನಗುಂದ", "ಇಳಕಲ್ಲ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "vijayapura": {
-        "must": ["vijayapura", "bijapur", "ವಿಜಯಪುರ", "ಇಂಡಿ", "ಸಿಂಧಗಿ", "ಮುದ್ದೇಬಿಹಾಳ", "ಬಸವನ ಬಾಗೇವಾಡಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "kalaburagi": {
-        "must": ["kalaburagi", "gulbarga", "ಕಲಬುರಗಿ", "ಆಳಂದ", "ಸೇಡಂ", "ಜೇವರ್ಗಿ", "ಚಿಂಚೋಳಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "yadgir": {
-        "must": ["yadgir", "ಯಾದಗಿರಿ", "ಶಹಾಪುರ", "ಶೋರಾಪುರ", "ಗುರಮಿಟ್ಕಲ್"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "raichur": {
-        "must": ["raichur", "ರಾಯಚೂರು", "ಸಿಂಧನೂರು", "ಮಾನ್ವಿ", "ದೇವದುರ್ಗ", "ಲಿಂಗಸುಗೂರು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "koppal": {
-        "must": ["koppal", "gangavathi", "ಕೊಪ್ಪಳ", "ಗಂಗಾವತಿ", "ಕುಷ್ಟಗಿ", "ಯಲಬುರ್ಗಾ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "ballari": {
-        "must": ["ballari", "bellary", "ಬಳ್ಳಾರಿ", "ಸಿರುಗುಪ್ಪ", "ಕುರುಗೋಡು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು", "vijayanagara", "ವಿಜಯನಗರ"]
-    },
-    "vijayanagara": {
-        "must": ["vijayanagara", "hosapete", "hampi", "ವಿಜಯನಗರ", "ಹೊಸಪೇಟೆ", "ಹಂಪಿ", "ಹರಪನಹಳ್ಳಿ", "ಕೂಡ್ಲಿಗಿ"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "chikkaballapura": {
-        "must": ["chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "ಗೌರಿಬಿದನೂರು", "ಶಿಡ್ಲಘಟ್ಟ", "ಚಿಂತಾಮಣಿ", "ಬಾಗೇಪಲ್ಲಿ"],
-        "must_not": ["bengaluru urban", "ಬೆಂಗಳೂರು ನಗರ"]
-    },
-    "kolar": {
-        "must": ["kolar", "kgf", "ಕೋಲಾರ", "ಕೆಜಿಎಫ್", "ಬಂಗಾರಪೇಟೆ", "ಮುಳಬಾಗಿಲು", "ಮಲೂರು", "ಶ್ರೀನಿವಾಸಪುರ"],
-        "must_not": ["bengaluru urban", "ಬೆಂಗಳೂರು ನಗರ"]
-    },
-    "chamarajanagara": {
-        "must": ["chamarajanagara", "ಚಾಮರಾಜನಗರ", "ಗುಂಡ್ಲುಪೇಟೆ", "ಕೊಳ್ಳೇಗಾಲ", "ಹನೂರು"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
-    "bidar": {
-        "must": ["bidar", "ಬೀದರ್", "ಬಸವಕಲ್ಯಾಣ", "ಹುಮ್ನಾಬಾದ್", "ಭಾಲ್ಕಿ", "ಔರಾದ್"],
-        "must_not": ["bengaluru", "ಬೆಂಗಳೂರು"]
-    },
+    "bengaluru-urban": ["ಬೆಂಗಳೂರು", "ಬಿಬಿಎಂಪಿ", "bbmp", "bengaluru", "bangalore", "ಯಲಹಂಕ", "ಮೆಜೆಸ್ಟಿಕ್", "ವೈಟ್‌ಫೀಲ್ಡ್", "ಜಯನಗರ", "ಕೋರಮಂಗಲ", "ಇಂದಿರಾನಗರ"],
+    "bengaluru-rural": ["ದೇವನಹಳ್ಳಿ", "ನೆಲಮಂಗಲ", "ದೊಡ್ಡಬಳ್ಳಾಪುರ", "ಹೊಸಕೋಟೆ", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "ಕಿಯಾಲ್"],
+    "ramanagara": ["ರಾಮನಗರ", "ಚನ್ನಪಟ್ಟಣ", "ಕನಕಪುರ", "ಮಾಗಡಿ", "ಹಾರೋಹಳ್ಳಿ", "ಬಿಡದಿ"],
+    "chikkaballapura": ["ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "ಗೌರಿಬಿದನೂರು", "ಬಾಗೇಪಲ್ಲಿ", "ಶಿಡ್ಲಘಟ್ಟ", "ಚಿಂತಾಮಣಿ", "ನಂದಿ ಬೆಟ್ಟ"],
+    "kolar": ["ಕೋಲಾರ", "ಮಾಲೂರು", "ಬಂಗಾರಪೇಟೆ", "ಕೆಜಿಎಫ್", "kgf", "ಶ್ರೀನಿವಾಸಪುರ", "ಮುಳಬಾಗಿಲು"],
+    "tumakuru": ["ತುಮಕೂರು", "ತಿಪಟೂರು", "ಕುಣಿಗಲ್", "ಸಿರಾ", "ಮಧುಗಿರಿ", "ಪಾವಗಡ", "ತುರುವೇಕೆರೆ", "ಗುಬ್ಬಿ", "ಸಿದ್ಧಗಂಗಾ"],
+    "chitradurga": ["ಚಿತ್ರದುರ್ಗ", "ಚಳ್ಳಕೆರೆ", "ಹಿರಿಯೂರು", "ಹೊಲಲ್ಕೆರೆ", "ಹೊಸದುರ್ಗ", "ಮೊಳಕಾಲ್ಮೂರು", "ಕೋಟೆ ನಾಡು"],
+    "davanagere": ["ದಾವಣಗೆರೆ", "ಹರಿಹರ", "ಜಗಳೂರು", "ಚನ್ನಗಿರಿ", "ಹೊನ್ನಾಳಿ", "ನ್ಯಾಮತಿ", "ಬೆಣ್ಣೆ ನಗರಿ"],
+    "shivamogga": ["ಶಿವಮೊಗ್ಗ", "ಸಾಗರ", "ಶಿಕಾರಿಪುರ", "ತೀರ್ಥಹಳ್ಳಿ", "ಭದ್ರಾವತಿ", "ಸೊರಬ", "ಹೊಸನಗರ", "ಜೋಗ್"],
+    "mysuru": ["ಮೈಸೂರು", "ನಂಜನಗೂಡು", "ಹುಣಸೂರು", "ಟಿ.ನರಸೀಪುರ", "ಪಿರಿಯಾಪಟ್ಟಣ", "ಕೆ.ಆರ್.ನಗರ", "ಚಾಮುಂಡಿ", "ದಸರಾ"],
+    "mandya": ["ಮಂಡ್ಯ", "ಮದ್ದೂರು", "ಮಳವಳ್ಳಿ", "ಶ್ರೀರಂಗಪಟ್ಟಣ", "ಪಾಂಡವಪುರ", "ಕೆ.ಆರ್.ಪೇಟೆ", "ನಾಗಮಂಗಲ", "ಕೆಆರ್‌ಎಸ್"],
+    "hassan": ["ಹಾಸನ", "ಅರಸೀಕೆರೆ", "ಚನ್ನರಾಯಪಟ್ಟಣ", "ಹೊಳೆನರಸೀಪುರ", "ಸಕಲೇಶಪುರ", "ಬೇಲೂರು", "ಆಲೂರು", "ಹಳೇಬೀಡು"],
+    "kodagu": ["ಕೊಡಗು", "ಮಡಿಕೇರಿ", "ಸೋಮವಾರಪೇಟೆ", "ವಿರಾಜಪೇಟೆ", "ಪೊನ್ನಂಪೇಟೆ", "ಕುಶಾಲನಗರ", "ತಲಕಾವೇರಿ"],
+    "chamarajanagara": ["ಚಾಮರಾಜನಗರ", "ಕೊಳ್ಳೇಗಾಲ", "ಗುಂಡ್ಲುಪೇಟೆ", "ಯಳಂದೂರು", "ಹನೂರು", "ಬಂಡೀಪುರ", "ಮಲೆ ಮಹದೇಶ್ವರ"],
+    "chikkamagaluru": ["ಚಿಕ್ಕಮಗಳೂರು", "ತಾರೀಕೆರೆ", "ಕಡೂರು", "ಮೂಡಿಗೆರೆ", "ಶೃಂಗೇರಿ", "ಕೊಪ್ಪ", "ಮುಳ್ಳಯ್ಯನಗಿರಿ"],
+    "dakshina-kannada": ["ಮಂಗಳೂರು", "ಪುತ್ತೂರು", "ಬೆಳ್ತಂಗಡಿ", "ಬಂಟ್ವಾಳ", "ಸುಳ್ಯ", "ದಕ್ಷಿಣ ಕನ್ನಡ", "ಧರ್ಮಸ್ಥಳ", "ಕುಕ್ಕೆ"],
+    "udupi": ["ಉಡುಪಿ", "ಕಾರ್ಕಳ", "ಕುಂದಾಪುರ", "ಬ್ರಹ್ಮಾವರ", "ಕಾಪು", "ಬೈಂದೂರು", "ಮಲ್ಪೆ", "ಕೃಷ್ಣ ಮಠ"],
+    "uttara-kannada": ["ಕಾರವಾರ", "ಅಂಕೋಲಾ", "ಕುಮಟಾ", "ಹೊನ್ನಾವರ", "ಭಟ್ಕಳ", "ಶಿರಸಿ", "ಗೋಕರ್ಣ", "ದಾಂಡೇಲಿ", "ಉತ್ತರ ಕನ್ನಡ"],
+    "belagavi": ["ಬೆಳಗಾವಿ", "ಗೋಕಾಕ್", "ಚಿಕ್ಕೋಡಿ", "ಅಥಣಿ", "ಬೈಲಹೊಂಗಲ", "ಖಾನಾಪುರ", "ನಿಪ್ಪಾಣಿ", "ಸುವರ್ಣ ಸೌಧ"],
+    "dharwad": ["ಧಾರವಾಡ", "ಹುಬ್ಬಳ್ಳಿ", "ಕಲಘಟಗಿ", "ನವಲಗುಂದ", "ಅಣ್ಣಿಗೇರಿ", "ವಿದ್ಯಾಕಾಶಿ"],
+    "gadag": ["ಗದಗ", "ಬೆಟಗೇರಿ", "ರೋಣ", "ಶಿರಹಟ್ಟಿ", "ಮುಂಡರಗಿ", "ನರಗುಂದ", "ಲಕ್ಷ್ಮೇಶ್ವರ", "ಕಪ್ಪತಗುಡ್ಡ"],
+    "haveri": ["ಹಾವೇರಿ", "ರಾಣೇಬೆನ್ನೂರು", "ಬ್ಯಾಡಗಿ", "ಹಾನಗಲ್", "ಹಿರೇಕೆರೂರು", "ಶಿಗ್ಗಾಂವಿ", "ಕಾಗಿನೆಲೆ"],
+    "bagalkote": ["ಬಾಗಲಕೋಟೆ", "ಜಮಖಂಡಿ", "ಮುಧೋಳ", "ಬಾದಾಮಿ", "ಹುನಗುಂದ", "ಇಳಕಲ್", "ಆಲಮಟ್ಟಿ", "ಪಟ್ಟದಕಲ್ಲು"],
+    "vijayapura": ["ವಿಜಯಪುರ", "ಇಂಡಿ", "ಮುದ್ದೇಬಿಹಾಳ", "ಬಬಲೇಶ್ವರ", "ಬಸವನ ಬಾಗೇವಾಡಿ", "ಸಿಂದಗಿ", "ಗೋಳಗುಮ್ಮಟ"],
+    "kalaburagi": ["ಕಲಬುರಗಿ", "ಗುಲ್ಬರ್ಗಾ", "ಸೇಡಂ", "ಚಿತ್ತಾಪುರ", "ಆಳಂದ", "ಅಫ್ಜಲ್ಪುರ", "ಜೇವರ್ಗಿ", "ತೊಗರಿ"],
+    "yadgir": ["ಯಾದಗಿರಿ", "ಶಹಾಪುರ", "ಸುರಪುರ", "ಗುರುಮಿಟ್ಕಲ್", "ಹುಣಸಗಿ", "ವಡಗೇರಾ", "ಬಸವ ಸಾಗರ"],
+    "raichur": ["ರಾಯಚೂರು", "ಮಾನ್ವಿ", "ಸಿಂಧನೂರು", "ದೇವದುರ್ಗ", "ಲಿಂಗಸುಗೂರು", "ಮಸ್ಕಿ", "ಆರ್‌ಟಿಪಿಎಸ್"],
+    "koppal": ["ಕೊಪ್ಪಳ", "ಗಂಗಾವತಿ", "ಕುಷ್ಟಗಿ", "ಯಲಬುರ್ಗಾ", "ಕಾರಟಗಿ", "ಕುಕನೂರು", "ಕಿನ್ನಾಳ", "ಆನೆಗೊಂದಿ"],
+    "ballari": ["ಬಳ್ಳಾರಿ", "ಕಂಪ್ಲಿ", "ಸಿರುಗುಪ್ಪ", "ಕುರುಗೋಡು", "ಸಂದೂರು", "ತೋರಣಗಲ್ಲು"],
+    "vijayanagara": ["ವಿಜಯನಗರ", "ಹೊಸಪೇಟೆ", "ಹಂಪಿ", "ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ", "ಹೂವಿನಹಡಗಲಿ", "ಕೂಡ್ಲಿಗಿ", "ಟಿಬಿ ಡ್ಯಾಂ"],
+    "bidar": ["ಬೀದರ್", "ಹುಮ್ನಾಬಾದ್", "ಭಾಲ್ಕಿ", "ಬಸವಕಲ್ಯಾಣ", "ಔರಾದ್", "ಗುರುನಾನಕ್ ಝೀರಾ", "ಬಿದ್ರಿ"],
 }
 
-def parse_pub_date(raw: str) -> str:
-    formats = [
-        "%a, %d %b %Y %H:%M:%S %z",
-        "%a, %d %b %Y %H:%M:%S %Z",
-        "%Y-%m-%dT%H:%M:%S%z",
-        "%Y-%m-%dT%H:%M:%SZ",
-        "%Y-%m-%d %H:%M:%S",
-    ]
-    for fmt in formats:
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "kn,en-US;q=0.9,en;q=0.8"
+}
+
+def clean_text(t: str) -> str:
+    if not t: return ""
+    t = html.unescape(t)
+    t = re.sub(r'<[^>]+>', '', t)
+    t = re.sub(r'\s*Last\s*Updated.*$', '', t, flags=re.I)
+    t = re.sub(r'\s*[-–—|:]+$', '', t)
+    return ' '.join(t.split()).strip()
+
+def scrape_rss_feed(src: dict) -> list:
+    url = src.get("rss")
+    name = src.get("name", "Unknown")
+    forced_dist = src.get("district")
+    articles = []
+
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=10)
+        if r.status_code == 200:
+            root = ET.fromstring(r.content)
+            for item in root.findall('.//item'):
+                title_el = item.find('title')
+                link_el = item.find('link')
+                pub_el = item.find('pubDate')
+                desc_el = item.find('description')
+
+                title = clean_text(title_el.text) if title_el is not None else ""
+                link = link_el.text.strip() if link_el is not None and link_el.text else ""
+                pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ist_now()
+                desc = clean_text(desc_el.text) if desc_el is not None else ""
+
+                if len(title) >= 12:
+                    articles.append({
+                        "title": title,
+                        "url": link,
+                        "published": pub,
+                        "summary": desc[:180],
+                        "source": name,
+                        "forced_district": forced_dist
+                    })
+            log.info(f"  RSS {name}: {len(articles)} articles")
+    except Exception as e:
+        log.warning(f"  ⚠️ RSS {name} failed: {e}")
+
+    return articles
+
+def scrape_vijay_karnataka() -> list:
+    url = "https://vijaykarnataka.com/"
+    articles = []
+    log.info("🌐 Scraping Vijaya Karnataka Portal...")
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=8)
+        if r.status_code == 200:
+            soup = BeautifulSoup(r.text, 'html.parser')
+            for a in soup.find_all('a', href=True):
+                href = a['href']
+                if '/articleshow/' in href and a.text.strip():
+                    t = clean_text(a.text)
+                    link = 'https://vijaykarnataka.com' + href if href.startswith('/') else href
+                    if len(t) >= 15 and t not in [x['title'] for x in articles]:
+                        articles.append({
+                            "title": t,
+                            "url": link,
+                            "published": ist_now(),
+                            "summary": "",
+                            "source": "ವಿಜಯ ಕರ್ನಾಟಕ (Vijay Karnataka)"
+                        })
+            log.info(f"✔ Vijaya Karnataka: {len(articles)} live articles scraped")
+    except Exception as e:
+        log.warning(f"⚠️ Vijaya Karnataka scrape failed: {e}")
+    return articles
+
+def scrape_news18_kannada() -> list:
+    url = "https://kannada.news18.com/karnataka/"
+    articles = []
+    log.info("🌐 Scraping News18 Kannada Portal...")
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=8)
+        if r.status_code == 200:
+            soup = BeautifulSoup(r.text, 'html.parser')
+            for a in soup.find_all('a', href=True):
+                href = a['href']
+                if a.text.strip() and ('.html' in href or '/news/' in href):
+                    t = clean_text(a.text)
+                    link = 'https://kannada.news18.com' + href if href.startswith('/') else href
+                    if len(t) >= 15 and t not in [x['title'] for x in articles] and 'news18' in link:
+                        articles.append({
+                            "title": t,
+                            "url": link,
+                            "published": ist_now(),
+                            "summary": "",
+                            "source": "ನ್ಯೂಸ್ 18 ಕನ್ನಡ (News18)"
+                        })
+            log.info(f"✔ News18 Kannada: {len(articles)} live articles scraped")
+    except Exception as e:
+        log.warning(f"⚠️ News18 scrape failed: {e}")
+    return articles
+
+def scrape_prajavani_districts() -> list:
+    articles = []
+    log.info("🌐 Scraping Prajavani 31 District sections...")
+    for dist_key, slug in list(PRAJAVANI_DISTRICT_SLUGS.items())[:15]:
+        url = f"https://www.prajavani.net/district/{slug}"
         try:
-            dt = datetime.strptime(raw.strip(), fmt)
-            return dt.isoformat()
+            r = requests.get(url, headers=HEADERS, timeout=6)
+            if r.status_code == 200:
+                soup = BeautifulSoup(r.text, 'html.parser')
+                count = 0
+                for a in soup.find_all('a', href=True):
+                    if '/district/' in a['href'] and len(a.text.strip()) > 15:
+                        t = clean_text(a.text)
+                        link = 'https://www.prajavani.net' + a['href'] if a['href'].startswith('/') else a['href']
+                        if t not in [x['title'] for x in articles]:
+                            articles.append({
+                                "title": t,
+                                "url": link,
+                                "published": ist_now(),
+                                "summary": "",
+                                "source": "ಪ್ರಜಾವಾಣಿ (Prajavani)",
+                                "forced_district": dist_key
+                            })
+                            count += 1
+                            if count >= 6: break
         except Exception:
-            continue
-    return ist_now()
+            pass
+    log.info(f"✔ Prajavani Districts: {len(articles)} district articles scraped")
+    return articles
 
-def clean_title_text(raw_text: str) -> str:
-    if not raw_text:
-        return ""
-    s = html.unescape(str(raw_text)).strip()
-    
-    # Reject Hindi (Devanagari) content
-    if re.search(r'[\u0900-\u097F]', s):
-        return ""
+def assign_district(article: dict) -> str:
+    if article.get("forced_district"):
+        return article["forced_district"]
 
-    # Strip HTML tags
-    s = re.sub(r"<[^>]+>", "", s)
-
-    # Insert spaces between Kannada script and English words where concatenated (e.g. "ಎಚ್ಚರಿಕೆEnvironment" -> "ಎಚ್ಚರಿಕೆ Environment")
-    s = re.sub(r'([\u0C80-\u0CFF])([A-Za-z])', r'\1 \2', s)
-    s = re.sub(r'([A-Za-z])([\u0C80-\u0CFF])', r'\1 \2', s)
-
-    # Cut off embedded English category noise like "Chamarajanagara News: ", "Election Update: ", "Education News: ", "Koppal Environment: ", "Politics: "
-    cat_match = re.search(r"\s+(?:[A-Za-z'\s]+News|[A-Za-z'\s]+Update|[A-Za-z'\s]+Environment|[A-Za-z'\s]+Report|Politics|India News|Crop damage|Literature News|Local News|Power Cut)\s*:\s*", s, flags=re.IGNORECASE)
-    if cat_match:
-        s = s[:cat_match.start()].strip()
-
-    # Strip common category prefixes if present at start
-    s = re.sub(r"^(?:Government Scheme|Environment News|Mysuru Clean-up|State News|District News|National News|Clean-up|Web Exclusive|Special Report)\s*:\s*", "", s, flags=re.IGNORECASE)
-    # Strip Google News source suffixes like "- Prajavani", "- TV9 Kannada"
-    s = re.sub(r"\s*-\s*[A-Za-z0-9\s\u0C80-\u0CFF]+$", "", s)
-    s = re.sub(r"\s*-\s*(?:Prajavani|TV9 Kannada|Deccan Herald|The Hindu|Public TV|OneIndia|Udayavani|News18|Asianet Suvarna)\s*$", "", s, flags=re.IGNORECASE)
-
-    # Strip Last Updated timestamp suffix
-    s = re.sub(r"\s*Last\s*Updated.*$", "", s, flags=re.IGNORECASE)
-
-    # Remove ONLY trailing hyphens, colons, or pipes (DO NOT REMOVE LEADING 'ಆ.')
-    s = re.sub(r"\s*[-–—|:]+$", "", s).strip()
-
-    # Must be at least 15 characters and contain Kannada or English letters
-    if len(s) < 15 or not re.search(r"[\u0C80-\u0CFFa-zA-Z]", s):
-        return ""
-    return s
-
-def is_duplicate_title(new_title: str, existing_titles: set) -> bool:
-    norm_new = set(re.sub(r"[^\w\s]", "", new_title).lower().split())
-    if len(norm_new) < 3:
-        return False
-    for existing in existing_titles:
-        norm_exist = set(re.sub(r"[^\w\s]", "", existing).lower().split())
-        if not norm_exist:
-            continue
-        intersection = norm_new.intersection(norm_exist)
-        union = norm_new.union(norm_exist)
-        similarity = len(intersection) / len(union) if union else 0
-        if similarity > 0.65:
-            return True
-    return False
-
-def fetch_rss(source: dict) -> list[dict]:
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-    }
-    try:
-        resp = requests.get(source["rss"], headers=headers, timeout=12)
-        resp.raise_for_status()
-        soup = BeautifulSoup(resp.content, "xml")
-        items = soup.find_all(["item", "entry"])
-        if not items:
-            soup = BeautifulSoup(resp.content, "html.parser")
-            items = soup.find_all("item")
-
-        articles = []
-        for item in items[:25]:
-            title_tag = item.find("title")
-            title = clean_title_text(title_tag.get_text(strip=True)) if title_tag else ""
-
-            link_tag = item.find("link")
-            link = ""
-            if link_tag:
-                link = link_tag.get_text(strip=True) or link_tag.get("href", "")
-
-            desc_tag = item.find("description") or item.find("summary") or item.find("content")
-            desc_raw = desc_tag.get_text(strip=True) if desc_tag else ""
-            desc = clean_title_text(re.sub(r"<[^>]+>", "", html.unescape(desc_raw))[:250])
-            pub_tag = item.find("pubDate") or item.find("published") or item.find("updated")
-            pub_iso = parse_pub_date(pub_tag.get_text(strip=True)) if pub_tag else ist_now()
-
-            image = None
-            enc = item.find("enclosure", {"type": lambda t: t and "image" in t})
-            if enc and enc.get("url"):
-                image = enc["url"]
-            if not image:
-                img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', desc_raw)
-                if img_match:
-                    image = img_match.group(1)
-
-            if not title or not link:
-                continue
-
-            uid = hashlib.md5((source["name"] + "_" + link).encode()).hexdigest()[:12]
-
-            articles.append({
-                "id": uid,
-                "title": title,
-                "summary": desc or title,
-                "url": link,
-                "source": source["name"],
-                "source_logo": source.get("logo", ""),
-                "lang": source["lang"],
-                "image": image,
-                "published": pub_iso,
-                "district": source.get("district"),
-            })
-
-        log.info(f"  RSS {source['name']}: {len(articles)} articles")
-        return articles
-    except Exception as e:
-        log.warning(f"  ⚠️ RSS {source['name']} failed: {e}")
-        return []
-
-def scrape_asianet_districts() -> list[dict]:
-    """Scrapes latest Karnataka district news from Asianet Suvarna News."""
-    url = "https://kannada.asianetnews.com/karnataka-districts"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    try:
-        resp = requests.get(url, headers=headers, timeout=12)
-        if resp.status_code != 200:
-            return []
-        soup = BeautifulSoup(resp.text, "html.parser")
-        articles = []
-        seen = set()
-
-        for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"]
-            if not href.startswith("http"):
-                href = "https://kannada.asianetnews.com" + href
-
-            title_text = clean_title_text(a_tag.get_text(strip=True))
-            if len(title_text) > 18 and href not in seen and "/karnataka-districts/" in href or ("-" in href and href.endswith(".html")):
-                seen.add(href)
-                uid = hashlib.md5(href.encode()).hexdigest()[:12]
-                articles.append({
-                    "id": uid,
-                    "title": title_text,
-                    "summary": title_text,
-                    "url": href,
-                    "source": "ಏಷ್ಯാനെಟ್ ಸುವರ್ಣ (Asianet Suvarna)",
-                    "source_logo": "asianet",
-                    "lang": "kn",
-                    "published": ist_now(),
-                })
-                if len(articles) >= 20:
-                    break
-
-        log.info(f"  Asianet Districts Portal: {len(articles)} articles")
-        return articles
-    except Exception as e:
-        log.warning(f"  ⚠️ Asianet Districts Scraping failed: {e}")
-        return []
-
-def scrape_prajavani_district(dist_key: str, slug: str) -> list[dict]:
-    url = f"https://www.prajavani.net/district/{slug}"
-    try:
-        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
-        if resp.status_code != 200:
-            return []
-        soup = BeautifulSoup(resp.text, "html.parser")
-        articles = []
-        seen_links = set()
-
-        for a_tag in soup.find_all("a", href=True):
-            href = a_tag.get("href", "")
-            if not href.startswith("http"):
-                href = "https://www.prajavani.net" + href
-            
-            cleaned_title = clean_title_text(a_tag.get_text(strip=True))
-            if len(cleaned_title) > 15 and href not in seen_links and re.search(r"-\d+$", href):
-                seen_links.add(href)
-                uid = hashlib.md5(href.encode()).hexdigest()[:12]
-                articles.append({
-                    "id": uid,
-                    "title": cleaned_title,
-                    "summary": cleaned_title,
-                    "url": href,
-                    "source": "ಪ್ರಜಾವಾಣಿ (Prajavani)",
-                    "source_logo": "prajavani",
-                    "lang": "kn",
-                    "published": ist_now(),
-                    "district": dist_key
-                })
-                if len(articles) >= 12:
-                    break
-
-        log.info(f"  Prajavani District {dist_key}: {len(articles)} articles")
-        return articles
-    except Exception as e:
-        log.warning(f"  ⚠️ Prajavani District {dist_key} failed: {e}")
-        return []
-
-def strict_tag_districts(article: dict) -> list[str]:
-    """Evaluates text against district rules with high precision scoring."""
     text = (article["title"] + " " + article.get("summary", "")).lower()
-    matched = []
 
-    for district_key, rule in STRICT_DISTRICT_RULES.items():
-        must_pass = any(kw in text for kw in rule["must"])
-        if must_pass:
-            matched.append(district_key)
+    # Rule-based matching
+    best_dist = None
+    max_matches = 0
 
-    return matched
+    for dist_key, keywords in STRICT_DISTRICT_RULES.items():
+        matches = sum(1 for kw in keywords if kw.lower() in text)
+        if matches > max_matches:
+            max_matches = matches
+            best_dist = dist_key
+
+    if best_dist and max_matches > 0:
+        return best_dist
+
+    return "_statewide"
 
 def run() -> dict:
-    log.info("📰 Starting Multi-Source Karnataka District News Aggregator...")
+    log.info("📰 Starting Comprehensive Karnataka Multi-Publisher News Scraper...")
 
-    all_articles = []
-    seen_ids = set()
+    raw_articles = []
 
-    # 1. Fetch ALL RSS Feeds (News18, Asianet, Prajavani, TV9, etc.)
-    for source in RSS_SOURCES:
-        res = fetch_rss(source)
-        for a in res:
-            if a["id"] not in seen_ids:
-                all_articles.append(a)
-                seen_ids.add(a["id"])
+    # 1. Scrape all standard RSS feeds
+    for src in RSS_SOURCES:
+        raw_articles.extend(scrape_rss_feed(src))
 
-    # 2. Scrape Asianet Suvarna District Section
-    asianet_articles = scrape_asianet_districts()
-    for a in asianet_articles:
-        if a["id"] not in seen_ids:
-            all_articles.append(a)
-            seen_ids.add(a["id"])
+    # 2. Scrape Vijaya Karnataka Portal
+    raw_articles.extend(scrape_vijay_karnataka())
 
-    # 3. Scrape Prajavani Direct District Section Pages
-    for dist_key, slug in PRAJAVANI_DISTRICT_SLUGS.items():
-        d_articles = scrape_prajavani_district(dist_key, slug)
-        for a in d_articles:
-            if a["id"] not in seen_ids:
-                all_articles.append(a)
-                seen_ids.add(a["id"])
-        time.sleep(0.02)
+    # 3. Scrape News18 Kannada Portal
+    raw_articles.extend(scrape_news18_kannada())
 
-    log.info(f"📰 Total unique raw articles collected: {len(all_articles)}")
+    # 4. Scrape Prajavani District Sections
+    raw_articles.extend(scrape_prajavani_districts())
 
-    # 4. Bucket into strictly isolated district lists with Deduplication
-    output = {"_statewide": []}
-    district_seen_titles = {k: set() for k in STRICT_DISTRICT_RULES.keys()}
-    district_seen_titles["_statewide"] = set()
+    log.info(f"📰 Total unique raw articles collected: {len(raw_articles)}")
 
-    for article in all_articles:
-        # Pre-assigned district source articles
-        if article.get("district"):
-            b = article["district"]
-            output.setdefault(b, [])
-            if not is_duplicate_title(article["title"], district_seen_titles[b]):
-                if len(output[b]) < 25:
-                    output[b].append(article)
-                    district_seen_titles[b].add(article["title"])
+    # Deduplicate and Bucket by District
+    seen_titles = set()
+    district_buckets = {k: [] for k in DISTRICT_GEOLOCATION.keys()}
+    district_buckets["_statewide"] = []
 
-        # Strictly tag statewide articles
-        tagged = strict_tag_districts(article)
-        for b in tagged:
-            output.setdefault(b, [])
-            if not any(x["id"] == article["id"] for x in output[b]):
-                if not is_duplicate_title(article["title"], district_seen_titles[b]):
-                    if len(output[b]) < 25:
-                        output[b].append(article)
-                        district_seen_titles[b].add(article["title"])
+    for art in raw_articles:
+        t = art["title"]
+        if t in seen_titles: continue
+        seen_titles.add(t)
 
-        if not article.get("district") and len(output["_statewide"]) < 50:
-            if not is_duplicate_title(article["title"], district_seen_titles["_statewide"]):
-                output["_statewide"].append(article)
-                district_seen_titles["_statewide"].add(article["title"])
+        dist = assign_district(art)
+        if dist in district_buckets:
+            district_buckets[dist].append(art)
+        else:
+            district_buckets["_statewide"].append(art)
 
-    # 5. Fallback for any district to ensure 100% complete coverage
-    for dist_key in STRICT_DISTRICT_RULES.keys():
-        if dist_key not in output or len(output[dist_key]) < 2:
-            dist_info = DISTRICT_GEOLOCATION.get(dist_key, {})
-            dist_title_kn = dist_info.get("name_kn", dist_key.replace('-', ' ').title())
-            output.setdefault(dist_key, [])
-            output[dist_key].extend([
-                {
-                    "id": f"fb_{dist_key}_1",
-                    "title": f"{dist_title_kn} ಜಿಲ್ಲೆ — ಪ್ರಮುಖ ಸ್ಥಳೀಯ ಬೆಳವಣಿಗೆಗಳು ಮತ್ತು ಸಾರ್ವಜನಿಕ ವರದಿ",
-                    "summary": f"{dist_title_kn} ಜಿಲ್ಲೆಯ ಇಂದಿನ ಪ್ರಮುಖ ಸುದ್ದಿ, ಕೃಷಿ, ಹವಾಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಆಡಳಿತ ನವೀಕರಣಗಳು.",
-                    "url": "https://www.prajavani.net/district",
-                    "source": "ಕರ್ನಾಟ ಸುದ್ದಿ ಜಾಲ (Karnata Portal)",
-                    "published": ist_now(),
-                    "district": dist_key
-                }
-            ])
+    # Ensure each district has at least statewide fallback articles
+    for d_key, items in district_buckets.items():
+        if d_key != "_statewide" and len(items) < 4:
+            statewide_sample = district_buckets["_statewide"][:6]
+            items.extend([s for s in statewide_sample if s["title"] not in [x["title"] for x in items]])
 
-    # Sort newest first & ensure published_at field
-    all_flat_articles = []
-    for k in output:
-        output[k].sort(key=lambda x: x.get("published", ""), reverse=True)
-        for item in output[k]:
-            if not item.get("published_at"):
-                item["published_at"] = item.get("published") or ist_now()
-            all_flat_articles.append(item)
+    total_sorted = sum(len(v) for v in district_buckets.values())
 
-    result = {
+    output = {
         "date": ist_date(),
         "updated_at": ist_now(),
-        "sources": ["ನ್ಯೂಸ್ 18 ಕನ್ನಡ", "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ", "ಪ್ರಜಾವಾಣಿ", "ಉದಯವಾಣಿ", "TV9 ಕನ್ನಡ", "ಪಬ್ಲಿಕ್ ಟಿವಿ", "ಒನ್‌ಇಂಡಿಯಾ"],
-        "total": len(all_flat_articles),
-        "districts_count": len(output),
-        "geolocation": DISTRICT_GEOLOCATION,
-        "district_counts": {k: len(v) for k, v in output.items()},
-        "districts": output,
-        "district_buckets": output,
-        "news": output,
-        "articles": all_flat_articles,
-        "note_kn": "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಬಹು-ಮೂಲ ಸಜೀವ ಸುದ್ದಿ — News18, Asianet, ಪ್ರಜಾವಾಣಿ, ಉದಯವಾಣಿ, TV9",
+        "total": len(seen_titles),
+        "districts_count": len(DISTRICT_GEOLOCATION),
+        "district_buckets": district_buckets,
+        "sources": [
+            "Vijay Karnataka", "News18 Kannada", "Asianet Suvarna News",
+            "Prajavani", "TV9 Kannada", "Public TV", "OneIndia Kannada",
+            "Shivamogga Live", "Just Kannada", "Star of Mysore", "Mangalorean"
+        ],
+        "note_kn": "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಪ್ರಮುಖ ಸುದ್ದಿವಾಹಿನಿಗಳಿಂದ ಸಂಗ್ರಹಿಸಲಾದ ಸಜೀವ ಸುದ್ದಿಗಳು"
     }
 
-    store("local_news.json", "local_news", result)
-    log.info(f"✅ Multi-Source District News Saved: {len(all_flat_articles)} articles across {len(output)} district buckets")
-    return result
+    store("local_news.json", "local_news", output)
+    log.info(f"✅ Multi-Source District News Saved: {total_sorted} articles across 32 district buckets")
+    return output
 
 if __name__ == "__main__":
     run()
