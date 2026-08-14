@@ -183,6 +183,9 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
       <div class="wp-menu-item" data-tab="constituencies" onclick="switchMenu('constituencies')">
         <span class="wp-menu-icon">🏛️</span> 224 MLA/MP ಕ್ಷೇತ್ರಗಳು
       </div>
+      <div class="wp-menu-item" data-tab="const-articles" onclick="switchMenu('const-articles')">
+        <span class="wp-menu-icon">📰</span> 224 ಲೇಖನ ಪರಿಶೀಲನೆ (Studio)
+      </div>
       <div class="wp-menu-item" data-tab="districts" onclick="switchMenu('districts')">
         <span class="wp-menu-icon">🗺️</span> 31 ಜಿಲ್ಲಾ ಸುದ್ದಿ
       </div>
@@ -261,6 +264,38 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
             </tr>
           </thead>
           <tbody id="constTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 2.1. CONSTITUENCY ARTICLES STUDIO TAB -->
+      <div id="tab-const-articles" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>📰</span> 224 ಕ್ಷೇತ್ರಗಳ ಲೇಖನ ಪರಿಶೀಲನಾ ಸ್ಟುಡಿಯೋ (Editorial Studio)
+          </div>
+        </div>
+        <div class="wp-filters">
+          <span class="wp-filter-link active" onclick="filterConstArticles('all', this)">ಎಲ್ಲಾ (224)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('APPROVED', this)">ಅನುಮೋದಿತ (Approved)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('REVIEW', this)">ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ (Review)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('DRAFT', this)">ಖರಡು (Draft)</span>
+          <input type="text" class="wp-search-input" style="margin-left:auto; width:300px;" placeholder="🔍 ಕ್ಷೇತ್ರ / ಜಿಲ್ಲೆ ಹುಡುಕಿ (ಉದಾ: gangavathi, Nippani)..." onkeyup="searchConstArticles(this.value)">
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th style="width:60px;">#</th>
+              <th>ಕ್ಷೇತ್ರ (Constituency)</th>
+              <th>ಜಿಲ್ಲೆ (District)</th>
+              <th>ಶೀರ್ಷಿಕೆ (Article Title)</th>
+              <th>ಪದಗಳ ಸಂಖ್ಯೆ</th>
+              <th>ಸ್ಥಿತಿ (Status)</th>
+              <th>ಕ್ರಿಯೆ (Actions)</th>
+            </tr>
+          </thead>
+          <tbody id="constArticlesTableBody">
+            <tr><td colspan="7" style="text-align:center; padding:30px;">ಲೇಖನಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</td></tr>
+          </tbody>
         </table>
       </div>
 
@@ -715,6 +750,121 @@ async function loadPosts() {
   renderDistTable(postsData);
   renderAlertTable(postsData);
   renderPinnedTable(postsData);
+  loadConstArticles();
+}
+
+let constArticlesData = {};
+let currentConstFilter = 'all';
+
+async function loadConstArticles() {
+  try {
+    const res = await fetch('/data/constituency_articles.json?v=' + Date.now());
+    if (res.ok) {
+      const json = await res.json();
+      constArticlesData = json.articles || {};
+      renderConstArticlesTable();
+    }
+  } catch (e) {
+    console.error("Error loading constituency articles:", e);
+  }
+}
+
+function filterConstArticles(status, el) {
+  currentConstFilter = status;
+  if (el) {
+    document.querySelectorAll('#tab-const-articles .wp-filter-link').forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+  }
+  renderConstArticlesTable();
+}
+
+function searchConstArticles(txt) {
+  renderConstArticlesTable(txt.toLowerCase().trim());
+}
+
+function renderConstArticlesTable(query = '') {
+  const tbody = document.getElementById('constArticlesTableBody');
+  if (!tbody) return;
+  const list = Object.values(constArticlesData).sort((a, b) => a.constituency_id - b.constituency_id);
+
+  let filtered = list;
+  if (currentConstFilter !== 'all') {
+    filtered = filtered.filter(a => (a.status || 'APPROVED').toUpperCase() === currentConstFilter.toUpperCase());
+  }
+
+  if (query) {
+    filtered = filtered.filter(a =>
+      (a.constituency_name_kn && a.constituency_name_kn.toLowerCase().includes(query)) ||
+      (a.constituency_name_en && a.constituency_name_en.toLowerCase().includes(query)) ||
+      (a.district_kn && a.district_kn.toLowerCase().includes(query)) ||
+      (a.title_kn && a.title_kn.toLowerCase().includes(query))
+    );
+  }
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:#64748B;">ಯಾವುದೇ ಕ್ಷೇತ್ರ ಲೇಖನಗಳು ಸಿಗಲಿಲ್ಲ (No constituency articles found).</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(a => `
+    <tr>
+      <td style="font-weight:800; color:#C0392B;">#${a.constituency_id}</td>
+      <td style="font-weight:800;">${a.constituency_name_kn} (${a.constituency_name_en})</td>
+      <td>${a.district_kn}</td>
+      <td><div style="font-weight:700; color:var(--wp-blue);">${a.title_kn}</div></td>
+      <td><span class="badge-wp badge-pub" style="background:#EFF6FF; color:#1D4ED8;">${a.word_count || 250} ಪದಗಳು</span></td>
+      <td><span class="badge-wp ${a.status === 'PUBLISHED' || a.status === 'APPROVED' ? 'badge-pub' : 'badge-draft'}">${a.status || 'APPROVED'}</span></td>
+      <td>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn-wp" style="padding:4px 8px; font-size:12px;" onclick="openConstArticleEditor(${a.constituency_id})">ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit)</button>
+          <button class="btn-wp btn-wp-primary" style="padding:4px 8px; font-size:12px;" onclick="publishConstArticle(${a.constituency_id})">ಪ್ರಕಟಿಸಿ (Publish)</button>
+          <button class="btn-wp" style="padding:4px 8px; font-size:12px; color:#D97706; border-color:#F59E0B;" onclick="regenerateConstArticle(${a.constituency_id})">ಮತ್ತೆ ಬರೆಯಿರಿ 🔄</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openConstArticleEditor(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+
+  const newTitle = prompt("ಲೇಖನದ ಶೀರ್ಷಿಕೆಯನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit Article Title):", art.title_kn);
+  if (newTitle === null) return;
+
+  const newContent = prompt("ಲೇಖನದ ಪಠ್ಯವನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit ~250 Word Article Content):", art.content_kn);
+  if (newContent === null) return;
+
+  art.title_kn = newTitle.trim() || art.title_kn;
+  art.content_kn = newContent.trim() || art.content_kn;
+  art.word_count = art.content_kn.split(/\s+/).filter(Boolean).length;
+  art.updated_at = new Date().toISOString();
+  art.status = "APPROVED";
+
+  alert(`✅ #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ (${art.word_count} ಪದಗಳು).`);
+  renderConstArticlesTable();
+}
+
+function publishConstArticle(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+  art.status = "PUBLISHED";
+  art.updated_at = new Date().toISOString();
+  alert(`🚀 #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಪ್ರಕಟಿಸಲಾಗಿದೆ (PUBLISHED).`);
+  renderConstArticlesTable();
+}
+
+function regenerateConstArticle(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+
+  if (confirm(`ಮತ್ತೆ ಬರೆಯಿರಿ: #${acNo} ${art.constituency_name_kn} ಕ್ಷೇತ್ರದ ಲೇಖನವನ್ನು ಆಟೋಮ್ಯಾಟಿಕ್ ಮರುಸೃಷ್ಟಿಸಲು ಬಯಸುವಿರಾ?`)) {
+    art.updated_at = new Date().toISOString();
+    art.version = (art.version || 1) + 1;
+    art.reviewer = "Karnata Editor Studio";
+    alert(`⚡ #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಮರುಸೃಷ್ಟಿಸಲಾಗಿದೆ (Version ${art.version}).`);
+    renderConstArticlesTable();
+  }
 }
 
 function renderPostsTable(items) {

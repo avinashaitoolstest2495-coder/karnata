@@ -1,27 +1,33 @@
 """
 Karnata — generate_constituency_pages.py
-Generates 224 standalone HTML pages in mla/ directory for all Karnataka Assembly Seats.
-URL Format: mla/<clean_name>_assembly_constituency.html
-Clean, Minimal, Responsive Light Theme.
+Generates standalone HTML pages in both mla/ and constituencies/ directories for all 224 Assembly Seats.
+Includes full Kannada Data Normalization, 250-word Factual Kannada News Story, Sources, Update Dates, and Kannada SEO.
 """
 
 import os
 import sys
 import json
 import re
-import pandas as pd
+import base64
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent.parent
 DATA_PATH = ROOT_DIR / "data" / "elections_data.json"
+ARTICLES_PATH = ROOT_DIR / "data" / "constituency_articles.json"
 GEOJSON_PATH = ROOT_DIR / "karnataka_assembly_224.json"
+
 MLA_DIR = ROOT_DIR / "mla"
 MLA_DIR.mkdir(exist_ok=True)
+
+CONST_DIR = ROOT_DIR / "constituencies"
+CONST_DIR.mkdir(exist_ok=True)
+
+sys.path.append(str(ROOT_DIR / "scripts"))
+from kannada_dictionary import get_party_kn, get_district_kn, get_term_kn
 
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     raw_data = json.load(f)
     if "payload" in raw_data:
-        import base64
         SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA"
         b_str = base64.b64decode(raw_data["payload"])
         dec_bytes = bytes([b_str[i] ^ ord(SECRET_KEY[i % len(SECRET_KEY)]) for i in range(len(b_str))])
@@ -30,6 +36,12 @@ with open(DATA_PATH, "r", encoding="utf-8") as f:
         elections_json = raw_data
 
 records_by_year = elections_json["records"]
+
+articles_db = {}
+if ARTICLES_PATH.exists():
+    with open(ARTICLES_PATH, "r", encoding="utf-8") as f:
+        raw_art = json.load(f)
+        articles_db = raw_art.get("articles", {})
 
 with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
     geojson_raw = json.load(f)
@@ -76,9 +88,11 @@ def get_geojson_feature(ac_no, clean_name):
 
 def generate_constituency_page(ac_no, history_records):
     latest = history_records[0]
-    name_kn = latest["constituency_kn"]
-    name_en = latest["constituency"]
-    category_kn = latest["category_kn"]
+    name_kn = latest.get("constituency_kn") or latest.get("constituency")
+    name_en = latest.get("constituency")
+    district_kn = latest.get("district_kn") or get_district_kn(latest.get("district", "ಕರ್ನಾಟಕ"))
+    district_en = latest.get("district", "Karnataka")
+    category_kn = latest.get("category_kn", "ಸಾಮಾನ್ಯ")
     slug = latest.get("slug") or make_slug(name_en)
 
     feat = get_geojson_feature(ac_no, latest["clean_constituency"])
@@ -86,7 +100,7 @@ def generate_constituency_page(ac_no, history_records):
 
     party_tally = {}
     for h in history_records:
-        p = h["winner_party_kn"]
+        p = h.get("winner_party_kn") or get_party_kn(h.get("winner_party"))
         party_tally[p] = party_tally.get(p, 0) + 1
 
     tally_chips_html = "".join([
@@ -100,27 +114,47 @@ def generate_constituency_page(ac_no, history_records):
         table_rows_html += f"""
         <tr>
           <td style="font-weight:900; color:#C0392B;">{h['year']}</td>
-          <td style="font-weight:800; color:#0F172A;">{h['winner_kn']}</td>
-          <td><span style="background:{color}; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">{h['winner_party_kn']}</span></td>
-          <td style="font-weight:700; color:#0F172A;">{h['winner_votes']:,}</td>
-          <td style="color:#16A34A; font-weight:800;">{h['vote_share']}%</td>
-          <td style="color:#475569;">{h['runner_up_kn']} ({h['runner_up_party_kn']})</td>
-          <td style="color:#DC2626; font-weight:800;">+{h['margin']:,}</td>
+          <td style="font-weight:800; color:#0F172A;">{h.get('winner_kn', h.get('winner'))}</td>
+          <td><span style="background:{color}; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">{h.get('winner_party_kn', get_party_kn(h.get('winner_party')))}</span></td>
+          <td style="font-weight:700; color:#0F172A;">{h.get('winner_votes', 0):,}</td>
+          <td style="color:#16A34A; font-weight:800;">{h.get('vote_share', 0.0)}%</td>
+          <td style="color:#475569;">{h.get('runner_up_kn', h.get('runner_up'))} ({h.get('runner_up_party_kn', get_party_kn(h.get('runner_up_party')))})</td>
+          <td style="color:#DC2626; font-weight:800;">+{h.get('margin', 0):,}</td>
         </tr>
         """
+
+    # Fetch 250-word news article
+    art_data = articles_db.get(str(ac_no), {})
+    art_title = art_data.get("title_kn", f"{name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ಶಾಸಕ, ಚುನಾವಣೆ ಫಲಿತಾಂಶ ಮತ್ತು ಇತಿಹಾಸ")
+    art_content = art_data.get("content_kn", "")
+    art_word_count = art_data.get("word_count", 250)
+
+    formatted_paragraphs = "".join([
+        f'<p style="font-size:15px; line-height:1.75; color:#334155; margin-bottom:16px;">{p.strip()}</p>'
+        for p in art_content.split("\n\n") if p.strip()
+    ])
+
+    seo_title = f"{name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ಶಾಸಕ, ಚುನಾವಣೆ ಫಲಿತಾಂಶ, ಮತ ಹಂಚಿಕೆ ಮತ್ತು ಇತಿಹಾಸ | Karnata.in"
+    seo_desc = f"{name_kn} ({name_en}) ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಪ್ರಸ್ತುತ ಶಾಸಕ {latest.get('winner_kn')}, ಪಕ್ಷ {latest.get('winner_party_kn')}, ಚುನಾವಣಾ ಫಲಿತಾಂಶ, ಅಭ್ಯರ್ಥಿಗಳ ಮತಗಳು, ಗೆಲುವಿನ ಅಂತರ ಮತ್ತು 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ."
 
     page_html = f"""<!DOCTYPE html>
 <html lang="kn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏛️ {name_kn} ({name_en}) — ಶಾಸನಸಭೆ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶಗಳು 1978 - 2023 | Karnata.in</title>
-  <meta name="description" content="{name_kn} ({name_en}) ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಚುನಾವಣಾ ಇತಿಹಾಸ, ವಿಜೇತ ಅಭ್ಯರ್ಥಿಗಳು, ಪಕ್ಷಗಳ ಜಯ ಹಾಗೂ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ.">
-  
+  <title>{seo_title}</title>
+  <meta name="description" content="{seo_desc}">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{seo_title}">
+  <meta property="og:description" content="{seo_desc}">
+  <meta property="og:site_name" content="Karnata.in">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="../karnata-theme.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -183,12 +217,15 @@ def generate_constituency_page(ac_no, history_records):
     }}
     .dash-head {{
       font-family: 'Tiro Kannada', serif;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       border-bottom: 2px solid #F1F5F9;
-      padding-bottom: 8px;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }}
     #constituency-map {{
       height: 360px;
@@ -223,6 +260,26 @@ def generate_constituency_page(ac_no, history_records):
     .elections-table tr:hover {{
       background: #F1F5F9;
     }}
+    .news-badge {{
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }}
+    .source-meta {{
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 12.5px;
+      color: #64748B;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }}
   </style>
 </head>
 <body>
@@ -231,20 +288,20 @@ def generate_constituency_page(ac_no, history_records):
 
   <header class="hero-minimal">
     <div class="wrap">
-      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #{ac_no}</div>
+      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #{ac_no} • {district_kn} ಜಿಲ್ಲೆ</div>
       <h1 class="seat-title">🏛️ {name_kn} ({name_en})</h1>
       <p class="seat-subtitle">ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</p>
-      
+
       <div class="chip-bar">
         <span class="chip">ವರ್ಗ: {category_kn}</span>
-        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ವಿಜೇತರು: {latest['winner_kn']} ({latest['winner_party_kn']})</span>
-        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +{latest['margin']:,}</span>
+        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ಶಾಸಕರು: {latest.get('winner_kn')} ({latest.get('winner_party_kn', get_party_kn(latest.get('winner_party')))})</span>
+        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +{latest.get('margin', 0):,}</span>
       </div>
     </div>
   </header>
 
   <main class="wrap" style="padding: 0 16px 24px;">
-    
+
     <div class="grid-layout">
       <!-- MAP & WINNER SUMMARY -->
       <div>
@@ -287,6 +344,25 @@ def generate_constituency_page(ac_no, history_records):
       </div>
     </div>
 
+    <!-- 250-WORD FACTUAL KANNADA NEWS STORY SECTION -->
+    <section class="dash-card" style="margin-top: 10px;">
+      <div class="dash-head">
+        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ</span>
+        <span class="news-badge">ಕ್ಷೇತ್ರ ಮಾಹಿತಿ</span>
+      </div>
+
+      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">{art_title}</h2>
+
+      <div class="article-body">
+        {formatted_paragraphs}
+      </div>
+
+      <div class="source-meta">
+        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ಸಂಬಂಧಿತ ಅಧಿಕೃತ ಮೂಲಗಳು</div>
+        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+      </div>
+    </section>
+
   </main>
 
   <script src="../nav-component.js"></script>
@@ -321,25 +397,18 @@ def generate_constituency_page(ac_no, history_records):
 </body>
 </html>"""
 
-    canonical_file = MLA_DIR / f"{slug}.html"
-    with open(canonical_file, "w", encoding="utf-8") as f:
+    # Save canonical file in mla/
+    with open(MLA_DIR / f"{slug}.html", "w", encoding="utf-8") as f:
         f.write(page_html)
 
-    aliases = set()
-    s_clean = slug
-    aliases.add(s_clean.replace("vathi", "vati").replace("vathi", "wati"))
-    aliases.add(s_clean.replace("vati", "vathi").replace("vati", "wati"))
-    aliases.add(s_clean.replace("wati", "vati").replace("wati", "vathi"))
-    aliases.add(s_clean.replace("galuru", "lore"))
-    aliases.add(s_clean.replace("luru", "lore"))
-    aliases.add(s_clean.replace("pur", "pura"))
-    aliases.add(s_clean.replace("pura", "pur"))
+    # Save in constituencies/
+    clean_name_slug = slug.replace('_assembly_constituency', '')
+    with open(CONST_DIR / f"{clean_name_slug}.html", "w", encoding="utf-8") as f:
+        f.write(page_html)
+    with open(CONST_DIR / f"{ac_no}.html", "w", encoding="utf-8") as f:
+        f.write(page_html)
 
-    for alias in aliases:
-        if alias and alias != slug:
-            with open(MLA_DIR / f"{alias}.html", "w", encoding="utf-8") as f:
-                f.write(page_html)
-
+    # Save number redirect in mla/
     num_redirect_html = f"""<!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -352,15 +421,14 @@ def generate_constituency_page(ac_no, history_records):
 </body>
 </html>"""
 
-    ac_file = MLA_DIR / f"{ac_no}.html"
-    with open(ac_file, "w", encoding="utf-8") as f:
+    with open(MLA_DIR / f"{ac_no}.html", "w", encoding="utf-8") as f:
         f.write(num_redirect_html)
 
 def run():
-    print(f"Generating 224 standalone constituency pages in {MLA_DIR}...")
+    print(f"Generating 224 standalone constituency pages with 250-word Kannada news stories in {MLA_DIR} and {CONST_DIR}...")
     for ac_no, history_records in constituency_history.items():
         generate_constituency_page(ac_no, history_records)
-    print("Done generating 224 constituency pages in mla/ folder.")
+    print("SUCCESS: Generated all constituency pages with news section!")
 
 if __name__ == "__main__":
     run()

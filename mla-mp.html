@@ -227,8 +227,13 @@ function renderGrid() {
       (d.name_kn && d.name_kn.toLowerCase().includes(searchTxt)) ||
       (d.name_en && d.name_en.toLowerCase().includes(searchTxt)) ||
       (d.mla_name_kn && d.mla_name_kn.toLowerCase().includes(searchTxt)) ||
+      (d.mla_name_en && d.mla_name_en.toLowerCase().includes(searchTxt)) ||
       (d.mp_name_kn && d.mp_name_kn.toLowerCase().includes(searchTxt)) ||
-      (d.district && d.district.toLowerCase().includes(searchTxt))
+      (d.mp_name_en && d.mp_name_en.toLowerCase().includes(searchTxt)) ||
+      (d.district && d.district.toLowerCase().includes(searchTxt)) ||
+      (d.district_kn && d.district_kn.toLowerCase().includes(searchTxt)) ||
+      (d.party && d.party.toLowerCase().includes(searchTxt)) ||
+      (d.party_kn && d.party_kn.toLowerCase().includes(searchTxt))
     );
 
     // If search match is an exact constituency (e.g. gangavathi), auto-open respective constituency page
