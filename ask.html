@@ -648,8 +648,9 @@
       const urlParams = new URLSearchParams(window.location.search);
       const qParam = urlParams.get('q');
       if (qParam && qParam.trim().length > 0) {
-        document.getElementById('query-input').value = decodeURIComponent(qParam);
-        submitQuery();
+        const decoded = decodeURIComponent(qParam);
+        document.getElementById('query-input').value = decoded;
+        submitQuery(decoded);
       }
     });
 
