@@ -10,12 +10,19 @@ on:
       - master
   workflow_dispatch: # Allows manual 1-click trigger from GitHub Actions tab
 
+permissions:
+  contents: write
+
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
@@ -48,13 +55,13 @@ jobs:
           node scripts/build_all_district_news.js || true
           node scripts/build_seo_and_monetization.js || true
 
-      - name: 💾 Commit Updated Scraped Data to GitHub
+      - name: 💾 Commit & Push Updated Data to GitHub
         run: |
-          git config --global user.name 'Karnata Auto Bot'
-          git config --global user.email 'bot@karnata.in'
-          git add data/ scraper/ sitemap.xml robots.txt ads.txt || true
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/ sitemap.xml robots.txt ads.txt || true
           git commit -m "auto: 30-min scraped update (gold, dams, weather, petrol, news) [skip ci]" || echo "No data changes to commit"
-          git push || echo "Push skipped"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main || echo "Push skipped"
 
       - name: 🚀 Deploy to Cloudflare Pages
         run: |
