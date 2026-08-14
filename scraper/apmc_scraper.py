@@ -21,20 +21,12 @@ HEADERS = {
     "Accept-Language": "en-US,en;q=0.9,kn;q=0.8"
 }
 
-FALLBACK_APMC_ITEMS = [
-    {"market": "ಬೆಂಗಳೂರು", "marketEn": "Bengaluru", "cropKn": "ಅಕ್ಕಿ / Rice", "cropEn": "Rice", "min": 3800, "max": 4800, "avg": 4350, "modal_per_quintal": 4350, "unit": "ಕ್ವಿಂಟಲ್", "cat": "grain", "icon": "🌾", "change": 0},
-    {"market": "ಬಸವಕಲ್ಯಾಣ", "marketEn": "Basavakalyana", "cropKn": "ಗೋಧಿ / Wheat", "cropEn": "Wheat", "min": 2400, "max": 2800, "avg": 2650, "modal_per_quintal": 2650, "unit": "ಕ್ವಿಂಟಲ್", "cat": "grain", "icon": "🌾", "change": 0},
-    {"market": "ಬೆಳೂರು", "marketEn": "Belur", "cropKn": "ಭತ್ತ / Paddy", "cropEn": "Paddy", "min": 2100, "max": 2500, "avg": 2350, "modal_per_quintal": 2350, "unit": "ಕ್ವಿಂಟಲ್", "cat": "grain", "icon": "🌾", "change": 0},
-    {"market": "ಬೆಂಗಳೂರು", "marketEn": "Bengaluru", "cropKn": "ಮೆಕ್ಕೆಜೋಳ / Maize", "cropEn": "Maize", "min": 2100, "max": 2400, "avg": 2250, "modal_per_quintal": 2250, "unit": "ಕ್ವಿಂಟಲ್", "cat": "grain", "icon": "🌾", "change": 0},
-    {"market": "ಶಿರಸಿ", "marketEn": "Sirsi", "cropKn": "ಅಡಿಕೆ / Arecanut (Rashi)", "cropEn": "Arecanut", "min": 44000, "max": 52000, "avg": 48500, "modal_per_quintal": 48500, "unit": "ಕ್ವಿಂಟಲ್", "cat": "cash", "icon": "🌴", "change": 0},
-    {"market": "ಶಿವಮೊಗ್ಗ", "marketEn": "Shivamogga", "cropKn": "ಅಡಿಕೆ / Arecanut (Gorabal)", "cropEn": "Arecanut", "min": 42000, "max": 50000, "avg": 46500, "modal_per_quintal": 46500, "unit": "ಕ್ವಿಂಟಲ್", "cat": "cash", "icon": "🌴", "change": 0},
-    {"market": "ಕೋಲಾರ", "marketEn": "Kolar", "cropKn": "ಟೊಮೆಟೊ / Tomato", "cropEn": "Tomato", "min": 18, "max": 35, "avg": 26, "modal_per_quintal": 2600, "unit": "ಕೆಜಿ", "cat": "veg", "icon": "🥦", "change": 0},
-    {"market": "ಹುಬ್ಬಳ್ಳಿ", "marketEn": "Hubballi", "cropKn": "ಈರುಳ್ಳಿ / Onion", "cropEn": "Onion", "min": 15, "max": 28, "avg": 22, "modal_per_quintal": 2200, "unit": "ಕೆಜಿ", "cat": "veg", "icon": "🥦", "change": 0},
-    {"market": "ಹಾಸನ", "marketEn": "Hassan", "cropKn": "ಆಲೂಗಡ್ಡೆ / Potato", "cropEn": "Potato", "min": 20, "max": 32, "avg": 25, "modal_per_quintal": 2500, "unit": "ಕೆಜಿ", "cat": "veg", "icon": "🥦", "change": 0},
-    {"market": "ರಾಯಚೂರು", "marketEn": "Raichur", "cropKn": "ತೊಗರಿ / Tur Dal", "cropEn": "Tur Dal", "min": 8500, "max": 10500, "avg": 9600, "modal_per_quintal": 9600, "unit": "ಕ್ವಿಂಟಲ್", "cat": "pulse", "icon": "🫘", "change": 0},
-    {"market": "ದಾವಣಗೆರೆ", "marketEn": "Davanagere", "cropKn": "ಶೇಂಗಾ / Groundnut", "cropEn": "Groundnut", "min": 5800, "max": 6800, "avg": 6300, "modal_per_quintal": 6300, "unit": "ಕ್ವಿಂಟಲ್", "cat": "oilseed", "icon": "🥜", "change": 0},
-    {"market": "ಬ್ಯಾಡಗಿ", "marketEn": "Byadgi", "cropKn": "ಒಣ ಮೆಣಸಿನಕಾಯಿ / Red Chilli", "cropEn": "Red Chilli", "min": 14000, "max": 22000, "avg": 18500, "modal_per_quintal": 18500, "unit": "ಕ್ವಿಂಟಲ್", "cat": "spice", "icon": "🌶️", "change": 0}
-]
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent / "scripts"))
+from build_full_apmc_prices import FULL_APMC_ITEMS
+
+FALLBACK_APMC_ITEMS = FULL_APMC_ITEMS
 
 def scrape_live_karnataka_apmc():
     home_url = "https://krama.karnataka.gov.in/Home_kan"
