@@ -481,15 +481,23 @@ const REGION_NAMES = {
 
 function getDisplayCropName(raw) {
   if (!raw) return "ಕೃಷಿ ಉತ್ಪನ್ನ";
-  let cleanKey = raw.split('/')[0].trim();
-  if (CROP_KN_MAP[cleanKey]) return CROP_KN_MAP[cleanKey];
+  let str = String(raw).trim();
   
-  let parts = raw.split('/').map(s => s.trim());
-  let kn = parts.find(p => /[\u0C80-\u0CFF]/.test(p));
-  let en = parts.find(p => /[a-zA-Z]/.test(p));
-  if (kn && en) return `${kn} (${en})`;
-  if (kn) return kn;
-  return cleanKey;
+  // Deduplicate nested/repeated brackets if any
+  str = str.replace(/\s*\(([^()]+)\)\s*\(\1\)/g, '');
+  str = str.replace(/\s*\(([^()]+)\)\s*\([^()]*\1[^()]*\)/g, ' ($1)');
+  
+  if (str.includes('/')) {
+    let parts = str.split('/').map(s => s.trim());
+    let kn = parts.find(p => /[\u0C80-\u0CFF]/.test(p)) || parts[0];
+    let en = parts.find(p => /[a-zA-Z]/.test(p)) || '';
+    if (kn && en && !kn.toLowerCase().includes(en.toLowerCase())) {
+      return `${kn} (${en})`;
+    }
+    return kn;
+  }
+
+  return str;
 }
 
 function init() {

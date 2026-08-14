@@ -1,6 +1,7 @@
 """
 Karnata — generate_1400_apmc_records.py
 Generates 1,400+ authentic daily APMC market price records across 140+ APMC Mandis in all 31 Districts of Karnataka.
+Clean Kannada names (cropKn) & English names (cropEn) without double brackets or duplication.
 Encodes with base64 XOR key "NK_SECURE_KEY_2026_KARNATA" and saves in data/apmc_prices.json.
 """
 
@@ -217,7 +218,7 @@ APMC_MARKETS = [
     ("ಬನವಾಸಿ", "Banavasi", "ಉತ್ತರ ಕನ್ನಡ", "cash")
 ]
 
-# Standard Commodity Pool (100+ items across categories)
+# Standard Commodity Pool with pure Kannada & pure English names
 COMMODITIES_POOL = [
     # Grains
     ("ಅಕ್ಕಿ (ಸೋನಾ ಮಸೂರಿ)", "Rice (Sona Masoori)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3800, 5200),
@@ -225,76 +226,76 @@ COMMODITIES_POOL = [
     ("ಅಕ್ಕಿ (ರಾಜಮುಡಿ)", "Rice (Rajamudi)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 4800, 6200),
     ("ಗೋಧಿ (ಶರಬತಿ)", "Wheat (Sharbati)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2500, 3100),
     ("ಗೋಧಿ (ಲೋಕವನ್)", "Wheat (Lokwan)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2300, 2800),
-    ("ಭತ್ತ (Fine)", "Paddy (Fine)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2100, 2650),
-    ("ಭತ್ತ (Coarse)", "Paddy (Coarse)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 1850, 2250),
-    ("ಮೆಕ್ಕೆಜೋಳ (Maize)", "Maize", "grain", "🌽", "ಕ್ವಿಂಟಲ್", 2050, 2450),
-    ("ರಾಗಿ (Ragi)", "Ragi", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3000, 3850),
-    ("ಬಿಳಿ ಜೋಳ (White Jowar)", "Jowar (White)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3600, 5000),
-    ("ಹಳದಿ ಜೋಳ (Yellow Jowar)", "Jowar (Yellow)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2700, 3400),
-    ("ಸಜ್ಜೆ (Bajra)", "Pearl Millet (Bajra)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2100, 2650),
-    ("ನವಣೆ (Foxtail Millet)", "Foxtail Millet", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3400, 4300),
+    ("ಭತ್ತ (ಫೈನ್)", "Paddy (Fine)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2100, 2650),
+    ("ಭತ್ತ (ಸಾಧಾರಣ)", "Paddy (Coarse)", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 1850, 2250),
+    ("ಮೆಕ್ಕೆಜೋಳ", "Maize", "grain", "🌽", "ಕ್ವಿಂಟಲ್", 2050, 2450),
+    ("ರಾಗಿ", "Ragi", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3000, 3850),
+    ("ಬಿಳಿ ಜೋಳ", "White Jowar", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3600, 5000),
+    ("ಹಳದಿ ಜೋಳ", "Yellow Jowar", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2700, 3400),
+    ("ಸಜ್ಜೆ", "Bajra", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 2100, 2650),
+    ("ನವಣೆ", "Foxtail Millet", "grain", "🌾", "ಕ್ವಿಂಟಲ್", 3400, 4300),
 
     # Pulses
-    ("ತೊಗರಿ ಬೇಳೆ (Tur Dal)", "Tur Dal", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 8800, 11500),
-    ("ಕಡಲೆ ಕಾಳು (Bengal Gram)", "Bengal Gram (Chana)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 5500, 6800),
-    ("ಹೆಸರು ಕಾಳು (Green Gram)", "Green Gram (Moong)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 7000, 8600),
-    ("ಉದ್ದಿನ ಕಾಳು (Black Gram)", "Black Gram (Urad)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 7500, 9200),
-    ("ಅವರೆಕಾಳು (Field Beans)", "Field Beans (Avare)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 4200, 6000),
-    ("ಹಲಸಂದಿ (Cowpea)", "Cowpea (Lobia)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 4800, 6200),
-    ("ಹುರುಳಿ (Horse Gram)", "Horse Gram", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 3500, 4600),
+    ("ತೊಗರಿ ಬೇಳೆ", "Tur Dal", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 8800, 11500),
+    ("ಕಡಲೆ ಕಾಳು", "Bengal Gram (Chana)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 5500, 6800),
+    ("ಹೆಸರು ಕಾಳು", "Green Gram (Moong)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 7000, 8600),
+    ("ಉದ್ದಿನ ಕಾಳು", "Black Gram (Urad)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 7500, 9200),
+    ("ಅವರೆಕಾಳು", "Field Beans (Avare)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 4200, 6000),
+    ("ಹಲಸಂದಿ", "Cowpea (Lobia)", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 4800, 6200),
+    ("ಹುರುಳಿ", "Horse Gram", "pulse", "🫘", "ಕ್ವಿಂಟಲ್", 3500, 4600),
 
     # Vegetables
-    ("ಟೊಮೆಟೊ (Tomato)", "Tomato", "veg", "🍅", "ಕೆಜಿ", 14, 38),
-    ("ಈರುಳ್ಳಿ (Red Onion)", "Onion (Red)", "veg", "🧅", "ಕೆಜಿ", 15, 30),
-    ("ಆಲೂಗಡ್ಡೆ (Potato)", "Potato", "veg", "🥔", "ಕೆಜಿ", 20, 34),
-    ("ಹಸಿ ಮೆಣಸಿನಕಾಯಿ (Green Chilli)", "Green Chilli", "veg", "🌶️", "ಕೆಜಿ", 30, 62),
-    ("ಬದನೆಕಾಯಿ (Brinjal)", "Brinjal", "veg", "🍆", "ಕೆಜಿ", 18, 36),
-    ("ಕ್ಯಾರೆಟ್ (Carrot)", "Carrot", "veg", "🥕", "ಕೆಜಿ", 28, 48),
-    ("ಮೂಲಂಗಿ (Radish)", "Radish", "veg", "🥕", "ಕೆಜಿ", 12, 22),
-    ("ಬೀನ್ಸ್ (French Beans)", "French Beans", "veg", "🫛", "ಕೆಜಿ", 35, 70),
-    ("ಹೂಕೋಸು (Cauliflower)", "Cauliflower", "veg", "🥦", "ಕೆಜಿ", 16, 32),
-    ("ಎಲೆಕೋಸು (Cabbage)", "Cabbage", "veg", "🥬", "ಕೆಜಿ", 10, 22),
-    ("ಬೆಂಡೇಕಾಯಿ (Ladies Finger)", "Ladies Finger (Okra)", "veg", "🥦", "ಕೆಜಿ", 22, 42),
-    ("ಸೌತೆಕಾಯಿ (Cucumber)", "Cucumber", "veg", "🥒", "ಕೆಜಿ", 12, 25),
-    ("ಹಸಿ ಶುಂಟಿ (Ginger)", "Ginger (Fresh)", "veg", "🫚", "ಕ್ವಿಂಟಲ್", 4200, 7000),
-    ("ಬೆಳ್ಳುಳ್ಳಿ (Garlic)", "Garlic", "veg", "🧄", "ಕ್ವಿಂಟಲ್", 11000, 18000),
-    ("ನಿಂಬೆಹಣ್ಣು (Lemon)", "Lemon", "veg", "🍋", "ಕ್ವಿಂಟಲ್", 2200, 4500),
+    ("ಟೊಮೆಟೊ", "Tomato", "veg", "🍅", "ಕೆಜಿ", 14, 38),
+    ("ಈರುಳ್ಳಿ", "Red Onion", "veg", "🧅", "ಕೆಜಿ", 15, 30),
+    ("ಆಲೂಗಡ್ಡೆ", "Potato", "veg", "🥔", "ಕೆಜಿ", 20, 34),
+    ("ಹಸಿ ಮೆಣಸಿನಕಾಯಿ", "Green Chilli", "veg", "🌶️", "ಕೆಜಿ", 30, 62),
+    ("ಬದನೆಕಾಯಿ", "Brinjal", "veg", "🍆", "ಕೆಜಿ", 18, 36),
+    ("ಕ್ಯಾರೆಟ್", "Carrot", "veg", "🥕", "ಕೆಜಿ", 28, 48),
+    ("ಮೂಲಂಗಿ", "Radish", "veg", "🥕", "ಕೆಜಿ", 12, 22),
+    ("ಬೀನ್ಸ್", "French Beans", "veg", "🫛", "ಕೆಜಿ", 35, 70),
+    ("ಹೂಕೋಸು", "Cauliflower", "veg", "🥦", "ಕೆಜಿ", 16, 32),
+    ("ಎಲೆಕೋಸು", "Cabbage", "veg", "🥬", "ಕೆಜಿ", 10, 22),
+    ("ಬೆಂಡೇಕಾಯಿ", "Ladies Finger", "veg", "🥦", "ಕೆಜಿ", 22, 42),
+    ("ಸೌತೆಕಾಯಿ", "Cucumber", "veg", "🥒", "ಕೆಜಿ", 12, 25),
+    ("ಹಸಿ ಶುಂಟಿ", "Ginger", "veg", "🫚", "ಕ್ವಿಂಟಲ್", 4200, 7000),
+    ("ಬೆಳ್ಳುಳ್ಳಿ", "Garlic", "veg", "🧄", "ಕ್ವಿಂಟಲ್", 11000, 18000),
+    ("ನಿಂಬೆಹಣ್ಣು", "Lemon", "veg", "🍋", "ಕ್ವಿಂಟಲ್", 2200, 4500),
 
     # Fruits
-    ("ಎಲಕ್ಕಿ ಬಾಳೆ (Yelakki Banana)", "Banana (Yelakki)", "fruit", "🍌", "ಕೆಜಿ", 25, 46),
-    ("ಕ್ಯಾವೆಂಡಿಶ್ ಬಾಳೆ (Robusta Banana)", "Banana (Robusta)", "fruit", "🍌", "ಕೆಜಿ", 12, 24),
-    ("ಮಾವಿನಹಣ್ಣು (ಬಾದಾಮಿ)", "Mango (Badami)", "fruit", "🥭", "ಕೆಜಿ", 40, 90),
-    ("ಮಾವಿನಹಣ್ಣು (ರಸಪೂರಿ)", "Mango (Raspuri)", "fruit", "🥭", "ಕೆಜಿ", 32, 68),
-    ("ದಾಳಿಂಬೆ (Pomegranate Bhagwa)", "Pomegranate (Bhagwa)", "fruit", "🍎", "ಕೆಜಿ", 75, 150),
-    ("ದ್ರಾಕ್ಷಿ (Grapes)", "Grapes (Seedless)", "fruit", "🍇", "ಕೆಜಿ", 40, 85),
-    ("ಸೀಬೆಹಣ್ಣು (Guava)", "Guava", "fruit", "🍏", "ಕೆಜಿ", 20, 42),
-    ("ಪಪ್ಪಾಯಿ (Papaya)", "Papaya", "fruit", "🍈", "ಕೆಜಿ", 10, 22),
-    ("ಕಲ್ಲಂಗಡಿ (Watermelon)", "Watermelon", "fruit", "🍉", "ಕೆಜಿ", 8, 16),
-    ("ಸಪೋಟ (Sapota)", "Sapota (Chiku)", "fruit", "🤎", "ಕೆಜಿ", 25, 48),
+    ("ಎಲಕ್ಕಿ ಬಾಳೆ", "Yelakki Banana", "fruit", "🍌", "ಕೆಜಿ", 25, 46),
+    ("ಕ್ಯಾವೆಂಡಿಶ್ ಬಾಳೆ", "Robusta Banana", "fruit", "🍌", "ಕೆಜಿ", 12, 24),
+    ("ಮಾವಿನಹಣ್ಣು (ಬಾದಾಮಿ)", "Badami Mango", "fruit", "🥭", "ಕೆಜಿ", 40, 90),
+    ("ಮಾವಿನಹಣ್ಣು (ರಸಪೂರಿ)", "Raspuri Mango", "fruit", "🥭", "ಕೆಜಿ", 32, 68),
+    ("ದಾಳಿಂಬೆ (ಭಗವಾ)", "Bhagwa Pomegranate", "fruit", "🍎", "ಕೆಜಿ", 75, 150),
+    ("ದ್ರಾಕ್ಷಿ", "Grapes", "fruit", "🍇", "ಕೆಜಿ", 40, 85),
+    ("ಸೀಬೆಹಣ್ಣು", "Guava", "fruit", "🍏", "ಕೆಜಿ", 20, 42),
+    ("ಪಪ್ಪಾಯಿ", "Papaya", "fruit", "🍈", "ಕೆಜಿ", 10, 22),
+    ("ಕಲ್ಲಂಗಡಿ", "Watermelon", "fruit", "🍉", "ಕೆಜಿ", 8, 16),
+    ("ಸಪೋಟ", "Sapota", "fruit", "🤎", "ಕೆಜಿ", 25, 48),
 
     # Cash & Plantation
-    ("ಅಡಿಕೆ (ರಾಶಿ ಇಡೀ / Rashi)", "Arecanut (Rashi)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 43000, 52500),
-    ("ಅಡಿಕೆ (ಸರಕು / Gorabal)", "Arecanut (Gorabal)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 41500, 50000),
-    ("ಅಡಿಕೆ (ಚಾಲಿ / Chali)", "Arecanut (Chali)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 37000, 44500),
-    ("ಕೊಬ್ಬರಿ (Ball Copra)", "Copra (Ball)", "cash", "🥥", "ಕ್ವಿಂಟಲ್", 9500, 12200),
-    ("ತೆಂಗಿನಕಾಯಿ (Coconut)", "Coconut", "cash", "🥥", "1000 ಕಾಯಿ", 11500, 18000),
-    ("ಕಾಫಿ ಅರಾಬಿಕಾ (Coffee Arabica)", "Coffee (Arabica)", "cash", "☕", "50 ಕೆಜಿ ಚೀಲ", 18000, 23500),
-    ("ಕಾಫಿ ರೋಬಸ್ಟಾ (Coffee Robusta)", "Coffee (Robusta)", "cash", "☕", "50 ಕೆಜಿ ಚೀಲ", 12000, 16000),
-    ("ಕಪ್ಪು ಮೆಣಸು (Black Pepper)", "Black Pepper", "spice", "🫛", "ಕ್ವಿಂಟಲ್", 50000, 62000),
-    ("ಏಲಕ್ಕಿ (Cardamom Green)", "Cardamom", "spice", "🌿", "ಕೆಜಿ", 1350, 2150),
-    ("ಗೇರುಬೀಜ (Cashew Nut Raw)", "Cashew Nut", "cash", "🥜", "ಕ್ವಿಂಟಲ್", 11000, 14500),
-    ("ಕಬ್ಬು (Sugarcane)", "Sugarcane", "cash", "🌾", "ಟನ್", 3100, 3650),
+    ("ಅಡಿಕೆ (ರಾಶಿ ಇಡೀ)", "Arecanut (Rashi)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 43000, 52500),
+    ("ಅಡಿಕೆ (ಸರಕು)", "Arecanut (Gorabal)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 41500, 50000),
+    ("ಅಡಿಕೆ (ಚಾಲಿ)", "Arecanut (Chali)", "cash", "🌴", "ಕ್ವಿಂಟಲ್", 37000, 44500),
+    ("ಕೊಬ್ಬರಿ", "Ball Copra", "cash", "🥥", "ಕ್ವಿಂಟಲ್", 9500, 12200),
+    ("ತೆಂಗಿನಕಾಯಿ", "Coconut", "cash", "🥥", "1000 ಕಾಯಿ", 11500, 18000),
+    ("ಕಾಫಿ ಅರಾಬಿಕಾ", "Arabica Coffee", "cash", "☕", "50 ಕೆಜಿ ಚೀಲ", 18000, 23500),
+    ("ಕಾಫಿ ರೋಬಸ್ಟಾ", "Robusta Coffee", "cash", "☕", "50 ಕೆಜಿ ಚೀಲ", 12000, 16000),
+    ("ಕಪ್ಪು ಮೆಣಸು", "Black Pepper", "spice", "🫛", "ಕ್ವಿಂಟಲ್", 50000, 62000),
+    ("ಏಲಕ್ಕಿ", "Cardamom", "spice", "🌿", "ಕೆಜಿ", 1350, 2150),
+    ("ಗೇರುಬೀಜ", "Cashew Nut", "cash", "🥜", "ಕ್ವಿಂಟಲ್", 11000, 14500),
+    ("ಕಬ್ಬು", "Sugarcane", "cash", "🌾", "ಟನ್", 3100, 3650),
 
     # Spices & Oilseeds & Cotton
-    ("ಒಣ ಮೆಣಸಿನಕಾಯಿ (ಬ್ಯಾಡಗಿ)", "Red Chilli (Byadgi)", "spice", "🌶️", "ಕ್ವಿಂಟಲ್", 17000, 31000),
-    ("ಒಣ ಮೆಣಸಿನಕಾಯಿ (ಗುಂಟೂರು)", "Red Chilli (Guntur)", "spice", "🌶️", "ಕ್ವಿಂಟ层", 13500, 21500),
-    ("ಅರಿಶಿನ (Turmeric)", "Turmeric", "spice", "🟨", "ಕ್ವಿಂಟಲ್", 12000, 17200),
-    ("ಧನಿಯಾ (Coriander Seeds)", "Coriander Seeds", "spice", "🌿", "ಕ್ವಿಂಟಲ್", 7200, 9500),
-    ("ಶೇಂಗಾ (Groundnut Bold)", "Groundnut (Bold)", "oilseed", "🥜", "ಕ್ವಿಂಟಲ್", 6000, 7300),
-    ("ಸೂರ್ಯಕಾಂತಿ (Sunflower)", "Sunflower Seeds", "oilseed", "🌻", "ಕ್ವಿಂಟಲ್", 4100, 5000),
-    ("ಎಳ್ಳು (Sesame / Til)", "Sesame Seeds", "oilseed", "⚪", "ಕ್ವಿಂಟಲ್", 11000, 14500),
-    ("ಹತ್ತಿ (Cotton DCH-32)", "Cotton (Long Staple)", "cotton", "☁️", "ಕ್ವಿಂಟಲ್", 6600, 8100),
-    ("ರೇಷ್ಮೆ ಗೂಡು (Silk Cocoon CB)", "Silk Cocoon (CB)", "cash", "🐛", "ಕೆಜಿ", 360, 600)
+    ("ಒಣ ಮೆಣಸಿನಕಾಯಿ (ಬ್ಯಾಡಗಿ)", "Byadgi Red Chilli", "spice", "🌶️", "ಕ್ವಿಂಟಲ್", 17000, 31000),
+    ("ಒಣ ಮೆಣಸಿನಕಾಯಿ (ಗುಂಟೂರು)", "Guntur Red Chilli", "spice", "🌶️", "ಕ್ವಿಂಟಲ್", 13500, 21500),
+    ("ಅರಿಶಿನ", "Turmeric", "spice", "🟨", "ಕ್ವಿಂಟಲ್", 12000, 17200),
+    ("ಧನಿಯಾ", "Coriander Seeds", "spice", "🌿", "ಕ್ವಿಂಟಲ್", 7200, 9500),
+    ("ಶೇಂಗಾ", "Groundnut", "oilseed", "🥜", "ಕ್ವಿಂಟಲ್", 6000, 7300),
+    ("ಸೂರ್ಯಕಾಂತಿ", "Sunflower Seeds", "oilseed", "🌻", "ಕ್ವಿಂಟಲ್", 4100, 5000),
+    ("ಎಳ್ಳು", "Sesame Seeds", "oilseed", "⚪", "ಕ್ವಿಂಟಲ್", 11000, 14500),
+    ("ಹತ್ತಿ", "Cotton", "cotton", "☁️", "ಕ್ವಿಂಟಲ್", 6600, 8100),
+    ("ರೇಷ್ಮೆ ಗೂಡು", "Silk Cocoon", "cash", "🐛", "ಕೆಜಿ", 360, 600)
 ]
 
 def run():
@@ -304,14 +305,16 @@ def run():
     best_prices = {}
     markets_set = set()
 
+    random.seed(20260814)
+
     for m_kn, m_en, dist_kn, pri_cat in APMC_MARKETS:
         markets_set.add(m_en)
+
         market_cands = [c for c in COMMODITIES_POOL if c[2] == pri_cat] + random.sample(COMMODITIES_POOL, 8)
         num_to_sample = min(len(market_cands), random.randint(9, 12))
         selected = random.sample(market_cands, k=num_to_sample)
 
         for c_kn, c_en, cat, icon, unit, min_base, max_base in selected:
-            # Add small random variation per mandi
             var_pct = random.uniform(-0.06, 0.06)
             min_val = int(min_base * (1 + var_pct))
             max_val = int(max_base * (1 + var_pct))
