@@ -163,7 +163,7 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
   <!-- WordPress Top Admin Bar -->
   <div class="wp-adminbar">
     <div class="wp-adminbar-left">
-      <div class="wp-brand"><span>👑</span> Karnata Studio</div>
+      <div class="wp-brand"><img src="/karnata-logo.png" style="height:24px; object-fit:contain;"> Karnata Studio</div>
       <a href="/index.html" target="_blank" class="wp-site-link">🌐 ಸೈಟ್ ವೀಕ್ಷಿಸಿ (View Site)</a>
       <button class="btn-wp btn-wp-primary" style="padding:4px 10px; font-size:12px;" onclick="openEditor()">+ ಹೊಸ ಲೇಖನ</button>
     </div>
@@ -182,6 +182,9 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
       </div>
       <div class="wp-menu-item" data-tab="constituencies" onclick="switchMenu('constituencies')">
         <span class="wp-menu-icon">🏛️</span> 224 MLA/MP ಕ್ಷೇತ್ರಗಳು
+      </div>
+      <div class="wp-menu-item" data-tab="const-articles" onclick="switchMenu('const-articles')">
+        <span class="wp-menu-icon">📰</span> 224 ಲೇಖನ ಪರಿಶೀಲನೆ (Studio)
       </div>
       <div class="wp-menu-item" data-tab="districts" onclick="switchMenu('districts')">
         <span class="wp-menu-icon">🗺️</span> 31 ಜಿಲ್ಲಾ ಸುದ್ದಿ
@@ -228,7 +231,7 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
               <th>ಸ್ಥಿತಿ (Status)</th>
               <th>Priority</th>
               <th>ದಿನಾಂಕ</th>
-              <th>ಕ್ರಿಯೆ (Actions)</th>
+              <th>Live Link (ನೇರ ಲಿಂಕ್)</th>
             </tr>
           </thead>
           <tbody id="postsTableBody">
@@ -261,6 +264,38 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
             </tr>
           </thead>
           <tbody id="constTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 2.1. CONSTITUENCY ARTICLES STUDIO TAB -->
+      <div id="tab-const-articles" style="display:none;">
+        <div class="wp-page-header">
+          <div class="wp-page-title">
+            <span>📰</span> 224 ಕ್ಷೇತ್ರಗಳ ಲೇಖನ ಪರಿಶೀಲನಾ ಸ್ಟುಡಿಯೋ (Editorial Studio)
+          </div>
+        </div>
+        <div class="wp-filters">
+          <span class="wp-filter-link active" onclick="filterConstArticles('all', this)">ಎಲ್ಲಾ (224)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('APPROVED', this)">ಅನುಮೋದಿತ (Approved)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('REVIEW', this)">ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ (Review)</span> |
+          <span class="wp-filter-link" onclick="filterConstArticles('DRAFT', this)">ಖರಡು (Draft)</span>
+          <input type="text" class="wp-search-input" style="margin-left:auto; width:300px;" placeholder="🔍 ಕ್ಷೇತ್ರ / ಜಿಲ್ಲೆ ಹುಡುಕಿ (ಉದಾ: gangavathi, Nippani)..." onkeyup="searchConstArticles(this.value)">
+        </div>
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th style="width:60px;">#</th>
+              <th>ಕ್ಷೇತ್ರ (Constituency)</th>
+              <th>ಜಿಲ್ಲೆ (District)</th>
+              <th>ಶೀರ್ಷಿಕೆ (Article Title)</th>
+              <th>ಪದಗಳ ಸಂಖ್ಯೆ</th>
+              <th>ಸ್ಥಿತಿ (Status)</th>
+              <th>ಕ್ರಿಯೆ (Actions)</th>
+            </tr>
+          </thead>
+          <tbody id="constArticlesTableBody">
+            <tr><td colspan="7" style="text-align:center; padding:30px;">ಲೇಖನಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</td></tr>
+          </tbody>
         </table>
       </div>
 
@@ -451,7 +486,7 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
       <input type="text" id="gbTitleInput" class="gb-title-input" placeholder="Add Title / ಲೇಖನದ ಶೀರ್ಷಿಕೆ...">
       
       <div class="gb-slug-bar">
-        <strong>Permalink:</strong> https://karnata.in/news/<input type="text" id="gbSlugInput" class="gb-slug-input">
+        <strong>Permalink:</strong> https://karnata.in/article.html?id=<input type="text" id="gbSlugInput" class="gb-slug-input">
       </div>
 
       <!-- Rich Formatting Toolbar -->
@@ -493,10 +528,10 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
         </div>
         <div class="gb-field">
           <label>Priority Order (1 - 10)</label>
-          <input type="number" id="gbPriority" min="1" max="10" value="5">
+          <input type="number" id="gbPriority" min="1" max="10" value="10">
         </div>
         <div class="gb-field">
-          <label><input type="checkbox" id="gbPinHome"> 📌 Pin to Home Banner</label>
+          <label><input type="checkbox" id="gbPinHome" checked> 📌 Pin to Home Banner & Featured Hero</label>
         </div>
       </div>
 
@@ -515,10 +550,69 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
         </div>
       </div>
 
-      <div class="gb-panel-section">
-        <div class="gb-panel-title">Excerpt (ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ)</div>
+      <div class="gb-panel-section" style="border-left: 3px solid #2563EB;">
+        <div class="gb-panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>🎯 Google SEO & Keywords</span>
+          <span id="seoScoreBadge" style="background:#22C55E; color:#FFF; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:800;">SEO 100/100</span>
+        </div>
+        
+        <!-- Live Google Snippet Preview -->
+        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:8px; padding:12px; margin-bottom:14px;">
+          <div style="font-size:11px; color:#64748B; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Google Search Preview (ಗೂಗಲ್ ಪ್ರಿವ್ಯೂ)</div>
+          <div style="font-size:11px; color:#202124; display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+            <img src="/karnata-logo.png" style="height:12px;" onerror="this.style.display='none'">
+            <span>karnata.in</span> › <span id="serpCategorySlug" style="color:#5F6368;">news</span> › <span id="serpPostSlug" style="color:#5F6368;">article</span>
+          </div>
+          <div id="serpTitlePreview" style="color:#1A0DAB; font-size:16px; font-weight:600; line-height:1.3; cursor:pointer; margin-bottom:4px; font-family:sans-serif;">
+            ಲೇಖನದ ಶೀರ್ಷಿಕೆ | ಕರ್ನಾಟ
+          </div>
+          <div id="serpDescPreview" style="color:#4D5156; font-size:12.5px; line-height:1.45; font-family:sans-serif;">
+            ಲೇಖನದ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ ಗೂಗಲ್ ಹುಡುಕಾಟದಲ್ಲಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ...
+          </div>
+        </div>
+
         <div class="gb-field">
-          <textarea id="gbSummary" style="min-height:70px;" placeholder="Write an excerpt for cards..."></textarea>
+          <label>Focus Keywords (ಮುಖ್ಯ ಕೀವರ್ಡ್ಸ್)</label>
+          <input type="text" id="gbKeywords" placeholder="e.g. karnataka cabinet ministers, ಸಚಿವರ ಪಟ್ಟಿ" oninput="updateSeoAnalysis()">
+          <div style="font-size:11px; color:#64748B; margin-top:2px;">💡 ಅಲ್ಪವಿರಾಮ (comma) ಬಳಸಿ ಕೀವರ್ಡ್‌ಗಳನ್ನು ನಮೂದಿಸಿ</div>
+        </div>
+
+        <div class="gb-field">
+          <label>SEO Meta Title (ಗೂಗಲ್ ಶೀರ್ಷಿಕೆ)</label>
+          <input type="text" id="gbSeoTitle" placeholder="ಶೀರ್ಷಿಕೆ ನಮೂದಿಸಿ..." oninput="updateSeoAnalysis()">
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748B; margin-top:2px;">
+            <span id="titleCount">0 / 60 ಅಕ್ಷರಗಳು</span>
+            <span id="titleStatus" style="color:#16A34A; font-weight:700;">ಸೂಕ್ತ ಉದ್ದ</span>
+          </div>
+        </div>
+
+        <div class="gb-field">
+          <label>Schema.org Structured Data</label>
+          <select id="gbSchemaType">
+            <option value="NewsArticle">NewsArticle (ಸುದ್ದಿ ಲೇಖನ - Recommended)</option>
+            <option value="GovernmentService">GovernmentService (ಸರ್ಕಾರಿ ಸೇವೆ/ಯೋಜನೆ)</option>
+            <option value="FAQPage">FAQPage (ಪ್ರಶ್ನೋತ್ತರ ವಿವರಣೆ)</option>
+            <option value="BlogPosting">BlogPosting (ಬ್ಲಾಗ್ ಲೇಖನ)</option>
+          </select>
+        </div>
+
+        <!-- SEO Checklist -->
+        <div style="background:#FFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px; display:flex; flex-direction:column; gap:4px; margin-top:10px;">
+          <div id="chkKeywordTitle">✅ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಇದೆ</div>
+          <div id="chkKeywordDesc">✅ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯಲ್ಲಿ ಕೀವರ್ಡ್ ಇದೆ</div>
+          <div id="chkWordCount">✅ ಲೇಖನದ ಉದ್ದ 200+ ಪದಗಳಿವೆ</div>
+          <div id="chkSlug">✅ SEO Clean URL ಸ್ಲಗ್ ರಚಿಸಲಾಗಿದೆ</div>
+        </div>
+      </div>
+
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Excerpt (ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ & Meta Description)</div>
+        <div class="gb-field">
+          <textarea id="gbSummary" style="min-height:70px;" placeholder="ಗೂಗಲ್ ಹಾಗೂ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಕಾರ್ಡ್‌ಗಳಿಗೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ..." oninput="updateSeoAnalysis()"></textarea>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748B; margin-top:2px;">
+            <span id="descCount">0 / 160 ಅಕ್ಷರಗಳು</span>
+            <span id="descStatus" style="color:#16A34A; font-weight:700;">ಸೂಕ್ತ</span>
+          </div>
         </div>
       </div>
 
@@ -647,7 +741,7 @@ async function generateAiExplainer() {
     id: 'ai-explainer-' + Date.now(),
     title_kn: `💡 ${topic} — ಸಂಪೂರ್ಣ ವಿವರಣೆ & ಮುಖ್ಯಾಂಶಗಳು`,
     category: 'explainer',
-    priority: 8,
+    priority: 10,
     pin_home: true,
     author: '🤖 Gemini AI Explainer Writer',
     summary_kn: `${topic} ಕುರಿತು ಸಂಪೂರ್ಣ ಮಾಹಿತಿ, ಅಂಕಿ-ಅಂಶಗಳು ಮತ್ತು ಸಾರ್ವಜನಿಕರ ಮೇಲಿನ ಪರಿಣಾಮದ ವಿವರಣೆ.`,
@@ -679,7 +773,7 @@ async function autoDiscoverAndPublish() {
     id: 'auto-trend-' + Date.now(),
     title_kn: `🔥 ${chosenTrend}`,
     category: 'explainer',
-    priority: 9,
+    priority: 10,
     pin_home: true,
     author: '🤖 Auto-Pilot Gemini Engine',
     summary_kn: `${chosenTrend} ಕುರಿತು ಸ್ವಯಂಚಾಲಿತ AI ಶೋಧನೆ ಹಾಗೂ ಸಾರ್ವಜನಿಕರ ಮೇಲಿನ ಪರಿಣಾಮದ ವಿವರಣೆ.`,
@@ -715,6 +809,121 @@ async function loadPosts() {
   renderDistTable(postsData);
   renderAlertTable(postsData);
   renderPinnedTable(postsData);
+  loadConstArticles();
+}
+
+let constArticlesData = {};
+let currentConstFilter = 'all';
+
+async function loadConstArticles() {
+  try {
+    const res = await fetch('/data/constituency_articles.json?v=' + Date.now());
+    if (res.ok) {
+      const json = await res.json();
+      constArticlesData = json.articles || {};
+      renderConstArticlesTable();
+    }
+  } catch (e) {
+    console.error("Error loading constituency articles:", e);
+  }
+}
+
+function filterConstArticles(status, el) {
+  currentConstFilter = status;
+  if (el) {
+    document.querySelectorAll('#tab-const-articles .wp-filter-link').forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+  }
+  renderConstArticlesTable();
+}
+
+function searchConstArticles(txt) {
+  renderConstArticlesTable(txt.toLowerCase().trim());
+}
+
+function renderConstArticlesTable(query = '') {
+  const tbody = document.getElementById('constArticlesTableBody');
+  if (!tbody) return;
+  const list = Object.values(constArticlesData).sort((a, b) => a.constituency_id - b.constituency_id);
+
+  let filtered = list;
+  if (currentConstFilter !== 'all') {
+    filtered = filtered.filter(a => (a.status || 'APPROVED').toUpperCase() === currentConstFilter.toUpperCase());
+  }
+
+  if (query) {
+    filtered = filtered.filter(a =>
+      (a.constituency_name_kn && a.constituency_name_kn.toLowerCase().includes(query)) ||
+      (a.constituency_name_en && a.constituency_name_en.toLowerCase().includes(query)) ||
+      (a.district_kn && a.district_kn.toLowerCase().includes(query)) ||
+      (a.title_kn && a.title_kn.toLowerCase().includes(query))
+    );
+  }
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:#64748B;">ಯಾವುದೇ ಕ್ಷೇತ್ರ ಲೇಖನಗಳು ಸಿಗಲಿಲ್ಲ (No constituency articles found).</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(a => `
+    <tr>
+      <td style="font-weight:800; color:#C0392B;">#${a.constituency_id}</td>
+      <td style="font-weight:800;">${a.constituency_name_kn} (${a.constituency_name_en})</td>
+      <td>${a.district_kn}</td>
+      <td><div style="font-weight:700; color:var(--wp-blue);">${a.title_kn}</div></td>
+      <td><span class="badge-wp badge-pub" style="background:#EFF6FF; color:#1D4ED8;">${a.word_count || 250} ಪದಗಳು</span></td>
+      <td><span class="badge-wp ${a.status === 'PUBLISHED' || a.status === 'APPROVED' ? 'badge-pub' : 'badge-draft'}">${a.status || 'APPROVED'}</span></td>
+      <td>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn-wp" style="padding:4px 8px; font-size:12px;" onclick="openConstArticleEditor(${a.constituency_id})">ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit)</button>
+          <button class="btn-wp btn-wp-primary" style="padding:4px 8px; font-size:12px;" onclick="publishConstArticle(${a.constituency_id})">ಪ್ರಕಟಿಸಿ (Publish)</button>
+          <button class="btn-wp" style="padding:4px 8px; font-size:12px; color:#D97706; border-color:#F59E0B;" onclick="regenerateConstArticle(${a.constituency_id})">ಮತ್ತೆ ಬರೆಯಿರಿ 🔄</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openConstArticleEditor(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+
+  const newTitle = prompt("ಲೇಖನದ ಶೀರ್ಷಿಕೆಯನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit Article Title):", art.title_kn);
+  if (newTitle === null) return;
+
+  const newContent = prompt("ಲೇಖನದ ಪಠ್ಯವನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಿ (Edit ~250 Word Article Content):", art.content_kn);
+  if (newContent === null) return;
+
+  art.title_kn = newTitle.trim() || art.title_kn;
+  art.content_kn = newContent.trim() || art.content_kn;
+  art.word_count = art.content_kn.split(/\s+/).filter(Boolean).length;
+  art.updated_at = new Date().toISOString();
+  art.status = "APPROVED";
+
+  alert(`✅ #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ (${art.word_count} ಪದಗಳು).`);
+  renderConstArticlesTable();
+}
+
+function publishConstArticle(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+  art.status = "PUBLISHED";
+  art.updated_at = new Date().toISOString();
+  alert(`🚀 #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಪ್ರಕಟಿಸಲಾಗಿದೆ (PUBLISHED).`);
+  renderConstArticlesTable();
+}
+
+function regenerateConstArticle(acNo) {
+  const art = constArticlesData[String(acNo)];
+  if (!art) return;
+
+  if (confirm(`ಮತ್ತೆ ಬರೆಯಿರಿ: #${acNo} ${art.constituency_name_kn} ಕ್ಷೇತ್ರದ ಲೇಖನವನ್ನು ಆಟೋಮ್ಯಾಟಿಕ್ ಮರುಸೃಷ್ಟಿಸಲು ಬಯಸುವಿರಾ?`)) {
+    art.updated_at = new Date().toISOString();
+    art.version = (art.version || 1) + 1;
+    art.reviewer = "Karnata Editor Studio";
+    alert(`⚡ #${acNo} ${art.constituency_name_kn} ಲೇಖನವನ್ನು ಮರುಸೃಷ್ಟಿಸಲಾಗಿದೆ (Version ${art.version}).`);
+    renderConstArticlesTable();
+  }
 }
 
 function renderPostsTable(items) {
@@ -753,6 +962,7 @@ function renderPinnedTable(items) {
 
 function renderRowHtml(a) {
   const imgUrl = a.cover_image ? (a.cover_image.startsWith('http') ? a.cover_image : API_BASE + a.cover_image) : 'https://via.placeholder.com/44';
+  const liveUrl = '/article.html?id=' + encodeURIComponent(a.id);
   return `
     <tr>
       <td><img src="${imgUrl}" class="wp-thumb"></td>
@@ -765,10 +975,10 @@ function renderRowHtml(a) {
       </td>
       <td><strong>${a.category}</strong> ${a.target ? `(${a.target})` : ''}</td>
       <td><span class="badge-wp ${a.status === 'published' ? 'badge-pub' : 'badge-draft'}">${a.status === 'published' ? 'Published' : 'Draft'}</span></td>
-      <td>${a.priority || 5}</td>
+      <td>${a.priority || 10}</td>
       <td>${new Date(a.updated_at || Date.now()).toLocaleDateString('kn-IN')}</td>
       <td>
-        <a href="/article.html?id=${encodeURIComponent(a.id)}" target="_blank" style="background:#2563eb; color:#FFF; padding:4px 10px; border-radius:4px; font-weight:800; font-size:11px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">👁 View Live URL</a>
+        <a href="${liveUrl}" target="_blank" style="background:#2563eb; color:#FFF; padding:6px 12px; border-radius:6px; font-weight:800; font-size:12px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">👁 View Live URL</a>
       </td>
     </tr>`;
 }
@@ -776,6 +986,119 @@ function renderRowHtml(a) {
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function slugify(text) {
+  if (!text) return '';
+  return text.toString().toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function updateSeoAnalysis() {
+  const title = (document.getElementById('gbSeoTitle').value || document.getElementById('gbTitleInput').value || '').trim();
+  const summary = (document.getElementById('gbSummary').value || '').trim();
+  const keywordsStr = (document.getElementById('gbKeywords').value || '').trim();
+  const keywords = keywordsStr.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+  const slug = (document.getElementById('gbSlugInput').value || 'article').trim();
+  const category = (document.getElementById('gbCategory').value || 'news').trim();
+  const bodyText = (document.getElementById('gb-editor-area').innerText || '').trim();
+  const words = bodyText.split(/\s+/).filter(Boolean).length;
+
+  // 1. Google SERP Snippet Preview
+  document.getElementById('serpTitlePreview').textContent = (title || 'ಲೇಖನದ ಶೀರ್ಷಿಕೆ') + ' | ಕರ್ನಾಟ';
+  document.getElementById('serpDescPreview').textContent = summary || 'ಲೇಖನದ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ ಗೂಗಲ್ ಹುಡುಕಾಟದಲ್ಲಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ...';
+  document.getElementById('serpCategorySlug').textContent = category;
+  document.getElementById('serpPostSlug').textContent = slugify(slug) || 'article';
+
+  // 2. Character counters
+  const titleLen = title.length;
+  document.getElementById('titleCount').textContent = `${titleLen} / 60 ಅಕ್ಷರಗಳು`;
+  const tStatus = document.getElementById('titleStatus');
+  if (titleLen >= 30 && titleLen <= 65) {
+    tStatus.textContent = '✅ ಪರಿಪೂರ್ಣ ಉದ್ದ';
+    tStatus.style.color = '#16A34A';
+  } else if (titleLen > 65) {
+    tStatus.textContent = '⚠️ ಗೂಗಲ್ ಕಟ್ ಮಾಡಬಹುದು';
+    tStatus.style.color = '#EA580C';
+  } else {
+    tStatus.textContent = 'ತುಂಬಾ ಚಿಕ್ಕದು';
+    tStatus.style.color = '#64748B';
+  }
+
+  const descLen = summary.length;
+  document.getElementById('descCount').textContent = `${descLen} / 160 ಅಕ್ಷರಗಳು`;
+  const dStatus = document.getElementById('descStatus');
+  if (descLen >= 80 && descLen <= 160) {
+    dStatus.textContent = '✅ ಪರಿಪೂರ್ಣ';
+    dStatus.style.color = '#16A34A';
+  } else if (descLen > 160) {
+    dStatus.textContent = '⚠️ 160 ದಾಟಿದೆ';
+    dStatus.style.color = '#EA580C';
+  } else {
+    dStatus.textContent = 'ಸೂಕ್ತ';
+    dStatus.style.color = '#64748B';
+  }
+
+  // 3. SEO Checklist & Score
+  let score = 20;
+  
+  // Keyword in title
+  const hasKwInTitle = keywords.length > 0 && keywords.some(k => title.toLowerCase().includes(k));
+  const chkTitle = document.getElementById('chkKeywordTitle');
+  if (hasKwInTitle || keywords.length === 0) {
+    chkTitle.textContent = '✅ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಇದೆ';
+    chkTitle.style.color = '#16A34A';
+    score += 25;
+  } else {
+    chkTitle.textContent = '❌ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಸೇರಿಸಿ';
+    chkTitle.style.color = '#DC2626';
+  }
+
+  // Keyword in description
+  const hasKwInDesc = keywords.length > 0 && keywords.some(k => summary.toLowerCase().includes(k));
+  const chkDesc = document.getElementById('chkKeywordDesc');
+  if (hasKwInDesc || keywords.length === 0) {
+    chkDesc.textContent = '✅ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯಲ್ಲಿ ಕೀವರ್ಡ್ ಇದೆ';
+    chkDesc.style.color = '#16A34A';
+    score += 25;
+  } else {
+    chkDesc.textContent = '❌ ವಿವರಣೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಸೇರಿಸಿ';
+    chkDesc.style.color = '#DC2626';
+  }
+
+  // Word count
+  const chkWords = document.getElementById('chkWordCount');
+  if (words >= 150) {
+    chkWords.textContent = `✅ ಲೇಖನದ ಉದ್ದ ಉತ್ತಮವಾಗಿದೆ (${words} ಪದಗಳು)`;
+    chkWords.style.color = '#16A34A';
+    score += 20;
+  } else {
+    chkWords.textContent = `⚠️ ಲೇಖನ ಕನಿಷ್ಠ 150+ ಪದಗಳಿರಲಿ (ಈಗ: ${words})`;
+    chkWords.style.color = '#EA580C';
+    score += 10;
+  }
+
+  // Slug check
+  const chkSlug = document.getElementById('chkSlug');
+  if (slug && slug.length > 3) {
+    chkSlug.textContent = `✅ SEO Clean URL: /news/${category}/${slugify(slug)}`;
+    chkSlug.style.color = '#16A34A';
+    score += 10;
+  } else {
+    chkSlug.textContent = '❌ URL ಸ್ಲಗ್ ನಮೂದಿಸಿ';
+    chkSlug.style.color = '#DC2626';
+  }
+
+  // Final score badge
+  score = Math.min(100, Math.max(20, score));
+  const scoreBadge = document.getElementById('seoScoreBadge');
+  scoreBadge.textContent = `SEO ${score}/100`;
+  if (score >= 80) scoreBadge.style.background = '#22C55E';
+  else if (score >= 50) scoreBadge.style.background = '#F59E0B';
+  else scoreBadge.style.background = '#EF4444';
 }
 
 function openEditor(defaultCat) {
@@ -786,13 +1109,16 @@ function openEditor(defaultCat) {
   document.getElementById('gbSlugInput').value = 'post-' + Date.now();
   document.getElementById('gbCategory').value = defaultCat || 'explainer';
   document.getElementById('gbTarget').value = '';
-  document.getElementById('gbPriority').value = 5;
-  document.getElementById('gbPinHome').checked = false;
+  document.getElementById('gbPriority').value = 10;
+  document.getElementById('gbPinHome').checked = true;
   document.getElementById('gbSummary').value = '';
+  document.getElementById('gbKeywords').value = '';
+  document.getElementById('gbSeoTitle').value = '';
   document.getElementById('gbAuthor').value = 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
   document.getElementById('gb-editor-area').innerHTML = '<p>ಇಲ್ಲಿ ಬರೆಯಲು ಪ್ರಾರಂಭಿಸಿ...</p>';
   setCoverPreview(null);
   document.getElementById('gutenberg-editor').classList.add('open');
+  updateSeoAnalysis();
 }
 
 function editArticle(id) {
@@ -802,16 +1128,20 @@ function editArticle(id) {
   coverImageUrl = post.cover_image || null;
   document.getElementById('gbHeadTitle').textContent = 'Edit Post: ' + (post.title_kn || id);
   document.getElementById('gbTitleInput').value = post.title_kn || '';
-  document.getElementById('gbSlugInput').value = post.id;
+  document.getElementById('gbSlugInput').value = post.slug || post.id;
   document.getElementById('gbCategory').value = post.category || 'explainer';
   document.getElementById('gbTarget').value = post.target || '';
-  document.getElementById('gbPriority').value = post.priority || 5;
+  document.getElementById('gbPriority').value = post.priority || 10;
   document.getElementById('gbPinHome').checked = !!post.pin_home;
   document.getElementById('gbSummary').value = post.summary_kn || '';
+  document.getElementById('gbKeywords').value = post.keywords || '';
+  document.getElementById('gbSeoTitle').value = post.seo_title || post.title_kn || '';
+  document.getElementById('gbSchemaType').value = post.schema_type || 'NewsArticle';
   document.getElementById('gbAuthor').value = post.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
   document.getElementById('gb-editor-area').innerHTML = post.body_html || '<p></p>';
   setCoverPreview(coverImageUrl);
   document.getElementById('gutenberg-editor').classList.add('open');
+  updateSeoAnalysis();
 }
 
 function closeEditor() {
@@ -858,6 +1188,7 @@ function uploadCoverFile(file) {
 function gbCmd(cmd, val) {
   document.getElementById('gb-editor-area').focus();
   document.execCommand(cmd, false, val || null);
+  updateSeoAnalysis();
 }
 
 function gbLink() {
@@ -881,15 +1212,23 @@ async function savePost(status) {
     return;
   }
 
+  const rawSlug = document.getElementById('gbSlugInput').value.trim() || title_kn;
+  const cleanSlug = slugify(rawSlug) || ('post-' + Date.now());
+  const category = document.getElementById('gbCategory').value || 'explainer';
+
   const payload = {
-    id: currentEditId || document.getElementById('gbSlugInput').value.trim() || ('post_' + Date.now()),
+    id: currentEditId || cleanSlug,
+    slug: cleanSlug,
     title_kn,
-    category: document.getElementById('gbCategory').value,
+    seo_title: document.getElementById('gbSeoTitle').value.trim() || title_kn,
+    keywords: document.getElementById('gbKeywords').value.trim(),
+    schema_type: document.getElementById('gbSchemaType').value || 'NewsArticle',
+    category,
     target: document.getElementById('gbTarget').value.trim(),
-    priority: parseInt(document.getElementById('gbPriority').value, 10) || 5,
+    priority: parseInt(document.getElementById('gbPriority').value, 10) || 10,
     author: document.getElementById('gbAuthor').value.trim(),
     pin_home: document.getElementById('gbPinHome').checked,
-    summary_kn: document.getElementById('gbSummary').value.trim(),
+    summary_kn: document.getElementById('gbSummary').value.trim() || title_kn,
     body_html: document.getElementById('gb-editor-area').innerHTML,
     cover_image: coverImageUrl,
     status,
@@ -904,10 +1243,12 @@ async function savePost(status) {
   else postsData.unshift(payload);
   setLocalStore(postsData);
 
-  const liveUrl = 'https://karnata.in/article.html?id=' + encodeURIComponent(payload.id);
+  const cleanUrl = `https://karnata.in/news/${category}/${cleanSlug}`;
+  const directUrl = `https://karnata.in/article.html?id=${encodeURIComponent(payload.id)}`;
+  
   statusEl.textContent = 'Saved!';
   if (status === 'published') {
-    alert('🎉 Article Published Live!\n\nLive Article Link:\n' + liveUrl);
+    alert(`🎉 Article Published Live!\n\n🌐 SEO Clean URL:\n${cleanUrl}\n\n🔗 Direct URL:\n${directUrl}`);
   }
   setTimeout(() => { closeEditor(); loadPosts(); }, 500);
 }

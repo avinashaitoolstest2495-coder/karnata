@@ -285,13 +285,22 @@ function slugify(text) {
     const summary = article.summary_kn || article.summary || title;
     const author = article.author || article.source_name || article.source || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
     const dateStr = article.updated_at || article.published || new Date().toISOString();
-    const coverImg = article.cover_image || 'https://karnata.in/karnata-logo.png';
-    const cleanUrl = window.location.href;
+    const catSlug = (article.category || targetCategory || 'politics').toLowerCase();
+    const postSlug = article.slug || slugify(article.id) || slugify(article.title_kn || article.title);
+    const fullCleanPath = `/news/${catSlug}/${postSlug}`;
+    const fullCleanUrl = `https://karnata.in${fullCleanPath}`;
+
+    // Update browser address bar to show full SEO URL seamlessly
+    try {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, title, fullCleanPath);
+      }
+    } catch(e) {}
 
     // Update DOM
     document.getElementById('page-title').textContent = `${title} | ಕರ್ನಾಟ`;
     document.getElementById('page-desc').setAttribute('content', summary);
-    document.getElementById('canonical-url').setAttribute('href', cleanUrl);
+    document.getElementById('canonical-url').setAttribute('href', fullCleanUrl);
     document.getElementById('art-title').textContent = title;
     document.getElementById('art-category').textContent = `📰 ${article.category || targetCategory || 'ಪ್ರಮುಖ ಲೇಖನ'}`;
     document.getElementById('art-author').textContent = author;
