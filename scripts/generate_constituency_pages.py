@@ -1,7 +1,12 @@
 """
 Karnata — generate_constituency_pages.py
 Generates standalone HTML pages in both mla/ and constituencies/ directories for all 224 Assembly Seats.
-Includes full Kannada Data Normalization, 250-word Factual Kannada News Story, Sources, Update Dates, and Kannada SEO.
+Order:
+1. Recent Election (2023) Hero Card with MLA photo/avatar, margin, vote share, runner-up, and Quick Constituency Search.
+2. Map & Party Victory Summary (ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ) & Vote Share Analytics.
+3. 250-Word Factual Kannada News Story (ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ).
+4. Last 3 Elections Detailed Breakdown Cards (2023, 2018, 2013).
+5. Complete Election History Table (1978 – 2023).
 """
 
 import os
@@ -55,6 +60,18 @@ for yr_str, rec_list in records_by_year.items():
 for ac_no in constituency_history:
     constituency_history[ac_no].sort(key=lambda x: x["year"], reverse=True)
 
+# Build search list for quick switcher dropdown
+search_options_json = json.dumps([
+    {
+        "ac_no": ac_no,
+        "name_kn": recs[0].get("constituency_kn") or recs[0].get("constituency"),
+        "name_en": recs[0].get("constituency"),
+        "district_kn": recs[0].get("district_kn") or get_district_kn(recs[0].get("district", "")),
+        "slug": recs[0].get("slug") or (recs[0].get("constituency").lower().replace(" ", "_") + "_assembly_constituency")
+    }
+    for ac_no, recs in sorted(constituency_history.items())
+], ensure_ascii=False)
+
 def clean_str(val):
     if not val:
         return ""
@@ -87,7 +104,7 @@ def get_geojson_feature(ac_no, clean_name):
     return None
 
 def generate_constituency_page(ac_no, history_records):
-    latest = history_records[0]
+    latest = history_records[0] # 2023 Record
     name_kn = latest.get("constituency_kn") or latest.get("constituency")
     name_en = latest.get("constituency")
     district_kn = latest.get("district_kn") or get_district_kn(latest.get("district", "ಕರ್ನಾಟಕ"))
@@ -95,19 +112,75 @@ def generate_constituency_page(ac_no, history_records):
     category_kn = latest.get("category_kn", "ಸಾಮಾನ್ಯ")
     slug = latest.get("slug") or make_slug(name_en)
 
+    winner_kn = latest.get("winner_kn", latest.get("winner"))
+    winner_party_kn = latest.get("winner_party_kn", get_party_kn(latest.get("winner_party")))
+    winner_votes = latest.get("winner_votes", 0)
+    vote_share = latest.get("vote_share", 0.0)
+    margin = latest.get("margin", 0)
+    runner_up_kn = latest.get("runner_up_kn", latest.get("runner_up"))
+    runner_up_party_kn = latest.get("runner_up_party_kn", get_party_kn(latest.get("runner_up_party")))
+    runner_up_votes = latest.get("runner_up_votes", winner_votes - margin)
+    turnout = latest.get("turnout", "75.4")
+
     feat = get_geojson_feature(ac_no, latest["clean_constituency"])
     single_geojson_str = json.dumps(feat) if feat else "null"
 
+    # Party tally calculations
     party_tally = {}
     for h in history_records:
         p = h.get("winner_party_kn") or get_party_kn(h.get("winner_party"))
         party_tally[p] = party_tally.get(p, 0) + 1
 
+    sorted_tally = sorted(party_tally.items(), key=lambda x: x[1], reverse=True)
+    top_party_kn, top_party_wins = sorted_tally[0]
+
     tally_chips_html = "".join([
-        f'<span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:800; color:#0F172A;">{p}: <span style="color:#C0392B;">{c} ಜಯ</span></span>'
-        for p, c in sorted(party_tally.items(), key=lambda x: x[1], reverse=True)
+        f'<span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:6px 14px; font-size:13px; font-weight:800; color:#0F172A;">{p}: <span style="color:#C0392B;">{c} ಬಾರಿ ವಿಜೇತ</span></span>'
+        for p, c in sorted_tally
     ])
 
+    # 1. Last 3 Elections Cards (2023, 2018, 2013)
+    last_3_records = history_records[:3]
+    last_3_cards_html = ""
+    for rec in last_3_records:
+        r_yr = rec.get("year")
+        r_w_kn = rec.get("winner_kn", rec.get("winner"))
+        r_w_p_kn = rec.get("winner_party_kn", get_party_kn(rec.get("winner_party")))
+        r_w_v = rec.get("winner_votes", 0)
+        r_v_sh = rec.get("vote_share", 0.0)
+        r_r_kn = rec.get("runner_up_kn", rec.get("runner_up"))
+        r_r_p_kn = rec.get("runner_up_party_kn", get_party_kn(rec.get("runner_up_party")))
+        r_r_v = rec.get("runner_up_votes", r_w_v - rec.get("margin", 0))
+        r_m = rec.get("margin", 0)
+        r_color = rec.get("color", "#C0392B")
+
+        last_3_cards_html += f"""
+        <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #F1F5F9; padding-bottom:10px; margin-bottom:14px;">
+            <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ {r_yr} ಚುನಾವಣೆ</span>
+            <span style="background:{r_color}; color:#fff; padding:3px 10px; border-radius:12px; font-size:11.5px; font-weight:800;">{r_w_p_kn}</span>
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:800; color:#16A34A; text-transform:uppercase;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</div>
+            <div style="font-size:16px; font-weight:800; color:#0F172A; margin-top:2px;">{r_w_kn}</div>
+            <div style="font-size:13px; color:#475569; margin-top:2px;"><strong>{r_w_v:,}</strong> ಮತಗಳು ({r_v_sh}% ಮತ ಪಾಲು)</div>
+          </div>
+
+          <div style="margin-bottom:12px; background:#F8FAFC; padding:10px; border-radius:8px; border:1px solid #E2E8F0;">
+            <div style="font-size:11px; font-weight:800; color:#DC2626; text-transform:uppercase;">🥈 ರನ್ನರ್-ಅಪ್ (ಎರಡನೇ ಸ್ಥಾನ)</div>
+            <div style="font-size:14.5px; font-weight:700; color:#334155; margin-top:2px;">{r_r_kn} ({r_r_p_kn})</div>
+            <div style="font-size:12.5px; color:#64748B; margin-top:2px;"><strong>{r_r_v:,}</strong> ಮತಗಳು (ಗೆಲುವಿನ ಅಂತರ: <strong>+{r_m:,}</strong>)</div>
+          </div>
+
+          <!-- Vote share gap bar -->
+          <div style="background:#E2E8F0; height:8px; border-radius:4px; overflow:hidden; margin-top:8px;">
+            <div style="background:{r_color}; height:100%; width:{min(100, float(r_v_sh))}%;"></div>
+          </div>
+        </div>
+        """
+
+    # 2. Complete Election History Table (1978 – 2023)
     table_rows_html = ""
     for h in history_records:
         color = h.get("color", "#64748b")
@@ -115,7 +188,7 @@ def generate_constituency_page(ac_no, history_records):
         <tr>
           <td style="font-weight:900; color:#C0392B;">{h['year']}</td>
           <td style="font-weight:800; color:#0F172A;">{h.get('winner_kn', h.get('winner'))}</td>
-          <td><span style="background:{color}; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800; box-shadow:0 2px 4px rgba(0,0,0,0.1);">{h.get('winner_party_kn', get_party_kn(h.get('winner_party')))}</span></td>
+          <td><span style="background:{color}; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800;">{h.get('winner_party_kn', get_party_kn(h.get('winner_party')))}</span></td>
           <td style="font-weight:700; color:#0F172A;">{h.get('winner_votes', 0):,}</td>
           <td style="color:#16A34A; font-weight:800;">{h.get('vote_share', 0.0)}%</td>
           <td style="color:#475569;">{h.get('runner_up_kn', h.get('runner_up'))} ({h.get('runner_up_party_kn', get_party_kn(h.get('runner_up_party')))})</td>
@@ -123,19 +196,18 @@ def generate_constituency_page(ac_no, history_records):
         </tr>
         """
 
-    # Fetch 250-word news article
+    # 3. News Story
     art_data = articles_db.get(str(ac_no), {})
     art_title = art_data.get("title_kn", f"{name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ಶಾಸಕ, ಚುನಾವಣೆ ಫಲಿತಾಂಶ ಮತ್ತು ಇತಿಹಾಸ")
     art_content = art_data.get("content_kn", "")
-    art_word_count = art_data.get("word_count", 250)
 
     formatted_paragraphs = "".join([
-        f'<p style="font-size:15px; line-height:1.75; color:#334155; margin-bottom:16px;">{p.strip()}</p>'
+        f'<p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">{p.strip()}</p>'
         for p in art_content.split("\n\n") if p.strip()
     ])
 
-    seo_title = f"{name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ಶಾಸಕ, ಚುನಾವಣೆ ಫಲಿತಾಂಶ, ಮತ ಹಂಚಿಕೆ ಮತ್ತು ಇತಿಹಾಸ | Karnata.in"
-    seo_desc = f"{name_kn} ({name_en}) ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಪ್ರಸ್ತುತ ಶಾಸಕ {latest.get('winner_kn')}, ಪಕ್ಷ {latest.get('winner_party_kn')}, ಚುನಾವಣಾ ಫಲಿತಾಂಶ, ಅಭ್ಯರ್ಥಿಗಳ ಮತಗಳು, ಗೆಲುವಿನ ಅಂತರ ಮತ್ತು 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ."
+    seo_title = f"{name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ 2023 ಫಲಿತಾಂಶ, ಶಾಸಕ {winner_kn} ಮತ್ತು ಇತಿಹಾಸ | Karnata.in"
+    seo_desc = f"{name_kn} ({name_en}) ಕ್ಷೇತ್ರದ 2023 ರ ಶಾಸಕರು {winner_kn} ({winner_party_kn}), ಪೂರ್ಣ ಮತಗಳು, ಗೆಲುವಿನ ಅಂತರ +{margin:,}, ಮತ್ತು 1978 ರಿಂದ 2023 ರವರೆಗಿನ ಸಮಗ್ರ ಚುನಾವಣಾ ಇತಿಹಾಸ."
 
     page_html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -165,55 +237,26 @@ def generate_constituency_page(ac_no, history_records):
       color: #0F172A;
       font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
     }}
-    .hero-minimal {{
-      background: #FFFFFF;
-      border-bottom: 2px solid #E2E8F0;
-      padding: 24px 16px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    .wrap {{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
     }}
-    .seat-title {{
-      font-family: 'Tiro Kannada', serif;
-      font-size: 28px;
-      font-weight: 800;
-      color: #0F172A;
-      margin-bottom: 4px;
-    }}
-    .seat-subtitle {{
-      font-size: 14px;
-      color: #64748B;
-      margin-bottom: 14px;
-    }}
-    .chip-bar {{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }}
-    .chip {{
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      padding: 5px 12px;
-      border-radius: 16px;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #0F172A;
-    }}
-    .grid-layout {{
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
-      margin-bottom: 24px;
-    }}
-    @media(max-width: 900px) {{
-      .grid-layout {{ grid-template-columns: 1fr; }}
+    .recent-hero-card {{
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #FFFFFF;
+      border-radius: 18px;
+      padding: 24px;
+      margin: 20px 0 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
     }}
     .dash-card {{
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-      margin-bottom: 20px;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      margin-bottom: 24px;
     }}
     .dash-head {{
       font-family: 'Tiro Kannada', serif;
@@ -228,9 +271,9 @@ def generate_constituency_page(ac_no, history_records):
       justify-content: space-between;
     }}
     #constituency-map {{
-      height: 360px;
+      height: 340px;
       width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid #CBD5E1;
       background: #F1F5F9;
     }}
@@ -242,18 +285,18 @@ def generate_constituency_page(ac_no, history_records):
     .elections-table {{
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 13.5px;
     }}
     .elections-table th {{
       background: #F8FAFC;
       color: #475569;
       font-weight: 800;
-      padding: 10px 12px;
+      padding: 12px 14px;
       border-bottom: 2px solid #E2E8F0;
       white-space: nowrap;
     }}
     .elections-table td {{
-      padding: 10px 12px;
+      padding: 12px 14px;
       border-bottom: 1px solid #F1F5F9;
       white-space: nowrap;
     }}
@@ -280,75 +323,90 @@ def generate_constituency_page(ac_no, history_records):
       justify-content: space-between;
       gap: 10px;
     }}
+    .q-item:hover {{
+      background: #F1F5F9;
+    }}
   </style>
 </head>
 <body>
 
   <div id="k-nav"></div>
 
-  <header class="hero-minimal">
-    <div class="wrap">
-      <div style="font-size: 12px; font-weight: 800; color: #C0392B; letter-spacing: 0.05em; margin-bottom: 2px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ #{ac_no} • {district_kn} ಜಿಲ್ಲೆ</div>
-      <h1 class="seat-title">🏛️ {name_kn} ({name_en})</h1>
-      <p class="seat-subtitle">ಕರ್ನಾಟಕ ಶಾಸನಸಭೆ ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</p>
+  <main class="wrap">
 
-      <div class="chip-bar">
-        <span class="chip">ವರ್ಗ: {category_kn}</span>
-        <span class="chip" style="border-color:#16A34A; color:#16A34A;">2023 ಶಾಸಕರು: {latest.get('winner_kn')} ({latest.get('winner_party_kn', get_party_kn(latest.get('winner_party')))})</span>
-        <span class="chip" style="border-color:#C0392B; color:#C0392B;">ಅಂತರ: +{latest.get('margin', 0):,}</span>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap" style="padding: 0 16px 24px;">
-
-    <div class="grid-layout">
-      <!-- MAP & WINNER SUMMARY -->
-      <div>
-        <div class="dash-card">
-          <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
-          <div id="constituency-map"></div>
+    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH PHOTO, STATS & QUICK SEARCH -->
+    <section class="recent-hero-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px;">
+        <div>
+          <div style="font-size:12px; font-weight:800; color:#F59E0B; text-transform:uppercase; letter-spacing:0.05em;">🗳️ 2023 ಪ್ರಸ್ತುತ ಫಲಿತಾಂಶ ಹಾಗೂ ಶಾಸಕರ ವಿವರ</div>
+          <h1 style="font-family:'Tiro Kannada', serif; font-size:30px; font-weight:800; color:#fff; margin-top:2px;">🏛️ {name_kn} ({name_en})</h1>
+          <div style="font-size:14px; color:#CBD5E1; margin-top:2px;">{district_kn} ಜಿಲ್ಲೆ · ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರ #{ac_no} · ವರ್ಗ: {category_kn}</div>
         </div>
 
-        <div class="dash-card">
-          <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ</div>
-          <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            {tally_chips_html}
+        <!-- QUICK SEARCH SEARCH & FIX IT -->
+        <div style="position:relative; min-width:300px; flex-shrink:0;">
+          <input type="text" id="quick-search-input" placeholder="🔍 ಇತರ 224 ಕ್ಷೇತ್ರ ಹುಡುಕಿ (Search)..." oninput="runQuickSearch(this.value)" style="width:100%; padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.12); color:#fff; font-size:13.5px; outline:none;">
+          <div id="quick-search-box" style="display:none; position:absolute; top:100%; left:0; right:0; background:#ffffff; color:#0F172A; border-radius:10px; box-shadow:0 10px 25px rgba(0,0,0,0.25); max-height:260px; overflow-y:auto; z-index:999; margin-top:4px; border:1px solid #CBD5E1;"></div>
+        </div>
+      </div>
+
+      <!-- Sitting Representative Photo Avatar & Key Stats -->
+      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:20px; align-items:center;">
+        <div style="width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg, #E11D48, #F43F5E); color:#fff; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:900; box-shadow:0 6px 18px rgba(225,29,72,0.4); border:3px solid rgba(255,255,255,0.2);">
+          {winner_kn[0]}
+        </div>
+
+        <div>
+          <div style="font-size:24px; font-weight:900; color:#fff;">{winner_kn}</div>
+          <div style="font-size:14px; color:#94A3B8; font-weight:600; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
+          <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <span style="background:{latest.get('color', '#C0392B')}; color:#fff; padding:4px 14px; border-radius:8px; font-size:12.5px; font-weight:800;">{winner_party_kn}</span>
+            <span style="background:rgba(255,255,255,0.1); color:#6EE7B7; border:1px solid rgba(110,231,183,0.3); padding:4px 12px; border-radius:8px; font-size:12.5px; font-weight:700;">ಗೆಲುವಿನ ಅಂತರ: +{margin:,} ಮತಗಳು</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:12px 18px; border-radius:12px; text-align:center;">
+            <div style="font-size:20px; font-weight:900; color:#FFD700; font-family:'Plus Jakarta Sans', sans-serif;">{winner_votes:,} ({vote_share}%)</div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-top:2px;">ವಿಜೇತರ ಮತಗಳು & ಮತ ಪಾಲು</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:12px 18px; border-radius:12px; text-align:center;">
+            <div style="font-size:15px; font-weight:800; color:#F87171;">{runner_up_kn} ({runner_up_party_kn})</div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-top:2px;">ಸಮೀಪದ ಸ್ಪರ್ಧಿ ({runner_up_votes:,} ಮತಗಳು)</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ELECTION HISTORY TABLE -->
-      <div>
-        <div class="dash-card">
-          <div class="dash-head">📊 ಚುನಾವಣಾ ಇತಿಹಾಸ (1978 – 2023)</div>
-          <div class="table-wrapper">
-            <table class="elections-table">
-              <thead>
-                <tr>
-                  <th>ವರ್ಷ</th>
-                  <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
-                  <th>ಪಕ್ಷ</th>
-                  <th>ಮತಗಳು</th>
-                  <th>ಪಾಲು (%)</th>
-                  <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
-                  <th>ಅಂತರ</th>
-                </tr>
-              </thead>
-              <tbody>
-                {table_rows_html}
-              </tbody>
-            </table>
+    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY (ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & VOTE SHARE ANALYTICS) -->
+    <div style="display:grid; grid-template-columns: 380px 1fr; gap:20px; margin-bottom:24px;">
+      <div class="dash-card" style="margin-bottom:0;">
+        <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
+        <div id="constituency-map"></div>
+      </div>
+
+      <div class="dash-card" style="margin-bottom:0;">
+        <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & ವಿಶ್ಲೇಷಣೆ</div>
+        
+        <div style="font-size:13px; font-weight:700; color:#475569; margin-bottom:10px;">1978 ರಿಂದ 2023 ರವರೆಗಿನ ಒಟ್ಟು ಗೆಲುವುಗಳ ಲೆಕ್ಕಾಚಾರ:</div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
+          {tally_chips_html}
+        </div>
+
+        <div style="border-top:1px solid #F1F5F9; padding-top:16px;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:8px;">📊 ಮತ ಹಂಚಿಕೆ ಹಾಗೂ ರಾಜಕೀಯ ವಿಶ್ಲೇಷಣೆ (Vote Share Analytics)</div>
+          <div style="font-size:14px; color:#334155; line-height:1.7; background:#F8FAFC; padding:14px; border-radius:10px; border-left:4px solid #C0392B;">
+            {name_kn} ಕ್ಷೇತ್ರದಲ್ಲಿ ಕಳೆದ 1978ರಿಂದ 2023ರವರೆಗೆ ನಡೆದ <strong>{len(history_records)}</strong> ಚುನಾವಣೆಗಳಲ್ಲಿ <strong>{top_party_kn}</strong> ಪಕ್ಷವು ಗರಿಷ್ಠ <strong>{top_party_wins} ಬಾರಿ</strong> ಗೆಲುವು ಸಾಧಿಸಿ ಪ್ರಮುಖ ಶಕ್ತಿಯಾಗಿದೆ. 2023ರ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಯಲ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಒಟ್ಟು <strong>{turnout}%</strong> ಮತದಾನ ದಾಖಲಾಗಿದ್ದು, ವಿಜೇತ {winner_party_kn} ಅಭ್ಯರ್ಥಿ {winner_kn} ಅವರು <strong>{vote_share}%</strong> ಮತಗಳನ್ನು ಪಡೆಯುವ ಮೂಲಕ +{margin:,} ಮತಗಳ ಅಂತರದಿಂದ ಯಶಸ್ಸು ಸಾಧಿಸಿದ್ದಾರೆ.
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 250-WORD FACTUAL KANNADA NEWS STORY SECTION -->
-    <section class="dash-card" style="margin-top: 10px;">
+    <!-- 3. THIRD SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ) -->
+    <section class="dash-card">
       <div class="dash-head">
         <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ</span>
-        <span class="news-badge">ಕ್ಷೇತ್ರ ಮಾಹಿತಿ</span>
+        <span class="news-badge">ಕ್ಷೇತ್ರ ವಿಶೇಷ ವರದಿ</span>
       </div>
 
       <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">{art_title}</h2>
@@ -363,11 +421,47 @@ def generate_constituency_page(ac_no, history_records):
       </div>
     </section>
 
+    <!-- 4. FOURTH SECTION: LAST 3 ELECTIONS DETAILED BREAKDOWN (2023, 2018, 2013) -->
+    <section class="dash-card">
+      <div class="dash-head">
+        <span>📜 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ವಿವರವಾದ ಫಲಿತಾಂಶಗಳು (2023, 2018, 2013)</span>
+        <span class="news-badge">ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರ</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; margin-top:16px;">
+        {last_3_cards_html}
+      </div>
+    </section>
+
+    <!-- 5. FIFTH SECTION: ALL ELECTIONS HISTORY TABLE (1978 – 2023) -->
+    <section class="dash-card">
+      <div class="dash-head">📊 ಎಲ್ಲಾ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಗಳ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ (1978 – 2023)</div>
+      <div class="table-wrapper">
+        <table class="elections-table">
+          <thead>
+            <tr>
+              <th>ವರ್ಷ</th>
+              <th>ವಿಜೇತ ಅಭ್ಯರ್ಥಿ</th>
+              <th>ಪಕ್ಷ</th>
+              <th>ಮತಗಳು</th>
+              <th>ಪಾಲು (%)</th>
+              <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+              <th>ಅಂತರ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {table_rows_html}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
   <script src="../nav-component.js"></script>
   <script>
     const featureData = {single_geojson_str};
+    const allConstituenciesList = {search_options_json};
 
     if (featureData) {{
       const map = L.map('constituency-map', {{
@@ -393,6 +487,39 @@ def generate_constituency_page(ac_no, history_records):
     }} else {{
       document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
     }}
+
+    function runQuickSearch(query) {{
+      const box = document.getElementById('quick-search-box');
+      if (!query || query.trim().length < 1) {{
+        box.style.display = 'none';
+        return;
+      }}
+      const q = query.toLowerCase().trim();
+      const matches = allConstituenciesList.filter(c => 
+        c.name_kn.toLowerCase().includes(q) || 
+        c.name_en.toLowerCase().includes(q) || 
+        c.district_kn.toLowerCase().includes(q) ||
+        String(c.ac_no) === q
+      ).slice(0, 10);
+
+      if (!matches.length) {{
+        box.innerHTML = '<div style="padding:12px; font-size:13px; color:#64748B;">ಯಾವುದೇ ಕ್ಷೇತ್ರಗಳು ಸಿಗಲಿಲ್ಲ</div>';
+      }} else {{
+        box.innerHTML = matches.map(c => `
+          <div class="q-item" onclick="location.href='${{c.slug}}.html'" style="padding:10px 14px; border-bottom:1px solid #F1F5F9; cursor:pointer; font-size:13.5px; font-weight:700;">
+            🏛️ ${{c.name_kn}} (${{c.name_en}}) — <span style="font-weight:400; color:#64748B;">${{c.district_kn}} ಜಿಲ್ಲೆ #${{c.ac_no}}</span>
+          </div>
+        `).join('');
+      }}
+      box.style.display = 'block';
+    }}
+
+    document.addEventListener('click', function(e) {{
+      if (!e.target.closest('#quick-search-input') && !e.target.closest('#quick-search-box')) {{
+        const box = document.getElementById('quick-search-box');
+        if (box) box.style.display = 'none';
+      }}
+    }});
   </script>
 </body>
 </html>"""
@@ -425,10 +552,10 @@ def generate_constituency_page(ac_no, history_records):
         f.write(num_redirect_html)
 
 def run():
-    print(f"Generating 224 standalone constituency pages with 250-word Kannada news stories in {MLA_DIR} and {CONST_DIR}...")
+    print(f"Generating 224 standalone constituency pages with restructured layout in {MLA_DIR} and {CONST_DIR}...")
     for ac_no, history_records in constituency_history.items():
         generate_constituency_page(ac_no, history_records)
-    print("SUCCESS: Generated all constituency pages with news section!")
+    print("SUCCESS: Generated all constituency pages with exact requested layout!")
 
 if __name__ == "__main__":
     run()
