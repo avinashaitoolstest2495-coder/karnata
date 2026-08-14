@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: powershell
+
 jobs:
   scrape-and-deploy:
     runs-on: [self-hosted]
@@ -34,33 +38,33 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 📦 Install Dependencies & Playwright
+      - name: 📦 Install Dependencies
         run: |
-          if [ -f package.json ]; then npm install || true; fi
-          if [ -f scraper/requirements.txt ]; then pip install -r scraper/requirements.txt || true; fi
-          pip install requests beautifulsoup4 pandas playwright || true
+          if (Test-Path package.json) { npm install }
+          if (Test-Path scraper/requirements.txt) { pip install -r scraper/requirements.txt }
+          pip install requests beautifulsoup4 pandas playwright
 
       - name: 📊 Run Gold, Dam Water Level, Weather & Petrol Scrapers
         run: |
-          python -c "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()" || true
-          python -c "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()" || true
-          python -c "import sys; sys.path.insert(0, 'scraper'); from dam_scraper import run; run()" || true
-          python -c "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()" || true
-          python -c "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()" || true
+          python -c "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"
+          python -c "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()"
+          python -c "import sys; sys.path.insert(0, 'scraper'); from dam_scraper import run; run()"
+          python -c "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()"
+          python -c "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()"
 
       - name: 📰 Run Live News & SEO Aggregators
         run: |
-          node scripts/scrape_real_karnataka_news.js || true
-          node scripts/build_all_district_news.js || true
-          node scripts/build_seo_and_monetization.js || true
+          node scripts/scrape_real_karnataka_news.js
+          node scripts/build_all_district_news.js
+          node scripts/build_seo_and_monetization.js
 
       - name: 💾 Commit & Push Updated Data to GitHub
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/ sitemap.xml robots.txt ads.txt || true
-          git commit -m "auto: 30-min scraped update (gold, dams, weather, petrol, news) [skip ci]" || echo "No data changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main || echo "Push skipped"
+          git add data/ sitemap.xml robots.txt ads.txt
+          git commit -m "auto: 30-min scraped update (gold, dams, weather, petrol, news) [skip ci]"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
 
       - name: 🚀 Deploy to Cloudflare Pages
         run: |
