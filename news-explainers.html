@@ -355,10 +355,8 @@ async function loadArticleData() {
         const decFn = window.decryptPayload || safeDecryptPayload;
         raw = decFn(raw.payload);
       }
-      if (raw && raw.district_buckets) {
-        districtBucketsStore = raw.district_buckets;
-      } else if (raw && raw.news) {
-        districtBucketsStore = raw.news;
+      if (raw) {
+        districtBucketsStore = raw.districts || raw.district_buckets || raw.news || {};
       }
     }
   } catch (e) {}

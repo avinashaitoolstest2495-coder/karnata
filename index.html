@@ -1962,22 +1962,22 @@ function renderLocalNews(articles, distKn) {
   if (!merged || !merged.length) return;
   
   const valid = merged.filter(a => {
-    let t = (a.title || '').trim();
+    let t = (a.title || a.headline || '').trim();
     t = t.replace(/<[^>]+>/g, "");
     t = t.replace(/\s*Last\s*Updated.*$/i, "");
     t = t.replace(/\s*[-–—|:]+$/g, "");
-    return t.length >= 10;
+    return t.length >= 5;
   });
 
   if (!valid.length) return;
 
-  $('local-news-list').innerHTML = valid.slice(0, 6).map(a => {
-    let title = (a.title || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
+  $('local-news-list').innerHTML = valid.slice(0, 8).map(a => {
+    let title = (a.title || a.headline || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
     title = title.replace(/<[^>]+>/g, "");
     title = title.replace(/\s*Last\s*Updated.*$/i, "");
     title = title.replace(/\s*[-–—|:]+$/g, "");
 
-    const time = timeAgo(a.published || a.published_at);
+    const time = timeAgo(a.published || a.published_at || a.time_ago);
     return `
       <a href="${a.url || a.link || '#'}" target="_blank" rel="noopener" class="local-item" style="padding:14px 18px; border-bottom:1px solid var(--border-light); text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:16px;">
         <div style="font-size:15px; font-weight:800; color:#0F172A; line-height:1.45; flex:1;">${title}</div>
@@ -2078,7 +2078,7 @@ async function loadLocal(key, data){
     if (n && n.payload && typeof window.decryptPayload === 'function') {
       n = window.decryptPayload(n.payload);
     }
-    const buckets = (n && (n.district_buckets || n.news)) || {};
+    const buckets = (n && (n.districts || n.district_buckets || n.news)) || {};
     
     // Strict district lookup
     let local = buckets[key] || buckets[key.replace('-', '_')] || buckets[key.replace('_', '-')] || [];
