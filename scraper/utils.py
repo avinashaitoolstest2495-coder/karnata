@@ -133,6 +133,58 @@ def store(filename: str, kv_key: str, data: dict):
     save_json(filename, payload_wrapper)
     push_to_cloudflare_kv(kv_key, payload_wrapper)
 
+# List of high-speed Indian HTTP/S proxies
+INDIAN_PROXIES = [
+    "http://103.159.44.82:80",
+    "http://45.115.173.12:8080",
+    "http://103.189.172.15:80",
+    "http://103.240.161.109:80",
+    "http://103.14.99.198:8080",
+]
+
+def indian_fetch(url: str, method: str = "GET", headers: dict = None, data: str = None, timeout: int = 10) -> requests.Response | None:
+    """
+    Smart Multi-Tier Fetcher for Geo-Blocked Indian Government Sites.
+    Tier 1: Direct Request (works locally in India)
+    Tier 2: Indian HTTP Proxy Pool (bypasses US cloud IP blocks)
+    """
+    default_headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/html, */*",
+        "Accept-Language": "en-IN,en;q=0.9,kn;q=0.8",
+    }
+    if headers:
+        default_headers.update(headers)
+
+    # 1. Try Direct Request first
+    try:
+        if method.upper() == "POST":
+            resp = requests.post(url, headers=default_headers, data=data, timeout=6, verify=False)
+        else:
+            resp = requests.get(url, headers=default_headers, timeout=6, verify=False)
+        if resp.status_code == 200:
+            log.info(f"✅ Direct fetch successful: {url}")
+            return resp
+    except Exception as e:
+        log.warning(f"⚠️ Direct connection to {url} timed out (likely US IP geo-blocked). Trying Indian proxy routing...")
+
+    # 2. Try Indian Proxies Pool
+    for proxy in INDIAN_PROXIES:
+        try:
+            p_dict = {"http": proxy, "https": proxy}
+            if method.upper() == "POST":
+                resp = requests.post(url, headers=default_headers, data=data, proxies=p_dict, timeout=8, verify=False)
+            else:
+                resp = requests.get(url, headers=default_headers, proxies=p_dict, timeout=8, verify=False)
+            if resp.status_code == 200:
+                log.info(f"✅ Proxy fetch successful via {proxy}: {url}")
+                return resp
+        except Exception as pe:
+            continue
+
+    log.error(f"❌ Both direct and proxy fetches failed for {url}")
+    return None
+
 # ─── HTTP helper with retry ───────────────────────────────────
 def fetch(url: str, headers: dict = None, timeout: int = 15, retries: int = 3) -> requests.Response | None:
     """Fetch URL with retry logic."""

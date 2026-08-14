@@ -84,18 +84,18 @@ DAM_META = {
 
 
 def fetch_api() -> list[dict] | None:
-    """Call the Karnataka Water Resources API. Returns list of property dicts."""
+    """Call the Karnataka Water Resources API via direct or Indian proxy routing."""
     try:
-        resp = requests.post(API_URL, headers=API_HEADERS, timeout=20)
-        resp.raise_for_status()
-        geo = json.loads(resp.json()["d"])
-        features = geo.get("features", [])
-        log.info(f"✅ Water API: {len(features)} reservoirs received")
-        return [f["properties"] for f in features]
+        from utils import indian_fetch
+        resp = indian_fetch(API_URL, method="POST", headers=API_HEADERS, timeout=12)
+        if resp and resp.status_code == 200:
+            geo = json.loads(resp.json()["d"])
+            features = geo.get("features", [])
+            log.info(f"✅ Water API: {len(features)} reservoirs received")
+            return [f["properties"] for f in features]
     except Exception as e:
-        log.error(f"❌ Water API failed: {e}")
-        telegram_alert(f"⚠️ Dam scraper API failed: {e}")
-        return None
+        log.error(f"❌ Water API error: {e}")
+    return None
 
 
 def match_key(reservoir_name: str) -> str | None:
