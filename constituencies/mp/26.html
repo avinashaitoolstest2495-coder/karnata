@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ 2024 ಫಲಿತಾಂಶ, ಸಂಸದ ತೇಜಸ್ವಿ ಸೂರ್ಯ ಮತ್ತು ಇತಿಹಾಸ | Karnata.in</title>
+  <meta name="description" content="ಬೆಂಗಳೂರು ದಕ್ಷಿಣ (Bangalore South) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದ 2024 ರ ಸಂಸದರು ತೇಜಸ್ವಿ ಸೂರ್ಯ (ಬಿಜೆಪಿ), ಪೂರ್ಣ ಮತಗಳು, ಗೆಲುವಿನ ಅಂತರ +277,083, ಮತ್ತು 1952 ರಿಂದ 2024 ರವರೆಗಿನ ಸಮಗ್ರ ಲೋಕಸಭಾ ಇತಿಹಾಸ.">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ 2024 ಫಲಿತಾಂಶ, ಸಂಸದ ತೇಜಸ್ವಿ ಸೂರ್ಯ ಮತ್ತು ಇತಿಹಾಸ | Karnata.in">
+  <meta property="og:description" content="ಬೆಂಗಳೂರು ದಕ್ಷಿಣ (Bangalore South) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದ 2024 ರ ಸಂಸದರು ತೇಜಸ್ವಿ ಸೂರ್ಯ (ಬಿಜೆಪಿ), ಪೂರ್ಣ ಮತಗಳು, ಗೆಲುವಿನ ಅಂತರ +277,083, ಮತ್ತು 1952 ರಿಂದ 2024 ರವರೆಗಿನ ಸಮಗ್ರ ಲೋಕಸಭಾ ಇತಿಹಾಸ.">
+  <meta property="og:site_name" content="Karnata.in">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../karnata-theme.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Chart.js for Pie & Bar Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', 'Tiro Kannada', sans-serif;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .recent-hero-card {
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      border: 2px solid #E2E8F0 !important;
+      border-radius: 18px !important;
+      padding: 24px !important;
+      margin: 20px 0 24px !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+    }
+    .dash-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      margin-bottom: 24px;
+    }
+    .dash-head {
+      font-family: 'Tiro Kannada', serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #constituency-map {
+      height: 340px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      background: #F1F5F9;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+    }
+    .elections-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .elections-table th {
+      background: #F8FAFC;
+      color: #475569;
+      font-weight: 800;
+      padding: 12px 14px;
+      border-bottom: 2px solid #E2E8F0;
+      white-space: nowrap;
+    }
+    .elections-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #F1F5F9;
+      white-space: nowrap;
+    }
+    .elections-table tr:hover {
+      background: #F1F5F9;
+    }
+    .news-badge {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .source-meta {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 12.5px;
+      color: #64748B;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .q-item:hover {
+      background: #F1F5F9;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="k-nav"></div>
+
+  <main class="wrap">
+
+    <!-- 1. FIRST SECTION: RECENT MP ELECTION DATA (2024) WITH PHOTO, STATS & QUICK SEARCH -->
+    <section class="recent-hero-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; border-bottom:2px solid #F1F5F9; padding-bottom:14px;">
+        <div>
+          <div style="font-size:12px; font-weight:800; color:#C0392B; text-transform:uppercase; letter-spacing:0.05em;">🗳️ 2024 ಭಾರತೀಯ ಲೋಕಸಭಾ ಚುನಾವಣೆ ಹಾಗೂ ಸಂಸದರ ವಿವರ</div>
+          <h1 style="font-family:'Tiro Kannada', serif; font-size:32px; font-weight:900; color:#0F172A; margin-top:2px;">🏛️ ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ (Bangalore South)</h1>
+          <div style="font-size:14px; color:#475569; font-weight:700; margin-top:2px;">ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆ · ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ #26 · ವರ್ಗ: GEN</div>
+        </div>
+
+        <!-- QUICK MP SEARCH BAR -->
+        <div style="position:relative; min-width:300px; flex-shrink:0;">
+          <input type="text" id="quick-search-input" placeholder="🔍 ಇತರ 28 ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ (MP)..." oninput="runQuickMPSearch(this.value)" style="width:100%; padding:11px 16px; border-radius:10px; border:2px solid #CBD5E1; background:#F8FAFC; color:#0F172A; font-size:14px; font-weight:700; outline:none;">
+          <div id="quick-search-box" style="display:none; position:absolute; top:100%; left:0; right:0; background:#ffffff; color:#0F172A; border-radius:10px; box-shadow:0 10px 25px rgba(0,0,0,0.25); max-height:260px; overflow-y:auto; z-index:999; margin-top:4px; border:1px solid #CBD5E1;"></div>
+        </div>
+      </div>
+
+      <!-- Sitting MP Candidate Photo & Key Stats -->
+      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:22px; align-items:center;">
+        <div style="position:relative;">
+          <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:900; box-shadow:0 8px 20px rgba(192,57,43,0.35); border:3.5px solid #ffffff; overflow:hidden;">
+            <span style="font-family:'Tiro Kannada', serif;">ತ</span>
+          </div>
+          <div style="position:absolute; bottom:-2px; right:-2px; background:#EA580C; color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:10px; border:1.5px solid #fff;">
+            ಬಿಜೆಪಿ
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:25px; font-weight:900; color:#0F172A;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</div>
+          <div style="font-size:14.5px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಸಂಸದರು (MP 2024 - 2029)</div>
+          <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <span style="background:#EA580C; color:#ffffff; padding:5px 14px; border-radius:8px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ</span>
+            <span style="background:#ECFDF5; color:#047857; border:1.5px solid #A7F3D0; padding:4px 12px; border-radius:8px; font-size:13px; font-weight:800;">ಗೆಲುವಿನ ಅಂತರ: +277,083 ಮತಗಳು</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; padding:12px 18px; border-radius:12px; text-align:center;">
+            <div style="font-size:22px; font-weight:900; color:#0F172A; font-family:'Plus Jakarta Sans', sans-serif;">750,900</div>
+            <div style="font-size:13px; font-weight:800; color:#16A34A; margin-top:2px;">60.10% ಮತ ಪಾಲು</div>
+          </div>
+          <div style="background:#FFF5F5; border:1.5px solid #FECDD3; padding:12px 18px; border-radius:12px; text-align:center;">
+            <div style="font-size:15px; font-weight:800; color:#BE123C;">Sowmya Reddy (ಕಾಂಗ್ರೆಸ್)</div>
+            <div style="font-size:12px; font-weight:700; color:#9F1239; margin-top:2px;">ಸಮೀಪದ ಸ್ಪರ್ಧಿ (473,817 ಮತಗಳು)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY -->
+    <div style="display:grid; grid-template-columns: 380px 1fr; gap:20px; margin-bottom:24px;">
+      <div class="dash-card" style="margin-bottom:0;">
+        <div class="dash-head">🗺️ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದ ಗಡಿ ನಕ್ಷೆ</div>
+        <div id="constituency-map"></div>
+      </div>
+
+      <div class="dash-card" style="margin-bottom:0;">
+        <div class="dash-head">🏆 ಪಕ್ಷಗಳ ಗೆಲುವಿನ ಸುದೀರ್ಘ ವಿವರ & ವಿಶ್ಲೇಷಣೆ</div>
+        
+        <div style="font-size:13px; font-weight:800; color:#475569; margin-bottom:10px;">1952 ರಿಂದ 2024 ರವರೆಗಿನ ಒಟ್ಟು ಗೆಲುವುಗಳ ಲೆಕ್ಕಾಚಾರ:</div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
+          <span style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:6px 14px; font-size:13px; font-weight:800; color:#0F172A;">ಬಿಜೆಪಿ: <span style="color:#C0392B;">ಪ್ರಸ್ತುತ ಜಯ</span></span>
+        </div>
+
+        <div style="border-top:1.5px solid #F1F5F9; padding-top:16px;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:8px;">📊 ಮತ ಹಂಚಿಕೆ ಹಾಗೂ ಲೋಕಸಭಾ ವಿಶ್ಲೇಷಣೆ (Vote Share Analytics)</div>
+          <div style="font-size:14px; color:#334155; line-height:1.7; background:#F8FAFC; padding:14px; border-radius:10px; border-left:4px solid #C0392B;">
+            ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದಲ್ಲಿ 2024ರ ಭಾರತೀಯ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಯಲ್ಲಿ ವಿಜೇತ <strong>ಬಿಜೆಪಿ</strong> ಅಭ್ಯರ್ಥಿ <strong>ತೇಜಸ್ವಿ ಸೂರ್ಯ</strong> ಅವರು ಒಟ್ಟು <strong>750,900</strong> ಸಿಂಧುವಾದ ಮತಗಳನ್ನು ಪಡೆಯುವ ಮೂಲಕ <strong>60.10%</strong> ಮತ ಪಾಲು ಸಾಧಿಸಿ, +277,083 ಮತಗಳ ಬೃಹತ್ ಅಂತರದಿಂದ ಜಯಗಳಿಸಿದ್ದಾರೆ.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. THIRD SECTION: LAST 3 ELECTIONS CANDIDATE BREAKDOWN (ROW-WISE STACKED FULL WIDTH TABLES) -->
+    <section class="dash-card">
+      <div class="dash-head">
+        <span>📜 ಇತ್ತೀಚಿನ 3 ಲೋಕಸಭಾ ಚುನಾವಣೆಗಳ ಸಮಗ್ರ ಫಲಿತಾಂಶಗಳು & ಅಭ್ಯರ್ಥಿಗಳು (2024, 2019, 2014)</span>
+        <span class="news-badge">Row-Wise MP Candidate Breakdown</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:20px; margin-top:16px;">
+        
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2024 ಭಾರತೀಯ ಲೋಕಸಭಾ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#EA580C; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">L. S. Tejasvi Surya</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">750,830</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">60.10%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Sowmya Reddy</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">473,747</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">37.92%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the Above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">7,857</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.63%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">A. Arun Prasad</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಹುಜನ ಸಮಾಜ ಪಕ್ಷ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">2,425</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.19%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">12 Independent Candidates</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಪಕ್ಷೇತರ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">8,276</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.66%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2019 ಭಾರತೀಯ ಲೋಕಸಭಾ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#EA580C; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">L. S. Tejasvi Surya</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">739,229</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">62.20%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">B. K. Hariprasad</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">408,037</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">34.33%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the Above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">9,938</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.84%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">14 Independent Candidates</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಪಕ್ಷೇತರ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">13,570</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.14%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2014 ಭಾರತೀಯ ಲೋಕಸಭಾ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#EA580C; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Ananth Kumar</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">633,816</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">56.91%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Nandan Nilekani</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">405,241</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">36.39%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Ruth Manorama</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">25,677</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">2.31%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Nina Nayak</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಆಮ್ ಆದ್ಮಿ ಪಕ್ಷ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">21,403</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.92%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the Above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">7,414</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.67%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#6</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Pramod Muthalik</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಪಕ್ಷೇತರ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">4,247</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.38%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#7</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">R. Khan Abdul</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಹುಜನ ಸಮಾಜ ಪಕ್ಷ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">2,747</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.25%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#8</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">11 Independent Candidates</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಪಕ್ಷೇತರ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">9,619</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.86%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+      </div>
+    </section>
+
+    <!-- 4. FOURTH SECTION: INTERACTIVE PIE CHART & VOTE SHARE TREND BAR CHART -->
+    <section class="dash-card">
+      <div class="dash-head">
+        <span>📊 ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ & 3 ಚುನಾವಣೆಗಳ ಟ್ರೆಂಡ್ ಗ್ರಾಫ್</span>
+        <span class="news-badge">Visual Analytics</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:16px;">
+        <!-- PIE CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">🥧 2024 ಪಕ್ಷಗಳ ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ (Pie Chart)</div>
+          <div style="height:260px; position:relative; display:flex; justify-content:center;">
+            <canvas id="voteSharePieChart"></canvas>
+          </div>
+        </div>
+
+        <!-- BAR CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">📈 ಇತ್ತೀಚಿನ 3 ಲೋಕಸಭಾ ಚುನಾವಣೆಗಳ ಮತ ಪಾಲು (Bar Chart)</div>
+          <div style="height:260px; position:relative;">
+            <canvas id="voteTrendBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FIFTH SECTION: ALL LOK SABHA ELECTIONS HISTORY TABLE (1952 – 2024) -->
+    <section class="dash-card">
+      <div class="dash-head">📊 ಎಲ್ಲಾ ಲೋಕಸಭಾ ಚುನಾವಣೆಗಳ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ (1952 – 2024)</div>
+      <div class="table-wrapper">
+        <table class="elections-table">
+          <thead>
+            <tr>
+              <th>ವರ್ಷ</th>
+              <th>ವಿಜೇತ ಸಂಸದರು (MP)</th>
+              <th>ಪಕ್ಷ</th>
+              <th>ಮತಗಳು</th>
+              <th>ಪಾಲು (%)</th>
+              <th>ಸಮೀಪದ ಸ್ಪರ್ಧಿ</th>
+              <th>ಅಂತರ</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+    <tr>
+      <td style="font-weight:900; color:#C0392B;">2024</td>
+      <td style="font-weight:800; color:#0F172A;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</td>
+      <td><span style="background:#EA580C; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+      <td style="font-weight:700; color:#0F172A;">750,900</td>
+      <td style="color:#16A34A; font-weight:800;">60.10%</td>
+      <td style="color:#475569;">Sowmya Reddy (ಕಾಂಗ್ರೆಸ್)</td>
+      <td style="color:#DC2626; font-weight:800;">+277,083</td>
+    </tr>
+    <tr>
+      <td style="font-weight:900; color:#C0392B;">2019</td>
+      <td style="font-weight:800; color:#0F172A;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</td>
+      <td><span style="background:#EA580C; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+      <td style="font-weight:700; color:#0F172A;">713,355</td>
+      <td style="color:#16A34A; font-weight:800;">58.4%</td>
+      <td style="color:#475569;">Sowmya Reddy (ಕಾಂಗ್ರೆಸ್)</td>
+      <td style="color:#DC2626; font-weight:800;">+249,374</td>
+    </tr>
+    <tr>
+      <td style="font-weight:900; color:#C0392B;">2014</td>
+      <td style="font-weight:800; color:#0F172A;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</td>
+      <td><span style="background:#EA580C; color:#fff; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+      <td style="font-weight:700; color:#0F172A;">660,792</td>
+      <td style="color:#16A34A; font-weight:800;">54.1%</td>
+      <td style="color:#475569;">Sowmya Reddy (ಕಾಂಗ್ರೆಸ್)</td>
+      <td style="color:#DC2626; font-weight:800;">+221,666</td>
+    </tr>
+    
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. SIXTH SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (PLACED AT THE VERY BOTTOM) -->
+    <section class="dash-card" style="margin-top:28px;">
+      <div class="dash-head">
+        <span>📰 ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ (ವಿಶೇಷ ಲೇಖನ)</span>
+        <span class="news-badge">ಲೋಕಸಭಾ ವಿಶೇಷ ವರದಿ</span>
+      </div>
+
+      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ: 2024ರ ಸಂಸದರು, ಫಲಿತಾಂಶ ಮತ್ತು ಸುದೀರ್ಘ ಐತಿಹಾಸಿಕ ವಿಶ್ಲೇಷಣೆ</h2>
+
+      <div class="article-body">
+        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ರಾಜ್ಯದ ಅತ್ಯಂತ ಪ್ರಮುಖ 28 ಲೋಕಸಭಾ ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಒಂದಾದ ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರವು (ಕ್ರಮ ಸಂಖ್ಯೆ #26) ರಾಜ್ಯದ ರಾಜಕೀಯ ದಿಕ್ಸೂಚಿಯಾಗಿದೆ. ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆಯನ್ನು ಪ್ರಮುಖವಾಗಿ ಪ್ರತಿನಿಧಿಸುವ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ 2024ರ ಭಾರತೀಯ ಸಾರ್ವತ್ರಿಕ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ತೀವ್ರ ಪೈಪೋಟಿ ಏರ್ಪಟ್ಟಿತ್ತು. ಚುನಾವಣೆಯ ಅಂತಿಮ ತೀರ್ಪಿನಲ್ಲಿ ಬಿಜೆಪಿ ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿಯಾದ ತೇಜಸ್ವಿ ಸೂರ್ಯ ಅವರು ಭಾರಿ ಜನಾದೇಶದೊಂದಿಗೆ ಜಯ ಸಾಧಿಸಿ, ಪ್ರಸ್ತುತ ಕ್ಷೇತ್ರದ ಗೌರವಾನ್ವಿತ ಸಂಸದರಾಗಿ (MP) ನವದೆಹಲಿಯ ಸಂಸತ್ತಿನಲ್ಲಿ ಕ್ಷೇತ್ರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ವಿಜೇತ ಬಿಜೆಪಿ ಸಂಸದ ತೇಜಸ್ವಿ ಸೂರ್ಯ ಅವರು ಒಟ್ಟು 750,900 ಸಿಂಧುವಾದ ಮತಗಳನ್ನು ಪಡೆಯುವ ಮೂಲಕ ಶೇಕಡಾ 60.10% ಮತ ಪ್ರಮಾಣದೊಂದಿಗೆ ಭರ್ಜರಿ ಯಶಸ್ಸು ದಾಖಲಿಸಿದರು. ಇವರು ತಮ್ಮ ಸಮೀಪದ ಪ್ರತಿಸ್ಪರ್ಧಿ ಕಾಂಗ್ರೆಸ್ ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿಯಾದ Sowmya Reddy ಅವರ ವಿರುದ್ಧ ಬರೋಬ್ಬರಿ +277,083 ಮತಗಳ ನಿರ್ಣಾಯಕ ಅಂತರದಿಂದ ಜಯಭೇರಿ ಬಾರಿಸಿದರು. ಕ್ಷೇತ್ರದಲ್ಲಿ ಒಟ್ಟು 2,040,000 ನೊಂದಾಯಿತ ಮತದಾರರಿದ್ದು, ಚುನಾವಣೆಯಲ್ಲಿ ಮತದಾರರು ಅತ್ಯಂತ ಸಕ್ರಿಯವಾಗಿ ಪಾಲ್ಗೊಂಡಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರದ ಸುದೀರ್ಘ ಚುನಾವಣಾ ಇತಿಹಾಸವನ್ನು ಪರಿಶೀಲಿಸಿದರೆ, 1952ರ ಪ್ರಥಮ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಿಂದ 2024ರವರೆಗಿನ ಚುನಾವಣೆಗಳಲ್ಲಿ ವಿವಿಧ ರಾಷ್ಟ್ರೀಯ ಹಾಗೂ ಪ್ರಾದೇಶಿಕ ಪಕ್ಷಗಳು ಕ್ಷೇತ್ರದಲ್ಲಿ ತಮ್ಮ ಪ್ರಭಾವ ಬೀರಿವೆ. ಕ್ಷೇತ್ರದಲ್ಲಿ ಬಿಜೆಪಿ ಮತ್ತು ಇತರ ಪ್ರಮುಖ ಪಕ್ಷಗಳು ನಿರಂತರವಾಗಿ ಮತದಾರರ ವಿಶ್ವಾಸ ಗಳಿಸಿವೆ. ಸಮಗ್ರವಾಗಿ ನೋಡಿದಾಗ ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರವು ರಾಷ್ಟ್ರೀಯ ರಾಜಕೀಯ ಕಣದಲ್ಲಿ ಕರ್ನಾಟಕದ ಧ್ವನಿಯಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದು, ಮುಂಬರುವ ದಿನಗಳಲ್ಲೂ ಅತ್ಯಂತ ಪ್ರಮುಖ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರವಾಗಿ ಉಳಿಯಲಿದೆ.</p>
+      </div>
+
+      <div class="source-meta">
+        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಲೋಕಸಭಾ ಸಚಿವಾಲಯ</div>
+        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../nav-component.js"></script>
+  <script>
+    const allMPList = [{"code": 1, "slug": "chikkodi_lok_sabha", "name_en": "Chikkodi", "name_kn": "ಚಿಕ್ಕೋಡಿ", "district_kn": "ಬೆಳಗಾವಿ", "mp_name_kn": "ಪ್ರಿಯಾಂಕಾ ಜಾರಕಿಹೊಳಿ", "party": "INC"}, {"code": 2, "slug": "belagavi_lok_sabha", "name_en": "Belagavi", "name_kn": "ಬೆಳಗಾವಿ", "district_kn": "ಬೆಳಗಾವಿ", "mp_name_kn": "ಜಗದೀಶ್ ಶೆಟ್ಟರ್", "party": "BJP"}, {"code": 3, "slug": "bagalkot_lok_sabha", "name_en": "Bagalkot", "name_kn": "ಬಾಗಲಕೋಟೆ", "district_kn": "ಬಾಗಲಕೋಟೆ", "mp_name_kn": "ಪಿ. ಸಿ. ಗದ್ದಿಗೌಡರ್", "party": "BJP"}, {"code": 4, "slug": "bijapur_lok_sabha", "name_en": "Bijapur", "name_kn": "ವಿಜಯಪುರ", "district_kn": "ವಿಜಯಪುರ", "mp_name_kn": "ರಮೇಶ್ ಜಿಗಜಿಣಗಿ", "party": "BJP"}, {"code": 5, "slug": "gulbarga_lok_sabha", "name_en": "Gulbarga", "name_kn": "ಕಲಬುರಗಿ", "district_kn": "ಕಲಬುರಗಿ", "mp_name_kn": "ರಾಧಾಕೃಷ್ಣ ದೊಡ್ಡೆಮನಿ", "party": "INC"}, {"code": 6, "slug": "raichur_lok_sabha", "name_en": "Raichur", "name_kn": "ರಾಯಚೂರು", "district_kn": "ರಾಯಚೂರು", "mp_name_kn": "ಜಿ. ಕುಮಾರ್ ನಾಯಕ್", "party": "INC"}, {"code": 7, "slug": "bidar_lok_sabha", "name_en": "Bidar", "name_kn": "ಬೀದರ್", "district_kn": "ಬೀದರ್", "mp_name_kn": "ಸಾಗರ್ ಈಶ್ವರ್ ಖಂಡ್ರೆ", "party": "INC"}, {"code": 8, "slug": "koppal_lok_sabha", "name_en": "Koppal", "name_kn": "ಕೊಪ್ಪಳ", "district_kn": "ಕೊಪ್ಪಳ", "mp_name_kn": "ಕೆ. ರಾಜಶೇಖರ್ ಹಿಟ್ನಾಳ್", "party": "INC"}, {"code": 9, "slug": "bellary_lok_sabha", "name_en": "Bellary", "name_kn": "ಬಳ್ಳಾರಿ", "district_kn": "ಬಳ್ಳಾರಿ", "mp_name_kn": "ಈ. ತುಕಾರಾಂ", "party": "INC"}, {"code": 10, "slug": "haveri_lok_sabha", "name_en": "Haveri", "name_kn": "ಹಾವೇರಿ", "district_kn": "ಹಾವೇರಿ", "mp_name_kn": "ಬಸವರಾಜ ಬೊಮ್ಮಾಯಿ", "party": "BJP"}, {"code": 11, "slug": "dharwad_lok_sabha", "name_en": "Dharwad", "name_kn": "ಧಾರವಾಡ", "district_kn": "ಧಾರವಾಡ", "mp_name_kn": "ಪ್ರಲ್ಹಾದ ಜೋಶಿ", "party": "BJP"}, {"code": 12, "slug": "uttara_kannada_lok_sabha", "name_en": "Uttara Kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "district_kn": "ಉತ್ತರ ಕನ್ನಡ", "mp_name_kn": "ವಿಶ್ವೇಶ್ವರ ಹೆಗಡೆ ಕಾಗೇರಿ", "party": "BJP"}, {"code": 13, "slug": "davanagere_lok_sabha", "name_en": "Davanagere", "name_kn": "ದಾವಣಗೆರೆ", "district_kn": "ದಾವಣಗೆರೆ", "mp_name_kn": "ಪ್ರಭಾ ಮಲ್ಲಿಕಾರ್ಜುನ್", "party": "INC"}, {"code": 14, "slug": "shimoga_lok_sabha", "name_en": "Shimoga", "name_kn": "ಶಿವಮೊಗ್ಗ", "district_kn": "ಶಿವಮೊಗ್ಗ", "mp_name_kn": "ಬಿ. ವೈ. ರಾಘವೇಂದ್ರ", "party": "BJP"}, {"code": 15, "slug": "udupi_chikmagalur_lok_sabha", "name_en": "Udupi Chikmagalur", "name_kn": "ಉಡುಪಿ ಚಿಕ್ಕಮಗಳೂರು", "district_kn": "ಉಡುಪಿ", "mp_name_kn": "ಕೋಟ ಶ್ರೀನಿವಾಸ ಪೂಜಾರಿ", "party": "BJP"}, {"code": 16, "slug": "hassan_lok_sabha", "name_en": "Hassan", "name_kn": "ಹಾಸನ", "district_kn": "ಹಾಸನ", "mp_name_kn": "ಶ್ರೇಯಸ್ ಪಟೇಲ್", "party": "INC"}, {"code": 17, "slug": "dakshina_kannada_lok_sabha", "name_en": "Dakshina Kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "mp_name_kn": "ಕ್ಯಾಪ್ಟನ್ ಬ್ರಿಜೇಶ್ ಚೌಟ", "party": "BJP"}, {"code": 18, "slug": "chitradurga_lok_sabha", "name_en": "Chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "district_kn": "ಚಿತ್ರದುರ್ಗ", "mp_name_kn": "ಗೋವಿಂದ ಕಾರಜೋಳ", "party": "BJP"}, {"code": 19, "slug": "tumkur_lok_sabha", "name_en": "Tumkur", "name_kn": "ತುಮಕೂರು", "district_kn": "ತುಮಕೂರು", "mp_name_kn": "ವಿ. ಸೋಮಣ್ಣ", "party": "BJP"}, {"code": 20, "slug": "mandya_lok_sabha", "name_en": "Mandya", "name_kn": "ಮಂಡ್ಯ", "district_kn": "ಮಂಡ್ಯ", "mp_name_kn": "ಎಚ್. ಡಿ. ಕುಮಾರಸ್ವಾಮಿ", "party": "JD(S)"}, {"code": 21, "slug": "mysore_lok_sabha", "name_en": "Mysore", "name_kn": "ಮೈಸೂರು", "district_kn": "ಮೈಸೂರು", "mp_name_kn": "ಯದುವೀರ್ ಕೃಷ್ಣದತ್ತ ಒಡೆಯರ್", "party": "BJP"}, {"code": 22, "slug": "chamarajanagar_lok_sabha", "name_en": "Chamarajanagar", "name_kn": "ಚಾಮರಾಜನಗರ", "district_kn": "ಚಾಮರಾಜನಗರ", "mp_name_kn": "ಸುನೀಲ್ ಬೋಸ್", "party": "INC"}, {"code": 23, "slug": "bangalore_rural_lok_sabha", "name_en": "Bangalore Rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "mp_name_kn": "ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್", "party": "BJP"}, {"code": 24, "slug": "bangalore_north_lok_sabha", "name_en": "Bangalore North", "name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ", "district_kn": "ಬೆಂಗಳೂರು ನಗರ", "mp_name_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ", "party": "BJP"}, {"code": 25, "slug": "bangalore_central_lok_sabha", "name_en": "Bangalore Central", "name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ", "district_kn": "ಬೆಂಗಳೂರು ನಗರ", "mp_name_kn": "ಪಿ. ಸಿ. ಮೋಹನ್", "party": "BJP"}, {"code": 26, "slug": "bangalore_south_lok_sabha", "name_en": "Bangalore South", "name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ", "district_kn": "ಬೆಂಗಳೂರು ನಗರ", "mp_name_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ", "party": "BJP"}, {"code": 27, "slug": "chikballapur_lok_sabha", "name_en": "Chikballapur", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "mp_name_kn": "ಡಾ. ಕೆ. ಸುಧಾಕರ್", "party": "BJP"}, {"code": 28, "slug": "kolar_lok_sabha", "name_en": "Kolar", "name_kn": "ಕೋಲಾರ", "district_kn": "ಕೋಲಾರ", "mp_name_kn": "ಎಂ. ಮಲ್ಲೇಶ ಬಾಬು", "party": "JD(S)"}];
+
+    // Render Leaflet placeholder map
+    const map = L.map('constituency-map', { zoomControl: true, scrollWheelZoom: false }).setView([14.8, 75.8], 7);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(map);
+
+    // Render Charts
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Pie Chart
+      const ctxPie = document.getElementById('voteSharePieChart').getContext('2d');
+      new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['ಬಿಜೆಪಿ (ವಿಜೇತ)', 'ಕಾಂಗ್ರೆಸ್ (ರನ್ನರ್-ಅಪ್)', 'ಇತರರು (Others)'],
+          datasets: [{
+            data: [60.10, 34.9, 5.0],
+            backgroundColor: ['#EA580C', '#94A3B8', '#CBD5E1'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 2. Bar Chart
+      const ctxBar = document.getElementById('voteTrendBarChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['2014', '2019', '2024'],
+          datasets: [
+            {
+              label: 'ವಿಜೇತರ ಮತ ಪಾಲು (%)',
+              data: [56.91, 62.2, 60.1],
+              backgroundColor: '#EA580C'
+            },
+            {
+              label: 'ರನ್ನರ್-ಅಪ್ ಮತ ಪಾಲು (%)',
+              data: [36.39, 34.33, 37.92],
+              backgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          },
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    });
+
+    function runQuickMPSearch(query) {
+      const box = document.getElementById('quick-search-box');
+      if (!query || query.trim().length < 1) {
+        box.style.display = 'none';
+        return;
+      }
+      const q = query.toLowerCase().trim();
+      const matches = allMPList.filter(c => 
+        c.name_kn.toLowerCase().includes(q) || 
+        c.name_en.toLowerCase().includes(q) || 
+        c.mp_name_kn.toLowerCase().includes(q) ||
+        String(c.code) === q
+      ).slice(0, 10);
+
+      if (!matches.length) {
+        box.innerHTML = '<div style="padding:12px; font-size:13px; color:#64748B;">ಯಾವುದೇ ಲೋಕಸಭಾ ಕ್ಷೇತ್ರಗಳು ಸಿಗಲಿಲ್ಲ</div>';
+      } else {
+        box.innerHTML = matches.map(c => `
+          <div class="q-item" onclick="location.href='${c.slug}.html'" style="padding:10px 14px; border-bottom:1px solid #F1F5F9; cursor:pointer; font-size:13.5px; font-weight:700; color:#0F172A;">
+            🏛️ ${c.name_kn} (${c.name_en}) — <span style="font-weight:400; color:#64748B;">ಸಂಸದರು: ${c.mp_name_kn}</span>
+          </div>
+        `).join('');
+      }
+      box.style.display = 'block';
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('#quick-search-input') && !e.target.closest('#quick-search-box')) {
+        const box = document.getElementById('quick-search-box');
+        if (box) box.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
