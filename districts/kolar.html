@@ -8,32 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/karnata-theme.css">
-
-<!-- SCHEMA.ORG STRUCTURED DATA FOR AI SEARCH (GEO) & GOOGLE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "GovernmentOffice",
-  "name": "ಕೋಲಾರ (Kolar) District Administration",
-  "url": "https://karnata.in/districts/kolar.html",
-  "areaServed": "Kolar, Karnataka, India",
-  "description": "ಕೋಲಾರ ಜಿಲ್ಲೆಯ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC), ಎಸ್ಪಿ (SP), ಎಲ್ಲಾ ಶಾಸಕರು (MLA), ಸಂಸದರು (MP), APMC ಕೃಷಿ ದರಗಳು ಹಾಗೂ ಲೈವ್ ಸುದ್ದಿಗಳು.",
-  "employee": [
-    {
-      "@type": "Person",
-      "name": "ಶ್ರೀ ಅಕ್ರಂ ಪಾಷಾ (IAS)",
-      "jobTitle": "Deputy Commissioner (DC)",
-      "telephone": "08152-222001"
-    },
-    {
-      "@type": "Person",
-      "name": "ಶ್ರೀ ಎಂ. ನಾರಾಯಣ (IPS)",
-      "jobTitle": "Superintendent of Police (SP)",
-      "telephone": "08152-222005"
-    }
-  ]
-}
-</script>
+<script src="/data-loader.js"></script>
 
 <style>
 :root {
@@ -78,7 +53,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 .d-news-head {
   font-size: 15.5px; font-weight: 800; color: var(--k-dark); margin-bottom: 6px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  overflow: hidden; text-overflow: ellipsis; line-height: 1.45; max-height: 2.9em; word-break: break-word;
+  overflow: hidden; text-overflow: ellipsis; line-height: 1.45; word-break: break-word;
 }
 .d-news-meta { font-size: 12px; color: #64748B; display: flex; gap: 14px; font-weight: 600; }
 
@@ -98,24 +73,23 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 .d-meta-row { font-size: 11.5px; color: #64748B; display: flex; justify-content: space-between; margin-top: 8px; border-top: 1px dashed #E2E8F0; padding-top: 8px; }
 
 .d-apmc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-.d-apmc-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; text-align: center; transition: all 0.2s ease; }
-.d-apmc-box:hover { border-color: #059669; transform: translateY(-2px); }
-.d-crop-name { font-weight: 800; font-size: 14px; color: var(--k-dark); }
-.d-crop-mkt { font-size: 11px; color: #64748B; margin-bottom: 4px; }
+.d-apmc-box { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.d-crop-name { font-size: 15px; font-weight: 800; color: var(--k-dark); margin-bottom: 2px; }
+.d-crop-mkt { font-size: 11px; color: #64748B; margin-bottom: 6px; }
 .d-crop-price { font-size: 18px; font-weight: 900; color: #059669; font-family: var(--font-en); }
 
 .d-taluks-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
-.d-taluk-pill { background: #F1F5F9; border: 1px solid #E2E8F0; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 700; color: #334155; }
+.d-taluk-pill { background: #F1F5F9; border: 1px solid #E2E8F0; padding: 8px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 700; color: #334155; }
 
-.d-side-grid { display: grid; grid-template-columns: 1fr; gap: 8px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
+.d-side-grid { display: flex; flex-direction: column; gap: 6px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
 .d-side-dist-btn {
-  background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 10px 14px;
-  text-decoration: none; color: #0F172A; font-size: 13.5px; font-weight: 800;
-  display: flex; justify-content: space-between; align-items: center; transition: all 0.15s;
+  display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 10px;
+  background: #F8FAFC; border: 1px solid #E2E8F0; text-decoration: none; color: #334155; font-size: 13.5px; font-weight: 700;
+  transition: all 0.15s ease;
 }
-.d-side-dist-btn:hover { background: #FFF; border-color: var(--k-red); color: var(--k-red); transform: translateX(3px); }
-.d-side-dist-btn.active { background: #FFF1F2; border-color: var(--k-red); color: var(--k-red); }
-.d-side-tag { font-size: 11px; font-weight: 700; color: #64748B; font-family: var(--font-en); }
+.d-side-dist-btn:hover { background: #FFF1F2; border-color: var(--k-red); color: var(--k-red); transform: translateX(2px); }
+.d-side-dist-btn.active { background: var(--k-red); color: #FFF; border-color: var(--k-red); }
+.d-side-tag { font-size: 11px; font-weight: 800; font-family: var(--font-en); opacity: 0.8; }
 </style>
 </head>
 <body>
@@ -167,7 +141,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
         </div>
       </div>
       <div style="margin-top:14px; font-size:13px; color:#475569; background:#F1F5F9; padding:12px 16px; border-radius:12px; border-left:4px solid var(--k-red);">
-        💡 <strong>ವಿಶೇಷತೆ:</strong> ಚಿನ್ನದ ನಾಡು KGF, ಕೋಲಾರಮ್ಮ ದೇವಾಲಯ, ಮಾವಿನ ಹಣ್ಣು, ಹಾಲು ಉತ್ಪಾದನೆ
+        💡 <strong>ವಿಶೇಷತೆ:</strong> ಏಷ್ಯಾದ ಬೃಹತ್ ಟೊಮೆಟೊ ಮಾರುಕಟ್ಟೆ (APMC ಕೋಲಾರ), ಚಿನ್ನದ ಗಣಿ KGF, ಮಾವಿನ ಹಣ್ಣಿನ ಕಣಜ ಶ್ರೀನಿವಾಸಪುರ
       </div>
     </div>
 
@@ -175,21 +149,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       <div class="d-sec">
         <div class="d-sec-title"><span>🌤️ ಕೋಲಾರ ಹವಾಮಾನ ವರದಿ</span></div>
         <div id="weather-body">
-    <div style="display:flex; align-items:center; gap:16px;">
-      <div style="font-size:36px; font-weight:900; color:#0F172A; font-family:var(--font-en);">23.6°C</div>
-      <div>
-        <div style="font-size:16px; font-weight:800; color:#1E293B;">ಮೋಡ ☁️</div>
-        <div style="font-size:12px; color:#64748B;">ಆರ್ದ್ರತೆ: 77% · ಗಾಳಿ: 21 km/h · ಮಳೆ: 35%</div>
-      </div>
-    </div>
-  </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="font-size:36px; font-weight:900; color:#0F172A; font-family:var(--font-en);" id="dist-temp-val">28°C</div>
+            <div>
+              <div style="font-size:16px; font-weight:800; color:#1E293B;" id="dist-weather-desc">ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ</div>
+              <div style="font-size:12px; color:#64748B;">ಆರ್ದ್ರತೆ: 72% · ಗಾಳಿ: 14 km/h · KSNDMC ಲೈವ್ ವರದಿ</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="d-sec">
         <div class="d-sec-title"><span>💧 ಜಲಾಶಯ / ಅಣೆಕಟ್ಟು ಮಟ್ಟ</span></div>
         <div id="dam-body">
-    <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">ವಾಣಿವಿಲಾಸ ಸಾಗರ (63.2% ಸಂಗ್ರಹ)</div>
-    <div style="font-size:13px; color:#64748B;">ಪ್ರಸ್ತುತ: 31.25 TMC / 49.45 TMC · ಒಳಹರಿವು: 6,473 cusecs</div>
-  </div>
+        <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:4px;">ವಾಣಿವಿಲಾಸ ಸಾಗರ (Vanivilasa Sagara) (77.4% ಸಂಗ್ರಹ)</div>
+        <div style="font-size:13px; color:#64748B;">ಪ್ರಸ್ತುತ: <strong>23.22 TMC</strong> / 30.0 TMC · ಒಳಹರಿವು: 0 cusecs</div>
+        </div>
       </div>
     </div>
 
@@ -200,136 +174,136 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-news-list" id="news-list">
         
-      <a href="https://www.prajavani.net/district/kolar/kolar-voter-list-digitalization-86-76-percent-complete-4191824" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಕೋಲಾರ ಜಿಲ್ಲೆಯಲ್ಲಿ ಮತದಾರರ ಪಟ್ಟಿ ಡಿಜಿಟಲೀಕರಣ ಶೇ 86.76ರಷ್ಟು ಪೂರ್ಣ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/kolar/kolar-bharat-joddo-youth-associations-formation-karnataka-4191537" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಕೋಲಾರದಲ್ಲಿ ‘ಭಾರತ್ ಜೋಡೊ ಯುವ ಸಂಘ’ಗಳ ರಚನೆಗೆ ರಾಜ್ಯ ಸರ್ಕಾರ ನಿರ್ಧಾರ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/kolar/kolar-malur-development-dk-shivakumar-nanjegowda-4191726" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಮಾಲೂರು ಅಭಿವೃದ್ಧಿಗೆ ಮತ್ತೊಂದು ಮೈಲಿಗಲ್ಲು: ಶಾಸಕ ನಂಜೇಗೌಡ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/kolar/mulabagilu-library-day-reading-habit-social-media-impact-4191883" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಿಂದ ಪುಸ್ತಕ ಓದುವವರ ಸಂಖ್ಯೆ ಕ್ಷೀಣಿಸುತ್ತಿದೆ: ನರಸಿಂಹ ಶೆಟ್ಟಿ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/kolar/kolar-forest-department-officer-chair-dispute-4191629" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಸಹಾಯಕ ಅರಣ್ಯ ಸಂರಕ್ಷಣಾಧಿಕಾರಿ ಕುರ್ಚಿಗಾಗಿ ಇಬ್ಬರ ಕಿತ್ತಾಟ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/kolar/kolar-water-conservation-painting-competition-winners-4191635" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">'ನೀರಿದ್ದರೆ ನಾಳೆ' ಅಭಿಯಾನ: ಚಿತ್ರಕಲಾ ಸ್ಪರ್ಧೆಯ ವಿಜೇತರ ಆಯ್ಕೆ Education: ಕೋಲಾರದಲ್ಲಿ 'ನೀರಿದ್ದರೆ ನಾಳೆ' ಘೋಷವಾಕ್ಯದಡಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆಯೋಜಿಸಿದ್ದ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಚಿತ್ರಕಲಾ ಸ್ಪರ್ಧೆಯ ವಿಜೇತರನ್ನು ಘೋಷಿಸಲಾಗಿದೆ ಎಂದು ಮಾಹಿತಿ.</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T08:03:05+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
+            <a href="https://www.prajavani.net/district/kolar/kolar-congress-leadership-search-new-president-4193848" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಅಧ್ಯಕ್ಷ ಸ್ಥಾನಕ್ಕೆ ಭಾರಿ ಪೈಪೋಟಿ: ಯಾರಾಗ್ತಾರೆ ಕೋಲಾರ ಜಿಲ್ಲೆಯ ‘ಕೈ’ ಕಮಾಂಡ್‌?ಜಿಲ್ಲಾ ಕಾಂಗ್ರೆಸ್‌ ಅಧ್ಯಕ್ಷ ಸ್ಥಾನಕ್ಕೆ ಭಾರಿ ಪೈಪೋಟಿ; ಮುಂಚೂಣಿಯಲ್ಲಿ ಹಲವರು ಹೆಸರು</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://www.prajavani.net/district/kolar/kolar-vemgal-stone-age-tombs-theft-treasure-hunters-4193864" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಕೋಲಾರ: ನಿಧಿ ಆಸೆಗೆ ಶಿಲಾಯುಗದ ಸಮಾಧಿಗಳು ಬಲಿ</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://www.prajavani.net/district/kolar/kolar-kgf-bus-stand-toilet-kitchen-restroom-issue-4193810" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ರಾಬರ್ಟ್‌ಸನ್‌ಪೇಟೆ ಬಸ್ ನಿಲ್ದಾಣ: ಅಡುಗೆ, ವಿಶ್ರಾಂತಿ ಕೋಣೆಯಾದ ಶೌಚಾಲಯ Civic Issue: ಕೆಜಿಎಫ್‌ ರಾಬರ್ಟ್‌ಸನ್‌ಪೇಟೆ ಬಸ್‌ ನಿಲ್ದಾಣದಲ್ಲಿ ಶೌಚಾಲಯದ ಅಸಮರ್ಪಕ ನಿರ್ವಹಣೆ, ಅಡುಗೆಮನೆ ಮತ್ತು ವಿಶ್ರಾಂತಿ ಗೃಹವಾಗಿ ಬಳಕೆಯಾಗುತ್ತಿದೆ ಎಂದು ವರದಿ.</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://www.prajavani.net/district/kolar/mulabagilu-financial-literacy-workshop-today-kolar-4194223" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಮುಳಬಾಗಿಲು ಸರ್ಕಾರಿ ಕಾಲೇಜಿನಲ್ಲಿ ಆರ್ಥಿಕ ಸಾಕ್ಷರತೆ ಕಾರ್ಯಾಗಾರ ಇಂದು</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://www.prajavani.net/district/kolar/kolar-karnataka-dalit-praja-sena-president-selection-4194216" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಕರ್ನಾಟಕ ದಲಿತ ಪ್ರಜಾ ಸೇನೆ ಕೋಲಾರ ಜಿಲ್ಲಾಧ್ಯಕ್ಷ ಆಯ್ಕೆ</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://www.prajavani.net/district/kolar/kolar-srinivasapura-crop-insurance-farmers-awareness-4194263" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ರೈತರಿಗೆ ಬೆಳೆ ವಿಮೆ ಹಾಗೂ ವಿವಿಧ ಕೃಷಿ ಮಾಹಿತಿ ಕುರಿತು ಅರಿವು</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T21:46:45+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
       </div>
     </div>
 
     <div class="d-sec">
       <div class="d-sec-title">
         <span>🏛️ ಕೋಲಾರ ಜಿಲ್ಲೆಯ ಎಲ್ಲಾ ಶಾಸಕರು (6 MLAs)</span>
-        <a href="/mla-mp.html?q=Kolar" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ 224 ಶಾಸಕರು →</a>
+        <a href="/mla-mp.html" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ 224 ಶಾಸಕರು →</a>
       </div>
       <div class="d-grid-mla" id="mlas-grid">
         
-      <a href="/mla/srinivaspur_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಶ್ರೀನಿವಾಸಪುರ (Srinivaspur)</div>
-          <span class="d-party-tag party-JDS">JD(S)</span>
-        </div>
-        <div class="d-rep-name">👤 ಜಿ ಕೆ ವೆಂಕಟಶಿವಾರೆಡ್ಡಿ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+10,443</strong></span>
-          <span>ಕ್ಷೇತ್ರ #151</span>
-        </div>
-      </a>
-    
-      <a href="/mla/mulbagal_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮುಳಬಾಗಿಲು (Mulbagal)</div>
-          <span class="d-party-tag party-JDS">JD(S)</span>
-        </div>
-        <div class="d-rep-name">👤 ಸಮೃದ್ಧಿ ಮಂಜುನಾಥ್</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+26,268</strong></span>
-          <span>ಕ್ಷೇತ್ರ #152</span>
-        </div>
-      </a>
-    
-      <a href="/mla/kolar_gold_field_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಕೆ.ಜಿ.ಎಫ್ (Kolar Gold Field)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಎಮ್ ರೂಪಕಲಾ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+50,467</strong></span>
-          <span>ಕ್ಷೇತ್ರ #153</span>
-        </div>
-      </a>
-    
-      <a href="/mla/bangarapet_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಬಂಗಾರಪೇಟೆ (Bangarapet)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಎಸ್ ಎನ್ ನಾರಾಯಣಸ್ವಾಮಿ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+4,711</strong></span>
-          <span>ಕ್ಷೇತ್ರ #154</span>
-        </div>
-      </a>
-    
-      <a href="/mla/kolar_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಕೋಲಾರ (Kolar)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಕೊತ್ತೂರು ಮಂಜುನಾಥ್</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+30,586</strong></span>
-          <span>ಕ್ಷೇತ್ರ #155</span>
-        </div>
-      </a>
-    
-      <a href="/mla/malur_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮಲೂರು (Malur)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಕೆ ವೈ ನಂಜೇಗೌಡ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+248</strong></span>
-          <span>ಕ್ಷೇತ್ರ #156</span>
-        </div>
-      </a>
-    
+            <a href="/mla/151.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಶ್ರೀನಿವಾಸಪುರ (Srinivaspur)</div>
+                <span class="d-party-tag party-JDS">JD(S)</span>
+              </div>
+              <div class="d-rep-name">👤 ಜಿ ಕೆ ವೆಂಕಟಶಿವಾರೆಡ್ಡಿ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+10,443</strong></span>
+                <span>ಕ್ಷೇತ್ರ #151</span>
+              </div>
+            </a>
+            
+            <a href="/mla/152.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮುಳಬಾಗಿಲು (Mulbagal)</div>
+                <span class="d-party-tag party-JDS">JD(S)</span>
+              </div>
+              <div class="d-rep-name">👤 ಸಮೃದ್ಧಿ ಮಂಜುನಾಥ್</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+26,268</strong></span>
+                <span>ಕ್ಷೇತ್ರ #152</span>
+              </div>
+            </a>
+            
+            <a href="/mla/153.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಕೆ.ಜಿ.ಎಫ್ (Kolar Gold Field)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಎಮ್ ರೂಪಕಲಾ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+50,467</strong></span>
+                <span>ಕ್ಷೇತ್ರ #153</span>
+              </div>
+            </a>
+            
+            <a href="/mla/154.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಬಂಗಾರಪೇಟೆ (Bangarapet)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಎಸ್ ಎನ್ ನಾರಾಯಣಸ್ವಾಮಿ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+4,711</strong></span>
+                <span>ಕ್ಷೇತ್ರ #154</span>
+              </div>
+            </a>
+            
+            <a href="/mla/155.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಕೋಲಾರ (Kolar)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಕೊತ್ತೂರು ಮಂಜುನಾಥ್</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+30,586</strong></span>
+                <span>ಕ್ಷೇತ್ರ #155</span>
+              </div>
+            </a>
+            
+            <a href="/mla/156.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮಲೂರು (Malur)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಕೆ ವೈ ನಂಜೇಗೌಡ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+248</strong></span>
+                <span>ಕ್ಷೇತ್ರ #156</span>
+              </div>
+            </a>
+            
       </div>
     </div>
 
@@ -337,17 +311,17 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       <div class="d-sec-title"><span>🗳️ ಕೋಲಾರ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span></div>
       <div id="mp-box" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:16px;">
         
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-      <div>
-        <div style="font-size:18px; font-weight:900; color:#0F172A;">ಎಂ. ಮಲ್ಲೇಶ ಬಾಬು</div>
-        <div style="font-size:13px; color:#64748B; font-weight:700;">ಕೋಲಾರ (Kolar) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ ಸಂಸದರು</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <span class="d-party-tag party-JDS" style="font-size:14px; padding:4px 12px;">JD(S)</span>
-        <div style="font-size:13px; font-weight:800; color:#059669;">ಅಂತರ: +71,388 ಮತಗಳು</div>
-      </div>
-    </div>
-  
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-size:18px; font-weight:900; color:#0F172A;">ಎಂ. ಮಲ್ಲೇಶ ಬಾಬು</div>
+            <div style="font-size:13.5px; color:#64748B; font-weight:700;">ಕೋಲಾರ (Kolar) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ ಸಂಸದರು</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="d-party-tag party-JDS" style="font-size:14px; padding:4px 12px;">JD(S)</span>
+            <div style="font-size:13px; font-weight:800; color:#059669;">ಅಂತರ: +71,388 ಮತಗಳು</div>
+          </div>
+        </div>
+        
       </div>
     </div>
 
@@ -358,49 +332,49 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-apmc-grid" id="apmc-grid">
         
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Potato / ಆಲೂಗಡ್ಡೆ</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹17.0/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Cauliflower / ಹೂಕೋಸು</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹11.0/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Brinjal / ಬದನೆಕಾಯಿ</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹13.0/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Tomato / ಟೊಮ್ಯಾಟೊ</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹16.6/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Bitter Gourd / ಹಾಗಲಕಾಯಿ</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹30.0/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Green Chilly / ಹಸಿರು ಮೆಣಸಿನಕಾಯಿ</div>
-      <div class="d-crop-mkt">KOLAR APMC</div>
-      <div class="d-crop-price">₹35.0/kg</div>
-    </div>
-  
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ತೆಂಗಿನಕಾಯಿ</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹14131/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ರೇಷ್ಮೆ ಗೂಡು</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹460/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಬೆಳ್ಳುಳ್ಳಿ</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹137.9/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಬದನೆಕಾಯಿ</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹27/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಸೌತೆಕಾಯಿ</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹18/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಆಲೂಗಡ್ಡೆ</div>
+              <div class="d-crop-mkt">ಕೋಲಾರ APMC</div>
+              <div class="d-crop-price">₹27/kg</div>
+            </div>
+            
       </div>
     </div>
 
     <div class="d-sec">
       <div class="d-sec-title"><span>🏡 ಕೋಲಾರ ಜಿಲ್ಲೆಯ ತಾಲೂಕುಗಳು (6)</span></div>
       <div class="d-taluks-wrap">
-        <div class="d-taluk-pill">📍 ಕೋಲಾರ</div><div class="d-taluk-pill">📍 ಕೆಜಿಎಫ್</div><div class="d-taluk-pill">📍 ಬಂಗಾರಪೇಟೆ</div><div class="d-taluk-pill">📍 ಮುಳಬಾಗಿಲು</div><div class="d-taluk-pill">📍 ಶ್ರೀನಿವಾಸಪುರ</div><div class="d-taluk-pill">📍 ಮಾಲೂರು</div>
+        <div class="d-taluk-pill">📍 ಕೋಲಾರ</div><div class="d-taluk-pill">📍 ಮಾಲೂರು</div><div class="d-taluk-pill">📍 ಬಂಗಾರಪೇಟೆ</div><div class="d-taluk-pill">📍 ಕೆ.ಜಿ.ಎಫ್ (KGF)</div><div class="d-taluk-pill">📍 ಶ್ರೀನಿವಾಸಪುರ</div><div class="d-taluk-pill">📍 ಮುಳಬಾಗಿಲು</div>
       </div>
     </div>
 
@@ -408,7 +382,6 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 
   <aside class="d-sidebar">
 
-    
     <div class="d-sec" style="border-left: 4px solid var(--k-red);">
       <div class="d-sec-title" style="font-size:16px;"><span>⚡ ಲೈವ್ ಮಾರುಕಟ್ಟೆ & ದರಗಳು (Live Prices)</span></div>
       
@@ -416,11 +389,11 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
         <div style="background:#FFF7ED; border:1px solid #FFEDD5; border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
             <div style="font-size:12px; font-weight:800; color:#EA580C;">🥇 24k / 22k ಚಿನ್ನದ ಬೆಲೆ</div>
-            <div style="font-size:11px; color:#9A3412;">ಇಂದಿನ ರಾಜ್ಯದ ಸರಾಸರಿ ದರ</div>
+            <div style="font-size:11px; color:#9A3412;">ಇಂದಿನ ರಾಜ್ಯದ ಅಧಿಕೃತ ದರ</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:15px; font-weight:900; color:#EA580C; font-family:var(--font-en);" id="sidebar-gold-val">₹7,380 /g</div>
-            <div style="font-size:10px; color:#C2410C;">ಬೆಳ್ಳಿ: ₹92.50/g</div>
+            <div style="font-size:15px; font-weight:900; color:#EA580C; font-family:var(--font-en);" id="sidebar-gold-val">₹14,080 /g</div>
+            <div style="font-size:10px; color:#C2410C;">ಬೆಳ್ಳಿ: ₹239.90/g</div>
           </div>
         </div>
 
@@ -430,200 +403,179 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <div style="font-size:11px; color:#166534;">ಕೋಲಾರ ಸ್ಥಳೀಯ ಬೆಲೆ</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:15px; font-weight:900; color:#15803D; font-family:var(--font-en);" id="sidebar-petrol-val">₹110.75</div>
-            <div style="font-size:10px; color:#166534;" id="sidebar-diesel-val">ಡೀಸೆಲ್: ₹98.69</div>
+            <div style="font-size:15px; font-weight:900; color:#15803D; font-family:var(--font-en);" id="sidebar-petrol-val">₹102.86</div>
+            <div style="font-size:10px; color:#166534;" id="sidebar-diesel-val">ಡೀಸೆಲ್: ₹88.94</div>
           </div>
         </div>
       </div>
 
       <div style="font-size:13px; font-weight:800; color:var(--k-dark); margin-bottom:8px;">🌾 ಕೋಲಾರ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ:</div>
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; font-size:12px;" id="sidebar-apmc-grid">
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Potato / ಆಲೂಗಡ್ಡೆ</div>
-            <div style="font-weight:900; color:#0F172A;">₹17.0 /kg</div>
-          </div>
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Cauliflower / ಹೂಕೋಸು</div>
-            <div style="font-weight:900; color:#0F172A;">₹11.0 /kg</div>
-          </div>
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Brinjal / ಬದನೆಕಾಯಿ</div>
-            <div style="font-weight:900; color:#0F172A;">₹13.0 /kg</div>
-          </div>
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Tomato / ಟೊಮ್ಯಾಟೊ</div>
-            <div style="font-weight:900; color:#0F172A;">₹16.6 /kg</div>
-          </div>
-        
+        <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ತೆಂಗಿನಕಾಯಿ</div><div style="font-weight:900; color:#0F172A;">₹14131/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ರೇಷ್ಮೆ ಗೂಡು</div><div style="font-weight:900; color:#0F172A;">₹460/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ಬೆಳ್ಳುಳ್ಳಿ</div><div style="font-weight:900; color:#0F172A;">₹137.9/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ಬದನೆಕಾಯಿ</div><div style="font-weight:900; color:#0F172A;">₹27/kg</div></div>
       </div>
       <a href="/apmc-prices.html" style="display:block; text-align:center; font-size:12px; font-weight:800; color:var(--k-red); margin-top:10px; text-decoration:none;">ಎಲ್ಲಾ APMC ಬೆಲೆ ನೋಡಿ →</a>
     </div>
-  
 
     <div class="d-sec">
       <div class="d-sec-title"><span>🗺️ ಇತರ 31 ಜಿಲ್ಲೆಗಳು (District Links)</span></div>
       <div style="font-size:12px; color:#64748B; margin-bottom:12px;">ಕರ್ನಾಟಕದ ಇತರ ಜಿಲ್ಲೆಯ ಮಾಹಿತಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ:</div>
       <div class="d-side-grid">
         
-    <a href="/districts/bengaluru-urban.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಂಗಳೂರು ನಗರ</span>
-      <span class="d-side-tag">28 MLA</span>
-    </a>
-  
-    <a href="/districts/bengaluru-rural.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/mysuru.html" class="d-side-dist-btn ">
-      <span>📍 ಮೈಸೂರು</span>
-      <span class="d-side-tag">11 MLA</span>
-    </a>
-  
-    <a href="/districts/mandya.html" class="d-side-dist-btn ">
-      <span>📍 ಮಂಡ್ಯ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/belagavi.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಳಗಾವಿ</span>
-      <span class="d-side-tag">18 MLA</span>
-    </a>
-  
-    <a href="/districts/kalaburagi.html" class="d-side-dist-btn ">
-      <span>📍 ಕಲಬುರಗಿ</span>
-      <span class="d-side-tag">9 MLA</span>
-    </a>
-  
-    <a href="/districts/dakshina-kannada.html" class="d-side-dist-btn ">
-      <span>📍 ದಕ್ಷಿಣ ಕನ್ನಡ</span>
-      <span class="d-side-tag">8 MLA</span>
-    </a>
-  
-    <a href="/districts/shivamogga.html" class="d-side-dist-btn ">
-      <span>📍 ಶಿವಮೊಗ್ಗ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/ballari.html" class="d-side-dist-btn ">
-      <span>📍 ಬಳ್ಳಾರಿ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/dharwad.html" class="d-side-dist-btn ">
-      <span>📍 ಧಾರವಾಡ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/hassan.html" class="d-side-dist-btn ">
-      <span>📍 ಹಾಸನ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/tumakuru.html" class="d-side-dist-btn ">
-      <span>📍 ತುಮಕೂರು</span>
-      <span class="d-side-tag">11 MLA</span>
-    </a>
-  
-    <a href="/districts/udupi.html" class="d-side-dist-btn ">
-      <span>📍 ಉಡುಪಿ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/kodagu.html" class="d-side-dist-btn ">
-      <span>📍 ಕೊಡಗು</span>
-      <span class="d-side-tag">2 MLA</span>
-    </a>
-  
-    <a href="/districts/bagalkote.html" class="d-side-dist-btn ">
-      <span>📍 ಬಾಗಲಕೋಟೆ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/chamarajanagara.html" class="d-side-dist-btn ">
-      <span>📍 ಚಾಮರಾಜನಗರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/chikkaballapura.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿಕ್ಕಬಳ್ಳಾಪುರ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/chikkamagaluru.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿಕ್ಕಮಗಳೂರು</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/chitradurga.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿತ್ರದುರ್ಗ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/davanagere.html" class="d-side-dist-btn ">
-      <span>📍 ದಾವಣಗೆರೆ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/gadag.html" class="d-side-dist-btn ">
-      <span>📍 ಗದಗ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/haveri.html" class="d-side-dist-btn ">
-      <span>📍 ಹಾವೇರಿ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/kolar.html" class="d-side-dist-btn active">
-      <span>📍 ಕೋಲಾರ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/koppal.html" class="d-side-dist-btn ">
-      <span>📍 ಕೊಪ್ಪಳ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/raichur.html" class="d-side-dist-btn ">
-      <span>📍 ರಾಯಚೂರು</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/ramanagara.html" class="d-side-dist-btn ">
-      <span>📍 ರಾಮನಗರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/uttara-kannada.html" class="d-side-dist-btn ">
-      <span>📍 ಉತ್ತರ ಕನ್ನಡ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/vijayanagara.html" class="d-side-dist-btn ">
-      <span>📍 ವಿಜಯನಗರ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/vijayapura.html" class="d-side-dist-btn ">
-      <span>📍 ವಿಜಯಪುರ</span>
-      <span class="d-side-tag">8 MLA</span>
-    </a>
-  
-    <a href="/districts/yadgir.html" class="d-side-dist-btn ">
-      <span>📍 ಯಾದಗಿರಿ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/bidar.html" class="d-side-dist-btn ">
-      <span>📍 ಬೀದರ್</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
+            <a href="/districts/bengaluru-urban.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಂಗಳೂರು ನಗರ</span>
+              <span class="d-side-tag">28 MLA</span>
+            </a>
+            
+            <a href="/districts/bengaluru-rural.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/mysuru.html" class="d-side-dist-btn ">
+              <span>📍 ಮೈಸೂರು</span>
+              <span class="d-side-tag">11 MLA</span>
+            </a>
+            
+            <a href="/districts/mandya.html" class="d-side-dist-btn ">
+              <span>📍 ಮಂಡ್ಯ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/belagavi.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಳಗಾವಿ</span>
+              <span class="d-side-tag">18 MLA</span>
+            </a>
+            
+            <a href="/districts/kalaburagi.html" class="d-side-dist-btn ">
+              <span>📍 ಕಲಬುರಗಿ</span>
+              <span class="d-side-tag">9 MLA</span>
+            </a>
+            
+            <a href="/districts/dakshina-kannada.html" class="d-side-dist-btn ">
+              <span>📍 ದಕ್ಷಿಣ ಕನ್ನಡ</span>
+              <span class="d-side-tag">8 MLA</span>
+            </a>
+            
+            <a href="/districts/shivamogga.html" class="d-side-dist-btn ">
+              <span>📍 ಶಿವಮೊಗ್ಗ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/ballari.html" class="d-side-dist-btn ">
+              <span>📍 ಬಳ್ಳಾರಿ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/dharwad.html" class="d-side-dist-btn ">
+              <span>📍 ಧಾರವಾಡ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/hassan.html" class="d-side-dist-btn ">
+              <span>📍 ಹಾಸನ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/tumakuru.html" class="d-side-dist-btn ">
+              <span>📍 ತುಮಕೂರು</span>
+              <span class="d-side-tag">11 MLA</span>
+            </a>
+            
+            <a href="/districts/udupi.html" class="d-side-dist-btn ">
+              <span>📍 ಉಡುಪಿ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/kodagu.html" class="d-side-dist-btn ">
+              <span>📍 ಕೊಡಗು</span>
+              <span class="d-side-tag">2 MLA</span>
+            </a>
+            
+            <a href="/districts/koppal.html" class="d-side-dist-btn ">
+              <span>📍 ಕೊಪ್ಪಳ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/vijayapura.html" class="d-side-dist-btn ">
+              <span>📍 ವಿಜಯಪುರ</span>
+              <span class="d-side-tag">8 MLA</span>
+            </a>
+            
+            <a href="/districts/bagalkote.html" class="d-side-dist-btn ">
+              <span>📍 ಬಾಗಲಕೋಟೆ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/chamarajanagara.html" class="d-side-dist-btn ">
+              <span>📍 ಚಾಮರಾಜನಗರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/chikkaballapura.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿಕ್ಕಬಳ್ಳಾಪುರ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/chikkamagaluru.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿಕ್ಕಮಗಳೂರು</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/chitradurga.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿತ್ರದುರ್ಗ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/davanagere.html" class="d-side-dist-btn ">
+              <span>📍 ದಾವಣಗೆರೆ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/gadag.html" class="d-side-dist-btn ">
+              <span>📍 ಗದಗ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/haveri.html" class="d-side-dist-btn ">
+              <span>📍 ಹಾವೇರಿ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/kolar.html" class="d-side-dist-btn active">
+              <span>📍 ಕೋಲಾರ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/raichur.html" class="d-side-dist-btn ">
+              <span>📍 ರಾಯಚೂರು</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/ramanagara.html" class="d-side-dist-btn ">
+              <span>📍 ರಾಮನಗರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/uttara-kannada.html" class="d-side-dist-btn ">
+              <span>📍 ಉತ್ತರ ಕನ್ನಡ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/vijayanagara.html" class="d-side-dist-btn ">
+              <span>📍 ವಿಜಯನಗರ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/yadgir.html" class="d-side-dist-btn ">
+              <span>📍 ಯಾದಗಿರಿ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/bidar.html" class="d-side-dist-btn ">
+              <span>📍 ಬೀದರ್</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
       </div>
     </div>
 
@@ -633,31 +585,5 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 
 <script src="/data-loader.js"></script>
 <script src="/nav-component.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    const distKey = "kolar";
-    if (typeof NK !== 'undefined') {
-      try {
-        const petrolData = await NK.petrol();
-        if (petrolData && petrolData.districts) {
-          const pObj = petrolData.districts[distKey] || petrolData.districts[distKey.replace('-', '_')] || {};
-          const tKeys = Object.keys(pObj.taluks || {});
-          if (tKeys.length > 0) {
-            const mainT = pObj.taluks[tKeys[0]];
-            const pEl = document.getElementById('sidebar-petrol-val');
-            const dEl = document.getElementById('sidebar-diesel-val');
-            if (pEl && mainT.petrol) pEl.textContent = '₹' + mainT.petrol.toFixed(2);
-            if (dEl && mainT.diesel) dEl.textContent = 'ಡೀಸೆಲ್: ₹' + mainT.diesel.toFixed(2);
-          }
-        }
-        const goldData = await NK.gold();
-        if (goldData && goldData.baseGold) {
-          const gEl = document.getElementById('sidebar-gold-val');
-          if (gEl && goldData.baseGold[22]) gEl.textContent = '₹' + Math.round(goldData.baseGold[22]).toLocaleString('en-IN') + ' /g';
-        }
-      } catch(e) {}
-    }
-  });
-</script>
 </body>
 </html>

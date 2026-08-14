@@ -8,32 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/karnata-theme.css">
-
-<!-- SCHEMA.ORG STRUCTURED DATA FOR AI SEARCH (GEO) & GOOGLE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "GovernmentOffice",
-  "name": "ದಕ್ಷಿಣ ಕನ್ನಡ (Dakshina Kannada) District Administration",
-  "url": "https://karnata.in/districts/dakshina-kannada.html",
-  "areaServed": "Dakshina Kannada, Karnataka, India",
-  "description": "ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲೆಯ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC), ಎಸ್ಪಿ (SP), ಎಲ್ಲಾ ಶಾಸಕರು (MLA), ಸಂಸದರು (MP), APMC ಕೃಷಿ ದರಗಳು ಹಾಗೂ ಲೈವ್ ಸುದ್ದಿಗಳು.",
-  "employee": [
-    {
-      "@type": "Person",
-      "name": "ಶ್ರೀ ಮುಲ್ಲೈ ಮುಹಿಲನ್ (IAS)",
-      "jobTitle": "Deputy Commissioner (DC)",
-      "telephone": "0824-2220038"
-    },
-    {
-      "@type": "Person",
-      "name": "ಶ್ರೀ ಯತೀಶ್ (IPS)",
-      "jobTitle": "Superintendent of Police (SP)",
-      "telephone": "0824-2220100"
-    }
-  ]
-}
-</script>
+<script src="/data-loader.js"></script>
 
 <style>
 :root {
@@ -78,7 +53,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 .d-news-head {
   font-size: 15.5px; font-weight: 800; color: var(--k-dark); margin-bottom: 6px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  overflow: hidden; text-overflow: ellipsis; line-height: 1.45; max-height: 2.9em; word-break: break-word;
+  overflow: hidden; text-overflow: ellipsis; line-height: 1.45; word-break: break-word;
 }
 .d-news-meta { font-size: 12px; color: #64748B; display: flex; gap: 14px; font-weight: 600; }
 
@@ -98,24 +73,23 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 .d-meta-row { font-size: 11.5px; color: #64748B; display: flex; justify-content: space-between; margin-top: 8px; border-top: 1px dashed #E2E8F0; padding-top: 8px; }
 
 .d-apmc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-.d-apmc-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; text-align: center; transition: all 0.2s ease; }
-.d-apmc-box:hover { border-color: #059669; transform: translateY(-2px); }
-.d-crop-name { font-weight: 800; font-size: 14px; color: var(--k-dark); }
-.d-crop-mkt { font-size: 11px; color: #64748B; margin-bottom: 4px; }
+.d-apmc-box { background: #F8FAFC; border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.d-crop-name { font-size: 15px; font-weight: 800; color: var(--k-dark); margin-bottom: 2px; }
+.d-crop-mkt { font-size: 11px; color: #64748B; margin-bottom: 6px; }
 .d-crop-price { font-size: 18px; font-weight: 900; color: #059669; font-family: var(--font-en); }
 
 .d-taluks-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
-.d-taluk-pill { background: #F1F5F9; border: 1px solid #E2E8F0; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 700; color: #334155; }
+.d-taluk-pill { background: #F1F5F9; border: 1px solid #E2E8F0; padding: 8px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 700; color: #334155; }
 
-.d-side-grid { display: grid; grid-template-columns: 1fr; gap: 8px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
+.d-side-grid { display: flex; flex-direction: column; gap: 6px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
 .d-side-dist-btn {
-  background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 10px 14px;
-  text-decoration: none; color: #0F172A; font-size: 13.5px; font-weight: 800;
-  display: flex; justify-content: space-between; align-items: center; transition: all 0.15s;
+  display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 10px;
+  background: #F8FAFC; border: 1px solid #E2E8F0; text-decoration: none; color: #334155; font-size: 13.5px; font-weight: 700;
+  transition: all 0.15s ease;
 }
-.d-side-dist-btn:hover { background: #FFF; border-color: var(--k-red); color: var(--k-red); transform: translateX(3px); }
-.d-side-dist-btn.active { background: #FFF1F2; border-color: var(--k-red); color: var(--k-red); }
-.d-side-tag { font-size: 11px; font-weight: 700; color: #64748B; font-family: var(--font-en); }
+.d-side-dist-btn:hover { background: #FFF1F2; border-color: var(--k-red); color: var(--k-red); transform: translateX(2px); }
+.d-side-dist-btn.active { background: var(--k-red); color: #FFF; border-color: var(--k-red); }
+.d-side-tag { font-size: 11px; font-weight: 800; font-family: var(--font-en); opacity: 0.8; }
 </style>
 </head>
 <body>
@@ -142,7 +116,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-stat-box">
         <div>ತಾಲೂಕುಗಳು</div>
-        <div class="d-stat-val">7</div>
+        <div class="d-stat-val">8</div>
       </div>
     </div>
   </div>
@@ -162,12 +136,12 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
         </div>
         <div class="officer-card">
           <div class="officer-role">ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP)</div>
-          <div class="officer-name">👮 ಶ್ರೀ ಯತೀಶ್ (IPS)</div>
+          <div class="officer-name">👮 ಶ್ರೀ ಸಿ.ಬಿ. ರಿಷ್ಯಾಂತ್ (IPS)</div>
           <div class="officer-phone">📞 ದೂರವಾಣಿ: 0824-2220100</div>
         </div>
       </div>
       <div style="margin-top:14px; font-size:13px; color:#475569; background:#F1F5F9; padding:12px 16px; border-radius:12px; border-left:4px solid var(--k-red);">
-        💡 <strong>ವಿಶೇಷತೆ:</strong> ನವಮಂಗಳೂರು ಬಂದರು, ಕಂಬಳ, ಧರ್ಮಸ್ಥಳ, ಸುಬ್ರಹ್ಮಣ್ಯ
+        💡 <strong>ವಿಶೇಷತೆ:</strong> ನವಮಂಗಳೂರು ಬಂದರು, ಕಂಬಳ, ಧರ್ಮಸ್ಥಳ ಮಂಜುನಾಥ ಸ್ವಾಮಿ ಕ್ಷೇತ್ರ, ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ
       </div>
     </div>
 
@@ -175,21 +149,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       <div class="d-sec">
         <div class="d-sec-title"><span>🌤️ ದಕ್ಷಿಣ ಕನ್ನಡ ಹವಾಮಾನ ವರದಿ</span></div>
         <div id="weather-body">
-    <div style="display:flex; align-items:center; gap:16px;">
-      <div style="font-size:36px; font-weight:900; color:#0F172A; font-family:var(--font-en);">28°C</div>
-      <div>
-        <div style="font-size:16px; font-weight:800; color:#1E293B;">ಮೋಡ ಕವಿದ ವಾತಾವರಣ</div>
-        <div style="font-size:12px; color:#64748B;">ಆರ್ದ್ರತೆ: 78% · ಗಾಳಿ: 14 km/h · ಮಳೆ: 35%</div>
-      </div>
-    </div>
-  </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="font-size:36px; font-weight:900; color:#0F172A; font-family:var(--font-en);" id="dist-temp-val">28°C</div>
+            <div>
+              <div style="font-size:16px; font-weight:800; color:#1E293B;" id="dist-weather-desc">ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ</div>
+              <div style="font-size:12px; color:#64748B;">ಆರ್ದ್ರತೆ: 72% · ಗಾಳಿ: 14 km/h · KSNDMC ಲೈವ್ ವರದಿ</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="d-sec">
         <div class="d-sec-title"><span>💧 ಜಲಾಶಯ / ಅಣೆಕಟ್ಟು ಮಟ್ಟ</span></div>
         <div id="dam-body">
-    <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">ಸೂಪ ಅಣೆಕಟ್ಟು (63.2% ಸಂಗ್ರಹ)</div>
-    <div style="font-size:13px; color:#64748B;">ಪ್ರಸ್ತುತ: 31.25 TMC / 49.45 TMC · ಒಳಹರಿವು: 6,473 cusecs</div>
-  </div>
+        <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:4px;">ಸೂಪಾ (Supa Dam) (80.0% ಸಂಗ್ರಹ)</div>
+        <div style="font-size:13px; color:#64748B;">ಪ್ರಸ್ತುತ: <strong>116.2 TMC</strong> / 145.33 TMC · ಒಳಹರಿವು: 8,500 cusecs</div>
+        </div>
       </div>
     </div>
 
@@ -200,160 +174,160 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-news-list" id="news-list">
         
-      <a href="https://kannada.asianetnews.com/karnataka-districts/indian-railways-sakaleshpur-subrahmanya-road-vande-bharat-express-train-runs-successfully-mrq/articleshow-ifzg7a3" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಸಕಲೇಶಪುರ - ಸುಬ್ರಹ್ಮಣ್ಯ ರೋಡ್‌: ವಂದೇ ಭಾರತ್ ರೈಲಿನ ಪರೀಕ್ಷಾರ್ಥ ಸಂಚಾರ ಯಶಸ್ವಿ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T07:37:42+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://tv9kannada.com/karnataka/karnataka-rain-imd-issues-yellow-alert-for-5-districts-heavy-monsoon-expected-1224531.html" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಇಂದಿನ ಹವಾಮಾನ ವರದಿ : ಕರಾವಳಿ-ಮಲೆನಾಡಿನಲ್ಲಿ ಚುರುಕುಗೊಂಡ ಮುಂಗಾರು; 5 ಜಿಲ್ಲೆಗಳಿಗೆ ಯೆಲ್ಲೋ ಅಲರ್ಟ್</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T07:14:00+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://www.prajavani.net/district/belagavi/hukkeri-shaurya-volunteer-training-dharmasthala-project-4191923" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಹುಕ್ಕೇರಿ ಶೌರ್ಯ ಘಟಕದ ಸ್ವಯಂ ಸೇವಕರ ತರಬೇತಿ ಆಯೋಜನೆ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-13T06:54:52+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://tv9kannada.com/karnataka/hassan/bengaluru-mangaluru-vande-bharat-trial-run-successful-via-sakleshpur-1224268.html" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ಹಾಸನ ಜಿಲ್ಲೆಗೆ ಬಂತು ವಂದೇ ಭಾರತ್ ಎಕ್ಸ್‌ಪ್ರೆಸ್: ಶಿರಾಡಿಘಾಟ್ ಮಾರ್ಗದಲ್ಲಿ ಯಶಸ್ವಿ ಪ್ರಾಯೋಗಿಕ ಸಂಚಾರ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-12T13:14:03+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://tv9kannada.com/karnataka/dakshina-kannada/dakshina-kannada-animal-husbandry-dept-hit-hard-84-percent-posts-vacant-10-veterinary-hospitals-on-verge-of-closure-1224009.html" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ದಕ್ಷಿಣ ಕನ್ನಡದಲ್ಲಿ ಪಶುಪಾಲನಾ ಇಲಾಖೆ ಸಿಬ್ಬಂದಿ ಕೊರತೆ: ಶೇ.84ರಷ್ಟು ಹುದ್ದೆಗಳು ಖಾಲಿ!</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-11T17:45:10+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
-      <a href="https://tv9kannada.com/videos/mangaluru-pothole-protest-youth-play-kere-dande-game-in-roads-video-goes-viral-1223333.html" target="_blank" rel="noopener" class="d-news-card">
-        <div class="d-news-head">ರಸ್ತೆ ಗುಂಡಿಯಲ್ಲಿ ‘ಕೆರೆ-ದಂಡೆ’ ಆಟ: ಹಾಳಾದ ರಸ್ತೆ ವಿರುದ್ಧ ಯುವಕರ ವಿಶಿಷ್ಟ ಪ್ರತಿಭಟನೆ</div>
-        <div class="d-news-meta">
-          <span>⏱️ 2026-08-10T09:07:20+05:30</span>
-          <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
-        </div>
-      </a>
-    
+            <a href="https://tv9kannada.com/karnataka/belagavi/belagavi-shivam-associates-fraud-case-ed-arrests-shivananda-neelannavar-explosive-details-emerge-in-probe-1225141.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ED ತನಿಖೆಯಲ್ಲಿ ಸ್ಫೋಟಕ ವಿಚಾರಗಳು ಬಯಲಿಗೆ: ಶಿವಾನಂದ ನೀಲಣ್ಣನವರ್ ಅರೆಸ್ಟ್</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T16:59:35+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://tv9kannada.com/karnataka/bengaluru/karnataka-weather-update-august-14-heavy-rain-and-high-wind-alert-in-coastal-interior-districts-1224922.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">Karnataka Weather Forecast: ಇಂದು ಕರಾವಳಿ, ಒಳನಾಡಿನಲ್ಲಿ ಮಳೆಯ ಸಾಧ್ಯತೆ</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-14T06:38:19+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://tv9kannada.com/karnataka/dakshina-kannada/student-averts-major-accident-after-kitchen-staff-members-finger-gets-caught-in-machine-1224843.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಯಂತ್ರದಲ್ಲಿ ಸಿಲುಕಿದ ಅಡುಗೆ ಸಿಬ್ಬಂದಿಯ ಕೈಬೆರಳು: ಭಾರೀ ಅವಘಡ ತಪ್ಪಿಸಿದ ವಿದ್ಯಾರ್ಥಿ; ಎಲ್ಲೆಡೆ ಮೆಚ್ಚುಗೆ</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-13T20:24:49+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://tv9kannada.com/karnataka/karnataka-rain-imd-issues-yellow-alert-for-5-districts-heavy-monsoon-expected-1224531.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ಇಂದಿನ ಹವಾಮಾನ ವರದಿ : ಕರಾವಳಿ-ಮಲೆನಾಡಿನಲ್ಲಿ ಚುರುಕುಗೊಂಡ ಮುಂಗಾರು; 5 ಜಿಲ್ಲೆಗಳಿಗೆ ಯೆಲ್ಲೋ ಅಲರ್ಟ್</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-13T07:14:00+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://tv9kannada.com/karnataka/dakshina-kannada/dakshina-kannada-animal-husbandry-dept-hit-hard-84-percent-posts-vacant-10-veterinary-hospitals-on-verge-of-closure-1224009.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ದಕ್ಷಿಣ ಕನ್ನಡದಲ್ಲಿ ಪಶುಪಾಲನಾ ಇಲಾಖೆ ಸಿಬ್ಬಂದಿ ಕೊರತೆ: ಶೇ.84ರಷ್ಟು ಹುದ್ದೆಗಳು ಖಾಲಿ!</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-11T17:45:10+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
+            <a href="https://tv9kannada.com/videos/mangaluru-pothole-protest-youth-play-kere-dande-game-in-roads-video-goes-viral-1223333.html" target="_blank" rel="noopener" class="d-news-card">
+              <div class="d-news-head">ರಸ್ತೆ ಗುಂಡಿಯಲ್ಲಿ ‘ಕೆರೆ-ದಂಡೆ’ ಆಟ: ಹಾಳಾದ ರಸ್ತೆ ವಿರುದ್ಧ ಯುವಕರ ವಿಶಿಷ್ಟ ಪ್ರತಿಭಟನೆ</div>
+              <div class="d-news-meta">
+                <span>⏱️ 2026-08-10T09:07:20+05:30</span>
+                <span>🏷️ ಕನ್ನಡ ಸುದ್ದಿ</span>
+              </div>
+            </a>
+            
       </div>
     </div>
 
     <div class="d-sec">
       <div class="d-sec-title">
         <span>🏛️ ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲೆಯ ಎಲ್ಲಾ ಶಾಸಕರು (8 MLAs)</span>
-        <a href="/mla-mp.html?q=Dakshina%20Kannada" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ 224 ಶಾಸಕರು →</a>
+        <a href="/mla-mp.html" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ 224 ಶಾಸಕರು →</a>
       </div>
       <div class="d-grid-mla" id="mlas-grid">
         
-      <a href="/mla/sullia_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಸುಳ್ಯ (Sullia)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ಭಾಗೀರಥಿ ಮುರುಳ್ಯ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+30,874</strong></span>
-          <span>ಕ್ಷೇತ್ರ #123</span>
-        </div>
-      </a>
-    
-      <a href="/mla/puttur_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಪುತ್ತೂರು (Puttur)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಅಶೋಕ್ ಕುಮಾರ್ ರೈ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+4,149</strong></span>
-          <span>ಕ್ಷೇತ್ರ #124</span>
-        </div>
-      </a>
-    
-      <a href="/mla/bantval_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಬಂಟ್ವಾಳ (Bantval)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ಯು ರಾಜೇಶ್ ನಾಯಕ್</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+8,282</strong></span>
-          <span>ಕ್ಷೇತ್ರ #125</span>
-        </div>
-      </a>
-    
-      <a href="/mla/belthangady_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಬೆಳ್ತಂಗಡಿ (Belthangady)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ಹರೀಶ್ ಪೂಂಜಾ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+18,216</strong></span>
-          <span>ಕ್ಷೇತ್ರ #126</span>
-        </div>
-      </a>
-    
-      <a href="/mla/moodabidri_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮೂಡುಬಿದಿರೆ (Moodabidri)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ಉಮಾನಾಥ ಕೋಟ್ಯಾನ್</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+22,468</strong></span>
-          <span>ಕ್ಷೇತ್ರ #127</span>
-        </div>
-      </a>
-    
-      <a href="/mla/mangalore_city_north_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮಂಗಳೂರು ನಗರ ಉತ್ತರ (Mangalore City North)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ಭರತ್ ಶೆಟ್ಟಿ</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+32,922</strong></span>
-          <span>ಕ್ಷೇತ್ರ #128</span>
-        </div>
-      </a>
-    
-      <a href="/mla/mangalore_city_south_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮಂಗಳೂರು ನಗರ ದಕ್ಷಿಣ (Mangalore City South)</div>
-          <span class="d-party-tag party-BJP">BJP</span>
-        </div>
-        <div class="d-rep-name">👤 ವೇದವ್ಯಾಸ ಕಾಮತ್</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+23,985</strong></span>
-          <span>ಕ್ಷೇತ್ರ #129</span>
-        </div>
-      </a>
-    
-      <a href="/mla/mangalore_assembly_constituency.html" class="d-mla-card">
-        <div class="d-mla-head">
-          <div class="d-const-name">ಮಂಗಳೂರು (Mangalore)</div>
-          <span class="d-party-tag party-INC">INC</span>
-        </div>
-        <div class="d-rep-name">👤 ಯು ಟಿ ಖಾದರ್ (ಸಭಾಪತಿ)</div>
-        <div class="d-meta-row">
-          <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+22,790</strong></span>
-          <span>ಕ್ಷೇತ್ರ #130</span>
-        </div>
-      </a>
-    
+            <a href="/mla/123.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಸುಳ್ಯ (Sullia)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ಭಾಗೀರಥಿ ಮುರುಳ್ಯ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+30,874</strong></span>
+                <span>ಕ್ಷೇತ್ರ #123</span>
+              </div>
+            </a>
+            
+            <a href="/mla/124.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಪುತ್ತೂರು (Puttur)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಅಶೋಕ್ ಕುಮಾರ್ ರೈ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+4,149</strong></span>
+                <span>ಕ್ಷೇತ್ರ #124</span>
+              </div>
+            </a>
+            
+            <a href="/mla/125.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಬಂಟ್ವಾಳ (Bantval)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ಯು ರಾಜೇಶ್ ನಾಯಕ್</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+8,282</strong></span>
+                <span>ಕ್ಷೇತ್ರ #125</span>
+              </div>
+            </a>
+            
+            <a href="/mla/126.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಬೆಳ್ತಂಗಡಿ (Belthangady)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ಹರೀಶ್ ಪೂಂಜಾ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+18,216</strong></span>
+                <span>ಕ್ಷೇತ್ರ #126</span>
+              </div>
+            </a>
+            
+            <a href="/mla/127.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮೂಡುಬಿದಿರೆ (Moodabidri)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ಉಮಾನಾಥ ಕೋಟ್ಯಾನ್</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+22,468</strong></span>
+                <span>ಕ್ಷೇತ್ರ #127</span>
+              </div>
+            </a>
+            
+            <a href="/mla/128.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮಂಗಳೂರು ನಗರ ಉತ್ತರ (Mangalore City North)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ಭರತ್ ಶೆಟ್ಟಿ</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+32,922</strong></span>
+                <span>ಕ್ಷೇತ್ರ #128</span>
+              </div>
+            </a>
+            
+            <a href="/mla/129.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮಂಗಳೂರು ನಗರ ದಕ್ಷಿಣ (Mangalore City South)</div>
+                <span class="d-party-tag party-BJP">BJP</span>
+              </div>
+              <div class="d-rep-name">👤 ವೇದವ್ಯಾಸ ಕಾಮತ್</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+23,985</strong></span>
+                <span>ಕ್ಷೇತ್ರ #129</span>
+              </div>
+            </a>
+            
+            <a href="/mla/130.html" class="d-mla-card">
+              <div class="d-mla-head">
+                <div class="d-const-name">ಮಂಗಳೂರು (Mangalore)</div>
+                <span class="d-party-tag party-INC">INC</span>
+              </div>
+              <div class="d-rep-name">👤 ಯು ಟಿ ಖಾದರ್ (ಸಭಾಪತಿ)</div>
+              <div class="d-meta-row">
+                <span>ಗೆಲುವಿನ ಅಂತರ: <strong>+22,790</strong></span>
+                <span>ಕ್ಷೇತ್ರ #130</span>
+              </div>
+            </a>
+            
       </div>
     </div>
 
@@ -361,17 +335,17 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       <div class="d-sec-title"><span>🗳️ ದಕ್ಷಿಣ ಕನ್ನಡ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span></div>
       <div id="mp-box" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:16px;">
         
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-      <div>
-        <div style="font-size:18px; font-weight:900; color:#0F172A;">ಕ್ಯಾಪ್ಟನ್ ಬ್ರಿಜೇಶ್ ಚೌಟ</div>
-        <div style="font-size:13px; color:#64748B; font-weight:700;">ದಕ್ಷಿಣ ಕನ್ನಡ (Dakshina Kannada) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ ಸಂಸದರು</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <span class="d-party-tag party-BJP" style="font-size:14px; padding:4px 12px;">BJP</span>
-        <div style="font-size:13px; font-weight:800; color:#059669;">ಅಂತರ: +1,49,208 ಮತಗಳು</div>
-      </div>
-    </div>
-  
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-size:18px; font-weight:900; color:#0F172A;">ಕ್ಯಾಪ್ಟನ್ ಬ್ರಿಜೇಶ್ ಚೌಟ</div>
+            <div style="font-size:13.5px; color:#64748B; font-weight:700;">ದಕ್ಷಿಣ ಕನ್ನಡ (Dakshina Kannada) ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ ಸಂಸದರು</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="d-party-tag party-BJP" style="font-size:14px; padding:4px 12px;">BJP</span>
+            <div style="font-size:13px; font-weight:800; color:#059669;">ಅಂತರ: +149,208 ಮತಗಳು</div>
+          </div>
+        </div>
+        
       </div>
     </div>
 
@@ -382,25 +356,49 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-apmc-grid" id="apmc-grid">
         
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Coconut (Per 1000) / ತೆಂಗಿನಕಾಯಿ</div>
-      <div class="d-crop-mkt">MANGALURU APMC</div>
-      <div class="d-crop-price">₹25.0/kg</div>
-    </div>
-  
-    <div class="d-apmc-box">
-      <div class="d-crop-name">Arecanut / ಅಡಿಕೆ</div>
-      <div class="d-crop-mkt">MANGALURU APMC</div>
-      <div class="d-crop-price">₹285.0/kg</div>
-    </div>
-  
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಅಡಿಕೆ (ಸರಕು)</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹477.4/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಅಡಿಕೆ (ರಾಶಿ ಇಡೀ)</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹466.8/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ರಾಗಿ</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹33.1/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಕಾಫಿ ರೋಬಸ್ಟಾ</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹14281/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ರೇಷ್ಮೆ ಗೂಡು</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹452/kg</div>
+            </div>
+            
+            <div class="d-apmc-box">
+              <div class="d-crop-name">ಗೇರುಬೀಜ</div>
+              <div class="d-crop-mkt">ಮಂಗಳೂರು APMC</div>
+              <div class="d-crop-price">₹124.6/kg</div>
+            </div>
+            
       </div>
     </div>
 
     <div class="d-sec">
-      <div class="d-sec-title"><span>🏡 ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲೆಯ ತಾಲೂಕುಗಳು (7)</span></div>
+      <div class="d-sec-title"><span>🏡 ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲೆಯ ತಾಲೂಕುಗಳು (8)</span></div>
       <div class="d-taluks-wrap">
-        <div class="d-taluk-pill">📍 ಮಂಗಳೂರು</div><div class="d-taluk-pill">📍 ಪುತ್ತೂರು</div><div class="d-taluk-pill">📍 ಬೆಳ್ತಂಗಡಿ</div><div class="d-taluk-pill">📍 ಬಂಟ್ವಾಳ</div><div class="d-taluk-pill">📍 ಸುಳ್ಯ</div><div class="d-taluk-pill">📍 ಕಡಬ</div><div class="d-taluk-pill">📍 ಮೂಡುಬಿದಿರೆ</div>
+        <div class="d-taluk-pill">📍 ಮಂಗಳೂರು</div><div class="d-taluk-pill">📍 ಪುತ್ತೂರು</div><div class="d-taluk-pill">📍 ಬೆಳ್ತಂಗಡಿ</div><div class="d-taluk-pill">📍 ಬಂಟ್ವಾಳ</div><div class="d-taluk-pill">📍 ಸುಳ್ಯ</div><div class="d-taluk-pill">📍 ಕಡಬ</div><div class="d-taluk-pill">📍 ಮೂಡುಬಿದಿರೆ</div><div class="d-taluk-pill">📍 ಉಳ್ಳಾಲ</div>
       </div>
     </div>
 
@@ -408,7 +406,6 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 
   <aside class="d-sidebar">
 
-    
     <div class="d-sec" style="border-left: 4px solid var(--k-red);">
       <div class="d-sec-title" style="font-size:16px;"><span>⚡ ಲೈವ್ ಮಾರುಕಟ್ಟೆ & ದರಗಳು (Live Prices)</span></div>
       
@@ -416,11 +413,11 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
         <div style="background:#FFF7ED; border:1px solid #FFEDD5; border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
             <div style="font-size:12px; font-weight:800; color:#EA580C;">🥇 24k / 22k ಚಿನ್ನದ ಬೆಲೆ</div>
-            <div style="font-size:11px; color:#9A3412;">ಇಂದಿನ ರಾಜ್ಯದ ಸರಾಸರಿ ದರ</div>
+            <div style="font-size:11px; color:#9A3412;">ಇಂದಿನ ರಾಜ್ಯದ ಅಧಿಕೃತ ದರ</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:15px; font-weight:900; color:#EA580C; font-family:var(--font-en);" id="sidebar-gold-val">₹7,380 /g</div>
-            <div style="font-size:10px; color:#C2410C;">ಬೆಳ್ಳಿ: ₹92.50/g</div>
+            <div style="font-size:15px; font-weight:900; color:#EA580C; font-family:var(--font-en);" id="sidebar-gold-val">₹14,080 /g</div>
+            <div style="font-size:10px; color:#C2410C;">ಬೆಳ್ಳಿ: ₹239.90/g</div>
           </div>
         </div>
 
@@ -430,190 +427,179 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <div style="font-size:11px; color:#166534;">ದಕ್ಷಿಣ ಕನ್ನಡ ಸ್ಥಳೀಯ ಬೆಲೆ</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:15px; font-weight:900; color:#15803D; font-family:var(--font-en);" id="sidebar-petrol-val">₹110.04</div>
-            <div style="font-size:10px; color:#166534;" id="sidebar-diesel-val">ಡೀಸೆಲ್: ₹97.98</div>
+            <div style="font-size:15px; font-weight:900; color:#15803D; font-family:var(--font-en);" id="sidebar-petrol-val">₹102.86</div>
+            <div style="font-size:10px; color:#166534;" id="sidebar-diesel-val">ಡೀಸೆಲ್: ₹88.94</div>
           </div>
         </div>
       </div>
 
       <div style="font-size:13px; font-weight:800; color:var(--k-dark); margin-bottom:8px;">🌾 ದಕ್ಷಿಣ ಕನ್ನಡ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ:</div>
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; font-size:12px;" id="sidebar-apmc-grid">
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Coconut (Per 1000) / ತೆಂಗಿನಕಾಯಿ</div>
-            <div style="font-weight:900; color:#0F172A;">₹25.0 /kg</div>
-          </div>
-        
-          <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;">
-            <div style="color:#64748B; font-size:10px;">Arecanut / ಅಡಿಕೆ</div>
-            <div style="font-weight:900; color:#0F172A;">₹285.0 /kg</div>
-          </div>
-        
+        <div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ಅಡಿಕೆ (ಸರಕು)</div><div style="font-weight:900; color:#0F172A;">₹477.4/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ಅಡಿಕೆ (ರಾಶಿ ಇಡೀ)</div><div style="font-weight:900; color:#0F172A;">₹466.8/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ರಾಗಿ</div><div style="font-weight:900; color:#0F172A;">₹33.1/kg</div></div><div style="background:#F8FAFC; padding:6px 8px; border-radius:6px; border:1px solid #E2E8F0;"><div style="color:#64748B; font-size:10px;">ಕಾಫಿ ರೋಬಸ್ಟಾ</div><div style="font-weight:900; color:#0F172A;">₹14281/kg</div></div>
       </div>
       <a href="/apmc-prices.html" style="display:block; text-align:center; font-size:12px; font-weight:800; color:var(--k-red); margin-top:10px; text-decoration:none;">ಎಲ್ಲಾ APMC ಬೆಲೆ ನೋಡಿ →</a>
     </div>
-  
 
     <div class="d-sec">
       <div class="d-sec-title"><span>🗺️ ಇತರ 31 ಜಿಲ್ಲೆಗಳು (District Links)</span></div>
       <div style="font-size:12px; color:#64748B; margin-bottom:12px;">ಕರ್ನಾಟಕದ ಇತರ ಜಿಲ್ಲೆಯ ಮಾಹಿತಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ:</div>
       <div class="d-side-grid">
         
-    <a href="/districts/bengaluru-urban.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಂಗಳೂರು ನಗರ</span>
-      <span class="d-side-tag">28 MLA</span>
-    </a>
-  
-    <a href="/districts/bengaluru-rural.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/mysuru.html" class="d-side-dist-btn ">
-      <span>📍 ಮೈಸೂರು</span>
-      <span class="d-side-tag">11 MLA</span>
-    </a>
-  
-    <a href="/districts/mandya.html" class="d-side-dist-btn ">
-      <span>📍 ಮಂಡ್ಯ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/belagavi.html" class="d-side-dist-btn ">
-      <span>📍 ಬೆಳಗಾವಿ</span>
-      <span class="d-side-tag">18 MLA</span>
-    </a>
-  
-    <a href="/districts/kalaburagi.html" class="d-side-dist-btn ">
-      <span>📍 ಕಲಬುರಗಿ</span>
-      <span class="d-side-tag">9 MLA</span>
-    </a>
-  
-    <a href="/districts/dakshina-kannada.html" class="d-side-dist-btn active">
-      <span>📍 ದಕ್ಷಿಣ ಕನ್ನಡ</span>
-      <span class="d-side-tag">8 MLA</span>
-    </a>
-  
-    <a href="/districts/shivamogga.html" class="d-side-dist-btn ">
-      <span>📍 ಶಿವಮೊಗ್ಗ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/ballari.html" class="d-side-dist-btn ">
-      <span>📍 ಬಳ್ಳಾರಿ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/dharwad.html" class="d-side-dist-btn ">
-      <span>📍 ಧಾರವಾಡ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/hassan.html" class="d-side-dist-btn ">
-      <span>📍 ಹಾಸನ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/tumakuru.html" class="d-side-dist-btn ">
-      <span>📍 ತುಮಕೂರು</span>
-      <span class="d-side-tag">11 MLA</span>
-    </a>
-  
-    <a href="/districts/udupi.html" class="d-side-dist-btn ">
-      <span>📍 ಉಡುಪಿ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/kodagu.html" class="d-side-dist-btn ">
-      <span>📍 ಕೊಡಗು</span>
-      <span class="d-side-tag">2 MLA</span>
-    </a>
-  
-    <a href="/districts/bagalkote.html" class="d-side-dist-btn ">
-      <span>📍 ಬಾಗಲಕೋಟೆ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/chamarajanagara.html" class="d-side-dist-btn ">
-      <span>📍 ಚಾಮರಾಜನಗರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/chikkaballapura.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿಕ್ಕಬಳ್ಳಾಪುರ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/chikkamagaluru.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿಕ್ಕಮಗಳೂರು</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/chitradurga.html" class="d-side-dist-btn ">
-      <span>📍 ಚಿತ್ರದುರ್ಗ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/davanagere.html" class="d-side-dist-btn ">
-      <span>📍 ದಾವಣಗೆರೆ</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/gadag.html" class="d-side-dist-btn ">
-      <span>📍 ಗದಗ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/haveri.html" class="d-side-dist-btn ">
-      <span>📍 ಹಾವೇರಿ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/kolar.html" class="d-side-dist-btn ">
-      <span>📍 ಕೋಲಾರ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/koppal.html" class="d-side-dist-btn ">
-      <span>📍 ಕೊಪ್ಪಳ</span>
-      <span class="d-side-tag">5 MLA</span>
-    </a>
-  
-    <a href="/districts/raichur.html" class="d-side-dist-btn ">
-      <span>📍 ರಾಯಚೂರು</span>
-      <span class="d-side-tag">7 MLA</span>
-    </a>
-  
-    <a href="/districts/ramanagara.html" class="d-side-dist-btn ">
-      <span>📍 ರಾಮನಗರ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/uttara-kannada.html" class="d-side-dist-btn ">
-      <span>📍 ಉತ್ತರ ಕನ್ನಡ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/vijayanagara.html" class="d-side-dist-btn ">
-      <span>📍 ವಿಜಯನಗರ</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
-    <a href="/districts/vijayapura.html" class="d-side-dist-btn ">
-      <span>📍 ವಿಜಯಪುರ</span>
-      <span class="d-side-tag">8 MLA</span>
-    </a>
-  
-    <a href="/districts/yadgir.html" class="d-side-dist-btn ">
-      <span>📍 ಯಾದಗಿರಿ</span>
-      <span class="d-side-tag">4 MLA</span>
-    </a>
-  
-    <a href="/districts/bidar.html" class="d-side-dist-btn ">
-      <span>📍 ಬೀದರ್</span>
-      <span class="d-side-tag">6 MLA</span>
-    </a>
-  
+            <a href="/districts/bengaluru-urban.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಂಗಳೂರು ನಗರ</span>
+              <span class="d-side-tag">28 MLA</span>
+            </a>
+            
+            <a href="/districts/bengaluru-rural.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/mysuru.html" class="d-side-dist-btn ">
+              <span>📍 ಮೈಸೂರು</span>
+              <span class="d-side-tag">11 MLA</span>
+            </a>
+            
+            <a href="/districts/mandya.html" class="d-side-dist-btn ">
+              <span>📍 ಮಂಡ್ಯ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/belagavi.html" class="d-side-dist-btn ">
+              <span>📍 ಬೆಳಗಾವಿ</span>
+              <span class="d-side-tag">18 MLA</span>
+            </a>
+            
+            <a href="/districts/kalaburagi.html" class="d-side-dist-btn ">
+              <span>📍 ಕಲಬುರಗಿ</span>
+              <span class="d-side-tag">9 MLA</span>
+            </a>
+            
+            <a href="/districts/dakshina-kannada.html" class="d-side-dist-btn active">
+              <span>📍 ದಕ್ಷಿಣ ಕನ್ನಡ</span>
+              <span class="d-side-tag">8 MLA</span>
+            </a>
+            
+            <a href="/districts/shivamogga.html" class="d-side-dist-btn ">
+              <span>📍 ಶಿವಮೊಗ್ಗ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/ballari.html" class="d-side-dist-btn ">
+              <span>📍 ಬಳ್ಳಾರಿ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/dharwad.html" class="d-side-dist-btn ">
+              <span>📍 ಧಾರವಾಡ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/hassan.html" class="d-side-dist-btn ">
+              <span>📍 ಹಾಸನ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/tumakuru.html" class="d-side-dist-btn ">
+              <span>📍 ತುಮಕೂರು</span>
+              <span class="d-side-tag">11 MLA</span>
+            </a>
+            
+            <a href="/districts/udupi.html" class="d-side-dist-btn ">
+              <span>📍 ಉಡುಪಿ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/kodagu.html" class="d-side-dist-btn ">
+              <span>📍 ಕೊಡಗು</span>
+              <span class="d-side-tag">2 MLA</span>
+            </a>
+            
+            <a href="/districts/koppal.html" class="d-side-dist-btn ">
+              <span>📍 ಕೊಪ್ಪಳ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/vijayapura.html" class="d-side-dist-btn ">
+              <span>📍 ವಿಜಯಪುರ</span>
+              <span class="d-side-tag">8 MLA</span>
+            </a>
+            
+            <a href="/districts/bagalkote.html" class="d-side-dist-btn ">
+              <span>📍 ಬಾಗಲಕೋಟೆ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/chamarajanagara.html" class="d-side-dist-btn ">
+              <span>📍 ಚಾಮರಾಜನಗರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/chikkaballapura.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿಕ್ಕಬಳ್ಳಾಪುರ</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/chikkamagaluru.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿಕ್ಕಮಗಳೂರು</span>
+              <span class="d-side-tag">5 MLA</span>
+            </a>
+            
+            <a href="/districts/chitradurga.html" class="d-side-dist-btn ">
+              <span>📍 ಚಿತ್ರದುರ್ಗ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/davanagere.html" class="d-side-dist-btn ">
+              <span>📍 ದಾವಣಗೆರೆ</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/gadag.html" class="d-side-dist-btn ">
+              <span>📍 ಗದಗ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/haveri.html" class="d-side-dist-btn ">
+              <span>📍 ಹಾವೇರಿ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/kolar.html" class="d-side-dist-btn ">
+              <span>📍 ಕೋಲಾರ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/raichur.html" class="d-side-dist-btn ">
+              <span>📍 ರಾಯಚೂರು</span>
+              <span class="d-side-tag">7 MLA</span>
+            </a>
+            
+            <a href="/districts/ramanagara.html" class="d-side-dist-btn ">
+              <span>📍 ರಾಮನಗರ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/uttara-kannada.html" class="d-side-dist-btn ">
+              <span>📍 ಉತ್ತರ ಕನ್ನಡ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/vijayanagara.html" class="d-side-dist-btn ">
+              <span>📍 ವಿಜಯನಗರ</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
+            <a href="/districts/yadgir.html" class="d-side-dist-btn ">
+              <span>📍 ಯಾದಗಿರಿ</span>
+              <span class="d-side-tag">4 MLA</span>
+            </a>
+            
+            <a href="/districts/bidar.html" class="d-side-dist-btn ">
+              <span>📍 ಬೀದರ್</span>
+              <span class="d-side-tag">6 MLA</span>
+            </a>
+            
       </div>
     </div>
 
@@ -623,31 +609,5 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
 
 <script src="/data-loader.js"></script>
 <script src="/nav-component.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    const distKey = "dakshina-kannada";
-    if (typeof NK !== 'undefined') {
-      try {
-        const petrolData = await NK.petrol();
-        if (petrolData && petrolData.districts) {
-          const pObj = petrolData.districts[distKey] || petrolData.districts[distKey.replace('-', '_')] || {};
-          const tKeys = Object.keys(pObj.taluks || {});
-          if (tKeys.length > 0) {
-            const mainT = pObj.taluks[tKeys[0]];
-            const pEl = document.getElementById('sidebar-petrol-val');
-            const dEl = document.getElementById('sidebar-diesel-val');
-            if (pEl && mainT.petrol) pEl.textContent = '₹' + mainT.petrol.toFixed(2);
-            if (dEl && mainT.diesel) dEl.textContent = 'ಡೀಸೆಲ್: ₹' + mainT.diesel.toFixed(2);
-          }
-        }
-        const goldData = await NK.gold();
-        if (goldData && goldData.baseGold) {
-          const gEl = document.getElementById('sidebar-gold-val');
-          if (gEl && goldData.baseGold[22]) gEl.textContent = '₹' + Math.round(goldData.baseGold[22]).toLocaleString('en-IN') + ' /g';
-        }
-      } catch(e) {}
-    }
-  });
-</script>
 </body>
 </html>
