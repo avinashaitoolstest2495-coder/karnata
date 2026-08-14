@@ -207,9 +207,9 @@ function slugify(text) {
     allCandidates.push(...store);
   } catch(e) {}
 
-  // 2. Fetch from Cloudflare Worker API
+  // 2. Fetch from static data/cms_articles.json
   try {
-    const res = await fetch('https://karnata-cms.avinashaitoolstest2495.workers.dev/admin/api/articles');
+    const res = await fetch('/data/cms_articles.json?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
       if (data && data.articles) {
@@ -249,8 +249,9 @@ function slugify(text) {
 
   if (targetSlug) {
     const normTarget = slugify(targetSlug);
+    const targetWords = normTarget.split('-').filter(w => w.length > 2);
 
-    // Exact ID, Slug or Title Match
+    // 1. Exact ID, Slug or Title Match
     article = allCandidates.find(x => 
       x.id === targetSlug || 
       x.slug === targetSlug || 
@@ -263,7 +264,32 @@ function slugify(text) {
       slugify(x.title || '') === normTarget
     );
 
-    // Partial Substring Match
+    // 2. Keyword & Word-Overlap Match
+    if (!article) {
+      let bestScore = 0;
+      allCandidates.forEach(x => {
+        const combined = (
+          (x.id || '') + ' ' + 
+          (x.slug || '') + ' ' + 
+          (x.title_kn || '') + ' ' + 
+          (x.title_en || '') + ' ' + 
+          (x.title || '') + ' ' + 
+          (x.keywords || '')
+        ).toLowerCase();
+
+        let matches = 0;
+        targetWords.forEach(w => {
+          if (combined.includes(w)) matches++;
+        });
+
+        if (matches > bestScore && matches >= Math.min(2, targetWords.length)) {
+          bestScore = matches;
+          article = x;
+        }
+      });
+    }
+
+    // 3. Substring containment
     if (!article) {
       article = allCandidates.find(x => {
         const tKn = (x.title_kn || '').toLowerCase();
@@ -275,8 +301,8 @@ function slugify(text) {
     }
   }
 
-  // Fallback to first available article if still null
-  if (!article && allCandidates.length > 0) {
+  // Only fallback if NO target was requested at all
+  if (!article && !targetSlug && allCandidates.length > 0) {
     article = allCandidates[0];
   }
 

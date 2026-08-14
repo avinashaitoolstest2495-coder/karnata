@@ -1951,13 +1951,22 @@ function renderPetrol(cities){
 }
 
 // ── Local news renderer ────────────────────────────────
+function slugify(text) {
+  if (!text) return '';
+  return text.toString().toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function renderLocalNews(articles, distKn) {
   let cmsArticles = [];
   try {
     const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
     cmsArticles = store.filter(a => a.status === 'published').map(a => {
       const cat = (a.category || 'politics').toLowerCase();
-      const slug = a.slug || a.id;
+      const slug = a.slug || slugify(a.id || a.title_kn);
       return {
         title: a.title_kn,
         url: `/news/${cat}/${slug}`,
