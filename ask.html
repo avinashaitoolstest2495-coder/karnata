@@ -6,10 +6,10 @@
   <title>askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಎಐ ಸಹಾಯಕ | Karnata.in</title>
 
   <!-- Open Graph & Meta -->
-  <meta name="description" content="askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ ಸಹಾಯಕ. ಬಂಗಾರ ದರ, ಹವಾಮಾನ, APMC ಧಾರಣೆ, ಶಾಸಕರು ಮತ್ತು ಸಂಸದರ ಮಾಹಿತಿ.">
+  <meta name="description" content="askKARNATA AI — ಕರ್ನಾಟಕದ ಪ್ರಥಮ ಎಐ ಸಹಾಯಕಿ. ಬಂಗಾರ ದರ, ಹವಾಮಾನ, APMC ಕೃಷಿ ದರಗಳು, ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ, ಶಾಸಕರು ಹಾಗೂ ಸಂಸದರ ಮಾಹಿತಿ.">
   <meta property="og:title" content="askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಎಐ ಸಹಾಯಕ">
 
-  <!-- Clean Minimalist Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,14 +18,16 @@
   <style>
     :root {
       --bg-base: #0B0C10;
-      --bg-surface: #14161D;
-      --bg-elevated: #1B1E28;
-      --bg-hover: #232734;
+      --bg-sidebar: #101217;
+      --bg-surface: #171922;
+      --bg-elevated: #1E212D;
+      --bg-hover: #262A38;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-focus: rgba(255, 255, 255, 0.25);
       --accent-coral: #E11D48;
       --accent-blue: #38BDF8;
       --accent-green: #34D399;
+      --accent-gold: #FBBF24;
       --text-primary: #F8FAFC;
       --text-secondary: #94A3B8;
       --text-tertiary: #64748B;
@@ -47,15 +49,15 @@
 
     footer, .site-footer, #nk-mob-nav, .nk-nav { display: none !important; }
 
-    /* MINIMAL TOP BAR */
+    /* TOP BAR */
     .top-bar {
       height: 54px;
-      padding: 0 20px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border-subtle);
-      background: rgba(11, 12, 16, 0.85);
+      background: rgba(11, 12, 16, 0.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       position: sticky;
@@ -65,21 +67,20 @@
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       text-decoration: none;
       color: var(--text-primary);
     }
-    .brand-icon {
-      width: 22px;
-      height: 22px;
-      background: linear-gradient(135deg, #E11D48, #F43F5E);
-      border-radius: 6px;
+    .logo-container {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 900;
-      color: #FFF;
+      gap: 8px;
+    }
+    .logo-img {
+      height: 32px;
+      max-width: 140px;
+      object-fit: contain;
+      border-radius: 4px;
     }
     .brand-title {
       font-family: var(--font-en);
@@ -116,7 +117,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
     .btn-clean:hover {
       background: var(--bg-hover);
@@ -124,26 +125,132 @@
       border-color: var(--border-focus);
     }
 
-    /* MAIN CONTAINER */
-    .main-wrap {
+    /* APP LAYOUT */
+    .app-body {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 54px);
+    }
+
+    /* LEFT CHAT HISTORY SIDEBAR */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      padding: 14px 12px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 54px;
+      height: calc(100vh - 54px);
+      overflow-y: auto;
+      transition: transform 0.2s ease;
+    }
+    .btn-sidebar-new {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: all 0.15s;
+    }
+    .btn-sidebar-new:hover {
+      background: var(--accent-coral);
+      border-color: var(--accent-coral);
+      color: #FFF;
+    }
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+    .history-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .btn-clear-history {
+      background: none;
+      border: none;
+      color: var(--text-tertiary);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+    .btn-clear-history:hover { color: var(--accent-coral); }
+    .history-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+    .history-item {
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+    .history-item:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+      transform: translateX(2px);
+    }
+    .history-item.active {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--accent-coral);
+    }
+    .history-empty {
+      font-size: 12.5px;
+      color: var(--text-tertiary);
+      padding: 16px 8px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* MAIN CHAT CONTENT AREA */
+    .main-canvas {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
       padding: 24px 16px 100px;
+      max-width: 820px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     /* HERO WELCOME SCREEN */
     .hero-box {
       text-align: center;
-      margin: 40px 0 28px;
+      margin: 32px 0 24px;
       animation: fadeIn 0.3s ease-out;
+      width: 100%;
     }
     .hero-head {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: 6px;
@@ -157,7 +264,7 @@
       line-height: 1.5;
     }
 
-    /* CATEGORY QUICK CHIPS */
+    /* CATEGORY CHIPS */
     .chips-row {
       display: flex;
       gap: 8px;
@@ -230,7 +337,7 @@
     .stream {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
       width: 100%;
     }
     .group {
@@ -238,14 +345,15 @@
       flex-direction: column;
       gap: 10px;
       animation: fadeIn 0.25s ease-out;
+      width: 100%;
     }
     .user-bubble {
       align-self: flex-end;
       background: var(--bg-elevated);
       color: var(--text-primary);
-      padding: 10px 16px;
+      padding: 12px 18px;
       border-radius: 18px 18px 4px 18px;
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 600;
       max-width: 85%;
       border: 1px solid var(--border-subtle);
@@ -256,45 +364,77 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 16px 16px 16px 4px;
-      padding: 18px;
+      padding: 20px;
       width: 100%;
     }
     .ai-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border-subtle);
     }
+    .ai-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .ai-badge-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--accent-green);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
     }
     .ai-title {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 800;
       font-family: var(--font-en);
-      color: var(--text-secondary);
+      color: var(--text-primary);
+    }
+    .ai-source-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
     .ai-body {
-      font-size: 14.5px;
-      line-height: 1.75;
+      font-size: 15px;
+      line-height: 1.8;
       color: var(--text-primary);
       word-break: break-word;
     }
     .ai-body h3 {
-      font-size: 16.5px;
+      font-size: 17px;
       font-weight: 800;
       color: #FFF;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .ai-body p { margin-bottom: 10px; }
-    .ai-body ul { margin-left: 20px; margin-bottom: 10px; }
-    .ai-body li { margin-bottom: 5px; }
+    .ai-body ul { margin-left: 20px; margin-bottom: 12px; }
+    .ai-body li { margin-bottom: 6px; }
+
+    /* DATA METRIC CARDS */
+    .data-cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .data-metric-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .dm-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .dm-value { font-size: 18px; font-weight: 800; color: #FFF; }
+    .dm-sub { font-size: 11px; color: var(--accent-green); margin-top: 2px; }
 
     /* RELATED LINKS */
     .links-box {
@@ -310,7 +450,7 @@
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
       padding: 6px 12px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--accent-blue);
       text-decoration: none;
@@ -330,7 +470,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(11, 12, 16, 0.9);
+      background: rgba(11, 12, 16, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
@@ -341,7 +481,7 @@
     }
     .input-box {
       width: 100%;
-      max-width: 760px;
+      max-width: 820px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 28px;
@@ -392,20 +532,24 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
-      .hero-head { font-size: 28px; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .hero-head { font-size: 26px; }
       .chips-row { justify-content: flex-start; }
-      .main-wrap { padding: 16px 12px 90px; }
+      .main-canvas { padding: 16px 12px 90px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- MINIMAL CLEAN TOP BAR -->
+  <!-- TOP APP BAR -->
   <header class="top-bar">
     <a href="/ask.html" class="brand-wrap">
-      <div class="brand-icon">✦</div>
-      <div class="brand-title">ask<span>KARNATA</span></div>
+      <!-- LOGO IMAGE SLOT: Replace /karnata-logo.png with your custom logo file -->
+      <div class="logo-container">
+        <img id="ask-logo-img" src="/karnata-logo.png" alt="askKARNATA Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="brand-title">ask<span>KARNATA</span></div>
+      </div>
       <span class="brand-tag">AI</span>
     </a>
     <div class="top-actions">
@@ -414,54 +558,74 @@
     </div>
   </header>
 
-  <!-- MAIN CANVAS -->
-  <main class="main-wrap">
+  <div class="app-body">
 
-    <!-- INITIAL HERO VIEW -->
-    <div id="hero-view">
-      <div class="hero-box">
-        <h1 class="hero-head">ಇಂದು ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲೇನಿದೆ?</h1>
-        <p class="hero-desc">ಕರ್ನಾಟಕದ ಬಂಗಾರ ದರ, ಹವಾಮಾನ, APMC ಧಾರಣೆ, ಶಾಸಕರು ಮತ್ತು ಚುನಾವಣಾ ಮಾಹಿತಿ ಕುರಿತು ಕೇಳಿ</p>
+    <!-- LEFT CHAT HISTORY SIDEBAR (PERSISTENT IN LOCALSTORAGE) -->
+    <aside class="sidebar">
+      <button class="btn-sidebar-new" onclick="resetChat()">
+        <span>+</span> ನೂತನ ಚಾಟ್ (New Chat)
+      </button>
+
+      <div class="history-header">
+        <span class="history-label">ಇತ್ತೀಚಿನ ಪ್ರಶ್ನೆಗಳು</span>
+        <button class="btn-clear-history" onclick="clearAllHistory()" title="Clear History">ಅಳಿಸು (Clear)</button>
       </div>
 
-      <!-- CATEGORY CHIPS -->
-      <div class="chips-row">
-        <button class="chip" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?')">💰 ಬಂಗಾರ & ಬೆಳ್ಳಿ</button>
-        <button class="chip" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">🌧️ ಹವಾಮಾನ & ಮಳೆ</button>
-        <button class="chip" onclick="askPreset('ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?')">🌾 APMC ಮಾರುಕಟ್ಟೆ</button>
-        <button class="chip" onclick="askPreset('2024 ಕೊಪ್ಪಳ ಲೋಕಸಭಾ ಸಂಸದರು ಯಾರು?')">🏛️ ಶಾಸಕರು & ಸಂಸದರು</button>
-        <button class="chip" onclick="askPreset('ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಲ್ಲಿ ಇಂದಿನ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?')">🚰 ಜಲಾಶಯಗಳ ನೀರು</button>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">ಹಿಂದಿನ ಸಂಭಾಷಣೆಗಳು ಇಲ್ಲಿ ಸೇವ್ ಆಗುತ್ತವೆ.</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CANVAS -->
+    <main class="main-canvas">
+
+      <!-- INITIAL HERO VIEW -->
+      <div id="hero-view">
+        <div class="hero-box">
+          <h1 class="hero-head">ಇಂದು ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲೇನಿದೆ?</h1>
+          <p class="hero-desc">ಕರ್ನಾಟಕದ ಬಂಗಾರ ದರ, ಹವಾಮಾನ, APMC ಧಾರಣೆ, ಶಾಸಕರು ಮತ್ತು ಚುನಾವಣಾ ಮಾಹಿತಿ ಕುರಿತು ಕೇಳಿ</p>
+        </div>
+
+        <!-- CATEGORY CHIPS -->
+        <div class="chips-row">
+          <button class="chip" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?')">💰 ಬಂಗಾರ & ಬೆಳ್ಳಿ</button>
+          <button class="chip" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">🌧️ ಹವಾಮಾನ & ಮಳೆ</button>
+          <button class="chip" onclick="askPreset('ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?')">🌾 APMC ಮಾರುಕಟ್ಟೆ</button>
+          <button class="chip" onclick="askPreset('2024 ಕೊಪ್ಪಳ ಲೋಕಸಭಾ ಸಂಸದರು ಯಾರು?')">🏛️ ಶಾಸಕರು & ಸಂಸದರು</button>
+          <button class="chip" onclick="askPreset('ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಲ್ಲಿ ಇಂದಿನ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?')">🚰 ಜಲಾಶಯಗಳ ನೀರು</button>
+        </div>
+
+        <!-- SUGGESTED PROMPTS -->
+        <div class="prompts-list">
+          <div class="prompt-card" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?')">
+            <span>ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?</span>
+            <span class="prompt-arrow">→</span>
+          </div>
+          <div class="prompt-card" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">
+            <span>ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ? (Rain Forecast)</span>
+            <span class="prompt-arrow">→</span>
+          </div>
+          <div class="prompt-card" onclick="askPreset('ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?')">
+            <span>ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?</span>
+            <span class="prompt-arrow">→</span>
+          </div>
+          <div class="prompt-card" onclick="askPreset('2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?')">
+            <span>2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?</span>
+            <span class="prompt-arrow">→</span>
+          </div>
+          <div class="prompt-card" onclick="askPreset('ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ')">
+            <span>ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ</span>
+            <span class="prompt-arrow">→</span>
+          </div>
+        </div>
       </div>
 
-      <!-- SUGGESTED PROMPTS -->
-      <div class="prompts-list">
-        <div class="prompt-card" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?')">
-          <span>ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?</span>
-          <span class="prompt-arrow">→</span>
-        </div>
-        <div class="prompt-card" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">
-          <span>ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ? (Rain Forecast)</span>
-          <span class="prompt-arrow">→</span>
-        </div>
-        <div class="prompt-card" onclick="askPreset('ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?')">
-          <span>ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?</span>
-          <span class="prompt-arrow">→</span>
-        </div>
-        <div class="prompt-card" onclick="askPreset('2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?')">
-          <span>2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?</span>
-          <span class="prompt-arrow">→</span>
-        </div>
-        <div class="prompt-card" onclick="askPreset('ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ')">
-          <span>ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ</span>
-          <span class="prompt-arrow">→</span>
-        </div>
-      </div>
-    </div>
+      <!-- CHAT MESSAGES STREAM -->
+      <div class="stream" id="messages-stream"></div>
 
-    <!-- CHAT MESSAGES STREAM -->
-    <div class="stream" id="messages-stream"></div>
+    </main>
 
-  </main>
+  </div>
 
   <!-- BOTTOM FLOATING INPUT BAR -->
   <div class="bottom-bar">
@@ -473,7 +637,12 @@
 
   <script src="/ask-ai-engine.js"></script>
   <script>
+    const STORAGE_KEY = 'ask_karnata_history_v1';
+    let currentHistory = [];
+
     document.addEventListener('DOMContentLoaded', async () => {
+      loadHistoryFromStorage();
+
       if (window.AskKARNATAEngine) {
         await window.AskKARNATAEngine.init();
       }
@@ -487,6 +656,92 @@
         submitQuery(decoded);
       }
     });
+
+    // ── LocalStorage Chat History ─────────────────────────────
+    function loadHistoryFromStorage() {
+      try {
+        currentHistory = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      } catch (e) { currentHistory = []; }
+      renderHistoryList();
+    }
+
+    function saveHistoryToStorage(query, answerText, cards) {
+      if (!query) return;
+      const item = {
+        id: Date.now().toString(),
+        title: query.length > 35 ? query.substring(0, 32) + '...' : query,
+        query: query,
+        answer: answerText,
+        cards: cards || [],
+        timestamp: new Date().toISOString()
+      };
+      // Keep up to 25 recent items, deduplicating identical query
+      currentHistory = [item, ...currentHistory.filter(h => h.query !== query)].slice(0, 25);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentHistory));
+      renderHistoryList();
+    }
+
+    function renderHistoryList() {
+      const listEl = document.getElementById('history-list');
+      if (!currentHistory || currentHistory.length === 0) {
+        listEl.innerHTML = '<div class="history-empty">ಹಿಂದಿನ ಸಂಭಾಷಣೆಗಳು ಇಲ್ಲಿ ಸೇವ್ ಆಗುತ್ತವೆ.</div>';
+        return;
+      }
+      listEl.innerHTML = currentHistory.map(item => `
+        <div class="history-item" onclick="loadSavedChat('${item.id}')" title="${escapeHtml(item.query)}">
+          💬 ${escapeHtml(item.title)}
+        </div>
+      `).join('');
+    }
+
+    function clearAllHistory() {
+      if (confirm('ಎಲ್ಲಾ ಚಾಟ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಬೇಕೇ?')) {
+        currentHistory = [];
+        localStorage.removeItem(STORAGE_KEY);
+        renderHistoryList();
+      }
+    }
+
+    function loadSavedChat(id) {
+      const found = currentHistory.find(h => h.id === id);
+      if (!found) return;
+
+      document.getElementById('hero-view').style.display = 'none';
+      const stream = document.getElementById('messages-stream');
+      stream.innerHTML = '';
+
+      const msgGroup = document.createElement('div');
+      msgGroup.className = 'group';
+
+      let html = parseMarkdown(found.answer);
+      if (found.cards && found.cards.length > 0) {
+        html += `
+          <div class="links-box">
+            ${found.cards.map(c => `<a href="${c.url}" class="link-pill">${c.icon} ${c.title}</a>`).join('')}
+          </div>
+        `;
+      }
+
+      msgGroup.innerHTML = `
+        <div class="user-bubble">${escapeHtml(found.query)}</div>
+        <div class="ai-bubble">
+          <div class="ai-header">
+            <div class="ai-brand">
+              <div class="ai-badge-dot"></div>
+              <div class="ai-title">askKARNATA AI</div>
+            </div>
+            <span class="ai-source-badge">ಸೇವ್ ಮಾಡಿದ ಚಾಟ್</span>
+          </div>
+          <div class="ai-body">${html}</div>
+        </div>
+      `;
+
+      stream.appendChild(msgGroup);
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+      // Highlight active
+      document.querySelectorAll('.history-item').forEach(el => el.classList.remove('active'));
+    }
 
     function toggleSendBtn() {
       const val = document.getElementById('query-input').value.trim();
@@ -505,6 +760,7 @@
       document.getElementById('query-input').value = '';
       toggleSendBtn();
       document.getElementById('query-input').focus();
+      document.querySelectorAll('.history-item').forEach(el => el.classList.remove('active'));
     }
 
     function askPreset(promptText) {
@@ -528,8 +784,11 @@
         <div class="user-bubble">${escapeHtml(text)}</div>
         <div class="ai-bubble">
           <div class="ai-header">
-            <div class="ai-badge-dot"></div>
-            <div class="ai-title">askKARNATA AI</div>
+            <div class="ai-brand">
+              <div class="ai-badge-dot"></div>
+              <div class="ai-title">askKARNATA AI</div>
+            </div>
+            <span class="ai-source-badge">ಲೈವ್ ಪರಿಶೀಲನೆ</span>
           </div>
           <div class="ai-body">
             <div style="color:var(--text-secondary); font-size:14px;">⚡ ದತ್ತಾಂಶ ಪರಿಶೀಲಿಸಿ ಉತ್ತರಿಸಲಾಗುತ್ತಿದೆ...</div>
@@ -545,7 +804,6 @@
       // 2. Fetch from Cloudflare Pages Function /api/ask-ai or fallback to client engine
       let answerText = '';
       let cards = [];
-      let followups = [];
 
       try {
         const res = await fetch('/api/ask-ai', {
@@ -561,14 +819,13 @@
         }
       } catch (e) {}
 
-      // Client Fallback if API not responding or client has richer links
+      // Client Fallback if API not responding or client has richer data
       const clientRes = window.AskKARNATAEngine ? window.AskKARNATAEngine.query(text) : null;
       if (!answerText && clientRes) {
         answerText = clientRes.text;
       }
-      if (clientRes) {
-        cards = clientRes.cards || [];
-        followups = clientRes.followups || [];
+      if (clientRes && clientRes.cards) {
+        cards = clientRes.cards;
       }
 
       const aiContentEl = msgGroup.querySelector('.ai-body');
@@ -584,6 +841,7 @@
         }
 
         aiContentEl.innerHTML = html;
+        saveHistoryToStorage(text, answerText, cards);
       } else {
         aiContentEl.innerHTML = `<p>ಕ್ಷಮಿಸಿ, ಈ ಪ್ರಶ್ನೆಗೆ ಮಾಹಿತಿ ಲಭ್ಯವಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಬಂಗಾರ ದರ, ಹವಾಮಾನ, ಸುದ್ದಿ, APMC ದರಗಳು ಅಥವಾ ಚುನಾವಣೆಯ ಕುರಿತು ಕೇಳಿ.</p>`;
       }
