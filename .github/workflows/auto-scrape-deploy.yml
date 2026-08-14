@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   scrape-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     permissions:
       contents: write
     steps:
@@ -39,7 +39,6 @@ jobs:
           if [ -f package.json ]; then npm install || true; fi
           if [ -f scraper/requirements.txt ]; then pip install -r scraper/requirements.txt || true; fi
           pip install requests beautifulsoup4 pandas playwright || true
-          playwright install --with-deps chromium || true
 
       - name: 📊 Run Gold, Dam Water Level, Weather & Petrol Scrapers
         run: |
