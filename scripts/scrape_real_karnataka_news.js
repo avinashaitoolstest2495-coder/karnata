@@ -141,6 +141,7 @@ async function scrapeAllDistrictsNews() {
     total_articles: allArticlesList.length,
     districts_count: Object.keys(scrapedDataByDistrict).length,
     districts: scrapedDataByDistrict,
+    district_buckets: scrapedDataByDistrict,
     news: allArticlesList
   };
 

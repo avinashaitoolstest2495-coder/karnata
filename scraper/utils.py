@@ -117,9 +117,12 @@ def push_to_cloudflare_kv(key: str, data: dict) -> bool:
         log.error(f"❌ CF KV push failed: {e}")
         return False
 
-# ─── Combined save: local + cloud (obfuscated payload wrapper) ─
 def store(filename: str, kv_key: str, data: dict):
-    """Sanitize, encrypt payload, save locally and push to Cloudflare KV."""
+    """Sanitize, encrypt payload, save locally and push to Cloudflare KV with failsafe snapshot protection."""
+    if not data or not isinstance(data, dict):
+        log.warning(f"⚠️ Empty payload received for {filename}. Skipping save to preserve existing data.")
+        return
+
     clean_data = sanitize_dict(data)
     encrypted_payload = encrypt_payload(clean_data)
     
