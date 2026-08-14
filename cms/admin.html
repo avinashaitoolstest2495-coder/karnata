@@ -550,10 +550,69 @@ a:hover { color: var(--wp-blue-hover); text-decoration: underline; }
         </div>
       </div>
 
-      <div class="gb-panel-section">
-        <div class="gb-panel-title">Excerpt (ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ)</div>
+      <div class="gb-panel-section" style="border-left: 3px solid #2563EB;">
+        <div class="gb-panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>🎯 Google SEO & Keywords</span>
+          <span id="seoScoreBadge" style="background:#22C55E; color:#FFF; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:800;">SEO 100/100</span>
+        </div>
+        
+        <!-- Live Google Snippet Preview -->
+        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:8px; padding:12px; margin-bottom:14px;">
+          <div style="font-size:11px; color:#64748B; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Google Search Preview (ಗೂಗಲ್ ಪ್ರಿವ್ಯೂ)</div>
+          <div style="font-size:11px; color:#202124; display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+            <img src="/karnata-logo.png" style="height:12px;" onerror="this.style.display='none'">
+            <span>karnata.in</span> › <span id="serpCategorySlug" style="color:#5F6368;">news</span> › <span id="serpPostSlug" style="color:#5F6368;">article</span>
+          </div>
+          <div id="serpTitlePreview" style="color:#1A0DAB; font-size:16px; font-weight:600; line-height:1.3; cursor:pointer; margin-bottom:4px; font-family:sans-serif;">
+            ಲೇಖನದ ಶೀರ್ಷಿಕೆ | ಕರ್ನಾಟ
+          </div>
+          <div id="serpDescPreview" style="color:#4D5156; font-size:12.5px; line-height:1.45; font-family:sans-serif;">
+            ಲೇಖನದ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ ಗೂಗಲ್ ಹುಡುಕಾಟದಲ್ಲಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ...
+          </div>
+        </div>
+
         <div class="gb-field">
-          <textarea id="gbSummary" style="min-height:70px;" placeholder="Write an excerpt for cards..."></textarea>
+          <label>Focus Keywords (ಮುಖ್ಯ ಕೀವರ್ಡ್ಸ್)</label>
+          <input type="text" id="gbKeywords" placeholder="e.g. karnataka cabinet ministers, ಸಚಿವರ ಪಟ್ಟಿ" oninput="updateSeoAnalysis()">
+          <div style="font-size:11px; color:#64748B; margin-top:2px;">💡 ಅಲ್ಪವಿರಾಮ (comma) ಬಳಸಿ ಕೀವರ್ಡ್‌ಗಳನ್ನು ನಮೂದಿಸಿ</div>
+        </div>
+
+        <div class="gb-field">
+          <label>SEO Meta Title (ಗೂಗಲ್ ಶೀರ್ಷಿಕೆ)</label>
+          <input type="text" id="gbSeoTitle" placeholder="ಶೀರ್ಷಿಕೆ ನಮೂದಿಸಿ..." oninput="updateSeoAnalysis()">
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748B; margin-top:2px;">
+            <span id="titleCount">0 / 60 ಅಕ್ಷರಗಳು</span>
+            <span id="titleStatus" style="color:#16A34A; font-weight:700;">ಸೂಕ್ತ ಉದ್ದ</span>
+          </div>
+        </div>
+
+        <div class="gb-field">
+          <label>Schema.org Structured Data</label>
+          <select id="gbSchemaType">
+            <option value="NewsArticle">NewsArticle (ಸುದ್ದಿ ಲೇಖನ - Recommended)</option>
+            <option value="GovernmentService">GovernmentService (ಸರ್ಕಾರಿ ಸೇವೆ/ಯೋಜನೆ)</option>
+            <option value="FAQPage">FAQPage (ಪ್ರಶ್ನೋತ್ತರ ವಿವರಣೆ)</option>
+            <option value="BlogPosting">BlogPosting (ಬ್ಲಾಗ್ ಲೇಖನ)</option>
+          </select>
+        </div>
+
+        <!-- SEO Checklist -->
+        <div style="background:#FFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px; display:flex; flex-direction:column; gap:4px; margin-top:10px;">
+          <div id="chkKeywordTitle">✅ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಇದೆ</div>
+          <div id="chkKeywordDesc">✅ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯಲ್ಲಿ ಕೀವರ್ಡ್ ಇದೆ</div>
+          <div id="chkWordCount">✅ ಲೇಖನದ ಉದ್ದ 200+ ಪದಗಳಿವೆ</div>
+          <div id="chkSlug">✅ SEO Clean URL ಸ್ಲಗ್ ರಚಿಸಲಾಗಿದೆ</div>
+        </div>
+      </div>
+
+      <div class="gb-panel-section">
+        <div class="gb-panel-title">Excerpt (ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ & Meta Description)</div>
+        <div class="gb-field">
+          <textarea id="gbSummary" style="min-height:70px;" placeholder="ಗೂಗಲ್ ಹಾಗೂ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಕಾರ್ಡ್‌ಗಳಿಗೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ..." oninput="updateSeoAnalysis()"></textarea>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748B; margin-top:2px;">
+            <span id="descCount">0 / 160 ಅಕ್ಷರಗಳು</span>
+            <span id="descStatus" style="color:#16A34A; font-weight:700;">ಸೂಕ್ತ</span>
+          </div>
         </div>
       </div>
 
@@ -929,6 +988,119 @@ function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function slugify(text) {
+  if (!text) return '';
+  return text.toString().toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function updateSeoAnalysis() {
+  const title = (document.getElementById('gbSeoTitle').value || document.getElementById('gbTitleInput').value || '').trim();
+  const summary = (document.getElementById('gbSummary').value || '').trim();
+  const keywordsStr = (document.getElementById('gbKeywords').value || '').trim();
+  const keywords = keywordsStr.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+  const slug = (document.getElementById('gbSlugInput').value || 'article').trim();
+  const category = (document.getElementById('gbCategory').value || 'news').trim();
+  const bodyText = (document.getElementById('gb-editor-area').innerText || '').trim();
+  const words = bodyText.split(/\s+/).filter(Boolean).length;
+
+  // 1. Google SERP Snippet Preview
+  document.getElementById('serpTitlePreview').textContent = (title || 'ಲೇಖನದ ಶೀರ್ಷಿಕೆ') + ' | ಕರ್ನಾಟ';
+  document.getElementById('serpDescPreview').textContent = summary || 'ಲೇಖನದ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ ಗೂಗಲ್ ಹುಡುಕಾಟದಲ್ಲಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ...';
+  document.getElementById('serpCategorySlug').textContent = category;
+  document.getElementById('serpPostSlug').textContent = slugify(slug) || 'article';
+
+  // 2. Character counters
+  const titleLen = title.length;
+  document.getElementById('titleCount').textContent = `${titleLen} / 60 ಅಕ್ಷರಗಳು`;
+  const tStatus = document.getElementById('titleStatus');
+  if (titleLen >= 30 && titleLen <= 65) {
+    tStatus.textContent = '✅ ಪರಿಪೂರ್ಣ ಉದ್ದ';
+    tStatus.style.color = '#16A34A';
+  } else if (titleLen > 65) {
+    tStatus.textContent = '⚠️ ಗೂಗಲ್ ಕಟ್ ಮಾಡಬಹುದು';
+    tStatus.style.color = '#EA580C';
+  } else {
+    tStatus.textContent = 'ತುಂಬಾ ಚಿಕ್ಕದು';
+    tStatus.style.color = '#64748B';
+  }
+
+  const descLen = summary.length;
+  document.getElementById('descCount').textContent = `${descLen} / 160 ಅಕ್ಷರಗಳು`;
+  const dStatus = document.getElementById('descStatus');
+  if (descLen >= 80 && descLen <= 160) {
+    dStatus.textContent = '✅ ಪರಿಪೂರ್ಣ';
+    dStatus.style.color = '#16A34A';
+  } else if (descLen > 160) {
+    dStatus.textContent = '⚠️ 160 ದಾಟಿದೆ';
+    dStatus.style.color = '#EA580C';
+  } else {
+    dStatus.textContent = 'ಸೂಕ್ತ';
+    dStatus.style.color = '#64748B';
+  }
+
+  // 3. SEO Checklist & Score
+  let score = 20;
+  
+  // Keyword in title
+  const hasKwInTitle = keywords.length > 0 && keywords.some(k => title.toLowerCase().includes(k));
+  const chkTitle = document.getElementById('chkKeywordTitle');
+  if (hasKwInTitle || keywords.length === 0) {
+    chkTitle.textContent = '✅ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಇದೆ';
+    chkTitle.style.color = '#16A34A';
+    score += 25;
+  } else {
+    chkTitle.textContent = '❌ ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಸೇರಿಸಿ';
+    chkTitle.style.color = '#DC2626';
+  }
+
+  // Keyword in description
+  const hasKwInDesc = keywords.length > 0 && keywords.some(k => summary.toLowerCase().includes(k));
+  const chkDesc = document.getElementById('chkKeywordDesc');
+  if (hasKwInDesc || keywords.length === 0) {
+    chkDesc.textContent = '✅ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯಲ್ಲಿ ಕೀವರ್ಡ್ ಇದೆ';
+    chkDesc.style.color = '#16A34A';
+    score += 25;
+  } else {
+    chkDesc.textContent = '❌ ವಿವರಣೆಯಲ್ಲಿ ಫೋಕಸ್ ಕೀವರ್ಡ್ ಸೇರಿಸಿ';
+    chkDesc.style.color = '#DC2626';
+  }
+
+  // Word count
+  const chkWords = document.getElementById('chkWordCount');
+  if (words >= 150) {
+    chkWords.textContent = `✅ ಲೇಖನದ ಉದ್ದ ಉತ್ತಮವಾಗಿದೆ (${words} ಪದಗಳು)`;
+    chkWords.style.color = '#16A34A';
+    score += 20;
+  } else {
+    chkWords.textContent = `⚠️ ಲೇಖನ ಕನಿಷ್ಠ 150+ ಪದಗಳಿರಲಿ (ಈಗ: ${words})`;
+    chkWords.style.color = '#EA580C';
+    score += 10;
+  }
+
+  // Slug check
+  const chkSlug = document.getElementById('chkSlug');
+  if (slug && slug.length > 3) {
+    chkSlug.textContent = `✅ SEO Clean URL: /news/${category}/${slugify(slug)}`;
+    chkSlug.style.color = '#16A34A';
+    score += 10;
+  } else {
+    chkSlug.textContent = '❌ URL ಸ್ಲಗ್ ನಮೂದಿಸಿ';
+    chkSlug.style.color = '#DC2626';
+  }
+
+  // Final score badge
+  score = Math.min(100, Math.max(20, score));
+  const scoreBadge = document.getElementById('seoScoreBadge');
+  scoreBadge.textContent = `SEO ${score}/100`;
+  if (score >= 80) scoreBadge.style.background = '#22C55E';
+  else if (score >= 50) scoreBadge.style.background = '#F59E0B';
+  else scoreBadge.style.background = '#EF4444';
+}
+
 function openEditor(defaultCat) {
   currentEditId = null;
   coverImageUrl = null;
@@ -940,10 +1112,13 @@ function openEditor(defaultCat) {
   document.getElementById('gbPriority').value = 10;
   document.getElementById('gbPinHome').checked = true;
   document.getElementById('gbSummary').value = '';
+  document.getElementById('gbKeywords').value = '';
+  document.getElementById('gbSeoTitle').value = '';
   document.getElementById('gbAuthor').value = 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
   document.getElementById('gb-editor-area').innerHTML = '<p>ಇಲ್ಲಿ ಬರೆಯಲು ಪ್ರಾರಂಭಿಸಿ...</p>';
   setCoverPreview(null);
   document.getElementById('gutenberg-editor').classList.add('open');
+  updateSeoAnalysis();
 }
 
 function editArticle(id) {
@@ -953,16 +1128,20 @@ function editArticle(id) {
   coverImageUrl = post.cover_image || null;
   document.getElementById('gbHeadTitle').textContent = 'Edit Post: ' + (post.title_kn || id);
   document.getElementById('gbTitleInput').value = post.title_kn || '';
-  document.getElementById('gbSlugInput').value = post.id;
+  document.getElementById('gbSlugInput').value = post.slug || post.id;
   document.getElementById('gbCategory').value = post.category || 'explainer';
   document.getElementById('gbTarget').value = post.target || '';
   document.getElementById('gbPriority').value = post.priority || 10;
   document.getElementById('gbPinHome').checked = !!post.pin_home;
   document.getElementById('gbSummary').value = post.summary_kn || '';
+  document.getElementById('gbKeywords').value = post.keywords || '';
+  document.getElementById('gbSeoTitle').value = post.seo_title || post.title_kn || '';
+  document.getElementById('gbSchemaType').value = post.schema_type || 'NewsArticle';
   document.getElementById('gbAuthor').value = post.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
   document.getElementById('gb-editor-area').innerHTML = post.body_html || '<p></p>';
   setCoverPreview(coverImageUrl);
   document.getElementById('gutenberg-editor').classList.add('open');
+  updateSeoAnalysis();
 }
 
 function closeEditor() {
@@ -1009,6 +1188,7 @@ function uploadCoverFile(file) {
 function gbCmd(cmd, val) {
   document.getElementById('gb-editor-area').focus();
   document.execCommand(cmd, false, val || null);
+  updateSeoAnalysis();
 }
 
 function gbLink() {
@@ -1032,15 +1212,23 @@ async function savePost(status) {
     return;
   }
 
+  const rawSlug = document.getElementById('gbSlugInput').value.trim() || title_kn;
+  const cleanSlug = slugify(rawSlug) || ('post-' + Date.now());
+  const category = document.getElementById('gbCategory').value || 'explainer';
+
   const payload = {
-    id: currentEditId || document.getElementById('gbSlugInput').value.trim() || ('post_' + Date.now()),
+    id: currentEditId || cleanSlug,
+    slug: cleanSlug,
     title_kn,
-    category: document.getElementById('gbCategory').value,
+    seo_title: document.getElementById('gbSeoTitle').value.trim() || title_kn,
+    keywords: document.getElementById('gbKeywords').value.trim(),
+    schema_type: document.getElementById('gbSchemaType').value || 'NewsArticle',
+    category,
     target: document.getElementById('gbTarget').value.trim(),
     priority: parseInt(document.getElementById('gbPriority').value, 10) || 10,
     author: document.getElementById('gbAuthor').value.trim(),
     pin_home: document.getElementById('gbPinHome').checked,
-    summary_kn: document.getElementById('gbSummary').value.trim(),
+    summary_kn: document.getElementById('gbSummary').value.trim() || title_kn,
     body_html: document.getElementById('gb-editor-area').innerHTML,
     cover_image: coverImageUrl,
     status,
@@ -1055,10 +1243,12 @@ async function savePost(status) {
   else postsData.unshift(payload);
   setLocalStore(postsData);
 
-  const liveUrl = 'https://karnata.in/article.html?id=' + encodeURIComponent(payload.id);
+  const cleanUrl = `https://karnata.in/news/${category}/${cleanSlug}`;
+  const directUrl = `https://karnata.in/article.html?id=${encodeURIComponent(payload.id)}`;
+  
   statusEl.textContent = 'Saved!';
   if (status === 'published') {
-    alert('🎉 Article Published Live!\n\nLive Article URL:\n' + liveUrl);
+    alert(`🎉 Article Published Live!\n\n🌐 SEO Clean URL:\n${cleanUrl}\n\n🔗 Direct URL:\n${directUrl}`);
   }
   setTimeout(() => { closeEditor(); loadPosts(); }, 500);
 }
