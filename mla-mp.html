@@ -274,7 +274,7 @@ function renderGrid() {
     const pClass = `party-${(item.party || 'IND').replace(/[^a-zA-Z]/g, '')}`;
     const slug = (item.name_en || '').toLowerCase().replace(/[^a-z0-9\s_]/g, '').trim().replace(/\s+/g, '_') + '_assembly_constituency';
     const mpSlug = (item.name_en || '').toLowerCase().replace(/[^a-z0-9\s_]/g, '').trim().replace(/\s+/g, '_') + '_lok_sabha';
-    const targetUrl = currentType === 'mla' ? `/mla/${slug}.html` : `/mp/${mpSlug}.html`;
+    const targetUrl = currentType === 'mla' ? `/mla/${item.code}.html` : `/mp/${item.code}.html`;
 
     return `
       <div class="const-card" onclick="location.href='${targetUrl}'">
@@ -295,7 +295,7 @@ function renderGrid() {
           </div>
           <div class="cc-meta">
             <div>
-              <div class="cc-meta-val">₹${(item.margin || 0).toLocaleString('en-IN')}</div>
+              <div class="cc-meta-val">+${(item.margin || 0).toLocaleString('en-IN')}</div>
               <div class="cc-meta-lbl">ಗೆಲುವಿನ ಅಂತರ (Margin)</div>
             </div>
             <div>

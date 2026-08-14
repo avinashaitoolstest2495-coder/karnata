@@ -2223,6 +2223,8 @@ function restore(){
     if(S.district&&data) loadLocal(S.district,data);
   } else {
     updateHeroBanner('bengaluru-urban', 'ಬೆಂಗಳೂರು');
+    const defaultData = typeof GeoData !== 'undefined' ? GeoData.getDistrict('bengaluru-urban') : { kn: 'ಬೆಂಗಳೂರು ನಗರ' };
+    loadLocal('bengaluru-urban', defaultData);
     setTimeout(showGeoSheet,1800);
     setTimeout(()=>{if(!S.pushEnabled) showNotif();},9000);
   }

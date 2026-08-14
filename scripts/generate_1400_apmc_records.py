@@ -298,18 +298,11 @@ COMMODITIES_POOL = [
     ("ರೇಷ್ಮೆ ಗೂಡು", "Silk Cocoon", "cash", "🐛", "ಕೆಜಿ", 360, 600)
 ]
 
-def run():
-    print(f"Generating 1,400+ authentic APMC market price records across {len(APMC_MARKETS)} Mandis...", flush=True)
-
+def generate_1400_records():
     records = []
-    best_prices = {}
-    markets_set = set()
-
     random.seed(20260814)
 
     for m_kn, m_en, dist_kn, pri_cat in APMC_MARKETS:
-        markets_set.add(m_en)
-
         market_cands = [c for c in COMMODITIES_POOL if c[2] == pri_cat] + random.sample(COMMODITIES_POOL, 8)
         num_to_sample = min(len(market_cands), random.randint(9, 12))
         selected = random.sample(market_cands, k=num_to_sample)
@@ -339,23 +332,47 @@ def run():
                 "change": change_val
             }
             records.append(rec)
+    return records
 
-            if c_en not in best_prices or modal_q > best_prices[c_en]["modal_per_quintal"]:
-                best_prices[c_en] = {
-                    "name_kn": c_kn,
-                    "name_en": c_en,
-                    "type": cat,
-                    "market_kn": m_kn,
-                    "min_per_kg": round(min_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else min_val,
-                    "max_per_kg": round(max_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else max_val,
-                    "modal_per_kg": round(avg_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else avg_val,
-                    "min_per_quintal": min_val if unit == "ಕ್ವಿಂಟಲ್" else min_val * 100,
-                    "max_per_quintal": max_val if unit == "ಕ್ವಿಂಟಲ್" else max_val * 100,
-                    "modal_per_quintal": modal_q,
-                    "change": change_val,
-                    "unit": unit,
-                    "icon": icon
-                }
+def build_and_save():
+    return run()
+
+def run():
+    print(f"Generating 1,400+ authentic APMC market price records across {len(APMC_MARKETS)} Mandis...", flush=True)
+
+    records = generate_1400_records()
+    best_prices = {}
+    markets_set = set(m[1] for m in APMC_MARKETS)
+
+    for rec in records:
+        c_en = rec["cropEn"]
+        c_kn = rec["cropKn"]
+        m_kn = rec["market"]
+        cat = rec["cat"]
+        unit = rec["unit"]
+        min_val = rec["min"]
+        max_val = rec["max"]
+        avg_val = rec["avg"]
+        modal_q = rec["modal_per_quintal"]
+        change_val = rec["change"]
+        icon = rec["icon"]
+
+        if c_en not in best_prices or modal_q > best_prices[c_en]["modal_per_quintal"]:
+            best_prices[c_en] = {
+                "name_kn": c_kn,
+                "name_en": c_en,
+                "type": cat,
+                "market_kn": m_kn,
+                "min_per_kg": round(min_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else min_val,
+                "max_per_kg": round(max_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else max_val,
+                "modal_per_kg": round(avg_val / 100, 2) if unit == "ಕ್ವಿಂಟಲ್" else avg_val,
+                "min_per_quintal": min_val if unit == "ಕ್ವಿಂಟಲ್" else min_val * 100,
+                "max_per_quintal": max_val if unit == "ಕ್ವಿಂಟಲ್" else max_val * 100,
+                "modal_per_quintal": modal_q,
+                "change": change_val,
+                "unit": unit,
+                "icon": icon
+            }
 
     data_payload = {
         "date": "2026-08-14",

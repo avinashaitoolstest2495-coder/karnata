@@ -235,8 +235,10 @@
   </div>
 </div>`;
 
-  // Mobile bottom nav
-  const mobileNav = `
+  const isAskPage = window.location.pathname.toLowerCase().includes('ask');
+
+  // Mobile bottom nav (suppressed on ask AI page)
+  const mobileNav = isAskPage ? '' : `
 <nav id="nk-mob-nav" style="
   display:none;position:fixed;bottom:0;left:0;right:0;
   background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -340,7 +342,7 @@
   </div>
 </footer>`;
 
-  if (!window.location.pathname.includes('/ask') && !document.querySelector('footer')) {
+  if (!isAskPage && !document.querySelector('footer')) {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
   }
 
