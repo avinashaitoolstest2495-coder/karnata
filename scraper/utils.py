@@ -168,7 +168,26 @@ def indian_fetch(url: str, method: str = "GET", headers: dict = None, data: str 
     except Exception as e:
         log.warning(f"⚠️ Direct connection to {url} timed out (likely US IP geo-blocked). Trying Indian proxy routing...")
 
-    # 2. Try Indian Proxies Pool
+    # 2. Try Proxy Bridge Gateways
+    try:
+        import urllib.parse
+        encoded_url = urllib.parse.quote(url, safe='')
+        gateways = [
+            f"https://corsproxy.io/?{url}",
+            f"https://api.allorigins.win/raw?url={encoded_url}"
+        ]
+        for gw in gateways:
+            try:
+                gw_resp = requests.get(gw, headers=default_headers, timeout=8, verify=False)
+                if gw_resp.status_code == 200 and len(gw_resp.text) > 50:
+                    log.info(f"✅ Gateway fetch successful via {gw[:30]}...")
+                    return gw_resp
+            except Exception:
+                continue
+    except Exception:
+        pass
+
+    # 3. Try Indian Proxies Pool
     for proxy in INDIAN_PROXIES:
         try:
             p_dict = {"http": proxy, "https": proxy}
@@ -182,7 +201,7 @@ def indian_fetch(url: str, method: str = "GET", headers: dict = None, data: str 
         except Exception as pe:
             continue
 
-    log.error(f"❌ Both direct and proxy fetches failed for {url}")
+    log.error(f"❌ Direct, gateway, and proxy fetches failed for {url}")
     return None
 
 # ─── HTTP helper with retry ───────────────────────────────────
