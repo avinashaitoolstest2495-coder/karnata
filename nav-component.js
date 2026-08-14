@@ -340,7 +340,7 @@
   </div>
 </footer>`;
 
-  if (!document.querySelector('footer')) {
+  if (!window.location.pathname.includes('/ask') && !document.querySelector('footer')) {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
   }
 

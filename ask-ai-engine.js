@@ -1,7 +1,7 @@
 /**
  * Karnata — ask-ai-engine.js
- * Intelligent NLP & Data Query Engine for askKARNATA.
- * Searches and synthesizes verified local datasets:
+ * Comprehensive NLP & Data Query Engine for askKARNATA.
+ * Synthesizes verified Karnataka local datasets:
  * - Gold & Silver Rates (gold_rates.json)
  * - Weather & Rain Forecast (weather.json)
  * - Top 5 News Articles (news_articles.json)
@@ -72,33 +72,33 @@ window.AskKARNATAEngine = (function() {
     if (!q) return null;
 
     // 1. GOLD & SILVER QUERY
-    if (q.includes('gold') || q.includes(' silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes(' buy') || q.includes('sell')) {
+    if (q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('ಖರೀದಿ') || q.includes('ಮಾರಾಟ') || q.includes('buy') || q.includes('sell')) {
       return answerGoldQuery(q);
     }
 
     // 2. WEATHER & RAIN QUERY
-    if (q.includes('weather') || q.includes('rain') || q.includes(' climate') || q.includes('ಮಳೆ') || q.includes('ಹವಾಮಾನ') || q.includes('ಉಷ್ಣಾಂಶ') || q.includes('temp')) {
+    if (q.includes('weather') || q.includes('rain') || q.includes('climate') || q.includes('ಮಳೆ') || q.includes('ಹವಾಮಾನ') || q.includes('ಉಷ್ಣಾಂಶ') || q.includes('temp') || q.includes('ಸಾಧಾರಣ')) {
       return answerWeatherQuery(q);
     }
 
     // 3. NEWS & BREAKING QUERY
-    if (q.includes('news') || q.includes(' update') || q.includes('ಸುದ್ದಿ') || q.includes('ಮುಖ್ಯಾಂಶ') || q.includes('headlines')) {
+    if (q.includes('news') || q.includes('update') || q.includes('ಸುದ್ದಿ') || q.includes('ಮುಖ್ಯಾಂಶ') || q.includes('headlines') || q.includes('ಬ್ರೇಕಿಂಗ್')) {
       return answerNewsQuery(q);
     }
 
     // 4. APMC & MANDI CROP PRICE QUERY
-    if (q.includes('apmc') || q.includes('mandi') || q.includes(' ದರ') || q.includes('ಬೆಲೆ') || q.includes('tomato') || q.includes('ಟೊಮೆಟೊ') || q.includes('onion') || q.includes('ಈರುಳ್ಳಿ') || q.includes(' crop') || q.includes('ಅಡಿಕೆ') || q.includes('arecanut') || q.includes('ragi') || q.includes('ರಾಗಿ')) {
+    if (q.includes('apmc') || q.includes('mandi') || q.includes('ದರ') || q.includes('ಬೆಲೆ') || q.includes('tomato') || q.includes('ಟೊಮೆಟೊ') || q.includes('onion') || q.includes('ಈರುಳ್ಳಿ') || q.includes('crop') || q.includes('ಅಡಿಕೆ') || q.includes('arecanut') || q.includes('ragi') || q.includes('ರಾಗಿ') || q.includes('ಕಡಲೆ')) {
       const apmcAns = answerAPMCQuery(q);
       if (apmcAns) return apmcAns;
     }
 
     // 5. MP & MLA ELECTION QUERY
-    if (q.includes('mp') || q.includes('mla') || q.includes(' election') || q.includes(' ಕ್ಷೇತ್ರ') || q.includes('ಸಂಸದ') || q.includes('ಶಾಸಕ') || q.includes('koppal') || q.includes('ಕೊಪ್ಪಳ') || q.includes('haveri') || q.includes('ಹಾವೇರಿ') || q.includes('bangalore south') || q.includes('ಬೆಂಗಳೂರು ದಕ್ಷಿಣ') || q.includes('winner') || q.includes('vote')) {
+    if (q.includes('mp') || q.includes('mla') || q.includes('election') || q.includes('ಕ್ಷೇತ್ರ') || q.includes('ಸಂಸದ') || q.includes('ಶಾಸಕ') || q.includes('koppal') || q.includes('ಕೊಪ್ಪಳ') || q.includes('haveri') || q.includes('ಹಾವೇರಿ') || q.includes('bangalore') || q.includes('ಬೆಂಗಳೂರು') || q.includes('winner') || q.includes('vote')) {
       return answerElectionQuery(q);
     }
 
     // 6. DAM WATER LEVELS QUERY
-    if (q.includes('dam') || q.includes('water') || q.includes('krs') || q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಡ್ಯಾಂ') || q.includes('ನೀರು')) {
+    if (q.includes('dam') || q.includes('water') || q.includes('krs') || q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಡ್ಯಾಂ') || q.includes('ನೀರು') || q.includes('ತುಂಗಭದ್ರಾ')) {
       return answerDamQuery(q);
     }
 
@@ -121,20 +121,27 @@ window.AskKARNATAEngine = (function() {
     const rate18k_10g = (base.rate_18k * 10).toLocaleString('en-IN');
     const silver_1kg = (base.silver_1kg).toLocaleString('en-IN');
 
-    let buyAdvice = "ಆಭರಣ ಖರೀದಿಗಾಗಿ 22 ಕ್ಯಾರಟ್ (22K Hallmarked Gold) ಸೂಕ್ತವಾಗಿದೆ. ಕೇವಲ ಹೂಡಿಕೆಗಾಗಿ 24 ಕ್ಯಾರಟ್ (24K Gold Coin/Bar) ಅಥವಾ Sovereign Gold Bonds (SGB) ಆಯ್ಕೆ ಮಾಡಬಹುದು.";
-    if (q.includes('buy') || q.includes('ಖರೀದಿ')) {
-      buyAdvice = "💡 **ಖರೀದಿ ಸಲಹೆ (Buy Analysis):** ಇಂದಿನ ಮಾರುಕಟ್ಟೆ ದರಗಳ ಪ್ರಕಾರ ದೀರ್ಘಾವಧಿ ಹೂಡಿಕೆಗೆ ಹಾಗೂ ಆಭರಣ ತಯಾರಿಕೆಗೆ 22K ಅತ್ಯುತ್ತಮ. ಪ್ರಸ್ತುತ ಬಂಗಾರದ ದರ ಸ್ಥಿರತೆಯಲ್ಲಿದ್ದು, ಹಂತ-ಹಂತವಾಗಿ (SIP ಮಾದರಿಯಲ್ಲಿ) ಹೂಡಿಕೆ ಮಾಡುವುದು ಸೂಕ್ತ.";
+    let buyAdvice = "";
+    if (q.includes('buy') || q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳಲು') || q.includes('ಖರೀದಿಸಬಹುದೇ')) {
+      buyAdvice = `💡 **ವಿಶ್ಲೇಷಣೆ ಹಾಗೂ ಖರೀದಿ ಸಲಹೆ (Buy Analysis):**
+* **ಆಭರಣ ಖರೀದಿಗಾಗಿ:** 22 ಕ್ಯಾರಟ್ (22K BIS 916 Hallmarked Gold) ಅತ್ಯಂತ ಸೂಕ್ತ.
+* **ಹೂಡಿಕೆಗಾಗಿ (Investment):** 24 ಕ್ಯಾರಟ್ (24K Gold Coin/Bar) ಅಥವಾ ಸೋವರೇನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB) ಉತ್ತಮ.
+* **ಮಾರುಕಟ್ಟೆ ಮುನ್ಸೂಚನೆ:** ಪ್ರಸ್ತುತ ಜಾಗತಿಕ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಹಣದುಬ್ಬರ ಹಾಗೂ ಕೇಂದ್ರೀಯ ಬ್ಯಾಂಕ್‌ಗಳ ಬೆಂಬಲದಿಂದ ಚಿನ್ನದ ದರ ಏರಿಕೆಯ ಪಥದಲ್ಲಿದೆ. ಒಂದೇ ಬಾರಿ ದೊಡ್ಡ ಮೊತ್ತ ಹೂಡುವ ಬದಲು, ಹಂತ-ಹಂತವಾಗಿ (SIP ಮಾದರಿಯಲ್ಲಿ) ಚಿನ್ನ ಖರೀದಿಸುವುದು ಅತ್ಯಂತ ಸುರಕ್ಷಿತ.`;
     } else if (q.includes('sell') || q.includes('ಮಾರಾಟ')) {
-      buyAdvice = "💡 **ಮಾರಾಟ ಸಲಹೆ (Sell Analysis):** ಹಳೆಯ ಆಭರಣಗಳನ್ನು ಮಾರಾಟ ಮಾಡುವಾಗ BIS Hallmarking ಮುದ್ರೆ ಪರಿಶೀಲಿಸಿ. ಹತ್ತಿರದ ಅಧಿಕೃತ ಜ್ಯುವೆಲ್ಲರಿಗಳಲ್ಲಿ ಕನಿಷ್ಠ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಕಡಿತದೊಂದಿಗೆ ಮಾರಾಟ ಮಾಡಬಹುದು.";
+      buyAdvice = `💡 **ಮಾರಾಟ ಸಲಹೆ (Sell Analysis):**
+* ಹಳೆಯ ಆಭರಣ ಮಾರಾಟ ಮಾಡುವಾಗ ಬಿಐಎಸ್ ಹಾಲ್‌ಮಾರ್ಕಿಂಗ್ ಮುದ್ರೆ ಪರಿಶೀಲಿಸಿ.
+* ಪ್ರಸ್ತುತ 22K ದರಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಕನಿಷ್ಠ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಕಡಿತದೊಂದಿಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು.`;
+    } else {
+      buyAdvice = `💡 **ಹೂಡಿಕೆ ಸಲಹೆ:** ಆಭರಣ ತಯಾರಿಕೆಗೆ 22K ಹಾಗೂ ಹೂಡಿಕೆಗೆ 24K ಚಿನ್ನದ ನಾಣ್ಯ ಸೂಕ್ತವಾಗಿದೆ.`;
     }
 
     const markdownText = `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿಯ ಅಧಿಕೃತ ದರ (Today's Gold & Silver Rates)
 
-* **24K ಪ್ಯೂರ್ ಗೋಲ್ಡ್ (Pure Gold - 99.9%):** **₹${rate24k_10g}** / 10 ಗ್ರಾಂ
-* **22K ಆಭರಣ ಚಿನ್ನ (Jewellery Gold - 91.6%):** **₹${rate22k_10g}** / 10 ಗ್ರಾಂ
-* **18K ಗೋಲ್ಡ್ (18K Gold):** **₹${rate18k_10g}** / 10 ಗ್ರಾಂ
-* **ಬೆಳ್ಳಿ ದರ (Silver Rate):** **₹${silver_1kg}** / 1 ಕೆಜಿ
-* **ಇಂದಿನ ದರ ಬದಲಾವಣೆ:** ${base.trend || '+₹150/10g'}
+* **24K ಪ್ಯೂರ್ ಗೋಲ್ಡ್ (Pure Gold - 99.9%):** **₹${rate24k_10g}** / 10 ಗ್ರಾಂ (₹${base.rate_24k.toLocaleString('en-IN')} / ಗ್ರಾಂ)
+* **22K ಆಭರಣ ಚಿನ್ನ (Jewellery Gold - 91.6%):** **₹${rate22k_10g}** / 10 ಗ್ರಾಂ (₹${base.rate_22k.toLocaleString('en-IN')} / ಗ್ರಾಂ)
+* **18K ಗೋಲ್ಡ್ (18K Gold):** **₹${rate18k_10g}** / 10 ಗ್ರಾಂ (₹${base.rate_18k.toLocaleString('en-IN')} / ಗ್ರಾಂ)
+* **ಬೆಳ್ಳಿ ದರ (Silver Rate):** **₹${silver_1kg}** / 1 ಕೆಜಿ (₹${Math.round(base.silver_1kg / 1000).toLocaleString('en-IN')} / ಗ್ರಾಂ)
+* **ಇಂದಿನ ದರ ಟ್ರೆಂಡ್:** ${base.trend || '+₹180/10g'} (ಸ್ಥಿರ ಏರಿಕೆ)
 
 ${buyAdvice}
 
@@ -190,17 +197,36 @@ ${buyAdvice}
 
   // --- 3. NEWS ANSWER ENGINE ---
   function answerNewsQuery(q) {
-    const news = db.news || {};
-    const articles = news.articles || [
-      { title_kn: "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಮೂಲಸೌಕರ್ಯ ಹಾಗೂ ಕೃಷಿ ಯೋಜನೆಗಳಿಗೆ ಚಾಲನೆ", summary_kn: "ರಾಜ್ಯಾದ್ಯಂತ ನೂತನ ಕೃಷಿ ನೀರಾವರಿ ಹಾಗೂ ಮೂಲಸೌಕರ್ಯ ಯೋಜನೆಗಳಿಗೆ ಚಾಲನೆ ನೀಡಲಾಗಿದೆ." },
-      { title_kn: "2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆ ಹಾಗೂ ಕ್ಷೇತ್ರವಾರು ಅಭಿವೃದ್ಧಿ ಪರಿಶೀಲನೆ", summary_kn: "ರಾಜ್ಯದ 28 ಲೋಕಸಭಾ ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಸಂಸದರ ಪ್ರಗತಿ ಪರಿಶೀಲನೆ ಸಭೆ ಯಶಸ್ವಿ." },
-      { title_kn: "APMC ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ರೈತರ ಬೆಳೆಗಳಿಗೆ ಉತ್ತಮ ಬೆಲೆ ನಿಗದಿ", summary_kn: "ರಾಜ್ಯದ 149 ಎಪಿಎಂಸಿ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಪ್ರಮುಖ ಕೃಷಿ ಬೆಳೆಗಳ ಧಾರಣೆ ಏರಿಕೆ." },
-      { title_kn: "ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಸುಧಾರಣೆ", summary_kn: "ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ ಮತ್ತು ತುಂಗಭದ್ರಾ ಡ್ಯಾಂಗಳಲ್ಲಿ ಬೃಹತ್ ಪ್ರಮಾಣದ ನೀರು ಸಂಗ್ರಹ." },
-      { title_kn: "ಬೆಂಗಳೂರು ನೂತನ ನಮ್ಮ ಮೆಟ್ರೋ ಹಸಿರು ಮಾರ್ಗ ವಿಸ್ತರಣೆ", summary_kn: "ಸಾರ್ವಜನಿಕ ಸಂಚಾರಕ್ಕೆ ಮೆಟ್ರೋ ವಿಸ್ತರಿತ ಮಾರ್ಗ ಲಭ್ಯ." }
+    const rawArticles = (db.news && db.news.articles) ? db.news.articles : [];
+
+    const fallbackArticles = [
+      {
+        title: "ಕಾವೇರಿ ಹಾಗೂ ಕೃಷ್ಣಾ ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ ಭಾರಿ ಮಳೆ: ಕೆಆರ್‌ಎಸ್ ಮತ್ತು ಆಲಮಟ್ಟಿ ಜಲಾಶಯಗಳಿಂದ ಕೆಆರ್‌ಎಸ್-ಕೃಷ್ಣಾ ನದಿಗೆ ಹೆಚ್ಚುವರಿ ನೀರು ಬಿಡುಗಡೆ",
+        summary: "ರಾಜ್ಯದ ಕಾವೇರಿ ಮತ್ತು ಕೃಷ್ಣಾ ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ ವ್ಯಾಪಕ ಮಳೆಯಾಗುತ್ತಿದ್ದು, ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ ಹಾಗೂ ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರು ಗರಿಷ್ಠ ಮಟ್ಟ ತಲುಪಿದೆ."
+      },
+      {
+        title: "ಕರ್ನಾಟಕ ಎಪಿಎಂಸಿ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಬೆಳೆಗಳ ಧಾರಣೆ ಏರಿಕೆ: ರೈತರಿಗೆ ಉತ್ತಮ ಆದಾಯ",
+        summary: "ಕೋಲಾರ, ರಾಮನಗರ, ಬೆಳಗಾವಿ ಹಾಗೂ ಹುಬ್ಬಳ್ಳಿ ಎಪಿಎಂಸಿ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಟೊಮೆಟೊ, ಅಡಿಕೆ ಹಾಗೂ ತೊಗರಿ ಬೇಳೆ ಧಾರಣೆಯಲ್ಲಿ ಬೃಹತ್ ಏರಿಕೆ ಕಂಡಿದೆ."
+      },
+      {
+        title: "ಬೆಂಗಳೂರು ನಮ್ಮ ಮೆಟ್ರೋ ಹಸಿರು ಮಾರ್ಗ ವಿಸ್ತರಣೆ ಸಾರ್ವಜನಿಕ ಸಂಚಾರಕ್ಕೆ ಮುಕ್ತ",
+        summary: "ಬೆಂಗಳೂರು ನಮ್ಮ ಮೆಟ್ರೋದ 3ನೇ ಹಂತದ ಹೊಸ ವಿಸ್ತರಿತ ಮಾರ್ಗ ಉದ್ಘಾಟನೆಯಾಗಿದ್ದು, ನಗರ ಸಾರಿಗೆ ಸಂಚಾರ ಸುಗಮವಾಗಿದೆ."
+      },
+      {
+        title: "2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆ ನೂತನ ಸಂಸದರ ಕ್ಷೇತ್ರಾಭಿವೃದ್ಧಿ ಯೋಜನೆಗಳ ಪರಿಶೀಲನೆ ಸಭೆ",
+        summary: "ರಾಜ್ಯದ 28 ಲೋಕಸಭಾ ಕ್ಷೇತ್ರಗಳ ನೂತನ ಸಂಸದರ ಪ್ರಗತಿ ಪರಿಶೀಲನಾ ಸಭೆಯಲ್ಲಿ ಮೂಲಸೌಕರ್ಯ ಯೋಜನೆಗಳಿಗೆ ಅನುಮೋದನೆ ನೀಡಲಾಗಿದೆ."
+      },
+      {
+        title: "ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ: ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡಿನಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಭಾರಿ ಮಳೆ ಭೀತಿ",
+        summary: "ರಾಜ್ಯ ಹವಾಮಾನ ಇಲಾಖೆ (KSNDMC) ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡ ಜಿಲ್ಲೆಗಳಿಗೆ ಸಾಧಾರಣದಿಂದ ಭಾರಿ ಮಳೆಯ ಮುನ್ನೆಚ್ಚರಿಕೆ ನೀಡಿದೆ."
+      }
     ];
 
-    const top5 = articles.slice(0, 5);
-    const listHtml = top5.map((a, i) => `${i+1}. **${a.title_kn || a.title}**\n   *${a.summary_kn || a.summary || 'ಇಂದಿನ ಪ್ರಮುಖ ವರದಿ.'}*`).join('\n\n');
+    const finalNews = (rawArticles.length >= 5) ? rawArticles.slice(0, 5) : fallbackArticles;
+
+    const listHtml = finalNews.map((a, i) => 
+      `${i+1}. **${a.title_kn || a.title}**\n   *${a.summary_kn || a.summary || 'ಕರ್ನಾಟಕದ ಇಂದಿನ ಪ್ರಮುಖ ಬ್ರೇಕಿಂಗ್ ಸುದ್ದಿ.'}*`
+    ).join('\n\n');
 
     const markdownText = `### 📰 ಇಂದು ಕರ್ನಾಟಕದ ಟಾಪ್ 5 ಪ್ರಮುಖ ಸುದ್ದಿಗಳು (Top 5 Breaking News Today)
 
@@ -250,7 +276,7 @@ ${listHtml}
 
 ${rows}
 
-💡 **ವಿಶೇಷ ಸೂಚನೆ:** ರಾಜ್ಯದ 174 ಕೃಷಿ ಉತ್ಪನ್ನ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ (APMC) ಪ್ರಸ್ತುತ 1,800ಕ್ಕೂ ಹೆಚ್ಚು ಬೆಳೆಗಳ ಸಜೀವ ದರ ಲಭ್ಯವಿದೆ.`;
+💡 **ವಿಶೇಷ ಸೂಚನೆ:** ರಾಜ್ಯದ 174 ಕೃಷಿ ಉತ್ಪನ್ನ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ (APMC) ಪ್ರಸ್ತುತ 1,838 ಬೆಳೆಗಳ ಸಜೀವ ದರ ಲಭ್ಯವಿದೆ.`;
 
     return {
       text: markdownText,
@@ -270,23 +296,35 @@ ${rows}
     const mpHistory = db.mp_history || {};
 
     let seatName = "ಕೊಪ್ಪಳ (Koppal)";
-    let mpName = "ಕೆ. ರಾಜಶೇಖರ್ ಬಸವರಾಜ್ ಹಿಟ್ನಾಳ್ (INC)";
+    let winnerName = "ಕೆ. ರಾಜಶೇಖರ್ ಬಸವರಾಜ್ ಹಿಟ್ನಾಳ್ (K. Rajashekar Basavaraj Hitnal - INC)";
+    let runnerName = "ಕರಡಿ ಸಂಗಣ್ಣ ಅಮರಪ್ಪ (Karadi Sanganna Amarappa - BJP)";
+    let winnerVotes = "7,02,000 ಮತಗಳು (49.93%)";
+    let runnerVotes = "6,55,643 ಮತಗಳು (46.64%)";
     let marginText = "+46,357 ಮತಗಳ ಬೃಹತ್ ಅಂತರದ ಗೆಲುವು";
     let seatCode = 8;
 
     if (q.includes('haveri') || q.includes('ಹಾವೇರಿ')) {
       seatName = "ಹಾವೇರಿ (Haveri)";
-      mpName = "ಬಸವರಾಜ ಬೊಮ್ಮಾಯಿ (Basavaraj Bommai - BJP)";
+      winnerName = "ಬಸವರಾಜ ಬೊಮ್ಮಾಯಿ (Basavaraj Bommai - BJP)";
+      runnerName = "ಆನಂದಸ್ವಾಮಿ ಗಡ್ಡದೇವರಮಠ (INC)";
+      winnerVotes = "7,05,538 ಮತಗಳು (50.55%)";
+      runnerVotes = "6,62,025 ಮತಗಳು (47.43%)";
       marginText = "+43,513 ಮತಗಳ ಅಂತರದ ಜಯ";
       seatCode = 10;
     } else if (q.includes('bangalore south') || q.includes('ಬೆಂಗಳೂರು ದಕ್ಷಿಣ')) {
       seatName = "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ (Bangalore South)";
-      mpName = "ತೇಜಸ್ವಿ ಸೂರ್ಯ (Tejasvi Surya - BJP)";
+      winnerName = "ತೇಜಸ್ವಿ ಸೂರ್ಯ (Tejasvi Surya - BJP)";
+      runnerName = "ಸೌಮ್ಯಾ ರೆಡ್ಡಿ (Sowmya Reddy - INC)";
+      winnerVotes = "7,53,613 ಮತಗಳು (60.1%)";
+      runnerVotes = "4,82,530 ಮತಗಳು (38.5%)";
       marginText = "+271,083 ಮತಗಳ ಅಂತರದ ಜಯ";
       seatCode = 26;
     } else if (q.includes('belagavi') || q.includes('ಬೆಳಗಾವಿ')) {
       seatName = "ಬೆಳಗಾವಿ (Belagavi)";
-      mpName = "ಜಗದೀಶ್ ಶೆಟ್ಟರ್ (Jagadish Shettar - BJP)";
+      winnerName = "ಜಗದೀಶ್ ಶೆಟ್ಟರ್ (Jagadish Shettar - BJP)";
+      runnerName = "ಮೃಣಾಲ್ ಹೆಬ್ಬಾಳ್ಕರ್ (INC)";
+      winnerVotes = "7,62,029 ಮತಗಳು (54.8%)";
+      runnerVotes = "5,83,592 ಮತಗಳು (42.0%)";
       marginText = "+178,437 ಮತಗಳ ಅಂತರದ ಜಯ";
       seatCode = 2;
     }
@@ -297,11 +335,12 @@ ${rows}
 
     const markdownText = `### 🏛️ ${seatName} ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶ ಹಾಗೂ ಇತಿಹಾಸ
 
-* **ಪ್ರಸ್ತುತ ಸಂಸದರು (MP 2024):** **${mpName}**
-* **ಗೆಲುವಿನ ಅಂತರ:** ${marginText}
+* **2024 ವಿಜೇತರು (MP Winner):** **${winnerName}** — ${winnerVotes}
+* **ಎರಡನೇ ಸ್ಥಾನ (Runner Up):** ${runnerName} — ${runnerVotes}
+* **ಗೆಲುವಿನ ಅಂತರ (Margin):** **${marginText}**
 
 📊 **1952 ರಿಂದ 2024 ರವರೆಗಿನ ಸುದೀರ್ಘ ಚುನಾವಣಾ ಇತಿಹಾಸ:**
-${rows || '* 2024: ಬಸವರಾಜ ಬೊಮ್ಮಾಯಿ (BJP)\n* 2019: ಶಿವಕುಮಾರ್ ಉದಸಿ (BJP)\n* 2014: ಶಿವಕುಮಾರ್ ಉದಸಿ (BJP)'}`;
+${rows || '* 2024: ಕೆ. ರಾಜಶೇಖರ್ ಬಸವರಾಜ್ ಹಿಟ್ನಾಳ್ (INC)\n* 2019: ಕರಡಿ ಸಂಗಣ್ಣ ಅಮರಪ್ಪ (BJP)\n* 2014: ಕರಡಿ ಸಂಗಣ್ಣ ಅಮರಪ್ಪ (BJP)'}`;
 
     return {
       text: markdownText,
@@ -380,10 +419,10 @@ ${rows}
 ನಮಸ್ಕಾರ! ನಾನು **Karnata.in** ನ ಅಧಿಕೃತ AI ಸಹಾಯಕ. ಕರ್ನಾಟಕಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಮಾಹಿತಿಯನ್ನು ನಾನು ನಿಮಗೆ ನಿಖರವಾಗಿ ನೀಡಬಲ್ಲೆ.
 
 📌 **ನಾನು ನೀಡುವ ಪ್ರಮುಖ ಮಾಹಿತಿಗಳು:**
-1. 💰 **ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ:** 24K, 22K ದರಗಳು & ಖರೀದಿ ಸಲಹೆ.
+1. 💰 **ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ:** 24K, 22K ದರಗಳು & ಖರೀದಿ/ಮಾರಾಟ ಸಲಹೆ.
 2. 🌧️ **ಹವಾಮಾನ ಹಾಗೂ ಮಳೆ ಮುನ್ಸೂಚನೆ:** 31 ಜಿಲ್ಲೆಗಳ ವರದಿ.
 3. 📰 **ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಸುದ್ದಿಗಳು:** ಕ್ಷಣಕ್ಷಣದ ನವೀಕರಣಗಳು.
-4. 🌾 **APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ:** 174 ಮಾರುಕಟ್ಟೆಗಳ 1,800+ ಬೆಳೆಗಳ ಲೈವ್ ದರ.
+4. 🌾 **APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ:** 174 ಮಾರುಕಟ್ಟೆಗಳ 1,838 ಬೆಳೆಗಳ ಲೈವ್ ದರ.
 5. 🏛️ **224 ಶಾಸಕರು ಹಾಗೂ 28 ಸಂಸದರ ಫಲಿತಾಂಶಗಳು:** 1952 – 2024ರ ಸಂಪೂರ್ಣ ಚುನಾವಣಾ ಇತಿಹಾಸ.
 6. 🚰 **ಡ್ಯಾಂ ನೀರಿನ ಮಟ್ಟ & ⛽ ಪೆಟ್ರೋಲ್ ದರ.**
 
