@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
+  <!-- Chart.js for Pie & Bar Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       background-color: #F8FAFC;
@@ -124,7 +127,7 @@
 
   <main class="wrap">
 
-    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH HIGH CONTRAST & QUICK SEARCH -->
+    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH CANDIDATE PHOTO, STATS & QUICK SEARCH -->
     <section class="recent-hero-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; border-bottom:2px solid #F1F5F9; padding-bottom:14px;">
         <div>
@@ -140,15 +143,20 @@
         </div>
       </div>
 
-      <!-- Sitting Representative Photo Avatar & Key Stats -->
-      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:20px; align-items:center;">
-        <div style="width:84px; height:84px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:38px; font-weight:900; box-shadow:0 6px 18px rgba(192,57,43,0.3); border:3px solid #ffffff;">
-          B
+      <!-- Sitting Representative Candidate Photo & Key Stats -->
+      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:22px; align-items:center;">
+        <div style="position:relative;">
+          <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:900; box-shadow:0 8px 20px rgba(192,57,43,0.35); border:3.5px solid #ffffff; overflow:hidden;">
+            <span style="font-family:'Tiro Kannada', serif;">B</span>
+          </div>
+          <div style="position:absolute; bottom:-2px; right:-2px; background:#1f77b4; color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:10px; border:1.5px solid #fff;">
+            ಕಾಂಗ್ರೆಸ್ (INC)
+          </div>
         </div>
 
         <div>
-          <div style="font-size:24px; font-weight:900; color:#0F172A;">Basavaraju ವಿ. Shivaganga</div>
-          <div style="font-size:14px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
+          <div style="font-size:25px; font-weight:900; color:#0F172A;">Basavaraju ವಿ. Shivaganga</div>
+          <div style="font-size:14.5px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
           <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
             <span style="background:#1f77b4; color:#ffffff; padding:5px 14px; border-radius:8px; font-size:13px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ (INC)</span>
             <span style="background:#ECFDF5; color:#047857; border:1.5px solid #A7F3D0; padding:4px 12px; border-radius:8px; font-size:13px; font-weight:800;">ಗೆಲುವಿನ ಅಂತರ: +16,435 ಮತಗಳು</span>
@@ -168,7 +176,7 @@
       </div>
     </section>
 
-    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY (ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & VOTE SHARE ANALYTICS) -->
+    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY -->
     <div style="display:grid; grid-template-columns: 380px 1fr; gap:20px; margin-bottom:24px;">
       <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
@@ -192,218 +200,234 @@
       </div>
     </div>
 
-    <!-- 3. THIRD SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ) -->
+    <!-- 3. THIRD SECTION: LAST 3 ELECTIONS CANDIDATE BREAKDOWN (ROW-WISE STACKED FULL WIDTH TABLES) -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ</span>
-        <span class="news-badge">ಕ್ಷೇತ್ರ ವಿಶೇಷ ವರದಿ</span>
+        <span>📜 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಸಮಗ್ರ ಫಲಿತಾಂಶಗಳು & ಅಭ್ಯರ್ಥಿಗಳು (2023, 2018, 2013)</span>
+        <span class="news-badge">Row-Wise Candidate Breakdown</span>
       </div>
 
-      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">ಚನ್ನಗಿರಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: 2023ರ ಫಲಿತಾಂಶ, ಶಾಸಕರು ಮತ್ತು ಚುನಾವಣಾ ಇತಿಹಾಸದ ಸಂಪೂರ್ಣ ವಿವರ</h2>
+      <div style="display:flex; flex-direction:column; gap:20px; margin-top:16px;">
+        
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#1f77b4; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
+              </div>
 
-      <div class="article-body">
-        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ರಾಜ್ಯದ ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಯ ಪ್ರಮುಖ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಒಂದಾದ ಚನ್ನಗಿರಿ ಕ್ಷೇತ್ರವು (ಕ್ರಮ ಸಂಖ್ಯೆ #109) ಪ್ರಾದೇಶಿಕ ರಾಜಕೀಯ ಕ್ಷೇತ್ರದಲ್ಲಿ ತನ್ನದೇ ಆದ ಸಾಂಸ್ಥಿಕ ಮಹತ್ವವನ್ನು ಹೊಂದಿದೆ. ಸಾಮಾನ್ಯ ವರ್ಗೀಕರಣಕ್ಕೆ ಒಳಪಡುವ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ 2023ರ ಸಾರ್ವತ್ರಿಕ ಶಾಸನಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಭಾರಿ ರಾಜಕೀಯ ಪೈಪೋಟಿ ಏರ್ಪಟ್ಟಿತ್ತು. ಚುನಾವಣೆಯ ಅಂತಿಮ ಫಲಿತಾಂಶದಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿಯಾದ Basavaraju ವಿ. Shivaganga ಅವರು ಶ್ರೇಷ್ಠ ಸಾಧನೆ ಮಾಡುವ ಮೂಲಕ ಗೆಲುವು ಸಾಧಿಸಿ, ಪ್ರಸ್ತುತ ಕ್ಷೇತ್ರದ ಜನಪ್ರತಿನಿಧಿ ಹಾಗೂ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿದ್ದಾರೆ. ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗವು ಪ್ರಕಟಿಸಿದ ಅಧಿಕೃತ ಫಲಿತಾಂಶಗಳ ಪ್ರಕಾರ, ಶಾಸಕ Basavaraju ವಿ. Shivaganga ಅವರು ಒಟ್ಟು 78,263 ಸಿಂಧುವಾದ ಮತಗಳನ್ನು ಗಳಿಸಿ ಶೇಕಡಾ 47.2% ಮತ ಪ್ರಮಾಣವನ್ನು ತಮ್ಮದಾಗಿಸಿಕೊಂಡಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">2023ರ ಚುನಾವಣಾ ಕಣದಲ್ಲಿ ಮತದಾರರ ಬೆಂಬಲಕ್ಕಾಗಿ ಬಿರುಸಿನ ಪ್ರಚಾರ ನಡೆದಿತ್ತು. ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ವಿಜೇತ ಅಭ್ಯರ್ಥಿ Basavaraju ವಿ. Shivaganga ಅವರು ತಮ್ಮ ಸಮೀಪದ ಪ್ರತಿಸ್ಪರ್ಧಿ ಪಕ್ಷೇತರ (IND) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿ Madal Mallikarjuna ಅವರ ವಿರುದ್ಧ ಬರೋಬ್ಬರಿ 16,435 ಮತಗಳ ನಿರ್ಣಾಯಕ ಅಂತರದಿಂದ ಶುಭ ಜಯ ದಾಖಲಿಸಿದರು. ಈ ಚುನಾವಣೆಯಲ್ಲಿ ಎರಡನೇ ಸ್ಥಾನ ಪಡೆದ ಪಕ್ಷೇತರ (IND) ಅಭ್ಯರ್ಥಿ Madal Mallikarjuna ಅವರು ಒಟ್ಟು 61,828 ಮತಗಳನ್ನು ಗಳಿಸಿ ಪ್ರಬಲ ಪೈಪೋಟಿ ನೀಡಿದ್ದರು. ಕ್ಷೇತ್ರದ ಒಟ್ಟು ಮತದಾನದ ಪ್ರಮಾಣವು ಶೇಕಡಾ 75.4% ದಾಖಲಾಗಿದ್ದು, ಮತದಾರರ ಸಕ್ರಿಯ ಪಾಲ್ಗೊಳ್ಳುವಿಕೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಚನ್ನಗಿರಿ ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಇತಿಹಾಸವನ್ನು ಗಮನಿಸಿದರೆ 1978ರಿಂದ 2023ರವರೆಗಿನ 11 ಸಾರ್ವತ್ರಿಕ ಹಾಗೂ ಉಪಚುನಾವಣೆಗಳಲ್ಲಿ ವಿವಿಧ ರಾಜಕೀಯ ಪಕ್ಷಗಳು ತಮ್ಮ ಅಧಿಪತ್ಯ ಸ್ಥಾಪಿಸಿವೆ. ಈ ಸುದೀರ್ಘ ಅವಧಿಯಲ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಪ್ರಮುಖವಾಗಿ ಕಾಂಗ್ರೆಸ್ (INC) (5 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (2 ಬಾರಿ), ಜನತಾ ಪಕ್ಷ (JNP) (2 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (1 ಬಾರಿ) ಮತದಾರರ ವಿಶ್ವಾಸ ಗಳಿಸಿ ಜಯಭೇರಿ ಬಾರಿಸಿವೆ. ಈ ಹಿಂದಿನ ಪ್ರಮುಖ ಚುನಾವಣೆಗಳಲ್ಲಿ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಕೆ. Madalu Virupakshappa ಅವರು (+25,780 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Vadnal Rajanna ಅವರು (+1,773 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಕೆ. Madal Virupakshappa ಅವರು (+993 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ Krishna ಅವರು (+5,414 ಮತಗಳ ಅಂತರ) ಜಯ ಸಾಧಿಸುವ ಮೂಲಕ ಕ್ಷೇತ್ರದ ಶಾಸಕರಾಗಿ ಸೇವೆಯಲ್ಲಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಸಮಗ್ರವಾಗಿ ನೋಡಿದಾಗ ಚನ್ನಗಿರಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಮೌಲ್ಯಗಳ ಹಾಗೂ ಪ್ರಾದೇಶಿಕ ಜನಾದೇಶದ ಸ್ಪಷ್ಟ ನಿದರ್ಶನವಾಗಿದೆ. ಅಧಿಕೃತ ಚುನಾವಣಾ ಅಂಕಿಅಂಶಗಳ ಆಧಾರದ ಮೇಲೆ ಕ್ಷೇತ್ರದ ಸಾಮಾಜಿಕ ಮತ್ತು ರಾಜಕೀಯ ಪಯಣವು ಗಮನಾರ್ಹವಾಗಿದ್ದು, ಮುಂಬರುವ ಚುನಾವಣಾ ಕಣಗಳಲ್ಲೂ ಈ ಕ್ಷೇತ್ರದ ತೀರ್ಪು ಅತ್ಯಂತ ಪ್ರಮುಖ ಪಾತ್ರ ವಹಿಸಲಿದೆ.</p>
-      </div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Basavaraju V. Shivaganga</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">78,263</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">47.03%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Madal Mallikarjuna</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">61,828</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">37.16%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">H. S. Shivakumar</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">21,467</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">12.90%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Tejaswi. V. Patel</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,216</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.73%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">555</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.33%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#ff7f0e; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
 
-      <div class="source-meta">
-        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
-        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">K. Madalu Virupakshappa</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">73,794</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">46.68%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Vadnal Rajanna</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">48,014</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">30.37%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">D. Ramesha</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">29,106</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">18.41%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">946</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.60%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#1f77b4; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Vadnal Rajanna</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">53,355</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">35.78%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">K. Madalu Virupakshappa</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">KJP</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">51,582</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">34.59%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Hodigere Ramesh</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">28,900</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">19.38%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">H. S. Shivakumar</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">4,526</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">3.04%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Ameer Ahmed Kogaluru</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">BSRCP</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,054</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.71%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
       </div>
     </section>
 
-    <!-- 4. FOURTH SECTION: LAST 3 ELECTIONS WIKIPEDIA CANDIDATE BREAKDOWN (2023, 2018, 2013) -->
+    <!-- 4. FOURTH SECTION: INTERACTIVE PIE CHART & VOTE SHARE TREND BAR CHART -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>🌐 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ವಿಕಿಪೀಡಿಯಾ ಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಪಟ್ಟಿ (Wikipedia Election Data)</span>
-        <span class="news-badge">Wikipedia Verified</span>
+        <span>📊 ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ & 3 ಚುನಾವಣೆಗಳ ಟ್ರೆಂಡ್ ಗ್ರಾಫ್</span>
+        <span class="news-badge">Visual Analytics</span>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:18px; margin-top:16px;">
-        
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#1f77b4; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
-              </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:16px;">
+        <!-- PIE CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">🥧 2023 ಪಕ್ಷಗಳ ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ (Pie Chart)</div>
+          <div style="height:260px; position:relative; display:flex; justify-content:center;">
+            <canvas id="voteSharePieChart"></canvas>
+          </div>
+        </div>
 
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Basavaraju V. Shivaganga</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">78,263</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">47.03%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Madal Mallikarjuna</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">61,828</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">37.16%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">H. S. Shivakumar</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">21,467</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">12.90%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Tejaswi. V. Patel</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,216</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.73%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#5</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">None of the above</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">NOTA</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">555</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.33%%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#ff7f0e; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
-              </div>
-
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">K. Madalu Virupakshappa</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">73,794</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">46.68%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Vadnal Rajanna</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">48,014</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">30.37%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">D. Ramesha</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">29,106</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">18.41%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">None of the above</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">NOTA</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">946</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.60%%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#1f77b4; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
-              </div>
-
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Vadnal Rajanna</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">53,355</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">35.78%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">K. Madalu Virupakshappa</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">KJP</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">51,582</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">34.59%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Hodigere Ramesh</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">28,900</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">19.38%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">H. S. Shivakumar</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">4,526</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">3.04%%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#5</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Ameer Ahmed Kogaluru</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">BSRCP</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,054</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.71%%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
+        <!-- BAR CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">📈 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಮತ ಹಂಚಿಕೆ ಟ್ರೆಂಡ್ (Bar Chart)</div>
+          <div style="height:260px; position:relative;">
+            <canvas id="voteTrendBarChart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -540,6 +564,25 @@
       </div>
     </section>
 
+    <!-- 6. SIXTH SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (PLACED AT THE VERY BOTTOM) -->
+    <section class="dash-card" style="margin-top:28px;">
+      <div class="dash-head">
+        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ (ವಿಶೇಷ ಲೇಖನ)</span>
+        <span class="news-badge">ಕ್ಷೇತ್ರ ಮಾಹಿತಿ</span>
+      </div>
+
+      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">ಚನ್ನಗಿರಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: 2023ರ ಫಲಿತಾಂಶ, ಶಾಸಕರು ಮತ್ತು ಚುನಾವಣಾ ಇತಿಹಾಸದ ಸಂಪೂರ್ಣ ವಿವರ</h2>
+
+      <div class="article-body">
+        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ರಾಜ್ಯದ ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಯ ಪ್ರಮುಖ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಒಂದಾದ ಚನ್ನಗಿರಿ ಕ್ಷೇತ್ರವು (ಕ್ರಮ ಸಂಖ್ಯೆ #109) ಪ್ರಾದೇಶಿಕ ರಾಜಕೀಯ ಕ್ಷೇತ್ರದಲ್ಲಿ ತನ್ನದೇ ಆದ ಸಾಂಸ್ಥಿಕ ಮಹತ್ವವನ್ನು ಹೊಂದಿದೆ. ಸಾಮಾನ್ಯ ವರ್ಗೀಕರಣಕ್ಕೆ ಒಳಪಡುವ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ 2023ರ ಸಾರ್ವತ್ರಿಕ ಶಾಸನಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಭಾರಿ ರಾಜಕೀಯ ಪೈಪೋಟಿ ಏರ್ಪಟ್ಟಿತ್ತು. ಚುನಾವಣೆಯ ಅಂತಿಮ ಫಲಿತಾಂಶದಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿಯಾದ Basavaraju ವಿ. Shivaganga ಅವರು ಶ್ರೇಷ್ಠ ಸಾಧನೆ ಮಾಡುವ ಮೂಲಕ ಗೆಲುವು ಸಾಧಿಸಿ, ಪ್ರಸ್ತುತ ಕ್ಷೇತ್ರದ ಜನಪ್ರತಿನಿಧಿ ಹಾಗೂ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿದ್ದಾರೆ. ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗವು ಪ್ರಕಟಿಸಿದ ಅಧಿಕೃತ ಫಲಿತಾಂಶಗಳ ಪ್ರಕಾರ, ಶಾಸಕ Basavaraju ವಿ. Shivaganga ಅವರು ಒಟ್ಟು 78,263 ಸಿಂಧುವಾದ ಮತಗಳನ್ನು ಗಳಿಸಿ ಶೇಕಡಾ 47.2% ಮತ ಪ್ರಮಾಣವನ್ನು ತಮ್ಮದಾಗಿಸಿಕೊಂಡಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">2023ರ ಚುನಾವಣಾ ಕಣದಲ್ಲಿ ಮತದಾರರ ಬೆಂಬಲಕ್ಕಾಗಿ ಬಿರುಸಿನ ಪ್ರಚಾರ ನಡೆದಿತ್ತು. ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ವಿಜೇತ ಅಭ್ಯರ್ಥಿ Basavaraju ವಿ. Shivaganga ಅವರು ತಮ್ಮ ಸಮೀಪದ ಪ್ರತಿಸ್ಪರ್ಧಿ ಪಕ್ಷೇತರ (IND) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿ Madal Mallikarjuna ಅವರ ವಿರುದ್ಧ ಬರೋಬ್ಬರಿ 16,435 ಮತಗಳ ನಿರ್ಣಾಯಕ ಅಂತರದಿಂದ ಶುಭ ಜಯ ದಾಖಲಿಸಿದರು. ಈ ಚುನಾವಣೆಯಲ್ಲಿ ಎರಡನೇ ಸ್ಥಾನ ಪಡೆದ ಪಕ್ಷೇತರ (IND) ಅಭ್ಯರ್ಥಿ Madal Mallikarjuna ಅವರು ಒಟ್ಟು 61,828 ಮತಗಳನ್ನು ಗಳಿಸಿ ಪ್ರಬಲ ಪೈಪೋಟಿ ನೀಡಿದ್ದರು. ಕ್ಷೇತ್ರದ ಒಟ್ಟು ಮತದಾನದ ಪ್ರಮಾಣವು ಶೇಕಡಾ 75.4% ದಾಖಲಾಗಿದ್ದು, ಮತದಾರರ ಸಕ್ರಿಯ ಪಾಲ್ಗೊಳ್ಳುವಿಕೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಚನ್ನಗಿರಿ ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಇತಿಹಾಸವನ್ನು ಗಮನಿಸಿದರೆ 1978ರಿಂದ 2023ರವರೆಗಿನ 11 ಸಾರ್ವತ್ರಿಕ ಹಾಗೂ ಉಪಚುನಾವಣೆಗಳಲ್ಲಿ ವಿವಿಧ ರಾಜಕೀಯ ಪಕ್ಷಗಳು ತಮ್ಮ ಅಧಿಪತ್ಯ ಸ್ಥಾಪಿಸಿವೆ. ಈ ಸುದೀರ್ಘ ಅವಧಿಯಲ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಪ್ರಮುಖವಾಗಿ ಕಾಂಗ್ರೆಸ್ (INC) (5 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (2 ಬಾರಿ), ಜನತಾ ಪಕ್ಷ (JNP) (2 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (1 ಬಾರಿ) ಮತದಾರರ ವಿಶ್ವಾಸ ಗಳಿಸಿ ಜಯಭೇರಿ ಬಾರಿಸಿವೆ. ಈ ಹಿಂದಿನ ಪ್ರಮುಖ ಚುನಾವಣೆಗಳಲ್ಲಿ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಕೆ. Madalu Virupakshappa ಅವರು (+25,780 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Vadnal Rajanna ಅವರು (+1,773 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಕೆ. Madal Virupakshappa ಅವರು (+993 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ Krishna ಅವರು (+5,414 ಮತಗಳ ಅಂತರ) ಜಯ ಸಾಧಿಸುವ ಮೂಲಕ ಕ್ಷೇತ್ರದ ಶಾಸಕರಾಗಿ ಸೇವೆಯಲ್ಲಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಸಮಗ್ರವಾಗಿ ನೋಡಿದಾಗ ಚನ್ನಗಿರಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಮೌಲ್ಯಗಳ ಹಾಗೂ ಪ್ರಾದೇಶಿಕ ಜನಾದೇಶದ ಸ್ಪಷ್ಟ ನಿದರ್ಶನವಾಗಿದೆ. ಅಧಿಕೃತ ಚುನಾವಣಾ ಅಂಕಿಅಂಶಗಳ ಆಧಾರದ ಮೇಲೆ ಕ್ಷೇತ್ರದ ಸಾಮಾಜಿಕ ಮತ್ತು ರಾಜಕೀಯ ಪಯಣವು ಗಮನಾರ್ಹವಾಗಿದ್ದು, ಮುಂಬರುವ ಚುನಾವಣಾ ಕಣಗಳಲ್ಲೂ ಈ ಕ್ಷೇತ್ರದ ತೀರ್ಪು ಅತ್ಯಂತ ಪ್ರಮುಖ ಪಾತ್ರ ವಹಿಸಲಿದೆ.</p>
+      </div>
+
+      <div class="source-meta">
+        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
+        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+      </div>
+    </section>
+
   </main>
 
   <script src="../nav-component.js"></script>
@@ -571,6 +614,61 @@
     } else {
       document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
     }
+
+    // Render Charts
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Pie Chart
+      const ctxPie = document.getElementById('voteSharePieChart').getContext('2d');
+      new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['ಕಾಂಗ್ರೆಸ್ (INC) (ವಿಜೇತ)', 'ಪಕ್ಷೇತರ (IND) (ರನ್ನರ್-ಅಪ್)', 'ಇತರರು (Others)'],
+          datasets: [{
+            data: [47.2, 37.8, 15.0],
+            backgroundColor: ['#1f77b4', '#94A3B8', '#CBD5E1'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 2. Bar Chart
+      const ctxBar = document.getElementById('voteTrendBarChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['2013', '2018', '2023'],
+          datasets: [
+            {
+              label: 'ವಿಜೇತರ ಮತ ಪಾಲು (%)',
+              data: [35.78, 46.68, 47.03],
+              backgroundColor: '#1f77b4'
+            },
+            {
+              label: 'ರನ್ನರ್-ಅಪ್ ಮತ ಪಾಲು (%)',
+              data: [34.59, 30.37, 37.16],
+              backgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          },
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    });
 
     function runQuickSearch(query) {
       const box = document.getElementById('quick-search-box');

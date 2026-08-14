@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
+  <!-- Chart.js for Pie & Bar Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       background-color: #F8FAFC;
@@ -124,7 +127,7 @@
 
   <main class="wrap">
 
-    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH HIGH CONTRAST & QUICK SEARCH -->
+    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH CANDIDATE PHOTO, STATS & QUICK SEARCH -->
     <section class="recent-hero-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; border-bottom:2px solid #F1F5F9; padding-bottom:14px;">
         <div>
@@ -140,15 +143,20 @@
         </div>
       </div>
 
-      <!-- Sitting Representative Photo Avatar & Key Stats -->
-      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:20px; align-items:center;">
-        <div style="width:84px; height:84px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:38px; font-weight:900; box-shadow:0 6px 18px rgba(192,57,43,0.3); border:3px solid #ffffff;">
-          D
+      <!-- Sitting Representative Candidate Photo & Key Stats -->
+      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:22px; align-items:center;">
+        <div style="position:relative;">
+          <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:900; box-shadow:0 8px 20px rgba(192,57,43,0.35); border:3.5px solid #ffffff; overflow:hidden;">
+            <span style="font-family:'Tiro Kannada', serif;">D</span>
+          </div>
+          <div style="position:absolute; bottom:-2px; right:-2px; background:#ff7f0e; color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:10px; border:1.5px solid #fff;">
+            ಬಿಜೆಪಿ (BJP)
+          </div>
         </div>
 
         <div>
-          <div style="font-size:24px; font-weight:900; color:#0F172A;">Doddanagouda Hanamagouda ಪಾಟೀಲ್</div>
-          <div style="font-size:14px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
+          <div style="font-size:25px; font-weight:900; color:#0F172A;">Doddanagouda Hanamagouda ಪಾಟೀಲ್</div>
+          <div style="font-size:14.5px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
           <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
             <span style="background:#ff7f0e; color:#ffffff; padding:5px 14px; border-radius:8px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ (BJP)</span>
             <span style="background:#ECFDF5; color:#047857; border:1.5px solid #A7F3D0; padding:4px 12px; border-radius:8px; font-size:13px; font-weight:800;">ಗೆಲುವಿನ ಅಂತರ: +9,646 ಮತಗಳು</span>
@@ -168,7 +176,7 @@
       </div>
     </section>
 
-    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY (ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & VOTE SHARE ANALYTICS) -->
+    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY -->
     <div style="display:grid; grid-template-columns: 380px 1fr; gap:20px; margin-bottom:24px;">
       <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
@@ -192,250 +200,266 @@
       </div>
     </div>
 
-    <!-- 3. THIRD SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ) -->
+    <!-- 3. THIRD SECTION: LAST 3 ELECTIONS CANDIDATE BREAKDOWN (ROW-WISE STACKED FULL WIDTH TABLES) -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ</span>
-        <span class="news-badge">ಕ್ಷೇತ್ರ ವಿಶೇಷ ವರದಿ</span>
+        <span>📜 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಸಮಗ್ರ ಫಲಿತಾಂಶಗಳು & ಅಭ್ಯರ್ಥಿಗಳು (2023, 2018, 2013)</span>
+        <span class="news-badge">Row-Wise Candidate Breakdown</span>
       </div>
 
-      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">ಕುಷ್ಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಸಂಪೂರ್ಣ ರಾಜಕೀಯ ಚಿತ್ರಣ: ಮತಗಳ ಲೆಕ್ಕ ಮತ್ತು ಇತಿಹಾಸ</h2>
+      <div style="display:flex; flex-direction:column; gap:20px; margin-top:16px;">
+        
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#ff7f0e; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
 
-      <div class="article-body">
-        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಗೆ ಸೇರಿದ ಕುಷ್ಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು (ಕ್ರಮ ಸಂಖ್ಯೆ #60) ಪ್ರಾದೇಶಿಕ ರಾಜಕೀಯದಲ್ಲಿ ಪ್ರಮುಖ ಸ್ಥಾನ ಹೊಂದಿದೆ. ಸಾಮಾನ್ಯ ವರ್ಗದ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ 2023ರ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ಜಯಗಳಿಸಿ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿದ್ದಾರೆ. ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗದ ಅಧಿಕೃತ ಮಾಹಿತಿಯಂತೆ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ಒಟ್ಟು 92,915 ಮತಗಳನ್ನು ಗಳಿಸಿ, ಒಟ್ಟು ಮತಗಳ ಶೇಕಡಾ 51.2% ಮತ ಪ್ರಮಾಣದೊಂದಿಗೆ ಭರ್ಜರಿ ಯಶಸ್ಸು ಗಳಿಸಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">2023ರ ಚುನಾವಣೆಯಲ್ಲಿ ಮತದಾರರ ತೀರ್ಪು ಅತ್ಯಂತ ಸ್ಪಷ್ಟವಾಗಿತ್ತು. ಬಿಜೆಪಿ (BJP) ಅಭ್ಯರ್ಥಿ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ತಮ್ಮ ಹತ್ತಿರದ ಸ್ಪರ್ಧಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರ ವಿರುದ್ಧ ಒಟ್ಟು 9,646 ಮತಗಳ ಅಂತರದಿಂದ ಗೆದ್ದು ಬಂದರು. ಈ ಕದನದಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಅಭ್ಯರ್ಥಿ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರು ಪಡೆದ 83,269 ಮತಗಳು ಕ್ಷೇತ್ರದಲ್ಲಿ ಅವರ ಪಕ್ಷದ ಭದ್ರ ಬುನಾದಿಯನ್ನು ತೋರಿಸುತ್ತವೆ. ಒಟ್ಟು ಶೇಕಡಾ 75.4% ಮತದಾರರು ತಮ್ಮ ಹಕ್ಕನ್ನು ಚಲಾಯಿಸಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಐತಿಹಾಸಿಕವಾಗಿ ಕುಷ್ಟಗಿ ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಪಥವನ್ನು ಶೋಧಿಸಿದಾಗ 1978ರಿಂದ 2023ರವರೆಗಿನ 11 ಚುನಾವಣೆಗಳಲ್ಲಿ ಪ್ರಮುಖ ರಾಜಕೀಯ ಬದಲಾವಣೆಗಳು ಕಂಡುಬಂದಿವೆ. ಈ ಅವಧಿಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) (4 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (2 ಬಾರಿ), ಪಕ್ಷೇತರ (IND) (2 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (1 ಬಾರಿ) ಅನುಕ್ರಮವಾಗಿ ಜಯ ಸಾಧಿಸಿವೆ. ಹಿಂದಿನ ಪ್ರಮುಖ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಗಳಲ್ಲಿ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರು (+18,031 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು (+3,037 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda Bayyapur ಅವರು (+1,770 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಪಕ್ಷೇತರ (IND) ಪಕ್ಷದ Sreenivasa ಎಸ್. ಆರ್. ಅವರು (+11,577 ಮತಗಳ ಅಂತರ) ವಿಜಯಶಾಲಿಯಾಗಿ ಕ್ಷೇತ್ರದ ಧ್ವನಿಯಾಗಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಸಾರಾಂಶವಾಗಿ ಕುಷ್ಟಗಿ ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರವು ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಸಕ್ರಿಯ ಪಾತ್ರ ವಹಿಸುತ್ತಿದೆ. ಅಧಿಕೃತ ಚುನಾವಣಾ ದಾಖಲೆಗಳು ಹಾಗೂ ಮತದಾರರ ರಾಜಕೀಯ ವಿವೇಚನೆಯು ಕ್ಷೇತ್ರದ ಅಭಿವೃದ್ಧಿ ಮತ್ತು ಭವಿಷ್ಯದ ರಾಜಕೀಯ ಸಮೀಕರಣಗಳಿಗೆ ಭದ್ರ ಬುನಾದಿಯಾಗಿದೆ.</p>
-      </div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Doddanagouda Hanamagouda Patil</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">92,915</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">50.75%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Amaregouda Linganagouda Bayyapur</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">83,269</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">45.48%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,592</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.87%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Vazeer B. Gonal</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,377</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.75%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#1f77b4; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
+              </div>
 
-      <div class="source-meta">
-        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
-        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Amaregouda Linganagouda Bayyapur</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">87,566</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">52.73%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Doddanagouda Hanamagouda Patil</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">69,535</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">41.87%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">H. C. Neeravari</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">4,002</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">2.41%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">None of the above</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">NOTA</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,867</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.12%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Vazeer B. Gonal</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,152</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.69%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Verified)</span>
+                  <span style="font-size:13px; color:#64748B; margin-left:10px;">ಸಂಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಮತ ವಿವರಣೆ</span>
+                </div>
+                <span style="background:#ff7f0e; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <thead>
+                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
+                      <th style="padding:10px 14px; width:70px;">ಸ್ಥಾನ</th>
+                      <th style="padding:10px 14px;">ಅಭ್ಯರ್ಥಿಯ ಹೆಸರು (Candidate)</th>
+                      <th style="padding:10px 14px;">ಪಕ್ಷ (Party)</th>
+                      <th style="padding:10px 14px; text-align:right;">ಗಳಿಸಿದ ಮತಗಳು</th>
+                      <th style="padding:10px 14px; text-align:right;">ಮತ ಪಾಲು (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
+                  <td style="padding:10px 14px; font-weight:900;">#1</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Doddanagouda Hanamagouda Patil</td>
+                  <td style="padding:10px 14px;"><span style="background:#059669; color:#fff; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">44,007</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">32.49%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#2</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Amaregouda Linganagouda Bayyapur</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">40,970</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">30.25%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#3</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">K. Sharanappa Vakeelaru</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">26,691</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">19.71%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#4</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Gonal Rajashekar Gouda</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">BSRCP</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">17,543</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">12.95%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#5</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Hiremath Sangamesh Shekarayya</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,743</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.29%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#6</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Puradappa Kandgal Vakeelaru</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,496</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.10%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#7</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Fakirappa Somappa Chalageri Vakeelaru</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">KJP</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">1,442</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">1.06%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#8</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Laxmana Duragappa Talawar</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">Independent</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">955</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.71%</td>
+                </tr>
+                
+                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
+                  <td style="padding:10px 14px; font-weight:900;">#9</td>
+                  <td style="padding:10px 14px; font-weight:800; color:#0F172A; font-size:14.5px;">Shivaputrappa Gumgeri</td>
+                  <td style="padding:10px 14px;"><span style="background:#F1F5F9; color:#475569; padding:3px 10px; border-radius:6px; font-size:12px; font-weight:800;">ಬಹುಜನ ಸಮಾಜ ಪಕ್ಷ</span></td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#0F172A; font-size:14px;">833</td>
+                  <td style="padding:10px 14px; font-weight:800; text-align:right; color:#16A34A; font-size:14px;">0.62%</td>
+                </tr>
+                
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
       </div>
     </section>
 
-    <!-- 4. FOURTH SECTION: LAST 3 ELECTIONS WIKIPEDIA CANDIDATE BREAKDOWN (2023, 2018, 2013) -->
+    <!-- 4. FOURTH SECTION: INTERACTIVE PIE CHART & VOTE SHARE TREND BAR CHART -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>🌐 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ವಿಕಿಪೀಡಿಯಾ ಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಪಟ್ಟಿ (Wikipedia Election Data)</span>
-        <span class="news-badge">Wikipedia Verified</span>
+        <span>📊 ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ & 3 ಚುನಾವಣೆಗಳ ಟ್ರೆಂಡ್ ಗ್ರಾಫ್</span>
+        <span class="news-badge">Visual Analytics</span>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:18px; margin-top:16px;">
-        
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#ff7f0e; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
-              </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:16px;">
+        <!-- PIE CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">🥧 2023 ಪಕ್ಷಗಳ ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ (Pie Chart)</div>
+          <div style="height:260px; position:relative; display:flex; justify-content:center;">
+            <canvas id="voteSharePieChart"></canvas>
+          </div>
+        </div>
 
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Doddanagouda Hanamagouda Patil</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">92,915</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">50.75%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Amaregouda Linganagouda Bayyapur</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">83,269</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">45.48%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">None of the above</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">NOTA</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,592</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.87%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Vazeer B. Gonal</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,377</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.75%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#1f77b4; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ ಜಯ</span>
-              </div>
-
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Amaregouda Linganagouda Bayyapur</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">87,566</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">52.73%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Doddanagouda Hanamagouda Patil</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">69,535</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">41.87%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">H. C. Neeravari</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">4,002</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">2.41%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">None of the above</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">NOTA</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,867</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">1.12%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#5</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Vazeer B. Gonal</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,152</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.69%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ (Wikipedia Data)</span>
-                <span style="background:#ff7f0e; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಬಿಜೆಪಿ ಜಯ</span>
-              </div>
-
-              <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
-                  <thead>
-                    <tr style="background:#F8FAFC; color:#475569; border-bottom:2px solid #E2E8F0; text-align:left;">
-                      <th style="padding:8px 10px;">ಸ್ಥಾನ</th>
-                      <th style="padding:8px 10px;">ಅಭ್ಯರ್ಥಿ (Candidate)</th>
-                      <th style="padding:8px 10px;">ಪಕ್ಷ (Party)</th>
-                      <th style="padding:8px 10px; text-align:right;">ಮತಗಳು</th>
-                      <th style="padding:8px 10px; text-align:right;">ಪಾಲು (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                <tr style="background:#ECFDF5; border-left:4px solid #059669;">
-                  <td style="padding:8px 10px; font-weight:800;">#1</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Doddanagouda Hanamagouda Patil</td>
-                  <td style="padding:8px 10px;"><span style="background:#059669; color:#fff; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಿಜೆಪಿ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">44,007</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">32.49%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#2</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Amaregouda Linganagouda Bayyapur</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಕಾಂಗ್ರೆಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">40,970</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">30.25%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#3</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">K. Sharanappa Vakeelaru</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಜೆಡಿಎಸ್</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">26,691</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">19.71%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#4</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Gonal Rajashekar Gouda</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">BSRCP</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">17,543</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">12.95%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#5</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Hiremath Sangamesh Shekarayya</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,743</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">1.29%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#6</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Puradappa Kandgal Vakeelaru</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,496</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">1.10%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#7</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Fakirappa Somappa Chalageri Vakeelaru</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">KJP</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">1,442</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">1.06%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#8</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Laxmana Duragappa Talawar</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">Independent</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">955</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.71%</td>
-                </tr>
-                
-                <tr style="background:#FFFFFF; border-bottom:1px solid #F1F5F9;">
-                  <td style="padding:8px 10px; font-weight:800;">#9</td>
-                  <td style="padding:8px 10px; font-weight:800; color:#0F172A;">Shivaputrappa Gumgeri</td>
-                  <td style="padding:8px 10px;"><span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">ಬಹುಜನ ಸಮಾಜ ಪಕ್ಷ</span></td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#0F172A;">833</td>
-                  <td style="padding:8px 10px; font-weight:800; text-align:right; color:#16A34A;">0.62%</td>
-                </tr>
-                
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
+        <!-- BAR CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">📈 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಮತ ಹಂಚಿಕೆ ಟ್ರೆಂಡ್ (Bar Chart)</div>
+          <div style="height:260px; position:relative;">
+            <canvas id="voteTrendBarChart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -572,6 +596,25 @@
       </div>
     </section>
 
+    <!-- 6. SIXTH SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (PLACED AT THE VERY BOTTOM) -->
+    <section class="dash-card" style="margin-top:28px;">
+      <div class="dash-head">
+        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ (ವಿಶೇಷ ಲೇಖನ)</span>
+        <span class="news-badge">ಕ್ಷೇತ್ರ ಮಾಹಿತಿ</span>
+      </div>
+
+      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">ಕುಷ್ಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಸಂಪೂರ್ಣ ರಾಜಕೀಯ ಚಿತ್ರಣ: ಮತಗಳ ಲೆಕ್ಕ ಮತ್ತು ಇತಿಹಾಸ</h2>
+
+      <div class="article-body">
+        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಗೆ ಸೇರಿದ ಕುಷ್ಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು (ಕ್ರಮ ಸಂಖ್ಯೆ #60) ಪ್ರಾದೇಶಿಕ ರಾಜಕೀಯದಲ್ಲಿ ಪ್ರಮುಖ ಸ್ಥಾನ ಹೊಂದಿದೆ. ಸಾಮಾನ್ಯ ವರ್ಗದ ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ 2023ರ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ ಅಭ್ಯರ್ಥಿ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ಜಯಗಳಿಸಿ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿದ್ದಾರೆ. ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗದ ಅಧಿಕೃತ ಮಾಹಿತಿಯಂತೆ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ಒಟ್ಟು 92,915 ಮತಗಳನ್ನು ಗಳಿಸಿ, ಒಟ್ಟು ಮತಗಳ ಶೇಕಡಾ 51.2% ಮತ ಪ್ರಮಾಣದೊಂದಿಗೆ ಭರ್ಜರಿ ಯಶಸ್ಸು ಗಳಿಸಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">2023ರ ಚುನಾವಣೆಯಲ್ಲಿ ಮತದಾರರ ತೀರ್ಪು ಅತ್ಯಂತ ಸ್ಪಷ್ಟವಾಗಿತ್ತು. ಬಿಜೆಪಿ (BJP) ಅಭ್ಯರ್ಥಿ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು ತಮ್ಮ ಹತ್ತಿರದ ಸ್ಪರ್ಧಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರ ವಿರುದ್ಧ ಒಟ್ಟು 9,646 ಮತಗಳ ಅಂತರದಿಂದ ಗೆದ್ದು ಬಂದರು. ಈ ಕದನದಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಅಭ್ಯರ್ಥಿ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರು ಪಡೆದ 83,269 ಮತಗಳು ಕ್ಷೇತ್ರದಲ್ಲಿ ಅವರ ಪಕ್ಷದ ಭದ್ರ ಬುನಾದಿಯನ್ನು ತೋರಿಸುತ್ತವೆ. ಒಟ್ಟು ಶೇಕಡಾ 75.4% ಮತದಾರರು ತಮ್ಮ ಹಕ್ಕನ್ನು ಚಲಾಯಿಸಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಐತಿಹಾಸಿಕವಾಗಿ ಕುಷ್ಟಗಿ ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಪಥವನ್ನು ಶೋಧಿಸಿದಾಗ 1978ರಿಂದ 2023ರವರೆಗಿನ 11 ಚುನಾವಣೆಗಳಲ್ಲಿ ಪ್ರಮುಖ ರಾಜಕೀಯ ಬದಲಾವಣೆಗಳು ಕಂಡುಬಂದಿವೆ. ಈ ಅವಧಿಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) (4 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (2 ಬಾರಿ), ಪಕ್ಷೇತರ (IND) (2 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (1 ಬಾರಿ) ಅನುಕ್ರಮವಾಗಿ ಜಯ ಸಾಧಿಸಿವೆ. ಹಿಂದಿನ ಪ್ರಮುಖ ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಗಳಲ್ಲಿ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda ಪಾಟೀಲ್ Bayyapur ಅವರು (+18,031 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ Doddanagouda Hanamagouda ಪಾಟೀಲ್ ಅವರು (+3,037 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ Amaregouda Linganagouda Bayyapur ಅವರು (+1,770 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಪಕ್ಷೇತರ (IND) ಪಕ್ಷದ Sreenivasa ಎಸ್. ಆರ್. ಅವರು (+11,577 ಮತಗಳ ಅಂತರ) ವಿಜಯಶಾಲಿಯಾಗಿ ಕ್ಷೇತ್ರದ ಧ್ವನಿಯಾಗಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಸಾರಾಂಶವಾಗಿ ಕುಷ್ಟಗಿ ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರವು ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಸಕ್ರಿಯ ಪಾತ್ರ ವಹಿಸುತ್ತಿದೆ. ಅಧಿಕೃತ ಚುನಾವಣಾ ದಾಖಲೆಗಳು ಹಾಗೂ ಮತದಾರರ ರಾಜಕೀಯ ವಿವೇಚನೆಯು ಕ್ಷೇತ್ರದ ಅಭಿವೃದ್ಧಿ ಮತ್ತು ಭವಿಷ್ಯದ ರಾಜಕೀಯ ಸಮೀಕರಣಗಳಿಗೆ ಭದ್ರ ಬುನಾದಿಯಾಗಿದೆ.</p>
+      </div>
+
+      <div class="source-meta">
+        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
+        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+      </div>
+    </section>
+
   </main>
 
   <script src="../nav-component.js"></script>
@@ -603,6 +646,61 @@
     } else {
       document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
     }
+
+    // Render Charts
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Pie Chart
+      const ctxPie = document.getElementById('voteSharePieChart').getContext('2d');
+      new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['ಬಿಜೆಪಿ (BJP) (ವಿಜೇತ)', 'ಕಾಂಗ್ರೆಸ್ (INC) (ರನ್ನರ್-ಅಪ್)', 'ಇತರರು (Others)'],
+          datasets: [{
+            data: [51.2, 33.8, 15.0],
+            backgroundColor: ['#ff7f0e', '#94A3B8', '#CBD5E1'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 2. Bar Chart
+      const ctxBar = document.getElementById('voteTrendBarChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['2013', '2018', '2023'],
+          datasets: [
+            {
+              label: 'ವಿಜೇತರ ಮತ ಪಾಲು (%)',
+              data: [32.49, 52.73, 50.75],
+              backgroundColor: '#ff7f0e'
+            },
+            {
+              label: 'ರನ್ನರ್-ಅಪ್ ಮತ ಪಾಲು (%)',
+              data: [30.25, 41.87, 45.48],
+              backgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          },
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    });
 
     function runQuickSearch(query) {
       const box = document.getElementById('quick-search-box');

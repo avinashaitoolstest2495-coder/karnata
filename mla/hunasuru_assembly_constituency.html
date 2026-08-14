@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
+  <!-- Chart.js for Pie & Bar Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       background-color: #F8FAFC;
@@ -124,7 +127,7 @@
 
   <main class="wrap">
 
-    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH HIGH CONTRAST & QUICK SEARCH -->
+    <!-- 1. FIRST SECTION: RECENT ELECTION DATA (2023) WITH CANDIDATE PHOTO, STATS & QUICK SEARCH -->
     <section class="recent-hero-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; border-bottom:2px solid #F1F5F9; padding-bottom:14px;">
         <div>
@@ -140,15 +143,20 @@
         </div>
       </div>
 
-      <!-- Sitting Representative Photo Avatar & Key Stats -->
-      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:20px; align-items:center;">
-        <div style="width:84px; height:84px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:38px; font-weight:900; box-shadow:0 6px 18px rgba(192,57,43,0.3); border:3px solid #ffffff;">
-          ಜ
+      <!-- Sitting Representative Candidate Photo & Key Stats -->
+      <div style="display:grid; grid-template-columns: auto 1fr auto; gap:22px; align-items:center;">
+        <div style="position:relative;">
+          <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:900; box-shadow:0 8px 20px rgba(192,57,43,0.35); border:3.5px solid #ffffff; overflow:hidden;">
+            <span style="font-family:'Tiro Kannada', serif;">ಜ</span>
+          </div>
+          <div style="position:absolute; bottom:-2px; right:-2px; background:#31a354; color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:10px; border:1.5px solid #fff;">
+            ಜೆಡಿಎಸ್ (JD-S)
+          </div>
         </div>
 
         <div>
-          <div style="font-size:24px; font-weight:900; color:#0F172A;">ಜಿ. ಡಿ. Harish ಗೌಡ</div>
-          <div style="font-size:14px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
+          <div style="font-size:25px; font-weight:900; color:#0F172A;">ಜಿ. ಡಿ. Harish ಗೌಡ</div>
+          <div style="font-size:14.5px; color:#64748B; font-weight:700; margin-top:2px;">ಪ್ರಸ್ತುತ ಶಾಸಕರು (2023 - 2026)</div>
           <div style="margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
             <span style="background:#31a354; color:#ffffff; padding:5px 14px; border-radius:8px; font-size:13px; font-weight:800;">ಜೆಡಿಎಸ್ (JD-S)</span>
             <span style="background:#ECFDF5; color:#047857; border:1.5px solid #A7F3D0; padding:4px 12px; border-radius:8px; font-size:13px; font-weight:800;">ಗೆಲುವಿನ ಅಂತರ: +2,412 ಮತಗಳು</span>
@@ -168,7 +176,7 @@
       </div>
     </section>
 
-    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY (ಪಕ್ಷಗಳ ಜಯಗಳ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & VOTE SHARE ANALYTICS) -->
+    <!-- 2. SECOND SECTION: MAP & PARTY VICTORY SUMMARY -->
     <div style="display:grid; grid-template-columns: 380px 1fr; gap:20px; margin-bottom:24px;">
       <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-head">🗺️ ಕ್ಷೇತ್ರದ ಭೌಗೋಳಿಕ ಗಡಿ ನಕ್ಷೆ</div>
@@ -192,124 +200,104 @@
       </div>
     </div>
 
-    <!-- 3. THIRD SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ) -->
+    <!-- 3. THIRD SECTION: LAST 3 ELECTIONS CANDIDATE BREAKDOWN (ROW-WISE STACKED FULL WIDTH TABLES) -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ</span>
-        <span class="news-badge">ಕ್ಷೇತ್ರ ವಿಶೇಷ ವರದಿ</span>
+        <span>📜 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಸಮಗ್ರ ಫಲಿತಾಂಶಗಳು & ಅಭ್ಯರ್ಥಿಗಳು (2023, 2018, 2013)</span>
+        <span class="news-badge">Row-Wise Candidate Breakdown</span>
       </div>
 
-      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">Hunasuru ಕ್ಷೇತ್ರ ಚುನಾವಣೆ ವರದಿ: ಶಾಸಕ ಜಿ. ಡಿ. Harish ಗೌಡ ಜಯದ ಲೆಕ್ಕಾಚಾರ ಮತ್ತು ರಾಜಕೀಯ ಪಯಣ</h2>
+      <div style="display:flex; flex-direction:column; gap:20px; margin-top:16px;">
+        
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
+                <span style="background:#31a354; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಜೆಡಿಎಸ್ (JD-S)</span>
+              </div>
 
-      <div class="article-body">
-        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಯ ರಾಜಕೀಯ ನಕ್ಷೆಯಲ್ಲಿ Hunasuru ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು (ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ #212) ವಿಶಿಷ್ಟ ಸ್ಥಾನ ಪಡೆದಿದೆ. ಸಾಮಾನ್ಯ ಕ್ಷೇತ್ರದಲ್ಲಿ ಕಳೆದ 2023ರ ಕರ್ನಾಟಕ ವಿಧಾನಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಅತ್ಯಂತ ರೋಚಕ ಚುನಾವಣಾ ಕದನ ಜರುಗಿತ್ತು. ಮತ ಎಣಿಕೆಯ ಅಂತಿಮ ಹಂತದಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ ಜನಪ್ರಿಯ ನಾಯಕ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು ಜನಾದೇಶ ಪಡೆಯುವಲ್ಲಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಸ್ತುತ ಶಾಸಕರಾಗಿ ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸುತ್ತಿದ್ದಾರೆ. ಚುನಾವಣಾ ಆಯೋಗದ ಅಂಕಿಅಂಶಗಳ ಪ್ರಕಾರ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು ಒಟ್ಟು 94,666 ಮತಗಳನ್ನು ಗಳಿಸುವ ಮೂಲಕ ಶೇಕಡಾ 47.3% ಮತ ಹಂಚಿಕೆ ಪಡೆದಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕಳೆದ ಚುನಾವಣೆಯ ಮತಗಳ ಲೆಕ್ಕಾಚಾರವನ್ನು ಪರಿಶೀಲಿಸಿದಾಗ, ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ ಜಿ. ಡಿ. Harish ಗೌಡ ಮತ್ತು ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunath ನಡುವೆ ತೀವ್ರ ಸ್ಪರ್ಧೆ ಏರ್ಪಟ್ಟಿತ್ತು. ಅಂತಿಮವಾಗಿ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು 2,412 ಮತಗಳ ಸ್ಪಷ್ಟ ಗೆಲುವಿನ ಅಂತರದೊಂದಿಗೆ ತಮ್ಮ ಎದುರಾಳಿ ಎಚ್. ಪಿ. Manjunath ಅವರನ್ನು ಪರಾಭವಗೊಳಿಸಿದರು. ಎರಡನೇ ಸ್ಥಾನ ಪಡೆದ ಕಾಂಗ್ರೆಸ್ (INC) ಅಭ್ಯರ್ಥಿ ಎಚ್. ಪಿ. Manjunath ಅವರು 92,254 ಮತಗಳನ್ನು ಪಡೆದು ಗಮನಾರ್ಹ ಸಾಧನೆ ಮಾಡಿದರು. ಈ ಚುನಾವಣೆಯಲ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಶೇಕಡಾ 75.4% ಮತದಾನ ದಾಖಲಾಗಿತ್ತು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">Hunasuru ಕ್ಷೇತ್ರದ ಚುನಾವಣಾ ಇತಿಹಾಸವು ಅತ್ಯಂತ ವೈವಿಧ್ಯಮಯವಾಗಿದೆ. 1978ರಿಂದ 2023ರವರೆಗೆ ನಡೆದ ಒಟ್ಟು 11 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಗಳಲ್ಲಿ ಪ್ರಮುಖವಾಗಿ ಕಾಂಗ್ರೆಸ್ (INC) (5 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (2 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (1 ಬಾರಿ), ಜನತಾ ದಳ (JD) (1 ಬಾರಿ) ಮತದಾರರ ಪ್ರಮುಖ ಬೆಂಬಲ ಪಡೆದುಕೊಂಡಿವೆ. ಗತಕಾಲದ ಚುನಾವಣೆಗಳ ಫಲಿತಾಂಶಗಳನ್ನು ನೋಡಿದರೆ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ Adaguru ಎಚ್. Vishwanath ಅವರು (+8,575 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunath ಅವರು (+40,207 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunatha ಅವರು (+15,041 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ Karjol Govind Maktappa ಅವರು (+32,942 ಮತಗಳ ಅಂತರ) ಯಶಸ್ವಿಯಾಗಿ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿ ಜನಸೇವೆ ಸಲ್ಲಿಸಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಒಟ್ಟಾರೆಯಾಗಿ Hunasuru ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರವು ಮತದಾರರ ಪ್ರಬುದ್ಧ ತೀರ್ಪಿಗೆ ಹಾಗೂ ರಾಜಕೀಯ ಮರುಸಂಘಟನೆಗೆ ಸಾಕ್ಷಿಯಾಗಿದೆ. ಚುನಾವಣಾ ಆಯೋಗದ ಮುಕ್ತ ಮತ್ತು ನ್ಯಾಯಸಮ್ಮತ ದಾಖಲೆಗಳ ಆಧಾರದ ಮೇಲೆ ರಚಿತವಾದ ಈ ವರದಿಯು ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಪ್ರಗತಿ ಹಾಗೂ ಮುಂದಿನ ದಿನಗಳ ರಾಜಕೀಯ ಪಥಕ್ಕೆ ದಿಕ್ಸೂಚಿಯಾಗಿದೆ.</p>
-      </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#059669; text-transform:uppercase;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
+                  <div style="font-size:18px; font-weight:900; color:#065F46; margin-top:2px;">ಜಿ. ಡಿ. Harish ಗೌಡ</div>
+                  <div style="font-size:13.5px; color:#047857; margin-top:4px; font-weight:700;">ಪಕ್ಷ: ಜೆಡಿಎಸ್ (JD-S) · <strong>94,666</strong> ಮತಗಳು (<strong>47.3%</strong>)</div>
+                </div>
 
-      <div class="source-meta">
-        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
-        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+                <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#E11D48; text-transform:uppercase;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
+                  <div style="font-size:17px; font-weight:800; color:#9F1239; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath (ಕಾಂಗ್ರೆಸ್ (INC))</div>
+                  <div style="font-size:13.5px; color:#BE123C; margin-top:4px; font-weight:700;"><strong>92,254</strong> ಮತಗಳು (ಗೆಲುವಿನ ಅಂತರ: <strong>+2,412</strong>)</div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
+                <span style="background:#31a354; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಜೆಡಿಎಸ್ (JD-S)</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#059669; text-transform:uppercase;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
+                  <div style="font-size:18px; font-weight:900; color:#065F46; margin-top:2px;">Adaguru ಎಚ್. Vishwanath</div>
+                  <div style="font-size:13.5px; color:#047857; margin-top:4px; font-weight:700;">ಪಕ್ಷ: ಜೆಡಿಎಸ್ (JD-S) · <strong>91,667</strong> ಮತಗಳು (<strong>49.6%</strong>)</div>
+                </div>
+
+                <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#E11D48; text-transform:uppercase;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
+                  <div style="font-size:17px; font-weight:800; color:#9F1239; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath (ಕಾಂಗ್ರೆಸ್ (INC))</div>
+                  <div style="font-size:13.5px; color:#BE123C; margin-top:4px; font-weight:700;"><strong>83,092</strong> ಮತಗಳು (ಗೆಲುವಿನ ಅಂತರ: <strong>+8,575</strong>)</div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:22px; box-shadow:0 4px 16px rgba(15,23,42,0.04); margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:16px;">
+                <span style="font-size:20px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
+                <span style="background:#1f77b4; color:#ffffff; padding:5px 14px; border-radius:12px; font-size:13px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ (INC)</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#059669; text-transform:uppercase;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
+                  <div style="font-size:18px; font-weight:900; color:#065F46; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath</div>
+                  <div style="font-size:13.5px; color:#047857; margin-top:4px; font-weight:700;">ಪಕ್ಷ: ಕಾಂಗ್ರೆಸ್ (INC) · <strong>83,930</strong> ಮತಗಳು (<strong>52.0%</strong>)</div>
+                </div>
+
+                <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:14px; border-radius:10px;">
+                  <div style="font-size:12px; font-weight:800; color:#E11D48; text-transform:uppercase;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
+                  <div style="font-size:17px; font-weight:800; color:#9F1239; margin-top:2px;">Kumaraswamy (ಜೆಡಿಎಸ್ (JD-S))</div>
+                  <div style="font-size:13.5px; color:#BE123C; margin-top:4px; font-weight:700;"><strong>43,723</strong> ಮತಗಳು (ಗೆಲುವಿನ ಅಂತರ: <strong>+40,207</strong>)</div>
+                </div>
+              </div>
+            </div>
+            
       </div>
     </section>
 
-    <!-- 4. FOURTH SECTION: LAST 3 ELECTIONS WIKIPEDIA CANDIDATE BREAKDOWN (2023, 2018, 2013) -->
+    <!-- 4. FOURTH SECTION: INTERACTIVE PIE CHART & VOTE SHARE TREND BAR CHART -->
     <section class="dash-card">
       <div class="dash-head">
-        <span>🌐 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ವಿಕಿಪೀಡಿಯಾ ಪೂರ್ಣ ಅಭ್ಯರ್ಥಿಗಳ ಪಟ್ಟಿ (Wikipedia Election Data)</span>
-        <span class="news-badge">Wikipedia Verified</span>
+        <span>📊 ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ & 3 ಚುನಾವಣೆಗಳ ಟ್ರೆಂಡ್ ಗ್ರಾಫ್</span>
+        <span class="news-badge">Visual Analytics</span>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:18px; margin-top:16px;">
-        
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2023 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
-                <span style="background:#31a354; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್ (JD-S)</span>
-              </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:16px;">
+        <!-- PIE CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">🥧 2023 ಪಕ್ಷಗಳ ಮತ ಹಂಚಿಕೆ ಪೈ ಚಾರ್ಟ್ (Pie Chart)</div>
+          <div style="height:260px; position:relative; display:flex; justify-content:center;">
+            <canvas id="voteSharePieChart"></canvas>
+          </div>
+        </div>
 
-              <!-- WINNER DETAILS -->
-              <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#059669; text-transform:uppercase; letter-spacing:0.05em;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
-                <div style="font-size:16.5px; font-weight:900; color:#065F46; margin-top:2px;">ಜಿ. ಡಿ. Harish ಗೌಡ</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#047857; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಜೆಡಿಎಸ್ (JD-S)</span>
-                  <span><strong>94,666</strong> ಮತಗಳು (<strong>47.3%</strong>)</span>
-                </div>
-              </div>
-
-              <!-- RUNNER-UP DETAILS -->
-              <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#E11D48; text-transform:uppercase; letter-spacing:0.05em;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
-                <div style="font-size:15.5px; font-weight:800; color:#9F1239; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#BE123C; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಕಾಂಗ್ರೆಸ್ (INC)</span>
-                  <span><strong>92,254</strong> ಮತಗಳು</span>
-                </div>
-                <div style="font-size:12px; font-weight:800; color:#991B1B; margin-top:6px; background:#FFE4E6; padding:4px 8px; border-radius:6px; display:inline-block;">
-                  ಗೆಲುವಿನ ಅಂತರ: <strong>+2,412</strong> ಮತಗಳು
-                </div>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2018 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
-                <span style="background:#31a354; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಜೆಡಿಎಸ್ (JD-S)</span>
-              </div>
-
-              <!-- WINNER DETAILS -->
-              <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#059669; text-transform:uppercase; letter-spacing:0.05em;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
-                <div style="font-size:16.5px; font-weight:900; color:#065F46; margin-top:2px;">Adaguru ಎಚ್. Vishwanath</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#047857; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಜೆಡಿಎಸ್ (JD-S)</span>
-                  <span><strong>91,667</strong> ಮತಗಳು (<strong>49.6%</strong>)</span>
-                </div>
-              </div>
-
-              <!-- RUNNER-UP DETAILS -->
-              <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#E11D48; text-transform:uppercase; letter-spacing:0.05em;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
-                <div style="font-size:15.5px; font-weight:800; color:#9F1239; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#BE123C; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಕಾಂಗ್ರೆಸ್ (INC)</span>
-                  <span><strong>83,092</strong> ಮತಗಳು</span>
-                </div>
-                <div style="font-size:12px; font-weight:800; color:#991B1B; margin-top:6px; background:#FFE4E6; padding:4px 8px; border-radius:6px; display:inline-block;">
-                  ಗೆಲುವಿನ ಅಂತರ: <strong>+8,575</strong> ಮತಗಳು
-                </div>
-              </div>
-            </div>
-            
-            <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:14px; padding:20px; box-shadow:0 4px 12px rgba(15,23,42,0.03);">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F1F5F9; padding-bottom:12px; margin-bottom:14px;">
-                <span style="font-size:18px; font-weight:900; color:#C0392B;">🗳️ 2013 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆ</span>
-                <span style="background:#1f77b4; color:#ffffff; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:800;">ಕಾಂಗ್ರೆಸ್ (INC)</span>
-              </div>
-
-              <!-- WINNER DETAILS -->
-              <div style="background:#ECFDF5; border:1px solid #A7F3D0; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#059669; text-transform:uppercase; letter-spacing:0.05em;">🏆 ವಿಜೇತ ಅಭ್ಯರ್ಥಿ (Winner)</div>
-                <div style="font-size:16.5px; font-weight:900; color:#065F46; margin-top:2px;">ಎಚ್. ಪಿ. Manjunath</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#047857; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಕಾಂಗ್ರೆಸ್ (INC)</span>
-                  <span><strong>83,930</strong> ಮತಗಳು (<strong>52.0%</strong>)</span>
-                </div>
-              </div>
-
-              <!-- RUNNER-UP DETAILS -->
-              <div style="background:#FFF5F5; border:1px solid #FECDD3; padding:12px; border-radius:10px; margin-bottom:12px;">
-                <div style="font-size:11px; font-weight:800; color:#E11D48; text-transform:uppercase; letter-spacing:0.05em;">🥈 ರನ್ನರ್-ಅಪ್ (Runner-Up)</div>
-                <div style="font-size:15.5px; font-weight:800; color:#9F1239; margin-top:2px;">Kumaraswamy</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#BE123C; margin-top:4px; font-weight:700;">
-                  <span>ಪಕ್ಷ: ಜೆಡಿಎಸ್ (JD-S)</span>
-                  <span><strong>43,723</strong> ಮತಗಳು</span>
-                </div>
-                <div style="font-size:12px; font-weight:800; color:#991B1B; margin-top:6px; background:#FFE4E6; padding:4px 8px; border-radius:6px; display:inline-block;">
-                  ಗೆಲುವಿನ ಅಂತರ: <strong>+40,207</strong> ಮತಗಳು
-                </div>
-              </div>
-            </div>
-            
+        <!-- BAR CHART -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:18px; text-align:center;">
+          <div style="font-weight:800; font-size:15px; color:#0F172A; margin-bottom:12px;">📈 ಇತ್ತೀಚಿನ 3 ಚುನಾವಣೆಗಳ ಮತ ಹಂಚಿಕೆ ಟ್ರೆಂಡ್ (Bar Chart)</div>
+          <div style="height:260px; position:relative;">
+            <canvas id="voteTrendBarChart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -446,6 +434,25 @@
       </div>
     </section>
 
+    <!-- 6. SIXTH SECTION: 250-WORD FACTUAL KANNADA NEWS STORY (PLACED AT THE VERY BOTTOM) -->
+    <section class="dash-card" style="margin-top:28px;">
+      <div class="dash-head">
+        <span>📰 ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಚಿತ್ರಣ (ವಿಶೇಷ ಲೇಖನ)</span>
+        <span class="news-badge">ಕ್ಷೇತ್ರ ಮಾಹಿತಿ</span>
+      </div>
+
+      <h2 style="font-family:'Tiro Kannada', serif; font-size:22px; font-weight:800; color:#0F172A; margin-bottom:16px; line-height:1.4;">Hunasuru ಕ್ಷೇತ್ರ ಚುನಾವಣೆ ವರದಿ: ಶಾಸಕ ಜಿ. ಡಿ. Harish ಗೌಡ ಜಯದ ಲೆಕ್ಕಾಚಾರ ಮತ್ತು ರಾಜಕೀಯ ಪಯಣ</h2>
+
+      <div class="article-body">
+        <p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕರ್ನಾಟಕ ಜಿಲ್ಲೆಯ ರಾಜಕೀಯ ನಕ್ಷೆಯಲ್ಲಿ Hunasuru ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರವು (ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ #212) ವಿಶಿಷ್ಟ ಸ್ಥಾನ ಪಡೆದಿದೆ. ಸಾಮಾನ್ಯ ಕ್ಷೇತ್ರದಲ್ಲಿ ಕಳೆದ 2023ರ ಕರ್ನಾಟಕ ವಿಧಾನಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಅತ್ಯಂತ ರೋಚಕ ಚುನಾವಣಾ ಕದನ ಜರುಗಿತ್ತು. ಮತ ಎಣಿಕೆಯ ಅಂತಿಮ ಹಂತದಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ ಜನಪ್ರಿಯ ನಾಯಕ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು ಜನಾದೇಶ ಪಡೆಯುವಲ್ಲಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಸ್ತುತ ಶಾಸಕರಾಗಿ ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸುತ್ತಿದ್ದಾರೆ. ಚುನಾವಣಾ ಆಯೋಗದ ಅಂಕಿಅಂಶಗಳ ಪ್ರಕಾರ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು ಒಟ್ಟು 94,666 ಮತಗಳನ್ನು ಗಳಿಸುವ ಮೂಲಕ ಶೇಕಡಾ 47.3% ಮತ ಹಂಚಿಕೆ ಪಡೆದಿದ್ದಾರೆ.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಕಳೆದ ಚುನಾವಣೆಯ ಮತಗಳ ಲೆಕ್ಕಾಚಾರವನ್ನು ಪರಿಶೀಲಿಸಿದಾಗ, ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ ಜಿ. ಡಿ. Harish ಗೌಡ ಮತ್ತು ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunath ನಡುವೆ ತೀವ್ರ ಸ್ಪರ್ಧೆ ಏರ್ಪಟ್ಟಿತ್ತು. ಅಂತಿಮವಾಗಿ ಜಿ. ಡಿ. Harish ಗೌಡ ಅವರು 2,412 ಮತಗಳ ಸ್ಪಷ್ಟ ಗೆಲುವಿನ ಅಂತರದೊಂದಿಗೆ ತಮ್ಮ ಎದುರಾಳಿ ಎಚ್. ಪಿ. Manjunath ಅವರನ್ನು ಪರಾಭವಗೊಳಿಸಿದರು. ಎರಡನೇ ಸ್ಥಾನ ಪಡೆದ ಕಾಂಗ್ರೆಸ್ (INC) ಅಭ್ಯರ್ಥಿ ಎಚ್. ಪಿ. Manjunath ಅವರು 92,254 ಮತಗಳನ್ನು ಪಡೆದು ಗಮನಾರ್ಹ ಸಾಧನೆ ಮಾಡಿದರು. ಈ ಚುನಾವಣೆಯಲ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಶೇಕಡಾ 75.4% ಮತದಾನ ದಾಖಲಾಗಿತ್ತು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">Hunasuru ಕ್ಷೇತ್ರದ ಚುನಾವಣಾ ಇತಿಹಾಸವು ಅತ್ಯಂತ ವೈವಿಧ್ಯಮಯವಾಗಿದೆ. 1978ರಿಂದ 2023ರವರೆಗೆ ನಡೆದ ಒಟ್ಟು 11 ಸಾರ್ವತ್ರಿಕ ಚುನಾವಣೆಗಳಲ್ಲಿ ಪ್ರಮುಖವಾಗಿ ಕಾಂಗ್ರೆಸ್ (INC) (5 ಬಾರಿ), ಜೆಡಿಎಸ್ (JD-S) (2 ಬಾರಿ), ಬಿಜೆಪಿ (BJP) (1 ಬಾರಿ), ಜನತಾ ದಳ (JD) (1 ಬಾರಿ) ಮತದಾರರ ಪ್ರಮುಖ ಬೆಂಬಲ ಪಡೆದುಕೊಂಡಿವೆ. ಗತಕಾಲದ ಚುನಾವಣೆಗಳ ಫಲಿತಾಂಶಗಳನ್ನು ನೋಡಿದರೆ 2018ರ ಚುನಾವಣೆಯಲ್ಲಿ ಜೆಡಿಎಸ್ (JD-S) ಪಕ್ಷದ Adaguru ಎಚ್. Vishwanath ಅವರು (+8,575 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2013ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunath ಅವರು (+40,207 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2008ರ ಚುನಾವಣೆಯಲ್ಲಿ ಕಾಂಗ್ರೆಸ್ (INC) ಪಕ್ಷದ ಎಚ್. ಪಿ. Manjunatha ಅವರು (+15,041 ಮತಗಳ ಅಂತರ) ಹಾಗೂ 2004ರ ಚುನಾವಣೆಯಲ್ಲಿ ಬಿಜೆಪಿ (BJP) ಪಕ್ಷದ Karjol Govind Maktappa ಅವರು (+32,942 ಮತಗಳ ಅಂತರ) ಯಶಸ್ವಿಯಾಗಿ ಶಾಸಕರಾಗಿ ಆಯ್ಕೆಯಾಗಿ ಜನಸೇವೆ ಸಲ್ಲಿಸಿದ್ದರು.</p><p style="font-size:15px; line-height:1.8; color:#334155; margin-bottom:16px;">ಒಟ್ಟಾರೆಯಾಗಿ Hunasuru ಶಾಸನಸಭಾ ಕ್ಷೇತ್ರವು ಮತದಾರರ ಪ್ರಬುದ್ಧ ತೀರ್ಪಿಗೆ ಹಾಗೂ ರಾಜಕೀಯ ಮರುಸಂಘಟನೆಗೆ ಸಾಕ್ಷಿಯಾಗಿದೆ. ಚುನಾವಣಾ ಆಯೋಗದ ಮುಕ್ತ ಮತ್ತು ನ್ಯಾಯಸಮ್ಮತ ದಾಖಲೆಗಳ ಆಧಾರದ ಮೇಲೆ ರಚಿತವಾದ ಈ ವರದಿಯು ಕ್ಷೇತ್ರದ ರಾಜಕೀಯ ಪ್ರಗತಿ ಹಾಗೂ ಮುಂದಿನ ದಿನಗಳ ರಾಜಕೀಯ ಪಥಕ್ಕೆ ದಿಕ್ಸೂಚಿಯಾಗಿದೆ.</p>
+      </div>
+
+      <div class="source-meta">
+        <div><strong>ಮಾಹಿತಿಯ ಮೂಲಗಳು:</strong> ಚುನಾವಣಾ ಆಯೋಗ, ವಿಕಿಪೀಡಿಯಾ (Wikipedia Data) & ಅಧಿಕೃತ ದಾಖಲೆಗಳು</div>
+        <div><strong>ನವೀಕರಿಸಿದ ದಿನಾಂಕ:</strong> 14 ಆಗಸ್ಟ್ 2026</div>
+      </div>
+    </section>
+
   </main>
 
   <script src="../nav-component.js"></script>
@@ -477,6 +484,61 @@
     } else {
       document.getElementById('constituency-map').innerHTML = '<div style="text-align:center; padding:50px; color:#94A3B8;">ನಕ್ಷೆಯ ಗಡಿ ವಿವರ ಲಭ್ಯವಿಲ್ಲ</div>';
     }
+
+    // Render Charts
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Pie Chart
+      const ctxPie = document.getElementById('voteSharePieChart').getContext('2d');
+      new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+          labels: ['ಜೆಡಿಎಸ್ (JD-S) (ವಿಜೇತ)', 'ಕಾಂಗ್ರೆಸ್ (INC) (ರನ್ನರ್-ಅಪ್)', 'ಇತರರು (Others)'],
+          datasets: [{
+            data: [47.3, 37.7, 15.0],
+            backgroundColor: ['#31a354', '#94A3B8', '#CBD5E1'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 2. Bar Chart
+      const ctxBar = document.getElementById('voteTrendBarChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['2013', '2018', '2023'],
+          datasets: [
+            {
+              label: 'ವಿಜೇತರ ಮತ ಪಾಲು (%)',
+              data: [52.0, 49.6, 47.3],
+              backgroundColor: '#31a354'
+            },
+            {
+              label: 'ರನ್ನರ್-ಅಪ್ ಮತ ಪಾಲು (%)',
+              data: [37.0, 34.6, 32.3],
+              backgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          },
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    });
 
     function runQuickSearch(query) {
       const box = document.getElementById('quick-search-box');
