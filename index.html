@@ -1969,7 +1969,7 @@ function renderLocalNews(articles, distKn) {
       const slug = a.slug || slugify(a.id || a.title_kn);
       return {
         title: a.title_kn,
-        url: `/news/${cat}/${slug}`,
+        url: `/article.html?id=${encodeURIComponent(a.id)}&slug=${encodeURIComponent(slug)}&cat=${encodeURIComponent(cat)}`,
         published: a.updated_at || new Date().toISOString(),
         is_cms: true
       };

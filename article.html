@@ -247,11 +247,27 @@ function slugify(text) {
 
   let article = null;
 
+  const KANNADA_DICT = {
+    'cabinet': ['ಸಚಿವ ಸಂಪುಟ', 'ಸಂಪುಟ', 'ಖಾತೆ', 'ಸಚಿವರ'],
+    'ministers': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು', 'ಸಿದ್ದರಾಮಯ್ಯ', 'ಶಿವಕುಮಾರ್'],
+    'minister': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು'],
+    'portfolio': ['ಖಾತೆ', 'ಹಂಚಿಕೆ', 'ಖಾತೆಗಳು', 'ಪಟ್ಟಿ'],
+    'list': ['ಪಟ್ಟಿ', 'ವಿವರ'],
+    'metro': ['ಮೆಟ್ರೋ', 'ನಮ್ಮ ಮೆಟ್ರೋ', 'ಬಿಎಂಆರ್‌ಸಿಎಲ್'],
+    'traffic': ['ಸಂಚಾರ', 'ನಿಯಮ', 'ವಾಹನ'],
+    'cauvery': ['ಕಾವೇರಿ', 'ಕೆಆರ್‌ಎಸ್'],
+    'water': ['ನೀರು', 'ಜಲಾಶಯ', 'ಅಣೆಕಟ್ಟು', 'ಡ್ಯಾಂ'],
+    'budget': ['ಬಜೆಟ್', 'ಆಯವ್ಯಯ'],
+    'weather': ['ಹವಾಮಾನ', 'ಮಳೆ', 'ಗುಡುಗು'],
+    'scheme': ['ಯೋಜನೆ', 'ಗ್ಯಾರಂಟಿ', 'ಗೃಹ ಲಕ್ಷ್ಮಿ', 'ಅನ್ನ ಭಾಗ್ಯ', 'ಯುವ ನಿಧಿ', 'ಶಕ್ತಿ', 'ಗೃಹ ಜ್ಯೋತಿ'],
+    'election': ['ಚುನಾವಣೆ', 'ಮತದಾನ', 'ಫಲಿತಾಂಶ', 'ಶಾಸಕ']
+  };
+
   if (targetSlug) {
     const normTarget = slugify(targetSlug);
     const targetWords = normTarget.split('-').filter(w => w.length > 2);
 
-    // 1. Exact ID, Slug or Title Match
+    // 1. Direct ID / Slug / Title Equality Match
     article = allCandidates.find(x => 
       x.id === targetSlug || 
       x.slug === targetSlug || 
@@ -264,32 +280,39 @@ function slugify(text) {
       slugify(x.title || '') === normTarget
     );
 
-    // 2. Keyword & Word-Overlap Match
+    // 2. Bilingual Keyword Scoring Match
     if (!article) {
       let bestScore = 0;
-      allCandidates.forEach(x => {
-        const combined = (
-          (x.id || '') + ' ' + 
-          (x.slug || '') + ' ' + 
-          (x.title_kn || '') + ' ' + 
-          (x.title_en || '') + ' ' + 
-          (x.title || '') + ' ' + 
-          (x.keywords || '')
-        ).toLowerCase();
+      let bestArticle = null;
 
-        let matches = 0;
+      allCandidates.forEach(x => {
+        let score = 0;
+        const knText = ((x.title_kn || '') + ' ' + (x.summary_kn || '') + ' ' + (x.keywords || '')).toLowerCase();
+        const enText = ((x.id || '') + ' ' + (x.slug || '') + ' ' + (x.title_en || '') + ' ' + (x.title || '')).toLowerCase();
+
         targetWords.forEach(w => {
-          if (combined.includes(w)) matches++;
+          // Check english token match
+          if (enText.includes(w)) score += 3;
+          // Check bilingual dictionary mapping in Kannada text
+          if (KANNADA_DICT[w]) {
+            KANNADA_DICT[w].forEach(knTerm => {
+              if (knText.includes(knTerm.toLowerCase())) score += 2;
+            });
+          }
         });
 
-        if (matches > bestScore && matches >= Math.min(2, targetWords.length)) {
-          bestScore = matches;
-          article = x;
+        if (score > bestScore) {
+          bestScore = score;
+          bestArticle = x;
         }
       });
+
+      if (bestScore >= 2) {
+        article = bestArticle;
+      }
     }
 
-    // 3. Substring containment
+    // 3. Substring Containment Match
     if (!article) {
       article = allCandidates.find(x => {
         const tKn = (x.title_kn || '').toLowerCase();
