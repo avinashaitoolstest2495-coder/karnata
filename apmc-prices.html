@@ -322,6 +322,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <div class="filter-grid">
     <!-- Region Selector -->
     <select class="selector-box" id="region-select" onchange="onRegionChange()">
+      <option value="all" selected>🌐 ಎಲ್ಲಾ ಕರ್ನಾಟಕ APMC ಮಾರುಕಟ್ಟೆಗಳು (All 174 Mandis)</option>
       <option value="bengaluru">🏙️ ಬೆಂಗಳೂರು / ಕೋಲಾರ / ರಾಮನಗರ (Bengaluru Region)</option>
       <option value="gangavathi">🌾 ಗಂಗಾವತಿ / ಕೊಪ್ಪಳ / ರಾಯಚೂರು (Gangavathi & Kalyana Kar.)</option>
       <option value="belagavi">🥬 ಬೆಳಗಾವಿ / ಗೋಕಾಕ್ / ಚಿಕ್ಕೋಡಿ (Belagavi Region)</option>
@@ -330,7 +331,6 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
       <option value="hubballi">🌾 ಹುಬ್ಬಳ್ಳಿ / ಧಾರವಾಡ / ಗದಗ (Hubballi-Dharwad)</option>
       <option value="kalaburagi">🫘 ಕಲಬುರಗಿ / ಬೀದರ್ / ಯಾದಗಿರಿ (Kalaburagi Region)</option>
       <option value="davangere">🌽 ದಾವಣಗೆರೆ / ಚಿತ್ರದುರ್ಗ / ತುಮಕೂರು (Davangere Region)</option>
-      <option value="all">🌐 ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳು (All Karnataka Mandis)</option>
     </select>
 
     <!-- Specific Commodity Selector -->
@@ -393,7 +393,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 // Master Data Setup
 let apmcData = [];
 let currentCat = 'all';
-let visibleCommoditiesCount = 20;
+let visibleCommoditiesCount = 9999;
 
 // Kannada Crop Names Dictionary
 const CROP_KN_MAP = {
@@ -573,11 +573,9 @@ function detectGeoLocation() {
     else if (lat < 12.8) detected = 'mysuru';
     else detected = 'bengaluru';
     
-    document.getElementById('region-select').value = detected;
-    document.getElementById('loc-display').textContent = `📍 ನಿಮ್ಮ ಸ್ವಯಂಚಾಲಿತ ಸ್ಥಳ: ${REGION_NAMES[detected]}`;
-    filterData(true);
+    document.getElementById('loc-display').textContent = `📍 ನಿಮ್ಮ ಪತ್ತೆಯಾದ ವಲಯ: ${REGION_NAMES[detected]} (ಎಲ್ಲಾ ಮಾರುಕಟ್ಟೆ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ)`;
   }, err => {
-    document.getElementById('loc-display').textContent = `📍 ನಿಮ್ಮ ಪ್ರದೇಶ: ${REGION_NAMES['bengaluru']}`;
+    document.getElementById('loc-display').textContent = `📍 ನಿಮ್ಮ ಪ್ರದೇಶ: ಎಲ್ಲಾ ಕರ್ನಾಟಕ APMC ಮಾರುಕಟ್ಟೆಗಳು`;
   }, { timeout: 6000 });
 }
 
@@ -626,7 +624,7 @@ function filterData(resetCount = false) {
   renderGrid(filtered, regionFilter);
 
   if (resetCount) {
-    visibleCommoditiesCount = 20;
+    visibleCommoditiesCount = 9999;
   }
   
   const shouldExpand = (commodityFilter !== 'all') || (searchTxt.length > 0);
@@ -694,7 +692,7 @@ function renderGrid(list, regionKey) {
     uniqueCommodityCards.push(best);
   });
 
-  const displayCards = uniqueCommodityCards.slice(0, 12);
+  const displayCards = uniqueCommodityCards;
 
   grid.innerHTML = displayCards.map((d) => {
     const isUp = d.change > 0;
