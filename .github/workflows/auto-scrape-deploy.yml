@@ -40,13 +40,14 @@ jobs:
           if [ -f scraper/requirements.txt ]; then pip install -r scraper/requirements.txt || true; fi
           pip install requests beautifulsoup4 pandas || true
 
-      - name: 📊 Run Gold, Dam Water Level, Weather & Petrol Scrapers
+      - name: 📊 Run Gold, Dam Water Level, Weather, Petrol & Multi-Source District News Scrapers
         run: |
           python -c "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()" || true
           python -c "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()" || true
           python -c "import sys; sys.path.insert(0, 'scraper'); from dam_scraper import run; run()" || true
           python -c "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()" || true
           python -c "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()" || true
+          python -c "import sys; sys.path.insert(0, 'scraper'); from local_news_scraper import run; run()" || true
 
       - name: 📰 Run Live News & SEO Aggregators
         run: |

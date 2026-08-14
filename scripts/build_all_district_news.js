@@ -148,32 +148,50 @@ function generateLocalNewsFile() {
     fs.mkdirSync(dataDir, { recursive: true });
   }
 
-  // Compile flat news list
-  const allNewsList = [];
-  Object.entries(DISTRICT_NEWS_DATABASE).forEach(([distKey, articles]) => {
-    articles.forEach(art => {
-      allNewsList.push({
+  const filePath = path.join(dataDir, 'local_news.json');
+  let existingData = {};
+  if (fs.existsSync(filePath)) {
+    try {
+      existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch (e) {}
+  }
+
+  const districtBuckets = existingData.district_buckets || existingData.districts || {};
+
+  // Fill in fallbacks for any missing or sparse districts
+  Object.entries(DISTRICT_NEWS_DATABASE).forEach(([distKey, fallbackArticles]) => {
+    if (!districtBuckets[distKey] || districtBuckets[distKey].length === 0) {
+      districtBuckets[distKey] = fallbackArticles.map(art => ({
         district: distKey,
         headline: art.headline,
+        title: art.headline,
         headline_kn: art.headline,
         time_ago: art.time_ago,
         category: art.category,
-        published_at: art.time_ago
-      });
-    });
+        source: 'ಕರ್ನಾಟ ಪೋರ್ಟಲ್',
+        published: new Date().toISOString(),
+        published_at: new Date().toISOString()
+      }));
+    }
+  });
+
+  const allFlatArticles = [];
+  Object.values(districtBuckets).forEach(arr => {
+    if (Array.isArray(arr)) allFlatArticles.push(...arr);
   });
 
   const payload = {
     updated_at: new Date().toISOString(),
-    total: allNewsList.length,
-    districts_count: Object.keys(DISTRICT_NEWS_DATABASE).length,
-    districts: DISTRICT_NEWS_DATABASE,
-    news: allNewsList
+    total: allFlatArticles.length,
+    districts_count: Object.keys(districtBuckets).length,
+    districts: districtBuckets,
+    district_buckets: districtBuckets,
+    news: districtBuckets,
+    articles: allFlatArticles
   };
 
-  const filePath = path.join(dataDir, 'local_news.json');
   fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
-  console.log(`Successfully generated data/local_news.json with ${allNewsList.length} articles across all 31 districts!`);
+  console.log(`Successfully synced data/local_news.json with ${allFlatArticles.length} articles across all ${Object.keys(districtBuckets).length} districts!`);
 }
 
 generateLocalNewsFile();

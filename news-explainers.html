@@ -329,11 +329,24 @@ function catMeta(cat) { return CATEGORY_META[cat] || CATEGORY_META.general; }
 
 function timeAgo(iso) {
   if (!iso) return 'ಇತ್ತೀಚೆಗೆ';
-  const h = Math.floor((Date.now() - new Date(iso)) / 3600000);
-  if (h < 1) return 'ಈಗ';
-  if (h < 24) return h + ' ಗಂಟೆ';
-  const d = Math.floor(h / 24);
-  return d === 1 ? 'ನಿನ್ನೆ' : d + ' ದಿನ';
+  if (typeof iso === 'string' && (iso.includes('ಹಿಂದೆ') || iso.includes('ಇಂದು') || iso.includes('ಈಗ') || iso.includes('ನಿನ್ನೆ'))) {
+    return iso;
+  }
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return 'ಇತ್ತೀಚೆಗೆ';
+    const diff = Date.now() - d.getTime();
+    if (diff < 0) return 'ಈಗ';
+    const h = Math.floor(diff / 3600000);
+    if (isNaN(h)) return 'ಇತ್ತೀಚೆಗೆ';
+    if (h < 1) return 'ಈಗ';
+    if (h < 24) return h + ' ಗಂಟೆ';
+    const days = Math.floor(h / 24);
+    if (isNaN(days)) return 'ಇತ್ತೀಚೆಗೆ';
+    return days === 1 ? 'ನಿನ್ನೆ' : days + ' ದಿನ';
+  } catch (e) {
+    return 'ಇತ್ತೀಚೆಗೆ';
+  }
 }
 
 let allArticles = [];
@@ -356,7 +369,7 @@ async function loadArticleData() {
         raw = decFn(raw.payload);
       }
       if (raw) {
-        districtBucketsStore = raw.districts || raw.district_buckets || raw.news || {};
+        districtBucketsStore = raw.district_buckets || (typeof raw.districts === 'object' && !Array.isArray(raw.districts) && typeof Object.values(raw.districts)[0] === 'object' ? raw.districts : null) || raw.news || {};
       }
     }
   } catch (e) {}

@@ -577,24 +577,32 @@ def run() -> dict:
                 }
             ])
 
-    # Sort newest first
+    # Sort newest first & ensure published_at field
+    all_flat_articles = []
     for k in output:
         output[k].sort(key=lambda x: x.get("published", ""), reverse=True)
+        for item in output[k]:
+            if not item.get("published_at"):
+                item["published_at"] = item.get("published") or ist_now()
+            all_flat_articles.append(item)
 
     result = {
         "date": ist_date(),
         "updated_at": ist_now(),
         "sources": ["ನ್ಯೂಸ್ 18 ಕನ್ನಡ", "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ", "ಪ್ರಜಾವಾಣಿ", "ಉದಯವಾಣಿ", "TV9 ಕನ್ನಡ", "ಪಬ್ಲಿಕ್ ಟಿವಿ", "ಒನ್‌ಇಂಡಿಯಾ"],
-        "total": len(all_articles),
+        "total": len(all_flat_articles),
         "districts_count": len(output),
         "geolocation": DISTRICT_GEOLOCATION,
-        "districts": {k: len(v) for k, v in output.items()},
+        "district_counts": {k: len(v) for k, v in output.items()},
+        "districts": output,
+        "district_buckets": output,
         "news": output,
+        "articles": all_flat_articles,
         "note_kn": "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಬಹು-ಮೂಲ ಸಜೀವ ಸುದ್ದಿ — News18, Asianet, ಪ್ರಜಾವಾಣಿ, ಉದಯವಾಣಿ, TV9",
     }
 
     store("local_news.json", "local_news", result)
-    log.info(f"✅ Multi-Source District News Saved: {len(all_articles)} articles across {len(output)} district buckets")
+    log.info(f"✅ Multi-Source District News Saved: {len(all_flat_articles)} articles across {len(output)} district buckets")
     return result
 
 if __name__ == "__main__":

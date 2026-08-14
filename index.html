@@ -1989,9 +1989,18 @@ function renderLocalNews(articles, distKn) {
 }
 
 function timeAgo(iso){
+  if(!iso) return 'ಇಂದು';
+  if(typeof iso === 'string' && (iso.includes('ಹಿಂದೆ') || iso.includes('ಇಂದು') || iso.includes('ಈಗಷ್ಟೇ'))) {
+    return iso;
+  }
   try{
-    const h=Math.floor((Date.now()-new Date(iso))/3600000);
-    return h<1?'ಈಗಷ್ಟೇ':h<24?h+' ಗಂಟೆ ಹಿಂದೆ':Math.floor(h/24)+' ದಿನ ಹಿಂದೆ';
+    const d = new Date(iso);
+    if(isNaN(d.getTime())) return 'ಇಂದು';
+    const diff = Date.now() - d.getTime();
+    if(diff < 0) return 'ಈಗಷ್ಟೇ';
+    const h = Math.floor(diff / 3600000);
+    if(isNaN(h)) return 'ಇಂದು';
+    return h < 1 ? 'ಈಗಷ್ಟೇ' : h < 24 ? h + ' ಗಂಟೆ ಹಿಂದೆ' : Math.floor(h / 24) + ' ದಿನ ಹಿಂದೆ';
   }catch(e){return 'ಇಂದು';}
 }
 
@@ -2078,13 +2087,15 @@ async function loadLocal(key, data){
     if (n && n.payload && typeof window.decryptPayload === 'function') {
       n = window.decryptPayload(n.payload);
     }
-    const buckets = (n && (n.districts || n.district_buckets || n.news)) || {};
+    const rawBuckets = n ? (n.district_buckets || (typeof n.districts === 'object' && !Array.isArray(n.districts) && typeof Object.values(n.districts)[0] === 'object' ? n.districts : null) || n.news) : null;
+    const buckets = rawBuckets || {};
     
     // Strict district lookup
     let local = buckets[key] || buckets[key.replace('-', '_')] || buckets[key.replace('_', '-')] || [];
+    if (!Array.isArray(local)) local = [];
     if (!local.length) {
       Object.keys(buckets).forEach(k => {
-        if (k.includes(key) || key.includes(k)) local.push(...buckets[k]);
+        if (Array.isArray(buckets[k]) && (k.includes(key) || key.includes(k))) local.push(...buckets[k]);
       });
     }
     if (!local.length) {

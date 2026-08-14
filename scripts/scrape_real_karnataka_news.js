@@ -83,12 +83,21 @@ function parseXmlItems(xmlText) {
         headline = titleParts.slice(0, titleParts.length - 1).join(' - ');
       }
 
+      let validIsoDate = new Date().toISOString();
+      try {
+        const d = new Date(pubDateStr);
+        if (!isNaN(d.getTime())) validIsoDate = d.toISOString();
+      } catch (e) {}
+
       items.push({
         headline,
+        title: headline,
         link,
+        url: link,
         source: sourceName,
-        published_at: pubDateStr,
-        time_ago: 'ಇಂದು (Live Scraped)'
+        published: validIsoDate,
+        published_at: validIsoDate,
+        time_ago: 'ಇಂದು (Live)'
       });
     }
   }
@@ -100,56 +109,85 @@ async function scrapeAllDistrictsNews() {
   console.log('STARTING REAL LIVE NEWS SCRAPER FOR ALL 31 KARNATAKA DISTRICTS');
   console.log('===========================================================\n');
 
-  const scrapedDataByDistrict = {};
-  const allArticlesList = [];
+  const dataDir = path.join(__dirname, '../data');
+  const filePath = path.join(dataDir, 'local_news.json');
+
+  let existingData = {};
+  if (fs.existsSync(filePath)) {
+    try {
+      existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch (e) {}
+  }
+
+  const scrapedDataByDistrict = existingData.district_buckets || existingData.districts || {};
+  const allArticlesList = existingData.articles || [];
 
   for (const dist of DISTRICTS_MAPPING) {
     console.log(`Scraping real live news for: ${dist.key} ...`);
-    const articles = [];
+    const articles = scrapedDataByDistrict[dist.key] || [];
+    const seenTitles = new Set(articles.map(a => (a.title || a.headline || '').trim().toLowerCase()));
 
-    // Query 1: Google News English Search
+    // Query 1: Google News Kannada Search
+    try {
+      const qUrlKn = `https://news.google.com/rss/search?q=${encodeURIComponent(dist.search_kn)}&hl=kn&gl=IN&ceid=IN:kn`;
+      const xmlKn = await fetchHttps(qUrlKn);
+      const itemsKn = parseXmlItems(xmlKn);
+      itemsKn.slice(0, 5).forEach(it => {
+        const tKey = (it.title || '').trim().toLowerCase();
+        if (tKey && !seenTitles.has(tKey)) {
+          articles.unshift({ ...it, district: dist.key, category: 'ಸ್ಥಳೀಯ ಸುದ್ದಿ' });
+          seenTitles.add(tKey);
+        }
+      });
+    } catch (e) {
+      console.warn(`[Scraper Warning] KN news fetch failed for ${dist.key}:`, e.message);
+    }
+
+    // Query 2: Google News English Search
     try {
       const qUrlEn = `https://news.google.com/rss/search?q=${encodeURIComponent(dist.search_en)}&hl=en-IN&gl=IN&ceid=IN:en`;
       const xmlEn = await fetchHttps(qUrlEn);
       const itemsEn = parseXmlItems(xmlEn);
-      itemsEn.slice(0, 5).forEach(it => articles.push({ ...it, category: 'Real Live News (EN)' }));
+      itemsEn.slice(0, 5).forEach(it => {
+        const tKey = (it.title || '').trim().toLowerCase();
+        if (tKey && !seenTitles.has(tKey)) {
+          articles.push({ ...it, district: dist.key, category: 'Real Live News (EN)' });
+          seenTitles.add(tKey);
+        }
+      });
     } catch (e) {
       console.warn(`[Scraper Warning] EN news fetch failed for ${dist.key}:`, e.message);
     }
 
     // Delay slightly to prevent rate limit
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 150));
 
-    scrapedDataByDistrict[dist.key] = articles;
-    articles.forEach(art => {
-      allArticlesList.push({
-        district: dist.key,
-        ...art
-      });
-    });
-    console.log(`  -> Scraped ${articles.length} real live articles for ${dist.key}`);
+    scrapedDataByDistrict[dist.key] = articles.slice(0, 25);
+    console.log(`  -> Total ${scrapedDataByDistrict[dist.key].length} live articles for ${dist.key}`);
   }
 
-  // Save to data/local_news.json
-  const dataDir = path.join(__dirname, '../data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
+  const updatedFlatArticles = [];
+  Object.values(scrapedDataByDistrict).forEach(arr => {
+    if (Array.isArray(arr)) updatedFlatArticles.push(...arr);
+  });
 
   const payload = {
     updated_at: new Date().toISOString(),
-    total_articles: allArticlesList.length,
+    total: updatedFlatArticles.length,
     districts_count: Object.keys(scrapedDataByDistrict).length,
     districts: scrapedDataByDistrict,
     district_buckets: scrapedDataByDistrict,
-    news: allArticlesList
+    news: scrapedDataByDistrict,
+    articles: updatedFlatArticles
   };
 
-  const filePath = path.join(dataDir, 'local_news.json');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
   fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf8');
 
   console.log('\n===========================================================');
-  console.log(`SUCCESSFULLY SCRAPED ${allArticlesList.length} REAL LIVE ARTICLES ACROSS ALL 31 DISTRICTS!`);
+  console.log(`SUCCESSFULLY SCRAPED ${updatedFlatArticles.length} REAL LIVE ARTICLES ACROSS ALL 31 DISTRICTS!`);
   console.log('Saved to data/local_news.json');
   console.log('===========================================================');
 }
