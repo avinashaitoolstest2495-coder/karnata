@@ -16,6 +16,7 @@ import sys
 import json
 import re
 import base64
+import urllib.parse
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent.parent
@@ -148,10 +149,12 @@ def generate_constituency_page(ac_no, history_records):
         for p, c in sorted_tally
     ])
 
-    # Candidate Photo URL / Avatar
-    # Using stylized candidate avatar portrait with party accent ring
-    candidate_initial = winner_kn[0] if winner_kn else "ಅ"
+    # Fetch candidate photo URL from wikipedia_constituency_data.json
+    ac_wiki = wiki_db.get(str(ac_no), {})
+    photo_url = ac_wiki.get("photo_url")
     party_color = latest.get("color", "#C0392B")
+    fallback_avatar = f"https://ui-avatars.com/api/?name={urllib.parse.quote(winner_kn)}&background={party_color.replace('#','')}&color=fff&size=200"
+    img_src = photo_url if photo_url else fallback_avatar
 
     # Fetch Wikipedia Candidate Data for Last 3 Elections
     ac_wiki = wiki_db.get(str(ac_no), {})
@@ -445,9 +448,7 @@ def generate_constituency_page(ac_no, history_records):
       <!-- Sitting Representative Candidate Photo & Key Stats -->
       <div style="display:grid; grid-template-columns: auto 1fr auto; gap:22px; align-items:center;">
         <div style="position:relative;">
-          <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:42px; font-weight:900; box-shadow:0 8px 20px rgba(192,57,43,0.35); border:3.5px solid #ffffff; overflow:hidden;">
-            <span style="font-family:'Tiro Kannada', serif;">{candidate_initial}</span>
-          </div>
+          <img src="{img_src}" alt="{winner_kn}" style="width:92px; height:92px; border-radius:50%; object-fit:cover; border:3.5px solid #ffffff; box-shadow:0 8px 20px rgba(15,23,42,0.15);" onerror="this.onerror=null; this.src='{fallback_avatar}';">
           <div style="position:absolute; bottom:-2px; right:-2px; background:{party_color}; color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:10px; border:1.5px solid #fff;">
             {winner_party_kn}
           </div>

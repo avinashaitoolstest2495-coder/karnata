@@ -1,7 +1,9 @@
 """
 Karnata — scrape_wikipedia_constituencies.py
-Concurrent Wikipedia Scraper for 224 Karnataka Assembly Seats.
-Extracts candidate-by-candidate election tables for 2023, 2018, 2013 (Party, Candidate, Votes, %, Margin).
+Concurrent Wikipedia Scraper for 224 Karnataka Assembly (MLA) Seats.
+Extracts:
+1. Candidate photo URLs from Wikipedia infoboxes / Wikimedia.
+2. Candidate-by-candidate election tables for 2023, 2018, 2013 (Party, Candidate, Votes, %, Margin).
 Saves output into data/wikipedia_constituency_data.json.
 """
 
@@ -35,7 +37,7 @@ def load_elections_data():
             return json.loads(dec_bytes.decode("utf-8"))
         return raw
 
-def fetch_wikipedia_constituency(ac_no, name_en):
+def fetch_wikipedia_constituency(ac_no, name_en, winner_en):
     clean_name = name_en.replace("-", " ").strip()
     slug_candidates = [
         clean_name.replace(" ", "_") + "_Assembly_constituency",
@@ -78,19 +80,46 @@ def fetch_wikipedia_constituency(ac_no, name_en):
         url = f"https://en.wikipedia.org/wiki/{slug}"
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-            res = urllib.request.urlopen(req, context=ctx, timeout=5)
+            res = urllib.request.urlopen(req, context=ctx, timeout=4)
             if res.status == 200:
                 html = res.read().decode('utf-8')
                 break
         except Exception:
             continue
 
+    photo_url = None
+    if winner_en:
+        cand_slug = winner_en.replace(" ", "_")
+        try:
+            req_c = urllib.request.Request(f"https://en.wikipedia.org/wiki/{cand_slug}", headers={'User-Agent': 'Mozilla/5.0'})
+            res_c = urllib.request.urlopen(req_c, context=ctx, timeout=3)
+            if res_c.status == 200:
+                soup_c = BeautifulSoup(res_c.read().decode('utf-8'), 'html.parser')
+                infobox_c = soup_c.find('table', {'class': 'infobox'})
+                if infobox_c:
+                    for img in infobox_c.find_all('img'):
+                        src = img.get('src', '')
+                        if 'upload.wikimedia.org' in src and not any(x in src.lower() for x in ['flag', 'logo', 'map', 'icon', 'symbol', 'shield', 'location']):
+                            photo_url = 'https:' + src if src.startswith('//') else src
+                            break
+        except Exception:
+            pass
+
     if not html:
-        return ac_no, None
+        return ac_no, {"photo_url": photo_url, "elections": {}}
 
     soup = BeautifulSoup(html, 'html.parser')
-    tables = soup.find_all('table', {'class': 'wikitable'})
 
+    if not photo_url:
+        infobox = soup.find('table', {'class': 'infobox'})
+        if infobox:
+            for img in infobox.find_all('img'):
+                src = img.get('src', '')
+                if 'upload.wikimedia.org' in src and not any(x in src.lower() for x in ['flag', 'logo', 'map', 'icon', 'symbol', 'shield', 'location']):
+                    photo_url = 'https:' + src if src.startswith('//') else src
+                    break
+
+    tables = soup.find_all('table', {'class': 'wikitable'})
     parsed_elections = {}
 
     for t in tables:
@@ -137,10 +166,10 @@ def fetch_wikipedia_constituency(ac_no, name_en):
                 "margin_info": margin_info
             }
 
-    return ac_no, parsed_elections
+    return ac_no, {"photo_url": photo_url, "elections": parsed_elections}
 
 def run():
-    print("Scraping Wikipedia candidate-by-candidate data for 224 Karnataka constituencies...", flush=True)
+    print("Scraping Wikipedia candidate photos & election tables for 224 Karnataka MLA seats...", flush=True)
     elections_data = load_elections_data()
     records_by_year = elections_data["records"]
 
@@ -148,13 +177,14 @@ def run():
     for r in records_by_year.get("2023", []):
         ac_no = r["ac_no"]
         name_en = r["constituency"]
-        constituencies_map[ac_no] = name_en
+        winner_en = r.get("winner", "")
+        constituencies_map[ac_no] = (name_en, winner_en)
 
     wiki_results = {}
     success_count = 0
 
-    with ThreadPoolExecutor(max_workers=20) as executor:
-        futures = [executor.submit(fetch_wikipedia_constituency, ac_no, name_en) for ac_no, name_en in constituencies_map.items()]
+    with ThreadPoolExecutor(max_workers=15) as executor:
+        futures = [executor.submit(fetch_wikipedia_constituency, ac_no, val[0], val[1]) for ac_no, val in constituencies_map.items()]
         for future in as_completed(futures):
             ac_no, res = future.result()
             if res:
@@ -162,7 +192,7 @@ def run():
                 success_count += 1
 
     payload = {
-        "updated_at": "2026-08-14T09:00:00",
+        "updated_at": "2026-08-14T09:25:00",
         "total_fetched": success_count,
         "data": wiki_results
     }
@@ -170,7 +200,7 @@ def run():
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print(f"SUCCESS: Successfully parsed Wikipedia election data for {success_count}/224 constituencies in {OUTPUT_PATH}", flush=True)
+    print(f"SUCCESS: Successfully parsed Wikipedia MLA photos & tables for {success_count}/224 seats in {OUTPUT_PATH}", flush=True)
 
 if __name__ == "__main__":
     run()
