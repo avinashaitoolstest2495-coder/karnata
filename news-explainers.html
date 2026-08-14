@@ -423,10 +423,37 @@ function filterDistrict(distKey, el) {
       summary: a.summary_kn || a.title_kn,
       body_html: a.body_html,
       published: a.updated_at || new Date().toISOString(),
-      source_name: a.author || 'ಕರ್ನಾಟ CMS',
-      source: a.author || 'ಕರ್ನಾಟ CMS',
+      source_name: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+      source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
       is_cms: true
     }));
+  } catch(e) {}
+
+  // Also fetch from CMS Worker API
+  try {
+    fetch('https://karnata-cms.avinashaitoolstest2495.workers.dev/admin/api/articles')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.articles) {
+          const apiCms = data.articles.filter(a => a.status === 'published').map(a => ({
+            id: a.id,
+            title_kn: a.title_kn,
+            title: a.title_kn,
+            summary_kn: a.summary_kn || a.title_kn,
+            summary: a.summary_kn || a.title_kn,
+            body_html: a.body_html,
+            published: a.updated_at || new Date().toISOString(),
+            source_name: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+            source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+            is_cms: true
+          }));
+          const existingIds = new Set(cmsArticles.map(x => x.id));
+          apiCms.forEach(c => { if (!existingIds.has(c.id)) cmsArticles.push(c); });
+          if (items.length > 0 || cmsArticles.length > 0) {
+            renderLiveNewsView([...cmsArticles, ...items]);
+          }
+        }
+      }).catch(() => {});
   } catch(e) {}
 
   if (items.length > 0 || cmsArticles.length > 0) {
@@ -543,15 +570,13 @@ function slugify(text) {
 
 function openItemLink(link, id, category) {
   if (id) {
-    const cat = (category || 'politics').toLowerCase();
-    const slug = slugify(id) || id;
-    window.location.href = `/news/${cat}/${slug}`;
+    window.location.href = `/article.html?id=${encodeURIComponent(id)}`;
     return;
   }
   if (link && link.startsWith('http')) {
     window.open(link, '_blank');
   } else {
-    window.location.href = '/news/politics/latest';
+    window.location.href = '/article.html';
   }
 }
 
@@ -559,7 +584,7 @@ function newsCardHtml(a) {
   const m = catMeta(a.category);
   const srcName = (a.source && a.source !== 'Kannada RSS') ? a.source : 'ಸಮಾಚಾರ';
   const fcBadge = a.fact_checked ? `<span class="nc-badge" style="background:#E8F5EE;color:#1B7A4B;margin-left:6px;">✅ ತಥ್ಯ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</span>` : '';
-  const clickFn = `openItemLink('${a.link || ''}', '${a.id || ''}')`;
+  const clickFn = `openItemLink('${a.link || a.url || ''}', '${a.id || ''}')`;
   return `
     <div class="news-card" onclick="${clickFn}" style="cursor:pointer;">
       <div class="nc-thumb" style="background:${m.bg}">${m.emoji}</div>
@@ -589,50 +614,16 @@ function loadMore() {
 }
 
 function openArticle(id) {
-  try {
-    const cmsStore = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
-    const cms = cmsStore.find(x => x.id === id);
-    if (cms) {
-      document.getElementById('article-content').innerHTML = `
-        <div class="art-cat" style="color:#C0392B; font-weight:800; font-size:14px; text-transform:uppercase; margin-bottom:8px;">📰 ${cms.category || 'ಪ್ರಮುಖ ಲೇಖನ'}</div>
-        <div class="art-title" style="font-size:24px; font-weight:900; color:#0F172A; line-height:1.35; margin-bottom:12px;">${cms.title_kn}</div>
-        <div class="art-meta" style="font-size:12px; color:#64748B; margin-bottom:20px; border-bottom:1px solid #E2E8F0; padding-bottom:12px;">
-          <span>📅 ${new Date(cms.updated_at || Date.now()).toLocaleDateString('kn-IN')}</span> &nbsp;·&nbsp; 
-          <span>✍️ ${cms.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ'}</span>
-        </div>
-        <div class="art-body" style="font-size:16px; line-height:1.85; color:#1E293B;">${cms.body_html || cms.summary_kn || ''}</div>
-        <div style="margin-top:30px; padding-top:20px; border-top:1px solid #E2E8F0; display:flex; gap:12px;">
-          <button onclick="navigator.clipboard.writeText(window.location.href); alert('ಲಿಂಕ್ ನಕಲಿಸಲಾಗಿದೆ!');" style="background:#C0392B; color:#fff; border:none; padding:10px 18px; border-radius:8px; font-weight:700; font-size:13px; cursor:pointer;">🔗 ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಿ</button>
-        </div>
-      `;
-      document.getElementById('article-overlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      return;
-    }
-  } catch(e) {}
-
-  const a = window._articleMap && window._articleMap[id];
-  if (!a) return;
-  const m = catMeta(a.category);
-  document.getElementById('article-content').innerHTML = `
-    <div class="art-cat" style="color:${m.color}">${m.emoji} ${m.label}</div>
-    <div class="art-title" style="font-size:24px; font-weight:900; color:#0F172A; margin:12px 0;">${a.title_kn}</div>
-    <div class="art-meta"><span>📅 ${a.published_at ? timeAgo(a.published_at) : ''} · ✍️ ${a.source || 'ಕರ್ನಾಟ ಸಮಾಚಾರ'}</span></div>
-    <div class="art-body" style="font-size:16px; line-height:1.8; color:#334155;">${a.body_html || a.summary_kn || a.title_kn}</div>
-  `;
-  document.getElementById('article-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  openItemLink('', id);
 }
+
 function closeArticle(e) {
   if (!e || e.target === document.getElementById('article-overlay') || e.target.classList.contains('art-close')) {
     document.getElementById('article-overlay').classList.remove('open');
     document.body.style.overflow = '';
   }
 }
-    document.getElementById('article-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
+
 function filterCat(cat, el) {
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');

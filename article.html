@@ -120,11 +120,27 @@ function slugify(text) {
 
   // 3. Fetch static local news data
   try {
-    const res = await fetch('/data/local_news.json');
+    const res = await fetch('/data/local_news.json?v=' + Date.now());
     if (res.ok) {
-      const raw = await res.json();
-      const list = Object.values(raw.news || raw.district_buckets || {}).flat();
-      allCandidates.push(...list);
+      let raw = await res.json();
+      if (raw && raw.payload) {
+        if (typeof window.decryptPayload === 'function') {
+          raw = window.decryptPayload(raw.payload);
+        } else {
+          const SECRET = "NK_SECURE_KEY_2026_KARNATA";
+          const binary = atob(raw.payload);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i) ^ SECRET.charCodeAt(i % SECRET.length);
+          }
+          raw = JSON.parse(new TextDecoder().decode(bytes));
+        }
+      }
+      if (raw) {
+        const buckets = raw.district_buckets || raw.districts || raw.news || {};
+        const list = Object.values(buckets).flat();
+        allCandidates.push(...list);
+      }
     }
   } catch(e) {}
 
