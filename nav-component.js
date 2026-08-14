@@ -20,6 +20,7 @@
   }
 
   const links = [
+    { href:'/ask.html',               label:'🤖 askKARNATA' },
     { href:'/gold-rate.html',         label:'🥇 ಚಿನ್ನ' },
     { href:'/petrol-price.html',      label:'⛽ ಪೆಟ್ರೋಲ್' },
     { href:'/dam-levels.html',        label:'💧 ಅಣೆಕಟ್ಟು' },

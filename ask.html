@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>askKARNATA AI — ಇಂದು ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲೇನಿದೆ? | Karnata.in</title>
+
+  <!-- Open Graph & Meta -->
+  <meta name="description" content="askKARNATA AI - ಕರ್ನಾಟಕದ ಪ್ರಥಮ ಎಐ ಸಹಾಯಕಿ. ಬಂಗಾರ ದರ, ಹವಾಮಾನ ಮಳೆ ಮುನ್ಸೂಚನೆ, ಟಾಪ್ 5 ಬ್ರೇಕಿಂಗ್ ಸುದ್ದಿಗಳು, APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ, ಶಾಸಕ ಹಾಗೂ ಸಂಸದರ ಚುನಾವಣಾ ಇತಿಹಾಸ ಕುರಿತು ಪ್ರತಿಯೊಂದು ಪ್ರಶ್ನೆಗೂ ತಕ್ಷಣದ ಉತ್ತರ.">
+  <meta property="og:title" content="askKARNATA AI — ಇಂದು ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲೇನಿದೆ?">
+  <meta property="og:description" content="ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಮಾಹಿತಿಗೆ ನಿಮ್ಮ ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ (AI) ಸಹಾಯಕ.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #121316;
+      --bg-panel: #1A1B1E;
+      --bg-card: #25262B;
+      --bg-hover: #2C2E33;
+      --border-dark: #2C2E33;
+      --accent-red: #E74C3C;
+      --accent-gold: #F1C40F;
+      --accent-green: #27AE60;
+      --text-main: #ECECEE;
+      --text-sub: #909296;
+      --font-kn: 'Tiro Kannada', serif;
+      --font-en: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-en), var(--font-kn), sans-serif;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* LEFT SIDEBAR (NDTV / ChatGPT Style) */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      text-decoration: none;
+    }
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-red);
+    }
+
+    .btn-new-chat {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      color: var(--text-main);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+    .btn-new-chat:hover {
+      background: var(--bg-hover);
+      border-color: var(--accent-red);
+    }
+
+    .sidebar-sec-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .history-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .history-item {
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--text-sub);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.2s;
+    }
+    .history-item:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--border-dark);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-back-link {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .nav-back-link:hover { color: #FFFFFF; }
+
+    /* MAIN CHAT CANVAS */
+    .main-canvas {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+      background: radial-gradient(circle at 80% 80%, rgba(231,76,60,0.04), transparent 40%);
+    }
+
+    .chat-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 20px 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wrap-width {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* HERO INITIAL SCREEN (NDTV Style) */
+    .hero-container {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      animation: fadeIn 0.4s ease-out;
+    }
+    .hero-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span { color: var(--accent-red); }
+    .hero-subtitle {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-top: 6px;
+      font-family: var(--font-kn), sans-serif;
+    }
+
+    /* CATEGORY TABS */
+    .cat-tabs {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin: 32px 0 24px;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .cat-tab {
+      padding: 8px 18px;
+      border-radius: 20px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-sub);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-tab.active, .cat-tab:hover {
+      color: #FFFFFF;
+      border-color: var(--border-dark);
+      background: var(--bg-card);
+    }
+
+    /* SAMPLE PROMPTS LIST */
+    .sample-prompts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .prompt-item {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .prompt-item:hover {
+      background: var(--bg-card);
+      border-color: var(--accent-red);
+      transform: translateX(4px);
+    }
+    .prompt-icon { color: var(--accent-gold); font-size: 16px; }
+
+    /* CHAT STREAM MESSAGES */
+    .messages-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .msg-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .user-msg {
+      align-self: flex-end;
+      background: #2B2D31;
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 18px 18px 2px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      max-width: 85%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .ai-msg {
+      align-self: flex-start;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dark);
+      border-radius: 18px 18px 18px 2px;
+      padding: 22px;
+      max-width: 95%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .ai-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 10px;
+    }
+    .ai-avatar {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-red), #C0392B);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: #fff;
+    }
+    .ai-name { font-size: 15px; font-weight: 900; color: #FFFFFF; }
+    .ai-badge { font-size: 11px; background: rgba(39, 174, 96, 0.2); color: var(--accent-green); padding: 2px 8px; border-radius: 10px; font-weight: 700; }
+
+    .ai-content {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-main);
+    }
+    .ai-content h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      font-family: var(--font-kn), sans-serif;
+    }
+    .ai-content p { margin-bottom: 12px; }
+    .ai-content ul { margin-left: 20px; margin-bottom: 12px; }
+    .ai-content li { margin-bottom: 6px; }
+
+    /* RELATED CONTENT CARDS (NDTV Style) */
+    .related-box {
+      margin-top: 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .related-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .related-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .rel-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .rel-card:hover {
+      border-color: var(--accent-red);
+      background: var(--bg-hover);
+      transform: translateY(-2px);
+    }
+    .rel-icon { font-size: 24px; flex-shrink: 0; }
+    .rel-text { font-size: 13px; font-weight: 700; line-height: 1.3; }
+
+    /* FOLLOW UP PROMPTS */
+    .followups-box {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .followup-title { font-size: 12px; font-weight: 800; color: var(--text-sub); }
+    .followup-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .followup-btn:hover { color: #FFFFFF; text-decoration: underline; }
+
+    /* FIXED BOTTOM DOCKED INPUT (NDTV Style) */
+    .bottom-dock {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, var(--bg-dark) 70%, transparent);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .input-pill {
+      background: var(--bg-panel);
+      border: 1.5px solid var(--border-dark);
+      border-radius: 28px;
+      padding: 6px 12px 6px 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: border-color 0.2s;
+    }
+    .input-pill:focus-within {
+      border-color: var(--accent-red);
+    }
+
+    .input-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 600;
+      outline: none;
+      font-family: var(--font-en), var(--font-kn), sans-serif;
+      padding: 8px 0;
+    }
+    .input-field::placeholder { color: var(--text-sub); }
+
+    .btn-send {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-left: 8px;
+    }
+    .btn-send.active, .btn-send:hover {
+      background: var(--accent-red);
+      color: #fff;
+      border-color: var(--accent-red);
+    }
+
+    .disclaimer-text {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8deg); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .hero-title { font-size: 32px; }
+      .hero-subtitle { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <a href="/ask.html" class="brand-logo">
+      <div class="brand-dot"></div> ask<span>KARNATA</span>
+    </a>
+
+    <button class="btn-new-chat" onclick="resetChat()">
+      <span style="font-size:18px;">+</span> ನೂತನ ಚಾಟ್ (New Chat)
+    </button>
+
+    <div class="sidebar-sec-title">🕐 ಇತ್ತೀಚಿನ ಸಂಭಾಷಣೆಗಳು</div>
+    <div class="history-list" id="history-list">
+      <div class="history-item" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ?')">💰 ಬಂಗಾರ ದರ ಹಾಗೂ ಹೂಡಿಕೆ</div>
+      <div class="history-item" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರಿನಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">🌧️ ಬೆಂಗಳೂರು ಮಳೆ ಮುನ್ಸೂಚನೆ</div>
+      <div class="history-item" onclick="askPreset('ಕೋಲಾರ APMC ಟೊಮೆಟೊ ದರ ಎಷ್ಟು?')">🍅 ಕೋಲಾರ APMC ಟೊಮೆಟೊ ಬೆಲೆ</div>
+      <div class="history-item" onclick="askPreset('2024 ಕೊಪ್ಪಳ ಲೋಕಸಭಾ ಸಂಸದರು ಯಾರು?')">🏛️ ಕೊಪ್ಪಳ ಲೋಕಸಭಾ ಫಲಿತಾಂಶ</div>
+      <div class="history-item" onclick="askPreset('ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶಗಳು')">📰 ಇಂದಿನ ಟಾಪ್ 5 ಸುದ್ದಿಗಳು</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="/" class="nav-back-link">🏠 Karnata.in ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ</a>
+      <a href="/apmc-prices.html" class="nav-back-link">🌾 APMC ಮಾರುಕಟ್ಟೆ ಲೈವ್ ಧಾರಣೆ</a>
+      <a href="/mla-mp.html" class="nav-back-link">🏛️ ಶಾಸಕ ಹಾಗೂ ಸಂಸದರ ಇತಿಹಾಸ</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CANVAS -->
+  <main class="main-canvas">
+
+    <div class="chat-scroll-area" id="chat-scroll">
+      <div class="wrap-width">
+
+        <!-- INITIAL HERO SCREEN -->
+        <div id="hero-view">
+          <div class="hero-container">
+            <h1 class="hero-title">ask<span>KARNATA</span></h1>
+            <div class="hero-subtitle">ಇಂದು ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲೇನಿದೆ? (What's on your mind today?)</div>
+          </div>
+
+          <!-- CATEGORY TABS -->
+          <div class="cat-tabs">
+            <button class="cat-tab active" onclick="filterCategory('all', this)">ಎಲ್ಲಾ (All)</button>
+            <button class="cat-tab" onclick="filterCategory('gold', this)">💰 ಬಂಗಾರ & ಬೆಳ್ಳಿ</button>
+            <button class="cat-tab" onclick="filterCategory('weather', this)">🌧️ ಹವಾಮಾನ & ಮಳೆ</button>
+            <button class="cat-tab" onclick="filterCategory('news', this)">📰 ಟಾಪ್ 5 ಸುದ್ದಿ</button>
+            <button class="cat-tab" onclick="filterCategory('apmc', this)">🌾 APMC ದರಗಳು</button>
+            <button class="cat-tab" onclick="filterCategory('elections', this)">🏛️ ಶಾಸಕ & ಸಂಸದರು</button>
+          </div>
+
+          <!-- SAMPLE PROMPTS GRID -->
+          <div class="sample-prompts" id="prompts-grid">
+            <div class="prompt-item" onclick="askPreset('ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?')">
+              <span class="prompt-icon">✦</span>
+              <span>ಇಂದು ಬಂಗಾರ ಕೊಳ್ಳಲು ಸರಿಯಾದ ಸಮಯವೇ? 22K ಹಾಗೂ 24K ಚಿನ್ನದ ದರ ಎಷ್ಟು?</span>
+            </div>
+
+            <div class="prompt-item" onclick="askPreset('ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ?')">
+              <span class="prompt-icon">✦</span>
+              <span>ಇಂದು ಬೆಂಗಳೂರು ಹಾಗೂ ಕೊಪ್ಪಳದಲ್ಲಿ ಮಳೆ ಬರುತ್ತದೆಯೇ? (Today rain forecast)</span>
+            </div>
+
+            <div class="prompt-item" onclick="askPreset('ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?')">
+              <span class="prompt-icon">✦</span>
+              <span>ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಮತ್ತು ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟಿದೆ?</span>
+            </div>
+
+            <div class="prompt-item" onclick="askPreset('2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?')">
+              <span class="prompt-icon">✦</span>
+              <span>2024ರ ಲೋಕಸಭಾ ಚುನಾವಣೆಯಲ್ಲಿ ಕೊಪ್ಪಳ ಮತ್ತು ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಕ್ಷೇತ್ರದಲ್ಲಿ ಯಾರು ಗೆದ್ದರು?</span>
+            </div>
+
+            <div class="prompt-item" onclick="askPreset('ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ')">
+              <span class="prompt-icon">✦</span>
+              <span>ಕರ್ನಾಟಕದ ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಪ್ರಮುಖ ಸುದ್ದಿಗಳು ನೀಡಿ (Top 5 news today)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAT MESSAGES STREAM -->
+        <div class="messages-stream" id="messages-stream"></div>
+
+      </div>
+    </div>
+
+    <!-- FIXED BOTTOM DOCKED INPUT -->
+    <div class="bottom-dock">
+      <div class="wrap-width">
+        <div class="input-pill">
+          <input type="text" id="query-input" class="input-field" placeholder="Ask anything about Karnataka... (ಏನೇ ಇರಲಿ, ಇಲ್ಲಿ ಕೇಳಿ...)" onkeypress="handleKeyPress(event)" oninput="toggleSendBtn()">
+          <button class="btn-send" id="btn-send" onclick="submitQuery()">↑</button>
+        </div>
+        <div class="disclaimer-text">
+          askKARNATA AI responses are generated from verified Karnataka APMC, Gold, Weather, News & Election datasets. <a href="/" style="color:var(--text-sub); text-decoration:underline;">Share feedback</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/ask-ai-engine.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.AskKARNATAEngine.init();
+    });
+
+    function toggleSendBtn() {
+      const val = document.getElementById('query-input').value.trim();
+      const btn = document.getElementById('btn-send');
+      if (val.length > 0) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') submitQuery();
+    }
+
+    function resetChat() {
+      document.getElementById('messages-stream').innerHTML = '';
+      document.getElementById('hero-view').style.display = 'block';
+      document.getElementById('query-input').value = '';
+      toggleSendBtn();
+    }
+
+    function askPreset(promptText) {
+      document.getElementById('query-input').value = promptText;
+      submitQuery();
+    }
+
+    function submitQuery() {
+      const input = document.getElementById('query-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      document.getElementById('hero-view').style.display = 'none';
+
+      // 1. Render User Message
+      const stream = document.getElementById('messages-stream');
+      const msgGroup = document.createElement('div');
+      msgGroup.className = 'msg-group';
+
+      msgGroup.innerHTML = `
+        <div class="user-msg">${escapeHtml(text)}</div>
+        <div class="ai-msg">
+          <div class="ai-header">
+            <div class="ai-avatar">a</div>
+            <div class="ai-name">askKARNATA</div>
+            <div class="ai-badge">AI Verified</div>
+          </div>
+          <div class="ai-content">
+            <div style="color:var(--text-sub); font-size:14px;">⚡ ದತ್ತಾಂಶ ಪರಿಶೀಲಿಸಿ ಉತ್ತರಿಸಲಾಗುತ್ತಿದೆ...</div>
+          </div>
+        </div>
+      `;
+
+      stream.appendChild(msgGroup);
+      input.value = '';
+      toggleSendBtn();
+      scrollToBottom();
+
+      // 2. Query Engine
+      setTimeout(() => {
+        const result = window.AskKARNATAEngine.query(text);
+        const aiContentEl = msgGroup.querySelector('.ai-content');
+
+        if (result) {
+          let html = parseMarkdown(result.text);
+
+          // Related Content Box
+          if (result.cards && result.cards.length > 0) {
+            html += `
+              <div class="related-box">
+                <div class="related-title">🔗 ಸಂಬಂಧಿತ ವಿಷಯ ಪುಟಗಳು (Related Content)</div>
+                <div class="related-cards-grid">
+                  ${result.cards.map(c => `
+                    <a href="${c.url}" class="rel-card">
+                      <div class="rel-icon">${c.icon}</div>
+                      <div>
+                        <div class="rel-text">${c.title}</div>
+                        <div style="font-size:11px; color:var(--text-sub); margin-top:2px;">${c.subtitle}</div>
+                      </div>
+                    </a>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }
+
+          // Followup Suggestions
+          if (result.followups && result.followups.length > 0) {
+            html += `
+              <div class="followups-box">
+                <div class="followup-title">💡 ಮುಂದಿನ ಅನುಸರಣಾ ಪ್ರಶ್ನೆಗಳು (Follow-ups):</div>
+                ${result.followups.map(f => `
+                  <button class="followup-btn" onclick="askPreset('${f.replace(/'/g, "\\'")}')">→ ${f}</button>
+                `).join('')}
+              </div>
+            `;
+          }
+
+          aiContentEl.innerHTML = html;
+        } else {
+          aiContentEl.innerHTML = `<p>ಕ್ಷಮಿಸಿ, ಈ ಪ್ರಶ್ನೆಗೆ ದತ್ತಾಂಶ ಸಿಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಬಂಗಾರ ದರ, ಹವಾಮಾನ, ಸುದ್ದಿ, APMC ದರಗಳು ಅಥವಾ ಲೋಕಸಭಾ ಚುನಾವಣೆಯ ಕುರಿತು ಕೇಳಿ.</p>`;
+        }
+        scrollToBottom();
+      }, 400);
+    }
+
+    function filterCategory(cat, btnEl) {
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+    }
+
+    function scrollToBottom() {
+      const area = document.getElementById('chat-scroll');
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function parseMarkdown(md) {
+      if (!md) return '';
+      let html = md
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^\* (.*$)/gim, '<li>$1</li>');
+
+      html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+      html = html.replace(/<\/ul>\s*<ul>/gim, '');
+      return html.replace(/\n\n/g, '<p></p>');
+    }
+  </script>
+
+  <script src="/nav-component.js"></script>
+</body>
+</html>
