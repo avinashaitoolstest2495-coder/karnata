@@ -131,6 +131,12 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--text-mai
     <select class="select-filter" id="district-select" onchange="filterData()">
       <option value="all">📍 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳು (All Districts)</option>
     </select>
+    <select class="select-filter" id="category-select" onchange="filterData()">
+      <option value="all">🏷️ ಎಲ್ಲಾ ವರ್ಗಗಳು (All Categories)</option>
+      <option value="GEN">ಸಾಮಾನ್ಯ (General)</option>
+      <option value="SC">ಮೀಸಲು ಎಸ್‌ಸಿ (SC)</option>
+      <option value="ST">ಮೀಸಲು ಎಸ್‌ಟಿ (ST)</option>
+    </select>
     
     <div class="party-chips">
       <div class="party-chip active" onclick="setPartyFilter('all', this)">ಎಲ್ಲಾ ಪಕ್ಷಗಳು</div>
@@ -211,11 +217,16 @@ function renderGrid() {
   const dataset = currentType === 'mla' ? dbData.mla : dbData.mp;
   const searchTxt = document.getElementById('search-input').value.toLowerCase().trim();
   const selectedDist = document.getElementById('district-select').value;
+  const selectedCat = document.getElementById('category-select') ? document.getElementById('category-select').value : 'all';
 
   let list = Object.values(dataset).sort((a, b) => (a.code || 0) - (b.code || 0));
 
   if (selectedDist !== 'all') {
     list = list.filter(d => (d.district_kn || d.district) === selectedDist);
+  }
+
+  if (selectedCat !== 'all') {
+    list = list.filter(d => (d.category || 'GEN').toUpperCase().includes(selectedCat.toUpperCase()));
   }
 
   if (currentParty !== 'all') {
@@ -247,7 +258,7 @@ function renderGrid() {
       if (urlParams.has('q') || urlParams.has('constituency')) {
         window.hasAutoNavigated = true;
         const slug = (exactMatch.name_en || '').toLowerCase().replace(/[^a-z0-9\s_]/g, '').trim().replace(/\s+/g, '_') + '_assembly_constituency';
-        location.href = currentType === 'mla' ? `mla/${slug}.html` : `constituency-detail.html?type=${currentType}&code=${exactMatch.code}`;
+        location.href = currentType === 'mla' ? `/mla/${slug}.html` : `/constituency-detail.html?type=${currentType}&code=${exactMatch.code}`;
         return;
       }
     }
@@ -262,7 +273,7 @@ function renderGrid() {
     const repName = item.mla_name_kn || item.mp_name_kn || item.mla_name_en || item.mp_name_en;
     const pClass = `party-${(item.party || 'IND').replace(/[^a-zA-Z]/g, '')}`;
     const slug = (item.name_en || '').toLowerCase().replace(/[^a-z0-9\s_]/g, '').trim().replace(/\s+/g, '_') + '_assembly_constituency';
-    const targetUrl = currentType === 'mla' ? `mla/${slug}.html` : `constituency-detail.html?type=${currentType}&code=${item.code}`;
+    const targetUrl = currentType === 'mla' ? `/mla/${slug}.html` : `/constituency-detail.html?type=${currentType}&code=${item.code}`;
 
     return `
       <div class="const-card" onclick="location.href='${targetUrl}'">
