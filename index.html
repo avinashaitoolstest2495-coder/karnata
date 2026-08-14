@@ -1247,11 +1247,20 @@ input { font-family: var(--font); outline: none; border: none; }
     <!-- KARNATA SMART SEARCH SECTION -->
     <div class="smart-search-wrapper" style="margin-top:10px; margin-bottom:20px;">
       <div class="smart-search-box">
-        <div class="smart-search-icon">🔍</div>
-        <input type="text" id="smart-search-input" class="smart-search-input" placeholder="ಕರ್ನಾಟಕದ ಯಾವುದೇ ವಿಷಯವನ್ನು ಇಲ್ಲಿ ಹುಡುಕಿ... (ಉದಾ: ಚಿನ್ನದ ಬೆಲೆ, KRS ನೀರು, ಕೊಪ್ಪಳ MP, ಮಂಡ್ಯ weather...)" autocomplete="off">
-        <button class="smart-search-btn" onclick="window.KarnataSmartEngine.search(document.getElementById('smart-search-input').value)">ಹುಡುಕಿ</button>
+        <div class="smart-search-icon">🤖</div>
+        <input type="text" id="smart-search-input" class="smart-search-input" placeholder="askKARNATA AI: ಇಲ್ಲಿ ಏನಾದರೂ ಕೇಳಿ... (ಉದಾ: ಬಂಗಾರ ದರ, ಮಳೆ ವರದಿ, APMC ದರಗಳು, ಕೊಪ್ಪಳ MP)" autocomplete="off" onkeypress="if(event.key==='Enter') redirectHomeSearch()">
+        <button class="smart-search-btn" style="background: linear-gradient(135deg, #E74C3C, #C0392B); color:#fff;" onclick="redirectHomeSearch()">🤖 askKARNATA</button>
       </div>
     </div>
+    <script>
+    function redirectHomeSearch() {
+      const input = document.getElementById('smart-search-input');
+      const val = input ? input.value.trim() : '';
+      if (val) {
+        window.location.href = '/ask.html?q=' + encodeURIComponent(val);
+      }
+    }
+    </script>
 
     <!-- SMART SEARCH RESULTS CONTAINER -->
     <div id="smart-search-results" class="smart-search-results"></div>
