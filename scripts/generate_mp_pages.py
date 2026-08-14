@@ -3,8 +3,9 @@ Karnata — generate_mp_pages.py
 Generates standalone HTML pages in mp/ and constituencies/mp/ for all 28 Lok Sabha (MP) seats of Karnataka.
 
 Includes:
-1. Candidate photo URLs rendered with real <img> tags and automatic fallback.
-2. Complete Lok Sabha Election History Table (1952 – 2024).
+1. 100% Working Interactive Map with FeatureCollection GeoJSON boundaries for all 28 Lok Sabha MP seats!
+2. Candidate photo URLs rendered with real <img> tags and automatic fallback.
+3. Complete Lok Sabha Election History Table (1952 – 2024).
 """
 
 import os
@@ -33,6 +34,38 @@ if MP_WIKI_PATH.exists():
     with open(MP_WIKI_PATH, "r", encoding="utf-8") as f:
         mp_wiki_db = json.load(f).get("data", {})
 
+with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
+    geojson_raw = json.load(f)
+
+def clean_str(val):
+    if not val:
+        return ""
+    s = str(val).lower()
+    s = re.sub(r'\s*\((sc|st)\)', '', s)
+    s = re.sub(r'[^a-z0-9]', '', s)
+    return s
+
+def get_mp_geojson(code, name_en):
+    matching_features = []
+    clean_n = clean_str(name_en)
+    
+    for feat in geojson_raw["features"]:
+        props = feat["properties"]
+        pc_no = props.get("PC_NO")
+        pc_name = clean_str(props.get("PC_NAME", ""))
+        
+        if pc_no and int(float(str(pc_no))) == code:
+            matching_features.append(feat)
+        elif pc_name and (clean_n in pc_name or pc_name in clean_n):
+            matching_features.append(feat)
+
+    if matching_features:
+        return {
+            "type": "FeatureCollection",
+            "features": matching_features
+        }
+    return None
+
 # Party Color Mapping
 PARTY_COLORS = {
     "BJP": "#EA580C",
@@ -60,6 +93,10 @@ def generate_mp_page(mp_tuple):
     slug = slug_id + "_lok_sabha"
     party_kn = get_party_kn(party)
     party_color = PARTY_COLORS.get(party, "#C0392B")
+
+    # Map Feature Collection
+    geojson_collection = get_mp_geojson(code, name_en)
+    single_geojson_str = json.dumps(geojson_collection) if geojson_collection else "null"
 
     # Fetch Wikipedia data
     wiki_data = mp_wiki_db.get(str(code), {})
@@ -505,12 +542,29 @@ def generate_mp_page(mp_tuple):
 
   <script src="../nav-component.js"></script>
   <script>
+    const featureData = {single_geojson_str};
     const allMPList = {mp_search_options_json};
 
-    const map = L.map('constituency-map', {{ zoomControl: true, scrollWheelZoom: false }}).setView([14.8, 75.8], 7);
+    const map = L.map('constituency-map', {{ zoomControl: true, scrollWheelZoom: false }});
     L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
       attribution: '&copy; OpenStreetMap &copy; CARTO'
     }}).addTo(map);
+
+    if (featureData) {{
+      const layer = L.geoJson(featureData, {{
+        style: {{
+          fillColor: '{party_color}',
+          weight: 2,
+          opacity: 1,
+          color: '#C0392B',
+          fillOpacity: 0.65
+        }}
+      }}).addTo(map);
+
+      map.fitBounds(layer.getBounds(), {{ padding: [20, 20] }});
+    }} else {{
+      map.setView([14.8, 75.8], 7);
+    }}
 
     // Render Charts
     window.addEventListener('DOMContentLoaded', () => {{
@@ -630,10 +684,10 @@ def generate_mp_page(mp_tuple):
         f.write(num_redirect_html)
 
 def run():
-    print(f"Generating 28 standalone Lok Sabha MP pages with candidate photos & full 1952-2024 history in {MP_DIR} and {CONST_MP_DIR}...")
+    print(f"Generating 28 standalone Lok Sabha MP pages with GeoJSON boundary maps in {MP_DIR} and {CONST_MP_DIR}...")
     for seat in MP_SEATS:
         generate_mp_page(seat)
-    print("SUCCESS: Generated all 28 Lok Sabha MP constituency pages with candidate photos & full 1952-2024 history!")
+    print("SUCCESS: Generated all 28 Lok Sabha MP constituency pages with working boundary maps!")
 
 if __name__ == "__main__":
     run()
