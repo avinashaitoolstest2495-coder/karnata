@@ -292,6 +292,78 @@
   }).catch(()=>{});
 
   // Wire location button
+  // Service Worker Registration for Offline & Push Notifications
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        console.log('[Karnata] ServiceWorker registered with scope:', reg.scope);
+      }).catch(err => {
+        console.warn('[Karnata] ServiceWorker registration notice:', err);
+      });
+    });
+  }
+
+  // Universal Notification Toast Function
+  window.showKarnataToast = function(title, msg) {
+    let toast = document.getElementById('nk-universal-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'nk-universal-toast';
+      toast.style.cssText = 'position:fixed;top:80px;right:20px;z-index:99999;background:#0F172A;color:#FFF;border-radius:12px;padding:14px 20px;max-width:320px;box-shadow:0 10px 30px rgba(0,0,0,0.25);border-left:4px solid #E11D48;font-family:"Anek Kannada",sans-serif;display:none;';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<div style="font-weight:900;font-size:14.5px;margin-bottom:3px;">${title}</div><div style="font-size:12.5px;color:#94A3B8;line-height:1.4;">${msg}</div>`;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 4500);
+  };
+
+  // Universal Notification Modal
+  window.openKarnataNotifModal = function() {
+    let modal = document.getElementById('nk-universal-notif-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'nk-universal-notif-modal';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.7);backdrop-filter:blur(6px);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;font-family:"Anek Kannada",sans-serif;';
+      modal.innerHTML = `
+        <div style="background:#FFF;border-radius:20px;padding:28px 24px;max-width:420px;width:100%;box-shadow:0 25px 50px rgba(0,0,0,0.25);border-top:6px solid #E11D48;text-align:center;">
+          <div style="font-size:38px;margin-bottom:10px;">🔔</div>
+          <div style="font-size:20px;font-weight:900;color:#0F172A;margin-bottom:8px;">ಕರ್ನಾಟಕ ಲೈವ್ ಅಧಿಸೂಚನೆ (Live Alerts)</div>
+          <p style="font-size:14px;color:#475569;line-height:1.6;margin-bottom:24px;">ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ, ಚಿನ್ನ & ಪೆಟ್ರೋಲ್ ದರ ಬದಲಾವಣೆ, ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ ಹಾಗೂ ಇಂದಿನ ಪ್ರಮುಖ ಸುದ್ದಿಗಳನ್ನು ನಿಮ್ಮ ಮೊಬೈಲ್/ಡೆಸ್ಕ್‌ಟಾಪ್‌ಗೆ ನೇರವಾಗಿ ಪಡೆಯಿರಿ.</p>
+          <div style="display:flex;gap:10px;justify-content:center;">
+            <button id="nk-notif-allow-btn" style="flex:1;background:#E11D48;color:#FFF;border:none;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;">✅ ಸಕ್ರಿಯಗೊಳಿಸಿ (Allow)</button>
+            <button id="nk-notif-close-btn" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;padding:12px 18px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;">✕ ನಂತರ</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      document.getElementById('nk-notif-close-btn').onclick = () => { modal.style.display = 'none'; };
+      document.getElementById('nk-notif-allow-btn').onclick = () => {
+        modal.style.display = 'none';
+        if (!('Notification' in window)) {
+          window.showKarnataToast('⚠️', 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆ ಬೆಂಬಲವಿಲ್ಲ');
+          return;
+        }
+        if (Notification.permission === 'granted') {
+          window.showKarnataToast('✅ ಸಕ್ರಿಯವಾಗಿದೆ', 'ಕರ್ನಾಟಕ ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು ಈಗಾಗಲೇ ಚಾಲು ಇವೆ.');
+          return;
+        }
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            if (typeof OneSignal !== 'undefined' && OneSignal.Notifications) {
+              OneSignal.Notifications.requestPermission().catch(() => {});
+            }
+            window.showKarnataToast('🎉 ಅಧಿಸೂಚನೆ ಸಕ್ರಿಯಗೊಂಡಿದೆ!', 'ಮಳೆ, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು ಮುನ್ನೆಚ್ಚರಿಕೆಗಳನ್ನು ತಕ್ಷಣ ಪಡೆಯುವಿರಿ.');
+          } else {
+            window.showKarnataToast('ℹ️ ಅಧಿಸೂಚನೆ ನಿಷ್ಕ್ರಿಯ', 'ಬ್ರೌಸರ್ Settings ನಲ್ಲಿ Notifications Allow ಮಾಡಬಹುದು.');
+          }
+        });
+      };
+    }
+    modal.style.display = 'flex';
+  };
+
+  // Wire Location Button
   const locBtn = document.getElementById('nk-loc-btn');
   if(locBtn) {
     locBtn.addEventListener('click', () => {
@@ -300,12 +372,15 @@
     });
   }
 
-  // Notif button
+  // Wire Notif Bell Button
   const notifBtn = document.getElementById('nk-notif-btn');
   if(notifBtn) {
     notifBtn.addEventListener('click', () => {
-      if(typeof showNotif === 'function') showNotif();
-      else if(typeof OneSignal !== 'undefined') OneSignal.Notifications.requestPermission();
+      if (typeof window.openKarnataNotifModal === 'function') {
+        window.openKarnataNotifModal();
+      } else if(typeof OneSignal !== 'undefined') {
+        OneSignal.Notifications.requestPermission();
+      }
     });
   }
 

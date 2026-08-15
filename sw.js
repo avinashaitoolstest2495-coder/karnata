@@ -30,7 +30,7 @@ self.addEventListener('push', (event) => {
   let data = {
     title: '🚨 ಕರ್ನಾಟಕ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ — KSNDMC Alert',
     body: 'ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೊಡಗು ಮತ್ತು ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಭಾರೀ ಮಳೆ ಮುನ್ಸೂಚನೆ.',
-    icon: '/logo.png',
+    icon: '/karnata-logo.png',
     url: '/weather.html'
   };
 
