@@ -383,37 +383,70 @@
             </div>
           </div>
 
-          <div style="display:flex;gap:10px;">
-            <button id="nk-notif-allow-btn" style="flex:1;background:#E11D48;color:#FFF;border:none;padding:12px 16px;border-radius:12px;font-weight:800;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
-              <span>🔔</span> ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ 7:00 ಕ್ಕೆ ಪಡೆಯಿರಿ
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <button id="nk-notif-allow-btn" style="width:100%;background:#E11D48;color:#FFF;border:none;padding:12px 16px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+              <span>🔔</span> ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ 7:00 ಕ್ಕೆ ಪಡೆಯಿರಿ (Enable Daily Alerts)
+            </button>
+            <button id="nk-notif-test-btn" style="width:100%;background:#F1F5F9;color:#1E293B;border:1.5px solid #CBD5E1;padding:10px 16px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+              <span>📲</span> ಈಗಲೇ ನೋಟಿಫಿಕೇಶನ್ ಪರೀಕ್ಷಿಸಿ (Send Live Notification Now)
             </button>
           </div>
         </div>
       `;
       document.body.appendChild(modal);
 
-      document.getElementById('nk-notif-close-btn').onclick = () => { modal.style.display = 'none'; };
-      document.getElementById('nk-notif-allow-btn').onclick = () => {
-        modal.style.display = 'none';
+      function fireRealNotification() {
+        const title = '🌅 ಮುಂಜಾನೆಯ ಕರ್ನಾಟಕ ಲೈವ್ ಬುಲೆಟಿನ್';
+        const options = {
+          body: '🥇 ಚಿನ್ನ: ₹14,080 | ⛽ ಪೆಟ್ರೋಲ್: ₹102.86 | 💧 ಕೆಆರ್‌ಎಸ್: 100% | 🌦️ 24°C ಮಳೆ | 📰 ಇಂದಿನ 5 ಮುಖ್ಯ ಸುದ್ದಿಗಳು ಇಲ್ಲಿವೆ.',
+          icon: '/karnata-logo.png',
+          badge: '/karnata-logo.png',
+          vibrate: [200, 100, 200],
+          tag: 'morning-bulletin-test',
+          data: { url: '/news-explainers.html' }
+        };
+
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.ready.then(reg => {
+            reg.showNotification(title, options);
+          }).catch(() => {
+            try { new Notification(title, options); } catch(e) {}
+          });
+        } else {
+          try { new Notification(title, options); } catch(e) {}
+        }
+      }
+
+      function handleSubscription(isTest = false) {
         if (!('Notification' in window)) {
-          window.showKarnataToast('⚠️', 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆ ಬೆಂಬಲವಿಲ್ಲ');
+          window.showKarnataToast('⚠️ ಬೆಂಬಲವಿಲ್ಲ', 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ನೋಟಿಫಿಕೇಶನ್ ಸಪೋರ್ಟ್ ಇಲ್ಲ');
           return;
         }
+
         if (Notification.permission === 'granted') {
-          window.showKarnataToast('✅ ಸಕ್ರಿಯವಾಗಿದೆ', 'ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ 7:00 ಗಂಟೆಗೆ ಮುಂಜಾನೆಯ ಕಸ್ಟಮೈಸ್ಡ್ ಬುಲೆಟಿನ್ ನಿಮಗೆ ತಲುಪಲಿದೆ.');
+          modal.style.display = 'none';
+          fireRealNotification();
+          window.showKarnataToast('🎉 ಲೈವ್ ನೋಟಿಫಿಕೇಶನ್ ಕಳುಹಿಸಲಾಗಿದೆ!', 'ನಿಮ್ಮ ಸ್ಕ್ರೀನ್ ಮೇಲೆ ಮುಂಜಾನೆಯ ಬುಲೆಟಿನ್ ನೋಟಿಫಿಕೇಶನ್ ಬಂದಿದೆ ನೋಡಿ.');
           return;
         }
+
         Notification.requestPermission().then(permission => {
           if (permission === 'granted') {
+            modal.style.display = 'none';
             if (typeof OneSignal !== 'undefined' && OneSignal.Notifications) {
               OneSignal.Notifications.requestPermission().catch(() => {});
             }
-            window.showKarnataToast('🎉 ಮುಂಜಾನೆಯ ಅಲರ್ಟ್ ಚಾಲು!', 'ಪೆಟ್ರೋಲ್, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು & ಟಾಪ್ 5 ಸುದ್ದಿಗಳ ಅಧಿಸೂಚನೆ ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ ಸಿಗಲಿದೆ.');
+            fireRealNotification();
+            window.showKarnataToast('🎉 ಅಧಿಸೂಚನೆ ಸಕ್ರಿಯಗೊಂಡಿದೆ!', 'ಲೈವ್ ಮುಂಜಾನೆಯ ಬುಲೆಟಿನ್ ನೋಟಿಫಿಕೇಶನ್ ನಿಮ್ಮ ಸ್ಕ್ರೀನ್‌ಗೆ ತಲುಪಿದೆ.');
           } else {
-            window.showKarnataToast('ℹ️ ಅಧಿಸೂಚನೆ ನಿಷ್ಕ್ರಿಯ', 'ಬ್ರೌಸರ್ Settings ನಲ್ಲಿ Notifications Allow ಮಾಡಬಹುದು.');
+            window.showKarnataToast('ℹ️ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ', 'ಬ್ರೌಸರ್ URL ಬಾರ್‌ನಲ್ಲಿರುವ 🔒 ಐಕಾನ್ ಕ್ಲಿಕ್ ಮಾಡಿ Notifications Allow ಮಾಡಿ.');
           }
         });
-      };
+      }
+
+      document.getElementById('nk-notif-close-btn').onclick = () => { modal.style.display = 'none'; };
+      document.getElementById('nk-notif-allow-btn').onclick = () => handleSubscription(false);
+      document.getElementById('nk-notif-test-btn').onclick = () => handleSubscription(true);
     }
     modal.style.display = 'flex';
   };
