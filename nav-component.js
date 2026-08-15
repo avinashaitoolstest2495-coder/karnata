@@ -317,21 +317,76 @@
     setTimeout(() => { toast.style.display = 'none'; }, 4500);
   };
 
-  // Universal Notification Modal
+  // Universal Notification Modal with Morning Customized Bulletin
   window.openKarnataNotifModal = function() {
     let modal = document.getElementById('nk-universal-notif-modal');
     if (!modal) {
       modal = document.createElement('div');
       modal.id = 'nk-universal-notif-modal';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.7);backdrop-filter:blur(6px);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;font-family:"Anek Kannada",sans-serif;';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.75);backdrop-filter:blur(8px);z-index:999999;display:flex;align-items:center;justify-content:center;padding:16px;font-family:"Anek Kannada",sans-serif;';
       modal.innerHTML = `
-        <div style="background:#FFF;border-radius:20px;padding:28px 24px;max-width:420px;width:100%;box-shadow:0 25px 50px rgba(0,0,0,0.25);border-top:6px solid #E11D48;text-align:center;">
-          <div style="font-size:38px;margin-bottom:10px;">🔔</div>
-          <div style="font-size:20px;font-weight:900;color:#0F172A;margin-bottom:8px;">ಕರ್ನಾಟಕ ಲೈವ್ ಅಧಿಸೂಚನೆ (Live Alerts)</div>
-          <p style="font-size:14px;color:#475569;line-height:1.6;margin-bottom:24px;">ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ, ಚಿನ್ನ & ಪೆಟ್ರೋಲ್ ದರ ಬದಲಾವಣೆ, ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ ಹಾಗೂ ಇಂದಿನ ಪ್ರಮುಖ ಸುದ್ದಿಗಳನ್ನು ನಿಮ್ಮ ಮೊಬೈಲ್/ಡೆಸ್ಕ್‌ಟಾಪ್‌ಗೆ ನೇರವಾಗಿ ಪಡೆಯಿರಿ.</p>
-          <div style="display:flex;gap:10px;justify-content:center;">
-            <button id="nk-notif-allow-btn" style="flex:1;background:#E11D48;color:#FFF;border:none;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;">✅ ಸಕ್ರಿಯಗೊಳಿಸಿ (Allow)</button>
-            <button id="nk-notif-close-btn" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;padding:12px 18px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;">✕ ನಂತರ</button>
+        <div style="background:#FFF;border-radius:24px;padding:26px 22px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 60px rgba(0,0,0,0.3);border-top:6px solid #E11D48;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:24px;">🌅</span>
+              <div>
+                <div style="font-size:18px;font-weight:900;color:#0F172A;">ಮುಂಜಾನೆಯ ಲೈವ್ ಬುಲೆಟಿನ್</div>
+                <div style="font-size:11.5px;color:#64748B;font-weight:700;">ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ ಕಸ್ಟಮೈಸ್ಡ್ ಅಪ್‌ಡೇಟ್</div>
+              </div>
+            </div>
+            <button id="nk-notif-close-btn" style="background:#F1F5F9;border:none;width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;color:#475569;font-weight:900;">✕</button>
+          </div>
+
+          <!-- Morning Bulletin Grid Cards -->
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+            <!-- 1. Gold & Silver -->
+            <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:13px;font-weight:800;color:#92400E;">🥇 Joyalukkas ಚಿನ್ನ & ಬೆಳ್ಳಿ</div>
+              <div style="font-size:12.5px;font-weight:800;color:#B45309;">22K: ₹14,080/g · 24K: ₹15,365/g</div>
+            </div>
+
+            <!-- 2. Petrol & Diesel -->
+            <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:13px;font-weight:800;color:#1E40AF;">⛽ ಇಂಧನ ದರ</div>
+              <div style="font-size:12.5px;font-weight:800;color:#2563EB;">ಪೆಟ್ರೋಲ್: ₹102.86 · ಡೀಸೆಲ್: ₹88.94</div>
+            </div>
+
+            <!-- 3. Dam & Weather -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:10px 12px;">
+                <div style="font-size:11.5px;font-weight:800;color:#166534;">💧 ಕೆಆರ್‌ಎಸ್ ಅಣೆಕಟ್ಟು</div>
+                <div style="font-size:12px;font-weight:900;color:#15803D;margin-top:2px;">49.45 TMC (100% ಭರ್ತಿ)</div>
+              </div>
+              <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:10px 12px;">
+                <div style="font-size:11.5px;font-weight:800;color:#334155;">🌦️ ಇಂದಿನ ಹವಾಮಾನ</div>
+                <div style="font-size:12px;font-weight:900;color:#0F172A;margin-top:2px;">24°C · ಸಾಧಾರಣ ಮಳೆ</div>
+              </div>
+            </div>
+
+            <!-- 4. Top 5 News -->
+            <div style="background:#FFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:12px 14px;">
+              <div style="font-size:12.5px;font-weight:900;color:#0F172A;margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+                <span>📰 ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶಗಳು</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.6;color:#334155;font-weight:600;">
+                <li>ಕರ್ನಾಟಕ ಸಚಿವ ಸಂಪುಟ ಖಾತೆ ಹಂಚಿಕೆ ಅಧಿಕೃತ ಪಟ್ಟಿ ಪ್ರಕಟ</li>
+                <li>ನಮ್ಮ ಮೆಟ್ರೋ ಹಂತ 2B ಕಾಮಗಾರಿ — ವಿಮಾನ ನಿಲ್ದಾಣ ರಸ್ತೆಯಲ್ಲಿ ಹೊಸ ಸಂಚಾರ ನಿಯಮಗಳು</li>
+                <li>ಕಾವೇರಿ & ಕೃಷ್ಣಾ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಹೆಚ್ಚಳ — ರೈತರಿಗೆ ಮುನ್ನೆಚ್ಚರಿಕೆ</li>
+                <li>ರಾಜ್ಯ ಬಜೆಟ್ ನಂತರ ತರಕಾರಿ ಹಾಗೂ ಧಾನ್ಯಗಳ ಪ್ರಸ್ತುತ APMC ದರ</li>
+                <li>ಕರಾವಳಿ ಮತ್ತು ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹಗುರದಿಂದ ಸಾಧಾರಣ ಮಳೆ ಮುನ್ಸೂಚನೆ</li>
+              </ul>
+            </div>
+
+            <!-- 5. Important Alert -->
+            <div style="background:#FEF2F2;border:1px solid #FECDD3;border-radius:12px;padding:10px 14px;font-size:12px;color:#991B1B;line-height:1.45;">
+              <strong>🚨 ಪ್ರಮುಖ ಸೂಚನೆ:</strong> ಸಂಚಾರ ಬದಲಾವಣೆ ಹಾಗೂ ಕಾವೇರಿ ಕಣಿವೆ ನದಿ ತೀರ ಪ್ರದೇಶಗಳಲ್ಲಿ ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲು ಸೂಚಿಸಲಾಗಿದೆ.
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;">
+            <button id="nk-notif-allow-btn" style="flex:1;background:#E11D48;color:#FFF;border:none;padding:12px 16px;border-radius:12px;font-weight:800;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+              <span>🔔</span> ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ 7:00 ಕ್ಕೆ ಪಡೆಯಿರಿ
+            </button>
           </div>
         </div>
       `;
@@ -345,7 +400,7 @@
           return;
         }
         if (Notification.permission === 'granted') {
-          window.showKarnataToast('✅ ಸಕ್ರಿಯವಾಗಿದೆ', 'ಕರ್ನಾಟಕ ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು ಈಗಾಗಲೇ ಚಾಲು ಇವೆ.');
+          window.showKarnataToast('✅ ಸಕ್ರಿಯವಾಗಿದೆ', 'ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ 7:00 ಗಂಟೆಗೆ ಮುಂಜಾನೆಯ ಕಸ್ಟಮೈಸ್ಡ್ ಬುಲೆಟಿನ್ ನಿಮಗೆ ತಲುಪಲಿದೆ.');
           return;
         }
         Notification.requestPermission().then(permission => {
@@ -353,7 +408,7 @@
             if (typeof OneSignal !== 'undefined' && OneSignal.Notifications) {
               OneSignal.Notifications.requestPermission().catch(() => {});
             }
-            window.showKarnataToast('🎉 ಅಧಿಸೂಚನೆ ಸಕ್ರಿಯಗೊಂಡಿದೆ!', 'ಮಳೆ, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು ಮುನ್ನೆಚ್ಚರಿಕೆಗಳನ್ನು ತಕ್ಷಣ ಪಡೆಯುವಿರಿ.');
+            window.showKarnataToast('🎉 ಮುಂಜಾನೆಯ ಅಲರ್ಟ್ ಚಾಲು!', 'ಪೆಟ್ರೋಲ್, ಚಿನ್ನ, ಅಣೆಕಟ್ಟು & ಟಾಪ್ 5 ಸುದ್ದಿಗಳ ಅಧಿಸೂಚನೆ ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ ಸಿಗಲಿದೆ.');
           } else {
             window.showKarnataToast('ℹ️ ಅಧಿಸೂಚನೆ ನಿಷ್ಕ್ರಿಯ', 'ಬ್ರೌಸರ್ Settings ನಲ್ಲಿ Notifications Allow ಮಾಡಬಹುದು.');
           }

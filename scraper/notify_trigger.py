@@ -278,6 +278,32 @@ def check_weather():
     _save_state(state)
 
 
+def send_morning_custom_bulletin(district_key: str = "bengaluru-urban"):
+    """Send customized morning bulletin push notification containing petrol, dam, weather, top 5 news, gold rate, and important updates."""
+    try:
+        from generate_morning_bulletin import generate_bulletin
+    except ImportError:
+        import sys
+        sys.path.append(str(Path(__file__).parent))
+        from generate_morning_bulletin import generate_bulletin
+
+    bulletin = generate_bulletin(district_key)
+    date_str = bulletin.get("date", ist_date())
+    summary = bulletin.get("summary", "")
+    top_news = bulletin.get("sections", {}).get("top_5_news", [])
+    top_str = " · ".join(top_news[:2]) if top_news else "ಇಂದಿನ ಮುಖ್ಯಾಂಶಗಳು"
+
+    title = f"🌅 ಮುಂಜಾನೆಯ ಕರ್ನಾಟಕ ಲೈವ್ ಬುಲೆಟಿನ್ — {date_str}"
+    body = f"{summary} | 📰 {top_str}"
+
+    log.info(f"Sending morning custom bulletin push: {title}")
+    send_push(
+        title_kn=title,
+        body_kn=body,
+        filter_tags=None,
+        url="/news-explainers.html",
+    )
+
 def test_notification():
     """Send a single test push to verify OneSignal is wired correctly."""
     send_push(
@@ -287,7 +313,6 @@ def test_notification():
         url="/",
     )
 
-
 if __name__ == "__main__":
     args = sys.argv[1:]
     if not args:
@@ -295,7 +320,10 @@ if __name__ == "__main__":
         sys.exit(0)
 
     cmd = args[0]
-    if cmd == "gold":
+    if cmd == "morning" or cmd == "bulletin":
+        dist = args[1] if len(args) > 1 else "bengaluru-urban"
+        send_morning_custom_bulletin(dist)
+    elif cmd == "gold":
         check_gold()
     elif cmd == "dam":
         check_dam()
