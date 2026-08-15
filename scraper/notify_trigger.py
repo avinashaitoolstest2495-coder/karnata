@@ -42,7 +42,7 @@ import os
 import json
 import sys
 from pathlib import Path
-from utils import log, telegram_alert
+from utils import log, telegram_alert, ist_date, ist_now
 import requests
 from dotenv import load_dotenv
 
