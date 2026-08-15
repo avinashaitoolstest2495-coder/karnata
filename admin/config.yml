@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: avinashaitoolstest2495-coder/karnata
+  branch: main
+  base_url: https://karnata.in
+  auth_endpoint: auth
+
+# Enables local testing if needed
+local_backend: false
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+display_url: https://karnata.in
+logo_url: https://karnata.in/karnata-logo.png
+
+collections:
+  - name: "articles"
+    label: "📰 ಲೇಖನಗಳು (News & Explainers)"
+    label_singular: "ಲೇಖನ (Article)"
+    folder: "data/articles"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "ಶೀರ್ಷಿಕೆ (Title in Kannada)", name: "title_kn", widget: "string", hint: "ಉದಾ: ಕರ್ನಾಟಕ ಸಚಿವ ಸಂಪುಟ ಖಾತೆ ಹಂಚಿಕೆ ಪಟ್ಟಿ" }
+      - { label: "URL Slug (English)", name: "slug", widget: "string", hint: "ಉದಾ: karnataka-cabinet-ministers-portfolio-list" }
+      - { label: "ವಿಭಾಗ (Category)", name: "category", widget: "select", options: ["politics", "water", "finance", "weather", "scheme", "explainer", "district", "constituency", "alert"], default: "politics" }
+      - { label: "Target District/Constituency (Optional)", name: "target", widget: "string", required: false, hint: "ಉದಾ: bengaluru ಅಥವಾ varuna" }
+      - { label: "Priority (1 - 10)", name: "priority", widget: "number", default: 10, value_type: "int", min: 1, max: 10 }
+      - { label: "📌 Pin to Home Banner", name: "pin_home", widget: "boolean", default: true }
+      - { label: "ಕವರ್ ಚಿತ್ರ (Featured Image)", name: "cover_image", widget: "image", required: false }
+      - { label: "ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ (Meta Description & Excerpt)", name: "summary_kn", widget: "text", hint: "ಗೂಗಲ್ ಹಾಗೂ ಕಾರ್ಡ್‌ಗಳಿಗೆ 150 ಅಕ್ಷರಗಳ ಸಾರಾಂಶ" }
+      - { label: "Focus Keywords (SEO ಕೀವರ್ಡ್ಸ್)", name: "keywords", widget: "string", required: false, hint: "ಉದಾ: karnataka ministers list, ಸಚಿವರ ಪಟ್ಟಿ" }
+      - { label: "Google Schema Type", name: "schema_type", widget: "select", options: ["NewsArticle", "GovernmentService", "FAQPage", "BlogPosting"], default: "NewsArticle" }
+      - { label: "ಲೇಖಕ (Author)", name: "author", widget: "string", default: "ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ" }
+      - { label: "ಪ್ರಕಟಣಾ ದಿನಾಂಕ (Publish Date)", name: "updated_at", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "ಲೇಖನದ ಸಂಪೂರ್ಣ ವಿವರ (Article Body)", name: "body_html", widget: "markdown", hint: "ಇಲ್ಲಿ ಲೇಖನವನ್ನು ವಿಸ್ತಾರವಾಗಿ ಬರೆಯಿರಿ. Tables, Headers, Bold ಬಳಸಬಹುದು." }
+      - { label: "ಸ್ಥಿತಿ (Status)", name: "status", widget: "select", options: ["published", "draft"], default: "published" }
