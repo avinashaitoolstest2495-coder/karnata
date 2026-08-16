@@ -93,6 +93,7 @@ const NK = {
   async local_news()     { return this.fetch('local_news',     'local_news.json'); },
   async constituencies() { return this.fetch('constituencies', 'constituencies.json'); },
   async elections()      { return this.fetch('elections',      'elections_data.json'); },
+  async schemes()        { return this.fetch('schemes',        'government_schemes.json'); },
 };
 
 if (typeof window !== 'undefined') {

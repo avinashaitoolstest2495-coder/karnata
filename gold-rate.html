@@ -185,13 +185,37 @@ body .hero-title {
 .tc-tab { padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; border: none; background: transparent; color: var(--ink2); font-family: var(--font-kn); transition: all 0.2s; }
 .tc-tab.active { background: var(--gold-dk); color: #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
-.chart-area { height: 160px; display: flex; align-items: flex-end; gap: 6px; padding-top: 28px; position: relative; }
-.chart-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
-.chart-bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, #FACC15 0%, #D4A017 100%); transition: height 0.6s ease; min-height: 4px; }
+.chart-area { 
+  height: 180px; 
+  display: flex; 
+  align-items: flex-end; 
+  gap: 8px; 
+  padding-top: 28px; 
+  padding-bottom: 8px;
+  position: relative; 
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.chart-area::-webkit-scrollbar { height: 4px; }
+.chart-area::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+
+.chart-bar-wrap { 
+  flex: 1; 
+  min-width: 52px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 4px; 
+  cursor: pointer; 
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+.chart-bar { width: 100%; max-width: 36px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #FACC15 0%, #D4A017 100%); transition: height 0.4s ease; min-height: 8px; }
 .chart-bar.silver-bar { background: linear-gradient(180deg, #94A3B8 0%, #475569 100%); }
-.chart-bar-wrap:hover .chart-bar { filter: brightness(1.2); }
-.chart-label { font-size: 10px; color: var(--ink3); font-family: var(--font-en); font-weight: 700; }
-.chart-val { font-size: 9.5px; font-weight: 800; color: var(--ink); font-family: var(--font-en); white-space: nowrap; }
+.chart-bar-wrap:hover .chart-bar, .chart-bar-wrap:active .chart-bar { filter: brightness(1.25); transform: scaleY(1.02); }
+.chart-label { font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 700; white-space: nowrap; text-align: center; }
+.chart-val { font-size: 10.5px; font-weight: 800; color: var(--ink); font-family: var(--font-en); white-space: nowrap; margin-bottom: 2px; }
 
 .tc-tooltip-strip {
   background: #FEF3C7;
@@ -562,13 +586,16 @@ function updateTrendChart() {
   document.getElementById('tc-range-label').textContent = rangeNameMap[currentTrendRange];
 
   document.getElementById('trend-chart').innerHTML = data.map((v, i) => {
-    // Proportional bar height scaling directly driven by exact rate!
     const h = Math.round(((v - min) / range) * 85 + 15);
     const isLast = i === data.length - 1;
     const displayVal = isSilver ? '₹' + v : '₹' + v.toLocaleString('en-IN');
     const fullDate = labels[i];
 
-    return `<div class="chart-bar-wrap" onmouseover="showChartHover('${fullDate}', '${displayVal}')" onmouseleave="resetChartHover()">
+    return `<div class="chart-bar-wrap" 
+      onmouseover="showChartHover('${fullDate}', '${displayVal}')" 
+      onmouseleave="resetChartHover()"
+      onclick="showChartHover('${fullDate}', '${displayVal}')"
+      ontouchstart="showChartHover('${fullDate}', '${displayVal}')">
       <div class="chart-val" style="${isLast ? 'color:#B45309;font-weight:900;' : ''}">${displayVal}</div>
       <div class="chart-bar ${isSilver ? 'silver-bar' : ''}" style="height:${h}px;${isLast ? 'filter:brightness(1.15);box-shadow:0 0 8px rgba(245,158,11,0.5);' : ''}"></div>
       <div class="chart-label">${labels[i]}</div>

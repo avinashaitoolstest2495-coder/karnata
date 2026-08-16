@@ -1012,7 +1012,39 @@ function filterSearch(val) {
   if (weatherStore) renderDistrictsGrid(weatherStore);
 }
 
-function selectDistrict(key) {
+async function updateDistrictLiveTelemetry(dist) {
+  if (!dist) return;
+  const lat = dist.lat || 12.9716;
+  const lon = dist.lon || 77.5946;
+
+  if (typeof OpenMeteoProvider !== 'undefined') {
+    const live = await OpenMeteoProvider.fetchLiveWeather(lat, lon);
+    if (live) {
+      dist.current = {
+        temp_c: live.temp_c,
+        feels_like: live.feels_like,
+        humidity: live.humidity,
+        wind_kmh: live.wind_kmh,
+        precipitation_mm: live.precipitation_mm,
+        desc_kn: live.desc_kn,
+        icon: live.icon,
+        weather_code: live.weather_code,
+        rain_chance: live.hourly_24h?.[0]?.rain_chance || 0
+      };
+      if (live.hourly_24h && live.hourly_24h.length) {
+        dist.hourly_24h = live.hourly_24h;
+      }
+      if (live.forecast && live.forecast.length) {
+        dist.forecast = live.forecast;
+      }
+      renderHero(dist);
+      renderHourlyForecast(dist);
+      render7DayForecast(dist);
+    }
+  }
+}
+
+async function selectDistrict(key) {
   if (!weatherStore || !weatherStore.districts) return;
   activeDistrictKey = key;
   const dist = weatherStore.districts[key];
@@ -1020,6 +1052,7 @@ function selectDistrict(key) {
     renderHero(dist);
     renderHourlyForecast(dist);
     render7DayForecast(dist);
+    await updateDistrictLiveTelemetry(dist);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
@@ -1049,6 +1082,7 @@ async function loadWeatherData() {
       let d = await res.json();
       if (d && d.payload && typeof window.decryptPayload === 'function') d = window.decryptPayload(d.payload);
       weatherStore = d;
+      window.weatherStore = d;
     }
   } catch (e) {}
 
@@ -1059,6 +1093,7 @@ async function loadWeatherData() {
         let d2 = await res2.json();
         if (d2 && d2.payload && typeof window.decryptPayload === 'function') d2 = window.decryptPayload(d2.payload);
         weatherStore = d2;
+        window.weatherStore = d2;
       }
     } catch (e) {}
   }
@@ -1082,6 +1117,9 @@ async function loadWeatherData() {
     renderHourlyForecast(activeDist);
     render7DayForecast(activeDist);
     renderDistrictsGrid(weatherStore);
+    
+    // Direct Live Telemetry Update from Open-Meteo immediately on load
+    updateDistrictLiveTelemetry(activeDist);
   }
   renderAQI();
 }

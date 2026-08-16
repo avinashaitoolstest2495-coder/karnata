@@ -431,6 +431,81 @@ input { font-family: var(--font); outline: none; border: none; }
   .sidebar { display: none; }
 }
 
+/* ── Clean Minimalist Search Bar ── */
+.clean-search-box {
+  background: #FFFFFF !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 4px 6px 4px 16px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.clean-search-box:focus-within {
+  border-color: var(--k-red) !important;
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.08) !important;
+}
+.clean-search-icon {
+  font-size: 16px !important;
+  color: #94A3B8 !important;
+  margin-right: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.clean-search-input,
+input.clean-search-input,
+#smart-search-input.clean-search-input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  font-family: inherit !important;
+  padding: 10px 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+.clean-search-input:focus,
+input.clean-search-input:focus,
+#smart-search-input.clean-search-input:focus {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.clean-search-input::placeholder {
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+}
+.clean-search-btn {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 10px !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.clean-search-btn:hover {
+  background: var(--k-red) !important;
+  transform: translateY(-1px) !important;
+}
+@media(max-width: 600px) {
+  .clean-search-box { padding: 4px 4px 4px 10px !important; }
+  .clean-search-input { font-size: 12.5px !important; }
+  .clean-search-btn { padding: 8px 12px !important; font-size: 12px !important; }
+}
+
 /* Section Headings */
 .sh {
   display: flex;
@@ -707,11 +782,12 @@ input { font-family: var(--font); outline: none; border: none; }
 ══════════════════════════════════════════════════════ */
 .news-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 36px;
 }
-@media(max-width:600px) { .news-layout { grid-template-columns: 1fr; } }
+@media(max-width: 1024px) { .news-layout { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 600px) { .news-layout { grid-template-columns: 1fr; } }
 
 .news-card {
   background: var(--card-bg);
@@ -798,44 +874,145 @@ input { font-family: var(--font); outline: none; border: none; }
 }
 @media(max-width:640px) { .nc-visual { display: none; } }
 
-/* Local News Strip */
-.local-news-list {
+/* Clean Editorial News Layout (Agaah style) */
+.editorial-news-wrap {
+  background: #F9F6F0;
+  border: 1px solid #EAE5DC;
+  border-radius: 20px;
+  padding: 24px 20px;
+  margin-bottom: 36px;
+  box-shadow: 0 4px 20px rgba(28, 25, 23, 0.04);
+}
+.editorial-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.editorial-nav-pills::-webkit-scrollbar { display: none; }
+.ed-pill {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #3F3F46;
+  background: transparent;
+  border: 1.5px solid #D4D4D8;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ed-pill:hover { border-color: #18181B; color: #18181B; }
+.ed-pill.active { background: #18181B; color: #FFFFFF; border-color: #18181B; }
+
+.editorial-search-bar {
+  margin-bottom: 20px;
+}
+.editorial-search-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #18181B;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.editorial-search-input:focus { border-color: #18181B; }
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media(max-width: 640px) {
+  .editorial-grid { grid-template-columns: 1fr; }
+}
+.editorial-card {
+  background: #FFFFFF;
+  border: 1.5px solid #EAE5DC;
+  border-radius: 14px;
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 36px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-flat);
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
 }
-.local-item {
-  display: block;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border-light);
-  transition: background 0.15s;
-  cursor: pointer;
+.editorial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  border-color: #D4CDBC;
 }
-.local-item:last-child { border-bottom: none; }
-.local-item:hover { background: #F8FAFC; }
-.li-source {
-  display: inline-block;
-  font-size: 11px;
+.ed-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.ed-badge-cat {
+  border: 1.5px solid #C89666;
+  color: #9A6735;
+  font-size: 10.5px;
   font-weight: 800;
-  color: var(--k-red);
-  background: rgba(225, 29, 72, 0.08);
-  border: 1px solid rgba(225, 29, 72, 0.2);
   padding: 2px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
-.li-title {
-  font-size: 14.5px;
+.ed-badge-dist {
+  border: 1px solid #CBD5E1;
+  color: #64748B;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.ed-time {
+  font-size: 11px;
+  font-weight: 700;
+  color: #71717A;
+  white-space: nowrap;
+}
+.ed-headline {
+  font-size: 15.5px;
   font-weight: 800;
-  color: var(--text-primary);
+  color: #18181B;
   line-height: 1.45;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
-.li-time { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+.ed-snippet {
+  font-size: 13px;
+  color: #52525B;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+.ed-btn {
+  background: #18181B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+.editorial-card:hover .ed-btn {
+  background: #E11D48;
+}
 #local-news-section { display: none; }
 
 /* ══════════════════════════════════════════════════════
@@ -1244,12 +1421,12 @@ input { font-family: var(--font); outline: none; border: none; }
 <main class="main">
   <div class="left">
 
-    <!-- KARNATA SMART SEARCH SECTION -->
-    <div class="smart-search-wrapper" style="margin-top:10px; margin-bottom:20px;">
-      <div class="smart-search-box">
-        <div class="smart-search-icon">🤖</div>
-        <input type="text" id="smart-search-input" class="smart-search-input" placeholder="askKARNATA AI: ಇಲ್ಲಿ ಏನಾದರೂ ಕೇಳಿ... (ಉದಾ: ಬಂಗಾರ ದರ, ಮಳೆ ವರದಿ, APMC ದರಗಳು, ಕೊಪ್ಪಳ MP)" autocomplete="off" onkeypress="if(event.key==='Enter') redirectHomeSearch()">
-        <button class="smart-search-btn" style="background: linear-gradient(135deg, #E74C3C, #C0392B); color:#fff;" onclick="redirectHomeSearch()">🤖 askKARNATA</button>
+    <!-- CLEAN KARNATA SEARCH SECTION -->
+    <div class="clean-search-wrapper" style="margin-top:4px; margin-bottom:20px;">
+      <div class="clean-search-box">
+        <div class="clean-search-icon">🔍</div>
+        <input type="text" id="smart-search-input" class="clean-search-input" placeholder="ಕರ್ನಾಟಕದ ಮಾಹಿತಿ ಹುಡುಕಿ ಅಥವಾ ಪ್ರಶ್ನೆ ಕೇಳಿ..." autocomplete="off" onkeypress="if(event.key==='Enter') redirectHomeSearch()">
+        <button class="clean-search-btn" onclick="redirectHomeSearch()">🤖 ask Karnata</button>
       </div>
     </div>
     <script>
@@ -1314,7 +1491,7 @@ input { font-family: var(--font); outline: none; border: none; }
         <div class="tt-icon-wrap bg-t-1">🏦</div>
         <span class="tt-label">EMI ಲೆಕ್ಕಾಚಾರ</span>
       </a>
-      <a href="more-tools.html"        class="tool-tile">
+      <a href="sip-calculator.html"    class="tool-tile">
         <div class="tt-icon-wrap bg-t-2">📈</div>
         <span class="tt-label">SIP ಲೆಕ್ಕಾಚಾರ</span>
       </a>
@@ -1326,9 +1503,9 @@ input { font-family: var(--font); outline: none; border: none; }
         <div class="tt-icon-wrap bg-t-4">🏛️</div>
         <span class="tt-label">MLA / MP ವಿವರ</span>
       </a>
-      <a href="status-checker.html"    class="tool-tile">
-        <div class="tt-icon-wrap bg-t-5">🚗</div>
-        <span class="tt-label">DL / RTC ಸ್ಥಿತಿ</span>
+      <a href="scheme-checker.html"    class="tool-tile">
+        <div class="tt-icon-wrap bg-t-5">📜</div>
+        <span class="tt-label">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</span>
       </a>
       <a href="kannada-typing.html"    class="tool-tile">
         <div class="tt-icon-wrap bg-t-6">⌨️</div>
@@ -1338,7 +1515,7 @@ input { font-family: var(--font); outline: none; border: none; }
         <div class="tt-icon-wrap bg-t-7">🗺️</div>
         <span class="tt-label">31 ಜಿಲ್ಲೆಗಳು</span>
       </a>
-      <a href="more-tools.html"        class="tool-tile">
+      <a href="apmc-prices.html"       class="tool-tile">
         <div class="tt-icon-wrap bg-t-8">🌾</div>
         <span class="tt-label">APMC ದರ ಪಟ್ಟಿ</span>
       </a>
@@ -1386,14 +1563,35 @@ input { font-family: var(--font); outline: none; border: none; }
       </a>
     </div>
 
-    <!-- LOCAL NEWS -->
-    <div id="local-news-section">
-      <div class="sh">
-        <div class="sh-title"><div class="sh-icon">📍</div><span id="local-news-title">ಸ್ಥಳೀಯ ಸುದ್ದಿ</span></div>
-        <a href="news-explainers.html" class="sh-link">ಎಲ್ಲ →</a>
+    <!-- CLEAN EDITORIAL LOCAL NEWS SECTION (AGAAH STYLE) -->
+    <div id="local-news-section" class="editorial-news-wrap">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:22px;">📍</span>
+          <span id="local-news-title" style="font-size:20px; font-weight:900; color:#18181B;">ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ</span>
+        </div>
+        <a href="news-explainers.html" style="font-size:13px; font-weight:800; color:#E11D48; text-decoration:none;">ಎಲ್ಲ ಸುದ್ದಿಗಳು →</a>
       </div>
-      <div class="local-news-list" id="local-news-list"></div>
-      <a id="dist-page-link" href="#" style="display:none;margin-top:12px;padding:14px;background:var(--k-red-glow);border:1.5px solid rgba(225,29,72,0.2);border-radius:var(--radius-sm);font-size:14px;font-weight:900;color:var(--k-red);text-align:center;"></a>
+
+      <!-- Category Filter Pills -->
+      <div class="editorial-nav-pills">
+        <button class="ed-pill active" onclick="filterEditorialNews('all', this)">ಎಲ್ಲ (ALL)</button>
+        <button class="ed-pill" onclick="filterEditorialNews('ರಾಜಕೀಯ', this)">ರಾಜಕೀಯ</button>
+        <button class="ed-pill" onclick="filterEditorialNews('ಸ್ಥಳೀಯ', this)">ಸ್ಥಳೀಯ ಸುದ್ದಿ</button>
+        <button class="ed-pill" onclick="filterEditorialNews('ಕೃಷಿ', this)">ಕೃಷಿ & APMC</button>
+        <button class="ed-pill" onclick="filterEditorialNews('ಯೋಜನೆ', this)">ಯೋಜನೆಗಳು</button>
+        <button class="ed-pill" onclick="filterEditorialNews('ಸಂಚಾರ', this)">ಅಪರಾಧ & ಸಂಚಾರ</button>
+      </div>
+
+      <!-- Search Stories -->
+      <div class="editorial-search-bar">
+        <input type="text" id="editorial-news-search" class="editorial-search-input" placeholder="🔍 ಸುದ್ದಿ ಹುಡುಕಿ (Search stories in Kannada)..." oninput="searchEditorialNews(this.value)">
+      </div>
+
+      <!-- 3-Column Editorial News Grid -->
+      <div class="editorial-grid" id="local-news-grid"></div>
+
+      <a id="dist-page-link" href="#" style="display:none;margin-top:18px;padding:14px;background:#FFF;border:1.5px solid #EAE5DC;border-radius:12px;font-size:14px;font-weight:900;color:#18181B;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.03);"></a>
     </div>
 
     <!-- OUTSIDE KARNATAKA -->
@@ -1754,6 +1952,43 @@ async function loadAll(){
 }
 
 async function loadWeather(lat,lon,city){
+  // 1. Direct Live Open-Meteo API Fetch (Instant live satellite & sensor data)
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=Asia%2FKolkata`;
+    const r = await fetch(url);
+    if (r.ok) {
+      const d = await r.json();
+      const c = d?.current || {};
+      const wc = c.weather_code !== undefined ? c.weather_code : 2;
+      const ico = wmoIco[wc] || '🌤️';
+      const desc = wmoKn[wc] || 'ಭಾಗಶಃ ಮೋಡ';
+      const temp = c.temperature_2m !== undefined ? Math.round(c.temperature_2m) : 24;
+      const hum = c.relative_humidity_2m !== undefined ? Math.round(c.relative_humidity_2m) : 70;
+      const wind = c.wind_speed_10m !== undefined ? Math.round(c.wind_speed_10m) : 14;
+      const precip = c.precipitation || 0;
+      const rain = precip > 0 ? (precip + ' mm') : '0%';
+
+      if ($('lc-w-icon')) $('lc-w-icon').textContent = ico;
+      if ($('lc-temp')) $('lc-temp').textContent = temp + '°C';
+      if ($('lc-w-desc')) $('lc-w-desc').textContent = desc;
+      if ($('lc-w-city')) $('lc-w-city').textContent = city;
+
+      if ($('sb-icon')) $('sb-icon').textContent = ico;
+      if ($('sb-temp')) $('sb-temp').textContent = temp;
+      if ($('sb-desc')) $('sb-desc').textContent = desc;
+      if ($('sb-loc')) $('sb-loc').textContent = '📍 ' + city;
+      if ($('sb-hum')) $('sb-hum').textContent = hum + '%';
+      if ($('sb-wind')) $('sb-wind').textContent = wind + ' km/h';
+      if ($('sb-rain')) $('sb-rain').textContent = rain;
+
+      setTickerVals('t-val-temp', temp + '°C ' + ico);
+      return;
+    }
+  } catch(e) {
+    console.warn("Open-Meteo direct fetch error:", e);
+  }
+
+  // 2. Fallback to cached weather.json only if direct fetch fails
   try {
     const wData = await loadJ('weather', 'weather.json', 300000);
     const distKey = (S.district || 'bengaluru_urban').replace('-', '_');
@@ -1786,43 +2021,15 @@ async function loadWeather(lat,lon,city){
     }
   } catch(e) {}
 
-  try{
-    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`);
-    let d = null;
-    if (r.ok) d = await r.json();
-    const c = d?.current || {};
-    const wc = c.weather_code !== undefined ? c.weather_code : 2;
-    const ico = wmoIco[wc] || '🌤️';
-    const desc = wmoKn[wc] || 'ಭಾಗಶಃ ಮೋಡ';
-    const temp = c.temperature_2m !== undefined ? Math.round(c.temperature_2m) : 24;
-    const hum = c.relative_humidity_2m !== undefined ? c.relative_humidity_2m : 70;
-    const wind = c.wind_speed_10m !== undefined ? Math.round(c.wind_speed_10m) : 14;
-
-    if ($('lc-w-icon')) $('lc-w-icon').textContent = ico;
-    if ($('lc-temp')) $('lc-temp').textContent = temp+'°C';
-    if ($('lc-w-desc')) $('lc-w-desc').textContent = desc;
-    if ($('lc-w-city')) $('lc-w-city').textContent = city;
-
-    if ($('sb-icon')) $('sb-icon').textContent = ico;
-    if ($('sb-temp')) $('sb-temp').textContent = temp;
-    if ($('sb-desc')) $('sb-desc').textContent = desc;
-    if ($('sb-loc')) $('sb-loc').textContent = '📍 '+city;
-    if ($('sb-hum')) $('sb-hum').textContent = hum+'%';
-    if ($('sb-wind')) $('sb-wind').textContent = wind+' km/h';
-    if ($('sb-rain')) $('sb-rain').textContent = '35%';
-
-    setTickerVals('t-val-temp', temp+'°C '+ico);
-  }catch(e){
-    if ($('lc-temp')) $('lc-temp').textContent = '24°C';
-    if ($('lc-w-desc')) $('lc-w-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
-    if ($('sb-temp')) $('sb-temp').textContent = '24';
-    if ($('sb-desc')) $('sb-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
-    if ($('sb-loc')) $('sb-loc').textContent = '📍 '+city;
-    if ($('sb-hum')) $('sb-hum').textContent = '70%';
-    if ($('sb-wind')) $('sb-wind').textContent = '14 km/h';
-    if ($('sb-rain')) $('sb-rain').textContent = '35%';
-    setTickerVals('t-val-temp', '24°C 🌤️');
-  }
+  if ($('lc-temp')) $('lc-temp').textContent = '24°C';
+  if ($('lc-w-desc')) $('lc-w-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
+  if ($('sb-temp')) $('sb-temp').textContent = '24';
+  if ($('sb-desc')) $('sb-desc').textContent = 'ಭಾಗಶಃ ಮೋಡ';
+  if ($('sb-loc')) $('sb-loc').textContent = '📍 ' + city;
+  if ($('sb-hum')) $('sb-hum').textContent = '70%';
+  if ($('sb-wind')) $('sb-wind').textContent = '14 km/h';
+  if ($('sb-rain')) $('sb-rain').textContent = '0%';
+  setTickerVals('t-val-temp', '24°C 🌤️');
 }
 
 // ── Hydrological Dam Priority Mapping per District ─────────
@@ -1960,50 +2167,179 @@ function slugify(text) {
     .replace(/^-+|-+$/g, '');
 }
 
-function renderLocalNews(articles, distKn) {
-  let cmsArticles = [];
+let allCurrentLocalArticles = [];
+let currentFilterCategory = 'all';
+
+function isKannada(text) {
+  if (!text) return false;
+  return /[\u0C80-\u0CFF]/.test(text);
+}
+
+async function loadCmsArticles() {
   try {
-    const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
-    cmsArticles = store.filter(a => a.status === 'published').map(a => {
-      const cat = (a.category || 'politics').toLowerCase();
-      const slug = a.slug || slugify(a.id || a.title_kn);
-      return {
-        title: a.title_kn,
-        url: `/article.html?id=${encodeURIComponent(a.id)}&slug=${encodeURIComponent(slug)}&cat=${encodeURIComponent(cat)}`,
-        published: a.updated_at || new Date().toISOString(),
-        is_cms: true
-      };
-    });
+    const res = await fetch('/data/cms_articles.json?v=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      return (data.articles || []).filter(a => a.status === 'published' || !a.status).map(a => {
+        const cat = a.category || 'ರಾಜಕೀಯ';
+        const slug = a.slug || a.id;
+        return {
+          id: a.id || slug,
+          title: a.title_kn || a.title,
+          headline: a.title_kn || a.title,
+          description: a.summary_kn || a.summary || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
+          url: `/news/article.html?id=${encodeURIComponent(slug)}`,
+          published: a.updated_at || new Date().toISOString(),
+          category: cat,
+          source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+          is_cms: true
+        };
+      });
+    }
   } catch(e) {}
+  return [];
+}
+
+async function renderLocalNews(articles, distKn) {
+  let cmsArticles = await loadCmsArticles();
+  if (!cmsArticles || !cmsArticles.length) {
+    try {
+      const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+      cmsArticles = store.filter(a => a.status === 'published').map(a => ({
+        id: a.id || a.slug,
+        title: a.title_kn,
+        headline: a.title_kn,
+        description: a.summary_kn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
+        url: `/news/article.html?id=${encodeURIComponent(a.slug || a.id)}`,
+        published: a.updated_at || new Date().toISOString(),
+        category: a.category || 'ರಾಜಕೀಯ',
+        source: 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+        is_cms: true
+      }));
+    } catch(e) {}
+  }
+
+  // Update top featured news layout if CMS articles exist
+  if (cmsArticles.length > 0) {
+    const topNewsLayout = $('top-news-layout');
+    if (topNewsLayout) {
+      topNewsLayout.innerHTML = cmsArticles.slice(0, 4).map((a, idx) => `
+        <a href="${a.url}" class="news-card ${idx === 0 ? 'featured' : ''}">
+          <div class="nc-content">
+            <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">📰 ${a.category}</span>
+            <div class="nc-headline">${a.title}</div>
+            <div class="nc-summary">${a.description}</div>
+            <div class="nc-meta"><span>ಇಂದು (Live)</span><span>${a.source}</span></div>
+          </div>
+          <div class="nc-visual">${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}</div>
+        </a>
+      `).join('');
+    }
+  }
 
   const merged = [...cmsArticles, ...(articles || [])];
   if (!merged || !merged.length) return;
   
+  // STRICT: 100% Pure Kannada only — eliminate any English headline
   const valid = merged.filter(a => {
     let t = (a.title || a.headline || '').trim();
-    t = t.replace(/<[^>]+>/g, "");
-    t = t.replace(/\s*Last\s*Updated.*$/i, "");
-    t = t.replace(/\s*[-–—|:]+$/g, "");
-    return t.length >= 5;
+    t = t.replace(/<[^>]+>/g, "").replace(/\s*Last\s*Updated.*$/i, "").replace(/\s*[-–—|:]+$/g, "");
+    return t.length >= 5 && isKannada(t);
   });
 
-  if (!valid.length) return;
-
-  $('local-news-list').innerHTML = valid.slice(0, 8).map(a => {
-    let title = (a.title || a.headline || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
-    title = title.replace(/<[^>]+>/g, "");
-    title = title.replace(/\s*Last\s*Updated.*$/i, "");
-    title = title.replace(/\s*[-–—|:]+$/g, "");
-
-    const time = timeAgo(a.published || a.published_at || a.time_ago);
-    return `
-      <a href="${a.url || a.link || '#'}" target="_blank" rel="noopener" class="local-item" style="padding:14px 18px; border-bottom:1px solid var(--border-light); text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:16px;">
-        <div style="font-size:15px; font-weight:800; color:#0F172A; line-height:1.45; flex:1;">${title}</div>
-        <span style="font-size:11px; font-weight:700; color:#64748B; background:#F1F5F9; padding:4px 10px; border-radius:20px; white-space:nowrap; flex-shrink:0;">⏱️ ${time}</span>
-      </a>`;
-  }).join('');
+  allCurrentLocalArticles = valid;
+  window.currentDistrictName = distKn || 'ಬೆಂಗಳೂರು';
+  
+  displayFilteredCards(valid, distKn);
+  
   $('local-news-title').textContent = (distKn || 'ಬೆಂಗಳೂರು ನಗರ') + ' ಸ್ಥಳೀಯ ಸುದ್ದಿ';
   $('local-news-section').style.display = 'block';
+}
+
+function displayFilteredCards(articles, distKn) {
+  const grid = $('local-news-grid');
+  if (!grid) return;
+
+  if (!articles || !articles.length) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:32px; color:#71717A; font-weight:700; font-size:14px;">ಈ ವಿಭಾಗದಲ್ಲಿ ಯಾವುದೇ ಸುದ್ದಿಗಳು ಲಭ್ಯವಿಲ್ಲ.</div>`;
+    return;
+  }
+
+  const dName = distKn || window.currentDistrictName || 'ಕರ್ನಾಟಕ';
+
+  grid.innerHTML = articles.slice(0, 12).map(a => {
+    let title = (a.title || a.headline || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
+    title = title.replace(/<[^>]+>/g, "").replace(/\s*Last\s*Updated.*$/i, "").replace(/\s*[-–—|:]+$/g, "");
+
+    let snippet = (a.description || a.snippet || a.summary || '').trim();
+    snippet = snippet.replace(/<[^>]+>/g, "").trim();
+    if (!snippet || snippet.length < 15 || !isKannada(snippet)) {
+      snippet = `${dName} ಜಿಲ್ಲೆಯ ಇಂದಿನ ಪ್ರಮುಖ ಘಟನೆ, ಸ್ಥಳೀಯ ಸಾರ್ವಜನಿಕ ಮಾಹಿತಿ ಮತ್ತು ಅಧಿಕೃತ ವರದಿ ವಿವರ ಇಲ್ಲಿದೆ.`;
+    }
+    if (snippet.length > 140) snippet = snippet.slice(0, 140) + '...';
+
+    const source = a.source || 'ಲೈವ್ ನ್ಯೂಸ್';
+    const cat = a.category || (title.includes('ಸಚಿವ') || title.includes('ಸರ್ಕಾರ') || title.includes('ಸಿಎಂ') ? 'ರಾಜಕೀಯ' : (title.includes('ರೈತ') || title.includes('ಮಳೆ') || title.includes('ಅಡಿಕೆ') ? 'ಕೃಷಿ & APMC' : 'ಸ್ಥಳೀಯ ಸುದ್ದಿ'));
+    const time = timeAgo(a.published || a.published_at || a.time_ago);
+
+    return `
+      <div class="editorial-card">
+        <div>
+          <div class="ed-meta-row">
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span class="ed-badge-cat">${cat}</span>
+              <span class="ed-badge-dist">${dName}</span>
+            </div>
+            <span class="ed-time">⏱️ ${time}</span>
+          </div>
+
+          <div class="ed-headline">${title}</div>
+          <div class="ed-snippet">${snippet}</div>
+        </div>
+
+        <a href="${a.url || a.link || '#'}" target="_blank" rel="noopener" class="ed-btn">
+          <span>ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ (${source})</span>
+          <span>➔</span>
+        </a>
+      </div>`;
+  }).join('');
+}
+
+function filterEditorialNews(catKey, btn) {
+  document.querySelectorAll('.ed-pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentFilterCategory = catKey;
+
+  if (catKey === 'all') {
+    displayFilteredCards(allCurrentLocalArticles);
+    return;
+  }
+
+  const filtered = allCurrentLocalArticles.filter(a => {
+    const t = (a.title || a.headline || '').toLowerCase();
+    const c = (a.category || '').toLowerCase();
+    if (catKey === 'ರಾಜಕೀಯ') return t.includes('ಸಚಿವ') || t.includes('ಸರ್ಕಾರ') || t.includes('ಸಿಎಂ') || t.includes('ಕಾಂಗ್ರೆಸ್') || t.includes('ಬಿಜೆಪಿ') || t.includes('ಜೆಡಿಎಸ್') || c.includes('ರಾಜಕೀಯ');
+    if (catKey === 'ಕೃಷಿ') return t.includes('ರೈತ') || t.includes('ಅಡಿಕೆ') || t.includes('ಬೆಳೆ') || t.includes('ಮಾರುಕಟ್ಟೆ') || t.includes('apmc') || t.includes('ಜಲಾಶಯ');
+    if (catKey === 'ಯೋಜನೆ') return t.includes('ಯೋಜನೆ') || t.includes('ಗ್ಯಾರಂಟಿ') || t.includes('ಅರ್ಜಿ') || t.includes('ಸೌಲಭ್ಯ');
+    if (catKey === 'ಸಂಚಾರ') return t.includes('ಸಂಚಾರ') || t.includes('ಮೆಟ್ರೋ') || t.includes('ಪೊಲೀಸ್') || t.includes('ರಸ್ತೆ') || t.includes('ಅಪಘಾತ') || t.includes('ರೈಲು');
+    return true;
+  });
+
+  displayFilteredCards(filtered);
+}
+
+function searchEditorialNews(query) {
+  if (!query || !query.trim()) {
+    displayFilteredCards(allCurrentLocalArticles);
+    return;
+  }
+  const q = query.trim().toLowerCase();
+  const searchResults = allCurrentLocalArticles.filter(a => {
+    const t = (a.title || a.headline || '').toLowerCase();
+    const s = (a.description || a.snippet || '').toLowerCase();
+    return t.includes(q) || s.includes(q);
+  });
+  displayFilteredCards(searchResults);
 }
 
 function timeAgo(iso){
@@ -2035,6 +2371,10 @@ function pickDistrict(nameKn){
   const key=typeof GeoData!='undefined'?GeoData.resolveDistrict(nameKn)||'bengaluru-urban':'bengaluru-urban';
   const data=typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
   S.district=key; S.districtKn=nameKn; S.save();
+  try {
+    localStorage.setItem('nk_user_district_key', key);
+    localStorage.setItem('nk_user_district_kn', nameKn);
+  } catch(e) {}
   $('loc-text').textContent=nameKn;
   updateHeroBanner(key, nameKn);
   toast('📍 '+nameKn,'ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ...');
@@ -2079,6 +2419,12 @@ function reverseGeo(lat,lng){
       const data=key&&typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
       const displayName=taluk||city;
       S.taluk=taluk; S.district=key; S.districtKn=data?data.kn:'ಕರ್ನಾಟಕ'; S.save();
+      try {
+        if (key) {
+          localStorage.setItem('nk_user_district_key', key);
+          localStorage.setItem('nk_user_district_kn', data?data.kn:displayName);
+        }
+      } catch(e) {}
       $('loc-text').textContent=displayName;
       updateHeroBanner(key || 'bengaluru-urban', displayName);
       toast('📍 '+displayName,(data?data.kn+' ಜಿಲ್ಲೆ':'ಕರ್ನಾಟಕ')+' · ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಲೋಡ್');
@@ -2091,6 +2437,12 @@ function reverseGeo(lat,lng){
         const key=GeoData.nearestDistrict(lat,lng);
         const data=GeoData.getDistrict(key);
         S.district=key; S.districtKn=data?data.kn:'ಕರ್ನಾಟಕ'; S.save();
+        try {
+          if (key) {
+            localStorage.setItem('nk_user_district_key', key);
+            localStorage.setItem('nk_user_district_kn', data?data.kn:'ಕರ್ನಾಟಕ');
+          }
+        } catch(e) {}
         $('loc-text').textContent=data?data.kn:'ಕರ್ನಾಟಕ';
         updateHeroBanner(key, data?data.kn:'ಕರ್ನಾಟಕ');
         renderDams();
@@ -2135,6 +2487,10 @@ async function loadLocal(key, data){
 function selectDistKey(key){
   const data=typeof GeoData!='undefined'?GeoData.getDistrict(key):null;
   S.district=key; S.districtKn=data?data.kn:key; S.save();
+  try {
+    localStorage.setItem('nk_user_district_key', key);
+    localStorage.setItem('nk_user_district_kn', data?data.kn:key);
+  } catch(e) {}
   const name=data?data.kn:key;
   $('loc-text').textContent=name;
   updateHeroBanner(key, name);
@@ -2213,8 +2569,45 @@ function tagOS(){
   OneSignal.User.addTags({district:S.district||'unknown'});
 }
 
-// ── Restore state ──────────────────────────────────────
+// ── Restore state & Auto Geolocation ──────────────────
+async function autoDetectGeoHome() {
+  let saved = localStorage.getItem('nk_user_district_key') || S.district;
+  if (!saved) {
+    try {
+      const res = await fetch('https://ipwho.is/?fields=city,region,latitude,longitude');
+      if (res.ok) {
+        const d = await res.json();
+        if (d && (d.region === 'Karnataka' || d.city)) {
+          const resolved = (typeof GeoData !== 'undefined' ? (GeoData.resolveDistrict(d.city) || GeoData.nearestDistrict(d.latitude, d.longitude)) : null);
+          if (resolved) {
+            selectDistKey(resolved);
+            return;
+          }
+        }
+      }
+    } catch(e) {}
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        const { latitude: lat, longitude: lon } = pos.coords;
+        if (typeof GeoData !== 'undefined') {
+          const resolved = GeoData.nearestDistrict(lat, lon);
+          if (resolved) selectDistKey(resolved);
+        }
+      }, () => {}, { timeout: 4000, maximumAge: 600000 });
+    }
+  }
+}
+
 function restore(){
+  const savedKey = localStorage.getItem('nk_user_district_key');
+  if (savedKey && !S.district) {
+    S.district = savedKey;
+    const dData = typeof GeoData !== 'undefined' ? GeoData.getDistrict(savedKey) : null;
+    S.districtKn = localStorage.getItem('nk_user_district_kn') || (dData ? dData.kn : savedKey);
+    S.save();
+  }
+
   if(S.taluk && typeof GeoData !== 'undefined') {
     const resolved = GeoData.resolveDistrict(S.taluk);
     if(resolved && resolved !== S.district) {
@@ -2234,7 +2627,7 @@ function restore(){
     updateHeroBanner('bengaluru-urban', 'ಬೆಂಗಳೂರು');
     const defaultData = typeof GeoData !== 'undefined' ? GeoData.getDistrict('bengaluru-urban') : { kn: 'ಬೆಂಗಳೂರು ನಗರ' };
     loadLocal('bengaluru-urban', defaultData);
-    setTimeout(showGeoSheet,1800);
+    autoDetectGeoHome();
     setTimeout(()=>{if(!S.pushEnabled) showNotif();},9000);
   }
 }
