@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಯೋಜನೆ ವಿವರ | Scheme Detail - Karnata.in</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/karnata-theme.css">
+    <style>
+        :root {
+            --red: #C0392B; --red-dk: #96281B; --red-lt: #FDECEA;
+            --blue: #1A5276; --blue-lt: #EAF2F8;
+            --green: #1B7A4B; --green-lt: #E8F5EE;
+            --gold: #D4A017; --gold-lt: #FDF8E7;
+            --purple: #6C3483; --purple-dk: #4A235A; --purple-lt: #F5EEF8;
+            --amber: #E67E22; --amber-lt: #FEF5EC;
+            --teal: #0E6680; --teal-lt: #D5EFF6;
+            --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
+            --bg: #F4F3EF; --white: #FFFFFF; --border: #E2E0DA;
+            --font-kn: 'Anek Kannada', sans-serif;
+            --font-en: 'Inter', sans-serif;
+            --radius: 12px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-kn);
+            padding-bottom: 80px;
+        }
+
+        .topnav {
+            background: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            color: var(--ink2);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .page-title {
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--blue), var(--purple-dk));
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+
+        .hero-title-kn {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .hero-title-en {
+            font-family: var(--font-en);
+            font-size: 16px;
+            opacity: 0.8;
+            margin: 0 0 15px 0;
+        }
+
+        .hero-ministry {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--blue);
+            margin: 0 0 15px 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .about-kn {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .about-en {
+            font-family: var(--font-en);
+            font-size: 14px;
+            color: var(--ink3);
+            line-height: 1.5;
+        }
+
+        .benefit-box {
+            background: var(--green-lt);
+            border: 1px solid rgba(27, 122, 75, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--ink);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .benefit-amount {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: var(--font-en);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-item {
+            background: var(--bg);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: var(--ink2);
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .list-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .list-items li:last-child {
+            border-bottom: none;
+        }
+
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding: 15px 0 15px 40px;
+            border-left: 2px solid var(--border);
+            margin-left: 15px;
+        }
+
+        .step-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            width: 28px;
+            height: 28px;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .dept-info {
+            font-size: 14px;
+            color: var(--ink2);
+        }
+
+        .dept-info a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cta-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--blue-lt);
+        }
+
+        .btn-apply {
+            display: inline-block;
+            background: var(--blue);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.3);
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            background: var(--ink);
+        }
+
+        #error-state, #loading-state {
+            text-align: center;
+            padding: 50px 20px;
+            display: none;
+        }
+
+        .loader {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a href="scheme-checker.html" class="back-btn">← ಯೋಜನೆಗಳು</a>
+        <div class="page-title">📋 ಯೋಜನೆ ವಿವರ</div>
+    </div>
+
+    <div id="loading-state">
+        <div class="loader"></div>
+        <p>ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ... (Loading...)</p>
+    </div>
+
+    <div id="error-state">
+        <h2>ಯೋಜನೆ ಕಂಡುಬಂದಿಲ್ಲ (Scheme not found)</h2>
+        <p>ನೀವು ಹುಡುಕುತ್ತಿರುವ ಯೋಜನೆಯ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ.</p>
+        <a href="scheme-checker.html" style="color: var(--blue); font-weight: 600;">ಯೋಜನೆಗಳ ಪಟ್ಟಿಗೆ ಹಿಂತಿರುಗಿ</a>
+    </div>
+
+    <div id="content-wrap" style="display: none;">
+        <div class="hero" id="hero-section">
+            <div class="hero-icon" id="s-icon">📝</div>
+            <h1 class="hero-title-kn" id="s-name-kn"></h1>
+            <p class="hero-title-en" id="s-name-en"></p>
+            <div class="hero-ministry" id="s-ministry"></div>
+        </div>
+
+        <div class="wrap">
+            
+            <div class="card">
+                <h2 class="card-title">ℹ️ ಯೋಜನೆಯ ಬಗ್ಗೆ (About)</h2>
+                <div class="about-kn" id="s-desc-kn"></div>
+                <div class="about-en" id="s-desc-en"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">🎁 ಪ್ರಯೋಜನಗಳು (Benefits)</h2>
+                <div class="benefit-box">
+                    <div>✅ <span id="s-benefit-kn"></span></div>
+                </div>
+                <div id="s-benefit-amount-wrap" style="display: none; margin-top: 10px;">
+                    <span class="info-label">ಆರ್ಥಿಕ ನೆರವು (Financial Aid): </span>
+                    <div class="benefit-amount" id="s-benefit-amount"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">🎯 ಅರ್ಹತಾ ಮಾನದಂಡಗಳು (Eligibility)</h2>
+                <div class="grid-2">
+                    <div class="info-item">
+                        <div class="info-label">ವಯಸ್ಸು (Age)</div>
+                        <div class="info-value" id="s-age"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ಲಿಂಗ (Gender)</div>
+                        <div class="info-value" id="s-gender"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ಆದಾಯ ಮಿತಿ (Income Limit)</div>
+                        <div class="info-value" id="s-income"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ವರ್ಗ (Category)</div>
+                        <div class="info-value" id="s-category"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ಉದ್ಯೋಗ (Occupation)</div>
+                        <div class="info-value" id="s-occupation"></div>
+                    </div>
+                </div>
+                <div id="s-special-criteria" style="margin-top: 15px; display: none;">
+                    <div class="info-label" style="margin-bottom: 8px;">ವಿಶೇಷ ಮಾನದಂಡಗಳು (Special Criteria):</div>
+                    <ul class="list-items" id="s-special-list"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">📑 ಅಗತ್ಯ ದಾಖಲೆಗಳು (Documents)</h2>
+                <ul class="list-items" id="s-docs"></ul>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">📝 ಅರ್ಜಿ ಸಲ್ಲಿಸುವ ವಿಧಾನ (Process)</h2>
+                <ul class="step-list" id="s-process"></ul>
+            </div>
+
+            <div class="card dept-info">
+                <h2 class="card-title">🏛️ ಇಲಾಖೆ ಮಾಹಿತಿ (Department)</h2>
+                <p><strong>ಇಲಾಖೆ:</strong> <span id="s-dept-name"></span></p>
+                <p><strong>ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್:</strong> <a href="#" id="s-source" target="_blank" rel="noopener"></a></p>
+                <p><strong>ಕೊನೆಯದಾಗಿ ಪರಿಶೀಲಿಸಿದ್ದು:</strong> <span id="s-verified"></span></p>
+            </div>
+
+            <div class="card cta-box">
+                <h2 style="margin-top: 0; color: var(--ink);">ಈಗಲೇ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ</h2>
+                <p style="color: var(--ink2); margin-bottom: 20px;">ಅರ್ಹತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಂಡು ಅಧಿಕೃತ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.</p>
+                <a href="#" class="btn-apply" id="s-apply-btn" target="_blank" rel="noopener">ಅರ್ಜಿ ಸಲ್ಲಿಸಿ (Apply Now)</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const genderMap = {
+            'all': 'ಎಲ್ಲರಿಗೂ',
+            'female': 'ಮಹಿಳೆ',
+            'male': 'ಪುರುಷ',
+            'other': 'ಇತರ'
+        };
+
+        const categoryMap = {
+            'all': 'ಎಲ್ಲಾ ವರ್ಗಗಳು',
+            'gen': 'ಸಾಮಾನ್ಯ',
+            'sc': 'ಪರಿಶಿಷ್ಟ ಜಾತಿ (SC)',
+            'st': 'ಪರಿಶಿಷ್ಟ ಪಂಗಡ (ST)',
+            'obc': 'ಹಿಂದುಳಿದ ವರ್ಗ (OBC)',
+            'min': 'ಅಲ್ಪಸಂಖ್ಯಾತ',
+            'ews': 'ಆರ್ಥಿಕವಾಗಿ ದುರ್ಬಲ ವರ್ಗ (EWS)'
+        };
+
+        const occupationMap = {
+            'all': 'ಎಲ್ಲಾ ಉದ್ಯೋಗಗಳು',
+            'farmer': 'ರೈತ',
+            'student': 'ವಿದ್ಯಾರ್ಥಿ',
+            'unemployed': 'ನಿರುದ್ಯೋಗಿ',
+            'daily': 'ದಿನಗೂಲಿ',
+            'weaver': 'ನೇಕಾರ',
+            'fisher': 'ಮೀನುಗಾರ',
+            'self_employed': 'ಸ್ವಯಂ ಉದ್ಯೋಗ'
+        };
+
+        async function loadSchemeDetail() {
+            const params = new URLSearchParams(window.location.search);
+            const schemeId = params.get('id');
+
+            if (!schemeId) {
+                showError();
+                return;
+            }
+
+            document.getElementById('loading-state').style.display = 'block';
+
+            try {
+                const res = await fetch('/data/government_schemes.json?v=' + Date.now());
+                const data = await res.json();
+                
+                const schemesList = data.schemes || data;
+                const scheme = schemesList.find(s => s.id === schemeId);
+
+                if (!scheme) {
+                    showError();
+                    return;
+                }
+
+                renderScheme(scheme);
+            } catch (error) {
+                console.error("Error loading scheme details:", error);
+                showError();
+            }
+        }
+
+        function showError() {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('error-state').style.display = 'block';
+            document.getElementById('content-wrap').style.display = 'none';
+        }
+
+        function formatCurrency(val) {
+            if (val === undefined || val === null) return 'ಯಾವುದೇ ಮಿತಿಯಿಲ್ಲ (No Limit)';
+            if (val === 0) return 'ಯಾವುದೇ ಮಿತಿಯಿಲ್ಲ (No Limit)';
+            return '₹' + Number(val).toLocaleString('en-IN');
+        }
+
+        function renderScheme(s) {
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('content-wrap').style.display = 'block';
+
+            const nameKn = s.scheme_name_kn || (s.name && s.name.kn) || '';
+            const nameEn = s.scheme_name_en || (s.name && s.name.en) || '';
+            const descKn = s.description_kn || s.short_description_kn || (s.description && s.description.kn) || '';
+            const descEn = s.description_en || (s.description && s.description.en) || '';
+            const ministryKn = s.ministry_kn || (s.ministry && s.ministry.kn) || '';
+            const ministryEn = s.ministry_en || (s.ministry && s.ministry.en) || '';
+
+            // SEO & Title
+            document.title = `${nameKn || nameEn} | Scheme Detail - Karnata.in`;
+
+            // Setup Schema.org
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "GovernmentService",
+                "name": nameEn,
+                "alternateName": nameKn,
+                "description": descEn || descKn,
+                "provider": {
+                    "@type": "GovernmentOrganization",
+                    "name": ministryEn || ministryKn
+                }
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(schemaData);
+            document.head.appendChild(script);
+
+            // Hero
+            if (s.color) {
+                document.getElementById('hero-section').style.background = `linear-gradient(135deg, ${s.color}, var(--ink))`;
+            }
+            document.getElementById('s-icon').textContent = s.icon || '📝';
+            document.getElementById('s-name-kn').textContent = nameKn;
+            document.getElementById('s-name-en').textContent = nameEn;
+            document.getElementById('s-ministry').textContent = ministryKn || ministryEn;
+
+            // About
+            document.getElementById('s-desc-kn').textContent = descKn;
+            document.getElementById('s-desc-en').textContent = descEn;
+
+            // Benefits
+            const benefitsKn = s.benefits_kn || (s.benefits && s.benefits.kn) || '';
+            document.getElementById('s-benefit-kn').textContent = benefitsKn || 'ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ';
+            const bAmount = s.benefit_amount || (s.benefits && s.benefits.amount);
+            if (bAmount) {
+                document.getElementById('s-benefit-amount-wrap').style.display = 'block';
+                document.getElementById('s-benefit-amount').textContent = String(bAmount);
+            }
+
+            // Eligibility
+            const minAge = s.min_age !== undefined ? s.min_age : (s.eligibility && s.eligibility.min_age);
+            const maxAge = s.max_age !== undefined ? s.max_age : (s.eligibility && s.eligibility.max_age);
+            let ageText = "ಯಾವುದೇ ನಿರ್ಬಂಧವಿಲ್ಲ";
+            if (minAge || maxAge) {
+                const min = minAge || 0;
+                const max = maxAge || 'ಮೇಲ್ಪಟ್ಟು';
+                ageText = `${min} - ${max} ವರ್ಷಗಳು`;
+            }
+            document.getElementById('s-age').textContent = ageText;
+
+            const genderArr = s.gender || (s.eligibility && s.eligibility.gender) || ['all'];
+            const genderVal = Array.isArray(genderArr) ? (genderArr.includes('all') ? 'all' : genderArr.join(', ')) : genderArr;
+            document.getElementById('s-gender').textContent = genderMap[genderVal] || genderVal || 'ಎಲ್ಲರಿಗೂ';
+
+            const incomeLimit = s.income_max !== undefined ? s.income_max : (s.eligibility && s.eligibility.income_limit);
+            document.getElementById('s-income').textContent = formatCurrency(incomeLimit);
+            
+            const catArr = s.categories || (s.eligibility && s.eligibility.category) || ['all'];
+            const cats = (Array.isArray(catArr) ? catArr : [catArr]).map(c => categoryMap[c] || c);
+            document.getElementById('s-category').textContent = (cats.length && !cats.includes('all')) ? cats.join(', ') : 'ಎಲ್ಲಾ ವರ್ಗಗಳು';
+
+            const occArr = s.occupations || (s.eligibility && s.eligibility.occupation) || ['all'];
+            const occs = (Array.isArray(occArr) ? occArr : [occArr]).map(o => occupationMap[o] || o);
+            document.getElementById('s-occupation').textContent = (occs.length && !occs.includes('all')) ? occs.join(', ') : 'ಎಲ್ಲಾ ಉದ್ಯೋಗಗಳು';
+
+            const specialArr = s.special_criteria || (s.eligibility && s.eligibility.special) || [];
+            if (specialArr && specialArr.length > 0) {
+                document.getElementById('s-special-criteria').style.display = 'block';
+                const ul = document.getElementById('s-special-list');
+                specialArr.forEach(sp => {
+                    const li = document.createElement('li');
+                    li.textContent = '🔹 ' + (typeof sp === 'string' ? sp : (sp.kn || sp.en));
+                    ul.appendChild(li);
+                });
+            }
+
+            // Docs
+            const docsUl = document.getElementById('s-docs');
+            const docsList = s.documents_kn || s.documents_en || s.documents_required || [];
+            if (docsList && docsList.length) {
+                docsList.forEach(doc => {
+                    const li = document.createElement('li');
+                    const text = typeof doc === 'string' ? doc : (doc.kn || doc.en);
+                    li.innerHTML = `<span>📄</span> <span>${text}</span>`;
+                    docsUl.appendChild(li);
+                });
+            } else {
+                docsUl.innerHTML = '<li>ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ</li>';
+            }
+
+            // Process
+            const procUl = document.getElementById('s-process');
+            const procText = s.application_process_kn || s.application_process_en;
+            const procList = s.application_process || (procText ? [procText] : []);
+            if (procList && procList.length) {
+                procList.forEach(step => {
+                    const li = document.createElement('li');
+                    const text = typeof step === 'string' ? step : (step.step_kn || step.step_en);
+                    li.textContent = text;
+                    procUl.appendChild(li);
+                });
+            } else {
+                procUl.innerHTML = '<li style="border:none; margin-left:0; padding-left:0;">ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ</li>';
+            }
+
+            // Dept Info
+            document.getElementById('s-dept-name').textContent = ministryKn || ministryEn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರ';
+            const officialUrl = s.official_source_url || s.official_source;
+            if (officialUrl) {
+                const srcEl = document.getElementById('s-source');
+                srcEl.href = officialUrl;
+                srcEl.textContent = officialUrl;
+            }
+            const lastVerified = s.last_verified_at || s.last_verified;
+            if (lastVerified) {
+                document.getElementById('s-verified').textContent = new Date(lastVerified).toLocaleDateString('kn-IN');
+            }
+
+            // CTA
+            const appUrl = s.application_url || 'https://sevasindhu.karnataka.gov.in';
+            document.getElementById('s-apply-btn').href = appUrl;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadSchemeDetail);
+    </script>
+
+    <script src="/seo.js" defer></script>
+    <script src="/data-loader.js" defer></script>
+    <script src="/nav-component.js"></script>
+</body>
+</html>

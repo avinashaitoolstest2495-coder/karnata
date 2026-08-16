@@ -1,0 +1,2912 @@
+{
+  "last_updated": "2026-08-16T07:13:00+05:30",
+  "source": "myScheme.gov.in + Karnataka Official Portals",
+  "total_schemes": 54,
+  "schemes": [
+    {
+      "id": "gruha-lakshmi",
+      "scheme_name_en": "Gruha Lakshmi Yojana",
+      "scheme_name_kn": "ಗೃಹ ಲಕ್ಷ್ಮಿ ಯೋಜನೆ",
+      "short_description_kn": "ಮನೆಯ ಯಜಮಾನಿಗೆ ₹2,000 ಮಾಸಿಕ ನೆರವು",
+      "description_en": "Financial assistance of Rs 2000 per month to the woman head of every household below poverty line",
+      "description_kn": "ಬಡತನ ರೇಖೆಗಿಂತ ಕೆಳಗಿರುವ ಪ್ರತಿ ಕುಟುಂಬದ ಮಹಿಳಾ ಮುಖ್ಯಸ್ಥರಿಗೆ ₹2,000 ಮಾಸಿಕ ಆರ್ಥಿಕ ನೆರವು",
+      "ministry_en": "Department of Women and Child Development",
+      "ministry_kn": "ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Rs 2,000 per month deposited directly into bank account",
+      "benefits_kn": "ಪ್ರತಿ ತಿಂಗಳು ₹2,000 ನೇರವಾಗಿ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಜಮೆ",
+      "documents_en": [
+        "Aadhaar Card",
+        "Ration Card (BPL/APL)",
+        "Bank Passbook",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ರೇಷನ್ ಕಾರ್ಡ್ (BPL/APL)",
+        "ಬ್ಯಾಂಕ್ ಪಾಸ್ಬುಕ್",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Seva Sindhu portal or nearest Grama One / Karnataka One centre",
+      "application_process_kn": "ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಅಥವಾ ಹತ್ತಿರದ ಗ್ರಾಮ ಒನ್ / ಕರ್ನಾಟಕ ಒನ್ ಕೇಂದ್ರದ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sevasindhu.karnataka.gov.in",
+      "official_source_url": "https://www.myscheme.gov.in/schemes/gruha-lakshmi",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "women",
+        "guarantee",
+        "financial"
+      ],
+      "icon": "👩",
+      "icon_bg": "#E8F5EE",
+      "color": "#1B7A4B",
+      "benefit_amount": "₹2,000/ತಿಂಗಳು"
+    },
+    {
+      "id": "anna-bhagya",
+      "scheme_name_en": "Anna Bhagya",
+      "scheme_name_kn": "ಅನ್ನ ಭಾಗ್ಯ",
+      "short_description_kn": "ಬಿಪಿಎಲ್ ಕುಟುಂಬಗಳಿಗೆ 10 ಕೆಜಿ ಉಚಿತ ಅಕ್ಕಿ",
+      "description_en": "10kg free rice per person per month for BPL families",
+      "description_kn": "ಬಿಪಿಎಲ್ ಕುಟುಂಬದ ಪ್ರತಿ ಸದಸ್ಯರಿಗೆ ಮಾಸಿಕ 10 ಕೆಜಿ ಉಚಿತ ಅಕ್ಕಿ",
+      "ministry_en": "Food, Civil Supplies & Consumer Affairs Department",
+      "ministry_kn": "ಆಹಾರ, ನಾಗರಿಕ ಸರಬರಾಜು ಮತ್ತು ಗ್ರಾಹಕ ವ್ಯವಹಾರಗಳ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "10kg free rice per person per month or equivalent cash",
+      "benefits_kn": "ತಲಾ 10 ಕೆಜಿ ಉಚಿತ ಅಕ್ಕಿ ಅಥವಾ ಸಮಾನ ನಗದು",
+      "documents_en": [
+        "Aadhaar Card",
+        "Ration Card (BPL/Antyodaya)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ರೇಷನ್ ಕಾರ್ಡ್ (BPL/ಅಂತ್ಯೋದಯ)"
+      ],
+      "application_process_en": "Automatic for eligible BPL card holders",
+      "application_process_kn": "ಅರ್ಹ ಬಿಪಿಎಲ್ ಕಾರ್ಡುದಾರರಿಗೆ ಸ್ವಯಂಚಾಲಿತ",
+      "application_url": "https://ahara.kar.nic.in",
+      "official_source_url": "https://ahara.kar.nic.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must have BPL/Antyodaya Ration Card"
+      ],
+      "status": "active",
+      "tags": [
+        "food",
+        "guarantee",
+        "financial"
+      ],
+      "icon": "🍚",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "10kg ಅಕ್ಕಿ/ನಗದು"
+    },
+    {
+      "id": "yuva-nidhi",
+      "scheme_name_en": "Yuva Nidhi",
+      "scheme_name_kn": "ಯುವ ನಿಧಿ",
+      "short_description_kn": "ನಿರುದ್ಯೋಗಿ ಪದವೀಧರರಿಗೆ ಮಾಸಿಕ ₹3,000 ನಿರುದ್ಯೋಗ ಭತ್ಯೆ",
+      "description_en": "Unemployment allowance for recent graduates (₹3,000) and diploma holders (₹1,500)",
+      "description_kn": "ಇತ್ತೀಚಿನ ಪದವೀಧರರಿಗೆ ₹3,000 ಮತ್ತು ಡಿಪ್ಲೊಮಾ ಹೊಂದಿರುವವರಿಗೆ ₹1,500 ನಿರುದ್ಯೋಗ ಭತ್ಯೆ",
+      "ministry_en": "Department of Skill Development, Entrepreneurship and Livelihood",
+      "ministry_kn": "ಕೌಶಲ್ಯಾಭಿವೃದ್ಧಿ, ಉದ್ಯಮಶೀಲತೆ ಮತ್ತು ಜೀವನೋಪಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹3,000/month for graduates, ₹1,500/month for diploma holders",
+      "benefits_kn": "ಪದವೀಧರರಿಗೆ ₹3,000/ತಿಂಗಳು, ಡಿಪ್ಲೊಮಾದಾರರಿಗೆ ₹1,500/ತಿಂಗಳು",
+      "documents_en": [
+        "Aadhaar Card",
+        "Degree/Diploma Certificate",
+        "Bank Passbook"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ಪದವಿ/ಡಿಪ್ಲೊಮಾ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ಪಾಸ್ಬುಕ್"
+      ],
+      "application_process_en": "Apply through Seva Sindhu portal",
+      "application_process_kn": "ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sevasindhu.karnataka.gov.in",
+      "official_source_url": "https://sevasindhu.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": 35,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must have passed degree/diploma in the current academic year and unemployed for 6 months"
+      ],
+      "status": "active",
+      "tags": [
+        "youth",
+        "employment",
+        "guarantee",
+        "student",
+        "financial"
+      ],
+      "icon": "🎓",
+      "icon_bg": "#E3F2FD",
+      "color": "#1565C0",
+      "benefit_amount": "₹3,000/ತಿಂಗಳು"
+    },
+    {
+      "id": "shakti",
+      "scheme_name_en": "Shakti Yojana",
+      "scheme_name_kn": "ಶಕ್ತಿ ಯೋಜನೆ",
+      "short_description_kn": "ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಬಸ್ ಪ್ರಯಾಣ",
+      "description_en": "Free bus travel for women in non-premium KSRTC, BMTC, NWKRTC, and KKRTC buses within Karnataka",
+      "description_kn": "ಕರ್ನಾಟಕದೊಳಗೆ ಕೆಎಸ್ಆರ್ಟಿಸಿ, ಬಿಎಂಟಿಸಿ, ವಾಯುವ್ಯ ಮತ್ತು ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಬಸ್ಸುಗಳಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಪ್ರಯಾಣ",
+      "ministry_en": "Transport Department",
+      "ministry_kn": "ಸಾರಿಗೆ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Free travel in ordinary and express state-run buses",
+      "benefits_kn": "ಸಾಮಾನ್ಯ ಮತ್ತು ಎಕ್ಸ್ಪ್ರೆಸ್ ರಾಜ್ಯ ಸಾರಿಗೆ ಬಸ್ಸುಗಳಲ್ಲಿ ಉಚಿತ ಪ್ರಯಾಣ",
+      "documents_en": [
+        "Shakti Smart Card or State Domicile ID (Aadhaar/Voter ID)"
+      ],
+      "documents_kn": [
+        "ಶಕ್ತಿ ಸ್ಮಾರ್ಟ್ ಕಾರ್ಡ್ ಅಥವಾ ರಾಜ್ಯದ ನಿವಾಸಿ ಗುರುತಿನ ಚೀಟಿ (ಆಧಾರ್/ವೋಟರ್ ಐಡಿ)"
+      ],
+      "application_process_en": "Show ID card to the conductor. Apply for Smart Card on Seva Sindhu.",
+      "application_process_kn": "ನಿರ್ವಾಹಕರಿಗೆ ಗುರುತಿನ ಚೀಟಿ ತೋರಿಸಿ. ಸೇವಾ ಸಿಂಧುವಿನಲ್ಲಿ ಸ್ಮಾರ್ಟ್ ಕಾರ್ಡ್ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+      "application_url": "https://sevasindhu.karnataka.gov.in",
+      "official_source_url": "https://transport.karnataka.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "female",
+        "transgender"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Karnataka domicile"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "guarantee",
+        "transport"
+      ],
+      "icon": "🚌",
+      "icon_bg": "#FCE4EC",
+      "color": "#C2185B",
+      "benefit_amount": "ಉಚಿತ ಪ್ರಯಾಣ"
+    },
+    {
+      "id": "gruha-jyothi",
+      "scheme_name_en": "Gruha Jyothi",
+      "scheme_name_kn": "ಗೃಹ ಜ್ಯೋತಿ",
+      "short_description_kn": "200 ಯೂನಿಟ್ ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್",
+      "description_en": "Free electricity up to 200 units per month for residential households",
+      "description_kn": "ವಸತಿ ಮನೆಗಳಿಗೆ ತಿಂಗಳಿಗೆ 200 ಯೂನಿಟ್ ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್",
+      "ministry_en": "Energy Department",
+      "ministry_kn": "ಇಂಧನ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Zero electricity bill if consumption is within entitled limit (avg + 10%, max 200 units)",
+      "benefits_kn": "ಬಳಕೆಯು ನಿಗದಿತ ಮಿತಿಯಲ್ಲಿದ್ದರೆ ಶೂನ್ಯ ವಿದ್ಯುತ್ ಬಿಲ್ (ಸರಾಸರಿ + 10%, ಗರಿಷ್ಠ 200 ಯೂನಿಟ್)",
+      "documents_en": [
+        "Aadhaar Card",
+        "Electricity Bill/Account ID",
+        "Rental Agreement (if tenant)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ವಿದ್ಯುತ್ ಬಿಲ್/ಖಾತೆ ಐಡಿ",
+        "ಬಾಡಿಗೆ ಒಪ್ಪಂದ (ಬಾಡಿಗೆದಾರರಾಗಿದ್ದರೆ)"
+      ],
+      "application_process_en": "Apply through Seva Sindhu portal",
+      "application_process_kn": "ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sevasindhu.karnataka.gov.in",
+      "official_source_url": "https://bescom.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be a residential connection"
+      ],
+      "status": "active",
+      "tags": [
+        "electricity",
+        "guarantee",
+        "financial"
+      ],
+      "icon": "💡",
+      "icon_bg": "#FFFDE7",
+      "color": "#FBC02D",
+      "benefit_amount": "ಉಚಿತ ವಿದ್ಯುತ್"
+    },
+    {
+      "id": "raita-siri",
+      "scheme_name_en": "Raita Siri",
+      "scheme_name_kn": "ರೈತ ಸಿರಿ",
+      "short_description_kn": "ಸಿರಿಧಾನ್ಯ ಬೆಳೆಯುವ ರೈತರಿಗೆ ₹10,000 ಪ್ರೋತ್ಸಾಹ ಧನ",
+      "description_en": "Incentive of Rs 10,000 per hectare for farmers growing minor millets",
+      "description_kn": "ಸಿರಿಧಾನ್ಯಗಳನ್ನು ಬೆಳೆಯುವ ರೈತರಿಗೆ ಪ್ರತಿ ಹೆಕ್ಟೇರ್ಗೆ ₹10,000 ಪ್ರೋತ್ಸಾಹ ಧನ",
+      "ministry_en": "Department of Agriculture",
+      "ministry_kn": "ಕೃಷಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Rs 10,000 per hectare transferred to bank account",
+      "benefits_kn": "ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಪ್ರತಿ ಹೆಕ್ಟೇರ್ಗೆ ₹10,000 ವರ್ಗಾವಣೆ",
+      "documents_en": [
+        "Aadhaar",
+        "RTC (Pahani)",
+        "Bank Details",
+        "Crop Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆರ್ಟಿಸಿ (ಪಹಣಿ)",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು",
+        "ಬೆಳೆ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Raitha Mitra portal or local Raitha Samparka Kendra",
+      "application_process_kn": "ರೈತ ಮಿತ್ರ ಪೋರ್ಟಲ್ ಅಥವಾ ಸ್ಥಳೀಯ ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರದ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://raitamitra.karnataka.gov.in",
+      "official_source_url": "https://raitamitra.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must grow specified minor millets"
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "agriculture",
+        "financial"
+      ],
+      "icon": "🌾",
+      "icon_bg": "#F1F8E9",
+      "color": "#689F38",
+      "benefit_amount": "₹10,000/ಹೆಕ್ಟೇರ್"
+    },
+    {
+      "id": "ayushman-bharat-pmjay-karnataka",
+      "scheme_name_en": "Ayushman Bharat-Arogya Karnataka (AB-ArK)",
+      "scheme_name_kn": "ಆಯುಷ್ಮಾನ್ ಭಾರತ-ಆರೋಗ್ಯ ಕರ್ನಾಟಕ",
+      "short_description_kn": "₹5 ಲಕ್ಷದವರೆಗೆ ಉಚಿತ ಆರೋಗ್ಯ ವಿಮೆ",
+      "description_en": "Health insurance coverage up to ₹5 lakhs per family per year for secondary and tertiary care hospitalization.",
+      "description_kn": "ದ್ವಿತೀಯ ಮತ್ತು ತೃತೀಯ ಹಂತದ ಆಸ್ಪತ್ರೆ ದಾಖಲಾತಿಗೆ ಪ್ರತಿ ಕುಟುಂಬಕ್ಕೆ ವರ್ಷಕ್ಕೆ ₹5 ಲಕ್ಷದವರೆಗೆ ಆರೋಗ್ಯ ವಿಮೆ ಒದಗಿಸಲಾಗುತ್ತದೆ.",
+      "ministry_en": "Department of Health and Family Welfare",
+      "ministry_kn": "ಆರೋಗ್ಯ ಮತ್ತು ಕುಟುಂಬ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "central_state",
+      "benefits_en": "Cashless treatment up to ₹5 lakh for eligible families at empanelled hospitals.",
+      "benefits_kn": "ನೋಂದಾಯಿತ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಅರ್ಹ ಕುಟುಂಬಗಳಿಗೆ ₹5 ಲಕ್ಷದವರೆಗೆ ನಗದುರಹಿತ ಚಿಕಿತ್ಸೆ.",
+      "documents_en": [
+        "Aadhaar Card",
+        "Ration Card (BPL for full benefit)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ರೇಷನ್ ಕಾರ್ಡ್ (ಪೂರ್ಣ ಪ್ರಯೋಜನಕ್ಕಾಗಿ ಬಿಪಿಎಲ್)"
+      ],
+      "application_process_en": "Get the Ayushman card generated at empanelled hospitals or Grama One.",
+      "application_process_kn": "ನೋಂದಾಯಿತ ಆಸ್ಪತ್ರೆಗಳು ಅಥವಾ ಗ್ರಾಮ ಒನ್ನಲ್ಲಿ ಆಯುಷ್ಮಾನ್ ಕಾರ್ಡ್ ಪಡೆಯಿರಿ.",
+      "application_url": "https://arogya.karnataka.gov.in",
+      "official_source_url": "https://arogya.karnataka.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Full benefit for BPL cardholders. APL gets 30% subsidy up to 1.5 lakhs."
+      ],
+      "status": "active",
+      "tags": [
+        "health",
+        "insurance"
+      ],
+      "icon": "🏥",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "₹5 ಲಕ್ಷ/ವರ್ಷ"
+    },
+    {
+      "id": "pm-kisan-karnataka",
+      "scheme_name_en": "PM-KISAN",
+      "scheme_name_kn": "ಪಿಎಂ ಕಿಸಾನ್ ಸಮ್ಮಾನ್",
+      "short_description_kn": "ರೈತರಿಗೆ ವಾರ್ಷಿಕ ₹6,000 ಆರ್ಥಿಕ ನೆರವು",
+      "description_en": "Direct income support of ₹6,000 per year to farmer families, in three equal installments of ₹2,000.",
+      "description_kn": "ರೈತ ಕುಟುಂಬಗಳಿಗೆ ಪ್ರತಿ ವರ್ಷ ₹6,000 ನೇರ ಆದಾಯ ಬೆಂಬಲ (ಮೂರು ಕಂತುಗಳಲ್ಲಿ).",
+      "ministry_en": "Ministry of Agriculture and Farmers Welfare",
+      "ministry_kn": "ಕೃಷಿ ಮತ್ತು ರೈತರ ಕಲ್ಯಾಣ ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "₹6,000 per year directly credited to the bank account.",
+      "benefits_kn": "ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ನೇರವಾಗಿ ವಾರ್ಷಿಕ ₹6,000 ಜಮೆ.",
+      "documents_en": [
+        "Aadhaar Card",
+        "Bank Account Details",
+        "Land Ownership Documents (RTC)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ ವಿವರ",
+        "ಭೂಮಿ ಮಾಲೀಕತ್ವದ ದಾಖಲೆಗಳು (ಆರ್ಟಿಸಿ)"
+      ],
+      "application_process_en": "Apply through the PM-KISAN portal, CSCs, or local agriculture office.",
+      "application_process_kn": "ಪಿಎಂ-ಕಿಸಾನ್ ಪೋರ್ಟಲ್, ಸಿಎಸ್ಸಿ, ಅಥವಾ ಸ್ಥಳೀಯ ಕೃಷಿ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+      "application_url": "https://pmkisan.gov.in/",
+      "official_source_url": "https://pmkisan.gov.in/",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must own cultivable land in their name."
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "agriculture",
+        "financial"
+      ],
+      "icon": "🌱",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "₹6,000/ವರ್ಷ"
+    },
+    {
+      "id": "bhagyalakshmi",
+      "scheme_name_en": "Bhagyalakshmi Scheme",
+      "scheme_name_kn": "ಭಾಗ್ಯಲಕ್ಷ್ಮಿ ಯೋಜನೆ",
+      "short_description_kn": "ಬಿಪಿಎಲ್ ಕುಟುಂಬದ ಹೆಣ್ಣುಮಕ್ಕಳಿಗೆ ₹1 ಲಕ್ಷದವರೆಗೆ ಆರ್ಥಿಕ ಭದ್ರತೆ",
+      "description_en": "Financial security scheme for girl children in BPL families. A bond is deposited and payable when the girl turns 18.",
+      "description_kn": "ಬಿಪಿಎಲ್ ಕುಟುಂಬದ ಹೆಣ್ಣುಮಕ್ಕಳ ಆರ್ಥಿಕ ಭದ್ರತಾ ಯೋಜನೆ. ಮಗುವಿಗೆ 18 ವರ್ಷ ತುಂಬಿದಾಗ ಬಾಂಡ್ ಮೊತ್ತ ಲಭ್ಯ.",
+      "ministry_en": "Department of Women and Child Development",
+      "ministry_kn": "ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Maturity amount of up to ₹1,00,000 for the first child at age 18.",
+      "benefits_kn": "ಮೊದಲ ಮಗುವಿಗೆ 18 ವರ್ಷ ತುಂಬಿದಾಗ ₹1 ಲಕ್ಷದವರೆಗೆ ಮೆಚ್ಯೂರಿಟಿ ಮೊತ್ತ.",
+      "documents_en": [
+        "Birth Certificate",
+        "BPL Ration Card",
+        "Parent's Aadhaar",
+        "Immunization Record"
+      ],
+      "documents_kn": [
+        "ಜನನ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬಿಪಿಎಲ್ ರೇಷನ್ ಕಾರ್ಡ್",
+        "ಪೋಷಕರ ಆಧಾರ್",
+        "ಲಸಿಕೆ ದಾಖಲೆ"
+      ],
+      "application_process_en": "Apply via Anganwadi centers within 1 year of the child's birth.",
+      "application_process_kn": "ಮಗು ಹುಟ್ಟಿದ 1 ವರ್ಷದೊಳಗೆ ಅಂಗನವಾಡಿ ಕೇಂದ್ರದ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+      "application_url": "https://dwcd.karnataka.gov.in",
+      "official_source_url": "https://dwcd.karnataka.gov.in",
+      "min_age": 0,
+      "max_age": 1,
+      "gender": [
+        "female"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Maximum 2 girl children per family. Family planning adopted by parents."
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "child",
+        "financial"
+      ],
+      "icon": "👶",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "₹1 ಲಕ್ಷ (18 ವರ್ಷಕ್ಕೆ)"
+    },
+    {
+      "id": "sandhya-suraksha",
+      "scheme_name_en": "Sandhya Suraksha Scheme",
+      "scheme_name_kn": "ಸಂಧ್ಯಾ ಸುರಕ್ಷಾ ಯೋಜನೆ",
+      "short_description_kn": "65 ವರ್ಷ ಮೇಲ್ಪಟ್ಟ ಹಿರಿಯ ನಾಗರಿಕರಿಗೆ ₹1,200 ಮಾಸಿಕ ಪಿಂಚಣಿ",
+      "description_en": "Old age pension scheme providing financial assistance to senior citizens aged 65 and above.",
+      "description_kn": "65 ವರ್ಷ ಮತ್ತು ಅದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ವಯಸ್ಸಿನ ಹಿರಿಯ ನಾಗರಿಕರಿಗೆ ಆರ್ಥಿಕ ನೆರವು ಒದಗಿಸುವ ವೃದ್ಧಾಪ್ಯ ಪಿಂಚಣಿ ಯೋಜನೆ.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Monthly pension of ₹1,200.",
+      "benefits_kn": "₹1,200 ಮಾಸಿಕ ಪಿಂಚಣಿ.",
+      "documents_en": [
+        "Aadhaar Card",
+        "Age Proof",
+        "Income Certificate",
+        "Bank Passbook"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್ ಕಾರ್ಡ್",
+        "ವಯಸ್ಸಿನ ಪುರಾವೆ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ಪಾಸ್ಬುಕ್"
+      ],
+      "application_process_en": "Apply through Nada Kacheri or Grama One.",
+      "application_process_kn": "ನಾಡ ಕಚೇರಿ ಅಥವಾ ಗ್ರಾಮ ಒನ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+      "application_url": "https://nadakacheri.karnataka.gov.in",
+      "official_source_url": "https://nadakacheri.karnataka.gov.in",
+      "min_age": 65,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 20000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed",
+        "retired"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Income should be below ₹20,000/year."
+      ],
+      "status": "active",
+      "tags": [
+        "senior",
+        "pension",
+        "financial"
+      ],
+      "icon": "👴",
+      "icon_bg": "#EFEBE9",
+      "color": "#5D4037",
+      "benefit_amount": "₹1,200/ತಿಂಗಳು"
+    },
+    {
+      "id": "krishi-bhagya",
+      "scheme_name_en": "Krishi Bhagya",
+      "scheme_name_kn": "ಕೃಷಿ ಭಾಗ್ಯ",
+      "short_description_kn": "ಮಳೆಯಾಶ್ರಿತ ರೈತರಿಗೆ ಕೃಷಿ ಹೊಂಡ ಯೋಜನೆ",
+      "description_en": "Farm pond scheme for rainfed farmers to harvest rainwater and improve agricultural productivity.",
+      "description_kn": "ಮಳೆ ನೀರು ಕೊಯ್ಲು ಮತ್ತು ಕೃಷಿ ಉತ್ಪಾದಕತೆಯನ್ನು ಸುಧಾರಿಸಲು ಮಳೆಯಾಶ್ರಿತ ರೈತರಿಗೆ ಕೃಷಿ ಹೊಂಡ ಯೋಜನೆ.",
+      "ministry_en": "Department of Agriculture",
+      "ministry_kn": "ಕೃಷಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Subsidy for farm ponds, polyhouses, and drip irrigation",
+      "benefits_kn": "ಕೃಷಿ ಹೊಂಡ, ಪಾಲಿಹೌಸ್ ಮತ್ತು ಹನಿ ನೀರಾವರಿಗೆ ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "RTC (Pahani)",
+        "Bank Details",
+        "Caste Certificate (if SC/ST)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆರ್ಟಿಸಿ (ಪಹಣಿ)",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು",
+        "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ (ಎಸ್ಸಿ/ಎಸ್ಟಿ ಆಗಿದ್ದರೆ)"
+      ],
+      "application_process_en": "Apply at local Raitha Samparka Kendra",
+      "application_process_kn": "ಸ್ಥಳೀಯ ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರದಲ್ಲಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://raitamitra.karnataka.gov.in",
+      "official_source_url": "https://raitamitra.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must own agricultural land in rainfed areas"
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "agriculture",
+        "subsidy"
+      ],
+      "icon": "💧",
+      "icon_bg": "#E3F2FD",
+      "color": "#1565C0",
+      "benefit_amount": "ಸಬ್ಸಿಡಿ"
+    },
+    {
+      "id": "baduku-jyothi",
+      "scheme_name_en": "Baduku Jyothi",
+      "scheme_name_kn": "ಬದುಕು ಜ್ಯೋತಿ",
+      "short_description_kn": "ಸಂಕಷ್ಟದಲ್ಲಿರುವ ರೈತರಿಗೆ ₹50,000 ಪರಿಹಾರ",
+      "description_en": "Distress relief of ₹50,000 to families of farmers who committed suicide or are in extreme distress.",
+      "description_kn": "ಆತ್ಮಹತ್ಯೆ ಮಾಡಿಕೊಂಡ ಅಥವಾ ತೀವ್ರ ಸಂಕಷ್ಟದಲ್ಲಿರುವ ರೈತರ ಕುಟುಂಬಗಳಿಗೆ ₹50,000 ಪರಿಹಾರ.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "One-time financial relief of ₹50,000",
+      "benefits_kn": "₹50,000 ಒಂದು ಬಾರಿಯ ಆರ್ಥಿಕ ಪರಿಹಾರ",
+      "documents_en": [
+        "Aadhaar",
+        "Death Certificate (if applicable)",
+        "FIR/Police Report",
+        "Bank Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಮರಣ ಪ್ರಮಾಣಪತ್ರ (ಅನ್ವಯಿಸಿದರೆ)",
+        "ಎಫ್ಐಆರ್/ಪೊಲೀಸ್ ವರದಿ",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through Tahsildar office",
+      "application_process_kn": "ತಹಸೀಲ್ದಾರ್ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://landrecords.karnataka.gov.in",
+      "official_source_url": "https://landrecords.karnataka.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Verification of distress by local authorities"
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "relief",
+        "financial"
+      ],
+      "icon": "🛡️",
+      "icon_bg": "#FFEBEE",
+      "color": "#C62828",
+      "benefit_amount": "₹50,000"
+    },
+    {
+      "id": "karnataka-raitha-suraksha",
+      "scheme_name_en": "Karnataka Raitha Suraksha",
+      "scheme_name_kn": "ಕರ್ನಾಟಕ ರೈತ ಸುರಕ್ಷಾ",
+      "short_description_kn": "ರೈತರಿಗೆ ಬೆಳೆ ವಿಮೆ ಮತ್ತು ಅಪಘಾತ ವಿಮೆ",
+      "description_en": "Crop insurance and accidental insurance scheme for farmers in Karnataka.",
+      "description_kn": "ಕರ್ನಾಟಕದ ರೈತರಿಗೆ ಬೆಳೆ ವಿಮೆ ಮತ್ತು ಅಪಘಾತ ವಿಮೆ ಯೋಜನೆ.",
+      "ministry_en": "Department of Agriculture",
+      "ministry_kn": "ಕೃಷಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Coverage for crop loss and accidental death/disability",
+      "benefits_kn": "ಬೆಳೆ ನಷ್ಟ ಮತ್ತು ಆಕಸ್ಮಿಕ ಸಾವು/ಅಂಗವೈಕಲ್ಯಕ್ಕೆ ಕವರೇಜ್",
+      "documents_en": [
+        "Aadhaar",
+        "RTC",
+        "Bank Passbook"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆರ್ಟಿಸಿ",
+        "ಬ್ಯಾಂಕ್ ಪಾಸ್ಬುಕ್"
+      ],
+      "application_process_en": "Enroll through local banks or Raitha Samparka Kendra",
+      "application_process_kn": "ಸ್ಥಳೀಯ ಬ್ಯಾಂಕುಗಳು ಅಥವಾ ರೈತ ಸಂಪರ್ಕ ಕೇಂದ್ರದ ಮೂಲಕ ನೋಂದಾಯಿಸಿ",
+      "application_url": "https://samrakshane.karnataka.gov.in",
+      "official_source_url": "https://samrakshane.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": 70,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must be a registered farmer with valid RTC"
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "insurance",
+        "agriculture"
+      ],
+      "icon": "☂️",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "ವಿಮೆ"
+    },
+    {
+      "id": "nirashrita-vidhaveya-pension",
+      "scheme_name_en": "Destitute Widow Pension",
+      "scheme_name_kn": "ನಿರಾಶ್ರಿತ ವಿಧವೆಯರ ಪಿಂಚಣಿ",
+      "short_description_kn": "ವಿಧವೆಯರಿಗೆ ಮಾಸಿಕ ₹800 ಪಿಂಚಣಿ",
+      "description_en": "Financial assistance of ₹800 per month for destitute widows.",
+      "description_kn": "ನಿರಾಶ್ರಿತ ವಿಧವೆಯರಿಗೆ ಮಾಸಿಕ ₹800 ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹800 per month pension",
+      "benefits_kn": "ಪ್ರತಿ ತಿಂಗಳು ₹800 ಪಿಂಚಣಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Husband's Death Certificate",
+        "Income Certificate",
+        "Age Proof"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಪತಿಯ ಮರಣ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ವಯಸ್ಸಿನ ಪುರಾವೆ"
+      ],
+      "application_process_en": "Apply through Nada Kacheri",
+      "application_process_kn": "ನಾಡ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://nadakacheri.karnataka.gov.in",
+      "official_source_url": "https://nadakacheri.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": 20000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be a widow with no other source of support"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "pension",
+        "financial"
+      ],
+      "icon": "🙏",
+      "icon_bg": "#F3E5F5",
+      "color": "#8E24AA",
+      "benefit_amount": "₹800/ತಿಂಗಳು"
+    },
+    {
+      "id": "vriddapya-pension",
+      "scheme_name_en": "Old Age Pension",
+      "scheme_name_kn": "ವೃದ್ಧಾಪ್ಯ ಪಿಂಚಣಿ",
+      "short_description_kn": "60 ವರ್ಷ ಮೇಲ್ಪಟ್ಟವರಿಗೆ ಮಾಸಿಕ ₹600 ಪಿಂಚಣಿ",
+      "description_en": "Monthly pension of ₹600 for senior citizens aged 60 and above.",
+      "description_kn": "60 ವರ್ಷ ಮತ್ತು ಅದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ವಯಸ್ಸಿನ ಹಿರಿಯ ನಾಗರಿಕರಿಗೆ ಮಾಸಿಕ ₹600 ಪಿಂಚಣಿ.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹600 per month",
+      "benefits_kn": "ಪ್ರತಿ ತಿಂಗಳು ₹600",
+      "documents_en": [
+        "Aadhaar",
+        "Age Proof",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ವಯಸ್ಸಿನ ಪುರಾವೆ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Nada Kacheri",
+      "application_process_kn": "ನಾಡ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://nadakacheri.karnataka.gov.in",
+      "official_source_url": "https://nadakacheri.karnataka.gov.in",
+      "min_age": 60,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 20000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "retired",
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "senior",
+        "pension",
+        "financial"
+      ],
+      "icon": "🧓",
+      "icon_bg": "#EFEBE9",
+      "color": "#5D4037",
+      "benefit_amount": "₹600/ತಿಂಗಳು"
+    },
+    {
+      "id": "vidyasiri",
+      "scheme_name_en": "Vidyasiri",
+      "scheme_name_kn": "ವಿದ್ಯಾಸಿರಿ",
+      "short_description_kn": "ಹಿಂದುಳಿದ ವರ್ಗಗಳ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "description_en": "Food and accommodation scholarship (₹1,500/month) for backward class students pursuing post-matric courses.",
+      "description_kn": "ಮೆಟ್ರಿಕ್ ನಂತರದ ಕೋರ್ಸ್‌ಗಳನ್ನು ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿರುವ ಹಿಂದುಳಿದ ವರ್ಗಗಳ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಊಟ ಮತ್ತು ವಸತಿ ಸಹಾಯಧನ (ಮಾಸಿಕ ₹1,500).",
+      "ministry_en": "Backward Classes Welfare Department",
+      "ministry_kn": "ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹1,500 per month for 10 months",
+      "benefits_kn": "10 ತಿಂಗಳವರೆಗೆ ಮಾಸಿಕ ₹1,500",
+      "documents_en": [
+        "Aadhaar",
+        "Caste & Income Certificate",
+        "SSLC/PUC Marks Card",
+        "College Admission Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಜಾತಿ ಮತ್ತು ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಎಸ್ಎಸ್ಎಲ್ಸಿ/ಪಿಯುಸಿ ಅಂಕಪಟ್ಟಿ",
+        "ಕಾಲೇಜು ಪ್ರವೇಶದ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through SSP (State Scholarship Portal)",
+      "application_process_kn": "SSP (ರಾಜ್ಯ ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಪೋರ್ಟಲ್) ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ssp.postmatric.karnataka.gov.in",
+      "official_source_url": "https://bcwd.karnataka.gov.in",
+      "min_age": 15,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "obc"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be staying in a rented room/hostel, outside 5km from residence"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "obc",
+        "scholarship"
+      ],
+      "icon": "🎒",
+      "icon_bg": "#E0F7FA",
+      "color": "#0097A7",
+      "benefit_amount": "₹1,500/ತಿಂಗಳು"
+    },
+    {
+      "id": "pratibha-puraskar",
+      "scheme_name_en": "Pratibha Puraskar",
+      "scheme_name_kn": "ಪ್ರತಿಭಾ ಪುರಸ್ಕಾರ",
+      "short_description_kn": "ಪ್ರತಿಭಾವಂತ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ನಗದು ಪುರಸ್ಕಾರ",
+      "description_en": "Merit awards to top-performing students from backward classes in SSLC/PUC and degree exams.",
+      "description_kn": "ಎಸ್ಎಸ್ಎಲ್ಸಿ/ಪಿಯುಸಿ ಮತ್ತು ಪದವಿ ಪರೀಕ್ಷೆಗಳಲ್ಲಿ ಅತಿ ಹೆಚ್ಚು ಅಂಕ ಗಳಿಸಿದ ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಪ್ರತಿಭಾವಂತ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ನಗದು ಪುರಸ್ಕಾರ.",
+      "ministry_en": "Backward Classes Welfare Department",
+      "ministry_kn": "ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "One-time cash award up to ₹25,000 based on level of education",
+      "benefits_kn": "ಶಿಕ್ಷಣದ ಹಂತವನ್ನು ಆಧರಿಸಿ ₹25,000 ವರೆಗೆ ಒಂದು ಬಾರಿಯ ನಗದು ಪುರಸ್ಕಾರ",
+      "documents_en": [
+        "Marks Card",
+        "Caste/Income Certificate",
+        "Bank Details"
+      ],
+      "documents_kn": [
+        "ಅಂಕಪಟ್ಟಿ",
+        "ಜಾತಿ/ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply via departmental notifications/SSP",
+      "application_process_kn": "ಇಲಾಖಾ ಅಧಿಸೂಚನೆಗಳು/SSP ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://bcwd.karnataka.gov.in",
+      "official_source_url": "https://bcwd.karnataka.gov.in",
+      "min_age": 15,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "obc",
+        "sc",
+        "st",
+        "minority"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must have scored 90% or above in final exams"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "merit",
+        "reward"
+      ],
+      "icon": "🏆",
+      "icon_bg": "#FFF8E1",
+      "color": "#FFA000",
+      "benefit_amount": "₹25,000 ವರೆಗೆ"
+    },
+    {
+      "id": "sslc-puc-toppers",
+      "scheme_name_en": "SSLC/PUC Toppers Incentive",
+      "scheme_name_kn": "SSLC/PUC ಟಾಪರ್ ಪ್ರೋತ್ಸಾಹ ಧನ",
+      "short_description_kn": "ಟಾಪರ್ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಪ್ರೋತ್ಸಾಹ ಧನ",
+      "description_en": "Financial incentive for top ranking students in state board SSLC and PUC examinations.",
+      "description_kn": "ರಾಜ್ಯ ಪಠ್ಯಕ್ರಮದ ಎಸ್ಎಸ್ಎಲ್ಸಿ ಮತ್ತು ಪಿಯುಸಿ ಪರೀಕ್ಷೆಗಳಲ್ಲಿ ಉನ್ನತ ಶ್ರೇಣಿ ಪಡೆದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆರ್ಥಿಕ ಪ್ರೋತ್ಸಾಹ ಧನ.",
+      "ministry_en": "Department of School Education",
+      "ministry_kn": "ಶಾಲಾ ಶಿಕ್ಷಣ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Cash incentive or laptops",
+      "benefits_kn": "ನಗದು ಪ್ರೋತ್ಸಾಹ ಅಥವಾ ಲ್ಯಾಪ್ಟಾಪ್",
+      "documents_en": [
+        "Marks Card",
+        "School Endorsement"
+      ],
+      "documents_kn": [
+        "ಅಂಕಪಟ್ಟಿ",
+        "ಶಾಲಾ ದೃಢೀಕರಣ ಪತ್ರ"
+      ],
+      "application_process_en": "Selected automatically by the education board",
+      "application_process_kn": "ಶಿಕ್ಷಣ ಮಂಡಳಿಯಿಂದ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಯ್ಕೆ",
+      "application_url": "https://schooleducation.karnataka.gov.in",
+      "official_source_url": "https://schooleducation.karnataka.gov.in",
+      "min_age": 14,
+      "max_age": 20,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be among district or state top rankers"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "reward"
+      ],
+      "icon": "🏅",
+      "icon_bg": "#FFFDE7",
+      "color": "#FBC02D",
+      "benefit_amount": "ಲ್ಯಾಪ್‌ಟಾಪ್/ನಗದು"
+    },
+    {
+      "id": "alpasankhyata-scholarship",
+      "scheme_name_en": "Minority Scholarship",
+      "scheme_name_kn": "ಅಲ್ಪಸಂಖ್ಯಾತ ವಿದ್ಯಾರ್ಥಿ ವೇತನ",
+      "short_description_kn": "ಅಲ್ಪಸಂಖ್ಯಾತ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "description_en": "Pre-matric, post-matric, and merit-cum-means scholarships for minority community students.",
+      "description_kn": "ಅಲ್ಪಸಂಖ್ಯಾತ ಸಮುದಾಯದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಮೆಟ್ರಿಕ್-ಪೂರ್ವ, ಮೆಟ್ರಿಕ್-ನಂತರದ ಮತ್ತು ಮೆರಿಟ್-ಕಮ್-ಮೀನ್ಸ್ ವಿದ್ಯಾರ್ಥಿ ವೇತನ.",
+      "ministry_en": "Minority Welfare Department",
+      "ministry_kn": "ಅಲ್ಪಸಂಖ್ಯಾತರ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "central_state",
+      "benefits_en": "Financial aid for fees and maintenance",
+      "benefits_kn": "ಶುಲ್ಕ ಮತ್ತು ನಿರ್ವಹಣೆಗೆ ಆರ್ಥಿಕ ನೆರವು",
+      "documents_en": [
+        "Aadhaar",
+        "Religion Certificate",
+        "Income Certificate",
+        "Marks Card"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಧರ್ಮ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಅಂಕಪಟ್ಟಿ"
+      ],
+      "application_process_en": "Apply through SSP and NSP portals",
+      "application_process_kn": "SSP ಮತ್ತು NSP ಪೋರ್ಟಲ್ಗಳ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ssp.postmatric.karnataka.gov.in",
+      "official_source_url": "https://dom.karnataka.gov.in",
+      "min_age": 5,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "minority"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must belong to Muslim, Christian, Jain, Sikh, Parsi, or Buddhist community"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "minority",
+        "scholarship"
+      ],
+      "icon": "📚",
+      "icon_bg": "#F3E5F5",
+      "color": "#8E24AA",
+      "benefit_amount": "ಶುಲ್ಕ ಪಾವತಿ"
+    },
+    {
+      "id": "maitri-vidyarthi-vetana",
+      "scheme_name_en": "Maitri Scholarship",
+      "scheme_name_kn": "ಮೈತ್ರಿ ವಿದ್ಯಾರ್ಥಿ ವೇತನ",
+      "short_description_kn": "ವಿಕಲಚೇತನ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "description_en": "Scholarship for differently-abled students pursuing education.",
+      "description_kn": "ಶಿಕ್ಷಣ ಪಡೆಯುತ್ತಿರುವ ವಿಕಲಚೇತನ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿ ವೇತನ.",
+      "ministry_en": "Department for Empowerment of Differently Abled",
+      "ministry_kn": "ವಿಕಲಚೇತನರ ಸಬಲೀಕರಣ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Monthly/Annual scholarship allowance",
+      "benefits_kn": "ಮಾಸಿಕ/ವಾರ್ಷಿಕ ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಭತ್ಯೆ",
+      "documents_en": [
+        "Disability Certificate (UDID)",
+        "Aadhaar",
+        "School/College Endorsement"
+      ],
+      "documents_kn": [
+        "ಅಂಗವೈಕಲ್ಯ ಪ್ರಮಾಣಪತ್ರ (UDID)",
+        "ಆಧಾರ್",
+        "ಶಾಲಾ/ಕಾಲೇಜು ದೃಢೀಕರಣ ಪತ್ರ"
+      ],
+      "application_process_en": "Apply through SSP portal",
+      "application_process_kn": "SSP ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ssp.postmatric.karnataka.gov.in",
+      "official_source_url": "https://welfare.karnataka.gov.in",
+      "min_age": 5,
+      "max_age": 35,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must have 40% or more disability"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "disabled",
+        "scholarship"
+      ],
+      "icon": "♿",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "ಸ್ಕಾಲರ್‌ಶಿಪ್"
+    },
+    {
+      "id": "nsp-scholarship",
+      "scheme_name_en": "National Scholarship Portal (NSP)",
+      "scheme_name_kn": "ಕೇಂದ್ರ ಸರ್ಕಾರ ವಿದ್ಯಾರ್ಥಿ ವೇತನ",
+      "short_description_kn": "ಕೇಂದ್ರ ಸರ್ಕಾರದ ವಿವಿಧ ವಿದ್ಯಾರ್ಥಿ ವೇತನಗಳು",
+      "description_en": "A unified portal for various central government scholarships for students.",
+      "description_kn": "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿವಿಧ ಕೇಂದ್ರ ಸರ್ಕಾರದ ವಿದ್ಯಾರ್ಥಿ ವೇತನಗಳ ಏಕೀಕೃತ ಪೋರ್ಟಲ್.",
+      "ministry_en": "Multiple Central Ministries",
+      "ministry_kn": "ವಿವಿಧ ಕೇಂದ್ರ ಸಚಿವಾಲಯಗಳು",
+      "scheme_type": "central",
+      "benefits_en": "Financial assistance for education",
+      "benefits_kn": "ಶಿಕ್ಷಣಕ್ಕಾಗಿ ಆರ್ಥಿಕ ನೆರವು",
+      "documents_en": [
+        "Aadhaar",
+        "Income Certificate",
+        "Marks Card",
+        "Bank Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಅಂಕಪಟ್ಟಿ",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through NSP portal",
+      "application_process_kn": "NSP ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://scholarships.gov.in",
+      "official_source_url": "https://scholarships.gov.in",
+      "min_age": 5,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "scholarship"
+      ],
+      "icon": "🇮🇳",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "ಆರ್ಥಿಕ ನೆರವು"
+    },
+    {
+      "id": "stree-shakti",
+      "scheme_name_en": "Stree Shakti",
+      "scheme_name_kn": "ಸ್ತ್ರೀ ಶಕ್ತಿ",
+      "short_description_kn": "ಮಹಿಳಾ ಸ್ವ-ಸಹಾಯ ಸಂಘಗಳಿಗೆ ನೆರವು",
+      "description_en": "Empowering women through self-help groups (SHGs) with a revolving fund of ₹25,000 and subsidized loans.",
+      "description_kn": "ಮಹಿಳಾ ಸ್ವ-ಸಹಾಯ ಸಂಘಗಳಿಗೆ (SHG) ₹25,000 ಸುತ್ತು ನಿಧಿ ಮತ್ತು ಸಬ್ಸಿಡಿ ಸಾಲಗಳ ಮೂಲಕ ಸಬಲೀಕರಣ.",
+      "ministry_en": "Department of Women and Child Development",
+      "ministry_kn": "ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹25,000 revolving fund per SHG and bank linkages",
+      "benefits_kn": "ಪ್ರತಿ SHG ಗೆ ₹25,000 ಸುತ್ತು ನಿಧಿ ಮತ್ತು ಬ್ಯಾಂಕ್ ಸಾಲ",
+      "documents_en": [
+        "SHG Registration",
+        "Member Aadhaar Cards",
+        "Bank Account Details"
+      ],
+      "documents_kn": [
+        "ಎಸ್ಎಚ್ಜಿ ನೋಂದಣಿ",
+        "ಸದಸ್ಯರ ಆಧಾರ್ ಕಾರ್ಡ್ಗಳು",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply via local Anganwadi/CDPO",
+      "application_process_kn": "ಸ್ಥಳೀಯ ಅಂಗನವಾಡಿ/ಸಿಡಿಪಿಒ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://dwcd.karnataka.gov.in",
+      "official_source_url": "https://dwcd.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": 60,
+      "gender": [
+        "female"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed",
+        "business"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be part of a registered Stree Shakti SHG with 15-20 members"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "business",
+        "shg",
+        "financial"
+      ],
+      "icon": "👭",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "₹25,000 ನಿಧಿ"
+    },
+    {
+      "id": "udyogini",
+      "scheme_name_en": "Udyogini",
+      "scheme_name_kn": "ಉದ್ಯೋಗಿನಿ",
+      "short_description_kn": "ಮಹಿಳಾ ಉದ್ಯಮಿಗಳಿಗೆ ಸಾಲ ಸಬ್ಸಿಡಿ",
+      "description_en": "Subsidized loans up to ₹3 Lakhs for women entrepreneurs to start micro-enterprises.",
+      "description_kn": "ಮಹಿಳಾ ಉದ್ಯಮಿಗಳಿಗೆ ಕಿರು-ಉದ್ಯಮಗಳನ್ನು ಪ್ರಾರಂಭಿಸಲು ₹3 ಲಕ್ಷದವರೆಗೆ ಸಬ್ಸಿಡಿ ಸಾಲ.",
+      "ministry_en": "Karnataka State Women's Development Corporation",
+      "ministry_kn": "ಕರ್ನಾಟಕ ರಾಜ್ಯ ಮಹಿಳಾ ಅಭಿವೃದ್ಧಿ ನಿಗಮ",
+      "scheme_type": "state",
+      "benefits_en": "Up to 30% subsidy on loans up to ₹3,00,000",
+      "benefits_kn": "₹3,00,000 ವರೆಗಿನ ಸಾಲದ ಮೇಲೆ ಶೇ. 30ರಷ್ಟು ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Project Report",
+        "Income Certificate",
+        "Bank Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಯೋಜನಾ ವರದಿ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through KSWDC office or CDPO",
+      "application_process_kn": "ಕೆಎಸ್ಡಬ್ಲ್ಯೂಡಿಸಿ ಕಚೇರಿ ಅಥವಾ ಸಿಡಿಪಿಒ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://kswdc.karnataka.gov.in",
+      "official_source_url": "https://kswdc.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": 55,
+      "gender": [
+        "female"
+      ],
+      "income_max": 150000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "business",
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Subsidy percentage varies for SC/ST and General categories"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "business",
+        "loan"
+      ],
+      "icon": "💼",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "ಸಬ್ಸಿಡಿ ಸಾಲ"
+    },
+    {
+      "id": "swadhaar-griha",
+      "scheme_name_en": "Swadhaar Griha",
+      "scheme_name_kn": "ಸ್ವಾಧಾರ ಗೃಹ",
+      "short_description_kn": "ಸಂಕಷ್ಟದಲ್ಲಿರುವ ಮಹಿಳೆಯರಿಗೆ ಆಶ್ರಯ",
+      "description_en": "Provides shelter, food, clothing, and counseling to women in difficult circumstances.",
+      "description_kn": "ತೀವ್ರ ಸಂಕಷ್ಟದಲ್ಲಿರುವ ಮಹಿಳೆಯರಿಗೆ ಆಶ್ರಯ, ಆಹಾರ, ಬಟ್ಟೆ ಮತ್ತು ಆಪ್ತಸಮಾಲೋಚನೆ ಒದಗಿಸುತ್ತದೆ.",
+      "ministry_en": "Department of Women and Child Development",
+      "ministry_kn": "ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಇಲಾಖೆ",
+      "scheme_type": "central_state",
+      "benefits_en": "Free shelter, food, legal aid, and vocational training",
+      "benefits_kn": "ಉಚಿತ ಆಶ್ರಯ, ಆಹಾರ, ಕಾನೂನು ನೆರವು ಮತ್ತು ವೃತ್ತಿ ತರಬೇತಿ",
+      "documents_en": [
+        "Police Report/NGO Referral (if available)"
+      ],
+      "documents_kn": [
+        "ಪೊಲೀಸ್ ವರದಿ/ಎನ್ಜಿಒ ಉಲ್ಲೇಖ (ಲಭ್ಯವಿದ್ದರೆ)"
+      ],
+      "application_process_en": "Contact nearest CDPO or Women Helpline (181/1091)",
+      "application_process_kn": "ಹತ್ತಿರದ ಸಿಡಿಪಿಒ ಅಥವಾ ಮಹಿಳಾ ಸಹಾಯವಾಣಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ (181/1091)",
+      "application_url": "https://dwcd.karnataka.gov.in",
+      "official_source_url": "https://wcd.nic.in/schemes/swadhar-greh-scheme-women-difficult-circumstances",
+      "min_age": 18,
+      "max_age": 60,
+      "gender": [
+        "female"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Women survivors of violence, trafficked women, or destitute women"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "shelter",
+        "protection"
+      ],
+      "icon": "🏠",
+      "icon_bg": "#FCE4EC",
+      "color": "#C2185B",
+      "benefit_amount": "ಉಚಿತ ಆಶ್ರಯ"
+    },
+    {
+      "id": "mahila-samruddhi",
+      "scheme_name_en": "Mahila Samruddhi Yojana",
+      "scheme_name_kn": "ಮಹಿಳಾ ಸಮೃದ್ಧಿ",
+      "short_description_kn": "ಮಹಿಳಾ ಉದ್ಯಮಿಗಳಿಗೆ ಮೈಕ್ರೋಫೈನಾನ್ಸ್",
+      "description_en": "Microfinance scheme for women from backward classes to set up small businesses.",
+      "description_kn": "ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಮಹಿಳೆಯರಿಗೆ ಸಣ್ಣ ವ್ಯವಹಾರಗಳನ್ನು ಸ್ಥಾಪಿಸಲು ಮೈಕ್ರೋಫೈನಾನ್ಸ್ ಯೋಜನೆ.",
+      "ministry_en": "Backward Classes Development Corporation",
+      "ministry_kn": "ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಅಭಿವೃದ್ಧಿ ನಿಗಮ",
+      "scheme_type": "central_state",
+      "benefits_en": "Loans up to ₹1,40,000 with low interest rates",
+      "benefits_kn": "ಕಡಿಮೆ ಬಡ್ಡಿದರದಲ್ಲಿ ₹1,40,000 ವರೆಗೆ ಸಾಲ",
+      "documents_en": [
+        "Aadhaar",
+        "Caste/Income Certificate",
+        "Project Report"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಜಾತಿ/ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಯೋಜನಾ ವರದಿ"
+      ],
+      "application_process_en": "Apply through NBCFDC / State Channelizing Agencies",
+      "application_process_kn": "NBCFDC / ರಾಜ್ಯ ಏಜೆನ್ಸಿಗಳ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://dbcdc.karnataka.gov.in",
+      "official_source_url": "https://nbcfdc.gov.in",
+      "min_age": 18,
+      "max_age": 55,
+      "gender": [
+        "female"
+      ],
+      "income_max": 300000,
+      "categories": [
+        "obc",
+        "sc",
+        "st"
+      ],
+      "occupations": [
+        "business"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "women",
+        "business",
+        "loan"
+      ],
+      "icon": "📈",
+      "icon_bg": "#E8F5E9",
+      "color": "#388E3C",
+      "benefit_amount": "ಸಾಲ"
+    },
+    {
+      "id": "ambedkar-awas",
+      "scheme_name_en": "Ambedkar Awas Yojana",
+      "scheme_name_kn": "ಅಂಬೇಡ್ಕರ್ ಆವಾಸ",
+      "short_description_kn": "ಪರಿಶಿಷ್ಟ ಜಾತಿ ಕುಟುಂಬಗಳಿಗೆ ವಸತಿ ಯೋಜನೆ",
+      "description_en": "Housing scheme for poor families belonging to Scheduled Castes (SC).",
+      "description_kn": "ಪರಿಶಿಷ್ಟ ಜಾತಿ (ಎಸ್ಸಿ) ಬಡ ಕುಟುಂಬಗಳಿಗೆ ವಸತಿ ಯೋಜನೆ.",
+      "ministry_en": "Rajiv Gandhi Housing Corporation",
+      "ministry_kn": "ರಾಜೀವ್ ಗಾಂಧಿ ವಸತಿ ನಿಗಮ",
+      "scheme_type": "state",
+      "benefits_en": "Housing subsidy of ₹1.75 Lakh (Rural) / ₹2 Lakh (Urban)",
+      "benefits_kn": "₹1.75 ಲಕ್ಷ (ಗ್ರಾಮೀಣ) / ₹2 ಲಕ್ಷ (ನಗರ) ವಸತಿ ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "SC Caste Certificate",
+        "Income Certificate",
+        "Site Document"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಎಸ್ಸಿ ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ನಿವೇಶನದ ದಾಖಲೆ"
+      ],
+      "application_process_en": "Apply through Gram Panchayat / Ashraya portal",
+      "application_process_kn": "ಗ್ರಾಮ ಪಂಚಾಯತಿ / ಆಶ್ರಯ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ashraya.karnataka.gov.in",
+      "official_source_url": "https://ashraya.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 32000,
+      "categories": [
+        "sc"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must own a site and not own a pucca house"
+      ],
+      "status": "active",
+      "tags": [
+        "housing",
+        "sc"
+      ],
+      "icon": "🧱",
+      "icon_bg": "#E0F7FA",
+      "color": "#0097A7",
+      "benefit_amount": "₹1.75-2 ಲಕ್ಷ ಸಬ್ಸಿಡಿ"
+    },
+    {
+      "id": "basava-vasati",
+      "scheme_name_en": "Basava Vasati Yojana",
+      "scheme_name_kn": "ಬಸವ ವಸತಿ ಯೋಜನೆ",
+      "short_description_kn": "ವಸತಿ ರಹಿತ ಬಡವರಿಗೆ ಮನೆ ನಿರ್ಮಾಣ ಯೋಜನೆ",
+      "description_en": "Housing scheme for the homeless poor across the state.",
+      "description_kn": "ರಾಜ್ಯಾದ್ಯಂತ ವಸತಿ ರಹಿತ ಬಡವರಿಗಾಗಿ ಮನೆ ನಿರ್ಮಾಣ ಯೋಜನೆ.",
+      "ministry_en": "Rajiv Gandhi Housing Corporation",
+      "ministry_kn": "ರಾಜೀವ್ ಗಾಂಧಿ ವಸತಿ ನಿಗಮ",
+      "scheme_type": "state",
+      "benefits_en": "Housing subsidy of ₹1.5 Lakh",
+      "benefits_kn": "₹1.5 ಲಕ್ಷ ವಸತಿ ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Income/Caste Certificate",
+        "Site Document"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆದಾಯ/ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ನಿವೇಶನದ ದಾಖಲೆ"
+      ],
+      "application_process_en": "Apply through Gram Panchayat / Ashraya portal",
+      "application_process_kn": "ಗ್ರಾಮ ಪಂಚಾಯತಿ / ಆಶ್ರಯ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ashraya.karnataka.gov.in",
+      "official_source_url": "https://ashraya.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 32000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must own a site and not own a pucca house"
+      ],
+      "status": "active",
+      "tags": [
+        "housing",
+        "financial"
+      ],
+      "icon": "🏡",
+      "icon_bg": "#F3E5F5",
+      "color": "#8E24AA",
+      "benefit_amount": "₹1.5 ಲಕ್ಷ ಸಬ್ಸಿಡಿ"
+    },
+    {
+      "id": "pmay-urban",
+      "scheme_name_en": "PMAY Urban",
+      "scheme_name_kn": "ಪ್ರಧಾನಮಂತ್ರಿ ಆವಾಸ (ನಗರ)",
+      "short_description_kn": "ನಗರ ಪ್ರದೇಶದ ಬಡವರಿಗೆ ವಸತಿ ಯೋಜನೆ",
+      "description_en": "Pradhan Mantri Awas Yojana - Housing for All (Urban) providing credit-linked subsidy.",
+      "description_kn": "ನಗರ ಪ್ರದೇಶದ ಬಡವರಿಗೆ ಕ್ರೆಡಿಟ್-ಲಿಂಕ್ಡ್ ಸಬ್ಸಿಡಿ ಒದಗಿಸುವ ವಸತಿ ಯೋಜನೆ.",
+      "ministry_en": "Ministry of Housing and Urban Affairs",
+      "ministry_kn": "ವಸತಿ ಮತ್ತು ನಗರ ವ್ಯವಹಾರಗಳ ಸಚಿವಾಲಯ",
+      "scheme_type": "central_state",
+      "benefits_en": "Up to ₹2.67 Lakh interest subsidy on home loans",
+      "benefits_kn": "ಗೃಹ ಸಾಲದ ಮೇಲೆ ₹2.67 ಲಕ್ಷದವರೆಗೆ ಬಡ್ಡಿ ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Income Proof",
+        "Property Papers"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆದಾಯ ಪುರಾವೆ",
+        "ಆಸ್ತಿ ದಾಖಲೆಗಳು"
+      ],
+      "application_process_en": "Apply through PMAY portal or local banks",
+      "application_process_kn": "PMAY ಪೋರ್ಟಲ್ ಅಥವಾ ಸ್ಥಳೀಯ ಬ್ಯಾಂಕುಗಳ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://pmaymis.gov.in",
+      "official_source_url": "https://pmaymis.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 1800000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "urban",
+      "special_criteria": [
+        "Family must not own a pucca house anywhere in India"
+      ],
+      "status": "active",
+      "tags": [
+        "housing",
+        "loan",
+        "subsidy"
+      ],
+      "icon": "🏙️",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "ಬಡ್ಡಿ ಸಬ್ಸಿಡಿ"
+    },
+    {
+      "id": "pmay-gramin",
+      "scheme_name_en": "PMAY Gramin",
+      "scheme_name_kn": "ಪ್ರಧಾನಮಂತ್ರಿ ಆವಾಸ (ಗ್ರಾಮೀಣ)",
+      "short_description_kn": "ಗ್ರಾಮೀಣ ಪ್ರದೇಶದ ಬಡವರಿಗೆ ವಸತಿ ಯೋಜನೆ",
+      "description_en": "Pradhan Mantri Awas Yojana - Gramin provides financial assistance to construct houses in rural areas.",
+      "description_kn": "ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳಲ್ಲಿ ಮನೆ ನಿರ್ಮಿಸಲು ಆರ್ಥಿಕ ನೆರವು ನೀಡುವ ಪ್ರಧಾನಮಂತ್ರಿ ಆವಾಸ ಯೋಜನೆ.",
+      "ministry_en": "Ministry of Rural Development",
+      "ministry_kn": "ಗ್ರಾಮೀಣ ಅಭಿವೃದ್ಧಿ ಸಚಿವಾಲಯ",
+      "scheme_type": "central_state",
+      "benefits_en": "₹1.2 Lakh subsidy + 90/95 days MGNREGA wages + ₹12,000 for toilet",
+      "benefits_kn": "₹1.2 ಲಕ್ಷ ಸಬ್ಸಿಡಿ + 90/95 ದಿನಗಳ ನರೇಗಾ ವೇತನ + ಶೌಚಾಲಯಕ್ಕೆ ₹12,000",
+      "documents_en": [
+        "Aadhaar",
+        "Job Card",
+        "Bank Account",
+        "SBM Number"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಉದ್ಯೋಗ ಕಾರ್ಡ್",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "ಎಸ್ಬಿಎಂ ಸಂಖ್ಯೆ"
+      ],
+      "application_process_en": "Selected based on SECC 2011 data / Awaas Plus",
+      "application_process_kn": "SECC 2011 ಡೇಟಾ / ಆವಾಸ್ ಪ್ಲಸ್ ಆಧಾರದ ಮೇಲೆ ಆಯ್ಕೆ",
+      "application_url": "https://pmayg.nic.in",
+      "official_source_url": "https://pmayg.nic.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must be listed in SECC 2011 or Awaas Plus list"
+      ],
+      "status": "active",
+      "tags": [
+        "housing",
+        "rural",
+        "subsidy"
+      ],
+      "icon": "🛖",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "₹1.2 ಲಕ್ಷ+"
+    },
+    {
+      "id": "yashaswini",
+      "scheme_name_en": "Yashaswini",
+      "scheme_name_kn": "ಯಶಸ್ವಿನಿ",
+      "short_description_kn": "ಸಹಕಾರ ಸಂಘಗಳ ಸದಸ್ಯರಿಗೆ ಆರೋಗ್ಯ ವಿಮೆ",
+      "description_en": "Cooperative farmers health care scheme offering cashless surgical procedures up to ₹5 lakhs.",
+      "description_kn": "ಸಹಕಾರ ಸಂಘಗಳ ಸದಸ್ಯ ರೈತರಿಗೆ ₹5 ಲಕ್ಷದವರೆಗೆ ನಗದುರಹಿತ ಶಸ್ತ್ರಚಿಕಿತ್ಸಾ ಆರೋಗ್ಯ ವಿಮಾ ಯೋಜನೆ.",
+      "ministry_en": "Cooperation Department",
+      "ministry_kn": "ಸಹಕಾರ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Cashless treatment up to ₹5 lakh per family at network hospitals",
+      "benefits_kn": "ನೆಟ್ವರ್ಕ್ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಪ್ರತಿ ಕುಟುಂಬಕ್ಕೆ ₹5 ಲಕ್ಷದವರೆಗೆ ನಗದುರಹಿತ ಚಿಕಿತ್ಸೆ",
+      "documents_en": [
+        "Cooperative Society Membership ID",
+        "Aadhaar"
+      ],
+      "documents_kn": [
+        "ಸಹಕಾರ ಸಂಘದ ಸದಸ್ಯತ್ವ ಐಡಿ",
+        "ಆಧಾರ್"
+      ],
+      "application_process_en": "Apply through respective cooperative society",
+      "application_process_kn": "ಸಂಬಂಧಿತ ಸಹಕಾರ ಸಂಘದ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sahakara.kar.gov.in",
+      "official_source_url": "https://sahakara.kar.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "farmer",
+        "cooperative_member"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be a member of a registered cooperative society in Karnataka"
+      ],
+      "status": "active",
+      "tags": [
+        "health",
+        "insurance",
+        "farmer",
+        "cooperative"
+      ],
+      "icon": "⚕️",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "₹5 ಲಕ್ಷ/ವರ್ಷ"
+    },
+    {
+      "id": "janani-suraksha",
+      "scheme_name_en": "Janani Suraksha Yojana",
+      "scheme_name_kn": "ಜನನಿ ಸುರಕ್ಷಾ",
+      "short_description_kn": "ಗರ್ಭಿಣಿಯರಿಗೆ ಹೆರಿಗೆ ಪ್ರೋತ್ಸಾಹ ಧನ",
+      "description_en": "Safe motherhood intervention scheme to reduce maternal and neonatal mortality by promoting institutional delivery.",
+      "description_kn": "ಆಸ್ಪತ್ರೆ ಹೆರಿಗೆಯನ್ನು ಉತ್ತೇಜಿಸುವ ಮೂಲಕ ತಾಯಿ ಮತ್ತು ಶಿಶು ಮರಣ ಪ್ರಮಾಣವನ್ನು ಕಡಿಮೆ ಮಾಡುವ ಯೋಜನೆ.",
+      "ministry_en": "Health and Family Welfare",
+      "ministry_kn": "ಆರೋಗ್ಯ ಮತ್ತು ಕುಟುಂಬ ಕಲ್ಯಾಣ",
+      "scheme_type": "central",
+      "benefits_en": "₹1,400 (Rural) or ₹1,000 (Urban) cash assistance for institutional delivery",
+      "benefits_kn": "ಆಸ್ಪತ್ರೆ ಹೆರಿಗೆಗೆ ₹1,400 (ಗ್ರಾಮೀಣ) ಅಥವಾ ₹1,000 (ನಗರ) ನಗದು ನೆರವು",
+      "documents_en": [
+        "MCP Card",
+        "Aadhaar",
+        "Bank Account",
+        "BPL Card"
+      ],
+      "documents_kn": [
+        "ಎಂಸಿಪಿ ಕಾರ್ಡ್",
+        "ಆಧಾರ್",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "ಬಿಪಿಎಲ್ ಕಾರ್ಡ್"
+      ],
+      "application_process_en": "Register with local ASHA worker/PHC",
+      "application_process_kn": "ಸ್ಥಳೀಯ ಆಶಾ ಕಾರ್ಯಕರ್ತೆ/ಪಿಎಚ್ಸಿ ಯಲ್ಲಿ ನೋಂದಾಯಿಸಿ",
+      "application_url": "https://nhm.gov.in",
+      "official_source_url": "https://nhm.gov.in",
+      "min_age": 19,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Applicable for BPL, SC, ST women delivering in govt or accredited private hospitals"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "health",
+        "pregnancy",
+        "financial"
+      ],
+      "icon": "🤰",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "₹1,400 (ಗ್ರಾಮೀಣ)"
+    },
+    {
+      "id": "arogya-karnataka",
+      "scheme_name_en": "Arogya Karnataka",
+      "scheme_name_kn": "ಆರೋಗ್ಯ ಕರ್ನಾಟಕ",
+      "short_description_kn": "ಎಲ್ಲರಿಗೂ ಸಾರ್ವತ್ರಿಕ ಆರೋಗ್ಯ ರಕ್ಷಣೆ",
+      "description_en": "Universal health coverage scheme to provide essential primary, secondary, and tertiary healthcare.",
+      "description_kn": "ಪ್ರಾಥಮಿಕ, ದ್ವಿತೀಯ ಮತ್ತು ತೃತೀಯ ಹಂತದ ಆರೋಗ್ಯ ಸೇವೆಯನ್ನು ಒದಗಿಸುವ ಸಾರ್ವತ್ರಿಕ ಆರೋಗ್ಯ ರಕ್ಷಣಾ ಯೋಜನೆ.",
+      "ministry_en": "Health and Family Welfare",
+      "ministry_kn": "ಆರೋಗ್ಯ ಮತ್ತು ಕುಟುಂಬ ಕಲ್ಯಾಣ",
+      "scheme_type": "state",
+      "benefits_en": "Free treatment for BPL (100%) and co-payment (30%) for APL in empanelled hospitals",
+      "benefits_kn": "ಬಿಪಿಎಲ್ಗೆ ಉಚಿತ ಚಿಕಿತ್ಸೆ (100%) ಮತ್ತು ಎಪಿಎಲ್ಗೆ ಶೇ. 30ರಷ್ಟು ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Arogya Karnataka Card / Aadhaar",
+        "Ration Card"
+      ],
+      "documents_kn": [
+        "ಆರೋಗ್ಯ ಕರ್ನಾಟಕ ಕಾರ್ಡ್ / ಆಧಾರ್",
+        "ರೇಷನ್ ಕಾರ್ಡ್"
+      ],
+      "application_process_en": "Generate ID at Govt Hospitals",
+      "application_process_kn": "ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಐಡಿ ರಚಿಸಿ",
+      "application_url": "https://arogya.karnataka.gov.in",
+      "official_source_url": "https://arogya.karnataka.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Patient must visit a Govt hospital first for referral to private hospital"
+      ],
+      "status": "active",
+      "tags": [
+        "health",
+        "insurance"
+      ],
+      "icon": "🩺",
+      "icon_bg": "#E3F2FD",
+      "color": "#1565C0",
+      "benefit_amount": "ಸಾರ್ವತ್ರಿಕ ಆರೋಗ್ಯ"
+    },
+    {
+      "id": "mgnrega",
+      "scheme_name_en": "MGNREGA",
+      "scheme_name_kn": "ಮಹಾತ್ಮ ಗಾಂಧಿ ಉದ್ಯೋಗ ಖಾತ್ರಿ (ನರೇಗಾ)",
+      "short_description_kn": "ಗ್ರಾಮೀಣ ಕುಟುಂಬಗಳಿಗೆ 100 ದಿನಗಳ ಉದ್ಯೋಗ ಖಾತ್ರಿ",
+      "description_en": "Guarantees 100 days of wage employment in a financial year to rural households.",
+      "description_kn": "ಗ್ರಾಮೀಣ ಕುಟುಂಬಗಳಿಗೆ ಒಂದು ಆರ್ಥಿಕ ವರ್ಷದಲ್ಲಿ 100 ದಿನಗಳ ವೇತನ ಸಹಿತ ಉದ್ಯೋಗವನ್ನು ಖಾತರಿಪಡಿಸುತ್ತದೆ.",
+      "ministry_en": "Rural Development",
+      "ministry_kn": "ಗ್ರಾಮೀಣ ಅಭಿವೃದ್ಧಿ",
+      "scheme_type": "central",
+      "benefits_en": "Guaranteed 100 days wage employment (₹349/day in Karnataka for FY24-25)",
+      "benefits_kn": "100 ದಿನಗಳ ಖಾತರಿ ಉದ್ಯೋಗ (ಕರ್ನಾಟಕದಲ್ಲಿ ದಿನಕ್ಕೆ ₹349)",
+      "documents_en": [
+        "Aadhaar",
+        "Bank Account Details",
+        "Photograph"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ ವಿವರಗಳು",
+        "ಭಾವಚಿತ್ರ"
+      ],
+      "application_process_en": "Apply for Job Card at Gram Panchayat",
+      "application_process_kn": "ಗ್ರಾಮ ಪಂಚಾಯತಿಯಲ್ಲಿ ಜಾಬ್ ಕಾರ್ಡ್ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://nrega.nic.in",
+      "official_source_url": "https://nrega.nic.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed",
+        "labourer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must be willing to do unskilled manual work"
+      ],
+      "status": "active",
+      "tags": [
+        "employment",
+        "rural",
+        "labour"
+      ],
+      "icon": "⛏️",
+      "icon_bg": "#EFEBE9",
+      "color": "#5D4037",
+      "benefit_amount": "100 ದಿನದ ಉದ್ಯೋಗ"
+    },
+    {
+      "id": "pmmy-mudra",
+      "scheme_name_en": "PMMY (Mudra Yojana)",
+      "scheme_name_kn": "ಪ್ರಧಾನಮಂತ್ರಿ ಮುದ್ರಾ ಯೋಜನೆ",
+      "short_description_kn": "ಕಿರು ಉದ್ಯಮಗಳಿಗೆ ₹10 ಲಕ್ಷದವರೆಗೆ ಸಾಲ",
+      "description_en": "Micro-finance scheme providing loans up to ₹10 lakhs to non-corporate, non-farm small/micro enterprises.",
+      "description_kn": "ಕಾರ್ಪೊರೇಟ್-ಅಲ್ಲದ, ಕೃಷಿಯೇತರ ಸಣ್ಣ/ಕಿರು ಉದ್ಯಮಗಳಿಗೆ ₹10 ಲಕ್ಷದವರೆಗೆ ಸಾಲ ಒದಗಿಸುವ ಮೈಕ್ರೋ-ಫೈನಾನ್ಸ್ ಯೋಜನೆ.",
+      "ministry_en": "Ministry of Finance",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "Collateral-free loans (Shishu up to 50k, Kishore up to 5L, Tarun up to 10L)",
+      "benefits_kn": "ಖಾತರಿ-ರಹಿತ ಸಾಲಗಳು (ಶಿಶು 50 ಸಾವಿರದವರೆಗೆ, ಕಿಶೋರ್ 5 ಲಕ್ಷದವರೆಗೆ, ತರುಣ್ 10 ಲಕ್ಷದವರೆಗೆ)",
+      "documents_en": [
+        "Aadhaar",
+        "Business Proof",
+        "Bank Statement"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ವ್ಯವಹಾರ ಪುರಾವೆ",
+        "ಬ್ಯಾಂಕ್ ಸ್ಟೇಟ್ಮೆಂಟ್"
+      ],
+      "application_process_en": "Apply at banks, NBFCs, or Udyamimitra portal",
+      "application_process_kn": "ಬ್ಯಾಂಕುಗಳು, ಎನ್ಬಿಎಫ್ಸಿ ಅಥವಾ ಉದ್ಯಮಿಮಿತ್ರ ಪೋರ್ಟಲ್ನಲ್ಲಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://www.udyamimitra.in",
+      "official_source_url": "https://www.mudra.org.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "business"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "business",
+        "loan",
+        "entrepreneur"
+      ],
+      "icon": "🏪",
+      "icon_bg": "#FFF8E1",
+      "color": "#FFA000",
+      "benefit_amount": "₹10 ಲಕ್ಷದವರೆಗೆ ಸಾಲ"
+    },
+    {
+      "id": "standup-india",
+      "scheme_name_en": "Stand-Up India",
+      "scheme_name_kn": "ಸ್ಟ್ಯಾಂಡ್-ಅಪ್ ಇಂಡಿಯಾ",
+      "short_description_kn": "ಮಹಿಳೆ ಮತ್ತು SC/ST ಉದ್ಯಮಿಗಳಿಗೆ ಸಾಲ",
+      "description_en": "Facilitates bank loans between ₹10 lakh and ₹1 Crore to at least one SC or ST borrower and one woman borrower per bank branch.",
+      "description_kn": "ಪ್ರತಿ ಬ್ಯಾಂಕ್ ಶಾಖೆಯಿಂದ ಕನಿಷ್ಠ ಒಬ್ಬ SC/ST ಮತ್ತು ಒಬ್ಬ ಮಹಿಳಾ ಉದ್ಯಮಿಗೆ ₹10 ಲಕ್ಷದಿಂದ ₹1 ಕೋಟಿವರೆಗೆ ಸಾಲ.",
+      "ministry_en": "Ministry of Finance",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "Loans between ₹10 Lakh and ₹1 Crore for setting up greenfield enterprises",
+      "benefits_kn": "ಹೊಸ ಉದ್ಯಮ ಸ್ಥಾಪಿಸಲು ₹10 ಲಕ್ಷದಿಂದ ₹1 ಕೋಟಿವರೆಗೆ ಸಾಲ",
+      "documents_en": [
+        "Project Report",
+        "Aadhaar",
+        "Caste Certificate",
+        "Bank Statements"
+      ],
+      "documents_kn": [
+        "ಯೋಜನಾ ವರದಿ",
+        "ಆಧಾರ್",
+        "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ಸ್ಟೇಟ್ಮೆಂಟ್ಸ್"
+      ],
+      "application_process_en": "Apply through Stand-Up India portal or Lead District Manager",
+      "application_process_kn": "ಸ್ಟ್ಯಾಂಡ್-ಅಪ್ ಇಂಡಿಯಾ ಪೋರ್ಟಲ್ ಅಥವಾ ಲೀಡ್ ಡಿಸ್ಟ್ರಿಕ್ಟ್ ಮ್ಯಾನೇಜರ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://www.standupmitra.in",
+      "official_source_url": "https://www.standupmitra.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": null,
+      "categories": [
+        "sc",
+        "st"
+      ],
+      "occupations": [
+        "business"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Enterprise must be a new greenfield project. If non-individual, 51% stake must be held by SC/ST/Women."
+      ],
+      "status": "active",
+      "tags": [
+        "business",
+        "loan",
+        "sc",
+        "st",
+        "women"
+      ],
+      "icon": "🏭",
+      "icon_bg": "#FCE4EC",
+      "color": "#C2185B",
+      "benefit_amount": "₹10L - ₹1Cr ಸಾಲ"
+    },
+    {
+      "id": "arivu-scholarship",
+      "scheme_name_en": "Arivu Education Loan Scheme",
+      "scheme_name_kn": "ಅರಿವು ವಿದ್ಯಾರ್ಥಿ ವೇತನ (ಸಾಲ)",
+      "short_description_kn": "ವೃತ್ತಿಪರ ಕೋರ್ಸ್‌ಗಳಿಗೆ ಕಡಿಮೆ ಬಡ್ಡಿಯ ಸಾಲ",
+      "description_en": "Educational loan scheme with a low interest rate (2%) for students from religious minorities pursuing professional courses.",
+      "description_kn": "ವೃತ್ತಿಪರ ಕೋರ್ಸ್ಗಳನ್ನು ವ್ಯಾಸಂಗ ಮಾಡುತ್ತಿರುವ ಧಾರ್ಮಿಕ ಅಲ್ಪಸಂಖ್ಯಾತ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಕಡಿಮೆ ಬಡ್ಡಿದರದ (ಶೇ. 2) ಶೈಕ್ಷಣಿಕ ಸಾಲ ಯೋಜನೆ.",
+      "ministry_en": "Minorities Development Corporation",
+      "ministry_kn": "ಅಲ್ಪಸಂಖ್ಯಾತರ ಅಭಿವೃದ್ಧಿ ನಿಗಮ",
+      "scheme_type": "state",
+      "benefits_en": "Education loan up to ₹3,00,000 per year at 2% interest",
+      "benefits_kn": "ಶೇ. 2ರ ಬಡ್ಡಿದರದಲ್ಲಿ ವರ್ಷಕ್ಕೆ ₹3,00,000 ವರೆಗೆ ಶೈಕ್ಷಣಿಕ ಸಾಲ",
+      "documents_en": [
+        "CET/NEET Admission Order",
+        "Aadhaar",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಸಿಇಟಿ/ನೀಟ್ ಪ್ರವೇಶ ಆದೇಶ",
+        "ಆಧಾರ್",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through KMDC portal before CET/NEET counseling",
+      "application_process_kn": "ಸಿಇಟಿ/ನೀಟ್ ಕೌನ್ಸೆಲಿಂಗ್ಗೆ ಮೊದಲು ಕೆಎಂಡಿಸಿ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://kmdc.karnataka.gov.in",
+      "official_source_url": "https://kmdc.karnataka.gov.in",
+      "min_age": 16,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": 800000,
+      "categories": [
+        "minority"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be admitted through KEA/CET/NEET"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "loan",
+        "minority"
+      ],
+      "icon": "👨‍🎓",
+      "icon_bg": "#E0F7FA",
+      "color": "#0097A7",
+      "benefit_amount": "₹3 ಲಕ್ಷ/ವರ್ಷ ಸಾಲ"
+    },
+    {
+      "id": "pmjjby",
+      "scheme_name_en": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+      "scheme_name_kn": "ಪ್ರಧಾನಮಂತ್ರಿ ಜೀವನ ಜ್ಯೋತಿ ಬೀಮಾ (PMJJBY)",
+      "short_description_kn": "₹436/ವರ್ಷಕ್ಕೆ ₹2 ಲಕ್ಷದ ಜೀವ ವಿಮೆ",
+      "description_en": "Life insurance scheme offering ₹2 lakh life cover for death due to any reason, at an annual premium of ₹436.",
+      "description_kn": "ಯಾವುದೇ ಕಾರಣದಿಂದ ಸಾವು ಸಂಭವಿಸಿದರೆ ₹2 ಲಕ್ಷದ ಜೀವ ವಿಮಾ ರಕ್ಷಣೆಯನ್ನು ನೀಡುವ ಯೋಜನೆ (ವಾರ್ಷಿಕ ಪ್ರೀಮಿಯಂ ₹436).",
+      "ministry_en": "Ministry of Finance",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "₹2,00,000 life insurance cover",
+      "benefits_kn": "₹2,00,000 ಜೀವ ವಿಮಾ ರಕ್ಷಣೆ",
+      "documents_en": [
+        "Bank Account",
+        "Aadhaar",
+        "Consent Form for Auto-debit"
+      ],
+      "documents_kn": [
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "ಆಧಾರ್",
+        "ಆಟೋ-ಡೆಬಿಟ್ ಸಮ್ಮತಿ ಪತ್ರ"
+      ],
+      "application_process_en": "Enroll at your bank or post office",
+      "application_process_kn": "ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಅಥವಾ ಅಂಚೆ ಕಚೇರಿಯಲ್ಲಿ ನೋಂದಾಯಿಸಿ",
+      "application_url": "https://jansuraksha.gov.in",
+      "official_source_url": "https://jansuraksha.gov.in",
+      "min_age": 18,
+      "max_age": 50,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Requires an active savings bank account"
+      ],
+      "status": "active",
+      "tags": [
+        "insurance",
+        "life",
+        "financial"
+      ],
+      "icon": "🛡️",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "₹2 ಲಕ್ಷ ವಿಮೆ"
+    },
+    {
+      "id": "pmsby",
+      "scheme_name_en": "Pradhan Mantri Suraksha Bima Yojana",
+      "scheme_name_kn": "ಪ್ರಧಾನಮಂತ್ರಿ ಸುರಕ್ಷಾ ಬೀಮಾ (PMSBY)",
+      "short_description_kn": "₹20/ವರ್ಷಕ್ಕೆ ₹2 ಲಕ್ಷದ ಅಪಘಾತ ವಿಮೆ",
+      "description_en": "Accident insurance scheme offering ₹2 lakh cover for accidental death or total disability, at just ₹20 per year.",
+      "description_kn": "ಕೇವಲ ₹20 ವಾರ್ಷಿಕ ಪ್ರೀಮಿಯಂನಲ್ಲಿ ಆಕಸ್ಮಿಕ ಸಾವು ಅಥವಾ ಸಂಪೂರ್ಣ ಅಂಗವೈಕಲ್ಯಕ್ಕೆ ₹2 ಲಕ್ಷದ ವಿಮಾ ರಕ್ಷಣೆ.",
+      "ministry_en": "Ministry of Finance",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "₹2,00,000 for accidental death/total disability, ₹1,00,000 for partial disability",
+      "benefits_kn": "ಆಕಸ್ಮಿಕ ಸಾವು/ಸಂಪೂರ್ಣ ಅಂಗವೈಕಲ್ಯಕ್ಕೆ ₹2 ಲಕ್ಷ, ಭಾಗಶಃ ಅಂಗವೈಕಲ್ಯಕ್ಕೆ ₹1 ಲಕ್ಷ",
+      "documents_en": [
+        "Bank Account",
+        "Aadhaar",
+        "Consent Form for Auto-debit"
+      ],
+      "documents_kn": [
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "ಆಧಾರ್",
+        "ಆಟೋ-ಡೆಬಿಟ್ ಸಮ್ಮತಿ ಪತ್ರ"
+      ],
+      "application_process_en": "Enroll at your bank or post office",
+      "application_process_kn": "ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಅಥವಾ ಅಂಚೆ ಕಚೇರಿಯಲ್ಲಿ ನೋಂದಾಯಿಸಿ",
+      "application_url": "https://jansuraksha.gov.in",
+      "official_source_url": "https://jansuraksha.gov.in",
+      "min_age": 18,
+      "max_age": 70,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Requires an active savings bank account"
+      ],
+      "status": "active",
+      "tags": [
+        "insurance",
+        "accident",
+        "financial"
+      ],
+      "icon": "🏥",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "₹2 ಲಕ್ಷ ವಿಮೆ"
+    },
+    {
+      "id": "apy",
+      "scheme_name_en": "Atal Pension Yojana (APY)",
+      "scheme_name_kn": "ಅಟಲ್ ಪಿಂಚಣಿ ಯೋಜನೆ (APY)",
+      "short_description_kn": "ಅಸಂಘಟಿತ ವಲಯದ ಕಾರ್ಮಿಕರಿಗೆ ನಿಶ್ಚಿತ ಪಿಂಚಣಿ",
+      "description_en": "Guaranteed minimum pension of ₹1,000 to ₹5,000 per month from the age of 60 years.",
+      "description_kn": "60 ನೇ ವಯಸ್ಸಿನ ನಂತರ ಮಾಸಿಕ ₹1,000 ರಿಂದ ₹5,000 ವರೆಗೆ ಕನಿಷ್ಠ ಖಾತರಿ ಪಿಂಚಣಿ.",
+      "ministry_en": "Ministry of Finance (PFRDA)",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ (PFRDA)",
+      "scheme_type": "central",
+      "benefits_en": "Pension of ₹1,000 to ₹5,000/month after age 60 based on contribution",
+      "benefits_kn": "ಯೋಗದಾನದ ಆಧಾರದ ಮೇಲೆ 60ನೇ ವಯಸ್ಸಿನ ನಂತರ ₹1,000 ರಿಂದ ₹5,000/ತಿಂಗಳು ಪಿಂಚಣಿ",
+      "documents_en": [
+        "Bank Account",
+        "Aadhaar"
+      ],
+      "documents_kn": [
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "ಆಧಾರ್"
+      ],
+      "application_process_en": "Subscribe through your bank branch",
+      "application_process_kn": "ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಶಾಖೆಯ ಮೂಲಕ ಚಂದಾದಾರರಾಗಿ",
+      "application_url": "https://npscra.nsdl.co.in/nsdl/scheme-details/APY_Scheme_Details.pdf",
+      "official_source_url": "https://npscra.nsdl.co.in/nsdl/scheme-details/APY_Scheme_Details.pdf",
+      "min_age": 18,
+      "max_age": 40,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all",
+        "labourer"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Not be an income tax payer"
+      ],
+      "status": "active",
+      "tags": [
+        "pension",
+        "financial",
+        "labour"
+      ],
+      "icon": "💸",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "₹1,000-₹5,000 ಪಿಂಚಣಿ"
+    },
+    {
+      "id": "sukanya-samruddhi",
+      "scheme_name_en": "Sukanya Samriddhi Yojana",
+      "scheme_name_kn": "ಸುಕನ್ಯಾ ಸಮೃದ್ಧಿ ಯೋಜನೆ",
+      "short_description_kn": "ಹೆಣ್ಣು ಮಕ್ಕಳ ಭವಿಷ್ಯಕ್ಕಾಗಿ ಉಳಿತಾಯ ಯೋಜನೆ",
+      "description_en": "Small savings scheme for a girl child to build a fund for her education and marriage expenses.",
+      "description_kn": "ಹೆಣ್ಣು ಮಗುವಿನ ಶಿಕ್ಷಣ ಮತ್ತು ವಿವಾಹದ ವೆಚ್ಚಗಳಿಗಾಗಿ ನಿಧಿ ನಿರ್ಮಿಸುವ ಸಣ್ಣ ಉಳಿತಾಯ ಯೋಜನೆ (ಹೆಚ್ಚಿನ ಬಡ್ಡಿದರ).",
+      "ministry_en": "Ministry of Finance / India Post",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ / ಇಂಡಿಯಾ ಪೋಸ್ಟ್",
+      "scheme_type": "central",
+      "benefits_en": "High interest rate savings with tax benefits (8.2% currently)",
+      "benefits_kn": "ತೆರಿಗೆ ಪ್ರಯೋಜನಗಳೊಂದಿಗೆ ಹೆಚ್ಚಿನ ಬಡ್ಡಿದರದ ಉಳಿತಾಯ",
+      "documents_en": [
+        "Child's Birth Certificate",
+        "Parent's Aadhaar",
+        "Parent's PAN"
+      ],
+      "documents_kn": [
+        "ಮಗುವಿನ ಜನನ ಪ್ರಮಾಣಪತ್ರ",
+        "ಪೋಷಕರ ಆಧಾರ್",
+        "ಪೋಷಕರ ಪ್ಯಾನ್"
+      ],
+      "application_process_en": "Open account at Post Office or authorized Banks",
+      "application_process_kn": "ಅಂಚೆ ಕಚೇರಿ ಅಥವಾ ಅಧಿಕೃತ ಬ್ಯಾಂಕುಗಳಲ್ಲಿ ಖಾತೆ ತೆರೆಯಿರಿ",
+      "application_url": "https://www.indiapost.gov.in",
+      "official_source_url": "https://www.indiapost.gov.in",
+      "min_age": 0,
+      "max_age": 10,
+      "gender": [
+        "female"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Maximum 2 girl children per family"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "child",
+        "savings",
+        "financial"
+      ],
+      "icon": "👧",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "ಹೆಚ್ಚಿನ ಬಡ್ಡಿ"
+    },
+    {
+      "id": "rajiv-gandhi-rural-housing",
+      "scheme_name_en": "Rajiv Gandhi Rural Housing",
+      "scheme_name_kn": "ರಾಜೀವ್ ಗಾಂಧಿ ಗ್ರಾಮೀಣ ವಸತಿ",
+      "short_description_kn": "ಗ್ರಾಮೀಣ ಬಡವರಿಗೆ ವಸತಿ ಯೋಜನೆ",
+      "description_en": "Rural housing scheme providing financial assistance of ₹1.2 - 2.5 Lakh to the poor.",
+      "description_kn": "ಬಡವರಿಗೆ ₹1.2 ರಿಂದ 2.5 ಲಕ್ಷದವರೆಗೆ ಆರ್ಥಿಕ ನೆರವು ನೀಡುವ ಗ್ರಾಮೀಣ ವಸತಿ ಯೋಜನೆ.",
+      "ministry_en": "Rajiv Gandhi Housing Corporation",
+      "ministry_kn": "ರಾಜೀವ್ ಗಾಂಧಿ ವಸತಿ ನಿಗಮ",
+      "scheme_type": "state",
+      "benefits_en": "Housing subsidy of ₹1.2 to 2.5 Lakh",
+      "benefits_kn": "₹1.2 ರಿಂದ 2.5 ಲಕ್ಷದವರೆಗೆ ವಸತಿ ಸಬ್ಸಿಡಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Income Certificate",
+        "Site Document"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ನಿವೇಶನದ ದಾಖಲೆ"
+      ],
+      "application_process_en": "Apply through Gram Panchayat",
+      "application_process_kn": "ಗ್ರಾಮ ಪಂಚಾಯತಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ashraya.karnataka.gov.in",
+      "official_source_url": "https://ashraya.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 32000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must own a site and not own a pucca house"
+      ],
+      "status": "active",
+      "tags": [
+        "housing",
+        "rural",
+        "subsidy"
+      ],
+      "icon": "🏡",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "₹1.2 - 2.5 ಲಕ್ಷ"
+    },
+    {
+      "id": "sgsy-nrlm",
+      "scheme_name_en": "SGSY / NRLM",
+      "scheme_name_kn": "ಸ್ವರ್ಣಜಯಂತಿ ಗ್ರಾಮ ಸ್ವರೋಜ್ಗಾರ",
+      "short_description_kn": "ಗ್ರಾಮೀಣ ಜೀವನೋಪಾಯ ಅಭಿವೃದ್ಧಿ",
+      "description_en": "National Rural Livelihood Mission to promote self-employment and organization of rural poor.",
+      "description_kn": "ಗ್ರಾಮೀಣ ಬಡವರ ಸ್ವಯಂ-ಉದ್ಯೋಗ ಮತ್ತು ಸಂಘಟನೆಯನ್ನು ಉತ್ತೇಜಿಸುವ ರಾಷ್ಟ್ರೀಯ ಗ್ರಾಮೀಣ ಜೀವನೋಪಾಯ ಮಿಷನ್.",
+      "ministry_en": "Rural Development",
+      "ministry_kn": "ಗ್ರಾಮೀಣ ಅಭಿವೃದ್ಧಿ",
+      "scheme_type": "central_state",
+      "benefits_en": "Revolving funds, bank linkages, and skill training for SHGs",
+      "benefits_kn": "ಎಸ್ಎಚ್ಜಿಗಳಿಗೆ ಸುತ್ತು ನಿಧಿ, ಬ್ಯಾಂಕ್ ಸಾಲ ಮತ್ತು ಕೌಶಲ್ಯ ತರಬೇತಿ",
+      "documents_en": [
+        "Aadhaar",
+        "BPL/Income Certificate",
+        "SHG Registration"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಬಿಪಿಎಲ್/ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಎಸ್ಎಚ್ಜಿ ನೋಂದಣಿ"
+      ],
+      "application_process_en": "Contact Gram Panchayat or local SRLM office",
+      "application_process_kn": "ಗ್ರಾಮ ಪಂಚಾಯತಿ ಅಥವಾ ಸ್ಥಳೀಯ ಎಸ್ಆರ್ಎಲ್ಎಂ ಕಚೇರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ",
+      "application_url": "https://nrlm.gov.in",
+      "official_source_url": "https://nrlm.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed",
+        "labourer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must be part of an SHG"
+      ],
+      "status": "active",
+      "tags": [
+        "employment",
+        "rural",
+        "shg",
+        "business"
+      ],
+      "icon": "🤝",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "ನಿಧಿ/ತರಬೇತಿ"
+    },
+    {
+      "id": "kalyana-lakshmi",
+      "scheme_name_en": "Kalyana Lakshmi / Shaadi Bhagya",
+      "scheme_name_kn": "ಕಲ್ಯಾಣ ಲಕ್ಷ್ಮಿ / ಶಾದಿ ಭಾಗ್ಯ",
+      "short_description_kn": "ಹೆಣ್ಣುಮಕ್ಕಳ ವಿವಾಹಕ್ಕೆ ₹50,000 ಆರ್ಥಿಕ ನೆರವು",
+      "description_en": "Financial assistance of ₹50,000 for the marriage of girls from BPL families belonging to SC, ST, and Minority communities.",
+      "description_kn": "ಎಸ್ಸಿ, ಎಸ್ಟಿ ಮತ್ತು ಅಲ್ಪಸಂಖ್ಯಾತ ಸಮುದಾಯಗಳ ಬಿಪಿಎಲ್ ಕುಟುಂಬಗಳ ಹೆಣ್ಣುಮಕ್ಕಳ ವಿವಾಹಕ್ಕೆ ₹50,000 ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Minority / SC-ST Welfare Departments",
+      "ministry_kn": "ಅಲ್ಪಸಂಖ್ಯಾತ / ಎಸ್ಸಿ-ಎಸ್ಟಿ ಕಲ್ಯಾಣ ಇಲಾಖೆಗಳು",
+      "scheme_type": "state",
+      "benefits_en": "One-time financial assistance of ₹50,000",
+      "benefits_kn": "ಒಂದು ಬಾರಿಯ ಆರ್ಥಿಕ ನೆರವು ₹50,000",
+      "documents_en": [
+        "Aadhaar",
+        "BPL Card",
+        "Marriage Registration Certificate",
+        "Age Proof (Girl > 18, Boy > 21)"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಬಿಪಿಎಲ್ ಕಾರ್ಡ್",
+        "ವಿವಾಹ ನೋಂದಣಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ವಯಸ್ಸಿನ ಪುರಾವೆ"
+      ],
+      "application_process_en": "Apply through relevant welfare department online portal",
+      "application_process_kn": "ಸಂಬಂಧಿತ ಕಲ್ಯಾಣ ಇಲಾಖೆಯ ಆನ್‌ಲೈನ್ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://gokdom.kar.nic.in",
+      "official_source_url": "https://gokdom.kar.nic.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "sc",
+        "st",
+        "minority"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Bride must be 18+ and Groom must be 21+"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "marriage",
+        "sc",
+        "st",
+        "minority"
+      ],
+      "icon": "💍",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "₹50,000 ನೆರವು"
+    },
+    {
+      "id": "dr-ambedkar-overseas",
+      "scheme_name_en": "Dr. Ambedkar Overseas Scholarship",
+      "scheme_name_kn": "ಡಾ. ಅಂಬೇಡ್ಕರ್ ಸ್ಕಾಲರ್‌ಶಿಪ್ (ವಿದೇಶಿ ವ್ಯಾಸಂಗ)",
+      "short_description_kn": "ವಿದೇಶದಲ್ಲಿ ಉನ್ನತ ವ್ಯಾಸಂಗಕ್ಕಾಗಿ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "description_en": "Financial assistance to SC/ST students for pursuing Master's level courses and Ph.D abroad.",
+      "description_kn": "ಎಸ್ಸಿ/ಎಸ್ಟಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದೇಶದಲ್ಲಿ ಸ್ನಾತಕೋತ್ತರ ಮತ್ತು ಪಿಎಚ್.ಡಿ ವ್ಯಾಸಂಗ ಮಾಡಲು ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Social Welfare Department",
+      "ministry_kn": "ಸಮಾಜ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Financial assistance covering tuition fee and living expenses up to specified limits",
+      "benefits_kn": "ಶುಲ್ಕ ಮತ್ತು ಜೀವನ ವೆಚ್ಚವನ್ನು ಒಳಗೊಂಡ ಆರ್ಥಿಕ ನೆರವು",
+      "documents_en": [
+        "Aadhaar",
+        "Caste Certificate",
+        "University Admission Letter",
+        "Passport/Visa"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ವಿಶ್ವವಿದ್ಯಾಲಯದ ಪ್ರವೇಶ ಪತ್ರ",
+        "ಪಾಸ್ಪೋರ್ಟ್/ವೀಸಾ"
+      ],
+      "application_process_en": "Apply through Social Welfare Department portal",
+      "application_process_kn": "ಸಮಾಜ ಕಲ್ಯಾಣ ಇಲಾಖೆಯ ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sw.kar.nic.in",
+      "official_source_url": "https://sw.kar.nic.in",
+      "min_age": 20,
+      "max_age": 35,
+      "gender": [
+        "all"
+      ],
+      "income_max": 800000,
+      "categories": [
+        "sc",
+        "st"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must have unconditional admission from recognized foreign university"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "sc",
+        "st",
+        "overseas"
+      ],
+      "icon": "✈️",
+      "icon_bg": "#E0F7FA",
+      "color": "#0097A7",
+      "benefit_amount": "ಸಂಪೂರ್ಣ ವೆಚ್ಚ"
+    },
+    {
+      "id": "aam-aadmi-bima",
+      "scheme_name_en": "Aam Aadmi Bima Yojana",
+      "scheme_name_kn": "ಆಮ್ ಆದ್ಮಿ ಬೀಮಾ ಯೋಜನೆ",
+      "short_description_kn": "ಭೂಮಿ-ರಹಿತ ಕಾರ್ಮಿಕರಿಗೆ ಜೀವ ವಿಮೆ",
+      "description_en": "Social security scheme providing life insurance for landless rural households and unorganized sector workers.",
+      "description_kn": "ಭೂಮಿ-ರಹಿತ ಗ್ರಾಮೀಣ ಕುಟುಂಬಗಳು ಮತ್ತು ಅಸಂಘಟಿತ ವಲಯದ ಕಾರ್ಮಿಕರಿಗೆ ಜೀವ ವಿಮೆ ಒದಗಿಸುವ ಸಾಮಾಜಿಕ ಭದ್ರತಾ ಯೋಜನೆ.",
+      "ministry_en": "Ministry of Finance / LIC",
+      "ministry_kn": "ಹಣಕಾಸು ಸಚಿವಾಲಯ / ಎಲ್ಐಸಿ",
+      "scheme_type": "central_state",
+      "benefits_en": "Life insurance cover of ₹30,000 for natural death, ₹75,000 for accidental death",
+      "benefits_kn": "ನೈಸರ್ಗಿಕ ಸಾವಿಗೆ ₹30,000, ಆಕಸ್ಮಿಕ ಸಾವಿಗೆ ₹75,000 ಜೀವ ವಿಮೆ",
+      "documents_en": [
+        "Aadhaar",
+        "Ration Card",
+        "Nominee Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ರೇಷನ್ ಕಾರ್ಡ್",
+        "ನಾಮಿನಿ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through nodal agencies / LIC",
+      "application_process_kn": "ನೋಡಲ್ ಏಜೆನ್ಸಿಗಳು / ಎಲ್ಐಸಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://licindia.in",
+      "official_source_url": "https://licindia.in",
+      "min_age": 18,
+      "max_age": 59,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "labourer",
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must belong to identified vocational groups or landless rural households"
+      ],
+      "status": "active",
+      "tags": [
+        "insurance",
+        "labour",
+        "rural"
+      ],
+      "icon": "🛡️",
+      "icon_bg": "#FFF3E0",
+      "color": "#E65100",
+      "benefit_amount": "₹30,000 - 75,000 ವಿಮೆ"
+    },
+    {
+      "id": "raita-vidyanidhi",
+      "scheme_name_en": "Raita Vidyanidhi",
+      "scheme_name_kn": "ರೈತ ವಿದ್ಯಾನಿಧಿ",
+      "short_description_kn": "ರೈತರ ಮಕ್ಕಳಿಗೆ ವಿದ್ಯಾರ್ಥಿ ವೇತನ",
+      "description_en": "Scholarship scheme for the children of farmers to encourage higher education.",
+      "description_kn": "ಉನ್ನತ ಶಿಕ್ಷಣವನ್ನು ಪ್ರೋತ್ಸಾಹಿಸಲು ರೈತರ ಮಕ್ಕಳಿಗೆ ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಯೋಜನೆ.",
+      "ministry_en": "Agriculture Department",
+      "ministry_kn": "ಕೃಷಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Annual scholarship from ₹2,000 to ₹11,000 based on the course",
+      "benefits_kn": "ಕೋರ್ಸ್ ಆಧಾರದ ಮೇಲೆ ₹2,000 ರಿಂದ ₹11,000 ವರೆಗೆ ವಾರ್ಷಿಕ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "documents_en": [
+        "Aadhaar",
+        "RTC (Pahani)",
+        "Marks Card",
+        "College Admission Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಆರ್ಟಿಸಿ (ಪಹಣಿ)",
+        "ಅಂಕಪಟ್ಟಿ",
+        "ಕಾಲೇಜು ಪ್ರವೇಶದ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through State Scholarship Portal (SSP)",
+      "application_process_kn": "ರಾಜ್ಯ ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಪೋರ್ಟಲ್ (SSP) ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ssp.postmatric.karnataka.gov.in",
+      "official_source_url": "https://raitamitra.karnataka.gov.in",
+      "min_age": 15,
+      "max_age": 30,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Parents must be registered farmers with valid RTC"
+      ],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "farmer",
+        "scholarship"
+      ],
+      "icon": "🎓",
+      "icon_bg": "#E8F5E9",
+      "color": "#2E7D32",
+      "benefit_amount": "₹2,000 - ₹11,000"
+    },
+    {
+      "id": "ganga-kalyana",
+      "scheme_name_en": "Ganga Kalyana",
+      "scheme_name_kn": "ಗಂಗಾ ಕಲ್ಯಾಣ",
+      "short_description_kn": "ಉಚಿತ ಬೋರ್‌ವೆಲ್ ಕೊರೆಯುವ ಯೋಜನೆ",
+      "description_en": "Free borewell drilling and pump set installation for small/marginal farmers from SC, ST, and minority communities.",
+      "description_kn": "ಎಸ್ಸಿ, ಎಸ್ಟಿ ಮತ್ತು ಅಲ್ಪಸಂಖ್ಯಾತ ಸಮುದಾಯದ ಸಣ್ಣ/ಅತಿಸಣ್ಣ ರೈತರಿಗೆ ಉಚಿತ ಬೋರ್ವೆಲ್ ಕೊರೆಯುವ ಮತ್ತು ಪಂಪ್ಸೆಟ್ ಅಳವಡಿಸುವ ಯೋಜನೆ.",
+      "ministry_en": "Social Welfare / Minority Welfare",
+      "ministry_kn": "ಸಮಾಜ ಕಲ್ಯಾಣ / ಅಲ್ಪಸಂಖ್ಯಾತರ ಕಲ್ಯಾಣ",
+      "scheme_type": "state",
+      "benefits_en": "Borewell drilling, pump set, and electrification up to ₹3.5 Lakhs",
+      "benefits_kn": "ಬೋರ್ವೆಲ್, ಪಂಪ್ಸೆಟ್ ಮತ್ತು ವಿದ್ಯುದೀಕರಣ - ₹3.5 ಲಕ್ಷದವರೆಗೆ",
+      "documents_en": [
+        "Aadhaar",
+        "Caste Certificate",
+        "RTC (Pahani)",
+        "Small Farmer Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆರ್ಟಿಸಿ (ಪಹಣಿ)",
+        "ಸಣ್ಣ ರೈತ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through respective corporation portals (KDDC, KMDC, etc.)",
+      "application_process_kn": "ಸಂಬಂಧಿತ ನಿಗಮಗಳ ಪೋರ್ಟಲ್ಗಳ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://kmdc.karnataka.gov.in",
+      "official_source_url": "https://sw.kar.nic.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 120000,
+      "categories": [
+        "sc",
+        "st",
+        "minority"
+      ],
+      "occupations": [
+        "farmer"
+      ],
+      "residence_type": "rural",
+      "special_criteria": [
+        "Must own 1.2 to 5 acres of dry land with no irrigation facility"
+      ],
+      "status": "active",
+      "tags": [
+        "farmer",
+        "agriculture",
+        "sc",
+        "st",
+        "minority",
+        "subsidy"
+      ],
+      "icon": "🚰",
+      "icon_bg": "#E0F7FA",
+      "color": "#0097A7",
+      "benefit_amount": "ಉಚಿತ ಬೋರ್‌ವೆಲ್"
+    },
+    {
+      "id": "vidhava-pension",
+      "scheme_name_en": "Vidhava Pension",
+      "scheme_name_kn": "ವಿಧವಾ ಪಿಂಚಣಿ",
+      "short_description_kn": "ವಿಧವೆಯರಿಗೆ ಮಾಸಿಕ ಪಿಂಚಣಿ",
+      "description_en": "Monthly financial assistance for widows.",
+      "description_kn": "ವಿಧವೆಯರಿಗೆ ಮಾಸಿಕ ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹800 per month",
+      "benefits_kn": "ಪ್ರತಿ ತಿಂಗಳು ₹800",
+      "documents_en": [
+        "Aadhaar",
+        "Husband's Death Certificate",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಪತಿಯ ಮರಣ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Nada Kacheri",
+      "application_process_kn": "ನಾಡ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://nadakacheri.karnataka.gov.in",
+      "official_source_url": "https://nadakacheri.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": 20000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "unemployed"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "women",
+        "pension",
+        "financial"
+      ],
+      "icon": "🌸",
+      "icon_bg": "#FCE4EC",
+      "color": "#D81B60",
+      "benefit_amount": "₹800/ತಿಂಗಳು"
+    },
+    {
+      "id": "maitri-pension",
+      "scheme_name_en": "Maitri Pension",
+      "scheme_name_kn": "ಮೈತ್ರಿ ಪಿಂಚಣಿ / ಅಂಗವಿಕಲ ಪಿಂಚಣಿ",
+      "short_description_kn": "ವಿಕಲಚೇತನರಿಗೆ ಮಾಸಿಕ ಪಿಂಚಣಿ",
+      "description_en": "Monthly pension scheme for persons with disabilities.",
+      "description_kn": "ವಿಕಲಚೇತನರಿಗೆ ಮಾಸಿಕ ಪಿಂಚಣಿ ಯೋಜನೆ.",
+      "ministry_en": "Revenue Department",
+      "ministry_kn": "ಕಂದಾಯ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹1,400 to ₹3,000 per month based on disability percentage",
+      "benefits_kn": "ಅಂಗವೈಕಲ್ಯದ ಶೇಕಡಾವಾರು ಆಧಾರದ ಮೇಲೆ ತಿಂಗಳಿಗೆ ₹1,400 ರಿಂದ ₹3,000",
+      "documents_en": [
+        "Aadhaar",
+        "Disability Certificate (UDID)",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಅಂಗವೈಕಲ್ಯ ಪ್ರಮಾಣಪತ್ರ (UDID)",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Nada Kacheri",
+      "application_process_kn": "ನಾಡ ಕಚೇರಿ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://nadakacheri.karnataka.gov.in",
+      "official_source_url": "https://nadakacheri.karnataka.gov.in",
+      "min_age": 0,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 32000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Minimum 40% disability required"
+      ],
+      "status": "active",
+      "tags": [
+        "disabled",
+        "pension",
+        "financial"
+      ],
+      "icon": "♿",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "₹1,400-₹3,000/ತಿಂಗಳು"
+    },
+    {
+      "id": "scst-post-matric",
+      "scheme_name_en": "SC/ST Post-Matric Scholarship",
+      "scheme_name_kn": "SC/ST ವಿದ್ಯಾರ್ಥಿ ವೇತನ",
+      "short_description_kn": "ಪರಿಶಿಷ್ಟ ಜಾತಿ/ಪರಿಶಿಷ್ಟ ಪಂಗಡದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸ್ಕಾಲರ್‌ಶಿಪ್",
+      "description_en": "Financial assistance to SC and ST students studying at post-matriculation or post-secondary stage.",
+      "description_kn": "ಮೆಟ್ರಿಕ್ ನಂತರದ ಅಥವಾ ಪೋಸ್ಟ್-ಸೆಕೆಂಡರಿ ಹಂತದಲ್ಲಿ ಓದುತ್ತಿರುವ ಎಸ್ಸಿ ಮತ್ತು ಎಸ್ಟಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Social Welfare Department",
+      "ministry_kn": "ಸಮಾಜ ಕಲ್ಯಾಣ ಇಲಾಖೆ",
+      "scheme_type": "central_state",
+      "benefits_en": "Maintenance allowance, fee reimbursement",
+      "benefits_kn": "ನಿರ್ವಹಣಾ ಭತ್ಯೆ, ಶುಲ್ಕ ಮರುಪಾವತಿ",
+      "documents_en": [
+        "Aadhaar",
+        "Caste Certificate",
+        "Income Certificate",
+        "Marks Card"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+        "ಅಂಕಪಟ್ಟಿ"
+      ],
+      "application_process_en": "Apply through SSP",
+      "application_process_kn": "SSP ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://ssp.postmatric.karnataka.gov.in",
+      "official_source_url": "https://sw.kar.nic.in",
+      "min_age": 15,
+      "max_age": 35,
+      "gender": [
+        "all"
+      ],
+      "income_max": 250000,
+      "categories": [
+        "sc",
+        "st"
+      ],
+      "occupations": [
+        "student"
+      ],
+      "residence_type": "any",
+      "special_criteria": [],
+      "status": "active",
+      "tags": [
+        "student",
+        "education",
+        "sc",
+        "st",
+        "scholarship"
+      ],
+      "icon": "🎒",
+      "icon_bg": "#F3E5F5",
+      "color": "#8E24AA",
+      "benefit_amount": "ಶುಲ್ಕ ಪಾವತಿ"
+    },
+    {
+      "id": "matru-vandana",
+      "scheme_name_en": "Pradhan Mantri Matru Vandana Yojana",
+      "scheme_name_kn": "ಮಾತೃ ವಂದನಾ (PMMVY)",
+      "short_description_kn": "ಗರ್ಭಿಣಿಯರಿಗೆ ಮೊದಲ ಮಗುವಿಗೆ ₹5,000 ನೆರವು",
+      "description_en": "Maternity benefit program providing ₹5,000 in three installments for the first live birth.",
+      "description_kn": "ಮೊದಲ ಜೀವಂತ ಜನನಕ್ಕೆ ಮೂರು ಕಂತುಗಳಲ್ಲಿ ₹5,000 ಒದಗಿಸುವ ಮಾತೃತ್ವ ಲಾಭ ಕಾರ್ಯಕ್ರಮ.",
+      "ministry_en": "Ministry of Women and Child Development",
+      "ministry_kn": "ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಸಚಿವಾಲಯ",
+      "scheme_type": "central",
+      "benefits_en": "₹5,000 cash incentive",
+      "benefits_kn": "₹5,000 ನಗದು ಪ್ರೋತ್ಸಾಹ",
+      "documents_en": [
+        "Aadhaar",
+        "MCP Card",
+        "Bank Account Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಎಂಸಿಪಿ ಕಾರ್ಡ್",
+        "ಬ್ಯಾಂಕ್ ಖಾತೆ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through Anganwadi Center / ASHA worker",
+      "application_process_kn": "ಅಂಗನವಾಡಿ ಕೇಂದ್ರ / ಆಶಾ ಕಾರ್ಯಕರ್ತೆ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://pmmvy.nic.in",
+      "official_source_url": "https://pmmvy.nic.in",
+      "min_age": 19,
+      "max_age": null,
+      "gender": [
+        "female"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "For first live birth only"
+      ],
+      "status": "active",
+      "tags": [
+        "women",
+        "health",
+        "pregnancy",
+        "financial"
+      ],
+      "icon": "🤱",
+      "icon_bg": "#FCE4EC",
+      "color": "#C2185B",
+      "benefit_amount": "₹5,000"
+    },
+    {
+      "id": "nekara-samman",
+      "scheme_name_en": "Nekara Samman Yojana",
+      "scheme_name_kn": "ನೇಕಾರ ಸಮ್ಮಾನ್",
+      "short_description_kn": "ಕೈಮಗ್ಗ ನೇಕಾರರಿಗೆ ವಾರ್ಷಿಕ ₹5,000 ನೆರವು",
+      "description_en": "Financial assistance of ₹5,000 per year for handloom and powerloom weavers.",
+      "description_kn": "ಕೈಮಗ್ಗ ಮತ್ತು ವಿದ್ಯುತ್ ಮಗ್ಗ ನೇಕಾರರಿಗೆ ವರ್ಷಕ್ಕೆ ₹5,000 ಆರ್ಥಿಕ ನೆರವು.",
+      "ministry_en": "Department of Handlooms and Textiles",
+      "ministry_kn": "ಕೈಮಗ್ಗ ಮತ್ತು ಜವಳಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹5,000 per year transferred directly to bank account",
+      "benefits_kn": "ವರ್ಷಕ್ಕೆ ₹5,000 ನೇರವಾಗಿ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಜಮೆ",
+      "documents_en": [
+        "Aadhaar",
+        "Weaver ID Card / Certificate",
+        "Bank Details"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ನೇಕಾರರ ಗುರುತಿನ ಚೀಟಿ / ಪ್ರಮಾಣಪತ್ರ",
+        "ಬ್ಯಾಂಕ್ ವಿವರಗಳು"
+      ],
+      "application_process_en": "Apply through Seva Sindhu portal",
+      "application_process_kn": "ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://sevasindhu.karnataka.gov.in",
+      "official_source_url": "https://karnatakaindustry.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "weaver"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be a registered weaver"
+      ],
+      "status": "active",
+      "tags": [
+        "weaver",
+        "financial",
+        "employment"
+      ],
+      "icon": "🧵",
+      "icon_bg": "#EFEBE9",
+      "color": "#5D4037",
+      "benefit_amount": "₹5,000/ವರ್ಷ"
+    },
+    {
+      "id": "matsya-ashraya",
+      "scheme_name_en": "Matsya Ashraya",
+      "scheme_name_kn": "ಮತ್ಸ್ಯ ಆಶ್ರಯ",
+      "short_description_kn": "ಮೀನುಗಾರರಿಗೆ ವಸತಿ ಸಹಾಯಧನ",
+      "description_en": "Housing subsidy for houseless fishermen to build safe houses.",
+      "description_kn": "ವಸತಿ ರಹಿತ ಮೀನುಗಾರರಿಗೆ ಸುರಕ್ಷಿತ ಮನೆಗಳನ್ನು ನಿರ್ಮಿಸಲು ವಸತಿ ಸಹಾಯಧನ.",
+      "ministry_en": "Fisheries Department",
+      "ministry_kn": "ಮೀನುಗಾರಿಕಾ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "₹1.2 Lakh subsidy for house construction",
+      "benefits_kn": "ಮನೆ ನಿರ್ಮಾಣಕ್ಕೆ ₹1.2 ಲಕ್ಷ ಸಹಾಯಧನ",
+      "documents_en": [
+        "Aadhaar",
+        "Fisherman ID",
+        "Site Document",
+        "Income Certificate"
+      ],
+      "documents_kn": [
+        "ಆಧಾರ್",
+        "ಮೀನುಗಾರರ ಗುರುತಿನ ಚೀಟಿ",
+        "ನಿವೇಶನದ ದಾಖಲೆ",
+        "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ"
+      ],
+      "application_process_en": "Apply through Fisheries Department",
+      "application_process_kn": "ಮೀನುಗಾರಿಕಾ ಇಲಾಖೆ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "application_url": "https://fisheries.karnataka.gov.in",
+      "official_source_url": "https://fisheries.karnataka.gov.in",
+      "min_age": 18,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": 32000,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "fisherman"
+      ],
+      "residence_type": "any",
+      "special_criteria": [
+        "Must be a registered active fisherman"
+      ],
+      "status": "active",
+      "tags": [
+        "fisherman",
+        "housing",
+        "subsidy"
+      ],
+      "icon": "🐟",
+      "icon_bg": "#E3F2FD",
+      "color": "#1565C0",
+      "benefit_amount": "₹1.2 ಲಕ್ಷ ಸಬ್ಸಿಡಿ"
+    },
+    {
+      "id": "civic-amenity-yojana",
+      "scheme_name_en": "Civic Amenity Yojana",
+      "scheme_name_kn": "ಸಿವಿಕ್ ಅಮೆನಿಟಿ ಯೋಜನೆ",
+      "short_description_kn": "ನಗರ ಸೌಲಭ್ಯಗಳ ಅಭಿವೃದ್ಧಿ",
+      "description_en": "Scheme for the development of urban amenities and infrastructure in local bodies.",
+      "description_kn": "ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳಲ್ಲಿ ನಗರ ಸೌಲಭ್ಯಗಳು ಮತ್ತು ಮೂಲಸೌಕರ್ಯಗಳ ಅಭಿವೃದ್ಧಿಗೆ ಯೋಜನೆ.",
+      "ministry_en": "Urban Development Department",
+      "ministry_kn": "ನಗರಾಭಿವೃದ್ಧಿ ಇಲಾಖೆ",
+      "scheme_type": "state",
+      "benefits_en": "Infrastructure development (parks, playgrounds, community halls)",
+      "benefits_kn": "ಮೂಲಸೌಕರ್ಯ ಅಭಿವೃದ್ಧಿ (ಉದ್ಯಾನವನಗಳು, ಆಟದ ಮೈದಾನಗಳು, ಸಮುದಾಯ ಭವನಗಳು)",
+      "documents_en": [],
+      "documents_kn": [],
+      "application_process_en": "Managed by local ULBs (Not for individual application)",
+      "application_process_kn": "ಸ್ಥಳೀಯ ನಗರ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳಿಂದ ನಿರ್ವಹಣೆ (ವೈಯಕ್ತಿಕ ಅರ್ಜಿಗಲ್ಲ)",
+      "application_url": "https://udd.karnataka.gov.in",
+      "official_source_url": "https://udd.karnataka.gov.in",
+      "min_age": null,
+      "max_age": null,
+      "gender": [
+        "all"
+      ],
+      "income_max": null,
+      "categories": [
+        "all"
+      ],
+      "occupations": [
+        "all"
+      ],
+      "residence_type": "urban",
+      "special_criteria": [
+        "Infrastructure scheme, not an individual DBT scheme"
+      ],
+      "status": "active",
+      "tags": [
+        "urban",
+        "infrastructure"
+      ],
+      "icon": "🏙️",
+      "icon_bg": "#E8EAF6",
+      "color": "#3F51B5",
+      "benefit_amount": "ಮೂಲಸೌಕರ್ಯ"
+    }
+  ],
+  "content_hash": "6463b2d4b59cad96a7a6aeb950d1b65081c27ece3cd8e59895e56d7993b55adc"
+}
