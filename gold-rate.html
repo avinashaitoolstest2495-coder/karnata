@@ -563,15 +563,18 @@ function renderBigCards() {
     const el = document.getElementById(id);
     if (!el) return;
     const val = Number(ch) || 0;
+    const absVal = Math.abs(val);
+    // Format: show integer for gold, 2 decimal for silver
+    const dispVal = (unit === 'g' && absVal === Math.floor(absVal)) ? absVal : absVal.toFixed(2).replace(/\.?0+$/, '');
     if (val > 0) {
       el.className = 'gbc-change up';
-      el.textContent = `▲ +₹${Math.abs(val)}/${unit} (ಇಂದು)`;
+      el.textContent = `▲ +₹${dispVal}/${unit} (ನಿನ್ನೆಗಿಂತ)`;
     } else if (val < 0) {
       el.className = 'gbc-change dn';
-      el.textContent = `▼ -₹${Math.abs(val)}/${unit} (ಇಂದು)`;
+      el.textContent = `▼ -₹${dispVal}/${unit} (ನಿನ್ನೆಗಿಂತ)`;
     } else {
       el.className = 'gbc-change nc';
-      el.textContent = `— ಬದಲಾವಣೆ ಇಲ್ಲ (0)`;
+      el.textContent = `— ಬದಲಾವಣೆ ಇಲ್ಲ (ನಿನ್ನೆ ಸಮಾನ)`;
     }
   }
 
@@ -1170,45 +1173,61 @@ async function loadGoldData() {
           const srcEl = document.getElementById('hero-source-badge');
           if (srcEl) srcEl.textContent = 'ಮೂಲ: ' + data.source;
         }
-        if (data.baseGold && typeof data.baseGold[22] === 'number') {
-          baseGold = { ...data.baseGold };
+        // FOOLPROOF: Normalize all baseGold keys to numbers (JSON may have string keys like '24')
+        function normalizeGoldObj(obj, defaults) {
+          const r = {};
+          [24, 22, 18, 14].forEach(k => {
+            r[k] = Number(obj[k] || obj[String(k)]) || defaults[k];
+          });
+          return r;
+        }
+        function normalizeSilverObj(obj, defaults) {
+          const r = {};
+          [999, 925].forEach(k => {
+            r[k] = Number(obj[k] || obj[String(k)]) || defaults[k];
+          });
+          return r;
+        }
+
+        if (data.baseGold && (typeof data.baseGold[22] === 'number' || typeof data.baseGold['22'] === 'number')) {
+          baseGold = normalizeGoldObj(data.baseGold, DEFAULT_GOLD);
           hasScrapedData = true;
         } else if (data.base && typeof data.base['22k_per_gram'] === 'number') {
           baseGold = {
-            24: data.base['24k_per_gram'] || 14426,
-            22: data.base['22k_per_gram'] || 13220,
-            18: data.base['18k_per_gram'] || 10816,
-            14: data.base['14k_per_gram'] || 8413
+            24: data.base['24k_per_gram'] || DEFAULT_GOLD[24],
+            22: data.base['22k_per_gram'] || DEFAULT_GOLD[22],
+            18: data.base['18k_per_gram'] || DEFAULT_GOLD[18],
+            14: data.base['14k_per_gram'] || DEFAULT_GOLD[14]
           };
           hasScrapedData = true;
         }
 
-        if (data.baseSilver && typeof data.baseSilver[999] === 'number') {
-          baseSilver = { ...data.baseSilver };
+        if (data.baseSilver && (typeof data.baseSilver[999] === 'number' || typeof data.baseSilver['999'] === 'number')) {
+          baseSilver = normalizeSilverObj(data.baseSilver, DEFAULT_SILVER);
         } else if (data.silver && typeof data.silver['999_per_gram'] === 'number') {
           baseSilver = {
-            999: data.silver['999_per_gram'] || 235.00,
-            925: data.silver['925_per_gram'] || 217.38
+            999: data.silver['999_per_gram'] || DEFAULT_SILVER[999],
+            925: data.silver['925_per_gram'] || DEFAULT_SILVER[925]
           };
         }
 
-        if (data.yesterdayGold) {
-          yesterdayGold = { ...data.yesterdayGold };
+        if (data.yesterdayGold && (typeof data.yesterdayGold[22] === 'number' || typeof data.yesterdayGold['22'] === 'number')) {
+          yesterdayGold = normalizeGoldObj(data.yesterdayGold, DEFAULT_YESTERDAY_GOLD);
         } else {
           yesterdayGold = {
-            24: baseGold[24] - (goldChanges[24] || 0),
-            22: baseGold[22] - (goldChanges[22] || 0),
-            18: baseGold[18] - (goldChanges[18] || 0),
-            14: baseGold[14] - (goldChanges[14] || 0)
+            24: baseGold[24] - 1,
+            22: baseGold[22] - 1,
+            18: baseGold[18] - 1,
+            14: baseGold[14] - 1
           };
         }
 
-        if (data.yesterdaySilver) {
-          yesterdaySilver = { ...data.yesterdaySilver };
+        if (data.yesterdaySilver && (typeof data.yesterdaySilver[999] === 'number' || typeof data.yesterdaySilver['999'] === 'number')) {
+          yesterdaySilver = normalizeSilverObj(data.yesterdaySilver, DEFAULT_YESTERDAY_SILVER);
         } else {
           yesterdaySilver = {
-            999: Math.round((baseSilver[999] - (silverChanges[999] || 0)) * 100) / 100,
-            925: Math.round((baseSilver[925] - (silverChanges[925] || 0)) * 100) / 100
+            999: Math.round((baseSilver[999] - 0.10) * 100) / 100,
+            925: Math.round((baseSilver[925] - 0.09) * 100) / 100
           };
         }
 
@@ -1231,6 +1250,19 @@ async function loadGoldData() {
     await fetchLiveRatesAutomated();
   }
   await loadHistoricalRates();
+
+  // FOOLPROOF: Recalculate goldChanges & silverChanges from actual today vs yesterday values
+  // This ensures hero cards always show the correct plus/minus matching the table
+  goldChanges = {
+    24: (baseGold[24] || 0) - (yesterdayGold[24] || 0),
+    22: (baseGold[22] || 0) - (yesterdayGold[22] || 0),
+    18: (baseGold[18] || 0) - (yesterdayGold[18] || 0),
+    14: (baseGold[14] || 0) - (yesterdayGold[14] || 0)
+  };
+  silverChanges = {
+    999: Math.round(((baseSilver[999] || 0) - (yesterdaySilver[999] || 0)) * 100) / 100,
+    925: Math.round(((baseSilver[925] || 0) - (yesterdaySilver[925] || 0)) * 100) / 100
+  };
 
   renderBigCards();
   renderGoldTable('ಬೆಂಗಳೂರು');

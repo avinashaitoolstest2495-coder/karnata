@@ -944,16 +944,54 @@ async function loadData() {
     const list = [];
     const seenTitles = new Set();
 
-    // Fetch Scraped Local News Feed (1550+ authentic articles from top portals)
+    // Fetch Scraped Local News Feed
     const res = await fetch('/data/local_news.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     let data = await res.json();
-    if (data && data.payload) {
-      const dec = decryptPayload(data.payload);
-      if (dec) data = dec;
+    console.log('[NK News] Raw data keys:', Object.keys(data));
+
+    // Handle encrypted payload (XOR + base64)
+    if (data && data.payload && typeof data.payload === 'string') {
+      console.log('[NK News] Decrypting payload (' + data.payload.length + ' chars)...');
+      try {
+        const dec = decryptPayload(data.payload);
+        if (dec && typeof dec === 'object') {
+          data = dec;
+          console.log('[NK News] Decrypted successfully. Keys:', Object.keys(data));
+        } else {
+          console.warn('[NK News] Decryption returned null/invalid');
+        }
+      } catch (decErr) {
+        console.error('[NK News] Decryption failed:', decErr);
+      }
     }
 
-    districtBuckets = data.district_buckets || data.districts || data.news || {};
-    
+    // Support ALL possible data structures from different scrapers/formats
+    let buckets = null;
+    if (data.district_buckets && typeof data.district_buckets === 'object' && Object.keys(data.district_buckets).length > 0) {
+      buckets = data.district_buckets;
+    } else if (data.districts && typeof data.districts === 'object' && Object.keys(data.districts).length > 0) {
+      buckets = data.districts;
+    } else if (data.news && typeof data.news === 'object' && !Array.isArray(data.news)) {
+      buckets = data.news;
+    }
+
+    // Handle flat articles array format
+    if (!buckets && Array.isArray(data.articles)) {
+      buckets = { '_all': data.articles };
+    }
+    if (!buckets && Array.isArray(data.news)) {
+      buckets = { '_all': data.news };
+    }
+
+    if (!buckets || Object.keys(buckets).length === 0) {
+      console.error('[NK News] No valid district buckets found in data. Keys:', Object.keys(data));
+      throw new Error('No district_buckets or articles found');
+    }
+
+    districtBuckets = buckets;
+    console.log('[NK News] Loaded', Object.keys(buckets).length, 'district buckets');
+
     Object.keys(districtBuckets).forEach(dKey => {
       const arr = districtBuckets[dKey];
       if (Array.isArray(arr)) {
@@ -966,12 +1004,14 @@ async function loadData() {
               ...item, 
               title: title,
               headline: title,
-              districtKey: (dKey === '_statewide' || dKey === 'statewide') ? 'statewide' : dKey 
+              districtKey: (dKey === '_statewide' || dKey === 'statewide' || dKey === '_all') ? 'statewide' : dKey 
             });
           }
         });
       }
     });
+
+    console.log('[NK News] Total valid articles after filtering:', list.length);
 
     // Sort chronologically: LATEST NEWS ON TOP
     list.sort((a, b) => parseArticleTime(b.published || b.time_ago) - parseArticleTime(a.published || a.time_ago));
@@ -981,7 +1021,7 @@ async function loadData() {
     populateTicker(list);
     renderCards();
   } catch (e) {
-    console.error("News load error:", e);
+    console.error("[NK News] Load error:", e);
     document.getElementById('main-news-grid').innerHTML = `
       <div class="empty-state">
         <div style="font-size:32px; margin-bottom:8px;">⚠️</div>
