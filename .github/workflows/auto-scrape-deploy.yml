@@ -49,12 +49,13 @@ jobs:
           python -c "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()" || true
           python -c "import sys; sys.path.insert(0, 'scraper'); from local_news_scraper import run; run()" || true
 
-      - name: 📰 Run Live News & SEO Aggregators
+      - name: 📰 Run Live News, District Pages Rebuild & Sitemap Generator
         run: |
           node scripts/scrape_real_karnataka_news.js || true
           python scripts/build_cms.py || true
           python scraper/generate_morning_bulletin.py || true
           python scripts/rebuild_all_district_pages.py || true
+          python scripts/generate_sitemap.py || true
           node scripts/build_all_district_news.js || true
           node scripts/build_seo_and_monetization.js || true
 

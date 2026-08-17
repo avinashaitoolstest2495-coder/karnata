@@ -59,7 +59,7 @@ const NK = {
         if (data && data.payload) {
           data = decryptPayload(data.payload);
         }
-        if (data && (data.dams || data.cities || data.districts || data.baseGold || data.summary || data.base || data.mla || data.news || data.records || data.items || data.best_prices)) {
+        if (data && (typeof data === 'object' && Object.keys(data).length > 0)) {
           this._cache[key] = { data, ts: Date.now() };
           return data;
         }

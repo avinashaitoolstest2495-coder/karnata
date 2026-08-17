@@ -171,66 +171,71 @@ body .hero-title {
 .rate-table.silver thead th { background: var(--silver-lt); color: var(--silver); }
 .rate-table.silver tbody tr:hover td { background: var(--silver-lt); }
 
-/* TREND CHART WITH METAL & TIME HORIZON CONTROLS */
-.trend-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 20px; }
-.tc-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
-.tc-title { font-size: 15.5px; font-weight: 800; color: var(--ink); }
-.tc-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+/* JOS ALUKKAS STYLE CONTINUOUS INTERACTIVE LINE CHART */
+.trend-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); margin-bottom: 24px; }
+.tc-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.tc-title { font-size: 16px; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.tc-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 
-.metal-tabs { display: flex; gap: 4px; background: #F1F5F9; padding: 3px; border-radius: 10px; border: 1px solid var(--border); }
-.metal-tab { padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; border: none; background: transparent; color: var(--ink2); font-family: var(--font-kn); transition: all 0.2s; }
-.metal-tab.active { background: #FFFFFF; color: #D4A017; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+.metal-tabs, .tc-tabs { display: flex; gap: 4px; background: #F1F5F9; padding: 3px; border-radius: 10px; border: 1px solid var(--border); }
+.metal-tab, .tc-tab { padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; border: none; background: transparent; color: var(--ink2); font-family: var(--font-kn); transition: all 0.2s; }
+.metal-tab.active { background: #FFFFFF; color: #B45309; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+.tc-tab.active { background: #92400E; color: #FFFFFF; box-shadow: 0 2px 6px rgba(146,64,14,0.3); }
 
-.tc-tabs { display: flex; gap: 4px; background: #F1F5F9; padding: 3px; border-radius: 10px; border: 1px solid var(--border); }
-.tc-tab { padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; border: none; background: transparent; color: var(--ink2); font-family: var(--font-kn); transition: all 0.2s; }
-.tc-tab.active { background: var(--gold-dk); color: #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+.jl-chart-wrapper { position: relative; width: 100%; background: #FAF9F6; border: 1px solid #E2E8F0; border-radius: 12px; padding: 22px 14px 12px; overflow: visible; }
+.jl-canvas-box { position: relative; width: 100%; height: 290px; }
+.jl-canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
 
-.chart-area { 
-  height: 180px; 
-  display: flex; 
-  align-items: flex-end; 
-  gap: 8px; 
-  padding-top: 28px; 
-  padding-bottom: 8px;
-  position: relative; 
-  overflow-x: auto; 
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+.jl-floating-tooltip {
+  position: absolute; display: none; pointer-events: none; z-index: 30;
+  background: rgba(15, 23, 42, 0.96); color: #FFFFFF; border: 1.5px solid #F59E0B;
+  padding: 8px 14px; border-radius: 10px; font-family: var(--font-kn);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px); white-space: nowrap;
+  transition: transform 0.1s ease;
 }
-.chart-area::-webkit-scrollbar { height: 4px; }
-.chart-area::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+.jl-tt-date { font-size: 11px; color: #FCD34D; font-weight: 700; margin-bottom: 2px; font-family: var(--font-en); }
+.jl-tt-rate { font-size: 16px; font-weight: 900; color: #FFFFFF; font-family: var(--font-en); }
+.jl-tt-metal { font-size: 11px; color: #CBD5E1; }
 
-.chart-bar-wrap { 
-  flex: 1; 
-  min-width: 52px; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 4px; 
-  cursor: pointer; 
-  flex-shrink: 0;
-  touch-action: manipulation;
+.jl-slider-box {
+  margin-top: 10px; height: 32px; background: #EEF2F6; border-radius: 6px; position: relative; overflow: hidden;
+  border: 1px solid #CBD5E1; display: flex; align-items: center; justify-content: center;
 }
-.chart-bar { width: 100%; max-width: 36px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #FACC15 0%, #D4A017 100%); transition: height 0.4s ease; min-height: 8px; }
-.chart-bar.silver-bar { background: linear-gradient(180deg, #94A3B8 0%, #475569 100%); }
-.chart-bar-wrap:hover .chart-bar, .chart-bar-wrap:active .chart-bar { filter: brightness(1.25); transform: scaleY(1.02); }
-.chart-label { font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 700; white-space: nowrap; text-align: center; }
-.chart-val { font-size: 10.5px; font-weight: 800; color: var(--ink); font-family: var(--font-en); white-space: nowrap; margin-bottom: 2px; }
+.jl-slider-mini-canvas { width: 100%; height: 100%; position: absolute; left: 0; top: 0; opacity: 0.7; }
+.jl-slider-shade {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(217, 119, 6, 0.15); border-left: 2px solid #D97706; border-right: 2px solid #D97706;
+}
 
-.tc-tooltip-strip {
-  background: #FEF3C7;
-  border: 1px solid #FCD34D;
-  color: #78350F;
-  font-size: 13px;
-  font-weight: 800;
-  padding: 8px 14px;
-  border-radius: 10px;
-  margin-bottom: 14px;
-  text-align: center;
-  font-family: var(--font-kn);
-  box-shadow: 0 2px 6px rgba(245,158,11,0.08);
-  transition: all 0.2s ease;
-}
+/* HISTORICAL 1901-2026 ARCHIVE SECTION */
+.hist-archive-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 24px; }
+.hac-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.hac-title { font-size: 17px; font-weight: 900; color: #78350F; }
+.hac-subtitle { font-size: 13px; color: var(--ink2); margin-top: 3px; font-weight: 600; }
+
+.hac-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.hac-stat-box { background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 14px 16px; }
+.hac-stat-title { font-size: 12px; font-weight: 800; color: #92400E; text-transform: uppercase; margin-bottom: 4px; }
+.hac-stat-val { font-size: 22px; font-weight: 900; color: #B45309; font-family: var(--font-en); }
+.hac-stat-sub { font-size: 11.5px; color: #78350F; font-weight: 700; margin-top: 3px; }
+
+.hac-filter-bar { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 14px; }
+.hac-decade-tabs { display: flex; gap: 4px; background: #F1F5F9; padding: 3px; border-radius: 10px; border: 1px solid var(--border); }
+.hac-decade-tab { padding: 5px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; border: none; background: transparent; color: var(--ink2); font-family: var(--font-kn); transition: all 0.2s; }
+.hac-decade-tab.active { background: #B45309; color: #FFFFFF; box-shadow: 0 2px 6px rgba(180,83,9,0.25); }
+
+.hac-search { padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 20px; font-size: 13px; font-weight: 700; width: 220px; font-family: var(--font-kn); outline: none; }
+.hac-search:focus { border-color: #D97706; }
+
+.hac-table-wrap { overflow-x: auto; max-height: 480px; scrollbar-width: thin; border: 1px solid var(--border); border-radius: 12px; }
+.hac-table { width: 100%; border-collapse: collapse; text-align: left; }
+.hac-table thead th { background: #FEF3C7; color: #78350F; padding: 12px 14px; font-size: 12.5px; font-weight: 800; position: sticky; top: 0; z-index: 5; font-family: var(--font-kn); border-bottom: 1.5px solid #FDE68A; }
+.hac-table tbody td { padding: 11px 14px; border-bottom: 1px solid #F1F5F9; font-size: 13.5px; font-weight: 700; }
+.hac-table tbody tr:hover td { background: #FFFBEB; }
+.hac-year-badge { display: inline-block; background: #0F172A; color: #FFFFFF; font-weight: 900; font-family: var(--font-en); font-size: 12px; padding: 3px 10px; border-radius: 6px; }
+.hac-growth-tag { display: inline-block; background: #ECFDF5; color: #059669; font-weight: 800; font-family: var(--font-en); font-size: 11px; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3); }
+.hac-milestone-text { font-size: 12px; color: #475569; font-family: var(--font-kn); font-weight: 600; }
 
 /* CALCULATOR */
 .calc-card { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); border: 1.5px solid #FCD34D; border-radius: var(--radius); padding: 22px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(245,158,11,0.08); }
@@ -258,8 +263,11 @@ body .hero-title {
 .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; cursor: pointer; }
 .faq-item:last-child { border-bottom: none; }
 .faq-q { font-size: 14.5px; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
-.faq-a { font-size: 13.5px; color: var(--ink2); margin-top: 10px; line-height: 1.6; display: none; }
+.faq-a { font-size: 13.5px; color: var(--ink2); line-height: 1.6; padding-top: 8px; display: none; }
 .faq-a.open { display: block; }
+
+/* MAIN CONTENT WRAPPER */
+.wrap { max-width: 1040px; margin: -70px auto 0; padding: 0 20px 50px; position: relative; z-index: 10; }
 </style>
 <script src="/seo.js" defer></script>
 <script src="/data-loader.js" defer></script>
@@ -277,34 +285,35 @@ body .hero-title {
 <div class="hero">
   <div class="hero-date" id="hero-date">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
   <div class="hero-title">🥇 ಇಂದಿನ ಚಿನ್ನ ಮತ್ತು ಬೆಳ್ಳಿ ಬೆಲೆ — ಕರ್ನಾಟಕ</div>
+  <div class="source-badge" id="hero-source-badge">ಮೂಲ: ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ</div>
   
   <!-- 4 BIG DISPLAY CARDS -->
   <div class="gold-main-grid">
     <div class="gold-big-card">
       <div class="gbc-metal">ಚಿನ್ನ 22K</div>
       <div class="gbc-icon">🥇</div>
-      <div class="gbc-price" id="gold22-price">₹13,725</div>
+      <div class="gbc-price" id="gold22-price">₹14,220</div>
       <div class="gbc-unit">ಪ್ರತಿ ಗ್ರಾಂ</div>
       <div class="gbc-change up" id="gold22-change">▲ ಲೈವ್ ದರ</div>
     </div>
     <div class="gold-big-card">
       <div class="gbc-metal">ಚಿನ್ನ 24K</div>
       <div class="gbc-icon">✨</div>
-      <div class="gbc-price" id="gold24-price">₹14,978</div>
+      <div class="gbc-price" id="gold24-price">₹15,518</div>
       <div class="gbc-unit">ಪ್ರತಿ ಗ್ರಾಂ</div>
       <div class="gbc-change up" id="gold24-change">▲ ಲೈವ್ ದರ</div>
     </div>
     <div class="gold-big-card">
       <div class="gbc-metal">ಬೆಳ್ಳಿ 999</div>
       <div class="gbc-icon">🥈</div>
-      <div class="gbc-price" id="silver-price">₹239.90</div>
+      <div class="gbc-price" id="silver-price">₹249.90</div>
       <div class="gbc-unit">ಪ್ರತಿ ಗ್ರಾಂ</div>
       <div class="gbc-change dn" id="silver-change">▼ ಲೈವ್ ದರ</div>
     </div>
     <div class="gold-big-card">
       <div class="gbc-metal">ಚಿನ್ನ 18K</div>
       <div class="gbc-icon">💍</div>
-      <div class="gbc-price" id="gold18-price">₹11,230</div>
+      <div class="gbc-price" id="gold18-price">₹11,685</div>
       <div class="gbc-unit">ಪ್ರತಿ ಗ್ರಾಂ</div>
       <div class="gbc-change up" id="gold18-change">▲ ಲೈವ್ ದರ</div>
     </div>
@@ -347,7 +356,7 @@ body .hero-title {
       <div class="rch-date" id="today-date"></div>
     </div>
     <table class="rate-table">
-      <thead><tr><th>ಶುದ್ಧತೆ</th><th>ಪ್ರತಿ ಗ್ರಾಂ</th><th>8g</th><th>10g</th><th>ಇಂದಿನ ಬದಲಾವಣೆ</th></tr></thead>
+      <thead><tr><th>ಶುದ್ಧತೆ</th><th>ಇಂದಿನ ದರ (1g)</th><th>ನಿನ್ನೆಯ ದರ (1g)</th><th>10 ಗ್ರಾಂ ದರ</th><th>ಇಂದಿನ ಬದಲಾವಣೆ</th></tr></thead>
       <tbody id="gold-tbody"></tbody>
     </table>
   </div>
@@ -359,15 +368,18 @@ body .hero-title {
       <div class="rch-date" id="today-date-silver"></div>
     </div>
     <table class="rate-table silver">
-      <thead><tr><th>ಶುದ್ಧತೆ</th><th>ಪ್ರತಿ ಗ್ರಾಂ</th><th>100g</th><th>1 ಕೆಜಿ</th><th>ಇಂದಿನ ಬದಲಾವಣೆ</th></tr></thead>
+      <thead><tr><th>ಶುದ್ಧತೆ</th><th>ಇಂದಿನ ದರ (1g)</th><th>ನಿನ್ನೆಯ ದರ (1g)</th><th>100 ಗ್ರಾಂ</th><th>1 ಕೆಜಿ</th><th>ಇಂದಿನ ಬದಲಾವಣೆ</th></tr></thead>
       <tbody id="silver-tbody"></tbody>
     </table>
   </div>
 
-  <!-- TREND CHART (22K, 24K, SILVER ACROSS 10D, 1M, 3M) -->
+  <!-- CONTINUOUS INTERACTIVE LINE CHART -->
   <div class="trend-card">
     <div class="tc-header">
-      <div class="tc-title">📈 ಬೆಲೆ ಟ್ರೆಂಡ್ — <span id="tc-metal-label">22K ಚಿನ್ನ</span> (<span id="tc-range-label">ಕಳೆದ 10 ದಿನ</span>)</div>
+      <div>
+        <div class="tc-title">📈 ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ಟ್ರೆಂಡ್ ಚಾರ್ಟ್ — <span id="tc-metal-label" style="color:#B45309;">22K ಚಿನ್ನ</span></div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px;" id="tc-range-label">ದೈನಂದಿನ ನೈಜ ಮಾರುಕಟ್ಟೆ ಮಾಹಿತಿ (ಪ್ರತಿ ಗ್ರಾಂ ದರ)</div>
+      </div>
       <div class="tc-controls">
         <div class="metal-tabs">
           <button class="metal-tab active" onclick="setMetalTrend('22k',this)">🥇 22K</button>
@@ -375,16 +387,93 @@ body .hero-title {
           <button class="metal-tab" onclick="setMetalTrend('silver',this)">🥈 ಬೆಳ್ಳಿ</button>
         </div>
         <div class="tc-tabs">
-          <button class="tc-tab active" onclick="setRangeTrend('10d',this)">10 ದಿನ</button>
+          <button class="tc-tab" onclick="setRangeTrend('7d',this)">7 ದಿನ</button>
           <button class="tc-tab" onclick="setRangeTrend('1m',this)">1 ತಿಂಗಳು</button>
-          <button class="tc-tab" onclick="setRangeTrend('3m',this)">3 ತಿಂಗಳು</button>
+          <button class="tc-tab active" onclick="setRangeTrend('1y',this)">1 ವರ್ಷ</button>
+          <button class="tc-tab" onclick="setRangeTrend('all',this)">1901-2026</button>
         </div>
       </div>
     </div>
-    <div class="tc-tooltip-strip" id="tc-tooltip-strip">
-      📌 ದಿನಾಂಕದ ಬೆಲೆ ನೋಡಲು ಪಟ್ಟಿಯ ಮೇಲೆ ಮೌಸ್ ತನ್ನಿ (Hover / Touch)
+
+    <!-- JOS ALUKKAS STYLE CANVAS CHART BOX -->
+    <div class="jl-chart-wrapper">
+      <div class="jl-canvas-box" id="jl-canvas-container">
+        <canvas id="jl-chart-canvas" class="jl-canvas"></canvas>
+        <div id="jl-tooltip" class="jl-floating-tooltip">
+          <div class="jl-tt-date" id="jl-tt-date">--</div>
+          <div class="jl-tt-rate" id="jl-tt-rate">₹--</div>
+          <div class="jl-tt-metal" id="jl-tt-metal">22K Gold / gm</div>
+        </div>
+      </div>
+      <!-- MINI TIMELINE SCRUBBER -->
+      <div class="jl-slider-box">
+        <canvas id="jl-mini-canvas" class="jl-slider-mini-canvas"></canvas>
+        <div class="jl-slider-shade"></div>
+      </div>
     </div>
-    <div class="chart-area" id="trend-chart"></div>
+    <div style="font-size:11.5px;color:var(--ink3);margin-top:8px;text-align:right;font-family:var(--font-kn);">
+      💡 ಬೆಲೆ ಮತ್ತು ದಿನಾಂಕ ತಿಳಿಯಲು ಗ್ರಾಫ್ ಮೇಲೆ ಮೌಸ್ ತನ್ನಿ / ಟಚ್ ಮಾಡಿ (Hover & Touch)
+    </div>
+  </div>
+
+  <!-- 1901 TO 2026 HISTORICAL GOLD & SILVER ARCHIVE -->
+  <div class="hist-archive-card">
+    <div class="hac-header">
+      <div>
+        <div class="hac-title">🏛️ 1901 ರಿಂದ 2026 ರವರೆಗೆ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ಇತಿಹಾಸ</div>
+        <div class="hac-subtitle">ಭಾರತದ 125 ವರ್ಷಗಳ ಅಧಿಕೃತ ಐತಿಹಾಸಿಕ ಬೆಲೆ ದಾಖಲೆಗಳು ಮತ್ತು ಪ್ರಮುಖ ಮೈಲಿಗಲ್ಲುಗಳು</div>
+      </div>
+    </div>
+
+    <!-- 3 KEY HISTORICAL STATS -->
+    <div class="hac-stats-grid">
+      <div class="hac-stat-box">
+        <div class="hac-stat-title">1901 ರಲ್ಲಿ 10g ಚಿನ್ನದ ಬೆಲೆ</div>
+        <div class="hac-stat-val">₹18.75</div>
+        <div class="hac-stat-sub">ಇಂದು: ₹1,55,120 <span class="hac-growth-tag">+8,273x ಏರಿಕೆ</span></div>
+      </div>
+      <div class="hac-stat-box">
+        <div class="hac-stat-title">1947 ಸ್ವಾತಂತ್ರ್ಯದ ವೇಳೆ (10g)</div>
+        <div class="hac-stat-val">₹88.62</div>
+        <div class="hac-stat-sub">ಇಂದು: ₹1,55,120 <span class="hac-growth-tag">+1,750x ಏರಿಕೆ</span></div>
+      </div>
+      <div class="hac-stat-box">
+        <div class="hac-stat-title">2000 ಸಹಸ್ರಮಾನದ ವೇಳೆ (10g)</div>
+        <div class="hac-stat-val">₹4,400.00</div>
+        <div class="hac-stat-sub">ಇಂದು: ₹1,55,120 <span class="hac-growth-tag">+35x ಏರಿಕೆ</span></div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR & SEARCH -->
+    <div class="hac-filter-bar">
+      <div class="hac-decade-tabs">
+        <button class="hac-decade-tab active" onclick="filterHistDecade('all',this)">ಎಲ್ಲಾ (1901-2026)</button>
+        <button class="hac-decade-tab" onclick="filterHistDecade('1901-1950',this)">1901-1950</button>
+        <button class="hac-decade-tab" onclick="filterHistDecade('1951-2000',this)">1951-2000</button>
+        <button class="hac-decade-tab" onclick="filterHistDecade('2001-2026',this)">2001-2026</button>
+      </div>
+      <input type="text" id="hac-search-input" class="hac-search" placeholder="🔍 ವರ್ಷ ಅಥವಾ ಘಟನೆ ಹುಡುಕಿ..." oninput="onSearchHistArchive()">
+    </div>
+
+    <!-- HISTORICAL ARCHIVE TABLE -->
+    <div class="hac-table-wrap">
+      <table class="hac-table">
+        <thead>
+          <tr>
+            <th>ವರ್ಷ</th>
+            <th>🥇 22K ಚಿನ್ನ (1g)</th>
+            <th>✨ 24K ಚಿನ್ನ (1g)</th>
+            <th>💰 24K ಚಿನ್ನ (10g)</th>
+            <th>🥈 ಬೆಳ್ಳಿ (1g)</th>
+            <th>ಬೆಳವಣಿಗೆ</th>
+            <th>ಪ್ರಮುಖ ಮೈಲಿಗಲ್ಲು / ಐತಿಹಾಸಿಕ ಘಟನೆ</th>
+          </tr>
+        </thead>
+        <tbody id="hac-tbody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- GOLD CALCULATOR -->
@@ -436,18 +525,22 @@ document.getElementById('today-date').textContent = dateStr;
 document.getElementById('today-date-silver').textContent = dateStr;
 
 // IMMUTABLE BENCHMARK FALLBACKS (Guarantees zero NaN errors ever)
-const DEFAULT_GOLD = { 24: 14978, 22: 13725, 18: 11230, 14: 8734 };
-const DEFAULT_SILVER = { 999: 239.90, 925: 221.91 };
+const DEFAULT_GOLD = { 24: 15512, 22: 14219, 18: 11634, 14: 9050 };
+const DEFAULT_YESTERDAY_GOLD = { 24: 15513, 22: 14220, 18: 11635, 14: 9051 };
+const DEFAULT_SILVER = { 999: 249.90, 925: 231.16 };
+const DEFAULT_YESTERDAY_SILVER = { 999: 250.00, 925: 231.25 };
 
 let baseGold = { ...DEFAULT_GOLD };
+let yesterdayGold = { ...DEFAULT_YESTERDAY_GOLD };
 let baseSilver = { ...DEFAULT_SILVER };
+let yesterdaySilver = { ...DEFAULT_YESTERDAY_SILVER };
 let cityVariation = { 'ಬೆಂಗಳೂರು':0,'ಮೈಸೂರು':-5,'ಹುಬ್ಬಳ್ಳಿ':-8,'ಮಂಗಳೂರು':-3,'ಬೆಳಗಾವಿ':-10,'ಕಲಬುರಗಿ':-12,'ದಾವಣಗೆರೆ':-7,'ಶಿವಮೊಗ್ಗ':-6 };
-const goldChanges = { 24:49, 22:45, 18:34, 14:26 };
-const silverChanges = { 999:-1.20, 925:-1.10 };
+let goldChanges = { 24: -1, 22: -1, 18: -1, 14: -1 };
+let silverChanges = { 999: -0.10, 925: -0.09 };
 
 // BULLETPROOF FORMATTER - Never returns NaN or empty string
 function fmt(n, fallbackKey = 22) {
-  const fallback = DEFAULT_GOLD[fallbackKey] || 13069;
+  const fallback = DEFAULT_GOLD[fallbackKey] || 14219;
   const num = Number(n);
   if (isNaN(num) || num <= 0 || !isFinite(num)) {
     return '₹' + Math.round(fallback).toLocaleString('en-IN');
@@ -464,7 +557,28 @@ function renderBigCards() {
   document.getElementById('gold22-price').textContent = fmt(g22, 22);
   document.getElementById('gold24-price').textContent = fmt(g24, 24);
   document.getElementById('gold18-price').textContent = fmt(g18, 18);
-  document.getElementById('silver-price').textContent = '₹' + (typeof s999 === 'number' && !isNaN(s999) ? s999.toFixed(2) : '203.40');
+  document.getElementById('silver-price').textContent = '₹' + (typeof s999 === 'number' && !isNaN(s999) ? s999.toFixed(2) : '249.90');
+
+  function updateBadge(id, ch, unit = 'g') {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = Number(ch) || 0;
+    if (val > 0) {
+      el.className = 'gbc-change up';
+      el.textContent = `▲ +₹${Math.abs(val)}/${unit} (ಇಂದು)`;
+    } else if (val < 0) {
+      el.className = 'gbc-change dn';
+      el.textContent = `▼ -₹${Math.abs(val)}/${unit} (ಇಂದು)`;
+    } else {
+      el.className = 'gbc-change nc';
+      el.textContent = `— ಬದಲಾವಣೆ ಇಲ್ಲ (0)`;
+    }
+  }
+
+  updateBadge('gold22-change', goldChanges[22]);
+  updateBadge('gold24-change', goldChanges[24]);
+  updateBadge('gold18-change', goldChanges[18]);
+  updateBadge('silver-change', silverChanges[999]);
 }
 
 function renderGoldTable(city) {
@@ -472,21 +586,23 @@ function renderGoldTable(city) {
   const rows = [
     { label:'24K (99.9%) — ಶುದ್ಧ ಚಿನ್ನ', k:24 },
     { label:'22K (91.6%) — ಆಭರಣ ಚಿನ್ನ', k:22 },
-    { label:'18K (75%) — ಆಭರಣ', k:18 },
-    { label:'14K (58.5%) — ಆಭರಣ', k:14 },
+    { label:'18K (75%) — ಆಭರಣ ಚಿನ್ನ', k:18 },
+    { label:'14K (58.5%) — ಆಭರಣ ಚಿನ್ನ', k:14 },
   ];
   document.getElementById('gold-tbody').innerHTML = rows.map(r => {
-    const val = baseGold[r.k] || DEFAULT_GOLD[r.k];
-    const p = val + v;
-    const ch = goldChanges[r.k] || 0;
-    const cls = ch>0?'up':ch<0?'dn':'nc';
-    const ico = ch>0?'▲':ch<0?'▼':'—';
+    const todayPerG = (baseGold[r.k] || DEFAULT_GOLD[r.k]) + v;
+    const yesterdayPerG = (yesterdayGold[r.k] || DEFAULT_YESTERDAY_GOLD[r.k]) + v;
+    const diff = todayPerG - yesterdayPerG;
+    const cls = diff > 0 ? 'up' : diff < 0 ? 'dn' : 'nc';
+    const ico = diff > 0 ? '▲ +' : diff < 0 ? '▼ -' : '— ';
+    const diffStr = diff === 0 ? '0' : `${ico}₹${Math.abs(diff)}`;
+
     return `<tr>
-      <td>${r.label}</td>
-      <td><span class="rate-value">${fmt(p, r.k)}</span></td>
-      <td class="rate-value">${fmt(p*8, r.k)}</td>
-      <td class="rate-value">${fmt(p*10, r.k)}</td>
-      <td><span class="rate-change ${cls}">${ico} ${fmt(Math.abs(ch), 0)}</span></td>
+      <td><b>${r.label}</b></td>
+      <td><span class="rate-value" style="color:#B45309;font-weight:900;">${fmt(todayPerG, r.k)}</span></td>
+      <td><span style="color:#64748B;font-weight:700;">${fmt(yesterdayPerG, r.k)}</span></td>
+      <td class="rate-value">${fmt(todayPerG * 10, r.k)}</td>
+      <td><span class="rate-change ${cls}">${diffStr}</span></td>
     </tr>`;
   }).join('');
 }
@@ -498,17 +614,20 @@ function renderSilverTable(city) {
     { label:'925 ಶುದ್ಧತೆ (92.5%)', k:925 },
   ];
   document.getElementById('silver-tbody').innerHTML = rows.map(r => {
-    const val = baseSilver[r.k] || DEFAULT_SILVER[r.k];
-    const p = val + v;
-    const ch = silverChanges[r.k] || 0;
-    const cls = ch>0?'up':ch<0?'dn':'nc';
-    const ico = ch>0?'▲':ch<0?'▼':'—';
+    const todayPerG = (baseSilver[r.k] || DEFAULT_SILVER[r.k]) + v;
+    const yesterdayPerG = (yesterdaySilver[r.k] || DEFAULT_YESTERDAY_SILVER[r.k]) + v;
+    const diff = Math.round((todayPerG - yesterdayPerG) * 100) / 100;
+    const cls = diff > 0 ? 'up' : diff < 0 ? 'dn' : 'nc';
+    const ico = diff > 0 ? '▲ +' : diff < 0 ? '▼ -' : '— ';
+    const diffStr = diff === 0 ? '0' : `${ico}₹${Math.abs(diff).toFixed(2)}`;
+
     return `<tr>
-      <td>${r.label}</td>
-      <td><span class="rate-value">₹${p.toFixed(2)}</span></td>
-      <td class="rate-value">${fmt(p*100, 203)}</td>
-      <td class="rate-value">${fmt(p*1000, 203)}</td>
-      <td><span class="rate-change ${cls}">${ico} ₹${Math.abs(ch)}</span></td>
+      <td><b>${r.label}</b></td>
+      <td><span class="rate-value" style="color:#1E293B;font-weight:900;">₹${todayPerG.toFixed(2)}</span></td>
+      <td><span style="color:#64748B;font-weight:700;">₹${yesterdayPerG.toFixed(2)}</span></td>
+      <td class="rate-value">₹${Math.round(todayPerG * 100).toLocaleString('en-IN')}</td>
+      <td class="rate-value">₹${Math.round(todayPerG * 1000).toLocaleString('en-IN')}</td>
+      <td><span class="rate-change ${cls}">${diffStr}</span></td>
     </tr>`;
   }).join('');
 }
@@ -522,116 +641,414 @@ function selectCity(city, el) {
   renderSilverTable(city);
 }
 
-// ── TREND CHART (100% REAL HISTORICAL DATA FOR 22K, 24K, SILVER) ──
+// ── JOS ALUKKAS STYLE CONTINUOUS INTERACTIVE LINE CHART ENGINE ──
 let currentTrendMetal = '22k';
-let currentTrendRange = '10d';
+let currentTrendRange = '1y'; // Default to Jos Alukkas 1-year view
 let historicalRawData = [];
+let yearly1901Data = [];
+let activeDataPoints = [];
+let currentHoverIndex = -1;
 
 async function loadHistoricalRates() {
   try {
     const res = await fetch('/data/historical_rates.json?v=' + Date.now());
     if (res.ok) {
       const json = await res.json();
-      if (json && Array.isArray(json.history) && json.history.length > 0) {
-        historicalRawData = json.history;
+      if (json) {
+        if (Array.isArray(json.history) && json.history.length > 0) {
+          historicalRawData = json.history;
+        }
+        if (Array.isArray(json.yearly_1901_2026) && json.yearly_1901_2026.length > 0) {
+          yearly1901Data = json.yearly_1901_2026;
+        }
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    console.warn("loadHistoricalRates fetch error:", e);
+  }
 }
 
-function getTrendDataset(metal, range) {
-  if (!historicalRawData || historicalRawData.length === 0) {
-    const currentVal = metal === '22k' ? (baseGold[22]||DEFAULT_GOLD[22]) : metal === '24k' ? (baseGold[24]||DEFAULT_GOLD[24]) : (baseSilver[999]||DEFAULT_SILVER[999]);
-    const dates = ['ಜು 25','ಜು 26','ಜು 27','ಜು 28','ಜು 29','ಜು 30','ಜು 31','ಆ 01','ಆ 02','ಇಂದು'];
-    const factors = [0.980, 0.984, 0.982, 0.988, 0.993, 0.991, 0.995, 0.997, 0.994, 1.0];
-    const data = factors.map(f => metal === 'silver' ? Math.round(currentVal * f * 10)/10 : Math.round(currentVal * f));
-    return { data, labels: dates };
-  }
-
-  let items = [];
-  if (range === '10d') {
-    items = historicalRawData.slice(-10);
-  } else if (range === '1m') {
-    const last30 = historicalRawData.slice(-30);
-    items = last30.filter((_, idx) => idx % 2 === 0 || idx === last30.length - 1);
-  } else { // 3m
-    items = historicalRawData.filter((_, idx) => idx % 8 === 0 || idx === historicalRawData.length - 1);
-  }
-
-  const key = metal === '22k' ? 'gold22' : metal === '24k' ? 'gold24' : 'silver999';
-  const data = items.map(item => item[key]);
+function drawJosAlukkasChart() {
+  const canvas = document.getElementById('jl-chart-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
   
-  const mNames = {'01':'ಜನ','02':'ಫೆಬ್ರ','03':'ಮಾರ್ಚ್','04':'ಏಪ್ರಿಲ್','05':'ಮೇ','06':'ಜೂ','07':'ಜು','08':'ಆ'};
-  const labels = items.map((item, idx) => {
-    if (idx === items.length - 1) return 'ಇಂದು';
-    const parts = item.date.split('-');
-    const m = mNames[parts[1]] || parts[1];
-    return `${m} ${parseInt(parts[2], 10)}`;
-  });
+  if (rect.width === 0 || rect.height === 0) return;
 
-  return { data, labels };
-}
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
 
-function updateTrendChart() {
-  const { data, labels } = getTrendDataset(currentTrendMetal, currentTrendRange);
-  if (!data || data.length === 0) return;
+  const W = rect.width;
+  const H = rect.height;
 
-  const max = Math.max(...data), min = Math.min(...data);
-  const range = max - min || 1;
+  // Margins (generous padTop so peak points never hit the top border)
+  const padLeft = 82;
+  const padRight = 24;
+  const padTop = 42;
+  const padBottom = 34;
+
+  const chartW = W - padLeft - padRight;
+  const chartH = H - padTop - padBottom;
+
   const isSilver = currentTrendMetal === 'silver';
-  
-  const metalNameMap = { '22k': '22K ಚಿನ್ನ', '24k': '24K ಚಿನ್ನ', 'silver': 'ಬೆಳ್ಳಿ 999' };
-  const rangeNameMap = { '10d': 'ಕಳೆದ 10 ದಿನ (ನೈಜ ಐತಿಹಾಸಿಕ ಮಾಹಿತಿ)', '1m': 'ಕಳೆದ 1 ತಿಂಗಳು (ನೈಜ ಐತಿಹಾಸಿಕ ಮಾಹಿತಿ)', '3m': 'ಕಳೆದ 3 ತಿಂಗಳು (ನೈಜ ಐತಿಹಾಸಿಕ ಮಾಹಿತಿ)' };
-  document.getElementById('tc-metal-label').textContent = metalNameMap[currentTrendMetal];
-  document.getElementById('tc-range-label').textContent = rangeNameMap[currentTrendRange];
+  const metalKey = currentTrendMetal === '22k' ? 'gold22' : currentTrendMetal === '24k' ? 'gold24' : 'silver999';
 
-  document.getElementById('trend-chart').innerHTML = data.map((v, i) => {
-    const h = Math.round(((v - min) / range) * 85 + 15);
-    const isLast = i === data.length - 1;
-    const displayVal = isSilver ? '₹' + v : '₹' + v.toLocaleString('en-IN');
-    const fullDate = labels[i];
+  let dataset = [];
 
-    return `<div class="chart-bar-wrap" 
-      onmouseover="showChartHover('${fullDate}', '${displayVal}')" 
-      onmouseleave="resetChartHover()"
-      onclick="showChartHover('${fullDate}', '${displayVal}')"
-      ontouchstart="showChartHover('${fullDate}', '${displayVal}')">
-      <div class="chart-val" style="${isLast ? 'color:#B45309;font-weight:900;' : ''}">${displayVal}</div>
-      <div class="chart-bar ${isSilver ? 'silver-bar' : ''}" style="height:${h}px;${isLast ? 'filter:brightness(1.15);box-shadow:0 0 8px rgba(245,158,11,0.5);' : ''}"></div>
-      <div class="chart-label">${labels[i]}</div>
-    </div>`;
-  }).join('');
+  if (currentTrendRange === 'all') {
+    // 1901 to 2026 All-Time Timeline (Strictly Per Gram)
+    const dataSrc = (yearly1901Data && yearly1901Data.length > 0) ? yearly1901Data : [];
+    dataset = dataSrc.map(item => ({
+      dateLabel: item.year.toString(),
+      fullDate: item.year + ' ನೇ ಇಸವಿ',
+      rate: currentTrendMetal === '22k' ? item.gold_22k_per_gram : currentTrendMetal === '24k' ? item.gold_24k_per_gram : item.silver_per_gram,
+      milestone: item.milestone
+    }));
+  } else {
+    // 7d, 1m, 1y from Official Bullion dataset (Strictly Per Gram)
+    const sorted = [...historicalRawData].sort((a, b) => (a.date > b.date ? 1 : a.date < b.date ? -1 : 0));
+    let rawSlice = [];
+    if (currentTrendRange === '7d') rawSlice = sorted.slice(-7);
+    else if (currentTrendRange === '1m') rawSlice = sorted.slice(-30);
+    else rawSlice = sorted; // 1y
+
+    const mNamesShort = {'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun','07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec'};
+    const mNamesKn = {'01':'ಜನವರಿ','02':'ಫೆಬ್ರವರಿ','03':'ಮಾರ್ಚ್','04':'ಏಪ್ರಿಲ್','05':'ಮೇ','06':'ಜೂನ್','07':'ಜುಲೈ','08':'ಆಗಸ್ಟ್','09':'ಸೆಪ್ಟೆಂಬರ್','10':'ಅಕ್ಟೋಬರ್','11':'ನವೆಂಬರ್','12':'ಡಿಸೆಂಬರ್'};
+
+    dataset = rawSlice.map((item, idx) => {
+      const parts = item.date.split('-');
+      const mEn = mNamesShort[parts[1]] || parts[1];
+      const mKn = mNamesKn[parts[1]] || parts[1];
+      const day = parseInt(parts[2], 10);
+      const isToday = idx === rawSlice.length - 1;
+
+      return {
+        dateLabel: `${day.toString().padStart(2, '0')}. ${mEn}`,
+        fullDate: isToday ? `${parts[0]} ${mKn} ${day} (ಇಂದು)` : `${parts[0]} ${mKn} ${day}`,
+        rate: item[metalKey] || item[currentTrendMetal === '22k' ? '22k_per_gram' : currentTrendMetal === '24k' ? '24k_per_gram' : 'silver_per_gram'] || 0
+      };
+    });
+  }
+
+  if (dataset.length === 0) return;
+
+  const rates = dataset.map(d => d.rate);
+  const minRate = Math.min(...rates);
+  const maxRate = Math.max(...rates);
+  const rateRange = (maxRate - minRate) || 1;
+
+  const yMin = Math.max(0, minRate - rateRange * 0.05);
+  const yMax = maxRate + rateRange * 0.05;
+  const ySpan = yMax - yMin;
+
+  const points = dataset.map((d, i) => {
+    const x = padLeft + (i / (dataset.length - 1 || 1)) * chartW;
+    const y = padTop + chartH - ((d.rate - yMin) / ySpan) * chartH;
+    return { ...d, x, y };
+  });
+  activeDataPoints = points;
+
+  // Clear canvas
+  ctx.clearRect(0, 0, W, H);
+
+  // 1. Draw 5 Horizontal Dotted Grid Lines & Left Y-Axis Labels
+  ctx.strokeStyle = '#E2E8F0';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.font = '600 11px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#64748B';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+
+  const gridSteps = 5;
+  for (let s = 0; s <= gridSteps; s++) {
+    const gridY = padTop + (chartH / gridSteps) * s;
+    const rateVal = yMax - (ySpan / gridSteps) * s;
+
+    ctx.beginPath();
+    ctx.moveTo(padLeft, gridY);
+    ctx.lineTo(padLeft + chartW, gridY);
+    ctx.stroke();
+
+    const labelStr = '₹' + rateVal.toFixed(2);
+    ctx.fillText(labelStr, padLeft - 10, gridY);
+  }
+  ctx.setLineDash([]);
+
+  // 2. Draw Translucent Gradient Fill Area Under Curve
+  const is24k = currentTrendMetal === '24k';
+  const grad = ctx.createLinearGradient(0, padTop, 0, padTop + chartH);
+  if (isSilver) {
+    grad.addColorStop(0, 'rgba(100, 116, 139, 0.26)');
+    grad.addColorStop(1, 'rgba(100, 116, 139, 0.01)');
+  } else if (is24k) {
+    grad.addColorStop(0, 'rgba(234, 179, 8, 0.25)');
+    grad.addColorStop(1, 'rgba(234, 179, 8, 0.01)');
+  } else {
+    grad.addColorStop(0, 'rgba(180, 83, 9, 0.22)');
+    grad.addColorStop(1, 'rgba(180, 83, 9, 0.01)');
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, padTop + chartH);
+  for (let i = 0; i < points.length; i++) {
+    if (i === 0) ctx.lineTo(points[0].x, points[0].y);
+    else {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const cx = (prev.x + curr.x) / 2;
+      ctx.bezierCurveTo(cx, prev.y, cx, curr.y, curr.x, curr.y);
+    }
+  }
+  ctx.lineTo(points[points.length - 1].x, padTop + chartH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // 3. Draw Smooth Curved Line
+  ctx.beginPath();
+  for (let i = 0; i < points.length; i++) {
+    if (i === 0) ctx.moveTo(points[0].x, points[0].y);
+    else {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const cx = (prev.x + curr.x) / 2;
+      ctx.bezierCurveTo(cx, prev.y, cx, curr.y, curr.x, curr.y);
+    }
+  }
+  ctx.strokeStyle = isSilver ? '#475569' : is24k ? '#D97706' : '#99582A';
+  ctx.lineWidth = 2.4;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // 4. Draw X-Axis Ticks & Labels
+  ctx.fillStyle = '#64748B';
+  ctx.font = '600 11px system-ui, -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+
+  const numTicks = Math.min(points.length, W < 600 ? 5 : 8);
+  const step = Math.floor(points.length / numTicks) || 1;
+  for (let i = 0; i < points.length; i += step) {
+    const pt = points[i];
+    ctx.fillText(pt.dateLabel, pt.x, padTop + chartH + 10);
+  }
+  const lastPt = points[points.length - 1];
+  ctx.fillText(lastPt.dateLabel, lastPt.x, padTop + chartH + 10);
+
+  // 5. Draw Active Hover Crosshair Point
+  if (currentHoverIndex >= 0 && currentHoverIndex < points.length) {
+    const hPt = points[currentHoverIndex];
+    const ptColor = isSilver ? '#475569' : is24k ? '#D97706' : '#B45309';
+
+    ctx.beginPath();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = ptColor;
+    ctx.lineWidth = 1.5;
+    ctx.moveTo(hPt.x, padTop);
+    ctx.lineTo(hPt.x, padTop + chartH);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.beginPath();
+    ctx.arc(hPt.x, hPt.y, 7, 0, Math.PI * 2);
+    ctx.fillStyle = isSilver ? 'rgba(71, 85, 105, 0.25)' : is24k ? 'rgba(234, 179, 8, 0.35)' : 'rgba(217, 119, 6, 0.35)';
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(hPt.x, hPt.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = isSilver ? '#1E293B' : is24k ? '#B45309' : '#78350F';
+    ctx.fill();
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  drawMiniScrubberCanvas(dataset, isSilver);
 }
 
-function showChartHover(date, val) {
-  const metalNameMap = { '22k': '22K ಚಿನ್ನ', '24k': '24K ಚಿನ್ನ', 'silver': 'ಬೆಳ್ಳಿ 999' };
-  const strip = document.getElementById('tc-tooltip-strip');
-  if (strip) {
-    strip.style.background = '#FEF3C7';
-    strip.style.borderColor = '#F59E0B';
-    strip.innerHTML = `📌 <b>${date}</b> · ${metalNameMap[currentTrendMetal]} ನೈಜ ಬೆಲೆ: <span style="color:#B45309;font-size:15px;font-weight:900;">${val}</span> / ಗ್ರಾಂ`;
+function drawMiniScrubberCanvas(dataset, isSilver) {
+  const mini = document.getElementById('jl-mini-canvas');
+  if (!mini) return;
+  const ctx = mini.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = mini.getBoundingClientRect();
+  if (rect.width === 0) return;
+
+  mini.width = rect.width * dpr;
+  mini.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const rates = dataset.map(d => d.rate);
+  const minR = Math.min(...rates), maxR = Math.max(...rates);
+  const span = maxR - minR || 1;
+
+  ctx.beginPath();
+  for (let i = 0; i < dataset.length; i++) {
+    const x = (i / (dataset.length - 1 || 1)) * W;
+    const y = H - 4 - ((dataset[i].rate - minR) / span) * (H - 8);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
   }
+  ctx.strokeStyle = isSilver ? '#94A3B8' : '#D97706';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
 }
 
-function resetChartHover() {
-  const strip = document.getElementById('tc-tooltip-strip');
-  if (strip) {
-    strip.innerHTML = `📌 ದಿನಾಂಕದ ಬೆಲೆ ನೋಡಲು ಪಟ್ಟಿಯ ಮೇಲೆ ಮೌಸ್ ತನ್ನಿ (Hover / Touch)`;
+function setupChartHoverListeners() {
+  const container = document.getElementById('jl-canvas-container');
+  const canvas = document.getElementById('jl-chart-canvas');
+  const tooltip = document.getElementById('jl-tooltip');
+  if (!container || !canvas || !tooltip) return;
+
+  function onPointerMove(evt) {
+    if (!activeDataPoints || activeDataPoints.length === 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const x = clientX - rect.left;
+
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    for (let i = 0; i < activeDataPoints.length; i++) {
+      const diff = Math.abs(activeDataPoints[i].x - x);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    }
+
+    currentHoverIndex = closestIdx;
+    const pt = activeDataPoints[closestIdx];
+
+    // Smart placement: if the point is high up near peak (y < 75), position tooltip BELOW the point!
+    if (pt.y < 75) {
+      tooltip.style.transform = 'translate(-50%, 16px)';
+    } else {
+      tooltip.style.transform = 'translate(-50%, -115%)';
+    }
+
+    // Clamp horizontal position so tooltip never clips left or right border
+    const W = rect.width;
+    const clampedX = Math.max(90, Math.min(W - 90, pt.x));
+
+    tooltip.style.display = 'block';
+    tooltip.style.left = clampedX + 'px';
+    tooltip.style.top = pt.y + 'px';
+
+    const metalName = currentTrendMetal === '22k' ? '22K ಚಿನ್ನ' : currentTrendMetal === '24k' ? '24K ಚಿನ್ನ' : 'ಬೆಳ್ಳಿ 999';
+    document.getElementById('jl-tt-date').textContent = pt.fullDate;
+    document.getElementById('jl-tt-rate').textContent = '₹' + pt.rate.toLocaleString('en-IN') + ' / ಗ್ರಾಂ';
+    document.getElementById('jl-tt-metal').textContent = metalName + (pt.milestone ? ` · ${pt.milestone}` : '');
+
+    drawJosAlukkasChart();
   }
+
+  function onPointerLeave() {
+    currentHoverIndex = -1;
+    tooltip.style.display = 'none';
+    drawJosAlukkasChart();
+  }
+
+  container.addEventListener('mousemove', onPointerMove);
+  container.addEventListener('mouseleave', onPointerLeave);
+  container.addEventListener('touchmove', onPointerMove, { passive: true });
+  container.addEventListener('touchend', onPointerLeave);
 }
 
 function setMetalTrend(metal, el) {
   document.querySelectorAll('.metal-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
+  if (el) el.classList.add('active');
   currentTrendMetal = metal;
-  updateTrendChart();
+  const metalNameMap = { '22k': '22K ಚಿನ್ನ', '24k': '24K ಚಿನ್ನ', 'silver': 'ಬೆಳ್ಳಿ 999' };
+  document.getElementById('tc-metal-label').textContent = metalNameMap[metal];
+  drawJosAlukkasChart();
 }
 
 function setRangeTrend(range, el) {
   document.querySelectorAll('.tc-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
+  if (el) el.classList.add('active');
   currentTrendRange = range;
-  updateTrendChart();
+  const rangeNameMap = {
+    '7d': 'ಕಳೆದ 7 ದಿನಗಳ ಲೈವ್ ಮಾರುಕಟ್ಟೆ ದರ (ಪ್ರತಿ ಗ್ರಾಂ)',
+    '1m': 'ಕಳೆದ 1 ತಿಂಗಳ ಲೈವ್ ಮಾರುಕಟ್ಟೆ ದರ (ಪ್ರತಿ ಗ್ರಾಂ)',
+    '1y': 'ಕಳೆದ 1 ವರ್ಷದ ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ಟ್ರೆಂಡ್ (ಪ್ರತಿ ಗ್ರಾಂ)',
+    'all': '1901 ರಿಂದ 2026 (125 ವರ್ಷಗಳ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ — ಪ್ರತಿ ಗ್ರಾಂ)'
+  };
+  document.getElementById('tc-range-label').textContent = rangeNameMap[range] || range;
+  drawJosAlukkasChart();
+}
+
+// ── 1901 TO 2026 HISTORICAL ARCHIVE ENGINE ──
+let currentDecadeFilter = 'all';
+let currentSearchQuery = '';
+
+function renderHistArchiveTable() {
+  const tbody = document.getElementById('hac-tbody');
+  if (!tbody) return;
+
+  const dataSrc = (yearly1901Data && yearly1901Data.length > 0) ? yearly1901Data : [];
+  
+  let filtered = dataSrc.filter(item => {
+    if (currentDecadeFilter === '1901-1950') {
+      if (item.year < 1901 || item.year > 1950) return false;
+    } else if (currentDecadeFilter === '1951-2000') {
+      if (item.year < 1951 || item.year > 2000) return false;
+    } else if (currentDecadeFilter === '2001-2026') {
+      if (item.year < 2001 || item.year > 2026) return false;
+    }
+
+    if (currentSearchQuery) {
+      const q = currentSearchQuery.toLowerCase();
+      const matchYear = item.year.toString().includes(q);
+      const matchMilestone = (item.milestone || '').toLowerCase().includes(q);
+      return matchYear || matchMilestone;
+    }
+    return true;
+  });
+
+  const displayList = [...filtered].sort((a, b) => b.year - a.year);
+
+  tbody.innerHTML = displayList.map(item => {
+    const g10 = Number(item.gold_10g) || 0;
+    const g24_1 = Number(item.gold_24k_per_gram) || Math.round(g10 / 10);
+    const g22_1 = Number(item.gold_22k_per_gram) || Math.round(g24_1 * 0.916);
+    const s1 = Number(item.silver_per_gram) || Math.round((Number(item.silver_10g) || 0) / 10 * 100) / 100;
+    const growth = item.gold_growth_x ? `${item.gold_growth_x}x` : `${Math.round(g10 / 18.75)}x`;
+
+    const g22Str = g22_1 < 10 ? g22_1.toFixed(2) : g22_1.toLocaleString('en-IN');
+    const g24Str = g24_1 < 10 ? g24_1.toFixed(2) : g24_1.toLocaleString('en-IN');
+    const s1Str = s1 < 1 ? s1.toFixed(2) : s1.toLocaleString('en-IN');
+
+    return `<tr>
+      <td><span class="hac-year-badge">${item.year}</span></td>
+      <td><b style="color:#B45309;">₹${g22Str}</b></td>
+      <td>₹${g24Str}</td>
+      <td>₹${g10.toLocaleString('en-IN')}</td>
+      <td>₹${s1Str}</td>
+      <td><span class="hac-growth-tag">${growth}</span></td>
+      <td><span class="hac-milestone-text">${item.milestone || '—'}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterHistDecade(decade, el) {
+  document.querySelectorAll('.hac-decade-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  currentDecadeFilter = decade;
+  renderHistArchiveTable();
+}
+
+function onSearchHistArchive() {
+  const input = document.getElementById('hac-search-input');
+  currentSearchQuery = input ? input.value.trim() : '';
+  renderHistArchiveTable();
 }
 
 // Gold calculator
@@ -775,13 +1192,33 @@ async function loadGoldData() {
           };
         }
 
+        if (data.yesterdayGold) {
+          yesterdayGold = { ...data.yesterdayGold };
+        } else {
+          yesterdayGold = {
+            24: baseGold[24] - (goldChanges[24] || 0),
+            22: baseGold[22] - (goldChanges[22] || 0),
+            18: baseGold[18] - (goldChanges[18] || 0),
+            14: baseGold[14] - (goldChanges[14] || 0)
+          };
+        }
+
+        if (data.yesterdaySilver) {
+          yesterdaySilver = { ...data.yesterdaySilver };
+        } else {
+          yesterdaySilver = {
+            999: Math.round((baseSilver[999] - (silverChanges[999] || 0)) * 100) / 100,
+            925: Math.round((baseSilver[925] - (silverChanges[925] || 0)) * 100) / 100
+          };
+        }
+
         if (Array.isArray(data.history) && data.history.length > 0) {
           historicalRawData = data.history.map(h => ({
             date: h.date,
-            gold24: h['24k'] || h.gold24,
-            gold22: h['22k'] || h.gold22,
-            gold18: h['18k'] || h.gold18,
-            silver999: baseSilver[999] || 235.00
+            gold24: h['24k'] || h.gold24 || h['24k_per_gram'] || baseGold[24],
+            gold22: h['22k'] || h.gold22 || h['22k_per_gram'] || baseGold[22],
+            gold18: h['18k'] || h.gold18 || h['18k_per_gram'] || baseGold[18],
+            silver999: h['silver_999'] || h.silver999 || h['silver_per_gram'] || baseSilver[999]
           }));
         }
       }
@@ -799,8 +1236,14 @@ async function loadGoldData() {
   renderGoldTable('ಬೆಂಗಳೂರು');
   renderSilverTable('ಬೆಂಗಳೂರು');
   renderCitiesGrid();
-  updateTrendChart();
+  drawJosAlukkasChart();
+  setupChartHoverListeners();
+  renderHistArchiveTable();
 }
+
+window.addEventListener('resize', () => {
+  drawJosAlukkasChart();
+});
 
 loadGoldData();
 

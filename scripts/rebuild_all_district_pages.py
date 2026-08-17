@@ -259,6 +259,28 @@ def decrypt(path):
         return json.loads(dec)
     return d
 
+def parse_date_to_timestamp(d_str) -> float:
+    if not d_str:
+        return 0.0
+    s = str(d_str).strip()
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(s).timestamp()
+    except Exception:
+        pass
+    try:
+        from datetime import datetime
+        return datetime.fromisoformat(s.replace('Z', '+00:00')).timestamp()
+    except Exception:
+        pass
+    for fmt in ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d', '%d-%m-%Y', '%d %b %Y %H:%M:%S', '%d %b %Y']:
+        try:
+            from datetime import datetime
+            return datetime.strptime(s, fmt).timestamp()
+        except Exception:
+            pass
+    return 0.0
+
 def build_all_district_pages():
     print("Building 31 District Pages with authentic live scraped news & live rates...")
 
@@ -279,11 +301,13 @@ def build_all_district_pages():
         name_kn = dist["name_kn"]
         name_en = dist["name_en"]
 
-        # 1. District News Articles
-        articles = district_buckets.get(key) or district_buckets.get(key.replace('-', '_')) or district_buckets.get('_statewide') or []
-        if not articles:
+        # 1. District News Articles (Strict District Matching & Chronological Sorting - Latest on Top)
+        articles = list(district_buckets.get(key) or district_buckets.get(key.replace('-', '_')) or [])
+        if articles:
+            articles.sort(key=lambda x: parse_date_to_timestamp(x.get("published")), reverse=True)
+        else:
             articles = [
-                {"title": f"{name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಇಂದಿನ ಶೈಕ್ಷಣಿಕ, ಕೃಷಿ ಹಾಗೂ ಸ್ಥಳೀಯ ಆಡಳಿತದ ಸಜೀವ ಸುದ್ದಿಗಳು", "published": "ಇಂದು", "source": "ಕನ್ನಡ ಸುದ್ದಿ", "url": "/news-explainers.html"}
+                {"title": f"{name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಇಂದಿನ ಶೈಕ್ಷಣಿಕ, ಕೃಷಿ ಹಾಗೂ ಸ್ಥಳೀಯ ಆಡಳಿತದ ಸಜೀವ ಸುದ್ದಿಗಳು", "published": "ಇಂದು (Live)", "source": "ಕನ್ನಡ ಸುದ್ದಿ", "url": "/news-explainers.html"}
             ]
 
         news_cards_html = ""
@@ -384,7 +408,7 @@ def build_all_district_pages():
             </a>
             """
 
-        # Full HTML Page Template
+        # Full HTML Page Template with Enhanced SEO & GEO Metadata
         page_html = f"""<!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -392,6 +416,56 @@ def build_all_district_pages():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{name_kn} ({name_en}) ಜಿಲ್ಲೆಯ ಸಮಗ್ರ ಮಾಹಿತಿ, DC & SP ಅಧಿಕಾರಿಗಳು, ಶಾಸಕರು, ಸಂಸದರು & ಸುದ್ದಿಗಳು | ಕರ್ನಾಟ</title>
 <meta name="description" content="{name_kn} ಜಿಲ್ಲೆಯ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC), ಎಸ್ಪಿ (SP), ಎಲ್ಲಾ ಶಾಸಕರು (MLA), ಸಂಸದರು (MP), APMC ಕೃಷಿ ದರಗಳು, ಹವಾಮಾನ ಮತ್ತು ಸಜೀವ ಸುದ್ದಿಗಳು.">
+<link rel="canonical" href="https://karnata.in/districts/{key}.html">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://karnata.in/districts/{key}.html">
+<meta property="og:title" content="{name_kn} ({name_en}) ಜಿಲ್ಲೆಯ ಸಮಗ್ರ ಮಾಹಿತಿ & ಲೈವ್ ವಿವರ | ಕರ್ನಾಟ">
+<meta property="og:description" content="{name_kn} ಜಿಲ್ಲೆಯ DC, SP, ಶಾಸಕರು, ಸಂಸದರು, APMC ಮಂಡಿ ದರಗಳು & ಲೈವ್ ಸ್ಥಳೀಯ ಸುದ್ದಿ.">
+<meta property="og:image" content="https://karnata.in/assets/og-karnata.png">
+<meta property="og:site_name" content="ಕರ್ನಾಟ — Karnata.in">
+<meta property="og:locale" content="kn_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{name_kn} ({name_en}) ಜಿಲ್ಲಾ ಮಾಹಿತಿ | ಕರ್ನಾಟ">
+<meta name="twitter:description" content="{name_kn} ಜಿಲ್ಲೆಯ DC, SP, ಶಾಸಕರು, ಸಂಸದರು, APMC ಮಂಡಿ ದರಗಳು & ಲೈವ್ ಸ್ಥಳೀಯ ಸುದ್ದಿ.">
+<meta name="twitter:image" content="https://karnata.in/assets/og-karnata.png">
+
+<!-- Geographic / Local SEO Meta Tags (GEO) -->
+<meta name="geo.region" content="IN-KA">
+<meta name="geo.placename" content="{name_en}, Karnataka, India">
+<meta name="geo.position" content="{dist['lat']};{dist['lon']}">
+<meta name="ICBM" content="{dist['lat']}, {dist['lon']}">
+
+<!-- JSON-LD Structured Data Schema for Search Engines & AI Models -->
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "AdministrativeArea",
+  "name": "{name_kn}",
+  "alternateName": "{name_en}",
+  "url": "https://karnata.in/districts/{key}.html",
+  "description": "{name_kn} ಜಿಲ್ಲೆಯ ಜಿಲ್ಲಾಧಿಕಾರಿ, ಎಸ್ಪಿ, ಶಾಸಕರು, ಸಂಸದರು, APMC ಕೃಷಿ ದರಗಳು ಮತ್ತು ಲೈವ್ ಸುದ್ದಿಗಳು.",
+  "containedInPlace": {{
+    "@type": "State",
+    "name": "Karnataka",
+    "alternateName": "ಕರ್ನಾಟಕ",
+    "containedInPlace": {{
+      "@type": "Country",
+      "name": "India",
+      "alternateName": "ಭಾರತ"
+    }}
+  }},
+  "geo": {{
+    "@type": "GeoCoordinates",
+    "latitude": {dist['lat']},
+    "longitude": {dist['lon']}
+  }}
+}}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/karnata-theme.css">

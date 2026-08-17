@@ -3,8 +3,8 @@ Karnata — local_news_scraper.py
 Multi-Source Strict District Local News Scraper with Geolocation & High-Precision Tagging
 
 Aggregates news from all top Kannada & District portals:
-- Vijaya Karnataka (Direct portal scraper)
-- News18 Kannada (Direct portal scraper)
+- Vijaya Karnataka (Direct portal scraper + Google RSS search)
+- News18 Kannada (Direct portal scraper + Google RSS search)
 - Asianet Suvarna News (RSS & district feeds)
 - Prajavani (Public feed & 31 district sections)
 - TV9 Kannada (Main & district feeds)
@@ -28,7 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 
-from utils import store, log, ist_now, ist_date, sanitize_dict, encrypt_payload
+from utils import store, save_json, log, ist_now, ist_date, sanitize_dict, encrypt_payload
 
 DATA_DIR = Path(os.getenv("OUTPUT_DIR", "../data"))
 
@@ -167,11 +167,44 @@ STRICT_DISTRICT_RULES = {
     "bidar": ["ಬೀದರ್", "ಹುಮ್ನಾಬಾದ್", "ಭಾಲ್ಕಿ", "ಬಸವಕಲ್ಯಾಣ", "ಔರಾದ್", "ಗುರುನಾನಕ್ ಝೀರಾ", "ಬಿದ್ರಿ"],
 }
 
+DISTRICT_KEYWORDS_SCRAPE = [
+    'ಬೆಂಗಳೂರು', 'ಮೈಸೂರು', 'ಮಂಡ್ಯ', 'ಹಾಸನ', 'ಮಂಗಳೂರು', 'ಉಡುಪಿ', 'ಬೆಳಗಾವಿ', 'ಹುಬ್ಬಳ್ಳಿ', 'ಧಾರವಾಡ',
+    'ಶಿವಮೊಗ್ಗ', 'ದಾವಣಗೆರೆ', 'ತುಮಕೂರು', 'ಚಿತ್ರದುರ್ಗ', 'ಬಳ್ಳಾರಿ', 'ವಿಜಯನಗರ', 'ಕಲಬುರಗಿ', 'ಬೀದರ್',
+    'ರಾಯಚೂರು', 'ಕೊಪ್ಪಳ', 'ಯಾದಗಿರಿ', 'ಬಾಗಲಕೋಟೆ', 'ವಿಜಯಪುರ', 'ಗದಗ', 'ಹಾವೇರಿ', 'ಕೋಲಾರ',
+    'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ರಾಮನಗರ', 'ಚಾಮರಾಜನಗರ', 'ಕೊಡಗು', 'ಚಿಕ್ಕಮಗಳೂರು', 'ಉತ್ತರ ಕನ್ನಡ', 'ಕಾರವಾರ',
+    'ಕರ್ನಾಟಕ', 'ರಾಜಕೀಯ', 'ಕ್ರೈಂ', 'ಕೃಷಿ'
+]
+
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "kn,en-US;q=0.9,en;q=0.8"
 }
+
+INVALID_HEADLINES = {
+    'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', 'ಬೆಂಗಳೂರು ನಗರ', 'ಮೈಸೂರು', 'ಮಂಡ್ಯ', 'ಬೆಳಗಾವಿ', 'ಕಲಬುರಗಿ',
+    'ದಕ್ಷಿಣ ಕನ್ನಡ', 'ಉಡುಪಿ', 'ಉತ್ತರ ಕನ್ನಡ', 'ಶಿವಮೊಗ್ಗ', 'ಹಾಸನ', 'ತುಮಕೂರು',
+    'ದಾವಣಗೆರೆ', 'ಬಳ್ಳಾರಿ', 'ವಿಜಯನಗರ', 'ಕೊಡಗು', 'ಚಿಕ್ಕಮಗಳೂರು', 'ವಿಜಯಪುರ',
+    'ರಾಯಚೂರು', 'ಕೊಪ್ಪಳ', 'ಬಾಗಲಕೋಟೆ', 'ಗದಗ', 'ಹಾವೇರಿ', 'ಧಾರವಾಡ', 'ಯಾದಗಿರಿ',
+    'ಬೀದರ್', 'ಕೋಲಾರ', 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ರಾಮನಗರ', 'ಚಾಮರಾಜನಗರ', 'ಚಿತ್ರದುರ್ಗ',
+    'ಕರ್ನಾಟಕ', 'ರಾಜ್ಯ', 'ಮುಖ್ಯಾಂಶಗಳು', 'ಇತ್ತೀಚಿನ ಸುದ್ದಿಗಳು', 'ಜಿಲ್ಲಾ ಸುದ್ದಿ',
+    'ರಾಜಕೀಯ', 'ಸಿನಿಮಾ', 'ಕ್ರೀಡೆ', 'ವ್ಯಾಪಾರ', 'ಜೀವನಶೈಲಿ', 'ಫೋಟೋ ಗ್ಯಾಲರಿ', 'ವೀಡಿಯೋ',
+    'ಬೆಂಗಳೂರು', 'ಮಂಗಳೂರು', 'ಹುಬ್ಬಳ್ಳಿ', 'ಕಾರವಾರ', 'ಮಡಿಕೇರಿ', 'ಸ್ಥಳೀಯ ಸುದ್ದಿ'
+}
+
+def is_valid_headline(t: str) -> bool:
+    if not t or not isinstance(t, str):
+        return False
+    t = t.strip()
+    if len(t) < 20:
+        return False
+    if t in INVALID_HEADLINES:
+        return False
+    if len(t.split()) < 4:
+        return False
+    if not re.search(r'[\u0C80-\u0CFF]', t):
+        return False
+    return True
 
 def clean_text(t: str) -> str:
     if not t: return ""
@@ -202,7 +235,7 @@ def scrape_rss_feed(src: dict) -> list:
                 pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ist_now()
                 desc = clean_text(desc_el.text) if desc_el is not None else ""
 
-                if len(title) >= 12:
+                if is_valid_headline(title):
                     articles.append({
                         "title": title,
                         "url": link,
@@ -218,55 +251,88 @@ def scrape_rss_feed(src: dict) -> list:
     return articles
 
 def scrape_vijay_karnataka() -> list:
-    url = "https://vijaykarnataka.com/"
     articles = []
-    log.info("🌐 Scraping Vijaya Karnataka Portal...")
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=8)
-        if r.status_code == 200:
-            soup = BeautifulSoup(r.text, 'html.parser')
-            for a in soup.find_all('a', href=True):
-                href = a['href']
-                if '/articleshow/' in href and a.text.strip():
-                    t = clean_text(a.text)
-                    link = 'https://vijaykarnataka.com' + href if href.startswith('/') else href
-                    if len(t) >= 15 and t not in [x['title'] for x in articles]:
-                        articles.append({
-                            "title": t,
-                            "url": link,
-                            "published": ist_now(),
-                            "summary": "",
-                            "source": "ವಿಜಯ ಕರ್ನಾಟಕ (Vijay Karnataka)"
-                        })
-            log.info(f"✔ Vijaya Karnataka: {len(articles)} live articles scraped")
-    except Exception as e:
-        log.warning(f"⚠️ Vijaya Karnataka scrape failed: {e}")
+    seen = set()
+    log.info("🌐 Scraping Fresh Live Vijay Karnataka (Direct Multi-Section Portals)...")
+
+    portal_urls = [
+        "https://vijaykarnataka.com/",
+        "https://vijaykarnataka.com/news/karnataka/articlelist/10765233.cms",
+        "https://vijaykarnataka.com/news/bengaluru-city/articlelist/11182323.cms",
+        "https://vijaykarnataka.com/news/mysuru/articlelist/11182191.cms",
+        "https://vijaykarnataka.com/news/mangaluru/articlelist/11182260.cms",
+        "https://vijaykarnataka.com/news/shivamogga/articlelist/11182146.cms",
+        "https://vijaykarnataka.com/news/hubballi/articlelist/11182283.cms",
+        "https://vijaykarnataka.com/news/belagavi/articlelist/11182305.cms",
+        "https://vijaykarnataka.com/news/articlelist/10753874.cms"
+    ]
+
+    for url in portal_urls:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=8)
+            if r.status_code == 200:
+                r.encoding = "utf-8"
+                soup = BeautifulSoup(r.text, 'html.parser')
+                for a in soup.find_all('a', href=True):
+                    href = a['href']
+                    if '/articleshow/' in href:
+                        t = clean_text(a.get_text())
+                        link = 'https://vijaykarnataka.com' + href if href.startswith('/') else href
+                        if is_valid_headline(t) and t not in seen:
+                            seen.add(t)
+                            articles.append({
+                                "title": t,
+                                "url": link,
+                                "published": ist_now(),
+                                "summary": "",
+                                "source": "ವಿಜಯ ಕರ್ನಾಟಕ (Vijay Karnataka)"
+                            })
+        except Exception as e:
+            log.warning(f"  ⚠️ VK direct URL failed {url}: {e}")
+
+    log.info(f"✔ Fresh Live Vijay Karnataka: {len(articles)} articles scraped")
     return articles
 
 def scrape_news18_kannada() -> list:
-    url = "https://kannada.news18.com/karnataka/"
     articles = []
-    log.info("🌐 Scraping News18 Kannada Portal...")
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=8)
-        if r.status_code == 200:
-            soup = BeautifulSoup(r.text, 'html.parser')
-            for a in soup.find_all('a', href=True):
-                href = a['href']
-                if a.text.strip() and ('.html' in href or '/news/' in href):
-                    t = clean_text(a.text)
-                    link = 'https://kannada.news18.com' + href if href.startswith('/') else href
-                    if len(t) >= 15 and t not in [x['title'] for x in articles] and 'news18' in link:
-                        articles.append({
-                            "title": t,
-                            "url": link,
-                            "published": ist_now(),
-                            "summary": "",
-                            "source": "ನ್ಯೂಸ್ 18 ಕನ್ನಡ (News18)"
-                        })
-            log.info(f"✔ News18 Kannada: {len(articles)} live articles scraped")
-    except Exception as e:
-        log.warning(f"⚠️ News18 scrape failed: {e}")
+    seen = set()
+    log.info("🌐 Scraping Fresh Live News18 Kannada (Direct Multi-Section Portals)...")
+
+    portal_urls = [
+        "https://kannada.news18.com/",
+        "https://kannada.news18.com/karnataka-news/",
+        "https://kannada.news18.com/news/state/",
+        "https://kannada.news18.com/districts/",
+        "https://kannada.news18.com/news/bengaluru/",
+        "https://kannada.news18.com/news/mysuru/",
+        "https://kannada.news18.com/news/crime/",
+        "https://kannada.news18.com/news/agriculture/"
+    ]
+
+    for url in portal_urls:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=8)
+            if r.status_code == 200:
+                r.encoding = "utf-8"
+                soup = BeautifulSoup(r.text, 'html.parser')
+                for a in soup.find_all('a', href=True):
+                    href = a['href']
+                    if '.html' in href or '/news/' in href or '/state/' in href:
+                        t = clean_text(a.get_text())
+                        link = 'https://kannada.news18.com' + href if href.startswith('/') else href
+                        if 'news18' in link and is_valid_headline(t) and t not in seen:
+                            seen.add(t)
+                            articles.append({
+                                "title": t,
+                                "url": link,
+                                "published": ist_now(),
+                                "summary": "",
+                                "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ (News18)"
+                            })
+        except Exception as e:
+            log.warning(f"  ⚠️ News18 direct URL failed {url}: {e}")
+
+    log.info(f"✔ Fresh Live News18 Kannada: {len(articles)} articles scraped")
     return articles
 
 def scrape_prajavani_districts() -> list:
@@ -277,13 +343,14 @@ def scrape_prajavani_districts() -> list:
         try:
             r = requests.get(url, headers=HEADERS, timeout=6)
             if r.status_code == 200:
+                r.encoding = "utf-8"
                 soup = BeautifulSoup(r.text, 'html.parser')
                 count = 0
                 for a in soup.find_all('a', href=True):
                     if '/district/' in a['href'] and len(a.text.strip()) > 15:
                         t = clean_text(a.text)
                         link = 'https://www.prajavani.net' + a['href'] if a['href'].startswith('/') else a['href']
-                        if t not in [x['title'] for x in articles]:
+                        if is_valid_headline(t) and t not in [x['title'] for x in articles]:
                             articles.append({
                                 "title": t,
                                 "url": link,
@@ -299,13 +366,35 @@ def scrape_prajavani_districts() -> list:
     log.info(f"✔ Prajavani Districts: {len(articles)} district articles scraped")
     return articles
 
+def parse_date_to_timestamp(d_str) -> float:
+    if not d_str:
+        return time.time()
+    s = str(d_str).strip()
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(s).timestamp()
+    except Exception:
+        pass
+    try:
+        from datetime import datetime
+        return datetime.fromisoformat(s.replace('Z', '+00:00')).timestamp()
+    except Exception:
+        pass
+    for fmt in ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d', '%d-%m-%Y', '%d %b %Y %H:%M:%S', '%d %b %Y']:
+        try:
+            from datetime import datetime
+            return datetime.strptime(s, fmt).timestamp()
+        except Exception:
+            pass
+    return time.time()
+
 def assign_district(article: dict) -> str:
     if article.get("forced_district"):
         return article["forced_district"]
 
     text = (article["title"] + " " + article.get("summary", "")).lower()
 
-    # Rule-based matching
+    # Rule-based matching with strict priority
     best_dist = None
     max_matches = 0
 
@@ -329,10 +418,10 @@ def run() -> dict:
     for src in RSS_SOURCES:
         raw_articles.extend(scrape_rss_feed(src))
 
-    # 2. Scrape Vijaya Karnataka Portal
+    # 2. Scrape Vijaya Karnataka Portal & Google RSS
     raw_articles.extend(scrape_vijay_karnataka())
 
-    # 3. Scrape News18 Kannada Portal
+    # 3. Scrape News18 Kannada Portal & Google RSS
     raw_articles.extend(scrape_news18_kannada())
 
     # 4. Scrape Prajavani District Sections
@@ -356,11 +445,12 @@ def run() -> dict:
         else:
             district_buckets["_statewide"].append(art)
 
-    # Ensure each district has at least statewide fallback articles
-    for d_key, items in district_buckets.items():
-        if d_key != "_statewide" and len(items) < 4:
-            statewide_sample = district_buckets["_statewide"][:6]
-            items.extend([s for s in statewide_sample if s["title"] not in [x["title"] for x in items]])
+    # Sort each district bucket chronologically so latest news is ALWAYS ON TOP
+    for d_key in district_buckets:
+        district_buckets[d_key].sort(
+            key=lambda x: parse_date_to_timestamp(x.get("published")),
+            reverse=True
+        )
 
     total_sorted = sum(len(v) for v in district_buckets.values())
 
@@ -379,7 +469,7 @@ def run() -> dict:
     }
 
     store("local_news.json", "local_news", output)
-    log.info(f"✅ Multi-Source District News Saved: {total_sorted} articles across 32 district buckets")
+    log.info(f"✅ Multi-Source District News Saved: {total_sorted} articles across 32 district buckets (including Vijaya Karnataka & News18)")
     return output
 
 if __name__ == "__main__":

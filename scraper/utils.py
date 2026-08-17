@@ -41,11 +41,11 @@ def ist_date() -> str:
 
 # ─── Sanitization & Payload Encryption ────────────────────────
 def sanitize_dict(obj):
-    """Recursively strip source URLs, origin flags, fallback tags, and debug info."""
+    """Recursively strip origin flags, fallback tags, and debug info while preserving news sources."""
     if isinstance(obj, dict):
         new_dict = {}
         for k, v in obj.items():
-            if k in ("source", "source_name", "source_url", "origin", "is_fallback", "debug_info", "scraper_log", "scraped_from"):
+            if k in ("source_name", "source_url", "origin", "is_fallback", "debug_info", "scraper_log", "scraped_from"):
                 continue
             new_dict[k] = sanitize_dict(v)
         return new_dict

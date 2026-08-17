@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-08-16T07:42:45.514261",
-  "date": "2026-08-16",
-  "greeting": "🌅 ಶುಭ ಮುಂಜಾನೆ!",
+  "updated_at": "2026-08-17T10:19:53.969684",
+  "date": "2026-08-17",
+  "greeting": "🌅 ಶುಭ ಮುಂಜಾವು!",
   "tagline": "ಇವತ್ತಿನ ನಿಮ್ಮ ಅಪ್ಡೇಟ್!",
-  "title": "🌅 ಶುಭ ಮುಂಜಾನೆ! ಇವತ್ತಿನ ನಿಮ್ಮ ಅಪ್ಡೇಟ್",
-  "summary": "ಚಿನ್ನ ₹14080/g · ಬೆಳ್ಳಿ ₹239.9/g | ಪೆಟ್ರೋಲ್ ₹102.86 | ಕೆಆರ್‌ಎಸ್ 63.6% | ಹವಾಮಾನ 21°C",
+  "title": "🌅 ಶುಭ ಮುಂಜಾವು! ಇವತ್ತಿನ ನಿಮ್ಮ ಅಪ್ಡೇಟ್",
+  "summary": "ಚಿನ್ನ ₹14270/g · ಬೆಳ್ಳಿ ₹250.0/g | ಪೆಟ್ರೋಲ್ ₹102.86 | ಕೆಆರ್‌ಎಸ್ 63.2% | ಹವಾಮಾನ 26°C",
   "sections": {
     "gold_silver": {
       "title": "🥇 ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ",
-      "gold_22k": 14080,
-      "gold_24k": 15365,
-      "silver_999": 239.9,
-      "gold_display": "22K ಚಿನ್ನ: ₹14080/g · 24K: ₹15365/g",
-      "silver_display": "ಬೆಳ್ಳಿ ದರ: ₹239.9/g (100g: ₹23,990)",
-      "display": "22K: ₹14080/g · 24K: ₹15365/g · ಬೆಳ್ಳಿ: ₹239.9/g"
+      "gold_22k": 14270,
+      "gold_24k": 15566,
+      "silver_999": 250.0,
+      "gold_display": "22K ಚಿನ್ನ: ₹14270/g · 24K: ₹15566/g",
+      "silver_display": "ಬೆಳ್ಳಿ ದರ: ₹250.0/g (100g: ₹25,000)",
+      "display": "22K: ₹14270/g · 24K: ₹15566/g · ಬೆಳ್ಳಿ: ₹250.0/g"
     },
     "fuel": {
       "title": "⛽ ಇಂಧನ ದರ (Fuel Rates)",
@@ -24,22 +24,22 @@
     "dam": {
       "title": "💧 ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Dam Level)",
       "name": "ಕೆಆರ್‌ಎಸ್",
-      "storage_pct": 63.6,
-      "storage_tmc": 31.47,
-      "display": "ಕೆಆರ್‌ಎಸ್: 31.47 TMC (63.6% ಭರ್ತಿ)"
+      "storage_pct": 63.2,
+      "storage_tmc": 31.272,
+      "display": "ಕೆಆರ್‌ಎಸ್: 31.272 TMC (63.2% ಭರ್ತಿ)"
     },
     "weather": {
       "title": "🌦️ ಇಂದಿನ ಹವಾಮಾನ (Live Weather)",
-      "temp": "21°C",
+      "temp": "26°C",
       "condition": "ಮೋಡ ☁️",
-      "display": "21°C · ಮೋಡ ☁️"
+      "display": "26°C · ಮೋಡ ☁️"
     },
     "top_5_news": [
       "ಕರ್ನಾಟಕ ಸಚಿವ ಸಂಪುಟ ಖಾತೆ ಹಂಚಿಕೆ: ಸಿಎಂ ಸಿದ್ದರಾಮಯ್ಯ & ಡಿಕೆ ಶಿವಕುಮಾರ್ ಬಳಿ ಯಾವ ಖಾತೆ? ಇಲ್ಲಿದೆ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ!",
       "🔥 ಬೆಂಗಳೂರು ಮೆಟ್ರೋ ಹಂತ 2B ಕಾಮಗಾರಿ ವೇಗ — ಹೊಸ ಸಂಚಾರ ನಿಯಮಗಳು ಹಾಗೂ ಪರ್ಯಾಯ ಮಾರ್ಗಗಳ ವಿವರ",
-      "Bengaluru Urban tops PRC applications amid SIR: Revenue Department",
-      "69 of 83 new industrial projects to come up outside Bengaluru",
-      "Bengaluru: Police urge peace ahead of August 13 'Karnataka Bandh', says city services to function normally"
+      "+8 Photosಬೆಂಗಳೂರು ನಗರಮತ್ತೆ ಪ್ರಬಲವಾಯ್ತಾ ಎಲ್‌ ನಿನೋ? ಮುಂದಿನ ತಿಂಗಳು ಮಳೆ ಇನ್ನೂ ಕಮ್ಮಿ, 7 ದಿನದ ಶಾಕಿಂಗ್‌ ರಿಪೋ",
+      "Bengaluru | 3ನೇ ಮಹಡಿಯಿಂದ ಬಿದ್ದ ಮಗು; ಪೋಷಕರೇ ಎಚ್ಚರ..! | N18V",
+      "Kiara Advani and Director Geetu Mohandas arrive in Bengaluru | 'ಟಾಕ್ಸಿಕ್' ಟ್ರೈಲರ್ ಬಿಡುಗಡೆ ಹಿನ್ನೆಲೆ ಬೆಂಗಳೂರಿಗೆ ಆಗಮಿಸಿದ ಕಿಯಾರಾ ಅಡ್ವಾಣಿ ಮತ್ತು ನಿರ್ದೇಶಕಿ ಗೀತು ಮೋಹನ್‌ದಾಸ್"
     ],
     "important_update": "🚨 ನಮ್ಮ ಮೆಟ್ರೋ ಹಂತ 2B ಕಾಮಗಾರಿ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ವಿಮಾನ ನಿಲ್ದಾಣ ರಸ್ತೆಯಲ್ಲಿ ಸಂಚಾರ ಬದಲಾವಣೆ ಜಾರಿಯಲ್ಲಿದೆ."
   }

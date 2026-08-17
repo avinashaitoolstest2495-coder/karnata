@@ -1867,7 +1867,10 @@ async function loadAll(){
       const bs = g?.baseSilver || g?.silver;
       const raw22 = bg?.[22] || bg?.['22k_per_gram'];
       const rawSilver = bs?.[999] || bs?.['999_per_gram'];
-      if (raw22 && raw22 > 5000) { p22 = raw22; goldChange = g?.change?.['22k'] || 0; }
+      if (raw22 && raw22 > 5000) { 
+        p22 = raw22; 
+        goldChange = (g?.changes && typeof g.changes['22k'] === 'number') ? g.changes['22k'] : ((g?.change && typeof g.change['22k'] === 'number') ? g.change['22k'] : 0); 
+      }
       if (rawSilver && rawSilver > 30) silverGram = rawSilver;
     }
   } catch(e) {}
@@ -1895,7 +1898,8 @@ async function loadAll(){
   }
   if (p22 && p22 > 5000) {
     $('lc-gold').textContent = fmt(p22);
-    $('lc-gold-ch').textContent = (goldChange >= 0 ? '▲' : '▼') + ' ₹' + Math.abs(goldChange) + ' ಇಂದು';
+    const ico = goldChange > 0 ? '▲ +' : goldChange < 0 ? '▼ -' : '— ';
+    $('lc-gold-ch').textContent = ico + '₹' + Math.abs(goldChange) + ' ಇಂದು';
     $('lc-gold-ch').className = 'lc-change ' + (goldChange > 0 ? 'up' : goldChange < 0 ? 'dn' : 'nc');
     setTickerVals('t-val-gold', fmt(p22) + '/g');
   }

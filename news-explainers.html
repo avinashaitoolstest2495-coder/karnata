@@ -494,17 +494,18 @@ button { cursor: pointer; font-family: inherit; border: none; outline: none; }
 }
 
 .ed-headline {
-  font-size: 16.5px;
-  font-weight: 800;
+  font-size: 14.5px;
+  font-weight: 700;
   color: var(--text-dark);
-  line-height: 1.45;
-  margin-bottom: 10px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  letter-spacing: -0.1px;
 }
 .ed-snippet {
-  font-size: 13.5px;
+  font-size: 12.5px;
   color: var(--text-body);
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.55;
+  margin-bottom: 16px;
   flex-grow: 1;
 }
 
@@ -788,41 +789,42 @@ const DISTRICT_NAMES_KN = {
   'ramanagara': 'ರಾಮನಗರ',
   'chamarajanagara': 'ಚಾಮರಾಜನಗರ',
   'chitradurga': 'ಚಿತ್ರದುರ್ಗ',
-  'vijayanagara': 'ವಿಜಯನಗರ'
+  'vijayanagara': 'ವಿಜಯನಗರ',
+  'statewide': 'ಕರ್ನಾಟಕ (ರಾಜ್ಯ ಮಟ್ಟ)'
 };
 
 const DISTRICT_KEY_ALIASES = {
-  'koppal': ['koppal', 'ಕೊಪ್ಪಳ', 'ಗಂಗಾವತಿ', 'ಕುಷ್ಟಗಿ'],
-  'shivamogga': ['shivamogga', 'ಶಿವಮೊಗ್ಗ', 'ಸಾಗರ', 'ತೀರ್ಥಹಳ್ಳಿ', 'ಭದ್ರಾವತಿ'],
-  'bengaluru-urban': ['bengaluru-urban', 'bengaluru_urban', 'bengaluru', 'ಬೆಂಗಳೂರು'],
-  'bengaluru-rural': ['bengaluru-rural', 'bengaluru_rural', 'ದೇವನಹಳ್ಳಿ', 'ನೆಲಮಂಗಲ'],
-  'mysuru': ['mysuru', 'ಮೈಸೂರು', 'ನಂಜನಗೂಡು', 'ಹುಣಸೂರು'],
-  'mandya': ['mandya', 'ಮಂಡ್ಯ', 'ಮದ್ದೂರು', 'ಶ್ರೀರಂಗಪಟ್ಟಣ'],
-  'dakshina-kannada': ['dakshina-kannada', 'dakshina_kannada', 'ಮಂಗಳೂರು', 'ಪುತ್ತೂರು', 'ಬಂಟ್ವಾಳ'],
-  'belagavi': ['belagavi', 'ಬೆಳಗಾವಿ', 'ಗೋಕಾಕ್', 'ಚಿಕ್ಕೋಡಿ'],
-  'udupi': ['udupi', 'ಉಡುಪಿ', 'ಕುಂದಾಪುರ', 'ಕಾರ್ಕಳ', 'ಮಲ್ಪೆ'],
-  'uttara-kannada': ['uttara-kannada', 'uttara_kannada', 'ಕಾರವಾರ', 'ಶಿರಸಿ', 'ಭಟ್ಕಳ', 'ಕುಮಟಾ'],
-  'kalaburagi': ['kalaburagi', 'ಕಲಬುರಗಿ', 'ಗುಲ್ಬರ್ಗಾ'],
-  'hassan': ['hassan', 'ಹಾಸನ', 'ಅರಸೀಕೆರೆ', 'ಸಕಲೇಶಪುರ'],
-  'tumakuru': ['tumakuru', 'ತುಮಕೂರು', 'ತಿಪಟೂರು'],
-  'davanagere': ['davanagere', 'ದಾವಣಗೆರೆ', 'ಹರಿಹರ'],
-  'ballari': ['ballari', 'ಬಳ್ಳಾರಿ', 'ಸಂದೂರು'],
-  'vijayanagara': ['vijayanagara', 'ವಿಜಯನಗರ', 'ಹೊಸಪೇಟೆ'],
-  'kodagu': ['kodagu', 'ಕೊಡಗು', 'ಮಡಿಕೇರಿ'],
-  'chikkamagaluru': ['chikkamagaluru', 'ಚಿಕ್ಕಮಗಳೂರು', 'ತರೀಕೆರೆ'],
-  'vijayapura': ['vijayapura', 'ವಿಜಯಪುರ', 'ಬಿಜಾಪುರ'],
-  'raichur': ['raichur', 'ರಾಯಚೂರು', 'ಸಿಂಧನೂರು'],
-  'bagalkote': ['bagalkote', 'ಬಾಗಲಕೋಟೆ', 'ಜಮಖಂಡಿ', 'ಇಳಕಲ್'],
-  'gadag': ['gadag', 'ಗದಗ', 'ರೋಣ'],
-  'haveri': ['haveri', 'ಹಾವೇರಿ', 'ರಾಣೇಬೆನ್ನೂರು'],
-  'dharwad': ['dharwad', 'ಧಾರವಾಡ', 'ಹುಬ್ಬಳ್ಳಿ'],
-  'yadgir': ['yadgir', 'ಯಾದಗಿರಿ', 'ಶಹಾಪುರ'],
-  'bidar': ['bidar', 'ಬೀದರ್', 'ಭಾಲ್ಕಿ'],
-  'kolar': ['kolar', 'ಕೋಲಾರ', 'ಕೆಜಿಎಫ್'],
-  'chikkaballapura': ['chikkaballapura', 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ಚಿಂತಾಮಣಿ'],
-  'ramanagara': ['ramanagara', 'ರಾಮನಗರ', 'ಚನ್ನಪಟ್ಟಣ', 'ಕನಕಪುರ'],
-  'chamarajanagara': ['chamarajanagara', 'ಚಾಮರಾಜನಗರ', 'ಕೊಳ್ಳೇಗಾಲ'],
-  'chitradurga': ['chitradurga', 'ಚಿತ್ರದುರ್ಗ', 'ಚಳ್ಳಕೆರೆ', 'ಹಿರಿಯೂರು']
+  'koppal': ['koppal', 'ಕೊಪ್ಪಳ', 'ಗಂಗಾವತಿ', 'ಕುಷ್ಟಗಿ', 'ಯಲಬುರ್ಗಾ', 'ಕಾರಟಗಿ'],
+  'shivamogga': ['shivamogga', 'ಶಿವಮೊಗ್ಗ', 'ಸಾಗರ', 'ತೀರ್ಥಹಳ್ಳಿ', 'ಭದ್ರಾವತಿ', 'ಶಿಕಾರಿಪುರ', 'ಸೊರಬ', 'ಹೊಸನಗರ'],
+  'bengaluru-urban': ['bengaluru-urban', 'bengaluru_urban', 'bengaluru urban', 'ಬೆಂಗಳೂರು ನಗರ', 'bbmp', 'ಬೆಂಗಳೂರು'],
+  'bengaluru-rural': ['bengaluru-rural', 'bengaluru_rural', 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', 'ದೇವನಹಳ್ಳಿ', 'ನೆಲಮಂಗಲ', 'ದೊಡ್ಡಬಳ್ಳಾಪುರ', 'ಹೊಸಕೋಟೆ'],
+  'mysuru': ['mysuru', 'ಮೈಸೂರು', 'ನಂಜನಗೂಡು', 'ಹುಣಸೂರು', 'ಪಿರಿಯಾಪಟ್ಟಣ', 'ಟಿ.ನರಸೀಪುರ', 'ಕೆ.ಆರ್.ನಗರ', 'ಸರಗೂರು'],
+  'mandya': ['mandya', 'ಮಂಡ್ಯ', 'ಮದ್ದೂರು', 'ಶ್ರೀರಂಗಪಟ್ಟಣ', 'ಮಳವಳ್ಳಿ', 'ಪಾಂಡವಪುರ', 'ನಾಗಮಂಗಲ', 'ಕೆ.ಆರ್.ಪೇಟೆ'],
+  'dakshina-kannada': ['dakshina-kannada', 'dakshina_kannada', 'ಮಂಗಳೂರು', 'ಪುತ್ತೂರು', 'ಬಂಟ್ವಾಳ', 'ಬೆಳ್ತಂಗಡಿ', 'ಸುಳ್ಯ', 'ಮೂಡುಬಿದಿರೆ', 'ಕಡಬ'],
+  'belagavi': ['belagavi', 'ಬೆಳಗಾವಿ', 'ಗೋಕಾಕ್', 'ಚಿಕ್ಕೋಡಿ', 'ಬೈಲಹೊಂಗಲ', 'ಅಥಣಿ', 'ಸವದತ್ತಿ', 'ಖಾನಾಪುರ', 'ರಾಯಭಾಗ', 'ಹುಕ್ಕೇರಿ', 'ರಾಮದುರ್ಗ'],
+  'udupi': ['udupi', 'ಉಡುಪಿ', 'ಕುಂದಾಪುರ', 'ಕಾರ್ಕಳ', 'ಮಲ್ಪೆ', 'ಬೈಂದೂರು', 'ಬ್ರಹ್ಮಾವರ', 'ಕಾಪು', 'ಹೆಬ್ರಿ'],
+  'uttara-kannada': ['uttara-kannada', 'uttara_kannada', 'ಕಾರವಾರ', 'ಶಿರಸಿ', 'ಭಟ್ಕಳ', 'ಕುಮಟಾ', 'ಅಂಕೋಲಾ', 'ಹೊನ್ನಾವರ', 'ದಾಂಡೇಲಿ', 'ಯಲ್ಲಾಪುರ', 'ಸಿದ್ದಾಪುರ', 'ಹಳಿಯಾಳ', 'ಜೋಯಿಡಾ'],
+  'kalaburagi': ['kalaburagi', 'ಕಲಬುರಗಿ', 'ಗುಲ್ಬರ್ಗಾ', 'ಸೇಡಂ', 'ಚಿಂಚೋಳಿ', 'ಆಳಂದ', 'ಅಫಜಲಪುರ', 'ಜೇವರ್ಗಿ', 'ಚಿತ್ತಾಪುರ'],
+  'hassan': ['hassan', 'ಹಾಸನ', 'ಅರಸೀಕೆರೆ', 'ಸಕಲೇಶಪುರ', 'ಬೇಲೂರು', 'ಹೊಳೆನರಸೀಪುರ', 'ಚನ್ನರಾಯಪಟ್ಟಣ', 'ಆಲೂರು', 'ಅರಕಲಗೂಡು'],
+  'tumakuru': ['tumakuru', 'ತುಮಕೂರು', 'ತಿಪಟೂರು', 'ಮಧುಗಿರಿ', 'ಕುಣಿಗಲ್', 'ಶಿರಾ', 'ಪಾವಗಡ', 'ಗುಬ್ಬಿ', 'ಕೊರಟಗೆರೆ', 'ತುರುವೇಕೆರೆ', 'ಚಿಕ್ಕನಾಯಕನಹಳ್ಳಿ'],
+  'davanagere': ['davanagere', 'ದಾವಣಗೆರೆ', 'ಹರಿಹರ', 'ಚನ್ನಗಿರಿ', 'ಹೊನ್ನಾಳಿ', 'ನ್ಯಾಮತಿ', 'ಜಗಳೂರು'],
+  'ballari': ['ballari', 'ಬಳ್ಳಾರಿ', 'ಸಂದೂರು', 'ಸಿರುಗುಪ್ಪ', 'ಕಂಪ್ಲಿ', 'ಕುರುಗೋಡು'],
+  'vijayanagara': ['vijayanagara', 'ವಿಜಯನಗರ', 'ಹೊಸಪೇಟೆ', 'ಕೂಡ್ಲಿಗಿ', 'ಹೂವಿನಹಡಗಲಿ', 'ಹರಪನಹಳ್ಳಿ', 'ಕೊಟ್ಟೂರು', 'ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ', 'ಕಮಲಾಪುರ', 'ಹಂಪಿ', 'ಟಿಬಿ ಡ್ಯಾಂ'],
+  'kodagu': ['kodagu', 'ಕೊಡಗು', 'ಮಡಿಕೇರಿ', 'ವಿರಾಜಪೇಟೆ', 'ಸೋಮವಾರಪೇಟೆ', 'ಕುಶಾಲನಗರ', 'ಪೊನ್ನಂಪೇಟೆ'],
+  'chikkamagaluru': ['chikkamagaluru', 'ಚಿಕ್ಕಮಗಳೂರು', 'ತರೀಕೆರೆ', 'ಕಡೂರು', 'ಕೊಪ್ಪ', 'ಮೂಡಿಗೆರೆ', 'ನರಸಿಂಹರಾಜಪುರ', 'ಶೃಂಗೇರಿ', 'ಅಜ್ಜಂಪುರ', 'ಕಳಸ'],
+  'vijayapura': ['vijayapura', 'ವಿಜಯಪುರ', 'ಬಿಜಾಪುರ', 'ಇಂಡಿ', 'ಸಿಂದಗಿ', 'ಮುದ್ದೇಬಿಹಾಳ', 'ಬಸವನಬಾಗೇವಾಡಿ', 'ತಾಳಿಕೋಟೆ', 'ಬಬಲೇಶ್ವರ'],
+  'raichur': ['raichur', 'ರಾಯಚೂರು', 'ಸಿಂಧನೂರು', 'ಮಾನ್ವಿ', 'ದೇವದುರ್ಗ', 'ಲಿಂಗಸುಗೂರು', 'ಮಸ್ಕಿ', 'ಸಿರವಾರ'],
+  'bagalkote': ['bagalkote', 'ಬಾಗಲಕೋಟೆ', 'ಜಮಖಂಡಿ', 'ಇಳಕಲ್', 'ಮುಧೋಳ', 'ಬಾದಾಮಿ', 'ಹುನಗುಂದ', 'ಬೀಳಗಿ', 'ಗುಳೇದಗುಡ್ಡ', 'ರಬಕವಿ ಬನಹಟ್ಟಿ'],
+  'gadag': ['gadag', 'ಗದಗ', 'ರೋಣ', 'ಶಿರಹಟ್ಟಿ', 'ಮುಂಡರಗಿ', 'ನರಗುಂದ', 'ಲಕ್ಷ್ಮೇಶ್ವರ', 'ಗಜೇಂದ್ರಗಡ'],
+  'haveri': ['haveri', 'ಹಾವೇರಿ', 'ರಾಣೇಬೆನ್ನೂರು', 'ಬ್ಯಾಡಗಿ', 'ಹಿರೇಕೆರೂರು', 'ಶಿಗ್ಗಾಂವಿ', 'ಸವಣೂರು', 'ಹಾನಗಲ್', 'ರಟ್ಟೀಹಳ್ಳಿ'],
+  'dharwad': ['dharwad', 'ಧಾರವಾಡ', 'ಹುಬ್ಬಳ್ಳಿ', 'ಕುಂದಗೋಳ', 'ನವಲಗುಂದ', 'ಕಲಘಟಗಿ', 'ಅಣ್ಣಿಗೇರಿ', 'ಅಳ್ನಾವರ'],
+  'yadgir': ['yadgir', 'ಯಾದಗಿರಿ', 'ಶಹಾಪುರ', 'ಸುರಪುರ', 'ಹುಣಸಗಿ', 'ಗುರುಮಿಟಕಲ್', 'ವಡಗೇರಾ'],
+  'bidar': ['bidar', 'ಬೀದರ್', 'ಭಾಲ್ಕಿ', 'ಬಸವಕಲ್ಯಾಣ', 'ಹುಮನಾಬಾದ್', 'ಔರಾದ್', 'ಚಿಟಗುಪ್ಪ', 'ಕಮಲನಗರ'],
+  'kolar': ['kolar', 'ಕೋಲಾರ', 'ಕೆಜಿಎಫ್', 'ಶ್ರೀನಿವಾಸಪುರ', 'ಮಾಲೂರು', 'ಬಂಗಾರಪೇಟೆ', 'ಮುಳಬಾಗಿಲು'],
+  'chikkaballapura': ['chikkaballapura', 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ಚಿಂತಾಮಣಿ', 'ಗೌರಿಬಿದನೂರು', 'ಶಿಡ್ಲಘಟ್ಟ', 'ಬಾಗೇಪಲ್ಲಿ', 'ಗುಡಿಬಂಡೆ'],
+  'ramanagara': ['ramanagara', 'ರಾಮನಗರ', 'ಚನ್ನಪಟ್ಟಣ', 'ಕನಕಪುರ', 'ಮಾಗಡಿ', 'ಹಾರೋಹಳ್ಳಿ'],
+  'chamarajanagara': ['chamarajanagara', 'ಚಾಮರಾಜನಗರ', 'ಕೊಳ್ಳೇಗಾಲ', 'ಗುಂಡ್ಲುಪೇಟೆ', 'ಯಳಂದೂರು', 'ಹನೂರು'],
+  'chitradurga': ['chitradurga', 'ಚಿತ್ರದುರ್ಗ', 'ಚಳ್ಳಕೆರೆ', 'ಹಿರಿಯೂರು', 'ಹೊಸದುರ್ಗ', 'ಹೊಳಲ್ಕೆರೆ', 'ಮೊಳಕಾಲ್ಮುರು']
 };
 
 function isKannada(text) {
@@ -883,16 +885,58 @@ function formatSourceCTA(src, url) {
   return 'ಪೂರ್ತಿ ಸುದ್ದಿಗಾಗಿ ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ';
 }
 
-// Dateline Extractor: Detects if title starts with "ಕೊಪ್ಪಳ:", "ಶಿವಮೊಗ್ಗ :", etc.
-function extractDatelineDistrict(title) {
-  if (!title) return null;
-  const lead = (title.split(':')[0] || title.split(' - ')[0] || title.slice(0, 25)).trim();
-  for (const [dKey, aliases] of Object.entries(DISTRICT_KEY_ALIASES)) {
-    for (const al of aliases) {
-      if (lead.includes(al)) return dKey;
-    }
-  }
-  return null;
+function matchPublisherSource(a, srcFilter) {
+  if (!srcFilter || srcFilter === 'all') return true;
+  const src = (a.source || a.source_name || '').toLowerCase();
+  const url = (a.url || a.link || '').toLowerCase();
+  if (srcFilter === 'vijay_karnataka') return src.includes('ವಿಜಯ') || src.includes('vijay') || url.includes('vijaykarnataka');
+  if (srcFilter === 'prajavani') return src.includes('ಪ್ರಜಾವಾಣಿ') || src.includes('prajavani') || url.includes('prajavani');
+  if (srcFilter === 'tv9') return src.includes('tv9') || src.includes('ಟಿವಿ9') || url.includes('tv9kannada');
+  if (srcFilter === 'suvarna') return src.includes('ಸುವರ್ಣ') || src.includes('asianet') || src.includes('suvarna') || url.includes('asianetnews');
+  if (srcFilter === 'news18') return src.includes('ನ್ಯೂಸ್') || src.includes('news18') || src.includes('18') || url.includes('news18');
+  if (srcFilter === 'oneindia') return src.includes('ಒನ್‌ಇಂಡಿಯಾ') || src.includes('oneindia') || url.includes('oneindia');
+  if (srcFilter === 'public_tv') return src.includes('ಪಬ್ಲಿಕ್') || src.includes('public') || url.includes('publictv');
+  if (srcFilter === 'shivamogga_live') return src.includes('ಶಿವಮೊಗ್ಗ') || src.includes('shivamogga') || url.includes('shivamoggalive');
+  if (srcFilter === 'just_kannada') return src.includes('ಜಸ್ಟ್') || src.includes('just') || url.includes('justkannada');
+  return true;
+}
+
+function populateTicker(articles) {
+  const track = document.getElementById('live-ticker-track');
+  if (!track || !articles || !articles.length) return;
+  const itemsHtml = articles.slice(0, 50).map(a => {
+    const t = (a.title || a.headline || '').trim();
+    const u = a.url || a.link || '#';
+    return `<a href="${u}" target="_blank" rel="noopener" class="ticker-item">🔴 ${t}</a><span class="ticker-sep">✦</span>`;
+  }).join(' ');
+  track.innerHTML = itemsHtml + itemsHtml;
+}
+
+const INVALID_HEADLINES_SET = new Set([
+  'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', 'ಬೆಂಗಳೂರು ನಗರ', 'ಮೈಸೂರು', 'ಮಂಡ್ಯ', 'ಬೆಳಗಾವಿ', 'ಕಲಬುರಗಿ',
+  'ದಕ್ಷಿಣ ಕನ್ನಡ', 'ಉಡುಪಿ', 'ಉತ್ತರ ಕನ್ನಡ', 'ಶಿವಮೊಗ್ಗ', 'ಹಾಸನ', 'ತುಮಕೂರು',
+  'ದಾವಣಗೆರೆ', 'ಬಳ್ಳಾರಿ', 'ವಿಜಯನಗರ', 'ಕೊಡಗು', 'ಚಿಕ್ಕಮಗಳೂರು', 'ವಿಜಯಪುರ',
+  'ರಾಯಚೂರು', 'ಕೊಪ್ಪಳ', 'ಬಾಗಲಕೋಟೆ', 'ಗದಗ', 'ಹಾವೇರಿ', 'ಧಾರವಾಡ', 'ಯಾದಗಿರಿ',
+  'ಬೀದರ್', 'ಕೋಲಾರ', 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ರಾಮನಗರ', 'ಚಾಮರಾಜನಗರ', 'ಚಿತ್ರದುರ್ಗ',
+  'ಕರ್ನಾಟಕ', 'ರಾಜ್ಯ', 'ಮುಖ್ಯಾಂಶಗಳು', 'ಇತ್ತೀಚಿನ ಸುದ್ದಿಗಳು', 'ಜಿಲ್ಲಾ ಸುದ್ದಿ',
+  'ರಾಜಕೀಯ', 'ಸಿನಿಮಾ', 'ಕ್ರೀಡೆ', 'ವ್ಯಾಪಾರ', 'ಜೀವನಶೈಲಿ', 'ಫೋಟೋ ಗ್ಯಾಲರಿ', 'ವೀಡಿಯೋ',
+  'ಬೆಂಗಳೂರು', 'ಮಂಗಳೂರು', 'ಹುಬ್ಬಳ್ಳಿ', 'ಕಾರವಾರ', 'ಮಡಿಕೇರಿ', 'ಸ್ಥಳೀಯ ಸುದ್ದಿ'
+]);
+
+function isValidHeadline(t) {
+  if (!t || typeof t !== 'string') return false;
+  const trimmed = t.trim();
+  if (trimmed.length < 20) return false;
+  if (INVALID_HEADLINES_SET.has(trimmed)) return false;
+  if (trimmed.split(/\s+/).length < 4) return false;
+  return isKannada(trimmed);
+}
+
+function parseArticleTime(dStr) {
+  if (!dStr) return 0;
+  const parsed = Date.parse(dStr);
+  if (!isNaN(parsed)) return parsed;
+  return 0;
 }
 
 async function loadData() {
@@ -900,42 +944,8 @@ async function loadData() {
     const list = [];
     const seenTitles = new Set();
 
-    // 1. Fetch user written CMS Articles first
-    try {
-      const cmsRes = await fetch('data/cms_articles.json?t=' + Date.now());
-      if (cmsRes.ok) {
-        const cmsData = await cmsRes.json();
-        const cmsArticles = cmsData.articles || [];
-        cmsArticles.forEach(item => {
-          if (item.status === 'published' || !item.status) {
-            const title = item.title_kn || item.title || '';
-            const cleanKey = title.toLowerCase();
-            if (title && !seenTitles.has(cleanKey)) {
-              seenTitles.add(cleanKey);
-              list.push({
-                id: item.id || item.slug,
-                title: title,
-                headline: title,
-                snippet: item.summary_kn || item.summary || '',
-                summary: item.summary_kn || item.summary || '',
-                source: item.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
-                source_name: item.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
-                url: `/news/article.html?id=${item.slug || item.id}`,
-                is_cms: true,
-                districtKey: 'bengaluru-urban',
-                category: item.category || 'ಪ್ರಮುಖ ಸುದ್ದಿ',
-                updated_at: item.updated_at
-              });
-            }
-          }
-        });
-      }
-    } catch (e) {
-      console.warn("CMS articles fetch notice:", e);
-    }
-
-    // 2. Fetch Scraped Local News Feed
-    const res = await fetch('data/local_news.json?t=' + Date.now());
+    // Fetch Scraped Local News Feed (1550+ authentic articles from top portals)
+    const res = await fetch('/data/local_news.json?t=' + Date.now());
     let data = await res.json();
     if (data && data.payload) {
       const dec = decryptPayload(data.payload);
@@ -950,17 +960,24 @@ async function loadData() {
         arr.forEach(item => {
           let title = (item.title || item.headline || '').trim();
           let cleanKey = title.toLowerCase();
-          if (isKannada(title) && !seenTitles.has(cleanKey)) {
+          if (isValidHeadline(title) && !seenTitles.has(cleanKey)) {
             seenTitles.add(cleanKey);
-            const detectedDist = extractDatelineDistrict(title) || (dKey === '_statewide' ? 'bengaluru-urban' : dKey);
-            list.push({ ...item, districtKey: detectedDist });
+            list.push({ 
+              ...item, 
+              title: title,
+              headline: title,
+              districtKey: (dKey === '_statewide' || dKey === 'statewide') ? 'statewide' : dKey 
+            });
           }
         });
       }
     });
 
+    // Sort chronologically: LATEST NEWS ON TOP
+    list.sort((a, b) => parseArticleTime(b.published || b.time_ago) - parseArticleTime(a.published || a.time_ago));
+
     allArticles = list;
-    visibleCount = 12; // 12 stories
+    visibleCount = 12;
     populateTicker(list);
     renderCards();
   } catch (e) {
@@ -969,37 +986,9 @@ async function loadData() {
       <div class="empty-state">
         <div style="font-size:32px; margin-bottom:8px;">⚠️</div>
         <div style="font-size:16px; font-weight:800;">ಸುದ್ದಿ ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಕಂಡುಬಂದಿದೆ</div>
-        <div style="font-size:13px; margin-top:4px;">ದಯವಿಟ್ಟು ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</div>
+        <div style="font-size:13px; margin-top:4px;">ದಯವಿಟ್ಟು ಪುಟವನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ.</div>
       </div>`;
   }
-}
-
-function populateTicker(articles) {
-  const track = document.getElementById('live-ticker-track');
-  if (!track || !articles || !articles.length) return;
-  // Top 50 latest news only
-  const itemsHtml = articles.slice(0, 50).map(a => {
-    const t = (a.title || a.headline || '').trim();
-    const u = a.url || a.link || '#';
-    return `<a href="${u}" target="_blank" rel="noopener" class="ticker-item">🔴 ${t}</a><span class="ticker-sep">✦</span>`;
-  }).join(' ');
-  track.innerHTML = itemsHtml + itemsHtml; // duplicated for seamless infinite CSS loop
-}
-
-function matchPublisherSource(a, srcFilter) {
-  if (srcFilter === 'all') return true;
-  const src = (a.source || a.source_name || '').toLowerCase();
-  const url = (a.url || a.link || '').toLowerCase();
-  if (srcFilter === 'vijay_karnataka') return src.includes('ವಿಜಯ ಕರ್ನಾಟಕ') || src.includes('vijay') || url.includes('vijaykarnataka');
-  if (srcFilter === 'prajavani') return src.includes('ಪ್ರಜಾವಾಣಿ') || src.includes('prajavani') || url.includes('prajavani');
-  if (srcFilter === 'tv9') return src.includes('tv9') || src.includes('ಟಿವಿ9') || url.includes('tv9kannada');
-  if (srcFilter === 'suvarna') return src.includes('ಸುವರ್ಣ') || src.includes('asianet') || src.includes('suvarna') || url.includes('asianetnews');
-  if (srcFilter === 'news18') return src.includes('ನ್ಯೂಸ್18') || src.includes('news18') || url.includes('news18');
-  if (srcFilter === 'oneindia') return src.includes('ಒನ್‌ಇಂಡಿಯಾ') || src.includes('oneindia') || url.includes('oneindia');
-  if (srcFilter === 'public_tv') return src.includes('ಪಬ್ಲಿಕ್') || src.includes('public') || url.includes('publictv');
-  if (srcFilter === 'shivamogga_live') return src.includes('ಶಿವಮೊಗ್ಗ') || src.includes('shivamogga') || url.includes('shivamoggalive');
-  if (srcFilter === 'just_kannada') return src.includes('ಜಸ್ಟ್') || src.includes('just') || url.includes('justkannada');
-  return true;
 }
 
 function getActiveArticles() {
@@ -1009,32 +998,34 @@ function getActiveArticles() {
     list = allArticles.filter(a => matchPublisherSource(a, currentSource));
   } else {
     const targetKey = currentDistrict;
-    const aliases = DISTRICT_KEY_ALIASES[targetKey] || [targetKey];
+    const normKey = targetKey.replace('-', '_');
+    const hyphenKey = targetKey.replace('_', '-');
+    const aliases = (DISTRICT_KEY_ALIASES[targetKey] || DISTRICT_KEY_ALIASES[hyphenKey] || [targetKey]).map(x => x.toLowerCase());
 
-    // 1. Direct district matches
+    // 1. Direct matches from allArticles with strict district boundaries
     let distMatches = allArticles.filter(a => {
       if (!matchPublisherSource(a, currentSource)) return false;
-      if (a.districtKey === targetKey) return true;
-      const t = (a.title || a.headline || '');
-      const lead = (t.split(':')[0] || t.split(' - ')[0] || '').trim();
-      if (aliases.some(al => lead.includes(al))) return true;
-      if (aliases.some(al => t.includes(al))) return true;
-      return false;
+      const d = (a.districtKey || a.district || '').toLowerCase();
+      if (d === targetKey || d === normKey || d === hyphenKey) return true;
+      const t = (a.title || a.headline || '').toLowerCase();
+      const s = (a.description || a.snippet || a.summary || '').toLowerCase();
+      return aliases.some(al => t.includes(al) || s.includes(al));
     });
 
-    // 2. If dedicated district matches are fewer than 3 and a specific publisher is selected, include that publisher's top Karnataka news
-    if (distMatches.length < 3 && currentSource !== 'all') {
-      const sourceStatewide = allArticles.filter(a => matchPublisherSource(a, currentSource) && !distMatches.some(m => m.title === a.title));
-      distMatches = [...distMatches, ...sourceStatewide.slice(0, 12)];
-    } else if (!distMatches.length) {
-      const fallback = districtBuckets[targetKey] || districtBuckets[targetKey.replace('-', '_')] || [];
-      distMatches = fallback.filter(a => isKannada(a.title || a.headline) && matchPublisherSource(a, currentSource)).map(a => ({ ...a, districtKey: targetKey }));
-      if (!distMatches.length && currentSource !== 'all') {
-        const sourceStatewide = allArticles.filter(a => matchPublisherSource(a, currentSource));
-        distMatches = sourceStatewide.slice(0, 12);
-      }
+    // 2. Direct lookup from loaded districtBuckets
+    const rawBucket = districtBuckets[targetKey] || districtBuckets[normKey] || districtBuckets[hyphenKey] || [];
+    if (Array.isArray(rawBucket) && rawBucket.length > 0) {
+      rawBucket.forEach(bItem => {
+        if (isValidHeadline(bItem.title || bItem.headline) && matchPublisherSource(bItem, currentSource)) {
+          if (!distMatches.some(m => (m.title || m.headline) === (bItem.title || bItem.headline))) {
+            distMatches.push({ ...bItem, districtKey: targetKey });
+          }
+        }
+      });
     }
 
+    // Sort matching district articles so latest is always first
+    distMatches.sort((a, b) => parseArticleTime(b.published || b.time_ago) - parseArticleTime(a.published || a.time_ago));
     list = distMatches;
   }
 
