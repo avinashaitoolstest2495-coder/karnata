@@ -3,8 +3,8 @@ Karnata — local_news_scraper.py
 Multi-Source Strict District Local News Scraper with Geolocation & High-Precision Tagging
 
 Aggregates news from all top Kannada & District portals:
-- Vijaya Karnataka (Direct portal scraper + Google RSS search)
-- News18 Kannada (Direct portal scraper + Google RSS search)
+- Vijaya Karnataka (Direct portal scraper + true JSON-LD / meta timestamp extraction)
+- News18 Kannada (Direct portal scraper + true JSON-LD / meta timestamp extraction)
 - Asianet Suvarna News (RSS & district feeds)
 - Prajavani (Public feed & 31 district sections)
 - TV9 Kannada (Main & district feeds)
@@ -13,7 +13,6 @@ Aggregates news from all top Kannada & District portals:
 - Star of Mysore, Just Kannada (Mysuru)
 - Mangalorean (Dakshina Kannada / Udupi)
 - Shivamogga Live (Shivamogga)
-- All About Belgaum (Belagavi)
 """
 
 import os
@@ -24,6 +23,7 @@ import html
 import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
@@ -134,45 +134,45 @@ PRAJAVANI_DISTRICT_SLUGS = {
 }
 
 STRICT_DISTRICT_RULES = {
-    "bengaluru-urban": ["ಬೆಂಗಳೂರು", "ಬಿಬಿಎಂಪಿ", "bbmp", "bengaluru", "bangalore", "ಯಲಹಂಕ", "ಮೆಜೆಸ್ಟಿಕ್", "ವೈಟ್‌ಫೀಲ್ಡ್", "ಜಯನಗರ", "ಕೋರಮಂಗಲ", "ಇಂದಿರಾನಗರ"],
+    "bengaluru-urban": ["ಬಿಬಿಎಂಪಿ", "bbmp", "ಮೆಜೆಸ್ಟಿಕ್", "ವೈಟ್‌ಫೀಲ್ಡ್", "ಜಯನಗರ", "ಕೋರಮಂಗಲ", "ಇಂದಿರಾನಗರ", "ಹೆಬ್ಬಾಳ", "ಬಿಡಿಎ", "bda", "ಜಲಮಂಡಳಿ", "ನಮ್ಮ ಮೆಟ್ರೋ", "ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ", "ಸಿಲಿಕಾನ್ ಸಿಟಿ", "ಬೆಂಗಳೂರು ನಗರ"],
     "bengaluru-rural": ["ದೇವನಹಳ್ಳಿ", "ನೆಲಮಂಗಲ", "ದೊಡ್ಡಬಳ್ಳಾಪುರ", "ಹೊಸಕೋಟೆ", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "ಕಿಯಾಲ್"],
     "ramanagara": ["ರಾಮನಗರ", "ಚನ್ನಪಟ್ಟಣ", "ಕನಕಪುರ", "ಮಾಗಡಿ", "ಹಾರೋಹಳ್ಳಿ", "ಬಿಡದಿ"],
-    "chikkaballapura": ["ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "ಗೌರಿಬಿದನೂರು", "ಬಾಗೇಪಲ್ಲಿ", "ಶಿಡ್ಲಘಟ್ಟ", "ಚಿಂತಾಮಣಿ", "ನಂದಿ ಬೆಟ್ಟ"],
-    "kolar": ["ಕೋಲಾರ", "ಮಾಲೂರು", "ಬಂಗಾರಪೇಟೆ", "ಕೆಜಿಎಫ್", "kgf", "ಶ್ರೀನಿವಾಸಪುರ", "ಮುಳಬಾಗಿಲು"],
-    "tumakuru": ["ತುಮಕೂರು", "ತಿಪಟೂರು", "ಕುಣಿಗಲ್", "ಸಿರಾ", "ಮಧುಗಿರಿ", "ಪಾವಗಡ", "ತುರುವೇಕೆರೆ", "ಗುಬ್ಬಿ", "ಸಿದ್ಧಗಂಗಾ"],
-    "chitradurga": ["ಚಿತ್ರದುರ್ಗ", "ಚಳ್ಳಕೆರೆ", "ಹಿರಿಯೂರು", "ಹೊಲಲ್ಕೆರೆ", "ಹೊಸದುರ್ಗ", "ಮೊಳಕಾಲ್ಮೂರು", "ಕೋಟೆ ನಾಡು"],
+    "chikkaballapura": ["ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "ಗೌರಿಬಿದನೂರು", "ಬಾಗೇಪಲ್ಲಿ", "ಶಿಡ್ಲಘಟ್ಟ", "ಚಿಂತಾಮಣಿ", "ನಂದಿ ಬೆಟ್ಟ", "ಗುಡಿಬಂಡೆ"],
+    "kolar": ["ಕೋಲಾರ", "ಮಾಲೂರು", "ಬಂಗಾರಪೇಟೆ", "ಕೆಜಿಎಫ್", "kgf", "ಶ್ರೀನಿವಾಸಪುರ", "ಮುಳಬಾಗಿಲು", "ಅಂತರಗಂಗೆ"],
+    "tumakuru": ["ತುಮಕೂರು", "ತಿಪಟೂರು", "ಕುಣಿಗಲ್", "ಸಿರಾ", "ಮಧುಗಿರಿ", "ಪಾವಗಡ", "ತುರುವೇಕೆರೆ", "ಗುಬ್ಬಿ", "ಸಿದ್ಧಗಂಗಾ", "ಕೊರಟಗೆರೆ", "ಚಿಕ್ಕನಾಯಕನಹಳ್ಳಿ"],
+    "chitradurga": ["ಚಿತ್ರದುರ್ಗ", "ಚಳ್ಳಕೆರೆ", "ಹಿರಿಯೂರು", "ಹೊಲಲ್ಕೆರೆ", "ಹೊಸದುರ್ಗ", "ಮೊಳಕಾಲ್ಮೂರು", "ಕೋಟೆ ನಾಡು", "ವಾಣಿ ವಿಲಾಸ"],
     "davanagere": ["ದಾವಣಗೆರೆ", "ಹರಿಹರ", "ಜಗಳೂರು", "ಚನ್ನಗಿರಿ", "ಹೊನ್ನಾಳಿ", "ನ್ಯಾಮತಿ", "ಬೆಣ್ಣೆ ನಗರಿ"],
-    "shivamogga": ["ಶಿವಮೊಗ್ಗ", "ಸಾಗರ", "ಶಿಕಾರಿಪುರ", "ತೀರ್ಥಹಳ್ಳಿ", "ಭದ್ರಾವತಿ", "ಸೊರಬ", "ಹೊಸನಗರ", "ಜೋಗ್"],
-    "mysuru": ["ಮೈಸೂರು", "ನಂಜನಗೂಡು", "ಹುಣಸೂರು", "ಟಿ.ನರಸೀಪುರ", "ಪಿರಿಯಾಪಟ್ಟಣ", "ಕೆ.ಆರ್.ನಗರ", "ಚಾಮುಂಡಿ", "ದಸರಾ"],
-    "mandya": ["ಮಂಡ್ಯ", "ಮದ್ದೂರು", "ಮಳವಳ್ಳಿ", "ಶ್ರೀರಂಗಪಟ್ಟಣ", "ಪಾಂಡವಪುರ", "ಕೆ.ಆರ್.ಪೇಟೆ", "ನಾಗಮಂಗಲ", "ಕೆಆರ್‌ಎಸ್"],
-    "hassan": ["ಹಾಸನ", "ಅರಸೀಕೆರೆ", "ಚನ್ನರಾಯಪಟ್ಟಣ", "ಹೊಳೆನರಸೀಪುರ", "ಸಕಲೇಶಪುರ", "ಬೇಲೂರು", "ಆಲೂರು", "ಹಳೇಬೀಡು"],
-    "kodagu": ["ಕೊಡಗು", "ಮಡಿಕೇರಿ", "ಸೋಮವಾರಪೇಟೆ", "ವಿರಾಜಪೇಟೆ", "ಪೊನ್ನಂಪೇಟೆ", "ಕುಶಾಲನಗರ", "ತಲಕಾವೇರಿ"],
-    "chamarajanagara": ["ಚಾಮರಾಜನಗರ", "ಕೊಳ್ಳೇಗಾಲ", "ಗುಂಡ್ಲುಪೇಟೆ", "ಯಳಂದೂರು", "ಹನೂರು", "ಬಂಡೀಪುರ", "ಮಲೆ ಮಹದೇಶ್ವರ"],
-    "chikkamagaluru": ["ಚಿಕ್ಕಮಗಳೂರು", "ತಾರೀಕೆರೆ", "ಕಡೂರು", "ಮೂಡಿಗೆರೆ", "ಶೃಂಗೇರಿ", "ಕೊಪ್ಪ", "ಮುಳ್ಳಯ್ಯನಗಿರಿ"],
-    "dakshina-kannada": ["ಮಂಗಳೂರು", "ಪುತ್ತೂರು", "ಬೆಳ್ತಂಗಡಿ", "ಬಂಟ್ವಾಳ", "ಸುಳ್ಯ", "ದಕ್ಷಿಣ ಕನ್ನಡ", "ಧರ್ಮಸ್ಥಳ", "ಕುಕ್ಕೆ"],
-    "udupi": ["ಉಡುಪಿ", "ಕಾರ್ಕಳ", "ಕುಂದಾಪುರ", "ಬ್ರಹ್ಮಾವರ", "ಕಾಪು", "ಬೈಂದೂರು", "ಮಲ್ಪೆ", "ಕೃಷ್ಣ ಮಠ"],
-    "uttara-kannada": ["ಕಾರವಾರ", "ಅಂಕೋಲಾ", "ಕುಮಟಾ", "ಹೊನ್ನಾವರ", "ಭಟ್ಕಳ", "ಶಿರಸಿ", "ಗೋಕರ್ಣ", "ದಾಂಡೇಲಿ", "ಉತ್ತರ ಕನ್ನಡ"],
-    "belagavi": ["ಬೆಳಗಾವಿ", "ಗೋಕಾಕ್", "ಚಿಕ್ಕೋಡಿ", "ಅಥಣಿ", "ಬೈಲಹೊಂಗಲ", "ಖಾನಾಪುರ", "ನಿಪ್ಪಾಣಿ", "ಸುವರ್ಣ ಸೌಧ"],
-    "dharwad": ["ಧಾರವಾಡ", "ಹುಬ್ಬಳ್ಳಿ", "ಕಲಘಟಗಿ", "ನವಲಗುಂದ", "ಅಣ್ಣಿಗೇರಿ", "ವಿದ್ಯಾಕಾಶಿ"],
-    "gadag": ["ಗದಗ", "ಬೆಟಗೇರಿ", "ರೋಣ", "ಶಿರಹಟ್ಟಿ", "ಮುಂಡರಗಿ", "ನರಗುಂದ", "ಲಕ್ಷ್ಮೇಶ್ವರ", "ಕಪ್ಪತಗುಡ್ಡ"],
-    "haveri": ["ಹಾವೇರಿ", "ರಾಣೇಬೆನ್ನೂರು", "ಬ್ಯಾಡಗಿ", "ಹಾನಗಲ್", "ಹಿರೇಕೆರೂರು", "ಶಿಗ್ಗಾಂವಿ", "ಕಾಗಿನೆಲೆ"],
-    "bagalkote": ["ಬಾಗಲಕೋಟೆ", "ಜಮಖಂಡಿ", "ಮುಧೋಳ", "ಬಾದಾಮಿ", "ಹುನಗುಂದ", "ಇಳಕಲ್", "ಆಲಮಟ್ಟಿ", "ಪಟ್ಟದಕಲ್ಲು"],
-    "vijayapura": ["ವಿಜಯಪುರ", "ಇಂಡಿ", "ಮುದ್ದೇಬಿಹಾಳ", "ಬಬಲೇಶ್ವರ", "ಬಸವನ ಬಾಗೇವಾಡಿ", "ಸಿಂದಗಿ", "ಗೋಳಗುಮ್ಮಟ"],
-    "kalaburagi": ["ಕಲಬುರಗಿ", "ಗುಲ್ಬರ್ಗಾ", "ಸೇಡಂ", "ಚಿತ್ತಾಪುರ", "ಆಳಂದ", "ಅಫ್ಜಲ್ಪುರ", "ಜೇವರ್ಗಿ", "ತೊಗರಿ"],
-    "yadgir": ["ಯಾದಗಿರಿ", "ಶಹಾಪುರ", "ಸುರಪುರ", "ಗುರುಮಿಟ್ಕಲ್", "ಹುಣಸಗಿ", "ವಡಗೇರಾ", "ಬಸವ ಸಾಗರ"],
-    "raichur": ["ರಾಯಚೂರು", "ಮಾನ್ವಿ", "ಸಿಂಧನೂರು", "ದೇವದುರ್ಗ", "ಲಿಂಗಸುಗೂರು", "ಮಸ್ಕಿ", "ಆರ್‌ಟಿಪಿಎಸ್"],
-    "koppal": ["ಕೊಪ್ಪಳ", "ಗಂಗಾವತಿ", "ಕುಷ್ಟಗಿ", "ಯಲಬುರ್ಗಾ", "ಕಾರಟಗಿ", "ಕುಕನೂರು", "ಕಿನ್ನಾಳ", "ಆನೆಗೊಂದಿ"],
-    "ballari": ["ಬಳ್ಳಾರಿ", "ಕಂಪ್ಲಿ", "ಸಿರುಗುಪ್ಪ", "ಕುರುಗೋಡು", "ಸಂದೂರು", "ತೋರಣಗಲ್ಲು"],
-    "vijayanagara": ["ವಿಜಯನಗರ", "ಹೊಸಪೇಟೆ", "ಹಂಪಿ", "ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ", "ಹೂವಿನಹಡಗಲಿ", "ಕೂಡ್ಲಿಗಿ", "ಟಿಬಿ ಡ್ಯಾಂ"],
-    "bidar": ["ಬೀದರ್", "ಹುಮ್ನಾಬಾದ್", "ಭಾಲ್ಕಿ", "ಬಸವಕಲ್ಯಾಣ", "ಔರಾದ್", "ಗುರುನಾನಕ್ ಝೀರಾ", "ಬಿದ್ರಿ"],
+    "shivamogga": ["ಶಿವಮೊಗ್ಗ", "ಸಾಗರ", "ಶಿಕಾರಿಪುರ", "ತೀರ್ಥಹಳ್ಳಿ", "ಭದ್ರಾವತಿ", "ಸೊರಬ", "ಹೊಸನಗರ", "ಜೋಗ್", "ಶರಾವತಿ"],
+    "mysuru": ["ಮೈಸೂರು", "ನಂಜನಗೂಡು", "ಹುಣಸೂರು", "ಟಿ.ನರಸೀಪುರ", "ಪಿರಿಯಾಪಟ್ಟಣ", "ಕೆ.ಆರ್.ನಗರ", "ಚಾಮುಂಡಿ ಬೆಟ್ಟ", "ಮೈಸೂರು ದಸರಾ", "ಬನ್ನಿಮಂಟಪ", "ಸರಗೂರು"],
+    "mandya": ["ಮಂಡ್ಯ", "ಮದ್ದೂರು", "ಮಳವಳ್ಳಿ", "ಶ್ರೀರಂಗಪಟ್ಟಣ", "ಪಾಂಡವಪುರ", "ಕೆ.ಆರ್.ಪೇಟೆ", "ನಾಗಮಂಗಲ", "ಕೆಆರ್‌ಎಸ್", "ಶಿವನಸಮುದ್ರ"],
+    "hassan": ["ಹಾಸನ", "ಅರಸೀಕೆರೆ", "ಚನ್ನರಾಯಪಟ್ಟಣ", "ಹೊಳೆನರಸೀಪುರ", "ಸಕಲೇಶಪುರ", "ಬೇಲೂರು", "ಆಲೂರು", "ಹಳೇಬೀಡು", "ಶ್ರವಣಬೆಳಗೊಳ", "ಅರಕಲಗೂಡು"],
+    "kodagu": ["ಕೊಡಗು", "ಮಡಿಕೇರಿ", "ಸೋಮವಾರಪೇಟೆ", "ವಿರಾಜಪೇಟೆ", "ಪೊನ್ನಂಪೇಟೆ", "ಕುಶಾಲನಗರ", "ತಲಕಾವೇರಿ", "ಭಾಗಮಂಡಲ"],
+    "chamarajanagara": ["ಚಾಮರಾಜನಗರ", "ಕೊಳ್ಳೇಗಾಲ", "ಗುಂಡ್ಲುಪೇಟೆ", "ಯಳಂದೂರು", "ಹನೂರು", "ಬಂಡೀಪುರ", "ಮಲೆ ಮಹದೇಶ್ವರ", "ಬಿಳಿಗಿರಿರಂಗನ"],
+    "chikkamagaluru": ["ಚಿಕ್ಕಮಗಳೂರು", "ತಾರೀಕೆರೆ", "ಕಡೂರು", "ಮೂಡಿಗೆರೆ", "ಶೃಂಗೇರಿ", "ಕೊಪ್ಪ", "ಮುಳ್ಳಯ್ಯನಗಿರಿ", "ಕಳಸ", "ಬಾಬಾಬುಡನ್‌ಗಿರಿ", "ಕುದುರೆಮುಖ"],
+    "dakshina-kannada": ["ಮಂಗಳೂರು", "ಪುತ್ತೂರು", "ಬೆಳ್ತಂಗಡಿ", "ಬಂಟ್ವಾಳ", "ಸುಳ್ಯ", "ದಕ್ಷಿಣ ಕನ್ನಡ", "ಧರ್ಮಸ್ಥಳ", "ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ", "ಕಟೀಲು", "ಮೂಡುಬಿದಿರೆ"],
+    "udupi": ["ಉಡುಪಿ", "ಕಾರ್ಕಳ", "ಕುಂದಾಪುರ", "ಬ್ರಹ್ಮಾವರ", "ಕಾಪು", "ಬೈಂದೂರು", "ಮಲ್ಪೆ", "ಕೃಷ್ಣ ಮಠ", "ಕೊಲ್ಲೂರು", "ಮಂದಾರ್ತಿ", "ಹೆಬ್ರಿ"],
+    "uttara-kannada": ["ಕಾರವಾರ", "ಅಂಕೋಲಾ", "ಕುಮಟಾ", "ಹೊನ್ನಾವರ", "ಭಟ್ಕಳ", "ಶಿರಸಿ", "ಗೋಕರ್ಣ", "ದಾಂಡೇಲಿ", "ಉತ್ತರ ಕನ್ನಡ", "ಯಲ್ಲಾಪುರ", "ಮುಂಡಗೋಡ", "ಜೋಯಿಡಾ"],
+    "belagavi": ["ಬೆಳಗಾವಿ", "ಗೋಕಾಕ್", "ಚಿಕ್ಕೋಡಿ", "ಅಥಣಿ", "ಬೈಲಹೊಂಗಲ", "ಖಾನಾಪುರ", "ನಿಪ್ಪಾಣಿ", "ಸುವರ್ಣ ಸೌಧ", "ರಾಯಭಾಗ", "ಹುಕ್ಕೇರಿ", "ಸವದತ್ತಿ"],
+    "dharwad": ["ಧಾರವಾಡ", "ಹುಬ್ಬಳ್ಳಿ", "ಕಲಘಟಗಿ", "ನವಲಗುಂದ", "ಅಣ್ಣಿಗೇರಿ", "ವಿದ್ಯಾಕಾಶಿ", "ಕುಂದಗೋಳ", "ಅಳ್ನಾವರ"],
+    "gadag": ["ಗದಗ", "ಬೆಟಗೇರಿ", "ರೋಣ", "ಶಿರಹಟ್ಟಿ", "ಮುಂಡರಗಿ", "ನರಗುಂದ", "ಲಕ್ಷ್ಮೇಶ್ವರ", "ಕಪ್ಪತಗುಡ್ಡ", "ಗಜೇಂದ್ರಗಡ"],
+    "haveri": ["ಹಾವೇರಿ", "ರಾಣೇಬೆನ್ನೂರು", "ಬ್ಯಾಡಗಿ", "ಹಾನಗಲ್", "ಹಿರೇಕೆರೂರು", "ಶಿಗ್ಗಾಂವಿ", "ಕಾಗಿನೆಲೆ", "ಸವಣೂರು", "ರಟ್ಟೀಹಳ್ಳಿ"],
+    "bagalkote": ["ಬಾಗಲಕೋಟೆ", "ಜಮಖಂಡಿ", "ಮುಧೋಳ", "ಬಾದಾಮಿ", "ಹುನಗುಂದ", "ಇಳಕಲ್", "ಆಲಮಟ್ಟಿ", "ಪಟ್ಟದಕಲ್ಲು", "ಕೂಡಲಸಂಗಮ", "ಬೀಳಗಿ", "ಮಹಾಕೂಟ"],
+    "vijayapura": ["ವಿಜಯಪುರ", "ಇಂಡಿ", "ಮುದ್ದೇಬಿಹಾಳ", "ಬಬಲೇಶ್ವರ", "ಬಸವನ ಬಾಗೇವಾಡಿ", "ಸಿಂದಗಿ", "ಗೋಳಗುಮ್ಮಟ", "ತಾಳಿಕೋಟೆ", "ಚಡಚಣ", "ಆಲಮಟ್ಟಿ"],
+    "kalaburagi": ["ಕಲಬುರಗಿ", "ಗುಲ್ಬರ್ಗಾ", "ಸೇಡಂ", "ಚಿತ್ತಾಪುರ", "ಆಳಂದ", "ಅಫ್ಜಲ್ಪುರ", "ಜೇವರ್ಗಿ", "ತೊಗರಿ ಕಣಜ", "ಚಿಂಚೋಳಿ", "ಗಾಣಗಾಪುರ", "ಖ್ವಾಜಾ ಬಂದೇ ನವಾಜ್"],
+    "yadgir": ["ಯಾದಗಿರಿ", "ಶಹಾಪುರ", "ಸುರಪುರ", "ಗುರುಮಿಟ್ಕಲ್", "ಹುಣಸಗಿ", "ವಡಗೇರಾ", "ಬಸವ ಸಾಗರ", "ಛಾಯಾ ಭಗವತಿ"],
+    "raichur": ["ರಾಯಚೂರು", "ಮಾನ್ವಿ", "ಸಿಂಧನೂರು", "ದೇವದುರ್ಗ", "ಲಿಂಗಸುಗೂರು", "ಮಸ್ಕಿ", "ಆರ್‌ಟಿಪಿಎಸ್", "ಹಟ್ಟಿ ಚಿನ್ನದ ಗಣಿ", "ಸಿರವಾರ"],
+    "koppal": ["ಕೊಪ್ಪಳ", "ಗಂಗಾವತಿ", "ಕುಷ್ಟಗಿ", "ಯಲಬುರ್ಗಾ", "ಕಾರಟಗಿ", "ಕುಕನೂರು", "ಕಿನ್ನಾಳ", "ಆನೆಗೊಂದಿ", "ಕನಕಗಿರಿ", "ಮುನಿರಾಬಾದ್"],
+    "ballari": ["ಬಳ್ಳಾರಿ", "ಕಂಪ್ಲಿ", "ಸಿರುಗುಪ್ಪ", "ಕುರುಗೋಡು", "ಸಂದೂರು", "ತೋರಣಗಲ್ಲು", "ಕನಕದುರ್ಗ"],
+    "vijayanagara": ["ವಿಜಯನಗರ", "ಹೊಸಪೇಟೆ", "ಹಂಪಿ", "ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ", "ಹೂವಿನಹಡಗಲಿ", "ಕೂಡ್ಲಿಗಿ", "ಟಿಬಿ ಡ್ಯಾಂ", "ಕೊಟ್ಟೂರು", "ಕಮಲಾಪುರ"],
+    "bidar": ["ಬೀದರ್", "ಹುಮ್ನಾಬಾದ್", "ಭಾಲ್ಕಿ", "ಬಸವಕಲ್ಯಾಣ", "ಔರಾದ್", "ಗುರುನಾನಕ್ ಝೀರಾ", "ಬಿದ್ರಿ ಕಲೆ", "ಕಮಲನಗರ", "ಚಿಟಗುಪ್ಪ"],
 }
 
-DISTRICT_KEYWORDS_SCRAPE = [
-    'ಬೆಂಗಳೂರು', 'ಮೈಸೂರು', 'ಮಂಡ್ಯ', 'ಹಾಸನ', 'ಮಂಗಳೂರು', 'ಉಡುಪಿ', 'ಬೆಳಗಾವಿ', 'ಹುಬ್ಬಳ್ಳಿ', 'ಧಾರವಾಡ',
-    'ಶಿವಮೊಗ್ಗ', 'ದಾವಣಗೆರೆ', 'ತುಮಕೂರು', 'ಚಿತ್ರದುರ್ಗ', 'ಬಳ್ಳಾರಿ', 'ವಿಜಯನಗರ', 'ಕಲಬುರಗಿ', 'ಬೀದರ್',
-    'ರಾಯಚೂರು', 'ಕೊಪ್ಪಳ', 'ಯಾದಗಿರಿ', 'ಬಾಗಲಕೋಟೆ', 'ವಿಜಯಪುರ', 'ಗದಗ', 'ಹಾವೇರಿ', 'ಕೋಲಾರ',
-    'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'ರಾಮನಗರ', 'ಚಾಮರಾಜನಗರ', 'ಕೊಡಗು', 'ಚಿಕ್ಕಮಗಳೂರು', 'ಉತ್ತರ ಕನ್ನಡ', 'ಕಾರವಾರ',
-    'ಕರ್ನಾಟಕ', 'ರಾಜಕೀಯ', 'ಕ್ರೈಂ', 'ಕೃಷಿ'
+# Statewide indicators (prevent these from wrongly going into bengaluru-urban)
+STATEWIDE_PATTERNS = [
+    "ಸಚಿವ ಸಂಪುಟ", "ಮುಖ್ಯಮಂತ್ರಿ ಸಿದ್ದರಾಮಯ್ಯ", "ಸಿಎಂ ಸಿದ್ದರಾಮಯ್ಯ", "ಡಿಕೆ ಶಿವಕುಮಾರ್", "ವಿಧಾನಸೌಧ",
+    "ರಾಜ್ಯ ಸರ್ಕಾರ", "ಕರ್ನಾಟಕ ಸರ್ಕಾರ", "ಗ್ಯಾರಂಟಿ ಯೋಜನೆ", "ಗೃಹಲಕ್ಷ್ಮಿ", "ಯುವನಿಧಿ", "ಶಕ್ತಿ ಯೋಜನೆ",
+    "ಅನ್ನಭಾಗ್ಯ", "ಹೈಕೋರ್ಟ್", "ಲೋಕಸಭೆ", "ವಿಧಾನಸಭೆ", "ಕೆಪಿಸಿಸಿ", "ಬಿಜೆಪಿ ರಾಜ್ಯಾಧ್ಯಕ್ಷ", "ಜೆಡಿಎಸ್",
+    "ರಾಜ್ಯಪಾಲ", "ಬಜೆಟ್", "ಕೇಂದ್ರ ಸರ್ಕಾರ"
 ]
 
 HEADERS = {
@@ -192,27 +192,56 @@ INVALID_HEADLINES = {
     'ಬೆಂಗಳೂರು', 'ಮಂಗಳೂರು', 'ಹುಬ್ಬಳ್ಳಿ', 'ಕಾರವಾರ', 'ಮಡಿಕೇರಿ', 'ಸ್ಥಳೀಯ ಸುದ್ದಿ'
 }
 
+def clean_title(t: str) -> str:
+    """Thoroughly cleans titles removing photo counters, media prefixes, and trailing publisher suffixes."""
+    if not t or not isinstance(t, str):
+        return ""
+    t = html.unescape(t)
+    t = re.sub(r'<[^>]+>', '', t)
+    # Remove photo/video badge prefixes like '+8 Photos', '+10 Photos', 'Photos:', 'Photo Gallery:'
+    t = re.sub(r'^\+\d+\s*(photos?|ಚಿತ್ರಗಳು?|ವೀಡಿಯೊ|ವಿಡಿಯೋ|videos?)\s*', '', t, flags=re.I)
+    t = re.sub(r'^(photos?|ಚಿತ್ರಗಳು|ವೀಡಿಯೊ|ವಿಡಿಯೋ|videos?|watch|breaking|exclusive|live\s*updates?|explainer)\s*[:|-]\s*', '', t, flags=re.I)
+    t = re.sub(r'\s*Last\s*Updated.*$', '', t, flags=re.I)
+    # Remove trailing publisher watermarks/dashes
+    t = re.sub(r'\s*[-–—|:]\s*(ಪ್ರಾಜಾವಾಣಿ|ಪ್ರಜಾವಾಣಿ|prajavani|ವಿಜಯ\s*ಕರ್ನಾಟಕ|vijay\s*karnataka|news18|n18v|tv9|asianet|suvarna|public\s*tv|oneindia|kannada|som|star\s*of\s*mysore).*$', '', t, flags=re.I)
+    t = re.sub(r'\s*[-–—|:]+$', '', t)
+    return ' '.join(t.split()).strip()
+
 def is_valid_headline(t: str) -> bool:
     if not t or not isinstance(t, str):
         return False
-    t = t.strip()
-    if len(t) < 20:
+    t = clean_title(t)
+    if len(t) < 18:
         return False
     if t in INVALID_HEADLINES:
         return False
-    if len(t.split()) < 4:
+    if len(t.split()) < 3:
         return False
     if not re.search(r'[\u0C80-\u0CFF]', t):
         return False
     return True
 
-def clean_text(t: str) -> str:
-    if not t: return ""
-    t = html.unescape(t)
-    t = re.sub(r'<[^>]+>', '', t)
-    t = re.sub(r'\s*Last\s*Updated.*$', '', t, flags=re.I)
-    t = re.sub(r'\s*[-–—|:]+$', '', t)
-    return ' '.join(t.split()).strip()
+def parse_date_to_timestamp(d_str) -> float:
+    if not d_str:
+        return 0.0
+    s = str(d_str).strip()
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(s).timestamp()
+    except Exception:
+        pass
+    try:
+        from datetime import datetime
+        return datetime.fromisoformat(s.replace('Z', '+00:00')).timestamp()
+    except Exception:
+        pass
+    for fmt in ['%Y-%m-%dT%H:%M:%S%z', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d', '%d-%m-%Y', '%d %b %Y %H:%M:%S', '%d %b %Y']:
+        try:
+            from datetime import datetime
+            return datetime.strptime(s, fmt).timestamp()
+        except Exception:
+            pass
+    return 0.0
 
 def scrape_rss_feed(src: dict) -> list:
     url = src.get("rss")
@@ -230,10 +259,11 @@ def scrape_rss_feed(src: dict) -> list:
                 pub_el = item.find('pubDate')
                 desc_el = item.find('description')
 
-                title = clean_text(title_el.text) if title_el is not None else ""
+                raw_title = title_el.text if title_el is not None and title_el.text else ""
+                title = clean_title(raw_title)
                 link = link_el.text.strip() if link_el is not None and link_el.text else ""
-                pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ist_now()
-                desc = clean_text(desc_el.text) if desc_el is not None else ""
+                pub = pub_el.text.strip() if pub_el is not None and pub_el.text else ""
+                desc = clean_title(desc_el.text) if desc_el is not None and desc_el.text else ""
 
                 if is_valid_headline(title):
                     articles.append({
@@ -250,13 +280,60 @@ def scrape_rss_feed(src: dict) -> list:
 
     return articles
 
+def fetch_article_timestamp_and_title(item: dict) -> dict:
+    """Concurrently fetches true ISO published date from HTML metadata/JSON-LD for portal articles."""
+    url = item.get("url", "")
+    if not url or not url.startswith("http"):
+        return item
+
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=4)
+        if r.status_code == 200:
+            soup = BeautifulSoup(r.text, 'html.parser')
+            
+            # Check og:title / title if cleaner
+            og_t = soup.find('meta', property='og:title')
+            if og_t and og_t.get('content'):
+                clean_og = clean_title(og_t['content'])
+                if is_valid_headline(clean_og):
+                    item["title"] = clean_og
+
+            # Check meta published_time
+            meta_pub = soup.find('meta', property=['article:published_time', 'og:published_time', 'pubdate'])
+            if meta_pub and meta_pub.get('content'):
+                item["published"] = meta_pub['content'].strip()
+                return item
+
+            # Check JSON-LD schema
+            for s in soup.find_all('script', type='application/ld+json'):
+                try:
+                    if not s.string: continue
+                    d = json.loads(s.string)
+                    if isinstance(d, dict):
+                        pub = d.get('datePublished') or d.get('dateCreated') or d.get('uploadDate')
+                        if pub:
+                            item["published"] = str(pub).strip()
+                            return item
+                    elif isinstance(d, list):
+                        for x in d:
+                            if isinstance(x, dict):
+                                pub = x.get('datePublished') or x.get('dateCreated')
+                                if pub:
+                                    item["published"] = str(pub).strip()
+                                    return item
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    return item
+
 def scrape_vijay_karnataka() -> list:
     articles = []
     seen = set()
-    log.info("🌐 Scraping Fresh Live Vijay Karnataka (Direct Multi-Section Portals)...")
+    log.info("🌐 Scraping Fresh Live Vijay Karnataka...")
 
     portal_urls = [
-        "https://vijaykarnataka.com/",
         "https://vijaykarnataka.com/news/karnataka/articlelist/10765233.cms",
         "https://vijaykarnataka.com/news/bengaluru-city/articlelist/11182323.cms",
         "https://vijaykarnataka.com/news/mysuru/articlelist/11182191.cms",
@@ -267,39 +344,51 @@ def scrape_vijay_karnataka() -> list:
         "https://vijaykarnataka.com/news/articlelist/10753874.cms"
     ]
 
+    raw_candidates = []
     for url in portal_urls:
         try:
-            r = requests.get(url, headers=HEADERS, timeout=8)
+            r = requests.get(url, headers=HEADERS, timeout=6)
             if r.status_code == 200:
                 r.encoding = "utf-8"
                 soup = BeautifulSoup(r.text, 'html.parser')
                 for a in soup.find_all('a', href=True):
                     href = a['href']
                     if '/articleshow/' in href:
-                        t = clean_text(a.get_text())
+                        t = clean_title(a.get_text())
                         link = 'https://vijaykarnataka.com' + href if href.startswith('/') else href
                         if is_valid_headline(t) and t not in seen:
                             seen.add(t)
-                            articles.append({
+                            raw_candidates.append({
                                 "title": t,
                                 "url": link,
-                                "published": ist_now(),
+                                "published": "",
                                 "summary": "",
                                 "source": "ವಿಜಯ ಕರ್ನಾಟಕ (Vijay Karnataka)"
                             })
         except Exception as e:
             log.warning(f"  ⚠️ VK direct URL failed {url}: {e}")
 
-    log.info(f"✔ Fresh Live Vijay Karnataka: {len(articles)} articles scraped")
+    # Fetch timestamps concurrently for top 30 candidates
+    log.info(f"  Extracting exact published timestamps for {len(raw_candidates[:30])} Vijay Karnataka articles...")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(fetch_article_timestamp_and_title, art) for art in raw_candidates[:30]]
+        for f in as_completed(futures):
+            try:
+                res = f.result()
+                if res and res.get("title"):
+                    articles.append(res)
+            except Exception:
+                pass
+
+    log.info(f"✔ Fresh Live Vijay Karnataka: {len(articles)} articles scraped with timestamps")
     return articles
 
 def scrape_news18_kannada() -> list:
     articles = []
     seen = set()
-    log.info("🌐 Scraping Fresh Live News18 Kannada (Direct Multi-Section Portals)...")
+    log.info("🌐 Scraping Fresh Live News18 Kannada...")
 
     portal_urls = [
-        "https://kannada.news18.com/",
         "https://kannada.news18.com/karnataka-news/",
         "https://kannada.news18.com/news/state/",
         "https://kannada.news18.com/districts/",
@@ -309,103 +398,119 @@ def scrape_news18_kannada() -> list:
         "https://kannada.news18.com/news/agriculture/"
     ]
 
+    raw_candidates = []
     for url in portal_urls:
         try:
-            r = requests.get(url, headers=HEADERS, timeout=8)
+            r = requests.get(url, headers=HEADERS, timeout=6)
             if r.status_code == 200:
                 r.encoding = "utf-8"
                 soup = BeautifulSoup(r.text, 'html.parser')
                 for a in soup.find_all('a', href=True):
                     href = a['href']
-                    if '.html' in href or '/news/' in href or '/state/' in href:
-                        t = clean_text(a.get_text())
+                    if ('.html' in href or '/news/' in href or '/state/' in href) and '/photogallery/' not in href:
+                        t = clean_title(a.get_text())
                         link = 'https://kannada.news18.com' + href if href.startswith('/') else href
                         if 'news18' in link and is_valid_headline(t) and t not in seen:
                             seen.add(t)
-                            articles.append({
+                            raw_candidates.append({
                                 "title": t,
                                 "url": link,
-                                "published": ist_now(),
+                                "published": "",
                                 "summary": "",
                                 "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ (News18)"
                             })
         except Exception as e:
             log.warning(f"  ⚠️ News18 direct URL failed {url}: {e}")
 
-    log.info(f"✔ Fresh Live News18 Kannada: {len(articles)} articles scraped")
+    # Fetch timestamps concurrently for top 30 candidates
+    log.info(f"  Extracting exact published timestamps for {len(raw_candidates[:30])} News18 articles...")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(fetch_article_timestamp_and_title, art) for art in raw_candidates[:30]]
+        for f in as_completed(futures):
+            try:
+                res = f.result()
+                if res and res.get("title"):
+                    articles.append(res)
+            except Exception:
+                pass
+
+    log.info(f"✔ Fresh Live News18 Kannada: {len(articles)} articles scraped with timestamps")
     return articles
 
 def scrape_prajavani_districts() -> list:
     articles = []
-    log.info("🌐 Scraping Prajavani 31 District sections...")
-    for dist_key, slug in list(PRAJAVANI_DISTRICT_SLUGS.items())[:15]:
+    log.info("🌐 Scraping Prajavani District sections...")
+    raw_candidates = []
+
+    for dist_key, slug in list(PRAJAVANI_DISTRICT_SLUGS.items())[:16]:
         url = f"https://www.prajavani.net/district/{slug}"
         try:
-            r = requests.get(url, headers=HEADERS, timeout=6)
+            r = requests.get(url, headers=HEADERS, timeout=5)
             if r.status_code == 200:
                 r.encoding = "utf-8"
                 soup = BeautifulSoup(r.text, 'html.parser')
                 count = 0
                 for a in soup.find_all('a', href=True):
                     if '/district/' in a['href'] and len(a.text.strip()) > 15:
-                        t = clean_text(a.text)
+                        t = clean_title(a.text)
                         link = 'https://www.prajavani.net' + a['href'] if a['href'].startswith('/') else a['href']
-                        if is_valid_headline(t) and t not in [x['title'] for x in articles]:
-                            articles.append({
+                        if is_valid_headline(t) and t not in [x['title'] for x in raw_candidates]:
+                            raw_candidates.append({
                                 "title": t,
                                 "url": link,
-                                "published": ist_now(),
+                                "published": "",
                                 "summary": "",
                                 "source": "ಪ್ರಜಾವಾಣಿ (Prajavani)",
                                 "forced_district": dist_key
                             })
                             count += 1
-                            if count >= 6: break
+                            if count >= 4: break
         except Exception:
             pass
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(fetch_article_timestamp_and_title, art) for art in raw_candidates[:25]]
+        for f in as_completed(futures):
+            try:
+                res = f.result()
+                if res and res.get("title"):
+                    articles.append(res)
+            except Exception:
+                pass
+
     log.info(f"✔ Prajavani Districts: {len(articles)} district articles scraped")
     return articles
-
-def parse_date_to_timestamp(d_str) -> float:
-    if not d_str:
-        return time.time()
-    s = str(d_str).strip()
-    try:
-        from email.utils import parsedate_to_datetime
-        return parsedate_to_datetime(s).timestamp()
-    except Exception:
-        pass
-    try:
-        from datetime import datetime
-        return datetime.fromisoformat(s.replace('Z', '+00:00')).timestamp()
-    except Exception:
-        pass
-    for fmt in ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d', '%d-%m-%Y', '%d %b %Y %H:%M:%S', '%d %b %Y']:
-        try:
-            from datetime import datetime
-            return datetime.strptime(s, fmt).timestamp()
-        except Exception:
-            pass
-    return time.time()
 
 def assign_district(article: dict) -> str:
     if article.get("forced_district"):
         return article["forced_district"]
 
-    text = (article["title"] + " " + article.get("summary", "")).lower()
+    title = article.get("title", "")
+    summary = article.get("summary", "")
+    full_text = (title + " " + summary).lower()
 
-    # Rule-based matching with strict priority
+    # If it's a general statewide political/governance headline without explicit local civic terms, keep as statewide
+    is_statewide_topic = any(pattern.lower() in full_text for pattern in STATEWIDE_PATTERNS)
+    has_bengaluru_civic = any(w in full_text for w in ["ಬಿಬಿಎಂಪಿ", "bbmp", "ಮೆಜೆಸ್ಟಿಕ್", "ವೈಟ್‌ಫೀಲ್ಡ್", "ಜಯನಗರ", "ಕೋರಮಂಗಲ", "ಇಂದಿರಾನಗರ", "ಹೆಬ್ಬಾಳ", "ಬಿಡಿಎ", "bda", "ಜಲಮಂಡಳಿ", "ನಮ್ಮ ಮೆಟ್ರೋ", "ಸಿಲಿಕಾನ್ ಸಿಟಿ"])
+
+    # Check non-Bengaluru districts first with high priority
     best_dist = None
     max_matches = 0
 
     for dist_key, keywords in STRICT_DISTRICT_RULES.items():
-        matches = sum(1 for kw in keywords if kw.lower() in text)
+        if dist_key == "bengaluru-urban":
+            continue
+        matches = sum(1 for kw in keywords if kw.lower() in full_text)
         if matches > max_matches:
             max_matches = matches
             best_dist = dist_key
 
-    if best_dist and max_matches > 0:
+    if best_dist and max_matches >= 1:
         return best_dist
+
+    # Check Bengaluru Urban specifically
+    if has_bengaluru_civic or (not is_statewide_topic and any(kw.lower() in full_text for kw in STRICT_DISTRICT_RULES["bengaluru-urban"])):
+        return "bengaluru-urban"
 
     return "_statewide"
 
@@ -414,20 +519,20 @@ def run() -> dict:
 
     raw_articles = []
 
-    # 1. Scrape all standard RSS feeds
+    # 1. Scrape standard RSS feeds (with accurate pubDate)
     for src in RSS_SOURCES:
         raw_articles.extend(scrape_rss_feed(src))
 
-    # 2. Scrape Vijaya Karnataka Portal & Google RSS
+    # 2. Scrape Vijaya Karnataka with true JSON-LD / meta timestamps
     raw_articles.extend(scrape_vijay_karnataka())
 
-    # 3. Scrape News18 Kannada Portal & Google RSS
+    # 3. Scrape News18 Kannada with true JSON-LD / meta timestamps
     raw_articles.extend(scrape_news18_kannada())
 
     # 4. Scrape Prajavani District Sections
     raw_articles.extend(scrape_prajavani_districts())
 
-    log.info(f"📰 Total unique raw articles collected: {len(raw_articles)}")
+    log.info(f"📰 Total raw articles collected: {len(raw_articles)}")
 
     # Deduplicate and Bucket by District
     seen_titles = set()
@@ -435,8 +540,12 @@ def run() -> dict:
     district_buckets["_statewide"] = []
 
     for art in raw_articles:
-        t = art["title"]
-        if t in seen_titles: continue
+        t = clean_title(art["title"])
+        if not is_valid_headline(t):
+            continue
+        art["title"] = t
+        if t in seen_titles:
+            continue
         seen_titles.add(t)
 
         dist = assign_district(art)
@@ -445,7 +554,7 @@ def run() -> dict:
         else:
             district_buckets["_statewide"].append(art)
 
-    # Sort each district bucket chronologically so latest news is ALWAYS ON TOP
+    # Sort each district bucket strictly chronologically (newest first)
     for d_key in district_buckets:
         district_buckets[d_key].sort(
             key=lambda x: parse_date_to_timestamp(x.get("published")),
@@ -469,7 +578,7 @@ def run() -> dict:
     }
 
     store("local_news.json", "local_news", output)
-    log.info(f"✅ Multi-Source District News Saved: {total_sorted} articles across 32 district buckets (including Vijaya Karnataka & News18)")
+    log.info(f"✅ Multi-Source District News Saved: {total_sorted} articles across 32 district buckets")
     return output
 
 if __name__ == "__main__":

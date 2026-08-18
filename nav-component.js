@@ -32,7 +32,8 @@
     { href:'/sip-calculator.html',    label:'📈 SIP' },
     { href:'/salary-calculator.html', label:'💰 ಸಂಬಳ' },
     { href:'/scheme-checker.html',    label:'📋 ಯೋಜನೆ' },
-    { href:'/news-explainers.html',   label:'📰 ಸುದ್ದಿ' },
+    { href:'/karnataka-local-news.html', label:'📰 ಸ್ಥಳೀಯ ಸುದ್ದಿ' },
+    { href:'/karnataka-stories.html', label:'✨ ವಿಶೇಷ ಲೇಖನ' },
     { href:'/cms/admin.html',         label:'⚙️ CMS' },
     { href:'/more-tools.html',        label:'🛠️ ಇನ್ನಷ್ಟು' },
   ];

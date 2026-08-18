@@ -1,4 +1,6 @@
 /admin/config.yml /admin/config.yml 200
 /admin/*          /admin/index.html 200
+/news-explainers.html /karnataka-local-news.html 301
+/news-explainers  /karnataka-local-news.html 301
 /news/*/*         /article.html     200
 /news/*           /article.html     200

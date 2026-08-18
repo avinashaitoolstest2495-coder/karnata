@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕರ್ನಾಟ ವಿಶೇಷ ಲೇಖನಗಳು & ವರದಿಗಳು — Karnataka Stories & Explainers | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕರ್ನಾಟಕದ ಆಡಳಿತ, ಸಚಿವ ಸಂಪುಟ, ಯೋಜನೆಗಳು, ಸಾರಿಗೆ ಮತ್ತು ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಗಳ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ ಹಾಗೂ ವಿಶೇಷ ಲೇಖನಗಳು.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<style>
+:root {
+  --bg-page: #F9F6F0;
+  --card-bg: #FFFFFF;
+  --border-card: #EAE5DC;
+  --border-subtle: #E2DDD5;
+  --text-dark: #18181B;
+  --text-body: #52525B;
+  --text-muted: #71717A;
+  --k-red: #E11D48;
+  --k-red-dark: #BE123C;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-kn);
+  background: var(--bg-page);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+/* ── Top Hero Header ── */
+.story-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 40%, #18181B 80%, #09090B 100%);
+  color: #FFFFFF;
+  padding: 42px 20px 34px;
+  text-align: center;
+  border-bottom: 3px solid var(--k-red);
+}
+.story-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: 15%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.25) 0%, rgba(225, 29, 72, 0) 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FDA4AF;
+  background: rgba(225, 29, 72, 0.16);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.hero-title {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+@media(max-width:768px) {
+  .hero-title { font-size: 24px; }
+}
+.hero-sub {
+  font-size: 14.5px;
+  color: #E2E8F0;
+  font-weight: 600;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ── Content Container ── */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+}
+
+/* ── Controls Bar ── */
+.controls-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+@media(min-width: 860px) {
+  .controls-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.cat-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.cat-pill {
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 800;
+  background: #F4F1EA;
+  color: var(--text-body);
+  border: 1px solid var(--border-card);
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.cat-pill:hover {
+  background: #EAE5DC;
+  color: var(--text-dark);
+}
+.cat-pill.active {
+  background: var(--k-red);
+  color: #FFFFFF;
+  border-color: var(--k-red);
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.25);
+}
+.search-box {
+  position: relative;
+  min-width: 280px;
+}
+.search-input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-card);
+  background: #FAF8F5;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  color: var(--text-dark);
+}
+.search-input:focus {
+  border-color: var(--k-red);
+  background: #FFFFFF;
+}
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* ── Stories Grid ── */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+@media(max-width: 600px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.story-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.story-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: #D4C9BC;
+}
+.story-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.badge-category {
+  background: #FEF2F2;
+  color: var(--k-red);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+.badge-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.story-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.story-summary {
+  font-size: 13.5px;
+  color: var(--text-body);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.story-author {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.story-author::before {
+  content: '✍️';
+}
+.read-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #18181B;
+  color: #FFFFFF;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 800;
+  transition: all 0.15s;
+}
+.story-card:hover .read-btn {
+  background: var(--k-red);
+}
+
+/* ── Empty State ── */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: #FFFFFF;
+  border: 1.5px dashed var(--border-card);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<script src="/nav-component.js"></script>
+
+<header class="story-hero">
+  <div class="hero-inner">
+    <span class="hero-tag">✨ ಕರ್ನಾಟ ವಿಶೇಷ ವಿಭಾಗ</span>
+    <h1 class="hero-title">ವಿಶೇಷ ಲೇಖನಗಳು, ವರದಿಗಳು & ವಿಶ್ಲೇಷಣೆ</h1>
+    <p class="hero-sub">ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಆಡಳಿತಾತ್ಮಕ ಬೆಳವಣಿಗೆಗಳು, ಸಚಿವ ಸಂಪುಟ ತೀರ್ಮಾನಗಳು, ಸಾರ್ವಜನಿಕ ನೀತಿ ಹಾಗೂ ಸರಳ ಮಾಹಿತಿ ವರದಿಗಳು.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls-bar">
+    <div class="cat-pills" id="category-pills">
+      <button class="cat-pill active" onclick="filterCategory('all', this)">ಎಲ್ಲಾ ಲೇಖನಗಳು (ALL)</button>
+      <button class="cat-pill" onclick="filterCategory('politics', this)">ರಾಜಕೀಯ</button>
+      <button class="cat-pill" onclick="filterCategory('explainer', this)">ಸರಳ ವಿವರಣೆ</button>
+      <button class="cat-pill" onclick="filterCategory('transport', this)">ಸಾರಿಗೆ & ಮೆಟ್ರೋ</button>
+      <button class="cat-pill" onclick="filterCategory('schemes', this)">ಯೋಜನೆಗಳು</button>
+    </div>
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-input" placeholder="ಲೇಖನ ಹುಡುಕಿ (Search stories)..." oninput="handleSearch(this.value)">
+    </div>
+  </div>
+
+  <div class="stories-grid" id="stories-grid">
+    <div class="empty-state">
+      <div style="font-size:32px; margin-bottom:8px;">⏳</div>
+      <div style="font-size:16px; font-weight:800; color:#18181B;">ವಿಶೇಷ ಲೇಖನಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>
+    </div>
+  </div>
+</main>
+
+<script>
+let allStories = [];
+let activeCategory = 'all';
+let searchKeyword = '';
+
+function timeAgo(iso) {
+  if (!iso) return 'ಇಂದು';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return 'ಇಂದು';
+    const diff = Date.now() - d.getTime();
+    if (diff < 0) return 'ಈಗಷ್ಟೇ';
+    const h = Math.floor(diff / 3600000);
+    if (h < 1) return 'ಈಗಷ್ಟೇ';
+    if (h < 24) return h + ' ಗಂಟೆ ಹಿಂದೆ';
+    const days = Math.floor(h / 24);
+    return days === 1 ? 'ನಿನ್ನೆ' : days + ' ದಿನ ಹಿಂದೆ';
+  } catch (e) {
+    return 'ಇಂದು';
+  }
+}
+
+function getCategoryName(cat) {
+  const map = {
+    'politics': 'ರಾಜಕೀಯ',
+    'explainer': 'ವಿವರಣೆ',
+    'transport': 'ಸಾರಿಗೆ & ಸಂಚಾರ',
+    'schemes': 'ಸರ್ಕಾರಿ ಯೋಜನೆ',
+    'general': 'ಸಾಮಾನ್ಯ'
+  };
+  return map[cat] || cat || 'ವಿಶೇಷ ಲೇಖನ';
+}
+
+async function loadStories() {
+  let stories = [];
+  try {
+    const res = await fetch('/data/cms_articles.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.articles)) {
+        stories = data.articles.filter(a => a.status === 'published' || !a.status);
+      }
+    }
+  } catch (e) {
+    console.error('Error loading cms_articles.json:', e);
+  }
+
+  // Check localStorage drafts/published from CMS admin
+  try {
+    const local = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    if (Array.isArray(local) && local.length > 0) {
+      local.forEach(l => {
+        if (l.status === 'published' && !stories.some(s => s.id === l.id || s.slug === l.slug)) {
+          stories.unshift(l);
+        }
+      });
+    }
+  } catch (e) {}
+
+  allStories = stories;
+  renderStories();
+}
+
+function getFilteredStories() {
+  let list = allStories;
+
+  if (activeCategory !== 'all') {
+    list = list.filter(s => {
+      const c = (s.category || '').toLowerCase();
+      return c === activeCategory.toLowerCase() || (activeCategory === 'politics' && c.includes('ರಾಜಕೀಯ'));
+    });
+  }
+
+  if (searchKeyword.trim()) {
+    const q = searchKeyword.trim().toLowerCase();
+    list = list.filter(s => {
+      const t = (s.title_kn || s.title || '').toLowerCase();
+      const sum = (s.summary_kn || s.summary || '').toLowerCase();
+      return t.includes(q) || sum.includes(q);
+    });
+  }
+
+  return list;
+}
+
+function renderStories() {
+  const grid = document.getElementById('stories-grid');
+  const items = getFilteredStories();
+
+  if (!items || !items.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div style="font-size:36px; margin-bottom:10px;">📰</div>
+        <div style="font-size:17px; font-weight:800; color:#18181B; margin-bottom:6px;">ಯಾವುದೇ ವಿಶೇಷ ಲೇಖನಗಳು ಕಂಡುಬಂದಿಲ್ಲ</div>
+        <div style="font-size:13.5px;">ದಯವಿಟ್ಟು ಬೇರೆ ವಿಭಾಗ ಅಥವಾ ಹುಡುಕಾಟ ಪದ ಬಳಸಿ.</div>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = items.map(story => {
+    const title = story.title_kn || story.title || 'ವಿಶೇಷ ವರದಿ';
+    const summary = story.summary_kn || story.summary || 'ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಯ ಕುರಿತ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ ವಿವರ.';
+    const category = getCategoryName(story.category);
+    const author = story.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
+    const time = timeAgo(story.updated_at || story.created_at);
+    const slug = story.slug || story.id;
+    const url = `/news/article.html?id=${encodeURIComponent(slug)}`;
+
+    return `
+      <div class="story-card">
+        <div>
+          <div class="story-meta-top">
+            <span class="badge-category">${category}</span>
+            <span class="badge-time">⏱️ ${time}</span>
+          </div>
+          <h2 class="story-title">${title}</h2>
+          <p class="story-summary">${summary}</p>
+        </div>
+        <div>
+          <div class="story-author">${author}</div>
+          <a href="${url}" class="read-btn">
+            <span>ಸಂಪೂರ್ಣ ಲೇಖನ ಓದಿ</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function filterCategory(cat, btn) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  activeCategory = cat;
+  renderStories();
+}
+
+function handleSearch(q) {
+  searchKeyword = q || '';
+  renderStories();
+}
+
+// Initial Load
+loadStories();
+</script>
+</body>
+</html>

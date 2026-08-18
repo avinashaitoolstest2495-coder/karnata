@@ -1013,7 +1013,7 @@ button{{cursor:pointer;font-family:inherit;border:none;outline:none;}}
         <a href="../more-tools.html" style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);display:block;">📋 ಯೋಜನೆ ಅರ್ಹತೆ</a>
         <a href="../civic-finder.html" style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);display:block;">🏛️ GP ಸದಸ್ಯ</a>
         <a href="../emi-calculator.html" style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);display:block;">🏦 EMI ಲೆಕ್ಕ</a>
-        <a href="../news-explainers.html" style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);display:block;">📰 ಜಿಲ್ಲಾ ಸುದ್ದಿ</a>
+        <a href="../karnataka-local-news.html" style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;font-size:12px;color:var(--ink2);display:block;">📰 ಜಿಲ್ಲಾ ಸುದ್ದಿ</a>
       </div>
     </div>
   </div>

@@ -1407,7 +1407,8 @@ input.clean-search-input:focus,
     <a href="sip-calculator.html"    class="nav-tab">📈 SIP</a>
     <a href="salary-calculator.html" class="nav-tab">💰 ಸಂಬಳ</a>
     <a href="scheme-checker.html"    class="nav-tab">📋 ಯೋಜನೆ</a>
-    <a href="news-explainers.html"   class="nav-tab">📰 ಸುದ್ದಿ</a>
+    <a href="karnataka-local-news.html" class="nav-tab">📰 ಸ್ಥಳೀಯ ಸುದ್ದಿ</a>
+    <a href="karnataka-stories.html" class="nav-tab">✨ ವಿಶೇಷ ಲೇಖನ</a>
     <a href="more-tools.html"        class="nav-tab">🛠️ ಇನ್ನಷ್ಟು</a>
   </div>
 </nav>
@@ -1530,10 +1531,10 @@ input.clean-search-input:focus,
       <div style="color:var(--text-muted);font-size:13px;padding:20px;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
     </div>
 
-    <!-- NEWS EXPLAINERS -->
+    <!-- SPECIAL STORIES & EXPLAINERS -->
     <div class="sh">
-      <div class="sh-title"><div class="sh-icon">📰</div>ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಸುದ್ದಿ ವಿವರಣೆ</div>
-      <a href="news-explainers.html" class="sh-link">ಎಲ್ಲ ಸುದ್ದಿ →</a>
+      <div class="sh-title"><div class="sh-icon">✨</div>ವಿಶೇಷ ಲೇಖನಗಳು & ವಿಶ್ಲೇಷಣೆ</div>
+      <a href="karnataka-stories.html" class="sh-link">ಎಲ್ಲ ಲೇಖನಗಳು →</a>
     </div>
 
     <div class="news-layout" id="top-news-layout">
@@ -1570,7 +1571,7 @@ input.clean-search-input:focus,
           <span style="font-size:22px;">📍</span>
           <span id="local-news-title" style="font-size:20px; font-weight:900; color:#18181B;">ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ</span>
         </div>
-        <a href="news-explainers.html" style="font-size:13px; font-weight:800; color:#E11D48; text-decoration:none;">ಎಲ್ಲ ಸುದ್ದಿಗಳು →</a>
+        <a href="karnataka-local-news.html" style="font-size:13px; font-weight:800; color:#E11D48; text-decoration:none;">ಎಲ್ಲ ಸುದ್ದಿಗಳು →</a>
       </div>
 
       <!-- Category Filter Pills -->
@@ -1706,7 +1707,7 @@ input.clean-search-input:focus,
     <a href="dam-levels.html"      class="mn-btn"><span class="mn-icon">💧</span><span class="mn-label">ಅಣೆಕಟ್ಟು</span></a>
     <a href="gold-rate.html"       class="mn-btn"><span class="mn-icon">🥇</span><span class="mn-label">ಚಿನ್ನ</span></a>
     <a href="civic-finder.html"    class="mn-btn"><span class="mn-icon">🏛️</span><span class="mn-label">MLA/MP</span></a>
-    <a href="news-explainers.html" class="mn-btn"><span class="mn-icon">📰</span><span class="mn-label">ಸುದ್ದಿ</span></a>
+    <a href="karnataka-local-news.html" class="mn-btn"><span class="mn-icon">📰</span><span class="mn-label">ಸುದ್ದಿ</span></a>
   </div>
 </nav>
 
@@ -2223,17 +2224,17 @@ async function renderLocalNews(articles, distKn) {
     } catch(e) {}
   }
 
-  // Update top featured news layout if CMS articles exist
+  // Update top featured special stories layout if CMS articles exist
   if (cmsArticles.length > 0) {
     const topNewsLayout = $('top-news-layout');
     if (topNewsLayout) {
       topNewsLayout.innerHTML = cmsArticles.slice(0, 4).map((a, idx) => `
         <a href="${a.url}" class="news-card ${idx === 0 ? 'featured' : ''}">
           <div class="nc-content">
-            <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">📰 ${a.category}</span>
+            <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">✨ ${a.category}</span>
             <div class="nc-headline">${a.title}</div>
             <div class="nc-summary">${a.description}</div>
-            <div class="nc-meta"><span>ಇಂದು (Live)</span><span>${a.source}</span></div>
+            <div class="nc-meta"><span>ವಿಶೇಷ ಲೇಖನ</span><span>${a.source}</span></div>
           </div>
           <div class="nc-visual">${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}</div>
         </a>
@@ -2241,15 +2242,18 @@ async function renderLocalNews(articles, distKn) {
     }
   }
 
-  const merged = [...cmsArticles, ...(articles || [])];
-  if (!merged || !merged.length) return;
+  // Strictly show local district news in the local news tab (CMS uploaded stories are on karnataka-stories.html)
+  const localArticles = (articles || []).filter(a => !a.is_cms);
+  if (!localArticles || !localArticles.length) return;
   
-  // STRICT: 100% Pure Kannada only — eliminate any English headline
-  const valid = merged.filter(a => {
-    let t = (a.title || a.headline || '').trim();
-    t = t.replace(/<[^>]+>/g, "").replace(/\s*Last\s*Updated.*$/i, "").replace(/\s*[-–—|:]+$/g, "");
-    return t.length >= 5 && isKannada(t);
+  // Clean titles & 100% Pure Kannada only
+  const valid = localArticles.filter(a => {
+    let t = cleanTitleText(a.title || a.headline || '');
+    return t.length >= 12 && isKannada(t);
   });
+
+  // Sort strictly newest first
+  valid.sort((a, b) => parseArticleTime(b.published || b.time_ago) - parseArticleTime(a.published || a.time_ago));
 
   allCurrentLocalArticles = valid;
   window.currentDistrictName = distKn || 'ಬೆಂಗಳೂರು';
@@ -2258,6 +2262,37 @@ async function renderLocalNews(articles, distKn) {
   
   $('local-news-title').textContent = (distKn || 'ಬೆಂಗಳೂರು ನಗರ') + ' ಸ್ಥಳೀಯ ಸುದ್ದಿ';
   $('local-news-section').style.display = 'block';
+}
+
+function cleanTitleText(t) {
+  if (!t || typeof t !== 'string') return '';
+  let str = t.replace(/<[^>]+>/g, '').trim();
+  str = str.replace(/^\+\d+\s*(photos?|ಚಿತ್ರಗಳು?|ವೀಡಿಯೊ|ವಿಡಿಯೋ|videos?)\s*/i, '');
+  str = str.replace(/^(photos?|ಚಿತ್ರಗಳು|ವೀಡಿಯೊ|ವಿಡಿಯೋ|videos?|watch|breaking|exclusive|live\s*updates?|explainer)\s*[:|-]\s*/i, '');
+  str = str.replace(/\s*Last\s*Updated.*$/i, '');
+  str = str.replace(/\s*[-–—|:]\s*(ಪ್ರಾಜಾವಾಣಿ|ಪ್ರಜಾವಾಣಿ|prajavani|ವಿಜಯ\s*ಕರ್ನಾಟಕ|vijay\s*karnataka|news18|n18v|tv9|asianet|suvarna|public\s*tv|oneindia|kannada|som|star\s*of\s*mysore).*$/i, '');
+  str = str.replace(/\s*[-–—|:]+$/g, '');
+  return str.trim();
+}
+
+function parseArticleTime(dStr) {
+  if (!dStr) return 0;
+  if (typeof dStr === 'number') return dStr;
+  let s = String(dStr).trim();
+  if (s.includes('ಹಿಂದೆ') || s.includes('ago')) {
+    const num = parseInt(s) || 1;
+    if (s.includes('ದಿನ') || s.includes('day')) return Date.now() - (num * 24 * 3600 * 1000);
+    if (s.includes('ಗಂಟೆ') || s.includes('hour') || s.includes('hr')) return Date.now() - (num * 3600 * 1000);
+    if (s.includes('ನಿಮಿಷ') || s.includes('min')) return Date.now() - (num * 60 * 1000);
+    if (s.includes('ವಾರ') || s.includes('week')) return Date.now() - (num * 7 * 24 * 3600 * 1000);
+    return Date.now() - (3600 * 1000);
+  }
+  if (s.includes('ಈಗಷ್ಟೇ') || s.includes('just now')) {
+    return Date.now();
+  }
+  const parsed = Date.parse(s);
+  if (!isNaN(parsed)) return parsed;
+  return 0;
 }
 
 function displayFilteredCards(articles, distKn) {
@@ -2272,11 +2307,10 @@ function displayFilteredCards(articles, distKn) {
   const dName = distKn || window.currentDistrictName || 'ಕರ್ನಾಟಕ';
 
   grid.innerHTML = articles.slice(0, 12).map(a => {
-    let title = (a.title || a.headline || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ').trim();
-    title = title.replace(/<[^>]+>/g, "").replace(/\s*Last\s*Updated.*$/i, "").replace(/\s*[-–—|:]+$/g, "");
+    let title = cleanTitleText(a.title || a.headline || 'ಸ್ಥಳೀಯ ಸುದ್ದಿ ವರದಿ');
 
     let snippet = (a.description || a.snippet || a.summary || '').trim();
-    snippet = snippet.replace(/<[^>]+>/g, "").trim();
+    snippet = cleanTitleText(snippet);
     if (!snippet || snippet.length < 15 || !isKannada(snippet)) {
       snippet = `${dName} ಜಿಲ್ಲೆಯ ಇಂದಿನ ಪ್ರಮುಖ ಘಟನೆ, ಸ್ಥಳೀಯ ಸಾರ್ವಜನಿಕ ಮಾಹಿತಿ ಮತ್ತು ಅಧಿಕೃತ ವರದಿ ವಿವರ ಇಲ್ಲಿದೆ.`;
     }
@@ -2573,33 +2607,17 @@ function tagOS(){
   OneSignal.User.addTags({district:S.district||'unknown'});
 }
 
-// ── Restore state & Auto Geolocation ──────────────────
+// ── Restore state & Geolocation (Strict No-Random IP) ──
 async function autoDetectGeoHome() {
   let saved = localStorage.getItem('nk_user_district_key') || S.district;
-  if (!saved) {
-    try {
-      const res = await fetch('https://ipwho.is/?fields=city,region,latitude,longitude');
-      if (res.ok) {
-        const d = await res.json();
-        if (d && (d.region === 'Karnataka' || d.city)) {
-          const resolved = (typeof GeoData !== 'undefined' ? (GeoData.resolveDistrict(d.city) || GeoData.nearestDistrict(d.latitude, d.longitude)) : null);
-          if (resolved) {
-            selectDistKey(resolved);
-            return;
-          }
-        }
+  if (!saved && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const { latitude: lat, longitude: lon } = pos.coords;
+      if (typeof GeoData !== 'undefined') {
+        const resolved = GeoData.nearestDistrict(lat, lon);
+        if (resolved) selectDistKey(resolved);
       }
-    } catch(e) {}
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        const { latitude: lat, longitude: lon } = pos.coords;
-        if (typeof GeoData !== 'undefined') {
-          const resolved = GeoData.nearestDistrict(lat, lon);
-          if (resolved) selectDistKey(resolved);
-        }
-      }, () => {}, { timeout: 4000, maximumAge: 600000 });
-    }
+    }, () => {}, { timeout: 3000, maximumAge: 600000 });
   }
 }
 
