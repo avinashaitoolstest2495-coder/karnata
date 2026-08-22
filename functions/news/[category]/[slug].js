@@ -338,9 +338,9 @@ export async function onRequest(context) {
   const { params, request, env } = context;
   const category = params.category || 'explainer';
   const slug = params.slug || '';
-
-  // Clean slug
-  const cleanSlug = slug.toLowerCase().replace(/\\.html$/, '').trim();
+  const origin = new URL(request.url).origin;
+  const cleanSlug = slug.toLowerCase().replace(/\.html$/, '').trim();
+  let article = null;
 
   const kv = env?.NK_DATA || env?.TRANSFERS_KV || null;
 
