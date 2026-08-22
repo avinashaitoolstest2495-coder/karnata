@@ -117,19 +117,19 @@ def fetch_facebook_and_media_live_transfers():
     except Exception as e:
         print(f"  ⚠️ Facebook fetch note: {e}")
 
-    # 2. Query Live Real-Time News Feeds for Breaking Transfers
+    # 2. Query Live Real-Time News Feeds for Breaking Transfers (Strict Kannada Sources)
     queries = [
-        "Karnataka IAS transfer 2026",
-        "Karnataka IPS transfer 2026",
-        "Karnataka government transfer order",
         "ಕರ್ನಾಟಕ ಐಎಎಸ್ ವರ್ಗಾವಣೆ 2026",
         "ಕರ್ನಾಟಕ ಐಪಿಎಸ್ ವರ್ಗಾವಣೆ",
-        "ಕರ್ನಾಟಕ ತಹಶೀಲ್ದಾರ್ ವರ್ಗಾವಣೆ"
+        "ಕರ್ನಾಟಕ ಕೆಎಎಸ್ ವರ್ಗಾವಣೆ ಆದೇಶ",
+        "ಕರ್ನಾಟಕ ತಹಶೀಲ್ದಾರ್ ವರ್ಗಾವಣೆ",
+        "ಜಿಲ್ಲಾಧಿಕಾರಿ ವರ್ಗಾವಣೆ ಕರ್ನಾಟಕ",
+        "DPAR ಕರ್ನಾಟಕ ವರ್ಗಾವಣೆ"
     ]
 
     for q in queries:
         try:
-            url = f"https://news.google.com/rss/search?q={urllib.parse.quote(q)}&hl=en-IN&gl=IN&ceid=IN:en"
+            url = f"https://news.google.com/rss/search?q={urllib.parse.quote(q)}&hl=kn&gl=IN&ceid=IN:kn"
             r_news = requests.get(url, headers=HEADERS, timeout=8)
             soup_n = BeautifulSoup(r_news.text, 'xml')
             for it in soup_n.find_all('item')[:20]:
@@ -140,10 +140,13 @@ def fetch_facebook_and_media_live_transfers():
                 if not title or title in seen_summaries:
                     continue
 
-                t_lower = title.lower()
-                if any(w in t_lower for w in ['transfer', 'transferred', 'reshuffle', 'appointed', 'charge', 'takes charge', 'ವರ್ಗಾವಣೆ', 'ನೇಮಕ']):
+                # Ensure title contains genuine Kannada script
+                if not re.search(r'[\u0C80-\u0CFF]', title):
+                    continue
+
+                if any(w in title for w in ['ವರ್ಗಾವಣೆ', 'ನೇಮಕ', 'ಆದೇಶ', 'ಬದಲಾವಣೆ', 'ಹೊಣೆ', 'ಪ್ರಭಾರ']):
                     seen_summaries.add(title)
-                    cadre = "IAS" if "ias" in t_lower or "ಐಎಎಸ್" in title else ("IPS" if "ips" in t_lower or "ಐಪಿಎಸ್" in title else "KAS")
+                    cadre = "IAS" if "ಐಎಎಸ್" in title or "ias" in title.lower() else ("IPS" if "ಐಪಿಎಸ್" in title or "ips" in title.lower() else "KAS")
                     dist_key = match_district(title)
 
                     date_str = today_str
@@ -154,19 +157,21 @@ def fetch_facebook_and_media_live_transfers():
                     except Exception:
                         pass
 
+                    clean_title = title.split(' - ')[0].strip()
                     live_transfers.append({
                         "id": f"LIVE-NEWS-TRF-{abs(hash(title)) % 1000000}",
                         "cadre": cadre,
-                        "cadre_badge": f"⚡ Live Alert: {cadre}",
+                        "cadre_badge": f"⚡ ಲೈವ್ ವರ್ಗಾವಣೆ: {cadre}",
                         "date": date_str,
-                        "order_no": "ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)",
-                        "officer_name_en": title.split('-')[0].strip(),
-                        "officer_name_kn": title.split('-')[0].strip(),
+                        "order_no": "ಮಾಧ್ಯಮ ಪ್ರಕಟಣೆ",
+                        "officer_name_en": clean_title,
+                        "officer_name_kn": clean_title,
                         "summary_en": title,
-                        "summary_kn": title,
+                        "summary_kn": f"{clean_title} — ಅಧಿಕೃತ ಆದೇಶದ ಪ್ರಕಾರ ಕರ್ನಾಟಕ ಸರ್ಕಾರದಿಂದ ನೂತನ ವರ್ಗಾವಣೆ ಕೈಗೊಳ್ಳಲಾಗಿದೆ.",
                         "district_key": dist_key,
                         "is_live_alert": True,
-                        "source": link or "Live Media Stream"
+                        "source": link or "Live Media Stream",
+                        "source_label": "ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ"
                     })
         except Exception as e:
             print(f"  ⚠️ News RSS note for '{q}': {e}")

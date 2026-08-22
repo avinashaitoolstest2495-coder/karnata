@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-08-22 06:33:48 IST  
+> **Generated:** 2026-08-22 06:51:11 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1907,5 +1907,87 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **01-08-2026:** Karnataka govt revises transfer guidelines for DySPs, PIs (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt revises transfer guidelines for DySPs, PIs - Deccan Herald
+* **27-07-2026:** Karnataka: RR Pandey Takes Charge in Mangaluru, Ravi Kumar Named Kolar Dy Commissioner (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka: RR Pandey Takes Charge in Mangaluru, Ravi Kumar Named Kolar Dy Commissioner - NorthBlockSouthBlock
+* **20-07-2026:** Karnataka govt transfers 160 mining dept officials in sweeping overhaul (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt transfers 160 mining dept officials in sweeping overhaul - The Times of India
+* **20-07-2026:** Karnataka govt transfers 158 mining officers after years in same posts to root out 'systemic corruption' (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt transfers 158 mining officers after years in same posts to root out 'systemic corruption' - Deccan Herald
+* **11-07-2026:** Karnataka issues fresh transfer norms in line with HC order (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka issues fresh transfer norms in line with HC order - The New Indian Express
+* **10-07-2026:** Karnataka issues fresh transfer guidelines, caps compulsory waiting period (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka issues fresh transfer guidelines, caps compulsory waiting period - The Hindu
+* **03-07-2026:** Karnataka Transfers 5 IAS Officers; Dr. Ragapriya R. Appointed Labour Commissioner (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Transfers 5 IAS Officers; Dr. Ragapriya R. Appointed Labour Commissioner - Elets eGov
+* **03-07-2026:** Karnataka Reshuffles 5 IAS Officers, IAS Harsha Gupta Gets Key Role (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Reshuffles 5 IAS Officers, IAS Harsha Gupta Gets Key Role - APAC Media
+* **01-07-2026:** Karnataka Govt Transfers 4 IAS Officers; IAS Abhiram Sankar Appointed MD of KMERC (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Govt Transfers 4 IAS Officers; IAS Abhiram Sankar Appointed MD of KMERC - APAC Media
+* **27-06-2026:** Karnataka govt schools delay transfer certificates to retain students (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt schools delay transfer certificates to retain students - The Times of India
+* **25-06-2026:** IPS officer gets dual role in reshuffle in Karnataka (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — IPS officer gets dual role in reshuffle in Karnataka - The Times of India
+* **20-06-2026:** Names of doctors on transfer list go missing from official order in Karnataka (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Names of doctors on transfer list go missing from official order in Karnataka - The New Indian Express
+* **19-06-2026:** Karnataka IAS Reshuffle: Sivakumar K.B. Appointed KSRTC MD, Raghunandan Murthy Takes Over BMTC (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka IAS Reshuffle: Sivakumar K.B. Appointed KSRTC MD, Raghunandan Murthy Takes Over BMTC - Elets eGov
+* **19-06-2026:** Karnataka Transfers 16 IAS Officers, IAS Sivakumar KB Gets KSRTC Role (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Transfers 16 IAS Officers, IAS Sivakumar KB Gets KSRTC Role - APAC Media
+* **18-06-2026:** Karnataka government transfers IAS officers in big bureaucratic reshuffle (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka government transfers IAS officers in big bureaucratic reshuffle - Deccan Herald
+* **10-06-2026:** IAS transfers: Several officers in Karnataka given additional charge (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — IAS transfers: Several officers in Karnataka given additional charge - The Hindu
+* **10-06-2026:** Karnataka reshuffles senior bureaucracy, assigns additional charge in key departments (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka reshuffles senior bureaucracy, assigns additional charge in key departments - The South First
+* **08-06-2026:** Karnataka Reassigns Senior IAS Officers; Anjum Parwez Appointed Additional Chief Secretary, Forest, Ecology & Environment (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Reassigns Senior IAS Officers; Anjum Parwez Appointed Additional Chief Secretary, Forest, Ecology & Environment - Elets eGov
+* **08-06-2026:** Karnataka Govt Transfers Six IAS Officers; IAS Munish Moudgil Made Principal Secretary in CMO (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Govt Transfers Six IAS Officers; IAS Munish Moudgil Made Principal Secretary in CMO - APAC Media
+* **08-06-2026:** Govt transfers 6 IAS, 3 IPS officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Govt transfers 6 IAS, 3 IPS officers - The Times of India
+* **08-06-2026:** Karnataka reshuffles IAS, IPS after CM Shivakumar takes charge (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka reshuffles IAS, IPS after CM Shivakumar takes charge - The BuckStopper
+* **07-06-2026:** Karnataka government transfers several senior IAS, IPS officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka government transfers several senior IAS, IPS officers - Deccan Herald
+* **07-06-2026:** Karnataka DGP cyber command centre chief transferred to CID (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka DGP cyber command centre chief transferred to CID - Country and Politics
+* **07-06-2026:** DK Shivakumar (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — DK Shivakumar-led Karnataka govt transfers senior IAS, IPS officers - Deccan Herald
+* **07-06-2026:** Karnataka reshuffles senior IAS, IPS officers after Shivakumar takes charge | Bengaluru (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka reshuffles senior IAS, IPS officers after Shivakumar takes charge | Bengaluru - Hindustan Times
+* **07-06-2026:** In first major reshuffle, Shivakumar govt appoints Pronab Mohanty head of CID (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — In first major reshuffle, Shivakumar govt appoints Pronab Mohanty head of CID - Deccan Herald
+* **06-06-2026:** Karnataka Government Appoints Dr. Manjula N as BWSSB Chairperson, Transfers Dr. Ram Prasath Manohar V to KPTCL (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Government Appoints Dr. Manjula N as BWSSB Chairperson, Transfers Dr. Ram Prasath Manohar V to KPTCL - Elets eGov
+* **04-06-2026:** Karnataka Govt Transfers 2 IAS Officers; IAS Tushar Giri Nath Appointed ACS to CM (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Govt Transfers 2 IAS Officers; IAS Tushar Giri Nath Appointed ACS to CM - APAC Media
+* **04-06-2026:** Karnataka Transfers Two IAS Officers; Tushar Giri Nath Appointed ACS to Chief Minister (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Transfers Two IAS Officers; Tushar Giri Nath Appointed ACS to Chief Minister - Elets eGov
+* **27-05-2026:** Karnataka govt modifies transfer orders of two IFS officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt modifies transfer orders of two IFS officers - Deccan Herald
+* **20-05-2026:** Karnataka Transfers 4 IAS Officers; Harsh Gupta Appointed Chairman of Karnataka Appellate Tribunal (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Transfers 4 IAS Officers; Harsh Gupta Appointed Chairman of Karnataka Appellate Tribunal - Elets eGov
+* **05-05-2026:** Karnataka Transfers 4 IAS Officers; Fouzia Taranum, Mohammed Ikramulla Shariff Among Key Appointments (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Transfers 4 IAS Officers; Fouzia Taranum, Mohammed Ikramulla Shariff Among Key Appointments - Elets eGov
+* **05-05-2026:** Karnataka Government Transfers 4 IAS Officers; IAS Fouzia Tarannum Made Rural Drinking Water Commissioner (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Government Transfers 4 IAS Officers; IAS Fouzia Tarannum Made Rural Drinking Water Commissioner - APAC Media
+* **01-05-2026:** Karnataka government transfers IPS officer, appoints another to CID (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka government transfers IPS officer, appoints another to CID - Deccan Herald
+* **30-04-2026:** Karnataka Govt Transfers 3 IPS Officers;Labhu Ram is IGP (Intelligence) (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka Govt Transfers 3 IPS Officers;Labhu Ram is IGP (Intelligence) - Country and Politics
+* **29-04-2026:** Three senior Karnataka IPS officers transferred, Labhu Ram is IGP (Intelligence) (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Three senior Karnataka IPS officers transferred, Labhu Ram is IGP (Intelligence) - The Hindu
+* **28-04-2026:** Karnataka IPS reshuffle: Govt transfers three senior officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka IPS reshuffle: Govt transfers three senior officers - Deccan Herald
+* **17-04-2026:** IAS Officer Harsh Gupta's transfer creates a stir on social media (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — IAS Officer Harsh Gupta's transfer creates a stir on social media - Deccan Herald
+* **14-04-2026:** Manoj Kumar Meena Among 4 IAS Officers Transferred in Karnataka, Appointed Health Secretary (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Manoj Kumar Meena Among 4 IAS Officers Transferred in Karnataka, Appointed Health Secretary - Elets eGov
+* **01-01-2026:** Karnataka government reshuffles police department; transfers, promotes 68 IPS officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka government reshuffles police department; transfers, promotes 68 IPS officers - The New Indian Express
+* **01-01-2026:** Police leadership reshuffle across Shivamogga and Chikkamagaluru districts (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Police leadership reshuffle across Shivamogga and Chikkamagaluru districts - The Hindu
+* **31-12-2025:** Karnataka govt. announces promotions and transfers of IPS officers (ಆದೇಶ: ಲೈವ್ ಮಾಧ್ಯಮ ವರದಿ (Live Alert)) — Karnataka govt. announces promotions and transfers of IPS officers - The Hindu
+* **13-08-2026:** Dr. K.V. Thrilok Chandra, IAS (KN: 2007), concurrent charge of the post of Chief Evaluation Officer, Karnataka Monitoring and Evaluation Authority, Bengaluru (ಆದೇಶ: e-DPAR 276 SAS 2026) — Dr. K.V. Thrilok Chandra, IAS (KN: 2007), concurrent charge of the post of Chief Evaluation Officer, Karnataka Monitoring and Evaluation Authority, Bengaluru
+* **12-08-2026:** Sri. Prasanna H., IAS (KN: 2017) Concurrent Charge of Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru (ಆದೇಶ: e-DPAR 275 SAS 2026) — Sri. Prasanna H., IAS (KN: 2017) Concurrent Charge of Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru 
+
+
+
+Sri. Lavish Ordia, IAS (KN: 2020) Joint Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru.
+* **11-08-2026:** Dr. Arundhathi Chandrashekar, IAS (KN:  2012) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru. (ಆದೇಶ: e-DPAR 257 SAS 2026) — Dr. Arundhathi Chandrashekar, IAS (KN:  2012) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru.
+* **06-08-2026:** Sri. Manoz Jain. IAS (KN: 2006) Secretary to Government, Monitoring Welfare Department, Bengaluru. (ಆದೇಶ: e-DPAR 271 SAS 2026) — Sri. Manoz Jain. IAS (KN: 2006) Secretary to Government, Monitoring Welfare Department, Bengaluru. 
+
+
+
+Dr. Thrilok Chandra K.V., IAS (KN: 2007) Secretary to Government, Planning, Programme Monitoring and Statistics Department, Bengaluru. 
+
+
+
+Ms. Manjushree N., IAS (KN: 2010) Secretary to Government, Kannada and Culture Department, Bengaluru. 
+
+
+
+Sri.Manjunath J IAS (KN: 2010) Secretary to Government, Department of Information and Public Relations, Bengaluru. 
+
+
+
+Smt. Poornima  B R., IAS (KN: 2016) Commissioner, Food, Civil Supplies and Consumer Affairs Department, Bengaluru.
+* **06-08-2026:** Dr. Reju M. T., IAS (KN: 2012) placed in the concurrent charge of the post of Managing Director, Karnataka State Beverages Corporation Limited (KSBCL), Bengaluru (ಆದೇಶ: e-DPAR 268 SAS 2026) — Dr. Reju M. T., IAS (KN: 2012) placed in the concurrent charge of the post of Managing Director, Karnataka State Beverages Corporation Limited (KSBCL), Bengaluru
+* **05-08-2026:** Dr. Jaffer P.C., IAS (KN: 2003), Managing Director, Bangalore Metro Rail Corporation Limited, Bengaluru (ಆದೇಶ: e-DPAR 268 SAS 2026) — Dr. Jaffer P.C., IAS (KN: 2003), Managing Director, Bangalore Metro Rail Corporation Limited, Bengaluru
+
+
+
+Dr. Reju M T., IAS (KN: 2005), Secretary to Government (Budget
+
+and Resources), Finance Department, Bengaluru
+
+
+
+Sri. T. H. M. Kumar, IAS (KN: 2008), Secretary to Government, Housing Department, Bengaluru
+* **05-08-2026:** Smt. Aparna Ramesh, IAS (KN: 2021), placed in the concurrent charge of the post Project Director (KUTUMBA), Center of e- (ಆದೇಶ: e-DPAR 270 SAS 2026) — Smt. Aparna Ramesh, IAS (KN: 2021), placed in the concurrent charge of the post Project Director (KUTUMBA), Center of e-
+
+Governance, Bengaluru
+* **04-08-2026:** Sri. Shivananda Kapashi, IAS (KN: 2012) Concurrent Charge of Commissioner, Food, Civil Supplies and Consumer Affairs Department, Bengaluru. (ಆದೇಶ: e-DPAR 262 SAS 2026) — Sri. Shivananda Kapashi, IAS (KN: 2012) Concurrent Charge of Commissioner, Food, Civil Supplies and Consumer Affairs Department, Bengaluru.
 
 ---

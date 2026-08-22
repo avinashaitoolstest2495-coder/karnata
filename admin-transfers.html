@@ -472,15 +472,15 @@ Analyze this official Karnataka government transfer order photo/document (Kannad
 Extract every officer transfer entry and return ONLY a valid JSON array of objects with the following schema:
 [
   {
-    "order_no": "ಆದೇಶ ಸಂಖ್ಯೆ (e.g. ಸಿಆಸುಇ 70 ಜಿಇಎ 2026 or e-DPAR 279 SAS 2026)",
+    "order_no": "ಆದೇಶ ಸಂಖ್ಯೆ (e.g. ಸಿಆಸುಇ 112 ಆಸೇವ 2026 or e-DPAR 279 SAS 2026)",
     "date": "ದಿನಾಂಕ (DD-MM-YYYY)",
     "cadre": "IAS | IPS | KAS | Tahsildar",
-    "officer_name_kn": "ಅಧಿಕಾರಿಯ ಸಂಪೂರ್ಣ ಹೆಸರು ಮತ್ತು ಗ್ರೇಡ್ ಕನ್ನಡದಲ್ಲಿ (e.g. ಶ್ರೀ ಕೆ.ಎ. ಹಿದಾಯತ್ತುಲ್ಲಾ, ಕೆ.ಎ.ಎಸ್ (ಸೂಪರ್ ಟೈಮ್ ಸ್ಕೇಲ್))",
+    "officer_name_kn": "ಅಧಿಕಾರಿಯ ಸಂಪೂರ್ಣ ಹೆಸರು ಮತ್ತು ಶ್ರೇಣಿ ಶುದ್ಧ ಕನ್ನಡದಲ್ಲಿ (e.g. ಶ್ರೀಮತಿ ಶಾಂತ ಎಲ್ ಹುಲ್ಲನಿ, ಕೆ.ಎ.ಎಸ್ (ಸೂಪರ್ ಟೈಂ ಸ್ಕೇಲ್))",
     "officer_name_en": "Officer Name in English",
-    "previous_posting": "ಹಿಂದಿನ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದ ಹುದ್ದೆ ಮತ್ತು ಇಲಾಖೆ",
-    "new_posting": "ವರ್ಗಾಯಿಸಿ ನೇಮಿಸಲಾದ ನೂತನ ಹುದ್ದೆ / ಹೆಚ್ಚುವರಿ ಹೊಣೆ",
+    "previous_posting": "ಹಿಂದಿನ ಹುದ್ದೆಯ ಸ್ಪಷ್ಟ ಹೆಸರು (ಉದಾ: ನಿರ್ದೇಶಕರು, ಪಿಂಚಣಿ ಮತ್ತು ಸಣ್ಣ ಉಳಿತಾಯ ನಿರ್ದೇಶನಾಲಯ, ಬೆಂಗಳೂರು)",
+    "new_posting": "ವರ್ಗಾಯಿಸಲಾದ ನೂತನ ಹುದ್ದೆಯ ಸ್ಪಷ್ಟ ಹೆಸರು (ಉದಾ: ಕಾರ್ಯನಿರ್ವಾಹಕ ನಿರ್ದೇಶಕರು (ಮಾನವ ಸಂಪನ್ಮೂಲ), ಬೆಂಗಳೂರು ನಮ್ಮ ಮೆಟ್ರೋ (BMRCL)) - ಯಾವುದೇ ಪುನರಾವರ್ತಿತ ಕಾನೂನು ವಾಕ್ಯಗಳನ್ನು ಹೊರತುಪಡಿಸಿ ಕೇವಲ ಹುದ್ದೆಯ ಹೆಸರನ್ನು ಮಾತ್ರ ನಮೂದಿಸಿ",
     "district_key": "district_key (e.g. bengaluru_urban, tumakuru, yadgir, mysuru, belagavi, kalaburagi, dharwad, vijayapura)",
-    "summary_kn": "ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಆದೇಶದ ಸಂಪೂರ್ಣ ಶುದ್ಧ ಕನ್ನಡ ವಿವರಣೆ"
+    "summary_kn": "ಪತ್ರಿಕಾ ಶೈಲಿಯ ಸುಂದರ, ಸರಳ ಮತ್ತು ಅಧಿಕೃತ ಕನ್ನಡ ಸಾರಾಂಶ (ಉದಾ: ಶ್ರೀಮತಿ ಶಾಂತ ಎಲ್ ಹುಲ್ಲನಿ, ಕೆ.ಎ.ಎಸ್ (ಸೂಪರ್ ಟೈಂ ಸ್ಕೇಲ್) ಇವರನ್ನು ಪಿಂಚಣಿ ಮತ್ತು ಸಣ್ಣ ಉಳಿತಾಯ ನಿರ್ದೇಶನಾಲಯದಿಂದ ಬೆಂಗಳೂರು ಮೆಟ್ರೋ ರೈಲ್ ನಿಗಮ ನಿಯಮಿತದ (BMRCL) ಕಾರ್ಯನಿರ್ವಾಹಕ ನಿರ್ದೇಶಕರ (ಮಾನವ ಸಂಪನ್ಮೂಲ) ಹುದ್ದೆಗೆ ವರ್ಗಾಯಿಸಿ ಸರ್ಕಾರ ಆದೇಶಿಸಿದೆ.)"
   }
 ]
 Output strictly raw JSON without markdown backticks.`;

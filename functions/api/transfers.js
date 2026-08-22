@@ -100,7 +100,7 @@ export async function onRequest(context) {
         is_live_alert: true,
         is_new_go_alert: true,
         source: 'Cloudflare KV Live Publish',
-        source_label: '⚡ Live Alert: ನೂತನ ವರ್ಗಾವಣೆ'
+        source_label: 'DPAR ಅಧಿಕೃತ ಗೆಜೆಟ್'
       }));
 
       // Persist permanently in Cloudflare KV
