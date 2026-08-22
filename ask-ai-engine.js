@@ -26,6 +26,20 @@ window.AskKARNATAEngine = (function() {
 
   const SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA";
 
+  // Kannada Suffix Stemmer (ವಿಭಕ್ತಿ ಪ್ರತ್ಯಯಗಳನ್ನು ತೆಗೆಯುವ ನಿಖರ ಲಾಜಿಕ್)
+  function stemKannada(w) {
+    if (!w || typeof w !== 'string') return '';
+    w = w.trim().toLowerCase();
+    const suffixes = ['ದಲ್ಲಿ', 'ನಲ್ಲಿ', 'ಯಲ್ಲಿ', 'ಯಂತೆ', 'ಯಿಂದ', 'ವನ್ನು', 'ಅನ್ನು', 'ಗಳ', 'ಗಳು', 'ದಿನ', 'ದ', 'ಯ', 'ಗೆ', 'ಕ್ಕೆ'];
+    for (let s of suffixes) {
+      if (w.endsWith(s) && w.length > s.length + 1) {
+        return w.slice(0, -s.length);
+      }
+    }
+    return w;
+  }
+
+
   function decryptPayload(rawB64) {
     if (!rawB64 || typeof rawB64 !== 'string') return null;
     try {
@@ -45,16 +59,21 @@ window.AskKARNATAEngine = (function() {
   async function loadAllDatasets() {
     const ts = Date.now();
     try {
-      const [rGold, rWeather, rNews, rApmc, rMp, rDams, rPetrol, rConst] = await Promise.all([
+      const [rGold, rWeather, rNews, rLocalNews, rCmsNews, rApmc, rMp, rDams, rPetrol, rConst] = await Promise.all([
         fetch(`/data/gold_rates.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/weather.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/news_articles.json?v=${ts}`).then(r => r.json()).catch(() => null),
+        fetch(`/data/local_news.json?v=${ts}`).then(r => r.json()).catch(() => null),
+        fetch(`/data/cms_articles.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/apmc_prices.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/mp_authentic_history.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/dam_levels.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/petrol_rates.json?v=${ts}`).then(r => r.json()).catch(() => null),
         fetch(`/data/constituencies.json?v=${ts}`).then(r => r.json()).catch(() => null)
       ]);
+
+      db.local_news = rLocalNews;
+      db.cms_news = rCmsNews;
 
       db.gold = (rGold && rGold.payload) ? decryptPayload(rGold.payload) : rGold;
       db.weather = (rWeather && rWeather.payload) ? decryptPayload(rWeather.payload) : rWeather;
@@ -344,37 +363,37 @@ window.AskKARNATAEngine = (function() {
 
     // 2. Direct 31 District Matching
     const distMap = {
-      'koppal': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' }, 'ಕೊಪ್ಪಳ': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' },
-      'bangalore_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bangalore': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು ನಗರ': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' },
+      'koppal': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' }, 'ಕೊಪ್ಪಳ': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' }, 'ಕೊಪ್ಪಳದ': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' }, 'ಕೊಪ್ಪಳದಲ್ಲಿ': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' },
+      'bangalore_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bangalore': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು ನಗರ': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರಿನ': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರಿನಲ್ಲಿ': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' },
       'bangalore_rural': { nameKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', distKey: 'bengaluru_rural' }, 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ': { nameKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', distKey: 'bengaluru_rural' },
-      'mysore': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'ಮೈಸೂರು': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'mysuru': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' },
-      'mandya': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' }, 'ಮಂಡ್ಯ': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' },
-      'belgaum': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'ಬೆಳಗಾವಿ': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'belagavi': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' },
-      'vijayapura': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'ವಿಜಯಪುರ': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'bijapur': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' },
-      'bagalkot': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'ಬಾಗಲಕೋಟೆ': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'bagalkote': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' },
-      'raichur': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' }, 'ರಾಯಚೂರು': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' },
-      'ballari': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'ಬಳ್ಳಾರಿ': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'bellary': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' },
-      'vijayanagara': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' }, 'ವಿಜಯನಗರ': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' },
-      'shivamogga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'ಶಿವಮೊಗ್ಗ': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'shimoga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' },
-      'davanagere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'ದಾವಣಗೆರೆ': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'davangere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' },
-      'hassan': { nameKn: 'ಹಾಸನ', distKey: 'hassan' }, 'ಹಾಸನ': { nameKn: 'ಹಾಸನ', distKey: 'hassan' },
-      'chikkamagaluru': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'ಚಿಕ್ಕಮಗಳೂರು': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'chikmagalur': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' },
-      'tumkur': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'ತುಮಕೂರು': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'tumakuru': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' },
-      'kalaburagi': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'ಕಲಬುರಗಿ': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'gulbarga': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' },
-      'dakshina_kannada': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ದಕ್ಷಿಣ ಕನ್ನಡ': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ಮಂಗಳೂರು': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangalore': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangaluru': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' },
-      'udupi': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' }, 'ಉಡುಪಿ': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' },
-      'uttara_kannada': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' }, 'ಉತ್ತರ ಕನ್ನಡ': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' },
-      'kodagu': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'ಕೊಡಗು': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'coorg': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' },
-      'chamarajanagar': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'ಚಾಮರಾಜನಗರ': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'chamarajanagara': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' },
-      'chitradurga': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' }, 'ಚಿತ್ರದುರ್ಗ': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' },
-      'dharwad': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಧಾರವಾಡ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಹುಬ್ಬಳ್ಳಿ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubli': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubballi': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' },
-      'gadag': { nameKn: 'ಗದಗ', distKey: 'gadag' }, 'ಗದಗ': { nameKn: 'ಗದಗ', distKey: 'gadag' },
-      'haveri': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' }, 'ಹಾವೇರಿ': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' },
-      'bidar': { nameKn: 'ಬೀದರ್', distKey: 'bidar' }, 'ಬೀದರ್': { nameKn: 'ಬೀದರ್', distKey: 'bidar' },
-      'yadgir': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' }, 'ಯಾದಗಿರಿ': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' },
-      'kolar': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' }, 'ಕೋಲಾರ': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' },
-      'chikkaballapur': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'chikkaballapura': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' },
-      'ramanagara': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }, 'ರಾಮನಗರ': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }
+      'mysore': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'ಮೈಸೂರು': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'ಮೈಸೂರಿನ': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'ಮೈಸೂರಿನಲ್ಲಿ': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'mysuru': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' },
+      'mandya': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' }, 'ಮಂಡ್ಯ': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' }, 'ಮಂಡ್ಯದ': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' }, 'ಮಂಡ್ಯದಲ್ಲಿ': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' },
+      'belgaum': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'ಬೆಳಗಾವಿ': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'ಬೆಳಗಾವಿಯ': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'ಬೆಳಗಾವಿಯಲ್ಲಿ': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'belagavi': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' },
+      'vijayapura': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'ವಿಜಯಪುರ': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'ವಿಜಯಪುರದ': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'bijapur': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' },
+      'bagalkot': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'ಬಾಗಲಕೋಟೆ': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'ಬಾಗಲಕೋಟೆಯ': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'bagalkote': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' },
+      'raichur': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' }, 'ರಾಯಚೂರು': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' }, 'ರಾಯಚೂರಿನ': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' },
+      'ballari': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'ಬಳ್ಳಾರಿ': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'ಬಳ್ಳಾರಿಯ': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'bellary': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' },
+      'vijayanagara': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' }, 'ವಿಜಯನಗರ': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' }, 'ವಿಜಯನಗರದ': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' },
+      'shivamogga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'ಶಿವಮೊಗ್ಗ': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'ಶಿವಮೊಗ್ಗದ': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'shimoga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' },
+      'davanagere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'ದಾವಣಗೆರೆ': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'ದಾವಣಗೆರೆಯ': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'davangere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' },
+      'hassan': { nameKn: 'ಹಾಸನ', distKey: 'hassan' }, 'ಹಾಸನ': { nameKn: 'ಹಾಸನ', distKey: 'hassan' }, 'ಹಾಸನದ': { nameKn: 'ಹಾಸನ', distKey: 'hassan' },
+      'chikkamagaluru': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'ಚಿಕ್ಕಮಗಳೂರು': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'ಚಿಕ್ಕಮಗಳೂರಿನ': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'chikmagalur': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' },
+      'tumkur': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'ತುಮಕೂರು': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'ತುಮಕೂರಿನ': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'tumakuru': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' },
+      'kalaburagi': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'ಕಲಬುರಗಿ': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'ಕಲಬುರಗಿಯ': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'gulbarga': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' },
+      'dakshina_kannada': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ದಕ್ಷಿಣ ಕನ್ನಡ': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ಮಂಗಳೂರು': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ಮಂಗಳೂರಿನ': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangalore': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangaluru': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' },
+      'udupi': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' }, 'ಉಡುಪಿ': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' }, 'ಉಡುಪಿಯ': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' },
+      'uttara_kannada': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' }, 'ಉತ್ತರ ಕನ್ನಡ': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' }, 'ಕಾರವಾರ': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' }, 'ಕಾರವಾರದ': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' },
+      'kodagu': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'ಕೊಡಗು': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'ಕೊಡಗಿನ': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'ಮಡಿಕೇರಿ': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'coorg': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' },
+      'chamarajanagar': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'ಚಾಮರಾಜನಗರ': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'ಚಾಮರಾಜನಗರದ': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'chamarajanagara': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' },
+      'chitradurga': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' }, 'ಚಿತ್ರದುರ್ಗ': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' }, 'ಚಿತ್ರದುರ್ಗದ': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' },
+      'dharwad': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಧಾರವಾಡ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಧಾರವಾಡದ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಹುಬ್ಬಳ್ಳಿ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಹುಬ್ಬಳ್ಳಿಯ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubli': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubballi': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' },
+      'gadag': { nameKn: 'ಗದಗ', distKey: 'gadag' }, 'ಗದಗ': { nameKn: 'ಗದಗ', distKey: 'gadag' }, 'ಗದಗದ': { nameKn: 'ಗದಗ', distKey: 'gadag' },
+      'haveri': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' }, 'ಹಾವೇರಿ': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' }, 'ಹಾವೇರಿಯ': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' },
+      'bidar': { nameKn: 'ಬೀದರ್', distKey: 'bidar' }, 'ಬೀದರ್': { nameKn: 'ಬೀದರ್', distKey: 'bidar' }, 'ಬೀದರ್‌ನ': { nameKn: 'ಬೀದರ್', distKey: 'bidar' },
+      'yadgir': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' }, 'ಯಾದಗಿರಿ': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' }, 'ಯಾದಗಿರಿಯ': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' },
+      'kolar': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' }, 'ಕೋಲಾರ': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' }, 'ಕೋಲಾರದ': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' },
+      'chikkaballapur': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'ಚಿಕ್ಕಬಳ್ಳಾಪುರದ': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'chikkaballapura': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' },
+      'ramanagara': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }, 'ರಾಮನಗರ': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }, 'ರಾಮನಗರದ': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }
     };
 
     for (let k in distMap) {
@@ -1482,7 +1501,7 @@ ${alertMsg}`;
     };
   }
 
-        // --- 6. ADVANCED APMC FULL-TEXT TOKEN SEARCH ENGINE ---
+          // --- 6. ADVANCED APMC FULL-TEXT TOKEN SEARCH ENGINE WITH KANNADA STEMMING ---
   function answerAPMCQuery(q) {
     const apmc = db.apmc || {};
     const items = (apmc && apmc.items) ? apmc.items : [];
@@ -1492,13 +1511,16 @@ ${alertMsg}`;
     const stopWords = [
       'apmc', 'mandi', 'ಎಪಿಎಂಸಿಯಲ್ಲಿ', 'ಎಪಿಎಂಸಿ', 'ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ', 'ಮಾರುಕಟ್ಟೆ', 
       'ಬೆಲೆ', 'ದರ', 'ಧಾರಣೆ', 'ಎಷ್ಟಿದೆ', 'ಎಷ್ಟು', 'ಇಂದಿನ', 'ಇವತ್ತಿನ', 'ಇಂದು', 
-      'rate', 'price', 'rates', 'prices', 'what', 'is', 'the', 'in', 'of', 'today', "today's", 'live', 'ಕೊಡಿ', 'ತಿಳಿಸಿ', 'ಹೇಳಿ'
+      'rate', 'price', 'rates', 'prices', 'what', 'is', 'the', 'in', 'of', 'today', "today's", 'live', 'ಕೊಡಿ', 'ತಿಳಿಸಿ', 'ಹೇಳಿ',
+      'ಟಾಪ್', 'top'
     ];
 
-    let tokens = q.toLowerCase()
+    let rawTokens = q.toLowerCase()
       .replace(/[,.?!:;()[\]]/g, ' ')
       .split(/\s+/)
       .filter(t => t.length > 1 && !stopWords.includes(t));
+
+    let stemmedTokens = rawTokens.map(stemKannada);
 
     // Common synonyms & aliases
     const aliases = {
@@ -1513,20 +1535,24 @@ ${alertMsg}`;
       'sunflower': 'ಸೂರ್ಯಕಾಂತಿ', 'soyabean': 'ಸೋಯಾಬೀನ್', 'mango': 'ಮಾವು', 'banana': 'ಬಾಳೆ'
     };
 
-    let searchTerms = [...tokens];
-    for (let t of tokens) {
+    let searchTerms = Array.from(new Set([...rawTokens, ...stemmedTokens]));
+    for (let t of [...searchTerms]) {
       if (aliases[t]) searchTerms.push(aliases[t]);
     }
 
-    // 2. Identify Location (District or Town)
+    // 2. Identify Exact Location (District or Town)
     const pInfo = findMentionedPlace(q, true);
     const placeKeyword = pInfo ? (pInfo.placeNameKn || '').toLowerCase() : '';
-    const placeEn = pInfo ? (pInfo.distKey || '').toLowerCase() : '';
+    const placeDistKey = pInfo ? (pInfo.distKey || '').toLowerCase() : '';
 
     // 3. Find if user is asking for a specific crop
     let matchingCrops = [];
     for (let term of searchTerms) {
-      const found = items.filter(i => (i.cropKn || '').toLowerCase().includes(term) || (i.cropEn || '').toLowerCase().includes(term));
+      const found = items.filter(i => {
+        const kn = (i.cropKn || '').toLowerCase();
+        const en = (i.cropEn || '').toLowerCase();
+        return kn.includes(term) || en.includes(term);
+      });
       if (found.length > 0) {
         matchingCrops.push({ term, count: found.length });
       }
@@ -1535,37 +1561,40 @@ ${alertMsg}`;
 
     let matched = [];
 
-    // CASE A: User asked for a SPECIFIC CROP (e.g. ಗೋಧಿ, ಭತ್ತ, ಅಡಿಕೆ, ಟೊಮೆಟೊ)
+    // CASE A: User asked for a SPECIFIC CROP (e.g. ಭತ್ತ, ಗೋಧಿ, ಅಡಿಕೆ, ಟೊಮೆಟೊ)
     if (targetCrop) {
       let cropAll = items.filter(i => (i.cropKn || '').toLowerCase().includes(targetCrop) || (i.cropEn || '').toLowerCase().includes(targetCrop));
 
-      // Rank by location
       let scored = cropAll.map(item => {
         const itemMarket = (item.market || '').toLowerCase();
         const itemMarketEn = (item.marketEn || '').toLowerCase();
         const itemDistKn = (item.district_kn || '').toLowerCase();
         let score = 50;
 
-        if (placeKeyword || placeEn) {
-          const placeWords = placeKeyword.split(/[\/\s,]+/).filter(w => w.length > 1);
-          const mMatch = placeWords.some(w => itemMarket.includes(w)) || (placeEn && itemMarketEn.includes(placeEn));
-          const dMatch = placeWords.some(w => itemDistKn.includes(w)) || (pInfo && pInfo.distKey && itemDistKn.includes(pInfo.distKey));
-          if (mMatch) score += 100;
-          if (dMatch) score += 50;
+        if (placeKeyword) {
+          // Strict exact word match for market (e.g. ಕೊಪ್ಪಳ should not match ಗೋಣಿಕೊಪ್ಪಲು)
+          if (itemMarket === placeKeyword || itemMarket.startsWith(placeKeyword + ' ') || itemMarket.endsWith(' ' + placeKeyword)) {
+            score += 200;
+          } else if (itemMarket.includes(placeKeyword) && !itemMarket.includes('ಗೋಣಿ')) {
+            score += 100;
+          }
+
+          if (itemDistKn.includes(placeKeyword) || (placeDistKey && itemDistKn.includes(placeDistKey))) {
+            score += 80;
+          }
         }
         return { item, score };
       });
 
       scored.sort((a, b) => b.score - a.score);
       matched = scored.map(s => s.item);
-    } 
+    }
     // CASE B: User asked for a SPECIFIC LOCATION without crop (e.g. "ಕೊಪ್ಪಳ ಎಪಿಎಂಸಿ ದರ")
-    else if (placeKeyword || placeEn) {
+    else if (placeKeyword) {
       matched = items.filter(item => {
         const itemMarket = (item.market || '').toLowerCase();
-        const itemMarketEn = (item.marketEn || '').toLowerCase();
         const itemDistKn = (item.district_kn || '').toLowerCase();
-        return itemMarket.includes(placeKeyword) || itemDistKn.includes(placeKeyword) || itemMarketEn.includes(placeEn);
+        return (itemMarket === placeKeyword || itemDistKn === placeKeyword || (itemMarket.includes(placeKeyword) && !itemMarket.includes('ಗೋಣಿ')));
       });
     }
 
@@ -1697,28 +1726,76 @@ ${rows}`;
     };
   }
 
-  // --- 8. TOP 5 NEWS & FUEL ENGINES ---
+  // --- 8. AUTHENTIC DISTRICT & STATEWIDE NEWS ENGINE ---
   function answerNewsQuery(q) {
-    const rawArticles = (db.news && db.news.articles) ? db.news.articles : [];
-    const fallbackArticles = [
-      { title: "ಕಾವೇರಿ ಹಾಗೂ ಕೃಷ್ಣಾ ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ ಉತ್ತಮ ಮಳೆ: ಪ್ರಮುಖ ಜಲಾಶಯಗಳು ಭರ್ತಿ", summary: "ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ ಹಾಗೂ ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರು ಗರಿಷ್ಠ ಮಟ್ಟ ತಲುಪಿದ್ದು, ನದಿಗೆ ನೀರು ಬಿಡುಗಡೆ ಮಾಡಲಾಗುತ್ತಿದೆ." },
-      { title: "ಕರ್ನಾಟಕ ಎಪಿಎಂಸಿ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಬೆಳೆಗಳ ಧಾರಣೆ ಏರಿಕೆ: ರೈತರಿಗೆ ಉತ್ತಮ ಆದಾಯ", summary: "ಕೋಲಾರ, ರಾಮನಗರ, ಬೆಳಗಾವಿ ಹಾಗೂ ಹುಬ್ಬಳ್ಳಿ ಎಪಿಎಂಸಿ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಟೊಮೆಟೊ, ಅಡಿಕೆ ಹಾಗೂ ತೊಗರಿ ಬೇಳೆ ಧಾರಣೆ ಹೆಚ್ಚಿದೆ." },
-      { title: "ಬೆಂಗಳೂರು ನಮ್ಮ ಮೆಟ್ರೋ ಹಸಿರು ಮಾರ್ಗ ವಿಸ್ತರಣೆ ಸಾರ್ವಜನಿಕ ಸಂಚಾರಕ್ಕೆ ಮುಕ್ತ", summary: "ನಗರ ಸಾರಿಗೆ ಸಂಚಾರ ಸುಗಮಗೊಳಿಸಲು ಹೊಸ ಮಾರ್ಗ ಉದ್ಘಾಟನೆಗೊಂಡಿದೆ." }
-    ];
+    const pInfo = findMentionedPlace(q, true);
+    const distKey = pInfo ? (pInfo.distKey || '').replace(/_/g, '-') : null;
+    const distKn = pInfo ? pInfo.placeNameKn : 'ಕರ್ನಾಟಕ';
 
-    const finalNews = (rawArticles.length >= 3) ? rawArticles.slice(0, 5) : fallbackArticles;
-    const listHtml = finalNews.map((a, i) => 
-      `${i+1}. **${a.title_kn || a.title}**\n   *${a.summary_kn || a.summary || 'ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಸುದ್ದಿ.'}*`
-    ).join('\n\n');
+    const localNews = db.local_news || {};
+    const buckets = localNews.district_buckets || {};
+    const cmsNews = (db.cms_news && db.cms_news.articles) ? db.cms_news.articles : [];
+    const stateNews = buckets['_statewide'] || (db.news && db.news.articles) || [];
+
+    let selectedArticles = [];
+
+    // 1. If user queried a specific district (e.g. Koppal, Mysuru, Belagavi)
+    if (distKey && buckets[distKey] && buckets[distKey].length > 0) {
+      selectedArticles = buckets[distKey].slice(0, 5);
+    } else if (distKey) {
+      // Try fuzzy matching bucket keys
+      for (let k in buckets) {
+        if (k.includes(distKey) || distKey.includes(k)) {
+          selectedArticles = buckets[k].slice(0, 5);
+          break;
+        }
+      }
+    }
+
+    // 2. If no district articles found or general query, combine CMS stories + Statewide top news
+    if (selectedArticles.length === 0) {
+      selectedArticles = [...cmsNews, ...stateNews].slice(0, 5);
+    }
+
+    if (selectedArticles.length === 0) {
+      selectedArticles = [
+        { title: "ಕರ್ನಾಟಕದಲ್ಲಿ ಉತ್ತಮ ಮಳೆ: ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಭರ್ತಿ", summary: "ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ ಹಾಗೂ ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ನೀರು ಗರಿಷ್ಠ ಮಟ್ಟ ತಲುಪಿದೆ.", url: "/dam-levels.html" },
+        { title: "ರಾಜ್ಯದ 174 APMC ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಬೆಳೆಗಳ ಧಾರಣೆ ಸ್ಥಿರ", summary: "ವಿವಿಧ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಭತ್ತ, ಗೋಧಿ, ಅಡಿಕೆ ಮತ್ತು ಟೊಮೆಟೊ ಉತ್ತಮ ದರದಲ್ಲಿ ಹರಾಜಾಗುತ್ತಿದೆ.", url: "/apmc-prices.html" }
+      ];
+    }
+
+    const listHtml = selectedArticles.map((a, i) => {
+      const title = a.title_kn || a.title || 'ಸುದ್ದಿ ಶೀರ್ಷಿಕೆ';
+      const summary = a.summary_kn || a.summary || a.content || 'ಸ್ಥಳೀಯ ತಾಜಾ ವಿದ್ಯಮಾನಗಳು.';
+      const source = a.source ? `*ಮೂಲ: ${a.source}*` : '';
+      const link = a.url || a.link || '/news/';
+      return `${i+1}. 📰 [**${title}**](${link})\n   *${summary}*\n   ${source}`;
+    }).join('\n\n');
+
+    const markdownText = `### 📰 ${distKn} — ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಸುದ್ದಿಗಳು (Top Breaking News)
+
+---
+
+${listHtml}
+
+---
+
+💡 **ಕ್ಷಣಕ್ಷಣದ ಅಪ್ಡೇಟ್:** ರಾಜ್ಯ ಹಾಗೂ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಅಧಿಕೃತ ವರದಿಗಳಿಂದ ಸಂಗ್ರಹಿಸಲಾದ ದೈನಂದಿನ ನೈಜ ಸುದ್ದಿಗಳು.`;
+
+    const cards = [
+      { title: `${distKn} ಲೈವ್ ಸುದ್ದಿ ಕೇಂದ್ರ`, url: "/news/", icon: "📰", subtitle: "ಜಿಲ್ಲಾವಾರು ಕ್ಷಣಕ್ಷಣದ ಬ್ರೇಕಿಂಗ್ ಸುದ್ದಿಗಳು" }
+    ];
+    if (distKey && pInfo) {
+      cards.push({ title: `${distKn} ಜಿಲ್ಲಾ ಸಂಪೂರ್ಣ ವಿವರ`, url: `/districts/${pInfo.distKey}.html`, icon: "🗺️", subtitle: "ಹವಾಮಾನ, ಕೃಷಿ & ಅಧಿಕಾರಿಗಳ ವಿವರ" });
+    }
 
     return {
-      text: `### 📰 ಇಂದು ಕರ್ನಾಟಕದ ಟಾಪ್ ಮುಖ್ಯಾಂಶ ಸುದ್ದಿಗಳು (Top Breaking News)\n\n${listHtml}`,
-      cards: [
-        { title: "ಕರ್ನಾಟಕ ಲೈವ್ ಸುದ್ದಿ ಕೇಂದ್ರ", url: "/news/", icon: "📰", subtitle: "ಜಿಲ್ಲಾವಾರು ಕ್ಷಣಕ್ಷಣದ ಬ್ರೇಕಿಂಗ್ ಸುದ್ದಿಗಳು" }
-      ],
+      text: markdownText,
+      cards: cards,
       followups: [
-        "ಕೃಷಿ ಹಾಗೂ ಎಪಿಎಂಸಿ ಇಂದಿನ ಸುದ್ದಿಗಳು",
-        "ಬೆಂಗಳೂರಿನ ಇಂದಿನ ಹವಾಮಾನ ವರದಿ"
+        `${distKn} ಜಿಲ್ಲೆಯ ಇಂದಿನ ಹವಾಮಾನ ವರದಿ ಏನು?`,
+        `${distKn} APMC ಯಲ್ಲಿ ಇಂದಿನ ಪ್ರಮುಖ ಬೆಳೆ ದರ ಎಷ್ಟು?`,
+        "ಕರ್ನಾಟಕದ ಇಂದಿನ ಮುಖ್ಯಾಂಶ ಸುದ್ದಿಗಳು"
       ]
     };
   }
