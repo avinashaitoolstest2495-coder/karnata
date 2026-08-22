@@ -1482,85 +1482,90 @@ ${alertMsg}`;
     };
   }
 
-    // --- 6. APMC DEEP SEARCH ENGINE ---
+        // --- 6. ADVANCED APMC FULL-TEXT TOKEN SEARCH ENGINE ---
   function answerAPMCQuery(q) {
     const apmc = db.apmc || {};
     const items = (apmc && apmc.items) ? apmc.items : [];
     if (!items || items.length === 0) return null;
 
-    // Crop keyword dictionaries
-    const cropKeywords = [
-      { key: 'paddy', names: ['ಭತ್ತ', 'paddy', 'ಅಕ್ಕಿ', 'rice', 'ಸೋನಾ ಮಸೂರಿ', 'ರಾಜಮುಡಿ'] },
-      { key: 'tomato', names: ['ಟೊಮೆಟೊ', 'tomato', 'ಟೊಮೇಟೊ'] },
-      { key: 'arecanut', names: ['ಅಡಿಕೆ', 'arecanut', 'ಅಡಕೆ', 'ರಾಶಿ', 'ಚಾಲಿ'] },
-      { key: 'onion', names: ['ಈರುಳ್ಳಿ', 'onion', 'ಉಳ್ಳಾಗಡ್ಡಿ'] },
-      { key: 'cotton', names: ['ಹತ್ತಿ', 'cotton'] },
-      { key: 'maize', names: ['ಮೆಕ್ಕೆಜೋಳ', 'maize', 'ಜೋಳ'] },
-      { key: 'chilli', names: ['ಮೆಣಸಿನಕಾಯಿ', 'chilli', 'ಬ್ಯಾಡಗಿ'] },
-      { key: 'redgram', names: ['ತೊಗರಿ', 'tur', 'red gram', 'ತೊಗರಿಬೇಳೆ'] },
-      { key: 'groundnut', names: ['ಶೇಂಗಾ', 'ಕಡಲೆಕಾಯಿ', 'groundnut', 'peanut'] },
-      { key: 'sugarcane', names: ['ಕಬ್ಬು', 'sugarcane', 'ಬೆಲ್ಲ', 'jaggery'] },
-      { key: 'coffee', names: ['ಕಾಫಿ', 'coffee', 'ರೋಬಸ್ಟಾ', 'ಅರೇಬಿಕಾ'] },
-      { key: 'ragi', names: ['ರಾಗಿ', 'ragi'] },
-      { key: 'ginger', names: ['ಶುಂಠಿ', 'ginger'] },
-      { key: 'potato', names: ['ಆಲೂಗಡ್ಡೆ', 'potato'] },
-      { key: 'garlic', names: ['ಬೆಳ್ಳುಳ್ಳಿ', 'garlic'] },
-      { key: 'coconut', names: ['ತೆಂಗು', 'ತೆಂಗಿನಕಾಯಿ', 'coconut', 'ಕೊಬ್ಬರಿ'] }
+    // 1. Clean query and extract search tokens
+    const stopWords = [
+      'apmc', 'mandi', 'ಎಪಿಎಂಸಿಯಲ್ಲಿ', 'ಎಪಿಎಂಸಿ', 'ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ', 'ಮಾರುಕಟ್ಟೆ', 
+      'ಬೆಲೆ', 'ದರ', 'ಧಾರಣೆ', 'ಎಷ್ಟಿದೆ', 'ಎಷ್ಟು', 'ಇಂದಿನ', 'ಇವತ್ತಿನ', 'ಇಂದು', 
+      'rate', 'price', 'rates', 'prices', 'what', 'is', 'the', 'in', 'of', 'today', "today's", 'live', 'ಕೊಡಿ', 'ತಿಳಿಸಿ', 'ಹೇಳಿ'
     ];
 
-    // Detect mentioned crop
-    let targetCropKey = null;
-    let targetCropNameKn = null;
-    for (let c of cropKeywords) {
-      for (let n of c.names) {
-        if (q.includes(n.toLowerCase())) {
-          targetCropKey = c.key;
-          targetCropNameKn = c.names[0];
-          break;
-        }
-      }
-      if (targetCropKey) break;
+    let tokens = q.toLowerCase()
+      .replace(/[,.?!:;()[\]]/g, ' ')
+      .split(/\s+/)
+      .filter(t => t.length > 1 && !stopWords.includes(t));
+
+    // Common synonyms & aliases
+    const aliases = {
+      'paddy': 'ಭತ್ತ', 'rice': 'ಅಕ್ಕಿ', 'wheat': 'ಗೋಧಿ', 'tomato': 'ಟೊಮೆಟೊ',
+      'onion': 'ಈರುಳ್ಳಿ', 'arecanut': 'ಅಡಿಕೆ', 'areca': 'ಅಡಿಕೆ', 'cotton': 'ಹತ್ತಿ',
+      'chilli': 'ಮೆಣಸಿನಕಾಯಿ', 'redgram': 'ತೊಗರಿ', 'tur': 'ತೊಗರಿ', 'maize': 'ಮೆಕ್ಕೆಜೋಳ',
+      'corn': 'ಮೆಕ್ಕೆಜೋಳ', 'jowar': 'ಜೋಳ', 'groundnut': 'ಶೇಂಗಾ', 'peanut': 'ಕಡಲೆಕಾಯಿ',
+      'sugarcane': 'ಕಬ್ಬು', 'jaggery': 'ಬೆಲ್ಲ', 'coffee': 'ಕಾಫಿ', 'ragi': 'ರಾಗಿ',
+      'ginger': 'ಶುಂಠಿ', 'potato': 'ಆಲೂಗಡ್ಡೆ', 'garlic': 'ಬೆಳ್ಳುಳ್ಳಿ', 'coconut': 'ತೆಂಗು',
+      'copra': 'ಕೊಬ್ಬರಿ', 'cardamom': 'ಏಲಕ್ಕಿ', 'pepper': 'ಕಾಳುಮೆಣಸು', 'bengalgram': 'ಕಡಲೆ',
+      'gram': 'ಕಡಲೆ', 'moong': 'ಹೆಸರುಕಾಳು', 'bajra': 'ಸಜ್ಜೆ', 'foxtail': 'ನವಣೆ',
+      'sunflower': 'ಸೂರ್ಯಕಾಂತಿ', 'soyabean': 'ಸೋಯಾಬೀನ್', 'mango': 'ಮಾವು', 'banana': 'ಬಾಳೆ'
+    };
+
+    let searchTerms = [...tokens];
+    for (let t of tokens) {
+      if (aliases[t]) searchTerms.push(aliases[t]);
     }
 
-    // Detect mentioned market / town / district
+    // 2. Identify Location (District or Town)
     const pInfo = findMentionedPlace(q, true);
     const placeKeyword = pInfo ? (pInfo.placeNameKn || '').toLowerCase() : '';
-    const distKey = pInfo ? pInfo.distKey : '';
+    const placeEn = pInfo ? (pInfo.distKey || '').toLowerCase() : '';
 
-    // Search filter
-    let matched = items.filter(item => {
-      const itemMarket = (item.market || item.marketEn || '').toLowerCase();
-      const itemDist = (item.district_kn || '').toLowerCase();
-      const itemCropKn = (item.cropKn || '').toLowerCase();
-      const itemCropEn = (item.cropEn || '').toLowerCase();
-
-      let matchPlace = true;
-      if (pInfo && placeKeyword) {
-        matchPlace = itemMarket.includes(placeKeyword) || itemDist.includes(placeKeyword) || q.includes(itemMarket);
+    // 3. Find if user is asking for a specific crop
+    let matchingCrops = [];
+    for (let term of searchTerms) {
+      const found = items.filter(i => (i.cropKn || '').toLowerCase().includes(term) || (i.cropEn || '').toLowerCase().includes(term));
+      if (found.length > 0) {
+        matchingCrops.push({ term, count: found.length });
       }
+    }
+    const targetCrop = matchingCrops.length > 0 ? matchingCrops[0].term : null;
 
-      let matchCrop = true;
-      if (targetCropKey) {
-        const cropObj = cropKeywords.find(c => c.key === targetCropKey);
-        matchCrop = cropObj ? cropObj.names.some(n => itemCropKn.includes(n) || itemCropEn.includes(n)) : false;
-      }
+    let matched = [];
 
-      return matchPlace && matchCrop;
-    });
+    // CASE A: User asked for a SPECIFIC CROP (e.g. ಗೋಧಿ, ಭತ್ತ, ಅಡಿಕೆ, ಟೊಮೆಟೊ)
+    if (targetCrop) {
+      let cropAll = items.filter(i => (i.cropKn || '').toLowerCase().includes(targetCrop) || (i.cropEn || '').toLowerCase().includes(targetCrop));
 
-    // If no exact intersection, try crop match only or market match only
-    if (matched.length === 0 && targetCropKey) {
-      const cropObj = cropKeywords.find(c => c.key === targetCropKey);
-      matched = items.filter(item => {
-        const itemCropKn = (item.cropKn || '').toLowerCase();
-        const itemCropEn = (item.cropEn || '').toLowerCase();
-        return cropObj.names.some(n => itemCropKn.includes(n) || itemCropEn.includes(n));
+      // Rank by location
+      let scored = cropAll.map(item => {
+        const itemMarket = (item.market || '').toLowerCase();
+        const itemMarketEn = (item.marketEn || '').toLowerCase();
+        const itemDistKn = (item.district_kn || '').toLowerCase();
+        let score = 50;
+
+        if (placeKeyword || placeEn) {
+          const placeWords = placeKeyword.split(/[\/\s,]+/).filter(w => w.length > 1);
+          const mMatch = placeWords.some(w => itemMarket.includes(w)) || (placeEn && itemMarketEn.includes(placeEn));
+          const dMatch = placeWords.some(w => itemDistKn.includes(w)) || (pInfo && pInfo.distKey && itemDistKn.includes(pInfo.distKey));
+          if (mMatch) score += 100;
+          if (dMatch) score += 50;
+        }
+        return { item, score };
       });
-    } else if (matched.length === 0 && pInfo && placeKeyword) {
+
+      scored.sort((a, b) => b.score - a.score);
+      matched = scored.map(s => s.item);
+    } 
+    // CASE B: User asked for a SPECIFIC LOCATION without crop (e.g. "ಕೊಪ್ಪಳ ಎಪಿಎಂಸಿ ದರ")
+    else if (placeKeyword || placeEn) {
       matched = items.filter(item => {
-        const itemMarket = (item.market || item.marketEn || '').toLowerCase();
-        const itemDist = (item.district_kn || '').toLowerCase();
-        return itemMarket.includes(placeKeyword) || itemDist.includes(placeKeyword) || q.includes(itemMarket);
+        const itemMarket = (item.market || '').toLowerCase();
+        const itemMarketEn = (item.marketEn || '').toLowerCase();
+        const itemDistKn = (item.district_kn || '').toLowerCase();
+        return itemMarket.includes(placeKeyword) || itemDistKn.includes(placeKeyword) || itemMarketEn.includes(placeEn);
       });
     }
 
@@ -1569,14 +1574,16 @@ ${alertMsg}`;
     }
 
     const titleLocation = (pInfo && pInfo.placeNameKn) ? `${pInfo.placeNameKn} & ಪ್ರಮುಖ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ` : 'ಕರ್ನಾಟಕದ ಪ್ರಮುಖ APMC ಗಳಲ್ಲಿ';
-    const titleCrop = targetCropNameKn ? `${targetCropNameKn} ದರ` : 'ಕೃಷಿ ಉತ್ಪನ್ನ ಧಾರಣೆ';
+    const titleCrop = targetCrop ? `${targetCrop} ಇಂದಿನ ಬೆಲೆ` : 'ಕೃಷಿ ಉತ್ಪನ್ನ ಧಾರಣೆ';
 
-    const rows = matched.slice(0, 8).map(i => {
+    const topItems = matched.slice(0, 8);
+    const rows = topItems.map(i => {
       const modal = (i.avg || i.modal_per_quintal || i.modal || 0).toLocaleString('en-IN');
       const min = (i.min || 0).toLocaleString('en-IN');
       const max = (i.max || 0).toLocaleString('en-IN');
       const chg = i.change ? (i.change > 0 ? `▲ +${i.change}%` : `▼ ${i.change}%`) : '• ಸ್ಥಿರ';
-      return `* **${i.cropKn || i.cropEn}** (${i.market} APMC): **₹${modal}** / ${i.unit || 'ಕ್ವಿಂಟಾಲ್'} (ಕನಿಷ್ಠ ₹${min} — ಗರಿಷ್ಠ ₹${max}) | ${chg}`;
+      const icon = i.icon || '🌾';
+      return `* ${icon} **${i.cropKn || i.cropEn}** (${i.market} APMC): **₹${modal}** / ${i.unit || 'ಕ್ವಿಂಟಾಲ್'} (ಕನಿಷ್ಠ ₹${min} — ಗರಿಷ್ಠ ₹${max}) | ${chg}`;
     }).join('\n');
 
     const markdownText = `### 🌾 ${titleLocation} ${titleCrop} (Live APMC Mandi Price)

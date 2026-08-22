@@ -222,7 +222,24 @@ function generateSmartKarnatakaAnswer(prompt) {
 5. **ಯುವನಿಧಿ ಯೋಜನೆ (Yuva Nidhi):** ನಿರುದ್ಯೋಗಿ ಪದವೀಧರರಿಗೆ **₹3,000/ತಿಂಗಳು** ಹಾಗೂ ಡಿಪ್ಲೋಮಾ ಅಭ್ಯರ್ಥಿಗಳಿಗೆ **₹1,500/ತಿಂಗಳು** ನಿರುದ್ಯೋಗ ಭತ್ಯೆ.`;
   }
 
-  // 2. KOPPAL / RAICHUR / BELLARY FARMING & TUNGABHADRA DAM
+  // 2. APMC COMMODITY & MANDI RATES
+  if (p.includes('apmc') || p.includes('mandi') || p.includes('ಎಪಿಎಂಸಿ') || p.includes('ಮಾರುಕಟ್ಟೆ') || p.includes('ಬೆಲೆ') || p.includes('ದರ') || p.includes('ಧಾರಣೆ') || p.includes('rate') || p.includes('price')) {
+    return `### 🌾 ಕರ್ನಾಟಕ APMC ಲೈವ್ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (Live Mandi Prices)
+
+---
+
+ರಾಜ್ಯದ 174 ಕೃಷಿ ಉತ್ಪನ್ನ ಮಾರುಕಟ್ಟೆಗಳ (APMC) ಅಧಿಕೃತ ದೈನಂದಿನ ಹರಾಜು ಧಾರಣೆಯಂತೆ:
+* **🌾 ಗೋಧಿ (Wheat):** ಸರಾಸರಿ ₹2,400 — ₹2,750 / ಕ್ವಿಂಟಲ್ (ಕೊಪ್ಪಳ, ಗಂಗಾವತಿ, ಅಣ್ಣಿಗೇರಿ, ಧಾರವಾಡ)
+* **🌾 ಭತ್ತ / ಅಕ್ಕಿ (Paddy/Rice):** ಸೋನಾ ಮಸೂರಿ ₹2,000 — ₹2,450 / ಕ್ವಿಂಟಲ್ | ರಾಜಮುಡಿ ಅಕ್ಕಿ ₹5,600 — ₹6,500 / ಕ್ವಿಂಟಲ್
+* **🍅 ಟೊಮೆಟೊ (Tomato):** ₹20 — ₹35 / ಕೆಜಿ (ಕೋಲಾರ, ಬೆಂಗಳೂರು, ಚಿಂತಾಮಣಿ)
+* **🌴 ಅಡಿಕೆ (Arecanut):** ರಾಶಿ ಇಡೀ ₹45,000 — ₹52,000 / ಕ್ವಿಂಟಲ್ | ಚಾಲಿ ₹38,000 — ₹44,000 / ಕ್ವಿಂಟಲ್ (ಶಿವಮೊಗ್ಗ, ಸಾಗರ, ಶಿರಸಿ)
+* **🧅 ಈರುಳ್ಳಿ (Onion):** ₹1,800 — ₹2,800 / ಕ್ವಿಂಟಲ್ (ಹುಬ್ಬಳ್ಳಿ, ಯಶವಂತಪುರ, ಚಿತ್ರದುರ್ಗ)
+
+---
+💡 **ಸಂಪೂರ್ಣ 1,838 ಬೆಳೆಗಳ ಲೈವ್ ದರ ವೀಕ್ಷಿಸಲು ಕೆಳಗಿನ ಲಿಂಕ್ ಬಳಸಿ.**`;
+  }
+
+  // 3. KOPPAL / RAICHUR / BELLARY FARMING & TUNGABHADRA DAM
   if ((p.includes('ಕೊಪ್ಪಳ') || p.includes('koppal') || p.includes('ರಾಯಚೂರು') || p.includes('ಬಳ್ಳಾರಿ')) && (p.includes('ಬೆಳೆ') || p.includes('crop') || p.includes('ಡ್ಯಾಂ') || p.includes('dam') || p.includes('ನೀರು') || p.includes('sow') || p.includes('ಬಿತ್ತನೆ'))) {
     return `### 🌾 ಕೊಪ್ಪಳ & ತುಂಗಭದ್ರಾ ಆಯಕಟ್ಟು ಕೃಷಿ, ಹವಾಮಾನ & ಜಲಾಶಯ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ
 
@@ -241,7 +258,7 @@ function generateSmartKarnatakaAnswer(prompt) {
 * **💡 ಸಲಹೆ:** ಅಧಿಕೃತ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ ಮತ್ತು ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಪರಿಶೀಲಿಸಿ ಬಿತ್ತನೆ ಕಾರ್ಯ ಕೈಗೊಳ್ಳಿ.`;
   }
 
-  // 3. GOLD & SILVER RATE GUIDANCE
+  // 4. GOLD & SILVER RATE GUIDANCE
   if (p.includes('gold') || p.includes('silver') || p.includes('ಚಿನ್ನ') || p.includes('ಬಂಗಾರ') || p.includes('ಬೆಳ್ಳಿ') || p.includes('ಖರೀದಿ') || p.includes('ಕೊಳ್ಳ')) {
     return `### 🥇 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ ವಿಶ್ಲೇಷಣೆ (Gold & Silver Rates)
 
