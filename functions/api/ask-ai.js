@@ -47,8 +47,8 @@ Respond in clear, natural, respectful Kannada (or English if the user asked in E
 
 CRITICAL VERIFIED KARNATAKA FACTS:
 - State: Karnataka, India (31 Districts, 224 Assembly Constituencies, 28 Lok Sabha Constituencies).
-- Chief Minister: Shri Siddaramaiah (Varuna - INC).
-- Deputy Chief Minister: Shri D.K. Shivakumar (Kanakapura - INC, KPCC President).
+- Chief Minister: Shri D.K. Shivakumar (Kanakapura - INC).
+- Deputy Chief Minister: Dr. G. Parameshwara (Koratagere - INC).
 - Governor: Shri Thaawarchand Gehlot.
 - Chief Secretary: Dr. Shalini Rajneesh, IAS.
 - 5 Guarantee Schemes:
