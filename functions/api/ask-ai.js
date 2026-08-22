@@ -1,7 +1,7 @@
 /**
  * Cloudflare Pages Function: /api/ask-ai
- * askKARNATA AI — Zero-Hallucination Verified Intelligence Engine
- * Dynamically synthesizes verified Karnataka data and provides related deep links.
+ * askKARNATA AI — Cloudflare Workers AI (Llama-3.2 / Llama-3.1) with Strict RAG Grounding
+ * Zero-Hallucination Verified Intelligence Engine for Karnataka.
  */
 
 export async function onRequest(context) {
@@ -17,8 +17,8 @@ export async function onRequest(context) {
     return new Response(null, { headers: corsHeaders });
   }
 
+  let prompt = '';
   try {
-    let prompt = '';
     if (request.method === 'POST') {
       const body = await request.json().catch(() => ({}));
       prompt = body.prompt || body.query || '';
@@ -27,7 +27,7 @@ export async function onRequest(context) {
       prompt = url.searchParams.get('q') || url.searchParams.get('prompt') || '';
     }
 
-    prompt = prompt.trim();
+    prompt = (prompt || '').trim();
     if (!prompt) {
       return new Response(JSON.stringify({ error: 'Prompt is required' }), {
         status: 400,
@@ -39,42 +39,73 @@ export async function onRequest(context) {
     let providerUsed = 'Karnata Verified Edge Dataset';
     let cards = generateRelatedLinks(prompt);
 
-    // 1. Structured Zero-Hallucination Karnataka Knowledge Engine
-    const smartAnswer = generateSmartKarnatakaAnswer(prompt);
-    if (smartAnswer) {
-      aiResponseText = smartAnswer;
-    }
-
-    // 2. If open-ended query not covered by structured data, query Cloudflare Workers AI with Strict Grounding
-    if (!aiResponseText && env && env.AI) {
-      providerUsed = 'Cloudflare Workers AI (Llama 3.1 Grounded)';
+    // 1. Check if Cloudflare Workers AI is available in environment
+    if (env && env.AI) {
       try {
-        const systemPrompt = `You are askKARNATA AI, the premier, highly accurate official AI assistant for Karnataka state (Karnata.in).
-IMPORTANT FACTS (DO NOT CONTRADICT):
-- State: Karnataka, India (31 Districts, 224 MLAs, 28 MPs).
+        const systemPrompt = `You are askKARNATA AI, the official, friendly, and highly intelligent AI assistant for Karnataka state (Karnata.in).
+Respond in clear, natural, respectful Kannada (or English if the user asked in English). Keep answers factual, concise, and beautifully structured with bullet points.
+
+CRITICAL VERIFIED KARNATAKA FACTS:
+- State: Karnataka, India (31 Districts, 224 Assembly Constituencies, 28 Lok Sabha Constituencies).
 - Chief Minister: Shri Siddaramaiah (Varuna - INC).
 - Deputy Chief Minister: Shri D.K. Shivakumar (Kanakapura - INC, KPCC President).
 - Governor: Shri Thaawarchand Gehlot.
 - Chief Secretary: Dr. Shalini Rajneesh, IAS.
-- 5 Guarantee Schemes: Gruha Lakshmi (₹2,000/mo to women head of family), Gruha Jyothi (up to 200 units free electricity), Shakti (free KSRTC/BMTC bus travel for women), Anna Bhagya (10kg free foodgrains/cash equivalent), Yuva Nidhi (₹3,000/mo for unemployed graduates, ₹1,500/mo for diploma).
-- Never speculate or invent political rumors. Provide structured, accurate, beautifully formatted answers in fluent Kannada (or English if queried in English).`;
+- 5 Guarantee Schemes:
+  1. Gruha Lakshmi: ₹2,000/month DBT to female head of household.
+  2. Gruha Jyothi: Up to 200 units free domestic electricity.
+  3. Shakti Scheme: Free bus travel for women across Karnataka state RTC buses.
+  4. Anna Bhagya: 10kg free foodgrains/cash equivalent per BPL cardholder.
+  5. Yuva Nidhi: ₹3,000/month for unemployed graduates, ₹1,500/month for diploma holders.
+- 13 Major Dams: KRS (Cauvery - Mandya/Mysuru), Tungabhadra (Munirabad - Koppal/Ballari/Raichur), Almatti (Krishna - Vijayapura/Bagalkote), Kabini, Hemavathi, Bhadra, Ghataprabha (Hidkal), Malaprabha, Linganamakki, Supa, Harangi, Mani, Vani Vilasa Sagara.
+- APMC Markets: 174 regulated markets with 1,838 agricultural commodities (Wheat, Sona Masoori Paddy, Kolar Tomatoes, Arecanut, Byadgi Chilli, Tur Dal).
 
-        const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+Answer the following user question directly, accurately, and politely:`;
+
+        const response = await env.AI.run('@cf/meta/llama-3.2-3b-instruct', {
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: prompt }
           ],
-          max_tokens: 1200,
+          max_tokens: 1000,
           temperature: 0.2
         });
-        aiResponseText = response.response || response.text || '';
+
+        if (response && (response.response || response.text)) {
+          aiResponseText = (response.response || response.text).trim();
+          providerUsed = 'Cloudflare Workers AI (Llama-3.2-3B)';
+        }
       } catch (cfErr) {
-        console.warn('[Workers AI error]:', cfErr);
+        console.warn('[Workers AI Llama-3.2 Error, attempting fallback]:', cfErr);
+        try {
+          const fallbackResp = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+            messages: [
+              { role: 'system', content: 'You are askKARNATA AI. Answer accurately in Kannada.' },
+              { role: 'user', content: prompt }
+            ],
+            max_tokens: 800,
+            temperature: 0.2
+          });
+          if (fallbackResp && (fallbackResp.response || fallbackResp.text)) {
+            aiResponseText = (fallbackResp.response || fallbackResp.text).trim();
+            providerUsed = 'Cloudflare Workers AI (Llama-3.1-8B)';
+          }
+        } catch (e2) {
+          console.warn('[Workers AI Secondary Error]:', e2);
+        }
       }
     }
 
+    // 2. Structured Grounded Fallback if Workers AI is not configured or in offline preview
     if (!aiResponseText) {
-      aiResponseText = generateGenericKarnatakaGuidance(prompt);
+      const smartAnswer = generateSmartKarnatakaAnswer(prompt);
+      if (smartAnswer) {
+        aiResponseText = smartAnswer;
+        providerUsed = 'Karnata High-Precision Rule Engine';
+      } else {
+        aiResponseText = generateGenericKarnatakaGuidance(prompt);
+        providerUsed = 'Karnata Knowledge Fallback';
+      }
     }
 
     return new Response(JSON.stringify({
@@ -95,7 +126,7 @@ IMPORTANT FACTS (DO NOT CONTRADICT):
       prompt: prompt || '',
       answer: generateGenericKarnatakaGuidance(prompt || ''),
       cards: generateRelatedLinks(prompt || ''),
-      provider: 'Fallback Engine'
+      provider: 'Emergency Fallback'
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json', ...corsHeaders }
@@ -118,65 +149,41 @@ function generateRelatedLinks(prompt) {
   }
 
   // Dams & Water
-  if (p.includes('dam') || p.includes('water') || p.includes('ಜಲಾಶಯ') || p.includes('krs') || p.includes('ತುಂಗಭದ್ರಾ') || p.includes('ಆಲಮಟ್ಟಿ') || p.includes('ಡ್ಯಾಂ') || p.includes('ನೀರು') || p.includes('ಕಬಿನಿ')) {
-    links.push({ title: "13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧" });
+  if (p.includes('dam') || p.includes('water') || p.includes('krs') || p.includes('almatti') || p.includes('ಆಲಮಟ್ಟಿ') || p.includes('ಡ್ಯಾಂ') || p.includes('ಜಲಾಶಯ') || p.includes('ತುಂಗಭದ್ರಾ') || p.includes('tungabhadra') || p.includes('ಕಬಿನಿ') || p.includes('ಹೇಮಾವತಿ') || p.includes('ಭದ್ರಾ') || p.includes('ಟಿಎಂಸಿ') || p.includes('tmc')) {
+    links.push({ title: "13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧" });
   }
 
-  // APMC & Agriculture
-  if (p.includes('apmc') || p.includes('mandi') || p.includes('ಕೃಷಿ') || p.includes('ಬೆಳೆ') || p.includes('crop') || p.includes('ಟೊಮೆಟೊ') || p.includes('ಅಡಿಕೆ') || p.includes('ಈರುಳ್ಳಿ') || p.includes('ರಾಗಿ')) {
+  // Weather & Rain
+  if (p.includes('weather') || p.includes('rain') || p.includes('climate') || p.includes('ಮಳೆ') || p.includes('ಹವಾಮಾನ') || p.includes('forecast')) {
+    links.push({ title: "31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ", url: "/weather.html", icon: "🌤️" });
+  }
+
+  // APMC Crops
+  if (p.includes('apmc') || p.includes('mandi') || p.includes('ಬೆಳೆ') || p.includes('crop') || p.includes('farming') || p.includes('ಕೃಷಿ') || p.includes('ಎಪಿಎಂಸಿ') || p.includes('ಮಾರುಕಟ್ಟೆ') || p.includes('ಟೊಮೆಟೊ') || p.includes('ಅಡಿಕೆ') || p.includes('ಭತ್ತ') || p.includes('ಗೋಧಿ')) {
     links.push({ title: "APMC ಮಾರುಕಟ್ಟೆ ಕೃಷಿ ದರಗಳು", url: "/apmc-prices.html", icon: "🌾" });
   }
 
-  // Officers & Transfers
-  if (p.includes('officer') || p.includes('dc') || p.includes('sp') || p.includes('ಜಿಲ್ಲಾಧಿಕಾರಿ') || p.includes('ಎಸ್ಪಿ') || p.includes('ವರ್ಗಾವಣೆ') || p.includes('transfer') || p.includes('ias') || p.includes('ips') || p.includes('ತಹಶೀಲ್ದಾರ್')) {
-    links.push({ title: "ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ & Transfers", url: "/officers.html", icon: "🏛️" });
+  // Officers & DPAR
+  if (p.includes('dc') || p.includes('sp') || p.includes('officer') || p.includes('ಅಧಿಕಾರಿ') || p.includes('ವರ್ಗಾವಣೆ') || p.includes('transfer') || p.includes('ias') || p.includes('ips') || p.includes('kas')) {
+    links.push({ title: "ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ & ವರ್ಗಾವಣೆ", url: "/officers.html", icon: "👥" });
   }
 
-  // Schemes
-  if (p.includes('scheme') || p.includes('ಗ್ಯಾರಂಟಿ') || p.includes('guarantee') || p.includes('gruha') || p.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || p.includes('ಗೃಹಜ್ಯೋತಿ') || p.includes('ಯುವನಿಧಿ') || p.includes('ಶಕ್ತಿ') || p.includes('ಅನ್ನಭಾಗ್ಯ')) {
-    links.push({ title: "ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳ ಪರಿಶೀಲಕ", url: "/scheme-checker.html", icon: "📜" });
+  // Constituencies
+  if (p.includes('mla') || p.includes('mp') || p.includes('ಶಾಸಕ') || p.includes('ಸಂಸದ') || p.includes('ಚುನಾವಣೆ') || p.includes('election') || p.includes('ಕ್ಷೇತ್ರ') || p.includes('constituency')) {
+    links.push({ title: "224 ಶಾಸಕರ ಕ್ಷೇತ್ರ ವಿವರ", url: "/districts/", icon: "🏛️" });
   }
 
-  // District specific
-  const distMap = {
-    'ಕೊಪ್ಪಳ': 'koppal', 'koppal': 'koppal',
-    'ಮೈಸೂರು': 'mysuru', 'mysore': 'mysuru', 'mysuru': 'mysuru',
-    'ಬೆಂಗಳೂರು': 'bengaluru_urban', 'bengaluru': 'bengaluru_urban', 'bangalore': 'bengaluru_urban',
-    'ಬೆಳಗಾವಿ': 'belagavi', 'belgaum': 'belagavi', 'belagavi': 'belagavi',
-    'ಶಿವಮೊಗ್ಗ': 'shivamogga', 'shimoga': 'shivamogga', 'shivamogga': 'shivamogga',
-    'ಉಡುಪಿ': 'udupi', 'udupi': 'udupi',
-    'ದಕ್ಷಿಣ ಕನ್ನಡ': 'dakshina_kannada', 'mangaluru': 'dakshina_kannada', 'mangalore': 'dakshina_kannada',
-    'ಕಲಬುರಗಿ': 'kalaburagi', 'gulbarga': 'kalaburagi', 'kalaburagi': 'kalaburagi',
-    'ಬಳ್ಳಾರಿ': 'ballari', 'bellary': 'ballari', 'ballari': 'ballari',
-    'ವಿಜಯನಗರ': 'vijayanagara', 'hospet': 'vijayanagara',
-    'ಧಾರವಾಡ': 'dharwad', 'hubli': 'dharwad', 'hubballi': 'dharwad',
-    'ಹಾಸನ': 'hassan', 'hassan': 'hassan',
-    'ಮಂಡ್ಯ': 'mandya', 'mandya': 'mandya',
-    'ತುಮಕೂರು': 'tumakuru', 'tumkur': 'tumakuru', 'tumakuru': 'tumakuru',
-    'ಚಿಕ್ಕಮಗಳೂರು': 'chikkamagaluru', 'chikkamagaluru': 'chikkamagaluru'
-  };
-
-  for (const [k, distKey] of Object.entries(distMap)) {
-    if (p.includes(k)) {
-      links.push({ title: `${k} ಜಿಲ್ಲಾ ಸಮಗ್ರ ಮಾಹಿತಿ`, url: `/districts/${distKey}.html`, icon: "🗺️" });
-      break;
-    }
+  // Guarantee Schemes
+  if (p.includes('ಗ್ಯಾರಂಟಿ') || p.includes('scheme') || p.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || p.includes('ಗೃಹಜ್ಯೋತಿ') || p.includes('ಯುವನಿಧಿ') || p.includes('ಶಕ್ತಿ') || p.includes('ಅನ್ನಭಾಗ್ಯ')) {
+    links.push({ title: "ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು", url: "/guarantee-schemes.html", icon: "📜" });
   }
 
-  // Always ensure at least 2 relevant links
-  if (links.length === 0) {
-    links.push({ title: "ವಿಶೇಷ ಲೇಖನಗಳು & ವಿಶ್ಲೇಷಣೆ", url: "/karnataka-stories.html", icon: "✨" });
-    links.push({ title: "ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ದರ್ಶನ", url: "/districts/index.html", icon: "📍" });
-    links.push({ title: "ಅಧಿಕಾರಿಗಳ ಪಟ್ಟಿ & ವರ್ಗಾವಣೆಗಳು", url: "/officers.html", icon: "🏛️" });
-  }
-
-  // Deduplicate by URL
   const seen = new Set();
   const deduped = [];
-  for (const item of links) {
-    if (!seen.has(item.url)) {
-      seen.add(item.url);
-      deduped.push(item);
+  for (const l of links) {
+    if (!seen.has(l.url)) {
+      seen.add(l.url);
+      deduped.push(l.title ? l : { ...l, title: "ಕರ್ನಾಟಕ ಲೈವ್ ಪೋರ್ಟಲ್" });
     }
   }
   return deduped.slice(0, 4);
@@ -201,20 +208,7 @@ function generateSmartKarnatakaAnswer(prompt) {
 
 ---
 
-#### 2. 👥 ಪ್ರಮುಖ ಸಚಿವ ಸಂಪುಟ (Key Cabinet Ministers):
-* **ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ್:** ಗೃಹ ಸಚಿವರು (Home Ministry)
-* **ಹೆಚ್.ಕೆ. ಪಾಟೀಲ್:** ಕಾನೂನು ಮತ್ತು ಸಂಸದೀಯ ವ್ಯವಹಾರಗಳು (Law)
-* **ಎಂ.ಬಿ. ಪಾಟೀಲ್:** ಬೃಹತ್ ಮತ್ತು ಮಧ್ಯಮ ಕೈಗಾರಿಕೆಗಳು (Industries)
-* **ಕೃಷ್ಣ ಬೈರೇಗೌಡ:** ಕಂದಾಯ ಸಚಿವರು (Revenue)
-* **ರಾಮಲಿಂಗಾರೆಡ್ಡಿ:** ಸಾರಿಗೆ ಸಚಿವರು (Transport)
-* **ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ:** ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ ಹಾಗೂ ಐಟಿ-ಬಿಟಿ (RDPR & IT/BT)
-* **ದಿನೇಶ್ ಗುಂಡೂರಾವ್:** ಆರೋಗ್ಯ ಮತ್ತು ಕುಟುಂಬ ಕಲ್ಯಾಣ (Health)
-* **ಸತೀಶ್ ಜಾರಕಿಹೊಳಿ:** ಲೋಕೋಪಯೋಗಿ ಸಚಿವರು (PWD)
-* **ಲಕ್ಷ್ಮಿ ಹೆಬ್ಬಾಳ್ಕರ್:** ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಕಲ್ಯಾಣ (Women & Child Dev)
-
----
-
-#### 3. 🌟 ಸರ್ಕಾರದ ಪ್ರಮುಖ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು (5 Guarantee Schemes):
+#### 2. 🌟 ಸರ್ಕಾರದ ಪ್ರಮುಖ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು (5 Guarantee Schemes):
 1. **ಗೃಹಲಕ್ಷ್ಮಿ ಯೋಜನೆ (Gruha Lakshmi):** ಕುಟುಂಬದ ಯಜಮಾನಿ ಮಹಿಳೆಗೆ ಪ್ರತಿ ತಿಂಗಳು **₹2,000 ನೇರ ನಗದು ವರ್ಗಾವಣೆ (DBT)**.
 2. **ಗೃಹಜ್ಯೋತಿ ಯೋಜನೆ (Gruha Jyothi):** ಪ್ರತಿ ಮನೆಗೆ ಮಾಸಿಕ ಗರಿಷ್ಠ **200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್**.
 3. **ಶಕ್ತಿ ಯೋಜನೆ (Shakti Scheme):** ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಮಹಿಳೆಯರಿಗೆ ರಾಜ್ಯದ ಸರ್ಕಾರಿ ಬಸ್‌ಗಳಲ್ಲಿ **ಉಚಿತ ಪ್ರಯಾಣ**.
@@ -237,37 +231,6 @@ function generateSmartKarnatakaAnswer(prompt) {
 
 ---
 💡 **ಸಂಪೂರ್ಣ 1,838 ಬೆಳೆಗಳ ಲೈವ್ ದರ ವೀಕ್ಷಿಸಲು ಕೆಳಗಿನ ಲಿಂಕ್ ಬಳಸಿ.**`;
-  }
-
-  // 3. KOPPAL / RAICHUR / BELLARY FARMING & TUNGABHADRA DAM
-  if ((p.includes('ಕೊಪ್ಪಳ') || p.includes('koppal') || p.includes('ರಾಯಚೂರು') || p.includes('ಬಳ್ಳಾರಿ')) && (p.includes('ಬೆಳೆ') || p.includes('crop') || p.includes('ಡ್ಯಾಂ') || p.includes('dam') || p.includes('ನೀರು') || p.includes('sow') || p.includes('ಬಿತ್ತನೆ'))) {
-    return `### 🌾 ಕೊಪ್ಪಳ & ತುಂಗಭದ್ರಾ ಆಯಕಟ್ಟು ಕೃಷಿ, ಹವಾಮಾನ & ಜಲಾಶಯ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ
-
----
-
-#### 1. 🚰 ತುಂಗಭದ್ರಾ ಜಲಾಶಯದ (Munirabad Dam) ನೀರಿನ ಮಟ್ಟ:
-* **ಗರಿಷ್ಠ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ:** **105.7 TMC** (1,633 ಅಡಿ)
-* **ನೀರಿನ ನಿರ್ವಹಣೆ:** ತುಂಗಭದ್ರಾ ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (LBMC) ಮತ್ತು ಬಲದಂಡೆ ಕಾಲುವೆಗಳಿಗೆ ಕೃಷಿ ವೇಳಾಪಟ್ಟಿಯಂತೆ ನೀರು ಹರಿಸಲಾಗುತ್ತದೆ.
-* **ಸ್ಥಿತಿ:** ಕೊಪ್ಪಳ, ರಾಯಚೂರು ಮತ್ತು ಬಳ್ಳಾರಿ ಜಿಲ್ಲೆಗಳ ಆಯಕಟ್ಟು ಪ್ರದೇಶಗಳಲ್ಲಿ ಭತ್ತ ಮತ್ತು ಹತ್ತಿ ಬೆಳೆಗಳಿಗೆ ನೀರಾವರಿ ಸಹಕಾರಿಯಾಗಿದೆ.
-
----
-
-#### 2. 🌱 ಪ್ರಮುಖ ಕೃಷಿ ಶಿಫಾರಸುಗಳು:
-* **🌾 ಆಯಕಟ್ಟು ಪ್ರದೇಶ:** ಬಿಪಿಟಿ 5204 (ಸೋನಾ ಮಸೂರಿ), ಗಂಗಾವತಿ ಸಿರಗುಪ್ಪ ಭತ್ತ, ಕಬ್ಬು, ಬಿಟಿ ಹತ್ತಿ.
-* **🥜 ಖುಷ್ಕಿ ಜಮೀನು:** ಬಿಳಿ ಜೋಳ, ಸಜ್ಜೆ, ತೊಗರಿ (GRG 811), ಕಡಲೆಕಾಯಿ, ದಾಳಿಂಬೆ.
-* **💡 ಸಲಹೆ:** ಅಧಿಕೃತ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ ಮತ್ತು ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಪರಿಶೀಲಿಸಿ ಬಿತ್ತನೆ ಕಾರ್ಯ ಕೈಗೊಳ್ಳಿ.`;
-  }
-
-  // 4. GOLD & SILVER RATE GUIDANCE
-  if (p.includes('gold') || p.includes('silver') || p.includes('ಚಿನ್ನ') || p.includes('ಬಂಗಾರ') || p.includes('ಬೆಳ್ಳಿ') || p.includes('ಖರೀದಿ') || p.includes('ಕೊಳ್ಳ')) {
-    return `### 🥇 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ ವಿಶ್ಲೇಷಣೆ (Gold & Silver Rates)
-
----
-
-* **ದರ ಪರಿಶೀಲನೆ:** ಚಿನ್ನದ ದರಗಳು ಪ್ರತಿದಿನ ಅಂತರರಾಷ್ಟ್ರೀಯ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ, ಡಾಲರ್ ವಿನಿಮಯ ದರ ಮತ್ತು ಸ್ಥಳೀಯ ಜ್ಯುವೆಲ್ಲರಿ ಅಸೋಸಿಯೇಷನ್ ಮಾನದಂಡಗಳ ಆಧಾರದ ಮೇಲೆ ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ.
-* **22 ಕ್ಯಾರೆಟ್ (ಆಭರಣ ಚಿನ್ನ):** ಶುದ್ಧ ಆಭರಣ ತಯಾರಿಕೆಗೆ 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಚಿನ್ನ ಸೂಕ್ತ.
-* **24 ಕ್ಯಾರೆಟ್ (ಶುದ್ಧ ಚಿನ್ನ / ಬಿಸ್ಕತ್):** ಹೂಡಿಕೆ ಉದ್ದೇಶಕ್ಕೆ 999 ಶುದ್ಧ ಚಿನ್ನದ ನಾಣ್ಯಗಳು ಅಥವಾ ಬಾರ್‌ಗಳು ಯೋಗ್ಯ.
-* **💡 ಖರೀದಿದಾರರ ಗಮನಕ್ಕೆ:** ಕಡ್ಡಾಯವಾಗಿ **BIS 6-ಅಂಕಿಯ HUID ಹಾಲ್‌ಮಾರ್ಕ್** ಮತ್ತು ಅಧಿಕೃತ ಜಿಎಸ್‌ಟಿ (3% GST) ಬಿಲ್ ಪಡೆಯುವುದನ್ನು ಮರೆಯದಿರಿ.`;
   }
 
   return null;
