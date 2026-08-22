@@ -1767,9 +1767,9 @@ ${rows}`;
     const listHtml = selectedArticles.map((a, i) => {
       const title = a.title_kn || a.title || 'ಸುದ್ದಿ ಶೀರ್ಷಿಕೆ';
       const summary = a.summary_kn || a.summary || a.content || 'ಸ್ಥಳೀಯ ತಾಜಾ ವಿದ್ಯಮಾನಗಳು.';
-      const source = a.source ? `*ಮೂಲ: ${a.source}*` : '';
-      const link = a.url || a.link || '/news/';
-      return `${i+1}. 📰 [**${title}**](${link})\n   *${summary}*\n   ${source}`;
+      const source = a.source ? ` • *ಮೂಲ: ${a.source}*` : '';
+      const link = a.url || a.link || '/karnataka-stories.html';
+      return `${i+1}. 📰 **${title}**\n   ${summary}\n   [ 📰 ಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ](${link})${source}`;
     }).join('\n\n');
 
     const markdownText = `### 📰 ${distKn} — ಇಂದಿನ ಟಾಪ್ 5 ಮುಖ್ಯಾಂಶ ಸುದ್ದಿಗಳು (Top Breaking News)
@@ -1783,10 +1783,11 @@ ${listHtml}
 💡 **ಕ್ಷಣಕ್ಷಣದ ಅಪ್ಡೇಟ್:** ರಾಜ್ಯ ಹಾಗೂ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಅಧಿಕೃತ ವರದಿಗಳಿಂದ ಸಂಗ್ರಹಿಸಲಾದ ದೈನಂದಿನ ನೈಜ ಸುದ್ದಿಗಳು.`;
 
     const cards = [
-      { title: `${distKn} ಲೈವ್ ಸುದ್ದಿ ಕೇಂದ್ರ`, url: "/news/", icon: "📰", subtitle: "ಜಿಲ್ಲಾವಾರು ಕ್ಷಣಕ್ಷಣದ ಬ್ರೇಕಿಂಗ್ ಸುದ್ದಿಗಳು" }
+      { title: "ಕರ್ನಾಟಕ ಲೋಕಲ್ ಸ್ಟೋರೀಸ್", url: "/karnataka-stories.html", icon: "📖", subtitle: "ಜಿಲ್ಲಾವಾರು ವಿಶೇಷ ಕಥೆಗಳು & ವರದಿಗಳು" },
+      { title: "ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ", url: "/karnataka.html", icon: "🏛️", subtitle: "ರಾಜ್ಯ ಸರ್ಕಾರ, ಇತಿಹಾಸ & 31 ಜಿಲ್ಲೆಗಳು" }
     ];
     if (distKey && pInfo) {
-      cards.push({ title: `${distKn} ಜಿಲ್ಲಾ ಸಂಪೂರ್ಣ ವಿವರ`, url: `/districts/${pInfo.distKey}.html`, icon: "🗺️", subtitle: "ಹವಾಮಾನ, ಕೃಷಿ & ಅಧಿಕಾರಿಗಳ ವಿವರ" });
+      cards.push({ title: `${distKn} ಜಿಲ್ಲಾ ಸಂಪೂರ್ಣ ವಿವರ`, url: `/districts/${pInfo.distKey}.html`, icon: "🗺️", subtitle: "ಹವಾಮಾನ, ಕೃಷಿ & ತಾಲೂಕುಗಳ ವಿವರ" });
     }
 
     return {

@@ -508,6 +508,32 @@
     .ai-body ul { margin-left: 20px; margin-bottom: 12px; }
     .ai-body li { margin-bottom: 6px; }
 
+    /* STORY READ BUTTON */
+    .story-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      margin-top: 5px;
+      margin-bottom: 6px;
+      background: rgba(200, 138, 34, 0.12);
+      border: 1px solid rgba(200, 138, 34, 0.35);
+      border-radius: 6px;
+      color: #F59E0B !important;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .story-read-btn:hover {
+      background: rgba(200, 138, 34, 0.25);
+      border-color: #F59E0B;
+      color: #FFF !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+    }
+
     /* RELATED LINKS */
     .links-box {
       margin-top: 14px;
@@ -940,6 +966,8 @@
         .replace(/^## (.*$)/gim, '<h2>$1</h2>')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        // Convert Markdown Links [text](url) to styled button action pills
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="story-read-btn">$1</a>')
         .replace(/^\* (.*$)/gim, '<li>$1</li>')
         .replace(/^[0-9]+\. (.*$)/gim, '<li>$1</li>');
 
