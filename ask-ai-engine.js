@@ -74,29 +74,51 @@ window.AskKARNATAEngine = (function() {
     if (!q) return null;
 
     // 1. GOLD & SILVER QUERY (Live rates, 1901-2026 history, buy/sell/invest analysis)
-    if (q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳ') || q.includes('ತಗೋ') || q.includes('ಮಾರ') || q.includes('ಹೂಡಿಕೆ') || q.includes('invest') || q.includes('buy') || q.includes('sell') || q.includes('sgb') || q.includes('etf') || q.includes('ಪವನ್') || q.includes('pavan') || q.includes('24k') || q.includes('22k') || q.includes('18k') || q.includes('ಏನು ಮಾಡ') || q.includes('ಏನ್ ಮಾಡ') || q.includes('what i do') || q.includes('what to do') || q.includes('what should i do')) {
+    if (q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('ಪವನ್') || q.includes('pavan') || q.includes('24k') || q.includes('22k') || q.includes('18k')) {
       return answerGoldQuery(q);
     }
 
-    // 2. KANNADA LITERATURE & 8 JNANPITH AWARDEES (ಕನ್ನಡ ಸಾಹಿತ್ಯ & 8 ಜ್ಞಾನಪೀಠ)
-    if (q.includes('ಜ್ಞಾನಪೀಠ') || q.includes('jnanpith') || q.includes('ಕುವೆಂಪು') || q.includes('ಬೇಂದ್ರೆ') || q.includes('ಕಾರಂತ') || q.includes('ಮಾಸ್ತಿ') || q.includes('ಗೋಕಾಕ್') || q.includes('ಅನಂತಮೂರ್ತಿ') || q.includes('ಕಾರ್ನಾಡ್') || q.includes('ಕಂಬಾರ') || (q.includes('ಸಾಹಿತ್ಯ') && !q.includes('ಬೆಲೆ')) || q.includes('ವಚನ') || q.includes('ದಾಸ')) {
+    // 2. PETROL / DIESEL FUEL QUERY
+    if (q.includes('petrol') || q.includes('diesel') || q.includes('fuel') || q.includes('ಪೆಟ್ರೋಲ್') || q.includes('ಡೀಸೆಲ್')) {
+      return answerFuelQuery(q);
+    }
+
+    // 3. APMC & MANDI CROP PRICE QUERY (Top Priority for Market Prices & Rates)
+    const isApmcPriceQuery = q.includes('apmc') || q.includes('mandi') || q.includes('ಎಪಿಎಂಸಿ') || q.includes('ಮಾರುಕಟ್ಟೆ') || q.includes('ಧಾರಣೆ') || q.includes('ಬೆಲೆ') || q.includes('ದರ') || q.includes('rate') || q.includes('price') || q.includes('ಕ್ವಿಂಟಾಲ್') || q.includes('quintal');
+    if (isApmcPriceQuery) {
+      const apmcAns = answerAPMCQuery(q);
+      if (apmcAns) return apmcAns;
+    }
+
+    // 4. KANNADA LITERATURE & 8 JNANPITH AWARDEES (ಕನ್ನಡ ಸಾಹಿತ್ಯ & 8 ಜ್ಞಾನಪೀಠ)
+    if (q.includes('ಜ್ಞಾನಪೀಠ') || q.includes('jnanpith') || q.includes('ಕುವೆಂಪು') || q.includes('ಬೇಂದ್ರೆ') || q.includes('ಕಾರಂತ') || q.includes('ಮಾಸ್ತಿ') || q.includes('ಗೋಕಾಕ್') || q.includes('ಅನಂತಮೂರ್ತಿ') || q.includes('ಕಾರ್ನಾಡ್') || q.includes('ಕಂಬಾರ') || q.includes('ಸಾಹಿತ್ಯ') || q.includes('ವಚನ') || q.includes('ದಾಸ')) {
       return answerLiteratureQuery(q);
     }
 
-    // 3. KARNATAKA DYNASTIES, HEROES & HISTORY (ಕದಂಬರು, ಹಲ್ಮಿಡಿ, ಚಾಲುಕ್ಯರು, ಹೊಯ್ಸಳರು, ವಿಜಯನಗರ, ಇತಿಹಾಸ)
+    // 5. KARNATAKA DYNASTIES, HEROES & HISTORY
     if (q.includes('ಕದಂಬ') || q.includes('ಹಲ್ಮಿಡಿ') || q.includes('ಚಾಲುಕ್ಯ') || q.includes('ರಾಷ್ಟ್ರಕೂಟ') || q.includes('ಹೊಯ್ಸಳ') || q.includes('ವಿಜಯನಗರ') || q.includes('ಒಡೆಯರ್') || q.includes('ಚೆನ್ನಮ್ಮ') || q.includes('ರಾಯಣ್ಣ') || q.includes('ಟಿಪ್ಪು') || q.includes('ಇತಿಹಾಸ') || q.includes('ಸಾಮ್ರಾಜ್ಯ') || q.includes('dynasty') || q.includes('history')) {
       return answerHistoryQuery(q);
     }
 
-    // 4. DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM (ಜಿಲ್ಲಾ ದರ್ಶನ, ತಾಲೂಕುಗಳು & ಪ್ರವಾಸಿ ತಾಣಗಳು)
+    // 6. SPECIFIC DAM LEVEL & WATER STORAGE QUERY
+    if (q.includes('dam') || q.includes('water') || q.includes('krs') || q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಡ್ಯಾಂ') || q.includes('ಜಲಾಶಯ') || q.includes('ತುಂಗಭದ್ರಾ') || q.includes('tungabhadra') || q.includes('ಕಬಿನಿ') || q.includes('ಹೇಮಾವತಿ') || q.includes('ಭದ್ರಾ') || q.includes('ಮಲಪ್ರಭಾ') || q.includes('ಘಟಪ್ರಭಾ') || q.includes('ಹಾರಂಗಿ') || q.includes('ಸೂಪಾ') || q.includes('ಲಿಂಗನಮಕ್ಕಿ') || q.includes('ಒಳಹರಿವು') || q.includes('ಹೊರಹರಿವು') || q.includes('tmc')) {
+      return answerDamQuery(q);
+    }
+
+    // 7. WEATHER & RAIN QUERY
+    if (q.includes('weather') || q.includes('rain') || q.includes('climate') || q.includes('ಮಳೆ') || q.includes('ಹವಾಮಾನ') || q.includes('ಉಷ್ಣಾಂಶ') || q.includes('temp') || q.includes('forecast')) {
+      return answerWeatherQuery(q);
+    }
+
+    // 8. DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM
     const distForEncyclopedia = findMentionedPlace(q, true);
     if (distForEncyclopedia && (q.includes('ತಾಲೂಕು') || q.includes('taluk') || q.includes('ಪ್ರವಾಸ') || q.includes('tourist') || q.includes('ತಾಣ') || q.includes('ಸ್ಥಳ') || q.includes('ವಿವರ') || q.includes('ಮಾಹಿತಿ') || q.includes('ಜಿಲ್ಲೆ') || q.includes('district') || q.includes('ನೋಡಬೇಕಾದ') || q.includes('places') || q.includes('ಹೋಗಲು') || q.includes('ಯಾವುವು'))) {
       return answerDistrictEncyclopediaQuery(q, distForEncyclopedia.distKey);
     }
 
-    // 5. DISTRICT FARMING + DAM + WEATHER CROSS SYNTHESIS (e.g. Koppal, Mandya, Raichur, Belagavi, etc.)
+    // 9. DISTRICT FARMING & SOWING ADVISORY
     const distMatch = findMentionedPlace(q, true);
-    const isFarmingOrWater = q.includes('crop') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || q.includes('ಭತ್ತ') || q.includes('paddy') || (q.includes('ಬೆಳೆ') && !q.includes('ಬೆಲೆ') && !q.includes('ಚಿನ್ನ') && !q.includes('ಬೆಳ್ಳಿ') && !q.includes('ಬೆಳೆದಿದೆ'));
+    const isFarmingOrWater = q.includes('crop') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || q.includes('ಬೆಳೆ') || q.includes('ಬೆಳೆಯ');
     if (isFarmingOrWater) {
       return answerDistrictFarmingSynthesis(q, distMatch ? distMatch.distKey : null);
     }
@@ -1460,51 +1482,128 @@ ${alertMsg}`;
     };
   }
 
-  // --- 6. APMC ENGINE ---
+    // --- 6. APMC DEEP SEARCH ENGINE ---
   function answerAPMCQuery(q) {
-    const apmc = db.apmc;
+    const apmc = db.apmc || {};
     const items = (apmc && apmc.items) ? apmc.items : [];
+    if (!items || items.length === 0) return null;
 
-    let matchedItems = [];
-    if (q.includes('tomato') || q.includes('ಟೊಮೆಟೊ')) {
-      matchedItems = items.filter(i => (i.cropKn && i.cropKn.includes('ಟೊಮೆಟೊ')) || (i.cropEn && i.cropEn.toLowerCase().includes('tomato')));
-    } else if (q.includes('arecanut') || q.includes('ಅಡಿಕೆ')) {
-      matchedItems = items.filter(i => (i.cropKn && i.cropKn.includes('ಅಡಿಕೆ')) || (i.cropEn && i.cropEn.toLowerCase().includes('arecanut')));
-    } else if (q.includes('ragi') || q.includes('ರಾಗಿ')) {
-      matchedItems = items.filter(i => (i.cropKn && i.cropKn.includes('ರಾಗಿ')));
-    } else if (q.includes('onion') || q.includes('ಈರುಳ್ಳಿ')) {
-      matchedItems = items.filter(i => (i.cropKn && i.cropKn.includes('ಈರುಳ್ಳಿ')) || (i.cropEn && i.cropEn.toLowerCase().includes('onion')));
-    } else if (q.includes('paddy') || q.includes('ಭತ್ತ')) {
-      matchedItems = items.filter(i => (i.cropKn && i.cropKn.includes('ಭತ್ತ')) || (i.cropEn && i.cropEn.toLowerCase().includes('paddy')));
+    // Crop keyword dictionaries
+    const cropKeywords = [
+      { key: 'paddy', names: ['ಭತ್ತ', 'paddy', 'ಅಕ್ಕಿ', 'rice', 'ಸೋನಾ ಮಸೂರಿ', 'ರಾಜಮುಡಿ'] },
+      { key: 'tomato', names: ['ಟೊಮೆಟೊ', 'tomato', 'ಟೊಮೇಟೊ'] },
+      { key: 'arecanut', names: ['ಅಡಿಕೆ', 'arecanut', 'ಅಡಕೆ', 'ರಾಶಿ', 'ಚಾಲಿ'] },
+      { key: 'onion', names: ['ಈರುಳ್ಳಿ', 'onion', 'ಉಳ್ಳಾಗಡ್ಡಿ'] },
+      { key: 'cotton', names: ['ಹತ್ತಿ', 'cotton'] },
+      { key: 'maize', names: ['ಮೆಕ್ಕೆಜೋಳ', 'maize', 'ಜೋಳ'] },
+      { key: 'chilli', names: ['ಮೆಣಸಿನಕಾಯಿ', 'chilli', 'ಬ್ಯಾಡಗಿ'] },
+      { key: 'redgram', names: ['ತೊಗರಿ', 'tur', 'red gram', 'ತೊಗರಿಬೇಳೆ'] },
+      { key: 'groundnut', names: ['ಶೇಂಗಾ', 'ಕಡಲೆಕಾಯಿ', 'groundnut', 'peanut'] },
+      { key: 'sugarcane', names: ['ಕಬ್ಬು', 'sugarcane', 'ಬೆಲ್ಲ', 'jaggery'] },
+      { key: 'coffee', names: ['ಕಾಫಿ', 'coffee', 'ರೋಬಸ್ಟಾ', 'ಅರೇಬಿಕಾ'] },
+      { key: 'ragi', names: ['ರಾಗಿ', 'ragi'] },
+      { key: 'ginger', names: ['ಶುಂಠಿ', 'ginger'] },
+      { key: 'potato', names: ['ಆಲೂಗಡ್ಡೆ', 'potato'] },
+      { key: 'garlic', names: ['ಬೆಳ್ಳುಳ್ಳಿ', 'garlic'] },
+      { key: 'coconut', names: ['ತೆಂಗು', 'ತೆಂಗಿನಕಾಯಿ', 'coconut', 'ಕೊಬ್ಬರಿ'] }
+    ];
+
+    // Detect mentioned crop
+    let targetCropKey = null;
+    let targetCropNameKn = null;
+    for (let c of cropKeywords) {
+      for (let n of c.names) {
+        if (q.includes(n.toLowerCase())) {
+          targetCropKey = c.key;
+          targetCropNameKn = c.names[0];
+          break;
+        }
+      }
+      if (targetCropKey) break;
     }
 
-    if (matchedItems.length === 0) matchedItems = items.slice(0, 6);
+    // Detect mentioned market / town / district
+    const pInfo = findMentionedPlace(q, true);
+    const placeKeyword = pInfo ? (pInfo.placeNameKn || '').toLowerCase() : '';
+    const distKey = pInfo ? pInfo.distKey : '';
 
-    const rows = matchedItems.slice(0, 6).map(i => 
-      `* **${i.cropKn || i.cropEn}** (${i.market} APMC): **₹${(i.avg || i.modal || 0).toLocaleString('en-IN')}** / ${i.unit || 'ಕ್ವಿಂಟಾಲ್'} (ಕನಿಷ್ಠ ₹${(i.min || 0).toLocaleString('en-IN')} - ಗರಿಷ್ಠ ₹${(i.max || 0).toLocaleString('en-IN')})`
-    ).join('\n');
+    // Search filter
+    let matched = items.filter(item => {
+      const itemMarket = (item.market || item.marketEn || '').toLowerCase();
+      const itemDist = (item.district_kn || '').toLowerCase();
+      const itemCropKn = (item.cropKn || '').toLowerCase();
+      const itemCropEn = (item.cropEn || '').toLowerCase();
 
-    const markdownText = `### 🌾 ಕರ್ನಾಟಕ APMC ಲೈವ್ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (APMC Mandi Prices)
+      let matchPlace = true;
+      if (pInfo && placeKeyword) {
+        matchPlace = itemMarket.includes(placeKeyword) || itemDist.includes(placeKeyword) || q.includes(itemMarket);
+      }
+
+      let matchCrop = true;
+      if (targetCropKey) {
+        const cropObj = cropKeywords.find(c => c.key === targetCropKey);
+        matchCrop = cropObj ? cropObj.names.some(n => itemCropKn.includes(n) || itemCropEn.includes(n)) : false;
+      }
+
+      return matchPlace && matchCrop;
+    });
+
+    // If no exact intersection, try crop match only or market match only
+    if (matched.length === 0 && targetCropKey) {
+      const cropObj = cropKeywords.find(c => c.key === targetCropKey);
+      matched = items.filter(item => {
+        const itemCropKn = (item.cropKn || '').toLowerCase();
+        const itemCropEn = (item.cropEn || '').toLowerCase();
+        return cropObj.names.some(n => itemCropKn.includes(n) || itemCropEn.includes(n));
+      });
+    } else if (matched.length === 0 && pInfo && placeKeyword) {
+      matched = items.filter(item => {
+        const itemMarket = (item.market || item.marketEn || '').toLowerCase();
+        const itemDist = (item.district_kn || '').toLowerCase();
+        return itemMarket.includes(placeKeyword) || itemDist.includes(placeKeyword) || q.includes(itemMarket);
+      });
+    }
+
+    if (matched.length === 0) {
+      matched = items.slice(0, 8);
+    }
+
+    const titleLocation = (pInfo && pInfo.placeNameKn) ? `${pInfo.placeNameKn} & ಪ್ರಮುಖ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ` : 'ಕರ್ನಾಟಕದ ಪ್ರಮುಖ APMC ಗಳಲ್ಲಿ';
+    const titleCrop = targetCropNameKn ? `${targetCropNameKn} ದರ` : 'ಕೃಷಿ ಉತ್ಪನ್ನ ಧಾರಣೆ';
+
+    const rows = matched.slice(0, 8).map(i => {
+      const modal = (i.avg || i.modal_per_quintal || i.modal || 0).toLocaleString('en-IN');
+      const min = (i.min || 0).toLocaleString('en-IN');
+      const max = (i.max || 0).toLocaleString('en-IN');
+      const chg = i.change ? (i.change > 0 ? `▲ +${i.change}%` : `▼ ${i.change}%`) : '• ಸ್ಥಿರ';
+      return `* **${i.cropKn || i.cropEn}** (${i.market} APMC): **₹${modal}** / ${i.unit || 'ಕ್ವಿಂಟಾಲ್'} (ಕನಿಷ್ಠ ₹${min} — ಗರಿಷ್ಠ ₹${max}) | ${chg}`;
+    }).join('\n');
+
+    const markdownText = `### 🌾 ${titleLocation} ${titleCrop} (Live APMC Mandi Price)
+
+---
 
 ${rows}
 
 ---
-💡 **ವಿಶೇಷ ಮಾಹಿತಿ:** ರಾಜ್ಯದ 174 ಕೃಷಿ ಉತ್ಪನ್ನ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ (APMC) ಪ್ರಸ್ತುತ 1,838 ಬೆಳೆಗಳ ಸಜೀವ ಹರಾಜು ಧಾರಣೆ ದಾಖಲಾಗುತ್ತಿದೆ.`;
+
+💡 **ಮಾರುಕಟ್ಟೆ ಮಾಹಿತಿ:** ರಾಜ್ಯದ 174 ಕೃಷಿ ಮಾರುಕಟ್ಟೆಗಳ (APMC) ಅಧಿಕೃತ ದೈನಂದಿನ ಹರಾಜು ಧಾರಣೆಯಾಗಿದ್ದು, ಗುಣಮಟ್ಟ ಮತ್ತು ತಳಿಗಳ ಆಧಾರದ ಮೇಲೆ ಬೆಲೆ ವ್ಯತ್ಯಾಸವಾಗಬಹುದು.`;
 
     return {
       text: markdownText,
       cards: [
-        { title: "APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ ಪೂರ್ಣ ಪೋರ್ಟಲ್", url: "/apmc-prices.html", icon: "🌾", subtitle: "174 ಮಾರುಕಟ್ಟೆಗಳ 1,838 ಬೆಳೆಗಳ ಲೈವ್ ದರ" }
+        { title: "APMC ಮಾರುಕಟ್ಟೆ ಸಮಗ್ರ ಕೃಷಿ ದರಗಳು", url: "/apmc-prices.html", icon: "🌾", subtitle: "174 ಮಾರುಕಟ್ಟೆಗಳ 1,800+ ಬೆಳೆ ದರಗಳು" },
+        { title: "13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧", subtitle: "ತುಂಗಭದ್ರಾ, KRS ಲೈವ್ ಮಟ್ಟ" }
       ],
       followups: [
         "ಕೋಲಾರ APMCಯಲ್ಲಿ ಇಂದಿನ ಟೊಮೆಟೊ ಬೆಲೆ ಎಷ್ಟು?",
         "ಶಿವಮೊಗ್ಗ ಹಾಗೂ ಶಿರಸಿಯಲ್ಲಿ ಅಡಿಕೆ ದರ ಎಷ್ಟು?",
-        "ಕೊಪ್ಪಳ ಹಾಗೂ ರಾಯಚೂರಿನಲ್ಲಿ ಭತ್ತದ ದರ ತಿಳಿಸಿ"
+        "ಕೊಪ್ಪಳ ಹಾಗೂ ರಾಯಚೂರಿನಲ್ಲಿ ಇಂದಿನ ಭತ್ತದ ಧಾರಣೆ ಎಷ್ಟು?"
       ]
     };
   }
 
-  // --- 7. MLA & MP SEARCH ENGINES ---
+  // --- 7. MLA CONSTITUENCY QUERY ---
   function answerMLAQuery(q) {
     const cData = db.constituencies || {};
     const mlas = cData.mla || {};
@@ -1526,15 +1625,18 @@ ${rows}
     if (!matchedKey) return null;
 
     const m = mlas[matchedKey];
-    const slug = (m.name_en || 'koppal').toLowerCase().replace(/\s+/g, '_');
+    const slug = (m.id || m.name_en || 'constituency').toLowerCase().replace(/\s+/g, '_');
+    const mlaName = m.mla_name_kn || m.winner_2023 || 'ಶಾಸಕರು';
+    const party = m.party || m.party_2023 || 'INC';
+    const votes = (m.votes || m.winner_votes || 0).toLocaleString('en-IN');
+    const margin = (m.margin || 0).toLocaleString('en-IN');
 
     const markdownText = `### 🏛️ ${m.name_kn || m.name_en} (No. ${m.code || matchedKey}) ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ ಫಲಿತಾಂಶ (2023)
 
-* **ಪ್ರಸ್ತುತ ಶಾಸಕರು (MLA 2023):** **${m.winner_2023 || 'ಕೆ. ರಾಘವೇಂದ್ರ ಹಿಟ್ನಾಳ್'}** (${m.party_2023 || 'INC'})
-* **ಪಡೆದ ಮತಗಳು:** **${(m.winner_votes || 90430).toLocaleString('en-IN')} ಮತಗಳು** (${m.winner_pct || 53.37}%)
-* **ಎರಡನೇ ಸ್ಥಾನ (Runner Up):** ${m.runner_2023 || 'ಕರಡಿ ಚಂದ್ರಶೇಖರ್'} (${m.runner_party || 'BJP'}) — ${(m.runner_votes || 54170).toLocaleString('en-IN')} ಮತಗಳು
-* **ಗೆಲುವಿನ ಅಂತರ (Margin):** **+${(m.margin || 36260).toLocaleString('en-IN')} ಮತಗಳ ಗೆಲುವು**
-* **ಜಿಲ್ಲೆ:** ${m.district_kn || m.district_en || 'ಕರ್ನಾಟಕ'}`;
+* **ಪ್ರಸ್ತುತ ಶಾಸಕರು (MLA 2023):** **${mlaName}** (${party})
+* **ಪಡೆದ ಮತಗಳು:** **${votes} ಮತಗಳು**
+* **ಗೆಲುವಿನ ಅಂತರ (Margin):** **+${margin} ಮತಗಳ ಗೆಲುವು**
+* **ಜಿಲ್ಲೆ:** ${m.district_kn || m.district || 'ಕರ್ನಾಟಕ'}`;
 
     return {
       text: markdownText,
