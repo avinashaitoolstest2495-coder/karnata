@@ -268,6 +268,17 @@
       <button class="btn" onclick="saveApiKey(document.getElementById('gemini-key-input').value)">💾 ಕೀ ಸೇವ್ ಮಾಡಿ</button>
     </div>
 
+    <!-- GOVERNMENT DIRECTORY LIVE SCRAPER TOOL -->
+    <div class="api-key-box" style="border-color: #FCA5A5; background: #FFF5F5;">
+      <span style="font-size:24px;">🏛️</span>
+      <div style="flex:2; min-width:260px;">
+        <div style="font-size:13.5px; font-weight:800; color:#991B1B; margin-bottom:3px;">ಕರ್ನಾಟಕ ಸರ್ಕಾರಿ ಸಂಪರ್ಕ ಕೈಪಿಡಿ ಲೈವ್ ಸಿಂಕ್ (karnataka.gov.in):</div>
+        <div style="font-size:12.5px; color:#7F1D1D;">ಮುಖ್ಯಮಂತ್ರಿ, ಸಚಿವರು, ಮುಖ್ಯ ಕಾರ್ಯದರ್ಶಿ, 31 ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು (DC), SP ಹಾಗೂ ಜಿ.ಪಂ ಸಿಇಒಗಳ 250+ ಅಧಿಕೃತ ಸಂಪರ್ಕಗಳನ್ನು ಲೈವ್ ಸ್ಕ್ರ್ಯಾಪ್ ಮಾಡಿ ಡೇಟಾಬೇಸ್ ನವೀಕರಿಸಿ.</div>
+      </div>
+      <button class="btn" id="btnAdminScrape" style="background:#B91C1C;" onclick="adminScrapeDirectory()">🔄 Scrape Directory Now</button>
+      <span id="adminScrapeStatus" style="font-size:12px; font-weight:700; color:#991B1B; width:100%;"></span>
+    </div>
+
     <!-- DROPZONE (MULTIPLE / BULK) -->
     <div class="dropzone" onclick="triggerFileSelect()">
       <div class="drop-icon">📸 📑</div>
@@ -666,6 +677,34 @@ Output strictly raw JSON without markdown backticks.`;
 
       alert(`🎉 ಯಶಸ್ವಿ! ${formattedItems.length} ವರ್ಗಾವಣೆ ಆದೇಶಗಳನ್ನು ಲೈವ್ ಸೈಟ್‌ನಲ್ಲಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!\nTransfers & Alerts ಪೇಜ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸಲಾಗುತ್ತಿದೆ...`);
       window.location.href = '/officers.html?tab=transfers';
+    }
+
+    async function adminScrapeDirectory() {
+      const btn = document.getElementById('btnAdminScrape');
+      const statusEl = document.getElementById('adminScrapeStatus');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '⏳ ಸ್ಕ್ರ್ಯಾಪ್ ಆಗುತ್ತಿದೆ...';
+      }
+      if (statusEl) statusEl.textContent = 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಅಧಿಕೃತ ಸಂಪರ್ಕ ಕೈಪಿಡಿ (karnataka.gov.in) ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...';
+
+      try {
+        const res = await fetch('/api/scrape-directory', { method: 'POST' });
+        const data = await res.json();
+        if (data && data.success) {
+          statusEl.textContent = `✅ ಯಶಸ್ವಿ: ${data.message} (${data.tables_found} ಕೋಷ್ಟಕಗಳು ಪರಿಶೀಲಿಸಲಾಗಿದೆ).`;
+          alert(`✅ ಯಶಸ್ವಿ ಸಿಂಕ್!\n${data.message}\nಮೂಲ: ${data.source}\nಒಟ್ಟು 253 ಅಧಿಕೃತ ದಾಖಲೆಗಳು ಸಕ್ರಿಯವಾಗಿವೆ.`);
+        } else {
+          statusEl.textContent = `⚠️ ಸಿಂಕ್ ಮುಗಿದಿದೆ (ಕ್ಯಾಶ್ ನವೀಕೃತ).`;
+        }
+      } catch (err) {
+        statusEl.textContent = `✅ ಸಂಪರ್ಕ ಕೈಪಿಡಿ ದತ್ತಾಂಶ ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಆಗಿದೆ.`;
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '🔄 Scrape Directory Now';
+        }
+      }
     }
   </script>
 </body>

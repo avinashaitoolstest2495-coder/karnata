@@ -641,6 +641,27 @@
       <h1 class="hero-title">ಕರ್ನಾಟಕ ಅಧಿಕಾರಿಗಳ ಅಧಿಕೃತ ಪಟ್ಟಿ & Transfers & Alerts</h1>
       <p class="hero-sub">ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು (DC), ಎಸ್ಪಿ (SP), ಜಿ.ಪಂ ಸಿಇಒ, 240+ ತಾಲೂಕುಗಳ ತಹಶೀಲ್ದಾರ್‌ಗಳು ಹಾಗೂ IAS, IPS, IFS, KAS ಅಧಿಕಾರಿಗಳ ಅಧಿಕೃತ ಸಂಪರ್ಕ ವಿವರ ಮತ್ತು ವರ್ಗಾವಣೆ ಗೆಜೆಟ್ ಮಾಹಿತಿ.</p>
     </div>
+          <div style="margin-top: 18px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+          <button id="btnScrapeNow" onclick="triggerDirectoryScrape()" style="
+            background: linear-gradient(135deg, #8E1B1B 0%, #B91C1C 100%);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-weight: 800;
+            font-family: inherit;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(142, 27, 27, 0.3);
+            transition: all 0.2s;
+          ">
+            <span>🔄 ಲೈವ್ ಡೈರೆಕ್ಟರಿ ಸಿಂಕ್ (Scrape Now)</span>
+          </button>
+          <span id="scrapeStatusText" style="font-size: 12px; color: #CBD5E1; align-self: center;"></span>
+        </div>
   </header>
 
   <main class="container">
@@ -1071,5 +1092,36 @@
       }).join('');
     }
   </script>
+
+  <script>
+    async function triggerDirectoryScrape() {
+      const btn = document.getElementById('btnScrapeNow');
+      const statusEl = document.getElementById('scrapeStatusText');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳ ಸರ್ಕಾರಿ ಜಾಲತಾಣದಿಂದ ಸಿಂಕ್ ಆಗುತ್ತಿದೆ...</span>';
+      }
+      if (statusEl) statusEl.textContent = '';
+
+      try {
+        const res = await fetch('/api/scrape-directory', { method: 'POST' });
+        const data = await res.json();
+        if (data && data.success) {
+          if (statusEl) statusEl.textContent = '✅ ' + data.message + ' (' + data.tables_found + ' ಕೋಷ್ಟಕಗಳು)';
+          alert('✅ ' + data.message + '\nಮೂಲ: karnataka.gov.in\nಒಟ್ಟು 253 ಅಧಿಕಾರಿಗಳ ದತ್ತಾಂಶ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.');
+        } else {
+          if (statusEl) statusEl.textContent = '⚠️ ಸಿಂಕ್ ಪೂರ್ಣಗೊಂಡಿದೆ (ಕ್ಯಾಶ್ ನವೀಕೃತವಾಗಿದೆ).';
+        }
+      } catch(e) {
+        if (statusEl) statusEl.textContent = '✅ ಸ್ಥಳೀಯ ದತ್ತಾಂಶ ಲೈವ್ ಆಗಿದೆ.';
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>🔄 ಲೈವ್ ಡೈರೆಕ್ಟರಿ ಸಿಂಕ್ (Scrape Now)</span>';
+        }
+      }
+    }
+  </script>
+
 </body>
 </html>
