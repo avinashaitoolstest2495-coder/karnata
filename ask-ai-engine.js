@@ -96,9 +96,9 @@ window.AskKARNATAEngine = (function() {
 
     // 5. DISTRICT FARMING + DAM + WEATHER CROSS SYNTHESIS (e.g. Koppal, Mandya, Raichur, Belagavi, etc.)
     const distMatch = findMentionedPlace(q, true);
-    const isFarmingOrWater = q.includes('crop') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || (q.includes('ಬೆಳೆ') && !q.includes('ಬೆಲೆ') && !q.includes('ಚಿನ್ನ') && !q.includes('ಬೆಳ್ಳಿ') && !q.includes('ಬೆಳೆದಿದೆ'));
-    if (distMatch && isFarmingOrWater) {
-      return answerDistrictFarmingSynthesis(q, distMatch.distKey);
+    const isFarmingOrWater = q.includes('crop') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || q.includes('ಭತ್ತ') || q.includes('paddy') || (q.includes('ಬೆಳೆ') && !q.includes('ಬೆಲೆ') && !q.includes('ಚಿನ್ನ') && !q.includes('ಬೆಳ್ಳಿ') && !q.includes('ಬೆಳೆದಿದೆ'));
+    if (isFarmingOrWater) {
+      return answerDistrictFarmingSynthesis(q, distMatch ? distMatch.distKey : null);
     }
 
     // 6. KARNATAKA OFFICERS, DC, SP, TRANSFERS & CIVIL LIST (ಜಿಲ್ಲಾಧಿಕಾರಿ, ಎಸ್ಪಿ, ಐಎಎಸ್, ಐಪಿಎಸ್, ಕೆಎಎಸ್, ವರ್ಗಾವಣೆ)
@@ -386,13 +386,24 @@ window.AskKARNATAEngine = (function() {
       }
     }
 
-    return {
-      placeNameKn: 'ಬೆಂಗಳೂರು ನಗರ',
-      distKey: 'bengaluru_urban',
-      parentDistKn: 'ಬೆಂಗಳೂರು ನಗರ',
-      isTaluk: false,
-      label: 'ಬೆಂಗಳೂರು ನಗರ'
-    };
+    // Check user saved district from site location picker
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const s = JSON.parse(localStorage.getItem('nk_s3') || '{}');
+        if (s && s.districtKey && distMap[s.districtKey]) {
+          return {
+            placeNameKn: distMap[s.districtKey].nameKn,
+            distKey: s.districtKey,
+            parentDistKn: distMap[s.districtKey].nameKn,
+            isTaluk: false,
+            label: distMap[s.districtKey].nameKn,
+            isSavedLocation: true
+          };
+        }
+      }
+    } catch(e) {}
+
+    return null;
   }
 
   // --- 1. MULTI-DIMENSIONAL DISTRICT FARMING & DAM SYNTHESIS ENGINE ---
@@ -400,303 +411,157 @@ window.AskKARNATAEngine = (function() {
     const wData = db.weather || {};
     const dData = db.dams || {};
     const dMap = (dData && dData.dams) ? dData.dams : {};
-    const distWeather = (wData.districts && wData.districts[distKey]) ? wData.districts[distKey] : {
-      name_kn: "ಕೊಪ್ಪಳ",
-      current: { temp_c: 26.9, desc_kn: "ಮೋಡ ☁️", rain_chance: 78, humidity: 66 },
-      forecast: [{ max_temp: 31.6, rain_mm: 1.5 }, { max_temp: 31.7, rain_mm: 8.1 }]
-    };
 
-    const districtDamMap = {
-      'koppal': { damId: 'tungabhadra', nameKn: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (ಮುನಿರಾಬಾದ್)', canals: 'ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (LBMC)' },
-      'bellary': { damId: 'tungabhadra', nameKn: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ', canals: 'ಬಲದಂಡೆ ಕೆಳಮಟ್ಟದ ಕಾಲುವೆ (RBLLC) ಮತ್ತು ರಾಯ ಕಾಲುವೆ' },
-      'vijayanagara': { damId: 'tungabhadra', nameKn: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ', canals: 'ಮುಖ್ಯ ಆಯಕಟ್ಟು ಕಾಲುವೆಗಳು' },
-      'raichur': { damId: 'tungabhadra', nameKn: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ & ಆಲಮಟ್ಟಿ', canals: 'ತುಂಗಭದ್ರಾ ಎಡದಂಡೆ ಕಾಲುವೆ (TLBC)' },
-      'mandya': { damId: 'krs', nameKn: 'ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) & ಹೇಮಾವತಿ', canals: 'ವಿಶ್ವೇಶ್ವರಯ್ಯ (VC) ಕಾಲುವೆ' },
-      'mysore': { damId: 'kabini', nameKn: 'ಕಬಿನಿ & ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯ', canals: 'ಕಬಿನಿ ಬಲದಂಡೆ & ಎಡದಂಡೆ ಕಾಲುವೆಗಳು' },
-      'vijayapura': { damId: 'almatti', nameKn: 'ಆಲಮಟ್ಟಿ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ)', canals: 'ಆಲಮಟ್ಟಿ ಎಡದಂಡೆ & ಬಲದಂಡೆ ಕಾಲುವೆ' },
-      'bagalkot': { damId: 'almatti', nameKn: 'ಆಲಮಟ್ಟಿ & ಮಲಪ್ರಭಾ ಜಲಾಶಯ', canals: 'ಘಟಪ್ರಭಾ-ಮಲಪ್ರಭಾ ಕಾಲುವೆಗಳು' },
-      'belgaum': { damId: 'hidkal', nameKn: 'ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) & ರೇಣುಕಾ ಸಾಗರ', canals: 'ಘಟಪ್ರಭಾ ಮುಖ್ಯ ಕಾಲುವೆ' },
-      'shimoga': { damId: 'bhadra', nameKn: 'ಭದ್ರಾ ಜಲಾಶಯ (ಲಕ್ಕವಳ್ಳಿ)', canals: 'ಭದ್ರಾ ಬಲದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ' },
-      'davangere': { damId: 'bhadra', nameKn: 'ಭದ್ರಾ ಜಲಾಶಯ', canals: 'ದಾವಣಗೆರೆ ಬ್ರಾಂಚ್ ಕಾಲುವೆ' },
-      'hassan': { damId: 'hemavathi', nameKn: 'ಹೇಮಾವತಿ ಜಲಾಶಯ (ಗೊರೂರು)', canals: 'ಹೇಮಾವತಿ ಎಡದಂಡೆ ಕಾಲುವೆ' }
-    };
+    // 1. If NO district mentioned and no saved location, provide State-Wide Authentic Crop Advisory
+    if (!distKey) {
+      const isPaddy = q.includes('ಭತ್ತ') || q.includes('paddy') || q.includes('rice');
+      const isCotton = q.includes('ಹತ್ತಿ') || q.includes('cotton');
+      const isSugarcane = q.includes('ಕಬ್ಬು') || q.includes('sugarcane');
+      const isAreca = q.includes('ಅಡಿಕೆ') || q.includes('arecanut');
 
-    const dInfo = districtDamMap[distKey] || districtDamMap['koppal'];
-    const damObj = dMap[dInfo.damId] || {
-      name_kn: dInfo.nameKn,
-      storage_tmc: 89.4,
-      max_storage_tmc: 105.7,
-      storage_pct: 84.5,
-      inflow_cusecs: 27897.0,
-      outflow_cusecs: 22000.0,
-      status_kn: "✅ ಸಮೃದ್ಧ ನೀರು ಸಂಗ್ರಹ"
-    };
+      let specificCropSection = '';
+      if (isPaddy) {
+        specificCropSection = `#### 🌾 1. ಕರ್ನಾಟಕದಲ್ಲಿ ಭತ್ತ ಬೆಳೆಯುವ ಪ್ರಮುಖ ವಲಯಗಳು (Paddy Growing Regions):
+* **ತುಂಗಭದ್ರಾ & ಕೃಷ್ಣಾ ಅಚ್ಚುಕಟ್ಟು (ಕೊಪ್ಪಳ, ರಾಯಚೂರು, ಬಳ್ಳಾರಿ):** ಸೋನಾ ಮಸೂರಿ (BPT 5204), ಗಂಗಾವತಿ ಸಿರಗುಪ್ಪ ತಳಿಗಳು. ಕಾಲುವೆ ನೀರು ಲಭ್ಯವಿದ್ದಾಗ ಸಮೃದ್ಧ ಇಳುವರಿ.
+* **ಕಾವೇರಿ ಜಲಾನಯನ (ಮಂಡ್ಯ, ಮೈಸೂರು, ಚಾಮರಾಜನಗರ):** ಐಆರ್-64, ಜ್ಯೋತಿ ಮತ್ತು ತನು ತಳಿಗಳು.
+* **ಕರಾವಳಿ & ಮಲೆನಾಡು (ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಶಿವಮೊಗ್ಗ, ಉತ್ತರ ಕನ್ನಡ):** ಮಳೆ ಆಧಾರಿತ ನಾಟಿ ಭತ್ತ (ಪಂಚಮುಖಿ, ಸಹ್ಯಾದ್ರಿ).`;
+      } else {
+        specificCropSection = `#### 🌾 1. ಕರ್ನಾಟಕದ ಕೃಷಿ ವಲಯಗಳ ಪ್ರಮುಖ ಬೆಳೆಗಳು (Regional Crop Zones):
+* **ಉತ್ತರ ಕರ್ನಾಟಕ (ತುಂಗಭದ್ರಾ/ಕೃಷ್ಣಾ ಕಣಿವೆ - ಕೊಪ್ಪಳ, ರಾಯಚೂರು, ಬಳ್ಳಾರಿ, ಬೆಳಗಾವಿ):** ಸೋನಾ ಮಸೂರಿ ಭತ್ತ, ಹತ್ತಿ, ಕಬ್ಬು, ಬಿಳಿ ಜೋಳ, ಸಜ್ಜೆ, ತೊಗರಿ.
+* **ದಕ್ಷಿಣ ಒಳನಾಡು (ಕಾವೇರಿ ಕಣಿವೆ - ಮಂಡ್ಯ, ಮೈಸೂರು, ಹಾಸನ, ತುಮಕೂರು):** ಕಬ್ಬು, ಭತ್ತ, ರಾಗಿ, ತೆಂಗು, ತರಕಾರಿಗಳು.
+* **ಕರಾವಳಿ & ಮಲೆನಾಡು (ಶಿವಮೊಗ್ಗ, ಚಿಕ್ಕಮಗಳೂರು, ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ):** ಅಡಿಕೆ, ಕಾಫಿ, ತೆಂಗು, ಕಾಳುಮೆಣಸು, ಭತ್ತ.
+* **ಮಧ್ಯ ಕರ್ನಾಟಕ (ದಾವಣಗೆರೆ, ಚಿತ್ರದುರ್ಗ):** ಮೆಕ್ಕೆಜೋಳ, ಅಡಿಕೆ, ಶೇಂಗಾ, ಈರುಳ್ಳಿ.`;
+      }
 
-    const dName = distWeather.name_kn || "ಕೊಪ್ಪಳ";
-    const cur = distWeather.current || {};
-    const rainChance = cur.rain_chance || 75;
-    const temp = cur.temp_c || 27;
-
-    const markdownText = `### 🌾 ${dName} ಜಿಲ್ಲೆಯ ಕೃಷಿ, ಹವಾಮಾನ & ಜಲಾಶಯ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ (District Farming Advisory)
+      const markdownText = `### 🌱 ಕರ್ನಾಟಕ ಸಮಗ್ರ ಕೃಷಿ & ಬೆಳೆ ಮಾರ್ಗದರ್ಶಿ (Karnataka State Crop Advisory)
 
 ---
 
-#### 1. 🚰 ಜಲಾಶಯದ ನೀರಿನ ಸಂಗ್ರಹ (Dam Water Status)
-* **ಪ್ರಮುಖ ಜಲಾಶಯ:** **${damObj.name_kn || dInfo.nameKn}**
-* **ಪ್ರಸ್ತುತ ನೀರಿನ ಸಂಗ್ರಹ:** **${(damObj.storage_tmc || damObj.present_storage_tmc || 89.4).toFixed(1)} TMC** / (ಗರಿಷ್ಠ ${(damObj.max_storage_tmc || damObj.design_capacity || 105.7).toFixed(1)} TMC) — **${damObj.storage_pct || 84.5}% ಭರ್ತಿ**
-* **ಒಳಹರಿವು (Inflow):** **${(damObj.inflow_cusecs || 27897).toLocaleString('en-IN')} ಕ್ಯೂಸೆಕ್** | ಹೊರಹರಿವು: ${(damObj.outflow_cusecs || 22000).toLocaleString('en-IN')} ಕ್ಯೂಸೆಕ್
-* **ಸ್ಥಿತಿ:** **${damObj.status_kn || '✅ ಸಮೃದ್ಧ ನೀರು ಲಭ್ಯ'}**
-* **ಮುಖ್ಯ ಕಾಲುವೆಗಳು:** ${dInfo.canals} ಮೂಲಕ ಆಯಕಟ್ಟು ಪ್ರದೇಶಗಳಿಗೆ ಕೃಷಿ ನೀರು ಸರಬರಾಜು ಮಾಡಲಾಗುತ್ತಿದೆ.
+${specificCropSection}
 
 ---
 
-#### 2. 🌧️ ಸ್ಥಳೀಯ ಹವಾಮಾನ & ಮಳೆ ಮುನ್ಸೂಚನೆ (Live Weather Forecast)
-* **ಇಂದಿನ ವಾತಾವರಣ:** ${cur.desc_kn || 'ಮೋಡಕವಿದ ವಾತಾವರಣ ☁️'} | ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ: **${temp}°C**
-* **ಮಳೆ ಸಾಧ್ಯತೆ:** **${rainChance}% ಮಳೆ ಮುನ್ಸೂಚನೆ** (ಮುಂದಿನ 48 ಗಂಟೆಗಳಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಉತ್ತಮ ಮಳೆಯಾಗುವ ನಿರೀಕ್ಷೆ).
-* **ಗಾಳಿಯ ವೇಗ:** ${cur.wind_kmh || 20} km/h | ತೇವಾಂಶ (Humidity): ${cur.humidity || 68}%
-
----
-
-#### 3. 🌱 ಯಾವ ಬೆಳೆ ಬೆಳೆಯಬಹುದು? (Recommended Crops for ${dName})
-
-* **🌾 ಆಯಕಟ್ಟು / ನೀರಾವರಿ ಪ್ರದೇಶಗಳಿಗೆ (Canal Irrigated Areas):**
-  * **ಭತ್ತ (Paddy - ಸೋನಾ ಮಸೂರಿ / BPT 5204 / ಗಂಗಾವತಿ ಸಿರಗುಪ್ಪ ತಳಿಗಳು):** ತುಂಗಭದ್ರಾ ಅಚ್ಚುಕಟ್ಟು ಭಾಗದಲ್ಲಿ ನಾಟಿಗೆ ಅತ್ಯಂತ ಸೂಕ್ತ ಸಮಯ.
-  * **ಕಬ್ಬು (Sugarcane) & ಹತ್ತಿ (Bt Cotton):** ಕಾಲುವೆ ನೀರು ನಿರಂತರ ಲಭ್ಯವಿರುವುದರಿಂದ ಉತ್ತಮ ಇಳುವರಿ ಪಡೆಯಬಹುದು.
-  * **ಮೆಕ್ಕೆಜೋಳ (Maize):** ಕಡಿಮೆ ಅವಧಿಯಲ್ಲಿ ಹೆಚ್ಚಿನ ಆದಾಯ ನೀಡುವ ಬೆಳೆ.
-
-* **🥜 ಖುಷ್ಕಿ / ಒಣಭೂಮಿ ಪ್ರದೇಶಗಳಿಗೆ (Rainfed & Semi-Arid Lands):**
-  * **ಬಿಳಿ ಜೋಳ (Jowar / Maldandi) & ಸಜ್ಜೆ (Bajra):** ಕಡಿಮೆ ನೀರಿನಲ್ಲಿ ಬರ ನಿರೋಧಕವಾಗಿ ಬೆಳೆಯುತ್ತವೆ.
-  * **ತೊಗರಿ (Red Gram - GRG 811 / TS 3R) & ಕಡಲೆಕಾಯಿ (Groundnut):** ಮಳೆಯಾಶ್ರಿತ ಜಮೀನಿಗೆ ಅತ್ಯುತ್ತಮ.
-  * **ಸೂರ್ಯಕಾಂತಿ (Sunflower) & ಈರುಳ್ಳಿ (Onion):** ಮಣ್ಣಿನ ತೇವಾಂಶಕ್ಕೆ ತಕ್ಕಂತೆ ಬಿತ್ತನೆ ಮಾಡಬಹುದು.
-
----
-
-#### 4. 💡 ಕೃಷಿ ತಜ್ಞರ ಪ್ರಮುಖ ಸಲಹೆಗಳು (Farming Action Plan)
-1. **ಬಿತ್ತನೆ ಬೀಜೋಪಚಾರ:** ಬಿತ್ತನೆಗೆ ಮುನ್ನ ಬೀಜಗಳಿಗೆ 'ಟ್ರೈಕೋಡರ್ಮಾ' ಅಥವಾ 'ರೈಜೋಬಿಯಂ' ಜೈವಿಕ ಗೊಬ್ಬರದಿಂದ ಬೀಜೋಪಚಾರ ಮಾಡಿ.
-2. **ರಸಗೊಬ್ಬರ ಸಮತೋಲನ:** ಮಣ್ಣು ಪರೀಕ್ಷಾ ವರದಿಯಂತೆ ಸಾರಜನಕ ಮತ್ತು ರಂಜಕಯುಕ್ತ ಗೊಬ್ಬರಗಳನ್ನು ಹಂತ-ಹಂತವಾಗಿ ನೀಡಿ.
-3. **ಕಾಲುವೆ ನೀರು ನಿರ್ವಹಣೆ:** ಐಸಿಸಿಸಿ (ICCC) ವೇಳಾಪಟ್ಟಿಯಂತೆ ಕಾಲುವೆ ನೀರು ಹರಿಯುವ ದಿನಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಹೊಲಗಳಿಗೆ ನೀರು ಹಾಯಿಸಿ.`;
-
-    return {
-      text: markdownText,
-      cards: [
-        { title: `${damObj.name_kn || 'ಜಲಾಶಯ'} ಲೈವ್ ಮಟ್ಟ ಪುಟ`, url: "/dam-levels.html", icon: "🚰", subtitle: "ದೈನಂದಿನ ಒಳಹರಿವು & ನೀರಿನ ಸಂಗ್ರಹ ವಿವರ" },
-        { title: `${dName} ಹವಾಮಾನ & ಮಳೆ ಮುನ್ಸೂಚನೆ`, url: "/weather.html", icon: "🌤️", subtitle: "7 ದಿನಗಳ ಗಂಟೆವಾರು ಮಳೆ ವರದಿ" },
-        { title: "APMC ಮಾರುಕಟ್ಟೆ ಬೆಳೆ ಧಾರಣೆ", url: "/apmc-prices.html", icon: "🌾", subtitle: "ಇಂದಿನ ಬೆಳೆಗಳ ಸರಾಸರಿ ಧಾರಣೆ" }
-      ],
-      followups: [
-        `${damObj.name_kn} ಜಲಾಶಯದಿಂದ ಎಷ್ಟು ಕ್ಯೂಸೆಕ್ ನೀರು ಹೊರಬಿಡಲಾಗುತ್ತಿದೆ?`,
-        `${dName} APMC ಯಲ್ಲಿ ಇಂದಿನ ಬೆಳೆಗಳ ಬೆಲೆ ಎಷ್ಟು?`,
-        "ಮುಂದಿನ ವಾರ ಕೊಪ್ಪಳದಲ್ಲಿ ಭಾರಿ ಮಳೆ ಬರುವುದೇ?"
-      ]
-    };
-  }
-
-  // --- 2. SPECIFIC DAM LEVEL & WATER STORAGE ENGINE ---
-  function answerDamQuery(q) {
-    const dData = db.dams || {};
-    const dMap = (dData && dData.dams) ? dData.dams : {};
-
-    let targetKey = null;
-    if (q.includes('tungabhadra') || q.includes('ತುಂಗಭದ್ರಾ') || q.includes('munirabad') || q.includes('ಮುನಿರಾಬಾದ್')) targetKey = 'tungabhadra';
-    else if (q.includes('krs') || q.includes('ಕೆಆರ್‌ಎಸ್') || q.includes('ಕೃಷ್ಣರಾಜ') || q.includes('ಕಾವೇರಿ')) targetKey = 'krs';
-    else if (q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಕೃಷ್ಣ')) targetKey = 'almatti';
-    else if (q.includes('kabini') || q.includes('ಕಬಿನಿ')) targetKey = 'kabini';
-    else if (q.includes('bhadra') || q.includes('ಭದ್ರಾ')) targetKey = 'bhadra';
-    else if (q.includes('hemavathi') || q.includes('ಹೇಮಾವತಿ') || q.includes('gorur')) targetKey = 'hemavathi';
-    else if (q.includes('harangi') || q.includes('ಹಾರಂಗಿ')) targetKey = 'harangi';
-    else if (q.includes('malaprabha') || q.includes('ಮಲಪ್ರಭಾ') || q.includes('navilatirtha')) targetKey = 'malaprabha';
-    else if (q.includes('ghataprabha') || q.includes('ಘಟಪ್ರಭಾ') || q.includes('hidkal')) targetKey = 'ghataprabha';
-    else if (q.includes('linganamakki') || q.includes('ಲಿಂಗನಮಕ್ಕಿ')) targetKey = 'linganamakki';
-    else if (q.includes('supa') || q.includes('ಸೂಪಾ')) targetKey = 'supa';
-    else if (q.includes('vani') || q.includes('ವಾಣಿ ವಿಲಾಸ') || q.includes('marikanive')) targetKey = 'vani_vilasa_sagar';
-
-    if (targetKey && dMap[targetKey]) {
-      const d = dMap[targetKey];
-      const storage = (d.storage_tmc || d.present_storage_tmc || 0).toFixed(2);
-      const maxStorage = (d.max_storage_tmc || d.design_capacity || 0).toFixed(2);
-      const pct = (d.storage_pct || ((storage / (maxStorage || 1)) * 100)).toFixed(1);
-      const level = d.level_ft ? `${d.level_ft.toFixed(1)} ಅಡಿ` : "ಗರಿಷ್ಠ ಮಟ್ಟದಲ್ಲಿ";
-      const inflow = (d.inflow_cusecs || 0).toLocaleString('en-IN');
-      const outflow = (d.outflow_cusecs || 0).toLocaleString('en-IN');
-
-      const markdownText = `### 🚰 ${d.name_kn || d.name_en} ಇಂದಿನ ಸಂಪೂರ್ಣ ನೀರಿನ ಮಟ್ಟ (Live Dam Status)
-
----
-
-* **ನದಿ ಮತ್ತು ಜಲಾನಯನ:** **${d.river_kn || 'ಕೃಷ್ಣಾ / ಕಾವೇರಿ'} ನದಿ** (${d.basin || 'ಕರ್ನಾಟಕ ಜಲಾನಯನ'})
-* **ಸ್ಥಳ / ಜಿಲ್ಲೆ:** **${d.district_en || d.district_kn || 'ಕರ್ನಾಟಕ'}**
-* **ಪ್ರಸ್ತುತ ನೀರಿನ ಸಂಗ್ರಹ:** **${storage} TMC** / (ಗರಿಷ್ಠ ${maxStorage} TMC)
-* **ಶೇಕಡಾವಾರು ಭರ್ತಿ:** **${pct}% ಭರ್ತಿಯಾಗಿದೆ** 🟢
-* **ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ:** **${level}**
-* **ಒಳಹರಿವು (Inflow):** **${inflow} ಕ್ಯೂಸೆಕ್ (Cusecs)**
-* **ಹೊರಹರಿವು (Outflow):** **${outflow} ಕ್ಯೂಸೆಕ್ (Cusecs)**
-* **ಸ್ಥಿತಿ / ಎಚ್ಚರಿಕೆ:** **${d.status_kn || (pct > 90 ? '⚠️ ಗರಿಷ್ಠ ಮಟ್ಟ — ನದಿಗೆ ನೀರು ಬಿಡುಗಡೆ' : '✅ ಉತ್ತಮ ನೀರಿನ ಸಂಗ್ರಹ')}**
-
----
-
-#### 🌾 ಕೃಷಿ ಮತ್ತು ಕುಡಿಯುವ ನೀರು ಬಳಕೆ:
-1. **ಆಯಕಟ್ಟು ಕಾಲುವೆಗಳಿಗೆ ನೀರು:** ಈ ಜಲಾಶಯದ ಕಾಲುವೆಗಳ ಮೂಲಕ ಕೃಷಿ ಭೂಮಿಗೆ ನಿರಂತರ ನೀರು ಹರಿಸಲಾಗುತ್ತಿದ್ದು, ಮುಂಗಾರು ಹಾಗೂ ಖಾರಿಫ್ ಬೆಳೆಗಳಿಗೆ ಸಮೃದ್ಧ ನೀರು ಲಭ್ಯವಿದೆ.
-2. **ಕುಡಿಯುವ ನೀರಿನ ಭದ್ರತೆ:** ಸುತ್ತಮುತ್ತಲಿನ ನಗರ ಹಾಗೂ ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳಿಗೆ ಕುಡಿಯುವ ನೀರಿಗೆ ಯಾವುದೇ ಕೊರತೆಯಿಲ್ಲ.`;
+#### 💡 ಕೃಷಿ ಸಲಹೆ:
+1. **ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ನಿಖರ ಸಲಹೆ ಪಡೆಯಲು:** ಪ್ರಶ್ನೆಯಲ್ಲಿ ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ಹೆಸರು (ಉದಾ: *"ಕೊಪ್ಪಳದಲ್ಲಿ ಭತ್ತ ಬೆಳೆಯಬಹುದಾ?"* ಅಥವಾ *"ಮಂಡ್ಯದಲ್ಲಿ ಕಬ್ಬು ಬೆಳೆಯಬಹುದಾ?"*) ಉಲ್ಲೇಖಿಸಿ.
+2. **ಜಲಾಶಯ & APMC ದರಗಳು:** ಕೃಷಿ ನಿರ್ಧಾರಕ್ಕೂ ಮುನ್ನ ಸ್ಥಳೀಯ ಅಣೆಕಟ್ಟು ನೀರಿನ ಲಭ್ಯತೆ ಮತ್ತು APMC ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.`;
 
       return {
         text: markdownText,
         cards: [
-          { title: "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಪಟ್ಟಿ", url: "/dam-levels.html", icon: "🚰", subtitle: "ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ, ತುಂಗಭದ್ರಾ ರಿಯಲ್-ಟೈಮ್ ಡೇಟಾ" }
+          { title: "13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧", subtitle: "ತುಂಗಭದ್ರಾ, KRS, ಆಲಮಟ್ಟಿ ಲೈವ್ ಮಟ್ಟ" },
+          { title: "APMC ಮಾರುಕಟ್ಟೆ ಕೃಷಿ ದರಗಳು", url: "/apmc-prices.html", icon: "🌾", subtitle: "174 ಮಂಡಿಗಳ 1,800+ ಬೆಳೆ ಬೆಲೆಗಳು" },
+          { title: "31 ಜಿಲ್ಲೆಗಳ ಹವಾಮಾನ & ಮಳೆ", url: "/weather.html", icon: "🌤️", subtitle: "7 ದಿನಗಳ ಮಳೆ ಮುನ್ಸೂಚನೆ" }
         ],
         followups: [
-          `${d.name_kn} ಜಲಾಶಯದ ಆಯಕಟ್ಟಿನಲ್ಲಿ ಯಾವ ಬೆಳೆ ಬೆಳೆಯಬಹುದು?`,
-          "ಆಲಮಟ್ಟಿ ಮತ್ತು ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?",
-          "ಇಂದು ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡಿನಲ್ಲಿ ಮಳೆ ಹೇಗಿದೆ?"
+          "ಕೊಪ್ಪಳ ಜಿಲ್ಲೆಯಲ್ಲಿ ಭತ್ತ ಮತ್ತು ಹತ್ತಿ ಇಳುವರಿ ಹೇಗಿದೆ?",
+          "ಮಂಡ್ಯ ಜಿಲ್ಲೆಯಲ್ಲಿ ಕಬ್ಬು ಮತ್ತು ಭತ್ತಕ್ಕೆ KRS ನೀರು ಸಿಗುತ್ತದೆಯೇ?",
+          "ಇಂದಿನ ಪ್ರಮುಖ APMC ಬೆಳೆ ಧಾರಣೆ ಎಷ್ಟು?"
         ]
       };
     }
 
-    // Default: Top Major Karnataka Dams Overview
-    const dList = Object.values(dMap).slice(0, 6);
-    const rows = dList.map(d => {
-      const curTmc = (d.storage_tmc || d.present_storage_tmc || 0).toFixed(1);
-      const maxTmc = (d.max_storage_tmc || d.design_capacity || 0).toFixed(1);
-      const p = (d.storage_pct || ((curTmc / (maxTmc || 1)) * 100)).toFixed(1);
-      return `* **${d.name_kn || d.name_en}:** **${curTmc} TMC** / ${maxTmc} TMC (**${p}% ಭರ್ತಿ**) | ಒಳಹರಿವು: ${(d.inflow_cusecs || 0).toLocaleString('en-IN')} ಕ್ಯೂಸೆಕ್`;
-    }).join('\n');
+    // 2. Comprehensive 31 District Irrigation & Dam Mapping
+    const districtDamMap = {
+      'koppal': { damId: 'tungabhadra', damName: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (ಮುನಿರಾಬಾದ್)', canals: 'ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (LBMC)', distKn: 'ಕೊಪ್ಪಳ', crops: 'ಸೋನಾ ಮಸೂರಿ ಭತ್ತ (ಗಂಗಾವತಿ), ಬಿಟಿ ಹತ್ತಿ, ದಾಳಿಂಬೆ, ಸಜ್ಜೆ, ತೊಗರಿ' },
+      'bellary': { damId: 'tungabhadra', damName: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ', canals: 'ಬಲದಂಡೆ ಕೆಳಮಟ್ಟದ ಕಾಲುವೆ (RBLLC)', distKn: 'ಬಳ್ಳಾರಿ', crops: 'ಭತ್ತ, ಹತ್ತಿ, ಮೆಣಸಿನಕಾಯಿ, ಮೆಕ್ಕೆಜೋಳ' },
+      'vijayanagara': { damId: 'tungabhadra', damName: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (ಹೊಸಪೇಟೆ)', canals: 'ರಾಯ ಮತ್ತು ಬಸವಣ್ಣ ಕಾಲುವೆಗಳು', distKn: 'ವಿಜಯನಗರ', crops: 'ಕಬ್ಬು, ಭತ್ತ, ಬಾಳೆ, ಹತ್ತಿ' },
+      'raichur': { damId: 'tungabhadra', damName: 'ತುಂಗಭದ್ರಾ ಜಲಾಶಯ & ಆಲಮಟ್ಟಿ', canals: 'ತುಂಗಭದ್ರಾ ಎಡದಂಡೆ ಕಾಲುವೆ (TLBC)', distKn: 'ರಾಯಚೂರು', crops: 'ಸೋನಾ ಮಸೂರಿ ಭತ್ತ, ಹತ್ತಿ, ತೊಗರಿ, ಸಜ್ಜೆ' },
+      'mandya': { damId: 'krs', damName: 'ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) & ಹೇಮಾವತಿ', canals: 'ವಿಶ್ವೇಶ್ವರಯ್ಯ (VC) ಕಾಲುವೆ', distKn: 'ಮಂಡ್ಯ', crops: 'ಕಬ್ಬು (ಸಕ್ಕರೆ ನಾಡು), ಭತ್ತ, ರಾಗಿ, ಬಾಳೆ' },
+      'mysore': { damId: 'kabini', damName: 'ಕಬಿನಿ & ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯ', canals: 'ಕಬಿನಿ ಬಲದಂಡೆ & ಎಡದಂಡೆ ಕಾಲುವೆ', distKn: 'ಮೈಸೂರು', crops: 'ಭತ್ತ, ರಾಗಿ, ಕಬ್ಬು, ತಂಬಾಕು, ನಂಜನಗೂಡು ರಸಬಾಳೆ' },
+      'chamarajanagar': { damId: 'kabini', damName: 'ಕಬಿನಿ & ಸುವರ್ಣಾವತಿ ಜಲಾಶಯ', canals: 'ಸುವರ್ಣಾವತಿ ಕಾಲುವೆ', distKn: 'ಚಾಮರಾಜನಗರ', crops: 'ರಾಗಿ, ಕಬ್ಬು, ಅರಿಶಿನ, ಬಾಳೆ, ಮೆಕ್ಕೆಜೋಳ' },
+      'ramanagara': { damId: 'krs', damName: 'ಮಂಚನಬೆಲೆ & ಅರ್ಕಾವತಿ/ಕಾವೇರಿ', canals: 'ಇಗ್ಗಲೂರು ಬ್ಯಾರೇಜ್', distKn: 'ರಾಮನಗರ', crops: 'ರೇಷ್ಮೆ (ಸಿಲ್ಕ್ ಸಿಟಿ), ರಾಗಿ, ಮಾವು, ತೆಂಗು' },
+      'bengaluru_urban': { damId: null, damName: 'ಕಾವೇರಿ ಜಲಾನಯನ & ಕೊಳವೆಬಾವಿ', canals: 'ಹನಿ ನೀರಾವರಿ & ಕೆರೆಗಳು', distKn: 'ಬೆಂಗಳೂರು ನಗರ', crops: 'ತರಕಾರಿಗಳು, ಹೂವುಗಳು (ಫ್ಲೋರಿಕಲ್ಚರ್), ಬೆಂಗಳೂರು ಬ್ಲೂ ದ್ರಾಕ್ಷಿ, ರಾಗಿ' },
+      'bengaluru_rural': { damId: null, damName: 'ಅರ್ಕಾವತಿ ನದಿ & ಕೊಳವೆಬಾವಿ', canals: 'ಎತ್ತಿನಹೊಳೆ & ಕೆರೆ ಮರುಪೂರಣ', distKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', crops: 'ರಾಗಿ, ತರಕಾರಿಗಳು, ದ್ರಾಕ್ಷಿ, ಹೂವು' },
+      'kolar': { damId: null, damName: 'ಕೆಸಿ ವ್ಯಾಲಿ & ಕೊಳವೆಬಾವಿ ನೀರಾವರಿ', canals: 'ಕೆಸಿ ವ್ಯಾಲಿ ಸಂಸ್ಕರಿಸಿದ ನೀರು ಮರುಪೂರಣ', distKn: 'ಕೋಲಾರ', crops: 'ಟೊಮೆಟೊ (ಏಷ್ಯಾದ ದೊಡ್ಡ ಮಾರುಕಟ್ಟೆ), ರಾಗಿ, ಮಾವು, ರೇಷ್ಮೆ' },
+      'chikkaballapura': { damId: null, damName: 'ಹೆಚ್‌ಎನ್ ವ್ಯಾಲಿ & ಕೊಳವೆಬಾವಿ', canals: 'ಹೆಚ್‌ಎನ್ ವ್ಯಾಲಿ ಕೆರೆ ಮರುಪೂರಣ', distKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', crops: 'ದ್ರಾಕ್ಷಿ, ರೇಷ್ಮೆ (ಹಿಪ್ಪುನೇರಳೆ), ತರಕಾರಿ, ರಾಗಿ' },
+      'tumakuru': { damId: 'hemavathi', damName: 'ಹೇಮಾವತಿ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಕಾಲುವೆ', canals: 'ಹೇಮಾವತಿ ನಾಲಾ ಜಾಲ', distKn: 'ತುಮಕೂರು', crops: 'ತೆಂಗು (ಕಲ್ಪತರು ನಾಡು), ರಾಗಿ, ಅಡಿಕೆ, ಶೇಂಗಾ' },
+      'chitradurga': { damId: 'vani_vilasa_sagar', damName: 'ವಾಣಿ ವಿಲಾಸ ಸಾಗರ (ಮಾರಿಕಣಿವೆ)', canals: 'ವಾಣಿ ವಿಲಾಸ ಕಾಲುವೆ', distKn: 'ಚಿತ್ರದುರ್ಗ', crops: 'ಅಡಿಕೆ, ಶೇಂಗಾ, ಈರುಳ್ಳಿ, ದಾಳಿಂಬೆ, ಸಜ್ಜೆ' },
+      'davanagere': { damId: 'bhadra', damName: 'ಭದ್ರಾ ಜಲಾಶಯ (ಲಕ್ಕವಳ್ಳಿ)', canals: 'ದಾವಣಗೆರೆ ಶಾಖಾ ಕಾಲುವೆ', distKn: 'ದಾವಣಗೆರೆ', crops: 'ಭತ್ತ (ಬೆಣ್ಣೆ ನಗರಿ), ಅಡಿಕೆ, ಮೆಕ್ಕೆಜೋಳ, ಕಬ್ಬು' },
+      'shivamogga': { damId: 'bhadra', damName: 'ಭದ್ರಾ & ಲಿಂಗನಮಕ್ಕಿ ಜಲಾಶಯ', canals: 'ಭದ್ರಾ ಬಲದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ', distKn: 'ಶಿವಮೊಗ್ಗ', crops: 'ಅಡಿಕೆ, ಭತ್ತ, ಶುಂಠಿ, ಮೆಕ್ಕೆಜೋಳ, ವೆನಿಲ್ಲಾ' },
+      'hassan': { damId: 'hemavathi', damName: 'ಹೇಮಾವತಿ ಜಲಾಶಯ (ಗೊರೂರು)', canals: 'ಹೇಮಾವತಿ ಎಡದಂಡೆ ಕಾಲುವೆ', distKn: 'ಹಾಸನ', crops: 'ಕಾಫಿ, ಮೆಕ್ಕೆಜೋಳ, ಆಲೂಗಡ್ಡೆ, ತೆಂಗು, ಭತ್ತ' },
+      'chikkamagaluru': { damId: 'bhadra', damName: 'ಭದ್ರಾ ಜಲಾಶಯ ಜಲಾನಯನ', canals: 'ಭದ್ರಾ ನದಿ ಕಾಲುವೆಗಳು', distKn: 'ಚಿಕ್ಕಮಗಳೂರು', crops: 'ಕಾಫಿ (ಭಾರತದ ಕಾಫಿ ತೊಟ್ಟಿಲು), ಅಡಿಕೆ, ಏಲಕ್ಕಿ, ಮೆಣಸು' },
+      'kodagu': { damId: 'harangi', damName: 'ಹಾರಂಗಿ ಜಲಾಶಯ (ಹುದೂರು)', canals: 'ಹಾರಂಗಿ ಕಾಲುವೆ', distKn: 'ಕೊಡಗು', crops: 'ಕಾಫಿ, ಕಾಳುಮೆಣಸು, ಕಿತ್ತಳೆ, ಏಲಕ್ಕಿ, ಭತ್ತ' },
+      'belagavi': { damId: 'hidkal', damName: 'ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) & ಮಲಪ್ರಭಾ', canals: 'ಘಟಪ್ರಭಾ ಮುಖ್ಯ ಕಾಲುವೆ', distKn: 'ಬೆಳಗಾವಿ', crops: 'ಕಬ್ಬು (ಸಕ್ಕರೆ ರಾಜಧಾನಿ), ಸೋಯಾಬೀನ್, ತಂಬಾಕು, ಗೋಧಿ, ಹತ್ತಿ' },
+      'bagalkot': { damId: 'almatti', damName: 'ಆಲಮಟ್ಟಿ & ಮಲಪ್ರಭಾ ಜಲಾಶಯ', canals: 'ಆಲಮಟ್ಟಿ ಎಡದಂಡೆ & ಮಲಪ್ರಭಾ', distKn: 'ಬಾಗಲಕೋಟೆ', crops: 'ಕಬ್ಬು, ದಾಳಿಂಬೆ, ಮೆಕ್ಕೆಜೋಳ, ತೊಗರಿ, ಸೂರ್ಯಕಾಂತಿ' },
+      'vijayapura': { damId: 'almatti', damName: 'ಆಲಮಟ್ಟಿ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ)', canals: 'ಆಲಮಟ್ಟಿ ಬಲದಂಡೆ ಕಾಲುವೆ', distKn: 'ವಿಜಯಪುರ', crops: 'ದ್ರಾಕ್ಷಿ, ದಾಳಿಂಬೆ, ನಿಂಬೆ, ಬಿಳಿ ಜೋಳ' },
+      'kalaburagi': { damId: 'karanja', damName: 'ಬೆಣ್ಣೆತೊರಾ ಜಲಾಶಯ', canals: 'ಬೆಣ್ಣೆತೊರಾ ಕಾಲುವೆ', distKn: 'ಕಲಬುರಗಿ', crops: 'ತೊಗರಿ (ತೊಗರಿ ಕಣಜ - GI Tag), ಸೋಯಾಬೀನ್, ಸೂರ್ಯಕಾಂತಿ' },
+      'yadgir': { damId: 'almatti', damName: 'ನಾರಾಯಣಪುರ ಜಲಾಶಯ (ಬಸವಸಾಗರ)', canals: 'ನಾರಾಯಣಪುರ ಎಡದಂಡೆ (NLBC)', distKn: 'ಯಾದಗಿರಿ', crops: 'ಭತ್ತ, ಹತ್ತಿ, ತೊಗರಿ, ಸಜ್ಜೆ' },
+      'bidar': { damId: 'karanja', damName: 'ಕಾರಂಜಾ ಜಲಾಶಯ (ಭಾಲ್ಕಿ)', canals: 'ಕಾರಂಜಾ ಕಾಲುವೆ', distKn: 'ಬೀದರ್', crops: 'ಸೋಯಾಬೀನ್, ಕಬ್ಬು, ತೊಗರಿ, ಹೆಸರುಕಾಳು' },
+      'dharwad': { damId: 'malaprabha', damName: 'ಮಲಪ್ರಭಾ ಜಲಾಶಯ (ನವಿಲುತೀರ್ಥ)', canals: 'ಮಲಪ್ರಭಾ ಕಾಲುವೆ', distKn: 'ಧಾರವಾಡ', crops: 'ಹತ್ತಿ, ಸೋಯಾಬೀನ್, ಗೋಧಿ, ಮೆಕ್ಕೆಜೋಳ' },
+      'gadag': { damId: 'tungabhadra', damName: 'ತುಂಗಭದ್ರಾ & ಸಿಂಗಟಾಲೂರು', canals: 'ಸಿಂಗಟಾಲೂರು ಏತ ನೀರಾವರಿ', distKn: 'ಗದಗ', crops: 'ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ, ಶೇಂಗಾ, ಹತ್ತಿ, ಈರುಳ್ಳಿ' },
+      'haveri': { damId: 'tungabhadra', damName: 'ವರದಾ & ತುಂಗಭದ್ರಾ ನದಿ', canals: 'ಏತ ನೀರಾವರಿ ಕಾಲುವೆಗಳು', distKn: 'ಹಾವೇರಿ', crops: 'ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ (GI Tag), ಮೆಕ್ಕೆಜೋಳ, ಹತ್ತಿ' },
+      'uttara_kannada': { damId: 'linganamakki', damName: 'ಸೂಪಾ & ಶರಾವತಿ ಜಲಾನಯನ', canals: 'ಕರಾವಳಿ ನದಿಗಳು', distKn: 'ಉತ್ತರ ಕನ್ನಡ', crops: 'ಅಡಿಕೆ, ಭತ್ತ, ಸಂಬಾರ ಪದಾರ್ಥ, ತೆಂಗು' },
+      'udupi': { damId: null, damName: 'ವರಾಹಿ ನೀರಾವರಿ ಯೋಜನೆ', canals: 'ವರಾಹಿ ಎಡದಂಡೆ ಕಾಲುವೆ', distKn: 'ಉಡುಪಿ', crops: 'ತೆಂಗು, ಅಡಿಕೆ, ಭತ್ತ, ಮಟ್ಟುಗುಳ್ಳ ಬದನೆ (GI Tag)' },
+      'dakshina_kannada': { damId: null, damName: 'ನೇತ್ರಾವತಿ & ಗುರುಪುರ ಜಲಾನಯನ', canals: 'ತುಂಬೆ ವೆಂಟೆಡ್ ಡ್ಯಾಂ', distKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ', crops: 'ಅಡಿಕೆ, ತೆಂಗು, ಗೇರುಬೀಜ, ರಬ್ಬರ್, ಭತ್ತ' }
+    };
 
-    const markdownText = `### 🚰 ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ಇಂದಿನ ನೀರಿನ ಮಟ್ಟ (Karnataka Dam Water Levels)
+    const dInfo = districtDamMap[distKey] || districtDamMap['koppal'];
+    const damObj = dInfo.damId ? (dMap[dInfo.damId] || {}) : null;
+    const distWeather = (wData.districts && wData.districts[distKey]) ? wData.districts[distKey] : {};
+    const dName = dInfo.distKn || "ಕೊಪ್ಪಳ";
+    const cur = distWeather.current || {};
+    const rainChance = cur.rain_chance || 70;
+    const temp = cur.temp_c || 28;
 
-${rows}
+    let damSection = '';
+    if (damObj && damObj.name_kn) {
+      const storage = (damObj.storage_tmc || damObj.present_storage_tmc || 0).toFixed(1);
+      const maxStorage = (damObj.max_storage_tmc || damObj.design_capacity || 0).toFixed(1);
+      const pct = (damObj.storage_pct || ((storage / (maxStorage || 1)) * 100)).toFixed(1);
+      const inflow = (damObj.inflow_cusecs || 0).toLocaleString('en-IN');
+      const outflow = (damObj.outflow_cusecs || 0).toLocaleString('en-IN');
+
+      damSection = `#### 1. 🚰 ಜಲಾಶಯ & ನೀರಾವರಿ ಲಭ್ಯತೆ (Irrigation & Dam Status)
+* **ಪ್ರಮುಖ ಜಲಾಶಯ:** **${damObj.name_kn}**
+* **ಪ್ರಸ್ತುತ ನೀರಿನ ಸಂಗ್ರಹ:** **${storage} TMC** / (ಗರಿಷ್ಠ ${maxStorage} TMC) — **${pct}% ಭರ್ತಿ** 🟢
+* **ಒಳಹರಿವು:** **${inflow} ಕ್ಯೂಸೆಕ್** | **ಹೊರಹರಿವು:** **${outflow} ಕ್ಯೂಸೆಕ್**
+* **ಮುಖ್ಯ ಕಾಲುವೆಗಳು:** ${dInfo.canals} ಮೂಲಕ ಆಯಕಟ್ಟು ಪ್ರದೇಶಗಳಿಗೆ ಕೃಷಿ ನೀರು ಲಭ್ಯವಿದೆ.`;
+    } else {
+      damSection = `#### 1. 🚰 ನೀರಾವರಿ ಮೂಲ (Irrigation Source for ${dName})
+* **ಪ್ರಮುಖ ಮೂಲ:** **${dInfo.damName}**
+* **ವ್ಯವಸ್ಥೆ:** ${dInfo.canals} ಹಾಗೂ ಮಳೆಯಾಶ್ರಿತ ಕೆರೆಗಳ ಮೂಲಕ ಕೃಷಿ ಕೈಗೊಳ್ಳಲಾಗುತ್ತದೆ.`;
+    }
+
+    const markdownText = `### 🌾 ${dName} ಜಿಲ್ಲೆಯ ಕೃಷಿ, ಹವಾಮಾನ & ಬೆಳೆ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ
 
 ---
-💧 **ವರದಿ:** ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ ಸುರಿದ ಉತ್ತಮ ಮಳೆಯಿಂದಾಗಿ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಲ್ಲಿ ನೀರಿನ ಸಂಗ್ರಹ ಸುಸ್ಥಿತಿಯಲ್ಲಿದ್ದು, ಕೃಷಿ ಮತ್ತು ಕುಡಿಯುವ ನೀರಿಗೆ ಸಮೃದ್ಧ ನೀರು ಲಭ್ಯವಿದೆ.`;
+
+${damSection}
+
+---
+
+#### 2. 🌧️ ಸ್ಥಳೀಯ ಹವಾಮಾನ & ಮಳೆ ಮುನ್ಸೂಚನೆ (Live Weather Forecast)
+* **ಇಂದಿನ ಹವಾಮಾನ:** ${cur.desc_kn || 'ಮೋಡಕವಿದ ವಾತಾವರಣ ☁️'} | ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ: **${temp}°C**
+* **ಮಳೆ ಸಾಧ್ಯತೆ:** **${rainChance}% ಮಳೆ ಮುನ್ಸೂಚನೆ**
+* **ತೇವಾಂಶ (Humidity):** ${cur.humidity || 65}% | ಗಾಳಿಯ ವೇಗ: ${cur.wind_kmh || 18} km/h
+
+---
+
+#### 3. 🌱 ${dName} ಜಿಲ್ಲೆಗೆ ಸೂಕ್ತ ಬೆಳೆಗಳು (Recommended Crops):
+* **🌾 ಪ್ರಮುಖ ಶಿಫಾರಸು ಬೆಳೆಗಳು:** **${dInfo.crops}**
+* **💡 ಕೃಷಿ ಸಲಹೆ:** ಮಣ್ಣಿನ ತೇವಾಂಶ ಮತ್ತು ಹವಾಮಾನ ವರದಿ ಆಧರಿಸಿ ಬಿತ್ತನೆ ಕಾರ್ಯ ಕೈಗೊಳ್ಳಿ. ಬಿತ್ತನೆ ಬೀಜೋಪಚಾರಕ್ಕೆ ಜೈವಿಕ ಗೊಬ್ಬರ ಬಳಸಿ.`;
+
+    const cards = [
+      { title: `${dName} ಜಿಲ್ಲಾ ವಿವರ`, url: `/districts/${distKey}.html`, icon: "🗺️", subtitle: "ಜಿಲ್ಲೆಯ ತಾಲೂಕುಗಳು & ಕೃಷಿ ಮಾಹಿತಿ" },
+      { title: "APMC ಮಾರುಕಟ್ಟೆ ಕೃಷಿ ದರಗಳು", url: "/apmc-prices.html", icon: "🌾", subtitle: "ಇಂದಿನ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳು" }
+    ];
+    if (dInfo.damId) {
+      cards.unshift({ title: "13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧", subtitle: `${dInfo.damName} ಲೈವ್ ಮಟ್ಟ` });
+    }
 
     return {
       text: markdownText,
-      cards: [
-        { title: "13 ಜಲಾಶಯಗಳ ಸಂಪೂರ್ಣ ಲೈವ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", url: "/dam-levels.html", icon: "🚰", subtitle: "ದೈನಂದಿನ ಒಳಹರಿವು, ಹೊರಹರಿವು & ಗರಿಷ್ಠ ಮಟ್ಟ" }
-      ],
+      cards: cards,
       followups: [
-        "ತುಂಗಭದ್ರಾ ಡ್ಯಾಂನಲ್ಲಿ ಪ್ರಸ್ತುತ ಎಷ್ಟು ನೀರಿದೆ?",
-        "ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯದ ಇಂದಿನ ಒಳಹರಿವು ಎಷ್ಟು?",
-        "ಆಲಮಟ್ಟಿ ಡ್ಯಾಂ ಗೇಟ್‌ಗಳಿಂದ ಎಷ್ಟು ನೀರು ಹೊರಬಿಡಲಾಗುತ್ತಿದೆ?"
+        `${dName} APMC ಯಲ್ಲಿ ಇಂದಿನ ಪ್ರಮುಖ ಬೆಳೆ ದರ ಎಷ್ಟು?`,
+        `${dName} ಜಿಲ್ಲೆಯ ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ವರದಿ ತಿಳಿಸಿ`,
+        "ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಕೃಷಿ ಭಾಗ್ಯ ಯೋಜನೆ ಎಂದರೇನು?"
       ]
     };
-  }
+}
 
-  // --- 2.1 KANNADA LITERATURE & 8 JNANPITH AWARDEES ---
-  function answerLiteratureQuery(q) {
-    const text = `### 📚 ಕನ್ನಡ ಸಾಹಿತ್ಯ & 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರು (Kannada Literature & 8 Jnanpith Laureates)
 
-ಕನ್ನಡ ಭಾಷೆಯು ಭಾರತದಲ್ಲೇ ಎರಡನೇ ಅತಿ ಹೆಚ್ಚು **8 ಜ್ಞಾನಪೀಠ ಪ್ರಶಸ್ತಿಗಳನ್ನು** ಪಡೆದ ಅತ್ಯಂತ ಸಮೃದ್ಧ ಶಾಸ್ತ್ರೀಯ ಭಾಷೆಯಾಗಿದೆ.
-
----
-
-#### 🏆 ಕನ್ನಡದ 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ:
-
-1. **ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು (ಕೆ.ವಿ. ಪುಟ್ಟಪ್ಪ - 1967):**
-   * *ಕೃತಿ:* **ಶ್ರೀ ರಾಮಾಯಣ ದರ್ಶನಂ** (ಜ್ಞಾನಪೀಠ ಪಡೆದ ಪ್ರಥಮ ಕನ್ನಡಿಗ).
-   * *ಕೊಡುಗೆ:* ವಿಶ್ವಮಾನವ ಸಂದೇಶ, "ಜಯ ಭಾರತ ಜನನಿಯ ತನುಜಾತೆ" ರಾಜ್ಯಗೀತೆ ರಚನೆಕಾರರು.
-
-2. **ದ.ರಾ. ಬೇಂದ್ರೆ (ದತ್ತಾತ್ರೇಯ ರಾಮಚಂದ್ರ ಬೇಂದ್ರೆ - 1973):**
-   * *ಕೃತಿ:* **ನಾಕುತಂತಿ**
-   * *ಬಿರುದು:* ವರಕವಿ (ಕನ್ನಡ ಗೀತಾ ಸಾಹಿತ್ಯದ ಮಾಂತ್ರಿಕ).
-
-3. **ಡಾ. ಕೆ. ಶಿವರಾಮ ಕಾರಂತ (1977):**
-   * *ಕೃತಿ:* **ಮೂಕಜ್ಜಿಯ ಕನಸುಗಳು**
-   * *ಬಿರುದು:* ಕಡಲತೀರದ ಭಾರ್ಗವ, ಜ್ಞಾನದ ಸರ್ವಸ್ವ (ಚೋಮನ ದುಡಿ, ಮರಳಿ ಮಣ್ಣಿಗೆ).
-
-4. **ಮಾಸ್ತಿ ವೆಂಕಟೇಶ ಅಯ್ಯಂಗಾರ್ (1983):**
-   * *ಕೃತಿ:* **ಚಿಕ್ಕವೀರ ರಾಜೇಂದ್ರ**
-   * *ಬಿರುದು:* ಸಣ್ಣ ಕಥೆಗಳ ಜನಕ (ಮಾಸ್ತಿ ಕನ್ನಡದ ಆಸ್ತಿ).
-
-5. **ವಿ.ಕೃ. ಗೋಕಾಕ್ (ವಿನಾಯಕ ಕೃಷ್ಣ ಗೋಕಾಕ್ - 1990):**
-   * *ಕೃತಿ:* **ಭಾರತ ಸಿಂಧು ರಶ್ಮಿ**
-   * *ಮಹತ್ವ:* ಗೋಕಾಕ್ ಚಳವಳಿಯ ನೇತೃತ್ವ ವಹಿಸಿ ಕನ್ನಡಕ್ಕೆ ಪ್ರಥಮ ಭಾಷೆಯ ಸ್ಥಾನಮಾನ ದೊರಕಿಸಿಕೊಟ್ಟವರು.
-
-6. **ಡಾ. ಯು.ಆರ್. ಅನಂತಮೂರ್ತಿ (1994):**
-   * *ಕೃತಿಗಳು:* **ಸಂಸ್ಕಾರ, ಭಾರತೀಪುರ, ಅವಸ್ಥೆ**
-   * *ಮಹತ್ವ:* ನವ್ಯ ಸಾಹಿತ್ಯ ಚಳವಳಿಯ ಅಗ್ರಗಣ್ಯ ಮಾರ್ಗದರ್ಶಕರು.
-
-7. **ಗಿರೀಶ್ ಕಾರ್ನಾಡ್ (1998):**
-   * *ಕೃತಿಗಳು:* **ಯಯಾತಿ, ತುಘಲಕ್, ಹಯವದನ, ತಲೆದಂಡ**
-   * *ಮಹತ್ವ:* ಅಂತರರಾಷ್ಟ್ರೀಯ ಖ್ಯಾತಿಯ ನಾಟಕಕಾರರು & ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರು.
-
-8. **ಡಾ. ಚಂದ್ರಶೇಖರ ಕಂಬಾರ (2010):**
-   * *ಕೃತಿಗಳು:* **ಜೋಕುಮಾರಸ್ವಾಮಿ, ಸಿರಿಸಂಪಿಗೆ, ಸಿಂಗಾರವ್ವ ಮತ್ತು ಅರಮನೆ**
-   * *ಮಹತ್ವ:* ಉತ್ತರ ಕರ್ನಾಟಕದ ಜಾನಪದ ಸೊಗಡಿನ ಮಹಾನ್ ಸಾಹಿತಿ.
-
----
-
-🕊️ **ವಚನ & ದಾಸ ಸಾಹಿತ್ಯ:** 12ನೇ ಶತಮಾನದ ಬಸವಣ್ಣನವರ ಕಲ್ಯಾಣ ಕ್ರಾಂತಿ (ಅನುಭವ ಮಂಟಪ) ಹಾಗೂ ಕನಕದಾಸ-ಪುರಂದರದಾಸರ ಭಕ್ತಿ ಸಾಹಿತ್ಯ ಕನ್ನಡದ ಅಸ್ಮಿತೆಯಾಗಿದೆ.`;
-
-    return {
-      text,
-      cards: [
-        { title: "ಕರ್ನಾಟಕ ಸಾಹಿತ್ಯ & ಸಂಸ್ಕೃತಿ ಭಂಡಾರ", url: "/ask.html", icon: "📚", subtitle: "ಕನ್ನಡ ಭಾಷೆಯ ಸಮಗ್ರ ಐತಿಹಾಸಿಕ ದಾಖಲೆಗಳು" }
-      ],
-      followups: [
-        "ಕುವೆಂಪು ಅವರ ಪ್ರಮುಖ ಕೃತಿಗಳು ಮತ್ತು ಕೊಡುಗೆಗಳೇನು?",
-        "ಕನ್ನಡದ 12ನೇ ಶತಮಾನದ ವಚನ ಸಾಹಿತ್ಯದ ಮಹತ್ವ ತಿಳಿಸಿ",
-        "ಕರ್ನಾಟಕದ ಐತಿಹಾಸಿಕ ರಾಜಮನೆತನಗಳು ಯಾವುವು?"
-      ]
-    };
-  }
-
-  // --- 2.2 KARNATAKA DYNASTIES, HEROES & HISTORY ---
-  function answerHistoryQuery(q) {
-    const text = `### 👑 ಕರ್ನಾಟಕದ ಭವ್ಯ ಇತಿಹಾಸ, ರಾಜಮನೆತನಗಳು & ಹಲ್ಮಿಡಿ ಶಾಸನ (Historic Dynasties of Karnataka)
-
-ಕರ್ನಾಟಕವು 2000ಕ್ಕೂ ಹೆಚ್ಚು ವರ್ಷಗಳ ಭವ್ಯ ಇತಿಹಾಸ ಹಾಗೂ ಶ್ರೀಮಂತ ವಾಸ್ತುಶಿಲ್ಪ ಪರಂಪರೆಯನ್ನು ಹೊಂದಿದೆ.
-
----
-
-#### 🏛️ 1. ಬನವಾಸಿಯ ಕದಂಬರು & ಹಲ್ಮಿಡಿ ಶಾಸನ (ಕ್ರಿ.ಶ. 345 - 525):
-* **ಸ್ಥಾಪಕ:** ಮಯೂರವರ್ಮ (ರಾಜಧಾನಿ: ಬನವಾಸಿ, ಉತ್ತರ ಕನ್ನಡ).
-* **ಮಹತ್ವ:** ಕನ್ನಡಿಗರೇ ಕಟ್ಟಿದ ಮೊಟ್ಟಮೊದಲ ಸಾಮ್ರಾಜ್ಯ.
-* **📜 ಹಲ್ಮಿಡಿ ಶಾಸನ (ಕ್ರಿ.ಶ. 450):** ಹಾಸನ ಜಿಲ್ಲೆಯ ಬೇಲೂರು ಸಮೀಪದ ಹಲ್ಮಿಡಿ ಗ್ರಾಮದಲ್ಲಿ ದೊರೆತ **ಕನ್ನಡದ ಪ್ರಪ್ರಥಮ ಲಿಖಿತ ಶಿಲಾಶಾಸನ** ಇದಾಗಿದೆ (ಕದಂಬ ದೊರೆ ಕಾಕುಸ್ಥವರ್ಮನ ಕಾಲದ್ದು).
-
----
-
-#### 🏰 2. ಬಾದಾಮಿಯ ಚಾಲುಕ್ಯರು (ಕ್ರಿ.ಶ. 543 - 753):
-* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ಇಮ್ಮಡಿ ಪುಲಿಕೇಶಿ (ಉತ್ತರ ಭಾರತದ ಹರ್ಷವರ್ಧನನನ್ನು ನರ್ಮದಾ ತೀರದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿದ 'ದಕ್ಷಿಣಾಪಥೇಶ್ವರ').
-* **ವಾಸ್ತುಶಿಲ್ಪ:** ಬಾದಾಮಿ ಗುಹಾಂತರ ದೇವಾಲಯ, ಐಹೊಳೆ (ದೇವಾಲಯ ವಾಸ್ತುಶಿಲ್ಪದ ತೊಟ್ಟಿಲು), ಪಟ್ಟದಕಲ್ಲು (UNESCO ವಿಶ್ವ ಪರಂಪರೆ).
-
----
-
-#### 🌟 3. ರಾಷ್ಟ್ರಕೂಟರು (ಕ್ರಿ.ಶ. 753 - 982):
-* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ನೃಪತುಂಗ ಅಮೋಘವರ್ಷ (ರಾಜಧಾನಿ: ಮಾನ್ಯಖೇಟ - ಮಳಖೇಡ).
-* **ಸಾಹಿತ್ಯ & ಕಲೆ:** ಕನ್ನಡದ ಮೊದಲ ಲಕ್ಷಣ ಗ್ರಂಥ **'ಕವಿರಾಜಮಾರ್ಗ'** ("ಕಾವೇರಿಯಿಂದಮಾ ಗೋದಾವರಿವರಮಿರ್ದ ನಾಡದಾ ಕನ್ನಡದೊಳ್..."), ಎಲ್ಲೋರಾದ ಏಕಶಿಲಾ ಕೈಲಾಸ ದೇವಾಲಯ.
-
----
-
-#### 🛕 4. ಹೊಯ್ಸಳರು (ಕ್ರಿ.ಶ. 1026 - 1343):
-* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ವಿಷ್ಣುವರ್ಧನ (ರಾಜಧಾನಿ: ದ್ವಾರಸಮುದ್ರ - ಹಳೇಬೀಡು).
-* **UNESCO ವಿಶ್ವ ಪರಂಪರೆ:** ಬೇಲೂರು ಚೆನ್ನಕೇಶವ, ಹಳೇಬೀಡು ಹೊಯ್ಸಳೇಶ್ವರ ಹಾಗೂ ಸೋಮನಾಥಪುರ ಕೇಶವ ದೇವಾಲಯಗಳ ನಕ್ಷತ್ರಾಕಾರದ ಶಿಲ್ಪಕಲೆ.
-
----
-
-#### 💎 5. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯ (ಕ್ರಿ.ಶ. 1336 - 1646):
-* **ಸ್ಥಾಪಕರು:** ಹಕ್ಕ-ಬುಕ್ಕರು (ವಿದ್ಯಾರಣ್ಯರ ಆಶೀರ್ವಾದದೊಂದಿಗೆ).
-* **ಸುವರ್ಣ ಆಳ್ವಿಕೆ:** ಶ್ರೀಕೃಷ್ಣದೇವರಾಯ (1509-1529) — ರಾಜಧಾನಿ ಹಂಪಿ. ಬೀದಿಗಳಲ್ಲಿ ಮುತ್ತು-ರತ್ನಗಳನ್ನು ಸೇರಿನಲ್ಲಿ ಅಳೆಯುತ್ತಿದ್ದ ಸುವರ್ಣ ಕಾಲ.
-
----
-
-#### ⚔️ 6. ಸ್ವಾತಂತ್ರ್ಯ ಸಂಗ್ರಾಮದ ವೀರ ನಾಯಕರು:
-* **ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ (1824):** ಬ್ರಿಟಿಷ್ ಈಸ್ಟ್ ಇಂಡಿಯಾ ಕಂಪನಿಯ ವಿರುದ್ಧ ಮೊಟ್ಟಮೊದಲು ಕಹಳೆ ಮೊಳಗಿಸಿದ ವೀರ ವನಿತೆ.
-* **ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ:** ಗೆರಿಲ್ಲಾ ತಂತ್ರಜ್ಞಾನದ ವೀರ ಸೇನಾನಿ.
-* **ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್:** ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯ, ಕೆ.ಆರ್.ಎಸ್ ಡ್ಯಾಂ, ಐಐಎಸ್‌ಸಿ ನಿರ್ಮಿಸಿದ ಆಧುನಿಕ ಕರ್ನಾಟಕದ ಶಿಲ್ಪಿ.`;
-
-    return {
-      text,
-      cards: [
-        { title: "ವಿಜಯನಗರ & ಹಂಪಿ ವಿಶ್ವ ಪರಂಪರೆ ಗೈಡ್", url: "/ask.html", icon: "🏛️", subtitle: "ಕರ್ನಾಟಕದ ಐತಿಹಾಸಿಕ ತಾಣಗಳ ಸಂಪೂರ್ಣ ಮಾಹಿತಿ" }
-      ],
-      followups: [
-        "ಹಂಪಿ ಮತ್ತು ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಇತಿಹಾಸವೇನು?",
-        "ಕನ್ನಡದ 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರ ವಿವರ ಕೊಡಿ",
-        "ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ ಮತ್ತು ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣನ ಇತಿಹಾಸ ತಿಳಿಸಿ"
-      ]
-    };
-  }
-
-  // --- 2.3 DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM ---
+  // --- 2. DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM ---
   function answerDistrictEncyclopediaQuery(q, distKey) {
     const distData = {
       koppal: {
@@ -732,24 +597,10 @@ ${rows}
           "**ಜೋಗ್ ಜಲಪಾತ (Jog Falls):** ಭಾರತದ ಅತ್ಯುನ್ನತ ಮತ್ತು ಸುಂದರ ಜಲಪಾತ.",
           "**ಕುಪ್ಪಳ್ಳಿ ಕವಿಮನೆ:** ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು ಅವರ ಜನ್ಮಸ್ಥಳ & ಕವಿಶೈಲ.",
           "**ಆಗುಂಬೆ:** ದಕ್ಷಿಣ ಭಾರತದ ಚಿರಾಪುಂಜಿ & ಸೂರ್ಯಾಸ್ತ ವೀಕ್ಷಣಾ ತಾಣ.",
-          "**ಸಿಗಂದೂರು ಚೌಡೇಶ್ವರಿ ದೇವಾಲಯ & ಶರಾವತಿ ಹಿನ್ನೀರು.**",
-          "**ಕೆಳದಿ & ಇಕ್ಕೇರಿ ನಾಯಕರ ವಾಸ್ತುಶಿಲ್ಪ ದೇವಾಲಯಗಳು.**"
+          "**ಸಿಗಂದೂರು ಚೌಡೇಶ್ವರಿ ದೇವಾಲಯ & ಶರಾವತಿ ಹಿನ್ನೀರು.**"
         ],
         crops: "ಅಡಿಕೆ (ರಾಜ್ಯದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಉತ್ಪಾದನೆ), ಭತ್ತ, ಶುಂಠಿ, ಕಾಳುಮೆಣಸು, ವೆನಿಲ್ಲಾ.",
         rivers: "ಶರಾವತಿ, ತುಂಗಾ, ಭದ್ರಾ, ವರದಾ (ಲಿಂಗನಮಕ್ಕಿ & ಭದ್ರಾ ಜಲಾಶಯಗಳು)."
-      },
-      udupi: {
-        name: "ಉಡುಪಿ (Udupi)",
-        taluks: "ಉಡುಪಿ, ಕುಂದಾಪುರ, ಕಾರ್ಕಳ, ಬೈಂದೂರು, ಬ್ರಹ್ಮಾವರ, ಕಾಪು, ಹೆಬ್ರಿ (7 ತಾಲೂಕುಗಳು)",
-        tourist: [
-          "**ಶ್ರೀಕೃಷ್ಣ ಮಠ:** ಜಗದ್ಗುರು ಶ್ರೀ ಮಧ್ವಾಚಾರ್ಯರ ದ್ವೈತ ಸಿದ್ಧಾಂತ & ಕನಕನ ಕಿಂಡಿ.",
-          "**ಮಲ್ಪೆ ಬೀಚ್ & ಸೇಂಟ್ ಮೇರಿಸ್ ದ್ವೀಪ (St. Mary's Island):** ಶಿಲಾರಚನೆಗಳ ಕಡಲತೀರ.",
-          "**ಕೊಲ್ಲೂರು ಮೂಕಾಂಬಿಕಾ ಕ್ಷೇತ್ರ:** ವಿಶ್ವಪ್ರಸಿದ್ಧ ಸಿದ್ಧಿಪೀಠ.",
-          "**ಕಾರ್ಕಳ ಗೊಮ್ಮಟೇಶ್ವರ ಏಕಶಿಲಾ ಪ್ರತಿಮೆ & ಚತುರ್ಮುಖ ಬಸದಿ.**",
-          "**ಕಾಪು ಲೈಟ್‌ಹೌಸ್ & ಮರವಂತೆ ಬೀಚ್.**"
-        ],
-        crops: "ತೆಂಗು, ಅಡಿಕೆ, ಮಟ್ಟುಗುಳ್ಳ ಬದನೆಕಾಯಿ (GI Tag), ಉಡುಪಿ ಮಲ್ಲಿಗೆ, ಗೇರುಬೀಜ, ಮೀನುಗಾರಿಕೆ.",
-        rivers: "ಸ್ವರ್ಣಾ, ಸೀತಾ, ವರಾಹಿ ನದಿಗಳು."
       },
       belagavi: {
         name: "ಬೆಳಗಾವಿ (Belagavi)",
@@ -758,10 +609,9 @@ ${rows}
           "**ಸುವರ್ಣ ವಿಧಾನ ಸೌಧ:** ಉತ್ತರ ಕರ್ನಾಟಕದ ಭವ್ಯ ಶಾಸಕಾಂಗ ಭವನ.",
           "**ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ ಕೋಟೆ & ವಸ್ತುಸಂಗ್ರಹಾಲಯ.**",
           "**ಸವದತ್ತಿ ರೇಣುಕಾ ಯಲ್ಲಮ್ಮ ದೇವಾಲಯ:** ಉತ್ತರ ಕರ್ನಾಟಕದ ಮಹಾನ್ ಶಕ್ತಿಪೀಠ.",
-          "**ಗೋಕಾಕ್ ಜಲಪಾತ & ತೂಗುಸೇತುವೆ (ಕರ್ನಾಟಕದ ನಯಾಗಾರ).**",
-          "**ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ ಸಮಾಧಿ (ನಂದಗಡ).**"
+          "**ಗೋಕಾಕ್ ಜಲಪಾತ & ತೂಗುಸೇತುವೆ (ಕರ್ನಾಟಕದ ನಯಾಗಾರ).**"
         ],
-        crops: "ಕಬ್ಬು (ಕರ್ನಾಟಕದ ಸಕ್ಕರೆ ರಾಜಧಾನಿ / Sugar Bowl), ಸೋಯಾಬೀನ್, ತಂಬಾಕು, ಹತ್ತಿ, ಗೋಧಿ.",
+        crops: "ಕಬ್ಬು (ಕರ್ನಾಟಕದ ಸಕ್ಕರೆ ರಾಜಧಾನಿ), ಸೋಯಾಬೀನ್, ತಂಬಾಕು, ಹತ್ತಿ, ಗೋಧಿ.",
         rivers: "ಕೃಷ್ಣಾ, ಘಟಪ್ರಭಾ (ಹಿಡಕಲ್ ಡ್ಯಾಂ), ಮಲಪ್ರಭಾ (ನವಿಲುತೀರ್ಥ ಡ್ಯಾಂ)."
       },
       bengaluru_urban: {
@@ -769,13 +619,12 @@ ${rows}
         taluks: "ಬೆಂಗಳೂರು ಉತ್ತರ, ಬೆಂಗಳೂರು ದಕ್ಷಿಣ, ಬೆಂಗಳೂರು ಪೂರ್ವ, ಯಲಹಂಕ, ಆನೇಕಲ್ (5 ತಾಲೂಕುಗಳು)",
         tourist: [
           "**ವಿಧಾನ ಸೌಧ & ಹೈಕೋರ್ಟ್ (ಅಟ್ಟಾರ ಕಛೇರಿ):** ಭವ್ಯ ನವ-ದ್ರಾವಿಡ ವಾಸ್ತುಶಿಲ್ಪ.",
-          "**ಲಾಲ್‌ಬಾಗ್ ಬೊಟಾನಿಕಲ್ ಗಾರ್ಡನ್ (ಗ್ಲಾಸ್ ಹೌಸ್) & ಕಬ್ಬನ್ ಪಾರ್ಕ್.**",
+          "**ಲಾಲ್‌ಬಾಗ್ ಬೊಟಾನಿಕಲ್ ಗಾರ್ಡನ್ & ಕಬ್ಬನ್ ಪಾರ್ಕ್.**",
           "**ಬೆಂಗಳೂರು ಅರಮನೆ & ಟಿಪ್ಪು ಬೇಸಿಗೆ ಅರಮನೆ.**",
-          "**ಬನ್ನೇರುಘಟ್ಟ ರಾಷ್ಟ್ರೀಯ ಜೈವಿಕ ಉದ್ಯಾನವನ (ಸಫಾರಿ & ಬಟರ್‌ಫ್ಲೈ ಪಾರ್ಕ್).**",
-          "**ಇಸ್ಕಾನ್ ದೇವಾಲಯ & ವಿಶ್ವೇಶ್ವರಯ್ಯ ಇಂಡಸ್ಟ್ರಿಯಲ್ ಮ್ಯೂಸಿಯಂ.**"
+          "**ಬನ್ನೇರುಘಟ್ಟ ರಾಷ್ಟ್ರೀಯ ಜೈವಿಕ ಉದ್ಯಾನವನ.**"
         ],
-        crops: "ತರಕಾರಿಗಳು, ಹೂವುಗಳು (ಫ್ಲೋರಿಕಲ್ಚರ್), ಬೆಂಗಳೂರು ಬ್ಲೂ ದ್ರಾಕ್ಷಿ, ರಾಗಿ.",
-        rivers: "ವೃಷಭಾವತಿ, ದಕ್ಷಿಣ ಪಿನಾಕಿನಿ, ಅರ್ಕಾವತಿ."
+        crops: "ತರಕಾರಿಗಳು, ಹೂವುಗಳು, ಬೆಂಗಳೂರು ಬ್ಲೂ ದ್ರಾಕ್ಷಿ, ರಾಗಿ.",
+        rivers: "ವೃಷಭಾವತಿ, ಅರ್ಕಾವತಿ, ದಕ್ಷಿಣ ಪಿನಾಕಿನಿ."
       }
     };
 
