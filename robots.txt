@@ -4,6 +4,10 @@ User-agent: *
 Allow: /
 Disallow: /scratch/
 Disallow: /api/
+Disallow: /admin/
+Disallow: /cms/
+Disallow: /studio/
+Disallow: /imd_hub/
 
 # AI Crawlers for AI Search Engine Optimization (GEO - Perplexity, ChatGPT, Gemini, Claude)
 User-agent: GPTBot

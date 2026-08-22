@@ -17,6 +17,7 @@ SITEMAP_PATH = BASE_DIR / "sitemap.xml"
 BASE_URL = "https://karnata.in"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 
+NOINDEX_DIRS = {'admin', 'cms', 'studio', 'imd_hub', 'templates', 'scratch', '.git', 'node_modules', '.wrangler'}
 NOINDEX_FILES = {
     'admin.html', 'admin-transfers.html', 'admin-news.html', 'admin-login.html',
     'cms-admin.html', '404.html', 'error.html', 'test.html'
@@ -27,10 +28,11 @@ def generate_sitemap():
     seen_urls = set()
 
     for root, dirs, files in os.walk(BASE_DIR):
-        if any(x in root for x in ['node_modules', '.wrangler', '.git', 'scratch']):
+        rel_dir = Path(root).relative_to(BASE_DIR).as_posix()
+        if any(part in NOINDEX_DIRS for part in rel_dir.split('/')):
             continue
         for f in files:
-            if f.endswith('.html') and f not in NOINDEX_FILES and 'admin' not in f:
+            if f.endswith('.html') and f not in NOINDEX_FILES and 'admin' not in f and not f.startswith('_'):
                 f_path = Path(root) / f
                 rel_p = f_path.relative_to(BASE_DIR).as_posix()
                 
