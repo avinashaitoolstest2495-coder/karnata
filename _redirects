@@ -7,10 +7,8 @@
 /rashi-bhavishya  /ai-jyothishya.html 301
 /officers-admin   /admin-transfers.html 301
 /transfers        /officers.html 301
-/mla/*            /mla-mp.html 301
-/mla              /mla-mp.html 301
-/mp/*             /mla-mp.html 301
-/mp               /mla-mp.html 301
 /constituencies/* /mla-mp.html 301
 /constituencies   /mla-mp.html 301
+/mla              /mla-mp.html 301
+/mp               /mla-mp.html 301
 
