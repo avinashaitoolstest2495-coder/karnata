@@ -1705,7 +1705,7 @@ input.clean-search-input:focus,
         <div class="lc-top"><span class="lc-emoji">🥈</span></div>
         <div class="lc-label">ಬೆಳ್ಳಿ / ಗ್ರಾಂ</div>
         <div class="lc-val" id="lc-silver">—</div>
-        <div class="lc-change nc">ಇಂದು</div>
+        <div class="lc-change nc" id="lc-silver-ch">ಇಂದು</div>
       </div>
     </div>
 
@@ -2081,9 +2081,8 @@ const wmoKn ={0:'ಶುಭ ಹವಾಮಾನ',1:'ಹೆಚ್ಚಾಗಿ ಶ�
 
 // ── Load all live data ──────────────────────────────────
 async function loadAll(){
-  // Gold — reads baseGold[22] schema (gold-rate.html format)
-  // Falls back to live currency API (same as gold-rate.html) if JSON is stale
-  let p22 = null, silverGram = null, goldChange = 0;
+  // Gold & Silver — reads baseGold schema & calculated changes
+  let p22 = null, silverGram = null, goldChange = 0, silverChange = 0;
   try {
     const gRes = await fetch('/data/gold_rates.json?v=' + Date.now());
     if (gRes.ok) {
@@ -2091,7 +2090,6 @@ async function loadAll(){
       if (g && g.payload && typeof window.decryptPayload === 'function') {
         g = window.decryptPayload(g.payload);
       }
-      // Support both schema formats
       const bg = g?.baseGold || g?.base;
       const bs = g?.baseSilver || g?.silver;
       const raw22 = bg?.[22] || bg?.['22k_per_gram'];
@@ -2100,10 +2098,13 @@ async function loadAll(){
         p22 = raw22; 
         goldChange = (g?.changes && typeof g.changes['22k'] === 'number') ? g.changes['22k'] : ((g?.change && typeof g.change['22k'] === 'number') ? g.change['22k'] : 0); 
       }
-      if (rawSilver && rawSilver > 30) silverGram = rawSilver;
+      if (rawSilver && rawSilver > 30) {
+        silverGram = rawSilver;
+        silverChange = (g?.changes && typeof g.changes['silver_999'] === 'number') ? g.changes['silver_999'] : ((g?.change && typeof g.change['silver_999'] === 'number') ? g.change['silver_999'] : 0);
+      }
     }
   } catch(e) {}
-  // If JSON had wrong/stale data, fetch live from currency API (free, no key)
+  // If JSON had wrong/stale data, fetch live from currency API
   if (!p22 || p22 < 5000) {
     try {
       const xauRes = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/xau.json');
@@ -2127,13 +2128,30 @@ async function loadAll(){
   }
   if (p22 && p22 > 5000) {
     $('lc-gold').textContent = fmt(p22);
-    const ico = goldChange > 0 ? '▲ +' : goldChange < 0 ? '▼ -' : '— ';
-    $('lc-gold-ch').textContent = ico + '₹' + Math.abs(goldChange) + ' ಇಂದು';
-    $('lc-gold-ch').className = 'lc-change ' + (goldChange > 0 ? 'up' : goldChange < 0 ? 'dn' : 'nc');
+    if (goldChange > 0) {
+      $('lc-gold-ch').textContent = '▲ +₹' + goldChange + ' ಇಂದು';
+      $('lc-gold-ch').className = 'lc-change up';
+    } else if (goldChange < 0) {
+      $('lc-gold-ch').textContent = '▼ -₹' + Math.abs(goldChange) + ' ಇಂದು';
+      $('lc-gold-ch').className = 'lc-change dn';
+    } else {
+      $('lc-gold-ch').textContent = '• ಇಂದು ಸ್ಥಿರ';
+      $('lc-gold-ch').className = 'lc-change nc';
+    }
     setTickerVals('t-val-gold', fmt(p22) + '/g');
   }
   if (silverGram && silverGram > 30) {
     $('lc-silver').textContent = fmt(silverGram);
+    if (silverChange > 0) {
+      $('lc-silver-ch').textContent = '▲ +₹' + silverChange + ' ಇಂದು';
+      $('lc-silver-ch').className = 'lc-change up';
+    } else if (silverChange < 0) {
+      $('lc-silver-ch').textContent = '▼ -₹' + Math.abs(silverChange) + ' ಇಂದು';
+      $('lc-silver-ch').className = 'lc-change dn';
+    } else {
+      $('lc-silver-ch').textContent = '• ಇಂದು ಸ್ಥಿರ';
+      $('lc-silver-ch').className = 'lc-change nc';
+    }
     setTickerVals('t-val-silver', fmt(silverGram) + '/g');
   }
 
@@ -2146,6 +2164,17 @@ async function loadAll(){
     if(c){
       $('lc-petrol').textContent='₹'+c.petrol;
       $('lc-petrol-city').textContent=(c.name_kn||'ಬೆಂಗಳೂರು')+' / ಲೀ';
+      const petCh = c.change !== undefined ? c.change : (c.petrol_change || 0);
+      if (petCh > 0) {
+        $('lc-petrol-ch').textContent = '▲ +₹' + petCh;
+        $('lc-petrol-ch').className = 'lc-change up';
+      } else if (petCh < 0) {
+        $('lc-petrol-ch').textContent = '▼ -₹' + Math.abs(petCh);
+        $('lc-petrol-ch').className = 'lc-change dn';
+      } else {
+        $('lc-petrol-ch').textContent = '• ಇಂದು ಸ್ಥಿರ';
+        $('lc-petrol-ch').className = 'lc-change nc';
+      }
       setTickerVals('t-val-petrol', '₹'+c.petrol+'/L');
     }
     renderPetrol(p.cities);
@@ -2157,8 +2186,17 @@ async function loadAll(){
     const krs = d.dams['k.r.sagara_dam'] || d.dams.krs || Object.values(d.dams).find(x=>(x.name_en||'').toLowerCase().includes('sagara'));
     if(krs){
       $('lc-dam').textContent = krs.storage_pct + '%';
-      $('lc-dam-st').textContent = krs.status_kn || '';
-      $('lc-dam-st').className = 'lc-change nc';
+      const inflow = krs.inflow_cusecs || krs.inflow || 0;
+      if (inflow > 0) {
+        $('lc-dam-st').textContent = '🌊 ' + inflow.toLocaleString('kn-IN') + ' cfs ಒಳಹರಿವು';
+        $('lc-dam-st').className = 'lc-change up';
+      } else if (krs.storage_pct >= 70) {
+        $('lc-dam-st').textContent = '▲ ' + (krs.status_kn || 'ಉತ್ತಮ ಸಂಗ್ರಹ');
+        $('lc-dam-st').className = 'lc-change up';
+      } else {
+        $('lc-dam-st').textContent = '• ' + (krs.status_kn || 'ಸಾಧಾರಣ ಸಂಗ್ರಹ');
+        $('lc-dam-st').className = 'lc-change nc';
+      }
       if(krs.flood_alert){
         const a=$('alert-strip'); a.classList.add('show');
         $('alert-msg').textContent='🚨 KRS 95%+ ತುಂಬಿದೆ — ಪ್ರವಾಹ ಮುನ್ನೆಚ್ಚರಿಕೆ';
@@ -2482,24 +2520,26 @@ async function renderLocalNews(articles, distKn) {
     } catch(e) {}
   }
 
-  // Update top featured special stories layout if CMS articles exist
+  // Update top featured special stories layout if CMS articles exist (minimum 5 recent stories)
   if (cmsArticles.length > 0) {
     const topNewsLayout = $('top-news-layout');
     if (topNewsLayout) {
-      topNewsLayout.innerHTML = cmsArticles.slice(0, 4).map((a, idx) => {
+      topNewsLayout.innerHTML = cmsArticles.slice(0, 5).map((a, idx) => {
         const hasImg = !!a.image;
+        const fallbackIcon = idx === 0 ? '✨' : idx === 1 ? '🏦' : idx === 2 ? '🌾' : idx === 3 ? '🚇' : '📋';
         const visualHtml = hasImg 
-          ? `<div class="nc-visual" style="display:flex; padding:0; overflow:hidden; background:#F1F5F9; box-shadow:0 4px 12px rgba(0,0,0,0.06);"><img src="${a.image}" alt="${a.title}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" onerror="this.parentElement.innerHTML='${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}'"></div>`
-          : `<div class="nc-visual">${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}</div>`;
+          ? `<div class="nc-visual" style="display:flex; padding:0; overflow:hidden; background:#F1F5F9; height:${idx === 0 ? '160px' : '150px'}; border-radius:12px; margin-bottom:${idx > 0 ? '14px' : '0'}; box-shadow:0 4px 12px rgba(0,0,0,0.06);"><img src="${a.image}" alt="${a.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='${fallbackIcon}'"></div>`
+          : `<div class="nc-visual" style="margin-bottom:${idx > 0 ? '14px' : '0'};">${fallbackIcon}</div>`;
         return `
           <a href="${a.url}" class="news-card ${idx === 0 ? 'featured' : ''}">
+            ${idx > 0 ? visualHtml : ''}
             <div class="nc-content">
               <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">✨ ${a.category}</span>
               <div class="nc-headline">${a.title}</div>
               <div class="nc-summary">${a.description}</div>
               <div class="nc-meta"><span>ವಿಶೇಷ ಲೇಖನ</span><span>${a.source}</span></div>
             </div>
-            ${visualHtml}
+            ${idx === 0 ? visualHtml : ''}
           </a>
         `;
       }).join('');
