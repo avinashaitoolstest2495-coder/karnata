@@ -15,7 +15,10 @@ if hasattr(sys.stdout, 'reconfigure'):
 BASE_DIR = Path(__file__).parent.parent
 SITEMAP_PATH = BASE_DIR / "sitemap.xml"
 BASE_URL = "https://karnata.in"
-TODAY = datetime.now().strftime("%Y-%m-%d")
+NOW_ISO = datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:%S%z")
+# Format timezone with colon e.g. +05:30
+if len(NOW_ISO) >= 5 and (NOW_ISO[-5] == '+' or NOW_ISO[-5] == '-'):
+    NOW_ISO = NOW_ISO[:-2] + ':' + NOW_ISO[-2:]
 
 NOINDEX_DIRS = {'admin', 'cms', 'studio', 'imd_hub', 'templates', 'scratch', '.git', 'node_modules', '.wrangler'}
 NOINDEX_FILES = {
@@ -42,8 +45,9 @@ def generate_sitemap():
 
                 if url not in seen_urls:
                     seen_urls.add(url)
-                    prio = "1.0" if url == f"{BASE_URL}/" else ("0.9" if any(k in url for k in ['officers', 'news', 'gold', 'dam', 'districts', 'jyothishya']) else "0.8")
-                    freq = "hourly" if any(k in url for k in ['news', 'gold']) else "daily"
+                    prio = "1.0" if url == f"{BASE_URL}/" else ("0.95" if any(k in url for k in ['officers', 'news', 'gold', 'petrol', 'dam', 'districts', 'jyothishya', 'weather']) else "0.9")
+                    # 'always' signals to Google/Bing that document updates constantly throughout the hour (every 30 mins)
+                    freq = "always"
                     entries.append({
                         "loc": url,
                         "priority": prio,
@@ -65,7 +69,7 @@ def generate_sitemap():
     for item in entries:
         xml_lines.append('  <url>')
         xml_lines.append(f'    <loc>{item["loc"]}</loc>')
-        xml_lines.append(f'    <lastmod>{TODAY}</lastmod>')
+        xml_lines.append(f'    <lastmod>{NOW_ISO}</lastmod>')
         xml_lines.append(f'    <changefreq>{item["changefreq"]}</changefreq>')
         xml_lines.append(f'    <priority>{item["priority"]}</priority>')
         xml_lines.append('  </url>')
@@ -74,7 +78,7 @@ def generate_sitemap():
 
     sitemap_content = '\n'.join(xml_lines)
     SITEMAP_PATH.write_text(sitemap_content, encoding='utf-8')
-    print(f"SUCCESS: Sitemap generated successfully with {len(entries)} URLs at {SITEMAP_PATH} (lastmod: {TODAY})")
+    print(f"SUCCESS: Sitemap generated successfully with {len(entries)} URLs at {SITEMAP_PATH} (lastmod: {NOW_ISO})")
 
 if __name__ == "__main__":
     generate_sitemap()
