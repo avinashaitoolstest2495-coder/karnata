@@ -1676,36 +1676,36 @@ input.clean-search-input:focus,
       <div class="sh-title"><div class="sh-icon">📊</div>ಇಂದಿನ ಮುಖ್ಯ ದರ & ಲೈವ್ ಮಾಹಿತಿ</div>
     </div>
 
-    <div class="live-row">
+        <div class="live-row">
       <div class="live-card card-gold" onclick="location.href='gold-rate.html'">
         <div class="lc-top"><span class="lc-emoji">🥇</span></div>
         <div class="lc-label">22K ಚಿನ್ನ / ಗ್ರಾಂ</div>
-        <div class="lc-val red" id="lc-gold">—</div>
-        <div class="lc-change" id="lc-gold-ch">—</div>
+        <div class="lc-val red" id="lc-gold">₹14,950</div>
+        <div class="lc-change up" id="lc-gold-ch">▲ ಇಂದು ಲೈವ್</div>
       </div>
-      <div class="live-card card-petrol" onclick="location.href='more-tools.html'">
+      <div class="live-card card-petrol" onclick="location.href='petrol-price.html'">
         <div class="lc-top"><span class="lc-emoji">⛽</span></div>
-        <div class="lc-label" id="lc-petrol-city">ಪೆಟ್ರೋಲ್ / ಲೀ</div>
-        <div class="lc-val blue" id="lc-petrol">—</div>
-        <div class="lc-change nc" id="lc-petrol-ch">ಇಂದು</div>
+        <div class="lc-label" id="lc-petrol-city">ಬೆಂಗಳೂರು / ಲೀ</div>
+        <div class="lc-val blue" id="lc-petrol">₹110.89</div>
+        <div class="lc-change nc" id="lc-petrol-ch">• ಇಂದು ಸ್ಥಿರ</div>
       </div>
       <div class="live-card card-weather" onclick="location.href='weather.html'">
         <div class="lc-top"><span class="lc-emoji" id="lc-w-icon">🌤️</span></div>
-        <div class="lc-label" id="lc-w-city">ಹವಾಮಾನ</div>
-        <div class="lc-val forest" id="lc-temp">—</div>
-        <div class="lc-change nc" id="lc-w-desc">ಲೋಡ್...</div>
+        <div class="lc-label" id="lc-w-city">ಬೆಂಗಳೂರು</div>
+        <div class="lc-val forest" id="lc-temp">24°C</div>
+        <div class="lc-change nc" id="lc-w-desc">ಭಾಗಶಃ ಮೋಡ</div>
       </div>
       <div class="live-card card-dam" onclick="location.href='dam-levels.html'">
         <div class="lc-top"><span class="lc-emoji">💧</span></div>
         <div class="lc-label">KRS ಅಣೆಕಟ್ಟು</div>
-        <div class="lc-val amber" id="lc-dam">—</div>
-        <div class="lc-change" id="lc-dam-st">ಲೋಡ್...</div>
+        <div class="lc-val amber" id="lc-dam">61.7%</div>
+        <div class="lc-change up" id="lc-dam-st">▲ ಉತ್ತಮ ಸಂಗ್ರಹ</div>
       </div>
       <div class="live-card card-silver" onclick="location.href='gold-rate.html'">
         <div class="lc-top"><span class="lc-emoji">🥈</span></div>
         <div class="lc-label">ಬೆಳ್ಳಿ / ಗ್ರಾಂ</div>
-        <div class="lc-val" id="lc-silver">—</div>
-        <div class="lc-change nc" id="lc-silver-ch">ಇಂದು</div>
+        <div class="lc-val" id="lc-silver">₹260</div>
+        <div class="lc-change nc" id="lc-silver-ch">• ಇಂದು ಸ್ಥಿರ</div>
       </div>
     </div>
 
@@ -1756,7 +1756,96 @@ input.clean-search-input:focus,
       <a href="dam-levels.html" class="sh-link">ಎಲ್ಲ ಅಣೆಕಟ್ಟುಗಳು →</a>
     </div>
     <div class="dam-chips" id="dam-chips">
-      <div style="color:var(--text-muted);font-size:13px;padding:20px;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+<div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">120.24 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#059669;background:#05966915">97.7%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:97.7%;background:#059669"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 123.081 TMC</span>
+        <span class="dc-river">ಕೃಷ್ಣ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">8.348 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#059669;background:#05966915">98.2%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:98.2%;background:#059669"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 8.5 TMC</span>
+        <span class="dc-river">ಹಾರಂಗಿ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">31.418 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#059669;background:#05966915">84.7%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:84.7%;background:#059669"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 37.103 TMC</span>
+        <span class="dc-river">ಹೇಮಾವತಿ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">K.R.Sagara Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">30.531 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#D97706;background:#D9770615">61.7%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:61.7%;background:#D97706"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 49.452 TMC</span>
+        <span class="dc-river">ಕಾವೇರಿ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ಕಬಿನಿ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">13.973 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#D97706;background:#D9770615">71.6%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:71.6%;background:#D97706"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 19.516 TMC</span>
+        <span class="dc-river">ಕಬಿನಿ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ಮಲಪ್ರಭಾ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">22.321 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#D97706;background:#D9770615">59.2%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:59.2%;background:#D97706"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 37.73 TMC</span>
+        <span class="dc-river">ಮಲಪ್ರಭಾ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">32.84 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#059669;background:#05966915">98.6%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:98.6%;background:#059669"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 33.313 TMC</span>
+        <span class="dc-river">ಕೃಷ್ಣ</span>
+      </div>
+    </div><div class="dam-chip" onclick="location.href='dam-levels.html'">
+      <div class="dc-name">ತುಂಗಭದ್ರ ಅಣೆಕಟ್ಟು</div>
+      <div class="dc-storage-row">
+        <div class="dc-big-val">94.81 <span class="dc-unit">TMC</span></div>
+        <div class="dc-pct-badge" style="color:#059669;background:#05966915">89.6%</div>
+      </div>
+      <div class="dc-bar"><div class="dc-fill" style="width:89.6%;background:#059669"></div></div>
+      <div class="dc-meta-row">
+        <span class="dc-gross">ಒಟ್ಟು: 105.788 TMC</span>
+        <span class="dc-river">ತುಂಗಭದ್ರ</span>
+      </div>
+    </div>
+      </div>
     </div>
 
     <!-- SPECIAL STORIES & EXPLAINERS -->
@@ -2078,20 +2167,40 @@ if (typeof window.decryptPayload !== 'function') {
 }
 
 // ── JSON loader with instant live freshness ─────────────
+const SECRET_PAYLOAD_KEY = "NK_SECURE_KEY_2026_KARNATA";
+
+function decryptPayload(encodedStr) {
+  if (!encodedStr || typeof encodedStr !== 'string') return null;
+  try {
+    const binaryStr = atob(encodedStr);
+    const bytes = new Uint8Array(binaryStr.length);
+    for (let i = 0; i < binaryStr.length; i++) {
+      bytes[i] = binaryStr.charCodeAt(i) ^ SECRET_PAYLOAD_KEY.charCodeAt(i % SECRET_PAYLOAD_KEY.length);
+    }
+    const jsonStr = new TextDecoder().decode(bytes);
+    return JSON.parse(jsonStr);
+  } catch (e) {
+    return null;
+  }
+}
+window.decryptPayload = decryptPayload;
+
 const _c={};
 async function loadJ(key,file,ttl=0){
-  if(ttl > 0 && _c[key] && Date.now()-_c[key].t < ttl) return _c[key].d;
+  if(ttl > 0 && _c[key] && _c[key].d && (Date.now()-_c[key].t < ttl)) return _c[key].d;
   try{
-    let r = await fetch('./data/'+file+'?v='+Date.now()).catch(()=>null);
-    if (!r || !r.ok) r = await fetch('/data/'+file+'?v='+Date.now()).catch(()=>null);
+    let r = await fetch('/data/'+file+'?v='+Date.now()).catch(()=>null);
+    if (!r || !r.ok) r = await fetch('./data/'+file+'?v='+Date.now()).catch(()=>null);
     if(!r || !r.ok) return null;
-    let d=await r.json();
-    if (d && d.payload && typeof window.decryptPayload === 'function') {
-      d = window.decryptPayload(d.payload);
+    let d = await r.json();
+    if (d && d.payload) {
+      d = decryptPayload(d.payload);
     }
-    _c[key]={d,t:Date.now()};
+    if (d) {
+      _c[key] = { d, t: Date.now() };
+    }
     return d;
-  }catch(e){return null;}
+  }catch(e){ return null; }
 }
 
 // ── WMO weather codes ──────────────────────────────────
