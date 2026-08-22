@@ -84,7 +84,7 @@ function collectAllUrls() {
           const cat = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
           const slug = a.slug || a.id;
           const modDate = a.updated_at ? a.updated_at.split('T')[0] : TODAY;
-          addUrl(`/news/${cat}/${slug}`, '0.9', 'daily', modDate);
+          addUrl(`/news/${cat}/${slug}.html`, '0.9', 'daily', modDate);
         });
       }
     } catch(e) {}
@@ -101,7 +101,7 @@ function collectAllUrls() {
           const cat = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
           const slug = a.slug || a.id || f.replace('.json', '');
           const modDate = a.updated_at ? a.updated_at.split('T')[0] : TODAY;
-          addUrl(`/news/${cat}/${slug}`, '0.9', 'daily', modDate);
+          addUrl(`/news/${cat}/${slug}.html`, '0.9', 'daily', modDate);
         } catch(e) {}
       }
     });

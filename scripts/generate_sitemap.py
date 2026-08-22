@@ -5,79 +5,51 @@ and AI Search Engines (GEO - ChatGPT, Perplexity, Google SGE, Claude).
 """
 
 import os
+import sys
 from pathlib import Path
 from datetime import datetime
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 BASE_DIR = Path(__file__).parent.parent
 SITEMAP_PATH = BASE_DIR / "sitemap.xml"
+BASE_URL = "https://karnata.in"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 
-# High-priority core tools & live hubs
-CORE_PAGES = [
-    {"loc": "https://karnata.in/", "priority": "1.0", "changefreq": "daily"},
-    {"loc": "https://karnata.in/gold-rate.html", "priority": "0.9", "changefreq": "hourly"},
-    {"loc": "https://karnata.in/petrol-diesel.html", "priority": "0.9", "changefreq": "daily"},
-    {"loc": "https://karnata.in/apmc-prices.html", "priority": "0.9", "changefreq": "daily"},
-    {"loc": "https://karnata.in/dam-levels.html", "priority": "0.9", "changefreq": "daily"},
-    {"loc": "https://karnata.in/weather.html", "priority": "0.9", "changefreq": "hourly"},
-    {"loc": "https://karnata.in/news-explainers.html", "priority": "0.9", "changefreq": "hourly"},
-    {"loc": "https://karnata.in/ask.html", "priority": "0.9", "changefreq": "daily"},
-    {"loc": "https://karnata.in/districts/", "priority": "0.9", "changefreq": "daily"},
-    {"loc": "https://karnata.in/mla-mp.html", "priority": "0.85", "changefreq": "weekly"},
-    {"loc": "https://karnata.in/schemes.html", "priority": "0.85", "changefreq": "weekly"},
-    {"loc": "https://karnata.in/more-tools.html", "priority": "0.7", "changefreq": "monthly"}
-]
+NOINDEX_FILES = {
+    'admin.html', 'admin-transfers.html', 'admin-news.html', 'admin-login.html',
+    'cms-admin.html', '404.html', 'error.html', 'test.html'
+}
 
 def generate_sitemap():
     entries = []
     seen_urls = set()
 
-    for p in CORE_PAGES:
-        seen_urls.add(p["loc"])
-        entries.append(p)
+    for root, dirs, files in os.walk(BASE_DIR):
+        if any(x in root for x in ['node_modules', '.wrangler', '.git', 'scratch']):
+            continue
+        for f in files:
+            if f.endswith('.html') and f not in NOINDEX_FILES and 'admin' not in f:
+                f_path = Path(root) / f
+                rel_p = f_path.relative_to(BASE_DIR).as_posix()
+                
+                url = f"{BASE_URL}/{rel_p}"
+                if rel_p == "index.html":
+                    url = f"{BASE_URL}/"
 
-    # 1. Add all 31 District Pages
-    districts_dir = BASE_DIR / "districts"
-    if districts_dir.exists():
-        for f in sorted(districts_dir.glob("*.html")):
-            if f.name == "index.html":
-                continue
-            url = f"https://karnata.in/districts/{f.name}"
-            if url not in seen_urls:
-                seen_urls.add(url)
-                entries.append({
-                    "loc": url,
-                    "priority": "0.85",
-                    "changefreq": "daily"
-                })
+                if url not in seen_urls:
+                    seen_urls.add(url)
+                    prio = "1.0" if url == f"{BASE_URL}/" else ("0.9" if any(k in url for k in ['officers', 'news', 'gold', 'dam', 'districts', 'jyothishya']) else "0.8")
+                    freq = "hourly" if any(k in url for k in ['news', 'gold']) else "daily"
+                    entries.append({
+                        "loc": url,
+                        "priority": prio,
+                        "changefreq": freq
+                    })
 
-    # 2. Add all MLA Pages
-    mla_dir = BASE_DIR / "mla"
-    if mla_dir.exists():
-        for f in sorted(mla_dir.glob("*.html")):
-            if f.name == "index.html":
-                continue
-            url = f"https://karnata.in/mla/{f.name}"
-            if url not in seen_urls:
-                seen_urls.add(url)
-                entries.append({
-                    "loc": url,
-                    "priority": "0.8",
-                    "changefreq": "weekly"
-                })
-
-    # 3. Add News Article Pages
-    news_dir = BASE_DIR / "news"
-    if news_dir.exists():
-        for f in sorted(news_dir.glob("*.html")):
-            url = f"https://karnata.in/news/{f.name}" if f.name != "index.html" else "https://karnata.in/news/"
-            if url not in seen_urls:
-                seen_urls.add(url)
-                entries.append({
-                    "loc": url,
-                    "priority": "0.8",
-                    "changefreq": "daily"
-                })
+    # Sort entries: Homepage first, then high priority
+    entries.sort(key=lambda x: (0 if x["loc"] == f"{BASE_URL}/" else 1, -float(x["priority"]), x["loc"]))
 
     # Build XML
     xml_lines = [
