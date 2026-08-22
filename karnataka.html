@@ -600,6 +600,36 @@
       </div>
     </section>
 
+    
+    <!-- FORMER CHIEF MINISTERS (KLA Archive: kla.kar.nic.in/assembly/review/previouscms.htm) -->
+    <section>
+      <div class="section-title-wrap">
+        <h2 class="section-title">📜 ಕರ್ನಾಟಕದ ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳ ಅಧಿಕೃತ ಇತಿಹಾಸ (Former Chief Ministers 1947–Present)</h2>
+        <span class="section-tag">KLA Archive</span>
+      </div>
+
+      <div class="cabinet-search-box">
+        <input type="text" id="formerCmSearch" class="cabinet-search-input" placeholder="🔍 ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳ ಹೆಸರು, ಅವಧಿ ಅಥವಾ ಸಾಧನೆ ಮೂಲಕ ಹುಡುಕಿ...">
+      </div>
+
+      <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:var(--radius); overflow-x:auto; box-shadow:0 2px 8px rgba(0,0,0,0.03); margin-bottom: 30px;">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+          <thead>
+            <tr style="background:#F1F5F9; border-bottom:2px solid var(--border-card); font-weight:800; color:var(--text-main);">
+              <th style="padding:12px 16px; width:60px;">ಕ್ರ.ಸಂ</th>
+              <th style="padding:12px 16px;">ಮುಖ್ಯಮಂತ್ರಿಗಳ ಹೆಸರು</th>
+              <th style="padding:12px 16px;">ಆಡಳಿತ ಅವಧಿ</th>
+              <th style="padding:12px 16px;">ಪ್ರಮುಖ ಸಾಧನೆ / ವಿವರ</th>
+            </tr>
+          </thead>
+          <tbody id="formerCmsTableBody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
     <!-- 4. Dynasties & Heritage Timeline -->
     <section>
       <div class="section-title-wrap">
@@ -1051,6 +1081,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderCabinet(cabinetMinisters);
       renderDistricts('all');
+      renderFormerCms(formerCmsData);
     });
   </script>
 </body>
