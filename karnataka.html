@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ — ಸರ್ಕಾರ, ಸಚಿವ ಸಂಪುಟ, 31 ಜಿಲ್ಲೆಗಳು, ಇತಿಹಾಸ & ನಾಯಕತ್ವ | Karnata.in</title>
-  <meta name="description" content="ಕರ್ನಾಟಕ ರಾಜ್ಯದ ಅಧಿಕೃತ ಸಮಗ್ರ ಮಾಹಿತಿ ಪೋರ್ಟಲ್: ಮುಖ್ಯಮಂತ್ರಿ ಸಿದ್ದರಾಮಯ್ಯ, ಡಿಸಿಎಂ ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್, 34 ಸಚಿವರು, 31 ಜಿಲ್ಲೆಗಳು, 240+ ತಾಲೂಕುಗಳು, 224 ಶಾಸಕರು, 28 ಸಂಸದರು, ಮತ್ತು 2000 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯಗಳ ಇತಿಹಾಸ.">
-  <meta name="keywords" content="Karnataka, CM Siddaramaiah, DK Shivakumar, Karnataka Cabinet, 31 Districts Karnataka, Karnataka Taluks, 224 MLAs, 28 MPs, Karnataka History, Kadamba, Vijayanagara, Hoysala, Mysore Wodeyars, Karnata.in">
+  <title>ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ — ಸಚಿವ ಸಂಪುಟ, 31 ಜಿಲ್ಲೆಗಳ ನಕ್ಷೆ & ಇತಿಹಾಸ | Karnata.in</title>
+  <meta name="description" content="ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಅಧಿಕೃತ ಸಚಿವ ಸಂಪುಟ (34 ಸಚಿವರು), 31 ಜಿಲ್ಲೆಗಳ ಇಂಟರ್ಯಾಕ್ಟಿವ್ ನಕ್ಷೆ, 240+ ತಾಲೂಕುಗಳು, 224 ಶಾಸಕರು, 28 ಸಂಸದರು ಮತ್ತು 2,000 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯಗಳ ಪೂರ್ಣ ಅಧಿಕೃತ ದರ್ಶನ.">
+  <meta name="keywords" content="Karnataka, Karnataka Ministers, Karnataka Map, CM Siddaramaiah, DK Shivakumar, 31 Districts Karnataka, 240 Taluks, Karnataka Government Directory, Karnata.in">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
   <link rel="canonical" href="https://karnata.in/karnataka.html">
 
-  <!-- Fonts & Core Stylesheet -->
+  <!-- Fonts & Leaflet Map Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tiro+Kannada:ital@0;1&family=Cinzel:wght@600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tiro+Kannada:ital@0;1&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link rel="stylesheet" href="/css/nav-styles.css">
 
   <style>
@@ -23,12 +24,10 @@
       --bg-card: #0F172A;
       --bg-card-hover: #1E293B;
       --border: rgba(255, 255, 255, 0.08);
-      --border-gold: rgba(200, 138, 34, 0.3);
+      --border-gold: rgba(200, 138, 34, 0.35);
       --text-main: #F8FAFC;
       --text-muted: #94A3B8;
       --gold: #F59E0B;
-      --gold-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      --crimson: #EF4444;
       --kannada-red: #8E1B1B;
       --kannada-yellow: #EAB308;
       --accent-blue: #38BDF8;
@@ -36,7 +35,6 @@
       --accent-purple: #A855F7;
       --font-kn: 'Tiro Kannada', serif;
       --font-sans: 'Plus Jakarta Sans', sans-serif;
-      --font-royal: 'Cinzel', serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,9 +47,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .kn-font { font-family: var(--font-kn); }
-
-    /* Grand Container */
     .portal-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -62,11 +57,11 @@
     .hero-banner {
       position: relative;
       border-radius: 24px;
-      padding: 50px 36px;
-      background: radial-gradient(circle at 80% 20%, rgba(200, 138, 34, 0.15) 0%, rgba(142, 27, 27, 0.2) 50%, var(--bg-card) 100%);
+      padding: 48px 36px;
+      background: radial-gradient(circle at 85% 15%, rgba(200, 138, 34, 0.18) 0%, rgba(142, 27, 27, 0.22) 50%, var(--bg-card) 100%);
       border: 1px solid var(--border-gold);
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       overflow: hidden;
     }
     .hero-banner::before {
@@ -79,14 +74,14 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       border: 1px solid var(--border-gold);
       padding: 6px 16px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .hero-flag-stripe {
       display: inline-block;
@@ -97,7 +92,7 @@
     }
     .hero-title {
       font-family: var(--font-kn);
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 800;
       line-height: 1.25;
       color: #FFF;
@@ -105,30 +100,29 @@
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
     .hero-subtitle {
-      font-size: 16.5px;
+      font-size: 16px;
       color: var(--text-muted);
-      max-width: 850px;
+      max-width: 900px;
       line-height: 1.7;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     .hero-stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
     }
     .hero-stat-card {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px 18px;
+      padding: 12px 16px;
       backdrop-filter: blur(10px);
     }
     .hero-stat-val {
       font-size: 22px;
       font-weight: 800;
       color: var(--gold);
-      font-family: var(--font-sans);
     }
     .hero-stat-lbl {
       font-size: 12px;
@@ -142,7 +136,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 45px 0 22px;
+      margin: 45px 0 20px;
       border-bottom: 1px solid var(--border);
       padding-bottom: 12px;
     }
@@ -163,41 +157,83 @@
       color: var(--gold);
       padding: 3px 10px;
       border-radius: 20px;
-      font-family: var(--font-sans);
+    }
+
+    /* MAP SECTION */
+    .map-container-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      margin-bottom: 40px;
+    }
+    .map-controls-bar {
+      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .map-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .map-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .map-btn.active, .map-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+    #karnatakaMap {
+      width: 100%;
+      height: 520px;
+      background: #0B0F19;
     }
 
     /* Executive Leadership Cards */
     .exec-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      gap: 18px;
       margin-bottom: 30px;
     }
     .exec-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
     }
     .exec-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: var(--border-gold);
       background: var(--bg-card-hover);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     }
     .exec-role-pill {
       align-self: flex-start;
       font-size: 11.5px;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .pill-cm { background: rgba(239, 68, 68, 0.15); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); }
     .pill-dcm { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
@@ -220,14 +256,11 @@
       font-size: 12.5px;
       color: var(--gold);
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     /* Cabinet Grid */
     .cabinet-search-box {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .cabinet-input {
       width: 100%;
@@ -250,20 +283,23 @@
       gap: 16px;
     }
     .minister-card {
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.65);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px;
       transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .minister-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--border-gold);
       background: var(--bg-card);
       transform: translateY(-2px);
     }
     .minister-name {
       font-family: var(--font-kn);
-      font-size: 17px;
+      font-size: 17.5px;
       font-weight: 800;
       color: #FFF;
       margin-bottom: 4px;
@@ -272,7 +308,7 @@
       font-size: 13px;
       color: var(--accent-blue);
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       line-height: 1.4;
     }
     .minister-meta {
@@ -280,22 +316,24 @@
       color: var(--text-muted);
       display: flex;
       justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 8px;
     }
 
-    /* 31 Districts & Divisions */
+    /* 31 Districts Grid */
     .division-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 18px;
     }
     .div-tab {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 8px 18px;
+      padding: 7px 16px;
       border-radius: 20px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -308,13 +346,13 @@
     .district-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      gap: 15px;
     }
     .dist-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px;
+      padding: 16px;
       text-decoration: none;
       color: inherit;
       display: flex;
@@ -324,18 +362,18 @@
     }
     .dist-card:hover {
       border-color: var(--gold);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
     .dist-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .dist-name {
       font-family: var(--font-kn);
-      font-size: 18px;
+      font-size: 17.5px;
       font-weight: 800;
       color: #FFF;
     }
@@ -351,18 +389,15 @@
       font-size: 12.5px;
       color: var(--text-muted);
       line-height: 1.4;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .dist-footer-link {
       font-size: 12px;
       font-weight: 700;
       color: var(--accent-blue);
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
 
-    /* History & Dynasties Timeline */
+    /* History & Dynasties */
     .timeline-wrap {
       position: relative;
       padding-left: 28px;
@@ -371,22 +406,16 @@
     .timeline-wrap::before {
       content: "";
       position: absolute;
-      left: 8px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
+      left: 8px; top: 0; bottom: 0; width: 2px;
       background: linear-gradient(180deg, var(--gold) 0%, rgba(200, 138, 34, 0.1) 100%);
     }
     .timeline-item {
       position: relative;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     .timeline-dot {
       position: absolute;
-      left: -28px;
-      top: 4px;
-      width: 16px;
-      height: 16px;
+      left: -28px; top: 4px; width: 16px; height: 16px;
       border-radius: 50%;
       background: var(--bg-dark);
       border: 3px solid var(--gold);
@@ -396,22 +425,21 @@
       font-weight: 800;
       color: var(--gold);
       margin-bottom: 4px;
-      letter-spacing: 0.5px;
     }
     .timeline-title {
       font-family: var(--font-kn);
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       color: #FFF;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .timeline-desc {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* State Symbols Grid */
+    /* State Symbols */
     .symbols-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -424,56 +452,51 @@
       padding: 16px;
       text-align: center;
     }
-    .symbol-icon { font-size: 32px; margin-bottom: 8px; }
+    .symbol-icon { font-size: 32px; margin-bottom: 6px; }
     .symbol-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
     .symbol-val { font-family: var(--font-kn); font-size: 15px; font-weight: 800; color: #FFF; margin-top: 2px; }
 
-    /* Quick Action CTA */
-    .cta-ask-box {
-      margin-top: 50px;
-      border-radius: 20px;
-      padding: 32px;
-      background: linear-gradient(135deg, rgba(200, 138, 34, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+    /* Custom Leaflet Map Popup */
+    .leaflet-popup-content-wrapper {
+      background: #0F172A !important;
+      color: #F8FAFC !important;
+      border: 1px solid rgba(200, 138, 34, 0.5) !important;
+      border-radius: 12px !important;
+      padding: 6px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
     }
-    .cta-text h3 {
+    .leaflet-popup-tip {
+      background: #0F172A !important;
+    }
+    .map-popup-title {
       font-family: var(--font-kn);
-      font-size: 24px;
-      color: #FFF;
-      margin-bottom: 6px;
-    }
-    .cta-text p {
-      font-size: 14.5px;
-      color: var(--text-muted);
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold);
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 12px;
+      font-size: 16px;
       font-weight: 800;
-      text-decoration: none;
-      font-size: 15px;
-      transition: all 0.2s;
+      color: #F59E0B;
+      margin-bottom: 4px;
     }
-    .cta-btn:hover {
-      background: #FBBF24;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    .map-popup-meta {
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .map-popup-btn {
+      display: inline-block;
+      background: rgba(200, 138, 34, 0.2);
+      border: 1px solid #F59E0B;
+      color: #FFF !important;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     @media (max-width: 768px) {
-      .hero-title { font-size: 30px; }
-      .hero-banner { padding: 32px 20px; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .hero-title { font-size: 28px; }
+      .hero-banner { padding: 30px 18px; }
+      #karnatakaMap { height: 400px; }
     }
   </style>
 </head>
@@ -490,9 +513,9 @@
         <span class="hero-flag-stripe"></span>
         <span>ಕರ್ನಾಟಕ ರಾಜ್ಯ ಅಧಿಕೃತ ದರ್ಶನ (Official State Portal)</span>
       </div>
-      <h1 class="hero-title">ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ — ರಾಜ್ಯ, ಆಡಳಿತ & ಇತಿಹಾಸ</h1>
+      <h1 class="hero-title">ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ — ಸಚಿವ ಸಂಪುಟ, 31 ಜಿಲ್ಲೆಗಳ ನಕ್ಷೆ & ಇತಿಹಾಸ</h1>
       <p class="hero-subtitle">
-        ಭಾರತದ ಪ್ರಮುಖ ತಂತ್ರಜ್ಞಾನ, ಸಾಂಸ್ಕೃತಿಕ ಮತ್ತು ಕೃಷಿ ಕಣಜವಾಗಿರುವ ಕರ್ನಾಟಕ ರಾಜ್ಯದ ನಾಯಕತ್ವ, 34 ಸಚಿವರು, 31 ಜಿಲ್ಲೆಗಳು, 240+ ತಾಲೂಕುಗಳು, 224 ಶಾಸಕರು, 28 ಸಂಸದರು ಮತ್ತು 2,000 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯಗಳ ಪೂರ್ಣ ಅಧಿಕೃತ ದತ್ತಾಂಶ.
+        ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಅಧಿಕೃತ ಸಚಿವ ಸಂಪುಟ (34 ಸಚಿವರು), 31 ಜಿಲ್ಲೆಗಳ ಸಂವಾದಾತ್ಮಕ (Interactive) ನಕ್ಷೆ, 240+ ತಾಲೂಕುಗಳು, 224 ಶಾಸಕರು, 28 ಸಂಸದರು ಮತ್ತು 2,000 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯಗಳ ಪೂರ್ಣ ಅಧಿಕೃತ ದತ್ತಾಂಶ.
       </p>
 
       <div class="hero-stats-grid">
@@ -503,6 +526,10 @@
         <div class="hero-stat-card">
           <div class="hero-stat-val">240+</div>
           <div class="hero-stat-lbl">ತಾಲೂಕುಗಳು</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-val">34</div>
+          <div class="hero-stat-lbl">ಸಚಿವ ಸಂಪುಟ ಸದಸ್ಯರು</div>
         </div>
         <div class="hero-stat-card">
           <div class="hero-stat-val">224</div>
@@ -516,14 +543,32 @@
           <div class="hero-stat-val">13</div>
           <div class="hero-stat-lbl">ಪ್ರಮುಖ ಜಲಾಶಯಗಳು</div>
         </div>
-        <div class="hero-stat-card">
-          <div class="hero-stat-val">8</div>
-          <div class="hero-stat-lbl">ಜ್ಞಾನಪೀಠ ಪ್ರಶಸ್ತಿಗಳು</div>
-        </div>
       </div>
     </header>
 
-    <!-- 2. EXECUTIVE GOVERNANCE PILLARS -->
+    <!-- 2. INTERACTIVE 31-DISTRICT KARNATAKA MAP -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">🗺️ ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಇಂಟರ್ಯಾಕ್ಟಿವ್ ನಕ್ಷೆ (Interactive Map)</h2>
+        <span class="section-badge">Live Geolocation & Weather</span>
+      </div>
+
+      <div class="map-container-box">
+        <div class="map-controls-bar">
+          <span style="font-size:13px; font-weight:700; color:var(--gold);">📍 ವಿಭಾಗದ ಪ್ರಕಾರ ನಕ್ಷೆ ವೀಕ್ಷಿಸಿ:</span>
+          <div class="map-tabs">
+            <button class="map-btn active" onclick="zoomDivision('all')">ಸಂಪೂರ್ಣ ಕರ್ನಾಟಕ</button>
+            <button class="map-btn" onclick="zoomDivision('bengaluru')">ಬೆಂಗಳೂರು ವಿಭಾಗ</button>
+            <button class="map-btn" onclick="zoomDivision('mysuru')">ಮೈಸೂರು ವಿಭಾಗ</button>
+            <button class="map-btn" onclick="zoomDivision('belagavi')">ಬೆಳಗಾವಿ ವಿಭಾಗ</button>
+            <button class="map-btn" onclick="zoomDivision('kalaburagi')">ಕಲಬುರಗಿ ವಿಭಾಗ</button>
+          </div>
+        </div>
+        <div id="karnatakaMap"></div>
+      </div>
+    </section>
+
+    <!-- 3. EXECUTIVE GOVERNANCE PILLARS -->
     <section>
       <div class="section-header">
         <h2 class="section-title">👑 ರಾಜ್ಯದ ಆಡಳಿತ ನಾಯಕತ್ವ (Executive Leadership)</h2>
@@ -536,7 +581,7 @@
           <div>
             <span class="exec-role-pill pill-cm">ಮುಖ್ಯಮಂತ್ರಿ (Chief Minister)</span>
             <h3 class="exec-name">ಸಿದ್ದರಾಮಯ್ಯ (Siddaramaiah)</h3>
-            <p class="exec-detail">ಹಣಕಾಸು, ಗುಪ್ತಚರ, ಸಿಬ್ಬಂದಿ ಮತ್ತು ಆಡಳಿತ ಸುಧಾರಣೆ (DPAR), ಮಾಹಿತಿ ಮತ್ತು ವಾರ್ತಾ ಇಲಾಖೆ.</p>
+            <p class="exec-detail">ಹಣಕಾಸು, ಸಿಬ್ಬಂದಿ ಮತ್ತು ಆಡಳಿತ ಸುಧಾರಣೆ (DPAR), ಗುಪ್ತಚರ, ಮಾಹಿತಿ ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕ ಇಲಾಖೆ.</p>
           </div>
           <div class="exec-constituency">
             🏛️ ವರುಣಾ ಕ್ಷೇತ್ರ (#221) | ಪಕ್ಷ: INC
@@ -581,26 +626,26 @@
       </div>
     </section>
 
-    <!-- 3. FULL CABINET MINISTERS (34 PORTFOLIOS) -->
+    <!-- 4. OFFICIAL 34 CABINET MINISTERS (karnataka.gov.in Direct Directory) -->
     <section>
       <div class="section-header">
-        <h2 class="section-title">🏛️ ಕರ್ನಾಟಕ ಸಚಿವ ಸಂಪುಟ (Cabinet Ministers 2026)</h2>
+        <h2 class="section-title">🏛️ ಕರ್ನಾಟಕ ಸಚಿವ ಸಂಪುಟ (Council of Ministers — karnataka.gov.in)</h2>
         <span class="section-badge">34 ಸಚಿವರು</span>
       </div>
 
       <div class="cabinet-search-box">
-        <input type="text" id="cabinetSearch" class="cabinet-input" placeholder="🔍 ಸಚಿವರ ಹೆಸರು, ಇಲಾಖೆ ಅಥವಾ ಜಿಲ್ಲೆಯ ಮೂಲಕ ಹುಡುಕಿ...">
+        <input type="text" id="cabinetSearch" class="cabinet-input" placeholder="🔍 ಸಚಿವರ ಹೆಸರು, ಖಾತೆ ಅಥವಾ ಜಿಲ್ಲೆಯ ಮೂಲಕ ಹುಡುಕಿ...">
       </div>
 
       <div class="cabinet-grid" id="cabinetList">
-        <!-- Will be populated dynamically via JavaScript -->
+        <!-- Rendered via JavaScript -->
       </div>
     </section>
 
-    <!-- 4. 31 DISTRICTS & 240+ TALUKS EXPLORER -->
+    <!-- 5. 31 DISTRICTS & 240+ TALUKS EXPLORER -->
     <section>
       <div class="section-header">
-        <h2 class="section-title">🗺️ 31 ಕಂದಾಯ ಜಿಲ್ಲೆಗಳು & ತಾಲೂಕುಗಳು (Districts & Taluks)</h2>
+        <h2 class="section-title">🗺️ 31 ಕಂದಾಯ ಜಿಲ್ಲೆಗಳು & ತಾಲೂಕುಗಳ ಪಟ್ಟಿ (Districts & Taluks)</h2>
         <span class="section-badge">4 ಕಂದಾಯ ವಿಭಾಗಗಳು</span>
       </div>
 
@@ -613,11 +658,11 @@
       </div>
 
       <div class="district-grid" id="districtGrid">
-        <!-- Will be populated dynamically via JavaScript -->
+        <!-- Rendered via JavaScript -->
       </div>
     </section>
 
-    <!-- 5. 2,000-YEAR DYNASTIES & HERITAGE TIMELINE -->
+    <!-- 6. 2,000-YEAR DYNASTIES & HERITAGE TIMELINE -->
     <section>
       <div class="section-header">
         <h2 class="section-title">📜 ಕರ್ನಾಟಕದ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯಗಳು (Dynasties & Heritage)</h2>
@@ -683,7 +728,7 @@
       </div>
     </section>
 
-    <!-- 6. STATE SYMBOLS -->
+    <!-- 7. STATE SYMBOLS -->
     <section>
       <div class="section-header">
         <h2 class="section-title">🔰 ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ರಾಜ್ಯ ಲಾಂಛನಗಳು (State Symbols)</h2>
@@ -723,27 +768,17 @@
       </div>
     </section>
 
-    <!-- 7. ASK KARNATA AI CTA -->
-    <section class="cta-ask-box">
-      <div class="cta-text">
-        <h3>🤖 askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ AI ಸಹಾಯಕ</h3>
-        <p>31 ಜಿಲ್ಲೆಗಳು, ಕೃಷಿ ದರ, ಡ್ಯಾಂ ಮಟ್ಟ, ಹವಾಮಾನ, ಚಿನ್ನದ ದರ ಹಾಗೂ ಶಾಸಕರ ಕುರಿತು ನೇರವಾಗಿ ಪ್ರಶ್ನೆ ಕೇಳಿ.</p>
-      </div>
-      <a href="/ask.html" class="cta-btn">
-        <span>✨ AI ಪ್ರಶ್ನೋತ್ತರ ತೆರೆಯಿರಿ</span>
-      </a>
-    </section>
-
   </main>
 
-  <script src="/js/nav-component.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/nav-component.js"></script>
   <script>
-    // 34 Karnataka Cabinet Ministers Data
+    // 34 Verified Karnataka Cabinet Ministers from karnataka.gov.in directory
     const cabinetMinisters = [
-      { name: "ಸಿದ್ದರಾಮಯ್ಯ", portfolio: "ಮುಖ್ಯಮಂತ್ರಿ — ಹಣಕಾಸು, ಸಿಬ್ಬಂದಿ ಮತ್ತು ಆಡಳಿತ ಸುಧಾರಣೆ (DPAR), ಗುಪ್ತಚರ, ಮಾಹಿತಿ", district: "ಮೈಸೂರು", constituency: "ವರುಣಾ (#221)" },
-      { name: "ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್", portfolio: "ಉಪಮುಖ್ಯಮಂತ್ರಿ — ಜಲಸಂಪನ್ಮೂಲ, ಬೆಂಗಳೂರು ನಗರಾಭಿವೃದ್ಧಿ", district: "ರಾಮನಗರ", constituency: "ಕನಕಪುರ (#184)" },
+      { name: "ಸಿದ್ದರಾಮಯ್ಯ", portfolio: "ಮುಖ್ಯಮಂತ್ರಿ — ಹಣಕಾಸು, ಸಿಬ್ಬಂದಿ ಮತ್ತು ಆಡಳಿತ ಸುಧಾರಣೆ (DPAR), ಗುಪ್ತಚರ, ಮಾಹಿತಿ ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕ", district: "ಮೈಸೂರು", constituency: "ವರುಣಾ (#221)" },
+      { name: "ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್", portfolio: "ಉಪಮುಖ್ಯಮಂತ್ರಿ — ಬೃಹತ್ & ಮಧ್ಯಮ ನೀರಾವರಿ (ಜಲಸಂಪನ್ಮೂಲ), ಬೆಂಗಳೂರು ನಗರಾಭಿವೃದ್ಧಿ", district: "ರಾಮನಗರ", constituency: "ಕನಕಪುರ (#184)" },
       { name: "ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ್", portfolio: "ಗೃಹ ಇಲಾಖೆ (Home Affairs)", district: "ತುಮಕೂರು", constituency: "ಕೊರಟಗೆರೆ (#132)" },
-      { name: "ಎಚ್.ಕೆ. ಪಾಟೀಲ್", portfolio: "ಕಾನೂನು, ಸಂಸದೀಯ ವ್ಯವಹಾರಗಳು ಮತ್ತು ಪ್ರವಾಸೋದ್ಯಮ", district: "ಗದಗ", constituency: "ಗದಗ (#66)" },
+      { name: "ಎಚ್.ಕೆ. ಪಾಟೀಲ್", portfolio: "ಕಾನೂನು, ನ್ಯಾಯ, ಸಂಸದೀಯ ವ್ಯವಹಾರಗಳು ಮತ್ತು ಪ್ರವಾಸೋದ್ಯಮ", district: "ಗದಗ", constituency: "ಗದಗ (#66)" },
       { name: "ಕೆ.ಎಚ್. ಮುನಿಯಪ್ಪ", portfolio: "ಆಹಾರ, ನಾಗರಿಕ ಸರಬರಾಜು ಮತ್ತು ಗ್ರಾಹಕರ ವ್ಯವಹಾರಗಳು", district: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", constituency: "ದೇವನಹಳ್ಳಿ (#177)" },
       { name: "ರಾಮಲಿಂಗಾ ರೆಡ್ಡಿ", portfolio: "ಸಾರಿಗೆ ಮತ್ತು ಮುಜರಾಯಿ ಇಲಾಖೆ", district: "ಬೆಂಗಳೂರು ನಗರ", constituency: "ಬಿಟಿಎಂ ಲೇಔಟ್ (#174)" },
       { name: "ಎಂ.ಬಿ. ಪಾಟೀಲ್", portfolio: "ಬೃಹತ್ ಮತ್ತು ಮಧ್ಯಮ ಕೈಗಾರಿಕೆಗಳು, ಮೂಲಸೌಕರ್ಯ ಅಭಿವೃದ್ಧಿ", district: "ವಿಜಯಪುರ", constituency: "ಬಬಲೇಶ್ವರ (#29)" },
@@ -771,60 +806,146 @@
       { name: "ಡಾ. ಎಂ.ಸಿ. ಸುಧಾಕರ್", portfolio: "ಉನ್ನತ ಶಿಕ್ಷಣ ಇಲಾಖೆ (Higher Education)", district: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", constituency: "ಚಿಂತಾಮಣಿ (#142)" },
       { name: "ಬಿ. ನಾಗೇಂದ್ರ", portfolio: "ಯುವಜನ ಸಬಲೀಕರಣ, ಕ್ರೀಡೆ ಮತ್ತು ಬುಡಕಟ್ಟು ಕಲ್ಯಾಣ", district: "ಬಳ್ಳಾರಿ", constituency: "ಬಳ್ಳಾರಿ ಗ್ರಾಮೀಣ (#94)" },
       { name: "ಎನ್.ಎಸ್. ಬೋಸರಾಜು", portfolio: "ಸಣ್ಣ ನೀರಾವರಿ, ವಿಜ್ಞಾನ ಮತ್ತು ತಂತ್ರಜ್ಞಾನ", district: "ರಾಯಚೂರು", constituency: "ವಿಧಾನ ಪರಿಷತ್ (MLC)" },
-      { name: "ಆರ್.ಬಿ. ತಿಮ್ಮಾಪುರ", portfolio: "ಅಬಕಾರಿ ಇಲಾಖೆ (Excise)", district: "ಬಾಗಲಕೋಟೆ", constituency: "ಮುಧೋಳ (#22)" }
+      { name: "ಆರ್.ಬಿ. ತಿಮ್ಮಾಪುರ", portfolio: "ಅಬಕಾರಿ ಇಲಾಖೆ (Excise)", district: "ಬಾಗಲಕೋಟೆ", constituency: "ಮುಧೋಳ (#22)" },
+      { name: "ಬಿ.ಝಡ್. ಜಮೀರ್ ಅಹಮದ್ ಖಾನ್", portfolio: "ವಸತಿ, ವಕ್ಫ್ ಮತ್ತು ಅಲ್ಪಸಂಖ್ಯಾತರ ಕಲ್ಯಾಣ", district: "ಬೆಂಗಳೂರು ನಗರ", constituency: "ಚಾಮರಾಜಪೇಟೆ (#168)" },
+      { name: "ಸಂತೋಷ್ ಲಾಡ್", portfolio: "ಕಾರ್ಮಿಕ ಇಲಾಖೆ (Labour)", district: "ಧಾರವಾಡ", constituency: "ಕಲಘಟಗಿ (#75)" }
     ];
 
-    // 31 Districts Data with 4 Administrative Divisions and Taluks
+    // 31 Districts with Exact Geographic Lat/Lng for Interactive Map
     const districtsData = [
       // Bengaluru Division
-      { nameKn: "ಬೆಂಗಳೂರು ನಗರ", key: "bengaluru_urban", div: "bengaluru", mlas: 28, taluks: "ಬೆಂಗಳೂರು ಉತ್ತರ, ದಕ್ಷಿಣ, ಪೂರ್ವ, ಆನೇಕಲ್, ಯಲಹಂಕ" },
-      { nameKn: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", key: "bengaluru_rural", div: "bengaluru", mlas: 4, taluks: "ದೇವನಹಳ್ಳಿ, ದೊಡ್ಡಬಳ್ಳಾಪುರ, ನೆಲಮಂಗಲ, ಹೊಸಕೋಟೆ" },
-      { nameKn: "ರಾಮನಗರ", key: "ramanagara", div: "bengaluru", mlas: 4, taluks: "ರಾಮನಗರ, ಚನ್ನಪಟ್ಟಣ, ಕನಕಪುರ, ಮಾಗಡಿ, ಹಾರೋಹಳ್ಳಿ" },
-      { nameKn: "ಕೋಲಾರ", key: "kolar", div: "bengaluru", mlas: 6, taluks: "ಕೋಲಾರ, ಬಂಗಾರಪೇಟೆ, ಮಾಲೂರು, ಮುಳಬಾಗಿಲು, ಶ್ರೀನಿವಾಸಪುರ, ಕೆಜಿಎಫ್" },
-      { nameKn: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", key: "chikkaballapura", div: "bengaluru", mlas: 5, taluks: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ಗೌರಿಬಿದನೂರು, ಬಾಗೇಪಲ್ಲಿ, ಚಿಂತಾಮಣಿ, ಶಿಡ್ಲಘಟ್ಟ, ಗುಡಿಬಂಡೆ" },
-      { nameKn: "ತುಮಕೂರು", key: "tumakuru", div: "bengaluru", mlas: 11, taluks: "ತುಮಕೂರು, ತಿಪಟೂರು, ಕುಣಿಗಲ್, ಮಧುಗಿರಿ, ಪಾವಗಡ, ಸಿರಾ, ಗುಬ್ಬಿ, ಕೊರಟಗೆರೆ, ತುರುವೇಕೆರೆ, ಚಿಕ್ಕನಾಯಕನಹಳ್ಳಿ" },
-      { nameKn: "ಚಿತ್ರದುರ್ಗ", key: "chitradurga", div: "bengaluru", mlas: 6, taluks: "ಚಿತ್ರದುರ್ಗ, ಚಳ್ಳಕೆರೆ, ಹಿರಿಯೂರು, ಹೊಳಲ್ಕೆರೆ, ಹೊಸದುರ್ಗ, ಮೊಳಕಾಲ್ಮುರು" },
-      { nameKn: "ದಾವಣಗೆರೆ", key: "davanagere", div: "bengaluru", mlas: 7, taluks: "ದಾವಣಗೆರೆ, ಹರಿಹರ, ಜಗಳೂರು, ಚನ್ನಗಿರಿ, ಹೊನ್ನಾಳಿ, ನ್ಯಾಮತಿ" },
-      { nameKn: "ಶಿವಮೊಗ್ಗ", key: "shivamogga", div: "bengaluru", mlas: 7, taluks: "ಶಿವಮೊಗ್ಗ, ಭದ್ರಾವತಿ, ತೀರ್ಥಹಳ್ಳಿ, ಸಾಗರ, ಶಿಕಾರಿಪುರ, ಸೊರಬ, ಹೊಸನಗರ" },
+      { nameKn: "ಬೆಂಗಳೂರು ನಗರ", key: "bengaluru-urban", div: "bengaluru", lat: 12.9716, lng: 77.5946, mlas: 28, taluks: "ಬೆಂಗಳೂರು ಉತ್ತರ, ದಕ್ಷಿಣ, ಪೂರ್ವ, ಆನೇಕಲ್, ಯಲಹಂಕ" },
+      { nameKn: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", key: "bengaluru-rural", div: "bengaluru", lat: 13.2384, lng: 77.5750, mlas: 4, taluks: "ದೇವನಹಳ್ಳಿ, ದೊಡ್ಡಬಳ್ಳಾಪುರ, ನೆಲಮಂಗಲ, ಹೊಸಕೋಟೆ" },
+      { nameKn: "ರಾಮನಗರ", key: "ramanagara", div: "bengaluru", lat: 12.7209, lng: 77.2799, mlas: 4, taluks: "ರಾಮನಗರ, ಚನ್ನಪಟ್ಟಣ, ಕನಕಪುರ, ಮಾಗಡಿ, ಹಾರೋಹಳ್ಳಿ" },
+      { nameKn: "ಕೋಲಾರ", key: "kolar", div: "bengaluru", lat: 13.1367, lng: 78.1291, mlas: 6, taluks: "ಕೋಲಾರ, ಬಂಗಾರಪೇಟೆ, ಮಾಲೂರು, ಮುಳಬಾಗಿಲು, ಶ್ರೀನಿವಾಸಪುರ, ಕೆಜಿಎಫ್" },
+      { nameKn: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", key: "chikkaballapura", div: "bengaluru", lat: 13.4355, lng: 77.7315, mlas: 5, taluks: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ಗೌರಿಬಿದನೂರು, ಬಾಗೇಪಲ್ಲಿ, ಚಿಂತಾಮಣಿ, ಶಿಡ್ಲಘಟ್ಟ, ಗುಡಿಬಂಡೆ" },
+      { nameKn: "ತುಮಕೂರು", key: "tumakuru", div: "bengaluru", lat: 13.3409, lng: 77.1010, mlas: 11, taluks: "ತುಮಕೂರು, ತಿಪಟೂರು, ಕುಣಿಗಲ್, ಮಧುಗಿರಿ, ಪಾವಗಡ, ಸಿರಾ, ಗುಬ್ಬಿ, ಕೊರಟಗೆರೆ, ತುರುವೇಕೆರೆ, ಚಿಕ್ಕನಾಯಕನಹಳ್ಳಿ" },
+      { nameKn: "ಚಿತ್ರದುರ್ಗ", key: "chitradurga", div: "bengaluru", lat: 14.2251, lng: 76.3980, mlas: 6, taluks: "ಚಿತ್ರದುರ್ಗ, ಚಳ್ಳಕೆರೆ, ಹಿರಿಯೂರು, ಹೊಳಲ್ಕೆರೆ, ಹೊಸದುರ್ಗ, ಮೊಳಕಾಲ್ಮುರು" },
+      { nameKn: "ದಾವಣಗೆರೆ", key: "davanagere", div: "bengaluru", lat: 14.4644, lng: 75.9218, mlas: 7, taluks: "ದಾವಣಗೆರೆ, ಹರಿಹರ, ಜಗಳೂರು, ಚನ್ನಗಿರಿ, ಹೊನ್ನಾಳಿ, ನ್ಯಾಮತಿ" },
+      { nameKn: "ಶಿವಮೊಗ್ಗ", key: "shivamogga", div: "bengaluru", lat: 13.9299, lng: 75.5681, mlas: 7, taluks: "ಶಿವಮೊಗ್ಗ, ಭದ್ರಾವತಿ, ತೀರ್ಥಹಳ್ಳಿ, ಸಾಗರ, ಶಿಕಾರಿಪುರ, ಸೊರಬ, ಹೊಸನಗರ" },
 
       // Mysuru Division
-      { nameKn: "ಮೈಸೂರು", key: "mysuru", div: "mysuru", mlas: 11, taluks: "ಮೈಸೂರು, ನಂಜನಗೂಡು, ಹುಣಸೂರು, ಪಿರಿಯಾಪಟ್ಟಣ, ಕೆ.ಆರ್. ನಗರ, ಎಚ್.ಡಿ. ಕೋಟೆ, ಟಿ. ನರಸೀಪುರ, ಸರಗೂರು, ಸಾಲಿಗ್ರಾಮ" },
-      { nameKn: "ಮಂಡ್ಯ", key: "mandya", div: "mysuru", mlas: 7, taluks: "ಮಂಡ್ಯ, ಮದ್ದೂರು, ಮಳವಳ್ಳಿ, ಪಾಂಡವಪುರ, ಶ್ರೀರಂಗಪಟ್ಟಣ, ನಾಗಮಂಗಲ, ಕೆ.ಆರ್. ಪೇಟೆ" },
-      { nameKn: "ಹಾಸನ", key: "hassan", div: "mysuru", mlas: 7, taluks: "ಹಾಸನ, ಅರಸೀಕೆರೆ, ಚನ್ನರಾಯಪಟ್ಟಣ, ಹೊಳೆನರಸೀಪುರ, ಸಕಲೇಶಪುರ, ಬೇಲೂರು, ಆಲೂರು, ಅರಕಲಗೂಡು" },
-      { nameKn: "ಚಿಕ್ಕಮಗಳೂರು", key: "chikkamagaluru", div: "mysuru", mlas: 5, taluks: "ಚಿಕ್ಕಮಗಳೂರು, ಕಡೂರು, ತರೀಕೆರೆ, ಮೂಡಿಗೆರೆ, ಕೊಪ್ಪ, ಶೃಂಗೇರಿ, ನರಸಿಂಹರಾಜಪುರ, ಅಜ್ಜಂಪುರ, ಕಳಸ" },
-      { nameKn: "ಚಾಮರಾಜನಗರ", key: "chamarajanagara", div: "mysuru", mlas: 4, taluks: "ಚಾಮರಾಜನಗರ, ಕೊಳ್ಳೇಗಾಲ, ಗುಂಡ್ಲುಪೇಟೆ, ಯಳಂದೂರು, ಹನೂರು" },
-      { nameKn: "ಕೊಡಗು", key: "kodagu", div: "mysuru", mlas: 2, taluks: "ಮಡಿಕೇರಿ, ವಿರಾಜಪೇಟೆ, ಸೋಮವಾರಪೇಟೆ, ಪೊನ್ನಂಪೇಟೆ, ಕುಶಾಲನಗರ" },
-      { nameKn: "ದಕ್ಷಿಣ ಕನ್ನಡ", key: "dakshina_kannada", div: "mysuru", mlas: 8, taluks: "ಮಂಗಳೂರು, ಬಂಟ್ವಾಳ, ಪುತ್ತೂರು, ಬೆಳ್ತಂಗಡಿ, ಸುಳ್ಯ, ಮೂಡುಬಿದಿರೆ, ಕಡಬ, ಉಳ್ಳಾಲ" },
-      { nameKn: "ಉಡುಪಿ", key: "udupi", div: "mysuru", mlas: 5, taluks: "ಉಡುಪಿ, ಕುಂದಾಪುರ, ಕಾರ್ಕಳ, ಬೈಂದೂರು, ಬ್ರಹ್ಮಾವರ, ಕಾಪು, ಹೆಬ್ರಿ" },
+      { nameKn: "ಮೈಸೂರು", key: "mysuru", div: "mysuru", lat: 12.2958, lng: 76.6394, mlas: 11, taluks: "ಮೈಸೂರು, ನಂಜನಗೂಡು, ಹುಣಸೂರು, ಪಿರಿಯಾಪಟ್ಟಣ, ಕೆ.ಆರ್. ನಗರ, ಎಚ್.ಡಿ. ಕೋಟೆ, ಟಿ. ನರಸೀಪುರ, ಸರಗೂರು, ಸಾಲಿಗ್ರಾಮ" },
+      { nameKn: "ಮಂಡ್ಯ", key: "mandya", div: "mysuru", lat: 12.5242, lng: 76.8958, mlas: 7, taluks: "ಮಂಡ್ಯ, ಮದ್ದೂರು, ಮಳವಳ್ಳಿ, ಪಾಂಡವಪುರ, ಶ್ರೀರಂಗಪಟ್ಟಣ, ನಾಗಮಂಗಲ, ಕೆ.ಆರ್. ಪೇಟೆ" },
+      { nameKn: "ಹಾಸನ", key: "hassan", div: "mysuru", lat: 13.0068, lng: 76.1004, mlas: 7, taluks: "ಹಾಸನ, ಅರಸೀಕೆರೆ, ಚನ್ನರಾಯಪಟ್ಟಣ, ಹೊಳೆನರಸೀಪುರ, ಸಕಲೇಶಪುರ, ಬೇಲೂರು, ಆಲೂರು, ಅರಕಲಗೂಡು" },
+      { nameKn: "ಚಿಕ್ಕಮಗಳೂರು", key: "chikkamagaluru", div: "mysuru", lat: 13.3161, lng: 75.7720, mlas: 5, taluks: "ಚಿಕ್ಕಮಗಳೂರು, ಕಡೂರು, ತರೀಕೆರೆ, ಮೂಡಿಗೆರೆ, ಕೊಪ್ಪ, ಶೃಂಗೇರಿ, ನರಸಿಂಹರಾಜಪುರ, ಅಜ್ಜಂಪುರ, ಕಳಸ" },
+      { nameKn: "ಚಾಮರಾಜನಗರ", key: "chamarajanagara", div: "mysuru", lat: 11.9261, lng: 76.9437, mlas: 4, taluks: "ಚಾಮರಾಜನಗರ, ಕೊಳ್ಳೇಗಾಲ, ಗುಂಡ್ಲುಪೇಟೆ, ಯಳಂದೂರು, ಹನೂರು" },
+      { nameKn: "ಕೊಡಗು", key: "kodagu", div: "mysuru", lat: 12.4244, lng: 75.7382, mlas: 2, taluks: "ಮಡಿಕೇರಿ, ವಿರಾಜಪೇಟೆ, ಸೋಮವಾರಪೇಟೆ, ಪೊನ್ನಂಪೇಟೆ, ಕುಶಾಲನಗರ" },
+      { nameKn: "ದಕ್ಷಿಣ ಕನ್ನಡ", key: "dakshina-kannada", div: "mysuru", lat: 12.8708, lng: 74.8806, mlas: 8, taluks: "ಮಂಗಳೂರು, ಬಂಟ್ವಾಳ, ಪುತ್ತೂರು, ಬೆಳ್ತಂಗಡಿ, ಸುಳ್ಯ, ಮೂಡುಬಿದಿರೆ, ಕಡಬ, ಉಳ್ಳಾಲ" },
+      { nameKn: "ಉಡುಪಿ", key: "udupi", div: "mysuru", lat: 13.3409, lng: 74.7421, mlas: 5, taluks: "ಉಡುಪಿ, ಕುಂದಾಪುರ, ಕಾರ್ಕಳ, ಬೈಂದೂರು, ಬ್ರಹ್ಮಾವರ, ಕಾಪು, ಹೆಬ್ರಿ" },
 
       // Belagavi Division
-      { nameKn: "ಬೆಳಗಾವಿ", key: "belagavi", div: "belagavi", mlas: 18, taluks: "ಬೆಳಗಾವಿ, ಗೋಕಾಕ್, ಚಿಕ್ಕೋಡಿ, ಬೈಲಹೊಂಗಲ, ಖಾನಾಪುರ, ಸವದತ್ತಿ, ರಾಯಬಾಗ, ರಾಮದುರ್ಗ, ಅಥಣಿ, ನಿಪ್ಪಾಣಿ, ಕಾಗವಾಡ, ಹುಕ್ಕೇರಿ, ಕಿತ್ತೂರು, ಮೂಡಲಗಿ, ಯರಗಟ್ಟಿ" },
-      { nameKn: "ಧಾರವಾಡ", key: "dharwad", div: "belagavi", mlas: 7, taluks: "ಧಾರವಾಡ, ಹುಬ್ಬಳ್ಳಿ ನಗರ, ಹುಬ್ಬಳ್ಳಿ ಗ್ರಾಮೀಣ, ಕುಂದಗೋಳ, ನವಲಗುಂದ, ಕಲಘಟಗಿ, ಅಣ್ಣಿಗೇರಿ, ಅಳ್ನಾವರ" },
-      { nameKn: "ವಿಜಯಪುರ", key: "vijayapura", div: "belagavi", mlas: 8, taluks: "ವಿಜಯಪುರ, ಇಂಡಿ, ಸಿಂದಗಿ, ಬಸವನ ಬಾಗೇವಾಡಿ, ಮುದ್ದೇಬಿಹಾಳ, ಮುದ್ದೇಬಿಹಾಳ, ತಾಳಿಕೋಟೆ, ಬಬಲೇಶ್ವರ, ಕೊಲ್ಹಾರ, ನಿಡಗುಂದಿ, ದೇವರಹಿಪ್ಪರಗಿ, ಚಡಚಣ, ತಿಕೋಟಾ" },
-      { nameKn: "ಬಾಗಲಕೋಟೆ", key: "bagalkote", div: "belagavi", mlas: 7, taluks: "ಬಾಗಲಕೋಟೆ, ಬಾದಾಮಿ, ಜಮಖಂಡಿ, ಮುಧೋಳ, ಹುನಗುಂದ, ಬೀಳಗಿ, ಇಳಕಲ್, ರಬಕವಿ ಬನಹಟ್ಟಿ, ಗುಳೇದಗುಡ್ಡ" },
-      { nameKn: "ಗದಗ", key: "gadag", div: "belagavi", mlas: 4, taluks: "ಗದಗ, ರೋಣ, ಶಿರಹಟ್ಟಿ, ಮುಂಡರಗಿ, ನರಗುಂದ, ಗಜೇಂದ್ರಗಡ, ಲಕ್ಷ್ಮೇಶ್ವರ" },
-      { nameKn: "ಹಾವೇರಿ", key: "haveri", div: "belagavi", mlas: 6, taluks: "ಹಾವೇರಿ, ರಾಣೆಬೆನ್ನೂರು, ಬ್ಯಾಡಗಿ, ಹಾನಗಲ್, ಹಿರೇಕೆರೂರು, ಶಿಗ್ಗಾಂವಿ, ಸವಣೂರು, ರಟ್ಟೀಹಳ್ಳಿ" },
-      { nameKn: "ಉತ್ತರ ಕನ್ನಡ", key: "uttara_kannada", div: "belagavi", mlas: 6, taluks: "ಕಾರವಾರ, ಕುಮಟಾ, ಶಿರಸಿ, ಭಟ್ಕಳ, ಅಂಕೋಲಾ, ಹೊನ್ನಾವರ, ಹಳಿಯಾಳ, ಯಲ್ಲಾಪುರ, ಮುಂಡಗೋಡ, ಸಿದ್ದಾಪುರ, ಜೋಯಿಡಾ, ದಾಂಡೇಲಿ" },
+      { nameKn: "ಬೆಳಗಾವಿ", key: "belagavi", div: "belagavi", lat: 15.8497, lng: 74.4977, mlas: 18, taluks: "ಬೆಳಗಾವಿ, ಗೋಕಾಕ್, ಚಿಕ್ಕೋಡಿ, ಬೈಲಹೊಂಗಲ, ಖಾನಾಪುರ, ಸವದತ್ತಿ, ರಾಯಬಾಗ, ರಾಮದುರ್ಗ, ಅಥಣಿ, ನಿಪ್ಪಾಣಿ, ಕಾಗವಾಡ, ಹುಕ್ಕೇರಿ, ಕಿತ್ತೂರು, ಮೂಡಲಗಿ, ಯರಗಟ್ಟಿ" },
+      { nameKn: "ಧಾರವಾಡ", key: "dharwad", div: "belagavi", lat: 15.4589, lng: 75.0078, mlas: 7, taluks: "ಧಾರವಾಡ, ಹುಬ್ಬಳ್ಳಿ ನಗರ, ಹುಬ್ಬಳ್ಳಿ ಗ್ರಾಮೀಣ, ಕುಂದಗೋಳ, ನವಲಗುಂದ, ಕಲಘಟಗಿ, ಅಣ್ಣಿಗೇರಿ, ಅಳ್ನಾವರ" },
+      { nameKn: "ವಿಜಯಪುರ", key: "vijayapura", div: "belagavi", lat: 16.8302, lng: 75.7100, mlas: 8, taluks: "ವಿಜಯಪುರ, ಇಂಡಿ, ಸಿಂದಗಿ, ಬಸವನ ಬಾಗೇವಾಡಿ, ಮುದ್ದೇಬಿಹಾಳ, ತಾಳಿಕೋಟೆ, ಬಬಲೇಶ್ವರ, ಕೊಲ್ಹಾರ, ನಿಡಗುಂದಿ, ದೇವರಹಿಪ್ಪರಗಿ, ಚಡಚಣ, ತಿಕೋಟಾ" },
+      { nameKn: "ಬಾಗಲಕೋಟೆ", key: "bagalkote", div: "belagavi", lat: 16.1691, lng: 75.6615, mlas: 7, taluks: "ಬಾಗಲಕೋಟೆ, ಬಾದಾಮಿ, ಜಮಖಂಡಿ, ಮುಧೋಳ, ಹುನಗುಂದ, ಬೀಳಗಿ, ಇಳಕಲ್, ರಬಕವಿ ಬನಹಟ್ಟಿ, ಗುಳೇದಗುಡ್ಡ" },
+      { nameKn: "ಗದಗ", key: "gadag", div: "belagavi", lat: 15.4167, lng: 75.6167, mlas: 4, taluks: "ಗದಗ, ರೋಣ, ಶಿರಹಟ್ಟಿ, ಮುಂಡರಗಿ, ನರಗುಂದ, ಗಜೇಂದ್ರಗಡ, ಲಕ್ಷ್ಮೇಶ್ವರ" },
+      { nameKn: "ಹಾವೇರಿ", key: "haveri", div: "belagavi", lat: 14.7958, lng: 75.3995, mlas: 6, taluks: "ಹಾವೇರಿ, ರಾಣೆಬೆನ್ನೂರು, ಬ್ಯಾಡಗಿ, ಹಾನಗಲ್, ಹಿರೇಕೆರೂರು, ಶಿಗ್ಗಾಂವಿ, ಸವಣೂರು, ರಟ್ಟೀಹಳ್ಳಿ" },
+      { nameKn: "ಉತ್ತರ ಕನ್ನಡ", key: "uttara-kannada", div: "belagavi", lat: 14.8185, lng: 74.1297, mlas: 6, taluks: "ಕಾರವಾರ, ಕುಮಟಾ, ಶಿರಸಿ, ಭಟ್ಕಳ, ಅಂಕೋಲಾ, ಹೊನ್ನಾವರ, ಹಳಿಯಾಳ, ಯಲ್ಲಾಪುರ, ಮುಂಡಗೋಡ, ಸಿದ್ದಾಪುರ, ಜೋಯಿಡಾ, ದಾಂಡೇಲಿ" },
 
       // Kalaburagi Division
-      { nameKn: "ಕಲಬುರಗಿ", key: "kalaburagi", div: "kalaburagi", mlas: 9, taluks: "ಕಲಬುರಗಿ, ಸೇಡಂ, ಆಳಂದ, ಅಫಜಲಪುರ, ಜೇವರ್ಗಿ, ಚಿತ್ತಾಪುರ, ಚಿಂಚೋಳಿ, ಯಡ್ರಾಮಿ, ಶಹಾಬಾದ್, ಕಮಲಾಪುರ, ಕಾಳಗಿ" },
-      { nameKn: "ಬೀದರ್", key: "bidar", div: "kalaburagi", mlas: 6, taluks: "ಬೀದರ್, ಭಾಲ್ಕಿ, ಬಸವಕಲ್ಯಾಣ, ಹುಮ್ನಾಬಾದ್, ಔರಾದ್, ಕಮಲನಗರ, ಹುಲಸೂರು, ಚಿಟಗುಪ್ಪ" },
-      { nameKn: "ರಾಯಚೂರು", key: "raichur", div: "kalaburagi", mlas: 7, taluks: "ರಾಯಚೂರು, ಮಾನ್ವಿ, ಸಿಂಧನೂರು, ದೇವದುರ್ಗ, ಲಿಂಗಸುಗೂರು, ಮಸ್ಕಿ, ಸಿರವಾರ" },
-      { nameKn: "ಕೊಪ್ಪಳ", key: "koppal", div: "kalaburagi", mlas: 5, taluks: "ಕೊಪ್ಪಳ, ಗಂಗಾವತಿ, ಕುಷ್ಟಗಿ, ಯಲಬುರ್ಗಾ, ಕನಕಗಿರಿ, ಕಾರಟಗಿ, ಕುಕನೂರು" },
-      { nameKn: "ಬಳ್ಳಾರಿ", key: "ballari", div: "kalaburagi", mlas: 5, taluks: "ಬಳ್ಳಾರಿ, ಸಿರುಗುಪ್ಪ, ಸಂಡೂರು, ಕಂಪ್ಲಿ, ಕುರುಗೋಡು" },
-      { nameKn: "ವಿಜಯನಗರ", key: "vijayanagara", div: "kalaburagi", mlas: 5, taluks: "ಹೊಸಪೇಟೆ, ಕೂಡ್ಲಿಗಿ, ಹೂವಿನಹಡಗಲಿ, ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ, ಹರಪನಹಳ್ಳಿ, ಕೊಟ್ಟೂರು" },
-      { nameKn: "ಯಾದಗಿರಿ", key: "yadgir", div: "kalaburagi", mlas: 4, taluks: "ಯಾದಗಿರಿ, ಶಹಾಪುರ, ಸುರಪುರ, ಹುಣಸಗಿ, ವಡಗೇರಾ, ಗುರುಮಿಟ್ಕಲ್" }
+      { nameKn: "ಕಲಬುರಗಿ", key: "kalaburagi", div: "kalaburagi", lat: 17.3297, lng: 76.8343, mlas: 9, taluks: "ಕಲಬುರಗಿ, ಸೇಡಂ, ಆಳಂದ, ಅಫಜಲಪುರ, ಜೇವರ್ಗಿ, ಚಿತ್ತಾಪುರ, ಚಿಂಚೋಳಿ, ಯಡ್ರಾಮಿ, ಶಹಾಬಾದ್, ಕಮಲಾಪುರ, ಕಾಳಗಿ" },
+      { nameKn: "ಬೀದರ್", key: "bidar", div: "kalaburagi", lat: 17.9104, lng: 77.5199, mlas: 6, taluks: "ಬೀದರ್, ಭಾಲ್ಕಿ, ಬಸವಕಲ್ಯಾಣ, ಹುಮ್ನಾಬಾದ್, ಔರಾದ್, ಕಮಲನಗರ, ಹುಲಸೂರು, ಚಿಟಗುಪ್ಪ" },
+      { nameKn: "ರಾಯಚೂರು", key: "raichur", div: "kalaburagi", lat: 16.2076, lng: 77.3463, mlas: 7, taluks: "ರಾಯಚೂರು, ಮಾನ್ವಿ, ಸಿಂಧನೂರು, ದೇವದುರ್ಗ, ಲಿಂಗಸುಗೂರು, ಮಸ್ಕಿ, ಸಿರವಾರ" },
+      { nameKn: "ಕೊಪ್ಪಳ", key: "koppal", div: "kalaburagi", lat: 15.3556, lng: 76.1554, mlas: 5, taluks: "ಕೊಪ್ಪಳ, ಗಂಗಾವತಿ, ಕುಷ್ಟಗಿ, ಯಲಬುರ್ಗಾ, ಕನಕಗಿರಿ, ಕಾರಟಗಿ, ಕುಕನೂರು" },
+      { nameKn: "ಬಳ್ಳಾರಿ", key: "ballari", div: "kalaburagi", lat: 15.1394, lng: 76.9214, mlas: 5, taluks: "ಬಳ್ಳಾರಿ, ಸಿರುಗುಪ್ಪ, ಸಂಡೂರು, ಕಂಪ್ಲಿ, ಕುರುಗೋಡು" },
+      { nameKn: "ವಿಜಯನಗರ", key: "vijayanagara", div: "kalaburagi", lat: 15.2689, lng: 76.3909, mlas: 5, taluks: "ಹೊಸಪೇಟೆ, ಕೂಡ್ಲಿಗಿ, ಹೂವಿನಹಡಗಲಿ, ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ, ಹರಪನಹಳ್ಳಿ, ಕೊಟ್ಟೂರು" },
+      { nameKn: "ಯಾದಗಿರಿ", key: "yadgir", div: "kalaburagi", lat: 16.7704, lng: 77.1376, mlas: 4, taluks: "ಯಾದಗಿರಿ, ಶಹಾಪುರ, ಸುರಪುರ, ಹುಣಸಗಿ, ವಡಗೇರಾ, ಗುರುಮಿಟ್ಕಲ್" }
     ];
+
+    // Leaflet Interactive Map Setup
+    let map = null;
+    let markersLayer = null;
+
+    const divisionCenters = {
+      all: { center: [14.8, 76.0], zoom: 7 },
+      bengaluru: { center: [13.2, 77.2], zoom: 8 },
+      mysuru: { center: [12.5, 75.8], zoom: 8 },
+      belagavi: { center: [15.6, 75.2], zoom: 8 },
+      kalaburagi: { center: [16.5, 76.8], zoom: 8 }
+    };
+
+    const divisionColors = {
+      bengaluru: '#38BDF8',
+      mysuru: '#10B981',
+      belagavi: '#EAB308',
+      kalaburagi: '#F87171'
+    };
+
+    function initMap() {
+      map = L.map('karnatakaMap', {
+        zoomControl: true,
+        scrollWheelZoom: false
+      }).setView([14.8, 76.0], 7);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO | Karnata.in',
+        maxZoom: 18
+      }).addTo(map);
+
+      markersLayer = L.layerGroup().addTo(map);
+      renderMapMarkers('all');
+    }
+
+    function renderMapMarkers(divFilter) {
+      markersLayer.clearLayers();
+      const filtered = divFilter === 'all' ? districtsData : districtsData.filter(d => d.div === divFilter);
+
+      filtered.forEach(d => {
+        const color = divisionColors[d.div] || '#F59E0B';
+        
+        const customIcon = L.divIcon({
+          className: 'custom-dist-marker',
+          html: `<div style="
+            background: ${color};
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #FFF;
+            box-shadow: 0 0 10px ${color};
+            cursor: pointer;
+          "></div>`,
+          iconSize: [14, 14],
+          iconAnchor: [7, 7]
+        });
+
+        const marker = L.marker([d.lat, d.lng], { icon: customIcon }).addTo(markersLayer);
+
+        const popupContent = `
+          <div>
+            <div class="map-popup-title">🏛️ ${d.nameKn} ಜಿಲ್ಲೆ</div>
+            <div class="map-popup-meta">
+              <strong>ವಿಧಾನಸಭಾ ಸ್ಥಾನಗಳು:</strong> ${d.mlas} MLAs<br>
+              <strong>ಪ್ರಮುಖ ತಾಲೂಕುಗಳು:</strong> ${d.taluks.split(',').slice(0, 3).join(', ')}...
+            </div>
+            <a href="/districts/${d.key}.html" class="map-popup-btn">ಜಿಲ್ಲಾ ವಿವರ ನೋಡಿ →</a>
+          </div>
+        `;
+
+        marker.bindPopup(popupContent);
+      });
+    }
+
+    function zoomDivision(div) {
+      document.querySelectorAll('.map-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const target = divisionCenters[div] || divisionCenters.all;
+      map.flyTo(target.center, target.zoom, { duration: 1.2 });
+      renderMapMarkers(div);
+    }
 
     function renderCabinet(list) {
       const container = document.getElementById('cabinetList');
       container.innerHTML = list.map(m => `
         <div class="minister-card">
-          <h4 class="minister-name">${m.name}</h4>
-          <div class="minister-portfolio">${m.portfolio}</div>
+          <div>
+            <h4 class="minister-name">${m.name}</h4>
+            <div class="minister-portfolio">${m.portfolio}</div>
+          </div>
           <div class="minister-meta">
             <span>🏛️ ${m.constituency}</span>
-            <span>📍 ${m.district}</span>
+            <span>📍 ${m.district} ಜಿಲ್ಲೆ</span>
           </div>
         </div>
       `).join('');
@@ -844,7 +965,7 @@
             <p class="dist-taluks"><strong>ತಾಲೂಕುಗಳು:</strong> ${d.taluks}</p>
           </div>
           <div class="dist-footer-link">
-            <span>ಸಂಪೂರ್ಣ ವಿವರ & ಅಧಿಕಾರಿಗಳು →</span>
+            <span>ಸಂಪೂರ್ಣ ವಿವರ & ತಹಶೀಲ್ದಾರ್ →</span>
           </div>
         </a>
       `).join('');
@@ -872,10 +993,11 @@
       renderCabinet(filtered);
     });
 
-    // Initial Render
+    // Initial Load
     document.addEventListener('DOMContentLoaded', () => {
       renderCabinet(cabinetMinisters);
       renderDistricts('all');
+      initMap();
     });
   </script>
 </body>
