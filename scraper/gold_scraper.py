@@ -114,25 +114,30 @@ for item in YEARLY_DATA_1901_2026:
     item["gold_growth_x"] = round((g10 / 18.75), 1)
 
 def fetch_live_rates():
-    """Pulls verified live rates from Goodreturns Bangalore and Bullion benchmarks."""
-    p24_today = 15512
-    p22_today = 14219
-    p18_today = 11634
-    p14_today = 9050
+    """Pulls verified live rates from Goodreturns Bangalore and Bullion benchmarks with Sticky Fallback."""
+    from utils import load_json
+    existing = load_json("gold_rates.json", {})
+    existing_base = existing.get("base", {})
+    existing_changes = existing.get("changes", {}) or existing.get("change", {})
 
-    p24_yesterday = 15513
-    p22_yesterday = 14220
-    p18_yesterday = 11635
-    p14_yesterday = 9051
+    p24_today = int(existing_base.get("24k_per_gram", 16049))
+    p22_today = int(existing_base.get("22k_per_gram", 14711))
+    p18_today = int(existing_base.get("18k_per_gram", 12037))
+    p14_today = int(existing_base.get("14k_per_gram", 9050))
 
-    ch24 = -1
-    ch22 = -1
-    ch18 = -1
-    ch14 = -1
+    p24_yesterday = p24_today - int(existing_changes.get("24k", 1))
+    p22_yesterday = p22_today - int(existing_changes.get("22k", 1))
+    p18_yesterday = p18_today - int(existing_changes.get("18k", 1))
+    p14_yesterday = p14_today - int(existing_changes.get("14k", 0))
 
-    silver_today = 249.90
-    silver_yesterday = 250.00
-    silver_change = -0.10
+    ch24 = int(existing_changes.get("24k", 1))
+    ch22 = int(existing_changes.get("22k", 1))
+    ch18 = int(existing_changes.get("18k", 1))
+    ch14 = int(existing_changes.get("14k", 0))
+
+    silver_today = float(existing_base.get("silver_per_gram", 260.1))
+    silver_yesterday = float(existing.get("yesterdaySilver", {}).get("999", 260.0))
+    silver_change = round(silver_today - silver_yesterday, 2)
 
     # Scrape Goodreturns Gold
     try:

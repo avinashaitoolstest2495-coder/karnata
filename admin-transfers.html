@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ವರ್ಗಾವಣೆ ಆದೇಶಗಳ Gemini Vision AI & ಲೈವ್ ಪಬ್ಲಿಷರ್ | Admin Bulk Transfer OCR</title>
+  <!-- Google Fonts: Anek Kannada & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --primary: #2563EB;
+      --primary-subtle: #EFF6FF;
+      --accent-green: #059669;
+      --accent-green-subtle: #ECFDF5;
+      --accent-red: #E11D48;
+      --text: #0F172A;
+      --text-muted: #475569;
+      --text-light: #64748B;
+      --font-kn: 'Anek Kannada', sans-serif;
+      --font-en: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-kn); padding: 24px 16px 60px; line-height: 1.55; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    
+    .header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-subtle);
+      border: 1px solid #BFDBFE;
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1 { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    p { font-size: 15px; color: var(--text-muted); }
+
+    /* API KEY BAR */
+    .api-key-box {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .api-key-box input, .api-key-box select {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: var(--font-en);
+      outline: none;
+      background: #F8FAFC;
+    }
+    .api-key-box input:focus, .api-key-box select:focus { border-color: var(--primary); background: #FFF; }
+
+    /* DROPZONE (BULK) */
+    .dropzone {
+      background: #FFFFFF;
+      border: 2px dashed #93C5FD;
+      border-radius: 20px;
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+    }
+    .dropzone:hover { background: #EFF6FF; border-color: var(--primary); }
+    .drop-icon { font-size: 46px; margin-bottom: 8px; }
+
+    .btn {
+      background: var(--primary);
+      color: #FFF;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn:hover { background: #1D4ED8; }
+    .btn-green { background: var(--accent-green); }
+    .btn-green:hover { background: #047857; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+    .btn-outline:hover { background: #F1F5F9; color: var(--text); }
+
+    /* QUEUE THUMBNAILS */
+    .queue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .queue-thumb-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .queue-thumb-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #F1F5F9;
+    }
+    .queue-thumb-status {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* OCR PROGRESS */
+    .ocr-progress-card {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: none;
+      align-items: center;
+      gap: 14px;
+    }
+    .spinner {
+      width: 26px;
+      height: 26px;
+      border: 3px solid #BFDBFE;
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* EXTRACTED CARDS */
+    .extracted-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px -2px rgba(0,0,0,0.03);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14.5px;
+      font-family: inherit;
+      outline: none;
+      background: #F8FAFC;
+      transition: all 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      background: #FFF;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .route-preview-box {
+      background: var(--primary-subtle);
+      border: 1px solid #BFDBFE;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      color: #1D4ED8;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="badge-tag">✨ Gemini 2.0 / Flash / Pro Vision AI</div>
+      <h1>📑 ವರ್ಗಾವಣೆ ಆದೇಶಗಳ Gemini Vision AI & ಲೈವ್ ಪಬ್ಲಿಷರ್</h1>
+      <p>ವರ್ಗಾವಣೆ ಆದೇಶದ ಫೋಟೋ ಅಥವಾ PDF ಅನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ. Gemini Vision AI ಯಾವುದೇ ದೋಷವಿಲ್ಲದೆ ಅಧಿಕೃತ ಕನ್ನಡ ಪಠ್ಯ, ಅಧಿಕಾರಿ ಹೆಸರು, ಆದೇಶ ಸಂಖ್ಯೆ ಹಾಗೂ ಸ್ಥಳ ನಿಯುಕ್ತಿ ವಿವರಗಳನ್ನು 100% ನಿಖರವಾಗಿ ಗುರುತಿಸುತ್ತದೆ.</p>
+    </div>
+
+    <!-- GEMINI CONFIGURATION -->
+    <div class="api-key-box">
+      <span style="font-size:24px;">🔑</span>
+      <div style="flex:2; min-width:240px;">
+        <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:3px;">Gemini API Key (Google AI Studio):</div>
+        <input type="password" id="gemini-key-input" placeholder="Paste Gemini API Key (AIzaSy...)" onchange="saveApiKey(this.value)">
+      </div>
+
+      <div style="flex:1; min-width:240px;">
+        <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:3px;">Model Selection:</div>
+        <select id="gemini-model-select" onchange="localStorage.setItem('karnata_gemini_model', this.value)">
+          <option value="gemini-3.7-flash" selected>⚡ Gemini 3.7 Flash</option>
+          <option value="gemini-3.1-pro-preview">🧠 Gemini 3.1 Pro Preview</option>
+          <option value="gemini-2.0-flash">⚡ Gemini 2.0 Flash</option>
+          <option value="gemini-2.0-flash-lite">💡 Gemini 2.0 Flash Lite</option>
+        </select>
+      </div>
+
+      <button class="btn" onclick="saveApiKey(document.getElementById('gemini-key-input').value)">💾 ಕೀ ಸೇವ್ ಮಾಡಿ</button>
+    </div>
+
+    <!-- DROPZONE (MULTIPLE / BULK) -->
+    <div class="dropzone" onclick="triggerFileSelect()">
+      <div class="drop-icon">📸 📑</div>
+      <div style="font-size:18px; font-weight:800; color:var(--text); margin-bottom:4px;">ವರ್ಗಾವಣೆ ಆದೇಶದ ಫೋಟೋಗಳನ್ನು ಇಲ್ಲಿ ಡ್ರಾಪ್ ಮಾಡಿ ಅಥವಾ ಆಯ್ಕೆಮಾಡಿ</div>
+      <div style="font-size:14px; color:var(--text-muted); margin-bottom:14px;">JPG, PNG, WebP (ಏಕಕಾಲಕ್ಕೆ 1 ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು ಫೈಲ್‌ಗಳು)</div>
+      <button class="btn" type="button">📁 ಫೈಲ್‌ಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ (Select Multiple Files)</button>
+      <input type="file" id="bulk-file-input" style="display:none;" accept="image/*" multiple onchange="handleBulkFiles(event)">
+    </div>
+
+    <!-- QUEUE GRID -->
+    <div id="queue-container" class="queue-grid" style="display:none;"></div>
+
+    <!-- OCR STATUS SPINNER -->
+    <div id="ocr-status" class="ocr-progress-card">
+      <div class="spinner"></div>
+      <div>
+        <div id="ocr-status-text" style="font-size:15.5px; font-weight:800; color:var(--primary);">🔍 Gemini Vision AI ಮೂಲಕ ಚಿತ್ರವನ್ನು ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ...</div>
+        <div id="ocr-progress-text" style="font-size:13.5px; color:var(--text-muted);">ದಯವಿಟ್ಟು ಕೆಲವು ಕ್ಷಣ ಕಾಯಿರಿ...</div>
+      </div>
+    </div>
+
+    <!-- BULK ACTIONS BAR -->
+    <div id="bulk-actions" style="display:none; justify-content:space-between; align-items:center; background:#FFFFFF; border:1px solid var(--border); border-radius:16px; padding:14px 20px; margin-bottom:20px;">
+      <div style="font-size:15.5px; font-weight:800;" id="extracted-count-label">✨ 0 ವರ್ಗಾವಣೆ ಆದೇಶಗಳು ಸಿದ್ಧವಾಗಿವೆ</div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-outline" onclick="clearAll()">🗑️ ತೆರವುಗೊಳಿಸಿ</button>
+        <button class="btn btn-green" onclick="publishAll()">🚀 ಎಲ್ಲಾ ಆದೇಶಗಳನ್ನು ಪ್ರಕಟಿಸಿ (Publish All Live)</button>
+      </div>
+    </div>
+
+    <!-- EXTRACTED CARDS CONTAINER -->
+    <div id="cards-container"></div>
+  </div>
+
+  <script>
+    let extractedTransfers = [];
+    const DISTRICTS = {
+      bengaluru_urban: "ಬೆಂಗಳೂರು ನಗರ", tumakuru: "ತುಮಕೂರು", yadgir: "ಯಾದಗಿರಿ",
+      koppal: "ಕೊಪ್ಪಳ", mysuru: "ಮೈಸೂರು", belagavi: "ಬೆಳಗಾವಿ", kalaburagi: "ಕಲಬುರಗಿ",
+      dakshina_kannada: "ದಕ್ಷಿಣ ಕನ್ನಡ", vijayapura: "ವಿಜಯಪುರ", dharwad: "ಧಾರವಾಡ",
+      shivamogga: "ಶಿವಮೊಗ್ಗ", udupi: "ಉಡುಪಿ", ballari: "ಬಳ್ಳಾರಿ", vijayanagara: "ವಿಜಯನಗರ",
+      bagalkote: "ಬಾಗಲಕೋಟೆ", bidar: "ಬೀದರ್", raichur: "ರಾಯಚೂರು", gadag: "ಗದಗ",
+      haveri: "ಹಾವೇರಿ", uttara_kannada: "ಉತ್ತರ ಕನ್ನಡ", chikkamagaluru: "ಚಿಕ್ಕಮಗಳೂರು",
+      hassan: "ಹಾಸನ", mandya: "ಮಂಡ್ಯ", chamarajanagar: "ಚಾಮರಾಜನಗರ", chitradurga: "ಚಿತ್ರದುರ್ಗ",
+      davanagere: "ದಾವಣಗೆರೆ", kolar: "ಕೋಲಾರ", chikkaballapura: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+      ramanagara: "ರಾಮನಗರ", kodagu: "ಕೊಡಗು"
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedKey = localStorage.getItem('karnata_gemini_key') || '';
+      if (savedKey) {
+        document.getElementById('gemini-key-input').value = savedKey;
+      }
+      const savedModel = localStorage.getItem('karnata_gemini_model') || 'gemini-2.0-flash';
+      document.getElementById('gemini-model-select').value = savedModel;
+    });
+
+    function saveApiKey(val) {
+      if (!val) return;
+      localStorage.setItem('karnata_gemini_key', val.trim());
+      alert('✅ Gemini API Key ಅನ್ನು ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಸೇವ್ ಮಾಡಲಾಗಿದೆ!');
+    }
+
+    function triggerFileSelect() {
+      document.getElementById('bulk-file-input').click();
+    }
+
+    async function callGeminiVisionWithFallback(apiKey, selectedModel, mimeType, base64Data, prompt) {
+      const candidateModels = [
+        selectedModel || 'gemini-3.7-flash',
+        'gemini-3.7-flash',
+        'gemini-3.1-pro-preview',
+        'gemini-3.1-pro',
+        'gemini-2.0-flash',
+        'gemini-2.0-flash-lite',
+        'gemini-1.5-flash-latest'
+      ];
+      const uniqueModels = [...new Set(candidateModels)];
+
+      let lastError = null;
+      for (let model of uniqueModels) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{
+                parts: [
+                  { text: prompt },
+                  { inline_data: { mime_type: mimeType, data: base64Data } }
+                ]
+              }],
+              generationConfig: {
+                temperature: 0.1
+              }
+            })
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            let rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (rawText) {
+              rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+              const startIdx = rawText.indexOf('[');
+              const endIdx = rawText.lastIndexOf(']');
+              if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+                rawText = rawText.substring(startIdx, endIdx + 1);
+              }
+              const parsed = JSON.parse(rawText);
+              return parsed;
+            }
+          } else {
+            const errData = await res.json().catch(() => ({}));
+            lastError = errData?.error?.message || `HTTP ${res.status}`;
+            console.warn(`Model ${model} returned: ${lastError}. Trying next model...`);
+          }
+        } catch (e) {
+          lastError = e.message;
+          console.warn(`Error on ${model}: ${lastError}`);
+        }
+      }
+
+      // Dynamic Model Discovery Fallback: Fetch active models for this key
+      try {
+        const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+        if (listRes.ok) {
+          const listData = await listRes.json();
+          const availableModels = (listData.models || [])
+            .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent'))
+            .map(m => m.name.replace('models/', ''));
+          
+          for (let model of availableModels) {
+            try {
+              const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+              const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  contents: [{
+                    parts: [
+                      { text: prompt },
+                      { inline_data: { mime_type: mimeType, data: base64Data } }
+                    ]
+                  }],
+                  generationConfig: { temperature: 0.1 }
+                })
+              });
+              if (res.ok) {
+                const data = await res.json();
+                let rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (rawText) {
+                  rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+                  const startIdx = rawText.indexOf('[');
+                  const endIdx = rawText.lastIndexOf(']');
+                  if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+                    rawText = rawText.substring(startIdx, endIdx + 1);
+                  }
+                  return JSON.parse(rawText);
+                }
+              }
+            } catch (innerE) {}
+          }
+        }
+      } catch (discErr) {}
+
+      throw new Error(lastError || 'All Gemini models failed. Please verify API key.');
+    }
+
+    async function handleBulkFiles(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      const apiKey = (document.getElementById('gemini-key-input').value || localStorage.getItem('karnata_gemini_key') || '').trim();
+      if (!apiKey) {
+        alert('⚠️ ದಯವಿಟ್ಟು ಮೊದಲು ಮೇಲಿರುವ "Gemini API Key" ಬಾಕ್ಸ್‌ನಲ್ಲಿ ನಿಮ್ಮ Google AI Studio ಕೀ ನಮೂದಿಸಿ.');
+        document.getElementById('gemini-key-input').focus();
+        return;
+      }
+
+      const selectedModel = document.getElementById('gemini-model-select').value;
+      const queueContainer = document.getElementById('queue-container');
+      const ocrStatus = document.getElementById('ocr-status');
+      const statusText = document.getElementById('ocr-status-text');
+      const progressText = document.getElementById('ocr-progress-text');
+
+      queueContainer.style.display = 'grid';
+      ocrStatus.style.display = 'flex';
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        statusText.textContent = `🔍 [${i+1}/${files.length}] Gemini Vision AI ಮೂಲಕ ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ (${file.name})...`;
+        progressText.textContent = 'ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್ ಸರ್ಕಾರಿ ಆದೇಶದ ಅಧಿಕೃತ ಪಠ್ಯವನ್ನು ಹೊರತೆಗೆಯಲಾಗುತ್ತಿದೆ...';
+
+        const reader = new FileReader();
+        const base64DataUrl = await new Promise(res => {
+          reader.onload = ev => res(ev.target.result);
+          reader.readAsDataURL(file);
+        });
+
+        const thumb = document.createElement('div');
+        thumb.className = 'queue-thumb-card';
+        thumb.innerHTML = `
+          <img src="${base64DataUrl}" class="queue-thumb-img">
+          <div class="queue-thumb-status">
+            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:110px;">${file.name}</span>
+            <span id="st-${i}" style="color:var(--primary);">AI ಓದುತ್ತಿದೆ...</span>
+          </div>
+        `;
+        queueContainer.appendChild(thumb);
+
+        try {
+          const mimeType = file.type || "image/jpeg";
+          const rawBase64 = base64DataUrl.replace(/^data:image\/[a-z]+;base64,/, '');
+
+          const prompt = `You are a precision Karnataka Government DPAR Transfer & Gazette Notification Specialist.
+Analyze this official Karnataka government transfer order photo/document (Kannada and/or English).
+Extract every officer transfer entry and return ONLY a valid JSON array of objects with the following schema:
+[
+  {
+    "order_no": "ಆದೇಶ ಸಂಖ್ಯೆ (e.g. ಸಿಆಸುಇ 70 ಜಿಇಎ 2026 or e-DPAR 279 SAS 2026)",
+    "date": "ದಿನಾಂಕ (DD-MM-YYYY)",
+    "cadre": "IAS | IPS | KAS | Tahsildar",
+    "officer_name_kn": "ಅಧಿಕಾರಿಯ ಸಂಪೂರ್ಣ ಹೆಸರು ಮತ್ತು ಗ್ರೇಡ್ ಕನ್ನಡದಲ್ಲಿ (e.g. ಶ್ರೀ ಕೆ.ಎ. ಹಿದಾಯತ್ತುಲ್ಲಾ, ಕೆ.ಎ.ಎಸ್ (ಸೂಪರ್ ಟೈಮ್ ಸ್ಕೇಲ್))",
+    "officer_name_en": "Officer Name in English",
+    "previous_posting": "ಹಿಂದಿನ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದ ಹುದ್ದೆ ಮತ್ತು ಇಲಾಖೆ",
+    "new_posting": "ವರ್ಗಾಯಿಸಿ ನೇಮಿಸಲಾದ ನೂತನ ಹುದ್ದೆ / ಹೆಚ್ಚುವರಿ ಹೊಣೆ",
+    "district_key": "district_key (e.g. bengaluru_urban, tumakuru, yadgir, mysuru, belagavi, kalaburagi, dharwad, vijayapura)",
+    "summary_kn": "ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಆದೇಶದ ಸಂಪೂರ್ಣ ಶುದ್ಧ ಕನ್ನಡ ವಿವರಣೆ"
+  }
+]
+Output strictly raw JSON without markdown backticks.`;
+
+          const parsed = await callGeminiVisionWithFallback(apiKey, selectedModel, mimeType, rawBase64, prompt);
+
+          document.getElementById(`st-${i}`).innerHTML = '✅ AI ಯಶಸ್ವಿ';
+          document.getElementById(`st-${i}`).style.color = 'var(--accent-green)';
+
+          if (Array.isArray(parsed)) {
+            parsed.forEach(p => extractedTransfers.push(p));
+          } else if (typeof parsed === 'object') {
+            extractedTransfers.push(parsed);
+          }
+        } catch (err) {
+          console.error(err);
+          document.getElementById(`st-${i}`).innerHTML = '❌ ದೋಷ';
+          document.getElementById(`st-${i}`).style.color = 'var(--accent-red)';
+          alert(`ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆಯಲ್ಲಿ ದೋಷ: ${err.message}\nದಯವಿಟ್ಟು API Key ಸರಿಯಾಗಿದೆಯೇ ಪರೀಕ್ಷಿಸಿ.`);
+        }
+      }
+
+      ocrStatus.style.display = 'none';
+      renderExtractedCards();
+    }
+
+    function renderExtractedCards() {
+      const container = document.getElementById('cards-container');
+      const bulkActions = document.getElementById('bulk-actions');
+      const countLabel = document.getElementById('extracted-count-label');
+
+      if (!extractedTransfers.length) {
+        container.innerHTML = '';
+        bulkActions.style.display = 'none';
+        return;
+      }
+
+      bulkActions.style.display = 'flex';
+      countLabel.textContent = `✨ ${extractedTransfers.length} ವರ್ಗಾವಣೆ ಆದೇಶಗಳು Gemini AI ಮೂಲಕ ನಿಖರವಾಗಿ ಸಿದ್ಧವಾಗಿವೆ:`;
+
+      container.innerHTML = extractedTransfers.map((item, idx) => `
+        <div class="extracted-card" id="card-${idx}">
+          <div class="card-top">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:12px; font-weight:800; background:var(--primary-subtle); color:var(--primary); border:1px solid #BFDBFE; padding:3px 10px; border-radius:6px;">#${idx+1} ${item.cadre || 'KAS'} ಆದೇಶ</span>
+              <span style="font-size:13px; font-weight:700; color:var(--text-light);">📅 ${item.date || '20-08-2026'}</span>
+            </div>
+            <button onclick="removeCard(${idx})" style="background:none; border:none; color:var(--accent-red); cursor:pointer; font-size:13px; font-weight:700;">🗑️ ತೆಗೆದುಹಾಕಿ</button>
+          </div>
+
+          <div class="route-preview-box">
+            <span>🏛️ ${item.previous_posting || 'ಹಿಂದಿನ ಹುದ್ದೆ'}</span>
+            <span style="color:var(--accent-red);">➔</span>
+            <span style="color:var(--primary);">📍 ${item.new_posting || 'ನೂತನ ಸ್ಥಳ ನಿಯುಕ್ತಿ'}</span>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>ಆದೇಶ ಸಂಖ್ಯೆ (Order No):</label>
+              <input type="text" value="${item.order_no || ''}" onchange="extractedTransfers[${idx}].order_no=this.value">
+            </div>
+            <div class="form-group">
+              <label>ದಿನಾಂಕ (Date):</label>
+              <input type="text" value="${item.date || ''}" onchange="extractedTransfers[${idx}].date=this.value">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>ಕೇಡರ್ (Cadre):</label>
+              <select onchange="extractedTransfers[${idx}].cadre=this.value">
+                <option value="IAS" ${(item.cadre==='IAS')?'selected':''}>🏛️ IAS</option>
+                <option value="IPS" ${(item.cadre==='IPS')?'selected':''}>👮 IPS</option>
+                <option value="KAS" ${(item.cadre==='KAS'||!item.cadre)?'selected':''}>📜 KAS</option>
+                <option value="Tahsildar" ${(item.cadre==='Tahsildar')?'selected':''}>🌾 ತಹಶೀಲ್ದಾರ್</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>ಜಿಲ್ಲೆ (District):</label>
+              <select onchange="extractedTransfers[${idx}].district_key=this.value">
+                ${Object.keys(DISTRICTS).map(k => `<option value="${k}" ${(item.district_key===k)?'selected':''}>${DISTRICTS[k]}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>ಅಧಿಕಾರಿಯ ಹೆಸರು & ಹುದ್ದೆ (Officer Name & Designation):</label>
+            <input type="text" value="${item.officer_name_kn || ''}" onchange="extractedTransfers[${idx}].officer_name_kn=this.value">
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>ಹಿಂದಿನ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದ ಹುದ್ದೆ:</label>
+              <input type="text" value="${item.previous_posting || ''}" onchange="extractedTransfers[${idx}].previous_posting=this.value">
+            </div>
+            <div class="form-group">
+              <label>ವರ್ಗಾಯಿಸಿ ನಿಯೋಜಿಸಲಾದ ನೂತನ ಹುದ್ದೆ / ಹೆಚ್ಚುವರಿ ಹೊಣೆ:</label>
+              <input type="text" value="${item.new_posting || ''}" onchange="extractedTransfers[${idx}].new_posting=this.value">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>ಕನ್ನಡ ಸಾರಾಂಶ (Extracted Summary):</label>
+            <textarea rows="4" onchange="extractedTransfers[${idx}].summary_kn=this.value">${item.summary_kn || ''}</textarea>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function removeCard(idx) {
+      extractedTransfers.splice(idx, 1);
+      renderExtractedCards();
+    }
+
+    function clearAll() {
+      extractedTransfers = [];
+      document.getElementById('queue-container').innerHTML = '';
+      document.getElementById('queue-container').style.display = 'none';
+      renderExtractedCards();
+    }
+
+    async function publishAll() {
+      if (!extractedTransfers.length) {
+        alert('⚠️ ಪ್ರಕಟಿಸಲು ಯಾವುದೇ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು ಲಭ್ಯವಿಲ್ಲ.');
+        return;
+      }
+
+      // Format clean items
+      const todayStr = new Date().toISOString().slice(0, 10).split('-').reverse().join('-');
+      const formattedItems = extractedTransfers.map((item, idx) => ({
+        id: item.id || `LIVE-TRF-${Date.now()}-${idx}`,
+        cadre: item.cadre || 'KAS',
+        cadre_badge: item.cadre === 'IAS' ? '🏛️ IAS' : (item.cadre === 'IPS' ? '👮 IPS' : '📜 KAS'),
+        date: item.date || todayStr,
+        order_no: item.order_no || 'ಸಿಆಸುಇ ಅಧಿಸೂಚನೆ 2026',
+        officer_name_kn: item.officer_name_kn || 'ಅಧಿಕಾರಿಯ ಹೆಸರು',
+        officer_name_en: item.officer_name_en || item.officer_name_kn || 'Officer Name',
+        previous_posting: item.previous_posting || '',
+        new_posting: item.new_posting || '',
+        district_key: item.district_key || 'bengaluru_urban',
+        summary_kn: item.summary_kn || `${item.officer_name_kn} ರವರ ವರ್ಗಾವಣೆ ಆದೇಶ.`,
+        summary_en: item.summary_en || `${item.officer_name_en || item.officer_name_kn} transfer order.`,
+        is_live_alert: true,
+        source: 'Admin Live Publish',
+        source_label: '⚡ Live Alert: ನೂತನ ವರ್ಗಾವಣೆ'
+      }));
+
+      // 1. Save to LocalStorage immediately for instant zero-latency appearance
+      try {
+        const existingLocal = JSON.parse(localStorage.getItem('karnata_live_published_transfers') || '[]');
+        const updatedLocal = [...formattedItems, ...existingLocal];
+        localStorage.setItem('karnata_live_published_transfers', JSON.stringify(updatedLocal));
+      } catch (e) {
+        console.error('LocalStorage error', e);
+      }
+
+      // 2. Send to Cloudflare Edge API
+      try {
+        await fetch('/api/transfers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ transfers: formattedItems })
+        });
+      } catch (apiErr) {
+        console.warn('API sync warning:', apiErr);
+      }
+
+      alert(`🎉 ಯಶಸ್ವಿ! ${formattedItems.length} ವರ್ಗಾವಣೆ ಆದೇಶಗಳನ್ನು ಲೈವ್ ಸೈಟ್‌ನಲ್ಲಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!\nTransfers & Alerts ಪೇಜ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸಲಾಗುತ್ತಿದೆ...`);
+      window.location.href = '/officers.html?tab=transfers';
+    }
+  </script>
+</body>
+</html>

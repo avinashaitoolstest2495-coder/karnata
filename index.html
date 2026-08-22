@@ -273,44 +273,174 @@ input { font-family: var(--font); outline: none; border: none; }
 }
 
 /* ══════════════════════════════════════════════════════
-   NAV TABS BAR
+   CREATIVE NAV TABS BAR — Frosted Glass & Pill Design
 ══════════════════════════════════════════════════════ */
 .nav-tabs {
-  background: #FFF;
-  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.04);
+  position: relative;
+  z-index: 90;
   overflow-x: auto;
   scrollbar-width: none;
+  scroll-padding: 20px;
+  scroll-behavior: smooth;
 }
 .nav-tabs::-webkit-scrollbar { display: none; }
 .nav-tabs-inner {
   max-width: 1240px;
   margin: 0 auto;
   display: flex;
-  padding: 10px 20px;
-  gap: 8px;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 7px;
 }
 .nav-tab {
-  padding: 8px 18px;
-  font-size: 13px;
+  padding: 6px 13px;
+  font-size: 12.5px;
   font-weight: 800;
-  color: var(--text-secondary);
+  color: #334155;
   white-space: nowrap;
-  border-radius: 24px;
-  transition: all 0.2s ease;
+  border-radius: 100px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: #F1F5F9;
+  gap: 5px;
+  text-decoration: none;
 }
 .nav-tab:hover {
-  background: var(--k-red-glow);
-  color: var(--k-red);
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #2563EB;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
 .nav-tab.active {
-  background: linear-gradient(135deg, var(--k-red), #BE123C);
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  border-color: #2563EB;
   color: #FFF;
-  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+/* 5th Tab: Officers Pill */
+.nav-tab-officers {
+  background: #EFF6FF;
+  border: 1.5px solid #BFDBFE;
+  color: #1D4ED8;
+  font-weight: 800;
+}
+.nav-tab-officers:hover {
+  background: #2563EB;
+  color: #FFFFFF;
+  border-color: #2563EB;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* AI Jyothishya Pill - Comes Last */
+.nav-tab-jyothishya {
+  background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
+  border: 1.5px solid #D8B4FE;
+  color: #7E22CE;
+  font-weight: 800;
+}
+.nav-tab-jyothishya:hover {
+  background: linear-gradient(135deg, #7E22CE, #6B21A8);
+  color: #FFFFFF;
+  border-color: #7E22CE;
+  box-shadow: 0 4px 14px rgba(126, 34, 206, 0.25);
+}
+
+.nav-tab-dropdown {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.nav-tab-dropbtn {
+  padding: 6px 13px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #334155;
+  white-space: nowrap;
+  border-radius: 100px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.nav-tab-dropdown:hover .nav-tab-dropbtn, .nav-tab-dropdown.open .nav-tab-dropbtn {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #2563EB;
+}
+.nav-tab-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #FFFFFF;
+  min-width: 220px;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.15);
+  border: 1px solid #E2E8F0;
+  padding: 8px;
+  z-index: 99999;
+  backdrop-filter: blur(12px);
+}
+.nav-tab-dropdown:hover .nav-tab-menu, .nav-tab-dropdown.open .nav-tab-menu, .nav-tab-dropdown:focus-within .nav-tab-menu {
+  display: block;
+  animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes fadeInDrop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nav-tab-dropitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1E293B;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.15s ease;
+}
+.nav-tab-dropitem:hover {
+  background: #EFF6FF;
+  color: #2563EB;
+  padding-left: 18px;
+}
+@media (min-width: 1024px) {
+  .nav-tabs, .nav-tabs-inner {
+    overflow: visible !important;
+  }
+}
+.nav-tab-dropitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-tab-dropitem:hover {
+  background: var(--k-red-glow);
+  color: var(--k-red);
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1394,22 +1524,63 @@ input.clean-search-input:focus,
   </div>
 </header>
 
-<!-- ══ NAV TABS ══════════════════════════════════════════ -->
+<!-- ══ CREATIVE NAV TABS (Cleanly Aligned Below Header) ══ -->
 <nav class="nav-tabs">
   <div class="nav-tabs-inner">
     <a href="gold-rate.html"         class="nav-tab">🥇 ಚಿನ್ನ</a>
     <a href="petrol-price.html"      class="nav-tab">⛽ ಪೆಟ್ರೋಲ್</a>
     <a href="dam-levels.html"        class="nav-tab">💧 ಅಣೆಕಟ್ಟು</a>
     <a href="weather.html"           class="nav-tab">🌧️ ಹವಾಮಾನ</a>
+
+    <!-- Officers Directory -->
+    <a href="officers.html" class="nav-tab nav-tab-officers">
+      <span>🏛️ ಅಧಿಕಾರಿಗಳು</span>
+    </a>
+
     <a href="apmc-prices.html"       class="nav-tab">🌾 APMC</a>
-    <a href="mla-mp.html" class="nav-tab">🏛️ MLA/MP</a>
-    <a href="emi-calculator.html"    class="nav-tab">🏦 EMI</a>
-    <a href="sip-calculator.html"    class="nav-tab">📈 SIP</a>
-    <a href="salary-calculator.html" class="nav-tab">💰 ಸಂಬಳ</a>
     <a href="scheme-checker.html"    class="nav-tab">📋 ಯೋಜನೆ</a>
-    <a href="karnataka-local-news.html" class="nav-tab">📰 ಸ್ಥಳೀಯ ಸುದ್ದಿ</a>
-    <a href="karnataka-stories.html" class="nav-tab">✨ ವಿಶೇಷ ಲೇಖನ</a>
-    <a href="more-tools.html"        class="nav-tab">🛠️ ಇನ್ನಷ್ಟು</a>
+
+    <!-- Combined MLA, MP & Elections -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>🗳️ MLA/MP & ಚುನಾವಣೆ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="mla-mp.html" class="nav-tab-dropitem">🏛️ ಶಾಸಕರು & ಸಂಸದರು (MLA / MP)</a>
+        <a href="karnataka-elections.html" class="nav-tab-dropitem">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+      </div>
+    </div>
+
+    <!-- Dropdown: Finance -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>💰 ಹಣಕಾಸು</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="emi-calculator.html"    class="nav-tab-dropitem">🏦 EMI ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="sip-calculator.html"    class="nav-tab-dropitem">📈 SIP ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="salary-calculator.html" class="nav-tab-dropitem">💰 ಸಂಬಳದ ಲೆಕ್ಕ</a>
+      </div>
+    </div>
+
+    <!-- Dropdown: News & Stories -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>📰 ಸುದ್ದಿ & ಲೇಖನ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="karnataka-local-news.html" class="nav-tab-dropitem">📰 ಸ್ಥಳೀಯ ಸುದ್ದಿ (31 ಜಿಲ್ಲೆಗಳು)</a>
+        <a href="karnataka-stories.html"    class="nav-tab-dropitem">✨ ವಿಶೇಷ ಲೇಖನಗಳು</a>
+      </div>
+    </div>
+
+    <a href="more-tools.html" class="nav-tab">🛠️ ಇನ್ನಷ್ಟು</a>
+
+    <!-- AI Jyothishya (Comes Last) -->
+    <a href="ai-jyothishya.html" class="nav-tab nav-tab-jyothishya">✨ AI ಜ್ಯೋತಿಷ್ಯ 🔮</a>
   </div>
 </nav>
 
@@ -1830,10 +2001,10 @@ function setDate(){
 }
 setDate(); setInterval(setDate,60000);
 
-// ── JSON loader with cache ─────────────────────────────
+// ── JSON loader with instant live freshness ─────────────
 const _c={};
-async function loadJ(key,file,ttl=300000){
-  if(_c[key]&&Date.now()-_c[key].t<ttl) return _c[key].d;
+async function loadJ(key,file,ttl=0){
+  if(ttl > 0 && _c[key] && Date.now()-_c[key].t < ttl) return _c[key].d;
   try{
     let r = await fetch('./data/'+file+'?v='+Date.now()).catch(()=>null);
     if (!r || !r.ok) r = await fetch('/data/'+file+'?v='+Date.now()).catch(()=>null);
@@ -2180,23 +2351,37 @@ function isKannada(text) {
   return /[\u0C80-\u0CFF]/.test(text);
 }
 
+function isMockArticle(a) {
+  if (!a) return true;
+  const id = String(a.id || '').toLowerCase();
+  const slug = String(a.slug || '').toLowerCase();
+  const title = String(a.title_kn || a.title || '');
+  if (id.includes('karnataka-cabinet') || slug.includes('karnataka-cabinet') || title.includes('ಸಚಿವ ಸಂಪುಟ')) return true;
+  if (id.includes('bengaluru-metro') || slug.includes('bengaluru-metro') || title.includes('ಮೆಟ್ರೋ ಹಂತ 2B')) return true;
+  return false;
+}
+
 async function loadCmsArticles() {
   try {
     const res = await fetch('/data/cms_articles.json?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      return (data.articles || []).filter(a => a.status === 'published' || !a.status).map(a => {
+      return (data.articles || []).filter(a => (a.status === 'published' || !a.status) && !isMockArticle(a)).map(a => {
         const cat = a.category || 'ರಾಜಕೀಯ';
+        const catSlug = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
         const slug = a.slug || a.id;
+        const img = a.cover_image || a.image || a.thumbnail || a.hero_image || null;
         return {
           id: a.id || slug,
           title: a.title_kn || a.title,
           headline: a.title_kn || a.title,
           description: a.summary_kn || a.summary || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
-          url: `/news/article.html?id=${encodeURIComponent(slug)}`,
+          url: `/news/${catSlug}/${encodeURIComponent(slug)}`,
           published: a.updated_at || new Date().toISOString(),
           category: cat,
           source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+          image: img,
+          cover_image: img,
           is_cms: true
         };
       });
@@ -2206,21 +2391,37 @@ async function loadCmsArticles() {
 }
 
 async function renderLocalNews(articles, distKn) {
+  // Auto-purge deleted mock test articles from browser cache
+  try {
+    const oldStore = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const cleanedStore = oldStore.filter(a => !isMockArticle(a));
+    if (cleanedStore.length !== oldStore.length) {
+      localStorage.setItem('nk_cms_articles', JSON.stringify(cleanedStore));
+    }
+  } catch(e) {}
+
   let cmsArticles = await loadCmsArticles();
   if (!cmsArticles || !cmsArticles.length) {
     try {
       const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
-      cmsArticles = store.filter(a => a.status === 'published').map(a => ({
-        id: a.id || a.slug,
-        title: a.title_kn,
-        headline: a.title_kn,
-        description: a.summary_kn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
-        url: `/news/article.html?id=${encodeURIComponent(a.slug || a.id)}`,
-        published: a.updated_at || new Date().toISOString(),
-        category: a.category || 'ರಾಜಕೀಯ',
-        source: 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
-        is_cms: true
-      }));
+      cmsArticles = store.filter(a => (a.status === 'published' || !a.status) && !isMockArticle(a)).map(a => {
+        const img = a.cover_image || a.image || a.thumbnail || a.hero_image || null;
+        const slug = a.slug || a.id;
+        const catSlug = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
+        return {
+          id: a.id || slug,
+          title: a.title_kn,
+          headline: a.title_kn,
+          description: a.summary_kn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
+          url: `/news/${catSlug}/${encodeURIComponent(slug)}`,
+          published: a.updated_at || new Date().toISOString(),
+          category: a.category || 'ರಾಜಕೀಯ',
+          source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+          image: img,
+          cover_image: img,
+          is_cms: true
+        };
+      });
     } catch(e) {}
   }
 
@@ -2228,17 +2429,23 @@ async function renderLocalNews(articles, distKn) {
   if (cmsArticles.length > 0) {
     const topNewsLayout = $('top-news-layout');
     if (topNewsLayout) {
-      topNewsLayout.innerHTML = cmsArticles.slice(0, 4).map((a, idx) => `
-        <a href="${a.url}" class="news-card ${idx === 0 ? 'featured' : ''}">
-          <div class="nc-content">
-            <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">✨ ${a.category}</span>
-            <div class="nc-headline">${a.title}</div>
-            <div class="nc-summary">${a.description}</div>
-            <div class="nc-meta"><span>ವಿಶೇಷ ಲೇಖನ</span><span>${a.source}</span></div>
-          </div>
-          <div class="nc-visual">${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}</div>
-        </a>
-      `).join('');
+      topNewsLayout.innerHTML = cmsArticles.slice(0, 4).map((a, idx) => {
+        const hasImg = !!a.image;
+        const visualHtml = hasImg 
+          ? `<div class="nc-visual" style="display:flex; padding:0; overflow:hidden; background:#F1F5F9; box-shadow:0 4px 12px rgba(0,0,0,0.06);"><img src="${a.image}" alt="${a.title}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" onerror="this.parentElement.innerHTML='${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}'"></div>`
+          : `<div class="nc-visual">${idx === 0 ? '🏛️' : idx === 1 ? '📍' : idx === 2 ? '🌾' : '💧'}</div>`;
+        return `
+          <a href="${a.url}" class="news-card ${idx === 0 ? 'featured' : ''}">
+            <div class="nc-content">
+              <span class="nc-eyebrow ${idx % 2 === 0 ? 'ey-blue' : 'ey-amber'}">✨ ${a.category}</span>
+              <div class="nc-headline">${a.title}</div>
+              <div class="nc-summary">${a.description}</div>
+              <div class="nc-meta"><span>ವಿಶೇಷ ಲೇಖನ</span><span>${a.source}</span></div>
+            </div>
+            ${visualHtml}
+          </a>
+        `;
+      }).join('');
     }
   }
 
@@ -2491,7 +2698,7 @@ function reverseGeo(lat,lng){
 
 async function loadLocal(key, data){
   try{
-    let n = await loadJ('local_news', 'local_news.json', 7200000);
+    let n = await loadJ('local_news', 'local_news.json', 0);
     if (n && n.payload && typeof window.decryptPayload === 'function') {
       n = window.decryptPayload(n.payload);
     }
@@ -2500,17 +2707,21 @@ async function loadLocal(key, data){
     
     // Strict district lookup
     let local = buckets[key] || buckets[key.replace('-', '_')] || buckets[key.replace('_', '-')] || [];
-    if (!Array.isArray(local)) local = [];
+    if (!Array.isArray(local) || !local.length) {
+      if (Array.isArray(n?.articles)) {
+        local = n.articles.filter(a => (a.district === key || a.districtKey === key));
+      }
+    }
     if (!local.length) {
       Object.keys(buckets).forEach(k => {
         if (Array.isArray(buckets[k]) && (k.includes(key) || key.includes(k))) local.push(...buckets[k]);
       });
     }
     if (!local.length) {
-      local = buckets['_statewide'] || buckets['bengaluru-urban'] || [];
+      local = buckets['_statewide'] || buckets['bengaluru-urban'] || (Array.isArray(n?.articles) ? n.articles.slice(0, 12) : []);
     }
 
-    renderLocalNews(local.slice(0, 6), data ? data.kn : (key ? key.replace('-', ' ').toUpperCase() : 'ಕರ್ನಾಟಕ'));
+    renderLocalNews(local.slice(0, 8), data ? data.kn : (key ? key.replace('-', ' ').toUpperCase() : 'ಕರ್ನಾಟಕ'));
   }catch(e){
     console.error("Local news load error:", e);
   }
@@ -2653,6 +2864,13 @@ function restore(){
     setTimeout(()=>{if(!S.pushEnabled) showNotif();},9000);
   }
 }
+
+// Close nav dropdowns on outside click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-tab-dropdown')) {
+    document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
 
 // ── Init ───────────────────────────────────────────────
 restore();

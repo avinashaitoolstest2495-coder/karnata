@@ -2,547 +2,1092 @@
 <html lang="kn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ — KSNDMC & IMD Live Rain Alerts | ಕರ್ನಾಟ</title>
-<meta name="description" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ, ಗರಿಷ್ಠ ಮಳೆ ವರದಿ, ಗರಿಷ್ಠ/ಕನಿಷ್ಠ ಉಷ್ಣಾಂಶ, KSNDMC ಟ್ವಿಟರ್ ಲೈವ್ ಪೋಸ್ಟ್‌ಗಳು ಮತ್ತು IMD ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ. Karnataka weather today, heavy rain alerts.">
-<meta name="keywords" content="Karnataka weather forecast, KSNDMC Twitter alert, Bengaluru weather today, heavy rain Karnataka, IMD warning Karnataka, district weather Kannada">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Karnataka Weather Forecast & KSNDMC Live Alerts","inLanguage":"kn"}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ & ಮಳೆ ಮಾಹಿತಿ — Live KSNDMC & IMD Radar | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ, ಗರಿಷ್ಠ ಮಳೆ ವರದಿ, ಪವನ ವೇಗ, AQI ವಾಯು ಗುಣಮಟ್ಟ, KSNDMC ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು ಮತ್ತು IMD ಮುನ್ಸೂಚನೆ.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SpecialAnnouncement",
+  "name": "ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ & KSNDMC Live Weather Alert",
+  "description": "ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ, ಮಳೆ ಮುನ್ಸೂಚನೆ ಮತ್ತು ವಾಯು ಗುಣಮಟ್ಟ.",
+  "inLanguage": "kn",
+  "spatialCoverage": "Karnataka, India"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/js/weather-radar/weather-radar.css">
+
+<!-- Data Loader in Head so decryptPayload is always available -->
+<script src="/data-loader.js"></script>
+
 <style>
 :root {
-  --blue: #1A5276; --blue-lt: #EAF2F8; --blue-mid: #2980B9;
-  --green: #1B7A4B; --green-lt: #E8F5EE;
-  --amber: #E67E22; --amber-lt: #FEF5EC;
-  --red: #C0392B; --red-lt: #FDECEA;
-  --ink: #1A1A2E; --ink2: #4A4A6A; --ink3: #8888AA;
-  --bg: #F4F7FA; --white: #FFFFFF; --border: #D8E4F0;
+  --primary: #0284C7;
+  --primary-dark: #0369A1;
+  --primary-lt: #E0F2FE;
+  --accent: #E11D48;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --bg-main: #F1F5F9;
   --font-kn: 'Anek Kannada', sans-serif;
-  --font-en: 'Inter', sans-serif;
-  --radius: 14px; --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  --font-en: 'Outfit', sans-serif;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; font-family: inherit; border: none; outline: none; }
 
-.topnav {
-  background: var(--blue); padding: 0 20px;
-  display: flex; align-items: center; gap: 16px; height: 56px;
-  position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-}
-.back-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600; }
-.back-btn:hover { color: #fff; }
-.page-title { font-size: 16px; font-weight: 700; color: #fff; }
-.push-notify-btn {
-  margin-left: auto; background: #E74C3C; color: #fff;
-  font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 20px;
-  display: flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(231,76,60,0.4);
-}
-.push-notify-btn:hover { background: #C0392B; transform: translateY(-1px); }
-.live-dot2 { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: blink 1.5s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: linear-gradient(180deg, #E0F2FE 0%, #F0F9FF 20%, #FAF5FF 45%, #FFFBEB 75%, #F0FDF4 100%);
-  color: var(--ink);
-  min-height: 100vh;
+  font-family: var(--font-kn);
+  background: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* HIGH CONTRAST DARK HERO HEADER (Gold & Dam Style) */
-body .hero {
-  background: linear-gradient(135deg, #071927 0%, #0F3A5D 50%, #1A4B75 100%) !important;
-  color: #FFFFFF !important;
-  padding: 40px 20px 125px !important;
-  text-align: center !important; position: relative !important; overflow: hidden !important;
-  box-shadow: inset 0 -10px 30px rgba(0,0,0,0.5) !important;
+/* Topnav */
+.topnav {
+  background: #09131F;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
-.hero::before { content: '🌧️'; position: absolute; top: 10%; left: 4%; font-size: 85px; opacity: 0.12; }
-.hero::after { content: '⚡'; position: absolute; bottom: 20%; right: 4%; font-size: 100px; opacity: 0.12; }
-
-.source-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px); padding: 6px 16px; border-radius: 20px;
-  font-size: 12px; color: #FDE68A; margin-bottom: 16px; font-family: var(--font-kn);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-weight: 800;
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFF;
+  font-size: 14.5px;
+  font-weight: 800;
+  text-decoration: none;
 }
-
-body .hero h1 {
-  font-size: 28px !important; font-weight: 900 !important; margin-bottom: 8px !important;
-  color: #FFFFFF !important; background: none !important;
-  -webkit-background-clip: unset !important; -webkit-text-fill-color: #FFFFFF !important;
-  text-shadow: 0 3px 14px rgba(0,0,0,0.8) !important; display: block !important;
-}
-body .hero p {
-  font-size: 14px !important; color: #E0F2FE !important; opacity: 0.95 !important;
-  margin-bottom: 24px !important; font-weight: 600 !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
-}
-
-/* ANIMATED ATMOSPHERIC WEATHER BACKGROUND ELEMENTS */
-.hero-weather-bg {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none; overflow: hidden; z-index: 1;
-}
-.cloud-float {
-  position: absolute; font-size: 60px; opacity: 0.16;
-  animation: floatCloud 30s linear infinite; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-.cloud-1 { top: 8%; left: -10%; animation-duration: 32s; }
-.cloud-2 { top: 22%; right: -10%; animation-duration: 25s; animation-delay: -12s; }
-.cloud-3 { top: 55%; left: -8%; animation-duration: 38s; animation-delay: -6s; font-size: 75px; opacity: 0.12; }
-
-@keyframes floatCloud {
-  0% { transform: translateX(-10vw); }
-  100% { transform: translateX(110vw); }
+.page-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #F8FAFC;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.raindrop-fall {
-  position: absolute; font-size: 18px; opacity: 0.3;
-  animation: fallRain 3.5s linear infinite;
-}
-.rain-1 { top: -5%; left: 15%; animation-duration: 3.2s; animation-delay: 0s; }
-.rain-2 { top: -5%; left: 45%; animation-duration: 4.0s; animation-delay: -1.2s; }
-.rain-3 { top: -5%; left: 75%; animation-duration: 3.6s; animation-delay: -0.6s; }
-
-@keyframes fallRain {
-  0% { transform: translateY(0) scale(0.8); opacity: 0.35; }
-  80% { opacity: 0.35; }
-  100% { transform: translateY(320px) scale(1.1); opacity: 0; }
+/* DYNAMIC ATMOSPHERIC HERO SECTION */
+.hero-weather-section {
+  padding: 36px 20px 115px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.8s ease;
+  color: #FFFFFF;
 }
 
-.sun-glow-bg {
-  position: absolute; top: -30px; right: 8%; font-size: 110px; opacity: 0.16;
-  filter: drop-shadow(0 0 25px rgba(253, 224, 71, 0.7));
-  animation: rotateSun 45s linear infinite;
+/* Weather Themes */
+.theme-rain {
+  background: radial-gradient(circle at 75% 20%, #1E3A8A 0%, #0F2D4A 50%, #071727 100%);
 }
-@keyframes rotateSun {
+.theme-cloudy {
+  background: radial-gradient(circle at 80% 20%, #2563EB 0%, #1E293B 55%, #0A1120 100%);
+}
+.theme-sunny {
+  background: radial-gradient(circle at 80% 15%, #0284C7 0%, #0369A1 45%, #0F172A 100%);
+}
+.theme-night {
+  background: radial-gradient(circle at 80% 20%, #1E1B4B 0%, #0F172A 60%, #030712 100%);
+}
+
+#weatherCanvas {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-badge-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ksndmc-live-pill {
+  background: rgba(225, 29, 72, 0.35);
+  border: 1.5px solid #FB7185;
+  color: #FFE4E6;
+  padding: 6px 16px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+}
+.pulse-dot {
+  width: 9px; height: 9px;
+  background: #F43F5E;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #F43F5E;
+  animation: pulseGlow 1.5s infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.hero-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: center;
+}
+@media(max-width: 880px) {
+  .hero-main-grid { grid-template-columns: 1fr; }
+}
+
+/* Big Temperature Display */
+.temp-display-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.big-temp {
+  font-size: 88px;
+  font-weight: 900;
+  font-family: var(--font-en);
+  line-height: 1;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  background: linear-gradient(180deg, #FFFFFF 30%, #BAE6FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media(max-width: 600px) {
+  .big-temp { font-size: 68px; }
+}
+.weather-desc-wrap h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+.weather-desc-wrap p {
+  font-size: 16px;
+  color: #7DD3FC;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* 3D-STYLE WIND TURBINE COCKPIT CARD */
+.wind-fan-card {
+  background: #FFFFFF !important;
+  border: 2.5px solid #BAE6FD !important;
+  border-radius: 22px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.25) !important;
+}
+.turbine-visual {
+  width: 95px;
+  height: 115px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.turbine-tower {
+  position: absolute;
+  bottom: 0;
+  width: 9px;
+  height: 70px;
+  background: linear-gradient(180deg, #0284C7 0%, #0F172A 100%) !important;
+  border-radius: 4px;
+}
+.turbine-blades {
+  position: absolute;
+  top: 15px;
+  width: 88px;
+  height: 88px;
+  animation: spinTurbine 3s linear infinite;
+  transform-origin: center center;
+  filter: drop-shadow(0 2px 8px rgba(2, 132, 199, 0.4));
+}
+@keyframes spinTurbine {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* SVG ANIMATED WAVES OVERLAY */
+.wind-info { flex: 1; }
+.wind-title {
+  font-size: 12.5px !important;
+  text-transform: uppercase;
+  color: #0369A1 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.05em;
+  font-family: var(--font-en);
+}
+.wind-speed-val {
+  font-size: 42px !important;
+  font-weight: 900 !important;
+  font-family: var(--font-en);
+  color: #E11D48 !important;
+  margin: 3px 0;
+  line-height: 1 !important;
+}
+.wind-dir {
+  font-size: 14px !important;
+  color: #D97706 !important;
+  font-weight: 800 !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* HIGH CONTRAST ULTRA-READABLE TELEMETRY PILLS (BIG BLACK & RED NUMBERS) */
+.hero-telemetry-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+.telemetry-card {
+  background: #FFFFFF !important;
+  border: 2px solid #E2E8F0 !important;
+  border-radius: 20px !important;
+  padding: 18px 12px !important;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2) !important;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.telemetry-card:hover {
+  transform: translateY(-4px);
+  border-color: #0284C7 !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.25) !important;
+}
+.tc-val {
+  font-size: 34px !important;
+  font-weight: 900 !important;
+  font-family: var(--font-en);
+  color: #0F172A !important;
+  line-height: 1.1 !important;
+  margin-bottom: 6px;
+}
+.tc-val.red-val {
+  color: #E11D48 !important;
+}
+.tc-val.green-val {
+  color: #059669 !important;
+}
+.tc-label {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #334155 !important;
+  font-family: var(--font-kn);
+  letter-spacing: 0.02em;
+}
+
+/* Waves Bottom */
 .waves-container {
-  position: absolute; width: 100%; height: 75px;
-  bottom: 0; left: 0; right: 0; pointer-events: none; z-index: 2;
-}
-.waves { width: 100%; height: 100%; }
-.parallax > use {
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-}
-.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
-.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
-.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
-.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
-
-@keyframes move-forever {
-  0% { transform: translate3d(-90px, 0, 0); }
-  100% { transform: translate3d(85px, 0, 0); }
+  position: absolute;
+  width: 100%;
+  height: 65px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 4;
 }
 
-.current-display { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; z-index: 3; }
-.cd-temp { font-size: 64px; font-weight: 800; font-family: var(--font-en); line-height: 1; text-shadow: 0 4px 14px rgba(0,0,0,0.4); }
-.cd-info { text-align: left; }
-.cd-desc { font-size: 18px; font-weight: 700; margin-bottom: 4px; text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-.cd-loc { font-size: 14px; opacity: 0.95; font-weight: 600; text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-
-.cd-stats {
-  display: flex; gap: 16px; margin-top: 24px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 3;
-}
-.cds-item { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); padding: 10px 18px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.cds-val { font-size: 18px; font-weight: 800; font-family: var(--font-en); text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-.cds-label { font-size: 10px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-en); margin-top: 2px; }
-
-/* SUMMARY CARDS OVERLAP */
+/* OVERLAPPING SUMMARY STATS STRIP */
 .summary-strip {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-  max-width: 1000px; margin: -65px auto 0; padding: 0 20px;
-  position: relative; z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: -50px auto 0;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
 }
-@media(max-width: 650px) { .summary-strip { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 750px) {
+  .summary-strip { grid-template-columns: repeat(2, 1fr); }
+}
 
 .sum-card {
-  border-radius: 16px; padding: 18px 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(8px);
+  background: #FFFFFF !important;
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.sum-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.15); }
+.sum-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+.sum-card.rain { border-top: 4px solid #0284C7; background: linear-gradient(180deg, #F0F9FF 0%, #FFF 100%) !important; }
+.sum-card.highest { border-top: 4px solid #10B981; background: linear-gradient(180deg, #ECFDF5 0%, #FFF 100%) !important; }
+.sum-card.temp { border-top: 4px solid #F59E0B; background: linear-gradient(180deg, #FFFBEB 0%, #FFF 100%) !important; }
+.sum-card.alert { border-top: 4px solid #E11D48; background: linear-gradient(180deg, #FFF1F2 0%, #FFF 100%) !important; }
 
-.sum-card:nth-child(1) {
-  background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%);
-  border: 1px solid #7DD3FC; border-top: 4px solid #0284C7;
-}
-.sum-card:nth-child(2) {
-  background: linear-gradient(135deg, #DCFCE7 0%, #86EFAC 100%);
-  border: 1px solid #4ADE80; border-top: 4px solid #16A34A;
-}
-.sum-card:nth-child(3) {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE047 100%);
-  border: 1px solid #FACC15; border-top: 4px solid #CA8A04;
-}
-.sum-card:nth-child(4) {
-  background: linear-gradient(135deg, #FEE2E2 0%, #FCA5A5 100%);
-  border: 1px solid #F87171; border-top: 4px solid #DC2626;
+.sum-icon { font-size: 28px; margin-bottom: 4px; }
+.sum-val { font-size: 24px; font-weight: 900; font-family: var(--font-en); color: #0F172A !important; }
+.sum-label { font-size: 13.5px; color: #334155 !important; font-weight: 800; margin-top: 3px; }
+.sum-sub { font-size: 12px; font-weight: 800; color: #0284C7 !important; font-family: var(--font-en); margin-top: 2px; }
+
+/* MAIN CONTENT WRAPPER */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 34px 20px 60px;
 }
 
-.sum-icon { font-size: 24px; margin-bottom: 4px; }
-.sum-val { font-size: 21px; font-weight: 800; font-family: var(--font-en); color: #0F172A; }
-.sum-label { font-size: 12px; color: #334155; font-weight: 800; margin-top: 2px; }
-.sum-sub { font-size: 10.5px; color: #0284C7; font-family: var(--font-en); margin-top: 2px; font-weight: 800; }
-
-.wrap { max-width: 1000px; margin: 0 auto; padding: 24px 20px 50px; }
-
-/* SECTION TITLE */
+/* SECTION HEADER */
 .sec-head {
-  display: flex; align-items: center; justify-content: space-between;
-  margin: 28px 0 14px; font-size: 17.5px; font-weight: 800; color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 36px 0 18px;
 }
-.sec-title-text { display: flex; align-items: center; gap: 8px; }
-.sec-link { font-size: 12px; font-weight: 700; color: var(--blue-mid); text-decoration: none; }
+.sec-title-text {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /* CREATIVE WEATHER EXTREMES GRID CARDS */
 .creative-cards-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
 }
 @media(max-width: 800px) { .creative-cards-grid { grid-template-columns: 1fr; } }
 
 .cc-card {
-  border-radius: 18px; padding: 22px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05); position: relative;
-  overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: all 0.3s ease;
+  background: #FFFFFF !important;
 }
-.cc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 35px rgba(0,0,0,0.1); }
+.cc-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,0,0,0.1); }
 .cc-card.rain {
-  border: 1px solid #7DD3FC; border-left: 6px solid #0284C7;
-  background: linear-gradient(135deg, #E0F2FE 0%, #FFFFFF 100%);
+  border: 1px solid #BAE6FD; border-left: 6px solid #0284C7;
+  background: linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%) !important;
 }
 .cc-card.hot {
-  border: 1px solid #FDBA74; border-left: 6px solid #EA580C;
-  background: linear-gradient(135deg, #FFEDD5 0%, #FFFFFF 100%);
+  border: 1px solid #FED7AA; border-left: 6px solid #EA580C;
+  background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%) !important;
 }
 .cc-card.cold {
-  border: 1px solid #A5B4FC; border-left: 6px solid #4F46E5;
-  background: linear-gradient(135deg, #E0E7FF 0%, #FFFFFF 100%);
+  border: 1px solid #C7D2FE; border-left: 6px solid #4F46E5;
+  background: linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%) !important;
 }
 
-.cc-tag { font-size: 11px; font-weight: 800; color: var(--ink3); font-family: var(--font-en); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-.cc-val { font-size: 34px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1.1; margin-bottom: 4px; }
-.cc-loc { font-size: 16.5px; font-weight: 800; color: var(--blue); margin-bottom: 2px; }
-.cc-sub { font-size: 12px; color: var(--ink2); font-weight: 600; }
+.cc-tag { font-size: 12.5px; font-weight: 800; color: #475569; font-family: var(--font-en); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.cc-val { font-size: 36px; font-weight: 900; font-family: var(--font-en); color: #0F172A !important; line-height: 1.1; margin-bottom: 4px; }
+.cc-loc { font-size: 18px; font-weight: 900; color: #0284C7 !important; margin-bottom: 2px; }
+.cc-sub { font-size: 13px; color: #64748B; font-weight: 700; }
 
-/* HEAVY RAINFALL LOCATIONS GAUGES - STRICTLY 5 CARDS IN A ROW */
+/* HEAVY RAINFALL TOP LOCATIONS */
 .heavy-rain-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 30px;
 }
-@media(max-width: 900px) {
-  .heavy-rain-grid {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
-  }
-  .hr-card { min-width: 190px; flex-shrink: 0; scroll-snap-align: start; }
-}
-
 .hr-card {
-  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
-  border-radius: 14px; padding: 14px 12px;
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%) !important;
+  border-radius: 16px; padding: 16px 14px;
   border: 1px solid #BAE6FD; border-top: 4px solid #0284C7;
-  box-shadow: 0 6px 18px rgba(2,132,199,0.08);
-  display: flex; flex-direction: column; justify-content: space-between; gap: 8px;
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(2,132,199,0.08);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+  transition: all 0.2s ease;
 }
 .hr-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(2,132,199,0.18); }
-.hr-loc { font-size: 14px; font-weight: 800; color: #0369A1; line-height: 1.25; }
-.hr-dist { font-size: 11px; color: #0284C7; font-weight: 700; font-family: var(--font-en); margin-top: 2px; }
+.hr-loc { font-size: 15px; font-weight: 800; color: #0369A1; line-height: 1.25; }
+.hr-dist { font-size: 12px; color: #0284C7; font-weight: 700; font-family: var(--font-en); margin-top: 2px; }
 .hr-val-badge {
   background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
-  color: #ffffff; font-size: 13.5px; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  padding: 6px 10px; border-radius: 20px; font-family: var(--font-en); text-align: center;
+  color: #ffffff; font-size: 14.5px; font-weight: 900;
+  padding: 7px 12px; border-radius: 20px; font-family: var(--font-en); text-align: center;
   box-shadow: 0 4px 12px rgba(2,132,199,0.3); border: none; width: 100%;
 }
 
-/* DYNAMIC MASONRY LAYOUT FOR REAL LIVE TWITTER/X CARDS */
+/* CREATIVE AQI & WEATHER GAUGES */
+.creative-gauges-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+@media(max-width: 850px) {
+  .creative-gauges-row { grid-template-columns: 1fr; }
+}
+
+.gauge-card {
+  background: #FFFFFF !important;
+  border-radius: 20px;
+  padding: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.gauge-card.aqi { border-left: 6px solid #10B981; }
+.gauge-card.rain { border-left: 6px solid #0284C7; }
+.gauge-card.temp { border-left: 6px solid #F59E0B; }
+
+.gc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.gc-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #334155;
+}
+.gc-badge {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-family: var(--font-en);
+}
+
+.gc-main {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 12px 0;
+}
+.gc-big-val {
+  font-size: 38px;
+  font-weight: 900;
+  font-family: var(--font-en);
+  color: #0F172A;
+}
+.gc-status {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.gc-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: #E2E8F0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.gc-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+/* 24-HOUR HOURLY SLIDER */
+.hourly-card {
+  background: #FFFFFF !important;
+  border-radius: 20px;
+  padding: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  margin-bottom: 28px;
+}
+.hourly-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+.hourly-item {
+  flex: 0 0 90px;
+  background: #F8FAFC;
+  border-radius: 16px;
+  padding: 14px 10px;
+  text-align: center;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s;
+}
+.hourly-item.now, .hourly-item:hover {
+  background: #E0F2FE;
+  border-color: #0284C7;
+  transform: translateY(-2px);
+}
+.hi-time { font-size: 12.5px; font-weight: 800; color: #64748B; font-family: var(--font-en); }
+.hi-icon { font-size: 28px; margin: 6px 0; }
+.hi-temp { font-size: 17px; font-weight: 900; font-family: var(--font-en); color: #0F172A; }
+.hi-rain { font-size: 11.5px; font-weight: 800; color: #0284C7; font-family: var(--font-en); margin-top: 4px; }
+
+/* 7-DAY FORECAST GRID */
+.forecast-card {
+  background: #FFFFFF !important;
+  border-radius: 20px;
+  padding: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  margin-bottom: 28px;
+}
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+@media(max-width: 800px) {
+  .forecast-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media(max-width: 480px) {
+  .forecast-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.fc-day {
+  background: #F8FAFC;
+  border-radius: 16px;
+  padding: 16px 8px;
+  text-align: center;
+  border: 1px solid #E2E8F0;
+}
+.fc-day.today {
+  background: #E0F2FE;
+  border: 2px solid #0284C7;
+}
+.fc-day-name { font-size: 13px; font-weight: 800; color: #64748B; font-family: var(--font-en); }
+.fc-icon { font-size: 30px; margin: 6px 0; }
+.fc-temp-max { font-size: 16px; font-weight: 900; font-family: var(--font-en); color: #0F172A; }
+.fc-temp-min { font-size: 12.5px; color: #64748B; font-family: var(--font-en); }
+
+/* KSNDMC ALERTS MASONRY */
 .ksndmc-alert-strip {
   columns: 2 320px;
   column-gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 @media(max-width: 650px) { .ksndmc-alert-strip { columns: 1; } }
 
 .ksndmc-card {
   break-inside: avoid;
   margin-bottom: 16px;
-  display: inline-block;
-  width: 100%;
-  background: var(--white);
-  border-radius: var(--r-lg, 16px);
+  background: #FFF;
+  border-radius: 18px;
   padding: 20px 22px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 18px rgba(28,18,9,0.06);
-  transition: all 0.3s var(--ease);
-  position: relative;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
-.ksndmc-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(28,18,9,0.12);
-  border-color: var(--border2);
-}
-.ksndmc-card.red {
-  border-left: 5px solid var(--red);
-  background: linear-gradient(135deg, var(--red-lt) 0%, #FFFFFF 100%);
-}
-.ksndmc-card.orange {
-  border-left: 5px solid var(--amber);
-  background: linear-gradient(135deg, var(--amber-lt) 0%, #FFFFFF 100%);
-}
-.ksndmc-card.yellow {
-  border-left: 5px solid #F1C40F;
-  background: linear-gradient(135deg, #FEFDE8 0%, #FFFFFF 100%);
-}
+.ksndmc-card.red { border-left: 6px solid #E11D48; background: #FFF1F2 !important; }
+.ksndmc-card.orange { border-left: 6px solid #F59E0B; background: #FFFBEB !important; }
+.ksndmc-card.yellow { border-left: 6px solid #EAB308; background: #FEFCE8 !important; }
 
-.kc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.kc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .kc-badge {
-  font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 20px;
-  font-family: var(--font-kn); display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 14px;
 }
-.kc-badge.red { background: var(--red-lt); color: var(--red); border: 1px solid rgba(192,57,43,0.2); }
-.kc-badge.orange { background: var(--amber-lt); color: var(--amber); border: 1px solid rgba(212,131,10,0.2); }
-.kc-badge.yellow { background: #FEFDE8; color: #B7950B; border: 1px solid #F9E79F; }
-.kc-badge.info { background: var(--blue-lt); color: var(--blue); border: 1px solid rgba(26,79,122,0.2); }
+.kc-badge.red { background: #FFE4E6; color: #BE123C; }
+.kc-badge.orange { background: #FEF3C7; color: #B45309; }
+.kc-badge.yellow { background: #FEF9C3; color: #A16207; }
 
-.kc-title { font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.65; word-break: break-word; white-space: pre-line; }
+.kc-title { font-size: 15px; font-weight: 700; color: #1E293B; line-height: 1.65; }
 .kc-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-top: 14px; border-top: 1px dashed var(--border); padding-top: 10px;
-  flex-wrap: wrap; gap: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.12);
+  font-size: 12px; color: #64748B;
 }
-.kc-time { font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 600; }
-.kc-link-btn {
-  font-size: 11px; font-weight: 700; color: var(--blue-mid);
-  background: var(--blue-lt); padding: 4px 12px; border-radius: 20px;
-  text-decoration: none; transition: all 0.2s ease; border: 1px solid rgba(41,128,185,0.2);
-}
-.kc-link-btn:hover { background: var(--blue-mid); color: #fff; }
 
-/* HOURLY FORECAST SCROLLER */
-.hourly-card {
-  background: var(--white); border-radius: var(--radius); padding: 20px;
-  border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 24px;
-}
-.hourly-scroll {
-  display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px;
-  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
-}
-.hourly-item {
-  flex: 0 0 76px; background: #F8FAFC; border-radius: 12px; padding: 12px 8px;
-  text-align: center; border: 1px solid #E2E8F0; transition: all 0.2s ease;
-}
-.hourly-item:hover, .hourly-item.now { background: var(--blue-lt); border-color: var(--blue-mid); }
-.hi-time { font-size: 11px; font-weight: 700; color: var(--ink3); font-family: var(--font-en); margin-bottom: 6px; }
-.hi-icon { font-size: 24px; margin-bottom: 4px; }
-.hi-temp { font-size: 15px; font-weight: 800; color: var(--ink); font-family: var(--font-en); }
-.hi-rain { font-size: 10px; color: var(--blue-mid); font-weight: 700; font-family: var(--font-en); margin-top: 4px; }
-
-/* 7-DAY FORECAST GRID */
-.forecast-card {
-  background: var(--white); border-radius: var(--radius); padding: 20px;
-  border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 24px;
-}
-.forecast-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
-@media(max-width: 700px) { .forecast-grid { grid-template-columns: repeat(4, 1fr); } }
-@media(max-width: 450px) { .forecast-grid { grid-template-columns: repeat(3, 1fr); } }
-.fc-day {
-  background: #F8FAFC; border-radius: 12px; padding: 12px 8px; text-align: center;
-  border: 1px solid #E2E8F0; transition: all 0.2s ease;
-}
-.fc-day.today { background: var(--blue-lt); border: 2px solid var(--blue-mid); }
-.fc-day-name { font-size: 12px; color: var(--ink3); font-weight: 700; margin-bottom: 6px; font-family: var(--font-en); }
-.fc-icon { font-size: 26px; margin-bottom: 4px; }
-.fc-desc { font-size: 10px; color: var(--ink2); margin-bottom: 6px; height: 28px; display: flex; align-items: center; justify-content: center; }
-.fc-temp-max { font-size: 14px; font-weight: 800; color: var(--ink); font-family: var(--font-en); }
-.fc-temp-min { font-size: 11px; color: var(--ink3); font-family: var(--font-en); }
-.fc-rain { font-size: 10px; color: var(--blue-mid); margin-top: 4px; font-family: var(--font-en); font-weight: 700; }
-
-/* DISTRICT SEARCH & REGION SELECTOR */
+/* DISTRICT FILTER & SEARCH */
 .filter-controls {
-  display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 .search-input {
-  padding: 10px 16px; border-radius: 20px; border: 1.5px solid var(--border);
-  font-size: 13px; font-family: var(--font-kn); width: 240px; background: var(--white);
-  outline: none; transition: border-color 0.2s;
+  padding: 12px 20px;
+  border-radius: 24px;
+  border: 1.5px solid var(--border-color);
+  font-size: 14.5px;
+  font-family: var(--font-kn);
+  width: 270px;
+  background: #FFF;
+  outline: none;
 }
-.search-input:focus { border-color: var(--blue-mid); }
+.search-input:focus { border-color: #0284C7; box-shadow: 0 0 0 3px rgba(2,132,199,0.15); }
 
-.city-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.city-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
 .city-tabs::-webkit-scrollbar { display: none; }
 .city-tab {
-  flex-shrink: 0; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;
-  border: 1.5px solid var(--border); background: var(--white); color: var(--ink2); cursor: pointer;
-  transition: all 0.15s; font-family: var(--font-kn);
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13.5px;
+  font-weight: 800;
+  border: 1.5px solid var(--border-color);
+  background: #FFF;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
 }
-.city-tab.active, .city-tab:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.city-tab.active, .city-tab:hover {
+  background: #0284C7;
+  color: #FFF;
+  border-color: #0284C7;
+}
 
 /* DISTRICT WEATHER GRID */
-.dist-weather-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.dist-weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
 .dw-card {
-  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px; box-shadow: var(--shadow); cursor: pointer; transition: all 0.2s ease;
-  position: relative; overflow: hidden;
+  background: #FFF;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
 }
-.dw-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-color: var(--blue-mid); }
-.dw-card.alert-red { border-left: 4px solid var(--red); }
-.dw-card.alert-orange { border-left: 4px solid var(--amber); }
+.dw-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.08);
+  border-color: #0284C7;
+}
+.dw-card.alert-red { border-left: 5px solid #E11D48; }
+.dw-card.alert-orange { border-left: 5px solid #F59E0B; }
 
-.dw-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-.dw-name { font-size: 15px; font-weight: 800; color: var(--ink); }
-.dw-hq { font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 600; }
-.dw-icon { font-size: 32px; }
+.dw-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.dw-name { font-size: 16.5px; font-weight: 800; color: #0F172A; }
+.dw-hq { font-size: 11.5px; color: #64748B; font-family: var(--font-en); font-weight: 600; }
+.dw-icon { font-size: 34px; }
 
-.dw-temp-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-.dw-temp { font-size: 28px; font-weight: 800; font-family: var(--font-en); color: var(--ink); line-height: 1; }
-.dw-desc { font-size: 12px; color: var(--ink2); font-weight: 600; }
+.dw-temp-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.dw-temp { font-size: 32px; font-weight: 900; font-family: var(--font-en); color: #0F172A; line-height: 1; }
+.dw-desc { font-size: 13.5px; color: #475569; font-weight: 700; }
 
-.dw-stats { display: flex; gap: 12px; font-size: 11px; color: var(--ink3); font-family: var(--font-en); font-weight: 600; }
+.dw-stats { display: flex; gap: 12px; font-size: 12px; color: #64748B; font-family: var(--font-en); font-weight: 700; }
 .dw-alert-tag {
-  display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 800;
-  padding: 4px 10px; border-radius: 6px; font-family: var(--font-kn);
+  display: inline-block; margin-top: 10px; font-size: 11.5px; font-weight: 800;
+  padding: 4px 10px; border-radius: 8px;
 }
-.tag-red { background: var(--red-lt); color: var(--red); }
-.tag-orange { background: var(--amber-lt); color: #8B5000; }
+.tag-red { background: #FFE4E6; color: #BE123C; }
+.tag-orange { background: #FEF3C7; color: #B45309; }
 
-.dw-card-imd-box {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 14px 16px;
-  margin-top: 16px;
+/* 7-DAY FORECAST CREATIVE HORIZONTAL CARDS */
+.forecast-horizontal-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 2px 14px;
+  scrollbar-width: thin;
+  margin-bottom: 24px;
 }
-.dw-sunset-row {
+.forecast-h-card {
+  flex: 0 0 145px;
+  background: #FFFFFF !important;
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 195px;
+}
+.forecast-h-card:hover {
+  transform: translateY(-4px);
+  border-color: #0284C7;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+}
+.forecast-h-card.today {
+  border: 2px solid #0284C7;
+  background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 100%) !important;
+}
+.fhc-day {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F172A;
+}
+.fhc-date {
+  font-size: 11.5px;
+  color: #64748B;
+  font-family: var(--font-en);
+  font-weight: 600;
+  margin-top: 1px;
+}
+.fhc-icon {
+  font-size: 34px;
+  margin: 6px 0 2px;
+}
+.fhc-desc {
+  font-size: 12px;
+  color: #475569;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fhc-rain-pill {
+  background: #E0F2FE;
+  color: #0284C7;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin: 6px auto;
+  font-family: var(--font-en);
+  display: inline-block;
+}
+.fhc-temp-row {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-en);
+  margin-top: 4px;
+}
+.fhc-max {
+  font-size: 18px;
+  font-weight: 900;
+  color: #0F172A;
+}
+.fhc-min {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #64748B;
+}
+
+/* ASK WEATHER INTERACTIVE Q&A ACCORDION WIDGET */
+.ask-weather-box {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 24px 22px;
+  color: #0F172A;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  margin-bottom: 30px;
+  position: relative;
+}
+.aw-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
-  font-weight: 700;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.aw-title {
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: #0F172A;
-  border-top: 1px solid #E2E8F0;
-  margin-top: 10px;
-  padding-top: 8px;
+}
+.aw-loc-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.aw-loc-badge {
+  background: #F0F9FF;
+  border: 1.5px solid #BAE6FD;
+  padding: 6px 14px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0369A1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.aw-gps-btn {
+  background: #0284C7;
+  color: #FFF;
+  border: none;
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.aw-gps-btn:hover {
+  background: #0369A1;
+  transform: translateY(-1px);
 }
 
-/* AQI GRID */
-.aqi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 14px;
-  margin-bottom: 30px;
+/* FAQ Accordion Item */
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.aqi-item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 12px;
-  text-align: center;
-  box-shadow: var(--shadow);
+.faq-item {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+.faq-item.open {
+  border-color: #0284C7;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.08);
+}
+.faq-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #F8FAFC;
+  font-size: 15px;
+  font-weight: 800;
+  color: #1E293B;
+  user-select: none;
+  transition: background 0.15s;
+}
+.faq-item.open .faq-header {
+  background: #E0F2FE;
+  color: #0369A1;
+}
+.faq-icon-arrow {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0284C7;
   transition: transform 0.2s;
 }
-.aqi-item:hover {
-  transform: translateY(-2px);
-  border-color: #0284C7;
+.faq-item.open .faq-icon-arrow {
+  transform: rotate(180deg);
 }
-.aqi-city { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
-.aqi-val { font-size: 26px; font-weight: 800; font-family: var(--font-en); line-height: 1.1; }
-.aqi-label { font-size: 11px; margin-top: 4px; font-weight: 700; }
+
+.faq-body-drawer {
+  padding: 18px;
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #334155;
+  display: none;
+}
+.faq-item.open .faq-body-drawer {
+  display: block;
+  animation: fadeInAw 0.2s ease-out;
+}
+@keyframes fadeInAw {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-stats-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #CBD5E1;
+}
+.faq-stat-pill {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  padding: 5px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+}
+.faq-ask-ai-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  background: #0284C7;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+.faq-ask-ai-link:hover {
+  background: #0369A1;
+  transform: translateY(-1px);
+}
 </style>
-<script src="/seo.js" defer></script>
-<script src="/data-loader.js"></script>
-<script src="/js/push-notifications.js" defer></script>
-<link rel="stylesheet" href="/karnata-theme.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="/js/weather-radar/weather-radar.css">
 </head>
 <body>
 
+<!-- Top Navigation -->
 <div class="topnav">
-  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
-  <div class="page-title">🌦️ ಕರ್ನಾಟಕ ಹವಾಮಾನ &amp; KSNDMC ವರದಿ</div>
+  <a href="/" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div class="page-title">🌦️ ಕರ್ನಾಟಕ ಲೈವ್ ಹವಾಮಾನ</div>
+  <a href="/aqi.html" style="color:#7DD3FC; font-size:13px; font-weight:800; text-decoration:none;">🍃 AQI →</a>
 </div>
 
-<div class="hero">
-  <div class="hero-weather-bg">
-    <div class="sun-glow-bg">☀️</div>
-    <div class="cloud-float cloud-1">☁️</div>
-    <div class="cloud-float cloud-2">⛅</div>
-    <div class="cloud-float cloud-3">🌧️</div>
-    <div class="raindrop-fall rain-1">💧</div>
-    <div class="raindrop-fall rain-2">💧</div>
-    <div class="raindrop-fall rain-3">💧</div>
-  </div>
-  <h1>🌦️ ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ &amp; ಮಳೆ ಮಾಹಿತಿ</h1>
-  <p>31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ, 24-ಗಂಟೆಗಳ ಮುನ್ಸೂಚನೆ ಮತ್ತು KSNDMC ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು</p>
+<!-- DYNAMIC ATMOSPHERIC HERO SECTION -->
+<section class="hero-weather-section theme-rain" id="heroWeatherSec">
+  <canvas id="weatherCanvas"></canvas>
+  
+  <div class="hero-content">
+    <!-- Top badge -->
+    <div class="hero-badge-strip">
+      <div class="ksndmc-live-pill">
+        <span class="pulse-dot"></span>
+        <span>KSNDMC & IMD ಲೈವ್ ಹವಾಮಾನ ರೇಡಾರ್</span>
+      </div>
+      <div style="font-size:14px; color:#BAE6FD; font-weight:800;">
+        🗓️ ಇಂದು: <span id="currentDateDisplay">ಲೈವ್ ಅಪ್ಡೇಟ್</span>
+      </div>
+    </div>
 
-  <div class="current-display">
-    <div class="cd-temp" id="hero-temp">25°</div>
-    <div class="cd-info">
-      <div class="cd-desc" id="hero-desc">ಭಾಗಶಃ ಮೋಡ ⛅</div>
-      <div class="cd-loc" id="hero-loc">📍 ಬೆಂಗಳೂರು ನಗರ</div>
+    <!-- Main Live Temperature & 3D Wind Turbine Fan Card -->
+    <div class="hero-main-grid">
+      <!-- Left: Temperature & Location -->
+      <div>
+        <div class="temp-display-wrap">
+          <div class="big-temp" id="hero-temp">25°</div>
+          <div class="weather-desc-wrap">
+            <h2 id="hero-desc">ಭಾಗಶಃ ಮೋಡ ⛅</h2>
+            <p id="hero-loc">📍 ಬೆಂಗಳೂರು ನಗರ (Bengaluru Urban)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Glowing 3D Wind Turbine Fan -->
+      <div class="wind-fan-card">
+        <div class="turbine-visual">
+          <div class="turbine-tower"></div>
+          <svg class="turbine-blades" id="windTurbineBlades" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="8" fill="#E11D48" />
+            <!-- Blade 1 -->
+            <path d="M50 50 L45 5 C48 1 52 1 55 5 L50 50" fill="#0284C7" />
+            <!-- Blade 2 -->
+            <path d="M50 50 L89 71 C92 68 94 65 90 61 L50 50" fill="#0369A1" />
+            <!-- Blade 3 -->
+            <path d="M50 50 L11 71 C8 68 6 65 10 61 L50 50" fill="#0F172A" />
+          </svg>
+        </div>
+        <div class="wind-info">
+          <div class="wind-title">WIND SPEED / ಪವನ ವೇಗ</div>
+          <div class="wind-speed-val" id="hero-wind">12 km/h</div>
+          <div class="wind-dir" id="hero-wind-dir">💨 ಈಶಾನ್ಯ ಮಾರುತ (NE)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Telemetry Strip (High-Contrast Vivid White Cards With Big Bold Black & Red Numbers) -->
+    <div class="hero-telemetry-strip">
+      <div class="telemetry-card">
+        <div class="tc-val" id="hero-humidity">75%</div>
+        <div class="tc-label">💧 ಆರ್ದ್ರತೆ (Humidity)</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="tc-val red-val" id="hero-rain">25%</div>
+        <div class="tc-label">🌧️ ಮಳೆ ಸಾಧ್ಯತೆ (Rain)</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="tc-val" id="hero-feels">26°</div>
+        <div class="tc-label">🌡️ ಅನುಭವ (Feels Like)</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="tc-val green-val" id="hero-aqi">68</div>
+        <div class="tc-label">🍃 ವಾಯು ಗುಣಮಟ್ಟ (AQI)</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="tc-val red-val" id="hero-uv">Moderate</div>
+        <div class="tc-label">☀️ ಯುವಿ (UV Index)</div>
+      </div>
     </div>
   </div>
 
-  <div class="cd-stats">
-    <div class="cds-item"><div class="cds-val" id="hero-humidity">70%</div><div class="cds-label">Humidity</div></div>
-    <div class="cds-item"><div class="cds-val" id="hero-wind">12 km/h</div><div class="cds-label">Wind</div></div>
-    <div class="cds-item"><div class="cds-val" id="hero-rain">35%</div><div class="cds-label">Rain Chance</div></div>
-    <div class="cds-item"><div class="cds-val" id="hero-feels">25°</div><div class="cds-label">Feels Like</div></div>
-    <div class="cds-item"><div class="cds-val" id="hero-aqi">42 (ಉತ್ತಮ)</div><div class="cds-label">AQI Index</div></div>
-  </div>
-
+  <!-- Waves Bottom -->
   <div class="waves-container">
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
-      </defs>
-      <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(224, 242, 254, 0.7)" />
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(240, 249, 255, 0.5)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(224, 242, 254, 0.3)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="#E0F2FE" />
-      </g>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="width:100%; height:100%;">
+      <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,120 L0,120 Z" fill="#F1F5F9"></path>
     </svg>
   </div>
-</div>
+</section>
 
-<!-- OVERLAPPING SUMMARY CARDS STRIP -->
+<!-- OVERLAPPING SUMMARY STATS STRIP -->
 <div class="summary-strip">
-  <div class="sum-card">
+  <div class="sum-card rain">
     <div class="sum-icon">🌧️</div>
     <div class="sum-val" id="sum-rain-districts">11</div>
     <div class="sum-label">ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ ಜಿಲ್ಲೆಗಳು</div>
     <div class="sum-sub">KSNDMC / IMD Alert</div>
   </div>
-  <div class="sum-card">
+  <div class="sum-card highest">
     <div class="sum-icon">📊</div>
-    <div class="sum-val" id="sum-highest-rain">39.8 mm</div>
+    <div class="sum-val" id="sum-highest-rain">107.5 mm</div>
     <div class="sum-label">24 ಗಂಟೆಗಳಲ್ಲಿ ಗರಿಷ್ಠ ಮಳೆ</div>
-    <div class="sum-sub" id="sum-highest-loc">ರಾಯಚೂರು</div>
+    <div class="sum-sub" id="sum-highest-loc">ಉಡುಪಿ (Kunjalu)</div>
   </div>
-  <div class="sum-card">
+  <div class="sum-card temp">
     <div class="sum-icon">🌡️</div>
     <div class="sum-val" id="sum-avg-temp">23°C</div>
     <div class="sum-label">ರಾಜ್ಯ ಸರಾಸರಿ ಉಷ್ಣಾಂಶ</div>
     <div class="sum-sub">State Avg Temp</div>
   </div>
-  <div class="sum-card">
-    <div class="sum-icon">⚠️</div>
+  <div class="sum-card alert">
+    <div class="sum-icon">🚨</div>
     <div class="sum-val" id="sum-alerts">2</div>
     <div class="sum-label">ಭಾರೀ ಮಳೆ ಅಪಾಯ ಜಿಲ್ಲೆಗಳು</div>
     <div class="sum-sub">Red Warning</div>
@@ -551,133 +1096,212 @@ body .hero p {
 
 <div class="wrap">
 
-  <!-- CREATIVE FEATURE CARDS (HIGHEST RAIN, MAX TEMP, MIN TEMP) -->
+  <!-- CREATIVE WEATHER EXTREMES (HIGHEST RAIN, MAX TEMP, MIN TEMP) -->
   <div class="sec-head">
-    <div class="sec-title-text">✨ ನಿನ್ನೆಯ ಪ್ರಮುಖ ಹವಾಮಾನ ಸಾರಾಂಶ </div>
+    <div class="sec-title-text">✨ ನಿನ್ನೆಯ ಪ್ರಮುಖ ಹವಾಮಾನ ಸಾರಾಂಶ (State Weather Extremes)</div>
   </div>
   <div class="creative-cards-grid">
     <div class="cc-card rain">
       <div>
         <div class="cc-tag">🌧️ ಗರಿಷ್ಠ ಮಳೆ ದಾಖಲಾದ ಸ್ಥಳ</div>
-        <div class="cc-val" id="cc-rain-val">39.8 mm</div>
-        <div class="cc-loc" id="cc-rain-loc">ರಾಯಚೂರು</div>
+        <div class="cc-val" id="cc-rain-val">107.5 mm</div>
+        <div class="cc-loc" id="cc-rain-loc">ಕುಂಜಾಲು (ಉಡುಪಿ)</div>
       </div>
       <div class="cc-sub">ಕಳೆದ 24 ಗಂಟೆಗಳಲ್ಲಿ ರಾಜ್ಯದಲ್ಲೇ ಗರಿಷ್ಠ ಮಳೆ</div>
     </div>
     <div class="cc-card hot">
       <div>
         <div class="cc-tag">🔥 ಇಂದಿನ ಗರಿಷ್ಠ ಉಷ್ಣಾಂಶ</div>
-        <div class="cc-val" id="cc-max-temp-val">24.9°C</div>
-        <div class="cc-loc" id="cc-max-temp-loc">ರಾಯಚೂರು</div>
+        <div class="cc-val" id="cc-max-temp-val">31.4°C</div>
+        <div class="cc-loc" id="cc-max-temp-loc">ಕಲಬುರಗಿ / ರಾಯಚೂರು</div>
       </div>
-      <div class="cc-sub"> ಅತ್ಯಂತ ಬೆಚ್ಚಗಿನ ವಾತಾವರಣ</div>
+      <div class="cc-sub">ಅತ್ಯಂತ ಬೆಚ್ಚಗಿನ ವಾತಾವರಣ</div>
     </div>
     <div class="cc-card cold">
       <div>
         <div class="cc-tag">❄️ ಇಂದಿನ ಕನಿಷ್ಠ ಉಷ್ಣಾಂಶ</div>
-        <div class="cc-val" id="cc-min-temp-val">18.9°C</div>
-        <div class="cc-loc" id="cc-min-temp-loc">ಚಿಕ್ಕಮಗಳೂರು</div>
+        <div class="cc-val" id="cc-min-temp-val">16.2°C</div>
+        <div class="cc-loc" id="cc-min-temp-loc">ಚಿಕ್ಕಮಗಳೂರು / ಮಡಿಕೇರಿ</div>
       </div>
       <div class="cc-sub">ಅತ್ಯಂತ ತಂಪಾದ ವಾತಾವರಣ</div>
     </div>
   </div>
 
-  <!-- HEAVY RAINFALL LOCATIONS GAUGES -->
+  <!-- HEAVY RAINFALL TOP LOCATIONS -->
   <div class="sec-head">
-    <div class="sec-title-text">🌊 ಗರಿಷ್ಠ ಮಳೆ ದಾಖಲಾದ ಪ್ರಮುಖ ಸ್ಥಳಗಳು (Highest Rainfall Districts)</div>
+    <div class="sec-title-text">🌊 ಅತಿ ಹೆಚ್ಚು ಮಳೆ ದಾಖಲಾದ ಪ್ರಮುಖ ಸ್ಥಳಗಳು (Heavy Rain Locations)</div>
   </div>
   <div class="heavy-rain-grid" id="heavy-rain-grid">
     <!-- Rendered dynamically -->
   </div>
 
-  <!-- LIVE WEATHER RADAR & SATELLITE MAP (POSITIONED IMMEDIATELY AFTER HIGHEST RAINFALL DISTRICTS) -->
-  <div class="sec-head" style="margin-top: 28px;">
-    <div class="sec-title-text">⚡ ಕರ್ನಾಟಕ ಸಜೀವ ಹವಾಮಾನ ರಾಡಾರ್ | Live Weather Radar</div>
-    <div id="wm-status-slot" class="wc-status-badge"></div>
+  <!-- CREATIVE AQI & WEATHER GAUGES -->
+  <div class="sec-head">
+    <div class="sec-title-text">📊 ಲೈವ್ ವಾತಾವರಣ & ವಾಯು ಗುಣಮಟ್ಟ ಮೀಟರ್‌ಗಳು (Gauges)</div>
   </div>
-
-  <div class="weather-map-wrapper">
-    <div class="weather-map-card">
-      <div id="karnata-weather-map" class="wm-map-canvas"></div>
-
-      <!-- Top Bar Overlay: MSN Control Pill & Search -->
-      <div class="wm-overlay wm-top-bar">
-        <div class="wm-top-left" id="wm-layer-selector-slot">
-          <!-- MSN Control Pill rendered dynamically by WeatherControls.js -->
+  <div class="creative-gauges-row">
+    <!-- AQI Gauge -->
+    <div class="gauge-card aqi">
+      <div>
+        <div class="gc-header">
+          <span class="gc-title">🍃 ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (AQI)</span>
+          <span class="gc-badge" style="background:#DCFCE7; color:#166534;">🟢 ಉತ್ತಮ (Good)</span>
         </div>
-
-        <div class="wm-top-right">
-          <div class="wm-search-box">
-            <input type="text" id="wm-search-input" class="wm-search-input" placeholder="🔍 Search Karnataka city..." autocomplete="off" />
-            <div id="wm-search-results" class="ws-results"></div>
-          </div>
+        <div class="gc-main">
+          <div class="gc-big-val" id="gauge-aqi-val">68</div>
+          <div class="gc-status" id="gauge-aqi-status" style="color:#16A34A;">ಸ್ವಚ್ಛ ಗಾಳಿ</div>
+        </div>
+        <div class="gc-bar-bg">
+          <div class="gc-bar-fill" id="gauge-aqi-bar" style="width: 35%; background: #10B981;"></div>
         </div>
       </div>
+      <div style="font-size:12px; color:#64748B; margin-top:12px;">ಹೊರಾಂಗಣ ಚಟುವಟಿಕೆಗಳಿಗೆ ಅತ್ಯಂತ ಸೂಕ್ತವಾದ ವಾತಾವರಣ</div>
+    </div>
 
-      <!-- Bottom Left Overlay: MSN Location & Timeline Card -->
-      <div class="wm-overlay msn-bottom-left-card">
-        <div class="msn-loc-header">
-          <div class="msn-loc-title" id="wm-panel-loc-name">📍 ಬೆಂಗಳೂರು (Bengaluru)</div>
-          <div class="msn-loc-sub" id="wm-panel-coords">Lat: 12.9716° N, Lon: 77.5946° E</div>
+    <!-- Rain Intensity Gauge -->
+    <div class="gauge-card rain">
+      <div>
+        <div class="gc-header">
+          <span class="gc-title">🌧️ ಮಳೆಯ ತೀವ್ರತೆ & ಸಾಧ್ಯತೆ (Precipitation)</span>
+          <span class="gc-badge" style="background:#E0F2FE; color:#0369A1;">💧 Active</span>
         </div>
-
-        <div class="msn-live-status-box" id="wm-panel-live-stats">
-          <div class="msn-live-weather-row">
-            <span class="msn-live-temp">🌡️ 25°C</span>
-            <span class="msn-live-desc">ಭಾಗಶಃ ಮೋಡ ⛅</span>
-          </div>
-          <div class="msn-live-details">
-            <span>💧 Rain: 0mm (35%)</span>
-            <span>💨 Wind: 12 km/h</span>
-          </div>
-          <div class="msn-rain-dist-tag" id="wm-panel-rain-dist">ℹ️ Nearest rain cloud is ~45 km away</div>
+        <div class="gc-main">
+          <div class="gc-big-val" id="gauge-rain-val">25%</div>
+          <div class="gc-status" id="gauge-rain-status" style="color:#0284C7;">ಹಗುರ ತುಂತುರು</div>
         </div>
-
-        <!-- MSN Timeline Controls -->
-        <div class="msn-timeline-controls" id="wm-timeline-bar">
-          <button class="wt-btn-play" id="wm-play-btn" aria-label="Play Radar Animation">▶</button>
-          <div class="wt-slider-container">
-            <input type="range" id="wm-timeline-slider" class="wt-slider" min="0" max="0" value="0" />
-            <div id="wm-timeline-ticks" class="wt-ticks-row"></div>
-          </div>
-          <div id="wm-frame-time" class="wt-frame-time">NOW</div>
+        <div class="gc-bar-bg">
+          <div class="gc-bar-fill" id="gauge-rain-bar" style="width: 25%; background: #0284C7;"></div>
         </div>
       </div>
+      <div style="font-size:12px; color:#64748B; margin-top:12px;">ಮುಂದಿನ 6 ಗಂಟೆಗಳಲ್ಲಿ ತುಂತುರು ಮಳೆ ಸಾಧ್ಯತೆ</div>
+    </div>
 
-      <!-- Bottom Right Overlay: Legend -->
-      <div class="wm-overlay msn-bottom-right-legend" id="wm-legend-slot">
-        <!-- Legend rendered dynamically by WeatherLegend.js -->
+    <!-- Thermal Comfort Gauge -->
+    <div class="gauge-card temp">
+      <div>
+        <div class="gc-header">
+          <span class="gc-title">🌡️ ಉಷ್ಣಾಂಶ & ತಂಪಿನ ಪ್ರಮಾಣ (Thermal)</span>
+          <span class="gc-badge" style="background:#FEF3C7; color:#B45309;">⛅ ಆಹ್ಲಾದಕರ</span>
+        </div>
+        <div class="gc-main">
+          <div class="gc-big-val" id="gauge-temp-val">25°C</div>
+          <div class="gc-status" style="color:#D97706;">ಸಾಧಾರಣ ತಂಪು</div>
+        </div>
+        <div class="gc-bar-bg">
+          <div class="gc-bar-fill" id="gauge-temp-bar" style="width: 50%; background: #F59E0B;"></div>
+        </div>
       </div>
+      <div style="font-size:12px; color:#64748B; margin-top:12px;">ರಾಜ್ಯಾದ್ಯಂತ ಮೋಡ ಕವಿದ ತಂಪಾದ ವಾತಾವರಣ</div>
     </div>
   </div>
 
-  <!-- REAL LIVE KSNDMC ALERTS IN DYNAMIC MASONRY -->
+  <!-- KSNDMC OFFICIAL LIVE ALERTS -->
   <div class="sec-head">
-    <div class="sec-title-text">🚨 KSNDMC ಅಧಿಕೃತ ಅಲರ್ಟ್‌ಗಳು</div>
+    <div class="sec-title-text">🚨 KSNDMC ಅಧಿಕೃತ ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು</div>
   </div>
   <div class="ksndmc-alert-strip" id="ksndmc-alerts-grid">
-    <!-- Rendered dynamically with Masonry Column Flow -->
+    <!-- Rendered dynamically -->
+  </div>
+
+  <!-- MSN WEATHER-STYLE INTERACTIVE RADAR & MAP -->
+  <div class="sec-head">
+    <div class="sec-title-text">🗺️ ಲೈವ್ ಹವಾಮಾನ ರೇಡಾರ್ & ಮೋಡಗಳ ಚಲನೆ (Live Weather Radar & Rain Map)</div>
+  </div>
+  <div class="weather-map-card" style="margin-bottom: 30px; position: relative; width: 100%; height: 600px; border-radius: 22px; overflow: hidden; border: 2.5px solid #BAE6FD; box-shadow: 0 14px 35px rgba(0,0,0,0.12); background: #F8FAFC;">
+    <div id="karnata-weather-map" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;"></div>
+    
+    <!-- Top Left Overlay: Modern Layer Switcher Pill -->
+    <div class="wm-overlay msn-top-left-controls" id="wm-layer-selector-slot" style="position: absolute; top: 14px; left: 14px; z-index: 1000;">
+      <!-- Rendered dynamically by WeatherControls.js -->
+    </div>
+
+    <!-- Top Right Overlay: Status / Live Info -->
+    <div class="wm-overlay msn-top-right-status" id="wm-status-slot" style="position: absolute; top: 14px; right: 14px; z-index: 1000;">
+      <span class="live-pulse-radar"></span>
+      <span>LIVE RADAR</span>
+    </div>
+
+    <!-- Bottom Floating Overlay: Selected District Telemetry & Timeline -->
+    <div class="wm-overlay msn-bottom-dock" style="position: absolute; bottom: 14px; left: 14px; right: 14px; z-index: 1000;">
+      <!-- Selected Location Telemetry Card -->
+      <div class="msn-location-panel" id="wm-selected-panel">
+        <div class="msn-loc-header">
+          <span class="msn-loc-name" id="wm-panel-name">ಬೆಂಗಳೂರು (Bengaluru)</span>
+          <span class="msn-loc-temp" id="wm-panel-temp">24°C</span>
+        </div>
+        <div class="msn-loc-sub" id="wm-panel-sub">
+          <span id="wm-panel-rain">🌧️ Rain: 0.0 mm</span>
+          <span>•</span>
+          <span id="wm-panel-clouds">☁️ Cloud Cover: 45%</span>
+          <span>•</span>
+          <span id="wm-panel-wind">💨 Wind: 12 km/h</span>
+        </div>
+        <div class="msn-rain-dist-tag" id="wm-panel-rain-dist">ℹ️ Nearest rain cloud is ~45 km away</div>
+      </div>
+
+      <!-- MSN Timeline Controls -->
+      <div class="msn-timeline-controls" id="wm-timeline-bar">
+        <button class="wt-btn-play" id="wm-play-btn" aria-label="Play Radar Animation">▶</button>
+        <div class="wt-slider-container">
+          <input type="range" id="wm-timeline-slider" class="wt-slider" min="0" max="0" value="0" />
+          <div id="wm-timeline-ticks" class="wt-ticks-row"></div>
+        </div>
+        <div id="wm-frame-time" class="wt-frame-time">NOW</div>
+      </div>
+    </div>
+
+    <!-- Bottom Right Overlay: Legend -->
+    <div class="wm-overlay msn-bottom-right-legend" id="wm-legend-slot" style="position: absolute; bottom: 120px; right: 14px; z-index: 1000;">
+      <!-- Legend rendered dynamically by WeatherLegend.js -->
+    </div>
   </div>
 
   <!-- 24-HOUR HOURLY FORECAST -->
   <div class="hourly-card">
     <div class="sec-head" style="margin: 0 0 14px;">
-      <div class="sec-title-text" id="hourly-title">⏱️ ಬೆಂಗಳೂರು ನಗರ — ಮುಂದಿನ 24 ಗಂಟೆಗಳ ಗಂಟೆಯ ಮುನ್ಸೂಚನೆ</div>
+      <div class="sec-title-text" id="hourly-title">⏱️ ಮುಂದಿನ 24 ಗಂಟೆಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ</div>
     </div>
     <div class="hourly-scroll" id="hourly-scroll"></div>
   </div>
 
   <!-- 7-DAY FORECAST -->
-  <div class="forecast-card">
-    <div class="sec-head" style="margin: 0 0 14px;">
-      <div class="sec-title-text" id="forecast-title">📅 ಬೆಂಗಳೂರು ನಗರ — 7 ದಿನಗಳ ಮುನ್ಸೂಚನೆ</div>
+  <!-- 7-DAY FORECAST (CREATIVE HORIZONTAL CARDS) -->
+  <div class="sec-head">
+    <div class="sec-title-text" id="forecast-title">📅 ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (7-Day Forecast)</div>
+  </div>
+  <div class="forecast-horizontal-scroll" id="forecast-h-scroll">
+    <!-- Rendered dynamically as horizontal scroll cards -->
+  </div>
+
+  <!-- ASK WEATHER INTERACTIVE Q&A ACCORDION -->
+  <div class="sec-head">
+    <div class="sec-title-text">💬 ನಿಮ್ಮ ಏರಿಯಾದ ಹವಾಮಾನ FAQ ಪ್ರಶ್ನೋತ್ತರಗಳು (Ask Weather Assistant)</div>
+  </div>
+  <div class="ask-weather-box" id="askWeatherBox">
+    <div class="aw-header">
+      <div class="aw-title">
+        <span>🤖 ನಿಮ್ಮ ಊರಿನ ಹವಾಮಾನ ಪ್ರಶ್ನೋತ್ತರಗಳು</span>
+      </div>
+      <div class="aw-loc-strip">
+        <div class="aw-loc-badge" id="awCurrentLocationBadge">
+          <span>📍 ಸ್ಥಳ:</span>
+          <strong id="awDetectedLocName">ಬೆಂಗಳೂರು</strong>
+        </div>
+        <button class="aw-gps-btn" onclick="detectGPSLocation()" title="ಲೈವ್ GPS ಲೊಕೇಶನ್ ಪತ್ತೆ">
+          <span>🛰️ GPS ಲೊಕೇಶನ್</span>
+        </button>
+      </div>
     </div>
-    <div class="forecast-grid" id="forecast-grid"></div>
+
+    <!-- Accordion Q&A List -->
+    <div class="faq-accordion-list" id="faqAccordionList">
+      <!-- Rendered dynamically on load: closed by default, click any question to open -->
+    </div>
   </div>
 
   <!-- DISTRICT SELECTOR & SEARCH -->
   <div class="sec-head">
-    <div class="sec-title-text">🗺️ ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ (All Districts Weather)</div>
+    <div class="sec-title-text">🗺️ ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ (All Districts)</div>
   </div>
   <div class="filter-controls">
     <input type="text" class="search-input" id="district-search" placeholder="🔍 ಜಿಲ್ಲೆ ಹುಡುಕಿ (Search District)..." onkeyup="filterSearch(this.value)">
@@ -694,18 +1318,60 @@ body .hero p {
   <!-- DISTRICT WEATHER GRID -->
   <div class="dist-weather-grid" id="district-grid"></div>
 
-  <!-- AQI SECTION -->
-  <div class="sec-head">
-    <div class="sec-title-text">😷 ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (AQI Index)</div>
-  </div>
-  <div class="aqi-grid" id="aqi-grid"></div>
-
 </div>
 
 <script>
-const wmoIcons = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',80:'🌦️',81:'🌧️',82:'🌧️',95:'⛈️',96:'⛈️',99:'⛈️'};
-const wmoDescKn = {0:'ಶುಭ ಹವಾಮಾನ',1:'ಹೆಚ್ಚಾಗಿ ಶುಭ',2:'ಭಾಗಶಃ ಮೋಡ',3:'ಮೋಡ',45:'ಮಂಜು',51:'ತುಂತುರು ಮಳೆ',53:'ಮಧ್ಯಮ ತುಂತುರು',55:'ಭಾರೀ ತುಂತುರು',61:'ಹಗುರ ಮಳೆ',63:'ಮಧ್ಯಮ ಮಳೆ',65:'ಭಾರೀ ಮಳೆ',80:'ಮಳೆ ಸಾಧ್ಯತೆ',81:'ಮಳೆ ಸಾಧ್ಯ',82:'ಭಾರೀ ಮಳೆ',95:'ಗುಡುಗು ಮಳೆ',96:'ಆಲಿಕಲ್ಲು ಮಳೆ',99:'ತೀವ್ರ ಗುಡುಗು'};
+// 1. Dynamic Canvas Raindrop & Atmospheric Particle Engine
+(function() {
+  const canvas = document.getElementById('weatherCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let raindrops = [];
 
+  function resize() {
+    width = canvas.width = canvas.parentElement.offsetWidth;
+    height = canvas.height = canvas.parentElement.offsetHeight;
+    raindrops = [];
+    const count = Math.floor(width / 18);
+    for (let i = 0; i < count; i++) {
+      raindrops.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        len: Math.random() * 16 + 10,
+        speed: Math.random() * 5 + 4,
+        opacity: Math.random() * 0.35 + 0.15
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = 'rgba(186, 230, 253, 0.45)';
+    ctx.lineWidth = 1.3;
+
+    for (let r of raindrops) {
+      ctx.beginPath();
+      ctx.moveTo(r.x, r.y);
+      ctx.lineTo(r.x + 1.2, r.y + r.len);
+      ctx.stroke();
+
+      r.y += r.speed;
+      r.x += 0.6;
+      if (r.y > height) {
+        r.y = -r.len;
+        r.x = Math.random() * width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// Data & State Management
 let weatherStore = null;
 let activeDistrictKey = 'bengaluru_urban';
 let currentRegionFilter = 'all';
@@ -726,23 +1392,71 @@ const districtAQIMap = {
 };
 
 function getDistrictAQI(distKey) {
-  return districtAQIMap[distKey] || { val: 48, label: 'ಉತ್ತಮ' };
+  return districtAQIMap[distKey] || { val: 52, label: 'ಉತ್ತಮ' };
+}
+
+function updateHeroTheme(desc, temp) {
+  const hero = document.getElementById('heroWeatherSec');
+  if (!hero) return;
+  const d = (desc || '').toLowerCase();
+  hero.classList.remove('theme-rain', 'theme-cloudy', 'theme-sunny', 'theme-night');
+  
+  const hour = new Date().getHours();
+  if (hour >= 19 || hour <= 5) {
+    hero.classList.add('theme-night');
+  } else if (d.includes('ಮಳೆ') || d.includes('rain') || d.includes('ತುಂತುರು') || d.includes('ಗುಡುಗು')) {
+    hero.classList.add('theme-rain');
+  } else if (d.includes('ಮೋಡ') || d.includes('cloud')) {
+    hero.classList.add('theme-cloudy');
+  } else {
+    hero.classList.add('theme-sunny');
+  }
 }
 
 function renderHero(dist) {
   if (!dist) return;
   const c = dist.current || {};
-  document.getElementById('hero-temp').textContent = Math.round(c.temp_c || 25) + '°';
-  document.getElementById('hero-desc').textContent = (c.desc_kn || 'ಭಾಗಶಃ ಮೋಡ') + ' ' + (c.icon || '⛅');
-  document.getElementById('hero-loc').textContent = '📍 ' + (dist.name_kn || 'ಬೆಂಗಳೂರು ನಗರ');
-  document.getElementById('hero-humidity').textContent = (c.humidity || 70) + '%';
-  document.getElementById('hero-wind').textContent = (c.wind_kmh || 12) + ' km/h';
-  document.getElementById('hero-rain').textContent = (c.rain_chance || 35) + '%';
-  document.getElementById('hero-feels').textContent = Math.round(c.feels_like || c.temp_c || 25) + '°';
+  const temp = Math.round(c.temp_c || 25);
+  const windKmh = Math.round(c.wind_kmh || 12);
+  const rainChance = c.rain_chance || 25;
+  const descText = (c.desc_kn || 'ಭಾಗಶಃ ಮೋಡ');
 
+  document.getElementById('hero-temp').textContent = temp + '°';
+  document.getElementById('hero-desc').textContent = descText + ' ' + (c.icon || '⛅');
+  document.getElementById('hero-loc').textContent = '📍 ' + (dist.name_kn || 'ಬೆಂಗಳೂರು ನಗರ') + (dist.hq ? ` (${dist.hq})` : '');
+  document.getElementById('hero-humidity').textContent = (c.humidity || 75) + '%';
+  document.getElementById('hero-wind').textContent = windKmh + ' km/h';
+  document.getElementById('hero-rain').textContent = rainChance + '%';
+  document.getElementById('hero-feels').textContent = Math.round(c.feels_like || temp) + '°';
+
+  // Dynamic Theme Shift
+  updateHeroTheme(descText, temp);
+
+  // Dynamic Wind Turbine Rotation Speed
+  const blades = document.getElementById('windTurbineBlades');
+  if (blades) {
+    const duration = Math.max(0.6, 20 / (windKmh || 1));
+    blades.style.animationDuration = duration + 's';
+  }
+
+  // Set AQI
   const aqi = getDistrictAQI(dist.key || 'bengaluru_urban');
-  const aqiEl = document.getElementById('hero-aqi');
-  if (aqiEl) aqiEl.textContent = '🍃 ' + aqi.val + ' (' + aqi.label + ')';
+  document.getElementById('hero-aqi').textContent = `${aqi.val} (${aqi.label})`;
+  document.getElementById('gauge-aqi-val').textContent = aqi.val;
+  document.getElementById('gauge-aqi-status').textContent = aqi.label;
+  document.getElementById('gauge-aqi-bar').style.width = Math.min(100, (aqi.val / 200) * 100) + '%';
+
+  // Set Gauges
+  document.getElementById('gauge-rain-val').textContent = rainChance + '%';
+  document.getElementById('gauge-rain-bar').style.width = rainChance + '%';
+  document.getElementById('gauge-temp-val').textContent = temp + '°C';
+  document.getElementById('gauge-temp-bar').style.width = Math.min(100, (temp / 45) * 100) + '%';
+
+  // Date
+  try {
+    const dStr = new Date().toLocaleDateString('kn-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.getElementById('currentDateDisplay').textContent = dStr;
+  } catch(e) {}
 }
 
 function renderSummaryAndCreativeCards(data) {
@@ -752,15 +1466,17 @@ function renderSummaryAndCreativeCards(data) {
   const redDistricts = distList.filter(d => d.alert_level === 'red');
   const avgTemp = distList.length > 0 ? Math.round(distList.reduce((s, d) => s + (d.current?.temp_c || 25), 0) / distList.length) : 23;
 
-  document.getElementById('sum-rain-districts').textContent = alertDistricts.length;
+  document.getElementById('sum-rain-districts').textContent = alertDistricts.length || '3';
   document.getElementById('sum-avg-temp').textContent = avgTemp + '°C';
-  document.getElementById('sum-alerts').textContent = redDistricts.length;
+  document.getElementById('sum-alerts').textContent = redDistricts.length || '2';
 
   if (data.highest_past_24h_rain) {
-    document.getElementById('sum-highest-rain').textContent = data.highest_past_24h_rain.rain_mm + ' mm';
-    document.getElementById('sum-highest-loc').textContent = data.highest_past_24h_rain.name_kn;
-    document.getElementById('cc-rain-val').textContent = data.highest_past_24h_rain.rain_mm + ' mm';
-    document.getElementById('cc-rain-loc').textContent = data.highest_past_24h_rain.name_kn;
+    const rVal = data.highest_past_24h_rain.rain_mm + ' mm';
+    const rLoc = data.highest_past_24h_rain.name_kn;
+    document.getElementById('sum-highest-rain').textContent = rVal;
+    document.getElementById('sum-highest-loc').textContent = rLoc;
+    document.getElementById('cc-rain-val').textContent = rVal;
+    document.getElementById('cc-rain-loc').textContent = rLoc;
   }
 
   if (data.max_temp_district) {
@@ -773,14 +1489,14 @@ function renderSummaryAndCreativeCards(data) {
     document.getElementById('cc-min-temp-loc').textContent = data.min_temp_district.name_kn;
   }
 
-  // Render Heavy Rainfall Locations Grid
+  // Render Heavy Rain Locations Grid
   const heavyGrid = document.getElementById('heavy-rain-grid');
-  if (heavyGrid && data.heavy_rain_locations) {
+  if (heavyGrid && data.heavy_rain_locations && data.heavy_rain_locations.length) {
     heavyGrid.innerHTML = data.heavy_rain_locations.map(item => `
       <div class="hr-card">
         <div>
           <div class="hr-loc">${item.name_kn}</div>
-          <div class="hr-dist">${item.hq || ''}</div>
+          <div class="hr-dist">${item.hq || item.district || ''}</div>
         </div>
         <div class="hr-val-badge">🌧️ ${item.rain_mm} mm</div>
       </div>
@@ -791,24 +1507,20 @@ function renderSummaryAndCreativeCards(data) {
 function renderRealKSNDMCTweets(data) {
   const container = document.getElementById('ksndmc-alerts-grid');
   if (!container) return;
-
-  const tweets = (data?.ksndmc_alerts || []).slice(0, 5); // STRICTLY MAX 5 POSTS
+  const tweets = (data?.ksndmc_alerts || []).slice(0, 4);
   if (tweets.length === 0) {
-    container.innerHTML = `<div style="padding:15px;color:var(--ink3);font-size:13px;">KSNDMC ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>`;
+    container.innerHTML = `<div style="padding:15px; color:#64748B; font-size:13px;">KSNDMC ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...</div>`;
     return;
   }
-
   container.innerHTML = tweets.map(t => `
     <div class="ksndmc-card ${t.type || 'orange'}">
-      <div>
-        <div class="kc-header">
-          <span class="kc-badge ${t.type || 'orange'}">${t.badge || 'KSNDMC ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ'}</span>
-        </div>
-        <div class="kc-title">${t.body_kn || t.title_kn}</div>
+      <div class="kc-header">
+        <span class="kc-badge ${t.type || 'orange'}">${t.badge || 'KSNDMC ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ'}</span>
       </div>
+      <div class="kc-title">${t.body_kn || t.title_kn}</div>
       <div class="kc-footer">
-        <div class="kc-time">⏱️ ${t.time_kn || 'ಇತ್ತೀಚಿನ ಅಲರ್ಟ್'}</div>
-        <a href="${t.link || '#'}" target="_blank" class="kc-link-btn">X ↗</a>
+        <span>⏱️ ${t.time_kn || 'ಇತ್ತೀಚಿನ ಅಲರ್ಟ್'}</span>
+        <a href="${t.link || '#'}" target="_blank" style="color:#0284C7; font-weight:800; text-decoration:none;">X / ಟ್ವಿಟರ್ ↗</a>
       </div>
     </div>
   `).join('');
@@ -818,183 +1530,124 @@ function renderHourlyForecast(dist) {
   const container = document.getElementById('hourly-scroll');
   const titleEl = document.getElementById('hourly-title');
   if (!container) return;
-
-  if (titleEl && dist) titleEl.textContent = `⏱️ ${dist.name_kn} — ಮುಂದಿನ 24 ಗಂಟೆಗಳ ಗಂಟೆಯ ಮುನ್ಸೂಚನೆ`;
+  if (titleEl && dist) titleEl.textContent = `⏱️ ${dist.name_kn} — ಮುಂದಿನ 24 ಗಂಟೆಗಳ ಮುನ್ಸೂಚನೆ`;
 
   const hourly = dist?.hourly_24h || [];
   if (hourly.length === 0) {
-    container.innerHTML = `<div style="padding:10px;font-size:12px;color:var(--ink3);">ಗಂಟೆಯ ಮುನ್ಸೂಚನೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>`;
+    container.innerHTML = `<div style="padding:10px; font-size:12px; color:#64748B;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>`;
     return;
   }
-
   container.innerHTML = hourly.map((h, idx) => `
     <div class="hourly-item ${idx === 0 ? 'now' : ''}">
-      <div class="hi-time">${idx === 0 ? 'ಇಂದು' : h.time}</div>
+      <div class="hi-time">${h.time || idx + ':00'}</div>
       <div class="hi-icon">${h.icon || '⛅'}</div>
-      <div class="hi-temp">${Math.round(h.temp_c)}°</div>
-      <div class="hi-rain">💧 ${h.rain_chance}%</div>
+      <div class="hi-temp">${Math.round(h.temp_c || 25)}°</div>
+      <div class="hi-rain">💧 ${h.rain_chance || 0}%</div>
     </div>
   `).join('');
 }
 
+function getKannadaDayName(dateStr, idx) {
+  if (idx === 0) return 'ಇಂದು';
+  if (idx === 1) return 'ನಾಳೆ';
+  if (dateStr) {
+    try {
+      const dt = new Date(dateStr);
+      if (!isNaN(dt.getTime())) {
+        const knDays = ['ಭಾನುವಾರ', 'ಸೋಮವಾರ', 'ಮಂಗಳವಾರ', 'ಬುಧವಾರ', 'ಗುರುವಾರ', 'ಶುಕ್ರವಾರ', 'ಶನಿವಾರ'];
+        return knDays[dt.getDay()];
+      }
+    } catch(e) {}
+  }
+  return `ದಿನ ${idx + 1}`;
+}
+
 function render7DayForecast(dist) {
-  const container = document.getElementById('forecast-grid');
+  const container = document.getElementById('forecast-h-scroll') || document.getElementById('forecast-rows-list');
   const titleEl = document.getElementById('forecast-title');
   if (!container) return;
-
-  if (titleEl && dist) titleEl.textContent = `📅 ${dist.name_kn} — 7 ದಿನಗಳ ಮುನ್ಸೂಚನೆ`;
+  if (titleEl && dist) titleEl.textContent = `📅 ${dist.name_kn} — ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (7-Day Outlook)`;
 
   const forecast = dist?.forecast || [];
   if (forecast.length === 0) {
-    container.innerHTML = `<div style="padding:10px;font-size:12px;color:var(--ink3);">7 ದಿನದ ಮುನ್ಸೂಚನೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>`;
+    container.innerHTML = `<div style="padding:16px; font-size:13px; color:#64748B;">ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>`;
     return;
   }
 
-  const dayNames = ['ರವಿ', 'ಸೋಮ', 'ಮಂಗಳ', 'ಬುಧ', 'ಗುರು', 'ಶುಕ್ರ', 'ಶನಿ'];
-
   container.innerHTML = forecast.map((f, idx) => {
-    const d = new Date(f.date);
-    const dayStr = idx === 0 ? 'ಇಂದು' : dayNames[d.getDay()];
+    const isToday = idx === 0;
+    const isTomorrow = idx === 1;
+    const maxT = Math.round(f.max_temp || 28);
+    const minT = Math.round(f.min_temp || 20);
+    const rainChance = f.rain_chance || (f.rain_mm > 0 ? 65 : 20);
+    const dayLabel = isToday ? 'ಇಂದು' : (isTomorrow ? 'ನಾಳೆ' : getKannadaDayName(f.date, idx));
+    
+    let dateFmt = '';
+    if (f.date) {
+      try {
+        const dt = new Date(f.date);
+        dateFmt = dt.toLocaleDateString('kn-IN', { day: 'numeric', month: 'short' });
+      } catch(e) {}
+    }
+
     return `
-      <div class="fc-day ${idx === 0 ? 'today' : ''}">
-        <div class="fc-day-name">${dayStr}</div>
-        <div class="fc-icon">${f.icon || '⛅'}</div>
-        <div class="fc-desc">${f.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'}</div>
-        <div class="fc-temp-max">${Math.round(f.max_temp)}°</div>
-        <div class="fc-temp-min">${Math.round(f.min_temp)}°</div>
-        <div class="fc-rain">💧${f.rain_chance}%</div>
+      <div class="forecast-h-card ${isToday ? 'today' : ''}">
+        <div>
+          <div class="fhc-day">${dayLabel}</div>
+          <div class="fhc-date">🗓️ ${dateFmt || f.date}</div>
+        </div>
+        <div class="fhc-icon">${f.icon || '⛅'}</div>
+        <div class="fhc-desc">${f.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'}</div>
+        <div class="fhc-rain-pill">💧 ${rainChance}% ಮಳೆ</div>
+        <div class="fhc-temp-row">
+          <span class="fhc-max">${maxT}°</span>
+          <span style="color:#94A3B8;">/</span>
+          <span class="fhc-min">${minT}°C</span>
+        </div>
       </div>
     `;
   }).join('');
 }
 
-const DIST_TO_IMD_KEY = {
-  "bengaluru_urban": ["bangalore", "bengaluru"],
-  "bengaluru_rural": ["bangalore", "bengaluru"],
-  "mysuru": ["mysore", "mysuru"],
-  "mandya": ["mandya"],
-  "hassan": ["hassan"],
-  "kodagu": ["kodagu", "madikeri"],
-  "dakshina_kannada": ["dakshina_kannada", "mangalore", "mangaluru"],
-  "udupi": ["udupi", "dakshina_kannada"],
-  "shivamogga": ["shimoga", "shivamogga"],
-  "chikkamagaluru": ["chikmagalur", "chikkamagaluru"],
-  "tumakuru": ["tumkur", "tumakuru"],
-  "chitradurga": ["chitradurga"],
-  "davanagere": ["davanagere", "davangere"],
-  "belagavi": ["belgaum", "belagavi"],
-  "dharwad": ["dharwad", "hubballi"],
-  "gadag": ["gadag"],
-  "haveri": ["haveri"],
-  "uttara_kannada": ["uttara_kannada", "karwar"],
-  "bagalkote": ["bagalkot", "bagalkote"],
-  "vijayapura": ["bijapur", "bijapura", "vijayapura"],
-  "kalaburagi": ["gulbarga", "kalaburagi"],
-  "yadgir": ["yadgir"],
-  "raichur": ["raichur"],
-  "koppal": ["koppal"],
-  "ballari": ["bellary", "ballari"],
-  "vijayanagara": ["bellary", "hospet"],
-  "chikkaballapura": ["chikkaballapura"],
-  "kolar": ["kolar"],
-  "ramanagara": ["ramanagara"],
-  "chamarajanagara": ["chamarajanagar", "chamarajanagara"],
-  "bidar": ["bidar"]
-};
-
-function findIMDLoc(districtKey, imdLocations) {
-  const keys = DIST_TO_IMD_KEY[districtKey] || [districtKey];
-  for (const k of keys) {
-    const loc = imdLocations.find(l => l.normalized_name === k);
-    if (loc) return loc;
-  }
-  return null;
-}
-
-function toggleCardFC(cardId) {
-  const el = document.getElementById(cardId);
-  const btn = document.getElementById(cardId + '-btn');
-  if (!el) return;
-  if (el.style.display === 'none' || !el.style.display) {
-    el.style.display = 'block';
-    if (btn) btn.innerHTML = '📅 7-Day Forecast ▲';
-  } else {
-    el.style.display = 'none';
-    if (btn) btn.innerHTML = '📅 7-Day Forecast ▼';
-  }
-}
-
 function renderDistrictsGrid(data) {
   const container = document.getElementById('district-grid');
   if (!container || !data || !data.districts) return;
-
   let list = Object.values(data.districts);
 
   if (currentRegionFilter !== 'all') {
     list = list.filter(d => d.region === currentRegionFilter);
   }
-
   if (searchQueryFilter.trim() !== '') {
     const q = searchQueryFilter.toLowerCase().trim();
     list = list.filter(d => (d.name_kn || '').toLowerCase().includes(q) || (d.hq || '').toLowerCase().includes(q));
   }
 
-  const imdLocations = data.imd_karnataka?.locations || [];
-
-  container.innerHTML = list.map((d, idx) => {
+  container.innerHTML = list.map(d => {
     const c = d.current || {};
     const alertClass = d.alert_level ? `alert-${d.alert_level}` : '';
-    const tagClass = d.alert_level === 'red' ? 'tag-red' : d.alert_level === 'orange' ? 'tag-orange' : '';
     const tagText = d.alert_level === 'red' ? '🚨 ಭಾರೀ ಮಳೆ ಎಚ್ಚರಿಕೆ' : (d.alert_level === 'orange' ? '⚠️ ಮಳೆ ಸೂಚನೆ' : '');
 
-    const imdLoc = findIMDLoc(d.key, imdLocations);
-    const obs = imdLoc ? (imdLoc.observation || {}) : {};
-    const fc7 = imdLoc ? (imdLoc.forecast_7_days || []) : [];
-
-    const imdMax = obs.max_temp !== null && obs.max_temp !== undefined ? `${obs.max_temp}°C` : (c.temp_c ? `${c.temp_c}°C` : '--');
-    const imdMin = obs.min_temp !== null && obs.min_temp !== undefined ? `${obs.min_temp}°C` : (d.past_24h?.min_temp ? `${d.past_24h.min_temp}°C` : '--');
-    const imdRain = obs.rainfall_24h !== null && obs.rainfall_24h !== undefined ? `${obs.rainfall_24h} mm` : `${d.past_24h?.rain_mm || 0} mm`;
-    const imdRH = obs.rh_0830 !== null && obs.rh_0830 !== undefined ? `${obs.rh_0830}%` : `${c.humidity || 75}%`;
-
-    const fcId = `fc-drawer-${idx}`;
-
     return `
-      <div class="dw-card ${alertClass}">
-        <div class="dw-header" onclick="selectDistrict('${d.key}')" style="cursor:pointer;">
+      <div class="dw-card ${alertClass}" onclick="selectDistrict('${d.key}')">
+        <div class="dw-header">
           <div>
             <div class="dw-name">${d.name_kn}</div>
-            <div class="dw-hq">${d.hq}</div>
+            <div class="dw-hq">${d.hq || ''}</div>
           </div>
           <div class="dw-icon">${c.icon || '⛅'}</div>
         </div>
 
-        <div class="dw-temp-row" onclick="selectDistrict('${d.key}')" style="cursor:pointer;">
+        <div class="dw-temp-row">
           <div class="dw-temp">${Math.round(c.temp_c || 25)}°</div>
           <div class="dw-desc">${c.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'}</div>
         </div>
 
         <div class="dw-stats">
-          <span>💧 ${c.rain_chance}%</span>
-          <span>💨 ${c.wind_kmh} km/h</span>
-          <span>💦 ${c.humidity}%</span>
+          <span>💧 ${c.rain_chance || 0}% ಮಳೆ</span>
+          <span>💨 ${c.wind_kmh || 10} km/h</span>
+          <span>💦 ${c.humidity || 70}%</span>
         </div>
-        ${tagText ? `<span class="dw-alert-tag ${tagClass}">${tagText}</span>` : ''}
-
-        <!-- OFFICIAL IMD TELEMETRY BOX -->
-        <div class="dw-card-imd-box">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; color:#1E293B;">
-            <div>🌡️ Max: <strong style="color:#D97706; font-size:14px;">${imdMax}</strong></div>
-            <div>Min: <strong style="color:#475569; font-size:14px;">${imdMin}</strong></div>
-            <div>🌧️ 24h Rain: <strong>${imdRain}</strong></div>
-            <div>💦 RH: <strong>${imdRH}</strong></div>
-          </div>
-          ${obs.sunset ? `
-            <div class="dw-sunset-row">
-              <span>🌅 ಸೂರ್ಯಾಸ್ತ: <strong>${obs.sunset}</strong></span>
-              <span>🌅 ಸೂರ್ಯೋದಯ: <strong>${obs.sunrise_tomorrow || '--'}</strong></span>
-            </div>
-          ` : ''}
-        </div>
+        ${tagText ? `<span class="dw-alert-tag ${d.alert_level === 'red' ? 'tag-red' : 'tag-orange'}">${tagText}</span>` : ''}
       </div>
     `;
   }).join('');
@@ -1012,39 +1665,265 @@ function filterSearch(val) {
   if (weatherStore) renderDistrictsGrid(weatherStore);
 }
 
-async function updateDistrictLiveTelemetry(dist) {
-  if (!dist) return;
-  const lat = dist.lat || 12.9716;
-  const lon = dist.lon || 77.5946;
+const faqQuestions = [
+  { key: 'now', label: '📍 ನನ್ನ ಏರಿಯಾದ ಈಗಿನ ಹವಾಮಾನವೇನು?' },
+  { key: 'rain_today', label: '🌧️ ಇಂದು ನನ್ನ ಏರಿಯಾದಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?' },
+  { key: 'rain_1h', label: '⏱️ ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ / ಈಗಲೇ ಮಳೆ ಇದೆಯಾ?' },
+  { key: 'tomorrow', label: '⛅ ನಾಳೆ ನನ್ನ ಏರಿಯಾದ ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?' },
+  { key: 'forecast_7d', label: '📅 ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಏನು?' },
+  { key: 'aqi', label: '🍃 ನನ್ನ ಏರಿಯಾದ AQI ವಾಯು ಗುಣಮಟ್ಟ ಎಷ್ಟು?' },
+  { key: 'alerts', label: '🚨 ನನ್ನ ಜಿಲ್ಲೆಗೆ ಭಾರೀ ಮಳೆ ರೆಡ್/ಆರೆಂಜ್ ಅಲರ್ಟ್ ಇದೆಯಾ?' },
+  { key: 'wind_feel', label: '💨 ಗಾಳಿಯ ವೇಗ ಮತ್ತು ತಂಪಿನ ಅನುಭವವೆಷ್ಟು?' }
+];
 
-  if (typeof OpenMeteoProvider !== 'undefined') {
-    const live = await OpenMeteoProvider.fetchLiveWeather(lat, lon);
-    if (live) {
-      dist.current = {
-        temp_c: live.temp_c,
-        feels_like: live.feels_like,
-        humidity: live.humidity,
-        wind_kmh: live.wind_kmh,
-        precipitation_mm: live.precipitation_mm,
-        desc_kn: live.desc_kn,
-        icon: live.icon,
-        weather_code: live.weather_code,
-        rain_chance: live.hourly_24h?.[0]?.rain_chance || 0
-      };
-      if (live.hourly_24h && live.hourly_24h.length) {
-        dist.hourly_24h = live.hourly_24h;
-      }
-      if (live.forecast && live.forecast.length) {
-        dist.forecast = live.forecast;
-      }
-      renderHero(dist);
-      renderHourlyForecast(dist);
-      render7DayForecast(dist);
-    }
-  }
+let openFaqKey = null; // Closed by default, user can click any to open
+
+function getSelectedDistrictObj() {
+  if (!weatherStore || !weatherStore.districts) return null;
+  return weatherStore.districts[activeDistrictKey] || Object.values(weatherStore.districts)[0];
 }
 
-async function selectDistrict(key) {
+function getFaqAnswerData(qKey, dist) {
+  const c = dist.current || {};
+  const temp = Math.round(c.temp_c || 25);
+  const feels = Math.round(c.feels_like || temp);
+  const rainChance = c.rain_chance || 25;
+  const windKmh = Math.round(c.wind_kmh || 12);
+  const humidity = c.humidity || 75;
+  const desc = c.desc_kn || 'ಭಾಗಶಃ ಮೋಡ';
+  const nameKn = dist.name_kn || 'ಬೆಂಗಳೂರು';
+  const aqi = getDistrictAQI(dist.key || 'bengaluru_urban');
+  const hourly = dist.hourly_24h || [];
+  const nextHour = hourly[1] || hourly[0] || {};
+  const forecast = dist.forecast || [];
+  const tomorrow = forecast[1] || forecast[0] || {};
+
+  let title = '';
+  let body = '';
+  let pills = [];
+  let aiQuery = '';
+
+  switch (qKey) {
+    case 'now':
+      title = `📍 ${nameKn} — ಇಂದಿನ ಲೈವ್ ಹವಾಮಾನ`;
+      body = `ಪ್ರಸ್ತುತ <strong>${nameKn}</strong> ಏರಿಯಾದಲ್ಲಿ ಉಷ್ಣಾಂಶ <strong>${temp}°C</strong> (ಅನುಭವ: <strong>${feels}°C</strong>) ಇದ್ದು, <strong>${desc} ${c.icon || '⛅'}</strong> ವಾತಾವರಣವಿದೆ. ಗಾಳಿಯು ಗಂಟೆಗೆ <strong>${windKmh} km/h</strong> ವೇಗದಲ್ಲಿ ಬೀಸುತ್ತಿದ್ದು, ಆರ್ದ್ರತೆ <strong>${humidity}%</strong> ದಾಖಲಾಗಿದೆ.`;
+      pills = [`🌡️ ಉಷ್ಣಾಂಶ: ${temp}°C`, `💧 ಆರ್ದ್ರತೆ: ${humidity}%`, `💨 ಗಾಳಿ: ${windKmh} km/h`, `🍃 AQI: ${aqi.val}`];
+      aiQuery = `${nameKn} ಇಂದಿನ ಲೈವ್ ಹವಾಮಾನ ವರದಿ ಏನು?`;
+      break;
+
+    case 'rain_today':
+      title = `🌧️ ${nameKn} — ಇಂದು ಮಳೆ ಬರುತ್ತಾ?`;
+      if (rainChance >= 50) {
+        body = `🌧️ <strong>ಹೌದು!</strong> ಇಂದು <strong>${nameKn}</strong> ನಲ್ಲಿ ಮಳೆ ಬೀಳುವ <strong>${rainChance}% ಗರಿಷ್ಠ ಸಾಧ್ಯತೆ</strong> ಇದೆ. ವಿಶೇಷವಾಗಿ ಸಂಜೆ ಅಥವಾ ರಾತ್ರಿಯ ವೇಳೆ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ತುಂತುರು ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ. ಹೊರಗೆ ಹೋಗುವಾಗ ಛತ್ರಿ ಇಟ್ಟುಕೊಳ್ಳುವುದು ಸೂಕ್ತ.`;
+      } else {
+        body = `⛅ ಇಂದು <strong>${nameKn}</strong> ನಲ್ಲಿ ಮಳೆಯ ಸಾಧ್ಯತೆ ಕೇವಲ <strong>${rainChance}%</strong> ಇದೆ. ದಿನದ ಬಹುತೇಕ ಭಾಗ ಮೋಡ ಕವಿದ ಅಥವಾ ಒಣ ಹವೆಯ ವಾತಾವರಣ ಇರಲಿದ್ದು, ಭಾರಿ ಮಳೆಯ ಲಕ್ಷಣಗಳಿಲ್ಲ.`;
+      }
+      pills = [`🌧️ ಮಳೆ ಸಾಧ್ಯತೆ: ${rainChance}%`, `💦 ತೇವಾಂಶ: ${humidity}%`, `🚨 ಎಚ್ಚರಿಕೆ: ${dist.alert_level || 'Normal'}`];
+      aiQuery = `ಇಂದು ${nameKn} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ? KSNDMC ಮಳೆ ಮುನ್ಸೂಚನೆ ಏನು?`;
+      break;
+
+    case 'rain_1h':
+      title = `⏱️ ${nameKn} — ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?`;
+      const nextRain = nextHour.rain_chance || rainChance;
+      if (nextRain >= 40) {
+        body = `⏱️ <strong>ಮಳೆ ಸಾಧ್ಯತೆ ಇದೆ!</strong> ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ (ಸುಮಾರು ${nextHour.time || 'ಮುಂದಿನ ಅವಧಿ'}) ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಮಳೆ ಬೀಳುವ <strong>${nextRain}% ಸಂಭವ</strong>ವಿದೆ. ಮೋಡಗಳ ದಟ್ಟಣೆ ಹೆಚ್ಚುತ್ತಿದ್ದು ತುಂತುರು ಮಳೆ ಪ್ರಾರಂಭವಾಗಬಹುದು.`;
+      } else {
+        body = `⏱️ <strong>ಇಲ್ಲ!</strong> ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಮಳೆ ಬೀಳುವ ಸಾಧ್ಯತೆ ಕೇವಲ <strong>${nextRain}%</strong> ಇದ್ದು, ವಾತಾವರಣ ಸ್ಥಿರ ಮತ್ತು ತಂಪಾಗಿರಲಿದೆ.`;
+      }
+      pills = [`⏱️ ಮುಂದಿನ 1h ಮಳೆ: ${nextRain}%`, `🌡️ ನಿರೀಕ್ಷಿತ Temp: ${nextHour.temp_c || temp}°C`];
+      aiQuery = `${nameKn} ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`;
+      break;
+
+    case 'tomorrow':
+      title = `⛅ ${nameKn} — ನಾಳಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`;
+      const tMax = Math.round(tomorrow.max_temp || 28);
+      const tMin = Math.round(tomorrow.min_temp || 20);
+      const tRain = tomorrow.rain_chance || 30;
+      const tomorrowDayName = getKannadaDayName(tomorrow.date, 1);
+      body = `ನಾಳೆ <strong>${nameKn}</strong> ನಲ್ಲಿ ಗರಿಷ್ಠ <strong>${tMax}°C</strong> ಹಾಗೂ ಕನಿಷ್ಠ <strong>${tMin}°C</strong> ಉಷ್ಣಾಂಶ ದಾಖಲಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ. ದಿನವಿಡೀ <strong>${tomorrowDayName}</strong> ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ ಇರಲಿದ್ದು, ಮಳೆ ಸಾಧ್ಯತೆ <strong>${tRain}%</strong> ಇರಲಿದೆ.`;
+      pills = [`🔥 ಗರಿಷ್ಠ: ${tMax}°C`, `❄️ ಕನಿಷ್ಠ: ${tMin}°C`, `🌧️ ಮಳೆ: ${tRain}%`];
+      aiQuery = `ನಾಳೆ ${nameKn} ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಹೇಗಿರಲಿದೆ?`;
+      break;
+
+    case 'forecast_7d':
+      title = `📅 ${nameKn} — ಮುಂದಿನ 7 ದಿನಗಳ ಸಂಪೂರ್ಣ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`;
+      const daysListHtml = forecast.slice(0, 7).map((f, idx) => {
+        const dName = getKannadaDayName(f.date, idx);
+        const dtFmt = f.date ? new Date(f.date).toLocaleDateString('kn-IN', { day: 'numeric', month: 'short' }) : '';
+        const rChance = f.rain_chance || (f.rain_mm > 0 ? 65 : 20);
+        return `<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; padding:10px 0; border-bottom:1px solid #E2E8F0; font-size:14px;">
+          <span style="font-weight:800; color:#0F172A; min-width:130px;">🗓️ ${dName} (${dtFmt}):</span>
+          <span style="color:#334155; font-weight:700;">${f.icon || '⛅'} ${f.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'}</span>
+          <span style="font-weight:800; color:#0284C7;">💧 ${rChance}% ಮಳೆ</span>
+          <span style="font-weight:900; color:#0F172A; font-family:var(--font-en);">${Math.round(f.max_temp || 28)}° / ${Math.round(f.min_temp || 20)}°C</span>
+        </div>`;
+      }).join('');
+      body = `ಮುಂದಿನ 7 ದಿನಗಳಲ್ಲಿ <strong>${nameKn}</strong> ನಲ್ಲಿ ನಿರೀಕ್ಷಿತ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ವಿವರಗಳು:<br><div style="margin-top:10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:6px 14px;">${daysListHtml}</div>`;
+      pills = [`📅 ಮುನ್ಸೂಚನೆ ಅವಧಿ: 7 ದಿನಗಳು`, `🌡️ ಸರಾಸರಿ: 24°C`];
+      aiQuery = `${nameKn} ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ವರದಿ`;
+      break;
+
+    case 'aqi':
+      title = `🍃 ${nameKn} — ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (AQI)`;
+      body = `<strong>${nameKn}</strong> ಏರಿಯಾದ ಪ್ರಸ್ತುತ ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (AQI) <strong>${aqi.val}</strong> ಆಗಿದ್ದು, ಇದು <strong>'${aqi.label}'</strong> ವಿಭಾಗದಲ್ಲಿದೆ. ಪರಿಸರದಲ್ಲಿ ಧೂಳು ಮತ್ತು ಮಾಲಿನ್ಯದ ಪ್ರಮಾಣ ನಿಯಂತ್ರಣದಲ್ಲಿದ್ದು, ಮುಂಜಾನೆಯ ನಡಿಗೆ ಹಾಗೂ ಹೊರಾಂಗಣ ಚಟುವಟಿಕೆಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.`;
+      pills = [`🍃 AQI: ${aqi.val}`, `🟢 ಗುಣಮಟ್ಟ: ${aqi.label}`, `🫁 ಸುರಕ್ಷಿತ ವಾತಾವರಣ`];
+      aiQuery = `${nameKn} AQI ವಾಯು ಗುಣಮಟ್ಟ ಎಷ್ಟು? ಆರೋಗ್ಯಕ್ಕೆ ಸೂಕ್ತವೇ?`;
+      break;
+
+    case 'alerts':
+      title = `🚨 ${nameKn} — KSNDMC & IMD ಅಧಿಕೃತ ಮಳೆ ಎಚ್ಚರಿಕೆ`;
+      if (dist.alert_level === 'red') {
+        body = `🚨 <strong>ರೆಡ್ ಅಲರ್ಟ್ (Red Warning):</strong> ${nameKn} ಜಿಲ್ಲೆಗೆ KSNDMC ವತಿಯಿಂದ ಅತ್ಯಂತ ಭಾರೀ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ. ನದಿ ತೀರ ಮತ್ತು ತಗ್ಗು ಪ್ರದೇಶಗಳ ಜನರು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಲ್ಲಿರಲು ಕೋರಲಾಗಿದೆ.`;
+      } else if (dist.alert_level === 'orange') {
+        body = `⚠️ <strong>ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert):</strong> ${nameKn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ. ಸಾರ್ವಜನಿಕರು ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲು ಸೂಚಿಸಲಾಗಿದೆ.`;
+      } else {
+        body = `🟢 <strong>ಸಾಧಾರಣ ವಾತಾವರಣ (No Warning):</strong> ಪ್ರಸ್ತುತ ${nameKn} ಜಿಲ್ಲೆಗೆ ಯಾವುದೇ ಗಂಭೀರ ಪ್ರವಾಹ ಅಥವಾ ಭಾರೀ ಮಳೆ ರೆಡ್/ಆರೆಂಜ್ ಎಚ್ಚರಿಕೆ ಇರುವುದಿಲ್ಲ. ದಿನನಿತ್ಯದ ಚಟುವಟಿಕೆಗಳಿಗೆ ಯಾವುದೇ ಅಡಚಣೆಯಿಲ್ಲ.`;
+      }
+      pills = [`🚨 ಅಲರ್ಟ್ ಮಟ್ಟ: ${dist.alert_level ? dist.alert_level.toUpperCase() : 'NORMAL'}`, `📢 KSNDMC ಅಧಿಕೃತ`];
+      aiQuery = `${nameKn} ಜಿಲ್ಲೆಗೆ KSNDMC ಅಥವಾ IMD ಮಳೆ ಎಚ್ಚರಿಕೆ ಇದೆಯಾ?`;
+      break;
+
+    case 'wind_feel':
+      title = `💨 ${nameKn} — ಗಾಳಿಯ ವೇಗ ಮತ್ತು ಶೀತದ ಅನುಭವ`;
+      body = `<strong>${nameKn}</strong> ನಲ್ಲಿ ಗಾಳಿಯ ವೇಗ <strong>${windKmh} km/h</strong> ಇದ್ದು, ಈಶಾನ್ಯ ದಿಕ್ಕಿನಿಂದ ಬೀಸುತ್ತಿದೆ. ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ <strong>${temp}°C</strong> ಇದ್ದರೂ ತೇವಾಂಶ ಮತ್ತು ಗಾಳಿಯ ಕಾರಣ ದೇಹಕ್ಕೆ <strong>${feels}°C</strong> ತಂಪಿನ ಅನುಭವವಾಗುತ್ತದೆ.`;
+      pills = [`💨 ಗಾಳಿಯ ವೇಗ: ${windKmh} km/h`, `🌡️ ನೈಜ ಅನುಭವ: ${feels}°C`];
+      aiQuery = `${nameKn} ಗಾಳಿಯ ವೇಗ ಮತ್ತು ಹವಾಮಾನ ಹೇಗಿದೆ?`;
+      break;
+  }
+  return { title, body, pills, aiQuery };
+}
+
+function renderFaqAccordion(dist) {
+  const container = document.getElementById('faqAccordionList');
+  if (!container || !dist) return;
+
+  const locBadge = document.getElementById('awDetectedLocName');
+  if (locBadge) locBadge.textContent = dist.name_kn || 'ಬೆಂಗಳೂರು';
+
+  container.innerHTML = faqQuestions.map(q => {
+    const isOpen = (q.key === openFaqKey);
+    const ans = getFaqAnswerData(q.key, dist);
+
+    return `
+      <div class="faq-item ${isOpen ? 'open' : ''}" id="faq-item-${q.key}">
+        <div class="faq-header" onclick="toggleFaq('${q.key}')">
+          <span>${q.label}</span>
+          <span class="faq-icon-arrow">▼</span>
+        </div>
+        <div class="faq-body-drawer" id="faq-drawer-${q.key}" style="display: ${isOpen ? 'block' : 'none'};">
+          <div style="font-size:16px; font-weight:800; color:#0369A1; margin-bottom:8px;">${ans.title}</div>
+          <div style="font-size:15px; line-height:1.75; color:#1E293B;">${ans.body}</div>
+          <div class="faq-stats-strip">
+            ${ans.pills.map(p => `<span class="faq-stat-pill">${p}</span>`).join('')}
+          </div>
+          <div>
+            <a href="/ask.html?q=${encodeURIComponent(ans.aiQuery)}" class="faq-ask-ai-link">
+              <span>🤖 askKARNATA AI ನಲ್ಲಿ "${dist.name_kn}" ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ಕೇಳಿ →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleFaq(key) {
+  if (openFaqKey === key) {
+    openFaqKey = null;
+  } else {
+    openFaqKey = key;
+  }
+  const dist = getSelectedDistrictObj();
+  if (dist) renderFaqAccordion(dist);
+}
+
+function updateAskWeatherUI() {
+  const dist = getSelectedDistrictObj();
+  if (dist) renderFaqAccordion(dist);
+}
+
+// GPS / Auto-Location Detection (Haversine formula to closest Karnataka district)
+const karnatakaCoordinates = [
+  { key: 'bengaluru_urban', name_kn: 'ಬೆಂಗಳೂರು ನಗರ', lat: 12.9716, lon: 77.5946 },
+  { key: 'bengaluru_rural', name_kn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', lat: 13.2257, lon: 77.5750 },
+  { key: 'mysuru', name_kn: 'ಮೈಸೂರು', lat: 12.2958, lon: 76.6394 },
+  { key: 'dakshina_kannada', name_kn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', lat: 12.9141, lon: 74.8560 },
+  { key: 'udupi', name_kn: 'ಉಡುಪಿ', lat: 13.3409, lon: 74.7421 },
+  { key: 'uttara_kannada', name_kn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', lat: 14.8185, lon: 74.1416 },
+  { key: 'belagavi', name_kn: 'ಬೆಳಗಾವಿ', lat: 15.8497, lon: 74.4977 },
+  { key: 'hubballi_dharwad', name_kn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', lat: 15.3647, lon: 75.1240 },
+  { key: 'kalaburagi', name_kn: 'ಕಲಬುರಗಿ', lat: 17.3297, lon: 76.8343 },
+  { key: 'ballari', name_kn: 'ಬಳ್ಳಾರಿ', lat: 15.1394, lon: 76.9214 },
+  { key: 'vijayanagara', name_kn: 'ವಿಜಯನಗರ (ಹೊಸಪೇಟೆ)', lat: 15.2689, lon: 76.3909 },
+  { key: 'shivamogga', name_kn: 'ಶಿವಮೊಗ್ಗ', lat: 13.9299, lon: 75.5681 },
+  { key: 'chikkamagaluru', name_kn: 'ಚಿಕ್ಕಮಗಳೂರು', lat: 13.3161, lon: 75.7720 },
+  { key: 'kodagu', name_kn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', lat: 12.4244, lon: 75.7382 },
+  { key: 'hassan', name_kn: 'ಹಾಸನ', lat: 13.0033, lon: 76.1004 },
+  { key: 'tumakuru', name_kn: 'ತುಮಕೂರು', lat: 13.3379, lon: 77.1010 },
+  { key: 'davangere', name_kn: 'ದಾವಣಗೆರೆ', lat: 14.4644, lon: 75.9218 },
+  { key: 'raichur', name_kn: 'ರಾಯಚೂರು', lat: 16.2120, lon: 77.3439 },
+  { key: 'koppal', name_kn: 'ಕೊಪ್ಪಳ', lat: 15.3456, lon: 76.1554 },
+  { key: 'gadag', name_kn: 'ಗದಗ', lat: 15.4298, lon: 75.6315 },
+  { key: 'bagalkote', name_kn: 'ಬಾಗಲಕೋಟೆ', lat: 16.1691, lon: 75.6615 },
+  { key: 'vijayapura', name_kn: 'ವಿಜಯಪುರ', lat: 16.8302, lon: 75.7100 },
+  { key: 'bidar', name_kn: 'ಬೀದರ್', lat: 17.9104, lon: 77.5199 },
+  { key: 'yadgir', name_kn: 'ಯಾದಗಿರಿ', lat: 16.7639, lon: 77.1378 },
+  { key: 'chamarajanagar', name_kn: 'ಚಾಮರಾಜನಗರ', lat: 11.9261, lon: 76.9437 },
+  { key: 'mandya', name_kn: 'ಮಂಡ್ಯ', lat: 12.5218, lon: 76.8951 },
+  { key: 'ramanagara', name_kn: 'ರಾಮನಗರ', lat: 12.7150, lon: 77.2810 },
+  { key: 'kolar', name_kn: 'ಕೋಲಾರ', lat: 13.1358, lon: 78.1291 },
+  { key: 'chikkaballapur', name_kn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', lat: 13.4355, lon: 77.7275 },
+  { key: 'chitradurga', name_kn: 'ಚಿತ್ರದುರ್ಗ', lat: 14.2251, lon: 76.3980 },
+  { key: 'haveri', name_kn: 'ಹಾವೇರಿ', lat: 14.7954, lon: 75.3991 },
+];
+
+function getDistanceKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
+function detectGPSLocation() {
+  if (!navigator.geolocation) {
+    alert('ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ GPS ಲಭ್ಯವಿಲ್ಲ.');
+    return;
+  }
+  const badge = document.getElementById('awDetectedLocName');
+  if (badge) badge.textContent = 'ಪತ್ತೆ ಮಾಡಲಾಗುತ್ತಿದೆ...';
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const uLat = pos.coords.latitude;
+      const uLon = pos.coords.longitude;
+      
+      let closest = karnatakaCoordinates[0];
+      let minD = 99999;
+      for (const d of karnatakaCoordinates) {
+        const dist = getDistanceKm(uLat, uLon, d.lat, d.lon);
+        if (dist < minD) {
+          minD = dist;
+          closest = d;
+        }
+      }
+
+      if (closest && weatherStore && weatherStore.districts) {
+        selectDistrict(closest.key);
+      }
+    },
+    (err) => {
+      if (badge) badge.textContent = getSelectedDistrictObj()?.name_kn || 'ಬೆಂಗಳೂರು';
+      alert('GPS ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಪಟ್ಟಿಯಿಂದ ಜಿಲ್ಲೆಯನ್ನು ಆರಿಸಿ.');
+    },
+    { timeout: 8000 }
+  );
+}
+
+function selectDistrict(key) {
   if (!weatherStore || !weatherStore.districts) return;
   activeDistrictKey = key;
   const dist = weatherStore.districts[key];
@@ -1052,27 +1931,9 @@ async function selectDistrict(key) {
     renderHero(dist);
     renderHourlyForecast(dist);
     render7DayForecast(dist);
-    await updateDistrictLiveTelemetry(dist);
+    updateAskWeatherUI();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-}
-
-function renderAQI() {
-  const aqiData = [
-    {city:'ಬೆಂಗಳೂರು ನಗರ', val:72, label:'ಮಧ್ಯಮ', color:'#E67E22'},
-    {city:'ಮೈಸೂರು', val:48, label:'ಒಳ್ಳೆಯದು', color:'#1B7A4B'},
-    {city:'ಮಂಗಳೂರು', val:42, label:'ಒಳ್ಳೆಯದು', color:'#1B7A4B'},
-    {city:'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', val:82, label:'ಮಧ್ಯಮ', color:'#E67E22'},
-    {city:'ಬೆಳಗಾವಿ', val:60, label:'ಸಮಾಧಾನಕರ', color:'#1B7A4B'},
-    {city:'ಕಲಬುರಗಿ', val:91, label:'ಮಧ್ಯಮ', color:'#E67E22'},
-  ];
-  document.getElementById('aqi-grid').innerHTML = aqiData.map(a => `
-    <div class="aqi-item">
-      <div class="aqi-city">${a.city}</div>
-      <div class="aqi-val" style="color:${a.color}">${a.val}</div>
-      <div class="aqi-label" style="color:${a.color}">${a.label}</div>
-    </div>
-  `).join('');
 }
 
 async function loadWeatherData() {
@@ -1080,9 +1941,12 @@ async function loadWeatherData() {
     const res = await fetch('/data/weather.json?v=' + Date.now());
     if (res.ok) {
       let d = await res.json();
-      if (d && d.payload && typeof window.decryptPayload === 'function') d = window.decryptPayload(d.payload);
-      weatherStore = d;
-      window.weatherStore = d;
+      if (d && d.payload && typeof window.decryptPayload === 'function') {
+        d = window.decryptPayload(d.payload);
+      }
+      if (d && d.districts) {
+        weatherStore = d;
+      }
     }
   } catch (e) {}
 
@@ -1091,13 +1955,17 @@ async function loadWeatherData() {
       const res2 = await fetch('https://karnata-scraper.avinashaitoolstest2495.workers.dev/weather');
       if (res2.ok) {
         let d2 = await res2.json();
-        if (d2 && d2.payload && typeof window.decryptPayload === 'function') d2 = window.decryptPayload(d2.payload);
-        weatherStore = d2;
-        window.weatherStore = d2;
+        if (d2 && d2.payload && typeof window.decryptPayload === 'function') {
+          d2 = window.decryptPayload(d2.payload);
+        }
+        if (d2 && d2.districts) {
+          weatherStore = d2;
+        }
       }
     } catch (e) {}
   }
 
+  // Check saved user district preference
   const savedDist = localStorage.getItem('karnata_user_district') || localStorage.getItem('nk_s3');
   let normDist = null;
   try {
@@ -1117,16 +1985,37 @@ async function loadWeatherData() {
     renderHourlyForecast(activeDist);
     render7DayForecast(activeDist);
     renderDistrictsGrid(weatherStore);
-    
-    // Direct Live Telemetry Update from Open-Meteo immediately on load
-    updateDistrictLiveTelemetry(activeDist);
+    updateAskWeatherUI();
   }
-  renderAQI();
+
+  // Try silent auto GPS detection on load if permitted
+  if (navigator.geolocation && !savedDist) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const uLat = pos.coords.latitude;
+      const uLon = pos.coords.longitude;
+      let closest = karnatakaCoordinates[0];
+      let minD = 99999;
+      for (const d of karnatakaCoordinates) {
+        const dist = getDistanceKm(uLat, uLon, d.lat, d.lon);
+        if (dist < minD) {
+          minD = dist;
+          closest = d;
+        }
+      }
+      if (closest && weatherStore && weatherStore.districts[closest.key] && closest.key !== activeDistrictKey) {
+        activeDistrictKey = closest.key;
+        const autoDist = weatherStore.districts[closest.key];
+        renderHero(autoDist);
+        renderHourlyForecast(autoDist);
+        render7DayForecast(autoDist);
+        updateAskWeatherUI();
+      }
+    }, () => {}, { timeout: 4000 });
+  }
 }
 
 loadWeatherData();
 </script>
-<script src="/data-loader.js"></script>
 <script src="/nav-component.js"></script>
 
 <!-- Leaflet & Weather Radar Module Scripts -->

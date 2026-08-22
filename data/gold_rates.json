@@ -1,260 +1,260 @@
 {
-  "last_updated": "2026-08-18T07:19:02+05:30",
-  "date": "2026-08-18",
+  "last_updated": "2026-08-22T06:30:53+05:30",
+  "date": "2026-08-22",
   "source": "ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ (Karnataka Bullion Market)",
   "base": {
-    "24k_per_gram": 15567,
-    "22k_per_gram": 14271,
-    "18k_per_gram": 11677,
+    "24k_per_gram": 16049,
+    "22k_per_gram": 14711,
+    "18k_per_gram": 12037,
     "14k_per_gram": 9050,
-    "silver_per_gram": 249.9,
-    "rate_24k": 15567,
-    "rate_22k": 14271,
-    "rate_18k": 11677,
-    "silver_999": 249.9
+    "silver_per_gram": 260.1,
+    "rate_24k": 16049,
+    "rate_22k": 14711,
+    "rate_18k": 12037,
+    "silver_999": 260.1
   },
   "baseGold": {
-    "24": 15567,
-    "22": 14271,
-    "18": 11677,
+    "24": 16049,
+    "22": 14711,
+    "18": 12037,
     "14": 9050
   },
   "yesterdayGold": {
-    "24": 15566,
-    "22": 14270,
-    "18": 11676,
+    "24": 16048,
+    "22": 14710,
+    "18": 12036,
     "14": 9051
   },
   "baseSilver": {
-    "999": 249.9,
-    "925": 231.16
+    "999": 260.1,
+    "925": 240.59
   },
   "yesterdaySilver": {
-    "999": 250.0,
-    "925": 231.25
+    "999": 260.0,
+    "925": 240.5
   },
   "silver": {
-    "999_per_gram": 249.9,
-    "925_per_gram": 231.16,
-    "999_1kg": 249900,
-    "925_1kg": 231160
+    "999_per_gram": 260.1,
+    "925_per_gram": 240.59,
+    "999_1kg": 260100,
+    "925_1kg": 240590
   },
   "changes": {
     "24k": 1,
     "22k": 1,
     "18k": 1,
     "14k": -1,
-    "silver_999": -0.1,
-    "silver_925": -0.09
+    "silver_999": 0.1,
+    "silver_925": 0.09
   },
   "change": {
     "24k": 1,
     "22k": 1,
     "18k": 1,
     "14k": -1,
-    "silver_999": -0.1,
-    "silver_925": -0.09
+    "silver_999": 0.1,
+    "silver_925": 0.09
   },
   "cities": {
     "bangalore": {
       "name_kn": "ಬೆಂಗಳೂರು",
       "name_en": "Bangalore",
-      "gold_22k_per_gram": 14271,
-      "gold_24k_per_gram": 15567,
-      "gold_18k_per_gram": 11677,
+      "gold_22k_per_gram": 14711,
+      "gold_24k_per_gram": 16049,
+      "gold_18k_per_gram": 12037,
       "gold_14k_per_gram": 9050,
-      "gold_22k_yesterday": 14270,
-      "gold_24k_yesterday": 15566,
-      "gold_22k_10g": 142710,
-      "gold_24k_10g": 155670,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14710,
+      "gold_24k_yesterday": 16048,
+      "gold_22k_10g": 147110,
+      "gold_24k_10g": 160490,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "mysore": {
       "name_kn": "ಮೈಸೂರು",
       "name_en": "Mysore",
-      "gold_22k_per_gram": 14266,
-      "gold_24k_per_gram": 15562,
-      "gold_18k_per_gram": 11673,
+      "gold_22k_per_gram": 14706,
+      "gold_24k_per_gram": 16044,
+      "gold_18k_per_gram": 12033,
       "gold_14k_per_gram": 9047,
-      "gold_22k_yesterday": 14265,
-      "gold_24k_yesterday": 15561,
-      "gold_22k_10g": 142660,
-      "gold_24k_10g": 155620,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14705,
+      "gold_24k_yesterday": 16043,
+      "gold_22k_10g": 147060,
+      "gold_24k_10g": 160440,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "hubli": {
       "name_kn": "ಹುಬ್ಬಳ್ಳಿ",
       "name_en": "Hubli",
-      "gold_22k_per_gram": 14263,
-      "gold_24k_per_gram": 15559,
-      "gold_18k_per_gram": 11671,
+      "gold_22k_per_gram": 14703,
+      "gold_24k_per_gram": 16041,
+      "gold_18k_per_gram": 12031,
       "gold_14k_per_gram": 9045,
-      "gold_22k_yesterday": 14262,
-      "gold_24k_yesterday": 15558,
-      "gold_22k_10g": 142630,
-      "gold_24k_10g": 155590,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14702,
+      "gold_24k_yesterday": 16040,
+      "gold_22k_10g": 147030,
+      "gold_24k_10g": 160410,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "mangalore": {
       "name_kn": "ಮಂಗಳೂರು",
       "name_en": "Mangalore",
-      "gold_22k_per_gram": 14268,
-      "gold_24k_per_gram": 15564,
-      "gold_18k_per_gram": 11675,
+      "gold_22k_per_gram": 14708,
+      "gold_24k_per_gram": 16046,
+      "gold_18k_per_gram": 12035,
       "gold_14k_per_gram": 9048,
-      "gold_22k_yesterday": 14267,
-      "gold_24k_yesterday": 15563,
-      "gold_22k_10g": 142680,
-      "gold_24k_10g": 155640,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14707,
+      "gold_24k_yesterday": 16045,
+      "gold_22k_10g": 147080,
+      "gold_24k_10g": 160460,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "belgaum": {
       "name_kn": "ಬೆಳಗಾವಿ",
       "name_en": "Belgaum",
-      "gold_22k_per_gram": 14261,
-      "gold_24k_per_gram": 15557,
-      "gold_18k_per_gram": 11669,
+      "gold_22k_per_gram": 14701,
+      "gold_24k_per_gram": 16039,
+      "gold_18k_per_gram": 12029,
       "gold_14k_per_gram": 9044,
-      "gold_22k_yesterday": 14260,
-      "gold_24k_yesterday": 15556,
-      "gold_22k_10g": 142610,
-      "gold_24k_10g": 155570,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14700,
+      "gold_24k_yesterday": 16038,
+      "gold_22k_10g": 147010,
+      "gold_24k_10g": 160390,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "gulbarga": {
       "name_kn": "ಕಲಬುರಗಿ",
       "name_en": "Gulbarga",
-      "gold_22k_per_gram": 14259,
-      "gold_24k_per_gram": 15555,
-      "gold_18k_per_gram": 11668,
+      "gold_22k_per_gram": 14699,
+      "gold_24k_per_gram": 16037,
+      "gold_18k_per_gram": 12028,
       "gold_14k_per_gram": 9043,
-      "gold_22k_yesterday": 14258,
-      "gold_24k_yesterday": 15554,
-      "gold_22k_10g": 142590,
-      "gold_24k_10g": 155550,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14698,
+      "gold_24k_yesterday": 16036,
+      "gold_22k_10g": 146990,
+      "gold_24k_10g": 160370,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "davangere": {
       "name_kn": "ದಾವಣಗೆರೆ",
       "name_en": "Davangere",
-      "gold_22k_per_gram": 14264,
-      "gold_24k_per_gram": 15560,
-      "gold_18k_per_gram": 11672,
+      "gold_22k_per_gram": 14704,
+      "gold_24k_per_gram": 16042,
+      "gold_18k_per_gram": 12032,
       "gold_14k_per_gram": 9046,
-      "gold_22k_yesterday": 14263,
-      "gold_24k_yesterday": 15559,
-      "gold_22k_10g": 142640,
-      "gold_24k_10g": 155600,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14703,
+      "gold_24k_yesterday": 16041,
+      "gold_22k_10g": 147040,
+      "gold_24k_10g": 160420,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "shimoga": {
       "name_kn": "ಶಿವಮೊಗ್ಗ",
       "name_en": "Shimoga",
-      "gold_22k_per_gram": 14265,
-      "gold_24k_per_gram": 15561,
-      "gold_18k_per_gram": 11673,
+      "gold_22k_per_gram": 14705,
+      "gold_24k_per_gram": 16043,
+      "gold_18k_per_gram": 12033,
       "gold_14k_per_gram": 9046,
-      "gold_22k_yesterday": 14264,
-      "gold_24k_yesterday": 15560,
-      "gold_22k_10g": 142650,
-      "gold_24k_10g": 155610,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14704,
+      "gold_24k_yesterday": 16042,
+      "gold_22k_10g": 147050,
+      "gold_24k_10g": 160430,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "tumkur": {
       "name_kn": "ತುಮಕೂರು",
       "name_en": "Tumkur",
-      "gold_22k_per_gram": 14267,
-      "gold_24k_per_gram": 15563,
-      "gold_18k_per_gram": 11674,
+      "gold_22k_per_gram": 14707,
+      "gold_24k_per_gram": 16045,
+      "gold_18k_per_gram": 12034,
       "gold_14k_per_gram": 9048,
-      "gold_22k_yesterday": 14266,
-      "gold_24k_yesterday": 15562,
-      "gold_22k_10g": 142670,
-      "gold_24k_10g": 155630,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14706,
+      "gold_24k_yesterday": 16044,
+      "gold_22k_10g": 147070,
+      "gold_24k_10g": 160450,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     },
     "hassan": {
       "name_kn": "ಹಾಸನ",
       "name_en": "Hassan",
-      "gold_22k_per_gram": 14262,
-      "gold_24k_per_gram": 15558,
-      "gold_18k_per_gram": 11670,
+      "gold_22k_per_gram": 14702,
+      "gold_24k_per_gram": 16040,
+      "gold_18k_per_gram": 12030,
       "gold_14k_per_gram": 9045,
-      "gold_22k_yesterday": 14261,
-      "gold_24k_yesterday": 15557,
-      "gold_22k_10g": 142620,
-      "gold_24k_10g": 155580,
-      "silver_per_gram": 249.9,
-      "silver_yesterday": 250.0,
-      "silver_per_kg": 249900,
+      "gold_22k_yesterday": 14701,
+      "gold_24k_yesterday": 16039,
+      "gold_22k_10g": 147020,
+      "gold_24k_10g": 160400,
+      "silver_per_gram": 260.1,
+      "silver_yesterday": 260.0,
+      "silver_per_kg": 260100,
       "change_24k": 1,
       "change_22k": 1,
       "change_18k": 1,
       "change_14k": -1,
-      "change_silver": -0.1
+      "change_silver": 0.1
     }
   },
   "history": [
@@ -277,12 +277,12 @@
       "gold24": 13516,
       "gold18": 10137,
       "gold14": 7907,
-      "silver999": 195.81,
+      "silver999": 195.76,
       "22k_per_gram": 12380.0,
       "24k_per_gram": 13516,
       "18k_per_gram": 10137,
       "14k_per_gram": 7907,
-      "silver_per_gram": 195.81
+      "silver_per_gram": 195.76
     },
     {
       "date": "2026-01-02",
@@ -290,12 +290,12 @@
       "gold24": 13640,
       "gold18": 10230,
       "gold14": 7979,
-      "silver999": 198.45,
+      "silver999": 198.34,
       "22k_per_gram": 12485.0,
       "24k_per_gram": 13640,
       "18k_per_gram": 10230,
       "14k_per_gram": 7979,
-      "silver_per_gram": 198.45
+      "silver_per_gram": 198.34
     },
     {
       "date": "2026-01-03",
@@ -303,12 +303,12 @@
       "gold24": 13610,
       "gold18": 10208,
       "gold14": 7962,
-      "silver999": 201.14,
+      "silver999": 200.97,
       "22k_per_gram": 12450.0,
       "24k_per_gram": 13610,
       "18k_per_gram": 10208,
       "14k_per_gram": 7962,
-      "silver_per_gram": 201.14
+      "silver_per_gram": 200.97
     },
     {
       "date": "2026-01-05",
@@ -316,12 +316,12 @@
       "gold24": 13919,
       "gold18": 10439,
       "gold14": 8143,
-      "silver999": 203.86,
+      "silver999": 203.63,
       "22k_per_gram": 12725.0,
       "24k_per_gram": 13919,
       "18k_per_gram": 10439,
       "14k_per_gram": 8143,
-      "silver_per_gram": 203.86
+      "silver_per_gram": 203.63
     },
     {
       "date": "2026-01-06",
@@ -329,12 +329,12 @@
       "gold24": 13992,
       "gold18": 10494,
       "gold14": 8185,
-      "silver999": 206.61,
+      "silver999": 206.32,
       "22k_per_gram": 12785.0,
       "24k_per_gram": 13992,
       "18k_per_gram": 10494,
       "14k_per_gram": 8185,
-      "silver_per_gram": 206.61
+      "silver_per_gram": 206.32
     },
     {
       "date": "2026-01-07",
@@ -342,12 +342,12 @@
       "gold24": 13878,
       "gold18": 10408,
       "gold14": 8119,
-      "silver999": 209.38,
+      "silver999": 209.03,
       "22k_per_gram": 12675.0,
       "24k_per_gram": 13878,
       "18k_per_gram": 10408,
       "14k_per_gram": 8119,
-      "silver_per_gram": 209.38
+      "silver_per_gram": 209.03
     },
     {
       "date": "2026-01-08",
@@ -355,12 +355,12 @@
       "gold24": 13856,
       "gold18": 10392,
       "gold14": 8106,
-      "silver999": 212.16,
+      "silver999": 211.75,
       "22k_per_gram": 12650.0,
       "24k_per_gram": 13856,
       "18k_per_gram": 10392,
       "14k_per_gram": 8106,
-      "silver_per_gram": 212.16
+      "silver_per_gram": 211.75
     },
     {
       "date": "2026-01-09",
@@ -368,12 +368,12 @@
       "gold24": 13992,
       "gold18": 10494,
       "gold14": 8185,
-      "silver999": 214.95,
+      "silver999": 214.49,
       "22k_per_gram": 12770.0,
       "24k_per_gram": 13992,
       "18k_per_gram": 10494,
       "14k_per_gram": 8185,
-      "silver_per_gram": 214.95
+      "silver_per_gram": 214.49
     },
     {
       "date": "2026-01-10",
@@ -381,12 +381,12 @@
       "gold24": 14109,
       "gold18": 10582,
       "gold14": 8254,
-      "silver999": 217.74,
+      "silver999": 217.22,
       "22k_per_gram": 12875.0,
       "24k_per_gram": 14109,
       "18k_per_gram": 10582,
       "14k_per_gram": 8254,
-      "silver_per_gram": 217.74
+      "silver_per_gram": 217.22
     },
     {
       "date": "2026-01-12",
@@ -394,12 +394,12 @@
       "gold24": 14281,
       "gold18": 10711,
       "gold14": 8354,
-      "silver999": 220.52,
+      "silver999": 219.94,
       "22k_per_gram": 13030.0,
       "24k_per_gram": 14281,
       "18k_per_gram": 10711,
       "14k_per_gram": 8354,
-      "silver_per_gram": 220.52
+      "silver_per_gram": 219.94
     },
     {
       "date": "2026-01-13",
@@ -407,12 +407,12 @@
       "gold24": 14319,
       "gold18": 10739,
       "gold14": 8377,
-      "silver999": 223.28,
+      "silver999": 222.65,
       "22k_per_gram": 13065.0,
       "24k_per_gram": 14319,
       "18k_per_gram": 10739,
       "14k_per_gram": 8377,
-      "silver_per_gram": 223.28
+      "silver_per_gram": 222.65
     },
     {
       "date": "2026-01-14",
@@ -420,12 +420,12 @@
       "gold24": 14465,
       "gold18": 10849,
       "gold14": 8462,
-      "silver999": 226.02,
+      "silver999": 225.33,
       "22k_per_gram": 13200.0,
       "24k_per_gram": 14465,
       "18k_per_gram": 10849,
       "14k_per_gram": 8462,
-      "silver_per_gram": 226.02
+      "silver_per_gram": 225.33
     },
     {
       "date": "2026-01-15",
@@ -433,12 +433,12 @@
       "gold24": 14424,
       "gold18": 10818,
       "gold14": 8438,
-      "silver999": 228.72,
+      "silver999": 227.99,
       "22k_per_gram": 13165.0,
       "24k_per_gram": 14424,
       "18k_per_gram": 10818,
       "14k_per_gram": 8438,
-      "silver_per_gram": 228.72
+      "silver_per_gram": 227.99
     },
     {
       "date": "2026-01-16",
@@ -446,12 +446,12 @@
       "gold24": 14398,
       "gold18": 10798,
       "gold14": 8423,
-      "silver999": 231.39,
+      "silver999": 230.61,
       "22k_per_gram": 13145.0,
       "24k_per_gram": 14398,
       "18k_per_gram": 10798,
       "14k_per_gram": 8423,
-      "silver_per_gram": 231.39
+      "silver_per_gram": 230.61
     },
     {
       "date": "2026-01-17",
@@ -459,12 +459,12 @@
       "gold24": 14431,
       "gold18": 10823,
       "gold14": 8442,
-      "silver999": 234.0,
+      "silver999": 233.19,
       "22k_per_gram": 13180.0,
       "24k_per_gram": 14431,
       "18k_per_gram": 10823,
       "14k_per_gram": 8442,
-      "silver_per_gram": 234.0
+      "silver_per_gram": 233.19
     },
     {
       "date": "2026-01-19",
@@ -472,12 +472,12 @@
       "gold24": 14670,
       "gold18": 11002,
       "gold14": 8582,
-      "silver999": 236.56,
+      "silver999": 235.71,
       "22k_per_gram": 13405.0,
       "24k_per_gram": 14670,
       "18k_per_gram": 11002,
       "14k_per_gram": 8582,
-      "silver_per_gram": 236.56
+      "silver_per_gram": 235.71
     },
     {
       "date": "2026-01-20",
@@ -485,12 +485,12 @@
       "gold24": 15018,
       "gold18": 11264,
       "gold14": 8786,
-      "silver999": 239.06,
+      "silver999": 238.18,
       "22k_per_gram": 13730.0,
       "24k_per_gram": 15018,
       "18k_per_gram": 11264,
       "14k_per_gram": 8786,
-      "silver_per_gram": 239.06
+      "silver_per_gram": 238.18
     },
     {
       "date": "2026-01-21",
@@ -498,12 +498,12 @@
       "gold24": 15758,
       "gold18": 11818,
       "gold14": 9218,
-      "silver999": 241.49,
+      "silver999": 240.58,
       "22k_per_gram": 14415.0,
       "24k_per_gram": 15758,
       "18k_per_gram": 11818,
       "14k_per_gram": 9218,
-      "silver_per_gram": 241.49
+      "silver_per_gram": 240.58
     },
     {
       "date": "2026-01-22",
@@ -511,12 +511,12 @@
       "gold24": 15453,
       "gold18": 11590,
       "gold14": 9040,
-      "silver999": 243.84,
+      "silver999": 242.92,
       "22k_per_gram": 14145.0,
       "24k_per_gram": 15453,
       "18k_per_gram": 11590,
       "14k_per_gram": 9040,
-      "silver_per_gram": 243.84
+      "silver_per_gram": 242.92
     },
     {
       "date": "2026-01-23",
@@ -524,12 +524,12 @@
       "gold24": 15726,
       "gold18": 11794,
       "gold14": 9200,
-      "silver999": 246.11,
+      "silver999": 245.17,
       "22k_per_gram": 14405.0,
       "24k_per_gram": 15726,
       "18k_per_gram": 11794,
       "14k_per_gram": 9200,
-      "silver_per_gram": 246.11
+      "silver_per_gram": 245.17
     },
     {
       "date": "2026-01-24",
@@ -537,12 +537,12 @@
       "gold24": 16026,
       "gold18": 12020,
       "gold14": 9375,
-      "silver999": 248.3,
+      "silver999": 247.35,
       "22k_per_gram": 14690.0,
       "24k_per_gram": 16026,
       "18k_per_gram": 12020,
       "14k_per_gram": 9375,
-      "silver_per_gram": 248.3
+      "silver_per_gram": 247.35
     },
     {
       "date": "2026-01-27",
@@ -550,12 +550,12 @@
       "gold24": 16184,
       "gold18": 12138,
       "gold14": 9468,
-      "silver999": 250.38,
+      "silver999": 249.43,
       "22k_per_gram": 14845.0,
       "24k_per_gram": 16184,
       "18k_per_gram": 12138,
       "14k_per_gram": 9468,
-      "silver_per_gram": 250.38
+      "silver_per_gram": 249.43
     },
     {
       "date": "2026-01-28",
@@ -563,12 +563,12 @@
       "gold24": 16685,
       "gold18": 12514,
       "gold14": 9761,
-      "silver999": 252.37,
+      "silver999": 251.43,
       "22k_per_gram": 15315.0,
       "24k_per_gram": 16685,
       "18k_per_gram": 12514,
       "14k_per_gram": 9761,
-      "silver_per_gram": 252.37
+      "silver_per_gram": 251.43
     },
     {
       "date": "2026-01-29",
@@ -576,12 +576,12 @@
       "gold24": 17742,
       "gold18": 13306,
       "gold14": 10379,
-      "silver999": 254.25,
+      "silver999": 253.32,
       "22k_per_gram": 16295.0,
       "24k_per_gram": 17742,
       "18k_per_gram": 13306,
       "14k_per_gram": 10379,
-      "silver_per_gram": 254.25
+      "silver_per_gram": 253.32
     },
     {
       "date": "2026-01-30",
@@ -589,12 +589,12 @@
       "gold24": 16877,
       "gold18": 12658,
       "gold14": 9873,
-      "silver999": 256.02,
+      "silver999": 255.11,
       "22k_per_gram": 15510.0,
       "24k_per_gram": 16877,
       "18k_per_gram": 12658,
       "14k_per_gram": 9873,
-      "silver_per_gram": 256.02
+      "silver_per_gram": 255.11
     },
     {
       "date": "2026-01-31",
@@ -602,12 +602,12 @@
       "gold24": 16009,
       "gold18": 12007,
       "gold14": 9365,
-      "silver999": 257.68,
+      "silver999": 256.79,
       "22k_per_gram": 14720.0,
       "24k_per_gram": 16009,
       "18k_per_gram": 12007,
       "14k_per_gram": 9365,
-      "silver_per_gram": 257.68
+      "silver_per_gram": 256.79
     },
     {
       "date": "2026-02-02",
@@ -615,12 +615,12 @@
       "gold24": 14936,
       "gold18": 11202,
       "gold14": 8738,
-      "silver999": 259.21,
+      "silver999": 258.36,
       "22k_per_gram": 13740.0,
       "24k_per_gram": 14936,
       "18k_per_gram": 11202,
       "14k_per_gram": 8738,
-      "silver_per_gram": 259.21
+      "silver_per_gram": 258.36
     },
     {
       "date": "2026-02-03",
@@ -628,12 +628,12 @@
       "gold24": 15333,
       "gold18": 11500,
       "gold14": 8970,
-      "silver999": 260.62,
+      "silver999": 259.81,
       "22k_per_gram": 14110.0,
       "24k_per_gram": 15333,
       "18k_per_gram": 11500,
       "14k_per_gram": 8970,
-      "silver_per_gram": 260.62
+      "silver_per_gram": 259.81
     },
     {
       "date": "2026-02-04",
@@ -641,12 +641,12 @@
       "gold24": 15985,
       "gold18": 11989,
       "gold14": 9351,
-      "silver999": 261.91,
+      "silver999": 261.14,
       "22k_per_gram": 14715.0,
       "24k_per_gram": 15985,
       "18k_per_gram": 11989,
       "14k_per_gram": 9351,
-      "silver_per_gram": 261.91
+      "silver_per_gram": 261.14
     },
     {
       "date": "2026-02-05",
@@ -654,12 +654,12 @@
       "gold24": 15374,
       "gold18": 11530,
       "gold14": 8994,
-      "silver999": 263.06,
+      "silver999": 262.35,
       "22k_per_gram": 14155.0,
       "24k_per_gram": 15374,
       "18k_per_gram": 11530,
       "14k_per_gram": 8994,
-      "silver_per_gram": 263.06
+      "silver_per_gram": 262.35
     },
     {
       "date": "2026-02-06",
@@ -667,12 +667,12 @@
       "gold24": 15302,
       "gold18": 11476,
       "gold14": 8952,
-      "silver999": 264.08,
+      "silver999": 263.43,
       "22k_per_gram": 14090.0,
       "24k_per_gram": 15302,
       "18k_per_gram": 11476,
       "14k_per_gram": 8952,
-      "silver_per_gram": 264.08
+      "silver_per_gram": 263.43
     },
     {
       "date": "2026-02-07",
@@ -680,12 +680,12 @@
       "gold24": 15590,
       "gold18": 11692,
       "gold14": 9120,
-      "silver999": 264.96,
+      "silver999": 264.39,
       "22k_per_gram": 14355.0,
       "24k_per_gram": 15590,
       "18k_per_gram": 11692,
       "14k_per_gram": 9120,
-      "silver_per_gram": 264.96
+      "silver_per_gram": 264.39
     },
     {
       "date": "2026-02-09",
@@ -693,12 +693,12 @@
       "gold24": 15722,
       "gold18": 11792,
       "gold14": 9197,
-      "silver999": 265.71,
+      "silver999": 265.21,
       "22k_per_gram": 14475.0,
       "24k_per_gram": 15722,
       "18k_per_gram": 11792,
       "14k_per_gram": 9197,
-      "silver_per_gram": 265.71
+      "silver_per_gram": 265.21
     },
     {
       "date": "2026-02-10",
@@ -706,12 +706,12 @@
       "gold24": 15812,
       "gold18": 11859,
       "gold14": 9250,
-      "silver999": 266.32,
+      "silver999": 265.9,
       "22k_per_gram": 14555.0,
       "24k_per_gram": 15812,
       "18k_per_gram": 11859,
       "14k_per_gram": 9250,
-      "silver_per_gram": 266.32
+      "silver_per_gram": 265.9
     },
     {
       "date": "2026-02-11",
@@ -719,12 +719,12 @@
       "gold24": 15898,
       "gold18": 11924,
       "gold14": 9300,
-      "silver999": 266.79,
+      "silver999": 266.46,
       "22k_per_gram": 14630.0,
       "24k_per_gram": 15898,
       "18k_per_gram": 11924,
       "14k_per_gram": 9300,
-      "silver_per_gram": 266.79
+      "silver_per_gram": 266.46
     },
     {
       "date": "2026-02-13",
@@ -732,12 +732,12 @@
       "gold24": 15459,
       "gold18": 11594,
       "gold14": 9044,
-      "silver999": 267.11,
+      "silver999": 266.88,
       "22k_per_gram": 14220.0,
       "24k_per_gram": 15459,
       "18k_per_gram": 11594,
       "14k_per_gram": 9044,
-      "silver_per_gram": 267.11
+      "silver_per_gram": 266.88
     },
     {
       "date": "2026-02-14",
@@ -745,12 +745,12 @@
       "gold24": 15727,
       "gold18": 11795,
       "gold14": 9200,
-      "silver999": 267.3,
+      "silver999": 267.17,
       "22k_per_gram": 14460.0,
       "24k_per_gram": 15727,
       "18k_per_gram": 11795,
       "14k_per_gram": 9200,
-      "silver_per_gram": 267.3
+      "silver_per_gram": 267.17
     },
     {
       "date": "2026-02-16",
@@ -758,12 +758,12 @@
       "gold24": 15605,
       "gold18": 11704,
       "gold14": 9129,
-      "silver999": 267.34,
+      "silver999": 267.32,
       "22k_per_gram": 14340.0,
       "24k_per_gram": 15605,
       "18k_per_gram": 11704,
       "14k_per_gram": 9129,
-      "silver_per_gram": 267.34
+      "silver_per_gram": 267.32
     },
     {
       "date": "2026-02-17",
@@ -771,12 +771,12 @@
       "gold24": 15462,
       "gold18": 11596,
       "gold14": 9045,
-      "silver999": 267.25,
+      "silver999": 267.34,
       "22k_per_gram": 14200.0,
       "24k_per_gram": 15462,
       "18k_per_gram": 11596,
       "14k_per_gram": 9045,
-      "silver_per_gram": 267.25
+      "silver_per_gram": 267.34
     },
     {
       "date": "2026-02-18",
@@ -784,12 +784,12 @@
       "gold24": 15402,
       "gold18": 11552,
       "gold14": 9010,
-      "silver999": 267.01,
+      "silver999": 267.22,
       "22k_per_gram": 14135.0,
       "24k_per_gram": 15402,
       "18k_per_gram": 11552,
       "14k_per_gram": 9010,
-      "silver_per_gram": 267.01
+      "silver_per_gram": 267.22
     },
     {
       "date": "2026-02-19",
@@ -797,12 +797,12 @@
       "gold24": 15717,
       "gold18": 11788,
       "gold14": 9194,
-      "silver999": 266.64,
+      "silver999": 266.97,
       "22k_per_gram": 14415.0,
       "24k_per_gram": 15717,
       "18k_per_gram": 11788,
       "14k_per_gram": 9194,
-      "silver_per_gram": 266.64
+      "silver_per_gram": 266.97
     },
     {
       "date": "2026-02-20",
@@ -810,12 +810,12 @@
       "gold24": 15739,
       "gold18": 11804,
       "gold14": 9207,
-      "silver999": 266.13,
+      "silver999": 266.59,
       "22k_per_gram": 14425.0,
       "24k_per_gram": 15739,
       "18k_per_gram": 11804,
       "14k_per_gram": 9207,
-      "silver_per_gram": 266.13
+      "silver_per_gram": 266.59
     },
     {
       "date": "2026-02-21",
@@ -823,12 +823,12 @@
       "gold24": 15941,
       "gold18": 11956,
       "gold14": 9325,
-      "silver999": 265.49,
+      "silver999": 266.07,
       "22k_per_gram": 14600.0,
       "24k_per_gram": 15941,
       "18k_per_gram": 11956,
       "14k_per_gram": 9325,
-      "silver_per_gram": 265.49
+      "silver_per_gram": 266.07
     },
     {
       "date": "2026-02-23",
@@ -836,12 +836,12 @@
       "gold24": 16050,
       "gold18": 12038,
       "gold14": 9389,
-      "silver999": 264.72,
+      "silver999": 265.43,
       "22k_per_gram": 14690.0,
       "24k_per_gram": 16050,
       "18k_per_gram": 12038,
       "14k_per_gram": 9389,
-      "silver_per_gram": 264.72
+      "silver_per_gram": 265.43
     },
     {
       "date": "2026-02-24",
@@ -849,12 +849,12 @@
       "gold24": 16213,
       "gold18": 12160,
       "gold14": 9485,
-      "silver999": 263.82,
+      "silver999": 264.67,
       "22k_per_gram": 14830.0,
       "24k_per_gram": 16213,
       "18k_per_gram": 12160,
       "14k_per_gram": 9485,
-      "silver_per_gram": 263.82
+      "silver_per_gram": 264.67
     },
     {
       "date": "2026-02-25",
@@ -862,12 +862,12 @@
       "gold24": 16233,
       "gold18": 12175,
       "gold14": 9496,
-      "silver999": 262.8,
+      "silver999": 263.78,
       "22k_per_gram": 14840.0,
       "24k_per_gram": 16233,
       "18k_per_gram": 12175,
       "14k_per_gram": 9496,
-      "silver_per_gram": 262.8
+      "silver_per_gram": 263.78
     },
     {
       "date": "2026-02-26",
@@ -875,12 +875,12 @@
       "gold24": 16154,
       "gold18": 12116,
       "gold14": 9450,
-      "silver999": 261.65,
+      "silver999": 262.78,
       "22k_per_gram": 14760.0,
       "24k_per_gram": 16154,
       "18k_per_gram": 12116,
       "14k_per_gram": 9450,
-      "silver_per_gram": 261.65
+      "silver_per_gram": 262.78
     },
     {
       "date": "2026-02-27",
@@ -888,12 +888,12 @@
       "gold24": 16216,
       "gold18": 12162,
       "gold14": 9486,
-      "silver999": 260.39,
+      "silver999": 261.66,
       "22k_per_gram": 14810.0,
       "24k_per_gram": 16216,
       "18k_per_gram": 12162,
       "14k_per_gram": 9486,
-      "silver_per_gram": 260.39
+      "silver_per_gram": 261.66
     },
     {
       "date": "2026-02-28",
@@ -901,12 +901,12 @@
       "gold24": 16940,
       "gold18": 12705,
       "gold14": 9910,
-      "silver999": 259.02,
+      "silver999": 260.43,
       "22k_per_gram": 15465.0,
       "24k_per_gram": 16940,
       "18k_per_gram": 12705,
       "14k_per_gram": 9910,
-      "silver_per_gram": 259.02
+      "silver_per_gram": 260.43
     },
     {
       "date": "2026-03-01",
@@ -914,12 +914,12 @@
       "gold24": 17383,
       "gold18": 13037,
       "gold14": 10169,
-      "silver999": 257.55,
+      "silver999": 259.09,
       "22k_per_gram": 15865.0,
       "24k_per_gram": 17383,
       "18k_per_gram": 13037,
       "14k_per_gram": 10169,
-      "silver_per_gram": 257.55
+      "silver_per_gram": 259.09
     },
     {
       "date": "2026-03-02",
@@ -927,12 +927,12 @@
       "gold24": 17129,
       "gold18": 12847,
       "gold14": 10020,
-      "silver999": 255.97,
+      "silver999": 257.65,
       "22k_per_gram": 15630.0,
       "24k_per_gram": 17129,
       "18k_per_gram": 12847,
       "14k_per_gram": 10020,
-      "silver_per_gram": 255.97
+      "silver_per_gram": 257.65
     },
     {
       "date": "2026-03-03",
@@ -940,12 +940,12 @@
       "gold24": 17081,
       "gold18": 12811,
       "gold14": 9992,
-      "silver999": 254.3,
+      "silver999": 256.11,
       "22k_per_gram": 15585.0,
       "24k_per_gram": 17081,
       "18k_per_gram": 12811,
       "14k_per_gram": 9992,
-      "silver_per_gram": 254.3
+      "silver_per_gram": 256.11
     },
     {
       "date": "2026-03-04",
@@ -953,12 +953,12 @@
       "gold24": 16527,
       "gold18": 12395,
       "gold14": 9668,
-      "silver999": 252.54,
+      "silver999": 254.49,
       "22k_per_gram": 15080.0,
       "24k_per_gram": 16527,
       "18k_per_gram": 12395,
       "14k_per_gram": 9668,
-      "silver_per_gram": 252.54
+      "silver_per_gram": 254.49
     },
     {
       "date": "2026-03-05",
@@ -966,12 +966,12 @@
       "gold24": 16361,
       "gold18": 12271,
       "gold14": 9571,
-      "silver999": 250.69,
+      "silver999": 252.77,
       "22k_per_gram": 14930.0,
       "24k_per_gram": 16361,
       "18k_per_gram": 12271,
       "14k_per_gram": 9571,
-      "silver_per_gram": 250.69
+      "silver_per_gram": 252.77
     },
     {
       "date": "2026-03-06",
@@ -979,12 +979,12 @@
       "gold24": 16248,
       "gold18": 12186,
       "gold14": 9505,
-      "silver999": 248.77,
+      "silver999": 250.98,
       "22k_per_gram": 14830.0,
       "24k_per_gram": 16248,
       "18k_per_gram": 12186,
       "14k_per_gram": 9505,
-      "silver_per_gram": 248.77
+      "silver_per_gram": 250.98
     },
     {
       "date": "2026-03-07",
@@ -992,12 +992,12 @@
       "gold24": 16331,
       "gold18": 12248,
       "gold14": 9554,
-      "silver999": 246.77,
+      "silver999": 249.11,
       "22k_per_gram": 14910.0,
       "24k_per_gram": 16331,
       "18k_per_gram": 12248,
       "14k_per_gram": 9554,
-      "silver_per_gram": 246.77
+      "silver_per_gram": 249.11
     },
     {
       "date": "2026-03-09",
@@ -1005,12 +1005,12 @@
       "gold24": 16225,
       "gold18": 12169,
       "gold14": 9492,
-      "silver999": 244.72,
+      "silver999": 247.17,
       "22k_per_gram": 14820.0,
       "24k_per_gram": 16225,
       "18k_per_gram": 12169,
       "14k_per_gram": 9492,
-      "silver_per_gram": 244.72
+      "silver_per_gram": 247.17
     },
     {
       "date": "2026-03-10",
@@ -1018,12 +1018,12 @@
       "gold24": 16289,
       "gold18": 12217,
       "gold14": 9529,
-      "silver999": 242.6,
+      "silver999": 245.16,
       "22k_per_gram": 14885.0,
       "24k_per_gram": 16289,
       "18k_per_gram": 12217,
       "14k_per_gram": 9529,
-      "silver_per_gram": 242.6
+      "silver_per_gram": 245.16
     },
     {
       "date": "2026-03-11",
@@ -1031,12 +1031,12 @@
       "gold24": 16373,
       "gold18": 12280,
       "gold14": 9578,
-      "silver999": 240.44,
+      "silver999": 243.11,
       "22k_per_gram": 14970.0,
       "24k_per_gram": 16373,
       "18k_per_gram": 12280,
       "14k_per_gram": 9578,
-      "silver_per_gram": 240.44
+      "silver_per_gram": 243.11
     },
     {
       "date": "2026-03-12",
@@ -1044,12 +1044,12 @@
       "gold24": 16254,
       "gold18": 12190,
       "gold14": 9509,
-      "silver999": 238.23,
+      "silver999": 241.0,
       "22k_per_gram": 14870.0,
       "24k_per_gram": 16254,
       "18k_per_gram": 12190,
       "14k_per_gram": 9509,
-      "silver_per_gram": 238.23
+      "silver_per_gram": 241.0
     },
     {
       "date": "2026-03-13",
@@ -1057,12 +1057,12 @@
       "gold24": 16090,
       "gold18": 12068,
       "gold14": 9413,
-      "silver999": 235.99,
+      "silver999": 238.85,
       "22k_per_gram": 14730.0,
       "24k_per_gram": 16090,
       "18k_per_gram": 12068,
       "14k_per_gram": 9413,
-      "silver_per_gram": 235.99
+      "silver_per_gram": 238.85
     },
     {
       "date": "2026-03-14",
@@ -1070,12 +1070,12 @@
       "gold24": 15976,
       "gold18": 11982,
       "gold14": 9346,
-      "silver999": 233.71,
+      "silver999": 236.66,
       "22k_per_gram": 14635.0,
       "24k_per_gram": 15976,
       "18k_per_gram": 11982,
       "14k_per_gram": 9346,
-      "silver_per_gram": 233.71
+      "silver_per_gram": 236.66
     },
     {
       "date": "2026-03-16",
@@ -1083,12 +1083,12 @@
       "gold24": 15741,
       "gold18": 11806,
       "gold14": 9208,
-      "silver999": 231.42,
+      "silver999": 234.44,
       "22k_per_gram": 14430.0,
       "24k_per_gram": 15741,
       "18k_per_gram": 11806,
       "14k_per_gram": 9208,
-      "silver_per_gram": 231.42
+      "silver_per_gram": 234.44
     },
     {
       "date": "2026-03-17",
@@ -1096,12 +1096,12 @@
       "gold24": 15850,
       "gold18": 11888,
       "gold14": 9272,
-      "silver999": 229.11,
+      "silver999": 232.2,
       "22k_per_gram": 14540.0,
       "24k_per_gram": 15850,
       "18k_per_gram": 11888,
       "14k_per_gram": 9272,
-      "silver_per_gram": 229.11
+      "silver_per_gram": 232.2
     },
     {
       "date": "2026-03-18",
@@ -1109,12 +1109,12 @@
       "gold24": 15720,
       "gold18": 11790,
       "gold14": 9196,
-      "silver999": 226.8,
+      "silver999": 229.95,
       "22k_per_gram": 14430.0,
       "24k_per_gram": 15720,
       "18k_per_gram": 11790,
       "14k_per_gram": 9196,
-      "silver_per_gram": 226.8
+      "silver_per_gram": 229.95
     },
     {
       "date": "2026-03-19",
@@ -1122,12 +1122,12 @@
       "gold24": 14997,
       "gold18": 11248,
       "gold14": 8773,
-      "silver999": 224.48,
+      "silver999": 227.68,
       "22k_per_gram": 13775.0,
       "24k_per_gram": 14997,
       "18k_per_gram": 11248,
       "14k_per_gram": 8773,
-      "silver_per_gram": 224.48
+      "silver_per_gram": 227.68
     },
     {
       "date": "2026-03-20",
@@ -1135,12 +1135,12 @@
       "gold24": 15053,
       "gold18": 11290,
       "gold14": 8806,
-      "silver999": 222.18,
+      "silver999": 225.42,
       "22k_per_gram": 13835.0,
       "24k_per_gram": 15053,
       "18k_per_gram": 11290,
       "14k_per_gram": 8806,
-      "silver_per_gram": 222.18
+      "silver_per_gram": 225.42
     },
     {
       "date": "2026-03-21",
@@ -1148,12 +1148,12 @@
       "gold24": 14551,
       "gold18": 10913,
       "gold14": 8512,
-      "silver999": 219.89,
+      "silver999": 223.15,
       "22k_per_gram": 13380.0,
       "24k_per_gram": 14551,
       "18k_per_gram": 10913,
       "14k_per_gram": 8512,
-      "silver_per_gram": 219.89
+      "silver_per_gram": 223.15
     },
     {
       "date": "2026-03-23",
@@ -1161,12 +1161,12 @@
       "gold24": 13952,
       "gold18": 10464,
       "gold14": 8162,
-      "silver999": 217.62,
+      "silver999": 220.9,
       "22k_per_gram": 12835.0,
       "24k_per_gram": 13952,
       "18k_per_gram": 10464,
       "14k_per_gram": 8162,
-      "silver_per_gram": 217.62
+      "silver_per_gram": 220.9
     },
     {
       "date": "2026-03-24",
@@ -1174,12 +1174,12 @@
       "gold24": 14206,
       "gold18": 10654,
       "gold14": 8311,
-      "silver999": 215.38,
+      "silver999": 218.67,
       "22k_per_gram": 13074.0,
       "24k_per_gram": 14206,
       "18k_per_gram": 10654,
       "14k_per_gram": 8311,
-      "silver_per_gram": 215.38
+      "silver_per_gram": 218.67
     },
     {
       "date": "2026-03-25",
@@ -1187,12 +1187,12 @@
       "gold24": 14605,
       "gold18": 10954,
       "gold14": 8544,
-      "silver999": 213.17,
+      "silver999": 216.46,
       "22k_per_gram": 13445.0,
       "24k_per_gram": 14605,
       "18k_per_gram": 10954,
       "14k_per_gram": 8544,
-      "silver_per_gram": 213.17
+      "silver_per_gram": 216.46
     },
     {
       "date": "2026-03-27",
@@ -1200,12 +1200,12 @@
       "gold24": 14494,
       "gold18": 10870,
       "gold14": 8479,
-      "silver999": 211.01,
+      "silver999": 214.29,
       "22k_per_gram": 13345.0,
       "24k_per_gram": 14494,
       "18k_per_gram": 10870,
       "14k_per_gram": 8479,
-      "silver_per_gram": 211.01
+      "silver_per_gram": 214.29
     },
     {
       "date": "2026-03-30",
@@ -1213,12 +1213,12 @@
       "gold24": 14762,
       "gold18": 11072,
       "gold14": 8636,
-      "silver999": 208.9,
+      "silver999": 212.15,
       "22k_per_gram": 13592.5,
       "24k_per_gram": 14762,
       "18k_per_gram": 11072,
       "14k_per_gram": 8636,
-      "silver_per_gram": 208.9
+      "silver_per_gram": 212.15
     },
     {
       "date": "2026-03-31",
@@ -1226,12 +1226,12 @@
       "gold24": 14884,
       "gold18": 11163,
       "gold14": 8707,
-      "silver999": 206.84,
+      "silver999": 210.05,
       "22k_per_gram": 13705.0,
       "24k_per_gram": 14884,
       "18k_per_gram": 11163,
       "14k_per_gram": 8707,
-      "silver_per_gram": 206.84
+      "silver_per_gram": 210.05
     },
     {
       "date": "2026-04-01",
@@ -1239,12 +1239,12 @@
       "gold24": 15228,
       "gold18": 11421,
       "gold14": 8908,
-      "silver999": 204.84,
+      "silver999": 208.01,
       "22k_per_gram": 14020.0,
       "24k_per_gram": 15228,
       "18k_per_gram": 11421,
       "14k_per_gram": 8908,
-      "silver_per_gram": 204.84
+      "silver_per_gram": 208.01
     },
     {
       "date": "2026-04-03",
@@ -1252,12 +1252,12 @@
       "gold24": 15030,
       "gold18": 11272,
       "gold14": 8793,
-      "silver999": 202.91,
+      "silver999": 206.02,
       "22k_per_gram": 13835.0,
       "24k_per_gram": 15030,
       "18k_per_gram": 11272,
       "14k_per_gram": 8793,
-      "silver_per_gram": 202.91
+      "silver_per_gram": 206.02
     },
     {
       "date": "2026-04-04",
@@ -1265,12 +1265,12 @@
       "gold24": 15035,
       "gold18": 11276,
       "gold14": 8795,
-      "silver999": 201.05,
+      "silver999": 204.09,
       "22k_per_gram": 13835.0,
       "24k_per_gram": 15035,
       "18k_per_gram": 11276,
       "14k_per_gram": 8795,
-      "silver_per_gram": 201.05
+      "silver_per_gram": 204.09
     },
     {
       "date": "2026-04-06",
@@ -1278,12 +1278,12 @@
       "gold24": 15014,
       "gold18": 11260,
       "gold14": 8783,
-      "silver999": 199.27,
+      "silver999": 202.22,
       "22k_per_gram": 13810.0,
       "24k_per_gram": 15014,
       "18k_per_gram": 11260,
       "14k_per_gram": 8783,
-      "silver_per_gram": 199.27
+      "silver_per_gram": 202.22
     },
     {
       "date": "2026-04-07",
@@ -1291,12 +1291,12 @@
       "gold24": 14940,
       "gold18": 11205,
       "gold14": 8740,
-      "silver999": 197.57,
+      "silver999": 200.43,
       "22k_per_gram": 13735.0,
       "24k_per_gram": 14940,
       "18k_per_gram": 11205,
       "14k_per_gram": 8740,
-      "silver_per_gram": 197.57
+      "silver_per_gram": 200.43
     },
     {
       "date": "2026-04-08",
@@ -1304,12 +1304,12 @@
       "gold24": 15345,
       "gold18": 11509,
       "gold14": 8977,
-      "silver999": 195.96,
+      "silver999": 198.71,
       "22k_per_gram": 14100.0,
       "24k_per_gram": 15345,
       "18k_per_gram": 11509,
       "14k_per_gram": 8977,
-      "silver_per_gram": 195.96
+      "silver_per_gram": 198.71
     },
     {
       "date": "2026-04-09",
@@ -1317,12 +1317,12 @@
       "gold24": 15191,
       "gold18": 11393,
       "gold14": 8887,
-      "silver999": 194.43,
+      "silver999": 197.07,
       "22k_per_gram": 13950.0,
       "24k_per_gram": 15191,
       "18k_per_gram": 11393,
       "14k_per_gram": 8887,
-      "silver_per_gram": 194.43
+      "silver_per_gram": 197.07
     },
     {
       "date": "2026-04-10",
@@ -1330,12 +1330,12 @@
       "gold24": 15250,
       "gold18": 11438,
       "gold14": 8921,
-      "silver999": 193.0,
+      "silver999": 195.52,
       "22k_per_gram": 13995.0,
       "24k_per_gram": 15250,
       "18k_per_gram": 11438,
       "14k_per_gram": 8921,
-      "silver_per_gram": 193.0
+      "silver_per_gram": 195.52
     },
     {
       "date": "2026-04-11",
@@ -1343,12 +1343,12 @@
       "gold24": 15277,
       "gold18": 11458,
       "gold14": 8937,
-      "silver999": 191.67,
+      "silver999": 194.05,
       "22k_per_gram": 14010.0,
       "24k_per_gram": 15277,
       "18k_per_gram": 11458,
       "14k_per_gram": 8937,
-      "silver_per_gram": 191.67
+      "silver_per_gram": 194.05
     },
     {
       "date": "2026-04-13",
@@ -1356,12 +1356,12 @@
       "gold24": 15249,
       "gold18": 11437,
       "gold14": 8921,
-      "silver999": 190.44,
+      "silver999": 192.68,
       "22k_per_gram": 13975.0,
       "24k_per_gram": 15249,
       "18k_per_gram": 11437,
       "14k_per_gram": 8921,
-      "silver_per_gram": 190.44
+      "silver_per_gram": 192.68
     },
     {
       "date": "2026-04-15",
@@ -1369,12 +1369,12 @@
       "gold24": 15549,
       "gold18": 11662,
       "gold14": 9096,
-      "silver999": 189.32,
+      "silver999": 191.39,
       "22k_per_gram": 14240.0,
       "24k_per_gram": 15549,
       "18k_per_gram": 11662,
       "14k_per_gram": 9096,
-      "silver_per_gram": 189.32
+      "silver_per_gram": 191.39
     },
     {
       "date": "2026-04-16",
@@ -1382,12 +1382,12 @@
       "gold24": 15581,
       "gold18": 11686,
       "gold14": 9115,
-      "silver999": 188.3,
+      "silver999": 190.21,
       "22k_per_gram": 14260.0,
       "24k_per_gram": 15581,
       "18k_per_gram": 11686,
       "14k_per_gram": 9115,
-      "silver_per_gram": 188.3
+      "silver_per_gram": 190.21
     },
     {
       "date": "2026-04-17",
@@ -1395,12 +1395,12 @@
       "gold24": 15531,
       "gold18": 11648,
       "gold14": 9086,
-      "silver999": 187.38,
+      "silver999": 189.13,
       "22k_per_gram": 14205.0,
       "24k_per_gram": 15531,
       "18k_per_gram": 11648,
       "14k_per_gram": 9086,
-      "silver_per_gram": 187.38
+      "silver_per_gram": 189.13
     },
     {
       "date": "2026-04-18",
@@ -1408,12 +1408,12 @@
       "gold24": 15622,
       "gold18": 11716,
       "gold14": 9139,
-      "silver999": 186.58,
+      "silver999": 188.15,
       "22k_per_gram": 14280.0,
       "24k_per_gram": 15622,
       "18k_per_gram": 11716,
       "14k_per_gram": 9139,
-      "silver_per_gram": 186.58
+      "silver_per_gram": 188.15
     },
     {
       "date": "2026-04-21",
@@ -1421,12 +1421,12 @@
       "gold24": 15581,
       "gold18": 11686,
       "gold14": 9115,
-      "silver999": 185.89,
+      "silver999": 187.27,
       "22k_per_gram": 14235.0,
       "24k_per_gram": 15581,
       "18k_per_gram": 11686,
       "14k_per_gram": 9115,
-      "silver_per_gram": 185.89
+      "silver_per_gram": 187.27
     },
     {
       "date": "2026-04-22",
@@ -1434,12 +1434,12 @@
       "gold24": 15533,
       "gold18": 11650,
       "gold14": 9087,
-      "silver999": 185.3,
+      "silver999": 186.49,
       "22k_per_gram": 14185.0,
       "24k_per_gram": 15533,
       "18k_per_gram": 11650,
       "14k_per_gram": 9087,
-      "silver_per_gram": 185.3
+      "silver_per_gram": 186.49
     },
     {
       "date": "2026-04-23",
@@ -1447,12 +1447,12 @@
       "gold24": 15418,
       "gold18": 11564,
       "gold14": 9020,
-      "silver999": 185.0,
+      "silver999": 185.83,
       "22k_per_gram": 14075.0,
       "24k_per_gram": 15418,
       "18k_per_gram": 11564,
       "14k_per_gram": 9020,
-      "silver_per_gram": 185.0
+      "silver_per_gram": 185.83
     },
     {
       "date": "2026-04-24",
@@ -1460,12 +1460,12 @@
       "gold24": 15472,
       "gold18": 11604,
       "gold14": 9051,
-      "silver999": 185.0,
+      "silver999": 185.27,
       "22k_per_gram": 14120.0,
       "24k_per_gram": 15472,
       "18k_per_gram": 11604,
       "14k_per_gram": 9051,
-      "silver_per_gram": 185.0
+      "silver_per_gram": 185.27
     },
     {
       "date": "2026-04-25",
@@ -1564,12 +1564,12 @@
       "gold24": 15139,
       "gold18": 11354,
       "gold14": 8856,
-      "silver999": 185.45,
+      "silver999": 185.0,
       "22k_per_gram": 13835.0,
       "24k_per_gram": 15139,
       "18k_per_gram": 11354,
       "14k_per_gram": 8856,
-      "silver_per_gram": 185.45
+      "silver_per_gram": 185.0
     },
     {
       "date": "2026-05-05",
@@ -1577,12 +1577,12 @@
       "gold24": 14956,
       "gold18": 11217,
       "gold14": 8749,
-      "silver999": 186.02,
+      "silver999": 185.0,
       "22k_per_gram": 13675.0,
       "24k_per_gram": 14956,
       "18k_per_gram": 11217,
       "14k_per_gram": 8749,
-      "silver_per_gram": 186.02
+      "silver_per_gram": 185.0
     },
     {
       "date": "2026-05-06",
@@ -1590,12 +1590,12 @@
       "gold24": 15242,
       "gold18": 11432,
       "gold14": 8917,
-      "silver999": 186.67,
+      "silver999": 185.38,
       "22k_per_gram": 13945.0,
       "24k_per_gram": 15242,
       "18k_per_gram": 11432,
       "14k_per_gram": 8917,
-      "silver_per_gram": 186.67
+      "silver_per_gram": 185.38
     },
     {
       "date": "2026-05-07",
@@ -1603,12 +1603,12 @@
       "gold24": 15319,
       "gold18": 11489,
       "gold14": 8962,
-      "silver999": 187.42,
+      "silver999": 185.92,
       "22k_per_gram": 14025.0,
       "24k_per_gram": 15319,
       "18k_per_gram": 11489,
       "14k_per_gram": 8962,
-      "silver_per_gram": 187.42
+      "silver_per_gram": 185.92
     },
     {
       "date": "2026-05-09",
@@ -1616,12 +1616,12 @@
       "gold24": 15243,
       "gold18": 11432,
       "gold14": 8917,
-      "silver999": 188.24,
+      "silver999": 186.55,
       "22k_per_gram": 13965.0,
       "24k_per_gram": 15243,
       "18k_per_gram": 11432,
       "14k_per_gram": 8917,
-      "silver_per_gram": 188.24
+      "silver_per_gram": 186.55
     },
     {
       "date": "2026-05-11",
@@ -1629,12 +1629,12 @@
       "gold24": 15211,
       "gold18": 11408,
       "gold14": 8898,
-      "silver999": 189.13,
+      "silver999": 187.26,
       "22k_per_gram": 13945.0,
       "24k_per_gram": 15211,
       "18k_per_gram": 11408,
       "14k_per_gram": 8898,
-      "silver_per_gram": 189.13
+      "silver_per_gram": 187.26
     },
     {
       "date": "2026-05-12",
@@ -1642,12 +1642,12 @@
       "gold24": 15386,
       "gold18": 11540,
       "gold14": 9001,
-      "silver999": 190.1,
+      "silver999": 188.05,
       "22k_per_gram": 14115.0,
       "24k_per_gram": 15386,
       "18k_per_gram": 11540,
       "14k_per_gram": 9001,
-      "silver_per_gram": 190.1
+      "silver_per_gram": 188.05
     },
     {
       "date": "2026-05-13",
@@ -1655,12 +1655,12 @@
       "gold24": 16176,
       "gold18": 12132,
       "gold14": 9463,
-      "silver999": 191.13,
+      "silver999": 188.91,
       "22k_per_gram": 14850.0,
       "24k_per_gram": 16176,
       "18k_per_gram": 12132,
       "14k_per_gram": 9463,
-      "silver_per_gram": 191.13
+      "silver_per_gram": 188.91
     },
     {
       "date": "2026-05-14",
@@ -1668,12 +1668,12 @@
       "gold24": 16199,
       "gold18": 12149,
       "gold14": 9476,
-      "silver999": 192.22,
+      "silver999": 189.84,
       "22k_per_gram": 14880.0,
       "24k_per_gram": 16199,
       "18k_per_gram": 12149,
       "14k_per_gram": 9476,
-      "silver_per_gram": 192.22
+      "silver_per_gram": 189.84
     },
     {
       "date": "2026-05-15",
@@ -1681,12 +1681,12 @@
       "gold24": 15749,
       "gold18": 11812,
       "gold14": 9213,
-      "silver999": 193.36,
+      "silver999": 190.83,
       "22k_per_gram": 14475.0,
       "24k_per_gram": 15749,
       "18k_per_gram": 11812,
       "14k_per_gram": 9213,
-      "silver_per_gram": 193.36
+      "silver_per_gram": 190.83
     },
     {
       "date": "2026-05-16",
@@ -1694,12 +1694,12 @@
       "gold24": 15643,
       "gold18": 11732,
       "gold14": 9151,
-      "silver999": 194.56,
+      "silver999": 191.88,
       "22k_per_gram": 14385.0,
       "24k_per_gram": 15643,
       "18k_per_gram": 11732,
       "14k_per_gram": 9151,
-      "silver_per_gram": 194.56
+      "silver_per_gram": 191.88
     },
     {
       "date": "2026-05-18",
@@ -1707,12 +1707,12 @@
       "gold24": 15565,
       "gold18": 11674,
       "gold14": 9106,
-      "silver999": 195.79,
+      "silver999": 192.99,
       "22k_per_gram": 14320.0,
       "24k_per_gram": 15565,
       "18k_per_gram": 11674,
       "14k_per_gram": 9106,
-      "silver_per_gram": 195.79
+      "silver_per_gram": 192.99
     },
     {
       "date": "2026-05-19",
@@ -1720,12 +1720,12 @@
       "gold24": 15641,
       "gold18": 11731,
       "gold14": 9150,
-      "silver999": 197.06,
+      "silver999": 194.14,
       "22k_per_gram": 14395.0,
       "24k_per_gram": 15641,
       "18k_per_gram": 11731,
       "14k_per_gram": 9150,
-      "silver_per_gram": 197.06
+      "silver_per_gram": 194.14
     },
     {
       "date": "2026-05-20",
@@ -1733,12 +1733,12 @@
       "gold24": 15767,
       "gold18": 11825,
       "gold14": 9224,
-      "silver999": 198.36,
+      "silver999": 195.33,
       "22k_per_gram": 14515.0,
       "24k_per_gram": 15767,
       "18k_per_gram": 11825,
       "14k_per_gram": 9224,
-      "silver_per_gram": 198.36
+      "silver_per_gram": 195.33
     },
     {
       "date": "2026-05-21",
@@ -1746,12 +1746,12 @@
       "gold24": 15922,
       "gold18": 11942,
       "gold14": 9314,
-      "silver999": 199.68,
+      "silver999": 196.56,
       "22k_per_gram": 14660.0,
       "24k_per_gram": 15922,
       "18k_per_gram": 11942,
       "14k_per_gram": 9314,
-      "silver_per_gram": 199.68
+      "silver_per_gram": 196.56
     },
     {
       "date": "2026-05-22",
@@ -1759,12 +1759,12 @@
       "gold24": 15877,
       "gold18": 11908,
       "gold14": 9288,
-      "silver999": 201.02,
+      "silver999": 197.82,
       "22k_per_gram": 14620.0,
       "24k_per_gram": 15877,
       "18k_per_gram": 11908,
       "14k_per_gram": 9288,
-      "silver_per_gram": 201.02
+      "silver_per_gram": 197.82
     },
     {
       "date": "2026-05-23",
@@ -1772,12 +1772,12 @@
       "gold24": 15834,
       "gold18": 11876,
       "gold14": 9263,
-      "silver999": 202.36,
+      "silver999": 199.11,
       "22k_per_gram": 14580.0,
       "24k_per_gram": 15834,
       "18k_per_gram": 11876,
       "14k_per_gram": 9263,
-      "silver_per_gram": 202.36
+      "silver_per_gram": 199.11
     },
     {
       "date": "2026-05-25",
@@ -1785,12 +1785,12 @@
       "gold24": 15869,
       "gold18": 11902,
       "gold14": 9283,
-      "silver999": 203.71,
+      "silver999": 200.41,
       "22k_per_gram": 14610.0,
       "24k_per_gram": 15869,
       "18k_per_gram": 11902,
       "14k_per_gram": 9283,
-      "silver_per_gram": 203.71
+      "silver_per_gram": 200.41
     },
     {
       "date": "2026-05-26",
@@ -1798,12 +1798,12 @@
       "gold24": 15824,
       "gold18": 11868,
       "gold14": 9257,
-      "silver999": 205.06,
+      "silver999": 201.73,
       "22k_per_gram": 14565.0,
       "24k_per_gram": 15824,
       "18k_per_gram": 11868,
       "14k_per_gram": 9257,
-      "silver_per_gram": 205.06
+      "silver_per_gram": 201.73
     },
     {
       "date": "2026-05-27",
@@ -1811,12 +1811,12 @@
       "gold24": 15769,
       "gold18": 11827,
       "gold14": 9225,
-      "silver999": 206.4,
+      "silver999": 203.05,
       "22k_per_gram": 14510.0,
       "24k_per_gram": 15769,
       "18k_per_gram": 11827,
       "14k_per_gram": 9225,
-      "silver_per_gram": 206.4
+      "silver_per_gram": 203.05
     },
     {
       "date": "2026-05-28",
@@ -1824,12 +1824,12 @@
       "gold24": 15553,
       "gold18": 11665,
       "gold14": 9099,
-      "silver999": 207.73,
+      "silver999": 204.37,
       "22k_per_gram": 14305.0,
       "24k_per_gram": 15553,
       "18k_per_gram": 11665,
       "14k_per_gram": 9099,
-      "silver_per_gram": 207.73
+      "silver_per_gram": 204.37
     },
     {
       "date": "2026-05-29",
@@ -1837,12 +1837,12 @@
       "gold24": 15718,
       "gold18": 11788,
       "gold14": 9195,
-      "silver999": 209.03,
+      "silver999": 205.69,
       "22k_per_gram": 14450.0,
       "24k_per_gram": 15718,
       "18k_per_gram": 11788,
       "14k_per_gram": 9195,
-      "silver_per_gram": 209.03
+      "silver_per_gram": 205.69
     },
     {
       "date": "2026-06-01",
@@ -1850,12 +1850,12 @@
       "gold24": 15586,
       "gold18": 11690,
       "gold14": 9118,
-      "silver999": 220.3,
+      "silver999": 216.99,
       "22k_per_gram": 14320.0,
       "24k_per_gram": 15586,
       "18k_per_gram": 11690,
       "14k_per_gram": 9118,
-      "silver_per_gram": 220.3
+      "silver_per_gram": 216.99
     },
     {
       "date": "2026-06-02",
@@ -1863,12 +1863,12 @@
       "gold24": 15595,
       "gold18": 11696,
       "gold14": 9123,
-      "silver999": 221.54,
+      "silver999": 218.28,
       "22k_per_gram": 14320.0,
       "24k_per_gram": 15595,
       "18k_per_gram": 11696,
       "14k_per_gram": 9123,
-      "silver_per_gram": 221.54
+      "silver_per_gram": 218.28
     },
     {
       "date": "2026-06-04",
@@ -1876,12 +1876,12 @@
       "gold24": 15600,
       "gold18": 11700,
       "gold14": 9126,
-      "silver999": 222.74,
+      "silver999": 219.55,
       "22k_per_gram": 14315.0,
       "24k_per_gram": 15600,
       "18k_per_gram": 11700,
       "14k_per_gram": 9126,
-      "silver_per_gram": 222.74
+      "silver_per_gram": 219.55
     },
     {
       "date": "2026-06-05",
@@ -1889,12 +1889,12 @@
       "gold24": 15567,
       "gold18": 11675,
       "gold14": 9107,
-      "silver999": 223.89,
+      "silver999": 220.78,
       "22k_per_gram": 14275.0,
       "24k_per_gram": 15567,
       "18k_per_gram": 11675,
       "14k_per_gram": 9107,
-      "silver_per_gram": 223.89
+      "silver_per_gram": 220.78
     },
     {
       "date": "2026-06-06",
@@ -1902,12 +1902,12 @@
       "gold24": 15278,
       "gold18": 11458,
       "gold14": 8938,
-      "silver999": 225.0,
+      "silver999": 221.98,
       "22k_per_gram": 14000.0,
       "24k_per_gram": 15278,
       "18k_per_gram": 11458,
       "14k_per_gram": 8938,
-      "silver_per_gram": 225.0
+      "silver_per_gram": 221.98
     },
     {
       "date": "2026-06-08",
@@ -1915,12 +1915,12 @@
       "gold24": 15184,
       "gold18": 11388,
       "gold14": 8883,
-      "silver999": 226.04,
+      "silver999": 223.14,
       "22k_per_gram": 13905.0,
       "24k_per_gram": 15184,
       "18k_per_gram": 11388,
       "14k_per_gram": 8883,
-      "silver_per_gram": 226.04
+      "silver_per_gram": 223.14
     },
     {
       "date": "2026-06-09",
@@ -1928,12 +1928,12 @@
       "gold24": 15342,
       "gold18": 11506,
       "gold14": 8975,
-      "silver999": 227.03,
+      "silver999": 224.25,
       "22k_per_gram": 14040.0,
       "24k_per_gram": 15342,
       "18k_per_gram": 11506,
       "14k_per_gram": 8975,
-      "silver_per_gram": 227.03
+      "silver_per_gram": 224.25
     },
     {
       "date": "2026-06-10",
@@ -1941,12 +1941,12 @@
       "gold24": 14919,
       "gold18": 11189,
       "gold14": 8728,
-      "silver999": 227.94,
+      "silver999": 225.32,
       "22k_per_gram": 13645.0,
       "24k_per_gram": 14919,
       "18k_per_gram": 11189,
       "14k_per_gram": 8728,
-      "silver_per_gram": 227.94
+      "silver_per_gram": 225.32
     },
     {
       "date": "2026-06-11",
@@ -1954,12 +1954,12 @@
       "gold24": 14605,
       "gold18": 10954,
       "gold14": 8544,
-      "silver999": 228.79,
+      "silver999": 226.32,
       "22k_per_gram": 13350.0,
       "24k_per_gram": 14605,
       "18k_per_gram": 10954,
       "14k_per_gram": 8544,
-      "silver_per_gram": 228.79
+      "silver_per_gram": 226.32
     },
     {
       "date": "2026-06-12",
@@ -1967,12 +1967,12 @@
       "gold24": 14908,
       "gold18": 11181,
       "gold14": 8721,
-      "silver999": 229.56,
+      "silver999": 227.27,
       "22k_per_gram": 13620.0,
       "24k_per_gram": 14908,
       "18k_per_gram": 11181,
       "14k_per_gram": 8721,
-      "silver_per_gram": 229.56
+      "silver_per_gram": 227.27
     },
     {
       "date": "2026-06-13",
@@ -1980,12 +1980,12 @@
       "gold24": 14964,
       "gold18": 11223,
       "gold14": 8754,
-      "silver999": 230.25,
+      "silver999": 228.15,
       "22k_per_gram": 13665.0,
       "24k_per_gram": 14964,
       "18k_per_gram": 11223,
       "14k_per_gram": 8754,
-      "silver_per_gram": 230.25
+      "silver_per_gram": 228.15
     },
     {
       "date": "2026-06-15",
@@ -1993,12 +1993,12 @@
       "gold24": 15216,
       "gold18": 11412,
       "gold14": 8901,
-      "silver999": 230.86,
+      "silver999": 228.96,
       "22k_per_gram": 13890.0,
       "24k_per_gram": 15216,
       "18k_per_gram": 11412,
       "14k_per_gram": 8901,
-      "silver_per_gram": 230.86
+      "silver_per_gram": 228.96
     },
     {
       "date": "2026-06-16",
@@ -2006,12 +2006,12 @@
       "gold24": 15203,
       "gold18": 11402,
       "gold14": 8894,
-      "silver999": 231.38,
+      "silver999": 229.7,
       "22k_per_gram": 13875.0,
       "24k_per_gram": 15203,
       "18k_per_gram": 11402,
       "14k_per_gram": 8894,
-      "silver_per_gram": 231.38
+      "silver_per_gram": 229.7
     },
     {
       "date": "2026-06-17",
@@ -2019,12 +2019,12 @@
       "gold24": 15179,
       "gold18": 11384,
       "gold14": 8880,
-      "silver999": 231.81,
+      "silver999": 230.36,
       "22k_per_gram": 13850.0,
       "24k_per_gram": 15179,
       "18k_per_gram": 11384,
       "14k_per_gram": 8880,
-      "silver_per_gram": 231.81
+      "silver_per_gram": 230.36
     },
     {
       "date": "2026-06-18",
@@ -2032,12 +2032,12 @@
       "gold24": 15021,
       "gold18": 11266,
       "gold14": 8787,
-      "silver999": 232.15,
+      "silver999": 230.95,
       "22k_per_gram": 13705.0,
       "24k_per_gram": 15021,
       "18k_per_gram": 11266,
       "14k_per_gram": 8787,
-      "silver_per_gram": 232.15
+      "silver_per_gram": 230.95
     },
     {
       "date": "2026-06-19",
@@ -2045,12 +2045,12 @@
       "gold24": 14653,
       "gold18": 10990,
       "gold14": 8572,
-      "silver999": 232.4,
+      "silver999": 231.44,
       "22k_per_gram": 13370.0,
       "24k_per_gram": 14653,
       "18k_per_gram": 10990,
       "14k_per_gram": 8572,
-      "silver_per_gram": 232.4
+      "silver_per_gram": 231.44
     },
     {
       "date": "2026-06-20",
@@ -2058,12 +2058,12 @@
       "gold24": 14673,
       "gold18": 11005,
       "gold14": 8584,
-      "silver999": 232.55,
+      "silver999": 231.86,
       "22k_per_gram": 13390.0,
       "24k_per_gram": 14673,
       "18k_per_gram": 11005,
       "14k_per_gram": 8584,
-      "silver_per_gram": 232.55
+      "silver_per_gram": 231.86
     },
     {
       "date": "2026-06-22",
@@ -2071,12 +2071,12 @@
       "gold24": 14713,
       "gold18": 11035,
       "gold14": 8607,
-      "silver999": 232.6,
+      "silver999": 232.18,
       "22k_per_gram": 13430.0,
       "24k_per_gram": 14713,
       "18k_per_gram": 11035,
       "14k_per_gram": 8607,
-      "silver_per_gram": 232.6
+      "silver_per_gram": 232.18
     },
     {
       "date": "2026-06-23",
@@ -2084,12 +2084,12 @@
       "gold24": 14582,
       "gold18": 10936,
       "gold14": 8530,
-      "silver999": 232.55,
+      "silver999": 232.41,
       "22k_per_gram": 13315.0,
       "24k_per_gram": 14582,
       "18k_per_gram": 10936,
       "14k_per_gram": 8530,
-      "silver_per_gram": 232.55
+      "silver_per_gram": 232.41
     },
     {
       "date": "2026-06-24",
@@ -2097,12 +2097,12 @@
       "gold24": 14483,
       "gold18": 10862,
       "gold14": 8473,
-      "silver999": 232.4,
+      "silver999": 232.55,
       "22k_per_gram": 13230.0,
       "24k_per_gram": 14483,
       "18k_per_gram": 10862,
       "14k_per_gram": 8473,
-      "silver_per_gram": 232.4
+      "silver_per_gram": 232.55
     },
     {
       "date": "2026-06-25",
@@ -2110,12 +2110,12 @@
       "gold24": 14175,
       "gold18": 10631,
       "gold14": 8292,
-      "silver999": 232.16,
+      "silver999": 232.6,
       "22k_per_gram": 12955.0,
       "24k_per_gram": 14175,
       "18k_per_gram": 10631,
       "14k_per_gram": 8292,
-      "silver_per_gram": 232.16
+      "silver_per_gram": 232.6
     },
     {
       "date": "2026-06-26",
@@ -2123,12 +2123,12 @@
       "gold24": 14309,
       "gold18": 10732,
       "gold14": 8371,
-      "silver999": 231.81,
+      "silver999": 232.55,
       "22k_per_gram": 13085.0,
       "24k_per_gram": 14309,
       "18k_per_gram": 10732,
       "14k_per_gram": 8371,
-      "silver_per_gram": 231.81
+      "silver_per_gram": 232.55
     },
     {
       "date": "2026-06-27",
@@ -2136,12 +2136,12 @@
       "gold24": 14421,
       "gold18": 10816,
       "gold14": 8436,
-      "silver999": 231.36,
+      "silver999": 232.41,
       "22k_per_gram": 13195.0,
       "24k_per_gram": 14421,
       "18k_per_gram": 10816,
       "14k_per_gram": 8436,
-      "silver_per_gram": 231.36
+      "silver_per_gram": 232.41
     },
     {
       "date": "2026-06-29",
@@ -2149,12 +2149,12 @@
       "gold24": 14319,
       "gold18": 10739,
       "gold14": 8377,
-      "silver999": 230.81,
+      "silver999": 232.17,
       "22k_per_gram": 13110.0,
       "24k_per_gram": 14319,
       "18k_per_gram": 10739,
       "14k_per_gram": 8377,
-      "silver_per_gram": 230.81
+      "silver_per_gram": 232.17
     },
     {
       "date": "2026-06-30",
@@ -2162,12 +2162,12 @@
       "gold24": 14211,
       "gold18": 10658,
       "gold14": 8313,
-      "silver999": 230.17,
+      "silver999": 231.83,
       "22k_per_gram": 13020.0,
       "24k_per_gram": 14211,
       "18k_per_gram": 10658,
       "14k_per_gram": 8313,
-      "silver_per_gram": 230.17
+      "silver_per_gram": 231.83
     },
     {
       "date": "2026-07-01",
@@ -2175,12 +2175,12 @@
       "gold24": 14223,
       "gold18": 10667,
       "gold14": 8320,
-      "silver999": 204.43,
+      "silver999": 206.4,
       "22k_per_gram": 13040.0,
       "24k_per_gram": 14223,
       "18k_per_gram": 10667,
       "14k_per_gram": 8320,
-      "silver_per_gram": 204.43
+      "silver_per_gram": 206.4
     },
     {
       "date": "2026-07-02",
@@ -2188,12 +2188,12 @@
       "gold24": 14366,
       "gold18": 10774,
       "gold14": 8404,
-      "silver999": 203.6,
+      "silver999": 205.87,
       "22k_per_gram": 13180.0,
       "24k_per_gram": 14366,
       "18k_per_gram": 10774,
       "14k_per_gram": 8404,
-      "silver_per_gram": 203.6
+      "silver_per_gram": 205.87
     },
     {
       "date": "2026-07-03",
@@ -2201,12 +2201,12 @@
       "gold24": 14678,
       "gold18": 11008,
       "gold14": 8587,
-      "silver999": 202.67,
+      "silver999": 205.25,
       "22k_per_gram": 13475.0,
       "24k_per_gram": 14678,
       "18k_per_gram": 11008,
       "14k_per_gram": 8587,
-      "silver_per_gram": 202.67
+      "silver_per_gram": 205.25
     },
     {
       "date": "2026-07-04",
@@ -2214,12 +2214,12 @@
       "gold24": 14641,
       "gold18": 10981,
       "gold14": 8565,
-      "silver999": 201.66,
+      "silver999": 204.54,
       "22k_per_gram": 13450.0,
       "24k_per_gram": 14641,
       "18k_per_gram": 10981,
       "14k_per_gram": 8565,
-      "silver_per_gram": 201.66
+      "silver_per_gram": 204.54
     },
     {
       "date": "2026-07-06",
@@ -2227,12 +2227,12 @@
       "gold24": 14622,
       "gold18": 10966,
       "gold14": 8554,
-      "silver999": 200.56,
+      "silver999": 203.74,
       "22k_per_gram": 13440.0,
       "24k_per_gram": 14622,
       "18k_per_gram": 10966,
       "14k_per_gram": 8554,
-      "silver_per_gram": 200.56
+      "silver_per_gram": 203.74
     },
     {
       "date": "2026-07-07",
@@ -2240,12 +2240,12 @@
       "gold24": 14478,
       "gold18": 10858,
       "gold14": 8470,
-      "silver999": 199.37,
+      "silver999": 202.85,
       "22k_per_gram": 13315.0,
       "24k_per_gram": 14478,
       "18k_per_gram": 10858,
       "14k_per_gram": 8470,
-      "silver_per_gram": 199.37
+      "silver_per_gram": 202.85
     },
     {
       "date": "2026-07-08",
@@ -2253,12 +2253,12 @@
       "gold24": 14260,
       "gold18": 10695,
       "gold14": 8342,
-      "silver999": 198.11,
+      "silver999": 201.87,
       "22k_per_gram": 13120.0,
       "24k_per_gram": 14260,
       "18k_per_gram": 10695,
       "14k_per_gram": 8342,
-      "silver_per_gram": 198.11
+      "silver_per_gram": 201.87
     },
     {
       "date": "2026-07-09",
@@ -2266,12 +2266,12 @@
       "gold24": 14386,
       "gold18": 10790,
       "gold14": 8416,
-      "silver999": 196.78,
+      "silver999": 200.81,
       "22k_per_gram": 13240.0,
       "24k_per_gram": 14386,
       "18k_per_gram": 10790,
       "14k_per_gram": 8416,
-      "silver_per_gram": 196.78
+      "silver_per_gram": 200.81
     },
     {
       "date": "2026-07-10",
@@ -2279,12 +2279,12 @@
       "gold24": 14420,
       "gold18": 10815,
       "gold14": 8436,
-      "silver999": 195.38,
+      "silver999": 199.67,
       "22k_per_gram": 13275.0,
       "24k_per_gram": 14420,
       "18k_per_gram": 10815,
       "14k_per_gram": 8436,
-      "silver_per_gram": 195.38
+      "silver_per_gram": 199.67
     },
     {
       "date": "2026-07-11",
@@ -2292,12 +2292,12 @@
       "gold24": 14369,
       "gold18": 10777,
       "gold14": 8406,
-      "silver999": 193.91,
+      "silver999": 198.46,
       "22k_per_gram": 13230.0,
       "24k_per_gram": 14369,
       "18k_per_gram": 10777,
       "14k_per_gram": 8406,
-      "silver_per_gram": 193.91
+      "silver_per_gram": 198.46
     },
     {
       "date": "2026-07-13",
@@ -2305,12 +2305,12 @@
       "gold24": 14227,
       "gold18": 10670,
       "gold14": 8323,
-      "silver999": 192.38,
+      "silver999": 197.17,
       "22k_per_gram": 13100.0,
       "24k_per_gram": 14227,
       "18k_per_gram": 10670,
       "14k_per_gram": 8323,
-      "silver_per_gram": 192.38
+      "silver_per_gram": 197.17
     },
     {
       "date": "2026-07-14",
@@ -2318,12 +2318,12 @@
       "gold24": 14216,
       "gold18": 10662,
       "gold14": 8316,
-      "silver999": 190.8,
+      "silver999": 195.82,
       "22k_per_gram": 13090.0,
       "24k_per_gram": 14216,
       "18k_per_gram": 10662,
       "14k_per_gram": 8316,
-      "silver_per_gram": 190.8
+      "silver_per_gram": 195.82
     },
     {
       "date": "2026-07-15",
@@ -2331,12 +2331,12 @@
       "gold24": 14294,
       "gold18": 10720,
       "gold14": 8362,
-      "silver999": 189.17,
+      "silver999": 194.4,
       "22k_per_gram": 13160.0,
       "24k_per_gram": 14294,
       "18k_per_gram": 10720,
       "14k_per_gram": 8362,
-      "silver_per_gram": 189.17
+      "silver_per_gram": 194.4
     },
     {
       "date": "2026-07-16",
@@ -2344,12 +2344,12 @@
       "gold24": 14271,
       "gold18": 10703,
       "gold14": 8349,
-      "silver999": 187.49,
+      "silver999": 192.92,
       "22k_per_gram": 13135.0,
       "24k_per_gram": 14271,
       "18k_per_gram": 10703,
       "14k_per_gram": 8349,
-      "silver_per_gram": 187.49
+      "silver_per_gram": 192.92
     },
     {
       "date": "2026-07-17",
@@ -2357,12 +2357,12 @@
       "gold24": 14200,
       "gold18": 10650,
       "gold14": 8307,
-      "silver999": 185.78,
+      "silver999": 191.39,
       "22k_per_gram": 13065.0,
       "24k_per_gram": 14200,
       "18k_per_gram": 10650,
       "14k_per_gram": 8307,
-      "silver_per_gram": 185.78
+      "silver_per_gram": 191.39
     },
     {
       "date": "2026-07-18",
@@ -2370,12 +2370,12 @@
       "gold24": 14282,
       "gold18": 10712,
       "gold14": 8355,
-      "silver999": 185.0,
+      "silver999": 189.81,
       "22k_per_gram": 13135.0,
       "24k_per_gram": 14282,
       "18k_per_gram": 10712,
       "14k_per_gram": 8355,
-      "silver_per_gram": 185.0
+      "silver_per_gram": 189.81
     },
     {
       "date": "2026-07-20",
@@ -2383,12 +2383,12 @@
       "gold24": 14305,
       "gold18": 10729,
       "gold14": 8368,
-      "silver999": 185.0,
+      "silver999": 188.19,
       "22k_per_gram": 13150.0,
       "24k_per_gram": 14305,
       "18k_per_gram": 10729,
       "14k_per_gram": 8368,
-      "silver_per_gram": 185.0
+      "silver_per_gram": 188.19
     },
     {
       "date": "2026-07-21",
@@ -2396,12 +2396,12 @@
       "gold24": 14389,
       "gold18": 10792,
       "gold14": 8418,
-      "silver999": 185.0,
+      "silver999": 186.53,
       "22k_per_gram": 13220.0,
       "24k_per_gram": 14389,
       "18k_per_gram": 10792,
       "14k_per_gram": 8418,
-      "silver_per_gram": 185.0
+      "silver_per_gram": 186.53
     },
     {
       "date": "2026-07-22",
@@ -2691,29 +2691,81 @@
     },
     {
       "date": "2026-08-17",
-      "gold22": 14219.0,
-      "gold24": 15512.0,
+      "gold22": 14270.0,
+      "gold24": 15584,
       "gold18": 11688,
       "gold14": 9117,
-      "silver999": 249.9,
-      "22k_per_gram": 14219.0,
-      "24k_per_gram": 15512.0,
+      "silver999": 185.0,
+      "22k_per_gram": 14270.0,
+      "24k_per_gram": 15584,
       "18k_per_gram": 11688,
       "14k_per_gram": 9117,
-      "silver_per_gram": 249.9
+      "silver_per_gram": 185.0
     },
     {
       "date": "2026-08-18",
-      "gold22": 14271,
-      "gold24": 15567,
-      "gold18": 11677,
-      "gold14": 9050,
+      "gold22": 14290.0,
+      "gold24": 15596,
+      "gold18": 11697,
+      "gold14": 9124,
+      "silver999": 185.0,
+      "22k_per_gram": 14290.0,
+      "24k_per_gram": 15596,
+      "18k_per_gram": 11697,
+      "14k_per_gram": 9124,
+      "silver_per_gram": 185.0
+    },
+    {
+      "date": "2026-08-19",
+      "gold22": 14205.0,
+      "gold24": 15492,
+      "gold18": 11619,
+      "gold14": 9063,
+      "silver999": 185.0,
+      "22k_per_gram": 14205.0,
+      "24k_per_gram": 15492,
+      "18k_per_gram": 11619,
+      "14k_per_gram": 9063,
+      "silver_per_gram": 185.0
+    },
+    {
+      "date": "2026-08-20",
+      "gold22": 14600.0,
+      "gold24": 15912,
+      "gold18": 11934,
+      "gold14": 9309,
+      "silver999": 185.0,
+      "22k_per_gram": 14600.0,
+      "24k_per_gram": 15912,
+      "18k_per_gram": 11934,
+      "14k_per_gram": 9309,
+      "silver_per_gram": 185.0
+    },
+    {
+      "date": "2026-08-21",
+      "gold22": 14219.0,
+      "gold24": 15512.0,
+      "gold18": 12098,
+      "gold14": 9437,
       "silver999": 249.9,
-      "22k_per_gram": 14271,
-      "24k_per_gram": 15567,
-      "18k_per_gram": 11677,
-      "14k_per_gram": 9050,
+      "22k_per_gram": 14219.0,
+      "24k_per_gram": 15512.0,
+      "18k_per_gram": 12098,
+      "14k_per_gram": 9437,
       "silver_per_gram": 249.9
+    },
+    {
+      "date": "2026-08-22",
+      "gold22": 14711,
+      "gold24": 16049,
+      "gold18": 12037,
+      "gold14": 9050,
+      "silver999": 260.1,
+      "22k_per_gram": 14711,
+      "24k_per_gram": 16049,
+      "18k_per_gram": 12037,
+      "14k_per_gram": 9050,
+      "silver_per_gram": 260.1
     }
   ],
   "yearly_1901_2026": [

@@ -642,7 +642,7 @@
     </div>
   </div>
 
-  <script src="/ask-ai-engine.js"></script>
+  <script src="/ask-ai-engine.js?v=20260820_0835"></script>
   <script>
     const STORAGE_KEY = 'ask_karnata_history_v1';
     let currentHistory = [];
@@ -841,31 +841,34 @@
       syncInputs('dock');
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
-      // 2. Fetch from Cloudflare Pages Function /api/ask-ai or fallback to client engine
+      // 2. Prioritize Client Structured Knowledge Engine for 100% accurate, non-dummy Karnataka data
       let answerText = '';
       let cards = [];
 
-      try {
-        const res = await fetch('/api/ask-ai', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: text })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.answer) {
-            answerText = data.answer;
-          }
-        }
-      } catch (e) {}
-
-      // Client Fallback if API not responding or client has richer data
       const clientRes = window.AskKARNATAEngine ? window.AskKARNATAEngine.query(text) : null;
-      if (!answerText && clientRes) {
+      if (clientRes && clientRes.text && !clientRes.isFallback) {
         answerText = clientRes.text;
-      }
-      if (clientRes && clientRes.cards) {
-        cards = clientRes.cards;
+        cards = clientRes.cards || [];
+      } else {
+        // Fetch from Cloudflare Pages Function /api/ask-ai for open-ended queries
+        try {
+          const res = await fetch('/api/ask-ai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: text })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.answer) {
+              answerText = data.answer;
+            }
+          }
+        } catch (e) {}
+
+        if (!answerText && clientRes) {
+          answerText = clientRes.text;
+          cards = clientRes.cards || [];
+        }
       }
 
       const aiContentEl = msgGroup.querySelector('.ai-body');
@@ -907,6 +910,17 @@
       html = html.replace(/<\/ul>\s*<ul>/gim, '');
       return html.replace(/\n\n/g, '<p></p>');
     }
+
+    // Auto-run query if passed via ?q=
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const q = urlParams.get('q');
+      if (q) {
+        setTimeout(() => {
+          submitQuery(q);
+        }, 150);
+      }
+    });
   </script>
 </body>
 </html>

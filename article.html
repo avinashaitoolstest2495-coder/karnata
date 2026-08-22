@@ -180,30 +180,48 @@ function slugify(text) {
 }
 
 (async function initArticleView() {
-  const urlPath = window.location.pathname.split('/').filter(Boolean);
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
   const searchParams = new URLSearchParams(window.location.search);
   
   let targetSlug = searchParams.get('id') || searchParams.get('slug') || searchParams.get('q');
   let targetCategory = searchParams.get('category');
 
-  if (urlPath[0] === 'news' && urlPath.length >= 2) {
-    if (urlPath.length >= 3) {
-      targetCategory = urlPath[1];
-      targetSlug = urlPath[2];
-    } else {
-      targetSlug = urlPath[1];
+  const ignoredSlugs = new Set(['article', 'article.html', 'news', 'stories', 'index', 'index.html', 'admin']);
+
+  // Handle Clean Canonical URLs:
+  // e.g. /news/politics/karnataka-cabinet-ministers-portfolio-list
+  // e.g. /news/karnataka-cabinet-ministers-portfolio-list
+  // e.g. /article/karnataka-cabinet-ministers-portfolio-list
+  if (pathParts.length >= 1) {
+    const lastPart = pathParts[pathParts.length - 1];
+    if (lastPart && !ignoredSlugs.has(lastPart.toLowerCase()) && !lastPart.endsWith('.html')) {
+      targetSlug = lastPart;
+      if (pathParts.length >= 2 && (pathParts[0] === 'news' || pathParts[0] === 'article')) {
+        targetCategory = (pathParts.length >= 3) ? pathParts[1] : null;
+      }
+    } else if (pathParts.length >= 2 && pathParts[0] === 'news') {
+      if (pathParts[1] !== 'article.html' && !ignoredSlugs.has(pathParts[1].toLowerCase()) && !pathParts[1].endsWith('.html')) {
+        targetSlug = pathParts[1];
+      }
     }
   }
 
   if (targetSlug) {
-    targetSlug = decodeURIComponent(targetSlug).trim();
+    targetSlug = decodeURIComponent(targetSlug).trim().replace(/[)\],.;\/]+$/, '');
+    if (ignoredSlugs.has(targetSlug.toLowerCase())) {
+      targetSlug = null;
+    }
   }
 
   let allCandidates = [];
 
-  // 1. Fetch from LocalStorage
+  // 1. Fetch from LocalStorage FIRST (Contains the user's latest full text and uploaded photos)
   try {
-    const store = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const oldStore = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const store = oldStore.filter(a => !isMockArticle(a));
+    if (store.length !== oldStore.length) {
+      localStorage.setItem('nk_cms_articles', JSON.stringify(store));
+    }
     allCandidates.push(...store);
   } catch(e) {}
 
@@ -213,13 +231,40 @@ function slugify(text) {
     if (res.ok) {
       const data = await res.json();
       if (data && data.articles) {
-        const existingIds = new Set(allCandidates.map(x => x.id));
-        data.articles.forEach(a => { if (!existingIds.has(a.id)) allCandidates.push(a); });
+        const existingIds = new Set(allCandidates.map(x => (x.id || x.slug || '').toLowerCase()));
+        data.articles.filter(a => !isMockArticle(a)).forEach(a => {
+          const aId = (a.id || a.slug || '').toLowerCase();
+          if (!existingIds.has(aId)) {
+            allCandidates.push(a);
+          }
+        });
       }
     }
   } catch(e) {}
 
-  // 3. Fetch from /data/local_news.json
+  // 3. Direct fetch from /data/articles/${targetSlug}.json
+  if (targetSlug) {
+    const rawTarget = targetSlug.trim();
+    const slugTarget = slugify(targetSlug);
+    const trySlugs = Array.from(new Set([rawTarget, slugTarget, rawTarget.toLowerCase()])).filter(Boolean);
+    for (const s of trySlugs) {
+      try {
+        const res = await fetch(`/data/articles/${encodeURIComponent(s)}.json?v=` + Date.now());
+        if (res.ok) {
+          const directArt = await res.json();
+          if (directArt && !isMockArticle(directArt)) {
+            const existingIds = new Set(allCandidates.map(x => (x.id || x.slug || '').toLowerCase()));
+            if (!existingIds.has((directArt.id || directArt.slug || '').toLowerCase())) {
+              allCandidates.push(directArt);
+            }
+            break;
+          }
+        }
+      } catch(e) {}
+    }
+  }
+
+  // 4. Fetch from /data/local_news.json
   try {
     const res = await fetch('/data/local_news.json?v=' + Date.now());
     if (res.ok) {
@@ -249,8 +294,8 @@ function slugify(text) {
 
   const KANNADA_DICT = {
     'cabinet': ['ಸಚಿವ ಸಂಪುಟ', 'ಸಂಪುಟ', 'ಖಾತೆ', 'ಸಚಿವರ'],
-    'ministers': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು', 'ಸಿದ್ದರಾಮಯ್ಯ', 'ಶಿವಕುಮಾರ್'],
-    'minister': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು'],
+    'ministers': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು', 'ಸಿದ್ದರಾಮಯ್ಯ', 'ಶಿವಕುಮಾರ್', 'ಡಿಕೆ'],
+    'minister': ['ಮಂತ್ರಿ', 'ಸಚಿವ', 'ಸಚಿವರು', 'ಡಿಕೆ'],
     'portfolio': ['ಖಾತೆ', 'ಹಂಚಿಕೆ', 'ಖಾತೆಗಳು', 'ಪಟ್ಟಿ'],
     'list': ['ಪಟ್ಟಿ', 'ವಿವರ'],
     'metro': ['ಮೆಟ್ರೋ', 'ನಮ್ಮ ಮೆಟ್ರೋ', 'ಬಿಎಂಆರ್‌ಸಿಎಲ್'],
@@ -268,35 +313,50 @@ function slugify(text) {
     const targetWords = normTarget.split('-').filter(w => w.length > 2);
 
     // 1. Direct ID / Slug / Title Equality Match
-    article = allCandidates.find(x => 
-      x.id === targetSlug || 
-      x.slug === targetSlug || 
-      x.title_kn === targetSlug || 
-      x.title === targetSlug ||
-      slugify(x.id || '') === normTarget || 
-      slugify(x.slug || '') === normTarget ||
-      slugify(x.title_en || '') === normTarget ||
-      slugify(x.title_kn || '') === normTarget ||
-      slugify(x.title || '') === normTarget
-    );
+    article = allCandidates.find(x => {
+      if (!x) return false;
+      const xId = String(x.id || '').trim().toLowerCase();
+      const xSlug = String(x.slug || '').trim().toLowerCase();
+      const xTitleKn = String(x.title_kn || x.title || '').trim();
+      const sId = slugify(xId);
+      const sSlug = slugify(xSlug);
+      const sTitle = slugify(xTitleKn);
+      const t = targetSlug.toLowerCase();
+      return (
+        xId === t || xSlug === t ||
+        sId === normTarget || sSlug === normTarget || sTitle === normTarget ||
+        xTitleKn === targetSlug
+      );
+    });
 
-    // 2. Bilingual Keyword Scoring Match
-    if (!article) {
+    // 2. Substring & Partial ID / Slug Match
+    if (!article && normTarget) {
+      article = allCandidates.find(x => {
+        if (!x) return false;
+        const sId = slugify(x.id || '');
+        const sSlug = slugify(x.slug || '');
+        return (
+          (sId && (sId.includes(normTarget) || normTarget.includes(sId))) ||
+          (sSlug && (sSlug.includes(normTarget) || normTarget.includes(sSlug)))
+        );
+      });
+    }
+
+    // 3. Keyword / Token match across CMS & published articles
+    if (!article && targetWords.length > 0) {
       let bestScore = 0;
       let bestArticle = null;
 
       allCandidates.forEach(x => {
+        if (!x) return;
         let score = 0;
-        const knText = ((x.title_kn || '') + ' ' + (x.summary_kn || '') + ' ' + (x.keywords || '')).toLowerCase();
-        const enText = ((x.id || '') + ' ' + (x.slug || '') + ' ' + (x.title_en || '') + ' ' + (x.title || '')).toLowerCase();
-
+        const corpus = (slugify(x.id || '') + ' ' + slugify(x.slug || '') + ' ' + slugify(x.title_kn || x.title || '') + ' ' + (x.summary_kn || '')).toLowerCase();
+        
         targetWords.forEach(w => {
-          // Check english token match
-          if (enText.includes(w)) score += 3;
-          // Check bilingual dictionary mapping in Kannada text
+          if (corpus.includes(w)) score += 3;
           if (KANNADA_DICT[w]) {
             KANNADA_DICT[w].forEach(knTerm => {
-              if (knText.includes(knTerm.toLowerCase())) score += 2;
+              if (corpus.includes(knTerm.toLowerCase())) score += 2;
             });
           }
         });
@@ -307,26 +367,20 @@ function slugify(text) {
         }
       });
 
-      if (bestScore >= 2) {
+      if (bestScore >= 3) {
         article = bestArticle;
       }
     }
-
-    // 3. Substring Containment Match
-    if (!article) {
-      article = allCandidates.find(x => {
-        const tKn = (x.title_kn || '').toLowerCase();
-        const tEn = (x.title_en || x.title || '').toLowerCase();
-        const tId = (x.id || '').toLowerCase();
-        const q = targetSlug.toLowerCase();
-        return tKn.includes(q) || tEn.includes(q) || tId.includes(q) || q.includes(tKn) || q.includes(tEn);
-      });
-    }
   }
 
-  // Only fallback if NO target was requested at all
-  if (!article && !targetSlug && allCandidates.length > 0) {
-    article = allCandidates[0];
+  // Graceful fallback: Only fall back to user's CMS published stories, never random scraped news
+  if (!article) {
+    const cmsOnly = allCandidates.filter(x => x.is_cms || x.body_html || x.status === 'published');
+    if (cmsOnly.length > 0) {
+      article = cmsOnly[0];
+    } else if (!targetSlug && allCandidates.length > 0) {
+      article = allCandidates[0];
+    }
   }
 
   if (article) {
@@ -355,10 +409,15 @@ function slugify(text) {
     document.getElementById('art-author').textContent = author;
     document.getElementById('art-date').textContent = new Date(dateStr).toLocaleDateString('kn-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     
-    if (article.cover_image) {
+    const coverImg = article.cover_image || article.image || article.thumbnail || article.hero_image || 'https://karnata.in/karnata-logo.png';
+    const cleanUrl = fullCleanUrl;
+
+    if (article.cover_image || article.image || article.thumbnail || article.hero_image) {
       const img = document.getElementById('art-cover');
-      img.src = article.cover_image;
-      img.style.display = 'block';
+      if (img) {
+        img.src = article.cover_image || article.image || article.thumbnail || article.hero_image;
+        img.style.display = 'block';
+      }
     }
 
     document.getElementById('art-body').innerHTML = article.body_html || `<p>${summary}</p>`;

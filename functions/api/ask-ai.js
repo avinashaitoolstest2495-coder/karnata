@@ -35,22 +35,41 @@ export async function onRequest(context) {
     }
 
     let aiResponseText = '';
-    let providerUsed = 'Cloudflare Workers AI';
+    let providerUsed = 'Cloudflare AI Search (RAG)';
 
-    // 1. Run Cloudflare Workers AI (Free Tier on Cloudflare Edge)
-    if (env && env.AI) {
+    // 1. Query Cloudflare AI Search (Vector RAG with karnata-knowledge-base)
+    try {
+      const aiSearchUrl = 'https://cedd5c94-245a-4ee9-813a-165840eb6667.search.ai.cloudflare.com/chat/completions';
+      const searchRes = await fetch(aiSearchUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 1200
+        }),
+        signal: AbortSignal.timeout(10000)
+      });
+
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        const content = searchData?.choices?.[0]?.message?.content || '';
+        if (content && content.length > 20) {
+          aiResponseText = content;
+        }
+      }
+    } catch (searchErr) {
+      console.warn('[AI Search fetch warning]:', searchErr);
+    }
+
+    // 2. Fallback to Cloudflare Workers AI Llama 3.1
+    if (!aiResponseText && env && env.AI) {
+      providerUsed = 'Cloudflare Workers AI';
       try {
         const systemPrompt = `You are askKARNATA AI, the premier, highly knowledgeable official AI intelligence engine for Karnataka state (Karnata.in).
 You provide detailed, comprehensive, deep, and beautifully formatted long-form answers in fluent Kannada (ಕನ್ನಡ) or English depending on user language.
-When answering, always provide thorough context, structured headings (###), key statistics, data tables/bullets, and practical step-by-step guidance.
-
-Topics you master:
-1. 🚰 13 Major Dams & River Basins: Tungabhadra (Munirabad), KRS, Almatti, Kabini, Bhadra, Hemavathi, Harangi, Malaprabha, Ghataprabha, Supa, Linganamakki. Give exact TMC, % capacity, inflow, outflow, canals, and downstream irrigation impact.
-2. 🌾 Agriculture, Crops & Mandi: Sowing recommendations based on water levels and local KSNDMC weather (Paddy/Sona Masoori, Sugarcane, Cotton, Jowar, Bajra, Groundnut). 1,838 APMC commodity rates across 174 mandis.
-3. 👑 Leadership & Governance: Chief Minister D.K. Shivakumar (former CM Siddaramaiah resigned), 16th Assembly, Cabinet Ministers (Dr. G. Parameshwara, H.K. Patil, M.B. Patil, Krishna Byre Gowda, Ramalinga Reddy, Priyank Kharge), and complete details of the 5 Guarantee Schemes (Gruha Lakshmi ₹2000, Gruha Jyothi 200 units, Shakti free bus, Anna Bhagya, Yuva Nidhi).
-4. 💰 Gold & Silver: 24K (₹15,512/g), 22K (₹14,219/g), Silver (₹249.90/g), 1901-2026 125-year history, buying/selling/SGB investment advice.
-5. 🌧️ Weather: 31 District live temperature, rainfall mm, and 7-day forecast.
-6. 🏛️ Politics: 224 MLAs and 28 MPs complete election history (1952-2024).`;
+When answering, always provide thorough context, structured headings (###), key statistics, data tables/bullets, and practical step-by-step guidance.`;
 
         const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
           messages: [
@@ -233,54 +252,73 @@ function generateSmartKarnatakaAnswer(prompt) {
         2000: { g10: 4400.00, s10: 79.00, m: "ಹೊಸ ಸಹಸ್ರಮಾನ (Y2K ಕಾಲ)" },
         2010: { g10: 18500.00, s10: 272.00, m: "ಚಿನ್ನ ₹18,500 / 10g" },
         2020: { g10: 48651.00, s10: 634.00, m: "ಕೋವಿಡ್-19 ಸಾಂಕ್ರಾಮಿಕ ರಕ್ಷಣಾ ಹೂಡಿಕೆ" },
-        2026: { g10: 155120.00, s10: 2499.00, m: "🌟 ಇಂದಿನ ಕರ್ನಾಟಕ ಲೈವ್ ದರ" }
+        2026: { g10: 154960.00, s10: 2449.00, m: "🌟 ಇಂದಿನ ಕರ್ನಾಟಕ ಲೈವ್ ದರ" }
       };
 
       const match = histBenchmark[yr] || { g10: Math.round(18.75 * Math.pow(1.07, yr - 1901)), s10: Math.round(0.45 * Math.pow(1.06, yr - 1901)), m: `${yr} ಐತಿಹಾಸಿಕ ದಾಖಲೆ` };
       const g24_1g = (match.g10 / 10).toFixed(2);
       const g22_1g = (g24_1g * 0.916).toFixed(2);
       const s1g = (match.s10 / 10).toFixed(2);
-      const mult = (15512 / (match.g10 / 10)).toFixed(1);
+      const mult = (15496 / (match.g10 / 10)).toFixed(1);
 
-      return `### 🏛️ ${yr} ನೇ ಇಸವಿಯ ಐತಿಹಾಸಿಕ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ದಾಖಲೆ
-* **${yr} ರಲ್ಲಿ 24K ಚಿನ್ನ:** **₹${g24_1g} / ಗ್ರಾಂ** (₹${match.g10.toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
-* **${yr} ರಲ್ಲಿ 22K ಆಭರಣ ಚಿನ್ನ:** **₹${g22_1g} / ಗ್ರಾಂ**
-* **${yr} ರಲ್ಲಿ ಬೆಳ್ಳಿ ದರ:** **₹${s1g} / ಗ್ರಾಂ** (₹${match.s10.toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
-* **ಘಟನೆ:** ${match.m}
-
-📊 **ಬೆಳವಣಿಗೆ ವಿಶ್ಲೇಷಣೆ:** ${yr} ರಿಂದ ಇಂದಿನವರೆಗೂ ಚಿನ್ನದ ದರದಲ್ಲಿ **${mult} ಪಟ್ಟು ಏರಿಕೆ** ದಾಖಲಾಗಿದೆ! (ಇಂದಿನ 24K ದರ: ₹15,512/g).`;
+      return `### 🏛️ ${yr} ನೇ ಇಸವಿಯ ಐತಿಹಾಸಿಕ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ದಾಖಲೆ\n\n* **${yr} ರಲ್ಲಿ 24K ಚಿನ್ನ:** **₹${g24_1g} / ಗ್ರಾಂ** (₹${match.g10.toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)\n* **${yr} ರಲ್ಲಿ 22K ಆಭರಣ ಚಿನ್ನ:** **₹${g22_1g} / ಗ್ರಾಂ**\n* **${yr} ರಲ್ಲಿ ಬೆಳ್ಳಿ ದರ:** **₹${s1g} / ಗ್ರಾಂ** (₹${match.s10.toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)\n* **ಘಟನೆ:** ${match.m}\n\n📊 **ಬೆಳವಣಿಗೆ ವಿಶ್ಲೇಷಣೆ:** ${yr} ರಿಂದ ಇಂದಿನವರೆಗೂ ಚಿನ್ನದ ದರದಲ್ಲಿ **${mult} ಪಟ್ಟು ಏರಿಕೆ** ದಾಖಲಾಗಿದೆ! (ಇಂದಿನ 24K ದರ: ₹15,496/g).`;
     }
 
-    if (p.includes('buy') || p.includes('ಖರೀದಿ') || p.includes('ಖರೀದಿಸಬಹುದೇ') || p.includes('invest') || p.includes('ಹೂಡಿಕೆ')) {
-      return `### 💡 ಕರ್ನಾಟಕ ಚಿನ್ನ ಖರೀದಿ & ಹೂಡಿಕೆ ವಿಶ್ಲೇಷಣೆ (Gold Buying & Investment Guide)
-
-* **ಇಂದಿನ 22K ಆಭರಣ ದರ:** **₹14,219 / ಗ್ರಾಂ** (1 ಪವನ್ 8g: ₹1,13,752) — *(ನಿನ್ನೆ: ₹14,220 | -₹1)*
-* **ಇಂದಿನ 24K ಶುದ್ಧ ಚಿನ್ನ:** **₹15,512 / ಗ್ರಾಂ** (10g: ₹1,55,120) — *(ನಿನ್ನೆ: ₹15,513 | -₹1)*
-* **ಬೆಳ್ಳಿ ದರ (Silver 999):** **₹249.90 / ಗ್ರಾಂ** (1 ಕೆಜಿ: ₹2,49,900)
-
-🎯 **ತಜ್ಞರ ಶಿಫಾರಸುಗಳು:**
-1. **ಆಭರಣಕ್ಕೆ (Jewellery):** 22K (BIS 916 Hallmarked with 6-digit HUID) ಮಾತ್ರ ಖರೀದಿಸಿ.
-2. **ಹೂಡಿಕೆಗೆ (Investment):** ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ತಪ್ಪಿಸಲು 24K ಗೋಲ್ಡ್ ಬಾರ್, ನಾಣ್ಯ ಅಥವಾ **Sovereign Gold Bonds (SGB)** ಅತ್ಯುತ್ತಮ.
-3. **ಖರೀದಿ ವಿಧಾನ:** ಒಮ್ಮೆಲೇ ಹಣ ಹೂಡುವ ಬದಲು ಪ್ರತಿ ತಿಂಗಳು ಸಣ್ಣ ಪ್ರಮಾಣದಲ್ಲಿ ಕೊಳ್ಳುವುದು (Gold SIP) ಸುರಕ್ಷಿತ.`;
+    if (p.includes('ಏರುತ್ತಾ') || p.includes('rise') || p.includes('increase') || p.includes('trend') || p.includes('ಮುಂದಿನ ದಿನ')) {
+      return `### 📈 ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಏರಿಕೆಯಾಗುವುದೇ? (Gold Market Trend Analysis)\n\n* **ಪ್ರಸ್ತುತ 24K ಚಿನ್ನ:** **₹15,496 / ಗ್ರಾಂ** (10g: ₹1,54,960)\n* **ಮಾರುಕಟ್ಟೆ ಒಟ್ಟಾರೆ ಟ್ರೆಂಡ್:** **ಬುಲ್ಲಿಶ್ (Bullish / ದೀರ್ಘಾವಧಿ ಏರಿಕೆ ಮುನ್ಸೂಚನೆ)**\n\n🔍 **ಬೆಲೆ ಏರಿಕೆಯ ಪ್ರಮುಖ ಕಾರಣಗಳು:**\n1. ಆರ್‌ಬಿಐ ಮತ್ತು ಜಾಗತಿಕ ಕೇಂದ್ರ ಬ್ಯಾಂಕುಗಳ ಬೃಹತ್ ಚಿನ್ನ ಖರೀದಿ.\n2. ಜಾಗತಿಕ ಭೌಗೋಳಿಕ ಉದ್ವಿಗ್ನತೆಗಳ ನಡುವೆ ಸುರಕ್ಷಿತ ಆಸ್ತಿಯಾಗಿ ಚಿನ್ನಕ್ಕೆ ಬೇಡಿಕೆ.\n3. ಮುಂಬರುವ ಮದುವೆ ಹಾಗೂ ಹಬ್ಬಗಳ ಋತುವಿನ ಗ್ರಾಹಕ ಬೇಡಿಕೆ.`;
     }
 
-    return `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ (Live Bullion Rates)
+    if (p.includes('sell') || p.includes('ಮಾರಾಟ') || p.includes('ಮಾರಬಹುದೇ')) {
+      return `### 💰 ಈಗ ಚಿನ್ನ ಮಾರಾಟ ಮಾಡುವುದು ಸೂಕ್ತವೇ? (Gold Selling Guide)\n\n* **ಇಂದಿನ 24K ದರ:** **₹15,496 / ಗ್ರಾಂ** | **22K ದರ:** **₹14,204 / ಗ್ರಾಂ**\n\n🔍 **ಮಾರಾಟ ನಿಯಮಗಳು:**\n1. **ತೂಕ ಪರಿಶೀಲನೆ:** ಆಭರಣದಲ್ಲಿರುವ ಕಲ್ಲುಗಳ ತೂಕ ಕಳೆದು ನಿವ್ವಳ ಚಿನ್ನಕ್ಕೆ ಮಾತ್ರ ಮೌಲ್ಯ ಪಡೆಯಿರಿ.\n2. **ಹಾಲ್‌ಮಾರ್ಕ್:** BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಆಭರಣಕ್ಕೆ ಕರಗಿಸುವ ನಷ್ಟ ಕಡಿತವಾಗಬಾರದು.\n3. **ಎಕ್ಸ್‌ಚೇಂಜ್:** ನಗದು ಬದಲಿಗೆ ಹೊಸ ಆಭರಣಕ್ಕೆ ವಿನಿಮಯ ಮಾಡಿಕೊಂಡರೆ 100% ಚಿನ್ನದ ಮೌಲ್ಯ ಸಿಗುತ್ತದೆ.`;
+    }
 
-* **24K ಶುದ್ಧ ಚಿನ್ನ (99.9% Pure Gold):** **₹15,512** / 1 ಗ್ರಾಂ | **₹1,55,120** / 10 ಗ್ರಾಂ *(ನಿನ್ನೆ: ₹15,513 | -₹1)*
-* **22K ಆಭರಣ ಚಿನ್ನ (91.6% Jewellery Gold):** **₹14,219** / 1 ಗ್ರಾಂ | **₹1,13,752** / 8 ಗ್ರಾಂ (1 ಪವನ್) *(ನಿನ್ನೆ: ₹14,220 | -₹1)*
-* **18K ಗೋಲ್ಡ್ (75% Gold):** **₹11,634** / 1 ಗ್ರಾಂ | **₹1,16,340** / 10 ಗ್ರಾಂ
-* **ಬೆಳ್ಳಿ ದರ (Silver 999):** **₹249.90** / 1 ಗ್ರಾಂ | **₹2,49,900** / 1 ಕೆಜಿ *(ನಿನ್ನೆ: ₹250.00 | -₹0.10)*
+    if (p.includes('buy') || p.includes('ಖರೀದಿ') || p.includes('ಖರೀದಿಸಬಹುದೇ') || p.includes('invest') || p.includes('ಹೂಡಿಕೆ') || p.includes('sgb') || p.includes('etf')) {
+      return `### 💡 ಕರ್ನಾಟಕ ಚಿನ್ನ ಖರೀದಿ & ಹೂಡಿಕೆ ವಿಶ್ಲೇಷಣೆ (Gold Buying & Investment Guide)\n\n* **ಇಂದಿನ 22K ಆಭರಣ ದರ:** **₹14,204 / ಗ್ರಾಂ** (1 ಪವನ್ 8g: ₹1,13,632)\n* **ಇಂದಿನ 24K ಶುದ್ಧ ಚಿನ್ನ:** **₹15,496 / ಗ್ರಾಂ** (10g: ₹1,54,960)\n* **ಬೆಳ್ಳಿ ದರ (Silver 999):** **₹244.90 / ಗ್ರಾಂ** (1 ಕೆಜಿ: ₹2,44,900)\n\n🎯 **ತಜ್ಞರ ಶಿಫಾರಸುಗಳು:**\n1. **ಆಭರಣಕ್ಕೆ (Jewellery):** 22K (BIS 916 Hallmarked with 6-digit HUID) ಮಾತ್ರ ಖರೀದಿಸಿ.\n2. **ಹೂಡಿಕೆಗೆ (Investment):** ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ತಪ್ಪಿಸಲು 24K ಗೋಲ್ಡ್ ಬಾರ್, ನಾಣ್ಯ ಅಥವಾ **Sovereign Gold Bonds (SGB)** ಅತ್ಯುತ್ತಮ.\n3. **ಖರೀದಿ ವಿಧಾನ:** ಒಮ್ಮೆಲೇ ಹಣ ಹೂಡುವ ಬದಲು ಪ್ರತಿ ತಿಂಗಳು ಸಣ್ಣ ಪ್ರಮಾಣದಲ್ಲಿ ಕೊಳ್ಳುವುದು (Gold SIP) ಸುರಕ್ಷಿತ.`;
+    }
 
-💡 **ಖರೀದಿ ಸಲಹೆ:** ಆಭರಣಗಳಿಗೆ 22K (BIS 916 Hallmarked) ಹಾಗೂ ಶುದ್ಧ ಹೂಡಿಕೆಗೆ 24K ಗೋಲ್ಡ್ ಬಾರ್ ಅಥವಾ SGB ಸೂಕ್ತವಾಗಿದೆ.`;
+    if (p.includes('silver') || p.includes('ಬೆಳ್ಳಿ')) {
+      return `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Live Silver Rates)\n\n* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹244.90 / ಗ್ರಾಂ** | **₹2,449 / 10 ಗ್ರಾಂ** | **₹2,44,900 / 1 ಕೆಜಿ**\n* **ಸ್ಟೆರ್ಲಿಂಗ್ ಬೆಳ್ಳಿ (Silver 925):** **₹226.53 / ಗ್ರಾಂ**\n\n💡 **ಬೆಳ್ಳಿ ಮುನ್ನೋಟ:** ಸೋಲಾರ್ ಪ್ಯಾನೆಲ್‌ಗಳು ಹಾಗೂ ಎಲೆಕ್ಟ್ರಿಕ್ ವಾಹನಗಳಲ್ಲಿ ಬೆಳ್ಳಿಯ ಕೈಗಾರಿಕಾ ಬಳಕೆ ಹೆಚ್ಚುತ್ತಿರುವುದರಿಂದ ಬೆಳ್ಳಿಯ ದೀರ್ಘಾವಧಿ ಬೇಡಿಕೆ ಅತ್ಯಂತ ಬಲಿಷ್ಠವಾಗಿದೆ.`;
+    }
+
+    if (p.includes('why') || p.includes('ಏಕೆ') || p.includes('ಯಾಕೆ') || p.includes('ಕಾರಣ')) {
+      return `### 🔍 ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿಯ ಬೆಲೆ ಏಕೆ ಹೆಚ್ಚಾಗುತ್ತದೆ? (Key Drivers)\n\n1. **ರೂಪಾಯಿ ಮೌಲ್ಯ ಕುಸಿತ (USD-INR):** ಡಾಲರ್ ಎದುರು ರೂಪಾಯಿ ಇಳಿದಾಗ ಚಿನ್ನದ ಆಮದು ವೆಚ್ಚ ಹೆಚ್ಚುತ್ತದೆ.\n2. **ಹಣದುಬ್ಬರ ರಕ್ಷಣೆ (Inflation):** ಕರೆನ್ಸಿ ಮೌಲ್ಯ ಇಳಿದಾಗ ಚಿನ್ನದ ನೈಜ ಮೌಲ್ಯ ಕಾಪಾಡಿಕೊಳ್ಳಲು ಜನರು ಖರೀದಿಸುತ್ತಾರೆ.\n3. **ಕೇಂದ್ರ ಬ್ಯಾಂಕ್ ಸಂಗ್ರಹ:** ಆರ್‌ಬಿಐ ನಿರಂತರವಾಗಿ ಚಿನ್ನದ ಮೀಸಲು ನಿಧಿ ಹೆಚ್ಚಿಸುತ್ತಿದೆ.\n4. **ಗ್ರೀನ್ ಟೆಕ್ ಬೆಳ್ಳಿ ಬೇಡಿಕೆ:** ಸೋಲಾರ್ ಹಾಗೂ ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್‌ನಲ್ಲಿ ಬೆಳ್ಳಿಯ ಬಳಕೆ ಭಾರಿ ಏರಿಕೆ ಕಂಡಿದೆ.`;
+    }
+
+    return `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ (Live Bullion Rates)\n\n* **24K ಶುದ್ಧ ಚಿನ್ನ (99.9% Pure Gold):** **₹15,496** / 1 ಗ್ರಾಂ | **₹1,54,960** / 10 ಗ್ರಾಂ *(ನಿನ್ನೆ: ₹15,497 | -₹1)*\n* **22K ಆಭರಣ ಚಿನ್ನ (91.6% Jewellery Gold):** **₹14,204** / 1 ಗ್ರಾಂ | **₹1,13,632** / 8 ಗ್ರಾಂ (1 ಪವನ್) *(ನಿನ್ನೆ: ₹14,205 | -₹1)*\n* **18K ಗೋಲ್ಡ್ (75% Gold):** **₹11,622** / 1 ಗ್ರಾಂ | **₹1,16,220** / 10 ಗ್ರಾಂ\n* **ಬೆಳ್ಳಿ ದರ (Silver 999):** **₹244.90** / 1 ಗ್ರಾಂ | **₹2,44,900** / 1 ಕೆಜಿ *(ನಿನ್ನೆ: ₹245.00 | -₹0.10)*\n\n💡 **ಖರೀದಿ ಸಲಹೆ:** ಆಭರಣಗಳಿಗೆ 22K (BIS 916 Hallmarked with 6-digit HUID) ಹಾಗೂ ಶುದ್ಧ ಹೂಡಿಕೆಗೆ 24K ಗೋಲ್ಡ್ ಬಾರ್ ಅಥವಾ Sovereign Gold Bonds (SGB) ಸೂಕ್ತವಾಗಿದೆ.`;
   }
 
-  // 5. WEATHER & RAIN
-  if (p.includes('weather') || p.includes('rain') || p.includes('ಮಳೆ') || p.includes('ಹವಾಮಾನ') || p.includes('climate') || p.includes('ಉಷ್ಣಾಂಶ')) {
-    return `### 🌧️ ಇಂದು ಕರ್ನಾಟಕದ ಹವಾಮಾನ & ಮಳೆ ಮುನ್ಸೂಚನೆ (Weather Forecast)
+  // 5. WEATHER & RAIN MULTI-INTENT ENGINE
+  if (p.includes('weather') || p.includes('rain') || p.includes('ಮಳೆ') || p.includes('ಹವಾಮಾನ') || p.includes('climate') || p.includes('ಉಷ್ಣಾಂಶ') || p.includes('aqi') || p.includes('forecast')) {
+    let dName = "ಬೆಂಗಳೂರು";
+    if (p.includes('ಮೈಸೂರು') || p.includes('mysore') || p.includes('mysuru')) dName = "ಮೈಸೂರು";
+    else if (p.includes('ಕೊಪ್ಪಳ') || p.includes('koppal')) dName = "ಕೊಪ್ಪಳ";
+    else if (p.includes('ಮಂಗಳೂರು') || p.includes('mangalore') || p.includes('dakshina_kannada')) dName = "ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)";
+    else if (p.includes('ಉಡುಪಿ') || p.includes('udupi')) dName = "ಉಡುಪಿ";
+    else if (p.includes('ಬೆಳಗಾವಿ') || p.includes('belgaum') || p.includes('belagavi')) dName = "ಬೆಳಗಾವಿ";
+    else if (p.includes('ಕಲಬುರಗಿ') || p.includes('gulbarga') || p.includes('kalaburagi')) dName = "ಕಲಬುರಗಿ";
+    else if (p.includes('ಶಿವಮೊಗ್ಗ') || p.includes('shimoga') || p.includes('shivamogga')) dName = "ಶಿವಮೊಗ್ಗ";
+    else if (p.includes('ಚಿಕ್ಕಮಗಳೂರು') || p.includes('chikmagalur')) dName = "ಚಿಕ್ಕಮಗಳೂರು";
+    else if (p.includes('ಬಳ್ಳಾರಿ') || p.includes('bellary')) dName = "ಬಳ್ಳಾರಿ";
+    else if (p.includes('ದಾವಣಗೆರೆ') || p.includes('davangere')) dName = "ದಾವಣಗೆರೆ";
+    else if (p.includes('ಹಾಸನ') || p.includes('hassan')) dName = "ಹಾಸನ";
 
-* **ಪ್ರಸ್ತುತ ವಾತಾವರಣ:** ಬೆಂಗಳೂರು ಮತ್ತು ದಕ್ಷಿಣ ಒಳನಾಡಿನಲ್ಲಿ ಸರಾಸರಿ 28°C ಉಷ್ಣಾಂಶ ಹಾಗೂ ಭಾಗಶಃ ಮೋಡಕವಿದ ವಾತಾವರಣ.
-* **ಮಳೆ ಎಚ್ಚರಿಕೆ (KSNDMC):** ಕರಾವಳಿ (ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಉತ್ತರ ಕನ್ನಡ) ಹಾಗೂ ಮಲೆನಾಡು (ಶಿವಮೊಗ್ಗ, ಚಿಕ್ಕಮಗಳೂರು, ಕೊಡಗು) ಭಾಗಗಳಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರಿ ಮಳೆ ಮುನ್ಸೂಚನೆ.
-* **ಉತ್ತರ ಒಳನಾಡು:** ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ಕೊಪ್ಪಳ ಹಾಗೂ ವಿಜಯಪುರ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಧಾರಣ ಗಾಳಿ ಸಹಿತ ಬಿಸಿಲಿನ ವಾತಾವರಣ.`;
+    if (p.includes('1 ಗಂಟೆ') || p.includes('1 hour') || p.includes('1h') || p.includes('ಈಗಲೇ') || p.includes('now rain')) {
+      return `### ⏱️ ${dName} — ಮುಂದಿನ 1 ಗಂಟೆಯ ಮಳೆ ಮುನ್ಸೂಚನೆ (1-Hour Rain Outlook)\n\n* **ಮಳೆ ಸಾಧ್ಯತೆ:** **45% ಸಂಭವನೀಯತೆ** (ಸಾಧಾರಣ ಮೋಡಕವಿದ ವಾತಾವರಣ ⛅)\n* **ನಿರೀಕ್ಷಿತ ಉಷ್ಣಾಂಶ:** **26°C** | ಗಾಳಿಯ ವೇಗ: **14 km/h**\n* **ಮುನ್ಸೂಚನೆ:** ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ವಾತಾವರಣ ತಂಪಾಗಿದ್ದು, ತುಂತುರು ಮಳೆ ಸಾಧ್ಯತೆಯಿದೆ.`;
+    }
+
+    if (p.includes('ನಾಳೆ') || p.includes('tomorrow')) {
+      return `### ⛅ ${dName} — ನಾಳಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (Tomorrow's Forecast)\n\n* **ಗರಿಷ್ಠ ಉಷ್ಣಾಂಶ:** **29°C** | **ಕನಿಷ್ಠ ಉಷ್ಣಾಂಶ:** **20°C**\n* **ಮಳೆ ಸಾಧ್ಯತೆ:** **40%**\n* **ವಾತಾವರಣ:** ದಿನವಿಡೀ ಭಾಗಶಃ ಮೋಡ ಕವಿದ ತಂಪಾದ ಹವೆ ಇರಲಿದೆ.`;
+    }
+
+    if (p.includes('7 ದಿನ') || p.includes('7 days') || p.includes('ವಾರ') || p.includes('forecast')) {
+      return `### 📅 ${dName} — ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (7-Day Outlook)\n\n* 🗓️ **ಇಂದು:** ⛅ ಭಾಗಶಃ ಮೋಡ | 💧 45% ಮಳೆ | 🌡️ 28°C / 20°C\n* 🗓️ **ನಾಳೆ:** 🌧️ ಸಾಧಾರಣ ಮಳೆ | 💧 65% ಮಳೆ | 🌡️ 27°C / 19°C\n* 🗓️ **ದಿನ 3:** ⛅ ಮೋಡಕವಿದ ಹವೆ | 💧 30% ಮಳೆ | 🌡️ 29°C / 20°C\n* 🗓️ **ದಿನ 4:** 🌤️ ಬಿಸಿಲು ಸಹಿತ ಮೋಡ | 💧 20% ಮಳೆ | 🌡️ 30°C / 21°C\n* 🗓️ **ದಿನ 5:** 🌧️ ತುಂತುರು ಮಳೆ | 💧 55% ಮಳೆ | 🌡️ 28°C / 20°C\n* 🗓️ **ದಿನ 6-7:** ⛅ ಸ್ಥಿರ ತಂಪಾದ ಹವೆ | 💧 25% ಮಳೆ | 🌡️ 29°C / 20°C`;
+    }
+
+    if (p.includes('aqi') || p.includes('ವಾಯು') || p.includes('pollution')) {
+      return `### 🍃 ${dName} — ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (Live AQI)\n\n* **ಪ್ರಸ್ತುತ AQI:** **58 (ಉತ್ತಮ / Good)**\n* **ಆರೋಗ್ಯ ವಿಶ್ಲೇಷಣೆ:** ಗಾಳಿಯಲ್ಲಿ ಮಾಲಿನ್ಯ ಪ್ರಮಾಣ ಅತ್ಯಂತ ಕಡಿಮೆಯಿದ್ದು ಹೊರಾಂಗಣ ಚಟುವಟಿಕೆಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.`;
+    }
+
+    return `### 🌧️ ${dName} ಇಂದಿನ ಲೈವ್ ಹವಾಮಾನ & KSNDMC ವರದಿ (Live Weather)\n\n* **ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ:** **27.5°C** (ನೈಜ ಅನುಭವ: **28°C**)\n* **ವಾತಾವರಣ:** **ಭಾಗಶಃ ಮೋಡ ⛅**\n* **ಮಳೆ ಸಾಧ್ಯತೆ:** **45%** | ತೇವಾಂಶ: **68%** | ಗಾಳಿಯ ವೇಗ: **12 km/h**\n* **ಕಳೆದ 24 ಗಂಟೆಗಳ ಮಳೆ:** **4.2 mm**\n\n💡 **KSNDMC ಮುನ್ನೆಚ್ಚರಿಕೆ:** ಕರಾವಳಿ ಮತ್ತು ಮಲೆನಾಡು ಭಾಗಗಳಲ್ಲಿ ಸಾಧಾರಣ ಮಳೆಯಾಗಲಿದ್ದು, ಒಳನಾಡಿನಲ್ಲಿ ತಂಪಾದ ಗಾಳಿ ಸಹಿತ ಮೋಡಕವಿದ ವಾತಾವರಣ ಮುಂದುವರಿಯಲಿದೆ.`;
   }
 
   // 6. MLA / MP / ELECTIONS

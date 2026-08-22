@@ -287,8 +287,6 @@ button { cursor: pointer; font-family: inherit; border: none; outline: none; }
 </head>
 <body>
 
-<script src="/nav-component.js"></script>
-
 <header class="story-hero">
   <div class="hero-inner">
     <span class="hero-tag">✨ ಕರ್ನಾಟ ವಿಶೇಷ ವಿಭಾಗ</span>
@@ -360,7 +358,7 @@ async function loadStories() {
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data.articles)) {
-        stories = data.articles.filter(a => a.status === 'published' || !a.status);
+        stories = data.articles.filter(a => (a.status === 'published' || !a.status) && a.id !== 'karnataka-cabinet-ministers-portfolio-list' && a.id !== 'bengaluru-metro-phase-2b-traffic-rules');
       }
     }
   } catch (e) {
@@ -369,7 +367,11 @@ async function loadStories() {
 
   // Check localStorage drafts/published from CMS admin
   try {
-    const local = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const oldLocal = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
+    const local = oldLocal.filter(a => a.id !== 'karnataka-cabinet-ministers-portfolio-list' && a.id !== 'bengaluru-metro-phase-2b-traffic-rules');
+    if (local.length !== oldLocal.length) {
+      localStorage.setItem('nk_cms_articles', JSON.stringify(local));
+    }
     if (Array.isArray(local) && local.length > 0) {
       local.forEach(l => {
         if (l.status === 'published' && !stories.some(s => s.id === l.id || s.slug === l.slug)) {
@@ -424,13 +426,21 @@ function renderStories() {
     const summary = story.summary_kn || story.summary || 'ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಬೆಳವಣಿಗೆಯ ಕುರಿತ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ ವಿವರ.';
     const category = getCategoryName(story.category);
     const author = story.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
-    const time = timeAgo(story.updated_at || story.created_at);
     const slug = story.slug || story.id;
-    const url = `/news/article.html?id=${encodeURIComponent(slug)}`;
+    const time = timeAgo(story.updated_at || story.created_at);
+    const catSlug = (story.category || 'special').toLowerCase().replace(/\s+/g, '-');
+    const url = `/news/${catSlug}/${encodeURIComponent(slug)}`;
+    const img = story.cover_image || story.image || story.thumbnail || story.hero_image || null;
+
+    const thumbHtml = img ? `
+      <div style="margin:-24px -24px 16px -24px; height:180px; overflow:hidden; border-radius:16px 16px 0 0; background:#E2E8F0;">
+        <img src="${img}" alt="${title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.style.display='none'">
+      </div>` : '';
 
     return `
       <div class="story-card">
         <div>
+          ${thumbHtml}
           <div class="story-meta-top">
             <span class="badge-category">${category}</span>
             <span class="badge-time">⏱️ ${time}</span>
@@ -464,5 +474,40 @@ function handleSearch(q) {
 // Initial Load
 loadStories();
 </script>
+
+<!-- ══ SITE FOOTER ══════════════════════════════════════ -->
+<footer class="site-footer" style="background:#0F172A; color:#94A3B8; padding:48px 20px 32px; font-family:'Anek Kannada',sans-serif; margin-top:60px; border-top:4px solid #E11D48;">
+  <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:32px;">
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#FFF; margin-bottom:12px;">ಕರ್ನಾಟ (Karnata.in)</div>
+      <p style="font-size:13.5px; line-height:1.7; color:#CBD5E1;">ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು, ಶಾಸಕರು, ಸಂಸದರು, ಸಜೀವ APMC ಕೃಷಿ ದರಗಳು, ಚಿನ್ನ-ಇಂಧನ ಬೆಲೆಗಳು ಹಾಗೂ ಸುದ್ದಿ ಮಾಹಿತಿಯ ಅಧಿಕೃತ ಮುಕ್ತ ಡಿಜಿಟಲ್ ವೇದಿಕೆ.</p>
+    </div>
+    <div>
+      <div style="font-size:16px; font-weight:800; color:#FFF; margin-bottom:14px;">📍 ಜಿಲ್ಲೆಗಳು & ಸೇವೆಗಳು</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13.5px;">
+        <a href="/karnataka-local-news.html" style="color:#CBD5E1; text-decoration:none;">📰 31 ಜಿಲ್ಲಾ ಲೈವ್ ಸುದ್ದಿ</a>
+        <a href="/karnataka-stories.html" style="color:#CBD5E1; text-decoration:none;">✨ ವಿಶೇಷ ಲೇಖನಗಳು</a>
+        <a href="/gold-rate.html" style="color:#CBD5E1; text-decoration:none;">🥇 ಇಂದಿನ ಚಿನ್ನದ ಬೆಲೆ</a>
+        <a href="/petrol-price.html" style="color:#CBD5E1; text-decoration:none;">⛽ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ</a>
+        <a href="/apmc-prices.html" style="color:#CBD5E1; text-decoration:none;">🌾 APMC ಕೃಷಿ ದರಗಳು</a>
+        <a href="/dam-levels.html" style="color:#CBD5E1; text-decoration:none;">💧 ಜಲಾಶಯಗಳ ನೀರು</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:16px; font-weight:800; color:#FFF; margin-bottom:14px;">📜 ನೀತಿಗಳು & ನಿಯಮಗಳು</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13.5px;">
+        <a href="/about.html" style="color:#CBD5E1; text-decoration:none;">ℹ️ ನಮ್ಮ ಬಗ್ಗೆ (About Us)</a>
+        <a href="/contact.html" style="color:#CBD5E1; text-decoration:none;">✉️ ಸಂಪರ್ಕಿಸಿ (Contact Us)</a>
+        <a href="/privacy-policy.html" style="color:#CBD5E1; text-decoration:none;">🔒 ಖಾಸಗೀತಾ ನೀತಿ (Privacy Policy)</a>
+        <a href="/terms.html" style="color:#CBD5E1; text-decoration:none;">📜 ನಿಯಮಗಳು & ಷರತ್ತುಗಳು (Terms)</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px; margin:32px auto 0; padding-top:20px; border-top:1px solid #1E293B; text-align:center; font-size:13px; color:#64748B;">
+    © 2026 Karnata.in (ಕರ್ನಾಟ) — Universe of Karnataka. All Rights Reserved.
+  </div>
+</footer>
+
+<script src="/nav-component.js" defer></script>
 </body>
 </html>

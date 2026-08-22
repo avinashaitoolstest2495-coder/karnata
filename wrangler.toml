@@ -6,6 +6,14 @@ pages_build_output_dir = "."
 [ai]
 binding = "AI"
 
+[[kv_namespaces]]
+binding = "NK_DATA"
+id = "e8bb97f5898245daacfd93aa560586ab"
+
+[[kv_namespaces]]
+binding = "TRANSFERS_KV"
+id = "e8bb97f5898245daacfd93aa560586ab"
+
 [vars]
 ENVIRONMENT = "production"
 SITE_NAME = "Karnata — Universe of Karnataka"

@@ -1,37 +1,51 @@
-const CACHE_NAME = 'karnata-v1-shell';
-const SHELL_ASSETS = [
-  '/',
-  '/index.html',
-  '/karnata-theme.css',
-  '/data-loader.js',
-  '/js/engine/karnata-smart-engine.js'
-];
+const CACHE_NAME = 'karnata-v2026-fresh-v3';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)).catch(() => {})
-  );
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.map((key) => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  // Network-first for freshness, falling back to cache if offline
+  const url = event.request.url;
+
+  // NEVER cache HTML pages, API, Data JSON, or Admin/Officers routes!
+  if (
+    url.includes('.html') ||
+    url.includes('/officers') ||
+    url.includes('/admin') ||
+    url.includes('/api/') ||
+    url.includes('/data/') ||
+    url.includes('/districts/') ||
+    url.includes('district-notification-engine') ||
+    url.includes('/cms') ||
+    url.includes('/studio')
+  ) {
+    // Pass straight to live network without caching
+    return;
+  }
+
+  // Always fetch live from network
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(event.request, { cache: 'no-store' }).catch(() => caches.match(event.request))
   );
 });
 
 self.addEventListener('push', (event) => {
   let data = {
-    title: '🚨 ಕರ್ನಾಟಕ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ — KSNDMC Alert',
-    body: 'ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೊಡಗು ಮತ್ತು ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಭಾರೀ ಮಳೆ ಮುನ್ಸೂಚನೆ.',
-    icon: '/karnata-logo.png',
-    url: '/weather.html'
+    title: '🚨 ಕರ್ನಾಟಕ ನೈಜ-ಸಮಯ ಅಲರ್ಟ್ — Karnata.in',
+    body: 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ನೂತನ ಪ್ರಮುಖ ಅಧಿಸೂಚನೆ.',
+    icon: '/favicon.ico',
+    url: '/officers.html?tab=transfers'
   };
 
   if (event.data) {
@@ -44,10 +58,10 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: data.body,
-    icon: data.icon || '🌧️',
+    icon: data.icon || '🏛️',
     badge: '🚨',
     vibrate: [200, 100, 200],
-    data: { url: data.url || '/weather.html' }
+    data: { url: data.url || '/officers.html?tab=transfers' }
   };
 
   event.waitUntil(
@@ -57,7 +71,7 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const urlToOpen = event.notification.data?.url || '/weather.html';
+  const urlToOpen = event.notification.data?.url || '/officers.html?tab=transfers';
 
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {

@@ -202,31 +202,39 @@ def run() -> dict:
                          f"{dams[key]['storage_tmc']}/{dams[key]['max_storage_tmc']} TMC | "
                          f"in={dams[key]['inflow_cusecs']} out={dams[key]['outflow_cusecs']}")
 
-    # Fill any missing dam from the strictly allowed 13 list
+    # Fill any missing dam from the strictly allowed 13 list using existing live cache first
+    from utils import load_json
+    existing_dam_data = load_json("dam_levels.json", {}).get("dams", {})
+
     for key in ALLOWED_DAMS:
         if key not in dams:
-            meta = DAM_META.get(key, {})
-            fb   = FALLBACK_DAMS.get(key, {})
-            cap  = DESIGN_CAPACITIES.get(key, 50.0)
-            pct  = fb.get("pct", 70.0)
-            present = fb.get("present", round(pct * cap / 100, 2))
-            dams[key] = {
-                "id":            key,
-                "key":           key,
-                **meta,
-                "storage_pct":   pct,
-                "storage_tmc":   present,
-                "present_storage_tmc": present,
-                "max_storage_tmc": cap,
-                "design_capacity": cap,
-                "inflow_cusecs": fb.get("inflow", 0),
-                "outflow_cusecs":fb.get("outflow", 0),
-                "level_ft":      fb.get("level", 0),
-                "date":          ist_date(),
-                "is_live":       False,
-                "flood_alert":   pct >= 95,
-                "status_kn":     "✅ ತುಂಬಿದೆ" if pct >= 75 else ("🟢 ಉತ್ತಮ" if pct >= 50 else ("🟡 ಮಧ್ಯಮ" if pct >= 30 else "🔴 ಕಡಿಮೆ")),
-            }
+            if key in existing_dam_data and existing_dam_data[key].get("storage_pct"):
+                dams[key] = dict(existing_dam_data[key])
+                dams[key]["date"] = ist_date()
+                log.info(f"  📌 Sticky Cache Preserved for {key}: {dams[key]['storage_pct']}%")
+            else:
+                meta = DAM_META.get(key, {})
+                fb   = FALLBACK_DAMS.get(key, {})
+                cap  = DESIGN_CAPACITIES.get(key, 50.0)
+                pct  = fb.get("pct", 70.0)
+                present = fb.get("present", round(pct * cap / 100, 2))
+                dams[key] = {
+                    "id":            key,
+                    "key":           key,
+                    **meta,
+                    "storage_pct":   pct,
+                    "storage_tmc":   present,
+                    "present_storage_tmc": present,
+                    "max_storage_tmc": cap,
+                    "design_capacity": cap,
+                    "inflow_cusecs": fb.get("inflow", 0),
+                    "outflow_cusecs":fb.get("outflow", 0),
+                    "level_ft":      fb.get("level", 0),
+                    "date":          ist_date(),
+                    "is_live":       False,
+                    "flood_alert":   pct >= 95,
+                    "status_kn":     "✅ ತುಂಬಿದೆ" if pct >= 75 else ("🟢 ಉತ್ತಮ" if pct >= 50 else ("🟡 ಮಧ್ಯಮ" if pct >= 30 else "🔴 ಕಡಿಮೆ")),
+                }
 
     log.info(f"✅ Strictly 13 major reservoirs included in output")
 

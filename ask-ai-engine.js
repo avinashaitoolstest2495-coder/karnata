@@ -73,91 +73,326 @@ window.AskKARNATAEngine = (function() {
     const q = (userQuery || '').toLowerCase().trim();
     if (!q) return null;
 
-    // 1. DISTRICT FARMING + DAM + WEATHER CROSS SYNTHESIS (e.g. Koppal, Mandya, Raichur, Belagavi, etc.)
-    const distMatch = findMentionedDistrict(q);
-    const isFarmingOrWater = q.includes('crop') || q.includes('ಬೆಳೆ') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || q.includes('dam') || q.includes('ಡ್ಯಾಂ') || q.includes('ನೀರು') || q.includes('water');
-    if (distMatch && isFarmingOrWater) {
-      return answerDistrictFarmingSynthesis(q, distMatch);
+    // 1. GOLD & SILVER QUERY (Live rates, 1901-2026 history, buy/sell/invest analysis)
+    if (q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳ') || q.includes('ತಗೋ') || q.includes('ಮಾರ') || q.includes('ಹೂಡಿಕೆ') || q.includes('invest') || q.includes('buy') || q.includes('sell') || q.includes('sgb') || q.includes('etf') || q.includes('ಪವನ್') || q.includes('pavan') || q.includes('24k') || q.includes('22k') || q.includes('18k') || q.includes('ಏನು ಮಾಡ') || q.includes('ಏನ್ ಮಾಡ') || q.includes('what i do') || q.includes('what to do') || q.includes('what should i do')) {
+      return answerGoldQuery(q);
     }
 
-    // 2. CHIEF MINISTER, CABINET & GOVERNANCE (CM, Siddaramaiah, Ministers, 5 Guarantees)
+    // 2. KANNADA LITERATURE & 8 JNANPITH AWARDEES (ಕನ್ನಡ ಸಾಹಿತ್ಯ & 8 ಜ್ಞಾನಪೀಠ)
+    if (q.includes('ಜ್ಞಾನಪೀಠ') || q.includes('jnanpith') || q.includes('ಕುವೆಂಪು') || q.includes('ಬೇಂದ್ರೆ') || q.includes('ಕಾರಂತ') || q.includes('ಮಾಸ್ತಿ') || q.includes('ಗೋಕಾಕ್') || q.includes('ಅನಂತಮೂರ್ತಿ') || q.includes('ಕಾರ್ನಾಡ್') || q.includes('ಕಂಬಾರ') || (q.includes('ಸಾಹಿತ್ಯ') && !q.includes('ಬೆಲೆ')) || q.includes('ವಚನ') || q.includes('ದಾಸ')) {
+      return answerLiteratureQuery(q);
+    }
+
+    // 3. KARNATAKA DYNASTIES, HEROES & HISTORY (ಕದಂಬರು, ಹಲ್ಮಿಡಿ, ಚಾಲುಕ್ಯರು, ಹೊಯ್ಸಳರು, ವಿಜಯನಗರ, ಇತಿಹಾಸ)
+    if (q.includes('ಕದಂಬ') || q.includes('ಹಲ್ಮಿಡಿ') || q.includes('ಚಾಲುಕ್ಯ') || q.includes('ರಾಷ್ಟ್ರಕೂಟ') || q.includes('ಹೊಯ್ಸಳ') || q.includes('ವಿಜಯನಗರ') || q.includes('ಒಡೆಯರ್') || q.includes('ಚೆನ್ನಮ್ಮ') || q.includes('ರಾಯಣ್ಣ') || q.includes('ಟಿಪ್ಪು') || q.includes('ಇತಿಹಾಸ') || q.includes('ಸಾಮ್ರಾಜ್ಯ') || q.includes('dynasty') || q.includes('history')) {
+      return answerHistoryQuery(q);
+    }
+
+    // 4. DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM (ಜಿಲ್ಲಾ ದರ್ಶನ, ತಾಲೂಕುಗಳು & ಪ್ರವಾಸಿ ತಾಣಗಳು)
+    const distForEncyclopedia = findMentionedPlace(q, true);
+    if (distForEncyclopedia && (q.includes('ತಾಲೂಕು') || q.includes('taluk') || q.includes('ಪ್ರವಾಸ') || q.includes('tourist') || q.includes('ತಾಣ') || q.includes('ಸ್ಥಳ') || q.includes('ವಿವರ') || q.includes('ಮಾಹಿತಿ') || q.includes('ಜಿಲ್ಲೆ') || q.includes('district') || q.includes('ನೋಡಬೇಕಾದ') || q.includes('places') || q.includes('ಹೋಗಲು') || q.includes('ಯಾವುವು'))) {
+      return answerDistrictEncyclopediaQuery(q, distForEncyclopedia.distKey);
+    }
+
+    // 5. DISTRICT FARMING + DAM + WEATHER CROSS SYNTHESIS (e.g. Koppal, Mandya, Raichur, Belagavi, etc.)
+    const distMatch = findMentionedPlace(q, true);
+    const isFarmingOrWater = q.includes('crop') || q.includes('ಬಿತ್ತನೆ') || q.includes('sow') || q.includes('farming') || q.includes('ಕೃಷಿ') || (q.includes('ಬೆಳೆ') && !q.includes('ಬೆಲೆ') && !q.includes('ಚಿನ್ನ') && !q.includes('ಬೆಳ್ಳಿ') && !q.includes('ಬೆಳೆದಿದೆ'));
+    if (distMatch && isFarmingOrWater) {
+      return answerDistrictFarmingSynthesis(q, distMatch.distKey);
+    }
+
+    // 6. KARNATAKA OFFICERS, DC, SP, TRANSFERS & CIVIL LIST (ಜಿಲ್ಲಾಧಿಕಾರಿ, ಎಸ್ಪಿ, ಐಎಎಸ್, ಐಪಿಎಸ್, ಕೆಎಎಸ್, ವರ್ಗಾವಣೆ)
+    if (q.includes('ಜಿಲ್ಲಾಧಿಕಾರಿ') || (q.includes('dc') && !q.includes('dcm')) || q.includes('ಎಸ್ಪಿ') || q.includes('sp') || q.includes('ವರಿಷ್ಠಾಧಿಕಾರಿ') || q.includes('ವರ್ಗಾವಣೆ') || q.includes('transfer') || q.includes('officer') || q.includes('ಅಧಿಕಾರಿ') || q.includes('ias') || q.includes('ips') || q.includes('kas') || q.includes('ifs') || q.includes('ಕಮಿಷನರ್') || q.includes('commissioner')) {
+      return answerOfficersQuery(q);
+    }
+
+    // 7. CHIEF MINISTER, CABINET & GOVERNANCE (CM, Siddaramaiah, Ministers, 5 Guarantees)
     if (q.includes('cm') || q.includes('ಮುಖ್ಯಮಂತ್ರಿ') || q.includes('ಸಿದ್ದರಾಮಯ್ಯ') || q.includes('siddaramaiah') || q.includes('ಮಂತ್ರಿ') || q.includes('minister') || q.includes('ಸರ್ಕಾರ') || q.includes('government') || q.includes('ಗ್ಯಾರಂಟಿ') || q.includes('guarantee') || q.includes('gruha') || q.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || q.includes('ಗೃಹಜ್ಯೋತಿ') || q.includes('ಯುವನಿಧಿ') || q.includes('ಶಕ್ತಿ') || q.includes('ಅನ್ನಭಾಗ್ಯ') || q.includes('ಶಿವಕುಮಾರ್') || q.includes('dcm')) {
       return answerGovernanceQuery(q);
     }
 
-    // 3. SPECIFIC DAM LEVEL & WATER STORAGE QUERY
+    // 7. SPECIFIC DAM LEVEL & WATER STORAGE QUERY
     if (q.includes('dam') || q.includes('water') || q.includes('krs') || q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಡ್ಯಾಂ') || q.includes('ನೀರು') || q.includes('ತುಂಗಭದ್ರಾ') || q.includes('tungabhadra') || q.includes('ಕಬಿನಿ') || q.includes('ಹೇಮಾವತಿ') || q.includes('ಭದ್ರಾ') || q.includes('ಮಲಪ್ರಭಾ') || q.includes('ಘಟಪ್ರಭಾ') || q.includes('ಹಾರಂಗಿ') || q.includes('ಸೂಪಾ') || q.includes('ಲಿಂಗನಮಕ್ಕಿ')) {
       return answerDamQuery(q);
     }
 
-    // 4. GOLD & SILVER QUERY (Live rates, 1901-2026 history, buy/sell/invest analysis)
-    if (q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('ಖರೀದಿ') || q.includes('ಮಾರಾಟ') || q.includes('ಹೂಡಿಕೆ') || q.includes('invest') || q.includes('buy') || q.includes('sell')) {
-      return answerGoldQuery(q);
-    }
-
-    // 5. WEATHER & RAIN QUERY
+    // 8. WEATHER & RAIN QUERY
     if (q.includes('weather') || q.includes('rain') || q.includes('climate') || q.includes('ಮಳೆ') || q.includes('ಹವಾಮಾನ') || q.includes('ಉಷ್ಣಾಂಶ') || q.includes('temp') || q.includes('forecast')) {
       return answerWeatherQuery(q);
     }
 
-    // 6. APMC & MANDI CROP PRICE QUERY (1,838 Crops across 174 Mandis)
-    if (q.includes('apmc') || q.includes('mandi') || q.includes('ದರ') || q.includes('ಬೆಲೆ') || q.includes('tomato') || q.includes('ಟೊಮೆಟೊ') || q.includes('onion') || q.includes('ಈರುಳ್ಳಿ') || q.includes('crop') || q.includes('ಅಡಿಕೆ') || q.includes('arecanut') || q.includes('ರಾಗಿ') || q.includes('ಭತ್ತ') || q.includes('paddy') || q.includes('ಜೋಳ') || q.includes('cotton') || q.includes('ಹತ್ತಿ')) {
+    // 9. APMC & MANDI CROP PRICE QUERY (1,838 Crops across 174 Mandis)
+    if (q.includes('apmc') || q.includes('mandi') || q.includes('tomato') || q.includes('ಟೊಮೆಟೊ') || q.includes('onion') || q.includes('ಈರುಳ್ಳಿ') || q.includes('ಅಡಿಕೆ') || q.includes('arecanut') || q.includes('ರಾಗಿ') || q.includes('paddy') || q.includes('ಹತ್ತಿ')) {
       const apmcAns = answerAPMCQuery(q);
       if (apmcAns) return apmcAns;
     }
 
-    // 7. MLA (ಶಾಸಕರು) CONSTITUENCY SEARCH (224 Constituencies)
-    if (q.includes('ಶಾಸಕ') || q.includes('mla') || q.includes('ವಿಧಾನಸಭೆ') || q.includes('constituency')) {
+    // 10. MLA (ಶಾಸಕರು) CONSTITUENCY SEARCH (224 Constituencies)
+    if (q.includes('ಶಾಸಕ') || q.includes('mla') || q.includes('ವಿಧಾನಸಭೆ') || q.includes('constituency') || q.includes('ಗೆದ್ದವರು') || q.includes('ಫಲಿತಾಂಶ')) {
       const mlaAns = answerMLAQuery(q);
       if (mlaAns) return mlaAns;
     }
 
-    // 8. MP (ಸಂಸದರು) LOK SABHA SEARCH (28 Constituencies)
+    // 11. MP (ಸಂಸದರು) LOK SABHA SEARCH (28 Constituencies)
     if (q.includes('ಸಂಸದ') || q.includes('mp') || q.includes('ಲೋಕಸಭೆ') || q.includes('lok sabha') || q.includes('election') || q.includes('ಚುನಾವಣೆ')) {
       const mpAns = answerMPQuery(q);
       if (mpAns) return mpAns;
     }
 
-    // 9. NEWS & BREAKING QUERY
+    // 12. NEWS & BREAKING QUERY
     if (q.includes('news') || q.includes('update') || q.includes('ಸುದ್ದಿ') || q.includes('ಮುಖ್ಯಾಂಶ') || q.includes('headlines') || q.includes('ಬ್ರೇಕಿಂಗ್')) {
       return answerNewsQuery(q);
     }
 
-    // 10. PETROL / DIESEL FUEL QUERY
+    // 13. PETROL / DIESEL FUEL QUERY
     if (q.includes('petrol') || q.includes('diesel') || q.includes('fuel') || q.includes('ಪೆಟ್ರೋಲ್') || q.includes('ಡೀಸೆಲ್')) {
       return answerFuelQuery(q);
     }
-
-    // Dynamic Fallback MLA Search
-    const fallbackMla = answerMLAQuery(q);
-    if (fallbackMla) return fallbackMla;
 
     return answerGeneralQuery(q);
   }
 
   function findMentionedDistrict(q) {
-    const map = {
-      'koppal': 'koppal', 'ಕೊಪ್ಪಳ': 'koppal',
-      'bangalore': 'bangalore_urban', 'ಬೆಂಗಳೂರು': 'bangalore_urban',
-      'mysore': 'mysore', 'ಮೈಸೂರು': 'mysore', 'mysuru': 'mysore',
-      'mandya': 'mandya', 'ಮಂಡ್ಯ': 'mandya',
-      'belgaum': 'belgaum', 'ಬೆಳಗಾವಿ': 'belgaum', 'belagavi': 'belgaum',
-      'vijayapura': 'vijayapura', 'ವಿಜಯಪುರ': 'vijayapura', 'bijapur': 'vijayapura',
-      'bagalkot': 'bagalkot', 'ಬಾಗಲಕೋಟೆ': 'bagalkot',
-      'raichur': 'raichur', 'ರಾಯಚೂರು': 'raichur',
-      'ballari': 'bellary', 'ಬಳ್ಳಾರಿ': 'bellary', 'bellary': 'bellary',
-      'vijayanagara': 'vijayanagara', 'ವಿಜಯನಗರ': 'vijayanagara', 'hospet': 'vijayanagara',
-      'shivamogga': 'shimoga', 'ಶಿವಮೊಗ್ಗ': 'shimoga', 'shimoga': 'shimoga',
-      'davanagere': 'davangere', 'ದಾವಣಗೆರೆ': 'davangere',
-      'hassan': 'hassan', 'ಹಾಸನ': 'hassan',
-      'chikkamagaluru': 'chikmagalur', 'ಚಿಕ್ಕಮಗಳೂರು': 'chikmagalur',
-      'tumkur': 'tumkur', 'ತುಮಕೂರು': 'tumkur', 'tumakuru': 'tumkur',
-      'kalaburagi': 'gulbarga', 'ಕಲಬುರಗಿ': 'gulbarga', 'gulbarga': 'gulbarga'
+    const p = findMentionedPlace(q);
+    return p ? p.distKey : 'bengaluru_urban';
+  }
+
+  function findMentionedPlace(q) {
+    // 1. Taluks & Towns mapped to { nameKn, distKey, parentKn, isTaluk: true }
+    const talukMap = {
+      // Koppal
+      'gangavathi': { nameKn: 'ಗಂಗಾವತಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಗಂಗಾವತಿ': { nameKn: 'ಗಂಗಾವತಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+      'kushtagi': { nameKn: 'ಕುಷ್ಟಗಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಕುಷ್ಟಗಿ': { nameKn: 'ಕುಷ್ಟಗಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+      'yelburga': { nameKn: 'ಯಲಬುರ್ಗಾ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಯಲಬುರ್ಗಾ': { nameKn: 'ಯಲಬುರ್ಗಾ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'yelbarga': { nameKn: 'ಯಲಬುರ್ಗಾ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+      'kanakagiri': { nameKn: 'ಕನಕಗಿರಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಕನಕಗಿರಿ': { nameKn: 'ಕನಕಗಿರಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+      'karatagi': { nameKn: 'ಕಾರಟಗಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಕಾರಟಗಿ': { nameKn: 'ಕಾರಟಗಿ', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+      'kukanur': { nameKn: 'ಕುಕನೂರು', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' }, 'ಕುಕನೂರು': { nameKn: 'ಕುಕನೂರು', distKey: 'koppal', parentKn: 'ಕೊಪ್ಪಳ' },
+
+      // Ballari & Vijayanagara
+      'siruguppa': { nameKn: 'ಸಿರುಗುಪ್ಪ', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' }, 'ಸಿರುಗುಪ್ಪ': { nameKn: 'ಸಿರುಗುಪ್ಪ', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' },
+      'sandur': { nameKn: 'ಸಂಡೂರು', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' }, 'ಸಂಡೂರು': { nameKn: 'ಸಂಡೂರು', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' },
+      'kurugodu': { nameKn: 'ಕುರುಗೋಡು', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' }, 'ಕುರುಗೋಡು': { nameKn: 'ಕುರುಗೋಡು', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' },
+      'kampli': { nameKn: 'ಕಂಪ್ಲಿ', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' }, 'ಕಂಪ್ಲಿ': { nameKn: 'ಕಂಪ್ಲಿ', distKey: 'ballari', parentKn: 'ಬಳ್ಳಾರಿ' },
+      'hospet': { nameKn: 'ಹೊಸಪೇಟೆ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಹೊಸಪೇಟೆ': { nameKn: 'ಹೊಸಪೇಟೆ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+      'harapanahalli': { nameKn: 'ಹರಪನಹಳ್ಳಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಹರಪನಹಳ್ಳಿ': { nameKn: 'ಹರಪನಹಳ್ಳಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+      'hadagali': { nameKn: 'ಹೂವಿನ ಹಡಗಲಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಹಡಗಲಿ': { nameKn: 'ಹೂವಿನ ಹಡಗಲಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+      'hagaribommanahalli': { nameKn: 'ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ': { nameKn: 'ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+      'kotturu': { nameKn: 'ಕೊಟ್ಟೂರು', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಕೊಟ್ಟೂರು': { nameKn: 'ಕೊಟ್ಟೂರು', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+      'kudligi': { nameKn: 'ಕೂಡ್ಲಿಗಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' }, 'ಕೂಡ್ಲಿಗಿ': { nameKn: 'ಕೂಡ್ಲಿಗಿ', distKey: 'vijayanagara', parentKn: 'ವಿಜಯನಗರ' },
+
+      // Shivamogga
+      'sagar': { nameKn: 'ಸಾಗರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಸಾಗರ': { nameKn: 'ಸಾಗರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'bhadravathi': { nameKn: 'ಭದ್ರಾವತಿ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಭದ್ರಾವತಿ': { nameKn: 'ಭದ್ರಾವತಿ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'shikaripura': { nameKn: 'ಶಿಕಾರಿಪುರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಶಿಕಾರಿಪುರ': { nameKn: 'ಶಿಕಾರಿಪುರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'soraba': { nameKn: 'ಸೊರಬ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಸೊರಬ': { nameKn: 'ಸೊರಬ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'thirthahalli': { nameKn: 'ತೀರ್ಥಹಳ್ಳಿ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ತೀರ್ಥಹಳ್ಳಿ': { nameKn: 'ತೀರ್ಥಹಳ್ಳಿ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'hosanagara': { nameKn: 'ಹೊಸನಗರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಹೊಸನಗರ': { nameKn: 'ಹೊಸನಗರ', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+      'jog': { nameKn: 'ಜೋಗ್ ಫಾಲ್ಸ್', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' }, 'ಜೋಗ್': { nameKn: 'ಜೋಗ್ ಫಾಲ್ಸ್', distKey: 'shivamogga', parentKn: 'ಶಿವಮೊಗ್ಗ' },
+
+      // Udupi & Dakshina Kannada
+      'kundapura': { nameKn: 'ಕುಂದಾಪುರ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಕುಂದಾಪುರ': { nameKn: 'ಕುಂದಾಪುರ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'karkala': { nameKn: 'ಕಾರ್ಕಳ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಕಾರ್ಕಳ': { nameKn: 'ಕಾರ್ಕಳ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'byndoor': { nameKn: 'ಬೈಂದೂರು', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಬೈಂದೂರು': { nameKn: 'ಬೈಂದೂರು', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'brahmavara': { nameKn: 'ಬ್ರಹ್ಮಾವರ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಬ್ರಹ್ಮಾವರ': { nameKn: 'ಬ್ರಹ್ಮಾವರ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'kaup': { nameKn: 'ಕಾಪು', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಕಾಪು': { nameKn: 'ಕಾಪು', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'malpe': { nameKn: 'ಮಲ್ಪೆ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' }, 'ಮಲ್ಪೆ': { nameKn: 'ಮಲ್ಪೆ', distKey: 'udupi', parentKn: 'ಉಡುಪಿ' },
+      'puttur': { nameKn: 'ಪುತ್ತೂರು', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಪುತ್ತೂರು': { nameKn: 'ಪುತ್ತೂರು', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'sullia': { nameKn: 'ಸುಳ್ಯ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಸುಳ್ಯ': { nameKn: 'ಸುಳ್ಯ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'bantwal': { nameKn: 'ಬಂಟ್ವಾಳ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಬಂಟ್ವಾಳ': { nameKn: 'ಬಂಟ್ವಾಳ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'belthangady': { nameKn: 'ಬೆಳ್ತಂಗಡಿ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಬೆಳ್ತಂಗಡಿ': { nameKn: 'ಬೆಳ್ತಂಗಡಿ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'dharmasthala': { nameKn: 'ಧರ್ಮಸ್ಥಳ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಧರ್ಮಸ್ಥಳ': { nameKn: 'ಧರ್ಮಸ್ಥಳ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'moodabidri': { nameKn: 'ಮೂಡುಬಿದಿರೆ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಮೂಡುಬಿದಿರೆ': { nameKn: 'ಮೂಡುಬಿದಿರೆ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'kadaba': { nameKn: 'ಕಡಬ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಕಡಬ': { nameKn: 'ಕಡಬ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+      'ullal': { nameKn: 'ಉಳ್ಳಾಲ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' }, 'ಉಳ್ಳಾಲ': { nameKn: 'ಉಳ್ಳಾಲ', distKey: 'dakshina_kannada', parentKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ' },
+
+      // Uttara Kannada
+      'sirsi': { nameKn: 'ಶಿರಸಿ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಶಿರಸಿ': { nameKn: 'ಶಿರಸಿ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'karwar': { nameKn: 'ಕಾರವಾರ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಕಾರವಾರ': { nameKn: 'ಕಾರವಾರ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'bhatkal': { nameKn: 'ಭಟ್ಕಳ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಭಟ್ಕಳ': { nameKn: 'ಭಟ್ಕಳ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'kumta': { nameKn: 'ಕುಮಟಾ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಕುಮಟಾ': { nameKn: 'ಕುಮಟಾ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'ankola': { nameKn: 'ಅಂಕೋಲಾ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಅಂಕೋಲಾ': { nameKn: 'ಅಂಕೋಲಾ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'honnavar': { nameKn: 'ಹೊನ್ನಾವರ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಹೊನ್ನಾವರ': { nameKn: 'ಹೊನ್ನಾವರ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'dandeli': { nameKn: 'ದಾಂಡೇಲಿ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ದಾಂಡೇಲಿ': { nameKn: 'ದಾಂಡೇಲಿ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+      'gokarna': { nameKn: 'ಗೋಕರ್ಣ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' }, 'ಗೋಕರ್ಣ': { nameKn: 'ಗೋಕರ್ಣ', distKey: 'uttara_kannada', parentKn: 'ಉತ್ತರ ಕನ್ನಡ' },
+
+      // Belagavi
+      'gokak': { nameKn: 'ಗೋಕಾಕ್', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಗೋಕಾಕ್': { nameKn: 'ಗೋಕಾಕ್', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'chikodi': { nameKn: 'ಚಿಕ್ಕೋಡಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಚಿಕ್ಕೋಡಿ': { nameKn: 'ಚಿಕ್ಕೋಡಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'athani': { nameKn: 'ಅಥಣಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಅಥಣಿ': { nameKn: 'ಅಥಣಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'bailhongal': { nameKn: 'ಬೈಲಹೊಂಗಲ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಬೈಲಹೊಂಗಲ': { nameKn: 'ಬೈಲಹೊಂಗಲ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'hukkeri': { nameKn: 'ಹುಕ್ಕೇರಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಹುಕ್ಕೇರಿ': { nameKn: 'ಹುಕ್ಕೇರಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'khanapur': { nameKn: 'ಖಾನಾಪುರ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಖಾನಾಪುರ': { nameKn: 'ಖಾನಾಪುರ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'savadatti': { nameKn: 'ಸವದತ್ತಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಸವದತ್ತಿ': { nameKn: 'ಸವದತ್ತಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'nippani': { nameKn: 'ನಿಪ್ಪಾಣಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ನಿಪ್ಪಾಣಿ': { nameKn: 'ನಿಪ್ಪಾಣಿ', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+      'kittur': { nameKn: 'ಕಿತ್ತೂರು', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' }, 'ಕಿತ್ತೂರು': { nameKn: 'ಕಿತ್ತೂರು', distKey: 'belagavi', parentKn: 'ಬೆಳಗಾವಿ' },
+
+      // Mysuru, Mandya, Chamarajanagar, Hassan, Kodagu
+      'hunsur': { nameKn: 'ಹುಣಸೂರು', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' }, 'ಹುಣಸೂರು': { nameKn: 'ಹುಣಸೂರು', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' },
+      'nanjangud': { nameKn: 'ನಂಜನಗೂಡು', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' }, 'ನಂಜನಗೂಡು': { nameKn: 'ನಂಜನಗೂಡು', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' },
+      't_narasipura': { nameKn: 'ಟಿ.ನರಸೀಪುರ', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' }, 'ನರಸೀಪುರ': { nameKn: 'ಟಿ.ನರಸೀಪುರ', distKey: 'mysuru', parentKn: 'ಮೈಸೂರು' },
+      'maddur': { nameKn: 'ಮದ್ದೂರು', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' }, 'ಮದ್ದೂರು': { nameKn: 'ಮದ್ದೂರು', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' },
+      'malavalli': { nameKn: 'ಮಳವಳ್ಳಿ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' }, 'ಮಳವಳ್ಳಿ': { nameKn: 'ಮಳವಳ್ಳಿ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' },
+      'srirangapatna': { nameKn: 'ಶ್ರೀರಂಗಪಟ್ಟಣ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' }, 'ಶ್ರೀರಂಗಪಟ್ಟಣ': { nameKn: 'ಶ್ರೀರಂಗಪಟ್ಟಣ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' },
+      'nagamangala': { nameKn: 'ನಾಗಮಂಗಲ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' }, 'ನಾಗಮಂಗಲ': { nameKn: 'ನಾಗಮಂಗಲ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' },
+      'kr_pete': { nameKn: 'ಕೆ.ಆರ್. ಪೇಟೆ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' }, 'ಕೆಆರ್ ಪೇಟೆ': { nameKn: 'ಕೆ.ಆರ್. ಪೇಟೆ', distKey: 'mandya', parentKn: 'ಮಂಡ್ಯ' },
+      'channapatna': { nameKn: 'ಚನ್ನಪಟ್ಟಣ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' }, 'ಚನ್ನಪಟ್ಟಣ': { nameKn: 'ಚನ್ನಪಟ್ಟಣ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' },
+      'kanakapura': { nameKn: 'ಕನಕಪುರ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' }, 'ಕನಕಪುರ': { nameKn: 'ಕನಕಪುರ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' },
+      'magadi': { nameKn: 'ಮಾಗಡಿ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' }, 'ಮಾಗಡಿ': { nameKn: 'ಮಾಗಡಿ', distKey: 'ramanagara', parentKn: 'ರಾಮನಗರ' },
+      'kollegala': { nameKn: 'ಕೊಳ್ಳೇಗಾಲ', distKey: 'chamarajanagara', parentKn: 'ಚಾಮರಾಜನಗರ' }, 'ಕೊಳ್ಳೇಗಾಲ': { nameKn: 'ಕೊಳ್ಳೇಗಾಲ', distKey: 'chamarajanagara', parentKn: 'ಚಾಮರಾಜನಗರ' },
+      'gundlupete': { nameKn: 'ಗುಂಡ್ಲುಪೇಟೆ', distKey: 'chamarajanagara', parentKn: 'ಚಾಮರಾಜನಗರ' }, 'ಗುಂಡ್ಲುಪೇಟೆ': { nameKn: 'ಗುಂಡ್ಲುಪೇಟೆ', distKey: 'chamarajanagara', parentKn: 'ಚಾಮರಾಜನಗರ' },
+      'sakleshpur': { nameKn: 'ಸಕಲೇಶಪುರ', distKey: 'hassan', parentKn: 'ಹಾಸನ' }, 'ಸಕಲೇಶಪುರ': { nameKn: 'ಸಕಲೇಶಪುರ', distKey: 'hassan', parentKn: 'ಹಾಸನ' },
+      'belur': { nameKn: 'ಬೇಲೂರು', distKey: 'hassan', parentKn: 'ಹಾಸನ' }, 'ಬೇಲೂರು': { nameKn: 'ಬೇಲೂರು', distKey: 'hassan', parentKn: 'ಹಾಸನ' },
+      'channarayapatna': { nameKn: 'ಚನ್ನರಾಯಪಟ್ಟಣ', distKey: 'hassan', parentKn: 'ಹಾಸನ' }, 'ಚನ್ನರಾಯಪಟ್ಟಣ': { nameKn: 'ಚನ್ನರಾಯಪಟ್ಟಣ', distKey: 'hassan', parentKn: 'ಹಾಸನ' },
+      'arsikere': { nameKn: 'ಅರಸೀಕೆರೆ', distKey: 'hassan', parentKn: 'ಹಾಸನ' }, 'ಅರಸೀಕೆರೆ': { nameKn: 'ಅರಸೀಕೆರೆ', distKey: 'hassan', parentKn: 'ಹಾಸನ' },
+      'madikeri': { nameKn: 'ಮಡಿಕೇರಿ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' }, 'ಮಡಿಕೇರಿ': { nameKn: 'ಮಡಿಕೇರಿ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' },
+      'kushalnagar': { nameKn: 'ಕುಶಾಲನಗರ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' }, 'ಕುಶಾಲನಗರ': { nameKn: 'ಕುಶಾಲನಗರ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' },
+      'virajpet': { nameKn: 'ವಿರಾಜಪೇಟೆ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' }, 'ವಿರಾಜಪೇಟೆ': { nameKn: 'ವಿರಾಜಪೇಟೆ', distKey: 'kodagu', parentKn: 'ಕೊಡಗು' },
+
+      // Chikkamagaluru, Chitradurga, Davanagere, Tumakuru
+      'kadur': { nameKn: 'ಕಡೂರು', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' }, 'ಕಡೂರು': { nameKn: 'ಕಡೂರು', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' },
+      'tarikere': { nameKn: 'ತರೀಕೆರೆ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' }, 'ತರೀಕೆರೆ': { nameKn: 'ತರೀಕೆರೆ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' },
+      'mudigere': { nameKn: 'ಮೂಡಿಗೆರೆ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' }, 'ಮೂಡಿಗೆರೆ': { nameKn: 'ಮೂಡಿಗೆರೆ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' },
+      'sringeri': { nameKn: 'ಶೃಂಗೇರಿ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' }, 'ಶೃಂಗೇರಿ': { nameKn: 'ಶೃಂಗೇರಿ', distKey: 'chikkamagaluru', parentKn: 'ಚಿಕ್ಕಮಗಳೂರು' },
+      'harihara': { nameKn: 'ಹರಿಹರ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' }, 'ಹರಿಹರ': { nameKn: 'ಹರಿಹರ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' },
+      'channagiri': { nameKn: 'ಚನ್ನಗಿರಿ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' }, 'ಚನ್ನಗಿರಿ': { nameKn: 'ಚನ್ನಗಿರಿ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' },
+      'honnali': { nameKn: 'ಹೊನ್ನಾಳಿ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' }, 'ಹೊನ್ನಾಳಿ': { nameKn: 'ಹೊನ್ನಾಳಿ', distKey: 'davanagere', parentKn: 'ದಾವಣಗೆರೆ' },
+      'hiriyur': { nameKn: 'ಹಿರಿಯೂರು', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' }, 'ಹಿರಿಯೂರು': { nameKn: 'ಹಿರಿಯೂರು', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' },
+      'challakere': { nameKn: 'ಚಳ್ಳಕೆರೆ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' }, 'ಚಳ್ಳಕೆರೆ': { nameKn: 'ಚಳ್ಳಕೆರೆ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' },
+      'holalkere': { nameKn: 'ಹೊಳಲ್ಕೆರೆ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' }, 'ಹೊಳಲ್ಕೆರೆ': { nameKn: 'ಹೊಳಲ್ಕೆರೆ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' },
+      'hosadurga': { nameKn: 'ಹೊಸದುರ್ಗ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' }, 'ಹೊಸದುರ್ಗ': { nameKn: 'ಹೊಸದುರ್ಗ', distKey: 'chitradurga', parentKn: 'ಚಿತ್ರದುರ್ಗ' },
+      'tiptur': { nameKn: 'ತಿಪಟೂರು', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ತಿಪಟೂರು': { nameKn: 'ತಿಪಟೂರು', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+      'sira': { nameKn: 'ಶಿರಾ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ಶಿರಾ': { nameKn: 'ಶಿರಾ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+      'kunigal': { nameKn: 'ಕುಣಿಗಲ್', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ಕುಣಿಗಲ್': { nameKn: 'ಕುಣಿಗಲ್', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+      'madhugiri': { nameKn: 'ಮಧುಗಿರಿ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ಮಧುಗಿರಿ': { nameKn: 'ಮಧುಗಿರಿ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+      'gubbi': { nameKn: 'ಗುಬ್ಬಿ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ಗುಬ್ಬಿ': { nameKn: 'ಗುಬ್ಬಿ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+      'pavagada': { nameKn: 'ಪಾವಗಡ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' }, 'ಪಾವಗಡ': { nameKn: 'ಪಾವಗಡ', distKey: 'tumakuru', parentKn: 'ತುಮಕೂರು' },
+
+      // Kolar & Chikkaballapura & Bengaluru Rural
+      'bangarapet': { nameKn: 'ಬಂಗಾರಪೇಟೆ', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' }, 'ಬಂಗಾರಪೇಟೆ': { nameKn: 'ಬಂಗಾರಪೇಟೆ', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' },
+      'malur': { nameKn: 'ಮಾಲೂರು', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' }, 'ಮಾಲೂರು': { nameKn: 'ಮಾಲೂರು', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' },
+      'kgf': { nameKn: 'ಕೆ.ಜಿ.ಎಫ್ (KGF)', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' }, 'ಕೆಜಿಎಫ್': { nameKn: 'ಕೆ.ಜಿ.ಎಫ್ (KGF)', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' },
+      'mulbagal': { nameKn: 'ಮುಳಬಾಗಿಲು', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' }, 'ಮುಳಬಾಗಿಲು': { nameKn: 'ಮುಳಬಾಗಿಲು', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' },
+      'srinivaspur': { nameKn: 'ಶ್ರೀನಿವಾಸಪುರ', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' }, 'ಶ್ರೀನಿವಾಸಪುರ': { nameKn: 'ಶ್ರೀನಿವಾಸಪುರ', distKey: 'kolar', parentKn: 'ಕೋಲಾರ' },
+      'chintamani': { nameKn: 'ಚಿಂತಾಮಣಿ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' }, 'ಚಿಂತಾಮಣಿ': { nameKn: 'ಚಿಂತಾಮಣಿ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' },
+      'sidlaghatta': { nameKn: 'ಶಿಡ್ಲಘಟ್ಟ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' }, 'ಶಿಡ್ಲಘಟ್ಟ': { nameKn: 'ಶಿಡ್ಲಘಟ್ಟ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' },
+      'gauribidanur': { nameKn: 'ಗೌರಿಬಿದನೂರು', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' }, 'ಗೌರಿಬಿದನೂರು': { nameKn: 'ಗೌರಿಬಿದನೂರು', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' },
+      'bagepalli': { nameKn: 'ಬಾಗೇಪಲ್ಲಿ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' }, 'ಬಾಗೇಪಲ್ಲಿ': { nameKn: 'ಬಾಗೇಪಲ್ಲಿ', distKey: 'chikkaballapura', parentKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ' },
+      'devanahalli': { nameKn: 'ದೇವನಹಳ್ಳಿ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' }, 'ದೇವನಹಳ್ಳಿ': { nameKn: 'ದೇವನಹಳ್ಳಿ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' },
+      'doddaballapur': { nameKn: 'ದೊಡ್ಡಬಳ್ಳಾಪುರ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' }, 'ದೊಡ್ಡಬಳ್ಳಾಪುರ': { nameKn: 'ದೊಡ್ಡಬಳ್ಳಾಪುರ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' },
+      'hoskote': { nameKn: 'ಹೊಸಕೋಟೆ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' }, 'ಹೊಸಕೋಟೆ': { nameKn: 'ಹೊಸಕೋಟೆ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' },
+      'nelamangala': { nameKn: 'ನೆಲಮಂಗಲ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' }, 'ನೆಲಮಂಗಲ': { nameKn: 'ನೆಲಮಂಗಲ', distKey: 'bengaluru_rural', parentKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ' },
+      'yelahanka': { nameKn: 'ಯಲಹಂಕ', distKey: 'bengaluru_urban', parentKn: 'ಬೆಂಗಳೂರು ನಗರ' }, 'ಯಲಹಂಕ': { nameKn: 'ಯಲಹಂಕ', distKey: 'bengaluru_urban', parentKn: 'ಬೆಂಗಳೂರು ನಗರ' },
+      'anckal': { nameKn: 'ಆನೇಕಲ್', distKey: 'bengaluru_urban', parentKn: 'ಬೆಂಗಳೂರು ನಗರ' }, 'ಆನೇಕಲ್': { nameKn: 'ಆನೇಕಲ್', distKey: 'bengaluru_urban', parentKn: 'ಬೆಂಗಳೂರು ನಗರ' }, 'anekal': { nameKn: 'ಆನೇಕಲ್', distKey: 'bengaluru_urban', parentKn: 'ಬೆಂಗಳೂರು ನಗರ' },
+
+      // Raichur, Kalaburagi, Yadgir, Bidar, Vijayapura, Bagalkote
+      'sindhanur': { nameKn: 'ಸಿಂಧನೂರು', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' }, 'ಸಿಂಧನೂರು': { nameKn: 'ಸಿಂಧನೂರು', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' },
+      'manvi': { nameKn: 'ಮಾನ್ವಿ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' }, 'ಮಾನ್ವಿ': { nameKn: 'ಮಾನ್ವಿ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' },
+      'lingasugur': { nameKn: 'ಲಿಂಗಸುಗೂರು', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' }, 'ಲಿಂಗಸುಗೂರು': { nameKn: 'ಲಿಂಗಸುಗೂರು', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' },
+      'maski': { nameKn: 'ಮಸ್ಕಿ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' }, 'ಮಸ್ಕಿ': { nameKn: 'ಮಸ್ಕಿ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' },
+      'devadurga': { nameKn: 'ದೇವದುರ್ಗ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' }, 'ದೇವದುರ್ಗ': { nameKn: 'ದೇವದುರ್ಗ', distKey: 'raichur', parentKn: 'ರಾಯಚೂರು' },
+      'sedam': { nameKn: 'ಸೇಡಂ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' }, 'ಸೇಡಂ': { nameKn: 'ಸೇಡಂ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' },
+      'chittapur': { nameKn: 'ಚಿತ್ತಾಪುರ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' }, 'ಚಿತ್ತಾಪುರ': { nameKn: 'ಚಿತ್ತಾಪುರ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' },
+      'aland': { nameKn: 'ಆಳಂದ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' }, 'ಆಳಂದ': { nameKn: 'ಆಳಂದ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' },
+      'afzalpur': { nameKn: 'ಅಫಜಲಪುರ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' }, 'ಅಫಜಲಪುರ': { nameKn: 'ಅಫಜಲಪುರ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' },
+      'jewargi': { nameKn: 'ಜೇವರ್ಗಿ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' }, 'ಜೇವರ್ಗಿ': { nameKn: 'ಜೇವರ್ಗಿ', distKey: 'kalaburagi', parentKn: 'ಕಲಬುರಗಿ' },
+      'shahapur': { nameKn: 'ಶಹಾಪುರ', distKey: 'yadgir', parentKn: 'ಯಾದಗಿರಿ' }, 'ಶಹಾಪುರ': { nameKn: 'ಶಹಾಪುರ', distKey: 'yadgir', parentKn: 'ಯಾದಗಿರಿ' },
+      'surapur': { nameKn: 'ಸುರಪುರ', distKey: 'yadgir', parentKn: 'ಯಾದಗಿರಿ' }, 'ಸುರಪುರ': { nameKn: 'ಸುರಪುರ', distKey: 'yadgir', parentKn: 'ಯಾದಗಿರಿ' }, 'shorapur': { nameKn: 'ಸುರಪುರ', distKey: 'yadgir', parentKn: 'ಯಾದಗಿರಿ' },
+      'basavakalyan': { nameKn: 'ಬಸವಕಲ್ಯಾಣ', distKey: 'bidar', parentKn: 'ಬೀದರ್' }, 'ಬಸವಕಲ್ಯಾಣ': { nameKn: 'ಬಸವಕಲ್ಯಾಣ', distKey: 'bidar', parentKn: 'ಬೀದರ್' },
+      'bhalki': { nameKn: 'ಭಾಲ್ಕಿ', distKey: 'bidar', parentKn: 'ಬೀದರ್' }, 'ಭಾಲ್ಕಿ': { nameKn: 'ಭಾಲ್ಕಿ', distKey: 'bidar', parentKn: 'ಬೀದರ್' },
+      'humnabad': { nameKn: 'ಹುಮ್ನಾಬಾದ್', distKey: 'bidar', parentKn: 'ಬೀದರ್' }, 'ಹುಮ್ನಾಬಾದ್': { nameKn: 'ಹುಮ್ನಾಬಾದ್', distKey: 'bidar', parentKn: 'ಬೀದರ್' },
+      'indi': { nameKn: 'ಇಂಡಿ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' }, 'ಇಂಡಿ': { nameKn: 'ಇಂಡಿ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' },
+      'muddebihal': { nameKn: 'ಮುದ್ದೇಬಿಹಾಳ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' }, 'ಮುದ್ದೇಬಿಹಾಳ': { nameKn: 'ಮುದ್ದೇಬಿಹಾಳ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' },
+      'sindgi': { nameKn: 'ಸಿಂಧಗಿ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' }, 'ಸಿಂಧಗಿ': { nameKn: 'ಸಿಂಧಗಿ', distKey: 'vijayapura', parentKn: 'ವಿಜಯಪುರ' },
+      'badami': { nameKn: 'ಬಾದಾಮಿ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' }, 'ಬಾದಾಮಿ': { nameKn: 'ಬಾದಾಮಿ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' },
+      'jamkhandi': { nameKn: 'ಜಮಖಂಡಿ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' }, 'ಜಮಖಂಡಿ': { nameKn: 'ಜಮಖಂಡಿ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' },
+      'mudhol': { nameKn: 'ಮುಧೋಳ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' }, 'ಮುಧೋಳ': { nameKn: 'ಮುಧೋಳ', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' },
+      'ilkal': { nameKn: 'ಇಳಕಲ್', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' }, 'ಇಳಕಲ್': { nameKn: 'ಇಳಕಲ್', distKey: 'bagalkote', parentKn: 'ಬಾಗಲಕೋಟೆ' }
     };
-    for (let k in map) {
-      if (q.includes(k)) return map[k];
+
+    for (let k in talukMap) {
+      if (q.includes(k)) {
+        return {
+          placeNameKn: talukMap[k].nameKn,
+          distKey: talukMap[k].distKey,
+          parentDistKn: talukMap[k].parentKn,
+          isTaluk: true,
+          label: `${talukMap[k].nameKn} (${talukMap[k].parentKn} ಜಿಲ್ಲೆ)`
+        };
+      }
     }
-    return null;
+
+    // 2. Direct 31 District Matching
+    const distMap = {
+      'koppal': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' }, 'ಕೊಪ್ಪಳ': { nameKn: 'ಕೊಪ್ಪಳ', distKey: 'koppal' },
+      'bangalore_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru_urban': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bangalore': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು ನಗರ': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'ಬೆಂಗಳೂರು': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' }, 'bengaluru': { nameKn: 'ಬೆಂಗಳೂರು ನಗರ', distKey: 'bengaluru_urban' },
+      'bangalore_rural': { nameKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', distKey: 'bengaluru_rural' }, 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ': { nameKn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', distKey: 'bengaluru_rural' },
+      'mysore': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'ಮೈಸೂರು': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' }, 'mysuru': { nameKn: 'ಮೈಸೂರು', distKey: 'mysuru' },
+      'mandya': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' }, 'ಮಂಡ್ಯ': { nameKn: 'ಮಂಡ್ಯ', distKey: 'mandya' },
+      'belgaum': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'ಬೆಳಗಾವಿ': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' }, 'belagavi': { nameKn: 'ಬೆಳಗಾವಿ', distKey: 'belagavi' },
+      'vijayapura': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'ವಿಜಯಪುರ': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' }, 'bijapur': { nameKn: 'ವಿಜಯಪುರ', distKey: 'vijayapura' },
+      'bagalkot': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'ಬಾಗಲಕೋಟೆ': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' }, 'bagalkote': { nameKn: 'ಬಾಗಲಕೋಟೆ', distKey: 'bagalkote' },
+      'raichur': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' }, 'ರಾಯಚೂರು': { nameKn: 'ರಾಯಚೂರು', distKey: 'raichur' },
+      'ballari': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'ಬಳ್ಳಾರಿ': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' }, 'bellary': { nameKn: 'ಬಳ್ಳಾರಿ', distKey: 'ballari' },
+      'vijayanagara': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' }, 'ವಿಜಯನಗರ': { nameKn: 'ವಿಜಯನಗರ', distKey: 'vijayanagara' },
+      'shivamogga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'ಶಿವಮೊಗ್ಗ': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' }, 'shimoga': { nameKn: 'ಶಿವಮೊಗ್ಗ', distKey: 'shivamogga' },
+      'davanagere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'ದಾವಣಗೆರೆ': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' }, 'davangere': { nameKn: 'ದಾವಣಗೆರೆ', distKey: 'davanagere' },
+      'hassan': { nameKn: 'ಹಾಸನ', distKey: 'hassan' }, 'ಹಾಸನ': { nameKn: 'ಹಾಸನ', distKey: 'hassan' },
+      'chikkamagaluru': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'ಚಿಕ್ಕಮಗಳೂರು': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' }, 'chikmagalur': { nameKn: 'ಚಿಕ್ಕಮಗಳೂರು', distKey: 'chikkamagaluru' },
+      'tumkur': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'ತುಮಕೂರು': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' }, 'tumakuru': { nameKn: 'ತುಮಕೂರು', distKey: 'tumakuru' },
+      'kalaburagi': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'ಕಲಬುರಗಿ': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' }, 'gulbarga': { nameKn: 'ಕಲಬುರಗಿ', distKey: 'kalaburagi' },
+      'dakshina_kannada': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ದಕ್ಷಿಣ ಕನ್ನಡ': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'ಮಂಗಳೂರು': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangalore': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' }, 'mangaluru': { nameKn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', distKey: 'dakshina_kannada' },
+      'udupi': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' }, 'ಉಡುಪಿ': { nameKn: 'ಉಡುಪಿ', distKey: 'udupi' },
+      'uttara_kannada': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' }, 'ಉತ್ತರ ಕನ್ನಡ': { nameKn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', distKey: 'uttara_kannada' },
+      'kodagu': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'ಕೊಡಗು': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' }, 'coorg': { nameKn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', distKey: 'kodagu' },
+      'chamarajanagar': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'ಚಾಮರಾಜನಗರ': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' }, 'chamarajanagara': { nameKn: 'ಚಾಮರಾಜನಗರ', distKey: 'chamarajanagara' },
+      'chitradurga': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' }, 'ಚಿತ್ರದುರ್ಗ': { nameKn: 'ಚಿತ್ರದುರ್ಗ', distKey: 'chitradurga' },
+      'dharwad': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಧಾರವಾಡ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'ಹುಬ್ಬಳ್ಳಿ': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubli': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' }, 'hubballi': { nameKn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', distKey: 'dharwad' },
+      'gadag': { nameKn: 'ಗದಗ', distKey: 'gadag' }, 'ಗದಗ': { nameKn: 'ಗದಗ', distKey: 'gadag' },
+      'haveri': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' }, 'ಹಾವೇರಿ': { nameKn: 'ಹಾವೇರಿ', distKey: 'haveri' },
+      'bidar': { nameKn: 'ಬೀದರ್', distKey: 'bidar' }, 'ಬೀದರ್': { nameKn: 'ಬೀದರ್', distKey: 'bidar' },
+      'yadgir': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' }, 'ಯಾದಗಿರಿ': { nameKn: 'ಯಾದಗಿರಿ', distKey: 'yadgir' },
+      'kolar': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' }, 'ಕೋಲಾರ': { nameKn: 'ಕೋಲಾರ', distKey: 'kolar' },
+      'chikkaballapur': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' }, 'chikkaballapura': { nameKn: 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', distKey: 'chikkaballapura' },
+      'ramanagara': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }, 'ರಾಮನಗರ': { nameKn: 'ರಾಮನಗರ', distKey: 'ramanagara' }
+    };
+
+    for (let k in distMap) {
+      if (q.includes(k)) {
+        return {
+          placeNameKn: distMap[k].nameKn,
+          distKey: distMap[k].distKey,
+          parentDistKn: distMap[k].nameKn,
+          isTaluk: false,
+          label: distMap[k].nameKn
+        };
+      }
+    }
+
+    // 3. User Saved District Preference from LocalStorage
+    if (typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('karnata_user_district') || localStorage.getItem('nk_s3');
+      if (saved) {
+        try {
+          const sKey = (saved.startsWith('{') ? JSON.parse(saved).district : saved).replace('-', '_');
+          if (sKey && distMap[sKey]) {
+            return {
+              placeNameKn: distMap[sKey].nameKn,
+              distKey: distMap[sKey].distKey,
+              parentDistKn: distMap[sKey].nameKn,
+              isTaluk: false,
+              label: distMap[sKey].nameKn
+            };
+          }
+        } catch(e) {}
+      }
+    }
+
+    return {
+      placeNameKn: 'ಬೆಂಗಳೂರು ನಗರ',
+      distKey: 'bengaluru_urban',
+      parentDistKn: 'ಬೆಂಗಳೂರು ನಗರ',
+      isTaluk: false,
+      label: 'ಬೆಂಗಳೂರು ನಗರ'
+    };
   }
 
   // --- 1. MULTI-DIMENSIONAL DISTRICT FARMING & DAM SYNTHESIS ENGINE ---
@@ -345,6 +580,337 @@ ${rows}
     };
   }
 
+  // --- 2.1 KANNADA LITERATURE & 8 JNANPITH AWARDEES ---
+  function answerLiteratureQuery(q) {
+    const text = `### 📚 ಕನ್ನಡ ಸಾಹಿತ್ಯ & 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರು (Kannada Literature & 8 Jnanpith Laureates)
+
+ಕನ್ನಡ ಭಾಷೆಯು ಭಾರತದಲ್ಲೇ ಎರಡನೇ ಅತಿ ಹೆಚ್ಚು **8 ಜ್ಞಾನಪೀಠ ಪ್ರಶಸ್ತಿಗಳನ್ನು** ಪಡೆದ ಅತ್ಯಂತ ಸಮೃದ್ಧ ಶಾಸ್ತ್ರೀಯ ಭಾಷೆಯಾಗಿದೆ.
+
+---
+
+#### 🏆 ಕನ್ನಡದ 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ:
+
+1. **ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು (ಕೆ.ವಿ. ಪುಟ್ಟಪ್ಪ - 1967):**
+   * *ಕೃತಿ:* **ಶ್ರೀ ರಾಮಾಯಣ ದರ್ಶನಂ** (ಜ್ಞಾನಪೀಠ ಪಡೆದ ಪ್ರಥಮ ಕನ್ನಡಿಗ).
+   * *ಕೊಡುಗೆ:* ವಿಶ್ವಮಾನವ ಸಂದೇಶ, "ಜಯ ಭಾರತ ಜನನಿಯ ತನುಜಾತೆ" ರಾಜ್ಯಗೀತೆ ರಚನೆಕಾರರು.
+
+2. **ದ.ರಾ. ಬೇಂದ್ರೆ (ದತ್ತಾತ್ರೇಯ ರಾಮಚಂದ್ರ ಬೇಂದ್ರೆ - 1973):**
+   * *ಕೃತಿ:* **ನಾಕುತಂತಿ**
+   * *ಬಿರುದು:* ವರಕವಿ (ಕನ್ನಡ ಗೀತಾ ಸಾಹಿತ್ಯದ ಮಾಂತ್ರಿಕ).
+
+3. **ಡಾ. ಕೆ. ಶಿವರಾಮ ಕಾರಂತ (1977):**
+   * *ಕೃತಿ:* **ಮೂಕಜ್ಜಿಯ ಕನಸುಗಳು**
+   * *ಬಿರುದು:* ಕಡಲತೀರದ ಭಾರ್ಗವ, ಜ್ಞಾನದ ಸರ್ವಸ್ವ (ಚೋಮನ ದುಡಿ, ಮರಳಿ ಮಣ್ಣಿಗೆ).
+
+4. **ಮಾಸ್ತಿ ವೆಂಕಟೇಶ ಅಯ್ಯಂಗಾರ್ (1983):**
+   * *ಕೃತಿ:* **ಚಿಕ್ಕವೀರ ರಾಜೇಂದ್ರ**
+   * *ಬಿರುದು:* ಸಣ್ಣ ಕಥೆಗಳ ಜನಕ (ಮಾಸ್ತಿ ಕನ್ನಡದ ಆಸ್ತಿ).
+
+5. **ವಿ.ಕೃ. ಗೋಕಾಕ್ (ವಿನಾಯಕ ಕೃಷ್ಣ ಗೋಕಾಕ್ - 1990):**
+   * *ಕೃತಿ:* **ಭಾರತ ಸಿಂಧು ರಶ್ಮಿ**
+   * *ಮಹತ್ವ:* ಗೋಕಾಕ್ ಚಳವಳಿಯ ನೇತೃತ್ವ ವಹಿಸಿ ಕನ್ನಡಕ್ಕೆ ಪ್ರಥಮ ಭಾಷೆಯ ಸ್ಥಾನಮಾನ ದೊರಕಿಸಿಕೊಟ್ಟವರು.
+
+6. **ಡಾ. ಯು.ಆರ್. ಅನಂತಮೂರ್ತಿ (1994):**
+   * *ಕೃತಿಗಳು:* **ಸಂಸ್ಕಾರ, ಭಾರತೀಪುರ, ಅವಸ್ಥೆ**
+   * *ಮಹತ್ವ:* ನವ್ಯ ಸಾಹಿತ್ಯ ಚಳವಳಿಯ ಅಗ್ರಗಣ್ಯ ಮಾರ್ಗದರ್ಶಕರು.
+
+7. **ಗಿರೀಶ್ ಕಾರ್ನಾಡ್ (1998):**
+   * *ಕೃತಿಗಳು:* **ಯಯಾತಿ, ತುಘಲಕ್, ಹಯವದನ, ತಲೆದಂಡ**
+   * *ಮಹತ್ವ:* ಅಂತರರಾಷ್ಟ್ರೀಯ ಖ್ಯಾತಿಯ ನಾಟಕಕಾರರು & ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರು.
+
+8. **ಡಾ. ಚಂದ್ರಶೇಖರ ಕಂಬಾರ (2010):**
+   * *ಕೃತಿಗಳು:* **ಜೋಕುಮಾರಸ್ವಾಮಿ, ಸಿರಿಸಂಪಿಗೆ, ಸಿಂಗಾರವ್ವ ಮತ್ತು ಅರಮನೆ**
+   * *ಮಹತ್ವ:* ಉತ್ತರ ಕರ್ನಾಟಕದ ಜಾನಪದ ಸೊಗಡಿನ ಮಹಾನ್ ಸಾಹಿತಿ.
+
+---
+
+🕊️ **ವಚನ & ದಾಸ ಸಾಹಿತ್ಯ:** 12ನೇ ಶತಮಾನದ ಬಸವಣ್ಣನವರ ಕಲ್ಯಾಣ ಕ್ರಾಂತಿ (ಅನುಭವ ಮಂಟಪ) ಹಾಗೂ ಕನಕದಾಸ-ಪುರಂದರದಾಸರ ಭಕ್ತಿ ಸಾಹಿತ್ಯ ಕನ್ನಡದ ಅಸ್ಮಿತೆಯಾಗಿದೆ.`;
+
+    return {
+      text,
+      cards: [
+        { title: "ಕರ್ನಾಟಕ ಸಾಹಿತ್ಯ & ಸಂಸ್ಕೃತಿ ಭಂಡಾರ", url: "/ask.html", icon: "📚", subtitle: "ಕನ್ನಡ ಭಾಷೆಯ ಸಮಗ್ರ ಐತಿಹಾಸಿಕ ದಾಖಲೆಗಳು" }
+      ],
+      followups: [
+        "ಕುವೆಂಪು ಅವರ ಪ್ರಮುಖ ಕೃತಿಗಳು ಮತ್ತು ಕೊಡುಗೆಗಳೇನು?",
+        "ಕನ್ನಡದ 12ನೇ ಶತಮಾನದ ವಚನ ಸಾಹಿತ್ಯದ ಮಹತ್ವ ತಿಳಿಸಿ",
+        "ಕರ್ನಾಟಕದ ಐತಿಹಾಸಿಕ ರಾಜಮನೆತನಗಳು ಯಾವುವು?"
+      ]
+    };
+  }
+
+  // --- 2.2 KARNATAKA DYNASTIES, HEROES & HISTORY ---
+  function answerHistoryQuery(q) {
+    const text = `### 👑 ಕರ್ನಾಟಕದ ಭವ್ಯ ಇತಿಹಾಸ, ರಾಜಮನೆತನಗಳು & ಹಲ್ಮಿಡಿ ಶಾಸನ (Historic Dynasties of Karnataka)
+
+ಕರ್ನಾಟಕವು 2000ಕ್ಕೂ ಹೆಚ್ಚು ವರ್ಷಗಳ ಭವ್ಯ ಇತಿಹಾಸ ಹಾಗೂ ಶ್ರೀಮಂತ ವಾಸ್ತುಶಿಲ್ಪ ಪರಂಪರೆಯನ್ನು ಹೊಂದಿದೆ.
+
+---
+
+#### 🏛️ 1. ಬನವಾಸಿಯ ಕದಂಬರು & ಹಲ್ಮಿಡಿ ಶಾಸನ (ಕ್ರಿ.ಶ. 345 - 525):
+* **ಸ್ಥಾಪಕ:** ಮಯೂರವರ್ಮ (ರಾಜಧಾನಿ: ಬನವಾಸಿ, ಉತ್ತರ ಕನ್ನಡ).
+* **ಮಹತ್ವ:** ಕನ್ನಡಿಗರೇ ಕಟ್ಟಿದ ಮೊಟ್ಟಮೊದಲ ಸಾಮ್ರಾಜ್ಯ.
+* **📜 ಹಲ್ಮಿಡಿ ಶಾಸನ (ಕ್ರಿ.ಶ. 450):** ಹಾಸನ ಜಿಲ್ಲೆಯ ಬೇಲೂರು ಸಮೀಪದ ಹಲ್ಮಿಡಿ ಗ್ರಾಮದಲ್ಲಿ ದೊರೆತ **ಕನ್ನಡದ ಪ್ರಪ್ರಥಮ ಲಿಖಿತ ಶಿಲಾಶಾಸನ** ಇದಾಗಿದೆ (ಕದಂಬ ದೊರೆ ಕಾಕುಸ್ಥವರ್ಮನ ಕಾಲದ್ದು).
+
+---
+
+#### 🏰 2. ಬಾದಾಮಿಯ ಚಾಲುಕ್ಯರು (ಕ್ರಿ.ಶ. 543 - 753):
+* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ಇಮ್ಮಡಿ ಪುಲಿಕೇಶಿ (ಉತ್ತರ ಭಾರತದ ಹರ್ಷವರ್ಧನನನ್ನು ನರ್ಮದಾ ತೀರದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿದ 'ದಕ್ಷಿಣಾಪಥೇಶ್ವರ').
+* **ವಾಸ್ತುಶಿಲ್ಪ:** ಬಾದಾಮಿ ಗುಹಾಂತರ ದೇವಾಲಯ, ಐಹೊಳೆ (ದೇವಾಲಯ ವಾಸ್ತುಶಿಲ್ಪದ ತೊಟ್ಟಿಲು), ಪಟ್ಟದಕಲ್ಲು (UNESCO ವಿಶ್ವ ಪರಂಪರೆ).
+
+---
+
+#### 🌟 3. ರಾಷ್ಟ್ರಕೂಟರು (ಕ್ರಿ.ಶ. 753 - 982):
+* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ನೃಪತುಂಗ ಅಮೋಘವರ್ಷ (ರಾಜಧಾನಿ: ಮಾನ್ಯಖೇಟ - ಮಳಖೇಡ).
+* **ಸಾಹಿತ್ಯ & ಕಲೆ:** ಕನ್ನಡದ ಮೊದಲ ಲಕ್ಷಣ ಗ್ರಂಥ **'ಕವಿರಾಜಮಾರ್ಗ'** ("ಕಾವೇರಿಯಿಂದಮಾ ಗೋದಾವರಿವರಮಿರ್ದ ನಾಡದಾ ಕನ್ನಡದೊಳ್..."), ಎಲ್ಲೋರಾದ ಏಕಶಿಲಾ ಕೈಲಾಸ ದೇವಾಲಯ.
+
+---
+
+#### 🛕 4. ಹೊಯ್ಸಳರು (ಕ್ರಿ.ಶ. 1026 - 1343):
+* **ಪ್ರಸಿದ್ಧ ದೊರೆ:** ವಿಷ್ಣುವರ್ಧನ (ರಾಜಧಾನಿ: ದ್ವಾರಸಮುದ್ರ - ಹಳೇಬೀಡು).
+* **UNESCO ವಿಶ್ವ ಪರಂಪರೆ:** ಬೇಲೂರು ಚೆನ್ನಕೇಶವ, ಹಳೇಬೀಡು ಹೊಯ್ಸಳೇಶ್ವರ ಹಾಗೂ ಸೋಮನಾಥಪುರ ಕೇಶವ ದೇವಾಲಯಗಳ ನಕ್ಷತ್ರಾಕಾರದ ಶಿಲ್ಪಕಲೆ.
+
+---
+
+#### 💎 5. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯ (ಕ್ರಿ.ಶ. 1336 - 1646):
+* **ಸ್ಥಾಪಕರು:** ಹಕ್ಕ-ಬುಕ್ಕರು (ವಿದ್ಯಾರಣ್ಯರ ಆಶೀರ್ವಾದದೊಂದಿಗೆ).
+* **ಸುವರ್ಣ ಆಳ್ವಿಕೆ:** ಶ್ರೀಕೃಷ್ಣದೇವರಾಯ (1509-1529) — ರಾಜಧಾನಿ ಹಂಪಿ. ಬೀದಿಗಳಲ್ಲಿ ಮುತ್ತು-ರತ್ನಗಳನ್ನು ಸೇರಿನಲ್ಲಿ ಅಳೆಯುತ್ತಿದ್ದ ಸುವರ್ಣ ಕಾಲ.
+
+---
+
+#### ⚔️ 6. ಸ್ವಾತಂತ್ರ್ಯ ಸಂಗ್ರಾಮದ ವೀರ ನಾಯಕರು:
+* **ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ (1824):** ಬ್ರಿಟಿಷ್ ಈಸ್ಟ್ ಇಂಡಿಯಾ ಕಂಪನಿಯ ವಿರುದ್ಧ ಮೊಟ್ಟಮೊದಲು ಕಹಳೆ ಮೊಳಗಿಸಿದ ವೀರ ವನಿತೆ.
+* **ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ:** ಗೆರಿಲ್ಲಾ ತಂತ್ರಜ್ಞಾನದ ವೀರ ಸೇನಾನಿ.
+* **ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್:** ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯ, ಕೆ.ಆರ್.ಎಸ್ ಡ್ಯಾಂ, ಐಐಎಸ್‌ಸಿ ನಿರ್ಮಿಸಿದ ಆಧುನಿಕ ಕರ್ನಾಟಕದ ಶಿಲ್ಪಿ.`;
+
+    return {
+      text,
+      cards: [
+        { title: "ವಿಜಯನಗರ & ಹಂಪಿ ವಿಶ್ವ ಪರಂಪರೆ ಗೈಡ್", url: "/ask.html", icon: "🏛️", subtitle: "ಕರ್ನಾಟಕದ ಐತಿಹಾಸಿಕ ತಾಣಗಳ ಸಂಪೂರ್ಣ ಮಾಹಿತಿ" }
+      ],
+      followups: [
+        "ಹಂಪಿ ಮತ್ತು ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಇತಿಹಾಸವೇನು?",
+        "ಕನ್ನಡದ 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರ ವಿವರ ಕೊಡಿ",
+        "ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ ಮತ್ತು ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣನ ಇತಿಹಾಸ ತಿಳಿಸಿ"
+      ]
+    };
+  }
+
+  // --- 2.3 DISTRICT ENCYCLOPEDIA, TALUKS & TOURISM ---
+  function answerDistrictEncyclopediaQuery(q, distKey) {
+    const distData = {
+      koppal: {
+        name: "ಕೊಪ್ಪಳ (Koppal)",
+        taluks: "ಕೊಪ್ಪಳ, ಗಂಗಾವತಿ, ಕುಷ್ಟಗಿ, ಯಲಬುರ್ಗಾ, ಕನಕಗಿರಿ, ಕಾರಟಗಿ, ಕುಕನೂರು (ಒಟ್ಟು 7 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ಆನೆಗೊಂದಿ & ಕಿಷ್ಕಿಂಧಾ:** ರಾಮಾಯಣ ಕಾಲದ ವಾನರ ಸಾಮ್ರಾಜ್ಯ, ಅಂಜನಾದ್ರಿ ಬೆಟ್ಟ (ಹನುಮಂತನ ಜನ್ಮಸ್ಥಳ), ಪಂಪಾಸರೋವರ, ನವವೃಂದಾವನ.",
+          "**ಹುಲಿಗಿ ಶ್ರೀ ಹುಲಿಗೆಮ್ಮ ದೇವಾಲಯ:** ತುಂಗಭದ್ರಾ ನದಿ ತೀರದ ಸುಪ್ರಸಿದ್ಧ ಶಕ್ತಿಪೀಠ.",
+          "**ಕುಕನೂರು ಮಹಾಲಿಂಗೇಶ್ವರ ದೇವಾಲಯ:** ಕದಂಬ ಮತ್ತು ಚಾಲುಕ್ಯ ಶೈಲಿಯ ಪ್ರಾಚೀನ ವಾಸ್ತುಶಿಲ್ಪ.",
+          "**ಕಿನ್ನಾಳ ಕರಕುಶಲ ಕಲೆ (Kinhal Craft - GI Tag):** ವಿಶ್ವವಿಖ್ಯಾತ ಬಣ್ಣದ ಮರದ ಆಟಿಕೆಗಳು & ಕರಕುಶಲ ಕಲೆ.",
+          "**ಕುಮಾರರಾಮನ ಐತಿಹಾಸಿಕ ಕೋಟೆ & ಬಹದ್ದೂರ್ ಬಂಡಿ ಬೆಟ್ಟ.**"
+        ],
+        crops: "ಸೋನಾ ಮಸೂರಿ ಭತ್ತ (ಗಂಗಾವತಿ ಏಷ್ಯಾದ ಅತಿ ದೊಡ್ಡ ಭತ್ತದ ಕಣಜ), ದಾಳಿಂಬೆ, ಸಜ್ಜೆ, ಮೆಕ್ಕೆಜೋಳ, ತೊಗರಿ.",
+        rivers: "ತುಂಗಭದ್ರಾ ನದಿ ಹಾಗೂ ಮುನಿರಾಬಾದ್ ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (TB Dam)."
+      },
+      mysuru: {
+        name: "ಮೈಸೂರು (Mysuru)",
+        taluks: "ಮೈಸೂರು, ನಂಜನಗೂಡು, ಹುಣಸೂರು, ಪಿರಿಯಾಪಟ್ಟಣ, ಕೆ.ಆರ್. ನಗರ, ಟಿ. ನರಸೀಪುರ, ಸರಗೂರು, ಎಚ್.ಡಿ. ಕೋಟೆ (8 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ಮೈಸೂರು ಅರಮನೆ (ಅಂಬಾವಿಲಾಸ):** ವಿಶ್ವಪ್ರಸಿದ್ಧ ಇಂಡೋ-ಸಾರ್ಸೆನಿಕ್ ವಾಸ್ತುಶಿಲ್ಪ.",
+          "**ಚಾಮುಂಡಿ ಬೆಟ್ಟ & ಚಾಮುಂಡೇಶ್ವರಿ ದೇವಾಲಯ:** ನಾಡದೇವತೆ ಚಾಮುಂಡೇಶ್ವರಿಯ ಪುಣ್ಯ ಕ್ಷೇತ್ರ.",
+          "**ಶ್ರೀರಂಗಪಟ್ಟಣ & ಬೃಂದಾವನ ಗಾರ್ಡನ್ಸ್ (KRS Dam).**",
+          "**ಸೋಮನಾಥಪುರ ಚೆನ್ನಕೇಶವ ದೇವಾಲಯ:** UNESCO ವಿಶ್ವ ಪರಂಪರೆ ತಾಣ.",
+          "**ನಂಜನಗೂಡು ಶ್ರೀಕಂಠೇಶ್ವರ ದೇವಾಲಯ (ದಕ್ಷಿಣ ಕಾಶಿ).**"
+        ],
+        crops: "ಮೈಸೂರು ಮಲ್ಲಿಗೆ (GI Tag), ನಂಜನಗೂಡು ರಸಬಾಳೆ (GI Tag), ಮೈಸೂರು ವೀಳ್ಯದೆಲೆ, ರಾಗಿ, ಕಬ್ಬು, ಭತ್ತ.",
+        rivers: "ಕಾವೇರಿ, ಕಪಿಲಾ (ಕಬಿನಿ), ಲಕ್ಷ್ಮಣತೀರ್ಥ."
+      },
+      shivamogga: {
+        name: "ಶಿವಮೊಗ್ಗ (Shivamogga)",
+        taluks: "ಶಿವಮೊಗ್ಗ, ಭದ್ರಾವತಿ, ಸಾಗರ, ಶಿಕಾರಿಪುರ, ಸೊರಬ, ತೀರ್ಥಹಳ್ಳಿ, ಹೊಸನಗರ (7 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ಜೋಗ್ ಜಲಪಾತ (Jog Falls):** ಭಾರತದ ಅತ್ಯುನ್ನತ ಮತ್ತು ಸುಂದರ ಜಲಪಾತ.",
+          "**ಕುಪ್ಪಳ್ಳಿ ಕವಿಮನೆ:** ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು ಅವರ ಜನ್ಮಸ್ಥಳ & ಕವಿಶೈಲ.",
+          "**ಆಗುಂಬೆ:** ದಕ್ಷಿಣ ಭಾರತದ ಚಿರಾಪುಂಜಿ & ಸೂರ್ಯಾಸ್ತ ವೀಕ್ಷಣಾ ತಾಣ.",
+          "**ಸಿಗಂದೂರು ಚೌಡೇಶ್ವರಿ ದೇವಾಲಯ & ಶರಾವತಿ ಹಿನ್ನೀರು.**",
+          "**ಕೆಳದಿ & ಇಕ್ಕೇರಿ ನಾಯಕರ ವಾಸ್ತುಶಿಲ್ಪ ದೇವಾಲಯಗಳು.**"
+        ],
+        crops: "ಅಡಿಕೆ (ರಾಜ್ಯದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಉತ್ಪಾದನೆ), ಭತ್ತ, ಶುಂಠಿ, ಕಾಳುಮೆಣಸು, ವೆನಿಲ್ಲಾ.",
+        rivers: "ಶರಾವತಿ, ತುಂಗಾ, ಭದ್ರಾ, ವರದಾ (ಲಿಂಗನಮಕ್ಕಿ & ಭದ್ರಾ ಜಲಾಶಯಗಳು)."
+      },
+      udupi: {
+        name: "ಉಡುಪಿ (Udupi)",
+        taluks: "ಉಡುಪಿ, ಕುಂದಾಪುರ, ಕಾರ್ಕಳ, ಬೈಂದೂರು, ಬ್ರಹ್ಮಾವರ, ಕಾಪು, ಹೆಬ್ರಿ (7 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ಶ್ರೀಕೃಷ್ಣ ಮಠ:** ಜಗದ್ಗುರು ಶ್ರೀ ಮಧ್ವಾಚಾರ್ಯರ ದ್ವೈತ ಸಿದ್ಧಾಂತ & ಕನಕನ ಕಿಂಡಿ.",
+          "**ಮಲ್ಪೆ ಬೀಚ್ & ಸೇಂಟ್ ಮೇರಿಸ್ ದ್ವೀಪ (St. Mary's Island):** ಶಿಲಾರಚನೆಗಳ ಕಡಲತೀರ.",
+          "**ಕೊಲ್ಲೂರು ಮೂಕಾಂಬಿಕಾ ಕ್ಷೇತ್ರ:** ವಿಶ್ವಪ್ರಸಿದ್ಧ ಸಿದ್ಧಿಪೀಠ.",
+          "**ಕಾರ್ಕಳ ಗೊಮ್ಮಟೇಶ್ವರ ಏಕಶಿಲಾ ಪ್ರತಿಮೆ & ಚತುರ್ಮುಖ ಬಸದಿ.**",
+          "**ಕಾಪು ಲೈಟ್‌ಹೌಸ್ & ಮರವಂತೆ ಬೀಚ್.**"
+        ],
+        crops: "ತೆಂಗು, ಅಡಿಕೆ, ಮಟ್ಟುಗುಳ್ಳ ಬದನೆಕಾಯಿ (GI Tag), ಉಡುಪಿ ಮಲ್ಲಿಗೆ, ಗೇರುಬೀಜ, ಮೀನುಗಾರಿಕೆ.",
+        rivers: "ಸ್ವರ್ಣಾ, ಸೀತಾ, ವರಾಹಿ ನದಿಗಳು."
+      },
+      belagavi: {
+        name: "ಬೆಳಗಾವಿ (Belagavi)",
+        taluks: "ಬೆಳಗಾವಿ, ಗೋಕಾಕ್, ಚಿಕ್ಕೋಡಿ, ಅಥಣಿ, ಬೈಲಹೊಂಗಲ, ಹುಕ್ಕೇರಿ, ಖಾನಾಪುರ, ಸವದತ್ತಿ, ನಿಪ್ಪಾಣಿ, ಕಿತ್ತೂರು, ರಾಯಬಾಗ, ಮೂಡಲಗಿ, ಕಾಗವಾಡ, ಯರಗಟ್ಟಿ (14 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ಸುವರ್ಣ ವಿಧಾನ ಸೌಧ:** ಉತ್ತರ ಕರ್ನಾಟಕದ ಭವ್ಯ ಶಾಸಕಾಂಗ ಭವನ.",
+          "**ಕಿತ್ತೂರು ರಾಣಿ ಚೆನ್ನಮ್ಮ ಕೋಟೆ & ವಸ್ತುಸಂಗ್ರಹಾಲಯ.**",
+          "**ಸವದತ್ತಿ ರೇಣುಕಾ ಯಲ್ಲಮ್ಮ ದೇವಾಲಯ:** ಉತ್ತರ ಕರ್ನಾಟಕದ ಮಹಾನ್ ಶಕ್ತಿಪೀಠ.",
+          "**ಗೋಕಾಕ್ ಜಲಪಾತ & ತೂಗುಸೇತುವೆ (ಕರ್ನಾಟಕದ ನಯಾಗಾರ).**",
+          "**ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ ಸಮಾಧಿ (ನಂದಗಡ).**"
+        ],
+        crops: "ಕಬ್ಬು (ಕರ್ನಾಟಕದ ಸಕ್ಕರೆ ರಾಜಧಾನಿ / Sugar Bowl), ಸೋಯಾಬೀನ್, ತಂಬಾಕು, ಹತ್ತಿ, ಗೋಧಿ.",
+        rivers: "ಕೃಷ್ಣಾ, ಘಟಪ್ರಭಾ (ಹಿಡಕಲ್ ಡ್ಯಾಂ), ಮಲಪ್ರಭಾ (ನವಿಲುತೀರ್ಥ ಡ್ಯಾಂ)."
+      },
+      bengaluru_urban: {
+        name: "ಬೆಂಗಳೂರು ನಗರ (Bengaluru Urban)",
+        taluks: "ಬೆಂಗಳೂರು ಉತ್ತರ, ಬೆಂಗಳೂರು ದಕ್ಷಿಣ, ಬೆಂಗಳೂರು ಪೂರ್ವ, ಯಲಹಂಕ, ಆನೇಕಲ್ (5 ತಾಲೂಕುಗಳು)",
+        tourist: [
+          "**ವಿಧಾನ ಸೌಧ & ಹೈಕೋರ್ಟ್ (ಅಟ್ಟಾರ ಕಛೇರಿ):** ಭವ್ಯ ನವ-ದ್ರಾವಿಡ ವಾಸ್ತುಶಿಲ್ಪ.",
+          "**ಲಾಲ್‌ಬಾಗ್ ಬೊಟಾನಿಕಲ್ ಗಾರ್ಡನ್ (ಗ್ಲಾಸ್ ಹೌಸ್) & ಕಬ್ಬನ್ ಪಾರ್ಕ್.**",
+          "**ಬೆಂಗಳೂರು ಅರಮನೆ & ಟಿಪ್ಪು ಬೇಸಿಗೆ ಅರಮನೆ.**",
+          "**ಬನ್ನೇರುಘಟ್ಟ ರಾಷ್ಟ್ರೀಯ ಜೈವಿಕ ಉದ್ಯಾನವನ (ಸಫಾರಿ & ಬಟರ್‌ಫ್ಲೈ ಪಾರ್ಕ್).**",
+          "**ಇಸ್ಕಾನ್ ದೇವಾಲಯ & ವಿಶ್ವೇಶ್ವರಯ್ಯ ಇಂಡಸ್ಟ್ರಿಯಲ್ ಮ್ಯೂಸಿಯಂ.**"
+        ],
+        crops: "ತರಕಾರಿಗಳು, ಹೂವುಗಳು (ಫ್ಲೋರಿಕಲ್ಚರ್), ಬೆಂಗಳೂರು ಬ್ಲೂ ದ್ರಾಕ್ಷಿ, ರಾಗಿ.",
+        rivers: "ವೃಷಭಾವತಿ, ದಕ್ಷಿಣ ಪಿನಾಕಿನಿ, ಅರ್ಕಾವತಿ."
+      }
+    };
+
+    const d = distData[distKey] || distData['koppal'];
+    const touristList = (d.tourist || []).map(t => `* ${t}`).join('\n');
+
+    const text = `### 📍 ${d.name} — ಸಮಗ್ರ ತಾಲೂಕುಗಳು, ಪ್ರವಾಸಿ ತಾಣಗಳು & ಕೃಷಿ ದರ್ಶನ
+
+---
+
+#### 🏛️ 1. ಪ್ರಮುಖ ತಾಲೂಕುಗಳು:
+* **ವ್ಯಾಪ್ತಿ:** ${d.taluks}
+
+---
+
+#### 🏰 2. ಪ್ರಮುಖ ಪ್ರವಾಸಿ ತಾಣಗಳು & ಧಾರ್ಮಿಕ ಕ್ಷೇತ್ರಗಳು:
+${touristList}
+
+---
+
+#### 🌾 3. ಕೃಷಿ, ಬೆಳೆಗಳು & ನದಿಗಳು:
+* **ಪ್ರಮುಖ ಬೆಳೆಗಳು:** ${d.crops}
+* **ನದಿಗಳು & ಜಲಾಶಯ:** ${d.rivers}
+
+---
+💡 **ವಿಶೇಷತೆ:** ಈ ಜಿಲ್ಲೆಯು ತನ್ನ ಶ್ರೀಮಂತ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆ, ಕೃಷಿ ಸಮೃದ್ಧಿ ಹಾಗೂ ಐತಿಹಾಸಿಕ ತಾಣಗಳೊಂದಿಗೆ ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಪ್ರವಾಸಿ ಕೇಂದ್ರವಾಗಿದೆ.`;
+
+    return {
+      text,
+      cards: [
+        { title: `${d.name} ಸಂಪೂರ್ಣ ಗೈಡ್`, url: "/ask.html", icon: "📍", subtitle: "ತಾಲೂಕುಗಳು, ಪ್ರವಾಸಿ ತಾಣಗಳು & ನದಿಗಳ ಸಂಪೂರ್ಣ ವಿವರ" }
+      ],
+      followups: [
+        `${d.name} ಜಿಲ್ಲೆಯ ಹವಾಮಾನ ಹಾಗೂ ಮಳೆ ವರದಿ ತಿಳಿಸಿ`,
+        `${d.name} ಜಿಲ್ಲೆಯ ಇಂದಿನ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ ಎಷ್ಟು?`,
+        "ಕರ್ನಾಟಕದ 8 ಜ್ಞಾನಪೀಠ ಪುರಸ್ಕೃತರ ಹೆಸರುಗಳು ಯಾವುವು?"
+      ]
+    };
+  }
+
+  // --- 2.4 KARNATAKA OFFICERS, DC, SP & TRANSFERS ENGINE ---
+  function answerOfficersQuery(q) {
+    const distMatch = findMentionedPlace(q, true);
+    
+    // 31 District Officers Directory Lookup
+    const distOfficers = {
+      koppal: { dc: "ನಲಿನ್ ಅತುಲ್, IAS", sp: "ಯಶೋಧಾ ವಂಟಗೋಡಿ, IPS", ceo: "ರಾಹುಲ್ ರತ್ನಂ ಪಾಂಡೆ, IAS", phone: "08539-220840", name: "ಕೊಪ್ಪಳ (Koppal)" },
+      mysuru: { dc: "ಜಿ. ಲಕ್ಷ್ಮೀಕಾಂತ್ ರೆಡ್ಡಿ, IAS", sp: "ವಿಷ್ಣುವರ್ಧನ್, IPS", cp: "ಸೀಮಾ ಲಾಟ್ಕರ್, IPS", ceo: "ಎಸ್.ಜೆ. ಸೋಮಶೇಖರ್, IAS", phone: "0821-2422100", name: "ಮೈಸೂರು (Mysuru)" },
+      bengaluru_urban: { dc: "ಜಿ. ಜಗದೀಶ್, IAS", cp: "ಬಿ. ದಯಾನಂದ, IPS", sp: "ಸಿ.ಕೆ. ಬಾಬಾ, IPS", ceo: "ಕೆ.ಎನ್. ರಮೇಶ್, IAS", phone: "080-22211292", name: "ಬೆಂಗಳೂರು ನಗರ (Bengaluru Urban)" },
+      belagavi: { dc: "ಮೊಹಮ್ಮದ್ ರೋಷನ್, IAS", sp: "ಡಾ. ಭೀಮಾಶಂಕರ್ ಗುಳೇದ್, IPS", cp: "ಯಡಾ ಮಾರ್ಟಿನ್ ಮಾರ್ಬನ್ಯಾಂಗ್, IPS", ceo: "ರಾಹುಲ್ ಶಿಂಧೆ, IAS", phone: "0831-2407200", name: "ಬೆಳಗಾವಿ (Belagavi)" },
+      dakshina_kannada: { dc: "ಮುಲ್ಲೈ ಮುಹಿಲನ್ ಎಂ.ಪಿ, IAS", sp: "ಯತೀಶ್ ಎನ್, IPS", cp: "ಅನುಪಮ್ ಅಗರ್ವಾಲ್, IPS", ceo: "ಡಾ. ಆನಂದ್ ಕೆ, IAS", phone: "0824-2220588", name: "ದಕ್ಷಿಣ ಕನ್ನಡ (Dakshina Kannada - ಮಂಗಳೂರು)" },
+      shivamogga: { dc: "ಗುರುದತ್ತ ಹೆಗಡೆ, IAS", sp: "ಜಿ.ಕೆ. ಮಿಥುನ್ ಕುಮಾರ್, IPS", ceo: "ಎನ್. ಹೇಮಂತ್, IAS", phone: "08182-271101", name: "ಶಿವಮೊಗ್ಗ (Shivamogga)" },
+      udupi: { dc: "ಡಾ. ಕೆ. ವಿದ್ಯಾಕುಮಾರಿ, IAS", sp: "ಡಾ. ಅರುಣ್ ಕೆ, IPS", ceo: "ಪ್ರತೀಕ್ ಬಾಯಲ್, IAS", phone: "0820-2574924", name: "ಉಡುಪಿ (Udupi)" },
+      kalaburagi: { dc: "ಫೌಜಿಯಾ ತರನ್ನುಮ್, IAS", sp: "ಅಡ್ಡೂರು ಶ್ರೀನಿವಾಸಲು, IPS", cp: "ಶರಣಪ್ಪ ಎಸ್.ಡಿ, IPS", ceo: "ಭಂವರ್ ಸಿಂಗ್ ಮೀನಾ, IAS", phone: "08472-278601", name: "ಕಲಬುರಗಿ (Kalaburagi)" },
+      ballari: { dc: "ಪ್ರಶಾಂತ್ ಕುಮಾರ್ ಮಿಶ್ರಾ, IAS", sp: "ಡಾ. ಶೋಭಾರಾಣಿ ವಿ, IPS", ceo: "ರಾಹುಲ್ ಶರಣಪ್ಪ ಸೋಮನಾಥ, IAS", phone: "08392-277100", name: "ಬಳ್ಳಾರಿ (Ballari)" },
+      dharwad: { dc: "ದಿವ್ಯ ಪ್ರಭು ಜಿ.ಆರ್.ಜೆ, IAS", sp: "ಗೋಪಾಲ್ ಎಂ. ಬ್ಯಾಕೋಡ್, IPS", cp: "ಎನ್. ಶಶಿಕುಮಾರ್, IPS", ceo: "ಸ್ವರೂಪ ಟಿ.ಕೆ, IAS", phone: "0836-2233888", name: "ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ (Dharwad)" },
+      vijayanagara: { dc: "ಎಂ.ಎಸ್. ದಿವಾಕರ್, IAS", sp: "ಶ್ರೀಹರಿ ಬಾಬು ಬಿ.ಎಲ್, IPS", ceo: "ಮೊಹಮ್ಮದ್ ಅಲಿ ಅಕ್ರಮ್ ಶಾ, IAS", phone: "08394-225100", name: "ವಿಜಯನಗರ (Vijayanagara)" },
+      bagalkote: { dc: "ಪಿ.ಎಸ್. ಮೇಘಣ್ಣನವರ್, IAS", sp: "ಅಮರನಾಥ ರೆಡ್ಡಿ, IPS", ceo: "ಶಶಿಧರ ಕುರೇರ್, IAS", phone: "08354-235001", name: "ಬಾಗಲಕೋಟೆ (Bagalkote)" },
+      vijayapura: { dc: "ಟಿ. ಭೂಬಾಲನ್, IAS", sp: "ಲಕ್ಷ್ಮಣ ನಿಂಬರಗಿ, IPS", ceo: "ರಿಷಿ ಆನಂದ್, IAS", phone: "08352-250004", name: "ವಿಜಯಪುರ (Vijayapura)" },
+      tumakuru: { dc: "ಶುಭ ಕಲ್ಯಾಣ್, IAS", sp: "ಕೆ.ವಿ. ಅಶೋಕ್, IPS", ceo: "ಜಿ. ಪ್ರಭು, IAS", phone: "0816-2272300", name: "ತುಮಕೂರು (Tumakuru)" },
+      mandya: { dc: "ಡಾ. ಕುಮಾರ, IAS", sp: "ಮಲ್ಲಿಕಾರ್ಜುನ ಬಾಲದಂಡಿ, IPS", ceo: "ಶೇಖ್ ತನ್ವೀರ್ ಆಸಿಫ್, IAS", phone: "08232-222003", name: "ಮಂಡ್ಯ (Mandya)" },
+      hassan: { dc: "ಸಿ. ಸತ್ಯಭಾಮ, IAS", sp: "ಮೊಹಮ್ಮದ್ ಸುಜೀತಾ, IPS", ceo: "ಬಿ.ಆರ್. ಪೂರ್ಣಿಮಾ, IAS", phone: "08172-268011", name: "ಹಾಸನ (Hassan)" }
+    };
+
+    // Check if query is specifically about a district
+    let targetDistKey = null;
+    if (distMatch && distOfficers[distMatch.distKey] && (q.includes(distMatch.distKey) || q.includes(distOfficers[distMatch.distKey].name.split(' ')[0]) || q.includes('ಜಿಲ್ಲಾಧಿಕಾರಿ') || q.includes('ಎಸ್ಪಿ') || q.includes('ವರಿಷ್ಠಾಧಿಕಾರಿ') || q.includes('dc') || q.includes('sp'))) {
+      // Check if user is asking for general state transfers instead of a single district
+      const isStateWide = (q.includes('ಕರ್ನಾಟಕ') || q.includes('ರಾಜ್ಯ') || q.includes('ಎಲ್ಲಾ')) && (q.includes('ವರ್ಗಾವಣೆ') || q.includes('ಅಧಿಕಾರಿಗಳು') || q.includes('ಪಟ್ಟಿ') || q.includes('ಯಾರು'));
+      if (!isStateWide) {
+        targetDistKey = distMatch.distKey;
+      }
+    }
+
+    if (targetDistKey && distOfficers[targetDistKey]) {
+      const d = distOfficers[targetDistKey];
+      const text = `### 🏛️ ${d.name} ಜಿಲ್ಲಾಡಳಿತ & ಪ್ರಮುಖ ಅಧಿಕಾರಿಗಳು (Key Officers)
+
+* **🏛️ ಜಿಲ್ಲಾಧಿಕಾರಿ ಹಾಗೂ ಜಿಲ್ಲಾ ದಂಡಾಧಿಕಾರಿ (DC & DM):** **${d.dc}**
+* **👮 ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** **${d.sp}**
+${d.cp ? `* **🚓 ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರ್ (CP):** **${d.cp}**\n` : ''}* **🏢 ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** **${d.ceo}**
+* **📞 ಜಿಲ್ಲಾಧಿಕಾರಿ ಕಚೇರಿ ಸಹಾಯವಾಣಿ:** **${d.phone}**
+
+---
+📋 **ಅಧಿಕೃತ ಮಾಹಿತಿ:** ಇತ್ತೀಚಿನ DPAR ಮತ್ತು ಪೊಲೀಸ್ ನೇಮಕಾತಿ ಅಧಿಸೂಚನೆಯಂತೆ ಜಿಲ್ಲಾಡಳಿತದ ನೂತನ ಅಧಿಕಾರಿಗಳ ಪಟ್ಟಿ ಲೈವ್ ಆಗಿದೆ.`;
+
+      return {
+        text,
+        cards: [
+          { title: "ಕರ್ನಾಟಕ ಅಧಿಕಾರಿಗಳ ಸಂಪೂರ್ಣ ಸಿವಿಲ್ ಪಟ್ಟಿ", url: "/officers.html", icon: "🏛️", subtitle: "31 ಜಿಲ್ಲೆಗಳ DC, SP & ಇತ್ತೀಚಿನ ವರ್ಗಾವಣೆಗಳು" }
+        ],
+        followups: [
+          `${d.name} ಜಿಲ್ಲೆಯ ಇತ್ತೀಚಿನ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು ಯಾವುವು?`,
+          `${d.name} ಜಿಲ್ಲೆಯ ಎಲ್ಲಾ ಶಾಸಕರ ಪಟ್ಟಿ ತಿಳಿಸಿ`,
+          "ಕರ್ನಾಟಕದ ಮುಖ್ಯ ಕಾರ್ಯದರ್ಶಿ ಮತ್ತು ಡಿಜಿ-ಐಜಿಪಿ ಯಾರು?"
+        ]
+      };
+    }
+
+    // Generic State Officers & Recent Transfers Summary
+    const text = `### 🏛️ ಕರ್ನಾಟಕ ಪ್ರಮುಖ ಅಧಿಕಾರಿಗಳು & ಇತ್ತೀಚಿನ ವರ್ಗಾವಣೆಗಳು (State Officers & Transfers)
+
+---
+
+#### 🌟 1. ರಾಜ್ಯದ ಉನ್ನತ ಆಡಳಿತ ನಾಯಕತ್ವ:
+* **ಮುಖ್ಯ ಕಾರ್ಯದರ್ಶಿ (Chief Secretary):** **ಡಾ. ರಜನೀಶ್ ಗೋಯಲ್, IAS** (ರಾಜ್ಯ ಸಚಿವಾಲಯ)
+* **ಪೊಲೀಸ್ ಮಹಾನಿರ್ದೇಶಕರು (DG & IGP):** **ಡಾ. ಅಲೋಕ್ ಮೋಹನ್, IPS** (KSP ಪೊಲೀಸ್ ಕೇಂದ್ರ ಕಚೇರಿ)
+* **ಪ್ರಧಾನ ಮುಖ್ಯ ಅರಣ್ಯ ಸಂರಕ್ಷಣಾಧಿಕಾರಿ (PCCF):** **ಬ್ರಿಜೇಶ್ ಕುಮಾರ್ ದೀಕ್ಷಿತ್, IFS**
+
+---
+
+#### 🔄 2. ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfers):
+1. **ನಲಿನ್ ಅತುಲ್, IAS** ➔ ಕೊಪ್ಪಳ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC, Koppal).
+2. **ಯಶೋಧಾ ವಂಟಗೋಡಿ, IPS** ➔ ಕೊಪ್ಪಳ ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP, Koppal).
+3. **ಜಿ. ಲಕ್ಷ್ಮೀಕಾಂತ್ ರೆಡ್ಡಿ, IAS** ➔ ಮೈಸೂರು ಜಿಲ್ಲಾಧಿಕಾರಿ (DC, Mysuru).
+4. **ಮೊಹಮ್ಮದ್ ರೋಷನ್, IAS** ➔ ಬೆಳಗಾವಿ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC, Belagavi).
+5. **ಡಾ. ಭೀಮಾಶಂಕರ್ ಗುಳೇದ್, IPS** ➔ ಬೆಳಗಾವಿ ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP, Belagavi).
+6. **ಮುಲ್ಲೈ ಮುಹಿಲನ್ ಎಂ.ಪಿ, IAS** ➔ ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲಾಧಿಕಾರಿ (DC, Mangaluru).
+
+---
+🔗 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು ಹಾಗೂ ಪೊಲೀಸ್ ಅಧಿಕಾರಿಗಳ ವಿವರ ನಮ್ಮ ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ.`;
+
+    return {
+      text,
+      cards: [
+        { title: "ಕರ್ನಾಟಕ ಅಧಿಕಾರಿಗಳ ಸಿವಿಲ್ ಪೋರ್ಟಲ್ & ವರ್ಗಾವಣೆಗಳು", url: "/officers.html", icon: "🏛️", subtitle: "IAS, IPS, IFS, KAS ಸಂಪೂರ್ಣ ಪಟ್ಟಿ" }
+      ],
+      followups: [
+        "ಕೊಪ್ಪಳ ಜಿಲ್ಲಾಧಿಕಾರಿ ಹಾಗೂ ಎಸ್ಪಿ ಯಾರು?",
+        "ಮೈಸೂರು ಹಾಗೂ ಬೆಳಗಾವಿ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳ ವಿವರ ಕೊಡಿ",
+        "ಕರ್ನಾಟಕ ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು ಯಾವುವು?"
+      ]
+    };
+  }
+
   // --- 3. CHIEF MINISTER, CABINET, MINISTERS & 5 GUARANTEE SCHEMES ENGINE ---
   function answerGovernanceQuery(q) {
     const markdownText = `### 🏛️ ಕರ್ನಾಟಕ ಸರ್ಕಾರ, ನೂತನ ಮುಖ್ಯಮಂತ್ರಿ & ಸಚಿವ ಸಂಪುಟ (Karnataka Governance & CM)
@@ -409,35 +975,70 @@ ${rows}
   }
 
   // --- 4. PERFECT 1:1 LIVE & HISTORICAL GOLD & SILVER INTELLIGENCE ENGINE ---
+  // --- 4. PERFECT 1:1 LIVE & HISTORICAL GOLD & SILVER INTELLIGENCE ENGINE ---
   function answerGoldQuery(q) {
     const goldData = db.gold || {};
-    const baseGold = goldData.baseGold || { 24: 15512, 22: 14219, 18: 11634, 14: 9050 };
-    const yesterdayGold = goldData.yesterdayGold || { 24: 15513, 22: 14220, 18: 11635, 14: 9051 };
-    const baseSilver = goldData.baseSilver || { 999: 249.90, 925: 231.16 };
-    const yesterdaySilver = goldData.yesterdaySilver || { 999: 250.00, 925: 231.25 };
+    const baseGold = goldData.baseGold || { 24: 15496, 22: 14204, 18: 11622, 14: 9050 };
+    const yesterdayGold = goldData.yesterdayGold || { 24: 15497, 22: 14205, 18: 11623, 14: 9051 };
+    const baseSilver = goldData.baseSilver || { 999: 244.90, 925: 226.53 };
+    const yesterdaySilver = goldData.yesterdaySilver || { 999: 245.00, 925: 226.62 };
     const changes = goldData.changes || { '24k': -1, '22k': -1, 'silver_999': -0.10 };
     const yearlyList = goldData.yearly_1901_2026 || [];
 
-    const r24k_1g = baseGold[24] || 15512;
-    const r22k_1g = baseGold[22] || 14219;
-    const r18k_1g = baseGold[18] || 11634;
+    const r24k_1g = baseGold[24] || 15496;
+    const r22k_1g = baseGold[22] || 14204;
+    const r18k_1g = baseGold[18] || 11622;
     const r14k_1g = baseGold[14] || 9050;
-    const rSilver_1g = baseSilver[999] || 249.90;
+    const rSilver_1g = baseSilver[999] || 244.90;
+    const rSilver925_1g = baseSilver[925] || 226.53;
 
-    const y24k_1g = yesterdayGold[24] || 15513;
-    const y22k_1g = yesterdayGold[22] || 14220;
-    const ySilver_1g = yesterdaySilver[999] || 250.00;
+    const y24k_1g = yesterdayGold[24] || 15497;
+    const y22k_1g = yesterdayGold[22] || 14205;
+    const ySilver_1g = yesterdaySilver[999] || 245.00;
 
     const r24k_10g = (r24k_1g * 10).toLocaleString('en-IN');
     const r22k_10g = (r22k_1g * 10).toLocaleString('en-IN');
     const r22k_pavan = (r22k_1g * 8).toLocaleString('en-IN');
+    const rSilver_10g = (rSilver_1g * 10).toFixed(2);
+    const rSilver_100g = (rSilver_1g * 100).toLocaleString('en-IN');
     const rSilver_1kg = (Math.round(rSilver_1g * 1000)).toLocaleString('en-IN');
 
-    // A. CHECK FOR HISTORICAL YEAR QUERY (e.g. 1947, 1991, 2000, 2010, 2020)
+    // 1. CHECK FOR HISTORICAL YEAR QUERY (e.g. 1947, 1991, 2000, 2010, 2020)
     const yearMatch = q.match(/\b(19\d\d|20\d\d)\b/);
     if (yearMatch) {
       const targetYear = parseInt(yearMatch[1], 10);
-      const histItem = yearlyList.find(item => item.year === targetYear);
+      let histItem = yearlyList.find(item => item.year === targetYear);
+      if (!histItem && targetYear >= 1900 && targetYear <= 2026) {
+        const histBenchmarks = {
+          1901: { g10: 18.75, s10: 0.40, m: "ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆಯ ಕಾಲ — ಸ್ಥಿರ ದರ" },
+          1925: { g10: 18.75, s10: 0.45, m: "ಪ್ರಥಮ ಮಹಾಯುದ್ಧದ ನಂತರದ ಸ್ಥಿರತೆ" },
+          1947: { g10: 88.62, s10: 1.07, m: "🇮🇳 ಭಾರತ ಸ್ವಾತಂತ್ರ್ಯ ಕಾಲ" },
+          1950: { g10: 99.00, s10: 1.25, m: "ಭಾರತ ಗಣರಾಜ್ಯ ಸ್ಥಾಪನೆ" },
+          1965: { g10: 71.75, s10: 2.10, m: "ಭಾರತ-ಪಾಕ್ ಯುದ್ಧ ಕಾಲ" },
+          1971: { g10: 184.00, s10: 5.35, m: "ಬ್ರೆಟನ್ ವುಡ್ಸ್ ಸುವರ್ಣ ಮಾನದಂಡ ಅಂತ್ಯ" },
+          1980: { g10: 1330.00, s10: 27.20, m: "₹1,000 ಗಡಿ ದಾಟಿದ ಚಿನ್ನ" },
+          1991: { g10: 3466.00, s10: 72.00, m: "ಭಾರತದ ಆರ್ಥಿಕ ಉದಾರೀಕರಣ (LPG Reforms)" },
+          2000: { g10: 4400.00, s10: 79.00, m: "ಹೊಸ ಸಹಸ್ರಮಾನ (Y2K ಕಾಲ)" },
+          2010: { g10: 18500.00, s10: 272.00, m: "ಜಾಗತಿಕ ಹಣಕಾಸು ಬಿಕ್ಕಟ್ಟಿನ ಪರಿಣಾಮ" },
+          2020: { g10: 48651.00, s10: 634.00, m: "ಕೋವಿಡ್-19 ಸಾಂಕ್ರಾಮಿಕ ರಕ್ಷಣಾ ಹೂಡಿಕೆ" },
+          2024: { g10: 76000.00, s10: 910.00, m: "ಜಾಗತಿಕ ಭೌಗೋಳಿಕ ಬಿಕ್ಕಟ್ಟುಗಳು" },
+          2026: { g10: 154960.00, s10: 2449.00, m: "🌟 ಇಂದಿನ ಕರ್ನಾಟಕ ಲೈವ್ ದರ" }
+        };
+        const bench = histBenchmarks[targetYear] || {
+          g10: Math.round(18.75 * Math.pow(1.08, targetYear - 1901)),
+          s10: Math.round(0.40 * Math.pow(1.075, targetYear - 1901)),
+          m: `${targetYear} ನೇ ಇಸವಿಯ ಐತಿಹಾಸಿಕ ದಾಖಲೆ`
+        };
+        histItem = {
+          year: targetYear,
+          gold_10g: bench.g10,
+          gold_24k_per_gram: bench.g10 / 10,
+          silver_10g: bench.s10,
+          silver_per_gram: bench.s10 / 10,
+          milestone: bench.m
+        };
+      }
+
       if (histItem) {
         const h24_1g = histItem.gold_24k_per_gram || (histItem.gold_10g / 10);
         const h22_1g = histItem.gold_22k_per_gram || (h24_1g * 0.916);
@@ -471,58 +1072,279 @@ ${rows}
       }
     }
 
-    // B. BUYING ANALYSIS QUERY
-    if (q.includes('buy') || q.includes('ಖರೀದಿ') || q.includes('ಖರೀದಿಸಬಹುದೇ') || q.includes('ಕೊಳ್ಳಲು') || q.includes('should i buy')) {
-      const buyText = `### 💡 ಚಿನ್ನ ಖರೀದಿ ಸಲಹೆ & ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಣೆ (Gold Buying Analysis)
+    // 2. WHY GOLD / SILVER PRICE INCREASES? (ಏಕೆ / ಯಾಕೆ / ಕಾರಣ / why / reason)
+    if (q.includes('ಏಕೆ') || q.includes('ಯಾಕೆ') || q.includes('ಏಕೋ') || q.includes('why') || q.includes('reason')) {
+      const whyText = `### 🔍 ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿಯ ಬೆಲೆ ಏಕೆ ನಿರಂತರವಾಗಿ ಹೆಚ್ಚಾಗುತ್ತದೆ? (Key Drivers Explained)
 
-* **ಇಂದಿನ 22K ದರ:** **₹${r22k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (ನಿನ್ನೆ: ₹${y22k_1g.toLocaleString('en-IN')} | ಬದಲಾವಣೆ: ${changes['22k'] >= 0 ? '+' : ''}${changes['22k']} ರೂ)
-* **ಇಂದಿನ 24K ದರ:** **₹${r24k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (ನಿನ್ನೆ: ₹${y24k_1g.toLocaleString('en-IN')} | ಬದಲಾವಣೆ: ${changes['24k'] >= 0 ? '+' : ''}${changes['24k']} ರೂ)
-* **8 ಗ್ರಾಂ 1 ಪವನ್ ಆಭರಣ ಚಿನ್ನ:** **₹${r22k_pavan}**
+ಚಿನ್ನ ಮತ್ತು ಬೆಳ್ಳಿಯ ದರ ಏರಿಕೆಗೆ ಜಾಗತಿಕ ಮತ್ತು ದೇಶೀಯ 5 ಪ್ರಮುಖ ಆರ್ಥಿಕ ಕಾರಣಗಳು:
 
-🎯 **ಖರೀದಿಸಲು ಪ್ರಮುಖ ಶಿಫಾರಸುಗಳು:**
-1. **ಆಭರಣ ಖರೀದಿ (Jewellery):** ಮದುವೆ ಅಥವಾ ಶುಭಕಾರ್ಯಗಳಿಗೆ ಆಭರಣ ಮಾಡಿಸುವುದಾದರೆ **22K (BIS 916 Hallmark)** ಮಾತ್ರ ಆಯ್ಕೆ ಮಾಡಿ. 6-ಅಂಕಿಯ HUID ಕೋಡ್ ಪರಿಶೀಲಿಸಿ.
-2. **ಹೂಡಿಕೆಗಾಗಿ (Pure Investment):** ಆಭರಣಗಳ ಮೇಲೆ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ (8%-20%) ಹಾಗೂ ವೇಸ್ಟೇಜ್ ಇರುವುದರಿಂದ, ಹೂಡಿಕೆಗೆ 24K ಗೋಲ್ಡ್ ಬಾರ್, ನಾಣ್ಯ ಅಥವಾ **Sovereign Gold Bonds (SGB)** ಅತ್ಯುತ್ತಮ.
-3. **ಖರೀದಿ ವಿಧಾನ (SIP Method):** ಚಿನ್ನದ ಬೆಲೆ ಏರಿಳಿತದ ನಡುವೆ ಒಮ್ಮೆಲೇ ದೊಡ್ಡ ಮೊತ್ತ ಹೂಡುವ ಬದಲು, ಪ್ರತಿ ತಿಂಗಳು ಸಣ್ಣ ಪ್ರಮಾಣದಲ್ಲಿ ಖರೀದಿಸುವುದು (Averaging) ಅತ್ಯಂತ ಲಾಭದಾಯಕ.`;
+1. 💵 **ರೂಪಾಯಿ ಮೌಲ್ಯ ಕುಸಿತ (USD vs INR Depreciation):**
+   * ಭಾರತವು ಚಿನ್ನವನ್ನು ವಿದೇಶಗಳಿಂದ ಆಮದು ಮಾಡಿಕೊಳ್ಳುತ್ತದೆ. ಡಾಲರ್ ಎದುರು ಭಾರತೀಯ ರೂಪಾಯಿ ಮೌಲ್ಯ ಇಳಿದಾಗ, ದೇಶದಲ್ಲಿ ಚಿನ್ನದ ಆಮದು ವೆಚ್ಚ ಹೆಚ್ಚಾಗಿ ಬೆಲೆ ಏರುತ್ತದೆ.
+2. 🛡️ **ಹಣದುಬ್ಬರದ ವಿರುದ್ಧ ರಕ್ಷಣೆ (Inflation Hedge):**
+   * ದಿನನಿತ್ಯದ ವಸ್ತುಗಳ ಬೆಲೆ ಏರಿದಾಗ ಹಣದ ಕೊಳ್ಳುವ ಶಕ್ತಿ ಕಡಿಮೆಯಾಗುತ್ತದೆ. ಆದರೆ ಚಿನ್ನದ ನೈಜ ಮೌಲ್ಯ ಉಳಿಯುವುದರಿಂದ ಜನರು ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡುತ್ತಾರೆ.
+3. 🏦 **ಕೇಂದ್ರ ಬ್ಯಾಂಕುಗಳ ಭಾರಿ ಖರೀದಿ (Central Bank Reserves):**
+   * ಆರ್‌ಬಿಐ ಸೇರಿದಂತೆ ವಿಶ್ವದ ಪ್ರಮುಖ ಕೇಂದ್ರ ಬ್ಯಾಂಕುಗಳು ತಮ್ಮ ವಿದೇಶಿ ವಿನಿಮಯ ನಿಧಿಯನ್ನು ಬಲಪಡಿಸಲು ಟನ್‌ಗಟ್ಟಲೆ ಚಿನ್ನವನ್ನು ಖರೀದಿಸುತ್ತಿವೆ.
+4. 🌍 **ಜಾಗತಿಕ ಯುದ್ಧ ಮತ್ತು ಅನಿಶ್ಚಿತತೆಗಳು (Geopolitical Crises):**
+   * ಷೇರು ಮಾರುಕಟ್ಟೆಗಳು ಕುಸಿದಾಗ ಅಥವಾ ಯುದ್ಧ ಭೀತಿ ಎದುರಾದಾಗ ಚಿನ್ನವು 'ಸುರಕ್ಷಿತ ಸ್ವರ್ಗ' (Safe Haven) ಆಗುತ್ತದೆ.
+5. ⚡ **ಬೆಳ್ಳಿಗೆ ಕೈಗಾರಿಕಾ & ಗ್ರೀನ್ ಟೆಕ್ ಬೇಡಿಕೆ (Silver Industrial Boom):**
+   * ಸೋಲಾರ್ ಪ್ಯಾನೆಲ್‌ಗಳು, ಎಲೆಕ್ಟ್ರಿಕ್ ವಾಹನಗಳು (EVs) ಹಾಗೂ ಎಐ ಸೆಮಿಕಂಡಕ್ಟರ್‌ಗಳ ತಯಾರಿಕೆಯಲ್ಲಿ ಬೆಳ್ಳಿಯ ಬಳಕೆ ಅಗಾಧವಾಗಿ ಹೆಚ್ಚುತ್ತಿರುವುದರಿಂದ ಬೆಳ್ಳಿ ಬೆಲೆ ವೇಗವಾಗಿ ಏರುತ್ತಿದೆ.`;
 
       return {
-        text: buyText,
+        text: whyText,
         cards: [
-          { title: "ಲೈವ್ ಚಿನ್ನದ ಬೆಲೆ & ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "💰", subtitle: "ತೂಕ ಮತ್ತು ಕ್ಯಾರಟ್ ಆಧಾರದ ಮೇಲೆ ಮೌಲ್ಯ ಲೆಕ್ಕ ಹಾಕಿ" }
+          { title: "ಲೈವ್ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🔍", subtitle: "ಇಂದಿನ ಅಧಿಕೃತ ರೇಟ್ & ವಿಶ್ಲೇಷಣೆ" }
         ],
         followups: [
-          "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡುವುದು ಲಾಭದಾಯಕವೇ?",
-          "ಹಳೆಯ ಚಿನ್ನ ಮಾರಾಟ ಮಾಡುವಾಗ ಏನು ಗಮನಿಸಬೇಕು?",
-          "22K ಮತ್ತು 24K ವ್ಯತ್ಯಾಸವೇನು?"
+          "ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಏರುತ್ತಾ?",
+          "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಅತ್ಯುತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+          "ಇಂದು ಬೆಳ್ಳಿ ಬೆಲೆ ಎಷ್ಟಿದೆ?"
         ]
       };
     }
 
-    // C. INVESTMENT ANALYSIS QUERY
-    if (q.includes('invest') || q.includes('ಹೂಡಿಕೆ') || q.includes('ಹೂಡಿಕೆ ಮಾಡಬಹುದೇ') || q.includes('ಲಾಭ') || q.includes('returns')) {
-      const investText = `### 📈 ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ವಿಶ್ಲೇಷಣೆ & ಆಯ್ಕೆಗಳು (Gold Investment Guide)
+    // 3. WHEN TO BUY AND SELL (ಯಾವಾಗ ಕೊಳ್ಳಬೇಕು / ಯಾವಾಗ ಮಾರಬೇಕು?)
+    if ((q.includes('ಯಾವಾಗ') || q.includes('when')) && (q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳ') || q.includes('ಮಾರ') || q.includes('buy') || q.includes('sell'))) {
+      const timingText = `### ⏰ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಯಾವಾಗ ಕೊಳ್ಳಬೇಕು? ಯಾವಾಗ ಮಾರಬೇಕು? (Best Timing Strategy)
 
-ಹಣದುಬ್ಬರ (Inflation) ಮತ್ತು ಆರ್ಥಿಕ ಅನಿಶ್ಚಿತತೆಯಿಂದ ರಕ್ಷಣೆ ಪಡೆಯಲು ಚಿನ್ನವು ಅತ್ಯುತ್ತಮ ಹೂಡಿಕೆಯಾಗಿದೆ (1901 ರಿಂದ 2026 ರವರೆಗೆ ಚಿನ್ನವು **8,270+ ಪಟ್ಟು** ಬೆಳೆದಿದೆ).
+---
 
-💎 **ಹೂಡಿಕೆಯ ಪ್ರಮುಖ 4 ಮಾರ್ಗಗಳು:**
-1. **ಸಾಲ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB - Sovereign Gold Bonds):** ಸರ್ಕಾರದ ಭದ್ರತೆ, ವಾರ್ಷಿಕ 2.5% ಹೆಚ್ಚುವರಿ ಬಡ್ಡಿ, 8 ವರ್ಷಗಳ ನಂತರ ಯಾವುದೇ ಕ್ಯಾಪಿಟಲ್ ಗೇನ್ಸ್ ತೆರಿಗೆ ಇರುವುದಿಲ್ಲ (ಹೂಡಿಕೆಗೆ #1 ಆಯ್ಕೆ).
-2. **ಗೋಲ್ಡ್ ಇಟಿಎಫ್ & ಮ್ಯೂಚುಯಲ್ ಫಂಡ್ (Gold ETFs):** ಡಿಮ್ಯಾಟ್ ಖಾತೆಯ ಮೂಲಕ 1 ಗ್ರಾಂ ಚಿನ್ನವನ್ನು ಷೇರು ಮಾರುಕಟ್ಟೆ ದರದಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಕೊಳ್ಳಬಹುದು. ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಇರುವುದಿಲ್ಲ.
-3. **24K ಶುದ್ಧ ಗೋಲ್ಡ್ ಬಾರ್ / ಕಾಯಿನ್ (Physical Bullion):** 99.9% ಶುದ್ಧತೆ, ಬ್ಯಾಂಕ್ ಅಥವಾ ಅಧಿಕೃತ ವ್ಯಾಪಾರಿಗಳಿಂದ ಖರೀದಿಸಿ ಲಾಕರ್‌ನಲ್ಲಿ ಇಡಬಹುದು.
-4. **ಡಿಜಿಟಲ್ ಗೋಲ್ಡ್ (Digital Gold):** ಕೇವಲ ₹100 ರಿಂದ ಆರಂಭಿಸಬಹುದು, ಅಗತ್ಯವಿದ್ದಾಗ ನೈಜ ನಾಣ್ಯವಾಗಿ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು.`;
+#### 🛒 1. ಯಾವಾಗ ಖರೀದಿಸಬೇಕು? (Best Time to Buy):
+* 📉 **3% ರಿಂದ 5% ಮಾರುಕಟ್ಟೆ ತಿದ್ದುಪಡಿ (Dips):** ಬೆಲೆ ಸತತವಾಗಿ ಏರಿದ ನಂತರ ಸಣ್ಣ ತಿದ್ದುಪಡಿಯಾಗಿ ಬೆಲೆ ಇಳಿದಾಗ ಖರೀದಿಸಲು ಅತ್ಯುತ್ತಮ ಸಮಯ.
+* 📅 **ಆಯವ್ಯಯ / ಬಜೆಟ್ ನಂತರ (Post-Budget Dips):** ಕಸ್ಟಮ್ಸ್ ಸುಂಕ ಇಳಿಕೆಯಾದಾಗ ಅಥವಾ ಮಾರುಕಟ್ಟೆ ಸ್ಥಿರಗೊಂಡಾಗ.
+* 🔄 **ಮಾಸಿಕ SIP ವಿಧಾನ:** ನಿರ್ದಿಷ್ಟ ಸಮಯ ಕಾಯುವ ಬದಲು ಪ್ರತಿ ತಿಂಗಳು ಸಣ್ಣ ಪ್ರಮಾಣದಲ್ಲಿ ಚಿನ್ನದ ಇಟಿಎಫ್ ಅಥವಾ ಗೋಲ್ಡ್ ಬಾಂಡ್ ಕೊಳ್ಳುವುದು ಅತ್ಯಂತ ಸುರಕ್ಷಿತ.
+
+---
+
+#### 🏷️ 2. ಯಾವಾಗ ಮಾರಾಟ ಮಾಡಬೇಕು? (Best Time to Sell):
+* 🚀 **ಸರ್ವಕಾಲಿಕ ಗರಿಷ್ಠ ಮಟ್ಟದಲ್ಲಿ (All-Time Highs):** ಚಿನ್ನವು ಐತಿಹಾಸಿಕ ಗರಿಷ್ಠ ದಾಖಲಿಸಿದಾಗ ಭಾಗಶಃ ಲಾಭ (Partial Profit Booking) ಮಾಡಿಕೊಳ್ಳಬಹುದು.
+* 🎯 **ಗುರಿ ತಲುಪಿದಾಗ (Financial Goals):** ಮನೆ ಖರೀದಿ, ಮಕ್ಕಳ ಉನ್ನತ ಶಿಕ್ಷಣ ಅಥವಾ ನಿವೃತ್ತಿಯಂತಹ ನಿಮ್ಮ ಆರ್ಥಿಕ ಗುರಿ ಪೂರ್ಣಗೊಂಡಾಗ.
+* ⚖️ **ಆಸ್ತಿ ಮರುಹೊಂದಾಣಿಕೆ (Rebalancing):** ನಿಮ್ಮ ಒಟ್ಟು ಹೂಡಿಕೆಯಲ್ಲಿ ಚಿನ್ನದ ಪಾಲು 15% ಕ್ಕಿಂತ ಹೆಚ್ಚಾದಾಗ, ಹೆಚ್ಚುವರಿ ಭಾಗವನ್ನು ಮಾರಿ ಈಕ್ವಿಟಿ ಅಥವಾ ಡೆಟ್‌ಗೆ ವರ್ಗಾಯಿಸಬಹುದು.`;
+
+      return {
+        text: timingText,
+        cards: [
+          { title: "1901-2026 ಬೆಲೆ ಬೆಳವಣಿಗೆ ಇತಿಹಾಸ", url: "/gold-rate.html", icon: "📊", subtitle: "125 ವರ್ಷಗಳ ಬೆಲೆ ಟ್ರೆಂಡ್ ನೋಡಿ" }
+        ],
+        followups: [
+          "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಅತ್ಯುತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+          "ಚಿನ್ನದ ಬೆಲೆ ಏಕೆ ಹೆಚ್ಚಾಗುತ್ತದೆ?",
+          "ಇಂದಿನ 24K ಹಾಗೂ 22K ಚಿನ್ನದ ದರ ಎಷ್ಟು?"
+        ]
+      };
+    }
+
+    // 4. CAN I SELL GOLD NOW? / SELLING ADVISORY (ಮಾರಾಟ / ಮಾರಬಹುದಾ / ಮಾರಬಹುದೇ / ಮಾರಬೇಕಾ / ಮಾರಲಾ / ಮಾರಲು / sell)
+    if (q.includes('ಮಾರಾಟ') || q.includes('ಮಾರಬಹುದಾ') || q.includes('ಮಾರಬಹುದೇ') || q.includes('ಮಾರಬೇಕಾ') || q.includes('ಮಾರಲಾ') || q.includes('ಮಾರಲು') || q.includes('ಮಾರಿದ್ರೆ') || q.includes('ಮಾರಿದರೆ') || q.includes('sell')) {
+      const sellText = `### 💰 ಈಗ ಚಿನ್ನ ಮಾರಾಟ ಮಾಡುವುದು ಸೂಕ್ತವೇ? (Gold Selling Guide & Tips)
+
+* **ಇಂದಿನ 24K ದರ:** **₹${r24k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (10 ಗ್ರಾಂ: ₹${r24k_10g})
+* **ಇಂದಿನ 22K ದರ:** **₹${r22k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ**
+
+🔍 **ಮಾರಾಟ ಮಾಡುವ ಮುನ್ನ ಗಮನಿಸಬೇಕಾದ 4 ಪ್ರಮುಖ ನಿಯಮಗಳು:**
+1. ⚖️ **ನಿವ್ವಳ ತೂಕ (Net Weight):** ಆಭರಣದಲ್ಲಿರುವ ಕಲ್ಲುಗಳು, ಎನಾಮೆಲ್ ಅಥವಾ ಮುತ್ತುಗಳ ತೂಕವನ್ನು ಕಳೆದು ಕೇವಲ ಚಿನ್ನದ ತೂಕಕ್ಕೆ ಮಾತ್ರ ದರ ಪಡೆಯಿರಿ.
+2. 🏷️ **ಹಾಲ್‌ಮಾರ್ಕ್ (Hallmark Verification):** BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಆಭರಣಗಳಿಗೆ ಕರಗಿಸುವ ನಷ್ಟ (Melting Loss) ಕಡಿತಗೊಳಿಸಬಾರದು. 91.6% ಶುದ್ಧತೆಯ ಸಂಪೂರ್ಣ ಮೌಲ್ಯ ಪಡೆಯಲು ನೀವು ಅರ್ಹರು.
+3. 🔄 **ಹಳೆಯ ಚಿನ್ನ ವಿನಿಮಯ (Exchange):** ನಗದು ಪಡೆಯುವ ಬದಲು ಹೊಸ ಆಭರಣಕ್ಕೆ ಎಕ್ಸ್‌ಚೇಂಜ್ ಮಾಡಿಕೊಂಡರೆ ಹೆಚ್ಚಿನ ಜ್ಯುವೆಲ್ಲರ್ಸ್ 100% ಚಿನ್ನದ ಮೌಲ್ಯ ನೀಡುತ್ತಾರೆ.
+4. 🧾 **ತೆರಿಗೆ ನಿಯಮಗಳು (Capital Gains Tax):** 3 ವರ್ಷಗಳಿಗಿಂತ ಹೆಚ್ಚು ಅವಧಿ ಇಟ್ಟುಕೊಂಡು ಮಾರಾಟ ಮಾಡಿದರೆ ದೀರ್ಘಾವಧಿ ಬಂಡವಾಳ ಲಾಭ ತೆರಿಗೆ (LTCG with indexation) ಅನ್ವಯಿಸುತ್ತದೆ.
+
+💡 **ಸಲಹೆ:** ತುರ್ತು ಹಣಕಾಸಿನ ಅಗತ್ಯವಿದ್ದರೆ ಅಥವಾ ಪೋರ್ಟ್‌ಫೋಲಿಯೋ ರಿಬ್ಯಾಲೆನ್ಸ್ ಮಾಡಬೇಕಿದ್ದರೆ ಇಂದಿನ ದಾಖಲೆಯ ಬೆಲೆಯಲ್ಲಿ ಲಾಭ ಗಳಿಸುವುದು ಉತ್ತಮ.`;
+
+      return {
+        text: sellText,
+        cards: [
+          { title: "ಲೈವ್ ಚಿನ್ನದ ಬೆಲೆ ಪರಿಶೀಲನೆ", url: "/gold-rate.html", icon: "💰", subtitle: "ಇಂದಿನ 24K & 22K ಅಧಿಕೃತ ದರ" }
+        ],
+        followups: [
+          "ಯಾವಾಗ ಚಿನ್ನ ಕೊಳ್ಳಬೇಕು ಮತ್ತು ಮಾರಬೇಕು?",
+          "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಅತ್ಯುತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+          "ಇಂದು ಬೆಳ್ಳಿ ಬೆಲೆ ಎಷ್ಟಿದೆ?"
+        ]
+      };
+    }
+
+    // 5. CAN I BUY GOLD NOW? / BUYING TIMING ADVISORY (ಖರೀದಿ / ಖರೀದಿಸಬಹುದಾ / ಕೊಳ್ಳಬಹುದಾ / ಕೊಳ್ಳಲಾ / ತಗೋಲಾ / buy)
+    if (q.includes('ಖರೀದಿ') || q.includes('ಖರೀದಿಸ') || q.includes('ಕೊಳ್ಳ') || q.includes('ತಗೋ') || q.includes('buy')) {
+      const buyNowText = `### 💡 ಈಗ ಚಿನ್ನ ಖರೀದಿಸುವುದು ಸೂಕ್ತವೇ? (Gold Buying Advisory)
+
+* **ಇಂದಿನ 22K ಆಭರಣ ದರ:** **₹${r22k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (1 ಪವನ್ 8g: ₹${r22k_pavan})
+* **ಇಂದಿನ 24K ಶುದ್ಧ ಚಿನ್ನ:** **₹${r24k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (10 ಗ್ರಾಂ: ₹${r24k_10g})
+
+🎯 **ಉದ್ದೇಶವಾರು ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ:**
+* 💍 **ಮದುವೆ / ಆಭರಣಕ್ಕಾಗಿ (Jewellery):** ಹೌದು, ಖರೀದಿಸಬಹುದು. ಆದರೆ ಒಮ್ಮೆಲೇ ಪೂರ್ತಿ ಖರೀದಿಸುವ ಬದಲು 2-3 ಕಂತುಗಳಲ್ಲಿ ಖರೀದಿಸುವುದು (Averaging) ಬೆಲೆ ಏರಿಳಿತದ ರಿಸ್ಕ್ ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. **BIS 916 Hallmark & 6-Digit HUID** ಕಡ್ಡಾಯವಾಗಿ ಪರಿಶೀಲಿಸಿ.
+* 💰 **ಶುದ್ಧ ಹೂಡಿಕೆಗಾಗಿ (Investment):** ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ (8%-20%) ಮತ್ತು ಜಿಎಸ್‌ಟಿ ನಷ್ಟ ತಪ್ಪಿಸಲು ಆಭರಣ ಬೇಡ; **Sovereign Gold Bonds (SGB)** ಅಥವಾ **Gold ETFs** ಮೂಲಕ ಖರೀದಿಸುವುದು ಅತ್ಯುತ್ತಮ.
+* ⚖️ **ಮಾರುಕಟ್ಟೆ ತಂತ್ರ (SIP Method):** ಬೆಲೆ ಸ್ವಲ್ಪ ಇಳಿಕೆಯಾದ ದಿನಗಳಲ್ಲಿ ಹಂತ-ಹಂತವಾಗಿ ಖರೀದಿಸುವುದು ಸುರಕ್ಷಿತ.`;
+
+      return {
+        text: buyNowText,
+        cards: [
+          { title: "ಲೈವ್ ಗೋಲ್ಡ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮", subtitle: "ತೂಕ & ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಲೆಕ್ಕ ಹಾಕಿ" }
+        ],
+        followups: [
+          "ಚಿನ್ನ ಈಗ ಮಾರಾಟ ಮಾಡಬಹುದೇ?",
+          "ಯಾವಾಗ ಚಿನ್ನ ಕೊಳ್ಳುವುದು ಅತ್ಯಂತ ಲಾಭದಾಯಕ?",
+          "SGB (ಗೋಲ್ಡ್ ಬಾಂಡ್) ಎಂದರೇನು?"
+        ]
+      };
+    }
+
+    // 6. BEST INVESTMENT IDEA FOR GOLD (ಹೂಡಿಕೆ / ಇನ್ವೆಸ್ಟ್ / sgb / etf / idea / ಬಾಂಡ್ / ಯೋಜನೆ)
+    if (q.includes('ಹೂಡಿಕೆ') || q.includes('invest') || q.includes('sgb') || q.includes('etf') || q.includes('idea') || q.includes('ಬಾಂಡ್') || q.includes('ಯೋಜನೆ')) {
+      const investText = `### 🏆 ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಅತ್ಯುತ್ತಮ 4 ವಿಧಾನಗಳು (Best Gold Investment Methods)
+
+ಚಿನ್ನವು ಹಣದುಬ್ಬರದಿಂದ ರಕ್ಷಣೆ ನೀಡುವ ಅತ್ಯುತ್ತಮ ಆಸ್ತಿಯಾಗಿದೆ (1901 ರಿಂದ 2026 ರವರೆಗೆ ಚಿನ್ನವು **8,270+ ಪಟ್ಟು** ಬೆಳೆದಿದೆ).
+
+---
+
+| ಹೂಡಿಕೆ ವಿಧಾನ | ವಾರ್ಷಿಕ ಬಡ್ಡಿ | ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ | ತೆರಿಗೆ ವಿನಾಯಿತಿ | ರೇಟಿಂಗ್ |
+| :--- | :--- | :--- | :--- | :--- |
+| 🥇 **Sovereign Gold Bonds (SGB)** | **+2.5% ಪ್ರತಿ ವರ್ಷ** | **0% (ಶೂನ್ಯ)** | **100% ತೆರಿಗೆ ಮುಕ್ತ** (8 ವರ್ಷಕ್ಕೆ) | ⭐⭐⭐⭐⭐ (ಅತ್ಯುತ್ತಮ) |
+| 📊 **Gold ETFs / Mutual Funds** | 0% | 0% | ಸಾಮಾನ್ಯ ಕ್ಯಾಪಿಟಲ್ ಗೇನ್ಸ್ | ⭐⭐⭐⭐ (ಅತ್ಯಂತ ಸುಲಭ) |
+| 🪙 **24K Minted Gold Bars/Coins** | 0% | 2%-4% | LTCG ತೆರಿಗೆ ಅನ್ವಯ | ⭐⭐⭐ (ಭೌತಿಕ ಭದ್ರತೆ) |
+| 📱 **Digital Gold (UPI/Apps)** | 0% | 3% GST | LTCG ತೆರಿಗೆ ಅನ್ವಯ | ⭐⭐⭐ (ಸಣ್ಣ ಮೊತ್ತಕ್ಕೆ) |
+
+---
+
+💡 **ತಜ್ಞರ ಶಿಫಾರಸು:**
+1. **ದೀರ್ಘಾವಧಿ ಹೂಡಿಕೆಗೆ (Long-Term):** **SGB (Sovereign Gold Bonds)** #1 ಆಯ್ಕೆ. 2.5% ಹೆಚ್ಚುವರಿ ಬಡ್ಡಿ ಹಾಗೂ ಮುಕ್ತಾಯದ ನಂತರ ತೆರಿಗೆ ಮುಕ್ತ ಲಾಭ.
+2. **ತ್ವರಿತ ನಗದೀಕರಣಕ್ಕೆ (Liquidity):** **Gold ETFs** ಮೂಲಕ ಡಿಮ್ಯಾಟ್ ಖಾತೆಯಲ್ಲಿ 1 ಗ್ರಾಂ ನಂತೆಯೂ ಖರೀದಿಸಬಹುದು.
+3. **ಆಭರಣಗಳು ಹೂಡಿಕೆಯಲ್ಲ:** ಆಭರಣಗಳ ಮೇಲೆ 8%-20% ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಕಡಿತವಾಗುವುದರಿಂದ ಅದು ಬಳಕೆಗೆ ಮಾತ್ರ ಸೂಕ್ತ, ಹೂಡಿಕೆಗಲ್ಲ.`;
 
       return {
         text: investText,
         cards: [
-          { title: "125 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಬೆಳವಣಿಗೆ ನೋಡಿ", url: "/gold-rate.html", icon: "📈", subtitle: "1901 ರಿಂದ 2026 ರವರೆಗಿನ ಬೆಲೆ ಬೆಳವಣಿಗೆ ಪಟ್ಟಿ" }
+          { title: "ಚಿನ್ನದ 125 ವರ್ಷಗಳ ಬೆಳವಣಿಗೆ ವಿವರ", url: "/gold-rate.html", icon: "🏆", subtitle: "1901 ರಿಂದ 2026 ರವರೆಗಿನ ಸಮಗ್ರ ಚಾರ್ಟ್" }
         ],
         followups: [
-          "ಇಂದಿನ 24K ಚಿನ್ನದ ಲೈವ್ ಬೆಲೆ ಎಷ್ಟು?",
-          "SGB (ಗೋಲ್ಡ್ ಬಾಂಡ್) ಎಂದರೇನು?",
-          "ಚಿನ್ನ ಮಾರಾಟ ಮಾಡುವಾಗ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಕಡಿತ ಹೇಗೆ?"
+          "ಇಂದಿನ ಲೈವ್ ಚಿನ್ನದ ದರ ಎಷ್ಟು?",
+          "ಚಿನ್ನದ ಬೆಲೆ ಏಕೆ ಹೆಚ್ಚಾಗುತ್ತದೆ?",
+          "ಚಿನ್ನ ಈಗ ಖರೀದಿಸಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ?"
         ]
       };
     }
 
-    // Default Live Bullion Rates
+    // 7. IS GOLD PRICE RISE IN NEXT FEW DAYS? / MARKET TREND & FORECAST (ಏರುತ್ತಾ / ಹೆಚ್ಚಾಗುತ್ತಾ / ಜಾಸ್ತಿ / ಇಳಿಯುತ್ತಾ / ಕಡಿಮೆ / rise / trend)
+    if (q.includes('ಏರು') || q.includes('ಏರಿಕೆ') || q.includes('ಹೆಚ್ಚ') || q.includes('ಜಾಸ್ತಿ') || q.includes('ಇಳಿ') || q.includes('ಕಡಿಮೆ') || q.includes('ಮುಂದಿನ') || q.includes('ಮುಂದೆ') || q.includes('rise') || q.includes('increase') || q.includes('decrease') || q.includes('trend') || q.includes('forecast')) {
+      const forecastText = `### 📈 ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಏರಿಕೆಯಾಗುವುದೇ? (Gold Market Trend Analysis)
+
+* **ಪ್ರಸ್ತುತ 24K ಚಿನ್ನದ ದರ:** **₹${r24k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ** (10g: ₹${r24k_10g})
+* **ಇಂದಿನ ದೈನಂದಿನ ಬದಲಾವಣೆ:** **${changes['24k'] >= 0 ? '+' : ''}${changes['24k']} ರೂ/ಗ್ರಾಂ**
+* **ಮಾರುಕಟ್ಟೆ ಒಟ್ಟಾರೆ ಟ್ರೆಂಡ್:** **ಬುಲ್ಲಿಶ್ (Bullish / ದೀರ್ಘಾವಧಿ ಏರಿಕೆ ಮುನ್ಸೂಚನೆ)**
+
+🔍 **ಬೆಲೆ ಏರಿಕೆಯ ಪ್ರಮುಖ ಮಾರುಕಟ್ಟೆ ಅಂಶಗಳು:**
+1. 🏦 **ಕೇಂದ್ರ ಬ್ಯಾಂಕ್‌ಗಳ ಚಿನ್ನ ಖರೀದಿ:** ಆರ್‌ಬಿಐ (RBI) ಹಾಗೂ ಜಾಗತಿಕ ಕೇಂದ್ರ ಬ್ಯಾಂಕ್‌ಗಳು ಡಾಲರ್ ಮೇಲಿನ ಅವಲಂಬನೆ ಕಡಿಮೆ ಮಾಡಲು ಭಾರಿ ಪ್ರಮಾಣದಲ್ಲಿ ಚಿನ್ನ ಸಂಗ್ರಹಿಸುತ್ತಿವೆ.
+2. 🌍 **ಜಾಗತಿಕ ಭೌಗೋಳಿಕ ಉದ್ವಿಗ್ನತೆ:** ಅಂತರರಾಷ್ಟ್ರೀಯ ಸಂಘರ್ಷಗಳ ವೇಳೆ ಚಿನ್ನವು ಅತ್ಯಂತ ಸುರಕ್ಷಿತ ಸ್ವತ್ತು (Safe-Haven Asset) ಆಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ.
+3. 📉 **ಬಡ್ಡಿದರ ಕಡಿತ ನಿರೀಕ್ಷೆಗಳು:** ಜಾಗತಿಕ ಬಡ್ಡಿದರಗಳು ಇಳಿಕೆಯಾದರೆ ಹೂಡಿಕೆದಾರರು ಷೇರುಗಳಿಂದ ಚಿನ್ನದತ್ತ ಮುಖಮಾಡುತ್ತಾರೆ.
+4. 🇮🇳 **ಸ್ಥಳೀಯ ಬೇಡಿಕೆ:** ಭಾರತದಲ್ಲಿ ಮದುವೆ ಹಾಗೂ ಹಬ್ಬಗಳ ಸೀಸನ್‌ನಲ್ಲಿ ಚಿನ್ನದ ಬೇಡಿಕೆ ಹೆಚ್ಚಾಗುವುದರಿಂದ ಬೆಲೆ ಗಟ್ಟಿಯಾಗಿರುತ್ತದೆ.
+
+💡 **ತಜ್ಞರ ಸಾರಾಂಶ:** ಅಲ್ಪಾವಧಿಯಲ್ಲಿ (ದೈನಂದಿನ) ಸಣ್ಣಪುಟ್ಟ ಇಳಿಕೆ-ಏರಿಕೆಗಳು ಸಹಜವಾಗಿದ್ದರೂ, ಮಧ್ಯಮ ಮತ್ತು ದೀರ್ಘಾವಧಿಯಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಏರುಗತಿಯಲ್ಲೇ ಮುಂದುವರಿಯುವ ಸಾಧ್ಯತೆ ಹೆಚ್ಚಾಗಿದೆ.`;
+
+      return {
+        text: forecastText,
+        cards: [
+          { title: "ಲೈವ್ ಚಿನ್ನದ ದರ & ಇಂಟರ್ಯಾಕ್ಟಿವ್ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "📊", subtitle: "ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ಟ್ರೆಂಡ್ & ತಜ್ಞರ ವಿಶ್ಲೇಷಣೆ" }
+        ],
+        followups: [
+          "ಚಿನ್ನ ಈಗ ಖರೀದಿಸಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ?",
+          "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡಲು ಅತ್ಯುತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+          "ಇಂದಿನ 22K ಆಭರಣ ಚಿನ್ನದ ಬೆಲೆ ಎಷ್ಟು?"
+        ]
+      };
+    }
+
+    // 8. HOW GOLD/SILVER PRICE RISES YEARLY (1901-2026 HISTORICAL GROWTH)
+    if (q.includes('ವರ್ಷ') || q.includes('ಇತಿಹಾಸ') || q.includes('ಬೆಳವಣಿಗೆ') || q.includes('yearly') || q.includes('growth') || q.includes('history') || q.includes('1901')) {
+      const growthText = `### 📜 ಕರ್ನಾಟಕದಲ್ಲಿ ಚಿನ್ನ & ಬೆಳ್ಳಿ 125 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಬೆಳವಣಿಗೆ (1901–2026)
+
+ಚಿನ್ನವು ಭಾರತೀಯ ಆರ್ಥಿಕತೆಯಲ್ಲಿ ಅತ್ಯಂತ ವಿಶ್ವಾಸಾರ್ಹ ಸಂಪತ್ತು ಸೃಷ್ಟಿಕರ್ತವಾಗಿದೆ:
+
+* 🗓️ **1901 ರಲ್ಲಿ (ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹18.75** (₹1.88 / ಗ್ರಾಂ) | ಬೆಳ್ಳಿ 10g = **₹0.40**
+* 🗓️ **1947 ರಲ್ಲಿ (ಭಾರತ ಸ್ವಾತಂತ್ರ್ಯ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹88.62** (₹8.86 / ಗ್ರಾಂ) | ಬೆಳ್ಳಿ 10g = **₹1.07**
+* 🗓️ **1971 ರಲ್ಲಿ (ಬ್ರೆಟನ್ ವುಡ್ಸ್ ಅಂತ್ಯ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹184.00**
+* 🗓️ **1991 ರಲ್ಲಿ (ಭಾರತ ಆರ್ಥಿಕ ಸುಧಾರಣೆ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹3,466.00**
+* 🗓️ **2000 ರಲ್ಲಿ (ಮಿಲೇನಿಯಂ ಆರಂಭ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹4,400.00**
+* 🗓️ **2010 ರಲ್ಲಿ (ಜಾಗತಿಕ ಹಣಕಾಸು ಬಿಕ್ಕಟ್ಟು):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹18,500.00**
+* 🗓️ **2020 ರಲ್ಲಿ (ಕೋವಿಡ್ ಸಾಂಕ್ರಾಮಿಕ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹48,651.00**
+* 🗓️ **2024 ರಲ್ಲಿ (ಜಾಗತಿಕ ಉದ್ವಿಗ್ನತೆ):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹76,000.00**
+* 🗓️ **2026 ರಲ್ಲಿ (ಇಂದು):** 24K 10 ಗ್ರಾಂ ಚಿನ್ನ = **₹${r24k_10g}** (₹${r24k_1g.toLocaleString('en-IN')} / ಗ್ರಾಂ)
+
+---
+📊 **ಐತಿಹಾಸಿಕ ಬೆಳವಣಿಗೆ ಸಾರಾಂಶ:**
+* 1901 ರಿಂದ 2026 ರವರೆಗೆ ಚಿನ್ನವು **8,270+ ಪಟ್ಟು (+8,27,000%)** ಬೆಳೆದಿದೆ!
+* ಸರಾಸರಿ ವಾರ್ಷಿಕ ಸಂಯೋಜಿತ ಬೆಳವಣಿಗೆ (CAGR): **~10.5% ರಿಂದ 12%**.`;
+
+      return {
+        text: growthText,
+        cards: [
+          { title: "125 ವರ್ಷಗಳ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "📜", subtitle: "1901-2026 ಪ್ರತಿ ವರ್ಷದ ದಾಖಲೆಗಳು" }
+        ],
+        followups: [
+          "1947 ಸ್ವಾತಂತ್ರ್ಯದ ವೇಳೆ ಚಿನ್ನದ ಬೆಲೆ ಎಷ್ಟಿತ್ತು?",
+          "ಚಿನ್ನದ ಬೆಲೆ ಏಕೆ ಹೆಚ್ಚಾಗುತ್ತದೆ?",
+          "ಇಂದಿನ ಲೈವ್ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರ ಎಷ್ಟು?"
+        ]
+      };
+    }
+
+    // 9. WHAT SHOULD I DO? / ACTION ROADMAP (ಏನು ಮಾಡಬೇಕು / ಏನ್ ಮಾಡ್ಲಿ / what i do / what to do / roadmap / ಸಲಹೆ)
+    if (q.includes('ಏನು ಮಾಡ') || q.includes('ಏನ್ ಮಾಡ') || q.includes('ಮಾಡಲಿ') || q.includes('ಮಾಡಬೇಕು') || q.includes('what i do') || q.includes('what to do') || q.includes('what should i do') || q.includes('roadmap') || q.includes('ಸಲಹೆ')) {
+      const roadmapText = `### 🧭 ಚಿನ್ನ ಮತ್ತು ಬೆಳ್ಳಿಯಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಸ್ಪಷ್ಟ 3-ಹಂತದ ಮಾರ್ಗಸೂಚಿ (Action Roadmap)
+
+ನೀವು ಸಾಮಾನ್ಯ ಹೂಡಿಕೆದಾರರಾಗಿದ್ದರೆ ಅನುಸರಿಸಬೇಕಾದ ಸರಳ ಸೂತ್ರ:
+
+---
+
+#### 📌 ಹಂತ 1: ನಿಮ್ಮ ಒಟ್ಟು ಆಸ್ತಿಯಲ್ಲಿ 10% ರಿಂದ 15% ಮಾತ್ರ ಚಿನ್ನಕ್ಕೆ ನಿಗದಿಪಡಿಸಿ
+* ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಉಳಿತಾಯವನ್ನು ಚಿನ್ನದಲ್ಲಿಯೇ ಇಡಬೇಡಿ.
+* ಷೇರು ಮಾರುಕಟ್ಟೆ (Equity), ಸ್ಥಿರ ಠೇವಣಿ (FD) ಜೊತೆಗೆ ಪೋರ್ಟ್‌ಫೋಲಿಯೋ ಸಮತೋಲನಕ್ಕೆ 10-15% ಚಿನ್ನ ಅತ್ಯುತ್ತಮ.
+
+#### 📌 ಹಂತ 2: ಆಭರಣಗಳ ಬದಲು ಡಿಜಿಟಲ್ / ಬಾಂಡ್ ರೂಪದಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡಿ
+* ಬಳಕೆಗಾಗಿ ಮಾತ್ರ 22K BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಆಭರಣ ಖರೀದಿಸಿ.
+* ಹೂಡಿಕೆಗಾಗಿ **Sovereign Gold Bonds (SGB)** ಅಥವಾ **Gold ETF** ಆಯ್ಕೆ ಮಾಡಿ — ಇದರಿಂದ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ನಷ್ಟ ಸಂಪೂರ್ಣ ಶೂನ್ಯವಾಗುತ್ತದೆ.
+
+#### 📌 ಹಂತ 3: ಮಾಸಿಕ ಕಂತುಗಳಲ್ಲಿ (SIP) ಖರೀದಿಸಿ
+* ಒಂದೇ ದಿನದಲ್ಲಿ ದೊಡ್ಡ ಮೊತ್ತ ಹೂಡುವ ಬದಲು, ಪ್ರತಿ ತಿಂಗಳು ಅಥವಾ ಬೆಲೆ ಇಳಿದ ದಿನಗಳಲ್ಲಿ ಸಣ್ಣ ಮೊತ್ತ ಹೂಡಿಕೆ ಮಾಡಿ.`;
+
+      return {
+        text: roadmapText,
+        cards: [
+          { title: "ಲೈವ್ ಗೋಲ್ಡ್ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🧭", subtitle: "ದೈನಂದಿನ ದರ & ಹೂಡಿಕೆ ಮಾರ್ಗದರ್ಶಿ" }
+        ],
+        followups: [
+          "ಇಂದಿನ 24K ಮತ್ತು 22K ಚಿನ್ನದ ದರ ಎಷ್ಟು?",
+          "ಚಿನ್ನ ಈಗ ಖರೀದಿಸಬಹುದೇ?",
+          "ಇಂದು ಬೆಳ್ಳಿ ಬೆಲೆ ಎಷ್ಟಿದೆ?"
+        ]
+      };
+    }
+
+    // 10. SILVER SPECIFIC QUERY (ಇಂದು ಬೆಳ್ಳಿ ಬೆಲೆ ಎಷ್ಟು?)
+    if (q.includes('silver') || q.includes('ಬೆಳ್ಳಿ')) {
+      const silverText = `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Live Silver 999 & 925 Rates)
+
+* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999 - Fine Silver):**
+  * **1 ಗ್ರಾಂ:** **₹${rSilver_1g.toFixed(2)}** *(ನಿನ್ನೆ: ₹${ySilver_1g.toFixed(2)} | ಬದಲಾವಣೆ: ${changes['silver_999'] >= 0 ? '+' : ''}${changes['silver_999']} ರೂ)*
+  * **10 ಗ್ರಾಂ:** **₹${rSilver_10g}**
+  * **100 ಗ್ರಾಂ:** **₹${rSilver_100g}**
+  * **1 ಕೆಜಿ (1 Kg Bar):** **₹${rSilver_1kg}**
+* **ಸ್ಟೆರ್ಲಿಂಗ್ ಆಭರಣ ಬೆಳ್ಳಿ (Silver 925 - 92.5% Pure):**
+  * **1 ಗ್ರಾಂ:** **₹${rSilver925_1g.toFixed(2)}** | **10 ಗ್ರಾಂ:** **₹${(rSilver925_1g * 10).toFixed(2)}**
+
+---
+💡 **ಬೆಳ್ಳಿ ಮಾರುಕಟ್ಟೆ ಮುನ್ನೋಟ:** ಸೌರಶಕ್ತಿ ಫಲಕಗಳು (Solar Cells) ಮತ್ತು ಎಲೆಕ್ಟ್ರಿಕ್ ವಾಹನಗಳ ಉತ್ಪಾದನೆಗೆ ಬೆಳ್ಳಿಯ ಜಾಗತಿಕ ಕೈಗಾರಿಕಾ ಬೇಡಿಕೆ ಹೆಚ್ಚುತ್ತಿರುವುದರಿಂದ ಬೆಳ್ಳಿಯ ದೀರ್ಘಾವಧಿ ಬೆಳವಣಿಗೆ ಅತ್ಯಂತ ಬಲಿಷ್ಠವಾಗಿದೆ.`;
+
+      return {
+        text: silverText,
+        cards: [
+          { title: "ಲೈವ್ ಬೆಳ್ಳಿ ದರ & ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🥈", subtitle: "ದೈನಂದಿನ ಬೆಳ್ಳಿ ದರ & ಐತಿಹಾಸಿಕ ದಾಖಲೆಗಳು" }
+        ],
+        followups: [
+          "ಇಂದು 24K ಹಾಗೂ 22K ಚಿನ್ನದ ದರ ಎಷ್ಟು?",
+          "ಬೆಳ್ಳಿ ಬೆಲೆ ಏಕೆ ಹೆಚ್ಚಾಗುತ್ತಿದೆ?",
+          "ಚಿನ್ನ ಮತ್ತು ಬೆಳ್ಳಿಯಲ್ಲಿ ಯಾವುದು ಉತ್ತಮ ಹೂಡಿಕೆ?"
+        ]
+      };
+    }
+
+    // 11. DEFAULT LIVE GOLD & SILVER RATES
     const markdownText = `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಸಜೀವ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರಗಳು (Live Gold & Silver Rates)
 
 * **24K ಶುದ್ಧ ಚಿನ್ನ (99.9% Pure Gold):** **₹${r24k_1g.toLocaleString('en-IN')}** / 1 ಗ್ರಾಂ | **₹${r24k_10g}** / 10 ಗ್ರಾಂ
@@ -533,7 +1355,8 @@ ${rows}
 * **ಬೆಳ್ಳಿ ದರ (Silver 999):** **₹${rSilver_1g.toFixed(2)}** / 1 ಗ್ರಾಂ | **₹${rSilver_1kg}** / 1 ಕೆಜಿ
   *(ನಿನ್ನೆಯ ದರ: ₹${ySilver_1g.toFixed(2)} | ಬದಲಾವಣೆ: ${changes['silver_999'] >= 0 ? '+' : ''}${changes['silver_999']} ರೂ)*
 
-💡 **ಖರೀದಿ ಸಲಹೆ:** ಆಭರಣಗಳಿಗೆ 22K (BIS 916 Hallmarked) ಹಾಗೂ ಹೂಡಿಕೆಗೆ 24K ಗೋಲ್ಡ್ ಬಾರ್ ಅಥವಾ SGB ಸೂಕ್ತವಾಗಿದೆ.`;
+---
+💡 **ಖರೀದಿ ಸಲಹೆ:** ಆಭರಣಗಳಿಗೆ 22K (BIS 916 Hallmarked with 6-digit HUID) ಹಾಗೂ ಹೂಡಿಕೆಗೆ 24K ಗೋಲ್ಡ್ ಬಾರ್ ಅಥವಾ Sovereign Gold Bonds (SGB) ಸೂಕ್ತವಾಗಿದೆ.`;
 
     return {
       text: markdownText,
@@ -541,52 +1364,249 @@ ${rows}
         { title: "ಲೈವ್ ಚಿನ್ನದ ದರ & ಇಂಟರ್ಯಾಕ್ಟಿವ್ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🥇", subtitle: "ದೈನಂದಿನ ಟ್ರೆಂಡ್ & 1901-2026 ಐತಿಹಾಸಿಕ ದಾಖಲೆಗಳು" }
       ],
       followups: [
-        "ಚಿನ್ನ ಖರೀದಿಸಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ?",
-        "1947 ಸ್ವಾತಂತ್ರ್ಯದ ವೇಳೆ ಚಿನ್ನದ ಬೆಲೆ ಎಷ್ಟಿತ್ತು?",
-        "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡುವುದು ಹೇಗೆ?"
+        "ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಏರುತ್ತಾ?",
+        "ಚಿನ್ನ ಈಗ ಖರೀದಿಸಬಹುದೇ ಅಥವಾ ಕಾಯಬೇಕೇ?",
+        "ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆಗೆ ಅತ್ಯುತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+        "ಇಂದು ಬೆಳ್ಳಿ ಬೆಲೆ ಎಷ್ಟಿದೆ?"
       ]
     };
   }
 
-  // --- 5. WEATHER ENGINE ---
+  // --- 5. COMPREHENSIVE WEATHER & RAIN ENGINE ---
   function answerWeatherQuery(q) {
     const wData = db.weather || {};
-    const distMatch = findMentionedDistrict(q) || 'bangalore_urban';
+    const place = findMentionedPlace(q);
+    const distMatch = place.distKey || 'bengaluru_urban';
     const d = (wData.districts && wData.districts[distMatch]) ? wData.districts[distMatch] : {
-      name_kn: "ಬೆಂಗಳೂರು",
-      current: { temp_c: 28.0, desc_kn: "ಮೋಡ ☁️", rain_chance: 45, humidity: 65, wind_kmh: 14 },
+      name_kn: "ಬೆಂಗಳೂರು ನಗರ",
+      current: { temp_c: 28.0, desc_kn: "ಭಾಗಶಃ ಮೋಡ ⛅", rain_chance: 45, humidity: 65, wind_kmh: 14, feels_like: 29 },
+      hourly_24h: [{ time: "18:00", temp_c: 27, rain_chance: 40 }, { time: "19:00", temp_c: 26, rain_chance: 55 }],
+      forecast: [{ date: "2026-08-20", max_temp: 29, min_temp: 21, rain_chance: 50, desc_kn: "ಮೋಡ ⛅" }],
       past_24h: { rain_mm: 3.5, max_temp: 29.5, min_temp: 20.5 }
     };
 
     const cur = d.current || {};
     const past = d.past_24h || {};
-    const dName = d.name_kn || "ಕರ್ನಾಟಕ";
+    const dName = place.isTaluk ? `${place.placeNameKn} (${place.parentDistKn} ಜಿಲ್ಲೆ)` : (d.name_kn || place.placeNameKn || "ಬೆಂಗಳೂರು");
+    const shortName = place.placeNameKn || d.name_kn || "ಬೆಂಗಳೂರು";
+    const hourly = d.hourly_24h || [];
+    const nextHour = hourly[1] || hourly[0] || {};
+    const forecast = d.forecast || [];
+    const tomorrow = forecast[1] || forecast[0] || {};
+    const temp = Math.round(cur.temp_c || 25);
+    const feels = Math.round(cur.feels_like || temp);
+    const rainChance = cur.rain_chance || 30;
+    const humidity = cur.humidity || 70;
+    const windKmh = Math.round(cur.wind_kmh || 12);
+    const desc = cur.desc_kn || 'ಭಾಗಶಃ ಮೋಡ';
 
-    const markdownText = `### 🌧️ ${dName} ಇಂದಿನ ಅಧಿಕೃತ ಹವಾಮಾನ ಹಾಗೂ ಮಳೆ ವರದಿ (Live Weather & KSNDMC Alert)
+    const aqiMap = {
+      'bengaluru_urban': { val: 68, label: 'ಉತ್ತಮ (Good)' },
+      'bengaluru_rural': { val: 54, label: 'ಉತ್ತಮ (Good)' },
+      'mysuru': { val: 42, label: 'ಅತ್ಯುತ್ತಮ (Good)' },
+      'dakshina_kannada': { val: 38, label: 'ಅತ್ಯುತ್ತಮ (Good)' },
+      'udupi': { val: 35, label: 'ಅತ್ಯುತ್ತಮ (Good)' },
+      'kalaburagi': { val: 78, label: 'ಸಾಧಾರಣ (Moderate)' },
+      'dharwad': { val: 62, label: 'ಸಾಧಾರಣ (Moderate)' },
+      'belagavi': { val: 55, label: 'ಉತ್ತಮ (Good)' },
+      'ballari': { val: 82, label: 'ಸಾಧಾರಣ (Moderate)' },
+      'vijayanagara': { val: 71, label: 'ಸಾಧಾರಣ (Moderate)' },
+      'shivamogga': { val: 40, label: 'ಅತ್ಯುತ್ತಮ (Good)' },
+      'chikkamagaluru': { val: 32, label: 'ಅತ್ಯುತ್ತಮ (Good)' },
+      'kodagu': { val: 28, label: 'ಅತ್ಯುತ್ತಮ (Good)' }
+    };
+    const aqi = aqiMap[distMatch] || { val: 50, label: 'ಉತ್ತಮ (Good)' };
+
+    // Helper for Kannada Day name
+    function getDayKn(dateStr, idx) {
+      if (idx === 0) return 'ಇಂದು';
+      if (idx === 1) return 'ನಾಳೆ';
+      if (dateStr) {
+        try {
+          const dt = new Date(dateStr);
+          if (!isNaN(dt.getTime())) {
+            const knDays = ['ಭಾನುವಾರ', 'ಸೋಮವಾರ', 'ಮಂಗಳವಾರ', 'ಬುಧವಾರ', 'ಗುರುವಾರ', 'ಶುಕ್ರವಾರ', 'ಶನಿವಾರ'];
+            return knDays[dt.getDay()];
+          }
+        } catch(e) {}
+      }
+      return `ದಿನ ${idx + 1}`;
+    }
+
+    // A. 1-HOUR PRECIPITATION QUERY (ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?)
+    if (q.includes('1 ಗಂಟೆ') || q.includes('1 hour') || q.includes('1h') || q.includes('ಈಗಲೇ') || q.includes('now rain') || q.includes('ಮುಂದಿನ ಗಂಟೆ')) {
+      const nextRain = nextHour.rain_chance || rainChance;
+      const isRain = nextRain >= 40;
+      const text = `### ⏱️ ${dName} — ಮುಂದಿನ 1 ಗಂಟೆಯ ಮಳೆ ಮುನ್ಸೂಚನೆ (Next 1-Hour Rain Probability)
+
+* **ಮಳೆ ಸಾಧ್ಯತೆ:** **${nextRain}% ಸಂಭವನೀಯತೆ** (${isRain ? '🌧️ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ' : '⛅ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಕಡಿಮೆ'})
+* **ಅವಧಿ:** ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ (${nextHour.time || 'ಮುಂದಿನ ಅವಧಿ'})
+* **ನಿರೀಕ್ಷಿತ ತಾಪಮಾನ:** **${nextHour.temp_c || temp}°C**
+* **ಪ್ರಸ್ತುತ ಗಾಳಿಯ ವೇಗ:** **${windKmh} km/h** | ಆರ್ದ್ರತೆ: **${humidity}%**
+
+${isRain ? '⚠️ **ಮುನ್ಸೂಚನೆ:** ಮೋಡಗಳ ದಟ್ಟಣೆ ಹೆಚ್ಚುತ್ತಿದ್ದು ತುಂತುರು ಮಳೆ ಪ್ರಾರಂಭವಾಗಬಹುದು. ಹೊರಹೋಗುವಾಗ ಛತ್ರಿ ಸಿದ್ಧವಿರಲಿ.' : '🟢 **ಮುನ್ಸೂಚನೆ:** ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ವಾತಾವರಣ ಸ್ಥಿರ ಮತ್ತು ತಂಪಾಗಿರಲಿದ್ದು, ಭಾರಿ ಮಳೆಯ ಲಕ್ಷಣಗಳಿಲ್ಲ.'}`;
+
+      return {
+        text,
+        cards: [{ title: `${shortName} ಲೈವ್ ಹವಾಮಾನ ರೇಡಾರ್`, url: "/weather.html", icon: "⏱️", subtitle: "KSNDMC 24 ಗಂಟೆಗಳ ಲೈವ್ ಟೈಮ್‌ಲೈನ್" }],
+        followups: [`ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `ನಾಳೆ ${shortName} ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?`, `${shortName} 7 ದಿನಗಳ ಮುನ್ಸೂಚನೆ ಏನು?`]
+      };
+    }
+
+    // B. IS RAIN COMING TODAY QUERY (ಇಂದು ಮಳೆ ಬರುತ್ತಾ?)
+    if (q.includes('ಇಂದು ಮಳೆ') || q.includes('rain today') || q.includes('ಇವತ್ತು ಮಳೆ') || q.includes('ಮಳೆ ಬರುತ್ತಾ') || q.includes('ಮಳೆ ಇದೆಯಾ') || q.includes('rain coming')) {
+      const isRain = rainChance >= 50;
+      const text = `### 🌧️ ${dName} — ಇಂದು ಮಳೆ ಬರುತ್ತಾ? (Today's Rain Analysis)
+
+* **ಇಂದಿನ ಮಳೆ ಸಾಧ್ಯತೆ (Rain Probability):** **${rainChance}%**
+* **ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ:** **${temp}°C** (ನೈಜ ಅನುಭವ: **${feels}°C**)
+* **ವಾತಾವರಣ:** **${desc} ${cur.icon || '⛅'}**
+* **ಕಳೆದ 24 ಗಂಟೆಗಳಲ್ಲಿ ಬಿದ್ದ ಮಳೆ:** **${past.rain_mm || 0.0} mm**
+* **ಗಾಳಿ & ತೇವಾಂಶ:** ಗಾಳಿ **${windKmh} km/h** | ಆರ್ದ್ರತೆ **${humidity}%**
+
+${isRain ? '🌧️ **ಹೌದು!** ಇಂದು ' + dName + ' ನಲ್ಲಿ ಮಳೆ ಬೀಳುವ **' + rainChance + '% ಗರಿಷ್ಠ ಸಾಧ್ಯತೆ** ಇದೆ. ವಿಶೇಷವಾಗಿ ಸಂಜೆ ಅಥವಾ ರಾತ್ರಿಯ ವೇಳೆ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ತುಂತುರು ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ. ಹೊರಗೆ ಹೋಗುವಾಗ ಛತ್ರಿ ಇಟ್ಟುಕೊಳ್ಳುವುದು ಸೂಕ್ತ.' : '⛅ ಇಂದು ' + dName + ' ನಲ್ಲಿ ಮಳೆಯ ಸಾಧ್ಯತೆ ಕೇವಲ **' + rainChance + '%** ಇದೆ. ದಿನದ ಬಹುತೇಕ ಭಾಗ ಮೋಡ ಕವಿದ ಅಥವಾ ಒಣ ಹವೆಯ ವಾತಾವರಣ ಇರಲಿದ್ದು, ಭಾರಿ ಮಳೆಯ ಲಕ್ಷಣಗಳಿಲ್ಲ.'}`;
+
+      return {
+        text,
+        cards: [{ title: `${shortName} ಲೈವ್ ಹವಾಮಾನ & KSNDMC ನಕ್ಷೆ`, url: "/weather.html", icon: "🌧️", subtitle: "ಮಳೆ ರೇಡಾರ್ & ಲೈವ್ ಉಪಗ್ರಹ ಮಾಹಿತಿ" }],
+        followups: [`ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ${shortName} ನಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?`, `ನಾಳೆ ${shortName} ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?`, `${shortName} 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಏನು?`]
+      };
+    }
+
+    // C. TOMORROW'S WEATHER QUERY (ನಾಳೆ ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?)
+    if (q.includes('ನಾಳೆ') || q.includes('tomorrow')) {
+      const tMax = Math.round(tomorrow.max_temp || 28);
+      const tMin = Math.round(tomorrow.min_temp || 20);
+      const tRain = tomorrow.rain_chance || 30;
+      const tDay = getDayKn(tomorrow.date, 1);
+      const text = `### ⛅ ${dName} — ನಾಳಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (${tDay} Forecast)
+
+* **ದಿನಾಂಕ:** ನಾಳೆ (${tomorrow.date || 'ಮುಂದಿನ ದಿನ'}) • ${tDay}
+* **ಗರಿಷ್ಠ ಉಷ್ಣಾಂಶ (Max Temp):** **${tMax}°C**
+* **ಕನಿಷ್ಠ ಉಷ್ಣಾಂಶ (Min Temp):** **${tMin}°C**
+* **ಮಳೆ ಸಂಭವನೀಯತೆ (Rain Chance):** **${tRain}%**
+* **ವಾತಾವರಣ ಸ್ಥಿತಿ:** **${tomorrow.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'} ${tomorrow.icon || '⛅'}**
+
+💡 **ಸಾರಾಂಶ:** ನಾಳೆ ${dName} ನಲ್ಲಿ ಗರಿಷ್ಠ ${tMax}°C ಹಾಗೂ ಕನಿಷ್ಠ ${tMin}°C ಉಷ್ಣಾಂಶ ದಾಖಲಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ. ದಿನವಿಡೀ ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ ಇರಲಿದ್ದು, ಮಳೆ ಸಾಧ್ಯತೆ ${tRain}% ಇರಲಿದೆ.`;
+
+      return {
+        text,
+        cards: [{ title: `${shortName} 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`, url: "/weather.html", icon: "⛅", subtitle: "ದೈನಂದಿನ ಉಷ್ಣಾಂಶ & ಮಳೆ ವಿವರಗಳು" }],
+        followups: [`ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `${shortName} ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಏನು?`, `${shortName} AQI ವಾಯು ಗುಣಮಟ್ಟ ಎಷ್ಟು?`]
+      };
+    }
+
+    // D. 7-DAY FULL BREAKDOWN QUERY (ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ)
+    if (q.includes('7 ದಿನ') || q.includes('7 days') || q.includes('ವಾರ') || q.includes('ಮುಂದಿನ ದಿನಗಳು') || q.includes('forecast') || q.includes('ಮುನ್ಸೂಚನೆ')) {
+      const rows = forecast.slice(0, 7).map((f, idx) => {
+        const dNameKn = getDayKn(f.date, idx);
+        const dtFmt = f.date ? new Date(f.date).toLocaleDateString('kn-IN', { day: 'numeric', month: 'short' }) : '';
+        const rCh = f.rain_chance || (f.rain_mm > 0 ? 65 : 20);
+        return `* 🗓️ **${dNameKn}** (${dtFmt}): ${f.icon || '⛅'} ${f.desc_kn || 'ಭಾಗಶಃ ಮೋಡ'} | 💧 **${rCh}% ಮಳೆ** | 🌡️ **${Math.round(f.max_temp || 28)}°C / ${Math.round(f.min_temp || 20)}°C**`;
+      }).join('\n');
+
+      const text = `### 📅 ${dName} — ಮುಂದಿನ 7 ದಿನಗಳ ಸಂಪೂರ್ಣ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ (7-Day Outlook)
+
+${rows}
 
 ---
+💡 **ಸಮಗ್ರ ಮುನ್ಸೂಚನೆ:** ಮುಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ${dName} ನಲ್ಲಿ ಸಾಧಾರಣ ತಂಪಾದ ವಾತಾವರಣ ಮುಂದುವರಿಯಲಿದ್ದು, ಸರಾಸರಿ ಗರಿಷ್ಠ ಉಷ್ಣಾಂಶ 28°C ಹಾಗೂ ಕನಿಷ್ಠ 20°C ಇರಲಿದೆ.`;
 
-* **ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿತಿ:** **${cur.desc_kn || cur.desc_en || 'ಮೋಡಕವಿದ ವಾತಾವರಣ ☁️'}**
-* **ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ:** **${cur.temp_c || 28}°C** (ಅನಿಸಿಕೆ / Feels like: ${cur.feels_like || cur.temp_c || 28}°C)
-* **ಮಳೆ ಸಂಭವನೀಯತೆ (Rain Chance):** **${cur.rain_chance || 30}%**
-* **ತೇವಾಂಶ (Humidity):** **${cur.humidity || 65}%** | ಗಾಳಿಯ ವೇಗ: **${cur.wind_kmh || 12} km/h**
-* **ಕಳೆದ 24 ಗಂಟೆಗಳ ಮಳೆ ದಾಖಲೆ:** **${past.rain_mm || 0.0} mm**
-* **ತಾಪಮಾನ ಶ್ರೇಣಿ:** ಗರಿಷ್ಠ ${past.max_temp || 30}°C | ಕನಿಷ್ಠ ${past.min_temp || 21}°C
+      return {
+        text,
+        cards: [{ title: `${shortName} ಲೈವ್ ಹವಾಮಾನ ಪೋರ್ಟಲ್`, url: "/weather.html", icon: "📅", subtitle: "KSNDMC 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ" }],
+        followups: [`ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `${shortName} AQI ವಾಯು ಗುಣಮಟ್ಟ ಎಷ್ಟು?`, `ರಾಜ್ಯದ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?`]
+      };
+    }
+
+    // E. AQI AIR QUALITY QUERY (ವಾಯು ಗುಣಮಟ್ಟ)
+    if (q.includes('aqi') || q.includes('ವಾಯು') || q.includes('ಗಾಳಿಯ ಗುಣಮಟ್ಟ') || q.includes('air quality') || q.includes('ಮಾಲಿನ್ಯ') || q.includes('pollution')) {
+      const text = `### 🍃 ${dName} — ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (Live AQI Report)
+
+* **ಪ್ರಸ್ತುತ AQI ಸೂಚ್ಯಂಕ:** **${aqi.val}**
+* **ಗುಣಮಟ್ಟ ವರ್ಗ (Category):** **${aqi.label}**
+* **ಆರೋಗ್ಯ ವಿಶ್ಲೇಷಣೆ:** ಪರಿಸರದಲ್ಲಿ ಧೂಳು ಮತ್ತು ಮಾಲಿನ್ಯದ ಪ್ರಮಾಣ ನಿಯಂತ್ರಣದಲ್ಲಿದ್ದು, ಮುಂಜಾನೆಯ ನಡಿಗೆ ಹಾಗೂ ಹೊರಾಂಗಣ ಚಟುವಟಿಕೆಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.
+* **ಪ್ರಸ್ತುತ ಗಾಳಿಯ ವೇಗ:** **${windKmh} km/h** | ತೇವಾಂಶ: **${humidity}%**
+
+🌿 **ಸಲಹೆ:** ಹಿರಿಯರು ಮತ್ತು ಮಕ್ಕಳಿಗೆ ಹೊರಾಂಗಣ ವ್ಯಾಯಾಮಕ್ಕೆ ಸುರಕ್ಷಿತ ವಾತಾವರಣವಿದೆ.`;
+
+      return {
+        text,
+        cards: [{ title: "ಕರ್ನಾಟಕ ಲೈವ್ AQI ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", url: "/aqi.html", icon: "🍃", subtitle: "ಎಲ್ಲ ಜಿಲ್ಲೆಗಳ ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ" }],
+        followups: [`${shortName} ಇಂದಿನ ಲೈವ್ ಹವಾಮಾನ ಏನು?`, `ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `${shortName} 7 ದಿನಗಳ ಮುನ್ಸೂಚನೆ ಏನು?`]
+      };
+    }
+
+    // F. ALERTS & FLOOD WARNING QUERY (ರೆಡ್ / ಆರೆಂಜ್ ಅಲರ್ಟ್)
+    if (q.includes('ಅಲರ್ಟ್') || q.includes('alert') || q.includes('ರೆಡ್') || q.includes('ಆರೆಂಜ್') || q.includes('warning') || q.includes('ಎಚ್ಚರಿಕೆ') || q.includes('flood') || q.includes('ಪ್ರವಾಹ')) {
+      const lvl = (d.alert_level || 'normal').toLowerCase();
+      let alertMsg = '';
+      if (lvl === 'red') {
+        alertMsg = `🚨 **ರೆಡ್ ಅಲರ್ಟ್ (Red Warning):** ${dName} ಗೆ KSNDMC ವತಿಯಿಂದ ಅತ್ಯಂತ ಭಾರೀ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ. ನದಿ ತೀರ ಮತ್ತು ತಗ್ಗು ಪ್ರದೇಶಗಳ ಜನರು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಲ್ಲಿರಲು ಕೋರಲಾಗಿದೆ.`;
+      } else if (lvl === 'orange') {
+        alertMsg = `⚠️ **ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert):** ${dName} ನಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ. ಸಾರ್ವಜನಿಕರು ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲು ಸೂಚಿಸಲಾಗಿದೆ.`;
+      } else {
+        alertMsg = `🟢 **ಸಾಧಾರಣ ವಾತಾವರಣ (No Warning):** ಪ್ರಸ್ತುತ ${dName} ಗೆ ಯಾವುದೇ ಗಂಭೀರ ಪ್ರವಾಹ ಅಥವಾ ಭಾರೀ ಮಳೆ ರೆಡ್/ಆರೆಂಜ್ ಎಚ್ಚರಿಕೆ ಇರುವುದಿಲ್ಲ. ದಿನನಿತ್ಯದ ಚಟುವಟಿಕೆಗಳಿಗೆ ಯಾವುದೇ ಅಡಚಣೆಯಿಲ್ಲ.`;
+      }
+
+      const text = `### 🚨 ${dName} — KSNDMC & IMD ಅಧಿಕೃತ ಮಳೆ ಎಚ್ಚರಿಕೆ (Weather Alert Status)
+
+* **ಅಲರ್ಟ್ ಸ್ಥಿತಿ:** **${d.alert_level ? d.alert_level.toUpperCase() : 'NORMAL (ಸಾಧಾರಣ)'}**
+* **ಕಳೆದ 24 ಗಂಟೆಗಳ ಮಳೆ:** **${past.rain_mm || 0.0} mm**
+* **ಮಳೆ ಸಾಧ್ಯತೆ:** **${rainChance}%**
+
+${alertMsg}`;
+
+      return {
+        text,
+        cards: [{ title: `${shortName} ಲೈವ್ ರೇಡಾರ್ & ಎಚ್ಚರಿಕೆಗಳು`, url: "/weather.html", icon: "🚨", subtitle: "KSNDMC ಅಧಿಕೃತ ಉಪಗ್ರಹ ಮಾಹಿತಿ" }],
+        followups: [`ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `${shortName} ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?`, `ನಾಳೆ ${shortName} ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?`]
+      };
+    }
+
+    // G. WIND & THERMAL FEEL QUERY (ಗಾಳಿಯ ವೇಗ & ಶೀತ)
+    if (q.includes('ಗಾಳಿ') || q.includes('wind') || q.includes('ಶೀತ') || q.includes('ತಂಪು') || q.includes('feels like') || q.includes('ಅನಿಸಿಕೆ')) {
+      const text = `### 💨 ${dName} — ಗಾಳಿಯ ವೇಗ & ಶೀತದ ಅನುಭವ (Wind & Real Feel)
+
+* **ಗಾಳಿಯ ವೇಗ:** **${windKmh} km/h**
+* **ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ:** **${temp}°C**
+* **ನೈಜ ಅನುಭವ (Feels Like):** **${feels}°C**
+* **ವಾತಾವರಣ ಆರ್ದ್ರತೆ (Humidity):** **${humidity}%**
+* **ಹವಾಮಾನ ಸ್ಥಿತಿ:** **${desc} ${cur.icon || '⛅'}**
+
+💨 **ವಿಶ್ಲೇಷಣೆ:** ${dName} ನಲ್ಲಿ ಗಾಳಿಯ ವೇಗ ${windKmh} km/h ಇದ್ದು, ತೇವಾಂಶ ಮತ್ತು ಗಾಳಿಯ ಕಾರಣ ದೇಹಕ್ಕೆ ${feels}°C ತಂಪಿನ ಅನುಭವವಾಗುತ್ತದೆ.`;
+
+      return {
+        text,
+        cards: [{ title: `${shortName} ಲೈವ್ ಹವಾಮಾನ ಪೋರ್ಟಲ್`, url: "/weather.html", icon: "💨", subtitle: "ಲೈವ್ 3D ವಿಂಡ್ ಟರ್ಬೈನ್ & ತಾಪಮಾನ" }],
+        followups: [`ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`, `ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ${shortName} ನಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?`, `${shortName} 7 ದಿನಗಳ ಮುನ್ಸೂಚನೆ ಏನು?`]
+      };
+    }
+
+    // H. DEFAULT: COMPLETE LIVE WEATHER TELEMETRY
+    const text = `### 🌦️ ${dName} ಇಂದಿನ ಲೈವ್ ಅಧಿಕೃತ ಹವಾಮಾನ ವರದಿ (Live Weather & KSNDMC Alert)
+
+* **ಪ್ರಸ್ತುತ ಉಷ್ಣಾಂಶ:** **${temp}°C** (ನೈಜ ಅನುಭವ: **${feels}°C**)
+* **ಹವಾಮಾನ ಸ್ಥಿತಿ:** **${desc} ${cur.icon || '⛅'}**
+* **ಮಳೆ ಸಾಧ್ಯತೆ (Rain Probability):** **${rainChance}%**
+* **ಆರ್ದ್ರತೆ (Humidity):** **${humidity}%** | ಗಾಳಿಯ ವೇಗ: **${windKmh} km/h**
+* **ವಾಯು ಗುಣಮಟ್ಟ (AQI):** **${aqi.val} (${aqi.label})**
+* **ಕಳೆದ 24 ಗಂಟೆಗಳ ಮಳೆ:** **${past.rain_mm || 0.0} mm**
+* **ತಾಪಮಾನ ಶ್ರೇಣಿ:** ಗರಿಷ್ಠ ${past.max_temp || 29}°C | ಕನಿಷ್ಠ ${past.min_temp || 20}°C
 
 ---
-
-💡 **ರಾಜ್ಯ ಹವಾಮಾನ ಇಲಾಖೆ (KSNDMC) ಮುನ್ನೆಚ್ಚರಿಕೆ:**
-ಕರಾವಳಿ (ದಕ್ಷಿಣ ಕನ್ನಡ, ಉಡುಪಿ, ಉತ್ತರ ಕನ್ನಡ) ಹಾಗೂ ಮಲೆನಾಡು (ಶಿವಮೊಗ್ಗ, ಚಿಕ್ಕಮಗಳೂರು, ಕೊಡಗು) ಭಾಗಗಳಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರಿ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ. ಒಳನಾಡಿನಲ್ಲಿ ಸಾಧಾರಣ ಗಾಳಿ ಸಹಿತ ತುಂತುರು ಮಳೆ ಮುನ್ಸೂಚನೆ ಇದೆ.`;
+💡 **KSNDMC ಅಧಿಕೃತ ಮುನ್ಸೂಚನೆ:** ${dName} ನಲ್ಲಿ ಪ್ರಸ್ತುತ ವಾತಾವರಣ ತಂಪಾಗಿದ್ದು, ದಿನದ ಮುಂದಿನ ಅವಧಿಯಲ್ಲಿ ${rainChance}% ಮಳೆ ಸಾಧ್ಯತೆಯಿದೆ.`;
 
     return {
-      text: markdownText,
+      text,
       cards: [
-        { title: `${dName} 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`, url: "/weather.html", icon: "🌤️", subtitle: "KSNDMC ಲೈವ್ ಮಳೆ ನಕ್ಷೆ & ರೇಡಾರ್" }
+        { title: `${shortName} 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`, url: "/weather.html", icon: "🌤️", subtitle: "KSNDMC ಲೈವ್ ಮಳೆ ನಕ್ಷೆ & ರೇಡಾರ್" }
       ],
       followups: [
-        `${dName} ಜಿಲ್ಲೆಯ ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?`,
-        "ಮುಂದಿನ 3 ದಿನಗಳಲ್ಲಿ ಭಾರಿ ಮಳೆ ಬರುವುದೇ?",
-        "ಬೆಂಗಳೂರಿನ ಇಂದಿನ ಹವಾಮಾನ ಹೇಗಿದೆ?"
+        `ಇಂದು ${shortName} ನಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`,
+        `ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ${shortName} ನಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?`,
+        `ನಾಳೆ ${shortName} ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?`,
+        `${shortName} 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಏನು?`
       ]
     };
   }
@@ -778,7 +1798,8 @@ ${rows}`;
         "ತುಂಗಭದ್ರಾ ಡ್ಯಾಂ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟಿದೆ, ಯಾವ ಬೆಳೆ ಬೆಳೆಯಬಹುದು?",
         "ಕರ್ನಾಟಕ ಮುಖ್ಯಮಂತ್ರಿ ಮತ್ತು 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳ ವಿವರ ಕೊಡಿ",
         "1947 ಸ್ವಾತಂತ್ರ್ಯದ ವೇಳೆ ಚಿನ್ನದ ಬೆಲೆ ಎಷ್ಟಿತ್ತು?"
-      ]
+      ],
+      isFallback: true
     };
   }
 

@@ -1,6 +1,10 @@
 /admin/config.yml /admin/config.yml 200
-/admin/*          /admin/index.html 200
 /news-explainers.html /karnataka-local-news.html 301
 /news-explainers  /karnataka-local-news.html 301
-/news/*/*         /article.html     200
-/news/*           /article.html     200
+/news-explainers/* /karnataka-local-news.html 301
+/jyothishya       /ai-jyothishya.html 301
+/astrology        /ai-jyothishya.html 301
+/rashi-bhavishya  /ai-jyothishya.html 301
+/officers         /officers.html 301
+/officers-admin   /admin-transfers.html 301
+/transfers        /officers.html 301

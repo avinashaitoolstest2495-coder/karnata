@@ -293,13 +293,53 @@ def build_all_district_pages():
     all_apmc_items = apmc_data.get("items", [])
     mlas = consts_data.get("mla", {})
     mps = consts_data.get("mp", {})
-
     DISTRICTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    dist_officers_data = {}
+    dist_off_path = BASE_DIR / "data/district_officers.json"
+    if dist_off_path.exists():
+        try:
+            with open(dist_off_path, "r", encoding="utf-8") as f:
+                dist_officers_data = json.load(f).get("districts", {})
+        except Exception:
+            pass
+
+    all_tahsildars_list = []
+    tah_path = BASE_DIR / "data/tahsildars.json"
+    if tah_path.exists():
+        try:
+            with open(tah_path, "r", encoding="utf-8") as f:
+                all_tahsildars_list = json.load(f).get("tahsildars", [])
+        except Exception:
+            pass
 
     for dist in DISTRICTS_CONFIG:
         key = dist["key"]
         name_kn = dist["name_kn"]
         name_en = dist["name_en"]
+
+        officers_info = dist_officers_data.get(key.replace('-', '_'), {})
+        dc_name = (officers_info.get("dc") or {}).get("name_kn") or (officers_info.get("dc") or {}).get("name_en") or dist.get('dc_name', '')
+        sp_name = (officers_info.get("sp") or {}).get("name_kn") or (officers_info.get("sp") or {}).get("name_en") or dist.get('sp_name', '')
+        zp_ceo_name = (officers_info.get("zp_ceo") or {}).get("name_kn") or (officers_info.get("zp_ceo") or {}).get("name_en") or "ಶ್ರೀ ಸಿಇಒ, IAS"
+        dc_phone = (officers_info.get("dc") or {}).get("phone") or dist.get('dc_phone', '080-22211292')
+        sp_phone = (officers_info.get("sp") or {}).get("phone") or dist.get('sp_phone', '080-22942222')
+
+        # District Tahsildars
+        dist_tahs = [t for t in all_tahsildars_list if t.get('district_key') == key.replace('-', '_') or name_kn in t.get('district_kn', '')]
+        tahsildars_html = ""
+        for th in dist_tahs:
+            t_name = th.get('name_kn', 'ತಹಶೀಲ್ದಾರ್')
+            t_taluk = th.get('taluk_kn', '')
+            t_mob = th.get('mobile', '')
+            t_email = th.get('email', '')
+            tahsildars_html += f"""
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:12px 14px;">
+              <div style="font-size:11px; font-weight:800; color:var(--k-red); text-transform:uppercase;">📍 {t_taluk} ತಾಲೂಕು</div>
+              <div style="font-size:14.5px; font-weight:800; color:#0F172A; margin:3px 0 6px;">👤 {t_name}</div>
+              <div style="font-size:12px; color:#059669; font-weight:700;">{f'📞 <a href="tel:{t_mob}" style="color:inherit; text-decoration:none;">{t_mob}</a>' if t_mob else ''}</div>
+              {f'<div style="font-size:11px; color:#64748B; margin-top:3px; word-break:break-all;">✉️ {t_email}</div>' if t_email else ''}
+            </div>"""
 
         # 1. District News Articles (Strict District Matching & Chronological Sorting - Latest on Top)
         articles = list(district_buckets.get(key) or district_buckets.get(key.replace('-', '_')) or [])
@@ -588,23 +628,41 @@ body {{ font-family: var(--font-kn); background: var(--bg); color: #0F172A; marg
   <main class="d-main">
 
     <div class="d-sec">
-      <div class="d-sec-title"><span>🏛️ {name_kn} ಜಿಲ್ಲಾಡಳಿತ ಮತ್ತು ಪ್ರಮುಖ ಅಧಿಕಾರಿಗಳು (Key Officers)</span></div>
+      <div class="d-sec-title">
+        <span>🏛️ {name_kn} ಜಿಲ್ಲಾಡಳಿತ ಮತ್ತು ಪ್ರಮುಖ ಅಧಿಕಾರಿಗಳು (District Officers)</span>
+        <a href="/officers.html" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ ಅಧಿಕಾರಿಗಳು & ವರ್ಗಾವಣೆಗಳು →</a>
+      </div>
       <div class="officers-grid">
         <div class="officer-card">
           <div class="officer-role">ಜಿಲ್ಲಾಧಿಕಾರಿ (Deputy Commissioner / DC)</div>
-          <div class="officer-name">👤 {dist['dc_name']}</div>
-          <div class="officer-phone">📞 ದೂರವಾಣಿ: {dist['dc_phone']}</div>
+          <div class="officer-name">👤 {dc_name}</div>
+          <div class="officer-phone">📞 ದೂರವಾಣಿ: {dc_phone}</div>
         </div>
         <div class="officer-card">
           <div class="officer-role">ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP)</div>
-          <div class="officer-name">👮 {dist['sp_name']}</div>
-          <div class="officer-phone">📞 ದೂರವಾಣಿ: {dist['sp_phone']}</div>
+          <div class="officer-name">👮 {sp_name}</div>
+          <div class="officer-phone">📞 ದೂರವಾಣಿ: {sp_phone}</div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-role">ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO)</div>
+          <div class="officer-name">🏢 {zp_ceo_name}</div>
+          <div class="officer-phone"><a href="/officers.html" style="color:var(--k-red); text-decoration:none; font-weight:800;">ವಿವರ ನೋಡಿ →</a></div>
         </div>
       </div>
       <div style="margin-top:14px; font-size:13px; color:#475569; background:#F1F5F9; padding:12px 16px; border-radius:12px; border-left:4px solid var(--k-red);">
         💡 <strong>ವಿಶೇಷತೆ:</strong> {dist['famous_for']}
       </div>
     </div>
+
+    {f'''<div class="d-sec">
+      <div class="d-sec-title">
+        <span>🌾 {name_kn} ಜಿಲ್ಲೆಯ ತಾಲೂಕು ತಹಶೀಲ್ದಾರ್‌ಗಳ ಸಂಪರ್ಕ ವಿವರ (Taluk Tahsildars)</span>
+        <a href="/officers.html" style="font-size:13px; font-weight:800; color:var(--k-red); text-decoration:none;">ಎಲ್ಲಾ 240+ ತಾಲೂಕುಗಳು →</a>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:12px;">
+        {tahsildars_html}
+      </div>
+    </div>''' if tahsildars_html else ''}
 
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
       <div class="d-sec">
@@ -721,6 +779,7 @@ body {{ font-family: var(--font-kn); background: var(--bg); color: #0F172A; marg
 
 <script src="/data-loader.js"></script>
 <script src="/nav-component.js"></script>
+<script src="/district-notification-engine.js"></script>
 </body>
 </html>"""
 

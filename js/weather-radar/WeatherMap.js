@@ -82,6 +82,10 @@ class WeatherMap {
       lon: 77.5946
     }, false);
 
+    setTimeout(() => {
+      if (this.map) this.map.invalidateSize();
+    }, 300);
+
     // Map click handler
     this.map.on('click', (e) => {
       this.handleMapClick(e.latlng.lat, e.latlng.lng);

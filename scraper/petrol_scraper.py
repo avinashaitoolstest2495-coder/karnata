@@ -476,11 +476,16 @@ def run() -> dict:
             key, res = future.result()
             scraped_results[key] = res
 
-    # Establish Bangalore base anchor rates for fallbacks
+    # Establish Bangalore base anchor rates with Sticky Fallback from existing data
+    from utils import load_json
+    existing_petrol_data = load_json("petrol_rates.json", {})
+    existing_cities = existing_petrol_data.get("cities", {})
+    existing_blr = existing_cities.get("bangalore", {}) or existing_cities.get("bengaluru", {})
+
     blr_res = scraped_results.get("bangalore", {})
-    base_petrol = blr_res.get("petrol") or 102.86
-    base_diesel = blr_res.get("diesel") or 88.94
-    base_cng = blr_res.get("cng") or 79.00
+    base_petrol = blr_res.get("petrol") or existing_blr.get("petrol") or 110.89
+    base_diesel = blr_res.get("diesel") or existing_blr.get("diesel") or 90.00
+    base_cng = blr_res.get("cng") or existing_blr.get("cng") or 83.00
 
     districts_output = {}
     cities_output = {}
@@ -492,11 +497,12 @@ def run() -> dict:
         for taluk in dist_data["taluks"]:
             key = taluk["key"]
             res = scraped_results.get(key, {})
+            existing_taluk = existing_cities.get(key, {})
 
-            # Fallback if a specific outlet API call failed
-            petrol = res.get("petrol") or base_petrol
-            diesel = res.get("diesel") or base_diesel
-            cng = res.get("cng") if taluk.get("has_cng") else None
+            # Sticky Fallback: Use live scraped > existing saved rate > base anchor
+            petrol = res.get("petrol") or existing_taluk.get("petrol") or base_petrol
+            diesel = res.get("diesel") or existing_taluk.get("diesel") or base_diesel
+            cng = (res.get("cng") or existing_taluk.get("cng") or base_cng) if taluk.get("has_cng") else None
 
             if res.get("is_live"):
                 live_count += 1

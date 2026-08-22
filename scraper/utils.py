@@ -77,9 +77,27 @@ def decrypt_payload(encoded_str: str) -> dict | None:
         log.error(f"❌ Decryption error: {e}")
         return None
 
-# ─── Save JSON locally ────────────────────────────────────────
+# ─── Load JSON locally ────────────────────────────────────────
+def load_json(filename: str, default=None):
+    """Safely load JSON data from output directory."""
+    path = OUTPUT_DIR / filename
+    if not path.exists():
+        return default
+    try:
+        content = path.read_text(encoding="utf-8")
+        if not content.strip():
+            return default
+        return json.loads(content)
+    except Exception as e:
+        log.warning(f"⚠️ Failed reading {filename}: {e}")
+        return default
+
+# ─── Save JSON locally with Sticky Protection ─────────────────
 def save_json(filename: str, data: dict) -> bool:
-    """Save data as JSON to output directory."""
+    """Save data as JSON to output directory with sticky data validation."""
+    if not data:
+        log.warning(f"⚠️ Blank data passed to save_json({filename}) — preserving existing file.")
+        return False
     path = OUTPUT_DIR / filename
     try:
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")

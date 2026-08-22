@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔮 AI ಜ್ಯೋತಿಷ್ಯ & ಜಾತಕ ಫಲ — Kannada Vedic Astrology, Kundali & Rashi Bhavishya | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಕನ್ನಡದ ನಂ.1 ಉಚಿತ AI ಜ್ಯೋತಿಷ್ಯ ತಾಣ. ಜನ್ಮ ದಿನಾಂಕ, ಸಮಯ, ಸ್ಥಳದ ಆಧಾರದಲ್ಲಿ ನಿಖರ ಜಾತಕ ಕುಂಡಲಿ, ರಾಶಿ, ನಕ್ಷತ್ರ, ಲಗ್ನ, ಗ್ರಹಗಳ ಸ್ಥಾನ ಮತ್ತು ಸಂಪೂರ್ಣ ಭವಿಷ್ಯ ಫಲ.">
+<link rel="canonical" href="https://karnata.in/ai-jyothishya.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<style>
+:root {
+  --bg-page: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --text-dark: #0F172A;
+  --text-body: #334155;
+  --text-muted: #64748B;
+  --gold: #D97706;
+  --gold-bg: #FEF3C7;
+  --gold-border: #FDE68A;
+  --k-red: #E11D48;
+  --k-red-light: #FFE4E6;
+  --font-kn: 'Anek Kannada', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-kn);
+  background: var(--bg-page);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+/* ── Hero Header with Celestial Motion Background ── */
+.jyothi-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #09090B, #1E1B4B, #18181B, #0F172A, #09090B);
+  background-size: 400% 400%;
+  animation: cosmicMotion 14s ease infinite;
+  padding: 38px 20px 30px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+@keyframes cosmicMotion {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.jyothi-hero::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(225, 29, 72, 0.15) 0%, rgba(245, 158, 11, 0.08) 35%, transparent 65%);
+  animation: celestialPulse 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes celestialPulse {
+  0% { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+  100% { transform: scale(1.1) rotate(15deg); opacity: 1; }
+}
+
+.jyothi-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.jyothi-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FDA4AF;
+  background: rgba(225, 29, 72, 0.18);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  font-family: var(--font-en);
+}
+.jyothi-title {
+  font-size: 30px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: -0.3px;
+}
+@media(max-width: 768px) {
+  .jyothi-title { font-size: 22px; }
+}
+
+/* ── Container Layout ── */
+.jyothi-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+/* ── Tab Switcher Bar ── */
+.main-tabs-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.main-tab-btn {
+  background: #FFFFFF;
+  color: #475569;
+  border: 1.5px solid #E2E8F0;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 13.5px;
+  font-weight: 800;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+.main-tab-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+.main-tab-btn.active {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+/* ── Clean Input Form Card ── */
+.form-card-box {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+.form-header-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.input-grid-4col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.form-control {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #0F172A;
+  font-family: var(--font-kn);
+  outline: none;
+  transition: all 0.15s ease;
+}
+.form-control:focus {
+  border-color: var(--k-red);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+}
+
+.btn-calc-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+  color: #FFFFFF;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.25);
+}
+.btn-calc-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.35);
+}
+
+/* ── Result Section ── */
+#report-result-section {
+  display: none;
+}
+
+/* 1. Quick Birth Matrix Cards */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.matrix-item {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.matrix-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--k-red);
+}
+.matrix-lbl {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.matrix-val {
+  font-size: 18px;
+  font-weight: 900;
+  color: #0F172A;
+}
+.matrix-sub {
+  font-size: 11px;
+  color: var(--k-red);
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+/* 2. Visual Kundali & Planetary Longitudes Card */
+.kundali-section-card {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+.chart-layout-flex {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.south-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  border: 2px solid #0F172A;
+  background: #FAFAFA;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.chart-box {
+  border: 1px solid #CBD5E1;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  font-size: 11px;
+  background: #FFFFFF;
+}
+.chart-box.center-box {
+  border: none;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.chart-rashi-name {
+  font-weight: 900;
+  font-size: 10.5px;
+  color: #334155;
+  margin-bottom: 2px;
+}
+.chart-lagna-badge {
+  background: var(--k-red);
+  color: #FFF;
+  font-weight: 900;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+.chart-planets-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.chart-p-tag {
+  background: #F1F5F9;
+  color: #0F172A;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid #E2E8F0;
+}
+
+/* 3. Planets Table */
+.planets-table-wrap {
+  overflow-x: auto;
+}
+.planets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.planets-table th {
+  background: #F8FAFC;
+  color: #334155;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 900;
+  border-bottom: 2px solid #E2E8F0;
+}
+.planets-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #F1F5F9;
+  color: #334155;
+}
+.planets-table tr:hover { background: #F8FAFC; }
+
+/* 4. AI Interpretations Report Cards */
+.ai-report-card {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.ai-sec-title {
+  font-size: 15.5px;
+  font-weight: 900;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ai-sec-p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-body);
+  font-weight: 500;
+}
+.ai-sec-p strong {
+  color: #0F172A;
+  font-weight: 800;
+}
+
+/* Lucky Grid */
+.lucky-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.lucky-pill {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.lucky-pill strong { color: var(--k-red); display: block; font-size: 12px; margin-bottom: 2px; font-weight: 800; }
+.lucky-pill span { color: #0F172A; font-size: 13px; font-weight: 800; }
+
+/* ── Section 2: 12 Rashi Periodic Bhavishya Hub ── */
+.rashi-hub-card {
+  background: #FFFFFF;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+.period-tabs-row {
+  display: flex;
+  gap: 8px;
+}
+.period-btn {
+  background: #F8FAFC;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.period-btn:hover { background: #E2E8F0; color: #0F172A; }
+.period-btn.active {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+  font-weight: 800;
+}
+
+.rashi-12-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.rashi-card-item {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 16px;
+  transition: all 0.15s ease;
+}
+.rashi-card-item:hover {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+.rc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.rc-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rc-lord {
+  font-size: 11px;
+  color: var(--k-red);
+  font-weight: 800;
+}
+.rc-text {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* ── Mandatory Disclaimer Box ── */
+.disclaimer-box {
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 32px 0 20px;
+  font-size: 12.5px;
+  color: #9F1239;
+  line-height: 1.6;
+  text-align: center;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO HEADER (Celestial Motion, No Subheader) ══════ -->
+<div class="jyothi-hero">
+  <div class="jyothi-hero-inner">
+    <div class="jyothi-tag">✨ VEDIC ASTROLOGY & AI KUNDALI HUB</div>
+    <h1 class="jyothi-title">
+      <span>🔮</span> AI ಜ್ಯೋತಿಷ್ಯ & ಸಂಪೂರ್ಣ ಜಾತಕ ಫಲ
+    </h1>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTAINER ════════════════════════════════════ -->
+<div class="jyothi-container">
+
+  <!-- Navigation View Tabs -->
+  <div class="main-tabs-row">
+    <button class="main-tab-btn active" id="tab-btn-calc" onclick="switchMainTab('calc')">
+      <span>🔮 ನನ್ನ ಜಾತಕ & ಕುಂಡಲಿ ರಚಿಸಿ</span>
+    </button>
+    <button class="main-tab-btn" id="tab-btn-rashi" onclick="switchMainTab('rashi')">
+      <span>♈ 12 ರಾಶಿಗಳ ದಿನ/ವಾರ/ಮಾಸಿಕ ಭವಿಷ್ಯ</span>
+    </button>
+  </div>
+
+  <!-- ── VIEW 1: BIRTH CHART GENERATOR & AI HOROSCOPE ── -->
+  <div id="view-calc-section">
+
+    <!-- Input Form -->
+    <div class="form-card-box">
+      <div class="form-header-title">
+        <span>📝</span> ಜನ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ (Enter Birth Details)
+      </div>
+
+      <form id="kundali-form" onsubmit="handleFormSubmit(event)">
+        <div class="input-grid-4col">
+          <!-- 1. Name -->
+          <div class="form-group">
+            <label class="form-label" for="inp-name"><span>👤</span> ಹೆಸರು (Name):</label>
+            <input type="text" id="inp-name" class="form-control" placeholder="ನಿಮ್ಮ ಹೆಸರು (ಉದಾ: ರಮೇಶ್)" required>
+          </div>
+
+          <!-- 2. DOB -->
+          <div class="form-group">
+            <label class="form-label" for="inp-dob"><span>📅</span> ಜನ್ಮ ದಿನಾಂಕ (DOB):</label>
+            <input type="date" id="inp-dob" class="form-control" required>
+          </div>
+
+          <!-- 3. Time -->
+          <div class="form-group">
+            <label class="form-label" for="inp-time"><span>⏰</span> ಜನ್ಮ ಸಮಯ (Time):</label>
+            <input type="time" id="inp-time" class="form-control" value="06:30" required>
+          </div>
+
+          <!-- 4. Place -->
+          <div class="form-group">
+            <label class="form-label" for="inp-place"><span>📍</span> ಜನ್ಮ ಸ್ಥಳ (Place - ಕರ್ನಾಟಕ, ಭಾರತ ಅಥವಾ ವಿಶ್ವದ ಯಾವುದೇ ಊರು):</label>
+            <input type="text" id="inp-place" class="form-control" list="places-list" placeholder="ಉದಾ: ಮೈಸೂರು, Hubballi, London, New York..." value="ಬೆಂಗಳೂರು (Bengaluru)" required>
+            <datalist id="places-list"></datalist>
+          </div>
+
+          <!-- 5. Gender -->
+          <div class="form-group">
+            <label class="form-label" for="inp-gender"><span>⚧️</span> ಲಿಂಗ (Gender - ಐಚ್ಛಿಕ):</label>
+            <select id="inp-gender" class="form-control">
+              <option value="ಪುರುಷ">ಪುರುಷ (Male)</option>
+              <option value="ಮಹಿಳೆ">ಮಹಿಳೆ (Female)</option>
+              <option value="ಇತರೆ">ಇತರೆ (Other)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-calc-submit">
+          <span>🔮</span> ನಿಖರ ಜಾತಕ ಕುಂಡಲಿ & AI ಭವಿಷ್ಯ ಲೆಕ್ಕಾಚಾರ ಮಾಡಿ ➔
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section (Populated on Submit) -->
+    <div id="report-result-section">
+
+      <!-- 1. Quick Matrix Cards -->
+      <div class="matrix-grid" id="matrix-grid-cards"></div>
+
+      <!-- 2. Visual Kundali & Planetary Longitudes -->
+      <div class="kundali-section-card">
+        <div class="ai-sec-title">
+          <span>🗺️</span> ದಕ್ಷಿಣ ಭಾರತೀಯ ಜಾತಕ ಕುಂಡಲಿ (South Indian Chart)
+        </div>
+
+        <div class="chart-layout-flex">
+          <!-- 12-Box Visual Chart Grid -->
+          <div class="south-chart-grid" id="kundali-chart-grid"></div>
+
+          <!-- Planets Summary Table -->
+          <div style="flex: 1; min-width: 280px;">
+            <div style="font-size: 13px; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
+              🪐 ನವಗ್ರಹಗಳ ಸ್ಪಷ್ಟ ಸ್ಥಾನ (Nirayana Longitudes)
+            </div>
+            <div class="planets-table-wrap">
+              <table class="planets-table">
+                <thead>
+                  <tr>
+                    <th>ಗ್ರಹ</th>
+                    <th>ರಾಶಿ</th>
+                    <th>ಅಂಶ</th>
+                    <th>ನಕ್ಷತ್ರ</th>
+                    <th>ಭಾವ</th>
+                  </tr>
+                </thead>
+                <tbody id="planets-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Comprehensive AI Kannada Interpretations -->
+      <div id="ai-interpretations-cards"></div>
+
+    </div>
+
+  </div>
+
+  <!-- ── VIEW 2: 12 RASHI BHAVISHYA HUB ── -->
+  <div id="view-rashi-section" style="display:none;">
+    <div class="rashi-hub-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+        <div style="font-size:17px; font-weight:900; color:#0F172A;">
+          <span>♈</span> 12 ರಾಶಿಗಳ ಸಮಗ್ರ ಭವಿಷ್ಯ
+        </div>
+
+        <div class="period-tabs-row">
+          <button class="period-btn active" onclick="switchPeriod('daily', this)">ದೈನಂದಿನ (Daily)</button>
+          <button class="period-btn" onclick="switchPeriod('weekly', this)">ವಾರದ (Weekly)</button>
+          <button class="period-btn" onclick="switchPeriod('monthly', this)">ಮಾಸಿಕ (Monthly)</button>
+        </div>
+      </div>
+
+      <div class="rashi-12-grid" id="rashi-12-cards-container"></div>
+    </div>
+  </div>
+
+  <!-- ── MANDATORY DISCLAIMER ── -->
+  <div class="disclaimer-box">
+    ⚠️ <strong>ಮುಖ್ಯ ಸೂಚನೆ:</strong> ಇದು ಸಾಂಪ್ರದಾಯಿಕ ಜ್ಯೋತಿಷ್ಯ ಆಧಾರಿತ ಮಾಹಿತಿ ಮಾತ್ರ. ಇದನ್ನು ವೈಜ್ಞಾನಿಕ ಅಥವಾ ಖಚಿತ ಭವಿಷ್ಯವಾಣಿ ಎಂದು ಪರಿಗಣಿಸಬೇಡಿ.
+  </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="/jyothishya-engine.js"></script>
+<script src="/nav-component.js" defer></script>
+<script>
+let currentPeriod = 'daily';
+
+function parseMdBold(str) {
+  if (!str) return '';
+  return str.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+// Initialize Place Dropdown / Datalist
+function initPlaces() {
+  const datalist = document.getElementById('places-list');
+  if (datalist && window.JyothishyaEngine && window.JyothishyaEngine.GLOBAL_PLACES) {
+    datalist.innerHTML = JyothishyaEngine.GLOBAL_PLACES.map(p => `
+      <option value="${p.name_kn}">
+    `).join('');
+  }
+
+  // Default DOB to 25 years ago
+  const d = new Date();
+  d.setFullYear(d.getFullYear() - 25);
+  const dobInput = document.getElementById('inp-dob');
+  if (dobInput) dobInput.value = d.toISOString().split('T')[0];
+}
+
+// Switch between Birth Chart Calculator and 12 Rashi Bhavishya Hub
+function switchMainTab(tabKey) {
+  const btnCalc = document.getElementById('tab-btn-calc');
+  const btnRashi = document.getElementById('tab-btn-rashi');
+  const viewCalc = document.getElementById('view-calc-section');
+  const viewRashi = document.getElementById('view-rashi-section');
+
+  if (tabKey === 'calc') {
+    btnCalc.classList.add('active');
+    btnRashi.classList.remove('active');
+    viewCalc.style.display = 'block';
+    viewRashi.style.display = 'none';
+  } else {
+    btnRashi.classList.add('active');
+    btnCalc.classList.remove('active');
+    viewRashi.style.display = 'block';
+    viewCalc.style.display = 'none';
+    render12RashiHub();
+  }
+}
+
+// Handle Form Submission
+function handleFormSubmit(e) {
+  e.preventDefault();
+  if (!window.JyothishyaEngine) return;
+
+  const name = document.getElementById('inp-name').value.trim() || 'ಜಾತಕದಾರರು';
+  const dobVal = document.getElementById('inp-dob').value;
+  const timeVal = document.getElementById('inp-time').value;
+  const placeText = document.getElementById('inp-place').value.trim() || 'ಬೆಂಗಳೂರು (Bengaluru)';
+  const gender = document.getElementById('inp-gender').value;
+
+  if (!dobVal || !timeVal) {
+    alert('ದಯವಿಟ್ಟು ಜನ್ಮ ದಿನಾಂಕ ಮತ್ತು ಸಮಯವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.');
+    return;
+  }
+
+  const [year, month, day] = dobVal.split('-').map(Number);
+  const [hour, minute] = timeVal.split(':').map(Number);
+  const result = JyothishyaEngine.calculateHoroscope({
+    name,
+    year,
+    month,
+    day,
+    hour,
+    minute,
+    place: placeText,
+    placeName: placeText,
+    gender
+  });
+
+  renderHoroscopeReport(result);
+}
+
+// Render Horoscope Report
+function renderHoroscopeReport(data) {
+  const container = document.getElementById('report-result-section');
+  container.style.display = 'block';
+  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const m = data.astrologyMatrix;
+
+  // 1. Matrix Cards
+  const matrixWrap = document.getElementById('matrix-grid-cards');
+  matrixWrap.innerHTML = `
+    <div class="matrix-item">
+      <div class="matrix-lbl">ಚಂದ್ರ ರಾಶಿ</div>
+      <div class="matrix-val">${m.chandraRashi}</div>
+      <div class="matrix-sub">ಅಧಿಪತಿ: ${m.rashiLord}</div>
+    </div>
+    <div class="matrix-item">
+      <div class="matrix-lbl">ಜನ್ಮ ನಕ್ಷತ್ರ</div>
+      <div class="matrix-val">${m.nakshatra}</div>
+      <div class="matrix-sub">ಪಾದ ${m.pada} (${m.nakshatraLord})</div>
+    </div>
+    <div class="matrix-item">
+      <div class="matrix-lbl">ಜನ್ಮ ಲಗ್ನ</div>
+      <div class="matrix-val">${m.lagna}</div>
+      <div class="matrix-sub">ಅಧಿಪತಿ: ${m.lagnaLord}</div>
+    </div>
+    <div class="matrix-item">
+      <div class="matrix-lbl">ಸೂರ್ಯ ರಾಶಿ</div>
+      <div class="matrix-val">${m.sunRashi}</div>
+      <div class="matrix-sub">ಅಯನಾಂಶ: ${m.ayanamsha}</div>
+    </div>
+    <div class="matrix-item">
+      <div class="matrix-lbl">ತತ್ವ / ಯೋನಿ</div>
+      <div class="matrix-val">${m.element} ತತ್ವ</div>
+      <div class="matrix-sub">ಯೋನಿ: ${m.yoni}</div>
+    </div>
+  `;
+
+  // 2. South Indian Kundali Chart (16 Cells Grid: 12 Houses + 4 Center Cells)
+  const chartGrid = document.getElementById('kundali-chart-grid');
+  const southLayout = [
+    11, 0, 1, 2,
+    10, -1, -1, 3,
+    9,  -1, -1, 4,
+    8,  7, 6, 5
+  ];
+
+  chartGrid.innerHTML = southLayout.map((rIdx, cellIdx) => {
+    if (rIdx === -1) {
+      if (cellIdx === 5) {
+        return `<div class="chart-box center-box" style="grid-column: span 2; grid-row: span 2;">
+          <div style="font-size:13px; font-weight:900; color:#0F172A;">
+            ✨ ಜಾತಕ ಕುಂಡಲಿ<br>
+            <span style="font-size:11px; color:#64748B;">${data.birthDetails.name}</span>
+          </div>
+        </div>`;
+      }
+      return ''; // Covered by span 2
+    }
+
+    const rData = data.rashiGrid[rIdx];
+    const pBadges = rData.planets.map(p => `<span class="chart-p-tag">${p.name_kn.split(' ')[0]}</span>`).join('');
+    const lagnaBadge = rData.isLagna ? `<span class="chart-lagna-badge">ಲಗ್ನ</span>` : '';
+
+    return `
+      <div class="chart-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="chart-rashi-name">${rData.rashi.name_kn}</span>
+          ${lagnaBadge}
+        </div>
+        <div class="chart-planets-wrap">${pBadges}</div>
+      </div>
+    `;
+  }).join('');
+
+  // 3. Planets Longitude Table
+  const tbody = document.getElementById('planets-tbody');
+  tbody.innerHTML = data.planetsTable.map(p => `
+    <tr>
+      <td style="font-weight:800; color:#0F172A;">${p.symbol} ${p.name_kn}</td>
+      <td>${p.rashi}</td>
+      <td style="font-family:var(--font-en); font-weight:700;">${p.degreeFormatted}</td>
+      <td>${p.nakshatra} (${p.pada}ನೇ ಪಾದ)</td>
+      <td style="font-weight:900; color:var(--k-red);">${p.house}ನೇ ಭಾವ</td>
+    </tr>
+  `).join('');
+
+  // 4. AI Interpretations Report Cards (with clean Markdown Bold formatting)
+  const ai = data.aiAnalysis;
+  const aiWrap = document.getElementById('ai-interpretations-cards');
+  aiWrap.innerHTML = `
+    <!-- Personality -->
+    <div class="ai-report-card">
+      <div class="ai-sec-title"><span>🌟</span> ವ್ಯಕ್ತಿತ್ವ & ಸ್ವಭಾವ ಗುಣಗಳು (Personality Analysis)</div>
+      <p class="ai-sec-p">${parseMdBold(ai.personality)}</p>
+    </div>
+
+    <!-- Career & Wealth -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:18px;">
+      <div class="ai-report-card" style="margin-bottom:0;">
+        <div class="ai-sec-title"><span>💼</span> ವೃತ್ತಿ & ಉದ್ಯೋಗ ಭವಿಷ್ಯ (Career)</div>
+        <p class="ai-sec-p">${parseMdBold(ai.career)}</p>
+      </div>
+      <div class="ai-report-card" style="margin-bottom:0;">
+        <div class="ai-sec-title"><span>💰</span> ಧನ & ಆರ್ಥಿಕ ಸ್ಥಿತಿ (Finance & Wealth)</div>
+        <p class="ai-sec-p">${parseMdBold(ai.finance)}</p>
+      </div>
+    </div>
+
+    <!-- Marriage & Health -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:18px;">
+      <div class="ai-report-card" style="margin-bottom:0;">
+        <div class="ai-sec-title"><span>💍</span> ವಿವಾಹ & ದಾಂಪತ್ಯ ಯೋಗ (Marriage)</div>
+        <p class="ai-sec-p">${parseMdBold(ai.marriage)}</p>
+      </div>
+      <div class="ai-report-card" style="margin-bottom:0;">
+        <div class="ai-sec-title"><span>🏡</span> ಕುಟುಂಬ & ಆರೋಗ್ಯ ರಕ್ಷಣೆ (Family & Health)</div>
+        <p class="ai-sec-p">${parseMdBold(ai.health)}</p>
+      </div>
+    </div>
+
+    <!-- Lucky Elements -->
+    <div class="ai-report-card">
+      <div class="ai-sec-title"><span>🍀</span> ಶುಭ ಅಂಶಗಳು & ಆರಾಧನೆ (Lucky Elements)</div>
+      <div class="lucky-grid">
+        <div class="lucky-pill">
+          <strong>ಅದೃಷ್ಟ ಸಂಖ್ಯೆಗಳು:</strong>
+          <span>${ai.luckyNumbers}</span>
+        </div>
+        <div class="lucky-pill">
+          <strong>ಶುಭ ಬಣ್ಣಗಳು:</strong>
+          <span>${ai.luckyColors}</span>
+        </div>
+        <div class="lucky-pill">
+          <strong>ಶುಭ ವಾರಗಳು:</strong>
+          <span>${ai.luckyDays}</span>
+        </div>
+        <div class="lucky-pill">
+          <strong>ಶುಭ ರತ್ನ:</strong>
+          <span>${ai.luckyStone}</span>
+        </div>
+        <div class="lucky-pill">
+          <strong>ಆರಾಧ್ಯ ದೇವತೆ:</strong>
+          <span>${ai.deity}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guidance & Remedies -->
+    <div class="ai-report-card" style="border-left: 4px solid var(--k-red); background: #FFF5F7;">
+      <div class="ai-sec-title" style="color:var(--k-red);"><span>🔮</span> ಭವಿಷ್ಯ ಮಾರ್ಗದರ್ಶನ & ಪರಿಹಾರಗಳು (Actionable Guidance)</div>
+      <p class="ai-sec-p">${parseMdBold(ai.guidance)}</p>
+    </div>
+  `;
+}
+
+// Render 12 Rashi Bhavishya Hub
+function render12RashiHub() {
+  const container = document.getElementById('rashi-12-cards-container');
+  if (!container || !window.JyothishyaEngine) return;
+
+  container.innerHTML = JyothishyaEngine.RASHIS.map((r, idx) => {
+    const data = JyothishyaEngine.getRashiTransitBhavishya(idx);
+    let text = data.daily;
+    if (currentPeriod === 'weekly') text = data.weekly;
+    if (currentPeriod === 'monthly') text = data.monthly;
+
+    return `
+      <div class="rashi-card-item">
+        <div class="rc-top">
+          <span class="rc-name">${r.symbol} ${r.name_kn}</span>
+          <span class="rc-lord">${r.lord_kn}</span>
+        </div>
+        <div class="rc-text">${text}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function switchPeriod(pKey, btn) {
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentPeriod = pKey;
+  render12RashiHub();
+}
+
+// On Page Load
+document.addEventListener('DOMContentLoaded', () => {
+  initPlaces();
+});
+</script>
+</body>
+</html>
