@@ -300,7 +300,18 @@
 
       <!-- 1-Row Combined Navigation with Financial & News Dropdowns -->
       <div class="nk-nav-links">
-        <a href="/karnataka.html" class="nk-nav-link ${isActive('/karnataka.html') ? 'active' : ''}">👑 ಕರ್ನಾಟಕ</a>
+                <!-- Dropdown 0: Karnataka (Portal, Cabinet Ministers, Former CMs) -->
+        <div class="nk-nav-dropdown ${isActive('/karnataka.html') || isActive('/cabinet-ministers.html') || isActive('/former-cms.html') ? 'active' : ''}">
+          <button class="nk-nav-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+            <span>👑 ಕರ್ನಾಟಕ</span>
+            <span style="font-size:8px; margin-left:2px;">▼</span>
+          </button>
+          <div class="nk-dropdown-menu">
+            <a href="/karnataka.html" class="nk-drop-item ${isActive('/karnataka.html') ? 'active' : ''}">👑 ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ</a>
+            <a href="/cabinet-ministers.html" class="nk-drop-item ${isActive('/cabinet-ministers.html') ? 'active' : ''}">👥 ಸಚಿವ ಸಂಪುಟ (33 ಸಚಿವರು)</a>
+            <a href="/former-cms.html" class="nk-drop-item ${isActive('/former-cms.html') ? 'active' : ''}">📜 ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳು</a>
+          </div>
+        </div>
         <a href="/ask.html" class="nk-nav-link ${isActive('/ask.html') ? 'active' : ''}">🤖 askKARNATA</a>
         <a href="/officers.html" class="nk-nav-link ${isActive('/officers.html') ? 'active' : ''}">🏛️ ಅಧಿಕಾರಿಗಳು</a>
         <a href="/ai-jyothishya.html" class="nk-nav-link ${isActive('/ai-jyothishya.html') ? 'active' : ''}">🔮 AI ಜ್ಯೋತಿಷ್ಯ</a>

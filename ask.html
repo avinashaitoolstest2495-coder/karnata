@@ -509,6 +509,44 @@
     .ai-body li { margin-bottom: 6px; }
 
     /* STORY READ BUTTON */
+    
+    /* RESPONSIVE AI MARKDOWN TABLES */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 14px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.35);
+    }
+    .ask-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+      min-width: 440px;
+    }
+    .ask-table th {
+      background: rgba(200, 138, 34, 0.22);
+      color: #F59E0B;
+      font-weight: 800;
+      padding: 10px 14px;
+      border-bottom: 2px solid rgba(200, 138, 34, 0.4);
+      white-space: nowrap;
+    }
+    .ask-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+    .ask-table tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .ai-body ol { margin-left: 22px; margin-bottom: 12px; }
+    .ai-body ol li { margin-bottom: 6px; }
+
     .story-read-btn {
       display: inline-flex;
       align-items: center;
@@ -961,16 +999,76 @@
 
     function parseMarkdown(md) {
       if (!md) return '';
-      let html = md
+
+      // 1. Markdown Table Parser
+      const lines = md.split('\n');
+      let inTable = false;
+      let tableRows = [];
+      let processedLines = [];
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (line.startsWith('|') && line.endsWith('|')) {
+          if (!inTable) {
+            inTable = true;
+            tableRows = [];
+          }
+          // Skip markdown table separator row |:---|:---|
+          if (!line.replace(/\|/g, '').replace(/:/g, '').replace(/-/g, '').trim()) {
+            continue;
+          }
+          const cells = line.split('|').slice(1, -1).map(c => c.trim());
+          tableRows.push(cells);
+        } else {
+          if (inTable) {
+            inTable = false;
+            if (tableRows.length > 0) {
+              const header = tableRows[0];
+              const rows = tableRows.slice(1);
+              let tblHtml = '<div class="table-responsive"><table class="ask-table"><thead><tr>';
+              header.forEach(h => { tblHtml += '<th>' + h + '</th>'; });
+              tblHtml += '</tr></thead><tbody>';
+              rows.forEach(r => {
+                tblHtml += '<tr>';
+                r.forEach(c => { tblHtml += '<td>' + c + '</td>'; });
+                tblHtml += '</tr>';
+              });
+              tblHtml += '</tbody></table></div>';
+              processedLines.push(tblHtml);
+            }
+          }
+          processedLines.push(lines[i]);
+        }
+      }
+      if (inTable && tableRows.length > 0) {
+        const header = tableRows[0];
+        const rows = tableRows.slice(1);
+        let tblHtml = '<div class="table-responsive"><table class="ask-table"><thead><tr>';
+        header.forEach(h => { tblHtml += '<th>' + h + '</th>'; });
+        tblHtml += '</tr></thead><tbody>';
+        rows.forEach(r => {
+          tblHtml += '<tr>';
+          r.forEach(c => { tblHtml += '<td>' + c + '</td>'; });
+          tblHtml += '</tr>';
+        });
+        tblHtml += '</tbody></table></div>';
+        processedLines.push(tblHtml);
+      }
+
+      let text = processedLines.join('\n');
+
+      let html = text
+        .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
         .replace(/^### (.*$)/gim, '<h3>$1</h3>')
         .replace(/^## (.*$)/gim, '<h2>$1</h2>')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        // Convert Markdown Links [text](url) to styled button action pills
         .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="story-read-btn">$1</a>')
         .replace(/^\* (.*$)/gim, '<li>$1</li>')
-        .replace(/^[0-9]+\. (.*$)/gim, '<li>$1</li>');
+        .replace(/^[0-9]+\. (.*$)/gim, '<li class="num-item">$1</li>');
 
+      html = html.replace(/(<li class="num-item">.*<\/li>)/gim, '<ol>$1</ol>');
+      html = html.replace(/<\/ol>\s*<ol>/gim, '');
       html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
       html = html.replace(/<\/ul>\s*<ul>/gim, '');
       return html.replace(/\n\n/g, '<p></p>');

@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-22T20:49:03+05:30",
-  "date": "2026-08-22",
+  "last_updated": "2026-08-23T03:49:04+05:30",
+  "date": "2026-08-23",
   "source": "ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ (Karnataka Bullion Market)",
   "base": {
     "24k_per_gram": 16309,
@@ -2756,15 +2756,28 @@
     },
     {
       "date": "2026-08-22",
-      "gold22": 14950,
-      "gold24": 16309,
+      "gold22": 14219.0,
+      "gold24": 15512.0,
       "gold18": 12205,
       "gold14": 9520,
+      "silver999": 249.9,
+      "22k_per_gram": 14219.0,
+      "24k_per_gram": 15512.0,
+      "18k_per_gram": 12205,
+      "14k_per_gram": 9520,
+      "silver_per_gram": 249.9
+    },
+    {
+      "date": "2026-08-23",
+      "gold22": 14950,
+      "gold24": 16309,
+      "gold18": 12232,
+      "gold14": 9050,
       "silver999": 260.0,
       "22k_per_gram": 14950,
       "24k_per_gram": 16309,
-      "18k_per_gram": 12205,
-      "14k_per_gram": 9520,
+      "18k_per_gram": 12232,
+      "14k_per_gram": 9050,
       "silver_per_gram": 260.0
     }
   ],
