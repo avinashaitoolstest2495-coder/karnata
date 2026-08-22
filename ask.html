@@ -890,6 +890,9 @@
             const data = await res.json();
             if (data && data.answer) {
               answerText = data.answer;
+              if (Array.isArray(data.cards) && data.cards.length > 0) {
+                cards = data.cards;
+              }
             }
           }
         } catch (e) {}
