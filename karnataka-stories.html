@@ -393,15 +393,25 @@ function getCategoryName(cat) {
 async function loadStories() {
   let stories = [];
   try {
-    const res = await fetch('/data/cms_articles.json?t=' + Date.now());
+    const res = await fetch('/api/articles?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      if (Array.isArray(data.articles)) {
+      if (Array.isArray(data.articles) && data.articles.length > 0) {
         stories = data.articles.filter(a => (a.status === 'published' || !a.status) && a.id !== 'karnataka-cabinet-ministers-portfolio-list' && a.id !== 'bengaluru-metro-phase-2b-traffic-rules');
       }
     }
-  } catch (e) {
-    console.error('Error loading cms_articles.json:', e);
+  } catch (e) {}
+
+  if (!stories.length) {
+    try {
+      const res2 = await fetch('/data/cms_articles.json?t=' + Date.now());
+      if (res2.ok) {
+        const data2 = await res2.json();
+        if (Array.isArray(data2.articles)) {
+          stories = data2.articles.filter(a => (a.status === 'published' || !a.status) && a.id !== 'karnataka-cabinet-ministers-portfolio-list' && a.id !== 'bengaluru-metro-phase-2b-traffic-rules');
+        }
+      }
+    } catch (e) {}
   }
 
   // Check localStorage drafts/published from CMS admin

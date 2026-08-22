@@ -2457,32 +2457,67 @@ function isMockArticle(a) {
 }
 
 async function loadCmsArticles() {
+  let list = [];
   try {
-    const res = await fetch('/data/cms_articles.json?v=' + Date.now());
+    const res = await fetch('/api/articles?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      return (data.articles || []).filter(a => (a.status === 'published' || !a.status) && !isMockArticle(a)).map(a => {
-        const cat = a.category || 'ರಾಜಕೀಯ';
-        const catSlug = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
-        const slug = a.slug || a.id;
-        const img = a.cover_image || a.image || a.thumbnail || a.hero_image || null;
-        return {
-          id: a.id || slug,
-          title: a.title_kn || a.title,
-          headline: a.title_kn || a.title,
-          description: a.summary_kn || a.summary || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
-          url: `/news/${catSlug}/${encodeURIComponent(slug)}`,
-          published: a.updated_at || new Date().toISOString(),
-          category: cat,
-          source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
-          image: img,
-          cover_image: img,
-          is_cms: true
-        };
-      });
+      if (Array.isArray(data.articles) && data.articles.length > 0) {
+        list = data.articles;
+      }
     }
   } catch(e) {}
-  return [];
+
+  if (!list.length) {
+    try {
+      const res2 = await fetch('/data/cms_articles.json?v=' + Date.now());
+      if (res2.ok) {
+        const data2 = await res2.json();
+        list = data2.articles || [];
+      }
+    } catch(e) {}
+  }
+
+  // Filter valid & published articles
+  let validArticles = (list || []).filter(a => (a.status === 'published' || !a.status) && !isMockArticle(a));
+
+  // Sort: Homepage Pinned first (by priority descending), then by updated_at descending
+  validArticles.sort((a, b) => {
+    const pinA = a.pin_home === true || a.pin_home === 'true' || a.pin_home === 1;
+    const pinB = b.pin_home === true || b.pin_home === 'true' || b.pin_home === 1;
+    if (pinA && !pinB) return -1;
+    if (!pinA && pinB) return 1;
+
+    const prioA = Number(a.priority) || 0;
+    const prioB = Number(b.priority) || 0;
+    if (prioA !== prioB) return prioB - prioA;
+
+    const timeA = new Date(a.updated_at || a.published || 0).getTime();
+    const timeB = new Date(b.updated_at || b.published || 0).getTime();
+    return timeB - timeA;
+  });
+
+  return validArticles.map(a => {
+    const cat = a.category || 'ರಾಜಕೀಯ';
+    const catSlug = (a.category || 'politics').toLowerCase().replace(/\s+/g, '-');
+    const slug = a.slug || a.id;
+    const img = a.cover_image || a.image || a.thumbnail || a.hero_image || null;
+    return {
+      id: a.id || slug,
+      title: a.title_kn || a.title,
+      headline: a.title_kn || a.title,
+      description: a.summary_kn || a.summary || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ತೀರ್ಮಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಮಾಹಿತಿ ವರದಿ.',
+      url: `/news/${catSlug}/${encodeURIComponent(slug)}`,
+      published: a.updated_at || a.published || new Date().toISOString(),
+      category: cat,
+      source: a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ',
+      image: img,
+      cover_image: img,
+      pin_home: a.pin_home,
+      priority: a.priority,
+      is_cms: true
+    };
+  });
 }
 
 async function renderLocalNews(articles, distKn) {

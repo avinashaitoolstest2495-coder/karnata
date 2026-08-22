@@ -448,6 +448,23 @@
           <input type="text" id="postAuthor" value="ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ">
         </div>
 
+        <div class="form-group" style="background:#FFFBEB; border:1.5px solid #FCD34D; padding:12px 14px; border-radius:10px; margin-bottom:16px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+            <label style="font-weight:900; color:#92400E; margin:0; cursor:pointer;" for="postPinHome">
+              📌 ಮುಖಪುಟದಲ್ಲಿ ತೋರಿಸು (Pin to Homepage)
+            </label>
+            <input type="checkbox" id="postPinHome" style="width:20px; height:20px; cursor:pointer; accent-color:#E11D48;" checked>
+          </div>
+          <p style="font-size:12px; color:#78350F; margin:0 0 10px 0; line-height:1.4;">
+            ಈ ಲೇಖನವನ್ನು ಮುಖಪುಟದ 'ವಿಶೇಷ ಲೇಖನಗಳು' ವಿಭಾಗದಲ್ಲಿ ಮೊದಲಿಗೆ ಪ್ರದರ್ಶಿಸಲು ಟಿಕ್ ಮಾಡಿ.
+          </p>
+          
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-size:12.5px; font-weight:800; color:#92400E;">⭐ ಮುಖಪುಟ ಆದ್ಯತೆ (Rank 1-10):</span>
+            <input type="number" id="postPriority" min="1" max="100" value="10" style="width:75px; padding:6px 10px; font-size:13.5px; font-weight:900; border-radius:8px; border:1.5px solid #D97706; text-align:center;">
+          </div>
+        </div>
+
         <button class="btn-publish" id="publishBtn" onclick="publishArticle()">
           <span>🚀 ತಕ್ಷಣವೇ ಪ್ರಕಟಿಸಿ (Publish Online)</span>
         </button>
@@ -601,6 +618,8 @@
       document.getElementById('postCategory').value = 'explainer';
       document.getElementById('postAuthor').value = 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
       document.getElementById('postCover').value = '';
+      document.getElementById('postPinHome').checked = true;
+      document.getElementById('postPriority').value = 10;
       document.getElementById('editorBody').innerHTML = '<p>ಇಲ್ಲಿ ನಿಮ್ಮ ಲೇಖನವನ್ನು ಬರೆಯಿರಿ ಅಥವಾ ಮೇಲಿನ AI ಎಂಜಿನ್ ಬಳಸಿ...</p>';
       updateCoverPreview(null);
       document.getElementById('publishStatus').innerHTML = '';
@@ -955,13 +974,24 @@ Return ONLY a JSON object:
       try {
         let articles = [];
         try {
-          const res = await fetch('/data/cms_articles.json?v=' + Date.now());
+          const res = await fetch('/api/articles?v=' + Date.now());
           if (res.ok) {
             const data = await res.json();
             articles = data.articles || [];
           }
         } catch(e) {}
 
+        if (!articles.length) {
+          try {
+            const res2 = await fetch('/data/cms_articles.json?v=' + Date.now());
+            if (res2.ok) {
+              const data2 = await res2.json();
+              articles = data2.articles || [];
+            }
+          } catch(e) {}
+        }
+
+        // Merge local storage items if any
         const localStore = JSON.parse(localStorage.getItem('nk_cms_articles') || '[]');
         const existingSlugs = new Set(articles.map(x => x.slug || x.id));
         localStore.forEach(a => {
@@ -988,11 +1018,13 @@ Return ONLY a JSON object:
           const slug = slugify(a.slug || a.id);
           const cat = slugify(a.category || 'explainer');
           const liveUrl = `https://karnata.in/news/${cat}/${slug}`;
+          const isPinned = a.pin_home === true || a.pin_home === 'true' || a.pin_home === 1;
+          const pinBadge = isPinned ? '<span style="background:#FEF3C7; color:#92400E; font-size:11px; font-weight:800; padding:2px 6px; border-radius:4px; margin-left:6px;">📌 Homepage</span>' : '';
           return `
             <div class="post-list-item">
-              <div class="post-title">${a.title_kn}</div>
+              <div class="post-title">${a.title_kn} ${pinBadge}</div>
               <div class="post-meta">
-                <span>🏷️ ${a.category || 'explainer'}</span>
+                <span>🏷️ ${a.category || 'explainer'} ${a.priority ? `(P:${a.priority})` : ''}</span>
                 <div>
                   <a href="#" onclick="editPost('${a.slug || a.id}'); return false;" style="color:#E11D48; margin-right:8px; font-weight:700; text-decoration:none;">✏️ Edit</a>
                   <a href="${liveUrl}" target="_blank" class="btn-view-live">👁 Live</a>
@@ -1016,6 +1048,8 @@ Return ONLY a JSON object:
       document.getElementById('postCategory').value = a.category || 'explainer';
       document.getElementById('postAuthor').value = a.author || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
       document.getElementById('postCover').value = a.cover_image || '';
+      document.getElementById('postPinHome').checked = a.pin_home !== false && a.pin_home !== 'false';
+      document.getElementById('postPriority').value = a.priority || 10;
       document.getElementById('editorBody').innerHTML = a.body_html || '';
       updateCoverPreview(a.cover_image);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1035,6 +1069,9 @@ Return ONLY a JSON object:
       btn.disabled = true;
       btn.innerHTML = '⏳ ಲೇಖನವನ್ನು ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ...';
 
+      const isPinHome = document.getElementById('postPinHome').checked;
+      const priorityVal = parseInt(document.getElementById('postPriority').value) || 10;
+
       const payload = {
         id: slug,
         slug: slug,
@@ -1044,6 +1081,8 @@ Return ONLY a JSON object:
         author: document.getElementById('postAuthor').value.trim() || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ',
         cover_image: document.getElementById('postCover').value.trim() || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
         body_html: document.getElementById('editorBody').innerHTML,
+        pin_home: isPinHome,
+        priority: priorityVal,
         status: 'published',
         updated_at: new Date().toISOString()
       };
@@ -1055,38 +1094,35 @@ Return ONLY a JSON object:
       else localStore.unshift(payload);
       localStorage.setItem('nk_cms_articles', JSON.stringify(localStore));
 
-      // 2. If running on local Studio server, trigger full static compilation & deploy
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        try {
-          const res = await fetch('/api/publish', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const result = await res.json();
-          if (result.success) {
-            status.innerHTML = `<span style="color:#059669;">✅ ಪ್ರಕಟವಾಗಿದೆ! ಲೈವ್ ಲಿಂಕ್: <a href="${result.url}" target="_blank">${result.url}</a></span>`;
-            alert(`🎉 ಲೇಖನವು Pure Static HTML ಆಗಿ ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಪ್ರಕಟವಾಗಿದೆ!\n\n🌐 Live URL:\n${result.url}`);
-            loadArticles();
-            btn.disabled = false;
-            btn.innerHTML = '🚀 ತಕ್ಷಣವೇ ಪ್ರಕಟಿಸಿ (Publish Online)';
-            return;
-          }
-        } catch(e) {}
-      }
-
-      // 3. Online publish
+      // 2. Online Publish to Cloudflare Edge API (Global Sync for ALL Browsers + Instant Search Engine Ping)
+      let publishedResult = null;
       try {
-        await fetch('/api/articles', {
+        const res = await fetch('/api/articles', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-      } catch(e) {}
+        if (res.ok) {
+          publishedResult = await res.json();
+        }
+      } catch(e) {
+        console.error('Edge publish error:', e);
+      }
 
-      const liveUrl = `https://karnata.in/news/${payload.category}/${slug}`;
+      // 3. Local publish if running in local studio
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        try {
+          await fetch('/api/publish', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch(e) {}
+      }
+
+      const liveUrl = (publishedResult && publishedResult.url) ? publishedResult.url : `https://karnata.in/news/${payload.category}/${slug}`;
       status.innerHTML = `<span style="color:#059669;">✅ ಪ್ರಕಟವಾಗಿದೆ! ಲೈವ್ ಲಿಂಕ್: <a href="${liveUrl}" target="_blank">${liveUrl}</a></span>`;
-      alert(`🎉 ಲೇಖನವು ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಪ್ರಕಟವಾಗಿದೆ!\n\n🌐 Live URL:\n${liveUrl}`);
+      alert(`🎉 ಲೇಖನವು ಎಲ್ಲ ಬ್ರೌಸರ್‌ಗಳು ಮತ್ತು ಗೂಗಲ್ ಸರ್ಚ್‌ಗೆ ಲೈವ್ ಪ್ರಕಟವಾಗಿದೆ!\n\n🌐 Live URL:\n${liveUrl}`);
       
       btn.disabled = false;
       btn.innerHTML = '🚀 ತಕ್ಷಣವೇ ಪ್ರಕಟಿಸಿ (Publish Online)';

@@ -342,25 +342,42 @@ export async function onRequest(context) {
   // Clean slug
   const cleanSlug = slug.toLowerCase().replace(/\\.html$/, '').trim();
 
-  // Try to load articles JSON from site origin
-  const origin = new URL(request.url).origin;
-  let article = null;
+  const kv = env?.NK_DATA || env?.TRANSFERS_KV || null;
 
-  try {
-    const res = await fetch(`${origin}/data/cms_articles.json?v=${Date.now()}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && Array.isArray(data.articles)) {
-        article = data.articles.find(a => {
-          const s = (a.slug || a.id || '').toLowerCase().replace(/\\.html$/, '').trim();
-          return s === cleanSlug || s.includes(cleanSlug) || cleanSlug.includes(s);
-        });
+  // 1. Try reading from Cloudflare KV (real-time live published articles across all browsers)
+  if (kv) {
+    try {
+      const rawKv = await kv.get('karnata_live_articles');
+      if (rawKv) {
+        const kvList = JSON.parse(rawKv);
+        if (Array.isArray(kvList)) {
+          article = kvList.find(a => {
+            const s = (a.slug || a.id || '').toLowerCase().replace(/\.html$/, '').trim();
+            return s === cleanSlug || s.includes(cleanSlug) || cleanSlug.includes(s);
+          });
+        }
       }
-    }
-  } catch (e) {}
+    } catch (e) {}
+  }
+
+  // 2. Try to load articles JSON from site origin
+  if (!article) {
+    try {
+      const res = await fetch(`${origin}/data/cms_articles.json?v=${Date.now()}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.articles)) {
+          article = data.articles.find(a => {
+            const s = (a.slug || a.id || '').toLowerCase().replace(/\.html$/, '').trim();
+            return s === cleanSlug || s.includes(cleanSlug) || cleanSlug.includes(s);
+          });
+        }
+      }
+    } catch (e) {}
+  }
 
   if (!article) {
-    // If not in cms_articles.json, try direct /data/articles/
+    // 3. Try direct /data/articles/
     try {
       const res = await fetch(`${origin}/data/articles/${encodeURIComponent(cleanSlug)}.json?v=${Date.now()}`);
       if (res.ok) {
