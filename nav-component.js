@@ -303,8 +303,6 @@
         <a href="/ask.html" class="nk-nav-link ${isActive('/ask.html') ? 'active' : ''}">🤖 askKARNATA</a>
         <a href="/officers.html" class="nk-nav-link ${isActive('/officers.html') ? 'active' : ''}">🏛️ ಅಧಿಕಾರಿಗಳು</a>
         <a href="/ai-jyothishya.html" class="nk-nav-link ${isActive('/ai-jyothishya.html') ? 'active' : ''}">🔮 AI ಜ್ಯೋತಿಷ್ಯ</a>
-        <a href="/gold-rate.html" class="nk-nav-link ${isActive('/gold-rate.html') ? 'active' : ''}">🥇 ಚಿನ್ನ</a>
-        <a href="/petrol-price.html" class="nk-nav-link ${isActive('/petrol-price.html') ? 'active' : ''}">⛽ ಪೆಟ್ರೋಲ್</a>
         <a href="/dam-levels.html" class="nk-nav-link ${isActive('/dam-levels.html') ? 'active' : ''}">💧 ಅಣೆಕಟ್ಟು</a>
         <a href="/weather.html" class="nk-nav-link ${isActive('/weather.html') ? 'active' : ''}">🌧️ ಹವಾಮಾನ</a>
         <a href="/apmc-prices.html" class="nk-nav-link ${isActive('/apmc-prices.html') ? 'active' : ''}">🌾 APMC</a>
@@ -321,7 +319,7 @@
           <div class="nk-dropdown-menu">
             <a href="/emi-calculator.html" class="nk-drop-item ${isActive('/emi-calculator.html') ? 'active' : ''}">🏦 EMI ಲೆಕ್ಕಾಚಾರ</a>
             <a href="/sip-calculator.html" class="nk-drop-item ${isActive('/sip-calculator.html') ? 'active' : ''}">📈 SIP ಲೆಕ್ಕಾಚಾರ</a>
-            <a href="/salary-calculator.html" class="nk-drop-item ${isActive('/salary-calculator.html') ? 'active' : ''}">💰 ಸಂಬಳದ ಲೆಕ್ಕ</a>
+            <a href="/salary-calculator.html" class="nk-drop-item ${isActive('/salary-calculator.html') ? 'active' : ''}">💰 standard ಸಂಬಳದ ಲೆಕ್ಕ</a>
           </div>
         </div>
 
@@ -367,9 +365,9 @@
   <div style="display:grid;grid-template-columns:repeat(5,1fr);">
     ${[
       {href:'/index.html',          icon:'🏠', label:'ಮುಖಪುಟ'},
+      {href:'/officers.html',       icon:'🏛️', label:'ಅಧಿಕಾರಿಗಳು'},
       {href:'/ai-jyothishya.html',  icon:'🔮', label:'ಜ್ಯೋತಿಷ್ಯ'},
       {href:'/karnataka-local-news.html', icon:'📰', label:'ಸುದ್ದಿ'},
-      {href:'/gold-rate.html',      icon:'🥇', label:'ಚಿನ್ನ'},
       {href:'/more-tools.html',     icon:'🛠️', label:'ಇನ್ನಷ್ಟು'},
     ].map(b => `
       <a href="${b.href}" style="
