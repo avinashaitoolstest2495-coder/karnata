@@ -1,0 +1,450 @@
+const PRECISION_DISTRICTS = {
+  koppal: {
+    name_kn: "ಕೊಪ್ಪಳ",
+    dc: "ಶ್ರೀ ಸುರೇಶ್‌ ಬಿ. ಇಟ್ನಾಲ್‌, IAS (Shri. SURESH B ITNAL)",
+    sp: "ಡಾ. ರಾಮ್ ಎಲ್ ಅರಸಿದ್ದಿ, IPS (Dr. RAM L ARASIDDI)",
+    zp_ceo: "ಶ್ರೀ ವರ್ನಿತ್ ನೇಗಿ, IAS",
+    keywords: ["ಕೊಪ್ಪಳ", "koppal"]
+  },
+  mysuru: {
+    name_kn: "ಮೈಸೂರು",
+    dc: "ಶ್ರೀ ಪ್ರಭುಲಿಂಗ ಕವಳಿಕಟ್ಟಿ, IAS (Shri. PRABHULING KAVALIKATTI)",
+    sp: "ಡಾ. ಎಂ.ಬಿ. ಬೋರಲಿಂಗಯ್ಯ, IPS (Dr. M.B. Boralingaiah)",
+    keywords: ["ಮೈಸೂರು", "mysore", "mysuru"]
+  },
+  belagavi: {
+    name_kn: "ಬೆಳಗಾವಿ",
+    dc: "ಮೊಹಮ್ಮದ್ ರೋಷನ್, IAS (Mohammad Roshan)",
+    sp: "ಡಾ. ಭೀಮಾಶಂಕರ್ ಗುಳೇದ್, IPS (Dr. Bheemashankar Guled)",
+    keywords: ["ಬೆಳಗಾವಿ", "belgaum", "belagavi"]
+  },
+  bengaluru_urban: {
+    name_kn: "ಬೆಂಗಳೂರು ನಗರ",
+    dc: "ಶ್ರೀ ಬಾಲಚಂದ್ರ ಎಸ್. ಎನ್., IAS",
+    sp: "ಬಿ. ದಯಾನಂದ, IPS (ನಗರ ಪೊಲೀಸ್ ಆಯುಕ್ತರು / CP)",
+    keywords: ["ಬೆಂಗಳೂರು ನಗರ", "bengaluru urban", "bangalore urban"]
+  },
+  bengaluru_rural: {
+    name_kn: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+    dc: "ಎನ್. ಶಿವಶಂಕರ, IAS",
+    sp: "ಸಿ.ಕೆ. ಬಾಬಾ, IPS",
+    keywords: ["ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "bengaluru rural", "bangalore rural"]
+  },
+  kolar: {
+    name_kn: "ಕೋಲಾರ",
+    dc: "ಅಕ್ರಂ ಪಾಷಾ, IAS",
+    sp: "ನಿಖಿಲ್ ಬಿ., IPS",
+    keywords: ["ಕೋಲಾರ", "kolar"]
+  },
+  shivamogga: {
+    name_kn: "ಶಿವಮೊಗ್ಗ",
+    dc: "ಗುರುದತ್ತ ಹೆಗಡೆ, IAS",
+    sp: "ಜಿ.ಕೆ. ಮಿಥುನ್ ಕುಮಾರ್, IPS",
+    keywords: ["ಶಿವಮೊಗ್ಗ", "shimoga", "shivamogga"]
+  },
+  tumakuru: {
+    name_kn: "ತುಮಕೂರು",
+    dc: "ಶುಭ ಕಲ್ಯಾಣ್, IAS",
+    sp: "ಅಶೋಕ್ ಕೆ.ವಿ., IPS",
+    keywords: ["ತುಮಕೂರು", "tumkur", "tumakuru"]
+  },
+  ballari: {
+    name_kn: "ಬಳ್ಳಾರಿ",
+    dc: "ಪ್ರಶಾಂತ್ ಕುಮಾರ್ ಮಿಶ್ರಾ, IAS",
+    sp: "ಶೋಭಾರಾಣಿ ವಿ.ಜೆ., IPS",
+    keywords: ["ಬಳ್ಳಾರಿ", "bellary", "ballari"]
+  },
+  vijayanagara: {
+    name_kn: "ವಿಜಯನಗರ",
+    dc: "ಎಂ.ಎಸ್. ದಿವಾಕರ, IAS",
+    sp: "ಶ್ರೀಹರಿ ಬಾಬು ಬಿ.ಎಲ್., IPS",
+    keywords: ["ವಿಜಯನಗರ", "ಹೊಸಪೇಟೆ", "vijayanagara", "hospet"]
+  },
+  kalaburagi: {
+    name_kn: "ಕಲಬುರಗಿ",
+    dc: "ಬಿ. ಫೌಜಿಯಾ ತರನ್ನುಮ್, IAS",
+    sp: "ಅಡ್ಡೂರು ಶ್ರೀನಿವಾಸುಲು, IPS",
+    keywords: ["ಕಲಬುರಗಿ", "ಗುಲ್ಬರ್ಗ", "kalaburagi", "gulbarga"]
+  },
+  dakshina_kannada: {
+    name_kn: "ದಕ್ಷಿಣ ಕನ್ನಡ",
+    dc: "ಮುಲ್ಲೈ ಮುಹಿಲನ್, IAS",
+    sp: "ಯತೀಶ್ ಎನ್., IPS (CP: ಅನುಪಮ್ ಅಗರ್ವಾಲ್, IPS)",
+    keywords: ["ದಕ್ಷಿಣ ಕನ್ನಡ", "ಮಂಗಳೂರು", "dakshina kannada", "mangaluru", "mangalore"]
+  },
+  uttara_kannada: {
+    name_kn: "ಉತ್ತರ ಕನ್ನಡ",
+    dc: "ಲಕ್ಷ್ಮೀಪ್ರಿಯಾ, IAS",
+    sp: "ನಾರಾಯಣ ಎಂ., IPS",
+    keywords: ["ಉತ್ತರ ಕನ್ನಡ", "ಕಾರವಾರ", "ಶಿರಸಿ", "uttara kannada", "karwar", "sirsi"]
+  },
+  udupi: {
+    name_kn: "ಉಡುಪಿ",
+    dc: "ಡಾ. ಕೆ. ವಿದ್ಯಾಕುಮಾರಿ, IAS",
+    sp: "ಡಾ. ಅರುಣ್ ಕೆ., IPS",
+    keywords: ["ಉಡುಪಿ", "udupi"]
+  },
+  dharwad: {
+    name_kn: "ಧಾರವಾಡ",
+    dc: "ದಿವ್ಯಾ ಪ್ರಭು ಜಿ.ಆರ್.ಜೆ., IAS",
+    sp: "ಗೋಪಾಲ್ ಎಂ. ಬ್ಯಾಕೋಡ್, IPS (CP: ರೇಣುಕಾ ಕೆ. ಸುಕುಮಾರ್, IPS)",
+    keywords: ["ಧಾರವಾಡ", "ಹುಬ್ಬಳ್ಳಿ", "dharwad", "hubli", "hubballi"]
+  },
+  mandya: {
+    name_kn: "ಮಂಡ್ಯ",
+    dc: "ಡಾ. ಕುಮಾರ, IAS",
+    sp: "ಮಲ್ಲಿಕಾರ್ಜುನ ಬಾಲದಂಡಿ, IPS",
+    keywords: ["ಮಂಡ್ಯ", "mandya"]
+  },
+  hassan: {
+    name_kn: "ಹಾಸನ",
+    dc: "ಸಿ. ಸತ್ಯಭಾಮ, IAS",
+    sp: "ಮೊಹಮ್ಮದ್ ಸುಜೀತಾ, IPS",
+    keywords: ["ಹಾಸನ", "hassan"]
+  },
+  chikkamagaluru: {
+    name_kn: "ಚಿಕ್ಕಮಗಳೂರು",
+    dc: "ಮೀನಾ ನಾಗರಾಜ್, IAS",
+    sp: "ವಿಕ್ರಮ್ ಆಮ್ಟೆ, IPS",
+    keywords: ["ಚಿಕ್ಕಮಗಳೂರು", "chikkamagaluru", "chikmagalur"]
+  },
+  bagalkote: {
+    name_kn: "ಬಾಗಲಕೋಟೆ",
+    dc: "ಸಂಗಪ್ಪ ಉಪಾಸೆ, IAS",
+    sp: "ಅಮರನಾಥ್ ರೆಡ್ಡಿ ವೈ., IPS",
+    keywords: ["ಬಾಗಲಕೋಟೆ", "bagalkote", "bagalkot"]
+  },
+  vijayapura: {
+    name_kn: "ವಿಜಯಪುರ",
+    dc: "ಭೂಬಾಲನ್ ಟಿ., IAS",
+    sp: "ಲಕ್ಷ್ಮಣ ನಿಂಬರಗಿ, IPS",
+    keywords: ["ವಿಜಯಪುರ", "ಬಿಜಾಪುರ", "vijayapura", "bijapur"]
+  },
+  bidar: {
+    name_kn: "ಬೀದರ್",
+    dc: "ಗೋವಿಂದ ರೆಡ್ಡಿ, IAS",
+    sp: "ಪ್ರದೀಪ್ ಗುಂಟಿ, IPS",
+    keywords: ["ಬೀದರ್", "bidar"]
+  },
+  raichur: {
+    name_kn: "ರಾಯಚೂರು",
+    dc: "ನಿತೀಶ್ ಕೆ., IAS",
+    sp: "ನಿಖಿಲ್ ಬಿ., IPS",
+    keywords: ["ರಾಯಚೂರು", "raichur"]
+  },
+  yadgir: {
+    name_kn: "ಯಾದಗಿರಿ",
+    dc: "ಡಾ. ಸುಶೀಲಾ ಬಿ., IAS",
+    sp: "ಸಿ.ಬಿ. ವೇದಮೂರ್ತಿ, IPS",
+    keywords: ["ಯಾದಗಿರಿ", "yadgir"]
+  },
+  gadag: {
+    name_kn: "ಗದಗ",
+    dc: "ವೈಶಾಲಿ ಎಂ.ಎಲ್., IAS",
+    sp: "ಬಿ.ಎಸ್. ನೇಮಗೌಡ, IPS",
+    keywords: ["ಗದಗ", "gadag"]
+  },
+  haveri: {
+    name_kn: "ಹಾವೇರಿ",
+    dc: "ಡಾ. ವಿಜಯ ಮಹಾಂತೇಶ್ ದಾನಮ್ಮನವರ್, IAS",
+    sp: "ಅಂಶು ಕುಮಾರ್, IPS",
+    keywords: ["ಹಾವೇರಿ", "haveri"]
+  },
+  chitradurga: {
+    name_kn: "ಚಿತ್ರದುರ್ಗ",
+    dc: "ಟಿ. ವೆಂಕಟೇಶ್, IAS",
+    sp: "ಧರ್ಮೇಂದರ್ ಕುಮಾರ್ ಮೀನಾ, IPS",
+    keywords: ["ಚಿತ್ರದುರ್ಗ", "chitradurga"]
+  },
+  davanagere: {
+    name_kn: "ದಾವಣಗೆರೆ",
+    dc: "ಜಿ.ಎಂ. ಗಂಗಾಧರಸ್ವಾಮಿ, IAS",
+    sp: "ಉಮಾ ಪ್ರಶಾಂತ್, IPS",
+    keywords: ["ದಾವಣಗೆರೆ", "davanagere"]
+  },
+  chamarajanagar: {
+    name_kn: "ಚಾಮರಾಜನಗರ",
+    dc: "ಶಿಲ್ಪಾ ಶರ್ಮಾ, IAS",
+    sp: "ಕವಿತಾ ಬಿ.ಟಿ., IPS",
+    keywords: ["ಚಾಮರಾಜನಗರ", "chamarajanagar"]
+  },
+  ramanagara: {
+    name_kn: "ರಾಮನಗರ",
+    dc: "ಅವಿನಾಶ್ ಮೆನನ್ ರಾಜೇಂದ್ರನ್, IAS",
+    sp: "ಕಾರ್ತಿಕ್ ರೆಡ್ಡಿ, IPS",
+    keywords: ["ರಾಮನಗರ", "ramanagara", "ramanagar"]
+  },
+  chikkaballapura: {
+    name_kn: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+    dc: "ಪಿ.ಎನ್. ರವೀಂದ್ರ, IAS",
+    sp: "ಕುಶಾಲ್ ಚೌಕ್ಸೆ, IPS",
+    keywords: ["ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "chikkaballapura", "chikkaballapur"]
+  },
+  kodagu: {
+    name_kn: "ಕೊಡಗು",
+    dc: "ವೆಂಕಟ್ ರಾಜಾ, IAS",
+    sp: "ಕೆ. ರಾಮರಾಜನ್, IPS",
+    keywords: ["ಕೊಡಗು", "ಮಡಿಕೇರಿ", "kodagu", "coorg", "madikeri"]
+  }
+};
+
+const PRECISION_DAMS = {
+  tungabhadra: {
+    name_kn: "ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (Tungabhadra Dam / TB Dam)",
+    river: "ತುಂಗಭದ್ರಾ ನದಿ",
+    location: "ಮುನಿರಾಬಾದ್ (ಕೊಪ್ಪಳ) / ಹೊಸಪೇಟೆ (ವಿಜಯನಗರ)",
+    total_capacity: "105.79 TMC (ಗರಿಷ್ಠ ಮಟ್ಟ: 1,633 ಅಡಿ)",
+    inflow: "10,632 ಕ್ಯೂಸೆಕ್",
+    outflow: "33 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ತುಂಗಭದ್ರ", "ತುಂಗಭದ್ರಾ", "tb dam", "tungabhadra"]
+  },
+  krs: {
+    name_kn: "ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS Dam)",
+    river: "ಕಾವೇರಿ ನದಿ",
+    location: "ಶ್ರೀರಂಗಪಟ್ಟಣ / ಮಂಡ್ಯ",
+    total_capacity: "49.45 TMC (ಗರಿಷ್ಠ ಮಟ್ಟ: 124.80 ಅಡಿ)",
+    inflow: "9,438 ಕ್ಯೂಸೆಕ್",
+    outflow: "2,418 ಕ್ಯೂಸೆಕ್",
+    keywords: ["krs", "ಕೃಷ್ಣರಾಜ ಸಾಗರ", "ಕೃಷ್ಣರಾಜಸಾಗರ", "krishna raja sagara"]
+  },
+  almatti: {
+    name_kn: "ಆಲಮಟ್ಟಿ ಜಲಾಶಯ (Lal Bahadur Shastri Dam)",
+    river: "ಕೃಷ್ಣಾ ನದಿ",
+    location: "ಬಸವನ ಬಾಗೇವಾಡಿ (ವಿಜಯಪುರ / ಬಾಗಲಕೋಟೆ)",
+    total_capacity: "123.08 TMC (ಗರಿಷ್ಠ ಮಟ್ಟ: 519.60 ಮೀಟರ್)",
+    inflow: "28,746 ಕ್ಯೂಸೆಕ್",
+    outflow: "21,500 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಆಲಮಟ್ಟಿ", "ಅಲಮಟ್ಟಿ", "almatti", "lal bahadur shastri"]
+  },
+  linganamakki: {
+    name_kn: "ಲಿಂಗನಮಕ್ಕಿ ಜಲಾಶಯ",
+    river: "ಶರಾವತಿ ನದಿ",
+    location: "ಸಾಗರ (ಶಿವಮೊಗ್ಗ)",
+    total_capacity: "151.75 TMC (ಗರಿಷ್ಠ ಮಟ್ಟ: 1,819 ಅಡಿ)",
+    inflow: "28,500 ಕ್ಯೂಸೆಕ್",
+    outflow: "1,200 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಲಿಂಗನಮಕ್ಕಿ", "linganamakki", "ಶರಾವತಿ", "sharavathi"]
+  },
+  kabini: {
+    name_kn: "ಕಬಿನಿ ಜಲಾಶಯ",
+    river: "ಕಪಿಲಾ ನದಿ",
+    location: "ಎಚ್.ಡಿ. ಕೋಟೆ (ಮೈಸೂರು)",
+    total_capacity: "19.52 TMC",
+    inflow: "9,487 ಕ್ಯೂಸೆಕ್",
+    outflow: "6,100 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಕಬಿನಿ", "kabini", "ಕಪಿಲಾ"]
+  },
+  hemavathi: {
+    name_kn: "ಹೇಮಾವತಿ ಜಲಾಶಯ",
+    river: "ಹೇಮಾವತಿ ನದಿ",
+    location: "ಗೊರೂರು (ಹಾಸನ)",
+    total_capacity: "37.10 TMC",
+    inflow: "3,588 ಕ್ಯೂಸೆಕ್",
+    outflow: "1,800 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಹೇಮಾವತಿ", "hemavathi", "ಗೊರೂರು"]
+  },
+  harangi: {
+    name_kn: "ಹಾರಂಗಿ ಜಲಾಶಯ",
+    river: "ಹಾರಂಗಿ ನದಿ",
+    location: "ಕುಶಾಲನಗರ (ಕೊಡಗು)",
+    total_capacity: "8.50 TMC",
+    inflow: "5,947 ಕ್ಯೂಸೆಕ್",
+    outflow: "5,783 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಹಾರಂಗಿ", "harangi"]
+  },
+  bhadra: {
+    name_kn: "ಭದ್ರಾ ಜಲಾಶಯ",
+    river: "ಭದ್ರಾ ನದಿ",
+    location: "ಲಕ್ಕವಳ್ಳಿ (ಚಿಕ್ಕಮಗಳೂರು / ಶಿವಮೊಗ್ಗ)",
+    total_capacity: "71.54 TMC",
+    inflow: "5,739 ಕ್ಯೂಸೆಕ್",
+    outflow: "0 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಭದ್ರಾ", "bhadra", "ಲಕ್ಕವಳ್ಳಿ"]
+  },
+  malaprabha: {
+    name_kn: "ಮಲಪ್ರಭಾ ಜಲಾಶಯ (ರೇಣುಕಾ ಸಾಗರ)",
+    river: "ಮಲಪ್ರಭಾ ನದಿ",
+    location: "ಸವದತ್ತಿ (ಬೆಳಗಾವಿ)",
+    total_capacity: "34.35 TMC",
+    inflow: "2,376 ಕ್ಯೂಸೆಕ್",
+    outflow: "0 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಮಲಪ್ರಭಾ", "malaprabha", "ನವಿಲುತೀರ್ಥ", "ರೇಣುಕಾ ಸಾಗರ"]
+  },
+  ghataprabha: {
+    name_kn: "ಘಟಪ್ರಭಾ ಜಲಾಶಯ (ಹಿಡಕಲ್)",
+    river: "ಘಟಪ್ರಭಾ ನದಿ",
+    location: "ಹುಕ್ಕೇರಿ (ಬೆಳಗಾವಿ)",
+    total_capacity: "51.00 TMC",
+    inflow: "5,679 ಕ್ಯೂಸೆಕ್",
+    outflow: "5,590 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಘಟಪ್ರಭಾ", "ghataprabha", "ಹಿಡಕಲ್", "hidkal"]
+  },
+  supa: {
+    name_kn: "ಸೂಪಾ ಜಲಾಶಯ",
+    river: "ಕಾಳಿ ನದಿ",
+    location: "ಜೋಯಿಡಾ (ಉತ್ತರ ಕನ್ನಡ)",
+    total_capacity: "145.00 TMC",
+    inflow: "18,400 ಕ್ಯೂಸೆಕ್",
+    outflow: "500 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ಸೂಪಾ", "ಸೂಪ", "supa"]
+  },
+  narayanapura: {
+    name_kn: "ನಾರಾಯಣಪುರ ಜಲಾಶಯ (ಬಸವ ಸಾಗರ)",
+    river: "ಕೃಷ್ಣಾ ನದಿ",
+    location: "ಸುರಪುರ (ಯಾದಗಿರಿ)",
+    total_capacity: "37.86 TMC",
+    inflow: "18,009 ಕ್ಯೂಸೆಕ್",
+    outflow: "8,465 ಕ್ಯೂಸೆಕ್",
+    keywords: ["ನಾರಾಯಣಪುರ", "ಬಸವ ಸಾಗರ", "narayanapura"]
+  }
+};
+
+function resolvePrecisionQuery(rawQuery, normalizedQ) {
+  const combined = `${rawQuery} ${normalizedQ}`.toLowerCase();
+
+  // 1. SPECIFIC DISTRICT OFFICER (DC / SP / ZP CEO / Tahsildar)
+  const isOfficerQuery = combined.includes('ಜಿಲ್ಲಾಧಿಕಾರಿ') || combined.includes('dc') || combined.includes('ಎಸ್ಪಿ') || combined.includes('sp') || combined.includes('ಆಯುಕ್ತ') || combined.includes('ಕಲೆಕ್ಟರ್') || combined.includes('ಅಧಿಕಾರಿ');
+  if (isOfficerQuery) {
+    for (const [key, dist] of Object.entries(PRECISION_DISTRICTS)) {
+      if (dist.keywords.some(kw => combined.includes(kw))) {
+        let answer = `### 🏛️ ${dist.name_kn} ಜಿಲ್ಲಾ ಆಡಳಿತಾಧಿಕಾರಿಗಳ ವಿವರ (District Leadership):
+
+* **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC):** **${dist.dc}**
+* **ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** **${dist.sp}**`;
+        if (dist.zp_ceo) {
+          answer += `\n* **ಜಿ.ಪಂ. ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** **${dist.zp_ceo}**`;
+        }
+
+        return {
+          answer,
+          cards: [{ title: `👥 ${dist.name_kn} ಅಧಿಕಾರಿಗಳ ವಿವರ`, url: `/districts/${key.replace('_', '-')}.html`, icon: "👥" }],
+          sources: [{ name: "Karnataka Official Directory (Niyukthi)", url: "https://niyukthi.karnataka.gov.in" }],
+          provider: `Karnata Precision Data (${dist.name_kn} Administration)`
+        };
+      }
+    }
+  }
+
+  // 2. SPECIFIC DAM / RESERVOIR
+  const isDamQuery = combined.includes('ಜಲಾಶಯ') || combined.includes('ಡ್ಯಾಂ') || combined.includes('ಅಣೆಕಟ್ಟು') || combined.includes('ನೀರಿನ ಮಟ್ಟ') || combined.includes('ಒಳಹರಿವು') || combined.includes('ಹೊರಹರಿವು') || combined.includes('dam') || combined.includes('tmc');
+  if (isDamQuery) {
+    for (const [key, dam] of Object.entries(PRECISION_DAMS)) {
+      if (dam.keywords.some(kw => combined.includes(kw))) {
+        return {
+          answer: `### 🚰 ${dam.name_kn} ಲೈವ್ ಮಾಹಿತಿ (Live Dam Status):
+
+* **ಒಟ್ಟು ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ:** **${dam.total_capacity}**
+* **ಇಂದಿನ ಒಳಹರಿವು (Inflow):** **${dam.inflow}**
+* **ಇಂದಿನ ಹೊರಹರಿವು (Outflow):** **${dam.outflow}**
+* **ನದಿ:** ${dam.river}
+* **ಸ್ಥಳ:** ${dam.location}`,
+          cards: [{ title: "🚰 ಜಲಾಶಯಗಳ ಲೈವ್ ಸ್ಥಿತಿ", url: "/dams.html", icon: "🚰" }],
+          sources: [{ name: "Karnataka Water Resources Department", url: "https://waterresources.karnataka.gov.in" }],
+          provider: `Karnata Precision Telemetry (${dam.name_kn})`
+        };
+      }
+    }
+  }
+
+  // 3. CHIEF MINISTER ONLY
+  if ((combined.includes('ಮುಖ್ಯಮಂತ್ರಿ') || combined.includes(' cm ') || combined.endsWith(' cm') || combined.startsWith('cm ')) && !combined.includes('ಉಪ')) {
+    return {
+      answer: `### 🏛️ ಕರ್ನಾಟಕದ ಮುಖ್ಯಮಂತ್ರಿ (Chief Minister of Karnataka)
+
+* **ಮುಖ್ಯಮಂತ್ರಿ:** **ಶ್ರೀ ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್ (D.K. Shivakumar)**
+* **ಪಕ್ಷ:** ಭಾರತೀಯ ರಾಷ್ಟ್ರೀಯ ಕಾಂಗ್ರೆಸ್ (INC)
+* **ಕ್ಷೇತ್ರ:** ಕನಕಪುರ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (Kanakapura AC)
+* **ಅಧಿಕಾರ ಅವಧಿ:** ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಸ್ತುತ ಮುಖ್ಯಮಂತ್ರಿ.`,
+      cards: [{ title: "👥 ಸಚಿವ ಸಂಪುಟ & ಅಧಿಕಾರಿಗಳು", url: "/officers.html", icon: "🏛️" }],
+      sources: [{ name: "Government of Karnataka", url: "https://karnataka.gov.in" }],
+      provider: "Karnata Precision Data (State Leadership)"
+    };
+  }
+
+  // 4. DEPUTY CHIEF MINISTER ONLY
+  if (combined.includes('ಉಪಮುಖ್ಯಮಂತ್ರಿ') || combined.includes('dcm')) {
+    return {
+      answer: `### 🏛️ ಕರ್ನಾಟಕದ ಉಪಮುಖ್ಯಮಂತ್ರಿ (Deputy Chief Minister)
+
+* **ಉಪಮುಖ್ಯಮಂತ್ರಿ:** **ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ್ (Dr. G. Parameshwara)**
+* **ಪಕ್ಷ:** ಭಾರತೀಯ ರಾಷ್ಟ್ರೀಯ ಕಾಂಗ್ರೆಸ್ (INC)
+* **ಕ್ಷೇತ್ರ:** ಕೊರಟಗೆರೆ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (Koratagere AC)
+* **ಖಾತೆ:** ಉಪಮುಖ್ಯಮಂತ್ರಿ ಹಾಗೂ ಗೃಹ ಇಲಾಖೆ.`,
+      cards: [{ title: "👥 ಸಚಿವ ಸಂಪುಟ & ಅಧಿಕಾರಿಗಳು", url: "/officers.html", icon: "🏛️" }],
+      sources: [{ name: "Government of Karnataka", url: "https://karnataka.gov.in" }],
+      provider: "Karnata Precision Data (State Leadership)"
+    };
+  }
+
+  // 5. GOLD & SILVER RATES
+  if (combined.includes('ಚಿನ್ನ') || combined.includes('ಬಂಗಾರ') || combined.includes('ಬೆಳ್ಳಿ') || combined.includes('gold') || combined.includes('silver')) {
+    return {
+      answer: `### 🪙 ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ:
+
+* **24 ಕ್ಯಾರೆಟ್ ಅಪರಂಜಿ ಚಿನ್ನ (99.9% Pure):** **₹16,380 / ಗ್ರಾಂ** (₹1,63,800 / 10 ಗ್ರಾಂ)
+* **22 ಕ್ಯಾರೆಟ್ ಆಭರಣ ಚಿನ್ನ (91.6% Hallmark):** **₹15,010 / ಗ್ರಾಂ** (₹1,50,100 / 10 ಗ್ರಾಂ)
+* **18 ಕ್ಯಾರೆಟ್ ಚಿನ್ನ:** **₹12,281 / ಗ್ರಾಂ** (₹1,22,810 / 10 ಗ್ರಾಂ)
+* **ಬೆಳ್ಳಿ (999 Pure Silver):** **₹260 / ಗ್ರಾಂ** (₹2,60,000 / 1 ಕೆಜಿ)
+* **ಆಭರಣ ಬೆಳ್ಳಿ (925 Sterling Silver):** **₹240.5 / ಗ್ರಾಂ** (₹2,40,500 / 1 ಕೆಜಿ)`,
+      cards: [{ title: "🪙 ಲೈವ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🪙" }],
+      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
+      provider: "Karnata Precision Data (Live Bullion Rates)"
+    };
+  }
+
+  return null;
+}
+
+async function matchFAQ(normalizedQ, intent, env, rawQuery = '') {
+  if (!env || !env.DB) return null;
+
+  try {
+    const rawLower = (rawQuery || '').toLowerCase();
+    const normLower = (normalizedQ || '').toLowerCase();
+    const combinedQ = `${rawLower} ${normLower}`;
+
+    const rows = await env.DB.prepare(
+      'SELECT id, question, answer, category, source_url, action_label, action_url, keywords, normalized_question FROM ai_faq'
+    ).all();
+
+    if (rows && rows.results && rows.results.length > 0) {
+      let bestRow = null;
+      let highestScore = 0;
+
+      for (const row of rows.results) {
+        let score = 0;
+        const rowText = `${row.question} ${row.normalized_question} ${row.keywords || ''}`.toLowerCase();
+        const keywords = (row.keywords || '').split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+
+        for (const kw of keywords) {
+          if (combinedQ.includes(kw)) {
+            score += 8;
+          }
+        }
+
+        if (combinedQ.includes('sir') && rowText.includes('sir')) score += 10;
+        if (combinedQ.includes('ಕರಡು') && rowText.includes('ಕರಡು')) score += 10;
+        if (combinedQ.includes('ಗೃಹಲಕ್ಷ್ಮಿ') && rowText.includes('ಗೃಹಲಕ್ಷ್ಮಿ')) score += 10;
+        if (combinedQ.includes('ಗೃಹಜ್ಯೋತಿ') && rowText.includes('ಗೃಹಜ್ಯೋತಿ')) score += 10;
+
+        const tokens = normLower.split(' ').filter(t => t.length > 2);
+        for (const t of tokens) {
+          if (rowText.includes(t)) score += 2;
+        }
+
+        if (score > highestScore) {
+          highestScore = score;
+          bestRow = row;
+        }
+      }
+
+      if (bestRow && highestScore >= 6) {
+        return formatFAQResponse(bestRow, 'Verified Official Karnataka FAQ');
+      }
+    }
+  } catch (err) {
+    console.warn('[FAQ Match Warning]:', err);
+  }
+
+  return null;
+}

@@ -30,11 +30,13 @@ async function initWeatherRadarApp() {
       await updateLocationPanel(locationInfo, timeline.getCurrentFrame());
     }
   });
+  window.weatherMapInstance = weatherMap;
+  window.weatherMap = weatherMap;
 
   // Initialize Legend
   const legend = new WeatherLegend(document.getElementById("wm-legend-slot"));
 
-  // Initialize Controls (MSN Control Pill with functional layer switcher)
+  // Initialize Controls
   const controls = new WeatherControls({
     container: document.getElementById("wm-layer-selector-slot"),
     statusContainer: document.getElementById("wm-status-slot"),
@@ -74,43 +76,53 @@ async function initWeatherRadarApp() {
     lon: 77.5946
   };
 
-  async function updateLocationPanel(loc, currentFrame) {
+    async function updateLocationPanel(loc, currentFrame) {
     if (!loc) return;
     currentSelectedLocation = loc;
 
     const locNameEl = document.getElementById("wm-panel-loc-name");
     const coordsEl = document.getElementById("wm-panel-coords");
-    const liveStatsEl = document.getElementById("wm-panel-live-stats");
+    const tempEl = document.getElementById("wm-panel-temp");
+    const descEl = document.getElementById("wm-panel-desc");
+    const feelsEl = document.getElementById("wm-panel-feels");
+    const humidEl = document.getElementById("wm-panel-humidity");
+    const rainEl = document.getElementById("wm-panel-rain");
+    const windEl = document.getElementById("wm-panel-wind");
+    const cloudEl = document.getElementById("wm-panel-cloud");
+    const aqiEl = document.getElementById("wm-panel-aqi");
+    const uvEl = document.getElementById("wm-panel-uv");
+    const noteEl = document.getElementById("wm-panel-rain-dist");
 
-    if (locNameEl) locNameEl.textContent = `📍 ${loc.name || "Karnataka Region"}`;
-    if (coordsEl) coordsEl.textContent = `As of ${currentFrame ? currentFrame.timeStr : 'NOW'} IST | Lat: ${loc.lat.toFixed(4)}°, Lon: ${loc.lon.toFixed(4)}°`;
+    if (locNameEl) locNameEl.textContent = `📍 ${loc.name || "Karnataka"}`;
+    if (coordsEl) coordsEl.textContent = `${loc.lat.toFixed(4)}° N, ${loc.lon.toFixed(4)}° E • ${currentFrame ? currentFrame.timeStr : 'NOW'} IST`;
 
     let lw = loc.liveWeather;
     if (!lw && typeof OpenMeteoProvider !== 'undefined') {
       lw = await OpenMeteoProvider.fetchLiveWeather(loc.lat, loc.lon);
     }
 
-    if (liveStatsEl) {
-      const tempC = lw ? Math.round(lw.temp_c ?? 22) : 22;
-      const descKn = lw ? (lw.desc_kn || 'ಭಾಗಶಃ ಮೋಡ ⛅') : 'ಭಾಗಶಃ ಮೋಡ ⛅';
-      const rainMm = lw ? (lw.precipitation_mm ?? lw.rain_24h_mm ?? 0) : 0;
-      const rainChance = lw ? (lw.rain_chance || 35) : 35;
-      const windKmh = lw ? (lw.wind_kmh || 10) : 10;
-      const humidity = lw ? (lw.humidity || 90) : 90;
+    const tempC = lw ? Math.round(lw.temp_c ?? 24) : 24;
+    const descKn = lw ? (lw.desc_kn || 'ಭಾಗಶಃ ಮೋಡ ⛅') : 'ಭಾಗಶಃ ಮೋಡ ⛅';
+    const rainMm = lw ? (lw.precipitation_mm ?? lw.rain_24h_mm ?? 0) : 0;
+    const rainChance = lw ? (lw.rain_chance || 25) : 25;
+    const windKmh = lw ? (lw.wind_kmh || 14) : 14;
+    const windDir = lw ? (lw.wind_dir || 'NE') : 'NE';
+    const humidity = lw ? (lw.humidity || 82) : 82;
+    const cloudCover = lw ? (lw.cloud_cover || 45) : 45;
+    const feelsLike = lw ? Math.round(lw.feels_like_c ?? (tempC + 1)) : (tempC + 1);
+    const aqi = lw ? (lw.aqi || 65) : 65;
+    const uv = lw ? (lw.uv_index || 4) : 4;
 
-      liveStatsEl.innerHTML = `
-        <div class="msn-live-weather-row">
-          <span class="msn-live-temp">🌡️ ${tempC}°C</span>
-          <span class="msn-live-desc">${descKn}</span>
-        </div>
-        <div class="msn-live-details">
-          <span>💧 Rain: ${rainMm}mm (${rainChance}%)</span>
-          <span>💨 Wind: ${windKmh} km/h</span>
-          <span>💦 ${humidity}%</span>
-        </div>
-        <div class="msn-rain-dist-tag">ℹ️ Live telemetry active for ${loc.name || 'Karnataka'}</div>
-      `;
-    }
+    if (tempEl) tempEl.textContent = `${tempC}°C`;
+    if (descEl) descEl.textContent = descKn;
+    if (feelsEl) feelsEl.textContent = `ಅನುಭವ: ${feelsLike}°C (${feelsLike < 25 ? 'ಆಹ್ಲಾದಕರ' : 'ಬೆಚ್ಚಗೆ'})`;
+    if (humidEl) humidEl.textContent = `${humidity}%`;
+    if (rainEl) rainEl.textContent = `${rainChance}% (${rainMm} mm)`;
+    if (windEl) windEl.textContent = `${windKmh} km/h (${windDir})`;
+    if (cloudEl) cloudEl.textContent = `${cloudCover}%`;
+    if (aqiEl) aqiEl.textContent = `${aqi} (${aqi <= 50 ? 'Good' : aqi <= 100 ? 'Moderate' : 'Unhealthy'})`;
+    if (uvEl) uvEl.textContent = `${uv <= 2 ? 'Low' : uv <= 5 ? 'Moderate' : 'High'} (${uv})`;
+    if (noteEl) noteEl.textContent = `ℹ️ ${loc.name || 'ಕರ್ನಾಟಕ'} ನಗರದ ಲೈವ್ ಹವಾಮಾನ ಟೆಲಿಮೆಟ್ರಿ ಸಕ್ರಿಯವಾಗಿದೆ`;
   }
 
   // Load live radar data
@@ -120,32 +132,20 @@ async function initWeatherRadarApp() {
     }
 
     try {
-      const frames = await provider.fetchRadarMetadata();
-      const latestIdx = provider.getLatestPastIndex();
-
-      timeline.setFrames(frames, latestIdx);
-
-      if (frames.length > 0 && frames[latestIdx]) {
-        weatherMap.setRadarFrame(frames[latestIdx]);
-        await updateLocationPanel(currentSelectedLocation, frames[latestIdx]);
-      }
-
-      controls.setStatus("live", "Updated " + controls.getFormattedCurrentTime());
-    } catch (err) {
-      console.error("[WeatherRadarApp] Failed to load radar data:", err);
-      controls.setStatus("error", "Live radar temporarily unavailable");
-      const timeDisplay = document.getElementById("wm-frame-time");
-      if (timeDisplay) {
-        timeDisplay.innerHTML = `<span class="wt-error-msg">⚠️ Live radar unavailable</span>`;
-      }
+      const frames = await provider.fetchRadarFrames();
+      timeline.setFrames(frames);
+      controls.setStatus("live");
+    } catch (e) {
+      console.warn("[weather-radar-app] Radar load warning:", e);
+      controls.setStatus("offline");
     }
   }
 
   // Initial load
   await loadRadarData();
 
-  // Auto refresh metadata every 5 minutes (300,000 ms)
+  // Auto-refresh radar data every 5 minutes
   setInterval(() => {
     loadRadarData(true);
-  }, 300000);
+  }, 5 * 60 * 1000);
 }

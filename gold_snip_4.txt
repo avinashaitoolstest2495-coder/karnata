@@ -1,0 +1,69 @@
+Created At: 2026-08-30T07:22:02+05:30
+Completed At: 2026-08-30T07:22:02+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 2164
+Total Bytes: 166554
+Showing lines 680 to 740
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+680:         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed #FDE68A; padding-bottom: 10px;">
+681:           <div style="font-size: 16px; font-weight: 900; color: #78350F;" id="ai-output-question">
+682:             ❓ ಪ್ರಶ್ನೆ: ನಾನು ಇಂದು ಚಿನ್ನ ಖರೀದಿಸಬಹುದೇ?
+683:           </div>
+684:           <span id="ai-output-verdict-badge" style="padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 900; background: #DCFCE7; color: #15803D;">
+685:             ಖರೀದಿಗೆ ಅನುಕೂಲಕರ
+686:           </span>
+687:         </div>
+688: 
+689:         <div id="ai-output-content" style="font-size: 14.5px; color: #1E293B; line-height: 1.75;">
+690:           <!-- Dynamic Analysis Injected Here -->
+691:         </div>
+692: 
+693:         <!-- 4 HISTORICAL METRICS USED IN THIS VERDICT -->
+694:         <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #FEF08A; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center;">
+695:           <div style="background: #FFFFFF; padding: 8px; border-radius: 8px; border: 1px solid #E2E8F0;">
+696:             <div style="font-size: 11px; color: #64748B; font-weight: 700;">10-ವರ್ಷಗಳ CAGR</div>
+697:             <div style="font-size: 14px; font-weight: 900; color: #D97706;">+18.9% (2016-26)</div>
+698:           </div>
+699:           <div style="background: #FFFFFF; padding: 8px; border-radius: 8px; border: 1px solid #E2E8F0;">
+700:             <div style="font-size: 11px; color: #64748B; font-weight: 700;">ಸೀಸನಲ್ ಟ್ರೆಂಡ್</div>
+701:             <div style="font-size: 14px; font-weight: 900; color: #15803D;">ಆಗಸ್ಟ್ (Pre-Festive Dip)</div>
+702:           </div>
+703:           <div style="background: #FFFFFF; padding: 8px; border-radius: 8px; border: 1px solid #E2E8F0;">
+704:             <div style="font-size: 11px; color: #64748B; font-weight: 700;">GSR ಅನುಪಾತ</div>
+705:             <div style="font-size: 14px; font-weight: 900; color: #0284C7;">62.7 (ಸಮತೋಲನ)</div>
+706:           </div>
+707:           <div style="background: #FFFFFF; padding: 8px; border-radius: 8px; border: 1px solid #E2E8F0;">
+708:             <div style="font-size: 11px; color: #64748B; font-weight: 700;">ಮುಂದಿನ ಪೀಕ್ ಸೀಸನ್</div>
+709:             <div style="font-size: 14px; font-weight: 900; color: #78350F;">ಅಕ್ಟೋಬರ್-ನವೆಂಬರ್</div>
+710:           </div>
+711:         </div>
+712: 
+713:       </div>
+714: 
+715:     </div>
+716: 
+717:     <style>
+718:       .ai-prompt-chip {
+719:         background: #F1F5F9;
+720:         color: #1E293B;
+721:         border: 1px solid #CBD5E1;
+722:         padding: 7px 14px;
+723:         border-radius: 20px;
+724:         font-size: 12.5px;
+725:         font-weight: 800;
+726:         cursor: pointer;
+727:         transition: all 0.2s;
+728:         font-family: inherit;
+729:       }
+730:       .ai-prompt-chip:hover {
+731:         background: #FEF3C7;
+732:         border-color: #F59E0B;
+733:         color: #78350F;
+734:         transform: translateY(-2px);
+735:       }
+736:       @media (max-width: 768px) {
+737:         #ai-gold-output-box > div:last-child {
+738:           grid-template-columns: repeat(2, 1fr) !important;
+739:         }
+740:       }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,89 @@
+Created At: 2026-08-30T07:57:09+05:30
+Completed At: 2026-08-30T07:57:10+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 1379
+Total Bytes: 68304
+Showing lines 1070 to 1150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1070:   if (el) el.classList.add('active');
+1071:   currentTrendRange = range;
+1072:   const rangeNameMap = {
+1073:     '7d': 'ಕಳೆದ 7 ದಿನಗಳ ಲೈವ್ ಮಾರುಕಟ್ಟೆ ದರ (ಪ್ರತಿ ಗ್ರಾಂ)',
+1074:     '1m': 'ಕಳೆದ 1 ತಿಂಗಳ ಲೈವ್ ಮಾರುಕಟ್ಟೆ ದರ (ಪ್ರತಿ ಗ್ರಾಂ)',
+1075:     '1y': 'ಕಳೆದ 1 ವರ್ಷದ ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ಟ್ರೆಂಡ್ (ಪ್ರತಿ ಗ್ರಾಂ)',
+1076:     'all': '1901 ರಿಂದ 2026 (125 ವರ್ಷಗಳ ಸಂಪೂರ್ಣ ಇತಿಹಾಸ — ಪ್ರತಿ ಗ್ರಾಂ)'
+1077:   };
+1078:   document.getElementById('tc-range-label').textContent = rangeNameMap[range] || range;
+1079:   drawJosAlukkasChart();
+1080: }
+1081: 
+1082: // ── 1901 TO 2026 HISTORICAL ARCHIVE ENGINE ──
+1083: let currentDecadeFilter = 'all';
+1084: let currentSearchQuery = '';
+1085: 
+1086: function renderHistArchiveTable() {
+1087:   const tbody = document.getElementById('hac-tbody');
+1088:   if (!tbody) return;
+1089: 
+1090:   const dataSrc = (yearly1901Data && yearly1901Data.length > 0) ? yearly1901Data : [];
+1091:   
+1092:   let filtered = dataSrc.filter(item => {
+1093:     if (currentDecadeFilter === '1901-1950') {
+1094:       if (item.year < 1901 || item.year > 1950) return false;
+1095:     } else if (currentDecadeFilter === '1951-2000') {
+1096:       if (item.year < 1951 || item.year > 2000) return false;
+1097:     } else if (currentDecadeFilter === '2001-2026') {
+1098:       if (item.year < 2001 || item.year > 2026) return false;
+1099:     }
+1100: 
+1101:     if (currentSearchQuery) {
+1102:       const q = currentSearchQuery.toLowerCase();
+1103:       const matchYear = item.year.toString().includes(q);
+1104:       const matchMilestone = (item.milestone || '').toLowerCase().includes(q);
+1105:       return matchYear || matchMilestone;
+1106:     }
+1107:     return true;
+1108:   });
+1109: 
+1110:   const displayList = [...filtered].sort((a, b) => b.year - a.year);
+1111: 
+1112:   tbody.innerHTML = displayList.map(item => {
+1113:     const g10 = Number(item.gold_10g) || 0;
+1114:     const g24_1 = Number(item.gold_24k_per_gram) || Math.round(g10 / 10);
+1115:     const g22_1 = Number(item.gold_22k_per_gram) || Math.round(g24_1 * 0.916);
+1116:     const s1 = Number(item.silver_per_gram) || Math.round((Number(item.silver_10g) || 0) / 10 * 100) / 100;
+1117:     const growth = item.gold_growth_x ? `${item.gold_growth_x}x` : `${Math.round(g10 / 18.75)}x`;
+1118: 
+1119:     const g22Str = g22_1 < 10 ? g22_1.toFixed(2) : g22_1.toLocaleString('en-IN');
+1120:     const g24Str = g24_1 < 10 ? g24_1.toFixed(2) : g24_1.toLocaleString('en-IN');
+1121:     const s1Str = s1 < 1 ? s1.toFixed(2) : s1.toLocaleString('en-IN');
+1122: 
+1123:     return `<tr>
+1124:       <td><span class="hac-year-badge">${item.year}</span></td>
+1125:       <td><b style="color:#B45309;">₹${g22Str}</b></td>
+1126:       <td>₹${g24Str}</td>
+1127:       <td>₹${g10.toLocaleString('en-IN')}</td>
+1128:       <td>₹${s1Str}</td>
+1129:       <td><span class="hac-growth-tag">${growth}</span></td>
+1130:       <td><span class="hac-milestone-text">${item.milestone || '—'}</span></td>
+1131:     </tr>`;
+1132:   }).join('');
+1133: }
+1134: 
+1135: function filterHistDecade(decade, el) {
+1136:   document.querySelectorAll('.hac-decade-tab').forEach(t => t.classList.remove('active'));
+1137:   if (el) el.classList.add('active');
+1138:   currentDecadeFilter = decade;
+1139:   renderHistArchiveTable();
+1140: }
+1141: 
+1142: function onSearchHistArchive() {
+1143:   const input = document.getElementById('hac-search-input');
+1144:   currentSearchQuery = input ? input.value.trim() : '';
+1145:   renderHistArchiveTable();
+1146: }
+1147: 
+1148: // Gold calculator
+1149: function calcGoldValue() {
+1150:   const w = parseFloat(document.getElementById('calc-weight').value);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

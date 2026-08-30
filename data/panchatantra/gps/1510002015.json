@@ -1,0 +1,274 @@
+{
+  "gp_id": "1510002015",
+  "gp_name_kn": "ಹಿರೇಗುಂಟನೂರು",
+  "gp_name_en": "HIREGUNTANOOR",
+  "district_name_kn": "ಚಿತ್ರದುರ್ಗ",
+  "district_name_en": "CHITRADURGA",
+  "taluk_name_kn": "ಚಿತ್ರದುರ್ಗ",
+  "taluk_name_en": "CHITRADURGA",
+  "pin_code": "577520",
+  "lgd_code": "217066",
+  "total_staff": 17,
+  "total_beneficiaries": 48,
+  "staff": [
+    {
+      "emp_name_kn": "ವನಜಾಕ್ಷಿ ಬಿ",
+      "emp_name_en": "VANAJAKSHI B ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "9113011208",
+      "email_id": "vanajakshibasavarajappa@gmail.com",
+      "emp_id": "GE_66676"
+    },
+    {
+      "emp_name_kn": "ಶ್ರೀಧರ್ ಡಿ",
+      "emp_name_en": "Sridhar D ",
+      "designation_kn": "ಕಾರ್ಯದರ್ಶಿ ಗ್ರೇಡ್ -1",
+      "mobile_no": "9060816702",
+      "email_id": "d.sridhar007@gmail.com",
+      "emp_id": "GE_66094"
+    },
+    {
+      "emp_name_kn": "ಪ್ರಭಾಕರ ಸಿ ಎಸ್",
+      "emp_name_en": "PRABHAKARA C S ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "8310205958",
+      "email_id": "",
+      "emp_id": "E_88114"
+    },
+    {
+      "emp_name_kn": "ಚಿತ್ರಪ್ಪ ಜಿ",
+      "emp_name_en": "Chitrappa G ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9380690500",
+      "email_id": "",
+      "emp_id": "E_106286"
+    },
+    {
+      "emp_name_kn": "ನಾಗರಾಜ ಕೆ",
+      "emp_name_en": "Nagaraja K ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9902625428",
+      "email_id": "",
+      "emp_id": "E_151472"
+    },
+    {
+      "emp_name_kn": "ಕೆಂಚಪ್ಪ ಕೆ ಆರ್",
+      "emp_name_en": "KENCHAPPA K R ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7483758491",
+      "email_id": "",
+      "emp_id": "E_126462"
+    },
+    {
+      "emp_name_kn": "ಮಾರುತಿ",
+      "emp_name_en": "Maruthi ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9945450513",
+      "email_id": "",
+      "emp_id": "E_126427"
+    },
+    {
+      "emp_name_kn": "ಮಂಜುನಾಥ",
+      "emp_name_en": "MANJUNATHA ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7411055193",
+      "email_id": "",
+      "emp_id": "E_126407"
+    },
+    {
+      "emp_name_kn": "ಜಿ ಜಯಣ್ಣ",
+      "emp_name_en": "G Jayanna ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7337746384",
+      "email_id": "",
+      "emp_id": "E_151467"
+    },
+    {
+      "emp_name_kn": "ಮಲ್ಲಿಕಾರ್ಜುನ ಬಿ ಎಸ್",
+      "emp_name_en": "Mallikarjuna B S ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7259567609",
+      "email_id": "",
+      "emp_id": "E_106181"
+    },
+    {
+      "emp_name_kn": "ನಯಾಜುಲ್ಲಾ",
+      "emp_name_en": "Nayaz Ulla ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9663957550",
+      "email_id": "",
+      "emp_id": "E_106052"
+    },
+    {
+      "emp_name_kn": "ಮಂಜಣ್ಣ",
+      "emp_name_en": "Manjanna ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "6362150242",
+      "email_id": "",
+      "emp_id": "E_126343"
+    },
+    {
+      "emp_name_kn": "ಸುನಿತ ಎಸ್",
+      "emp_name_en": "Sunitha S ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9741694193",
+      "email_id": "",
+      "emp_id": "E_88207"
+    },
+    {
+      "emp_name_kn": "ಚಂದ್ರಪ್ಪ",
+      "emp_name_en": "Chandrappa ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7676109396",
+      "email_id": "",
+      "emp_id": "E_88264"
+    },
+    {
+      "emp_name_kn": "ರಾಕೇಶ ಟಿ",
+      "emp_name_en": "Rakesha T ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "9740963497",
+      "email_id": "",
+      "emp_id": "E_106002"
+    },
+    {
+      "emp_name_kn": "ಗಂಗಮ್ಮ",
+      "emp_name_en": "GANGAMMA ",
+      "designation_kn": "ಕ್ಲೀನರ್ಗಳು",
+      "mobile_no": "9686013001",
+      "email_id": "",
+      "emp_id": "E_147680"
+    },
+    {
+      "emp_name_kn": "ಬಿ ಶಿಲ್ಪ",
+      "emp_name_en": "B SHILPA ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "9206835204",
+      "email_id": "",
+      "emp_id": "L_10866"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 24,
+      "approved": 10,
+      "pending": 1,
+      "rejected": 13
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 4,
+      "approved": 2,
+      "pending": 2,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 16,
+      "approved": 16,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 1,
+      "approved": 1,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 1,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 13,
+      "approved": 6,
+      "pending": 2,
+      "rejected": 5
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 5,
+      "approved": 3,
+      "pending": 2,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 4,
+      "approved": 4,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 2,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 28,
+      "approved": 4,
+      "pending": 2,
+      "rejected": 22
+    }
+  ],
+  "updated_at": "2026-08-23T05:50:09.472Z"
+}

@@ -1,0 +1,210 @@
+{
+  "gp_id": "1513001017",
+  "gp_name_kn": "ಹಂಗರಕಿ",
+  "gp_name_en": "HANGARAKI",
+  "district_name_kn": "ಧಾರವಾಡ",
+  "district_name_en": "DHARWAR",
+  "taluk_name_kn": "ಧಾರವಾಡ",
+  "taluk_name_en": "DHARWAD",
+  "pin_code": "581105",
+  "lgd_code": "217638",
+  "total_staff": 9,
+  "total_beneficiaries": 4,
+  "staff": [
+    {
+      "emp_name_kn": "ಅಪ್ಪಯ್ಯ ಬೀಡಿಮಠ",
+      "emp_name_en": "APPAYYA BEEDIMATH ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "9448415541",
+      "email_id": "hangaraki.dwd.dwr@gmail.com",
+      "emp_id": "GE_81107"
+    },
+    {
+      "emp_name_kn": "ರುದ್ರಪ್ಪ ಶಿ ಮುರಾರಿ",
+      "emp_name_en": "RUDRAPPA S MURARI ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "9916312806",
+      "email_id": "",
+      "emp_id": "E_110111"
+    },
+    {
+      "emp_name_kn": "ನಟಗಲ ಚನ್ನಬಸವ್ವ",
+      "emp_name_en": "Natagala Channabasavva ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9980076506",
+      "email_id": "",
+      "emp_id": "E_107800"
+    },
+    {
+      "emp_name_kn": "ನಾಗಪ್ಪ ಮೂರಾರಿ",
+      "emp_name_en": "Nagappa Murari ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9008063940",
+      "email_id": "",
+      "emp_id": "E_113349"
+    },
+    {
+      "emp_name_kn": "ನಾಗವ್ವಾ ಶಿ ಹುಲಗಣ್ಣವರ",
+      "emp_name_en": "NAGAVVA S HULGANNAVAR ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7975813853",
+      "email_id": "",
+      "emp_id": "E_180329"
+    },
+    {
+      "emp_name_kn": "ಯಲ್ಲಪ್ಪ ಕಲ್ಲಪ್ಪ ತಳವಾರ",
+      "emp_name_en": "YALLAPPA KALLAPPA TALAWAR ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8749035351",
+      "email_id": "",
+      "emp_id": "E_114196"
+    },
+    {
+      "emp_name_kn": "ಶಿವಾನಂದ ನವಲೂರ",
+      "emp_name_en": "Shivanand Navalur ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "8970192199",
+      "email_id": "",
+      "emp_id": "E_113498"
+    },
+    {
+      "emp_name_kn": "ರಾಮಕೃಷ್ಣ ಬಡಿಗೇರ",
+      "emp_name_en": "Ramakrishna Badiger ",
+      "designation_kn": "ಕ್ಲೀನರ್ಗಳು",
+      "mobile_no": "9972650858",
+      "email_id": "",
+      "emp_id": "E_114232"
+    },
+    {
+      "emp_name_kn": "ಸೋಗಲದ ಫಕ್ಕೀರಪ್ಪ",
+      "emp_name_en": "Sogalad Fakkirappa ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "9148942636",
+      "email_id": "",
+      "emp_id": "L_08947"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 2,
+      "approved": 1,
+      "pending": 1,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 1,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 3,
+      "approved": 1,
+      "pending": 1,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 2,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    }
+  ],
+  "updated_at": "2026-08-23T05:50:43.700Z"
+}

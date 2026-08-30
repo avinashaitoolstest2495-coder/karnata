@@ -57,6 +57,9 @@ class WeatherMap {
 
     // Populate city weather badges
     this.renderCityBadges();
+    window.addEventListener('weatherDataLoaded', () => {
+      this.renderCityBadges();
+    });
 
     // Listen to zoom changes
     this.map.on('zoomend', () => {
@@ -325,16 +328,16 @@ class WeatherMap {
     }
   }
 
-  getLiveWeatherForCity(city) {
-    if (typeof window.weatherStore === 'undefined' || !window.weatherStore || !window.weatherStore.districts) {
-      return null;
-    }
+    getLiveWeatherForCity(city) {
+    const store = window.weatherStore || (typeof weatherStore !== 'undefined' ? weatherStore : null);
+    if (!store || !store.districts) return null;
 
     const distKey = (city.district || '').toLowerCase().replace(/ /g, '_');
-    const distObj = window.weatherStore.districts[distKey] ||
-      Object.values(window.weatherStore.districts).find(d =>
+    const distObj = store.districts[distKey] ||
+      Object.values(store.districts).find(d =>
         (d.hq || '').toLowerCase() === (city.name_en || '').toLowerCase() ||
-        (d.name_kn || '').includes(city.name_kn)
+        (d.name_kn || '').includes(city.name_kn) ||
+        (city.name_kn || '').includes(d.name_kn)
       );
 
     return distObj ? distObj.current : null;

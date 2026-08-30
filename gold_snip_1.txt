@@ -1,0 +1,79 @@
+Created At: 2026-08-30T07:16:05+05:30
+Completed At: 2026-08-30T07:16:05+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 2020
+Total Bytes: 162162
+Showing lines 690 to 760
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+690:           grid-template-columns: repeat(2, 1fr) !important;
+691:         }
+692:       }
+693:     
+694:     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+695:     </style>
+696: 
+697: <div class="mode-tabs">
+698:       <button class="mode-tab active" id="tab-live" onclick="switchGoldTab('live')">
+699:         <span>🪙 ಇಂದಿನ ಲೈವ್ ದರಗಳು (Live Rates)</span>
+700:       </button>
+701:       <button class="mode-tab" id="tab-analyzer" onclick="switchGoldTab('analyzer')">
+702:         <span>📈 ಚಿನ್ನ & ಕಮಾಡಿಟಿ ದರ ವಿಶ್ಲೇಷಕ (Intelligence)</span>
+703:       </button>
+704:       <button class="mode-tab" id="tab-calculator" onclick="switchGoldTab('calculator')">
+705:         <span>🧮 ಆಭರಣ ಬಿಲ್ & ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್</span>
+706:       </button>
+707:     </div>
+708: 
+709:     <!-- ══════════════════════════════════════════════════════
+710:          TAB 1: LIVE GOLD & SILVER RATES (24K, 22K, 18K, Silver)
+711:     ══════════════════════════════════════════════════════ -->
+712:     <div id="view-live">
+713:       
+714:       <div class="gold-rates-grid">
+715:         <!-- 24K Pure Gold -->
+716:         <div class="gold-card gold-24k">
+717:           <span class="gc-badge" style="background:#FEF3C7; color:#92400E; border:1px solid #FDE68A;">👑 24K ಅಪರಂಜಿ ಶುದ್ಧ ಚಿನ್ನ (999 Pure)</span>
+718:           <div class="gc-price" id="card-24k-rate">₹16,304</div>
+719:           <div class="gc-sub">ಪ್ರತಿ ಗ್ರಾಂ ದರ (ಚಿನ್ನದ ನಾಣ್ಯ / ಬಾರ್)</div>
+720:           <div class="gc-breakdown">
+721:             <div><span class="gc-item-lbl">8 ಗ್ರಾಂ (1 ಪವನ್):</span></div>
+722:             <div class="gc-item-val" id="card-24k-8g">₹1,30,432</div>
+723:             <div><span class="gc-item-lbl">10 ಗ್ರಾಂ (1 ತೊಲ):</span></div>
+724:             <div class="gc-item-val" id="card-24k-10g">₹1,63,040</div>
+725:             <div><span class="gc-item-lbl">100 ಗ್ರಾಂ:</span></div>
+726:             <div class="gc-item-val" id="card-24k-100g">₹16,30,400</div>
+727:           </div>
+728:           <button style="margin-top:16px; width:100%; padding:10px; background:#10B981; color:#FFFFFF; border:none; border-radius:10px; font-weight:800; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="shareGoldWhatsApp()">
+729:             <span>📲 WhatsApp ನಲ್ಲಿ ಇಂದಿನ ದರ ಶೇರ್ ಮಾಡಿ</span>
+730:           </button>
+731:         </div>
+732: 
+733:         <!-- 22K Jewellery Gold -->
+734:         <div class="gold-card gold-22k">
+735:           <span class="gc-badge" style="background:#FEF9C3; color:#854D0E; border:1px solid #FEF08A;">💍 22K ಆಭರಣ ಬಂಗಾರ (916 BIS Hallmark)</span>
+736:           <div class="gc-price" id="card-22k-rate">₹14,940</div>
+737:           <div class="gc-sub">ಪ್ರತಿ ಗ್ರಾಂ ದರ (ಆಭರಣ ತಯಾರಿಕೆಗೆ ಸೂಕ್ತ)</div>
+738:           <div class="gc-breakdown">
+739:             <div><span class="gc-item-lbl">8 ಗ್ರಾಂ (1 ಪವನ್):</span></div>
+740:             <div class="gc-item-val" id="card-22k-8g">₹1,19,520</div>
+741:             <div><span class="gc-item-lbl">10 ಗ್ರಾಂ (1 ತೊಲ):</span></div>
+742:             <div class="gc-item-val" id="card-22k-10g">₹1,49,400</div>
+743:             <div><span class="gc-item-lbl">100 ಗ್ರಾಂ:</span></div>
+744:             <div class="gc-item-val" id="card-22k-100g">₹14,94,000</div>
+745:           </div>
+746:           <button style="margin-top:16px; width:100%; padding:10px; background:#F59E0B; color:#FFFFFF; border:none; border-radius:10px; font-weight:800; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="switchGoldTab('calculator')">
+747:             <span>🧮 ನಿಮ್ಮ ಆಭರಣ ಬಿಲ್ ಲೆಕ್ಕ ಹಾಕಿ</span>
+748:           </button>
+749:         </div>
+750: 
+751:         <!-- Silver 999 -->
+752:         <div class="gold-card silver-card">
+753:           <span class="gc-badge" style="background:#F1F5F9; color:#334155; border:1px solid #CBD5E1;">🥈 999 ಶುದ್ಧ ಬೆಳ್ಳಿ (Fine Silver)</span>
+754:           <div class="gc-price" id="card-silver-rate">₹260.00</div>
+755:           <div class="gc-sub">ಪ್ರತಿ ಗ್ರಾಂ ದರ (ಬೆಳ್ಳಿ ನಾಣ್ಯ / ಪೂಜಾ ಪಾತ್ರೆ)</div>
+756:           <div class="gc-breakdown">
+757:             <div><span class="gc-item-lbl">10 ಗ್ರಾಂ ಬೆಳ್ಳಿ:</span></div>
+758:             <div class="gc-item-val" id="card-silver-10g">₹2,600</div>
+759:             <div><span class="gc-item-lbl">100 ಗ್ರಾಂ ಬೆಳ್ಳಿ:</span></div>
+760:             <div class="gc-item-val" id="card-silver-100g">₹26,000</div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

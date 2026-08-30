@@ -2,7 +2,7 @@
 <html lang="kn">
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4907996917420478" crossorigin="anonymous"></script>
-  <link rel="canonical" href="https://karnata.in/constituency-detail.html">
+  <link rel="canonical" href="https://karnata.in/constituency-detail">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <!-- OpenGraph & Social SEO -->
   <meta property="og:title" content="ಕ್ಷೇತ್ರದ ಚುನಾವಣಾ ಇತಿಹಾಸ (1952 - 2026) | ಕರ್ನಾಟ">
@@ -199,7 +199,11 @@ async function loadConstituencyDetail() {
 
     // Sitting Representative Card
     const repName = item.mla_name_kn || item.mp_name_kn || item.mla_name_en || item.mp_name_en;
-    document.getElementById('rh-initial').textContent = repName.charAt(0);
+    if (type === 'mp' && item.code) {
+      document.getElementById('rh-initial').innerHTML = `<img src="/assets/images/mps/${item.code}.jpg" alt="${repName}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" onerror="this.outerHTML='${repName.charAt(0)}'">`;
+    } else {
+      document.getElementById('rh-initial').textContent = repName.charAt(0);
+    }
     document.getElementById('rh-name').textContent = repName;
     document.getElementById('rh-party').textContent = item.party;
     document.getElementById('rh-party').className = `party-tag party-${(item.party || 'IND').replace(/[^a-zA-Z]/g, '')}`;

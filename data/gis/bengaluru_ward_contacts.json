@@ -1,0 +1,398 @@
+{
+  "updated_at": "2026-08-25T07:54:55.538268+05:30",
+  "source_bescom": "https://bescom.karnataka.gov.in/ (BMASZ / BMANZ / 24x7: 1912)",
+  "source_bwssb": "https://bwssb.karnataka.gov.in/ (Service Stations / 24x7: 1916)",
+  "source_gba": "Greater Bengaluru Authority 369 Wards Catalog",
+  "ac_to_mp": {
+    "151": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "152": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "153": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "154": {
+      "pc_no": "23",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+      "pc_name_en": "Bangalore Rural",
+      "mp_kn": "ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್",
+      "mp_en": "Dr. C. N. Manjunath",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/dr_cn_manjunath.jpg"
+    },
+    "155": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "156": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "157": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "158": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "159": {
+      "pc_no": "24",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ",
+      "pc_name_en": "Bangalore North",
+      "mp_kn": "ಶೋಭಾ ಕರಂದ್ಲಾಜೆ",
+      "mp_en": "Shobha Karandlaje",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/shobha_karandlaje.jpg"
+    },
+    "160": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "161": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "162": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "163": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "164": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "165": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "166": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "167": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "168": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "169": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "170": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "171": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "172": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "173": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "174": {
+      "pc_no": "25",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ",
+      "pc_name_en": "Bangalore Central",
+      "mp_kn": "ಪಿ. ಸಿ. ಮೋಹನ್",
+      "mp_en": "P. C. Mohan",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/pc_mohan.jpg"
+    },
+    "175": {
+      "pc_no": "26",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+      "pc_name_en": "Bangalore South",
+      "mp_kn": "ತೇಜಸ್ವಿ ಸೂರ್ಯ",
+      "mp_en": "Tejasvi Surya",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/tejasvi_surya.jpg"
+    },
+    "176": {
+      "pc_no": "23",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+      "pc_name_en": "Bangalore Rural",
+      "mp_kn": "ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್",
+      "mp_en": "Dr. C. N. Manjunath",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/dr_cn_manjunath.jpg"
+    },
+    "177": {
+      "pc_no": "23",
+      "pc_name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+      "pc_name_en": "Bangalore Rural",
+      "mp_kn": "ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್",
+      "mp_en": "Dr. C. N. Manjunath",
+      "party_kn": "ಬಿಜೆಪಿ (BJP)",
+      "party_en": "BJP",
+      "photo": "/images/mps/dr_cn_manjunath.jpg"
+    }
+  },
+  "ac_contacts": {
+    "152": {
+      "bescom_subdivision": "ಯಲಹಂಕ / ಬ್ಯಾಟರಾಯನಪುರ ಉಪವಿಭಾಗ (N-2)",
+      "bescom_aee_phone": "9449844661",
+      "bescom_office": "ಬಳ್ಳಾರಿ ರಸ್ತೆ, ಯಲಹಂಕ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಯಲಹಂಕ ಸೇವಾ ಠಾಣೆ (N-2 Station)",
+      "bwssb_aee_phone": "9449867031",
+      "bwssb_phone": "080-22945171",
+      "bwssb_address": "ಯಲಹಂಕ ನ್ಯೂ ಟೌನ್ ಜಲಮಂಡಳಿ ಕಚೇರಿ"
+    },
+    "154": {
+      "bescom_subdivision": "ಆರ್.ಆರ್. ನಗರ ಉಪವಿಭಾಗ (RR Nagar Sub-division)",
+      "bescom_aee_phone": "9449844650",
+      "bescom_office": "ಐಡಿಯಲ್ ಹೋಮ್ಸ್, ರಾಜರಾಜೇಶ್ವರಿನಗರ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ರಾಜರಾಜೇಶ್ವರಿನಗರ ಸೇವಾ ಠಾಣೆ (W-3 Station)",
+      "bwssb_aee_phone": "9449867022",
+      "bwssb_phone": "080-22945162",
+      "bwssb_address": "ಬಿಇಎಂಎಲ್ ಲೇಔಟ್ 3ನೇ ಹಂತ, ಆರ್.ಆರ್. ನಗರ"
+    },
+    "155": {
+      "bescom_subdivision": "ಪೀಣ್ಯ / ದಾಸರಹಳ್ಳಿ ಉಪವಿಭಾಗ (N-3)",
+      "bescom_aee_phone": "9449844662",
+      "bescom_office": "ಪೀಣ್ಯ ಇಂಡಸ್ಟ್ರಿಯಲ್ ಏರಿಯಾ ಬೆಸ್ಕಾಂ",
+      "bwssb_station": "ಪೀಣ್ಯ / ದಾಸರಹಳ್ಳಿ ಸೇವಾ ಠಾಣೆ (N-3 Station)",
+      "bwssb_aee_phone": "9449867032",
+      "bwssb_phone": "080-22945172",
+      "bwssb_address": "ಟಿ.ದಾಸರಹಳ್ಳಿ ಮುಖ್ಯ ರಸ್ತೆ"
+    },
+    "157": {
+      "bescom_subdivision": "ಮಲ್ಲೇಶ್ವರಂ ಉಪವಿಭಾಗ (Malleshwaram C-4)",
+      "bescom_aee_phone": "9449844621",
+      "bescom_office": "18ನೇ ಕ್ರಾಸ್, ಮಲ್ಲೇಶ್ವರಂ, ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಮಲ್ಲೇಶ್ವರಂ ಸೇವಾ ಠಾಣೆ (C-3 Station)",
+      "bwssb_aee_phone": "9449867003",
+      "bwssb_phone": "080-22945142",
+      "bwssb_address": "15ನೇ ಕ್ರಾಸ್, ಮಲ್ಲೇಶ್ವರಂ ಜಲಮಂಡಳಿ ಕಚೇರಿ"
+    },
+    "158": {
+      "bescom_subdivision": "ಹೆಬ್ಬಾಳ ಉಪವಿಭಾಗ (N-1 Sub-division)",
+      "bescom_aee_phone": "9449844660",
+      "bescom_office": "ಆರ್.ಟಿ. ನಗರ ಮುಖ್ಯ ರಸ್ತೆ / ಹೆಬ್ಬಾಳ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಹೆಬ್ಬಾಳ / ಆರ್.ಟಿ. ನಗರ ಸೇವಾ ಠಾಣೆ (N-1 Station)",
+      "bwssb_aee_phone": "9449867030",
+      "bwssb_phone": "080-22945170",
+      "bwssb_address": "ಹೆಬ್ಬಾಳ ಬಸ್ ಡಿಪೋ ಎದುರು"
+    },
+    "162": {
+      "bescom_subdivision": "ಶಿವಾಜಿನಗರ ಉಪವಿಭಾಗ (Shivajinagar C-1)",
+      "bescom_aee_phone": "9449844622",
+      "bescom_office": "ಕ್ವೀನ್ಸ್ ರಸ್ತೆ / ರಾಜಭವನ ರಸ್ತೆ, ಬೆಸ್ಕಾಂ ಕೇಂದ್ರ ಕಚೇರಿ",
+      "bwssb_station": "ಹೈಗ್ರೌಂಡ್ಸ್ / ಸಂಪಂಗಿರಾಮನಗರ ಸೇವಾ ಠಾಣೆ (C-1 Station)",
+      "bwssb_aee_phone": "9449867001",
+      "bwssb_phone": "080-22945140",
+      "bwssb_address": "ಕಬ್ಬನ್ ಪಾರ್ಕ್ ಹತ್ತಿರ, ಹೈಗ್ರೌಂಡ್ಸ್ ವಾಟರ್ ಟ್ಯಾಂಕ್"
+    },
+    "164": {
+      "bescom_subdivision": "ಗಾಂಧಿನಗರ ಉಪವಿಭಾಗ (Gandhinagar C-2)",
+      "bescom_aee_phone": "9449844623",
+      "bescom_office": "ಸುಭಾಷ್ ನಗರ / ಮೆಜೆಸ್ಟಿಕ್ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಗಾಂಧಿನಗರ / ಚಿಕ್ಕಪೇಟೆ ಸೇವಾ ಠಾಣೆ (C-2 Station)",
+      "bwssb_aee_phone": "9449867002",
+      "bwssb_phone": "080-22945141",
+      "bwssb_address": "ಧನ್ವಂತ್ರಿ ರಸ್ತೆ, ಗಾಂಧಿನಗರ"
+    },
+    "165": {
+      "bescom_subdivision": "ರಾಜಾಜಿನಗರ ಉಪವಿಭಾಗ (W-1 Sub-division)",
+      "bescom_aee_phone": "9449844625",
+      "bescom_office": "1ನೇ ಬ್ಲಾಕ್, ರಾಜಾಜಿನಗರ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ರಾಜಾಜಿನಗರ ಸೇವಾ ಠಾಣೆ (W-1 Station)",
+      "bwssb_aee_phone": "9449867020",
+      "bwssb_phone": "080-22945160",
+      "bwssb_address": "ರಾಜಾಜಿನಗರ ವಾಟರ್ ಟ್ಯಾಂಕ್ ರಸ್ತೆ"
+    },
+    "170": {
+      "bescom_subdivision": "ಬಸವನಗುಡಿ ಉಪವಿಭಾಗ (S-1 Sub-division)",
+      "bescom_aee_phone": "9449844630",
+      "bescom_office": "ಗಾಂಧಿ ಬಜಾರ್ / ಎನ್.ಆರ್. ಕಾಲೋನಿ ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಬಸವನಗುಡಿ ಸೇವಾ ಠಾಣೆ (S-1 Station)",
+      "bwssb_aee_phone": "9449867040",
+      "bwssb_phone": "080-22945180",
+      "bwssb_address": "ಡಿವಿಜಿ ರಸ್ತೆ, ಬಸವನಗುಡಿ"
+    },
+    "172": {
+      "bescom_subdivision": "ಬಿಟಿಎಂ ಲೇಔಟ್ ಉಪವಿಭಾಗ (S-3 Sub-division)",
+      "bescom_aee_phone": "9449844632",
+      "bescom_office": "ಬಿಟಿಎಂ 2ನೇ ಹಂತ, ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಬಿಟಿಎಂ / ಕೋರಮಂಗಲ ಸೇವಾ ಠಾಣೆ (S-3 Station)",
+      "bwssb_aee_phone": "9449867042",
+      "bwssb_phone": "080-22945182",
+      "bwssb_address": "ಬಿಟಿಎಂ ಲೇಔಟ್ ವಾಟರ್ ರೆಸರ್ವಾಯರ್"
+    },
+    "173": {
+      "bescom_subdivision": "ಜಯನಗರ ಉಪವಿಭಾಗ (S-2 Sub-division)",
+      "bescom_aee_phone": "9449844631",
+      "bescom_office": "4ನೇ ಬ್ಲಾಕ್ ಜಯನಗರ, ಬೆಸ್ಕಾಂ ಕಚೇರಿ",
+      "bwssb_station": "ಜಯನಗರ ಸೇವಾ ಠಾಣೆ (S-2 Station)",
+      "bwssb_aee_phone": "9449867041",
+      "bwssb_phone": "080-22945181",
+      "bwssb_address": "3ನೇ ಬ್ಲಾಕ್ ಈಸ್ಟ್, ಜಯನಗರ"
+    },
+    "174": {
+      "bescom_subdivision": "ವೈಟ್‌ಫೀಲ್ಡ್ / ಮಹದೇವಪುರ ಉಪವಿಭಾಗ (E-3)",
+      "bescom_aee_phone": "9449844641",
+      "bescom_office": "ಹೂಡಿ / ಐಟಿಪಿಬಿ ಮುಖ್ಯ ರಸ್ತೆ, ಬೆಸ್ಕಾಂ",
+      "bwssb_station": "ಮಹದೇವಪುರ / ವೈಟ್‌ಫೀಲ್ಡ್ ಸೇವಾ ಠಾಣೆ (E-3)",
+      "bwssb_aee_phone": "9449867012",
+      "bwssb_phone": "080-22945152",
+      "bwssb_address": "ಗರುಡಾಚಾರ್ ಪಾಳ್ಯ, ಮಹದೇವಪುರ"
+    }
+  },
+  "default_contacts": {
+    "bescom_subdivision": "ಬೆಸ್ಕಾಂ ಸ್ಥಳೀಯ ಉಪವಿಭಾಗ ಕಚೇರಿ",
+    "bescom_aee_phone": "1912",
+    "bescom_office": "ಬೆಸ್ಕಾಂ ಗ್ರಾಹಕ ಸೇವಾ ಕೇಂದ್ರ, ಬೆಂಗಳೂರು (24x7: 1912 / WhatsApp: 9449844640)",
+    "bwssb_station": "ಜಲ ಮಂಡಳಿ ಸ್ಥಳೀಯ ಸೇವಾ ಠಾಣೆ",
+    "bwssb_aee_phone": "1916",
+    "bwssb_phone": "080-22238888",
+    "bwssb_address": "ಬಿಡಬ್ಲ್ಯೂಎಸ್‌ಎಸ್‌ಬಿ ನೀರು ಸರಬರಾಜು ಮತ್ತು ಒಳಚರಂಡಿ ಸೇವಾ ಕೇಂದ್ರ (24x7: 1916)"
+  },
+  "last_verified": "2026-08-25 07:54:55 IST"
+}

@@ -1,0 +1,85 @@
+# Comprehensive SEO, AI GEO & Multilingual Kannada Optimization Plan
+
+## Problem & Background Context
+Karnata.in is a multi-hub state information portal for Karnataka covering real-time Weather/KSNDMC, Dam Levels, APMC Mandi rates, Gold rates, Cabinet Ministers, Government Orders & Officer Transfers, Government Schemes (Gruha Lakshmi, Bhoomi RTC, GBA), and District Guides.
+
+To ensure all pages rank at the top of Google Search for both **Kannada queries** (e.g. `ಕರ್ನಾಟಕ ಹವಾಮಾನ`, `ಇಂದಿನ ಚಿನ್ನದ ದರ`, `ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ`, `ಗೃಹಲಕ್ಷ್ಮಿ ಸ್ಟೇಟಸ್ ಚೆಕ್`) and **English queries**, and are optimally indexed for **AI Search Engines / GEO (Google Gemini, Perplexity, ChatGPT, Claude, Copilot)**, a complete site-wide optimization is required.
+
+---
+
+## Proposed Changes
+
+### 1. Multilingual Kannada + English SEO Metadata Suite
+Every public hub and article page will receive optimized metadata:
+- **High-Intent Kannada `<title>`**: Dual-language title incorporating primary Kannada search intent and brand identity.
+- **`<meta name="description">`**: 150-160 character rich Kannada meta description with target keywords.
+- **`<meta name="keywords">`**: Dual Kannada + English high-volume search terms.
+- **`<link rel="canonical">`**: Canonical URL pointing to canonical HTTPS URL.
+
+### 2. GEO (Generative Engine Optimization & Regional Metadata)
+- **Geographic Tags**:
+  ```html
+  <meta name="geo.region" content="IN-KA" />
+  <meta name="geo.placename" content="Karnataka, India" />
+  <meta name="geo.position" content="12.9716;77.5946" />
+  <meta name="ICBM" content="12.9716, 77.5946" />
+  ```
+- **AI Search Directives**:
+  ```html
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  ```
+
+### 3. OpenGraph & Social Media Metadata
+- `og:locale` set to `kn_IN` with alternate `en_IN`.
+- `og:site_name` set to `ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ — Karnata.in`.
+- `twitter:card` set to `summary_large_image`.
+- Verified OpenGraph image URLs.
+
+### 4. Structured Data (JSON-LD Schemas)
+- **`WebSite` Schema**: On homepage with Google Sitelinks SearchBox.
+- **`Organization` / `GovernmentOrganization` Schema**: Establishing official entity graph.
+- **`BreadcrumbList` Schema**: On all subpages for rich Google breadcrumbs.
+- **`FAQPage` Schema**: On pages with accordions (`weather.html`, `gold-rate.html`, `dam-levels.html`, articles).
+- **`NewsArticle` / `Article` Schema**: On `karnataka-stories.html` and all `article/*.html` pages.
+
+### 5. Sitemap & Robots.txt Hygiene
+- **`sitemap.xml`**: Remove `/admin*`, `/cms*`, `/studio*` from indexing; include all 100+ public pages (31 district portals, 12 dam pages, GBA pages, calculator tools, and articles) with valid priority and `<lastmod>` dates.
+- **`robots.txt`**: Explicitly disallow internal admin paths while giving full access to `Googlebot`, `Bingbot`, `GPTBot`, `PerplexityBot`, `ClaudeBot`, and `Google-Extended`.
+
+---
+
+## Files to Modify
+
+| Page / Component | Key Optimizations |
+| :--- | :--- |
+| [index.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/index.html) | State portal SEO, WebSite schema, searchAction, complete Kannada keywords |
+| [weather.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/weather.html) | WeatherForecast schema, FAQ schema, 27 Nakshatras keywords, GEO tags |
+| [gold-rate.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html) | Live gold rate schema, Kannada finance keywords, GEO tags |
+| [dam-levels.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/dam-levels.html) | Dam storage schema, river basin keywords, GEO tags |
+| [apmc-prices.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/apmc-prices.html) | Mandi commodity rates schema, agriculture keywords |
+| [cabinet-ministers.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/cabinet-ministers.html) | Government organization & ministers schema, portfolio keywords |
+| [officers.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/officers.html) | IAS/IPS officers directory schema, transfers keywords |
+| [karnataka-stories.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/karnataka-stories.html) | Blog/NewsArticle listing schema, Kannada stories keywords |
+| [article/*.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/article/) | Article schemas, FAQ schemas, government scheme search keywords |
+| [districts/*.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/districts/) | AdministrativeArea schemas, 31 district localized keywords |
+| [dam-levels/*.html](file:///c:/Users/avina/Downloads/karnata-site-with-cms/dam-levels/) | Individual dam telemetry & reservoir storage schemas |
+| [sitemap.xml](file:///c:/Users/avina/Downloads/karnata-site-with-cms/sitemap.xml) | Cleaned public URL list (exclude admin, add all public hubs) |
+| [robots.txt](file:///c:/Users/avina/Downloads/karnata-site-with-cms/robots.txt) | Complete crawler rules & AI search directives |
+
+---
+
+## Verification Plan
+
+### Automated Checks
+1. Run Python DOM and Schema validator across all HTML pages to ensure:
+   - Zero syntax errors.
+   - All pages have valid Kannada titles, descriptions, canonicals, and OpenGraph tags.
+   - All JSON-LD scripts parse with `json.loads` without errors.
+2. Run `sitemap.xml` validator to confirm all URLs are valid public HTTPS routes.
+3. Verify Cloudflare Worker routing and run `wrangler pages deploy` to production.
+
+### Manual Verification
+- Test Google Rich Results eligibility for JSON-LD schemas.
+- Verify meta preview rendering in browser and OpenGraph debugger.

@@ -1,0 +1,109 @@
+Created At: 2026-08-30T07:15:32+05:30
+Completed At: 2026-08-30T07:15:33+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 2020
+Total Bytes: 162162
+Showing lines 150 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+150:       gap: 16px;
+151:       position: relative;
+152:       z-index: 10;
+153:     }
+154:     @media (max-width: 900px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+155:     @media (max-width: 520px) { .stats-bar { grid-template-columns: 1fr; } }
+156:     
+157:     .stat-card {
+158:       background: #FFFFFF;
+159:       border: 1.5px solid var(--border);
+160:       border-radius: var(--radius-lg);
+161:       padding: 18px 16px;
+162:       box-shadow: var(--shadow-premium);
+163:       text-align: center;
+164:       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+165:       position: relative;
+166:       overflow: hidden;
+167:     }
+168:     .stat-card::before {
+169:       content: "";
+170:       position: absolute;
+171:       top: 0; left: 0; right: 0;
+172:       height: 3px;
+173:       background: linear-gradient(90deg, #F59E0B, #D97706);
+174:       opacity: 0;
+175:       transition: opacity 0.25s;
+176:     }
+177:     .stat-card:hover {
+178:       transform: translateY(-4px);
+179:       box-shadow: 0 16px 32px -6px rgba(217, 119, 6, 0.18);
+180:       border-color: #FCD34D;
+181:     }
+182:     .stat-card:hover::before { opacity: 1; }
+183:     .stat-icon { font-size: 26px; margin-bottom: 4px; }
+184:     .stat-val { font-size: 24px; font-weight: 900; color: var(--gold-dark); font-family: 'Inter', sans-serif; }
+185:     .stat-lbl { font-size: 13px; font-weight: 800; color: var(--text-main); margin-top: 2px; }
+186:     .stat-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+187: 
+188:     /* ════ MAIN WRAPPER ════ */
+189:     .gold-container {
+190:       max-width: 1200px;
+191:       margin: 0 auto;
+192:       padding: 0 16px 50px;
+193:     }
+194: 
+195:     /* ════ MODE SWITCHER TABS ════ */
+196:     .mode-tabs {
+197:       display: flex;
+198:       gap: 10px;
+199:       background: #E2E8F0;
+200:       padding: 6px;
+201:       border-radius: 16px;
+202:       margin-bottom: 28px;
+203:     }
+204:     .mode-tab {
+205:       flex: 1;
+206:       text-align: center;
+207:       padding: 14px 18px;
+208:       font-size: 15px;
+209:       font-weight: 800;
+210:       border-radius: 12px;
+211:       cursor: pointer;
+212:       border: none;
+213:       background: transparent;
+214:       color: var(--text-muted);
+215:       transition: all 0.25s ease;
+216:       display: flex;
+217:       align-items: center;
+218:       justify-content: center;
+219:       gap: 8px;
+220:       font-family: inherit;
+221:     }
+222:     .mode-tab.active {
+223:       background: #FFFFFF;
+224:       color: var(--gold-dark);
+225:       box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+226:       font-weight: 900;
+227:     }
+228: 
+229:     /* ════ TAB 1: LIVE GOLD & SILVER RATES ════ */
+230:     .gold-rates-grid {
+231:       display: grid;
+232:       grid-template-columns: repeat(3, 1fr);
+233:       gap: 20px;
+234:       margin-bottom: 36px;
+235:     }
+236:     @media (max-width: 900px) { .gold-rates-grid { grid-template-columns: 1fr; } }
+237: 
+238:     .gold-card {
+239:       background: #FFFFFF;
+240:       border: 1.5px solid var(--border);
+241:       border-radius: 20px;
+242:       padding: 24px;
+243:       box-shadow: var(--shadow-premium);
+244:       position: relative;
+245:       overflow: hidden;
+246:       transition: transform 0.2s;
+247:     }
+248:     .gold-card:hover { transform: translateY(-3px); }
+249:     .gold-card.gold-24k { border-color: #FCD34D; background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%); }
+250:     .gold-card.gold-22k { border-color: #FDE68A; background: linear-gradient(180deg, #FEFCE8 0%, #FFFFFF 100%); }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

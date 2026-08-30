@@ -1,0 +1,74 @@
+Created At: 2026-08-30T07:17:21+05:30
+Completed At: 2026-08-30T07:17:22+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 2020
+Total Bytes: 162162
+Showing lines 765 to 830
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+765:             <span>⚖️ Gold-to-Silver Ratio ವಿಶ್ಲೇಷಣೆ</span>
+766:           </button>
+767:         </div>
+768:       </div>
+769: 
+770:       <!-- CITY RATES TABLE -->
+771:       <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:18px; padding:22px; margin-bottom:36px; box-shadow:var(--shadow-premium);">
+772:         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+773:           <h3 style="font-size:18px; font-weight:900; color:#0F172A;">📍 ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ನಗರಗಳ ಚಿನ್ನ-ಬೆಳ್ಳಿ ದರಗಳು (City-wise Live Rates)</h3>
+774:           <span style="font-size:12px; color:#64748B; font-weight:700;">ಪ್ರತಿ ಗ್ರಾಂ ಲೆಕ್ಕದಲ್ಲಿ</span>
+775:         </div>
+776:         <div style="overflow-x:auto;">
+777:           <table class="hist-table">
+778:             <thead>
+779:               <tr>
+780:                 <th>ನಗರ</th>
+781:                 <th>24K ಚಿನ್ನ (ಗ್ರಾಂ)</th>
+782:                 <th>22K ಚಿನ್ನ (ಗ್ರಾಂ)</th>
+783:                 <th>18K ಚಿನ್ನ (ಗ್ರಾಂ)</th>
+784:                 <th>ಬೆಳ್ಳಿ (ಗ್ರಾಂ)</th>
+785:                 <th>1 ಕೆಜಿ ಬೆಳ್ಳಿ</th>
+786:               </tr>
+787:             </thead>
+788:             <tbody id="city-rates-tbody"></tbody>
+789:           </table>
+790:         </div>
+791:       </div>
+792: 
+793:     </div>
+794: 
+795:     <!-- ══════════════════════════════════════════════════════
+796:          TAB 2: GOLD & COMMODITY INTELLIGENCE & BUY/SELL ANALYZER
+797:     ══════════════════════════════════════════════════════ -->
+798:     <div id="view-analyzer" style="display:none;">
+799:       
+800:       <div class="analyzer-box">
+801:         
+802:         <div class="analyzer-insights-grid">
+803:           
+804:           <!-- LEFT: Multi-Timeframe Chart & 12-Month Heatmap -->
+805:           <div>
+806:             <div class="chart-container-box">
+807:               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+808:                 <h3 style="font-size:16px; font-weight:900; color:#0F172A;">📈 ಚಿನ್ನದ ಬೆಲೆ ಪ್ರವೃತ್ತಿ & ಬೆಳವಣಿಗೆ (Trend Chart)</h3>
+809:                 <div class="time-pills">
+810:                   <button class="time-pill active" onclick="updateChartTimeframe('10y', this)">10 ವರ್ಷಗಳು</button>
+811:                   <button class="time-pill" onclick="updateChartTimeframe('5y', this)">5 ವರ್ಷಗಳು</button>
+812:                   <button class="time-pill" onclick="updateChartTimeframe('1y', this)">1 ವರ್ಷ</button>
+813:                   <button class="time-pill" onclick="updateChartTimeframe('125y', this)">125 ವರ್ಷ (1901-2026)</button>
+814:                 </div>
+815:               </div>
+816:               <div style="height:270px; position:relative;">
+817:                 <canvas id="goldTrendChart"></canvas>
+818:               </div>
+819:             </div>
+820: 
+821:             <!-- 12-Month Gold Seasonality Heatmap -->
+822:             <div style="margin-top:22px; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:14px; padding:16px;">
+823:               <div style="display:flex; justify-content:space-between; align-items:center;">
+824:                 <h4 style="font-size:14px; font-weight:900; color:#0F172A;">🗓️ 12 ತಿಂಗಳ ಚಿನ್ನ ಖರೀದಿ ಹರಿವು (Gold Seasonality Heatmap)</h4>
+825:                 <span style="font-size:11.5px; color:#15803D; font-weight:800;">ಹಸಿರು = ಅತ್ಯುತ್ತಮ ಖರೀದಿ ಸಮಯ</span>
+826:               </div>
+827:               <div class="season-heatmap">
+828:                 <div class="heat-cell peak"><div>ಜನ</div><div style="font-size:9.5px;">ಮದುವೆ ಸೀಸನ್</div></div>
+829:                 <div class="heat-cell low"><div>ಫೆಬ್ರ</div><div style="font-size:9.5px;">ಬಜೆಟ್ ದಿನ</div></div>
+830:                 <div class="heat-cell avg"><div>ಮಾರ್ಚ್</div><div style="font-size:9.5px;">ವರ್ಷಾಂತ್ಯ</div></div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

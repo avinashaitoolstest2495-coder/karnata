@@ -5,11 +5,15 @@ Allow: /
 Disallow: /scratch/
 Disallow: /api/
 Disallow: /admin/
+Disallow: /admin-articles
+Disallow: /admin-transfers
 Disallow: /cms/
 Disallow: /studio/
 Disallow: /imd_hub/
+Disallow: /officers-admin
+Disallow: /push-admin
 
-# AI Crawlers for AI Search Engine Optimization (GEO - Perplexity, ChatGPT, Gemini, Claude)
+# AI Search Engines & Crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -26,6 +30,9 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://karnata.in/sitemap.xml

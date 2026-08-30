@@ -28,6 +28,10 @@ class WeatherRadarProvider {
    * Fetch live radar metadata from provider
    * @returns {Promise<Array>} Array of frame objects [{ time, path, timeStr, isNowcast }, ...]
    */
+  async fetchRadarFrames() {
+    return await this.fetchRadarMetadata();
+  }
+
   async fetchRadarMetadata() {
     try {
       const response = await fetch(this.config.rainviewer.apiUrl, { cache: "no-cache" });

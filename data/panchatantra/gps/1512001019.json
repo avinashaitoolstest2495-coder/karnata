@@ -1,0 +1,210 @@
+{
+  "gp_id": "1512001019",
+  "gp_name_kn": "ಜೋಳದಾಳ್‌",
+  "gp_name_en": "JOLADAL",
+  "district_name_kn": "ದಾವಣಗೆರೆ",
+  "district_name_en": "DAVANAGERE",
+  "taluk_name_kn": "ಚನ್ನಗಿರಿ",
+  "taluk_name_en": "CHANNAGIRI",
+  "pin_code": "577213",
+  "lgd_code": "217423",
+  "total_staff": 9,
+  "total_beneficiaries": 92,
+  "staff": [
+    {
+      "emp_name_kn": "ನಿಂಗಪ್ಪ",
+      "emp_name_en": "NINGANNA S B NINGANNA S B NINGANNA S B ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "9986129080",
+      "email_id": "ningannasb@gmail.com",
+      "emp_id": "GE_67993"
+    },
+    {
+      "emp_name_kn": "ರವಿ ಹೆಚ್",
+      "emp_name_en": "RAVI  H ",
+      "designation_kn": "ಕಾರ್ಯದರ್ಶಿ ಗ್ರೇಡ್ -2",
+      "mobile_no": "9880466832",
+      "email_id": "tpchnjol@yahoo.in",
+      "emp_id": "GE_74860"
+    },
+    {
+      "emp_name_kn": "ಮಹೇಶ್ವರಪ್ಪ ಎಚ್",
+      "emp_name_en": "Maheshwarappa H ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "8861368673",
+      "email_id": "",
+      "emp_id": "E_158316"
+    },
+    {
+      "emp_name_kn": "ಗಿರೀಶ್ ಎಮ್ ಟಿ",
+      "emp_name_en": "GIRISH M T ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9741728969",
+      "email_id": "",
+      "emp_id": "E_110362"
+    },
+    {
+      "emp_name_kn": "ಶಾಂತಕುಮಾರ್ ಎಮ್ ಬಿ",
+      "emp_name_en": "Shanthakumar M B ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7760696957",
+      "email_id": "",
+      "emp_id": "E_147871"
+    },
+    {
+      "emp_name_kn": "ಸಂತೋಷ್",
+      "emp_name_en": "SANTHOSHA ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9686887377",
+      "email_id": "",
+      "emp_id": "E_148085"
+    },
+    {
+      "emp_name_kn": "ಎನ್ ಕುಮಾರಪ್ಪ",
+      "emp_name_en": "N Kumarappa ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9535894467",
+      "email_id": "",
+      "emp_id": "E_147987"
+    },
+    {
+      "emp_name_kn": "ಜಯಪ್ಪ ಸಿ",
+      "emp_name_en": "Jayappa C ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "9480205808",
+      "email_id": "",
+      "emp_id": "E_110406"
+    },
+    {
+      "emp_name_kn": "ಸುಧಾ ಆರ್",
+      "emp_name_en": "Sudha R ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "9731663870",
+      "email_id": "",
+      "emp_id": "L_10785"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 5,
+      "approved": 3,
+      "pending": 0,
+      "rejected": 2
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 33,
+      "approved": 33,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 24,
+      "approved": 24,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 28,
+      "approved": 27,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನ���ರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 3,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 5,
+      "approved": 1,
+      "pending": 0,
+      "rejected": 4
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 3,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    }
+  ],
+  "updated_at": "2026-08-23T05:50:32.642Z"
+}

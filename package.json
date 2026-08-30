@@ -4,6 +4,12 @@
   "private": true,
   "description": "Karnata.in — Universe of Karnataka Platform",
   "scripts": {
-    "scrape": "node scripts/scrape_real_karnataka_news.js && node scripts/build_all_district_news.js && node scripts/build_seo_and_monetization.js"
+    "scrape": "node scripts/scrape_real_karnataka_news.js && node scripts/build_all_district_news.js && node scripts/build_seo_and_monetization.js",
+    "scrape:local-govt": "node lib/scrapers/local_govt_engine.js",
+    "test:local-govt": "node lib/scrapers/local_govt_engine.js --dry-run",
+    "sync:panchatantra": "node scratch/fast_karnataka_staff_scraper.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.126.0"
   }
 }

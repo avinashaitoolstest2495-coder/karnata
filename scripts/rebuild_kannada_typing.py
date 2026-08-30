@@ -1,0 +1,1084 @@
+import os
+
+full_html = """<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4907996917420478" crossorigin="anonymous"></script>
+  <link rel="canonical" href="https://karnata.in/kannada-typing">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <!-- OpenGraph & Social SEO -->
+  <meta property="og:title" content="ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್ — English to Kannada Typing Online Free | ಕರ್ನಾಟ">
+  <meta property="og:description" content="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಕನ್ನಡದಲ್ಲಿ ಪಡೆಯಿರಿ. Free online Kannada typing tool. Type in English get Kannada. Sahitya Kannada keyboard app.">
+  <meta property="og:url" content="https://karnata.in/kannada-typing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Karnata.in">
+  <meta property="og:locale" content="kn_IN">
+  <meta property="og:image" content="https://karnata.in/assets/icons/icon-512x512.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್ — English to Kannada Typing Online Free | ಕರ್ನಾಟ">
+  <meta name="twitter:description" content="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಕನ್ನಡದಲ್ಲಿ ಪಡೆಯಿರಿ. Free online Kannada typing tool. Type in English get Kannada. Sahitya Kannada keyboard app.">
+  <meta name="twitter:image" content="https://karnata.in/assets/icons/icon-512x512.png">
+  <!-- Google Search Engine Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್ — English to Kannada Typing Online Free | ಕರ್ನಾಟ",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "url": "https://karnata.in/kannada-typing.html",
+    "description": "ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಕನ್ನಡದಲ್ಲಿ ಪಡೆಯಿರಿ. Free online Kannada typing tool. Type in English get Kannada. Kannada keyboard online.",
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಕನ್ನಡ ಟೈಪಿಂಗ್ &amp; ಅನುವಾದ — English to Kannada Typing Online Free | ಕರ್ನಾಟ</title>
+<meta name="description" content="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ ಕನ್ನಡದಲ್ಲಿ ಪಡೆಯಿರಿ. Free online Kannada typing tool &amp; translator. Type in English get Kannada. Sahitya Kannada keyboard app.">
+<meta name="keywords" content="Kannada typing tool, English to Kannada typing, ಕನ್ನಡ ಟೈಪಿಂಗ್, Sahitya Kannada Keyboard, online Kannada keyboard, type Kannada online free, English to Kannada translation">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/karnata-theme.css">
+<style>
+:root{
+  --red:#C0392B;--red-dk:#961C10;--red-lt:#FDECEA;
+  --green:#16A34A;--green-lt:#E8F5EE;
+  --blue:#2563EB;--blue-lt:#EFF6FF;
+  --amber:#D97706;--amber-lt:#FEF3C7;
+  --ink:#0F172A;--ink2:#334155;--ink3:#64748B;
+  --bg:#F8FAFC;--white:#FFF;--border:#E2E8F0;
+  --font-kn:'Anek Kannada',sans-serif;--font-en:'Inter',sans-serif;
+  --radius:12px;--shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-kn);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;}
+textarea{font-family:inherit;outline:none;border:none;resize:none;}
+
+.topnav{background:var(--white);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:13px;font-weight:600;background:var(--bg);border-radius:7px;padding:6px 12px;border:1px solid var(--border);text-decoration:none;}
+
+.hero{background:linear-gradient(135deg,#C0392B 0%,#8B1A1A 100%);padding:28px 20px;color:#fff;text-align:center;}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px;}
+.hero p{font-size:14px;opacity:0.9;}
+
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+
+/* HOW TO */
+.how-card{background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--radius);padding:18px;margin-bottom:20px;}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;}
+@media(max-width:600px){.how-steps{grid-template-columns:1fr;}}
+.how-step{text-align:center;background:#fff;border-radius:8px;padding:12px;border:1px solid #dbeafe;}
+.hs-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-family:var(--font-en);}
+.hs-text{font-size:13px;color:#1e40af;line-height:1.5;}
+
+/* MODE TABS */
+.mode-tabs{display:flex;gap:0;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px;box-shadow:var(--shadow);}
+.mode-tab{flex:1;padding:12px;text-align:center;font-size:14px;font-weight:700;cursor:pointer;border-right:1px solid var(--border);transition:all 0.15s;color:var(--ink2);font-family:var(--font-kn);}
+.mode-tab:last-child{border-right:none;}
+.mode-tab.active{background:var(--red);color:#fff;}
+.mode-tab:hover:not(.active){background:#f1f5f9;}
+
+/* EDITOR */
+.editor-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;}
+.editor-toolbar{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fafafa;}
+.tb-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:700;border:1px solid var(--border);background:var(--white);color:var(--ink2);transition:all 0.15s;}
+.tb-btn:hover{background:var(--red-lt);color:var(--red);border-color:var(--red);}
+.tb-btn.primary{background:var(--red);color:#fff;border-color:var(--red);}
+.tb-btn.primary:hover{background:var(--red-dk);}
+.tb-btn.green{background:var(--green);color:#fff;border-color:var(--green);}
+.tb-btn.blue{background:var(--blue);color:#fff;border-color:var(--blue);}
+.tb-sep{width:1px;height:24px;background:var(--border);margin:0 4px;}
+.char-count{margin-left:auto;font-size:12px;color:var(--ink3);font-family:var(--font-en);font-weight:600;}
+
+.editor-area{display:grid;grid-template-columns:1fr 1fr;min-height:260px;}
+@media(max-width:650px){.editor-area{grid-template-columns:1fr;}}
+.editor-pane{padding:16px;position:relative;background:#fff;}
+.editor-pane:first-child{border-right:1px solid var(--border);background:#fafafa;}
+.pane-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:8px;font-family:var(--font-en);display:flex;align-items:center;gap:6px;}
+.pane-label .flag{font-size:14px;}
+textarea.input-area{width:100%;height:210px;font-size:16px;color:var(--ink);line-height:1.7;background:transparent;font-family:var(--font-en);}
+textarea.output-area{width:100%;height:210px;font-size:17px;color:var(--ink);line-height:1.8;background:transparent;font-family:var(--font-kn);font-weight:600;}
+
+/* SUGGESTIONS */
+.suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--border);min-height:48px;background:#f8fafc;align-items:center;}
+.sug-title{font-size:12px;font-weight:700;color:var(--ink3);margin-right:4px;}
+.sug-btn{padding:6px 14px;border-radius:20px;font-size:14px;font-weight:600;background:var(--white);border:1px solid #cbd5e1;cursor:pointer;color:var(--ink);transition:all 0.15s;font-family:var(--font-kn);box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.sug-btn:hover{background:var(--red);color:#fff;border-color:var(--red);transform:translateY(-1px);}
+
+/* KEYBOARD */
+.keyboard-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:20px;}
+.kb-title{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.kb-row{display:flex;gap:6px;margin-bottom:6px;justify-content:center;flex-wrap:wrap;}
+.key{min-width:38px;height:38px;border-radius:8px;background:#f1f5f9;border:1px solid #cbd5e1;font-size:16px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.1s;font-family:var(--font-kn);color:var(--ink);padding:0 6px;}
+.key:hover,.key:active{background:var(--red);color:#fff;border-color:var(--red);transform:scale(0.96);}
+.key.special{background:var(--blue-lt);color:var(--blue);font-size:12px;font-weight:800;font-family:var(--font-en);min-width:64px;}
+.key.space{min-width:180px;font-size:14px;font-weight:700;}
+.key.wide{min-width:60px;}
+
+/* QUICK PHRASES */
+.phrases-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:20px;box-shadow:var(--shadow);}
+.phrases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:12px;}
+.phrase-btn{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;transition:all 0.15s;font-family:var(--font-kn);line-height:1.4;}
+.phrase-btn:hover{background:var(--red-lt);border-color:var(--red);color:var(--red);}
+
+/* TRANSLITERATION TABLE */
+.translit-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:20px;box-shadow:var(--shadow);}
+.tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:12px;}
+.tl-item{background:#f8fafc;border-radius:8px;padding:8px 4px;text-align:center;border:1px solid var(--border);}
+.tl-en{font-size:11px;font-weight:700;color:var(--ink3);font-family:var(--font-en);margin-bottom:2px;}
+.tl-kn{font-size:18px;color:var(--ink);font-family:var(--font-kn);font-weight:700;}
+
+/* STUNNING CREATIVE SAHITYA APP SHOWCASE */
+.sahitya-hero-card{
+  background: linear-gradient(135deg, #0b1329 0%, #1e1b4b 45%, #3b0712 100%);
+  border: 1px solid #4338ca;
+  border-radius: 16px;
+  padding: 28px;
+  color: #fff;
+  margin: 28px 0 24px;
+  box-shadow: 0 10px 30px -5px rgba(30, 27, 75, 0.4), 0 0 0 1px rgba(255,255,255,0.08) inset;
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+@media(max-width:768px){
+  .sahitya-hero-card{
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 22px;
+    gap: 20px;
+  }
+}
+.sahitya-mockup-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sahitya-phone-frame{
+  width: 120px;
+  height: 180px;
+  border-radius: 18px;
+  border: 3px solid #6366f1;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.6), 0 0 16px rgba(99, 102, 241, 0.4);
+  overflow: hidden;
+  background: #000;
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+.sahitya-phone-frame:hover{
+  transform: rotate(0deg) scale(1.04);
+}
+.sahitya-phone-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sahitya-badge-row{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+@media(max-width:768px){
+  .sahitya-badge-row{justify-content: center;}
+}
+.sahitya-pill-pro{
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.sahitya-pill-stars{
+  background: rgba(255,255,255,0.12);
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.sahitya-title{
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.sahitya-desc{
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.sahitya-features-grid{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+@media(max-width:768px){
+  .sahitya-features-grid{justify-content: center;}
+}
+.sahitya-feat-item{
+  font-size: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sahitya-btn-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.playstore-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #2563eb;
+  color: #ffffff !important;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.45);
+  transition: all 0.2s;
+  border: 1px solid #60a5fa;
+  white-space: nowrap;
+}
+.playstore-btn:hover{
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.6);
+}
+</style>
+<script src="/seo.js" defer></script>
+<script src="/data-loader.js" defer></script>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-btn">← ಕರ್ನಾಟ</a>
+  <div style="font-size:16px;font-weight:800;color:#0f172a;">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ &amp; ಅನುವಾದ</div>
+</div>
+
+<div class="hero">
+  <h1>⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ &amp; ಅನುವಾದ ಟೂಲ್</h1>
+  <p>ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ — ನಿಖರ ಕನ್ನಡ ಅಕ್ಷರ &amp; ಅನುವಾದ ಪಡೆಯಿರಿ · ಉಚಿತ &amp; ವೇಗ</p>
+</div>
+
+<div class="wrap">
+
+  <!-- HOW TO -->
+  <div class="how-card">
+    <div style="font-size:14px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:6px;">📖 ಹೇಗೆ ಬಳಸಬೇಕು? (Quick Guide)</div>
+    <div class="how-steps">
+      <div class="how-step"><div class="hs-num">1</div><div class="hs-text">ಎಡಗಡೆ ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ<br><strong>ಉದಾ: "avinasha karnataka"</strong></div></div>
+      <div class="how-step"><div class="hs-num">2</div><div class="hs-text">ಸ್ಪೇಸ್ ಒತ್ತಿ — ಬಲಗಡೆ ಕನ್ನಡ ತಕ್ಷಣ ಬರುತ್ತದೆ<br><strong>→ "ಅವಿನಾಶ ಕರ್ನಾಟಕ"</strong></div></div>
+      <div class="how-step"><div class="hs-num">3</div><div class="hs-text">ಕಾಪಿ ಬಟನ್ ಒತ್ತಿ ಎಲ್ಲಿ ಬೇಕಾದರೂ ಬಳಸಿ<br><strong>WhatsApp, Email, Facebook</strong></div></div>
+    </div>
+  </div>
+
+  <!-- MODE TABS -->
+  <div class="mode-tabs">
+    <div class="mode-tab active" id="tab-translit" onclick="setMode('transliterate',this)">⌨️ ಇಂಗ್ಲಿಷ್ → ಕನ್ನಡ ಟೈಪಿಂಗ್ (Phonetic)</div>
+    <div class="mode-tab" id="tab-translate" onclick="setMode('translate',this)">🌐 ಇಂಗ್ಲಿಷ್ → ಕನ್ನಡ ಅನುವಾದ (Translate)</div>
+    <div class="mode-tab" id="tab-kb" onclick="setMode('keyboard',this)">🔤 ಕನ್ನಡ ಕೀಬೋರ್ಡ್ (Keyboard)</div>
+  </div>
+
+  <!-- EDITOR -->
+  <div class="editor-card">
+    <div class="editor-toolbar">
+      <button class="tb-btn primary" onclick="copyOutput()">📋 ಕಾಪಿ ಮಾಡಿ (Copy)</button>
+      <button class="tb-btn" onclick="clearAll()">🗑️ ಅಳಿಸಿ (Clear)</button>
+      <button class="tb-btn blue" id="translate-now-btn" style="display:none;" onclick="triggerTranslation()">🔄 ಅನುವಾದಿಸಿ (Translate)</button>
+      <button class="tb-btn" onclick="downloadText()">⬇️ ಡೌನ್‌ಲೋಡ್</button>
+      <button class="tb-btn" onclick="shareText()">📤 ಹಂಚಿ</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" onclick="changeFontSize(1)">A+</button>
+      <button class="tb-btn" onclick="changeFontSize(-1)">A-</button>
+      <div class="char-count"><span id="char-count">0</span> ಅಕ್ಷರಗಳು</div>
+    </div>
+    <div class="editor-area">
+      <div class="editor-pane">
+        <div class="pane-label"><span class="flag">🇬🇧</span> <span id="input-label-text">English Input (ಇಂಗ್ಲಿಷ್ ಟೈಪ್ ಮಾಡಿ)</span></div>
+        <textarea class="input-area" id="input-area"
+          placeholder="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ... (ಉದಾ: avinasha, karnataka, namaskara, hege iddeera?)"
+          oninput="handleInput(this.value)"
+          onkeydown="handleKeydown(event)"></textarea>
+      </div>
+      <div class="editor-pane">
+        <div class="pane-label"><span class="flag">🇮🇳</span> <span id="output-label-text">ಕನ್ನಡ ಫಲಿತಾಂಶ (Kannada Output)</span></div>
+        <textarea class="output-area" id="output-area" readonly placeholder="ಇಲ್ಲಿ ಕನ್ನಡ ಬರುತ್ತದೆ..."></textarea>
+      </div>
+    </div>
+    <div class="suggestions" id="suggestions">
+      <span class="sug-title">💡 ಸಲಹೆಗಳು (Suggestions):</span>
+      <span style="font-size:13px;color:var(--ink3);">ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿದಾಗ ಕನ್ನಡ ಶಬ್ದಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿ ಬರುತ್ತದೆ...</span>
+    </div>
+  </div>
+
+  <!-- KEYBOARD -->
+  <div class="keyboard-card" id="keyboard-section" style="display:none">
+    <div class="kb-title">⌨️ ಕನ್ನಡ ಅಕ್ಷರಮಾಲೆ ಕೀಬೋರ್ಡ್ (Click to Type)</div>
+    <!-- Vowels -->
+    <div class="kb-row" id="kb-vowels"></div>
+    <!-- Consonants row 1 -->
+    <div class="kb-row" id="kb-cons1"></div>
+    <div class="kb-row" id="kb-cons2"></div>
+    <div class="kb-row" id="kb-cons3"></div>
+    <div class="kb-row" id="kb-cons4"></div>
+    <!-- Special row -->
+    <div class="kb-row">
+      <div class="key special wide" onclick="kbBackspace()">Del ⌫</div>
+      <div class="key space" onclick="kbType(' ')">ಸ್ಪೇಸ್ (Space)</div>
+      <div class="key special wide" onclick="copyOutput()">ಕಾಪಿ 📋</div>
+    </div>
+  </div>
+
+  <!-- QUICK PHRASES -->
+  <div class="phrases-card">
+    <div style="font-size:14px;font-weight:800;margin-bottom:4px;color:var(--ink);">💬 ನಿತ್ಯ ಬಳಕೆಯ ಕನ್ನಡ ವಾಕ್ಯಗಳು — ಕ್ಲಿಕ್ ಮಾಡಿ ಸೇರಿಸಿ</div>
+    <div class="phrases-grid" id="phrases-grid"></div>
+  </div>
+
+  <!-- TRANSLITERATION TABLE -->
+  <div class="translit-card">
+    <div style="font-size:14px;font-weight:800;color:var(--ink);">📖 ಫೋನೆಟಿಕ್ ಲಿಪ್ಯಂತರಣ ಮಾರ್ಗದರ್ಶಿ (Phonetic Guide)</div>
+    <div style="font-size:12px;color:var(--ink3);margin:4px 0 0;font-family:var(--font-en)">Type these English letters to get accurate Kannada characters</div>
+    <div class="tl-grid" id="tl-guide"></div>
+  </div>
+
+  <!-- CREATIVE SAHITYA KANNADA KEYBOARD APP PROMOTION CARD -->
+  <div class="sahitya-hero-card">
+    <div class="sahitya-mockup-wrap">
+      <div class="sahitya-phone-frame">
+        <img class="sahitya-phone-img" src="https://play-lh.googleusercontent.com/KbzpcldeEU32xhrsLlLh_ev7Ep1GGWeEsexQYksuj6yk_hOM6W8ScVavwpXVqhJHCIOBLJggD7dXJ9pApWb1=w480-h960-rw" alt="Sahitya Kannada Keyboard App Screenshot" loading="lazy">
+      </div>
+    </div>
+    <div>
+      <div class="sahitya-badge-row">
+        <span class="sahitya-pill-pro">★ ಅಧಿಕೃತ ಮೊಬೈಲ್ ಆ್ಯಪ್</span>
+        <span class="sahitya-pill-stars">⭐⭐⭐⭐⭐ 4.8 / 5.0</span>
+      </div>
+      <h2 class="sahitya-title">ಸಾಹಿತ್ಯ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ (Sahitya Kannada Keyboard)</h2>
+      <p class="sahitya-desc">ನಿಮ್ಮ ಆಂಡ್ರಾಯ್ಡ್ ಮೊಬೈಲ್‌ನಲ್ಲಿ ವಾಟ್ಸಾಪ್, ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ ಮತ್ತು ಫೇಸ್‌ಬುಕ್‌ನಲ್ಲಿ ವೇಗವಾಗಿ ಹಾಗೂ ಸುಲಭವಾಗಿ ಕನ್ನಡ ಟೈಪ್ ಮಾಡಲು ಸಾಹಿತ್ಯ ಕೀಬೋರ್ಡ್ ಬಳಸಿ.</p>
+      <div class="sahitya-features-grid">
+        <span class="sahitya-feat-item">⚡ ವೇಗದ ಫೋನೆಟಿಕ್ ಟೈಪಿಂಗ್</span>
+        <span class="sahitya-feat-item">🎙️ ಕನ್ನಡ ಧ್ವನಿ ಬೆರಳಚ್ಚು</span>
+        <span class="sahitya-feat-item">🎨 ಆಕರ್ಷಕ ಥೀಮ್‌ಗಳು</span>
+        <span class="sahitya-feat-item">📴 100% ಆಫ್‌ಲೈನ್ ಬೆಂಬಲ</span>
+      </div>
+    </div>
+    <div class="sahitya-btn-wrap">
+      <a href="https://play.google.com/store/apps/details?id=com.sahitya.keyboard&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="playstore-btn">
+        <svg style="width: 22px; height: 22px; fill: currentColor;" viewBox="0 0 24 24">
+          <path d="M3.609 1.814L13.792 12 3.61 22.186a2.408 2.408 0 0 1-.225-.26 2.378 2.378 0 0 1-.385-1.328V3.402c0-.503.14-.972.385-1.328.069-.096.146-.184.224-.26zm11.238 11.24L17.2 15.41l-10.742 6.2c-.37.213-.787.327-1.21.327-.123 0-.244-.01-.363-.032l9.962-8.85zm0-2.108L4.885 2.096A2.37 2.37 0 0 1 5.248 2.067c.423 0 .84.114 1.21.327L17.2 8.59l-2.353 2.356zM18.254 9.2l2.361 1.363a1.602 1.602 0 0 1 0 2.874L18.254 14.8l-1.637-1.637 1.637-1.637z"/>
+        </svg>
+        Play Store ನಲ್ಲಿ ಡೌನ್‌ಲೋಡ್
+      </a>
+      <span style="font-size:11px;color:#94a3b8;">10,000+ ಕನ್ನಡಿಗರ ನೆಚ್ಚಿನ ಆ್ಯಪ್</span>
+    </div>
+  </div>
+
+  <!-- COMPREHENSIVE ENGLISH TO KANNADA TYPING & UNICODE MANUAL ARTICLE -->
+  <article class="article-container font-kannada" style="line-height: 1.85; color: #222; font-size: 16px; margin-top: 30px; padding: 25px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: var(--shadow);">
+
+    <header>
+      <h1 style="font-size: 28px; color: #0f172a; margin-bottom: 12px; font-weight: 700;">ಇಂಗ್ಲಿಷ್ನಿಂದ ಕನ್ನಡ ಟೈಪಿಂಗ್, ಯುನಿಕೋಡ್ ತಂತ್ರಜ್ಞಾನ, ಫೋನೆಟಿಕ್ ನಿಯಮಾವಳಿ ಮತ್ತು ಡಿಜಿಟಲ್ ಕನ್ನಡದ ಸಮಗ್ರ ಕೈಪಿಡಿ (English to Kannada Typing &amp; Unicode Manual)</h1>
+      <p style="color: #64748b; font-size: 14px; margin-bottom: 24px;">ಪ್ರಕಟಣೆ: Karnata.in ಭಾಷಾ ತಂತ್ರಜ್ಞಾನ ವಿಭಾಗ | ಕೊನೆಯ ನವೀಕರಣ: 2026</p>
+    </header>
+
+    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin-bottom: 25px;">
+
+    <!-- SECTION 1 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">1. ಪೀಠಿಕೆ: ಡಿಜಿಟಲ್ ಯುಗದಲ್ಲಿ ಕನ್ನಡ ಭಾಷೆಯ ಮಹತ್ವ</h2>
+      <p>ಕನ್ನಡವು ಎರಡು ಸಾವಿರಕ್ಕೂ ಹೆಚ್ಚು ವರ್ಷಗಳ ಭವ್ಯ ಇತಿಹಾಸ ಮತ್ತು ಶ್ರೀಮಂತ ಸಾಹಿತ್ಯ ಪರಂಪರೆಯನ್ನು ಹೊಂದಿರುವ ಭಾರತದ ಶಾಸ್ತ್ರೀಯ ಭಾಷೆಗಳಲ್ಲಿ (Classical Language) ಒಂದಾಗಿದೆ. ಪ್ರಾಚೀನ ಕಾಲದ ಕಲ್ಲಿನ ಶಾಸನಗಳು, ತಾಳೆಗರಿಗಳು, ಕಾಗದದ ಮುದ್ರಣಾಲಯಗಳಿಂದ ಹಿಡಿದು ಇಂದಿನ ಇಂಟರ್ನೆಟ್, ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳು, ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ (AI) ಮತ್ತು ಸ್ಮಾರ್ಟ್ಫೋನ್ಗಳವರೆಗೆ ಕನ್ನಡ ಭಾಷೆಯು ನಿರಂತರವಾಗಿ ಕಾಲಕ್ಕೆ ತಕ್ಕಂತೆ ವಿಕಸನಗೊಳ್ಳುತ್ತಾ ಬಂದಿದೆ.</p>
+
+      <p>ಇಂದಿನ ಡಿಜಿಟಲ್ ಜಗತ್ತಿನಲ್ಲಿ ಬ್ಲಾಗ್ ಬರೆಯಲು, ವಾಟ್ಸಾಪ್ (WhatsApp), ಫೇಸ್ಬುಕ್ (Facebook), ಇನ್ಸ್ಟಾಗ್ರಾಮ್ (Instagram), ಎಕ್ಸ್ (Twitter/X) ಗಳಲ್ಲಿ ಅಭಿಪ್ರಾಯ ಹಂಚಿಕೊಳ್ಳಲು, ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್ಗಳಾದ 'ಭೂಮಿ', 'ಸೇವಾ ಸಿಂಧು' ಅರ್ಜಿಗಳನ್ನು ಭರ್ತಿ ಮಾಡಲು ಅಥವಾ ಶಾಲಾ-ಕಾಲೇಜುಗಳ ಪ್ರಾಜೆಕ್ಟ್ ವರದಿಗಳನ್ನು ತಯಾರಿಸಲು ಕನ್ನಡ ಟೈಪಿಂಗ್ ಕೌಶಲ ಅತ್ಯಗತ್ಯ. ಆದರೆ ಸಾಂಪ್ರದಾಯಿಕ ಟೈಪ್ರೈಟರ್ ಅಥವಾ ಸಂಕೀರ್ಣ ಕೀಬೋರ್ಡ್ ಲೇಔಟ್ ಕಲಿಯುವುದು ಎಲ್ಲರಿಗೂ ಸುಲಭವಲ್ಲ. ಈ ಕೊರತೆಯನ್ನು ನೀಗಿಸಲು <strong>ಇಂಗ್ಲಿಷ್ನಿಂದ ಕನ್ನಡ ಫೋನೆಟಿಕ್ ಲಿಪ್ಯಂತರಣ (English to Kannada Phonetic Transliteration)</strong> ತಂತ್ರಜ್ಞಾನವು ಕನ್ನಡಿಗರಿಗೆ ಅತ್ಯಂತ ಸರಳ ಮತ್ತು ಶಕ್ತಿಶಾಲಿ ಮಾಧ್ಯಮವಾಗಿ ಹೊರಹೊಮ್ಮಿದೆ.</p>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">2. ಆಸ್ಕಿ (ASCII / Nudi / Baraha) vs ಯುನಿಕೋಡ್ (Unicode UTF-8): ಕ್ರಾಂತಿಕಾರಿ ಬದಲಾವಣೆ</h2>
+      <p>ಗಣಕಯಂತ್ರದಲ್ಲಿ ಕನ್ನಡದ ಬಳಕೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಆಸ್ಕಿ (ASCII) ಮತ್ತು ಯುನಿಕೋಡ್ (Unicode) ನಡುವಿನ ವ್ಯತ್ಯಾಸವನ್ನು ತಿಳಿಯುವುದು ಅತಿ ಮುಖ್ಯ:</p>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px;">
+          <thead>
+            <tr style="background: #0f172a; color: #ffffff; text-align: left;">
+              <th style="padding: 10px; border: 1px solid #cbd5e1;">ಮಾನದಂಡ</th>
+              <th style="padding: 10px; border: 1px solid #cbd5e1;">ಹಳೆಯ ಆಸ್ಕಿ ಫಾಂಟ್ಗಳು (Nudi / Baraha / ANSI)</th>
+              <th style="padding: 10px; border: 1px solid #cbd5e1;">ಆಧುನಿಕ ಯುನಿಕೋಡ್ (Unicode UTF-8 - Karnata.in)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಫಾಂಟ್ ಅವಲಂಬನೆ</strong></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ಓದುಗರ ಕಂಪ್ಯೂಟರ್ನಲ್ಲಿ ನಿರ್ದಿಷ್ಟ ಫಾಂಟ್ (Nudi 01 e, Baraha) ಇರಲೇಬೇಕು. ಇಲ್ಲದಿದ್ದರೆ ಪಠ್ಯ ಗೀಚುಗೀಚಾಗಿ (Jumbled English) ಕಾಣುತ್ತದೆ.</td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಯಾವುದೇ ಫಾಂಟ್ ಇನ್ಸ್ಟಾಲ್ ಮಾಡುವ ಅಗತ್ಯವಿಲ್ಲ.</strong> ಪ್ರಪಂಚದ ಯಾವುದೇ ಮೊಬೈಲ್, ಬ್ರೌಸರ್, ಆಪರೇಟಿಂಗ್ ಸಿಸ್ಟಂನಲ್ಲಿ ಸ್ಪಷ್ಟವಾಗಿ ತೆರೆದುಕೊಳ್ಳುತ್ತದೆ.</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ವೆಬ್ &amp; ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳು</strong></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ಫೇಸ್ಬುಕ್, ವಾಟ್ಸಾಪ್, ಟ್ವಿಟರ್ ಅಥವಾ ಇಮೇಲ್ನಲ್ಲಿ ನೇರವಾಗಿ ಪೋಸ್ಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.</td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ನೇರವಾಗಿ ಕಾಪಿ ಮಾಡಿ ವಾಟ್ಸಾಪ್, ಇಮೇಲ್, ಯೂಟ್ಯೂಬ್ ಕಾಮೆಂಟ್ಗಳಲ್ಲಿ ಸುಲಭವಾಗಿ ಬಳಸಬಹುದು.</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಗೂಗಲ್ ಹುಡುಕಾಟ (SEO &amp; Search)</strong></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ಗೂಗಲ್ ಸರ್ಚ್ ಇಂಜಿನ್ ಈ ಪಠ್ಯವನ್ನು ಕನ್ನಡವೆಂದು ಗುರುತಿಸುವುದಿಲ್ಲ. ಹುಡುಕಾಟದಲ್ಲಿ ಫಲಿತಾಂಶ ಬರುವುದಿಲ್ಲ.</td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>100% ಎಸ್ಇಒ ಸ್ನೇಹಿ (SEO Friendly).</strong> ಗೂಗಲ್ ಕ್ರಾಲಿಂಗ್ ಮತ್ತು ಕನ್ನಡ ಸರ್ಚ್ ಇಂಡೆಕ್ಸಿಂಗ್ಗೆ ಪರಿಪೂರ್ಣ ಬೆಂಬಲ ನೀಡುತ್ತದೆ.</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ (AI) ಬೆಂಬಲ</strong></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ChatGPT ಅಥವಾ ಭಾಷಾಂತರ (Google Translate) ತಂತ್ರಜ್ಞಾನಗಳು ಓದಲು ಸಾಧ್ಯವಿಲ್ಲ.</td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;">ಎಲ್ಲಾ ಆಧುನಿಕ AI ಮಾಡೆಲ್ಗಳು, ಟೆಕ್ಸ್ಟ್-ಟು-ಸ್ಪೀಚ್ (TTS) ತಂತ್ರಜ್ಞಾನಗಳಿಗೆ ಸಂಪೂರ್ಣ ಬೆಂಬಲವಿದೆ.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">3. ಫೋನೆಟಿಕ್ ಲಿಪ್ಯಂತರಣದ ಸಮಗ್ರ ನಿಯಮಾವಳಿ ಮತ್ತು ನಿಘಂಟು (Phonetic Typing Rules)</h2>
+      <p>ಫೋನೆಟಿಕ್ ಟೈಪಿಂಗ್ ಎಂದರೆ ನೀವು ಹೇಗೆ ಉಚ್ಚರಿಸುತ್ತೀರೋ (Pronounce) ಹಾಗೆಯೇ ಇಂಗ್ಲಿಷ್ನಲ್ಲಿ ಟೈಪ್ ಮಾಡುವುದು. ನಮ್ಮ ಟೂಲ್ನಲ್ಲಿ ಕನ್ನಡದ ಪ್ರತಿಯೊಂದು ಅಕ್ಷರವನ್ನು ಹೇಗೆ ಬರೆಯಬೇಕೆಂಬ ವಿವರವಾದ ಪಟ್ಟಿ ಇಲ್ಲಿದೆ:</p>
+
+      <h3 style="font-size: 18px; color: #1e293b; margin-top: 15px;">ಎ) ಸ್ವರಗಳು (Vowels - Swaragalu):</h3>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+          <thead>
+            <tr style="background: #f1f5f9; text-align: left;">
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಕನ್ನಡ ಅಕ್ಷರ</th>
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಇಂಗ್ಲಿಷ್ ಕೀಲಿ</th>
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಉದಾಹರಣೆ ಶಬ್ದ</th>
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಕನ್ನಡ ಅಕ್ಷರ</th>
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಇಂಗ್ಲಿಷ್ ಕೀಲಿ</th>
+              <th style="padding: 8px; border: 1px solid #cbd5e1;">ಉದಾಹರಣೆ ಶಬ್ದ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಅ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">a</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">amara &rarr; ಅಮರ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಆ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">aa / A</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">aakasha &rarr; ಆಕಾಶ</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಇ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">i</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">ilu &rarr; ಇಲು</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಈ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">ee / I</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">eeshwara &rarr; ಈಶ್ವರ</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಉ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">u</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">upahara &rarr; ಉಪಹಾರ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಊ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">oo / U</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">ooru &rarr; ಊರು</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಋ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">Ru / ru</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">rushi &rarr; ಋಷಿ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಎ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">e</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">ele &rarr; ಎಲೆ</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಏ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">E / ee</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">Eka &rarr; ಏಕ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಐ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">ai</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">aidu &rarr; ಐದು</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಒ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">o</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">onte &rarr; ಒಂಟೆ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಓ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">O / oo</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">Ota &rarr; ಓಟ</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಔ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">au / ou</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">aushadha &rarr; ಔಷಧ</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>ಅಂ / ಅಃ</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">am / aha</td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">anga / namaha &rarr; ಅಂಗ / ನಮಃ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size: 18px; color: #1e293b; margin-top: 15px;">ಬಿ) ವ್ಯಂಜನಗಳು (Consonants - Vyanjanagalu):</h3>
+      <ul style="padding-left: 20px;">
+        <li><strong>ಕ ವರ್ಗ:</strong> ಕ (ka), ಖ (kha), ಗ (ga), ಘ (gha), ಙ (nga / ~ga)</li>
+        <li><strong>ಚ ವರ್ಗ:</strong> ಚ (cha), ಛ (chha / Cha), ಜ (ja), ಝ (jha), ಞ (nya / ~ja)</li>
+        <li><strong>ಟ ವರ್ಗ:</strong> ಟ (Ta), ಠ (Tha), ಡ (Da), ಢ (Dha), ಣ (Na)</li>
+        <li><strong>ತ ವರ್ಗ:</strong> ತ (ta), ಥ (tha), ದ (da), ಧ (dha), ನ (na)</li>
+        <li><strong>ಪ ವರ್ಗ:</strong> ಪ (pa), ಫ (pha / fa), ಬ (ba), ಭ (bha), ಮ (ma)</li>
+        <li><strong>ಅವರ್ಗೀಯ ವ್ಯಂಜನಗಳು:</strong> ಯ (ya), ರ (ra), ಲ (la), ವ (va / wa), ಶ (sha), ಷ (Sha / sha), ಸ (sa), ಹ (ha), ಳ (La / Laa), ಕ್ಷ (ksha), ಜ್ಞ (dnya / gnya)</li>
+      </ul>
+
+      <h3 style="font-size: 18px; color: #1e293b; margin-top: 15px;">ಸಿ) ಒತ್ತಕ್ಷರಗಳು ಮತ್ತು ಅರ್ಕಾವತ್ತು (Ottakshara &amp; Arkavattu Rules):</h3>
+      <p>ಕನ್ನಡದಲ್ಲಿ ಸಂಯುಕ್ತಾಕ್ಷರಗಳನ್ನು (ಒತ್ತಕ್ಷರ) ರಚಿಸಲು ಎರಡು ವ್ಯಂಜನಗಳ ನಡುವೆ ಯಾವುದೇ ಸ್ವರವಿಲ್ಲದೆ ಸತತವಾಗಿ ಟೈಪ್ ಮಾಡಬೇಕು:</p>
+      <div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 12px; margin: 10px 0;">
+        <ul style="margin: 0; padding-left: 15px;">
+          <li><strong>ಕರ್ನಾಟಕ:</strong> k-a-r-n-a-a-t-a-k-a &rarr; <code>karnataka</code></li>
+          <li><strong>ಅಮ್ಮ:</strong> a-m-m-a &rarr; <code>amma</code></li>
+          <li><strong>ಸ್ವಾತಂತ್ರ್ಯ:</strong> s-w-a-t-a-n-t-r-y-a &rarr; <code>swatantrya</code></li>
+          <li><strong>ರಾಷ್ಟ್ರ:</strong> r-a-a-s-h-t-r-a &rarr; <code>raashtra</code></li>
+          <li><strong>ಅರ್ಕಾವತ್ತು (ರ್ಯ):</strong> r-y-a &rarr; <code>rya</code> (ಸೂರ್ಯ = <code>soorya</code>, ಕಾರ್ಯ = <code>kaarya</code>)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">4. ವಿವಿಧ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ ಮಾದರಿಗಳ ತುಲನಾತ್ಮಕ ವಿಶ್ಲೇಷಣೆ</h2>
+      <p>ಕಂಪ್ಯೂಟರ್ ಮತ್ತು ಮೊಬೈಲ್ಗಳಲ್ಲಿ ಲಭ್ಯವಿರುವ 3 ಪ್ರಮುಖ ಕೀಬೋರ್ಡ್ ವಿಧಾನಗಳು:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 20px 0;">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px;">
+          <h4 style="color: #0f172a; margin-top: 0;">1. ಫೋನೆಟಿಕ್ ಟ್ರಾನ್ಸ್ಲಿಟರೇಶನ್ (Karnata.in Tool)</h4>
+          <p style="font-size: 14px;"><strong>ಅತ್ಯಂತ ಸರಳ &amp; ಜನಪ್ರಿಯ.</strong> ಇಂಗ್ಲಿಷ್ ಕೀಬೋರ್ಡ್ ಗೊತ್ತಿರುವ ಯಾರು ಬೇಕಾದರೂ ಯಾವುದೇ ತರಬೇತಿಯಿಲ್ಲದೆ ತಕ್ಷಣವೇ ಕನ್ನಡ ಟೈಪ್ ಮಾಡಬಹುದು. ವೇಗ ಮತ್ತು ಕರಾರುವಾಕ್ಕುತನ ಅತ್ಯುತ್ತಮವಾಗಿದೆ.</p>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px;">
+          <h4 style="color: #0f172a; margin-top: 0;">2. ಕೆ.ಜಿ.ಪಿ / ನುಡಿ ಲೇಔಟ್ (KGP / Nudi Layout)</h4>
+          <p style="font-size: 14px;">ಕನ್ನಡ ಗಣಕ ಪರಿಷತ್ (KGP) ವಿನ್ಯಾಸಗೊಳಿಸಿದ ಲೇಔಟ್. ಸರ್ಕಾರಿ ಕಚೇರಿಗಳಲ್ಲಿ ಕ್ಲರ್ಕ್ಗಳು ಮತ್ತು ಬೆರಳಚ್ಚುಗಾರರು (DTP Operators) ಬಳಸುತ್ತಾರೆ. ಇದನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಕಲಿಯುವುದು ಅನಿವಾರ್ಯ.</p>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px;">
+          <h4 style="color: #0f172a; margin-top: 0;">3. ಇನ್ಸ್ಕ್ರಿಪ್ಟ್ ಕೀಬೋರ್ಡ್ (Inscript Layout)</h4>
+          <p style="font-size: 14px;">ಭಾರತ ಸರ್ಕಾರವು ಎಲ್ಲಾ ಭಾರತೀಯ ಭಾಷೆಗಳಿಗೆ ರೂಪಿಸಿದ ಪ್ರಮಾಣಿತ ಲೇಔಟ್. ಎಡಗೈಯಲ್ಲಿ ಸ್ವರಗಳು ಮತ್ತು ಬಲಗೈಯಲ್ಲಿ ವ್ಯಂಜನಗಳಿರುತ್ತವೆ. ಮೊಬೈಲ್ ಜಿಬೋರ್ಡ್ನಲ್ಲಿ (Gboard) ಲಭ್ಯವಿದೆ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">5. ಕರ್ನಾಟಕ ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್ಗಳಲ್ಲಿ ಯುನಿಕೋಡ್ ಕನ್ನಡದ ಬಳಕೆ</h2>
+      <p>ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಎಲ್ಲಾ ಅಧಿಕೃತ ತಂತ್ರಾಂಶಗಳು ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸೇವಾ ಪೋರ್ಟಲ್ಗಳು ಈಗ ಕಡ್ಡಾಯವಾಗಿ ಯುನಿಕೋಡ್ (Unicode) ಮಾನದಂಡಕ್ಕೆ ಬದಲಾಗಿವೆ:</p>
+      <ul style="padding-left: 20px;">
+        <li><strong>ಭೂಮಿ (Bhoomi Portal):</strong> ಪಹಣಿ (RTC), ಮ್ಯುಟೇಶನ್ ಮತ್ತು ಲ್ಯಾಂಡ್ ರೆಕಾರ್ಡ್ಗಳಲ್ಲಿ ರೈತರ ಹೆಸರುಗಳನ್ನು ಯುನಿಕೋಡ್ ಕನ್ನಡದಲ್ಲಿ ನಮೂದಿಸಲಾಗುತ್ತದೆ.</li>
+        <li><strong>ಕಾವೇರಿ 2.0 (Kaveri 2.0):</strong> ಆಸ್ತಿ ನೋಂದಣಿ, ಜಿಪಿಎ (GPA) ಮತ್ತು ಕ್ರಯಪತ್ರಗಳಲ್ಲಿ (Sale Deed) ನಿಖರ ಕನ್ನಡ ಪಠ್ಯ ಕಡ್ಡಾಯ.</li>
+        <li><strong>ಸೇವಾ ಸಿಂಧು &amp; ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು:</strong> ಗೃಹಲಕ್ಷ್ಮಿ, ಯುವನಿಧಿ, ಗೃಹಜ್ಯೋತಿ ಅರ್ಜಿಗಳಲ್ಲಿ ಫಲಾನುಭವಿಗಳ ವಿವರಗಳನ್ನು ಕನ್ನಡದಲ್ಲಿ ಸಲ್ಲಿಸಲು ಯುನಿಕೋಡ್ ಟೈಪಿಂಗ್ ಅಗತ್ಯ.</li>
+        <li><strong>KPSC &amp; KEA ಪರೀಕ್ಷಾ ಪೋರ್ಟಲ್ಗಳು:</strong> ಸ್ಪರ್ಧಾತ್ಮಕ ಪರೀಕ್ಷೆಗಳ ಅರ್ಜಿ ಸಲ್ಲಿಕೆ ಮತ್ತು ಆನ್ಲೈನ್ ಆಕ್ಷೇಪಣೆ ಸಲ್ಲಿಸಲು ಯುನಿಕೋಡ್ ಕನ್ನಡವೇ ಅಧಿಕೃತ.</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">6. ಸಾಮಾನ್ಯ ಟೈಪಿಂಗ್ ದೋಷಗಳು ಮತ್ತು ಅವುಗಳನ್ನು ಸರಿಪಡಿಸುವ ಸುಲಭ ವಿಧಾನಗಳು</h2>
+      <ol style="padding-left: 20px;">
+        <li><strong>ಹ್ರಸ್ವ ಮತ್ತು ದೀರ್ಘ ಸ್ವರಗಳ ಗೊಂದಲ:</strong> 'ಮನೆ' ಬರೆಯಲು <code>mane</code> ಟೈಪ್ ಮಾಡಬೇಕು, 'ಮಾನೆ' ಬರೆಯಲು <code>maane</code> ಅಥವಾ <code>mAne</code> ಟೈಪ್ ಮಾಡಬೇಕು. 'ಕನ್ನಡ' ಬರೆಯಲು <code>kannada</code> ಸಾಕು, ಅನಗತ್ಯವಾಗಿ <code>kannAda</code> ಎಂದು ಬರೆಯಬೇಡಿ.</li>
+        <li><strong>'ಳ' ಮತ್ತು 'ಲ' ವ್ಯತ್ಯಾಸ:</strong> 'ಕಾಲು' (Leg) ಬರೆಯಲು <code>kaalu</code> ಟೈಪ್ ಮಾಡಿ. 'ಕಾಳು' (Grain) ಬರೆಯಲು ಕ್ಯಾಪಿಟಲ್ 'L' ಬಳಸಿ <code>kaaLu</code> ಎಂದು ಟೈಪ್ ಮಾಡಿ.</li>
+        <li><strong>'ಶ' ಮತ್ತು 'ಷ' ವ್ಯತ್ಯಾಸ:</strong> 'ಶಾಲೆ' ಬರೆಯಲು <code>shaale</code> ಟೈಪ್ ಮಾಡಿ. 'ಕಷ್ಟ' ಬರೆಯಲು <code>kashTa</code> ಅಥವಾ <code>kaSTa</code> ಎಂದು ಟೈಪ್ ಮಾಡಿ.</li>
+        <li><strong>ಅರ್ಧಾಕ್ಷರ (ವಿರಾಮ ಚಿಹ್ನೆ - Halant):</strong> ಯಾವುದೇ ಅಕ್ಷರವನ್ನು ಕೇವಲ ಅರ್ಧಾಕ್ಷರವಾಗಿ (ಉದಾ: ಕ್, ನ್, ತ್) ನಿಲ್ಲಿಸಲು ಅಕ್ಷರದ ಮುಂದೆ ಬ್ಯಾಕ್ಸ್ಲಾಶ್ ಅಥವಾ ಹಾಲಂತ್ ಕೋಡ್ ಬಳಸಿ.</li>
+      </ol>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">7. Karnata.in ಕನ್ನಡ ಟೈಪಿಂಗ್ ಟೂಲ್ ಬಳಸುವ ವಿಧಾನ</h2>
+      <p>ನಮ್ಮ ಆನ್ಲೈನ್ ಟೂಲ್ ಮೂಲಕ ಕ್ಷಣಾರ್ಧದಲ್ಲಿ ಕನ್ನಡ ಪಠ್ಯವನ್ನು ರಚಿಸಲು ಈ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ:</p>
+      <ul style="padding-left: 20px;">
+        <li><strong>ಹಂತ 1:</strong> ಪಠ್ಯ ಪೆಟ್ಟಿಗೆಯಲ್ಲಿ (Text Area) ಇಂಗ್ಲಿಷ್ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ (ಉದಾಹರಣೆಗೆ: <code>ellarigoo namaskara</code>).</li>
+        <li><strong>ಹಂತ 2:</strong> ಪ್ರತಿ ಶಬ್ದ ಮುಗಿದ ನಂತರ <strong>ಸ್ಪೇಸ್ ಬಾರ್ (Spacebar)</strong> ಅಥವಾ ಎಂಟರ್ ಕೀ ಒತ್ತಿರಿ. ಆ ಶಬ್ದವು ತಕ್ಷಣವೇ ಶುದ್ಧ ಯುನಿಕೋಡ್ ಕನ್ನಡಕ್ಕೆ (<strong>ಎಲ್ಲರಿಗೂ ನಮಸ್ಕಾರ</strong>) ಬದಲಾಗುತ್ತದೆ.</li>
+        <li><strong>ಹಂತ 3:</strong> ನೀವು ಬರೆದ ಪಠ್ಯವನ್ನು ಒಂದೇ ಕ್ಲಿಕ್ನಲ್ಲಿ <strong>'Copy'</strong> ಬಟನ್ ಒತ್ತಿ ಕಾಪಿ ಮಾಡಿಕೊಂಡು ಎಲ್ಲಿ ಬೇಕಾದರೂ ಪೇಸ್ಟ್ ಮಾಡಿಕೊಳ್ಳಿ.</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 8: FAQS -->
+    <section>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 25px; font-weight: 600;">8. ಕನ್ನಡ ಟೈಪಿಂಗ್ ಕುರಿತು ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (FAQs)</h2>
+
+      <div style="margin-top: 15px;">
+        <h3 style="font-size: 16px; color: #0f172a; margin-bottom: 5px;">ಪ್ರಶ್ನೆ 1: ಈ ಟೂಲ್ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿದ ಪಠ್ಯವನ್ನು MS Word ಮತ್ತು Excel ನಲ್ಲಿ ಬಳಸಬಹುದೇ?</h3>
+        <p style="margin-top: 0; color: #475569;">ಖಂಡಿತವಾಗಿ ಬಳಸಬಹುದು. ಈ ಪಠ್ಯವು 100% ಯುನಿಕೋಡ್ ಆಗಿರುವುದರಿಂದ ಮೈಕ್ರೋಸಾಫ್ಟ್ ವರ್ಡ್, ಎಕ್ಸೆಲ್, ಪವರ್ಪಾಯಿಂಟ್, ಅಡೋಬ್ ಫೋಟೋಶಾಪ್ (Unicode Mode) ಮತ್ತು ಇನ್ಡಿಸೈನ್ ಸಾಫ್ಟ್ವೇರ್ಗಳಲ್ಲಿ ಯಾವುದೇ ತೊಂದರೆಯಿಲ್ಲದೆ ಪೇಸ್ಟ್ ಮಾಡಬಹುದು.</p>
+
+        <h3 style="font-size: 16px; color: #0f172a; margin-bottom: 5px;">ಪ್ರಶ್ನೆ 2: ಮೊಬೈಲ್ ಫೋನ್ನಲ್ಲಿಯೂ ಈ ವೆಬ್ ಟೂಲ್ ಕೆಲಸ ಮಾಡುತ್ತದೆಯೇ?</h3>
+        <p style="margin-top: 0; color: #475569;">ಹೌದು, ಆಂಡ್ರಾಯ್ಡ್ ಮತ್ತು ಐಫೋನ್ (iOS) ಎರಡರಲ್ಲೂ ಯಾವುದೇ ವಿಶೇಷ ಆ್ಯಪ್ ಡೌನ್ಲೋಡ್ ಮಾಡದೆಯೇ ನಿಮ್ಮ ಸಾಮಾನ್ಯ ಇಂಗ್ಲಿಷ್ ಕೀಬೋರ್ಡ್ ಬಳಸಿ ಸುಲಭವಾಗಿ ಕನ್ನಡ ಟೈಪ್ ಮಾಡಬಹುದು.</p>
+
+        <h3 style="font-size: 16px; color: #0f172a; margin-bottom: 5px;">ಪ್ರಶ್ನೆ 3: ಹಳೆಯ ನುಡಿ/ಬರಹ ಪಠ್ಯವನ್ನು ಯುನಿಕೋಡ್ಗೆ ಕನ್ವರ್ಟ್ ಮಾಡಲು ಸಾಧ್ಯವೇ?</h3>
+        <p style="margin-top: 0; color: #475569;">ಹೌದು, ಹಳೆಯ ಆಸ್ಕಿ (ASCII) ಫಾಂಟ್ಗಳಲ್ಲಿ ಬರೆಯಲಾದ ನುಡಿ ಕಡತಗಳನ್ನು ಆಧುನಿಕ ಯುನಿಕೋಡ್ ಫಾಂಟ್ಗೆ ಬದಲಾಯಿಸಲು 'ASCII to Unicode Font Converter' ಉಪಕರಣಗಳನ್ನು ಬಳಸಿ ಕ್ಷಣಾರ್ಧದಲ್ಲಿ ಪರಿವರ್ತಿಸಿಕೊಳ್ಳಬಹುದು.</p>
+
+        <h3 style="font-size: 16px; color: #0f172a; margin-bottom: 5px;">ಪ್ರಶ್ನೆ 4: ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದಿದ್ದಾಗ ಕಂಪ್ಯೂಟರ್ನಲ್ಲಿ ಕನ್ನಡ ಟೈಪ್ ಮಾಡುವುದು ಹೇಗೆ?</h3>
+        <p style="margin-top: 0; color: #475569;">ವಿಂಡೋಸ್ (Windows 10/11) ಸೆಟ್ಟಿಂಗ್ಸ್ನಲ್ಲಿ 'Kannada Phonetic Keyboard' ಆನ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು ಅಥವಾ ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಅಧಿಕೃತ 'ನುಡಿ' (Nudi Engine) ತಂತ್ರಾಂಶವನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡಿ ಆಫ್ಲೈನ್ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಬಹುದು.</p>
+
+        <h3 style="font-size: 16px; color: #0f172a; margin-bottom: 5px;">ಪ್ರಶ್ನೆ 5: ಕನ್ನಡದಲ್ಲಿ ಸ್ಪೆಲ್ಲಿಂಗ್ ತಪ್ಪಾದರೆ ಡಿಜಿಟಲ್ ನಿಘಂಟು ಲಭ್ಯವಿದೆಯೇ?</h3>
+        <p style="margin-top: 0; color: #475569;">ಹೌದು, ಕನ್ನಡ ಗಣಕ ಪರಿಷತ್ ಮತ್ತು ಕಣಜ (Kanaja) ಡಿಜಿಟಲ್ ನಿಘಂಟು ತಂತ್ರಾಂಶಗಳು ಆನ್ಲೈನ್ನಲ್ಲಿ ಲಭ್ಯವಿದ್ದು, ಕ್ಲಿಷ್ಟಕರವಾದ ಕನ್ನಡ ಪದಗಳ ನಿಖರ ವ್ಯಾಕರಣ ಮತ್ತು ಅರ್ಥವನ್ನು ತಿಳಿಯಲು ನೆರವಾಗುತ್ತವೆ.</p>
+      </div>
+    </section>
+
+    <!-- SUMMARY DISCLAIMER -->
+    <footer style="margin-top: 30px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; font-size: 13px; color: #1e40af;">
+      <strong>ತಂತ್ರಜ್ಞಾನ ಮತ್ತು ಗೌಪ್ಯತಾ ಹಕ್ಕುತ್ಯಾಗ:</strong> Karnata.in ಕನ್ನಡ ಟೈಪಿಂಗ್ ತಂತ್ರಾಂಶವು ಬ್ರೌಸರ್ ಆಧಾರಿತ ನೈಜ-ಸಮಯದ ಲಿಪ್ಯಂತರಣ ಎಂಜಿನ್ (Client-side Transliteration) ಮೇಲೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ. ನೀವು ಟೈಪ್ ಮಾಡುವ ಯಾವುದೇ ವೈಯಕ್ತಿಕ ಪಠ್ಯ, ಸಂದೇಶ ಅಥವಾ ಗೌಪ್ಯ ಮಾಹಿತಿಯನ್ನು ನಮ್ಮ ಸರ್ವರ್ಗಳಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಗೌಪ್ಯತೆ 100% ಸುರಕ್ಷಿತ.
+    </footer>
+
+  </article>
+
+</div>
+
+<script>
+let fontSize = 17;
+let currentMode = 'transliterate';
+let translitCache = {};
+let translitTimer = null;
+let translateTimer = null;
+let lastActiveWord = '';
+
+// Vowel and Matra maps for accurate offline fallback
+const INDEPENDENT_VOWELS = {
+  'aa':'ಆ','a':'ಅ','A':'ಆ','ii':'ಈ','i':'ಇ','I':'ಈ','ee':'ಈ','uu':'ಊ','u':'ಉ','U':'ಊ','oo':'ಊ',
+  'ru':'ಋ','Ru':'ಋ','e':'ಎ','E':'ಏ','ee':'ಏ','ai':'ಐ','o':'ಒ','O':'ಓ','oo':'ಓ','au':'ಔ','ou':'ಔ',
+  'am':'ಅಂ','aha':'ಅಃ','ah':'ಅಃ'
+};
+
+const VOWEL_MATRAS = {
+  'aa':'ಾ','a':'','A':'ಾ','ii':'ೀ','i':'ಿ','I':'ೀ','ee':'ೀ','uu':'ೂ','u':'ು','U':'ೂ','oo':'ೂ',
+  'ru':'ೃ','Ru':'ೃ','e':'ೆ','E':'ೇ','ee':'ೇ','ai':'ೈ','o':'ೊ','O':'ೋ','oo':'ೋ','au':'ೌ','ou':'ೌ',
+  'am':'ಂ','aha':'ಃ','ah':'ಃ'
+};
+
+const CONSONANTS = {
+  'k':'ಕ್','kh':'ಖ್','g':'ಗ್','gh':'ಘ್','ng':'ಙ್','nga':'ಙ',
+  'c':'ಚ್','ch':'ಚ್','chh':'ಛ್','j':'ಜ್','jh':'ಝ್','ny':'ಞ್','nya':'ಞ',
+  'T':'ಟ್','Th':'ಠ್','D':'ಡ್','Dh':'ಢ್','N':'ಣ್',
+  't':'ತ್','th':'ಥ್','d':'ದ್','dh':'ಧ್','n':'ನ್',
+  'p':'ಪ್','ph':'ಫ್','f':'ಫ್','b':'ಬ್','bh':'ಭ್','m':'ಮ್',
+  'y':'ಯ್','r':'ರ್','l':'ಲ್','v':'ವ್','w':'ವ್','sh':'ಶ್','Sh':'ಷ್','s':'ಸ್','h':'ಹ್',
+  'L':'ಳ್','La':'ಳ','ksh':'ಕ್ಷ್','ksha':'ಕ್ಷ','gn':'ಜ್ಞ್','gnya':'ಜ್ಞ','dny':'ಜ್ಞ್'
+};
+
+// Common direct dictionary
+const QUICK_DICT = {
+  'avinash':'ಅವಿನಾಶ್','avinasha':'ಅವಿನಾಶ','vagarnaala':'ವಾಗರನಾಳ','vagarnala':'ವಾಗರನಾಲ',
+  'kannada':'ಕನ್ನಡ','karnataka':'ಕರ್ನಾಟಕ','bengaluru':'ಬೆಂಗಳೂರು','mysuru':'ಮೈಸೂರು',
+  'hubli':'ಹುಬ್ಬಳ್ಳಿ','mangaluru':'ಮಂಗಳೂರು','belagavi':'ಬೆಳಗಾವಿ','dharwad':'ಧಾರವಾಡ',
+  'kalaburagi':'ಕಲಬುರಗಿ','tumakuru':'ತುಮಕೂರು','hassan':'ಹಾಸನ','mandya':'ಮಂಡ್ಯ',
+  'kodagu':'ಕೊಡಗು','udupi':'ಉಡುಪಿ','ballari':'ಬಳ್ಳಾರಿ','koppal':'ಕೊಪ್ಪಳ',
+  'namaskara':'ನಮಸ್ಕಾರ','namaste':'ನಮಸ್ತೆ','dhanyavada':'ಧನ್ಯವಾದ','shubhashaya':'ಶುಭಾಶಯ',
+  'arogya':'ಆರೋಗ್ಯ','shala':'ಶಾಲೆ','college':'ಕಾಲೇಜು','sarkar':'ಸರ್ಕಾರ',
+  'yojane':'ಯೋಜನೆ','neeru':'ನೀರು','malle':'ಮಳೆ','benne':'ಬೆಣ್ಣೆ','haalu':'ಹಾಲು',
+  'tindi':'ತಿಂಡಿ','udyoga':'ಉದ್ಯೋಗ','vyapara':'ವ್ಯಾಪಾರ','hana':'ಹಣ','bank':'ಬ್ಯಾಂಕ್',
+  'mane':'ಮನೆ','ooru':'ಊರು','hola':'ಹೊಲ','nadi':'ನದಿ','akka':'ಅಕ್ಕ','amma':'ಅಮ್ಮ',
+  'appa':'ಅಪ್ಪ','anna':'ಅಣ್ಣ','tamma':'ತಮ್ಮ','avaru':'ಅವರು','ivaru':'ಇವರು',
+  'navu':'ನಾವು','neevu':'ನೀವು','beku':'ಬೇಕು','beda':'ಬೇಡ','ide':'ಇದೆ','illa':'ಇಲ್ಲ',
+  'chennagide':'ಚೆನ್ನಾಗಿದೆ','channagide':'ಚನ್ನಾಗಿದೆ','yenu':'ಏನು','hege':'ಹೇಗೆ','ellarigoo':'ಎಲ್ಲರಿಗೂ'
+};
+
+// Syllable based fallback transliteration
+function fallbackTransliterate(word) {
+  if (!word) return '';
+  const lower = word.toLowerCase();
+  if (QUICK_DICT[lower]) return QUICK_DICT[lower];
+
+  let out = '';
+  let i = 0;
+  while (i < word.length) {
+    let matched = false;
+
+    // Check 4, 3, 2, 1 char consonants
+    for (let cLen = 4; cLen >= 1; cLen--) {
+      if (i + cLen <= word.length) {
+        const cChunk = word.substring(i, i + cLen);
+        if (CONSONANTS[cChunk] || CONSONANTS[cChunk.toLowerCase()]) {
+          let knCons = CONSONANTS[cChunk] || CONSONANTS[cChunk.toLowerCase()];
+          let vMatch = '';
+          let vLenMatched = 0;
+
+          // Check if vowel follows this consonant
+          for (let vLen = 3; vLen >= 1; vLen--) {
+            if (i + cLen + vLen <= word.length) {
+              const vChunk = word.substring(i + cLen, i + cLen + vLen);
+              if (VOWEL_MATRAS[vChunk] !== undefined || VOWEL_MATRAS[vChunk.toLowerCase()] !== undefined) {
+                vMatch = VOWEL_MATRAS[vChunk] !== undefined ? VOWEL_MATRAS[vChunk] : VOWEL_MATRAS[vChunk.toLowerCase()];
+                vLenMatched = vLen;
+                break;
+              }
+            }
+          }
+
+          if (vLenMatched > 0) {
+            // Remove virama (್) and append matra
+            out += knCons.replace('್', '') + vMatch;
+            i += (cLen + vLenMatched);
+            matched = true;
+            break;
+          } else {
+            // Standalone consonant without explicit vowel (give inherent 'a' if not at end or virama)
+            if (i + cLen === word.length) {
+              out += knCons; // virama at word end e.g. avinash -> ಅವಿನಾಶ್
+            } else {
+              out += knCons.replace('್', ''); // inherent 'a'
+            }
+            i += cLen;
+            matched = true;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!matched) {
+      // Check independent vowels
+      for (let vLen = 3; vLen >= 1; vLen--) {
+        if (i + vLen <= word.length) {
+          const vChunk = word.substring(i, i + vLen);
+          if (INDEPENDENT_VOWELS[vChunk] || INDEPENDENT_VOWELS[vChunk.toLowerCase()]) {
+            out += INDEPENDENT_VOWELS[vChunk] || INDEPENDENT_VOWELS[vChunk.toLowerCase()];
+            i += vLen;
+            matched = true;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!matched) {
+      out += word[i];
+      i++;
+    }
+  }
+  return out;
+}
+
+// Fetch Google Input Tools Realtime Transliteration
+async function fetchGoogleTransliteration(text) {
+  if (!text || text.trim() === '') return { result: '', suggestions: [] };
+  const trimmed = text.trim();
+  if (translitCache[trimmed]) {
+    return translitCache[trimmed];
+  }
+
+  try {
+    const url = `https://inputtools.google.com/request?text=${encodeURIComponent(trimmed)}&itc=kn-t-i0-und&num=5&cp=0&cs=1`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('API Error');
+    const data = await res.json();
+    if (data && data[1] && data[1][0] && data[1][0][1]) {
+      const suggestions = data[1][0][1];
+      const payload = { result: suggestions[0], suggestions: suggestions };
+      translitCache[trimmed] = payload;
+      return payload;
+    }
+  } catch (e) {
+    // API Failed, use fallback
+  }
+
+  // Local fallback
+  const fallback = fallbackTransliterate(trimmed);
+  const payload = { result: fallback, suggestions: [fallback] };
+  translitCache[trimmed] = payload;
+  return payload;
+}
+
+// Translation Engine (Google Translate API + MyMemory Fallback)
+async function fetchTranslation(text) {
+  if (!text || text.trim() === '') return '';
+  const trimmed = text.trim();
+
+  // Try Google Translate
+  try {
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=kn&dt=t&q=${encodeURIComponent(trimmed)}`;
+    const res = await fetch(url);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data[0]) {
+        return data[0].map(s => s[0]).join('');
+      }
+    }
+  } catch (e) {}
+
+  // Fallback to MyMemory Translate
+  try {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(trimmed)}&langpair=en|kn`;
+    const res = await fetch(url);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.responseData && data.responseData.translatedText) {
+        return data.responseData.translatedText;
+      }
+    }
+  } catch (e) {}
+
+  return 'ಅನುವಾದ ಲಭ್ಯವಿಲ್ಲ (Translation unavailable)';
+}
+
+async function processFullTransliteration(val) {
+  if (!val) {
+    document.getElementById('output-area').value = '';
+    document.getElementById('suggestions').innerHTML = '<span class="sug-title">💡 ಸಲಹೆಗಳು:</span> <span style="font-size:13px;color:var(--ink3);">ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿದಾಗ ಕನ್ನಡ ಶಬ್ದಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿ ಬರುತ್ತದೆ...</span>';
+    return;
+  }
+
+  // Tokenize preserving spaces/newlines
+  const tokens = val.split(/(\s+)/);
+  const outTokens = [];
+
+  for (let t of tokens) {
+    if (/^\s+$/.test(t) || t === '') {
+      outTokens.push(t);
+    } else {
+      if (translitCache[t]) {
+        outTokens.push(translitCache[t].result);
+      } else {
+        // Immediate fallback display while fetching
+        outTokens.push(fallbackTransliterate(t));
+      }
+    }
+  }
+
+  document.getElementById('output-area').value = outTokens.join('');
+
+  // Fetch for active/uncached words
+  const words = val.split(/\s+/).filter(w => w.length > 0);
+  if (words.length > 0) {
+    const lastWord = words[words.length - 1];
+    lastActiveWord = lastWord;
+
+    const res = await fetchGoogleTransliteration(lastWord);
+    if (res && res.suggestions) {
+      renderSuggestions(res.suggestions, lastWord);
+    }
+
+    // Re-render output with updated cache
+    const finalTokens = tokens.map(t => {
+      if (/^\s+$/.test(t) || t === '') return t;
+      return translitCache[t] ? translitCache[t].result : fallbackTransliterate(t);
+    });
+    document.getElementById('output-area').value = finalTokens.join('');
+  }
+}
+
+function renderSuggestions(sugList, origWord) {
+  const container = document.getElementById('suggestions');
+  if (!sugList || sugList.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = '<span class="sug-title">💡 ಸಲಹೆಗಳು:</span> ' + sugList.map((kn) =>
+    `<button class="sug-btn" onclick="applySuggestion('${kn}','${origWord}')">${kn}</button>`
+  ).join('');
+}
+
+function applySuggestion(knWord, origWord) {
+  const input = document.getElementById('input-area');
+  const words = input.value.split(/(\s+)/);
+  
+  for (let i = words.length - 1; i >= 0; i--) {
+    if (words[i] === origWord || words[i].trim() === origWord.trim()) {
+      translitCache[words[i]] = { result: knWord, suggestions: [knWord] };
+      break;
+    }
+  }
+
+  processFullTransliteration(input.value);
+  input.focus();
+}
+
+async function triggerTranslation() {
+  const val = document.getElementById('input-area').value;
+  if (!val.trim()) return;
+
+  const outArea = document.getElementById('output-area');
+  outArea.value = '⏳ ಅನುವಾದಿಸಲಾಗುತ್ತಿದೆ... (Translating...)';
+  
+  const translation = await fetchTranslation(val);
+  outArea.value = translation;
+}
+
+function handleInput(val) {
+  document.getElementById('char-count').textContent = val.length;
+
+  if (currentMode === 'transliterate') {
+    clearTimeout(translitTimer);
+    translitTimer = setTimeout(() => {
+      processFullTransliteration(val);
+    }, 120);
+  } else if (currentMode === 'translate') {
+    const outArea = document.getElementById('output-area');
+    outArea.placeholder = 'ಅನುವಾದಕ್ಕಾಗಿ ಕಾಯಿರಿ ಅಥವಾ "ಅನುವಾದಿಸಿ" ಬಟನ್ ಒತ್ತಿ...';
+    clearTimeout(translateTimer);
+    translateTimer = setTimeout(() => {
+      triggerTranslation();
+    }, 600);
+  }
+}
+
+function handleKeydown(e) {
+  if (e.key === ' ' || e.key === 'Enter') {
+    if (currentMode === 'transliterate') {
+      processFullTransliteration(document.getElementById('input-area').value);
+    }
+  }
+}
+
+function setMode(mode, el) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+
+  const kbSection = document.getElementById('keyboard-section');
+  const transBtn = document.getElementById('translate-now-btn');
+  const inputLabel = document.getElementById('input-label-text');
+  const outputLabel = document.getElementById('output-label-text');
+
+  if (mode === 'keyboard') {
+    kbSection.style.display = 'block';
+    transBtn.style.display = 'none';
+    inputLabel.textContent = 'English Input';
+    outputLabel.textContent = 'ಕನ್ನಡ ಫಲಿತಾಂಶ';
+  } else if (mode === 'translate') {
+    kbSection.style.display = 'none';
+    transBtn.style.display = 'inline-flex';
+    inputLabel.textContent = 'English Sentence / Paragraph (ಇಂಗ್ಲಿಷ್ ವಾಕ್ಯ)';
+    outputLabel.textContent = 'ಕನ್ನಡ ಅನುವಾದ (Kannada Translation)';
+    triggerTranslation();
+  } else {
+    kbSection.style.display = 'none';
+    transBtn.style.display = 'none';
+    inputLabel.textContent = 'English Input (ಇಂಗ್ಲಿಷ್ ಟೈಪ್ ಮಾಡಿ)';
+    outputLabel.textContent = 'ಕನ್ನಡ ಫಲಿತಾಂಶ (Kannada Output)';
+    processFullTransliteration(document.getElementById('input-area').value);
+  }
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-area').value;
+  if (!text) { alert('ಯಾವುದೇ ಪಠ್ಯ ಇಲ್ಲ (No text to copy)'); return; }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.tb-btn.primary');
+    btn.textContent = '✅ ಕಾಪಿ ಆಯಿತು! (Copied)';
+    setTimeout(() => { btn.textContent = '📋 ಕಾಪಿ ಮಾಡಿ (Copy)'; }, 2000);
+  });
+}
+
+function clearAll() {
+  document.getElementById('input-area').value = '';
+  document.getElementById('output-area').value = '';
+  document.getElementById('char-count').textContent = '0';
+  document.getElementById('suggestions').innerHTML = '<span class="sug-title">💡 ಸಲಹೆಗಳು:</span> <span style="font-size:13px;color:var(--ink3);">ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಿದಾಗ ಕನ್ನಡ ಶಬ್ದಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿ ಬರುತ್ತದೆ...</span>';
+}
+
+function downloadText() {
+  const text = document.getElementById('output-area').value;
+  if (!text) return;
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'kannada-text.txt';
+  a.click();
+}
+
+function shareText() {
+  const text = document.getElementById('output-area').value;
+  if (!text) return;
+  if (navigator.share) navigator.share({ text });
+  else navigator.clipboard.writeText(text).then(() => alert('ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಕಾಪಿ ಆಯಿತು!'));
+}
+
+function changeFontSize(delta) {
+  fontSize = Math.max(13, Math.min(32, fontSize + delta));
+  document.querySelectorAll('.input-area,.output-area').forEach(el => el.style.fontSize = fontSize + 'px');
+}
+
+// Onscreen Keyboard Setup
+const vowels = ['ಅ','ಆ','ಇ','ಈ','ಉ','ಊ','ಋ','ಎ','ಏ','ಐ','ಒ','ಓ','ಔ','ಅಂ','ಅಃ'];
+const cons1 = ['ಕ','ಖ','ಗ','ಘ','ಙ','ಚ','ಛ','ಜ','ಝ','ಞ'];
+const cons2 = ['ಟ','ಠ','ಡ','ಢ','ಣ','ತ','ಥ','ದ','ಧ','ನ'];
+const cons3 = ['ಪ','ಫ','ಬ','ಭ','ಮ','ಯ','ರ','ಲ','ವ','ಶ'];
+const cons4 = ['ಷ','ಸ','ಹ','ಳ','ಕ್ಷ','ಜ್ಞ','೦','೧','೨','೩','೪','೫','೬','೭','೮','೯'];
+
+function renderKeyRow(id, chars) {
+  document.getElementById(id).innerHTML = chars.map(c =>
+    `<div class="key" onclick="kbType('${c}')">${c}</div>`
+  ).join('');
+}
+renderKeyRow('kb-vowels', vowels);
+renderKeyRow('kb-cons1', cons1);
+renderKeyRow('kb-cons2', cons2);
+renderKeyRow('kb-cons3', cons3);
+renderKeyRow('kb-cons4', cons4);
+
+function kbType(char) {
+  const out = document.getElementById('output-area');
+  out.value += char;
+  document.getElementById('char-count').textContent = out.value.length;
+}
+
+function kbBackspace() {
+  const out = document.getElementById('output-area');
+  if (out.value.length > 0) {
+    out.value = out.value.slice(0, -1);
+    document.getElementById('char-count').textContent = out.value.length;
+  }
+}
+
+// Quick phrases
+const phrases = [
+  'ನಮಸ್ಕಾರ','ಧನ್ಯವಾದಗಳು','ದಯವಿಟ್ಟು','ಕ್ಷಮಿಸಿ',
+  'ಹೌದು','ಖಂಡಿತ ಇಲ್ಲ','ಸ್ವಾಗತ','ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು',
+  'ಹೇಗಿದ್ದೀರಾ?','ನಾನು ಚೆನ್ನಾಗಿದ್ದೇನೆ',
+  'ಕರ್ನಾಟಕ ನಮ್ಮ ತಾಯ್ನಾಡು','ಜೈ ಕರ್ನಾಟಕ ಮಾತೆ',
+  'ನಿಮ್ಮ ಹೆಸರು ಏನು?','ಇಂದು ತುಂಬಾ ಸಂತೋಷದ ದಿನ',
+];
+document.getElementById('phrases-grid').innerHTML = phrases.map(p =>
+  `<button class="phrase-btn" onclick="insertPhrase('${p}')">${p}</button>`
+).join('');
+
+function insertPhrase(phrase) {
+  const out = document.getElementById('output-area');
+  out.value += (out.value ? ' ' : '') + phrase;
+  document.getElementById('char-count').textContent = out.value.length;
+}
+
+// Transliteration guide
+const guide = [
+  ['a','ಅ'],['aa / A','ಆ'],['i','ಇ'],['ee / I','ಈ'],['u','ಉ'],['oo / U','ಊ'],
+  ['e','ಎ'],['E / ee','ಏ'],['o','ಒ'],['O / oo','ಓ'],['ai','ಐ'],['au / ou','ಔ'],
+  ['ka','ಕ'],['ga','ಗ'],['na','ನ'],['ta','ತ'],['da','ದ'],['pa','ಪ'],
+  ['ba','ಬ'],['ma','ಮ'],['ya','ಯ'],['ra','ರ'],['la','ಲ'],['va','ವ'],
+  ['sha','ಶ'],['sa','ಸ'],['ha','ಹ'],['La','ಳ'],['ksha','ಕ್ಷ'],['gnya','ಜ್ಞ']
+];
+document.getElementById('tl-guide').innerHTML = guide.map(([en, kn]) =>
+  `<div class="tl-item"><div class="tl-en">${en}</div><div class="tl-kn">${kn}</div></div>`
+).join('');
+</script>
+<script src="/nav-component.js"></script>
+</body>
+</html>
+"""
+
+with open('kannada-typing.html', 'w', encoding='utf-8') as f:
+    f.write(full_html)
+print('SUCCESS_REBUILT_KANNADA_TYPING')

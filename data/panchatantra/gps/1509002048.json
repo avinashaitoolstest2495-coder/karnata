@@ -1,0 +1,210 @@
+{
+  "gp_id": "1509002048",
+  "gp_name_kn": "ವಕ್ಕಲಗೆರೆ",
+  "gp_name_en": "VAKKALAGERE",
+  "district_name_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+  "district_name_en": "CHIKKAMAGALURU",
+  "taluk_name_kn": "ಕಡೂರ",
+  "taluk_name_en": "KADUR",
+  "pin_code": "577180",
+  "lgd_code": "216888",
+  "total_staff": 9,
+  "total_beneficiaries": 2266,
+  "staff": [
+    {
+      "emp_name_kn": "ಶುಭಲಕ್ಷ್ಮಿ ಬಿ ಎಸ್",
+      "emp_name_en": "SHUBHALAXMI  B S B S",
+      "designation_kn": "ಕಾರ್ಯದರ್ಶಿ ಗ್ರೇಡ್ -1",
+      "mobile_no": "8196006276",
+      "email_id": "vakkalagere.kdr.ckm@gmail.com",
+      "emp_id": "GE_69458"
+    },
+    {
+      "emp_name_kn": "ಜೆ ವಿ ಪ್ರಸನ್ನ",
+      "emp_name_en": "J V Prasanna ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "8105919720",
+      "email_id": "",
+      "emp_id": "E_159003"
+    },
+    {
+      "emp_name_kn": "ಕೆ ಸಿ ದೇವರಾಜು",
+      "emp_name_en": "K C Devaraju ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "8861685155",
+      "email_id": "",
+      "emp_id": "E_142969"
+    },
+    {
+      "emp_name_kn": "ಮಂಜಪ್ಪ",
+      "emp_name_en": "Manjappa ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8310353638",
+      "email_id": "",
+      "emp_id": "E_146430"
+    },
+    {
+      "emp_name_kn": "ನಾಗರಾಜ್ ನಾಯ್ಕ",
+      "emp_name_en": "Nagaraj Naik ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7676159427",
+      "email_id": "",
+      "emp_id": "E_146475"
+    },
+    {
+      "emp_name_kn": "ಕೃಷ್ಣಪ್ಪ ಸಿ ಜಿ",
+      "emp_name_en": "Krishnappa C G ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8147250731",
+      "email_id": "",
+      "emp_id": "E_146444"
+    },
+    {
+      "emp_name_kn": "ರಂಗಪ್ಪ",
+      "emp_name_en": "Rangappa ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7204309043",
+      "email_id": "",
+      "emp_id": "E_146487"
+    },
+    {
+      "emp_name_kn": "ಬಸವರಾಜ್",
+      "emp_name_en": "Basavaraj ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "7676751090",
+      "email_id": "",
+      "emp_id": "E_146493"
+    },
+    {
+      "emp_name_kn": "ಮಂಜುನಾಥ ವಿ ಎಮ್",
+      "emp_name_en": "Manjunatha V M ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "9972603314",
+      "email_id": "",
+      "emp_id": "L_04844"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 13,
+      "approved": 9,
+      "pending": 0,
+      "rejected": 4
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 971,
+      "approved": 971,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 1173,
+      "approved": 1172,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 3,
+      "approved": 3,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 48,
+      "approved": 48,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 46,
+      "approved": 44,
+      "pending": 0,
+      "rejected": 2
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 1,
+      "approved": 1,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 23,
+      "approved": 18,
+      "pending": 1,
+      "rejected": 4
+    }
+  ],
+  "updated_at": "2026-08-23T05:49:58.811Z"
+}

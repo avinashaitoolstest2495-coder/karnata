@@ -1,14 +1,57 @@
 /admin/config.yml /admin/config.yml 200
-/news-explainers.html /karnataka-local-news.html 301
-/news-explainers  /karnataka-local-news.html 301
-/news-explainers/* /karnataka-local-news.html 301
-/jyothishya       /ai-jyothishya.html 301
-/astrology        /ai-jyothishya.html 301
-/rashi-bhavishya  /ai-jyothishya.html 301
-/officers-admin   /admin-transfers.html 301
-/transfers        /officers.html 301
-/constituencies/* /mla-mp.html 301
-/constituencies   /mla-mp.html 301
-/mla              /mla-mp.html 301
-/mp               /mla-mp.html 301
 
+# Legacy Dam URLs -> Official Dam Levels Hubs
+/almatti-dam.html           /dam-levels/almatti-dam.html      301
+/almatti-dam                /dam-levels/almatti-dam           301
+/bhadra-dam.html            /dam-levels/bhadra-dam.html       301
+/bhadra-dam                 /dam-levels/bhadra-dam            301
+/ghataprabha-dam.html       /dam-levels/ghataprabha-dam.html  301
+/ghataprabha-dam            /dam-levels/ghataprabha-dam       301
+/harangi-dam.html           /dam-levels/harangi-dam.html      301
+/harangi-dam                /dam-levels/harangi-dam           301
+/hemavathi-dam.html         /dam-levels/hemavathi-dam.html    301
+/hemavathi-dam              /dam-levels/hemavathi-dam         301
+/kabini-dam.html            /dam-levels/kabini-dam.html       301
+/kabini-dam                 /dam-levels/kabini-dam            301
+/krs-dam.html               /dam-levels/krs-dam.html          301
+/krs-dam                    /dam-levels/krs-dam               301
+/linganamakki-dam.html      /dam-levels/linganamakki-dam.html 301
+/linganamakki-dam           /dam-levels/linganamakki-dam      301
+/malaprabha-dam.html        /dam-levels/malaprabha-dam.html   301
+/malaprabha-dam             /dam-levels/malaprabha-dam        301
+/narayanapura-dam.html      /dam-levels/narayanapura-dam.html 301
+/narayanapura-dam           /dam-levels/narayanapura-dam      301
+/supa-dam.html              /dam-levels/supa-dam.html         301
+/supa-dam                   /dam-levels/supa-dam              301
+/tungabhadra-dam.html       /dam-levels/tungabhadra-dam.html  301
+/tungabhadra-dam            /dam-levels/tungabhadra-dam       301
+/vanivilasa-dam.html        /dam-levels/vanivilasa-dam.html   301
+/vanivilasa-dam             /dam-levels/vanivilasa-dam        301
+
+# Removed News/Stories & Scratch Redirects
+/karnataka-stories.html     /                                 301
+/karnataka-stories          /                                 301
+/karnataka-local-news.html  /                                 301
+/karnataka-local-news       /                                 301
+/scratch_*                  /                                 301
+/scratch/*                  /                                 301
+
+# Legacy Templates & Aliases
+/constituency-detail.html   /mla-mp.html                      301
+/constituency-detail        /mla-mp.html                      301
+/dam-details.html           /dam-levels.html                  301
+/dam-details                /dam-levels.html                  301
+/scheme-detail.html         /scheme-checker.html              301
+/scheme-detail              /scheme-checker.html              301
+/news-explainers.html       /                                 301
+/news-explainers            /                                 301
+/news-explainers/*          /                                 301
+/jyothishya                 /ai-jyothishya.html               301
+/astrology                  /ai-jyothishya.html               301
+/rashi-bhavishya            /ai-jyothishya.html               301
+/constituencies/*           /mla-mp.html                      301
+/constituencies             /mla-mp.html                      301
+/mo                         /mla-mp.html                      301
+/imd_hub/*                  /weather.html                     301
+/more-tools.html            /                                 301
+/more-tools                 /                                 301

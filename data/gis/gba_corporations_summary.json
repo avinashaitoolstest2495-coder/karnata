@@ -1,0 +1,3541 @@
+{
+  "total_wards": 369,
+  "corporations": {
+    "central": {
+      "id": 1,
+      "name_en": "Bengaluru Central City Corporation",
+      "name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "wards_count": 63,
+      "acs": [
+        {
+          "ac_no": "161",
+          "name_en": "C.V. Raman Nagar",
+          "name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ"
+        },
+        {
+          "ac_no": "162",
+          "name_en": "Shivajinagar",
+          "name_kn": "ಶಿವಾಜಿನಗರ"
+        },
+        {
+          "ac_no": "163",
+          "name_en": "Shanthinagar",
+          "name_kn": "ಶಾಂತಿನಗರ"
+        },
+        {
+          "ac_no": "164",
+          "name_en": "Gandhinagara",
+          "name_kn": "ಗಾಂಧಿನಗರ"
+        },
+        {
+          "ac_no": "168",
+          "name_en": "Chamrajapet",
+          "name_kn": "ಚಾಮರಾಜಪೇಟೆ"
+        },
+        {
+          "ac_no": "169",
+          "name_en": "Chickpet",
+          "name_kn": "ಚಿಕ್ಕಪೇಟೆ"
+        }
+      ],
+      "wards": [
+        {
+          "ward_number": 1,
+          "ward_name_en": "Ramaswamy Palya",
+          "ward_name_kn": "ರಾಮಸ್ವಾಮಿ ಪಾಳ್ಯ",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 2,
+          "ward_name_en": "Jayamahal",
+          "ward_name_kn": "ಜಯಮಹಲ್",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 3,
+          "ward_name_en": "Vasanth Nagar",
+          "ward_name_kn": "ವಸಂತ ನಗರ",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 4,
+          "ward_name_en": "Sampangirama Nagar",
+          "ward_name_kn": "ಸಂಪಂಗಿರಾಮ ನಗರ",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 5,
+          "ward_name_en": "Shivajinagar",
+          "ward_name_kn": "ಶಿವಾಜಿನಗರ",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 6,
+          "ward_name_en": "Bharathi Nagar",
+          "ward_name_kn": "ಭಾರತಿ ನಗರ",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 7,
+          "ward_name_en": "K Kamaraj Ward",
+          "ward_name_kn": "ಕೆ ಕಾಮರಾಜ್ ವಾರ್ಡ್",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 8,
+          "ward_name_en": "Halasuru",
+          "ward_name_kn": "ಹಲಸೂರು",
+          "ac_no": "162",
+          "ac_name_en": "Shivajinagar",
+          "ac_name_kn": "ಶಿವಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 9,
+          "ward_name_en": "Hoysala Nagara Central",
+          "ward_name_kn": "ಹೊಯ್ಸಳ ನಗರ ಕೇಂದ್ರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 10,
+          "ward_name_en": "Cox Town",
+          "ward_name_kn": "ಕಾಕ್ಸ್ ಟೌನ್",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 11,
+          "ward_name_en": "Old Baiyappanahalli",
+          "ward_name_kn": "ಹಳೆ ಬೈಯಪ್ಪನಹಳ್ಳಿ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 12,
+          "ward_name_en": "Kasturi Nagar",
+          "ward_name_kn": "ಕಸ್ತೂರಿ ನಗರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 13,
+          "ward_name_en": "Krishnaiahnapalya",
+          "ward_name_kn": "ಕೃಷ್ಣಯ್ಯನ ಪಾಳ್ಯ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 14,
+          "ward_name_en": "Nagavarapalya",
+          "ward_name_kn": "ನಾಗವಾರಪಾಳ್ಯ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 15,
+          "ward_name_en": "Indiranagar",
+          "ward_name_kn": "ಇಂದಿರಾನಗರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 16,
+          "ward_name_en": "New Thippasandra",
+          "ward_name_kn": "ನ್ಯೂ ತಿಪ್ಪಸಂದ್ರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 17,
+          "ward_name_en": "Kaggadasapura",
+          "ward_name_kn": "ಕಗ್ಗದಾಸಪುರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 18,
+          "ward_name_en": "G.M Palya",
+          "ward_name_kn": "ಜಿ.ಎಂ. ಪಾಳ್ಯ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 19,
+          "ward_name_en": "Jeevan Bhimanagar",
+          "ward_name_kn": "ಜೀವನ್ ಭೀಮನಗರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 20,
+          "ward_name_en": "Kodihalli",
+          "ward_name_kn": "ಕೋಡಿಹಳ್ಳಿ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 21,
+          "ward_name_en": "Konena Agrahara",
+          "ward_name_kn": "ಕೋನೇನ ಅಗ್ರಹಾರ",
+          "ac_no": "161",
+          "ac_name_en": "C.V. Raman Nagar",
+          "ac_name_kn": "ಸಿ.ವಿ. ರಾಮನ್ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 22,
+          "ward_name_en": "Domluru",
+          "ward_name_kn": "ದೊಮ್ಮಲೂರು",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 23,
+          "ward_name_en": "Jogpalya",
+          "ward_name_kn": "ಜೋಗಪಾಳ್ಯ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 24,
+          "ward_name_en": "Agaram",
+          "ward_name_kn": "ಅಗರಂ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 25,
+          "ward_name_en": "Ashokanagar",
+          "ward_name_kn": "ಅಶೋಕನಗರ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 26,
+          "ward_name_en": "Vannarpet",
+          "ward_name_kn": "ವನ್ನಾರ್‌ಪೇಟೆ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 27,
+          "ward_name_en": "Ambedkarnagar",
+          "ward_name_kn": "ಅಂಬೇಡ್ಕರ್‌ನಗರ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 28,
+          "ward_name_en": "Neelasandra",
+          "ward_name_kn": "ನೀಲಸಂದ್ರ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 29,
+          "ward_name_en": "Austin Town",
+          "ward_name_kn": "ಆಸ್ಟಿನ್ ಟೌನ್",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 30,
+          "ward_name_en": "Vinayakanagar",
+          "ward_name_kn": "ವಿನಾಯಕನಗರ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 31,
+          "ward_name_en": "Shanthinagar",
+          "ward_name_kn": "ಶಾಂತಿನಗರ",
+          "ac_no": "163",
+          "ac_name_en": "Shanthinagar",
+          "ac_name_kn": "ಶಾಂತಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 32,
+          "ward_name_en": "SilverJubilee Park Ward",
+          "ward_name_kn": "ಸಿಲ್ವರ್ ಜುಬಿಲಿ ಪಾರ್ಕ್ ವಾರ್ಡ್",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 33,
+          "ward_name_en": "Dharmaraya Swamy Temple Ward",
+          "ward_name_kn": "ಧರ್ಮರಾಯ ಸ್ವಾಮಿ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 34,
+          "ward_name_en": "D.V Gundappa Ward",
+          "ward_name_kn": "ಡಿ.ವಿ. ಗುಂಡಪ್ಪ ವಾರ್ಡ್",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 35,
+          "ward_name_en": "Hombegowda Nagara",
+          "ward_name_kn": "ಹೊಂಬೇಗೌಡ ನಗರ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 36,
+          "ward_name_en": "Someshwara Nagara",
+          "ward_name_kn": "ಸೋಮೇಶ್ವರ ನಗರ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 37,
+          "ward_name_en": "BHEL Ward",
+          "ward_name_kn": "ಬಿಎಚ್‌ಇಎಲ್ ವಾರ್ಡ್",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 38,
+          "ward_name_en": "Kanakanapalya",
+          "ward_name_kn": "ಕನಕನಪಾಳ್ಯ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 39,
+          "ward_name_en": "Venkat Reddy Nagara",
+          "ward_name_kn": "ವೆಂಕಟ ರೆಡ್ಡಿ ನಗರ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 40,
+          "ward_name_en": "Ashoka Pillar",
+          "ward_name_kn": "ಅಶೋಕ ಪಿಲ್ಲರ್‌",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 41,
+          "ward_name_en": "V.V Puram",
+          "ward_name_kn": "ವಿ.ವಿ. ಪುರಂ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 42,
+          "ward_name_en": "Sunkenahalli",
+          "ward_name_kn": "ಸುಂಕೇನಹಳ್ಳಿ",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 43,
+          "ward_name_en": "Devaraj Urs Ward",
+          "ward_name_kn": "ದೇವರಾಜ ಅರಸು ವಾರ್ಡ್‌",
+          "ac_no": "169",
+          "ac_name_en": "Chickpet",
+          "ac_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 44,
+          "ward_name_en": "Chamarajpet",
+          "ward_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 45,
+          "ward_name_en": "K.R Market",
+          "ward_name_kn": "ಕೆ.ಆರ್. ಮಾರುಕಟ್ಟೆ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 46,
+          "ward_name_en": "Cheluvadi Palya",
+          "ward_name_kn": "ಚೆಲುವಾದಿ ಪಾಳ್ಯ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 47,
+          "ward_name_en": "IPD Salappa Ward",
+          "ward_name_kn": "ಐಪಿಡಿ ಸಾಲಪ್ಪ ವಾರ್ಡ್",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 48,
+          "ward_name_en": "Azad Nagar",
+          "ward_name_kn": "ಆಜಾದ್ ನಗರ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 49,
+          "ward_name_en": "Kasturbha Nagar",
+          "ward_name_kn": "ಕಸ್ತೂರ ಬಾ ವಾರ್ಡ್‌",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 50,
+          "ward_name_en": "JJR Nagara",
+          "ward_name_kn": "ಜೆಜೆಆರ್ ನಗರ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 51,
+          "ward_name_en": "Old Guddadahalli",
+          "ward_name_kn": "ಹಳೆ ಗುಡ್ಡದಹಳ್ಳಿ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 52,
+          "ward_name_en": "Padarayanapura",
+          "ward_name_kn": "ಪಾದರಾಯನಪುರ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 53,
+          "ward_name_en": "Rayapuram",
+          "ward_name_kn": "ರಾಯಪುರಂ",
+          "ac_no": "168",
+          "ac_name_en": "Chamrajapet",
+          "ac_name_kn": "ಚಾಮರಾಜಪೇಟೆ",
+          "population": 0
+        },
+        {
+          "ward_number": 54,
+          "ward_name_en": "Binnypete",
+          "ward_name_kn": "ಬಿನ್ನಿಪೇಟೆ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 55,
+          "ward_name_en": "Bhuvaneshwari Nagar",
+          "ward_name_kn": "ಭುವನೇಶ್ವರಿ ನಗರ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 56,
+          "ward_name_en": "Gopalpura",
+          "ward_name_kn": "ಗೋಪಾಲಪುರ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 57,
+          "ward_name_en": "Cottonpete",
+          "ward_name_kn": "ಕಾಟನ್‌ಪೇಟೆ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 58,
+          "ward_name_en": "Chickpete",
+          "ward_name_kn": "ಚಿಕ್ಕಪೇಟೆ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 59,
+          "ward_name_en": "Nehru Nagar",
+          "ward_name_kn": "ನೆಹರು ನಗರ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 60,
+          "ward_name_en": "Seshadripuram",
+          "ward_name_kn": "ಶೇಷಾದ್ರಿಪುರಂ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 61,
+          "ward_name_en": "Dattatreya Ward",
+          "ward_name_kn": "ದತ್ತಾತ್ರೇಯ ವಾರ್ಡ್",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 62,
+          "ward_name_en": "Swatantra Palya Ward",
+          "ward_name_kn": "ಸ್ವತಂತ್ರ ಪಾಳ್ಯ ವಾರ್ಡ್",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 63,
+          "ward_name_en": "Okalipuram",
+          "ward_name_kn": "ಓಕಳಿಪುರಂ",
+          "ac_no": "164",
+          "ac_name_en": "Gandhinagara",
+          "ac_name_kn": "ಗಾಂಧಿನಗರ",
+          "population": 0
+        }
+      ]
+    },
+    "north": {
+      "id": 2,
+      "name_en": "Bengaluru North City Corporation",
+      "name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "wards_count": 72,
+      "acs": [
+        {
+          "ac_no": "150",
+          "name_en": "Yelahanka",
+          "name_kn": "ಯಲಹಂಕ"
+        },
+        {
+          "ac_no": "152",
+          "name_en": "Byatarayanapura",
+          "name_kn": "ಬ್ಯಾಟರಾಯನಪುರ"
+        },
+        {
+          "ac_no": "154",
+          "name_en": "Rajarajeshwarinagar",
+          "name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ"
+        },
+        {
+          "ac_no": "155",
+          "name_en": "Dasarahalli",
+          "name_kn": "ದಾಸರಹಳ್ಳಿ"
+        },
+        {
+          "ac_no": "158",
+          "name_en": "Hebbal",
+          "name_kn": "ಹೆಬ್ಬಾಳ"
+        },
+        {
+          "ac_no": "159",
+          "name_en": "Pulakeshinagar",
+          "name_kn": "ಪುಲಕೇಶಿನಗರ"
+        },
+        {
+          "ac_no": "160",
+          "name_en": "Sarvagnanagar",
+          "name_kn": "ಸರ್ವಜ್ಞನಗರ"
+        }
+      ],
+      "wards": [
+        {
+          "ward_number": 1,
+          "ward_name_en": "Raja Kempegowda ward",
+          "ward_name_kn": "ರಾಜ ಕೆಂಪೇಗೌಡ ವಾರ್ಡ್",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 2,
+          "ward_name_en": "Aerocity",
+          "ward_name_kn": "ಏರೋಸಿಟಿ",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 3,
+          "ward_name_en": "Chowdeshwari ward",
+          "ward_name_kn": "ಚೌಡೇಶ್ವರಿ ವಾರ್ಡ್",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 4,
+          "ward_name_en": "Nyayanga Badavane",
+          "ward_name_kn": "ನ್ಯಾಯಾಂಗ ಬಡಾವಣೆ",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 5,
+          "ward_name_en": "Yelahanka Satellite Town",
+          "ward_name_kn": "ಯಲಹಂಕ ಸ್ಯಾಟಲೈಟ್‌ ಟೌನ್‌",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 6,
+          "ward_name_en": "Doddabettahalli",
+          "ward_name_kn": "ದೊಡ್ಡಬೆಟ್ಟಹಳ್ಳಿ",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 7,
+          "ward_name_en": "Attur",
+          "ward_name_kn": "ಅಟ್ಟುರು",
+          "ac_no": "150",
+          "ac_name_en": "Yelahanka",
+          "ac_name_kn": "ಯಲಹಂಕ",
+          "population": 0
+        },
+        {
+          "ward_number": 8,
+          "ward_name_en": "Singapura",
+          "ward_name_kn": "ಸಿಂಗಾಪುರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 9,
+          "ward_name_en": "Kuvempunagara",
+          "ward_name_kn": "ಕುವೆಂಪುನಗರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 10,
+          "ward_name_en": "Vidyaranyapura",
+          "ward_name_kn": "ವಿದ್ಯಾರಣ್ಯಪುರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 11,
+          "ward_name_en": "Doddabommasandra",
+          "ward_name_kn": "ದೊಡ್ಡಬೊಮ್ಮಸಂದ್ರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 12,
+          "ward_name_en": "Thindlu",
+          "ward_name_kn": "ತಿಂಡ್ಲು",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 13,
+          "ward_name_en": "Kodigehalli",
+          "ward_name_kn": "ಕೊಡಿಗೆಹಳ್ಳಿ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 14,
+          "ward_name_en": "Rajiv Gandhi Nagar",
+          "ward_name_kn": "ರಾಜೀವ್ ಗಾಂಧಿ ನಗರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 15,
+          "ward_name_en": "Byatarayanapura",
+          "ward_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 16,
+          "ward_name_en": "Amruthahalli",
+          "ward_name_kn": "ಅಮೃತಹಳ್ಳಿ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 17,
+          "ward_name_en": "Jakkur",
+          "ward_name_kn": "ಜಕ್ಕೂರು",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 18,
+          "ward_name_en": "Kempapura",
+          "ward_name_kn": "ಕೆಂಪಾಪುರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 19,
+          "ward_name_en": "Thanisandra",
+          "ward_name_kn": "ಥಣಿಸಂದ್ರ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 20,
+          "ward_name_en": "Sampigehalli",
+          "ward_name_kn": "ಸಂಪಿಗೆಹಳ್ಳಿ",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 21,
+          "ward_name_en": "Kogilu",
+          "ward_name_kn": "ಕೋಗಿಲು",
+          "ac_no": "152",
+          "ac_name_en": "Byatarayanapura",
+          "ac_name_kn": "ಬ್ಯಾಟರಾಯನಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 22,
+          "ward_name_en": "Nagavara",
+          "ward_name_kn": "ನಾಗವಾರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 23,
+          "ward_name_en": "Hennur",
+          "ward_name_kn": "ಹೆಣ್ಣೂರು",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 24,
+          "ward_name_en": "HBR Layout",
+          "ward_name_kn": "ಎಚ್.ಬಿ.ಆರ್. ಲೇಔಟ್",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 25,
+          "ward_name_en": "Govindapura",
+          "ward_name_kn": "ಗೋವಿಂದಪುರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 26,
+          "ward_name_en": "Samadhana Nagar",
+          "ward_name_kn": "ಸಮಾಧಾನ ನಗರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 27,
+          "ward_name_en": "K.G.Halli",
+          "ward_name_kn": "ಕೆ.ಜಿ.ಹಳ್ಳಿ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 28,
+          "ward_name_en": "Venkateshpuram",
+          "ward_name_kn": "ವೆಂಕಟೇಶಪುರಂ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 29,
+          "ward_name_en": "Lingarajpura",
+          "ward_name_kn": "ಲಿಂಗರಾಜಪುರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 30,
+          "ward_name_en": "Kacharakanahalli",
+          "ward_name_kn": "ಕಾಚರಕನಹಳ್ಳಿ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 31,
+          "ward_name_en": "Kalyan Nagar",
+          "ward_name_kn": "ಕಲ್ಯಾಣ ನಗರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 32,
+          "ward_name_en": "Banaswadi",
+          "ward_name_kn": "ಬಾಣಸವಾಡಿ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 33,
+          "ward_name_en": "HRBR Layout",
+          "ward_name_kn": "ಹೆಚ್‌ಆರ್‌ಬಿಆರ್ ಲೇಔಟ್",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 34,
+          "ward_name_en": "Subbayanapalya",
+          "ward_name_kn": "ಸುಬ್ಬಯ್ಯನಪಾಳ್ಯ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 35,
+          "ward_name_en": "Kammanahalli",
+          "ward_name_kn": "ಕಮ್ಮನಹಳ್ಳಿ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 36,
+          "ward_name_en": "Maruthi Seva Nagara",
+          "ward_name_kn": "ಮಾರುತಿ ಸೇವಾ ನಗರ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 37,
+          "ward_name_en": "Jeevanahalli",
+          "ward_name_kn": "ಜೀವನಹಳ್ಳಿ",
+          "ac_no": "160",
+          "ac_name_en": "Sarvagnanagar",
+          "ac_name_kn": "ಸರ್ವಜ್ಞನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 38,
+          "ward_name_en": "Shampura",
+          "ward_name_kn": "ಶಾಂಪುರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 39,
+          "ward_name_en": "Kaval Byrasandra",
+          "ward_name_kn": "ಕಾವಲ್ ಬೈರಸಂದ್ರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 40,
+          "ward_name_en": "Shakthi Nagar",
+          "ward_name_kn": "ಶಕ್ತಿ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 41,
+          "ward_name_en": "Periyar Nagar",
+          "ward_name_kn": "ಪೆರಿಯಾರ್ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 42,
+          "ward_name_en": "Aruna Asif Ali Ward",
+          "ward_name_kn": "ಅರುಣಾ ಆಸಿಫ್ ಅಲಿ ವಾರ್ಡ್",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 43,
+          "ward_name_en": "Varalakshmi Nagar",
+          "ward_name_kn": "ವರಲಕ್ಷ್ಮಿ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 44,
+          "ward_name_en": "Doddanna Nagar",
+          "ward_name_kn": "ದೊಡ್ಡಣ್ಣ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 45,
+          "ward_name_en": "Kushal Nagar",
+          "ward_name_kn": "ಕುಶಾಲ್ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 46,
+          "ward_name_en": "Sagayapuram",
+          "ward_name_kn": "ಸಗಾಯಪುರಂ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 47,
+          "ward_name_en": "Pulakeshi Nagar",
+          "ward_name_kn": "ಪುಲಕೇಶಿ ನಗರ",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 48,
+          "ward_name_en": "S.K Garden",
+          "ward_name_kn": "ಎಸ್.ಕೆ. ಗಾರ್ಡನ್",
+          "ac_no": "159",
+          "ac_name_en": "Pulakeshinagar",
+          "ac_name_kn": "ಪುಲಕೇಶಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 49,
+          "ward_name_en": "Jaya Chamarajendra Nagara",
+          "ward_name_kn": "ಜಯ ಚಾಮರಾಜೇಂದ್ರ ನಗರ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 50,
+          "ward_name_en": "Dinnur",
+          "ward_name_kn": "ದಿಣ್ಣೂರು",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 51,
+          "ward_name_en": "Manorayanapalya",
+          "ward_name_kn": "ಮನೋರಾಯನಪಾಳ್ಯ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 52,
+          "ward_name_en": "Vishwanatha Nagenahalli",
+          "ward_name_kn": "ವಿಶ್ವನಾಥ ನಾಗೇನಹಳ್ಳಿ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 53,
+          "ward_name_en": "R.T Nagar",
+          "ward_name_kn": "ಆರ್.ಟಿ ನಗರ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 54,
+          "ward_name_en": "Gangenahalli",
+          "ward_name_kn": "ಗಂಗೇನಹಳ್ಳಿ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 55,
+          "ward_name_en": "Ganganagar",
+          "ward_name_kn": "ಗಂಗಾನಗರ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 56,
+          "ward_name_en": "Hebbal",
+          "ward_name_kn": "ಹೆಬ್ಬಾಳ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 57,
+          "ward_name_en": "Bhoopasandra",
+          "ward_name_kn": "ಭೂಪಸಂದ್ರ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 58,
+          "ward_name_en": "Nagashettyhalli",
+          "ward_name_kn": "ನಾಗಶೆಟ್ಟಿಹಳ್ಳಿ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 59,
+          "ward_name_en": "Geddalahalli",
+          "ward_name_kn": "ಗೆದ್ದಲಹಳ್ಳಿ",
+          "ac_no": "158",
+          "ac_name_en": "Hebbal",
+          "ac_name_kn": "ಹೆಬ್ಬಾಳ",
+          "population": 0
+        },
+        {
+          "ward_number": 60,
+          "ward_name_en": "Jalahalli",
+          "ward_name_kn": "ಜಾಲಹಳ್ಳಿ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 61,
+          "ward_name_en": "HMT Ward",
+          "ward_name_kn": "ಎಚ್ಎಮ್.ಟಿ ವಾರ್ಡ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 62,
+          "ward_name_en": "Brundavana Nagara",
+          "ward_name_kn": "ಬೃಂದಾವನ ನಗರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 63,
+          "ward_name_en": "J.P PARK",
+          "ward_name_kn": "ಜೆಪಿ ಪಾರ್ಕ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 64,
+          "ward_name_en": "Yeshwanthpura",
+          "ward_name_kn": "ಯಶವಂತಪುರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 65,
+          "ward_name_en": "Abbigere",
+          "ward_name_kn": "ಅಬ್ಬಿಗೆರೆ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 66,
+          "ward_name_en": "Kammagondanahalli",
+          "ward_name_kn": "ಕಮ್ಮಗೊಂಡನಹಳ್ಳಿ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 67,
+          "ward_name_en": "Shettihalli",
+          "ward_name_kn": "ಶೆಟ್ಟಿಹಳ್ಳಿ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 68,
+          "ward_name_en": "Mallasandra",
+          "ward_name_kn": "ಮಲ್ಲಸಂದ್ರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 69,
+          "ward_name_en": "Bagalagunte",
+          "ward_name_kn": "ಬಾಗಲಗುಂಟೆ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 70,
+          "ward_name_en": "Manjunatha Nagar",
+          "ward_name_kn": "ಮಂಜುನಾಥ ನಗರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 71,
+          "ward_name_en": "Nele Maheshwaramma Temple Ward",
+          "ward_name_kn": "ನೆಲೆ ಮಹೇಶ್ವರಮ್ಮ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 72,
+          "ward_name_en": "Dasarahalli",
+          "ward_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        }
+      ]
+    },
+    "south": {
+      "id": 3,
+      "name_en": "Bengaluru South City Corporation",
+      "name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "wards_count": 72,
+      "acs": [
+        {
+          "ac_no": "153",
+          "name_en": "Yeshwanthapura",
+          "name_kn": "ಯಶವಂತಪುರ"
+        },
+        {
+          "ac_no": "171",
+          "name_en": "Padmanabanagar",
+          "name_kn": "ಪದ್ಮನಾಭನಗರ"
+        },
+        {
+          "ac_no": "172",
+          "name_en": "B.T.M Layout",
+          "name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್"
+        },
+        {
+          "ac_no": "173",
+          "name_en": "Jayanagar",
+          "name_kn": "ಜಯನಗರ"
+        },
+        {
+          "ac_no": "174",
+          "name_en": "Mahadevapura",
+          "name_kn": "ಮಹದೇವಪುರ"
+        },
+        {
+          "ac_no": "175",
+          "name_en": "Bommanahalli",
+          "name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ"
+        },
+        {
+          "ac_no": "176",
+          "name_en": "Bangalore South",
+          "name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ"
+        },
+        {
+          "ac_no": "177",
+          "name_en": "Anekal",
+          "name_kn": "ಆನೇಕಲ್"
+        }
+      ],
+      "wards": [
+        {
+          "ward_number": 1,
+          "ward_name_en": "Padmanabhanagara",
+          "ward_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 2,
+          "ward_name_en": "Kadirenahalli",
+          "ward_name_kn": "ಕದಿರೇನಹಳ್ಳಿ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 3,
+          "ward_name_en": "Yarab nagar",
+          "ward_name_kn": "ಯಾರಬ್ ನಗರ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 4,
+          "ward_name_en": "Banashankari Temple Ward",
+          "ward_name_kn": "ಬನಶಂಕರಿ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 5,
+          "ward_name_en": "Kane Muneshwara Ward",
+          "ward_name_kn": "ಕಾನೆ ಮುನೇಶ್ವರ ವಾರ್ಡ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 6,
+          "ward_name_en": "Gowdanapalya",
+          "ward_name_kn": "ಗೌಡನಪಾಳ್ಯ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 7,
+          "ward_name_en": "Byrasandra",
+          "ward_name_kn": "ಬೈರಸಂದ್ರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 8,
+          "ward_name_en": "Tilak Nagara",
+          "ward_name_kn": "ತಿಲಕ ನಗರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 9,
+          "ward_name_en": "N.A.L Layout",
+          "ward_name_kn": "ಎನ್‌.ಎ.ಎಲ್ ಲೇಔಟ್",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 10,
+          "ward_name_en": "Abdul Kalam Nagar",
+          "ward_name_kn": "ಅಬ್ದುಲ್ ಕಲಾಂ ನಗರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 11,
+          "ward_name_en": "Jayanagar East",
+          "ward_name_kn": "ಜಯನಗರ ಪೂರ್ವ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 12,
+          "ward_name_en": "Pattabhirama Nagara",
+          "ward_name_kn": "ಪಟ್ಟಾಭಿರಾಮ ನಗರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 13,
+          "ward_name_en": "Marenahalli South",
+          "ward_name_kn": "ಮಾರೇನಹಳ್ಳಿ ದಕ್ಷಿಣ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 14,
+          "ward_name_en": "J.P Nagar",
+          "ward_name_kn": "ಜೆ.ಪಿ. ನಗರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 15,
+          "ward_name_en": "Shakambarinagara",
+          "ward_name_kn": "ಶಾಕಂಭರಿನಗರ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 16,
+          "ward_name_en": "Sarakki",
+          "ward_name_kn": "ಸಾರಕ್ಕಿ",
+          "ac_no": "173",
+          "ac_name_en": "Jayanagar",
+          "ac_name_kn": "ಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 17,
+          "ward_name_en": "N.S Palya",
+          "ward_name_kn": "ಎನ್.ಎಸ್. ಪಾಳ್ಯ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 18,
+          "ward_name_en": "Viswamanava Kuvempu Ward",
+          "ward_name_kn": "ವಿಶ್ವಮಾನವ ಕುವೆಂಪು ವಾರ್ಡ್",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 19,
+          "ward_name_en": "New Tavarekere",
+          "ward_name_kn": "ಹೊಸ ತಾವರೆಕೆರೆ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 20,
+          "ward_name_en": "Madiwala",
+          "ward_name_kn": "ಮಡಿವಾಳ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 21,
+          "ward_name_en": "Chikka Adugodi",
+          "ward_name_kn": "ಚಿಕ್ಕ ಆಡುಗೋಡಿ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 22,
+          "ward_name_en": "S.G Palya",
+          "ward_name_kn": "ಎಸ್.ಜಿ. ಪಾಳ್ಯ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 23,
+          "ward_name_en": "Lakkasandra",
+          "ward_name_kn": "ಲಕ್ಕಸಂದ್ರ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 24,
+          "ward_name_en": "A Adugodi",
+          "ward_name_kn": "ಎ. ಆಡುಗೋಡಿ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 25,
+          "ward_name_en": "National Games Village",
+          "ward_name_kn": "ನ್ಯಾಷನಲ್ ಗೇಮ್ಸ್ ವಿಲೇಜ್",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 26,
+          "ward_name_en": "Ejipura",
+          "ward_name_kn": "ಈಜಿಪುರ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 27,
+          "ward_name_en": "Sri Lakshmi Devi Ward",
+          "ward_name_kn": "ಶ್ರೀ ಲಕ್ಷ್ಮೀದೇವಿ ವಾರ್ಡ್",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 28,
+          "ward_name_en": "Kormangala East",
+          "ward_name_kn": "ಕೋರಮಂಗಲ ಪೂರ್ವ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 29,
+          "ward_name_en": "Kormangala West",
+          "ward_name_kn": "ಕೋರಮಂಗಲ ಪಶ್ಚಿಮ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 30,
+          "ward_name_en": "Jakkasandra",
+          "ward_name_kn": "ಜಕ್ಕಸಂದ್ರ",
+          "ac_no": "172",
+          "ac_name_en": "B.T.M Layout",
+          "ac_name_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 31,
+          "ward_name_en": "Kasavanahalli",
+          "ward_name_kn": "ಕಸವನಹಳ್ಳಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 32,
+          "ward_name_en": "Kudlu",
+          "ward_name_kn": "ಕೂಡ್ಲು",
+          "ac_no": "177",
+          "ac_name_en": "Anekal",
+          "ac_name_kn": "ಆನೇಕಲ್",
+          "population": 0
+        },
+        {
+          "ward_number": 33,
+          "ward_name_en": "Naganathapura",
+          "ward_name_kn": "ನಾಗನಾಥಪುರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 34,
+          "ward_name_en": "Chikkathoguru",
+          "ward_name_kn": "ಚಿಕ್ಕ ತೋಗೂರು",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 35,
+          "ward_name_en": "Vishwapriya Nagara",
+          "ward_name_kn": "ವಿಶ್ವಪ್ರಿಯ ನಗರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 36,
+          "ward_name_en": "Beguru",
+          "ward_name_kn": "ಬೇಗೂರು",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 37,
+          "ward_name_en": "Yelenahalli",
+          "ward_name_kn": "ಯೆಲೇನಹಳ್ಳಿ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 38,
+          "ward_name_en": "Doddakammanahalli",
+          "ward_name_kn": "ದೊಡ್ಡಕಮ್ಮನಹಳ್ಳಿ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 39,
+          "ward_name_en": "Gottigere",
+          "ward_name_kn": "ಗೊಟ್ಟಿಗೆರೆ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 40,
+          "ward_name_en": "Anjanapura",
+          "ward_name_kn": "ಅಂಜನಾಪುರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 41,
+          "ward_name_en": "Kothanur",
+          "ward_name_kn": "ಕೊತ್ತನೂರು",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 42,
+          "ward_name_en": "RBI Layout",
+          "ward_name_kn": "ಆರ್‌ಬಿಐ ಲೇಔಟ್",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 43,
+          "ward_name_en": "Bheereshwara Nagar",
+          "ward_name_kn": "ಭೀರೇಶ್ವರ ನಗರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 44,
+          "ward_name_en": "Harinagar",
+          "ward_name_kn": "ಹರಿನಗರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 45,
+          "ward_name_en": "Konanakunte",
+          "ward_name_kn": "ಕೋಣನಕುಂಟೆ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 46,
+          "ward_name_en": "Yelachenahalli",
+          "ward_name_kn": "ಯೆಲಚೇನಹಳ್ಳಿ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 47,
+          "ward_name_en": "Chandranagara",
+          "ward_name_kn": "ಚಂದ್ರನಗರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 48,
+          "ward_name_en": "Vasanthapura",
+          "ward_name_kn": "ವಸಂತಪುರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 49,
+          "ward_name_en": "Uttarahalli",
+          "ward_name_kn": "ಉತ್ತರಹಳ್ಳಿ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 50,
+          "ward_name_en": "Sarvabhouma Nagar",
+          "ward_name_kn": "ಸಾರ್ವಭೌಮ ನಗರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 51,
+          "ward_name_en": "Subramanyapura",
+          "ward_name_kn": "ಸುಬ್ರಹ್ಮಣ್ಯಪುರ",
+          "ac_no": "176",
+          "ac_name_en": "Bangalore South",
+          "ac_name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
+          "population": 0
+        },
+        {
+          "ward_number": 52,
+          "ward_name_en": "Talagattapura",
+          "ward_name_kn": "ತಲಘಟ್ಟಪುರ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 53,
+          "ward_name_en": "Jaraganahalli",
+          "ward_name_kn": "ಜರಗನಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 54,
+          "ward_name_en": "Kengal Hanumanthaiah South",
+          "ward_name_kn": "ಕೆಂಗಲ್ ಹನುಮಂತಯ್ಯ ದಕ್ಷಿಣ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 55,
+          "ward_name_en": "Puttenahalli",
+          "ward_name_kn": "ಪುಟ್ಟೇನಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 56,
+          "ward_name_en": "Doresanipalya",
+          "ward_name_kn": "ದೊರೆಸಾನಿಪಾಳ್ಯ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 57,
+          "ward_name_en": "Hulimavu",
+          "ward_name_kn": "ಹುಳಿಮಾವು",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 58,
+          "ward_name_en": "Arakere",
+          "ward_name_kn": "ಅರಕೆರೆ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 59,
+          "ward_name_en": "Vijaya Bank Layout",
+          "ward_name_kn": "ವಿಜಯ ಬ್ಯಾಂಕ್ ಲೇಔಟ್",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 60,
+          "ward_name_en": "Bilekahalli",
+          "ward_name_kn": "ಬಿಳೇಕಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 61,
+          "ward_name_en": "Kodi Chikkanahalli",
+          "ward_name_kn": "ಕೋಡಿ ಚಿಕ್ಕನಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 62,
+          "ward_name_en": "Devarachikkanahalli",
+          "ward_name_kn": "ದೇವರಚಿಕ್ಕನಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 63,
+          "ward_name_en": "Bommanahalli",
+          "ward_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 64,
+          "ward_name_en": "Hongasandra",
+          "ward_name_kn": "ಹೊಂಗಸಂದ್ರ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 65,
+          "ward_name_en": "Garvebavi Palya",
+          "ward_name_kn": "ಗಾರ್ವೆಬಾವಿ ಪಾಳ್ಯ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 66,
+          "ward_name_en": "Singasandra",
+          "ward_name_kn": "ಸಿಂಗಸಂದ್ರ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 67,
+          "ward_name_en": "Bandepalya",
+          "ward_name_kn": "ಬಂಡೇಪಾಳ್ಯ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 68,
+          "ward_name_en": "Mangammana Palya",
+          "ward_name_kn": "ಮಂಗಮ್ಮನ ಪಾಳ್ಯ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 69,
+          "ward_name_en": "Hosapalya",
+          "ward_name_kn": "ಹೊಸಪಾಳ್ಯ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 70,
+          "ward_name_en": "Iblur",
+          "ward_name_kn": "ಇಬ್ಬಲೂರು",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 71,
+          "ward_name_en": "Agara",
+          "ward_name_kn": "ಅಗರ",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 72,
+          "ward_name_en": "HSR Layout",
+          "ward_name_kn": "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್",
+          "ac_no": "175",
+          "ac_name_en": "Bommanahalli",
+          "ac_name_kn": "ಬೊಮ್ಮನಹಳ್ಳಿ",
+          "population": 0
+        }
+      ]
+    },
+    "east": {
+      "id": 4,
+      "name_en": "Bengaluru East City Corporation",
+      "name_kn": "ಬೆಂಗಳೂರು ಪೂರ್ವ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "wards_count": 50,
+      "acs": [
+        {
+          "ac_no": "151",
+          "name_en": "K.R. Pura",
+          "name_kn": "ಕೆ.ಆರ್. ಪುರ"
+        },
+        {
+          "ac_no": "174",
+          "name_en": "Mahadevapura",
+          "name_kn": "ಮಹದೇವಪುರ"
+        }
+      ],
+      "wards": [
+        {
+          "ward_number": 1,
+          "ward_name_en": "K Narayanapura",
+          "ward_name_kn": "ಕೆ ನಾರಾಯಣಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 2,
+          "ward_name_en": "Horamavu",
+          "ward_name_kn": "ಹೊರಮಾವು",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 3,
+          "ward_name_en": "Chellakere",
+          "ward_name_kn": "ಚೆಲ್ಲಕೆರೆ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 4,
+          "ward_name_en": "Babusab Palya",
+          "ward_name_kn": "ಬಾಬುಸಾಬ್ ಪಾಳ್ಯ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 5,
+          "ward_name_en": "Hoysala Nagara East",
+          "ward_name_kn": "ಹೊಯ್ಸಳ ನಗರ ಪೂರ್ವ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 6,
+          "ward_name_en": "Kalkere",
+          "ward_name_kn": "ಕಲ್ಕೆರೆ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 7,
+          "ward_name_en": "K Chennasandra",
+          "ward_name_kn": "ಕೆ ಚೆನ್ನಸಂದ್ರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 8,
+          "ward_name_en": "Anandapura",
+          "ward_name_kn": "ಆನಂದಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 9,
+          "ward_name_en": "Bhattarahalli",
+          "ward_name_kn": "ಭಟ್ಟರಹಳ್ಳಿ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 10,
+          "ward_name_en": "Basavanapura",
+          "ward_name_kn": "ಬಸವನಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 11,
+          "ward_name_en": "Krishnanagar",
+          "ward_name_kn": "ಕೃಷ್ಣನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 12,
+          "ward_name_en": "Devasandra",
+          "ward_name_kn": "ದೇವಸಂದ್ರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 13,
+          "ward_name_en": "Rajarajeshwari Temple ward",
+          "ward_name_kn": "ರಾಜರಾಜೇಶ್ವರಿ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 14,
+          "ward_name_en": "K.R Pura",
+          "ward_name_kn": "ಕೆ ಆರ್ ಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 15,
+          "ward_name_en": "Ramamurthy Nagara",
+          "ward_name_kn": "ರಾಮಮೂರ್ತಿ ನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 16,
+          "ward_name_en": "Kotthur",
+          "ward_name_kn": "ಕೊತ್ತೂರು",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 17,
+          "ward_name_en": "Vijinapura",
+          "ward_name_kn": "ವಿಜಿನಾಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 18,
+          "ward_name_en": "Dooravaninagar",
+          "ward_name_kn": "ದೂರವಾಣಿನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 19,
+          "ward_name_en": "K.S. Nissar Ahmed Ward",
+          "ward_name_kn": "ಕೆ. ಎಸ್. ನಿಸಾರ್ ಅಹಮದ್ ವಾರ್ಡ್",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 20,
+          "ward_name_en": "A Narayanapura",
+          "ward_name_kn": "ಎ ನಾರಾಯಣಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 21,
+          "ward_name_en": "Uday Nagar",
+          "ward_name_kn": "ಉದಯ್ ನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 22,
+          "ward_name_en": "Mahadevapura",
+          "ward_name_kn": "ಮಹದೇವಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 23,
+          "ward_name_en": "Sangama Ward",
+          "ward_name_kn": "ಸಂಗಮ ವಾರ್ಡ್",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 24,
+          "ward_name_en": "Vignananagara",
+          "ward_name_kn": "ವಿಜ್ಞಾನನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 25,
+          "ward_name_en": "L.B Shastri Nagar",
+          "ward_name_kn": "ಎಲ್.ಬಿ.ಶಾಸ್ತ್ರಿ ನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 26,
+          "ward_name_en": "Jagadish Nagar",
+          "ward_name_kn": "ಜಗದೀಶ್ ನಗರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 27,
+          "ward_name_en": "Vibhootipura",
+          "ward_name_kn": "ವಿಭೂತಿಪುರ",
+          "ac_no": "151",
+          "ac_name_en": "K.R. Pura",
+          "ac_name_kn": "ಕೆ.ಆರ್. ಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 28,
+          "ward_name_en": "Byrathi",
+          "ward_name_kn": "ಬೈರತಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 29,
+          "ward_name_en": "Hoodi",
+          "ward_name_kn": "ಹೂಡಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 30,
+          "ward_name_en": "Belathur",
+          "ward_name_kn": "ಬೆಳತ್ತೂರ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 31,
+          "ward_name_en": "Kadugodi",
+          "ward_name_kn": "ಕಾಡುಗೋಡಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 32,
+          "ward_name_en": "Channasandra",
+          "ward_name_kn": "ಚನ್ನಸಂದ್ರ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 33,
+          "ward_name_en": "S.M Krishna Ward",
+          "ward_name_kn": "ಎಸ್.ಎಂ ಕೃಷ್ಣ ವಾರ್ಡ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 34,
+          "ward_name_en": "Kaveri Nagara",
+          "ward_name_kn": "ಕಾವೇರಿ ನಗರ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 35,
+          "ward_name_en": "Garudachar Palya",
+          "ward_name_kn": "ಗರುಡಾಚಾರ್ ಪಾಳ್ಯ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 36,
+          "ward_name_en": "Bharath Aikya Ward",
+          "ward_name_kn": "ಭಾರತ್ ಐಕ್ಯ ವಾರ್ಡ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 37,
+          "ward_name_en": "Kundalahalli",
+          "ward_name_kn": "ಕುಂದಲಹಳ್ಳಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 38,
+          "ward_name_en": "Whitefield",
+          "ward_name_kn": "ವೈಟ್‌ಫೀಲ್ಡ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 39,
+          "ward_name_en": "Hagaduru",
+          "ward_name_kn": "ಹಗದೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 40,
+          "ward_name_en": "Varthur",
+          "ward_name_kn": "ವರ್ತೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 41,
+          "ward_name_en": "Munnenkolalu",
+          "ward_name_kn": "ಮುನ್ನೇನಕೊಳಲು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 42,
+          "ward_name_en": "Priyadarshini Ward",
+          "ward_name_kn": "ಪ್ರಿಯದರ್ಶಿನಿ ವಾರ್ಡ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 43,
+          "ward_name_en": "Dodda Nekkundi",
+          "ward_name_kn": "ದೊಡ್ಡ ನೆಕ್ಕುಂಡಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 44,
+          "ward_name_en": "Ashwath Nagar",
+          "ward_name_kn": "ಅಶ್ವಥ್ ನಗರ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 45,
+          "ward_name_en": "Marathahalli",
+          "ward_name_kn": "ಮಾರತಹಳ್ಳಿ",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 46,
+          "ward_name_en": "Yamalur",
+          "ward_name_kn": "ಯಮಲೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 47,
+          "ward_name_en": "Bellanduru",
+          "ward_name_kn": "ಬೆಳ್ಳಂದೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 48,
+          "ward_name_en": "Panathur",
+          "ward_name_kn": "ಪಣತ್ತೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 49,
+          "ward_name_en": "Shivanasamudra Ward",
+          "ward_name_kn": "ಶಿವನಸಮುದ್ರ ವಾರ್ಡ್",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 50,
+          "ward_name_en": "Gunjur",
+          "ward_name_kn": "ಗುಂಜೂರು",
+          "ac_no": "174",
+          "ac_name_en": "Mahadevapura",
+          "ac_name_kn": "ಮಹದೇವಪುರ",
+          "population": 0
+        }
+      ]
+    },
+    "west": {
+      "id": 5,
+      "name_en": "Bengaluru West City Corporation",
+      "name_kn": "ಬೆಂಗಳೂರು ಪಶ್ಚಿಮ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "wards_count": 112,
+      "acs": [
+        {
+          "ac_no": "153",
+          "name_en": "Yeshwanthapura",
+          "name_kn": "ಯಶವಂತಪುರ"
+        },
+        {
+          "ac_no": "154",
+          "name_en": "Rajarajeshwarinagar",
+          "name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ"
+        },
+        {
+          "ac_no": "155",
+          "name_en": "Dasarahalli",
+          "name_kn": "ದಾಸರಹಳ್ಳಿ"
+        },
+        {
+          "ac_no": "156",
+          "name_en": "Mahalakshmi Layout",
+          "name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್"
+        },
+        {
+          "ac_no": "157",
+          "name_en": "Malleshwaram",
+          "name_kn": "ಮಲ್ಲೇಶ್ವರಂ"
+        },
+        {
+          "ac_no": "165",
+          "name_en": "Rajajinagar",
+          "name_kn": "ರಾಜಾಜಿನಗರ"
+        },
+        {
+          "ac_no": "166",
+          "name_en": "Govindraj Nagar",
+          "name_kn": "ಗೋವಿಂದರಾಜ ನಗರ"
+        },
+        {
+          "ac_no": "167",
+          "name_en": "Vijayanagar",
+          "name_kn": "ವಿಜಯನಗರ"
+        },
+        {
+          "ac_no": "170",
+          "name_en": "Basavanagudi",
+          "name_kn": "ಬಸವನಗುಡಿ"
+        },
+        {
+          "ac_no": "171",
+          "name_en": "Padmanabanagar",
+          "name_kn": "ಪದ್ಮನಾಭನಗರ"
+        }
+      ],
+      "wards": [
+        {
+          "ward_number": 1,
+          "ward_name_en": "Nagasandra",
+          "ward_name_kn": "ನಾಗಸಂದ್ರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 2,
+          "ward_name_en": "Chokkasandra",
+          "ward_name_kn": "ಚೊಕ್ಕಸಂದ್ರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 3,
+          "ward_name_en": "Nelagadaranahalli",
+          "ward_name_kn": "ನೆಲಗದರನಹಳ್ಳಿ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 4,
+          "ward_name_en": "Parvathi Nagar",
+          "ward_name_kn": "ಪಾರ್ವತಿ ನಗರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 5,
+          "ward_name_en": "Rajeshwarinagar",
+          "ward_name_kn": "ರಾಜೇಶ್ವರಿನಗರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 6,
+          "ward_name_en": "Shivapura",
+          "ward_name_kn": "ಶಿವಪುರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 7,
+          "ward_name_en": "Rajagopala Nagara",
+          "ward_name_kn": "ರಾಜಗೋಪಾಲ ನಗರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 8,
+          "ward_name_en": "Hegganahalli",
+          "ward_name_kn": "ಹೆಗ್ಗನಹಳ್ಳಿ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 9,
+          "ward_name_en": "Srigandhanagar",
+          "ward_name_kn": "ಶ್ರೀಗಂಧನಗರ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 10,
+          "ward_name_en": "Sunkadakatte",
+          "ward_name_kn": "ಸುಂಕದಕಟ್ಟೆ",
+          "ac_no": "155",
+          "ac_name_en": "Dasarahalli",
+          "ac_name_kn": "ದಾಸರಹಳ್ಳಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 11,
+          "ward_name_en": "Dodda Bidarakallu",
+          "ward_name_kn": "ದೊಡ್ಡ ಬಿದರಕಲ್ಲು",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 12,
+          "ward_name_en": "Andrahalli",
+          "ward_name_kn": "ಅಂದ್ರಹಳ್ಳಿ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 13,
+          "ward_name_en": "Nada prabhu Kempegowda Nagara",
+          "ward_name_kn": "ನಾಡ ಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಗರ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 14,
+          "ward_name_en": "Herohalli",
+          "ward_name_kn": "ಹೆರೋಹಳ್ಳಿ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 15,
+          "ward_name_en": "Byadarahalli",
+          "ward_name_kn": "ಬ್ಯಾಡರಹಳ್ಳಿ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 16,
+          "ward_name_en": "Ullal",
+          "ward_name_kn": "ಉಳ್ಳಾಲ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 17,
+          "ward_name_en": "Nagadevanahalli",
+          "ward_name_kn": "ನಾಗದೇವನಹಳ್ಳಿ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 18,
+          "ward_name_en": "Kengal Hanumanthaiah West",
+          "ward_name_kn": "ಕೆಂಗಲ್ ಹನುಮಂತಯ್ಯ ಪಶ್ಚಿಮ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 19,
+          "ward_name_en": "Shivanapalya",
+          "ward_name_kn": "ಶಿವನಪಾಳ್ಯ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 20,
+          "ward_name_en": "Kengeri Kote ward",
+          "ward_name_kn": "ಕೆಂಗೇರಿ ಕೋಟೆ ವಾರ್ಡ್",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 21,
+          "ward_name_en": "Kengeri",
+          "ward_name_kn": "ಕೆಂಗೇರಿ",
+          "ac_no": "153",
+          "ac_name_en": "Yeshwanthapura",
+          "ac_name_kn": "ಯಶವಂತಪುರ",
+          "population": 0
+        },
+        {
+          "ward_number": 22,
+          "ward_name_en": "Bangarappa Nagara",
+          "ward_name_kn": "ಬಂಗಾರಪ್ಪ ನಗರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 23,
+          "ward_name_en": "Rajarajeshwari Nagara",
+          "ward_name_kn": "ರಾಜರಾಜೇಶ್ವರಿ ನಗರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 24,
+          "ward_name_en": "Jnana Bharathi Ward",
+          "ward_name_kn": "ಜ್ಞಾನ ಭಾರತಿ ವಾರ್ಡ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 25,
+          "ward_name_en": "Vinayaka Layout",
+          "ward_name_kn": "ವಿನಾಯಕ ಲೇಔಟ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 26,
+          "ward_name_en": "Mallathahalli",
+          "ward_name_kn": "ಮಲ್ಲತ್ತಹಳ್ಳಿ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 27,
+          "ward_name_en": "Srigandada Kaval",
+          "ward_name_kn": "ಶ್ರೀಗಂಧದ ಕಾವಲ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 28,
+          "ward_name_en": "Kottegepalya",
+          "ward_name_kn": "ಕೊಟ್ಟಿಗೆಪಾಳ್ಯ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 29,
+          "ward_name_en": "Chowdeshwari Nagar",
+          "ward_name_kn": "ಚೌಡೇಶ್ವರಿ ನಗರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 30,
+          "ward_name_en": "Kempegowda Layout",
+          "ward_name_kn": "ಕೆಂಪೇಗೌಡ ಬಡಾವಣೆ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 31,
+          "ward_name_en": "Freedom Fighter Ward",
+          "ward_name_kn": "ಫ್ರೀಡಂ ಫೈಟರ್ ವಾರ್ಡ್",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 32,
+          "ward_name_en": "Laggere",
+          "ward_name_kn": "ಲಗ್ಗೆರೆ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 33,
+          "ward_name_en": "Lakshmi Devi Nagar",
+          "ward_name_kn": "ಲಕ್ಷ್ಮಿ ದೇವಿ ನಗರ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 34,
+          "ward_name_en": "Peenya",
+          "ward_name_kn": "ಪೀಣ್ಯ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 35,
+          "ward_name_en": "Goraguntepalya",
+          "ward_name_kn": "ಗೋರಗುಂಟೆಪಾಳ್ಯ",
+          "ac_no": "154",
+          "ac_name_en": "Rajarajeshwarinagar",
+          "ac_name_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 36,
+          "ward_name_en": "Nalwadi Krishnaraja Wadiyar Ward",
+          "ward_name_kn": "ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ವಾರ್ಡ್",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 37,
+          "ward_name_en": "Dr. Puneeth Rajkumar Ward",
+          "ward_name_kn": "ಡಾ. ಪುನೀತ್ ರಾಜ್‌ಕುಮಾರ್ ವಾರ್ಡ್",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 38,
+          "ward_name_en": "Nandini Layout",
+          "ward_name_kn": "ನಂದಿನಿ ಲೇಔಟ್",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 39,
+          "ward_name_en": "Jai Maruthi Nagar",
+          "ward_name_kn": "ಜೈ ಮಾರುತಿ ನಗರ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 40,
+          "ward_name_en": "Mahalakshmipuram",
+          "ward_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿಪುರಂ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 41,
+          "ward_name_en": "Nagapura",
+          "ward_name_kn": "ನಾಗಪುರ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 42,
+          "ward_name_en": "Raja Mayura Varma Ward",
+          "ward_name_kn": "ರಾಜ ಮಯೂರ ವರ್ಮಾ ವಾರ್ಡ್",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 43,
+          "ward_name_en": "Kethamaranahalli",
+          "ward_name_kn": "ಕೇತಮಾರನಹಳ್ಳಿ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 44,
+          "ward_name_en": "Shankar Mutt",
+          "ward_name_kn": "ಶಂಕರ ಮಠ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 45,
+          "ward_name_en": "Shakthi Ganapathi Nagara",
+          "ward_name_kn": "ಶಕ್ತಿ ಗಣಪತಿ ನಗರ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 46,
+          "ward_name_en": "Kamalanagara",
+          "ward_name_kn": "ಕಮಲಾನಗರ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 47,
+          "ward_name_en": "Vrishabhavathi Nagar",
+          "ward_name_kn": "ವೃಷಭಾವತಿ ನಗರ",
+          "ac_no": "156",
+          "ac_name_en": "Mahalakshmi Layout",
+          "ac_name_kn": "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+          "population": 0
+        },
+        {
+          "ward_number": 48,
+          "ward_name_en": "Mathikere",
+          "ward_name_kn": "ಮತ್ತಿಕೆರೆ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 49,
+          "ward_name_en": "Aramane Nagara",
+          "ward_name_kn": "ಅರಮನೆ ನಗರ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 50,
+          "ward_name_en": "Sadashiva Nagara",
+          "ward_name_kn": "ಸದಾಶಿವ ನಗರ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 51,
+          "ward_name_en": "Rajamahal",
+          "ward_name_kn": "ರಾಜಮಹಲ್",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 52,
+          "ward_name_en": "Kodandarampura",
+          "ward_name_kn": "ಕೋದಂಡರಾಮಪುರ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 53,
+          "ward_name_en": "Malleshwaram",
+          "ward_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 54,
+          "ward_name_en": "Subedarpalya",
+          "ward_name_kn": "ಸುಬೇದಾರಪಾಳ್ಯ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 55,
+          "ward_name_en": "Subramanyanagara",
+          "ward_name_kn": "ಸುಬ್ರಹ್ಮಣ್ಯನಗರ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 56,
+          "ward_name_en": "Gayathri Nagara",
+          "ward_name_kn": "ಗಾಯತ್ರಿ ನಗರ",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 57,
+          "ward_name_en": "Kuvempu Ward",
+          "ward_name_kn": "ಕುವೆಂಪು ವಾರ್ಡ್",
+          "ac_no": "157",
+          "ac_name_en": "Malleshwaram",
+          "ac_name_kn": "ಮಲ್ಲೇಶ್ವರಂ",
+          "population": 0
+        },
+        {
+          "ward_number": 58,
+          "ward_name_en": "Dayanand Nagara",
+          "ward_name_kn": "ದಯಾನಂದ ನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 59,
+          "ward_name_en": "Bandi Reddy Circle Ward",
+          "ward_name_kn": "ಬಂಡಿ ರೆಡ್ಡಿ ವೃತ್ತ ವಾರ್ಡ್",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 60,
+          "ward_name_en": "Prakash Nagara",
+          "ward_name_kn": "ಪ್ರಕಾಶ ನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 61,
+          "ward_name_en": "Da.Ra. Bendre Ward",
+          "ward_name_kn": "ದ.ರಾ.ಬೇಂದ್ರೆ ವಾರ್ಡ್",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 62,
+          "ward_name_en": "Rama Mandira",
+          "ward_name_kn": "ರಾಮ ಮಂದಿರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 63,
+          "ward_name_en": "Rajajinagara",
+          "ward_name_kn": "ರಾಜಾಜಿನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 64,
+          "ward_name_en": "Shivanagara",
+          "ward_name_kn": "ಶಿವನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 65,
+          "ward_name_en": "Manjunath Nagara",
+          "ward_name_kn": "ಮಂಜುನಾಥ್  ನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 66,
+          "ward_name_en": "Sane Guruvana Halli",
+          "ward_name_kn": "ಸಾಣೆ ಗುರುವನ ಹಳ್ಳಿ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 67,
+          "ward_name_en": "Basaveshwara Nagara",
+          "ward_name_kn": "ಬಸವೇಶ್ವರ ನಗರ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 68,
+          "ward_name_en": "Kamakshipalya",
+          "ward_name_kn": "ಕಾಮಾಕ್ಷಿಪಾಳ್ಯ",
+          "ac_no": "165",
+          "ac_name_en": "Rajajinagar",
+          "ac_name_kn": "ರಾಜಾಜಿನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 69,
+          "ward_name_en": "Agrahara Dasarahalli",
+          "ward_name_kn": "ಅಗ್ರಹಾರ ದಾಸರಹಳ್ಳಿ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 70,
+          "ward_name_en": "Dr Rajkumar Ward",
+          "ward_name_kn": "ಡಾ. ರಾಜ್‌ಕುಮಾರ್ ವಾರ್ಡ್",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 71,
+          "ward_name_en": "Thimmenahalli",
+          "ward_name_kn": "ತಿಮ್ಮೇನಹಳ್ಳಿ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 72,
+          "ward_name_en": "Kaveripura",
+          "ward_name_kn": "ಕಾವೇರಿಪುರ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 73,
+          "ward_name_en": "Dr. Vishnuvardhan Ward",
+          "ward_name_kn": "ಡಾII ವಿಷ್ಣುವರ್ಧನ್ ವಾರ್ಡ್",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 74,
+          "ward_name_en": "Pattegar Palya",
+          "ward_name_kn": "ಪಟ್ಟೆಗಾರ್ ಪಾಳ್ಯ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 75,
+          "ward_name_en": "Marenahalli West",
+          "ward_name_kn": "ಮಾರೇನಹಳ್ಳಿ ಪಶ್ಚಿಮ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 76,
+          "ward_name_en": "Moodalapalya",
+          "ward_name_kn": "ಮೂಡಲಪಾಳ್ಯ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 77,
+          "ward_name_en": "Maruthi Mandira Ward",
+          "ward_name_kn": "ಮಾರುತಿ ಮಂದಿರ ವಾರ್ಡ್",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 78,
+          "ward_name_en": "Anubhava Nagara",
+          "ward_name_kn": "ಅನುಭವ ನಗರ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 79,
+          "ward_name_en": "Nagarbhavi",
+          "ward_name_kn": "ನಾಗರಭಾವಿ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 80,
+          "ward_name_en": "Chandra Layout",
+          "ward_name_kn": "ಚಂದ್ರ ಲೇಔಟ್",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 81,
+          "ward_name_en": "Nayanda Halli",
+          "ward_name_kn": "ನಾಯಂಡ ಹಳ್ಳಿ",
+          "ac_no": "166",
+          "ac_name_en": "Govindraj Nagar",
+          "ac_name_kn": "ಗೋವಿಂದರಾಜ ನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 82,
+          "ward_name_en": "Attigupe",
+          "ward_name_kn": "ಅತ್ತಿಗುಪ್ಪೆ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 83,
+          "ward_name_en": "Hampi Nagar",
+          "ward_name_kn": "ಹಂಪಿ ನಗರ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 84,
+          "ward_name_en": "Hosahalli",
+          "ward_name_kn": "ಹೊಸಹಳ್ಳಿ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 85,
+          "ward_name_en": "Adi Chunchanagiri Ward",
+          "ward_name_kn": "ಆದಿ ಚುಂಚನಗಿರಿ ವಾರ್ಡ್",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 86,
+          "ward_name_en": "Vidyaranyanagara",
+          "ward_name_kn": "ವಿದ್ಯಾರಣ್ಯನಗರ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 87,
+          "ward_name_en": "K.P Agrahara",
+          "ward_name_kn": "ಕೆ.ಪಿ. ಅಗ್ರಹಾರ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 88,
+          "ward_name_en": "Sangolli Rayanna Ward",
+          "ward_name_kn": "ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ ವಾರ್ಡ್",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 89,
+          "ward_name_en": "Bapuji Nagara",
+          "ward_name_kn": "ಬಾಪೂಜಿ ನಗರ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 90,
+          "ward_name_en": "Krishnadevaraya ward",
+          "ward_name_kn": "ಕೃಷ್ಣದೇವರಾಯ ವಾರ್ಡ್",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 91,
+          "ward_name_en": "Gali Anjaneya Temple Ward",
+          "ward_name_kn": "ಗಾಳಿ ಆಂಜನೇಯ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 92,
+          "ward_name_en": "Muneshwara Block",
+          "ward_name_kn": "ಮುನೇಶ್ವರ ಬ್ಲಾಕ್",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 93,
+          "ward_name_en": "Avalahalli",
+          "ward_name_kn": "ಆವಲಹಳ್ಳಿ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 94,
+          "ward_name_en": "Deepanjali Nagara",
+          "ward_name_kn": "ದೀಪಾಂಜಲಿ ನಗರ",
+          "ac_no": "167",
+          "ac_name_en": "Vijayanagar",
+          "ac_name_kn": "ವಿಜಯನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 95,
+          "ward_name_en": "Swamy Vivekananda Ward",
+          "ward_name_kn": "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ವಾರ್ಡ್",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 96,
+          "ward_name_en": "Kathriguppe",
+          "ward_name_kn": "ಕತ್ರಿಗುಪ್ಪೆ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 97,
+          "ward_name_en": "Srinivasa Nagara",
+          "ward_name_kn": "ಶ್ರೀನಿವಾಸ ನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 98,
+          "ward_name_en": "Ashoka Nagara",
+          "ward_name_kn": "ಅಶೋಕ ನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 99,
+          "ward_name_en": "T.R Shamanna Nagar",
+          "ward_name_kn": "ಟಿ.ಆರ್.ಶಾಮಣ್ಣ ನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 100,
+          "ward_name_en": "Srinagar",
+          "ward_name_kn": "ಶ್ರೀನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 101,
+          "ward_name_en": "Kempambudhi Ward",
+          "ward_name_kn": "ಕೆಂಪಾಂಬುಧಿ ವಾರ್ಡ್",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 102,
+          "ward_name_en": "Hanumanthanagar",
+          "ward_name_kn": "ಹನುಮಂತನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 103,
+          "ward_name_en": "N.R Colony",
+          "ward_name_kn": "ಎನ್.ಆರ್. ಕಾಲೋನಿ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 104,
+          "ward_name_en": "Thyagarajnagar",
+          "ward_name_kn": "ತ್ಯಾಗರಾಜನಗರ",
+          "ac_no": "170",
+          "ac_name_en": "Basavanagudi",
+          "ac_name_kn": "ಬಸವನಗುಡಿ",
+          "population": 0
+        },
+        {
+          "ward_number": 105,
+          "ward_name_en": "Yediyuru",
+          "ward_name_kn": "ಯಡಿಯೂರು",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 106,
+          "ward_name_en": "Devagiri Temple Ward",
+          "ward_name_kn": "ದೇವಗಿರಿ ದೇವಸ್ಥಾನ ವಾರ್ಡ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 107,
+          "ward_name_en": "Dharmagiri Ward",
+          "ward_name_kn": "ಧರ್ಮಗಿರಿ ವಾರ್ಡ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 108,
+          "ward_name_en": "Ganesh Mandira Ward",
+          "ward_name_kn": "ಗಣೇಶ್ ಮಂದಿರಾ ವಾರ್ಡ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 109,
+          "ward_name_en": "Kamakya Layout",
+          "ward_name_kn": "ಕಾಮಕ್ಯ ಲೇಔಟ್",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 110,
+          "ward_name_en": "Chikkalasandra",
+          "ward_name_kn": "ಚಿಕ್ಕಲ್ಲಸಂದ್ರ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 111,
+          "ward_name_en": "Ittamadu",
+          "ward_name_kn": "ಇಟ್ಟಮಡು",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        },
+        {
+          "ward_number": 112,
+          "ward_name_en": "Hosakerehalli",
+          "ward_name_kn": "ಹೊಸಕೆರೆಹಳ್ಳಿ",
+          "ac_no": "171",
+          "ac_name_en": "Padmanabanagar",
+          "ac_name_kn": "ಪದ್ಮನಾಭನಗರ",
+          "population": 0
+        }
+      ]
+    }
+  }
+}

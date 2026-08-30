@@ -1,0 +1,210 @@
+{
+  "gp_id": "1521002027",
+  "gp_name_kn": "ಆಬಲವಾಡಿ",
+  "gp_name_en": "ABALAVADI",
+  "district_name_kn": "ಮಂಡ್ಯ",
+  "district_name_en": "MANDYA",
+  "taluk_name_kn": "ಮದ್ದೂರು",
+  "taluk_name_en": "MADDUR",
+  "pin_code": "571425",
+  "lgd_code": "219238",
+  "total_staff": 9,
+  "total_beneficiaries": 178,
+  "staff": [
+    {
+      "emp_name_kn": "ನಂಜುಂಡಯ್ಯ ಹೆಚ್‌ ಪಿ",
+      "emp_name_en": "NANJUNDAIAH H P ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "9844127312",
+      "email_id": "nanjundaiah.hp@gmail.com",
+      "emp_id": "GE_60717"
+    },
+    {
+      "emp_name_kn": "ಸಿ ಪಿ ಕೃಷ್ಣ",
+      "emp_name_en": "C P  KRISHNA ",
+      "designation_kn": "ಕಾರ್ಯದರ್ಶಿ ಗ್ರೇಡ್ -2",
+      "mobile_no": "9008743627",
+      "email_id": "abalavadi.mdr.mdy@gmail.com",
+      "emp_id": "GE_77750"
+    },
+    {
+      "emp_name_kn": "ತಿಮ್ಮೇಗೌಡ",
+      "emp_name_en": "Timmegowda ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "9902220086",
+      "email_id": "",
+      "emp_id": "E_107613"
+    },
+    {
+      "emp_name_kn": "ಎಮ್ ನಂಜೇಗೌಡ",
+      "emp_name_en": "M Nanjegowda ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "9591420132",
+      "email_id": "",
+      "emp_id": "E_108256"
+    },
+    {
+      "emp_name_kn": "ಅರುಣ್ ಕುಮಾರ್ ಎ ಎಸ್",
+      "emp_name_en": "Arun Kumar A S ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9611023390",
+      "email_id": "",
+      "emp_id": "E_148848"
+    },
+    {
+      "emp_name_kn": "ನಿಂಗರಾಜು ಎಸ್",
+      "emp_name_en": "Ningaraju S ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9731467705",
+      "email_id": "",
+      "emp_id": "E_132333"
+    },
+    {
+      "emp_name_kn": "ಕುಮಾರ",
+      "emp_name_en": "Kumara ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9164199740",
+      "email_id": "",
+      "emp_id": "E_132357"
+    },
+    {
+      "emp_name_kn": "ಎಮ್ ಬಿ ಯೋಗೇಶ್",
+      "emp_name_en": "M B Yogesh ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7411111099",
+      "email_id": "",
+      "emp_id": "E_107934"
+    },
+    {
+      "emp_name_kn": "ಕೃಷ್ಣ ಸಿ",
+      "emp_name_en": "Krishna C ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "9535343072",
+      "email_id": "",
+      "emp_id": "E_107897"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 2,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 6,
+      "approved": 4,
+      "pending": 0,
+      "rejected": 2
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 49,
+      "approved": 49,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 45,
+      "approved": 45,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 39,
+      "approved": 39,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 11,
+      "approved": 11,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 17,
+      "approved": 16,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 2,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 1,
+      "approved": 1,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 12,
+      "approved": 9,
+      "pending": 0,
+      "rejected": 3
+    }
+  ],
+  "updated_at": "2026-08-23T05:52:09.888Z"
+}

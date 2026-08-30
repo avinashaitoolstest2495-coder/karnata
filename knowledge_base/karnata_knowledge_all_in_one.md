@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-08-23 04:20:40 IST  
+> **Generated:** 2026-08-30 22:20:41 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1715,9 +1715,9 @@
 
 # 💰 ಕರ್ನಾಟಕ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ಲೈವ್ ದರ & 125 ವರ್ಷಗಳ ಇತಿಹಾಸ (Gold & Silver Analytics)
 
-* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-08-23
-* **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹16309 / 1 ಗ್ರಾಂ (₹163,090 / 10 ಗ್ರಾಂ)
-* **22K ಆಭರಣ ಚಿನ್ನ:** ₹14950 / 1 ಗ್ರಾಂ (₹119,600 / 8 ಗ್ರಾಂ 1 ಪವನ್)
+* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-08-30
+* **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹15829 / 1 ಗ್ರಾಂ (₹158,290 / 10 ಗ್ರಾಂ)
+* **22K ಆಭರಣ ಚಿನ್ನ:** ₹14505 / 1 ಗ್ರಾಂ (₹116,040 / 8 ಗ್ರಾಂ 1 ಪವನ್)
 * **ಬೆಳ್ಳಿ (Silver 999):** ₹260.0 / 1 ಗ್ರಾಂ (₹260,000 / 1 ಕೆಜಿ)
 
 ---
@@ -1730,7 +1730,7 @@
 * **2000:** ₹4,400.00 / 10g
 * **2010:** ₹18,500.00 / 10g
 * **2020:** ₹48,651.00 / 10g
-* **2026 (ಇಂದು):** ₹163,090 / 10g (**8,270 ಪಟ್ಟು ಏರಿಕೆ**)
+* **2026 (ಇಂದು):** ₹158,290 / 10g (**8,270 ಪಟ್ಟು ಏರಿಕೆ**)
 
 
 ---
@@ -1762,7 +1762,7 @@
 
 ### bengaluru_urban ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಬಾಲಚಂದ್ರ ಎಸ್.‌ ಎನ್.‌
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಪ್ರವೀಣ್.ಕೆ.ಎನ್‌
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ಶಿವಕುಮಾರ್
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಲಭ್ಯವಿಲ್ಲ
 
 ### bengaluru_rural ಜಿಲ್ಲೆ:
@@ -1907,12 +1907,31 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **19-08-2026:** Sowmya N Gowda, KAS (KN:2016), Special Land Acquisition Officer, Bengaluru Urban District, Bengaluru is transferred with immediate effect and posted until further orders as Deputy Secretary to Government (Land Acquisition, Rehabilitation and Reconstruction), Department of Revenue, Bengaluru. (ಆದೇಶ: DPAR 70 SKT 2026) — Sowmya N Gowda, KAS (KN:2016), Special Land Acquisition Officer, Bengaluru Urban District, Bengaluru is transferred with immediate effect and posted until further orders as Deputy Secretary to Government (Land Acquisition, Rehabilitation and Reconstruction), Department of Revenue, Bengaluru.
+
+    Thabassum Zahera, KAS (KN:2016), Public Relations Officer, Tumkur City Corporation, Tumkuru is transferred with immediate effect and posted until further orders as Special Land Acquisition Officer (SLAO), Karnataka Industrial Area Development Board (KIADB), Tumkur vice Somappa Kadakol, KAS transferred.
+
+    Somappa Kadakol, KAS (KN:2017), Special Land Acquisition Officer (SLAO), Karnataka Industrial Area Development Board (KIADB), Tumkur is transferred with immediate effect and posted until further orders as Public Relations Officer, Tumkur City Corporation, Tumkuru vice Thabassum Zahera, KAS transferred.
+
+Vijay Kumar B Azure is transferred to  Registrar (Administration), Akkamahadevi Women's University, Vijayapura
+* **19-08-2026:** Dr. Mythri H P S, KAS (KN:2011),  is transferred with immediate effect and posted until further orders as Assistant Commissioner, Shivamogga Sub-Division, Shivamogga vice Shri. G H Sathyanarayana, KAS transferred. (ಆದೇಶ: DPAR 58 SKT 2026) — Dr. Mythri H P S, KAS (KN:2011),  is transferred with immediate effect and posted until further orders as Assistant Commissioner, Shivamogga Sub-Division, Shivamogga vice Shri. G H Sathyanarayana, KAS transferred.
 * **13-08-2026:** Dr. K.V. Thrilok Chandra, IAS (KN: 2007), concurrent charge of the post of Chief Evaluation Officer, Karnataka Monitoring and Evaluation Authority, Bengaluru (ಆದೇಶ: e-DPAR 276 SAS 2026) — Dr. K.V. Thrilok Chandra, IAS (KN: 2007), concurrent charge of the post of Chief Evaluation Officer, Karnataka Monitoring and Evaluation Authority, Bengaluru
 * **12-08-2026:** Sri. Prasanna H., IAS (KN: 2017) Concurrent Charge of Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru (ಆದೇಶ: e-DPAR 275 SAS 2026) — Sri. Prasanna H., IAS (KN: 2017) Concurrent Charge of Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru 
 
 
 
 Sri. Lavish Ordia, IAS (KN: 2020) Joint Controller of Examination, Karnataka Public Service Commission (KPSC), Bengaluru.
+* **12-08-2026:** Smt. Shantha L Hulmani, KAS (KN:2010), Director,  Directorate of Pension, Small Savings & Asset-Liability Monitoring, Bengaluru  is transferred with immediate effect and posted until further orders as Executive Director (Human Resources) , Bengaluru Metro Rail Corporation Limited (BMRCL), Bengaluru vice Saroja B B, KAS transferred. (ಆದೇಶ: DPAR 112 SKT 2026) — Smt. Shantha L Hulmani, KAS (KN:2010), Director,  Directorate of Pension, Small Savings & Asset-Liability Monitoring, Bengaluru  is transferred with immediate effect and posted until further orders as Executive Director (Human Resources) , Bengaluru Metro Rail Corporation Limited (BMRCL), Bengaluru vice Saroja B B, KAS transferred.
+
+    Smt. Annapurna K, KAS (KN:2012), Director, KGID, Bangalore is placed in additional charge with immediate effect and until further orders as Director,  Directorate of Pension, Small Savings & Asset-Liability Monitoring, Bengaluru  vice Smt. Shantha L Hulmani, KAS transferred.
+
+    Smt. Roopashree K, KAS (KN:1998), Joint Director (Admin), Directorate of Urban Land Transport (DULT), Bengaluru is transferred with immediate effect and posted until further orders as Geeral Manager (Admin & HR) CHESCOM, MYSURU vice Roopa B R, KAS transferred.
+
+    Shri. Vijay B.P., KAS (KN:2010), Joint Commissioner (Election), Greater Bengaluru Authority, Bengaluru is placed in additional charge with immediate effect and until further orders as Joint Commissioner (Election), Greater Bengaluru Authority, Bengaluru vice Shri. Vijay B.P., KAS transferred.
+
+    Shri. Hidayathulla K.A, KAS (KN:1999),  is transferred with immediate effect and posted until further orders as Project Director (KUTUMBA), Center of e-Governance, Bengaluru relieving Smt. Annapurna K, KAS from additional charge.
+
+    Saroja B B, KAS (KN:2016), Executive Director (Human Resources) , Bengaluru Metro Rail Corporation Limited (BMRCL), Bengaluru is transferred with immediate effect and posted until further orders as Commissioner, Haveri Urban Development Authority, Haveri.
 * **11-08-2026:** Dr. Arundhathi Chandrashekar, IAS (KN:  2012) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru. (ಆದೇಶ: e-DPAR 257 SAS 2026) — Dr. Arundhathi Chandrashekar, IAS (KN:  2012) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru.
 * **06-08-2026:** Sri. Manoz Jain. IAS (KN: 2006) Secretary to Government, Monitoring Welfare Department, Bengaluru. (ಆದೇಶ: e-DPAR 271 SAS 2026) — Sri. Manoz Jain. IAS (KN: 2006) Secretary to Government, Monitoring Welfare Department, Bengaluru. 
 
@@ -1963,6 +1982,7 @@ Governance, Bengaluru
 
     Kalpashree C R, KAS (KN:2017), Chief Administrative Officer, Cauveri Neeravari Nigam Limited (CNNL), Mysuru is placed in additional charge with immediate effect and until further orders as Chief Administrative Officer, Cauveri Neeravari Nigam Limited (CNNL), Mysuru vice Kalpashree C R, KAS transferred.
 * **31-07-2026:** Ms. Fouzia Taranum B. IAS (KN: 2015) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru. (ಆದೇಶ: e-DPAR 257 SAS 2026) — Ms. Fouzia Taranum B. IAS (KN: 2015) Concurrent Charge of Director, E-Governance, RDPR, Bengaluru.
+* **31-07-2026:** ನಾಗೇಂದ್ರ ಎಫ್‌ ಹೊನ್ನಳ್ಳಿ (ಆದೇಶ: ಸಿಆಸುಇ 281 ಸ ಉ ಸೇ 2026) — ನಾಗೇಂದ್ರ ಎಫ್‌ ಹೊನ್ನಳ್ಳಿ
 * **28-07-2026:** Sri. Nakul S S IAS (KN: 2010) Concurrent Charge of Managing Director, Karnataka State Finance Corporation, Bengaluru. (ಆದೇಶ: e-DPAR 259 SAS 2026) — Sri. Nakul S S IAS (KN: 2010) Concurrent Charge of Managing Director, Karnataka State Finance Corporation, Bengaluru.
 * **27-07-2026:** Smt. Geetha I Koulagi, KAS (KN:2016), Registrar, Karnataka State Law University, Hubballi  is transferred with immediate effect and posted until further orders as Additional Commisisoner, Regional Commissioner, Belagavi Division, Belagavi  vice Sidramappa Shreeshaila Biradar, KAS transferred. (ಆದೇಶ: DPAR 85 SKT 2026) — Smt. Geetha I Koulagi, KAS (KN:2016), Registrar, Karnataka State Law University, Hubballi  is transferred with immediate effect and posted until further orders as Additional Commisisoner, Regional Commissioner, Belagavi Division, Belagavi  vice Sidramappa Shreeshaila Biradar, KAS transferred.
 * **27-07-2026:** Smt. Lakshmamma P, KAS (KN:2010), Member Secretary, NRI Forum, Bengaluru is transferred with immediate effect and posted until further orders as Additional Commissioner (Revenue), Center Zone, Greater Bengaluru Authority, Bengaluru. (ಆದೇಶ: DPAR 92 SKT 2026) — Smt. Lakshmamma P, KAS (KN:2010), Member Secretary, NRI Forum, Bengaluru is transferred with immediate effect and posted until further orders as Additional Commissioner (Revenue), Center Zone, Greater Bengaluru Authority, Bengaluru.
@@ -2167,13 +2187,5 @@ Sri. Yogeesh A. M., IAS (KN: 2013), Director, Department of Agricultural Marketi
 
 
 Smt. Divya Prabhu G R J., IAS (KN: 2014), Commissioner for Rural Development, Bengaluru
-* **24-06-2026:** Sri. M N Anucheth, IPS (KN: 2009) Deputy Inspector General of Police & Commissioner, Department of Information and Public Relations, Bengaluru. (ಆದೇಶ: e-DPAR 132 SPS 2026) — Sri. M N Anucheth, IPS (KN: 2009) Deputy Inspector General of Police & Commissioner, Department of Information and Public Relations, Bengaluru.
-
-
-
-Sri. M N Anucheth, IPS is also placed in the concurrent charge of the post of Commissioner, Youth Empowerment and Sports Department.
-* **24-06-2026:** Elisha Andrews, KAS (KN:2012), Program Director (ULMS), DPAR (e-Goveranance Center), Bengaluru is placed in additional charge with immediate effect and until further orders as Administrative Officer D Devaraja Arasu Truck Terminal LTD Bengaluru . (ಆದೇಶ: DPAR 71 SKT 2026) — Elisha Andrews, KAS (KN:2012), Program Director (ULMS), DPAR (e-Goveranance Center), Bengaluru is placed in additional charge with immediate effect and until further orders as Administrative Officer D Devaraja Arasu Truck Terminal LTD Bengaluru .
-* **24-06-2026:** Shri. Nischaya N K, KAS (KN:2022),  is transferred with immediate effect and posted until further orders as Officer on Special Duty to Greater Bengaluru development authority minister (OSD). (ಆದೇಶ: DPAR 64 SKT 2026) — Shri. Nischaya N K, KAS (KN:2022),  is transferred with immediate effect and posted until further orders as Officer on Special Duty to Greater Bengaluru development authority minister (OSD).
-* **23-06-2026:** Shri. Prakash Kudari, KAS (KN:2022), Assistant Commissionrer, Basavakalyana Sub Division, Bidar District is placed in additional charge with immediate effect and until further orders as Special Land Acquisiton Officer, Karanja Project, Bidar. (ಆದೇಶ: DPAR 65 SKT 2026) — Shri. Prakash Kudari, KAS (KN:2022), Assistant Commissionrer, Basavakalyana Sub Division, Bidar District is placed in additional charge with immediate effect and until further orders as Special Land Acquisiton Officer, Karanja Project, Bidar.
 
 ---

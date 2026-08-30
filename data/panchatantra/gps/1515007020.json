@@ -1,0 +1,282 @@
+{
+  "gp_id": "1515007020",
+  "gp_name_kn": "ಮದನಾ",
+  "gp_name_en": "MADANA",
+  "district_name_kn": "ಕಲಬುರಗಿ",
+  "district_name_en": "KALABURAGI",
+  "taluk_name_kn": "ಸೇಡಂ",
+  "taluk_name_en": "SEDAM",
+  "pin_code": "585318",
+  "lgd_code": "218073",
+  "total_staff": 18,
+  "total_beneficiaries": 22,
+  "staff": [
+    {
+      "emp_name_kn": "ಶರಣಬಸಪ್ಪ",
+      "emp_name_en": "Sharanabasappa ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "9742650434",
+      "email_id": "sharanualguda@gmail.com",
+      "emp_id": "GE_85309"
+    },
+    {
+      "emp_name_kn": "ಮಹಿಮೂದ್ ಮಿಯಾ",
+      "emp_name_en": "Mahimood Miya ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "9902563758",
+      "email_id": "",
+      "emp_id": "E_118732"
+    },
+    {
+      "emp_name_kn": "ಶ್ರೀಶೈಲ",
+      "emp_name_en": "Shrishail ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9986849195",
+      "email_id": "",
+      "emp_id": "E_118747"
+    },
+    {
+      "emp_name_kn": "ಶೇಖ ಬಾಬಾ",
+      "emp_name_en": "Shekha Baba ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9743552080",
+      "email_id": "",
+      "emp_id": "E_165386"
+    },
+    {
+      "emp_name_kn": "ಪಿ ಅಶೋಕ",
+      "emp_name_en": "P Ashok ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "7996428420",
+      "email_id": "",
+      "emp_id": "E_181723"
+    },
+    {
+      "emp_name_kn": "ಅರವಿಂದ",
+      "emp_name_en": "Arvind ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8105345322",
+      "email_id": "",
+      "emp_id": "E_140505"
+    },
+    {
+      "emp_name_kn": "ಅಬ್ದುಲ್ ಸಲಾಂ",
+      "emp_name_en": "Abdul Salam ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9972767545",
+      "email_id": "",
+      "emp_id": "E_181724"
+    },
+    {
+      "emp_name_kn": "ಬಾಬು",
+      "emp_name_en": "Babu ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9591629219",
+      "email_id": "",
+      "emp_id": "E_146373"
+    },
+    {
+      "emp_name_kn": "ಮಹಮ್ಮದ್ ಯೂಸುಫ್",
+      "emp_name_en": "Mahammad Yusuf ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9902563817",
+      "email_id": "",
+      "emp_id": "E_140513"
+    },
+    {
+      "emp_name_kn": "ಅಂಜಯ್ಯ",
+      "emp_name_en": "Anjayya ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9900102081",
+      "email_id": "",
+      "emp_id": "E_152956"
+    },
+    {
+      "emp_name_kn": "ರಾಘವೇಂದ್ರ",
+      "emp_name_en": "Raghavendra ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9663879583",
+      "email_id": "",
+      "emp_id": "E_140538"
+    },
+    {
+      "emp_name_kn": "ಪ್ರಭು",
+      "emp_name_en": "Prabhu ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9980016811",
+      "email_id": "",
+      "emp_id": "E_118743"
+    },
+    {
+      "emp_name_kn": "ಮಲ್ಲಪ್ಪ",
+      "emp_name_en": "Mallappa ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9880871384",
+      "email_id": "",
+      "emp_id": "E_127481"
+    },
+    {
+      "emp_name_kn": "ಸಂತೋಷ",
+      "emp_name_en": "Santosh ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9741242341",
+      "email_id": "",
+      "emp_id": "E_127298"
+    },
+    {
+      "emp_name_kn": "ನಾಗಯ್ಯ",
+      "emp_name_en": "Nagayya ",
+      "designation_kn": "ಕ್ಲೀನರ್ಗಳು",
+      "mobile_no": "9901294147",
+      "email_id": "",
+      "emp_id": "E_118729"
+    },
+    {
+      "emp_name_kn": "ಶರಣಪ್ಪ",
+      "emp_name_en": "Sharanappa ",
+      "designation_kn": "ಕ್ಲೀನರ್ಗಳು",
+      "mobile_no": "8660137505",
+      "email_id": "",
+      "emp_id": "E_146374"
+    },
+    {
+      "emp_name_kn": "ಕಾಶಮ್ಮ",
+      "emp_name_en": "Kashamma ",
+      "designation_kn": "ಕ್ಲೀನರ್ಗಳು",
+      "mobile_no": "6360158104",
+      "email_id": "",
+      "emp_id": "E_169119"
+    },
+    {
+      "emp_name_kn": "ಶಿವರಾಮರೆಡ್ಡಿ",
+      "emp_name_en": "Shivaramreddy ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "8548882208",
+      "email_id": "",
+      "emp_id": "L_13003"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 16,
+      "approved": 13,
+      "pending": 0,
+      "rejected": 3
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 2,
+      "approved": 2,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 3,
+      "approved": 3,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 3,
+      "approved": 3,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 1,
+      "approved": 1,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 1,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 1
+    }
+  ],
+  "updated_at": "2026-08-23T05:51:41.281Z"
+}

@@ -1,0 +1,39 @@
+Created At: 2026-08-30T07:57:23+05:30
+Completed At: 2026-08-30T07:57:23+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 1379
+Total Bytes: 68304
+Showing lines 740 to 770
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+740: let currentTrendRange = '1y'; // Default to Jos Alukkas 1-year view
+741: let historicalRawData = [];
+742: let yearly1901Data = [];
+743: let activeDataPoints = [];
+744: let currentHoverIndex = -1;
+745: 
+746: async function loadHistoricalRates() {
+747:   try {
+748:     const res = await fetch('/data/historical_rates.json?v=' + Date.now());
+749:     if (res.ok) {
+750:       const json = await res.json();
+751:       if (json) {
+752:         if (Array.isArray(json.history) && json.history.length > 0) {
+753:           historicalRawData = json.history;
+754:         }
+755:         if (Array.isArray(json.yearly_1901_2026) && json.yearly_1901_2026.length > 0) {
+756:           yearly1901Data = json.yearly_1901_2026;
+757:         }
+758:       }
+759:     }
+760:   } catch (e) {
+761:     console.warn("loadHistoricalRates fetch error:", e);
+762:   }
+763: }
+764: 
+765: function drawJosAlukkasChart() {
+766:   const canvas = document.getElementById('jl-chart-canvas');
+767:   if (!canvas) return;
+768:   const ctx = canvas.getContext('2d');
+769:   const dpr = window.devicePixelRatio || 1;
+770:   const rect = canvas.getBoundingClientRect();
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

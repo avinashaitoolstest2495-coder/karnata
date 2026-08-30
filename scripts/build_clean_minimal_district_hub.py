@@ -1,0 +1,1008 @@
+# -*- coding: utf-8 -*-
+"""
+Karnata — scripts/build_clean_minimal_district_hub.py
+Builds an ultra-clean, modern, minimalist District Hub page with exact Homepage Navigation Bar and BIG READABLE TEXT.
+"""
+
+import os
+import json
+from pathlib import Path
+
+ROOT_DIR = Path(r"c:\Users\avina\Downloads\karnata-site-with-cms")
+NK_DIR = ROOT_DIR / "namma-karnataka"
+
+# Master 31 Districts Data
+DISTRICTS = [
+    {
+        "key": "bengaluru-urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "hq_kn": "ಬೆಂಗಳೂರು",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 28, "taluks": 5, "pop": "1.27 ಕೋಟಿ", "area": "2,190 km²",
+        "dc": "ಶ್ರೀ ಬಾಲಚಂದ್ರ ಎಸ್. ಎನ್. (IAS)", "sp": "ಡಾ|| ಶಿವಕುಮಾರ್ (IPS)",
+        "highlight": "ಸಿಲಿಕಾನ್ ವ್ಯಾಲಿ, IT/BT ತಂತ್ರಜ್ಞಾನ ರಾಜಧಾನಿ, ವಿಧಾನಸೌಧ, ಉದ್ಯಾನ ನಗರಿ",
+        "search": "bengaluru urban bangalore bengaluru nagara ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "bengaluru-rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "hq_kn": "ನೆಲಮಂಗಲ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 4, "taluks": 4, "pop": "9.9 ಲಕ್ಷ", "area": "2,295 km²",
+        "dc": "ಶ್ರೀ ಎನ್. ಭಾಸ್ಕರ್ (IAS)", "sp": "ಶ್ರೀ ಸಿ. ಕೆ. ಬಾಬಾ (IPS)",
+        "highlight": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ, ರೇಷ್ಮೆ ಕೃಷಿ, ದಾಬಸ್‌ಪೇಟೆ ಇಂಡಸ್ಟ್ರಿಯಲ್ ಹಬ್",
+        "search": "bengaluru rural bangalore gramantara nelamangala ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "hq_kn": "ರಾಮನಗರ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 4, "taluks": 5, "pop": "10.8 ಲಕ್ಷ", "area": "3,556 km²",
+        "dc": "ಶ್ರೀ ಯಶವಂತ್ ವಿ. ಗುರುಕರ್ (IAS)", "sp": "ಶ್ರೀ ಕಾರ್ತಿಕ್ ರೆಡ್ಡಿ (IPS)",
+        "highlight": "ರೇಷ್ಮೆ ನಗರಿ, ಚನ್ನಪಟ್ಟಣದ ಮರದ ಬೊಂಬೆಗಳು (GI), ರಾಮದೇವರ ಬೆಟ್ಟ, ಸಾವನದುರ್ಗ",
+        "search": "ramanagara channapatna kanakapura silk ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "hq_kn": "ಮೈಸೂರು",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 11, "taluks": 7, "pop": "30.0 ಲಕ್ಷ", "area": "6,854 km²",
+        "dc": "ಶ್ರೀ ಲಕ್ಷ್ಮೀಕಾಂತ್ ರೆಡ್ಡಿ ಜಿ. (IAS)", "sp": "ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ್ (IPS)",
+        "highlight": "ವಿಶ್ವವಿಖ್ಯಾತ ಮೈಸೂರು ದಸರಾ, ಅಂಬಾವಿಲಾಸ ಅರಮನೆ, ಚಾಮುಂಡಿ ಬೆಟ್ಟ, ಮೈಸೂರು ರೇಷ್ಮೆ (GI)",
+        "search": "mysuru mysore chamundi dasara ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "hq_kn": "ಮಂಡ್ಯ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 7, "pop": "18.08 ಲಕ್ಷ", "area": "4,961 km²",
+        "dc": "ಶ್ರೀ ಡಾ. ಕುಮಾರ್ (IAS)", "sp": "ಶ್ರೀ ಮಲ್ಲಿಕಾರ್ಜುನ ಬಾಲದಂಡಿ (IPS)",
+        "highlight": "ಸಕ್ಕರೆ ನಾಡು, ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಡ್ಯಾಂ & ಬೃಂದಾವನ, ರಂಗನತಿಟ್ಟು ಪಕ್ಷಿಧಾಮ",
+        "search": "mandya sugar krs srirangapatna maddur ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "hq_kn": "ಹಾಸನ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 8, "pop": "17.76 ಲಕ್ಷ", "area": "6,814 km²",
+        "dc": "ಶ್ರೀ ಸಿ. ಸತ್ಯಭಾಮ (IAS)", "sp": "ಶ್ರೀ ಮೊಹಮ್ಮದ್ ಸುಜೀತಾ (IPS)",
+        "highlight": "ಬೇಲೂರು-ಹಳೇಬೀಡು ಹೊಯ್ಸಳ ಶಿಲ್ಪಕಲೆ (UNESCO), ಶ್ರವಣಬೆಳಗೊಳ ಗೊಮ್ಮಟೇಶ್ವರ ಬಾಹುಬಲಿ",
+        "search": "hassan belur halebidu shravanabelagola ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagara", "hq_kn": "ಚಾಮರಾಜನಗರ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 4, "taluks": 5, "pop": "10.2 ಲಕ್ಷ", "area": "5,101 km²",
+        "dc": "ಶ್ರೀ ಶಿಲ್ಪಾ ಶರ್ಮಾ (IAS)", "sp": "ಶ್ರೀ ಡಾ. ಬಿ.ಟಿ. ಕವಿತಾ (IPS)",
+        "highlight": "ಬಂಡೀಪುರ ಹುಲಿ ಸಂರಕ್ಷಿತ ಪ್ರದೇಶ, ಮಲೆ ಮಹದೇಶ್ವರ ಬೆಟ್ಟ (MM Hills), ಬಿಆರ್ ಹಿಲ್ಸ್",
+        "search": "chamarajanagara bandipur mm hills br hills ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "hq_kn": "ತುಮಕೂರು",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 11, "taluks": 10, "pop": "26.78 ಲಕ್ಷ", "area": "10,597 km²",
+        "dc": "ಶ್ರೀ ಶುಭ ಕಲ್ಯಾಣ್ (IAS)", "sp": "ಶ್ರೀ ಕೆ.ವಿ. ಅಶೋಕ್ (IPS)",
+        "highlight": "ಸಿದ್ಧಗಂಗಾ ಮಠ (ಶ್ರೀ ಶಿವಕುಮಾರ ಮಹಾಸ್ವಾಮೀಜಿ), ಕಲ್ಪತರು ನಾಡು, ತಿಪಟೂರು ಕೊಬ್ಬರಿ",
+        "search": "tumakuru tumkur siddaganga tiptur madhugiri ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "hq_kn": "ಕೋಲಾರ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 6, "taluks": 6, "pop": "15.36 ಲಕ್ಷ", "area": "3,969 km²",
+        "dc": "ಶ್ರೀ ಅಕ್ರಮ್ ಪಾಷ (IAS)", "sp": "ಶ್ರೀ ನಿಖಿಲ್ ಬಿ. (IPS)",
+        "highlight": "ಕೆಜಿಎಫ್ (KGF) ಚಿನ್ನದ ಗಣಿ, ಕುರುಡುಮಲೆ ಗಣಪತಿ, ಏಷ್ಯಾದ 2ನೇ ದೊಡ್ಡ ಟೊಮೆಟೊ ಮಾರುಕಟ್ಟೆ",
+        "search": "kolar kgf ಚಿನ್ನದ ಗಣಿ kurudumale ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "hq_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "region_id": "south", "region_kn": "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ", "mlas": 5, "taluks": 6, "pop": "12.55 ಲಕ್ಷ", "area": "4,244 km²",
+        "dc": "ಶ್ರೀ ಪಿ.ಎನ್. ರವೀಂದ್ರ (IAS)", "sp": "ಶ್ರೀ ಕುಶಾಲ್ ಚೌಕ್ಸೆ (IPS)",
+        "highlight": "ನಂದಿಬೆಟ್ಟ (Nandi Hills), ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯರ ಮುದ್ದೇನಹಳ್ಳಿ, ಆದಿಯೋಗಿ ಪ್ರತಿಮೆ",
+        "search": "chikkaballapura nandi hills muddenahalli ದಕ್ಷಿಣ south"
+    },
+    {
+        "key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "hq_kn": "ಬೆಳಗಾವಿ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 18, "taluks": 15, "pop": "47.7 ಲಕ್ಷ", "area": "13,415 km²",
+        "dc": "ಶ್ರೀ ಮೊಹಮ್ಮದ್ ರೋಷನ್ (IAS)", "sp": "ಶ್ರೀ ಭೀಮಾಶಂಕರ್ ಗುಳೇದ್ (IPS)",
+        "highlight": "ಕುಂದಾ ಸಿಹಿ, ಸುವರ್ಣ ವಿಧಾನಸೌಧ, ಕಿತ್ತೂರು ಚನ್ನಮ್ಮ & ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ ಕ್ರಾಂತಿ ಭೂಮಿ",
+        "search": "belagavi belgaum kittur gokak kunda ಉತ್ತರ north"
+    },
+    {
+        "key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "hq_kn": "ಬಾಗಲಕೋಟೆ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 9, "pop": "18.9 ಲಕ್ಷ", "area": "6,575 km²",
+        "dc": "ಶ್ರೀ ಜಾನಕಿ ಕೆ.ಎಂ. (IAS)", "sp": "ಶ್ರೀ ಅಮರನಾಥ್ ರೆಡ್ಡಿ ವೈ. (IPS)",
+        "highlight": "ಬಾದಾಮಿ ಗುಹೆಗಳು, ಐಹೊಳೆ, ಪಟ್ಟದಕಲ್ಲು (UNESCO), ಇಳಕಲ್ ಸೀರೆ (GI), ಮುಧೋಳ ಶ್ವಾನ",
+        "search": "bagalkote badami aihole pattadakal ilkal ಉತ್ತರ north"
+    },
+    {
+        "key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "hq_kn": "ವಿಜಯಪುರ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 8, "taluks": 12, "pop": "21.7 ಲಕ್ಷ", "area": "10,498 km²",
+        "dc": "ಶ್ರೀ ಟಿ. ಭೂಬಾಲನ್ (IAS)", "sp": "ಶ್ರೀ ಲಕ್ಷ್ಮಣ ನಿಂಬರಗಿ (IPS)",
+        "highlight": "ಗೋಲ ಗುಮ್ಮಟ (ಗುಸುಗುಸು ಗ್ಯಾಲರಿ), ಇಬ್ರಾಹಿಂ ರೋಜಾ, ಬಸವಣ್ಣನವರ ಜನ್ಮಸ್ಥಳ, ಆಲಮಟ್ಟಿ ಡ್ಯಾಂ",
+        "search": "vijayapura bijapur gol gumbaz basavana bagevadi almatti ಉತ್ತರ north"
+    },
+    {
+        "key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "hq_kn": "ಧಾರವಾಡ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 7, "pop": "18.47 ಲಕ್ಷ", "area": "4,260 km²",
+        "dc": "ಶ್ರೀ ದಿವ್ಯಾ ಪ್ರಭು ಜಿ.ಆರ್.ಜೆ. (IAS)", "sp": "ಶ್ರೀ ಗೋಪಾಲ್ ಎಂ. ಬ್ಯಾಕೋಡ್ (IPS)",
+        "highlight": "ಧಾರವಾಡ ಪೇಡಾ (GI), ವರಕವಿ ಬೇಂದ್ರೆ ಸಾಧನಕೇರಿ, ಸಿದ್ಧಾರೂಢ ಮಠ, IIT ಧಾರವಾಡ",
+        "search": "dharwad hubballi hubli peda bendre siddharoodha ಉತ್ತರ north"
+    },
+    {
+        "key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "hq_kn": "ಗದಗ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 4, "taluks": 8, "pop": "10.64 ಲಕ್ಷ", "area": "4,656 km²",
+        "dc": "ಶ್ರೀ ಗೋವಿಂದ ರೆಡ್ಡಿ (IAS)", "sp": "ಶ್ರೀ ಬಿ.ಎಸ್. ನೇಮಗೌಡ (IPS)",
+        "highlight": "ಕುಮಾರವ್ಯಾಸ ಭಾರತ (ವೀರನಾರಾಯಣ ಗುಡಿ), ಪಂ. ಪುಟ್ಟರಾಜ ಗವಾಯಿಗಳ ಪುಣ್ಯಾಶ್ರಮ, ಲಕ್ಕುಂಡಿ",
+        "search": "gadag kumaravyasa lakkundi kappatagudda ಉತ್ತರ north"
+    },
+    {
+        "key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "hq_kn": "ಹಾವೇರಿ",
+        "region_id": "north", "region_kn": "ಉತ್ತರ ಕರ್ನಾಟಕ", "mlas": 6, "taluks": 8, "pop": "15.97 ಲಕ್ಷ", "area": "4,823 km²",
+        "dc": "ಶ್ರೀ ಡಾ. ವಿಜಯಮಹಾಂತೇಶ್ ದಾನಮ್ಮನವರ್ (IAS)", "sp": "ಶ್ರೀ ಅಂಶು ಕುಮಾರ್ (IPS)",
+        "highlight": "ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ ಮಾರುಕಟ್ಟೆ (GI), ಕಾಗಿನೆಲೆ ಕನಕದಾಸರ ಕ್ಷೇತ್ರ, ಸರ್ವಜ್ಞನ ಅಬಲೂರು",
+        "search": "haveri byadagi kaginele ranebennur ಉತ್ತರ north"
+    },
+    {
+        "key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "hq_kn": "ಕಲಬುರಗಿ",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 9, "taluks": 11, "pop": "25.6 ಲಕ್ಷ", "area": "10,951 km²",
+        "dc": "ಶ್ರೀ ಬಿ. ಫೌಜಿಯಾ ತರನ್ನುಮ್ (IAS)", "sp": "ಶ್ರೀ ಅಡ್ಡೂರು ಶ್ರೀನಿವಾಸಲು (IPS)",
+        "highlight": "ಕರ್ನಾಟಕದ ತೊಗರಿ ಕಣಜ (GI), ರಾಷ್ಟ್ರಕೂಟರ ಮಾನ್ಯಖೇಟ, ಖ್ವಾಜಾ ಬಂದೇ ನವಾಜ್ ದರ್ಗಾ",
+        "search": "kalaburagi gulbarga togari tur dal khwaja bande nawaz ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "hq_kn": "ಯಾದಗಿರಿ",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 4, "taluks": 6, "pop": "11.7 ಲಕ್ಷ", "area": "5,234 km²",
+        "dc": "ಶ್ರೀ ಡಾ. ಸುಶೀಲ ಬಿ. (IAS)", "sp": "ಶ್ರೀ ಜಿ. ಸಂಗೀತಾ (IPS)",
+        "highlight": "ಸುರಪುರ ಸಂಸ್ಥಾನ (ರಾಜಾ ವೆಂಕಟಪ್ಪ ನಾಯಕ), ಮಲಗಿದ ಬುದ್ಧ ಬೆಟ್ಟ, ಛಾಯಾ ಭಗವತಿ ಜಲಪಾತ",
+        "search": "yadgir surapura shahapur buddha hill ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "hq_kn": "ಬೀದರ್",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 6, "taluks": 8, "pop": "17.0 ಲಕ್ಷ", "area": "5,448 km²",
+        "dc": "ಶ್ರೀ ಶಿಲ್ಪಾ ಎಂ. (IAS)", "sp": "ಶ್ರೀ ಪ್ರದೀಪ್ ಗುಂಟಿ (IPS)",
+        "highlight": "ಬೀದರ್ ಕೋಟೆ, ಕಾರೆಜ್ ಸುರಂಗ ಮಾರ್ಗ, ಬಸವಕಲ್ಯಾಣ ಅನುಭವ ಮಂಟಪ, ಬಿದ್ರಿ ಕಲೆ (GI)",
+        "search": "bidar basavakalyana bidriware gurudwara nanak jhira ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "hq_kn": "ರಾಯಚೂರು",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 7, "pop": "19.2 ಲಕ್ಷ", "area": "8,442 km²",
+        "dc": "ಶ್ರೀ ನಿತೀಶ್ ಕೆ. (IAS)", "sp": "ಶ್ರೀ ಎಂ. ಪುಟ್ಟಮಾದಯ್ಯ (IPS)",
+        "highlight": "ಮಸ್ಕಿ ಅಶೋಕ ಶಿಲಾಶಾಸನ, ಹಟ್ಟಿ ಚಿನ್ನದ ಗಣಿ, ಶಕ್ತಿನಗರ RTPS, ಸೋನಾ ಮಸೂರಿ ಭತ್ತ",
+        "search": "raichur hatti gold mines maski rtps ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "hq_kn": "ಕೊಪ್ಪಳ",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 5, "taluks": 7, "pop": "13.9 ಲಕ್ಷ", "area": "5,559 km²",
+        "dc": "ಶ್ರೀ ಸುರೇಶ್ ಬಿ. ಇಟ್ನಾಲ್ (IAS)", "sp": "ಡಾ|| ರಾಮ್ ಎಲ್ ಅರಸಿದ್ದಿ (IPS)",
+        "highlight": "ರಾಮಾಯಣದ ಕಿಷ್ಕಿಂಧೆ, ಅಂಜನಾದ್ರಿ ಬೆಟ್ಟ, ಕಿನ್ನಾಳ ಕಲೆ (GI), ಶ್ರೀ ಗವಿಸಿದ್ಧೇಶ್ವರ ಮಹಾದಾಸೋಹ",
+        "search": "koppal anjanadri kinhal gavisiddheshwara gangavathi ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "hq_kn": "ಬಳ್ಳಾರಿ",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 5, "taluks": 5, "pop": "14.8 ಲಕ್ಷ", "area": "4,252 km²",
+        "dc": "ಶ್ರೀ ಪ್ರಶಾಂತ್ ಕುಮಾರ್ ಮಿಶ್ರಾ (IAS)", "sp": "ಶ್ರೀ ಶೋಭಾರಾಣಿ ವಿ.ಜೆ. (IPS)",
+        "highlight": "ಬಳ್ಳಾರಿ ಕೋಟೆ & ಕುಂಬಾರ ಗುಡ್ಡ, ದೇಶದ ಜೀನ್ಸ್ ರಾಜಧಾನಿ, ಸಂಡೂರು ಕಣಿವೆ, JSW ಸ್ಟೀಲ್",
+        "search": "ballari bellary sandur jsw jeans ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "hq_kn": "ಹೊಸಪೇಟೆ",
+        "region_id": "kalyana", "region_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", "mlas": 5, "taluks": 6, "pop": "13.5 ಲಕ್ಷ", "area": "5,644 km²",
+        "dc": "ಶ್ರೀ ಎಂ.ಎಸ್. ದಿವಾಕರ್ (IAS)", "sp": "ಶ್ರೀ ಶ್ರೀಹರಿಬಾಬು ಬಿ.ಎಲ್. (IPS)",
+        "highlight": "ಹಂಪಿ ವಿಶ್ವ ಪರಂಪರೆ ತಾಣ (UNESCO), ವಿರುಪಾಕ್ಷ ದೇವಾಲಯ, ಕಲ್ಲಿನ ರಥ, ತುಂಗಭದ್ರಾ ಡ್ಯಾಂ",
+        "search": "vijayanagara hampi hosapete tb dam virupaksha ಕಲ್ಯಾಣ kalyana"
+    },
+    {
+        "key": "dakshina-kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "hq_kn": "ಮಂಗಳೂರು",
+        "region_id": "coastal", "region_kn": "ಕರಾವಳಿ ಕರ್ನಾಟಕ", "mlas": 8, "taluks": 8, "pop": "20.89 ಲಕ್ಷ", "area": "4,861 km²",
+        "dc": "ಶ್ರೀ ಮುಲ್ಲೈ ಮುಹಿಲನ್ ಎಂ.ಪಿ. (IAS)", "sp": "ಶ್ರೀ ಯತೀಶ್ ಎನ್. (IPS)",
+        "highlight": "ಧರ್ಮಸ್ಥಳ ಮಂಜುನಾಥ ಸ್ವಾಮಿ, ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ, ಮಂಗಳೂರು ಐಸ್‌ಕ್ರೀಮ್ (ಪಬ್ಬಾಸ್), ಕಂಬಳ",
+        "search": "dakshina kannada mangaluru mangalore dharmasthala kukke ಕರಾವಳಿ coastal"
+    },
+    {
+        "key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "hq_kn": "ಉಡುಪಿ",
+        "region_id": "coastal", "region_kn": "ಕರಾವಳಿ ಕರ್ನಾಟಕ", "mlas": 5, "taluks": 7, "pop": "11.77 ಲಕ್ಷ", "area": "3,582 km²",
+        "dc": "ಶ್ರೀ ಡಾ. ಕೆ. ವಿದ್ಯಾಕುಮಾರಿ (IAS)", "sp": "ಶ್ರೀ ಡಾ. ಅರುಣ್ ಕೆ. (IPS)",
+        "highlight": "ಉಡುಪಿ ಶ್ರೀಕೃಷ್ಣ ಮಠ (ಕನಕನ ಕಿಂಡಿ), ಮಲ್ಪೆ ಬೀಚ್, ಕಾರ್ಕಳ ಗೊಮ್ಮಟೇಶ್ವರ, ಯಕ್ಷಗಾನ",
+        "search": "udupi krishna matha malpe beach karkala yakshagana ಕರಾವಳಿ coastal"
+    },
+    {
+        "key": "uttara-kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "hq_kn": "ಕಾರವಾರ",
+        "region_id": "coastal", "region_kn": "ಕರಾವಳಿ ಕರ್ನಾಟಕ", "mlas": 6, "taluks": 11, "pop": "14.4 ಲಕ್ಷ", "area": "10,291 km²",
+        "dc": "ಶ್ರೀ ಕೆ. ಲಕ್ಷ್ಮೀಪ್ರಿಯಾ (IAS)", "sp": "ಶ್ರೀ ಎಂ. ನಾರಾಯಣ (IPS)",
+        "highlight": "ಗೋಕರ್ಣ ಮಹಾಬಲೇಶ್ವರ ಆತ್ಮಲಿಂಗ, ಮುರುಡೇಶ್ವರ ಶಿವನ ಪ್ರತಿಮೆ, ದಾಂಡೇಲಿ ರಾಫ್ಟಿಂಗ್, ಯಾಣ",
+        "search": "uttara kannada karwar gokarna murudeshwara dandeli yaana ಕರಾವಳಿ coastal"
+    },
+    {
+        "key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "hq_kn": "ಶಿವಮೊಗ್ಗ",
+        "region_id": "malenadu", "region_kn": "ಮಲೆನಾಡು", "mlas": 7, "taluks": 7, "pop": "17.52 ಲಕ್ಷ", "area": "8,477 km²",
+        "dc": "ಶ್ರೀ ಗುರುದತ್ತ ಹೆಗಡೆ (IAS)", "sp": "ಶ್ರೀ ಜಿ.ಕೆ. ಮಿಥುನ್ ಕುಮಾರ್ (IPS)",
+        "highlight": "ವಿಶ್ವವಿಖ್ಯಾತ ಜೋಗ ಜಲಪಾತ, ಕುವೆಂಪುರ ಕುಪ್ಪಳ್ಳಿ (ಕವಿಮನೆ), ಆಗುಂಬೆ ಸೂರ್ಯಾಸ್ತ & ಮಳೆಕಾಡು",
+        "search": "shivamogga shimoga jog falls kuvempu kuppalli agumbe ಮಲೆನಾಡು malenadu"
+    },
+    {
+        "key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "hq_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "region_id": "malenadu", "region_kn": "ಮಲೆನಾಡು", "mlas": 5, "taluks": 8, "pop": "11.37 ಲಕ್ಷ", "area": "7,201 km²",
+        "dc": "ಶ್ರೀ ಮೀನಾ ನಾಗರಾಜ್ ಸಿ.ಎನ್. (IAS)", "sp": "ಶ್ರೀ ವಿಕ್ರಮ್ ಆಮ್ಟೆ (IPS)",
+        "highlight": "ಭಾರತದ ಕಾಫಿ ತೊಟ್ಟಿಲು, ಮುಳ್ಳಯ್ಯನಗಿರಿ (ಕರ್ನಾಟಕದ ಅತಿ ಎತ್ತರದ ಶಿಖರ), ಶೃಂಗೇರಿ ಶಾರದಾ ಪೀಠ",
+        "search": "chikkamagaluru chikmagalur mullayanagiri coffee sringeri ಮಲೆನಾಡು malenadu"
+    },
+    {
+        "key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "hq_kn": "ಮಡಿಕೇರಿ",
+        "region_id": "malenadu", "region_kn": "ಮಲೆನಾಡು", "mlas": 2, "taluks": 5, "pop": "5.54 ಲಕ್ಷ", "area": "4,102 km²",
+        "dc": "ಶ್ರೀ ವೆಂಕಟ್ ರಾಜಾ (IAS)", "sp": "ಶ್ರೀ ಕೆ. ರಾಮರಾಜನ್ (IPS)",
+        "highlight": "ಕಾವೇರಿಯ ಉಗಮಸ್ಥಾನ ತಲಕಾವೇರಿ, ಕೂರ್ಗ್ ಕಾಫಿ & ಏಲಕ್ಕಿ, ರಾಜಾಸೀಟ್, ವೀರ ಕೊಡವ ಸಂಸ್ಕೃತಿ",
+        "search": "kodagu coorg madikeri talakaveri coffee abbey falls ಮಲೆನಾಡು malenadu"
+    },
+    {
+        "key": "davangere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davangere", "hq_kn": "ದಾವಣಗೆರೆ",
+        "region_id": "south", "region_kn": "ಮಧ್ಯ ಕರ್ನಾಟಕ", "mlas": 7, "taluks": 6, "pop": "19.45 ಲಕ್ಷ", "area": "5,924 km²",
+        "dc": "ಶ್ರೀ ಜಿ.ಎಂ. ಗಂಗಾಧರಸ್ವಾಮಿ (IAS)", "sp": "ಶ್ರೀ ಉಮಾ ಪ್ರಶಾಂತ್ (IPS)",
+        "highlight": "ವಿಶ್ವವಿಖ್ಯಾತ ದಾವಣಗೆರೆ ಬೆಣ್ಣೆ ದೋಸೆ, ಕರ್ನಾಟಕದ ಮ್ಯಾಂಚೆಸ್ಟರ್, ಶಾಂತಿ ಸಾಗರ (ಸೂಳೆಕೆರೆ)",
+        "search": "davangere davanagere benne dosa shanthi sagara harihara ಮಧ್ಯ south"
+    },
+    {
+        "key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "hq_kn": "ಚಿತ್ರದುರ್ಗ",
+        "region_id": "south", "region_kn": "ಮಧ್ಯ ಕರ್ನಾಟಕ", "mlas": 6, "taluks": 6, "pop": "16.59 ಲಕ್ಷ", "area": "8,440 km²",
+        "dc": "ಶ್ರೀ ಟಿ. ವೆಂಕಟೇಶ್ (IAS)", "sp": "ಶ್ರೀ ಧರ್ಮೇಂದ್ರ ಕುಮಾರ್ ಮೀನಾ (IPS)",
+        "highlight": "ಏಳು ಸುತ್ತಿನ ಕೋಟೆ (ಮದಕರಿ ನಾಯಕ), ಒನಕೆ ಓಬವ್ವನ ಕಿಂಡಿ, ಮೊಳಕಾಲ್ಮುರು ರೇಷ್ಮೆ ಸೀರೆ (GI)",
+        "search": "chitradurga fort obavva molakalmuru vanivilasa ಮಧ್ಯ south"
+    }
+]
+
+def generate_district_cards():
+    cards = []
+    for d in DISTRICTS:
+        cards.append(f"""
+      <a href="/districts/{d['key']}.html" class="k-district-card" data-region="{d['region_id']}" data-name="{d['name_kn']} {d['name_en']} {d['hq_kn']} {d['search']}">
+        <div class="k-dc-head">
+          <div>
+            <div class="k-dc-title">{d['name_kn']} <span class="k-dc-en">({d['name_en']})</span></div>
+            <div class="k-dc-reg">📍 {d['region_kn']} · ಕೇಂದ್ರ: {d['hq_kn']}</div>
+          </div>
+          <span class="k-dc-mla-badge">{d['mlas']} MLAs</span>
+        </div>
+
+        <div class="k-dc-body">
+          <div class="k-dc-row">
+            <span class="k-dc-icon">🏛️</span>
+            <span class="k-dc-lead"><strong>DC:</strong> {d['dc']} &nbsp;·&nbsp; <strong>SP:</strong> {d['sp']}</span>
+          </div>
+          <div class="k-dc-row">
+            <span class="k-dc-icon">✨</span>
+            <span class="k-dc-highlight">{d['highlight']}</span>
+          </div>
+        </div>
+
+        <div class="k-dc-metrics">
+          <div class="k-metric-pill">🏡 {d['taluks']} ತಾಲೂಕು</div>
+          <div class="k-metric-pill">👥 {d['pop']}</div>
+          <div class="k-metric-pill">📏 {d['area']}</div>
+        </div>
+
+        <div class="k-dc-foot">
+          <span>ಸಂಪೂರ್ಣ ಮಾಹಿತಿ ನೋಡಿ</span>
+          <span class="k-dc-arrow">→</span>
+        </div>
+      </a>""")
+    return "\n".join(cards)
+
+def build_districts_hub_html():
+    cards_html = generate_district_cards()
+
+    html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು — ಸಮಗ್ರ ಜಿಲ್ಲಾ ಮಾಹಿತಿ, DC, SP, MLAs & APMC ಧಾರಣೆ | ಕರ್ನಾಟ — Karnata.in</title>
+  <meta name="description" content="ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು (DC), ಎಸ್ಪಿ (SP), ಶಾಸಕರು (MLA), ಸಂಸದರು (MP), ತಾಲೂಕುಗಳು, APMC ಕೃಷಿ ದರಗಳು ಮತ್ತು ಲೈವ್ ಹವಾಮಾನ." />
+  <link rel="canonical" href="https://karnata.in/districts" />
+
+  <!-- Open Graph & Social Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು — ಸಮಗ್ರ ಮಾಹಿತಿ & ಲೈವ್ ಆಡಳಿತ | ಕರ್ನಾಟ" />
+  <meta property="og:description" content="ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ DC, SP, ಶಾಸಕರು, ಸಂಸದರು, APMC ಮಂಡಿ ದರಗಳು & ಲೈವ್ ಹವಾಮಾನ." />
+  <meta property="og:url" content="https://karnata.in/districts" />
+  <meta property="og:site_name" content="ಕರ್ನಾಟ — Karnata.in" />
+  <meta property="og:locale" content="kn_IN" />
+  <meta property="og:image" content="https://karnata.in/assets/og-karnata.png" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು — ಸಮಗ್ರ ಜಿಲ್ಲಾ ಮಾಹಿತಿ | ಕರ್ನಾಟ" />
+  <meta name="twitter:description" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ DC, SP, ಶಾಸಕರು, APMC ಮಂಡಿ ದರಗಳು & ಲೈವ್ ಹವಾಮಾನ." />
+  <meta property="twitter:image" content="https://karnata.in/assets/og-karnata.png" />
+
+  <!-- Fonts & Core Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/karnata-theme.css">
+  <script src="/data-loader.js"></script>
+
+  <style>
+    :root {{
+      --k-crimson: #E11D48;
+      --k-red: #B91C1C;
+      --k-yellow: #F59E0B;
+      --k-dark: #0F172A;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --border-light: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --font-kn: 'Anek Kannada', sans-serif;
+      --font-en: 'Outfit', sans-serif;
+    }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{
+      font-family: var(--font-kn);
+      background: var(--bg);
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+    }}
+
+    /* ══════════════════════════════════════════════════════
+       EXACT HOMEPAGE MASTHEAD
+    ══════════════════════════════════════════════════════ */
+    .masthead {{
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }}
+    .masthead-inner {{
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      height: 68px;
+      padding: 0 20px;
+      gap: 16px;
+    }}
+    .mh-logo {{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }}
+    .mh-logo-text {{ display: flex; flex-direction: column; }}
+    .mh-logo-kn {{
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }}
+    .mh-logo-en {{
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--k-red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }}
+    .mh-tagline {{
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      border-left: 2px solid var(--border-light);
+      padding-left: 14px;
+      line-height: 1.4;
+      display: none;
+      font-weight: 600;
+    }}
+    @media(min-width:768px){{ .mh-tagline {{ display: block; }} }}
+
+    .mh-right {{
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }}
+    .mh-loc-btn {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #FEF2F2;
+      border: 1.5px solid #FECACA;
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #B91C1C;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }}
+    .mh-loc-btn:hover {{
+      background: #B91C1C;
+      color: #FFF;
+      transform: translateY(-1px);
+    }}
+
+    /* ══════════════════════════════════════════════════════
+       EXACT HOMEPAGE NAVIGATION PILL TABS BAR
+    ══════════════════════════════════════════════════════ */
+    .nav-tabs {{
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.04);
+      position: relative;
+      z-index: 90;
+      overflow-x: auto;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }}
+    .nav-tabs::-webkit-scrollbar {{ display: none; }}
+    .nav-tabs-inner {{
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 8px 20px;
+      gap: 8px;
+    }}
+    .nav-tab-dropdown {{
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }}
+    .nav-tab-dropbtn {{
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #334155;
+      white-space: nowrap;
+      border-radius: 100px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: inherit;
+    }}
+    .nav-tab-dropdown:hover .nav-tab-dropbtn, .nav-tab-dropdown.open .nav-tab-dropbtn {{
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #2563EB;
+    }}
+    .nav-tab-menu {{
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #FFFFFF;
+      min-width: 240px;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.15);
+      border: 1px solid #E2E8F0;
+      padding: 8px;
+      z-index: 99999;
+      backdrop-filter: blur(12px);
+    }}
+    .nav-tab-dropdown:hover .nav-tab-menu, .nav-tab-dropdown.open .nav-tab-menu, .nav-tab-dropdown:focus-within .nav-tab-menu {{
+      display: block;
+      animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }}
+    @keyframes fadeInDrop {{
+      from {{ opacity: 0; transform: translateY(-6px); }}
+      to {{ opacity: 1; transform: translateY(0); }}
+    }}
+    .nav-tab-dropitem {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }}
+    .nav-tab-dropitem:hover {{
+      background: #EFF6FF;
+      color: #2563EB;
+      padding-left: 16px;
+    }}
+    @media (min-width: 1024px) {{
+      .nav-tabs, .nav-tabs-inner {{
+        overflow: visible !important;
+      }}
+    }}
+
+    /* ════ MINIMAL CLEAN HERO BANNER ════ */
+    .k-hub-hero {{
+      background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 20px 36px;
+      text-align: center;
+      position: relative;
+    }}
+    .k-hub-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #B91C1C;
+      font-size: 13.5px;
+      font-weight: 800;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }}
+    .k-hub-title {{
+      font-size: 36px;
+      font-weight: 900;
+      color: #0F172A;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }}
+    .k-hub-sub {{
+      font-size: 16.5px;
+      color: #475569;
+      font-weight: 600;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }}
+
+    /* SEARCH BAR */
+    .k-search-box {{
+      max-width: 600px;
+      margin: 0 auto 20px;
+      position: relative;
+    }}
+    .k-search-input {{
+      width: 100%;
+      padding: 15px 20px 15px 48px;
+      border-radius: 30px;
+      border: 1.5px solid #CBD5E1;
+      background: #FFFFFF;
+      color: #0F172A;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: var(--font-kn);
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }}
+    .k-search-input:focus {{
+      border-color: var(--k-crimson);
+      box-shadow: 0 4px 20px rgba(225,29,72,0.15);
+    }}
+    .k-search-icon {{
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: #94A3B8;
+      pointer-events: none;
+    }}
+
+    /* REGION FILTER CHIPS */
+    .k-region-chips {{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }}
+    .k-chip {{
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: var(--font-kn);
+    }}
+    .k-chip:hover {{
+      border-color: var(--k-crimson);
+      color: var(--k-crimson);
+      transform: translateY(-1px);
+    }}
+    .k-chip.active {{
+      background: var(--k-crimson);
+      color: #FFFFFF;
+      border-color: var(--k-crimson);
+      box-shadow: 0 4px 12px rgba(225,29,72,0.25);
+    }}
+
+    /* ════ 3-COLUMN MODERN MINIMALIST GRID WITH BIG TEXT ════ */
+    .k-hub-container {{
+      max-width: 1240px;
+      margin: 36px auto 60px;
+      padding: 0 20px;
+    }}
+    .k-districts-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 22px;
+    }}
+    @media (max-width: 640px) {{
+      .k-districts-grid {{ grid-template-columns: 1fr; }}
+    }}
+
+    /* DISTRICT CARD WITH BIG READABLE TEXT */
+    .k-district-card {{
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 18px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+      position: relative;
+    }}
+    .k-district-card:hover {{
+      transform: translateY(-4px);
+      border-color: var(--k-crimson);
+      box-shadow: 0 14px 32px rgba(225, 29, 72, 0.12);
+    }}
+
+    .k-dc-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1.5px solid #F1F5F9;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }}
+    .k-dc-title {{
+      font-size: 22px;
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1.25;
+    }}
+    .k-dc-en {{
+      font-size: 15px;
+      font-weight: 600;
+      color: #64748B;
+    }}
+    .k-dc-reg {{
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #64748B;
+      margin-top: 4px;
+    }}
+    .k-dc-mla-badge {{
+      background: #FEF2F2;
+      border: 1.5px solid #FECACA;
+      color: #B91C1C;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 12.5px;
+      font-weight: 900;
+      font-family: var(--font-en);
+      flex-shrink: 0;
+    }}
+
+    .k-dc-body {{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.55;
+    }}
+    .k-dc-row {{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }}
+    .k-dc-icon {{
+      font-size: 17px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }}
+    .k-dc-lead {{
+      color: #334155;
+      font-size: 14.5px;
+      font-weight: 700;
+    }}
+    .k-dc-lead strong {{
+      color: #0F172A;
+      font-weight: 900;
+    }}
+    .k-dc-highlight {{
+      color: #475569;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }}
+
+    /* 3 METRICS PILLS (BIG & CLEAR) */
+    .k-dc-metrics {{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      text-align: center;
+      margin-bottom: 16px;
+    }}
+    .k-metric-pill {{
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 8px 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #1E293B;
+    }}
+
+    .k-dc-foot {{
+      border-top: 1.5px solid #F1F5F9;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14.5px;
+      font-weight: 900;
+      color: var(--k-crimson);
+    }}
+    .k-dc-arrow {{
+      font-size: 17px;
+      transition: transform 0.2s ease;
+    }}
+    .k-district-card:hover .k-dc-arrow {{
+      transform: translateX(5px);
+    }}
+  </style>
+</head>
+<body>
+
+<!-- ════ EXACT HOMEPAGE MASTHEAD ════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="/index.html" class="mh-logo">
+      <img src="/karnata-logo.png" alt="Karnata.in Logo" style="height:42px; object-fit:contain; border-radius:6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="mh-icon-box" style="display:none; width:40px; height:40px; background:linear-gradient(135deg, #B91C1C, #EA580C); border-radius:8px; align-items:center; justify-content:center; color:#FFF; font-weight:900; font-size:22px;">ಕ</div>
+      <div class="mh-logo-text">
+        <span class="mh-logo-kn">ಕರ್ನಾಟ</span>
+        <span class="mh-logo-en">KARNATA.IN</span>
+      </div>
+    </a>
+    <div class="mh-tagline">Universe Of Karnataka<br>ನಿಮ್ಮ ಜಿಲ್ಲೆ · ನಿಮ್ಮ ಭಾಷೆ · ನಿಮ್ಮ ಮಾಹಿತಿ</div>
+    <div class="mh-right">
+      <a href="/districts.html" class="mh-loc-btn">
+        <span>🏛️</span>
+        <span>31 ಜಿಲ್ಲೆಗಳು</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════ EXACT HOMEPAGE NAVIGATION PILL TABS BAR ════ -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-inner">
+    
+    <!-- 1. KARNATAKA & ADMINISTRATION -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>👑 ಕರ್ನಾಟಕ &amp; ಆಡಳಿತ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/karnataka.html" class="nav-tab-dropitem">👑 ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ</a>
+        <a href="/gba.html" class="nav-tab-dropitem">🏙️ GBA ಬೆಂಗಳೂರು (5 ಪಾಲಿಕೆಗಳು &amp; 369 ವಾರ್ಡ್)</a>
+        <a href="/gram-panchayat.html" class="nav-tab-dropitem">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ (5,958 GPs)</a>
+        <a href="/cabinet-ministers.html" class="nav-tab-dropitem">👥 ಸಚಿವ ಸಂಪುಟ (33 ಸಚಿವರು)</a>
+        <a href="/former-cms.html" class="nav-tab-dropitem">📜 ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳು</a>
+        <a href="/local-government.html" class="nav-tab-dropitem">🏛️ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು (810 ULB)</a>
+        <a href="/officers.html" class="nav-tab-dropitem">👥 ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ</a>
+        <a href="/districts.html" class="nav-tab-dropitem" style="color:var(--k-crimson); font-weight:900;">📍 31 ಜಿಲ್ಲೆಗಳು (Districts Hub)</a>
+      </div>
+    </div>
+
+    <!-- 2. ELECTIONS & REPRESENTATIVES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>🗳️ ಚುನಾವಣೆ &amp; ಪ್ರತಿನಿಧಿಗಳು</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/mla-mp.html" class="nav-tab-dropitem">🏛️ ಶಾಸಕರು, MLC &amp; ಸಂಸದರು (MLA / MLC / MP)</a>
+        <a href="/karnataka-sir-voter-roll.html" class="nav-tab-dropitem">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ</a>
+        <a href="/karnataka-elections.html" class="nav-tab-dropitem">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+      </div>
+    </div>
+
+    <!-- 3. AGRI, WATER & WEATHER -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>💧 ಕೃಷಿ, ನೀರು &amp; ಹವಾಮಾನ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/dam-levels.html" class="nav-tab-dropitem">💧 ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Live Dam Levels)</a>
+        <a href="/weather.html" class="nav-tab-dropitem">🌧️ ಹವಾಮಾನ &amp; ಮಳೆ ವರದಿ</a>
+        <a href="/apmc-prices.html" class="nav-tab-dropitem">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರಗಳು</a>
+      </div>
+    </div>
+
+    <!-- 4. FINANCE & MARKET RATES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>💰 ಹಣಕಾಸು &amp; ಮಾರುಕಟ್ಟೆ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/petrol-price.html" class="nav-tab-dropitem">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್ ದರ</a>
+        <a href="/gold-rate.html" class="nav-tab-dropitem">🪙 ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ</a>
+        <a href="/emi-calculator.html" class="nav-tab-dropitem">🏦 EMI ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="/sip-calculator.html" class="nav-tab-dropitem">📈 SIP ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="/salary-calculator.html" class="nav-tab-dropitem">💰 ಸಂಬಳದ ಲೆಕ್ಕ</a>
+      </div>
+    </div>
+
+    <!-- 5. AI & DIGITAL SERVICES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>🔮 AI &amp; ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/quiz.html" class="nav-tab-dropitem" style="color:var(--k-crimson); font-weight:800;">🧠 ದೈನಂದಿನ ರಸಪ್ರಶ್ನೆ (Daily Quiz)</a>
+        <a href="/ask.html" class="nav-tab-dropitem">🤖 askKARNATA AI ಸಹಾಯಕ</a>
+        <a href="/ai-jyothishya.html" class="nav-tab-dropitem">🔮 AI ಜ್ಯೋತಿಷ್ಯ &amp; ಕುಂಡಲಿ</a>
+        <a href="/kannada-typing.html" class="nav-tab-dropitem">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ &amp; ಅನುವಾದ</a>
+        <a href="/scheme-checker.html" class="nav-tab-dropitem">📋 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</a>
+      </div>
+    </div>
+
+    <!-- DIRECT LINK: 31 DISTRICTS -->
+    <a href="/districts.html" style="padding: 7px 16px; font-size: 13px; font-weight: 800; color: #FFF; border-radius: 100px; background: linear-gradient(135deg, #B91C1C, #E11D48); border: 1px solid #B91C1C; text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+      📍 31 ಜಿಲ್ಲೆಗಳು
+    </a>
+
+  </div>
+</nav>
+
+<!-- ════ MINIMAL CLEAN HERO BANNER ════ -->
+<section class="k-hub-hero">
+  <div class="k-hub-badge">🏛️ ಕರ್ನಾಟಕ ಆಡಳಿತ &amp; ಜಿಲ್ಲಾ ಕೋಶ</div>
+  <h1 class="k-hub-title">ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು</h1>
+  <p class="k-hub-sub">ಪ್ರತಿಯೊಂದು ಜಿಲ್ಲೆಯ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು (DC), ಎಸ್ಪಿ (SP), ಶಾಸಕರು (MLA), ಸಂಸದರು (MP), APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಮತ್ತು ಸಮಗ್ರ ಮಾಹಿತಿ</p>
+
+  <!-- SEARCH BAR -->
+  <div class="k-search-box">
+    <span class="k-search-icon">🔍</span>
+    <input type="text" id="district-search" class="k-search-input" placeholder="ಜಿಲ್ಲೆ ಅಥವಾ ತಾಲೂಕಿನ ಹೆಸರು ಹುಡುಕಿ (e.g. ಮೈಸೂರು, ಕೊಪ್ಪಳ, ಬೆಳಗಾವಿ)..." oninput="filterDistricts()">
+  </div>
+
+  <!-- REGION FILTER CHIPS -->
+  <div class="k-region-chips">
+    <button class="k-chip active" onclick="filterRegion('all', this)">ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳು</button>
+    <button class="k-chip" onclick="filterRegion('south', this)">🔴 ದಕ್ಷಿಣ (South)</button>
+    <button class="k-chip" onclick="filterRegion('north', this)">🔵 ಉತ್ತರ (North)</button>
+    <button class="k-chip" onclick="filterRegion('kalyana', this)">🟢 ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ</button>
+    <button class="k-chip" onclick="filterRegion('coastal', this)">🟡 ಕರಾವಳಿ (Coastal)</button>
+    <button class="k-chip" onclick="filterRegion('malenadu', this)">🟣 ಮಲೆನಾಡು (Malenadu)</button>
+  </div>
+</section>
+
+<!-- ════ 3-COLUMN MODERN MINIMALIST DISTRICT CARDS ════ -->
+<div class="k-hub-container">
+  <div class="k-districts-grid" id="districts-grid">
+    {cards_html}
+  </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer style="background: #0F172A; color: #94A3B8; padding: 48px 20px 30px; border-top: 4px solid var(--k-crimson); margin-top: 60px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 36px;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+        <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #B91C1C, #EA580C); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #FFF; font-weight: 900; font-size: 18px;">ಕ</div>
+        <div style="font-size: 22px; font-weight: 900; color: #FFF;">ಕರ್ನಾಟ</div>
+      </div>
+      <p style="font-size: 13.5px; line-height: 1.7; color: #94A3B8;">
+        ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಆಡಳಿತ, ಹವಾಮಾನ, ಮಾರುಕಟ್ಟೆ ದರಗಳು, ಜಲಾಶಯ ನೀರಿನ ಮಟ್ಟ ಹಾಗೂ ಸಮಗ್ರ ಸಾರ್ವಜನಿಕ ಮಾಹಿತಿ ಕೇಂದ್ರ.
+      </p>
+    </div>
+
+    <div>
+      <h3 style="font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 14px;">ತ್ವರಿತ ಸಂಪರ್ಕಗಳು</h3>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13.5px;">
+        <a href="/weather.html" style="color: #CBD5E1; text-decoration: none;">🌦️ ಕರ್ನಾಟಕ ಹವಾಮಾನ</a>
+        <a href="/gold-rate.html" style="color: #CBD5E1; text-decoration: none;">🥇 ಲೈವ್ ಚಿನ್ನದ ದರ</a>
+        <a href="/petrol-price.html" style="color: #CBD5E1; text-decoration: none;">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್</a>
+        <a href="/dam-levels.html" style="color: #CBD5E1; text-decoration: none;">🌊 ಜಲಾಶಯಗಳ ಮಟ್ಟ</a>
+        <a href="/apmc-prices.html" style="color: #CBD5E1; text-decoration: none;">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರಗಳು</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 14px;">ಜನಪ್ರತಿನಿಧಿಗಳು &amp; ಆಡಳಿತ</h3>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13.5px;">
+        <a href="/mla-mp.html" style="color: #CBD5E1; text-decoration: none;">🏛️ 224 ಶಾಸಕರು &amp; 28 ಸಂಸದರು</a>
+        <a href="/officers.html" style="color: #CBD5E1; text-decoration: none;">👤 ಜಿಲ್ಲಾಧಿಕಾರಿ &amp; ಎಸ್ಪಿ ಪಟ್ಟಿ</a>
+        <a href="/districts.html" style="color: #CBD5E1; text-decoration: none;">📍 31 ಜಿಲ್ಲೆಗಳ ಸಮಗ್ರ ಮಾಹಿತಿ</a>
+        <a href="/kannada-typing.html" style="color: #CBD5E1; text-decoration: none;">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ ಸಾಧನ</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 14px;">ತುರ್ತು ಸಹಾಯವಾಣಿ</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; font-weight: 800;">
+        <div style="background: rgba(255,255,255,0.06); padding: 8px 10px; border-radius: 8px; color: #FECDD3;">🚨 ಪೊಲೀಸ್: 112</div>
+        <div style="background: rgba(255,255,255,0.06); padding: 8px 10px; border-radius: 8px; color: #FECDD3;">🚑 ಆಂಬುಲೆನ್ಸ್: 108</div>
+        <div style="background: rgba(255,255,255,0.06); padding: 8px 10px; border-radius: 8px; color: #FECDD3;">🚒 ಅಗ್ನಿಶಾಮಕ: 101</div>
+        <div style="background: rgba(255,255,255,0.06); padding: 8px 10px; border-radius: 8px; color: #FECDD3;">⚡ ವಿದ್ಯುತ್: 1912</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12.5px;">
+    <div>© 2026 Karnata.in — ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಮಾಹಿತಿ ವೇದಿಕೆ. All rights reserved.</div>
+    <div style="display: flex; gap: 16px;">
+      <a href="/privacy-policy.html" style="color: #94A3B8; text-decoration: none;">ಗೌಪ್ಯತಾ ನೀತಿ</a>
+      <a href="/disclaimer.html" style="color: #94A3B8; text-decoration: none;">ಹಕ್ಕುತ್ಯಾಗ</a>
+      <a href="/contact.html" style="color: #94A3B8; text-decoration: none;">ಸಂಪರ್ಕಿಸಿ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let currentRegion = 'all';
+
+  function filterRegion(reg, btn) {{
+    currentRegion = reg;
+    document.querySelectorAll('.k-chip').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    applyFilters();
+  }}
+
+  function filterDistricts() {{
+    applyFilters();
+  }}
+
+  function applyFilters() {{
+    const query = (document.getElementById('district-search').value || '').toLowerCase().trim();
+    const cards = document.querySelectorAll('.k-district-card');
+
+    cards.forEach(card => {{
+      const reg = card.getAttribute('data-region') || '';
+      const name = (card.getAttribute('data-name') || '').toLowerCase();
+
+      const matchReg = (currentRegion === 'all' || reg === currentRegion);
+      const matchQuery = !query || name.includes(query);
+
+      if (matchReg && matchQuery) {{
+        card.style.display = 'flex';
+      }} else {{
+        card.style.display = 'none';
+      }}
+    }});
+  }}
+
+  // Dropdown close on outside click
+  document.addEventListener('click', (e) => {{
+    if (!e.target.closest('.nav-tab-dropdown')) {{
+      document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+    }}
+  }});
+</script>
+
+</body>
+</html>
+"""
+    return html
+
+def main():
+    hub_html = build_districts_hub_html()
+
+    target_files = [
+        ROOT_DIR / "districts" / "index.html",
+        ROOT_DIR / "districts.html",
+        NK_DIR / "districts" / "index.html",
+        NK_DIR / "districts.html"
+    ]
+
+    for fpath in target_files:
+        fpath.parent.mkdir(parents=True, exist_ok=True)
+        with open(fpath, "w", encoding="utf-8") as f:
+            f.write(hub_html)
+
+    print("SUCCESS_BUILT_EXACT_HOMEPAGE_NAV_AND_BIG_TEXT_DISTRICT_HUB")
+
+if __name__ == "__main__":
+    main()

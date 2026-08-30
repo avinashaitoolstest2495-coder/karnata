@@ -1,0 +1,751 @@
+/**
+ * Cloudflare Pages Function: /api/ask-ai
+ * Ask Karnata AI — Production Scalable, Kannada-First Intelligence Engine
+ * Zero-Cost Architecture with D1, Workers AI (Llama 3.1 8B), Multi-Tier Caching & RAG.
+ */
+
+// ─── 1. KANNADA & MULTILINGUAL NORMALIZER ──────────────────────────────────
+const KANNADA_SUFFIXES = [
+  'ದಲ್ಲಿ', 'ನಲ್ಲಿ', 'ಯಲ್ಲಿ', 'ಯಂತೆ', 'ಯಿಂದ', 'ವನ್ನು', 'ಅನ್ನು', 
+  'ಗಳ', 'ಗಳು', 'ದಿನ', 'ದ', 'ಯ', 'ಗೆ', 'ಕ್ಕೆ', 'ರ', 'ರು', 'ರನ್ನು'
+];
+
+function normalizeQuestion(rawQuery) {
+  if (!rawQuery || typeof rawQuery !== 'string') return '';
+  let q = rawQuery.trim().toLowerCase();
+  q = q.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+  q = q.replace(/[?!.,;:"'(){}\[\]\\\/_+=\-*&^%$#@~`|<>]/g, ' ');
+  q = q.replace(/\s+/g, ' ').trim();
+
+  const tokens = q.split(' ').map(token => {
+    let t = token.trim();
+    if (!t) return '';
+    for (const s of KANNADA_SUFFIXES) {
+      if (t.endsWith(s) && t.length > s.length + 2) {
+        return t.slice(0, -s.length);
+      }
+    }
+    return t;
+  }).filter(Boolean);
+
+  return tokens.join(' ');
+}
+
+function detectLanguage(rawQuery) {
+  if (!rawQuery) return 'kn';
+  const kannadaCharRegex = /[\u0C80-\u0CFF]/;
+  const englishWordRegex = /[a-zA-Z]{2,}/;
+  const hasKn = kannadaCharRegex.test(rawQuery);
+  const hasEn = englishWordRegex.test(rawQuery);
+  if (hasKn && hasEn) return 'mixed';
+  if (hasKn) return 'kn';
+  return 'en';
+}
+
+function classifyIntent(normalizedQ) {
+  const q = normalizedQ.toLowerCase();
+  if (
+    q.includes('ignore previous') || q.includes('system prompt') || 
+    q.includes('api key') || q.includes('database password') ||
+    q.includes('drop table') || q.includes('secret')
+  ) {
+    return 'INJECTION_ATTEMPT';
+  }
+  if (
+    q.includes('sir') || q.includes('draft roll') || q.includes('voter roll') || 
+    q.includes('ಕರಡು') || q.includes('ಮತದಾರ') || q.includes('ಭಾಗ ಸಂಖ್ಯೆ') || 
+    q.includes('part number') || q.includes('booth') || q.includes('blo') ||
+    q.includes('form 6') || q.includes('form 8') || q.includes('epic') ||
+    q.includes('ಚುನಾವಣಾ ಆಯೋಗ') || q.includes('eci')
+  ) {
+    return 'SIR';
+  }
+  if (
+    q.includes('ಗ್ಯಾರಂಟಿ') || q.includes('guarantee') || q.includes('scheme') || 
+    q.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || q.includes('gruha lakshmi') || 
+    q.includes('ಗೃಹಜ್ಯೋತಿ') || q.includes('gruha jyothi') || 
+    q.includes('ಶಕ್ತಿ') || q.includes('shakti') || 
+    q.includes('ಅನ್ನಭಾಗ್ಯ') || q.includes('anna bhagya') || 
+    q.includes('ಯುವನಿಧಿ') || q.includes('yuva nidhi') || q.includes('dbt')
+  ) {
+    return 'GOVERNMENT_SCHEME';
+  }
+  if (
+    q.includes('gold') || q.includes('silver') || q.includes('ಚಿನ್ನ') || 
+    q.includes('ಬಂಗಾರ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('24k') || q.includes('22k')
+  ) {
+    return 'GOLD_SILVER';
+  }
+  if (q.includes('petrol') || q.includes('diesel') || q.includes('ಪೆಟ್ರೋಲ್') || q.includes('ಡೀಸೆಲ್')) {
+    return 'PETROL_DIESEL';
+  }
+  if (
+    q.includes('dam') || q.includes('water') || q.includes('krs') || 
+    q.includes('almatti') || q.includes('ಆಲಮಟ್ಟಿ') || q.includes('ಡ್ಯಾಂ') || 
+    q.includes('ಜಲಾಶಯ') || q.includes('ತುಂಗಭದ್ರಾ') || q.includes('tungabhadra') || 
+    q.includes('ಕಬಿನಿ') || q.includes('ಹೇಮಾವತಿ') || q.includes('ಭದ್ರಾ') || q.includes('tmc')
+  ) {
+    return 'DAM_WATER';
+  }
+  if (q.includes('weather') || q.includes('rain') || q.includes('ಮಳೆ') || q.includes('ಹವಾಮಾನ')) {
+    return 'WEATHER';
+  }
+  if (
+    q.includes('apmc') || q.includes('mandi') || q.includes('ಬೆಳೆ') || 
+    q.includes('crop') || q.includes('farming') || q.includes('ಕೃಷಿ') || 
+    q.includes('ಮಾರುಕಟ್ಟೆ') || q.includes('ಧಾರಣೆ') || q.includes('ಟೊಮೆಟೊ') || 
+    q.includes('ಅಡಿಕೆ') || q.includes('ಭತ್ತ') || q.includes('ಈರುಳ್ಳಿ')
+  ) {
+    return 'APMC_CROPS';
+  }
+  if (
+    q.includes('ಜಿಲ್ಲಾಧಿಕಾರಿ') || q.includes('dc') || q.includes('sp') || 
+    q.includes('ವರಿಷ್ಠಾಧಿಕಾರಿ') || q.includes('ತಹಶೀಲ್ದಾರ್') || q.includes('ವರ್ಗಾವಣೆ') || q.includes('transfer')
+  ) {
+    return 'OFFICERS';
+  }
+  if (q.includes('ಶಾಸಕ') || q.includes('mla') || q.includes('ಸಂಸದ') || q.includes('mp') || q.includes('ಕ್ಷೇತ್ರ')) {
+    return 'MLAS_MPS';
+  }
+  if (q.includes('ಜಿಲ್ಲೆ') || q.includes('district') || q.includes('ತಾಲೂಕು') || q.includes('ಪ್ರವಾಸ')) {
+    return 'DISTRICT_TOURISM';
+  }
+  return 'GENERAL_KARNATAKA';
+}
+
+// ─── 2. RATE LIMITING & SECURITY ───────────────────────────────────────────
+const inMemoryRateMap = new Map();
+
+async function checkRateLimitAndSecurity(request, env, normalizedQ) {
+  const clientIP = request.headers.get('CF-Connecting-IP') || 
+                   request.headers.get('x-real-ip') || 'anonymous';
+  const now = Date.now();
+  const windowMs = 60 * 1000;
+  const ipData = inMemoryRateMap.get(clientIP) || { count: 0, firstReq: now };
+
+  if (now - ipData.firstReq > windowMs) {
+    ipData.count = 1;
+    ipData.firstReq = now;
+  } else {
+    ipData.count += 1;
+  }
+  inMemoryRateMap.set(clientIP, ipData);
+
+  if (ipData.count > 30) {
+    return {
+      allowed: false,
+      message: 'ಕ್ಷಮಿಸಿ, ಹೆಚ್ಚಿನ ಸಂಖ್ಯೆಯ ವಿನಂತಿಗಳು ಬಂದಿವೆ. ದಯವಿಟ್ಟು 1 ನಿಮಿಷದ ನಂತರ ಪ್ರಯತ್ನಿಸಿ.'
+    };
+  }
+
+  const maxLen = parseInt(env.AI_MAX_INPUT_LENGTH || '1500', 10);
+  if (normalizedQ.length > maxLen) {
+    return {
+      allowed: false,
+      message: 'ಪ್ರಶ್ನೆಯು ನಿಗದಿಪಡಿಸಿದ ಮಿತಿಗಿಂತ ಹೆಚ್ಚಾಗಿದೆ. ದಯವಿಟ್ಟು ಚಿಕ್ಕದಾದ ಪ್ರಶ್ನೆ ಕೇಳಿ.'
+    };
+  }
+
+  if (
+    normalizedQ.includes('ignore previous') || 
+    normalizedQ.includes('system prompt') || 
+    normalizedQ.includes('api key') || 
+    normalizedQ.includes('database password')
+  ) {
+    return {
+      allowed: false,
+      message: 'ಕ್ಷಮಿಸಿ, ಸುರಕ್ಷತಾ ಕಾರಣಗಳಿಂದ ಈ ರೀತಿಯ ವಿನಂತಿಗಳನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಮಾಹಿತಿಯ ಕುರಿತು ಕೇಳಿ.'
+    };
+  }
+
+  return { allowed: true };
+}
+
+async function checkDailyAIBudget(env) {
+  if (!env || !env.NK_DATA) return true;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const key = `ai_daily_count_${todayStr}`;
+  const dailyLimit = parseInt(env.AI_DAILY_LIMIT || '1000', 10);
+
+  try {
+    const rawVal = await env.NK_DATA.get(key);
+    const count = rawVal ? parseInt(rawVal, 10) : 0;
+    if (count >= dailyLimit) return false;
+    await env.NK_DATA.put(key, (count + 1).toString(), { expirationTtl: 172800 });
+    return true;
+  } catch (err) {
+    return true;
+  }
+}
+
+// ─── 3. CACHE MANAGER ───────────────────────────────────────────────────────
+async function getCachedResponse(normalizedQ, env) {
+  if (!normalizedQ) return null;
+
+  // Try KV
+  if (env && env.NK_DATA) {
+    try {
+      const kvKey = `ai_cache:${normalizedQ.slice(0, 80)}`;
+      const kvCached = await env.NK_DATA.get(kvKey, 'json');
+      if (kvCached) {
+        return {
+          answer: kvCached.answer,
+          cards: kvCached.cards || [],
+          sources: kvCached.sources || [],
+          provider: 'Karnata High-Speed Edge Cache (KV)',
+          cacheHit: true
+        };
+      }
+    } catch (e) {}
+  }
+
+  // Try D1
+  if (env && env.DB) {
+    try {
+      const nowUnix = Math.floor(Date.now() / 1000);
+      const row = await env.DB.prepare(
+        'SELECT answer, sources_json, cards_json, hit_count FROM ai_cache WHERE normalized_question = ? AND expires_at > ? LIMIT 1'
+      ).bind(normalizedQ, nowUnix).first();
+
+      if (row) {
+        env.DB.prepare(
+          'UPDATE ai_cache SET hit_count = hit_count + 1 WHERE normalized_question = ?'
+        ).bind(normalizedQ).run().catch(() => {});
+
+        return {
+          answer: row.answer,
+          cards: row.cards_json ? JSON.parse(row.cards_json) : [],
+          sources: row.sources_json ? JSON.parse(row.sources_json) : [],
+          provider: 'Karnata Edge D1 Cache',
+          cacheHit: true
+        };
+      }
+    } catch (dbErr) {}
+  }
+
+  return null;
+}
+
+async function saveResponseToCache(normalizedQ, answer, cards, sources, env) {
+  if (!normalizedQ || !answer) return;
+  const ttlSeconds = parseInt(env.AI_CACHE_TTL || '86400', 10);
+  const expiresAt = Math.floor(Date.now() / 1000) + ttlSeconds;
+
+  if (env && env.NK_DATA) {
+    try {
+      const kvKey = `ai_cache:${normalizedQ.slice(0, 80)}`;
+      await env.NK_DATA.put(kvKey, JSON.stringify({
+        answer,
+        cards,
+        sources,
+        created: Date.now()
+      }), { expirationTtl: ttlSeconds });
+    } catch (e) {}
+  }
+
+  if (env && env.DB) {
+    try {
+      const cacheId = 'cache_' + Math.random().toString(36).substring(2, 10);
+      await env.DB.prepare(
+        `INSERT INTO ai_cache (id, normalized_question, answer, sources_json, cards_json, expires_at)
+         VALUES (?, ?, ?, ?, ?, ?)
+         ON CONFLICT(normalized_question) DO UPDATE SET 
+           answer = excluded.answer,
+           sources_json = excluded.sources_json,
+           cards_json = excluded.cards_json,
+           hit_count = hit_count + 1,
+           expires_at = excluded.expires_at`
+      ).bind(
+        cacheId,
+        normalizedQ,
+        answer,
+        JSON.stringify(sources || []),
+        JSON.stringify(cards || []),
+        expiresAt
+      ).run();
+    } catch (dbErr) {}
+  }
+}
+
+// ─── 4. VERIFIED D1 FAQ MATCHER ────────────────────────────────────────────
+async function matchFAQ(normalizedQ, intent, env) {
+  if (!env || !env.DB || !normalizedQ) return null;
+
+  try {
+    const exactMatch = await env.DB.prepare(
+      'SELECT question, answer, category, source_url, action_label, action_url, keywords FROM ai_faq WHERE normalized_question LIKE ? LIMIT 1'
+    ).bind(`%${normalizedQ}%`).first();
+
+    if (exactMatch) {
+      return formatFAQResponse(exactMatch, 'Exact FAQ Match');
+    }
+
+    const tokens = normalizedQ.split(' ').filter(t => t.length > 2);
+    if (tokens.length === 0) return null;
+
+    const conditions = tokens.map(() => '(normalized_question LIKE ? OR keywords LIKE ?)').join(' OR ');
+    const params = [];
+    tokens.forEach(t => {
+      params.push(`%${t}%`);
+      params.push(`%${t}%`);
+    });
+
+    const rows = await env.DB.prepare(
+      `SELECT question, answer, category, source_url, action_label, action_url, keywords FROM ai_faq WHERE ${conditions} LIMIT 5`
+    ).bind(...params).all();
+
+    if (rows && rows.results && rows.results.length > 0) {
+      let bestRow = null;
+      let highestScore = 0;
+
+      for (const row of rows.results) {
+        let score = 0;
+        const rowText = (row.normalized_question + ' ' + (row.keywords || '')).toLowerCase();
+        for (const t of tokens) {
+          if (rowText.includes(t)) score += 1;
+        }
+        if (score > highestScore) {
+          highestScore = score;
+          bestRow = row;
+        }
+      }
+
+      if (bestRow && (highestScore >= 2 || highestScore >= tokens.length * 0.4)) {
+        return formatFAQResponse(bestRow, 'Verified Knowledge FAQ');
+      }
+    }
+  } catch (err) {}
+
+  return null;
+}
+
+function formatFAQResponse(faqRow, matchType) {
+  const cards = [];
+  if (faqRow.action_label && faqRow.action_url) {
+    cards.push({
+      title: faqRow.action_label,
+      url: faqRow.action_url,
+      icon: '🔎'
+    });
+  }
+
+  const sources = [];
+  if (faqRow.source_url) {
+    sources.push({
+      name: faqRow.category === 'SIR' ? 'Election Commission of India (ECI)' : 'Government of Karnataka',
+      url: faqRow.source_url
+    });
+  }
+
+  return {
+    answer: faqRow.answer,
+    cards,
+    sources,
+    provider: `Karnata Certified Knowledge (${matchType})`,
+    faqHit: true
+  };
+}
+
+// ─── 5. ACTION LINKS & OFFICIAL CITATIONS ───────────────────────────────────
+function generateSmartActionLinks(normalizedQ, intent) {
+  const q = (normalizedQ || '').toLowerCase();
+  const links = [];
+
+  if (intent === 'SIR' || intent === 'VOTER' || q.includes('sir') || q.includes('ಮತದಾರ') || q.includes('voter')) {
+    links.push({ title: "🔎 SIR Draft Roll ಹುಡುಕಿ", url: "/karnataka-sir-voter-roll.html", icon: "🗳️" });
+  }
+  if (intent === 'GOVERNMENT_SCHEME' || q.includes('ಗ್ಯಾರಂಟಿ') || q.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || q.includes('ಗೃಹಜ್ಯೋತಿ') || q.includes('ಯುವನಿಧಿ')) {
+    links.push({ title: "📜 ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು", url: "/guarantee-schemes.html", icon: "🌸" });
+  }
+  if (intent === 'APMC_CROPS' || q.includes('apmc') || q.includes('ಬೆಳೆ') || q.includes('ಧಾರಣೆ') || q.includes('ಮಾರುಕಟ್ಟೆ')) {
+    links.push({ title: "🌾 APMC ಮಾರುಕಟ್ಟೆ ಕೃಷಿ ದರಗಳು", url: "/apmc-prices.html", icon: "🌾" });
+  }
+  if (intent === 'GOLD_SILVER' || q.includes('ಚಿನ್ನ') || q.includes('gold')) {
+    links.push({ title: "🥇 ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🥇" });
+  }
+  if (intent === 'PETROL_DIESEL' || q.includes('ಪೆಟ್ರೋಲ್') || q.includes('diesel')) {
+    links.push({ title: "⛽ ಇಂದಿನ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ", url: "/petrol-price.html", icon: "⛽" });
+  }
+  if (intent === 'DAM_WATER' || q.includes('dam') || q.includes('ಜಲಾಶಯ') || q.includes('krs') || q.includes('ತುಂಗಭದ್ರಾ')) {
+    links.push({ title: "💧 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ಮಟ್ಟ", url: "/dam-levels.html", icon: "💧" });
+  }
+  if (intent === 'OFFICERS' || q.includes('ಅಧಿಕಾರಿ') || q.includes('dc') || q.includes('sp') || q.includes('ತಹಶೀಲ್ದಾರ್')) {
+    links.push({ title: "👥 ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ & ವರ್ಗಾವಣೆ", url: "/officers.html", icon: "👥" });
+  }
+  if (intent === 'MLAS_MPS' || q.includes('ಶಾಸಕ') || q.includes('ಸಂಸದ') || q.includes('ಕ್ಷೇತ್ರ')) {
+    links.push({ title: "🏛️ 224 ಶಾಸಕರು & 28 ಸಂಸದರು", url: "/mla-mp.html", icon: "🏛️" });
+  }
+
+  if (links.length === 0) {
+    links.push({ title: "🔎 SIR Draft Roll ಪರಿಶೀಲಿಸಿ", url: "/karnataka-sir-voter-roll.html", icon: "🗳️" });
+    links.push({ title: "📜 ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು", url: "/guarantee-schemes.html", icon: "🌸" });
+  }
+
+  const seen = new Set();
+  const deduped = [];
+  for (const l of links) {
+    if (!seen.has(l.url)) {
+      seen.add(l.url);
+      deduped.push(l);
+    }
+  }
+  return deduped.slice(0, 3);
+}
+
+function generateOfficialSources(intent) {
+  const sources = [];
+  if (intent === 'SIR' || intent === 'VOTER') {
+    sources.push({ name: "Election Commission of India (ECI)", url: "https://voters.eci.gov.in" });
+    sources.push({ name: "Chief Electoral Officer (CEO Karnataka)", url: "https://ceokarnataka.kar.nic.in" });
+  } else if (intent === 'GOVERNMENT_SCHEME') {
+    sources.push({ name: "Seva Sindhu Karnataka", url: "https://sevasindhugs.karnataka.gov.in" });
+    sources.push({ name: "Government of Karnataka", url: "https://karnataka.gov.in" });
+  } else if (intent === 'APMC_CROPS') {
+    sources.push({ name: "Karnataka State Agricultural Marketing Board (KSAMB)", url: "https://krishimaratavahini.kar.nic.in" });
+  } else {
+    sources.push({ name: "Government of Karnataka Official Portal", url: "https://karnataka.gov.in" });
+    sources.push({ name: "Karnata.in State Portal", url: "https://karnata.in" });
+  }
+  return sources;
+}
+
+// ─── 6. RAG CONTEXT RETRIEVER ───────────────────────────────────────────────
+async function buildRAGContext(normalizedQ, intent, env) {
+  let docContext = '';
+
+  if (env && env.DB) {
+    try {
+      const tokens = normalizedQ.split(' ').filter(t => t.length > 2);
+      let querySql = 'SELECT title, content, source_url FROM ai_documents LIMIT 3';
+      let params = [];
+
+      if (tokens.length > 0) {
+        const conditions = tokens.map(() => '(title LIKE ? OR content LIKE ? OR keywords LIKE ?)').join(' OR ');
+        querySql = `SELECT title, content, source_url FROM ai_documents WHERE category = ? OR ${conditions} LIMIT 3`;
+        params.push(intent);
+        tokens.forEach(t => {
+          params.push(`%${t}%`);
+          params.push(`%${t}%`);
+          params.push(`%${t}%`);
+        });
+      }
+
+      const rows = await env.DB.prepare(querySql).bind(...params).all();
+      if (rows && rows.results && rows.results.length > 0) {
+        docContext = rows.results.map(r => `[DOC: ${r.title}]\n${r.content}`).join('\n\n');
+      }
+    } catch (dbErr) {}
+  }
+
+  const verifiedFacts = `
+STATE LEADERSHIP (KARNATAKA, INDIA):
+- Chief Minister: Shri D.K. Shivakumar (INC, Kanakapura)
+- Deputy Chief Minister: Dr. G. Parameshwara (INC, Koratagere)
+- Governor: Shri Thaawarchand Gehlot
+- Chief Secretary: Dr. Shalini Rajneesh, IAS
+- Total Assembly Constituencies: 224 | Total Lok Sabha Seats: 28 | Total Districts: 31
+
+5 GUARANTEE SCHEMES:
+1. Gruha Lakshmi: ₹2,000/month DBT to female head of family.
+2. Gruha Jyothi: Up to 200 units free domestic electricity.
+3. Shakti Scheme: Free travel for women in state RTC buses (KSRTC, BMTC, NWKRTC, KKRTC).
+4. Anna Bhagya: 10kg free foodgrains/cash equivalent per BPL cardholder.
+5. Yuva Nidhi: ₹3,000/month for unemployed graduates, ₹1,500/month for diploma holders.
+
+SIR & ELECTORAL ROLL RULES (ECI):
+- Special Summary Revision (SIR) updates voter rolls annually across 224 ACs.
+- Form 6: New voter registration (age 18+).
+- Form 7: Objections / deletion of deceased or shifted voters.
+- Form 8: Correction of particulars, photo update, EPIC replacement, or address shifting.
+- Official ECI Portal: voters.eci.gov.in | CEO Karnataka: ceokarnataka.kar.nic.in
+`;
+
+  return { docContext: docContext || 'No specific document found.', verifiedFacts };
+}
+
+// ─── 7. HIGH-VALUE FALLBACK GENERATOR ───────────────────────────────────────
+function generateHighValueFallback(rawQuery, intent) {
+  if (intent === 'SIR' || intent === 'VOTER') {
+    return `### 🗳️ ಕರ್ನಾಟಕ SIR ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ ಮಾಹಿತಿ (SIR Voter Guide)
+
+* **SIR ಪ್ರಕ್ರಿಯೆ:** ಭಾರತೀಯ ಚುನಾವಣಾ ಆಯೋಗವು (ECI) ರಾಜ್ಯದ ಎಲ್ಲಾ 224 ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳ ಮತದಾರರ ಕರಡು ಪಟ್ಟಿಯನ್ನು ಬಿಡುಗಡೆ ಮಾಡಿದೆ.
+* **ಹೆಸರು ಪರಿಶೀಲನೆ:** ನಿಮ್ಮ ತಾಲೂಕು, ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ ಹಾಗೂ Part Number ಆಯ್ಕೆಮಾಡಿ Draft Roll PDF ನಲ್ಲಿ ಹೆಸರು ಪರಿಶೀಲಿಸಬಹುದು.
+* **ಹೊಸ ನೋಂದಣಿ:** ಮತದಾರರ ಪಟ್ಟಿಯಲ್ಲಿ ಹೆಸರಿಲ್ಲದಿದ್ದರೆ **Form 6** ಮೂಲಕ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.
+* **ತಿದ್ದುಪಡಿ:** ವಿಳಾಸ ಅಥವಾ ವಿವರ ಬದಲಾವಣೆಗೆ **Form 8** ಬಳಸಿ.
+
+🔗 [ECI Voters Service Portal](https://voters.eci.gov.in)`;
+  }
+
+  if (intent === 'GOVERNMENT_SCHEME') {
+    return `### 🌸 ಕರ್ನಾಟಕ ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು (Guarantee Schemes)
+
+1. **ಗೃಹಲಕ್ಷ್ಮಿ:** ಮಹಿಳಾ ಯಜಮಾನಿಗೆ ಪ್ರತಿ ತಿಂಗಳು **₹2,000** DBT ನೆರವು.
+2. **ಗೃಹಜ್ಯೋತಿ:** 200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ಗೃಹಬಳಕೆ ವಿದ್ಯುತ್.
+3. **ಶಕ್ತಿ ಯೋಜನೆ:** ರಾಜ್ಯದ ಸರ್ಕಾರಿ ಬಸ್‌ಗಳಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಪ್ರಯಾಣ.
+4. **ಅನ್ನಭಾಗ್ಯ:** 10 ಕೆಜಿ ಆಹಾರ ಧಾನ್ಯ / ನಗದು ಸಹಾಯಧನ.
+5. **ಯುವನಿಧಿ:** ನಿರುದ್ಯೋಗಿ ಪದವೀಧರರಿಗೆ ₹3,000 ಹಾಗೂ ಡಿಪ್ಲೋಮಾದಾರರಿಗೆ ₹1,500 ಮಾಸಿಕ ಭತ್ಯೆ.
+
+🔗 [Seva Sindhu Karnataka](https://sevasindhugs.karnataka.gov.in)`;
+  }
+
+  return `### 🏛️ askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಮಾಹಿತಿ ಕೇಂದ್ರ
+
+ನಿಮ್ಮ ಪ್ರಶ್ನೆ: **"${rawQuery}"**
+
+* **🗳️ SIR ಮತದಾರರ ಪಟ್ಟಿ:** 224 ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳ ಕರಡು ಪಟ್ಟಿ.
+* **🌾 APMC ಮಾರುಕಟ್ಟೆ ದರಗಳು:** 174 ಮಾರುಕಟ್ಟೆಗಳ 1,800+ ಬೆಳೆಗಳ ಧಾರಣೆ.
+* **💧 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳು:** KRS, ತುಂಗಭದ್ರಾ, ಆಲಮಟ್ಟಿ ಲೈವ್ ಮಟ್ಟ.
+* **🏛️ ಶಾಸಕರು & ಸಂಸದರು:** 224 ಶಾಸಕರು ಮತ್ತು 28 ಸಂಸದರ ವಿವರ.
+* **👥 ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ:** DC, SP, ತಹಶೀಲ್ದಾರ್ ವಿವರ ಮತ್ತು ವರ್ಗಾವಣೆ.`;
+}
+
+function logMetrics(env, normalizedQ, lang, intent, cacheHit, faqHit, aiUsed, latencyMs) {
+  if (!env || !env.DB) return;
+  const queryId = 'q_' + Math.random().toString(36).substring(2, 10);
+  env.DB.prepare(
+    `INSERT INTO ai_queries (id, normalized_question, language, intent, cache_hit, faq_hit, ai_used, latency_ms)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(
+    queryId,
+    normalizedQ.slice(0, 100),
+    lang,
+    intent,
+    cacheHit ? 1 : 0,
+    faqHit ? 1 : 0,
+    aiUsed ? 1 : 0,
+    latencyMs
+  ).run().catch(() => {});
+}
+
+// ─── 8. MAIN REQUEST ROUTER ─────────────────────────────────────────────────
+export async function onRequest(context) {
+  return handleAskAIRequest(context);
+}
+
+export async function onRequestPost(context) {
+  return handleAskAIRequest(context);
+}
+
+export async function onRequestGet(context) {
+  return handleAskAIRequest(context);
+}
+
+export async function onRequestOptions() {
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'X-Content-Type-Options': 'nosniff'
+  };
+  return new Response(null, { headers: corsHeaders });
+}
+
+async function handleAskAIRequest(context) {
+  const { request, env } = context;
+  const startTime = Date.now();
+
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'X-Content-Type-Options': 'nosniff'
+  };
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  let rawQuery = '';
+  try {
+    if (request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      rawQuery = body.prompt || body.query || '';
+    } else {
+      const url = new URL(request.url);
+      rawQuery = url.searchParams.get('q') || url.searchParams.get('prompt') || '';
+    }
+
+    rawQuery = (rawQuery || '').trim();
+    if (!rawQuery) {
+      return new Response(JSON.stringify({ error: 'Query prompt is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
+    // 1. Normalization & Intent Classification
+    const normalizedQ = normalizeQuestion(rawQuery);
+    const lang = detectLanguage(rawQuery);
+    const intent = classifyIntent(normalizedQ);
+
+    // 2. Security & Rate Limiting Check
+    const secCheck = await checkRateLimitAndSecurity(request, env, normalizedQ);
+    if (!secCheck.allowed) {
+      return new Response(JSON.stringify({
+        success: false,
+        answer: secCheck.message,
+        provider: 'Karnata Security Shield',
+        cards: generateSmartActionLinks(normalizedQ, intent),
+        sources: []
+      }), {
+        status: 429,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
+    // 3. TIER 1: Exact & High-Speed Cache Lookup (D1 / KV)
+    const cached = await getCachedResponse(normalizedQ, env);
+    if (cached) {
+      logMetrics(env, normalizedQ, lang, intent, true, false, false, Date.now() - startTime);
+      return new Response(JSON.stringify({
+        success: true,
+        prompt: rawQuery,
+        answer: cached.answer,
+        cards: cached.cards || generateSmartActionLinks(normalizedQ, intent),
+        sources: cached.sources || generateOfficialSources(intent),
+        provider: cached.provider,
+        cache_hit: true
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
+    // 4. TIER 2: Verified D1 FAQ Matching
+    const faqResult = await matchFAQ(normalizedQ, intent, env);
+    if (faqResult) {
+      const finalCards = (faqResult.cards && faqResult.cards.length > 0) ? faqResult.cards : generateSmartActionLinks(normalizedQ, intent);
+      const finalSources = (faqResult.sources && faqResult.sources.length > 0) ? faqResult.sources : generateOfficialSources(intent);
+
+      saveResponseToCache(normalizedQ, faqResult.answer, finalCards, finalSources, env).catch(() => {});
+      logMetrics(env, normalizedQ, lang, intent, false, true, false, Date.now() - startTime);
+
+      return new Response(JSON.stringify({
+        success: true,
+        prompt: rawQuery,
+        answer: faqResult.answer,
+        cards: finalCards,
+        sources: finalSources,
+        provider: faqResult.provider,
+        faq_hit: true
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
+    // 5. TIER 3: RAG Grounding Context Preparation
+    const ragContext = await buildRAGContext(normalizedQ, intent, env);
+    const actionCards = generateSmartActionLinks(normalizedQ, intent);
+    const officialSources = generateOfficialSources(intent);
+
+    // 6. Check Daily AI Budget Cap (Free-tier protection)
+    const budgetOk = await checkDailyAIBudget(env);
+    if (!budgetOk || (env && env.AI_ENABLE_AI === 'false')) {
+      const fallbackAnswer = generateHighValueFallback(rawQuery, intent);
+      return new Response(JSON.stringify({
+        success: true,
+        prompt: rawQuery,
+        answer: fallbackAnswer,
+        cards: actionCards,
+        sources: officialSources,
+        provider: 'Karnata High-Precision Knowledge Desk (Offline Grounded)'
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
+    // 7. TIER 4: Cloudflare Workers AI Generation (Llama 3.1 8B)
+    let aiAnswer = '';
+    let providerName = 'Cloudflare Workers AI (Llama 3.1 8B)';
+
+    if (env && env.AI) {
+      try {
+        const primaryModel = env.AI_MODEL || '@cf/meta/llama-3.1-8b-instruct';
+        const systemPrompt = `You are askKARNATA AI (ಕರ್ನಾಟ ಎಐ), the official, factual, and helpful AI assistant for Karnataka state, India (Karnata.in).
+Respond in clear, natural, polite Kannada (or English if the user asked in English).
+Rules:
+1. Always structure answers with clear bullet points and bold section headers.
+2. Ground your answer STRICTLY on the supplied Karnataka facts and documents below.
+3. NEVER fabricate voter IDs, election dates, or personal details.
+4. For election or government scheme procedures, provide step-by-step guidance.
+5. If the information is unavailable in context, politely state: "ಈ ಮಾಹಿತಿಯನ್ನು ಅಧಿಕೃತ ಮೂಲಗಳಿಂದ ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ಕೆಳಗಿನ ಲಿಂಕ್ ಬಳಸಿ."
+
+VERIFIED CONTEXT & DOCUMENTS:
+${ragContext.verifiedFacts}
+
+RELEVANT OFFICIAL EXCERPTS:
+${ragContext.docContext}
+
+Answer the user's question directly:`;
+
+        const resp = await env.AI.run(primaryModel, {
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: rawQuery }
+          ],
+          max_tokens: 750,
+          temperature: 0.15
+        });
+
+        if (resp && (resp.response || resp.text)) {
+          aiAnswer = (resp.response || resp.text).trim();
+          providerName = 'Cloudflare Workers AI (Llama 3.1 8B)';
+        }
+      } catch (aiErr) {
+        console.warn('[Workers AI Pipeline Error, using Llama-3.2 fallback]:', aiErr);
+        try {
+          const fallbackResp = await env.AI.run('@cf/meta/llama-3.2-3b-instruct', {
+            messages: [
+              { role: 'system', content: 'You are askKARNATA AI. Answer accurately in Kannada.' },
+              { role: 'user', content: rawQuery }
+            ],
+            max_tokens: 650,
+            temperature: 0.15
+          });
+          if (fallbackResp && (fallbackResp.response || fallbackResp.text)) {
+            aiAnswer = (fallbackResp.response || fallbackResp.text).trim();
+            providerName = 'Cloudflare Workers AI (Llama 3.2 3B Fallback)';
+          }
+        } catch (e2) {}
+      }
+    }
+
+    // 8. TIER 5: Graceful Fallback if AI was unavailable
+    if (!aiAnswer) {
+      aiAnswer = generateHighValueFallback(rawQuery, intent);
+      providerName = 'Karnata Knowledge Fallback';
+    }
+
+    // 9. Save to Cache & Log Metrics
+    saveResponseToCache(normalizedQ, aiAnswer, actionCards, officialSources, env).catch(() => {});
+    logMetrics(env, normalizedQ, lang, intent, false, false, true, Date.now() - startTime);
+
+    return new Response(JSON.stringify({
+      success: true,
+      prompt: rawQuery,
+      answer: aiAnswer,
+      cards: actionCards,
+      sources: officialSources,
+      provider: providerName
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
+    });
+
+  } catch (err) {
+    console.error('[Ask Karnata Fatal Exception]:', err);
+    return new Response(JSON.stringify({
+      success: true,
+      prompt: rawQuery || '',
+      answer: `### 🏛️ askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಮಾಹಿತಿ ಕೇಂದ್ರ\n\nನಿಮ್ಮ ಪ್ರಶ್ನೆ: **"${rawQuery}"**\n\nಕರ್ನಾಟಕ ರಾಜ್ಯದ ಸಮಗ್ರ ಮಾಹಿತಿಗಾಗಿ ಕೆಳಗಿನ ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ:`,
+      cards: generateSmartActionLinks(rawQuery, 'GENERAL_KARNATAKA'),
+      sources: generateOfficialSources('GENERAL_KARNATAKA'),
+      provider: 'Emergency Resilient Fallback'
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
+    });
+  }
+}

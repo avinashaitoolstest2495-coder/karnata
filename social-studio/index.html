@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಕ್ರಿಯೇಟಿವ್ ಸ್ಟುಡಿಯೋ — Instagram, Facebook & WhatsApp | Karnata.in</title>
+  <meta name="description" content="ಕರ್ನಾಟಕದ ಚಿನ್ನದ ದರ, ಇಂಧನ ದರ, ಜಲಾಶಯಗಳ ಮಟ್ಟ, ಹವಾಮಾನ, APMC ಮಾರುಕಟ್ಟೆ ಮತ್ತು ರಸಪ್ರಶ್ನೆಗಳಿಗಾಗಿ 1080x1080 HD ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ & ಫೇಸ್‌ಬುಕ್ ಗ್ರಾಫಿಕ್ಸ್ ಮತ್ತು ಆಟೋ-ಶೇರ್ ಸ್ಟುಡಿಯೋ.">
+  <link rel="canonical" href="https://karnata.in/social-studio">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://karnata.in/social-studio">
+  <meta property="og:title" content="ಕರ್ನಾಟ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಸ್ಟುಡಿಯೋ — Daily HD Social Graphics">
+  <meta property="og:description" content="ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ ಮತ್ತು ಫೇಸ್‌ಬುಕ್‌ಗಾಗಿ ಸಿದ್ಧಪಡಿಸಿದ ಅಧಿಕೃತ ಕನ್ನಡ ಗ್ರಾಫಿಕ್ಸ್ ಮತ್ತು ಕ್ಯಾಪ್ಶನ್‌ಗಳು!">
+  <meta property="og:image" content="https://karnata.in/assets/social-cards/gold_rate_today.png">
+
+  <!-- Fonts & Theme -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/karnata-theme.css">
+
+  <style>
+    :root {
+      --k-crimson: #E11D48;
+      --k-red: #B91C1C;
+      --k-gold: #F59E0B;
+      --k-dark: #0F172A;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --font-kn: 'Anek Kannada', sans-serif;
+      --font-en: 'Outfit', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-kn);
+      background: var(--bg);
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ════ EXACT HOMEPAGE MASTHEAD ════ */
+    .masthead {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid #E2E8F0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .masthead-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      height: 68px;
+      padding: 0 20px;
+      gap: 16px;
+    }
+    .mh-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .mh-logo-text { display: flex; flex-direction: column; }
+    .mh-logo-kn {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .mh-logo-en {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--k-red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .mh-tagline {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      border-left: 2px solid #E2E8F0;
+      padding-left: 14px;
+      line-height: 1.4;
+      display: none;
+      font-weight: 600;
+    }
+    @media(min-width:768px){ .mh-tagline { display: block; } }
+
+    .mh-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mh-loc-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #FEF2F2;
+      border: 1.5px solid #FECACA;
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #B91C1C;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .mh-loc-btn:hover {
+      background: #B91C1C;
+      color: #FFF;
+      transform: translateY(-1px);
+    }
+
+    /* ════ EXACT HOMEPAGE NAVIGATION BAR ════ */
+    .nav-tabs {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.04);
+      position: relative;
+      z-index: 90;
+      overflow-x: auto;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .nav-tabs-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 8px 20px;
+      gap: 8px;
+    }
+    .nav-tab-dropdown {
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .nav-tab-dropbtn {
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #334155;
+      white-space: nowrap;
+      border-radius: 100px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-tab-dropdown:hover .nav-tab-dropbtn, .nav-tab-dropdown.open .nav-tab-dropbtn {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #2563EB;
+    }
+    .nav-tab-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #FFFFFF;
+      min-width: 240px;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.15);
+      border: 1px solid #E2E8F0;
+      padding: 8px;
+      z-index: 99999;
+      backdrop-filter: blur(12px);
+    }
+    .nav-tab-dropdown:hover .nav-tab-menu, .nav-tab-dropdown.open .nav-tab-menu, .nav-tab-dropdown:focus-within .nav-tab-menu {
+      display: block;
+      animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeInDrop {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nav-tab-dropitem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-tab-dropitem:hover {
+      background: #EFF6FF;
+      color: #2563EB;
+      padding-left: 16px;
+    }
+    @media (min-width: 1024px) {
+      .nav-tabs, .nav-tabs-inner {
+        overflow: visible !important;
+      }
+    }
+
+    /* ════ HERO SECTION ════ */
+    .studio-hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 60%, #B91C1C 100%);
+      color: #FFF;
+      padding: 44px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--k-crimson);
+    }
+    .studio-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(225,29,72,0.3);
+      border: 1px solid rgba(254,202,202,0.4);
+      color: #FECDD3;
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .studio-hero-title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .studio-hero-sub {
+      font-size: 16px;
+      color: #E2E8F0;
+      font-weight: 600;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* CATEGORY TABS */
+    .studio-chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+    .s-chip {
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-kn);
+      backdrop-filter: blur(8px);
+    }
+    .s-chip:hover {
+      background: #FFFFFF;
+      color: #0F172A;
+      transform: translateY(-2px);
+    }
+    .s-chip.active {
+      background: var(--k-crimson);
+      color: #FFFFFF;
+      border-color: var(--k-crimson);
+      box-shadow: 0 4px 14px rgba(225,29,72,0.4);
+    }
+
+    /* ════ MAIN WORKSPACE CONTAINER ════ */
+    .studio-workspace {
+      max-width: 1200px;
+      margin: 36px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .studio-workspace { grid-template-columns: 1fr; }
+    }
+
+    /* PREVIEW PANEL */
+    .preview-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+      text-align: center;
+    }
+    .img-preview-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0F172A;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .img-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    /* CONTROLS & CAPTION PANEL */
+    .control-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+    }
+    .card-meta-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0F172A;
+      margin-bottom: 6px;
+    }
+    .card-meta-sub {
+      font-size: 14px;
+      color: #64748B;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    /* CAPTION BOX */
+    .caption-box-wrap {
+      margin-bottom: 24px;
+    }
+    .cap-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cap-textarea {
+      width: 100%;
+      height: 180px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1.5px solid #CBD5E1;
+      font-family: var(--font-kn);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #1E293B;
+      background: #F8FAFC;
+      resize: vertical;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .cap-textarea:focus {
+      border-color: var(--k-crimson);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(225,29,72,0.12);
+    }
+
+    /* ACTION BUTTONS */
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 540px) {
+      .action-grid { grid-template-columns: 1fr; }
+    }
+    .btn-dl {
+      background: linear-gradient(135deg, #B91C1C, #E11D48);
+      color: #FFF;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-kn);
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(225,29,72,0.3);
+      text-decoration: none;
+    }
+    .btn-dl:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(225,29,72,0.4);
+    }
+    .btn-copy {
+      background: #0284C7;
+      color: #FFF;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-kn);
+      transition: all 0.2s;
+    }
+    .btn-copy:hover {
+      background: #0369A1;
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #FFF;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-kn);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-wa:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+    .btn-fb {
+      background: #1877F2;
+      color: #FFF;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-kn);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-fb:hover {
+      background: #166FE5;
+      transform: translateY(-2px);
+    }
+
+    /* AUTO POSTER META INTEGRATION CARD */
+    .meta-box {
+      background: #F8FAFC;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .meta-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0F172A;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .meta-desc {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* TOAST ALERT */
+    #toast-msg {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #0F172A;
+      color: #FFF;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      border-left: 5px solid #10B981;
+      display: none;
+      z-index: 9999;
+      animation: fadeIn 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ EXACT HOMEPAGE MASTHEAD ════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="/index.html" class="mh-logo">
+      <img src="/karnata-logo.png" alt="Karnata.in Logo" style="height:42px; object-fit:contain; border-radius:6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="mh-icon-box" style="display:none; width:40px; height:40px; background:linear-gradient(135deg, #B91C1C, #EA580C); border-radius:8px; align-items:center; justify-content:center; color:#FFF; font-weight:900; font-size:22px;">ಕ</div>
+      <div class="mh-logo-text">
+        <span class="mh-logo-kn">ಕರ್ನಾಟ</span>
+        <span class="mh-logo-en">KARNATA.IN</span>
+      </div>
+    </a>
+    <div class="mh-tagline">Universe Of Karnataka<br>ನಿಮ್ಮ ಜಿಲ್ಲೆ · ನಿಮ್ಮ ಭಾಷೆ · ನಿಮ್ಮ ಮಾಹಿತಿ</div>
+    <div class="mh-right">
+      <a href="/districts.html" class="mh-loc-btn">
+        <span>🏛️</span>
+        <span>31 ಜಿಲ್ಲೆಗಳು</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════ EXACT HOMEPAGE NAVIGATION PILL TABS BAR ════ -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-inner">
+    
+    <!-- 1. KARNATAKA & ADMINISTRATION -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>👑 ಕರ್ನಾಟಕ &amp; ಆಡಳಿತ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/karnataka.html" class="nav-tab-dropitem">👑 ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ</a>
+        <a href="/gba.html" class="nav-tab-dropitem">🏙️ GBA ಬೆಂಗಳೂರು (5 ಪಾಲಿಕೆಗಳು &amp; 369 ವಾರ್ಡ್)</a>
+        <a href="/gram-panchayat.html" class="nav-tab-dropitem">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ (5,958 GPs)</a>
+        <a href="/cabinet-ministers.html" class="nav-tab-dropitem">👥 ಸಚಿವ ಸಂಪುಟ (33 ಸಚಿವರು)</a>
+        <a href="/former-cms.html" class="nav-tab-dropitem">📜 ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳು</a>
+        <a href="/local-government.html" class="nav-tab-dropitem">🏛️ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು (810 ULB)</a>
+        <a href="/officers.html" class="nav-tab-dropitem">👥 ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ</a>
+        <a href="/districts.html" class="nav-tab-dropitem">📍 31 ಜಿಲ್ಲೆಗಳು (Districts Hub)</a>
+      </div>
+    </div>
+
+    <!-- 2. ELECTIONS & REPRESENTATIVES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>🗳️ ಚುನಾವಣೆ &amp; ಪ್ರತಿನಿಧಿಗಳು</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/mla-mp.html" class="nav-tab-dropitem">🏛️ ಶಾಸಕರು, MLC &amp; ಸಂಸದರು (MLA / MLC / MP)</a>
+        <a href="/karnataka-sir-voter-roll.html" class="nav-tab-dropitem">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ</a>
+        <a href="/karnataka-elections.html" class="nav-tab-dropitem">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+      </div>
+    </div>
+
+    <!-- 3. AGRI, WATER & WEATHER -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>💧 ಕೃಷಿ, ನೀರು &amp; ಹವಾಮಾನ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/dam-levels.html" class="nav-tab-dropitem">💧 ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Live Dam Levels)</a>
+        <a href="/weather.html" class="nav-tab-dropitem">🌧️ ಹವಾಮಾನ &amp; ಮಳೆ ವರದಿ</a>
+        <a href="/apmc-prices.html" class="nav-tab-dropitem">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರಗಳು</a>
+      </div>
+    </div>
+
+    <!-- 4. FINANCE & MARKET RATES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>💰 ಹಣಕಾಸು &amp; ಮಾರುಕಟ್ಟೆ</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/petrol-price.html" class="nav-tab-dropitem">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್ ದರ</a>
+        <a href="/gold-rate.html" class="nav-tab-dropitem">🪙 ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ</a>
+        <a href="/emi-calculator.html" class="nav-tab-dropitem">🏦 EMI ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="/sip-calculator.html" class="nav-tab-dropitem">📈 SIP ಲೆಕ್ಕಾಚಾರ</a>
+        <a href="/salary-calculator.html" class="nav-tab-dropitem">💰 ಸಂಬಳದ ಲೆಕ್ಕ</a>
+      </div>
+    </div>
+
+    <!-- 5. AI & DIGITAL SERVICES -->
+    <div class="nav-tab-dropdown">
+      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+        <span>🔮 AI &amp; ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</span>
+        <span style="font-size:8px; margin-left:2px;">▼</span>
+      </button>
+      <div class="nav-tab-menu">
+        <a href="/social-studio.html" class="nav-tab-dropitem" style="color:var(--k-crimson); font-weight:900;">📸 ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಸ್ಟುಡಿಯೋ</a>
+        <a href="/quiz.html" class="nav-tab-dropitem">🧠 ದೈನಂದಿನ ರಸಪ್ರಶ್ನೆ (Daily Quiz)</a>
+        <a href="/ask.html" class="nav-tab-dropitem">🤖 askKARNATA AI ಸಹಾಯಕ</a>
+        <a href="/ai-jyothishya.html" class="nav-tab-dropitem">🔮 AI ಜ್ಯೋತಿಷ್ಯ &amp; ಕುಂಡಲಿ</a>
+        <a href="/kannada-typing.html" class="nav-tab-dropitem">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ &amp; ಅನುವಾದ</a>
+      </div>
+    </div>
+
+    <!-- DIRECT LINK: 31 DISTRICTS -->
+    <a href="/districts.html" style="padding: 7px 16px; font-size: 13px; font-weight: 800; color: #FFF; border-radius: 100px; background: linear-gradient(135deg, #B91C1C, #E11D48); border: 1px solid #B91C1C; text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+      📍 31 ಜಿಲ್ಲೆಗಳು
+    </a>
+
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="studio-hero">
+  <div class="studio-hero-badge">📸 ಆಟೋಮೇಟೆಡ್ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಕ್ರಿಯೇಟರ್ · 1080x1080 HD</div>
+  <h1 class="studio-hero-title">ಕರ್ನಾಟ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಸ್ಟುಡಿಯೋ</h1>
+  <p class="studio-hero-sub">Instagram, Facebook ಮತ್ತು WhatsApp ಗಾಗಿ ಸಿದ್ಧಪಡಿಸಿದ ಲೈವ್ ಗ್ರಾಫಿಕ್ಸ್ ಮತ್ತು ಆಕರ್ಷಕ ಕನ್ನಡ ಕ್ಯಾಪ್ಶನ್‌ಗಳು — ಒಂದೇ ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ &amp; ಆಟೋ-ಶೇರ್ ಮಾಡಿ!</p>
+
+  <!-- CATEGORY CHIPS -->
+  <div class="studio-chips">
+    <button class="s-chip active" onclick="switchCategory('gold', this)">🪙 ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ</button>
+    <button class="s-chip" onclick="switchCategory('dam', this)">💧 ಜಲಾಶಯಗಳ ಮಟ್ಟ</button>
+    <button class="s-chip" onclick="switchCategory('weather', this)">🌦️ ಹವಾಮಾನ &amp; ಮಳೆ</button>
+    <button class="s-chip" onclick="switchCategory('quiz', this)">🧠 ಇಂದಿನ ರಸಪ್ರಶ್ನೆ</button>
+    <button class="s-chip" onclick="switchCategory('petrol', this)">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್</button>
+    <button class="s-chip" onclick="switchCategory('apmc', this)">🌾 APMC ಮಾರುಕಟ್ಟೆ</button>
+  </div>
+</section>
+
+<!-- ════ MAIN WORKSPACE ════ -->
+<div class="studio-workspace">
+
+  <!-- LEFT: LIVE GRAPHIC PREVIEW -->
+  <div class="preview-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <span style="font-size:14px; font-weight:800; color:#64748B;">📱 1080 x 1080 HD Square Post Preview</span>
+      <span style="font-size:12px; font-weight:800; background:#ECFDF5; color:#065F46; padding:3px 10px; border-radius:12px;">✅ Ready to Publish</span>
+    </div>
+
+    <div class="img-preview-box">
+      <img id="card-preview-img" src="/assets/social-cards/gold_rate_today.png" alt="Social Media Card Preview">
+    </div>
+
+    <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:13px; color:#64748B; font-weight:600;">ಫಾರ್ಮ್ಯಾಟ್: PNG (High Resolution)</span>
+      <a id="raw-img-link" href="/assets/social-cards/gold_rate_today.png" target="_blank" style="font-size:13px; font-weight:800; color:#2563EB; text-decoration:none;">🔍 ಪೂರ್ಣ ಇಮೇಜ್ ನೋಡಿ</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: CONTROLS, CAPTION & SHARING CONSOLE -->
+  <div class="control-card">
+    <h2 class="card-meta-title" id="meta-title">🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ</h2>
+    <div class="card-meta-sub" id="meta-sub">Gold &amp; Silver Bullion Rates for Instagram &amp; Facebook</div>
+
+    <!-- CAPTION CONSOLE -->
+    <div class="caption-box-wrap">
+      <div class="cap-label">
+        <span>📝 ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್ &amp; ಫೇಸ್‌ಬುಕ್ ಕ್ಯಾಪ್ಶನ್ (Ready Caption):</span>
+        <button type="button" onclick="copyCaptionText()" style="background:none; border:none; color:#2563EB; font-weight:800; font-size:13px; cursor:pointer; font-family:inherit;">
+          📋 ಕಾಪಿ ಮಾಡಿ
+        </button>
+      </div>
+      <textarea id="caption-text-area" class="cap-textarea"></textarea>
+    </div>
+
+    <!-- ACTION BUTTONS GRID -->
+    <div class="action-grid">
+      <a id="btn-download-img" href="/assets/social-cards/gold_rate_today.png" download="Karnata_Gold_Rate.png" class="btn-dl">
+        <span>📥</span>
+        <span>ಇಮೇಜ್ ಡೌನ್‌ಲೋಡ್</span>
+      </a>
+
+      <button type="button" class="btn-copy" onclick="copyCaptionText()">
+        <span>📋</span>
+        <span>ಕ್ಯಾಪ್ಶನ್ ಕಾಪಿ</span>
+      </button>
+
+      <a id="btn-share-wa" href="#" target="_blank" class="btn-wa">
+        <span>💬</span>
+        <span>WhatsApp ಶೇರ್</span>
+      </a>
+
+      <a id="btn-share-fb" href="#" target="_blank" class="btn-fb">
+        <span>📘</span>
+        <span>Facebook ಶೇರ್</span>
+      </a>
+    </div>
+
+    <!-- META GRAPH API AUTOMATION STATUS -->
+    <div class="meta-box">
+      <div class="meta-title">
+        <span>🤖</span>
+        <span>Meta Graph API ಆಟೋ-ಪೋಸ್ಟಿಂಗ್ (Auto-Poster)</span>
+      </div>
+      <div class="meta-desc">
+        ಈ ಇಮೇಜ್ ಮತ್ತು ಕ್ಯಾಪ್ಶನ್‌ಗಳು ಪ್ರತಿದಿನ ಬೆಳಗ್ಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೃಷ್ಟಿಯಾಗುತ್ತವೆ. ನಿಮ್ಮ Facebook Page &amp; Instagram ಖಾತೆಗೆ ಆಟೋ-ಪೋಸ್ಟ್ ಮಾಡಲು Cloudflare Worker ನ `/api/social/publish` ಎಂಡ್‌ಪಾಯಿಂಟ್ ಲಭ್ಯವಿದೆ.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- TOAST MESSAGE -->
+<div id="toast-msg">✅ ಕ್ಯಾಪ್ಶನ್ ಯಶಸ್ವಿಯಾಗಿ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!</div>
+
+<!-- ════ FOOTER ════ -->
+<footer style="background: #0F172A; color: #94A3B8; padding: 48px 20px 30px; border-top: 4px solid var(--k-crimson); margin-top: 60px;">
+  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
+      <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #B91C1C, #EA580C); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #FFF; font-weight: 900; font-size: 16px;">ಕ</div>
+      <div style="font-size: 20px; font-weight: 900; color: #FFF;">ಕರ್ನಾಟ · Karnata.in</div>
+    </div>
+    <p style="font-size: 13.5px; color: #94A3B8; max-width: 600px; margin: 0 auto 20px;">
+      ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಮಾಹಿತಿ, ರಸಪ್ರಶ್ನೆ, ಹವಾಮಾನ ಹಾಗೂ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾ ಕ್ರಿಯೇಟರ್ ಸ್ಟುಡಿಯೋ.
+    </p>
+    <div style="font-size: 12.5px; color: #64748B;">© 2026 Karnata.in. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ════ CLIENT SCRIPT ════ -->
+<script>
+  let socialData = {};
+
+  const localFallbackCaptions = {
+    gold: {
+      title: "🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ",
+      sub: "Gold & Silver Bullion Rates for Instagram & Facebook",
+      img: "/assets/social-cards/gold_rate_today.png",
+      caption: `🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ
+
+✨ 24K ಅಪರಂಜಿ ಚಿನ್ನ: ₹16,380 / ಗ್ರಾಂ (₹1,63,800 / 10g)
+✨ 22K ಆಭರಣ ಚಿನ್ನ: ₹15,010 / ಗ್ರಾಂ (₹1,50,100 / 10g)
+✨ 1 ಪವನ್ (8 ಗ್ರಾಂ): ₹1,20,080
+✨ ಶುದ್ಧ ಬೆಳ್ಳಿ: ₹260.00 / ಗ್ರಾಂ (₹2,60,000 / 1 ಕೆಜಿ)
+
+📌 ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ನಿಖರ ಲೈವ್ ಚಿನ್ನದ ದರ ತಿಳಿಯಲು ಭೇಟಿ ನೀಡಿ:
+👉 https://karnata.in/gold-rate
+
+#Karnata #GoldRateKarnataka #GoldPriceToday #KarnatakaGold #SilverPrice #KarnataIn #Bengaluru`
+    },
+    dam: {
+      title: "💧 ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ",
+      sub: "Major Dams Live Storage & Outflow for Instagram & Facebook",
+      img: "/assets/social-cards/dam_levels_today.png",
+      caption: `💧 ಕರ್ನಾಟಕ ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ಲೈವ್ ನೀರಿನ ಮಟ್ಟ
+
+🌊 KRS (ಮಂಡ್ಯ): 124.80 ಅಡಿ (49.45 TMC)
+🌊 ಆಲಮಟ್ಟಿ (ವಿಜಯಪುರ): 519.60 ಮೀ (123.08 TMC)
+🌊 ತುಂಗಭದ್ರಾ (ಹೊಸಪೇಟೆ): 1,633 ಅಡಿ (105.79 TMC)
+🌊 ಲಿಂಗನಮಕ್ಕಿ (ಶಿವಮೊಗ್ಗ): 1,819 ಅಡಿ (151.75 TMC)
+
+📌 ರಾಜ್ಯದ ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಒಳಹರಿವು-ಹೊರಹರಿವು ವರದಿ:
+👉 https://karnata.in/dam-levels
+
+#Karnata #KRSDam #AlmattiDam #Tungabhadra #Linganamakki #KarnatakaDams #WaterLevels #KarnataIn`
+    },
+    weather: {
+      title: "🌦️ ಕರ್ನಾಟಕ ಹವಾಮಾನ & ಮಳೆ ಮುನ್ಸೂಚನೆ",
+      sub: "IMD Weather & Rain Forecast for Instagram & Facebook",
+      img: "/assets/social-cards/weather_today.png",
+      caption: `🌦️ ಕರ್ನಾಟಕ ಇಂದಿನ ಹವಾಮಾನ & ಮಳೆ ವರದಿ
+
+🌧️ ಕರಾವಳಿ & ಮಲೆನಾಡು: ಗುಡುಗು ಸಹಿತ ಉತ್ತಮ ಮಳೆಯ ಮುನ್ಸೂಚನೆ.
+⛅ ದಕ್ಷಿಣ & ಉತ್ತರ ಒಳನಾಡು: ಮೋಡಕವಿದ ವಾತಾವರಣ, ಸಾಧಾರಣ ಮಳೆ.
+🌡️ ಬೆಂಗಳೂರು ಗರಿಷ್ಠ: 28°C | ಕನಿಷ್ಠ: 20°C
+
+📌 ನಿಮ್ಮ ತಾಲೂಕು ಮತ್ತು ಜಿಲ್ಲೆಯ ಲೈವ್ ಮಳೆ ವರದಿ:
+👉 https://karnata.in/weather
+
+#Karnata #KarnatakaWeather #BengaluruRain #MonsoonKarnataka #IMDKarnataka #KarnataIn`
+    },
+    quiz: {
+      title: "🧠 ಇಂದಿನ ದಿನದ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ",
+      sub: "Daily Karnataka Knowledge Challenge for Instagram & Facebook",
+      img: "/assets/social-cards/quiz_today.png",
+      caption: `🧠 ಇಂದಿನ ದಿನದ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ ಸವಾಲು!
+
+❓ ಪ್ರಶ್ನೆ: ಕರ್ನಾಟಕದ ಪ್ರಾಚೀನ ಲಕ್ಷಣ ಗ್ರಂಥ 'ಕವಿರಾಜಮಾರ್ಗ' ಯಾವ ರಾಜವಂಶದ ಕಾಲದಲ್ಲಿ ರಚನೆಯಾಯಿತು?
+
+A) ವಿಜಯನಗರ
+B) ರಾಷ್ಟ್ರಕೂಟ
+C) ಚಾಲುಕ್ಯ
+D) ಹೊಯ್ಸಳ
+
+ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಕಾಮೆಂಟ್ ಮಾಡಿ! ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ ನಿಮ್ಮ ಹೆಸರಿನ ಅಧಿಕೃತ ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ:
+👉 https://karnata.in/quiz
+
+#Karnata #KarnatakaQuiz #KannadaQuiz #KPSC #KAS #KarnatakaHistory #KarnataIn`
+    },
+    petrol: {
+      title: "⛽ ಕರ್ನಾಟಕ ಇಂದಿನ ಇಂಧನ ದರ",
+      sub: "Daily Petrol, Diesel & CNG Fuel Rates for Instagram & Facebook",
+      img: "/assets/social-cards/petrol_diesel_today.png",
+      caption: `⛽ ಕರ್ನಾಟಕ ಪೆಟ್ರೋಲ್, ಡೀಸೆಲ್ & CNG ಲೈವ್ ದರ
+
+📍 ಬೆಂಗಳೂರು: ಪೆಟ್ರೋಲ್ ₹102.86 | ಡೀಸೆಲ್ ₹88.94 | CNG ₹82.50
+📍 ಮೈಸೂರು: ಪೆಟ್ರೋಲ್ ₹102.40 | ಡೀಸೆಲ್ ₹88.52
+📍 ಮಂಗಳೂರು: ಪೆಟ್ರೋಲ್ ₹101.90 | ಡೀಸೆಲ್ ₹87.98
+
+📌 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ದರ ಪರಿಶೀಲಿಸಿ:
+👉 https://karnata.in/petrol-price
+
+#Karnata #PetrolPrice #DieselPrice #BengaluruPetrol #FuelRates #KarnataIn`
+    },
+    apmc: {
+      title: "🌾 ಕರ್ನಾಟಕ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ",
+      sub: "Top APMC Mandi Crop Prices for Instagram & Facebook",
+      img: "/assets/social-cards/apmc_rates_today.png",
+      caption: `🌾 ಕರ್ನಾಟಕ APMC ಪ್ರಮುಖ ಬೆಳೆಗಳ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ
+
+🌿 ಶಿರಸಿ ಅಡಿಕೆ (ರಾಶಿ): ₹48,500 - ₹52,800/ಕ್ವಿಂಟಲ್
+🍅 ಕೋಲಾರ ಟೊಮೆಟೊ: ₹22 - ₹38/ಕೆಜಿ
+🥥 ತಿಪಟೂರು ಕೊಬ್ಬರಿ: ₹10,500 - ₹12,400/ಕ್ವಿಂಟಲ್
+🌶️ ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ: ₹18,000 - ₹32,500/ಕ್ವಿಂಟಲ್
+
+📌 174 APMC ಮಾರುಕಟ್ಟೆಗಳ ಲೈವ್ ಬೆಳೆ ದರಗಳು:
+👉 https://karnata.in/apmc-prices
+
+#Karnata #APMCKarnataka #ArecanutRate #TomatoRate #ByadagiChilli #KarnatakaFarmers #KarnataIn`
+    }
+  };
+
+  async function loadSocialData() {
+    try {
+      const res = await fetch('/assets/social-cards/social_captions.json');
+      if (res.ok) {
+        socialData = await res.json();
+      }
+    } catch (e) {
+      socialData = localFallbackCaptions;
+    }
+    switchCategory('gold', document.querySelector('.s-chip.active'));
+  }
+
+  function switchCategory(catKey, btn) {
+    document.querySelectorAll('.s-chip').forEach(c => c.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const item = (socialData && socialData[catKey]) || localFallbackCaptions[catKey];
+    if (!item) return;
+
+    document.getElementById('meta-title').innerText = item.title;
+    document.getElementById('meta-sub').innerText = (localFallbackCaptions[catKey] && localFallbackCaptions[catKey].sub) || item.title;
+    document.getElementById('caption-text-area').value = item.caption;
+
+    const imgUrl = item.image_url || localFallbackCaptions[catKey].img;
+    document.getElementById('card-preview-img').src = imgUrl;
+    document.getElementById('raw-img-link').href = imgUrl;
+
+    const dlBtn = document.getElementById('btn-download-img');
+    dlBtn.href = imgUrl;
+    dlBtn.download = `Karnata_${catKey}_today.png`;
+
+    // WhatsApp Share Link
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(item.caption)}`;
+    document.getElementById('btn-share-wa').href = waUrl;
+
+    // Facebook Share Link
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://karnata.in')}&quote=${encodeURIComponent(item.caption)}`;
+    document.getElementById('btn-share-fb').href = fbUrl;
+  }
+
+  function copyCaptionText() {
+    const text = document.getElementById('caption-text-area').value;
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('✅ ಕ್ಯಾಪ್ಶನ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ! Instagram / Facebook ನಲ್ಲಿ ಪೇಸ್ಟ್ ಮಾಡಿ.');
+    }).catch(() => {
+      showToast('❌ ಕಾಪಿ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ');
+    });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast-msg');
+    t.innerText = msg;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3000);
+  }
+
+  document.addEventListener('DOMContentLoaded', loadSocialData);
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-tab-dropdown')) {
+      document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+    }
+  });
+</script>
+
+</body>
+</html>

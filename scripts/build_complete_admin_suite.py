@@ -1,0 +1,1459 @@
+# -*- coding: utf-8 -*-
+"""
+Karnata — scripts/build_complete_admin_suite.py
+1. Upgrades admin/index.html with direct in-page visual editing + SEO & AI Geo Drawer.
+2. Creates dedicated separate admin/articles.html for publishing & managing articles.
+3. Syncs and connects navigation across all admin tools.
+"""
+
+import os
+import shutil
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ADMIN_DIR = os.path.join(ROOT_DIR, 'admin')
+NK_ADMIN_DIR = os.path.join(ROOT_DIR, 'namma-karnataka', 'admin')
+
+os.makedirs(ADMIN_DIR, exist_ok=True)
+os.makedirs(NK_ADMIN_DIR, exist_ok=True)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 1. GENERATE admin/index.html (VISUAL PAGE BUILDER + SEO & AI GEO DRAWER)
+# ══════════════════════════════════════════════════════════════════════════════
+PAGE_EDITOR_HTML = r"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟ Live Visual Page Builder 2026 | Cloudflare Edge</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #E11D48;
+      --primary-hover: #BE123C;
+      --accent-blue: #2563EB;
+      --accent-green: #059669;
+      --dark: #0F172A;
+      --dark-card: #1E293B;
+      --border: #334155;
+      --text: #F8FAFC;
+      --font-kn: 'Anek Kannada', system-ui, sans-serif;
+      --font-en: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-kn);
+      background: #0B0F19;
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* TOP ADMIN CONTROLS BAR */
+    .top-studio-bar {
+      background: #0F172A;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: #FDA4AF;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-en);
+    }
+
+    /* PAGE SELECTOR DROPDOWN */
+    .page-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #1E293B;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .page-select-dropdown {
+      background: transparent;
+      border: none;
+      color: #FFF;
+      font-family: var(--font-kn);
+      font-size: 13.5px;
+      font-weight: 800;
+      outline: none;
+      cursor: pointer;
+    }
+    .page-select-dropdown option {
+      background: #0F172A;
+      color: #FFF;
+    }
+
+    /* VISUAL FORMATTING TOOLBAR */
+    .visual-tools {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #1E293B;
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .tb-btn {
+      background: transparent;
+      border: none;
+      color: #CBD5E1;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .tb-btn:hover {
+      background: rgba(255,255,255,0.12);
+      color: #FFF;
+    }
+    .tb-sep {
+      width: 1px;
+      height: 16px;
+      background: #475569;
+      margin: 0 4px;
+    }
+
+    /* DEVICE PREVIEW TOGGLES */
+    .device-toggles {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: #1E293B;
+      padding: 3px 5px;
+      border-radius: 8px;
+    }
+    .dev-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      padding: 4px 7px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .dev-btn.active {
+      background: #334155;
+      color: #FFF;
+    }
+
+    /* ACTION BUTTONS */
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-sync-live {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #FFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 10px rgba(5,150,105,0.3);
+      transition: all 0.2s;
+    }
+    .btn-sync-live:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(5,150,105,0.45);
+    }
+    .btn-sync-live:disabled {
+      background: #64748B;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-hdr-link {
+      background: #1E293B;
+      border: 1px solid var(--border);
+      color: #E2E8F0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .btn-hdr-link:hover {
+      background: #334155;
+      color: #FFF;
+    }
+
+    /* MAIN EDITING WORKSPACE */
+    .editor-workspace {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      background: #0B0F19;
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .canvas-container {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transition: max-width 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .canvas-container.tablet { max-width: 768px; }
+    .canvas-container.mobile { max-width: 390px; }
+
+    .canvas-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #FFFFFF;
+    }
+
+    /* FOOTER BAR */
+    .edit-hint-bar {
+      background: #0F172A;
+      border-top: 1px solid #1E293B;
+      padding: 6px 16px;
+      font-size: 12.5px;
+      color: #94A3B8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    /* SEO & AI GEO SLIDING DRAWER */
+    #seoDrawer {
+      position: fixed;
+      top: 52px;
+      right: 0;
+      bottom: 32px;
+      width: 440px;
+      max-width: 90vw;
+      background: #0F172A;
+      border-left: 1px solid #334155;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.6);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #seoDrawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      padding: 14px 18px;
+      background: #1E293B;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #CBD5E1;
+      margin-bottom: 5px;
+    }
+    .form-label span {
+      font-size: 11px;
+      font-weight: 500;
+      color: #94A3B8;
+    }
+    .input-text, .select-box, .textarea-box {
+      width: 100%;
+      background: #1E293B;
+      border: 1.5px solid #334155;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13.5px;
+      color: #FFF;
+      font-family: var(--font-kn);
+      outline: none;
+    }
+    .input-text:focus, .select-box:focus, .textarea-box:focus {
+      border-color: var(--primary);
+    }
+
+    /* TOAST */
+    #toastMsg {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #059669;
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 10px 22px;
+      border-radius: 100px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 9999999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #toastMsg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════════
+       KARNATA ADMIN SECURITY GATEWAY
+       ══════════════════════════════════════════════════════════════════════════════ -->
+  <div id="karnata-admin-gate" style="
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: radial-gradient(circle at center, #0F172A 0%, #020617 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(20px);
+  ">
+    <div style="
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border-radius: 24px;
+      max-width: 400px;
+      width: 100%;
+      padding: 32px 24px;
+      text-align: center;
+      color: #F8FAFC;
+    ">
+      <div style="width:56px; height:56px; background:linear-gradient(135deg, #E11D48, #BE123C); border-radius:16px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-size:28px;">🔒</div>
+      <h2 style="font-size: 21px; font-weight: 900; margin: 0 0 4px; color: #FFF;">ಕರ್ನಾಟ ವಿಷುಯಲ್ CMS</h2>
+      <p style="font-size: 13px; color: #94A3B8; margin: 0 0 18px;">ಪುಟಗಳನ್ನು ನೇರವಾಗಿ ಎಡಿಟ್ ಮಾಡಲು ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ.</p>
+
+      <form onsubmit="event.preventDefault(); window.karnataCheckGatePass();" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; background:#0F172A; border:1.5px solid #334155; border-radius:10px; overflow:hidden;" id="gateInputWrap">
+          <input type="password" id="gatePassInput" placeholder="••••••••" style="flex:1; background:transparent; border:none; padding:12px 14px; font-size:15px; color:#FFF; outline:none; font-family:monospace;" required autofocus>
+          <button type="button" onclick="window.karnataTogglePassEye()" style="background:transparent; border:none; color:#94A3B8; padding:0 12px; cursor:pointer;">👁️</button>
+        </div>
+        <div id="gateErrorMsg" style="display:none; color:#FB7185; font-size:12px; font-weight:700;">⚠️ ತಪ್ಪು ಪಾಸ್‌ವರ್ಡ್!</div>
+        <button type="submit" style="background:linear-gradient(135deg, #059669, #047857); color:#FFF; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer;">🔓 ಪ್ರವೇಶಿಸಿ (Unlock)</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOP ADMIN BAR -->
+  <div class="top-studio-bar">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="/" class="brand-box">
+        <span class="brand-name">ಕರ್ನಾಟ</span>
+        <span class="brand-badge">PAGE BUILDER</span>
+      </a>
+
+      <!-- PAGE SELECTOR -->
+      <div class="page-select-wrap">
+        <span>📄</span>
+        <select id="pageSelectDropdown" class="page-select-dropdown" onchange="changeActivePage(this.value)">
+          <option value="petrol-price.html">⛽ ಇಂಧನ ಬೆಲೆ (Petrol & Diesel)</option>
+          <option value="gold-rate.html">🪙 ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Gold Rate)</option>
+          <option value="apmc-prices.html">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರ (APMC Mandi)</option>
+          <option value="dam-levels.html">🌊 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (Dam Levels)</option>
+          <option value="weather.html">🌦️ ಹವಾಮಾನ ಪೋರ್ಟಲ್ (Weather)</option>
+          <option value="mla-mp.html">🏛️ ಶಾಸಕರು & ಸಂಸದರು (MLA & MP Hub)</option>
+          <option value="scheme-checker.html">💡 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (Govt Schemes)</option>
+          <option value="kannada-typing.html">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ (Kannada Typing)</option>
+          <option value="ai-jyothishya.html">🔮 ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ (AI Jyothishya)</option>
+          <option value="about.html">ℹ️ ನಮ್ಮ ಬಗ್ಗೆ (About Us)</option>
+          <option value="contact.html">📞 ಸಂಪರ್ಕಿಸಿ (Contact Us)</option>
+          <option value="privacy.html">🔒 ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)</option>
+          <option value="terms.html">📜 ನಿಯಮಗಳು (Terms of Service)</option>
+          <option value="index.html">🏠 ಮುಖಪುಟ (Homepage)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- DIRECT VISUAL TEXT FORMATTING TOOLS -->
+    <div class="visual-tools">
+      <button class="tb-btn" onclick="execIframeCmd('bold')" title="Bold"><b>B</b></button>
+      <button class="tb-btn" onclick="execIframeCmd('italic')" title="Italic"><i>I</i></button>
+      <button class="tb-btn" onclick="execIframeCmd('underline')" title="Underline"><u>U</u></button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" onclick="execIframeCmd('formatBlock', '<h2>')">H2</button>
+      <button class="tb-btn" onclick="execIframeCmd('formatBlock', '<h3>')">H3</button>
+      <button class="tb-btn" onclick="execIframeCmd('formatBlock', '<p>')">¶</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" onclick="execIframeCmd('insertUnorderedList')">• ಪಟ್ಟಿ</button>
+      <button class="tb-btn" onclick="execIframeCmd('insertOrderedList')">1. ಕ್ರಮಾಂಕ</button>
+      <div class="tb-sep"></div>
+      <button class="tb-btn" onclick="promptIframeLink()">🔗 ಲಿಂಕ್</button>
+      <button class="tb-btn" onclick="promptIframeImage()">🖼️ ಚಿತ್ರ</button>
+      <button class="tb-btn" onclick="execIframeCmd('removeFormat')" style="color:#FDA4AF;">🧹</button>
+    </div>
+
+    <!-- DEVICE RESPONSIVE SWITCHER -->
+    <div class="device-toggles">
+      <button class="dev-btn active" id="btnDevDesktop" onclick="setDeviceView('desktop')" title="Desktop View">🖥️</button>
+      <button class="dev-btn" id="btnDevTablet" onclick="setDeviceView('tablet')" title="Tablet View">📱</button>
+      <button class="dev-btn" id="btnDevMobile" onclick="setDeviceView('mobile')" title="Mobile View">📲</button>
+    </div>
+
+    <!-- RIGHT ACTION BUTTONS -->
+    <div class="right-actions">
+      <!-- SEO & AI GEO DRAWER BUTTON -->
+      <button class="btn-hdr-link" onclick="toggleSeoDrawer()" style="background:#1E3A8A; border-color:#3B82F6; color:#BFDBFE;">
+        <span>🔍 SEO & AI Geo ಸೆಟ್ಟಿಂಗ್ಸ್</span>
+      </button>
+
+      <!-- LINK TO DEDICATED SEPARATE ARTICLE STUDIO -->
+      <a href="/admin/articles.html" class="btn-hdr-link" style="background:#831843; border-color:#E11D48; color:#FDA4AF;">
+        <span>✍️ ಲೇಖನಗಳ ಸ್ಟುಡಿಯೋ →</span>
+      </a>
+
+      <!-- 1-CLICK SAVE & CLOUDFLARE SYNC BUTTON -->
+      <button id="btnSaveSync" class="btn-sync-live" onclick="saveAndSyncPageDirectly()">
+        <span>🚀 ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಸಿಂಕ್ (Save)</span>
+      </button>
+
+      <button onclick="window.karnataAdminLogout()" class="btn-hdr-link" style="color:#FDA4AF;">
+        <span>🔒</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE (LIVE PAGE IFRAME) -->
+  <div class="editor-workspace">
+    <div class="canvas-container" id="canvasBox">
+      <iframe id="livePageIframe" class="canvas-iframe" src="/petrol-price.html" onload="injectInPlaceVisualEditor(this)"></iframe>
+    </div>
+  </div>
+
+  <!-- BOTTOM HINT BAR -->
+  <div class="edit-hint-bar">
+    <div>
+      <span style="color:#34D399; font-weight:800;">✨ Click-to-Edit Mode:</span>
+      <span style="color:#CBD5E1;">ಪುಟದ ಯಾವುದೇ ಪಠ್ಯ (ಶೀರ್ಷಿಕೆ, ವಿವರಣೆ, ಬ್ಯಾನರ್, ಲೇಖನ) ಮೇಲೆ ನೇರವಾಗಿ ಕ್ಲಿಕ್ ಮಾಡಿ ಬರೆಯಿರಿ. ಡೈನಾಮಿಕ್ ಡೇಟಾ & APIಗಳು 100% ಸುರಕ್ಷಿತ.</span>
+    </div>
+    <div id="saveStatusIndicator" style="font-weight:800; color:#38BDF8;"></div>
+  </div>
+
+  <!-- SEO & AI GEO SIDE DRAWER -->
+  <div id="seoDrawer">
+    <div class="drawer-header">
+      <strong style="font-size:15px; color:#FFF;">⚙️ ಪುಟದ SEO & AI Geo ಸೆಟ್ಟಿಂಗ್ಸ್</strong>
+      <button onclick="toggleSeoDrawer()" style="background:transparent; border:none; color:#94A3B8; font-size:18px; cursor:pointer;">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div style="background:#1E293B; border-radius:8px; padding:10px; margin-bottom:14px; font-size:12.5px; color:#94A3B8;">
+        📄 ಪ್ರಸ್ತುತ ಪುಟ: <strong id="drawerCurrentPage" style="color:#FDA4AF;">petrol-price.html</strong>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ಗೂಗಲ್ ಸರ್ಚ್ ಶೀರ್ಷಿಕೆ <span>(Google Meta Title)</span></label>
+        <input type="text" id="seoTitleInput" class="input-text" placeholder="ಪುಟದ ಗೂಗಲ್ ಶೀರ್ಷಿಕೆ...">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ಗೂಗಲ್ ಸರ್ಚ್ ವಿವರಣೆ <span>(Meta Description)</span></label>
+        <textarea id="seoDescInput" class="textarea-box" rows="3" placeholder="ಗೂಗಲ್ ಹಾಗೂ ವಾಟ್ಸಾಪ್ ಪ್ರಿವ್ಯೂ ವಿವರಣೆ..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ಸೋಶಿಯಲ್ ಶೇರ್ ಕವರ್ ಚಿತ್ರ URL <span>(OG Image)</span></label>
+        <input type="url" id="seoImageInput" class="input-text" placeholder="https://karnata.in/assets/icons/icon-512x512.png">
+      </div>
+
+      <hr style="border:0; border-top:1px solid #334155; margin:16px 0;">
+
+      <div class="form-group">
+        <label class="form-label">📍 AI Geo ಆದ್ಯತೆಯ ಜಿಲ್ಲೆ <span>(Target District)</span></label>
+        <select id="geoDistrictInput" class="select-box">
+          <option value="ಬೆಂಗಳೂರು ನಗರ">ಬೆಂಗಳೂರು ನಗರ (Bengaluru)</option>
+          <option value="ಮೈಸೂರು">ಮೈಸೂರು (Mysuru)</option>
+          <option value="ಬೆಳಗಾವಿ">ಬೆಳಗಾವಿ (Belagavi)</option>
+          <option value="ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)</option>
+          <option value="ದಕ್ಷಿಣ ಕನ್ನಡ">ದಕ್ಷಿಣ ಕನ್ನಡ (Mangaluru)</option>
+          <option value="ಕಲಬುರಗಿ">ಕಲಬುರಗಿ (Kalaburagi)</option>
+          <option value="ಶಿವಮೊಗ್ಗ">ಶಿವಮೊಗ್ಗ (Shivamogga)</option>
+          <option value="ರಾಜ್ಯಾದ್ಯಂತ">ರಾಜ್ಯಾದ್ಯಂತ (All 31 Districts)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ಸ್ಥಳೀಯ ಶುಭಾಶಯ ಸಂದೇಶ <span>(Localized Greeting)</span></label>
+        <input type="text" id="geoGreetingInput" class="input-text" placeholder="ಉದಾ: ನಮಸ್ಕಾರ, ನಿಮ್ಮ ಪ್ರದೇಶದ ಮಾಹಿತಿ ಇಲ್ಲಿದೆ.">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ಸ್ಥಳೀಯ ನಾಗರಿಕ ಸಲಹೆ <span>(District Advisory)</span></label>
+        <textarea id="geoAdvisoryInput" class="textarea-box" rows="2" placeholder="ಸ್ಥಳೀಯ ನಾಗರಿಕರಿಗೆ ಉಪಯುಕ್ತ ಸಲಹೆ..."></textarea>
+      </div>
+
+      <button type="button" class="btn-sync-live" style="width:100%; justify-content:center; margin-top:10px;" onclick="saveSeoDrawerAndSync()">
+        <span>💾 SEO & Geo ವಿವರಗಳನ್ನು ಉಳಿಸಿ (Save)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toastMsg">
+    <span>🎉 ಬದಲಾವಣೆಗಳು ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಗ್ಲೋಬಲ್ ಎಡ್ಜ್‌ಗೆ ಸಿಂಕ್ ಆಗಿದೆ!</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. GATEWAY AUTH
+    const MASTER_PASSWORDS = ['karnata2026', 'karnata@2026', 'admin@karnata', 'karnata@999', 'avinash2026', 'admin2026'];
+    const AUTH_KEY = 'nk_admin_authenticated_session';
+
+    function isAuthenticated() {
+      return sessionStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem(AUTH_KEY) === 'true';
+    }
+    function unlockUI() {
+      const gate = document.getElementById('karnata-admin-gate');
+      if (gate) {
+        gate.style.opacity = '0';
+        setTimeout(() => { gate.style.display = 'none'; }, 200);
+      }
+    }
+    window.karnataCheckGatePass = function() {
+      const val = (document.getElementById('gatePassInput').value || '').trim();
+      if (MASTER_PASSWORDS.includes(val)) {
+        sessionStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem(AUTH_KEY, 'true');
+        unlockUI();
+      } else {
+        document.getElementById('gateErrorMsg').style.display = 'block';
+      }
+    };
+    window.karnataTogglePassEye = function() {
+      const inp = document.getElementById('gatePassInput');
+      if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
+    };
+    window.karnataAdminLogout = function() {
+      if (confirm('ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್ ಲಾಕ್ ಮಾಡಬೇಕೇ? (Lock Admin?)')) {
+        sessionStorage.removeItem(AUTH_KEY);
+        localStorage.removeItem(AUTH_KEY);
+        window.location.reload();
+      }
+    };
+    if (isAuthenticated()) {
+      document.addEventListener('DOMContentLoaded', unlockUI);
+      if (document.readyState === 'interactive' || document.readyState === 'complete') unlockUI();
+    }
+
+    // 2. PAGE SELECTOR & DEVICE VIEW
+    let activePage = 'petrol-price.html';
+    let masterPagesDb = {};
+
+    async function loadMasterPagesData() {
+      try {
+        const res = await fetch('/api/pages?t=' + Date.now());
+        if (res.ok) {
+          const d = await res.json();
+          masterPagesDb = d.pages || {};
+        }
+      } catch(e) {}
+    }
+
+    function changeActivePage(pageFile) {
+      activePage = pageFile;
+      const iframe = document.getElementById('livePageIframe');
+      iframe.src = '/' + pageFile + '?t=' + Date.now();
+      document.getElementById('drawerCurrentPage').textContent = pageFile;
+      document.getElementById('saveStatusIndicator').textContent = '';
+      loadSeoDrawerValues(pageFile);
+    }
+
+    function setDeviceView(dev) {
+      const box = document.getElementById('canvasBox');
+      document.getElementById('btnDevDesktop').classList.toggle('active', dev === 'desktop');
+      document.getElementById('btnDevTablet').classList.toggle('active', dev === 'tablet');
+      document.getElementById('btnDevMobile').classList.toggle('active', dev === 'mobile');
+
+      box.classList.remove('tablet', 'mobile');
+      if (dev === 'tablet') box.classList.add('tablet');
+      if (dev === 'mobile') box.classList.add('mobile');
+    }
+
+    // 3. SEO DRAWER
+    function toggleSeoDrawer() {
+      const drawer = document.getElementById('seoDrawer');
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        loadSeoDrawerValues(activePage);
+      }
+    }
+
+    function loadSeoDrawerValues(pageFile) {
+      const pageData = masterPagesDb[pageFile] || {};
+      const seo = pageData.seo || {};
+      const geo = pageData.ai_geo || {};
+
+      document.getElementById('seoTitleInput').value = seo.title || '';
+      document.getElementById('seoDescInput').value = seo.meta_desc || '';
+      document.getElementById('seoImageInput').value = seo.og_image || 'https://karnata.in/assets/icons/icon-512x512.png';
+      document.getElementById('geoDistrictInput').value = geo.default_district || 'ಬೆಂಗಳೂರು ನಗರ';
+      document.getElementById('geoGreetingInput').value = geo.localized_greeting || '';
+      document.getElementById('geoAdvisoryInput').value = geo.district_advisory || '';
+    }
+
+    async function saveSeoDrawerAndSync() {
+      const pageData = masterPagesDb[activePage] || { page_id: activePage };
+      pageData.seo = {
+        title: document.getElementById('seoTitleInput').value.trim(),
+        meta_desc: document.getElementById('seoDescInput').value.trim(),
+        og_image: document.getElementById('seoImageInput').value.trim()
+      };
+      pageData.ai_geo = {
+        default_district: document.getElementById('geoDistrictInput').value,
+        localized_greeting: document.getElementById('geoGreetingInput').value.trim(),
+        district_advisory: document.getElementById('geoAdvisoryInput').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/pages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(pageData)
+        });
+        if (res.ok) {
+          masterPagesDb[activePage] = pageData;
+          showToast('✅ SEO ಮತ್ತು AI Geo ವಿವರಗಳು ಕ್ಲೌಡ್‌ಫ್ಲೇರ್‌ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ!');
+          toggleSeoDrawer();
+        }
+      } catch(e) {
+        alert('⚠️ ದೋಷ: ' + e.message);
+      }
+    }
+
+    // 4. INJECT DIRECT IN-PAGE CLICK-TO-EDIT CAPABILITIES
+    function injectInPlaceVisualEditor(iframe) {
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        if (!iframeDoc || !iframeDoc.body) return;
+
+        const style = iframeDoc.createElement('style');
+        style.id = 'karnata-visual-editor-injected-styles';
+        style.textContent = `
+          [data-karnata-editable="true"]:hover {
+            outline: 2px dashed #E11D48 !important;
+            outline-offset: 2px !important;
+            cursor: text !important;
+          }
+          [data-karnata-editable="true"]:focus {
+            outline: 2px solid #2563EB !important;
+            outline-offset: 3px !important;
+            background: rgba(37, 99, 235, 0.05) !important;
+          }
+        `;
+        if (!iframeDoc.getElementById('karnata-visual-editor-injected-styles')) {
+          iframeDoc.head.appendChild(style);
+        }
+
+        const textElements = iframeDoc.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, blockquote, .hero-title, .hero-sub, .page-desc, .nc-headline, .nc-summary, .card h3, .card p, .alert-box, .banner-text, label');
+        textElements.forEach(el => {
+          if (!el.closest('script') && !el.closest('style') && !el.classList.contains('no-edit')) {
+            el.setAttribute('contenteditable', 'true');
+            el.setAttribute('data-karnata-editable', 'true');
+          }
+        });
+
+        document.getElementById('saveStatusIndicator').textContent = '🟢 Click-to-Edit ಸಿದ್ಧವಾಗಿದೆ';
+      } catch(e) {}
+    }
+
+    function execIframeCmd(command, value = null) {
+      try {
+        const iframe = document.getElementById('livePageIframe');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframe.contentWindow.focus();
+        iframeDoc.execCommand(command, false, value);
+      } catch(e) {}
+    }
+
+    function promptIframeLink() {
+      const url = prompt('URL ನಮೂದಿಸಿ:', 'https://');
+      if (url && url !== 'https://') execIframeCmd('createLink', url);
+    }
+    function promptIframeImage() {
+      const url = prompt('ಚಿತ್ರದ ಲಿಂಕ್ (Image URL):', 'https://');
+      if (url && url !== 'https://') execIframeCmd('insertImage', url);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.innerHTML = `<span>${msg}</span>`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // 5. 1-CLICK SAVE & CLOUDFLARE SYNC
+    async function saveAndSyncPageDirectly() {
+      const btn = document.getElementById('btnSaveSync');
+      const statusInd = document.getElementById('saveStatusIndicator');
+
+      btn.disabled = true;
+      btn.innerHTML = '⏳ ಸಿಂಕ್ ಆಗುತ್ತಿದೆ...';
+      statusInd.textContent = '⚡ ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಗ್ಲೋಬಲ್ ನೆಟ್‌ವರ್ಕ್‌ನಲ್ಲಿ ಸೇವ್ ಆಗುತ್ತಿದೆ...';
+
+      try {
+        const iframe = document.getElementById('livePageIframe');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        const clonedDoc = iframeDoc.documentElement.cloneNode(true);
+        const injectedStyle = clonedDoc.querySelector('#karnata-visual-editor-injected-styles');
+        if (injectedStyle) injectedStyle.remove();
+
+        clonedDoc.querySelectorAll('[data-karnata-editable]').forEach(el => {
+          el.removeAttribute('contenteditable');
+          el.removeAttribute('data-karnata-editable');
+        });
+
+        const fullCleanHtml = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+
+        const res = await fetch('/api/admin/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page_id: activePage,
+            filename: activePage,
+            html: fullCleanHtml
+          })
+        });
+
+        if (res.ok) {
+          showToast('🎉 ಪುಟವು ಯಶಸ್ವಿಯಾಗಿ ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಗ್ಲೋಬಲ್ ಎಡ್ಜ್‌ಗೆ ಸಿಂಕ್ ಆಗಿದೆ!');
+          statusInd.textContent = '✅ ಕ್ಲೌಡ್‌ಫ್ಲೇರ್‌ನಲ್ಲಿ ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಆಗಿದೆ!';
+        } else {
+          throw new Error('Server returned HTTP ' + res.status);
+        }
+      } catch(err) {
+        alert('⚠️ ಸಿಂಕ್ ದೋಷ: ' + err.message);
+        statusInd.textContent = '⚠️ ದೋಷ: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '🚀 ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಸಿಂಕ್ (Save)';
+      }
+    }
+
+    // Initial Load
+    (async function init() {
+      await loadMasterPagesData();
+      loadSeoDrawerValues('petrol-price.html');
+    })();
+  </script>
+</body>
+</html>
+"""
+
+# Save to admin/index.html and replicas
+with open(os.path.join(ADMIN_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+    f.write(PAGE_EDITOR_HTML)
+
+with open(os.path.join(NK_ADMIN_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+    f.write(PAGE_EDITOR_HTML)
+
+print("Saved updated admin/index.html with Visual Page Editor + SEO & AI Geo Drawer.")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 2. GENERATE admin/articles.html (SEPARATE DEDICATED ARTICLE STUDIO)
+# ══════════════════════════════════════════════════════════════════════════════
+ARTICLE_STUDIO_HTML = r"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟ Article Publisher & Studio 2026 | Cloudflare Edge</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #E11D48;
+      --primary-hover: #BE123C;
+      --dark: #0F172A;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --font-kn: 'Anek Kannada', system-ui, sans-serif;
+      --font-en: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-kn);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* TOP HEADER */
+    .top-header {
+      background: #0F172A;
+      color: #FFF;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFF;
+    }
+    .brand-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #FDA4AF;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: #FFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-hdr {
+      background: rgba(255,255,255,0.1);
+      color: #E2E8F0;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-hdr:hover { background: rgba(255,255,255,0.2); color: #FFF; }
+
+    /* NAVIGATION TABS */
+    .nav-tabs {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      gap: 20px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 16px 8px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      font-family: var(--font-kn);
+    }
+    .tab-btn.active {
+      color: var(--primary);
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1200px;
+      margin: 24px auto 80px;
+      padding: 0 20px;
+    }
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .editor-layout { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+      margin-bottom: 24px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 16px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    .form-label span {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #64748B;
+    }
+    .input-text, .select-box, .textarea-box {
+      width: 100%;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 14.5px;
+      color: #0F172A;
+      font-family: var(--font-kn);
+      outline: none;
+      background: #F8FAFC;
+    }
+    .input-text:focus, .select-box:focus, .textarea-box:focus {
+      border-color: var(--primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+    }
+
+    /* VISUAL RICH TEXT CANVAS */
+    .editor-box {
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+    .editor-toolbar {
+      background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 8px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .tb-btn {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+    }
+    .tb-btn:hover { background: #E2E8F0; }
+    .visual-canvas {
+      min-height: 320px;
+      max-height: 600px;
+      overflow-y: auto;
+      padding: 18px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #1E293B;
+      outline: none;
+    }
+
+    .btn-publish-main {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #FFFFFF;
+      border: none;
+      width: 100%;
+      padding: 15px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(5,150,105,0.3);
+    }
+    .btn-publish-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(5,150,105,0.4);
+    }
+    .btn-publish-main:disabled {
+      background: #94A3B8;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .cover-preview {
+      width: 100%;
+      height: 160px;
+      border-radius: 8px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cover-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════════
+       KARNATA ADMIN SECURITY GATEWAY
+       ══════════════════════════════════════════════════════════════════════════════ -->
+  <div id="karnata-admin-gate" style="
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: radial-gradient(circle at center, #0F172A 0%, #020617 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(20px);
+  ">
+    <div style="
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border-radius: 24px;
+      max-width: 400px;
+      width: 100%;
+      padding: 32px 24px;
+      text-align: center;
+      color: #F8FAFC;
+    ">
+      <div style="width:56px; height:56px; background:linear-gradient(135deg, #E11D48, #BE123C); border-radius:16px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-size:28px;">🔒</div>
+      <h2 style="font-size: 21px; font-weight: 900; margin: 0 0 4px; color: #FFF;">ಕರ್ನಾಟ ಆರ್ಟಿಕಲ್ ಸ್ಟುಡಿಯೋ</h2>
+      <p style="font-size: 13px; color: #94A3B8; margin: 0 0 18px;">ಲೇಖನಗಳನ್ನು ಪ್ರಕಟಿಸಲು ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ.</p>
+
+      <form onsubmit="event.preventDefault(); window.karnataCheckGatePass();" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; background:#0F172A; border:1.5px solid #334155; border-radius:10px; overflow:hidden;" id="gateInputWrap">
+          <input type="password" id="gatePassInput" placeholder="••••••••" style="flex:1; background:transparent; border:none; padding:12px 14px; font-size:15px; color:#FFF; outline:none; font-family:monospace;" required autofocus>
+          <button type="button" onclick="window.karnataTogglePassEye()" style="background:transparent; border:none; color:#94A3B8; padding:0 12px; cursor:pointer;">👁️</button>
+        </div>
+        <div id="gateErrorMsg" style="display:none; color:#FB7185; font-size:12px; font-weight:700;">⚠️ ತಪ್ಪು ಪಾಸ್‌ವರ್ಡ್!</div>
+        <button type="submit" style="background:linear-gradient(135deg, #059669, #047857); color:#FFF; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer;">🔓 ಪ್ರವೇಶಿಸಿ (Unlock)</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="/" class="brand-box">
+        <span class="brand-name">ಕರ್ನಾಟ</span>
+        <span class="brand-badge">ARTICLE PUBLISHER</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <!-- LINK BACK TO PAGES BUILDER -->
+      <a href="/admin/" class="btn-hdr" style="background:#1E3A8A; border-color:#3B82F6; color:#BFDBFE;">
+        <span>📄 ಪುಟಗಳ ಎಡಿಟರ್ (Page Builder ←)</span>
+      </a>
+      <a href="/" target="_blank" class="btn-hdr">🌐 ಸೈಟ್ ವೀಕ್ಷಿಸಿ</a>
+      <button onclick="window.karnataAdminLogout()" class="btn-hdr" style="border-color:#E11D48; color:#FDA4AF;">🔒 ಲಾಕ್</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" id="tabBtnWrite" onclick="switchView('write')">
+      <span>✍️ ಹೊಸ ಲೇಖನ ಬರೆಯಿರಿ (Write New Article)</span>
+    </button>
+    <button class="tab-btn" id="tabBtnManage" onclick="switchView('manage')">
+      <span>📚 ಪ್ರಕಟಿತ ಲೇಖನಗಳು (<span id="pubBadge">0</span>)</span>
+    </button>
+  </nav>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-container">
+    
+    <!-- VIEW 1: WRITE ARTICLE -->
+    <div id="viewWrite">
+      <div class="editor-layout">
+        
+        <!-- LEFT: VISUAL ARTICLE CONTENT -->
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label">ಲೇಖನದ ಮುಖ್ಯ ಶೀರ್ಷಿಕೆ <span>(Article Title) *</span></label>
+            <input type="text" id="artTitle" class="input-text" style="font-size:18px; font-weight:800;" placeholder="ಉದಾ: ಕರ್ನಾಟಕ ರೈತರಿಗೆ ಬಂಪರ್ ಕೊಡುಗೆ: ಹೊಸ ಕೃಷಿ ನೀತಿ ಪ್ರಕಟ..." autofocus>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ಸಾರಾಂಶ / ಮುಖ್ಯಾಂಶ <span>(Short Summary for Social & WhatsApp) *</span></label>
+            <textarea id="artSummary" class="textarea-box" rows="2" placeholder="2-3 ಸಾಲುಗಳಲ್ಲಿ ಲೇಖನದ ಪ್ರಮುಖ ಸಾರಾಂಶ ಬರೆಯಿರಿ..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ಲೇಖನದ ಸಂಪೂರ್ಣ ವಿವರ <span>(Visual Article Content - No HTML Code) *</span></label>
+            <div class="editor-box">
+              <div class="editor-toolbar">
+                <button type="button" class="tb-btn" onclick="execCmdArt('bold')"><b>B</b> ಬೋಲ್ಡ್</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('italic')"><i>I</i> ಇಟಾಲಿಕ್</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('formatBlock', '<h2>')">📌 H2 ಶೀರ್ಷಿಕೆ</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('formatBlock', '<h3>')">🔹 H3 ಉಪಶೀರ್ಷಿಕೆ</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('insertUnorderedList')">• ಪಟ್ಟಿ</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('insertOrderedList')">1. ಕ್ರಮಾಂಕ</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('formatBlock', '<blockquote>')">❝ ಕೋಟ್</button>
+                <button type="button" class="tb-btn" onclick="promptInsertLinkArt()">🔗 ಲಿಂಕ್</button>
+                <button type="button" class="tb-btn" onclick="promptInsertImgArt()">🖼️ ಚಿತ್ರ</button>
+                <button type="button" class="tb-btn" onclick="execCmdArt('removeFormat')" style="color:#E11D48;">🧹 ಕ್ಲಿಯರ್</button>
+              </div>
+              <div id="artContentCanvas" class="visual-canvas" contenteditable="true" data-placeholder="ಇಲ್ಲಿ ನಿಮ್ಮ ಲೇಖನವನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಬರೆಯಿರಿ..."></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: PUBLISH SETTINGS -->
+        <div>
+          <div class="card">
+            <h3 class="card-title">🚀 ಪ್ರಕಟಣೆ ಸೆಟ್ಟಿಂಗ್ಸ್</h3>
+            
+            <div class="form-group">
+              <label class="form-label">ವರ್ಗ (Category)</label>
+              <select id="artCategory" class="select-box">
+                <option value="explainer">✨ ವಿಶೇಷ ಲೇಖನ (Explainer)</option>
+                <option value="politics">🏛️ ರಾಜಕೀಯ & ಸರ್ಕಾರ (Politics)</option>
+                <option value="agriculture">🌾 ಕೃಷಿ & ಮಾರುಕಟ್ಟೆ (Agriculture)</option>
+                <option value="finance">💰 ಹಣಕಾಸು & ಹೂಡಿಕೆ (Finance & Gold)</option>
+                <option value="schemes">💡 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (Govt Schemes)</option>
+                <option value="transport">🚗 ಸಾರಿಗೆ & ಮೆಟ್ರೋ (Transport)</option>
+                <option value="weather">🌦️ ಹವಾಮಾನ & ಮಳೆ (Weather)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">ಲೇಖಕರ ಹೆಸರು (Author)</label>
+              <input type="text" id="artAuthor" class="input-text" value="ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">ಕವರ್ ಚಿತ್ರ URL (Cover Image)</label>
+              <input type="url" id="artCover" class="input-text" placeholder="https://images.unsplash.com/..." oninput="updateCoverPreview(this.value)">
+              <div class="cover-preview" id="coverPreviewBox">
+                <span style="font-size:12px; color:#94A3B8;">ಚಿತ್ರ ಪ್ರಿವ್ಯೂ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; padding:12px 14px; border-radius:10px; margin-bottom:16px;">
+              <span style="font-size:13.5px; font-weight:700;">📌 ಮುಖಪುಟದಲ್ಲಿ ಪಿನ್ ಮಾಡಿ</span>
+              <input type="checkbox" id="artPinHome" checked style="width:18px; height:18px; accent-color:var(--primary);">
+            </div>
+
+            <input type="hidden" id="editingArticleId" value="">
+
+            <button type="button" id="btnPublishArt" class="btn-publish-main" onclick="publishArticle()">
+              <span>🚀 ತಕ್ಷಣವೇ ಪ್ರಕಟಿಸಿ (Publish Online)</span>
+            </button>
+            <div id="publishStatus" style="font-size:13px; font-weight:700; margin-top:12px; text-align:center;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 2: MANAGE PUBLISHED ARTICLES -->
+    <div id="viewManage" style="display:none;">
+      <div class="card">
+        <h3 class="card-title">📚 ಪ್ರಕಟಿತ ಲೇಖನಗಳು (Published Articles)</h3>
+        <div id="publishedListWrap">
+          <div style="text-align:center; padding:40px; color:#94A3B8;">ಯಾವುದೇ ಲೇಖನಗಳು ಪ್ರಕಟವಾಗಿಲ್ಲ.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. GATEWAY AUTH
+    const MASTER_PASSWORDS = ['karnata2026', 'karnata@2026', 'admin@karnata', 'karnata@999', 'avinash2026', 'admin2026'];
+    const AUTH_KEY = 'nk_admin_authenticated_session';
+
+    function isAuthenticated() {
+      return sessionStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem(AUTH_KEY) === 'true';
+    }
+    function unlockUI() {
+      const gate = document.getElementById('karnata-admin-gate');
+      if (gate) {
+        gate.style.opacity = '0';
+        setTimeout(() => { gate.style.display = 'none'; }, 200);
+      }
+    }
+    window.karnataCheckGatePass = function() {
+      const val = (document.getElementById('gatePassInput').value || '').trim();
+      if (MASTER_PASSWORDS.includes(val)) {
+        sessionStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem(AUTH_KEY, 'true');
+        unlockUI();
+      } else {
+        document.getElementById('gateErrorMsg').style.display = 'block';
+      }
+    };
+    window.karnataTogglePassEye = function() {
+      const inp = document.getElementById('gatePassInput');
+      if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
+    };
+    window.karnataAdminLogout = function() {
+      if (confirm('ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್ ಲಾಕ್ ಮಾಡಬೇಕೇ? (Lock Admin?)')) {
+        sessionStorage.removeItem(AUTH_KEY);
+        localStorage.removeItem(AUTH_KEY);
+        window.location.reload();
+      }
+    };
+    if (isAuthenticated()) {
+      document.addEventListener('DOMContentLoaded', unlockUI);
+      if (document.readyState === 'interactive' || document.readyState === 'complete') unlockUI();
+    }
+
+    // 2. TABS & VISUAL COMMANDS
+    function switchView(v) {
+      document.getElementById('tabBtnWrite').classList.toggle('active', v === 'write');
+      document.getElementById('tabBtnManage').classList.toggle('active', v === 'manage');
+      document.getElementById('viewWrite').style.display = v === 'write' ? 'block' : 'none';
+      document.getElementById('viewManage').style.display = v === 'manage' ? 'block' : 'none';
+      if (v === 'manage') renderPublishedList();
+    }
+
+    function execCmdArt(cmd, val = null) {
+      document.getElementById('artContentCanvas').focus();
+      document.execCommand(cmd, false, val);
+    }
+    function promptInsertLinkArt() {
+      const url = prompt('URL ನಮೂದಿಸಿ:', 'https://');
+      if (url && url !== 'https://') execCmdArt('createLink', url);
+    }
+    function promptInsertImgArt() {
+      const url = prompt('ಚಿತ್ರದ ಲಿಂಕ್ (Image URL):', 'https://');
+      if (url && url !== 'https://') execCmdArt('insertImage', url);
+    }
+    function updateCoverPreview(url) {
+      const box = document.getElementById('coverPreviewBox');
+      if (url && (url.startsWith('http') || url.startsWith('data:'))) {
+        box.innerHTML = `<img src="${url}" alt="Cover" onerror="this.parentElement.innerHTML='<span style=\"font-size:12px; color:#E11D48;\">❌ ಚಿತ್ರ ಲೋಡ್ ಆಗಿಲ್ಲ</span>'">`;
+      } else {
+        box.innerHTML = `<span style="font-size:12px; color:#94A3B8;">ಚಿತ್ರ ಪ್ರಿವ್ಯೂ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ</span>`;
+      }
+    }
+
+    // 3. ARTICLES LOAD & PUBLISH
+    let allArticles = [];
+
+    async function loadArticles() {
+      try {
+        const res = await fetch('/api/articles?t=' + Date.now());
+        if (res.ok) {
+          const d = await res.json();
+          allArticles = d.articles || [];
+        }
+      } catch(e) {}
+      document.getElementById('pubBadge').textContent = allArticles.length;
+    }
+
+    function renderPublishedList() {
+      const wrap = document.getElementById('publishedListWrap');
+      if (!allArticles.length) {
+        wrap.innerHTML = `<div style="text-align:center; padding:40px; color:#94A3B8;">ಯಾವುದೇ ಲೇಖನಗಳು ಪ್ರಕಟವಾಗಿಲ್ಲ.</div>`;
+        return;
+      }
+
+      wrap.innerHTML = allArticles.map(a => {
+        const slug = a.slug || a.id;
+        const cat = (a.category || 'explainer').toLowerCase();
+        const liveUrl = `/news/${cat}/${slug}`;
+        return `
+          <div style="background:#FFF; border:1px solid #E2E8F0; border-radius:10px; padding:14px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong style="font-size:15px; color:#0F172A;">${a.title_kn || a.title}</strong>
+              <div style="font-size:12px; color:#64748B;">🏷️ ${a.category || 'explainer'} • ✍️ ${a.author || 'ಕರ್ನಾಟ ತಂಡ'}</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <a href="${liveUrl}" target="_blank" style="background:#ECFDF5; color:#059669; padding:5px 12px; border-radius:6px; font-size:12px; font-weight:700; text-decoration:none;">👁️ ನೋಡಿ</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function publishArticle() {
+      const title = document.getElementById('artTitle').value.trim();
+      const summary = document.getElementById('artSummary').value.trim();
+      const bodyHtml = document.getElementById('artContentCanvas').innerHTML.trim();
+      const category = document.getElementById('artCategory').value || 'explainer';
+      const author = document.getElementById('artAuthor').value.trim() || 'ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ';
+      const coverImage = document.getElementById('artCover').value.trim() || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80';
+      const isPin = document.getElementById('artPinHome').checked;
+
+      if (!title) { alert('ದಯವಿಟ್ಟು ಲೇಖನದ ಶೀರ್ಷಿಕೆಯನ್ನು ನಮೂದಿಸಿ'); return; }
+      if (!bodyHtml) { alert('ದಯವಿಟ್ಟು ಲೇಖನದ ವಿವರವನ್ನು ಬರೆಯಿರಿ'); return; }
+
+      const slug = title.toLowerCase().replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '') || ('post-' + Date.now());
+      const btn = document.getElementById('btnPublishArt');
+      const status = document.getElementById('publishStatus');
+
+      btn.disabled = true;
+      btn.innerHTML = '⏳ ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ...';
+      status.innerHTML = '<span style="color:#2563EB;">⚡ ಲೇಖನ ಪ್ರಕಟವಾಗುತ್ತಿದೆ...</span>';
+
+      const payload = {
+        id: slug,
+        slug: slug,
+        title_kn: title,
+        title: title,
+        summary_kn: summary || title,
+        summary: summary || title,
+        category: category,
+        author: author,
+        cover_image: coverImage,
+        body_html: bodyHtml,
+        pin_home: isPin,
+        priority: 10,
+        status: 'published',
+        updated_at: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch('/api/articles', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          status.innerHTML = `<span style="color:#059669;">✅ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ!</span>`;
+          alert('🎉 ಲೇಖನವು ತಕ್ಷಣವೇ ಪ್ರಕಟವಾಗಿದೆ (Published Live Globally)!');
+          document.getElementById('artTitle').value = '';
+          document.getElementById('artSummary').value = '';
+          document.getElementById('artContentCanvas').innerHTML = '';
+          loadArticles();
+        }
+      } catch(e) {
+        status.innerHTML = `<span style="color:#E11D48;">⚠️ ದೋಷ: ${e.message}</span>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '🚀 ತಕ್ಷಣವೇ ಪ್ರಕಟಿಸಿ (Publish Online)';
+      }
+    }
+
+    loadArticles();
+  </script>
+</body>
+</html>
+"""
+
+# Save to admin/articles.html, admin-articles.html, and replicas
+with open(os.path.join(ADMIN_DIR, 'articles.html'), 'w', encoding='utf-8') as f:
+    f.write(ARTICLE_STUDIO_HTML)
+
+with open(os.path.join(ROOT_DIR, 'admin-articles.html'), 'w', encoding='utf-8') as f:
+    f.write(ARTICLE_STUDIO_HTML)
+
+with open(os.path.join(NK_ADMIN_DIR, 'articles.html'), 'w', encoding='utf-8') as f:
+    f.write(ARTICLE_STUDIO_HTML)
+
+with open(os.path.join(ROOT_DIR, 'namma-karnataka', 'admin-articles.html'), 'w', encoding='utf-8') as f:
+    f.write(ARTICLE_STUDIO_HTML)
+
+print("Saved dedicated separate admin/articles.html studio.")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 3. UPDATE _redirects FOR CLEAN URL ACCESS
+# ══════════════════════════════════════════════════════════════════════════════
+for red_file in [os.path.join(ROOT_DIR, '_redirects'), os.path.join(ROOT_DIR, 'namma-karnataka', '_redirects')]:
+    if os.path.exists(red_file):
+        with open(red_file, 'r', encoding='utf-8') as f:
+            red = f.read()
+        if '/admin-articles' not in red:
+            red += "\n/admin-articles /admin/articles.html 301\n/admin/new-article /admin/articles.html 301\n"
+            with open(red_file, 'w', encoding='utf-8') as f:
+                f.write(red)
+            print(f"Updated redirects in {red_file}")
+
+print("SUCCESS_COMPLETE_ADMIN_SUITE_READY")

@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "total_bodies": 810,
+  "corporations": [
+    {
+      "id": "GBA-CC-01",
+      "name_kn": "ಬೆಂಗಳೂರು ಕೇಂದ್ರ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "name_en": "Bengaluru Central City Corporation",
+      "hq": "NR Square"
+    },
+    {
+      "id": "GBA-CC-02",
+      "name_kn": "ಬೆಂಗಳೂರು ಉತ್ತರ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "name_en": "Bengaluru North City Corporation",
+      "hq": "Hebbal"
+    },
+    {
+      "id": "GBA-CC-03",
+      "name_kn": "ಬೆಂಗಳೂರು ಪೂರ್ವ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "name_en": "Bengaluru East City Corporation",
+      "hq": "Whitefield / Indiranagar"
+    },
+    {
+      "id": "GBA-CC-04",
+      "name_kn": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "name_en": "Bengaluru South City Corporation",
+      "hq": "Jayanagar"
+    },
+    {
+      "id": "GBA-CC-05",
+      "name_kn": "ಬೆಂಗಳೂರು ಪಶ್ಚಿಮ ಮಹಾನಗರ ಪಾಲಿಕೆ",
+      "name_en": "Bengaluru West City Corporation",
+      "hq": "Rajajinagar"
+    }
+  ],
+  "updated_at": "2026-08-23"
+}

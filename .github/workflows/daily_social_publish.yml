@@ -1,0 +1,86 @@
+name: Karnataka Daily Automated 30-Min Social Media Publisher
+
+on:
+  schedule:
+    # 07:00 AM IST (01:30 UTC): Weather
+    - cron: '30 1 * * *'
+    # 07:30 AM IST (02:00 UTC): Best Quote / ಶುಭನುಡಿ
+    - cron: '0 2 * * *'
+    # 08:00 AM IST (02:30 UTC): Petrol & Fuel Rates
+    - cron: '30 2 * * *'
+    # 08:30 AM IST (03:00 UTC): Daily Quiz
+    - cron: '0 3 * * *'
+    # 09:00 AM IST (03:30 UTC): 13 Dams Water Level
+    - cron: '30 3 * * *'
+    # 09:30 AM IST (04:00 UTC): Useful Citizen Information
+    - cron: '0 4 * * *'
+    # 10:00 AM IST (04:30 UTC): Gold & Silver Price
+    - cron: '30 4 * * *'
+    # 10:30 AM IST (05:00 UTC): APMC Mandi Rates
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'Select Slot to Publish (or all)'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - weather
+          - quote
+          - petrol_diesel
+          - quiz
+          - dam_levels
+          - useful_info
+          - gold_rate
+          - apmc_rates
+
+jobs:
+  publish_social_slot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Determine & Execute Scheduled Slot
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID || '1097082756824521' }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID || '17841421640841697' }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN || 'EAANu08tlb4gBSUsl5YzS8NSxAvbjcpyMMgs1epQyTmPPt4JcgIceXb5uoKtpmyzP7drresEtXuPonv4pK1mDQdvSy2dv8nKCPZAXexxgQITnHQn6xMZADsN1Dh7rmxzacD69Jl0UtoAPIII9PxC7EWoaxEipFl9oXCY5TtLZB72Oz1mjGBIRTZBGu16mszqQ0mGCCJ6E6BaTpgfKZBoKx1TwT' }}
+          MANUAL_SLOT: ${{ github.event.inputs.slot }}
+        run: |
+          python -c "
+          import os, datetime
+          manual = os.environ.get('MANUAL_SLOT')
+          if manual and manual != 'all':
+              slot = manual
+          elif manual == 'all':
+              slot = 'all'
+          else:
+              # Compute IST time (UTC + 5:30)
+              now_utc = datetime.datetime.now(datetime.timezone.utc)
+              ist_h = (now_utc.hour + 5 + (now_utc.minute + 30)//60) % 24
+              ist_m = (now_utc.minute + 30) % 60
+              
+              if ist_h == 7 and ist_m < 15: slot = 'weather'
+              elif ist_h == 7: slot = 'quote'
+              elif ist_h == 8 and ist_m < 15: slot = 'petrol_diesel'
+              elif ist_h == 8: slot = 'quiz'
+              elif ist_h == 9 and ist_m < 15: slot = 'dam_levels'
+              elif ist_h == 9: slot = 'useful_info'
+              elif ist_h == 10 and ist_m < 15: slot = 'gold_rate'
+              elif ist_h == 10: slot = 'apmc_rates'
+              else: slot = 'all'
+
+          print(f'Triggering slot: {slot}')
+          os.system(f'python scripts/auto_publish_social.py --slot {slot}')
+          "

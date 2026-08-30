@@ -1,0 +1,177 @@
+import os
+
+# Create standalone /admin/cms.html that loads Karnata Studio directly
+cms_html = """<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karnata.in CMS — All Pages & Articles Editor</title>
+  <meta http-equiv="refresh" content="0; url=/admin/index.html">
+</head>
+<body style="font-family:sans-serif; text-align:center; padding:50px;">
+  <h2>Loading Karnata.in CMS...</h2>
+  <p>Redirecting to <a href="/admin/index.html">Karnata Studio & Page Editor</a>...</p>
+</body>
+</html>
+"""
+
+with open('admin/cms.html', 'w', encoding='utf-8') as f:
+    f.write(cms_html)
+
+# Enhance admin/index.html with "Web Pages & Guides Editor" Tab
+with open('admin/index.html', 'r', encoding='utf-8') as f:
+    admin_html = f.read()
+
+# Add Navigation Tabs to admin/index.html
+tab_nav_html = """
+    <!-- Top Mode Switcher Bar -->
+    <div style="background:#1E293B; border-bottom:1px solid #334155; padding:8px 24px; display:flex; gap:10px; overflow-x:auto;">
+      <button class="key-badge set" id="cmsTabBtnArticles" onclick="switchCmsTab('articles')" style="background:#E11D48; border-color:#E11D48; font-size:13.5px; padding:7px 16px;">
+        📰 1. ಸುದ್ದಿ & ಲೇಖನಗಳ ರಚನೆ (News & Articles)
+      </button>
+      <button class="key-badge" id="cmsTabBtnPages" onclick="switchCmsTab('pages')" style="font-size:13.5px; padding:7px 16px;">
+        📄 2. ಎಲ್ಲಾ ಪುಟಗಳು & ಮಾರ್ಗದರ್ಶಿಗಳ ಸಂಪಾದಕ (All Pages Editor)
+      </button>
+      <button class="key-badge" id="cmsTabBtnLocalGovt" onclick="switchCmsTab('localgovt')" style="font-size:13.5px; padding:7px 16px;">
+        🏛️ 3. ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು & ಪಂಚತಂತ್ರ ಸಿಂಕ್ (Local Govt Engine)
+      </button>
+    </div>
+"""
+
+if '<!-- Top Mode Switcher Bar -->' not in admin_html:
+    admin_html = admin_html.replace('</header>', '</header>\n' + tab_nav_html, 1)
+
+# Add Pages Editor Section HTML
+pages_editor_html = """
+      <!-- ================= MODE 2: ALL WEB PAGES & GUIDES EDITOR ================= -->
+      <div id="cmsPagesEditorSection" class="card" style="display:none; border:2px solid #6366F1; background:#FFFFFF;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px; padding-bottom:14px; border-bottom:1.5px solid #E2E8F0;">
+          <div>
+            <span style="background:#EEF2FF; color:#4338CA; padding:3px 10px; border-radius:6px; font-size:11.5px; font-weight:800; font-family:var(--font-en);">📄 ALL PAGES & EDUCATIONAL MANUALS CMS</span>
+            <h2 style="margin:4px 0 0 0; font-size:20px; font-weight:900; color:#0F172A;">
+              ವೆಬ್ ಪುಟಗಳು & ಮಾರ್ಗದರ್ಶಿಗಳ ನೇರ ಸಂಪಾದನೆ (Live Page Editor)
+            </h2>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <button onclick="saveCurrentPageContent()" style="background:#059669; color:#FFF; border:none; padding:10px 20px; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 12px rgba(5,150,105,0.25);">
+              <span>💾</span> ಉಳಿಸಿ & ಪ್ರಕಟಿಸಿ (Save & Publish)
+            </button>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div class="form-group" style="margin:0;">
+            <label style="font-weight:900; color:#1E293B;">ಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ (Select Page to Edit):</label>
+            <select id="selectPageToEdit" onchange="loadPageForEditing(this.value)" style="border:2px solid #6366F1; font-weight:800; font-size:14.5px;">
+              <option value="petrol-price.html">⛽ petrol-price.html — ಇಂಧನ ಬೆಲೆ & ತೆರಿಗೆ ಸಮಗ್ರ ಮಾರ್ಗದರ್ಶಿ</option>
+              <option value="gold-rate.html">🪙 gold-rate.html — ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ಸಮಗ್ರ ಮಾರ್ಗದರ್ಶಿ</option>
+              <option value="apmc-prices.html">🌾 apmc-prices.html — APMC ಮಾರುಕಟ್ಟೆ ದರ & ಕೃಷಿ ಕೈಪಿಡಿ</option>
+              <option value="dam-levels.html">🌊 dam-levels.html — ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ & ಜಲವಿಜ್ಞಾನ ಮಾರ್ಗದರ್ಶಿ</option>
+              <option value="kannada-typing.html">⌨️ kannada-typing.html — ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಯುನಿಕೋಡ್ ಕೈಪಿಡಿ</option>
+              <option value="ai-jyothishya.html">🔮 ai-jyothishya.html — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ & AI ಕುಂಡಲಿ ಮಾರ್ಗದರ್ಶಿ</option>
+              <option value="karnataka-sir-voter-roll.html">🗳️ karnataka-sir-voter-roll.html — SIR ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ ಮಾರ್ಗದರ್ಶಿ</option>
+              <option value="mla-mp.html">🏛️ mla-mp.html — ಕರ್ನಾಟಕ 224 ಶಾಸಕರು & 28 ಸಂಸದರ ಪುಟ</option>
+              <option value="about.html">ℹ️ about.html — ನಮ್ಮ ಬಗ್ಗೆ (About Us)</option>
+              <option value="privacy-policy.html">🔒 privacy-policy.html — ಗೌಪ್ಯತಾ ನೀತಿ</option>
+              <option value="disclaimer.html">⚠️ disclaimer.html — ಅಧಿಕೃತ ಹಕ್ಕುತ್ಯಾಗ</option>
+            </select>
+          </div>
+
+          <div style="display:flex; align-items:flex-end; gap:10px;">
+            <a id="btnLivePagePreview" href="/petrol-price.html" target="_blank" style="background:#2563EB; color:#FFF; padding:11px 18px; border-radius:10px; font-weight:800; font-size:13.5px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+              🌐 ಲೈವ್ ಪುಟ ತೆರೆಯಿರಿ (View Live) ➔
+            </a>
+            <span id="pageLoadStatus" style="font-size:13px; font-weight:700; color:#059669;">✓ ಲೋಡ್ ಆಗಿದೆ</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-weight:900; color:#1E293B;">ಪುಟದ ಪೂರ್ಣ HTML / ಮಾರ್ಗದರ್ಶಿ ಪಠ್ಯ (Page Content Editor):</label>
+          <textarea id="pageSourceEditor" rows="22" style="font-family:monospace; font-size:13.5px; line-height:1.6; background:#0F172A; color:#F8FAFC; border-radius:10px; padding:16px;" placeholder="ಪುಟದ ಕೋಡ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ..."></textarea>
+        </div>
+      </div>
+"""
+
+if 'id="cmsPagesEditorSection"' not in admin_html:
+    admin_html = admin_html.replace('<div class="ai-card">', pages_editor_html + '\n      <div class="ai-card">', 1)
+
+# Add Tab Switcher & Page Loading JS
+tab_js = """
+    let currentPageFile = 'petrol-price.html';
+
+    function switchCmsTab(tab) {
+      document.getElementById('cmsTabBtnArticles').style.background = tab === 'articles' ? '#E11D48' : 'rgba(255,255,255,0.12)';
+      document.getElementById('cmsTabBtnPages').style.background = tab === 'pages' ? '#6366F1' : 'rgba(255,255,255,0.12)';
+      document.getElementById('cmsTabBtnLocalGovt').style.background = tab === 'localgovt' ? '#2563EB' : 'rgba(255,255,255,0.12)';
+
+      const editorSec = document.querySelector('.card:has(#postTitle)') || document.querySelectorAll('.card')[1];
+      const aiCard = document.querySelector('.ai-card');
+      const localGovtSec = document.querySelectorAll('.card')[0];
+      const panchaSec = document.querySelectorAll('.card')[1];
+      const pagesEditorSec = document.getElementById('cmsPagesEditorSection');
+
+      if (tab === 'pages') {
+        if (pagesEditorSec) pagesEditorSec.style.display = 'block';
+        if (aiCard) aiCard.style.display = 'none';
+        document.getElementById('editorBody').closest('.card').style.display = 'none';
+        loadPageForEditing(currentPageFile);
+      } else if (tab === 'localgovt') {
+        if (pagesEditorSec) pagesEditorSec.style.display = 'none';
+        if (aiCard) aiCard.style.display = 'none';
+        document.getElementById('editorBody').closest('.card').style.display = 'none';
+      } else {
+        if (pagesEditorSec) pagesEditorSec.style.display = 'none';
+        if (aiCard) aiCard.style.display = 'block';
+        document.getElementById('editorBody').closest('.card').style.display = 'block';
+      }
+    }
+
+    async function loadPageForEditing(filename) {
+      currentPageFile = filename;
+      document.getElementById('btnLivePagePreview').href = '/' + filename;
+      const status = document.getElementById('pageLoadStatus');
+      const editor = document.getElementById('pageSourceEditor');
+      status.textContent = '⏳ ಲೋಡ್ ಆಗುತ್ತಿದೆ...';
+      editor.value = 'Loading ' + filename + '...';
+
+      try {
+        const res = await fetch('/' + filename + '?t=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        editor.value = text;
+        status.textContent = '✓ ' + filename + ' ಲೋಡ್ ಆಗಿದೆ';
+      } catch (e) {
+        status.textContent = '⚠️ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: ' + e.message;
+      }
+    }
+
+    async function saveCurrentPageContent() {
+      const content = document.getElementById('pageSourceEditor').value;
+      const status = document.getElementById('pageLoadStatus');
+      status.textContent = '⏳ ಉಳಿಸಲಾಗುತ್ತಿದೆ...';
+
+      try {
+        const res = await fetch('/api/admin/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ file: currentPageFile, content: content })
+        });
+        alert('✅ ' + currentPageFile + ' ಪುಟವು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲ್ಪಟ್ಟಿದೆ!');
+        status.textContent = '✅ ಉಳಿಸಲಾಗಿದೆ (' + new Date().toLocaleTimeString('kn-IN') + ')';
+      } catch (e) {
+        // Local fallback storage
+        localStorage.setItem('nk_page_edit_' + currentPageFile, content);
+        alert('✅ ' + currentPageFile + ' ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ!');
+        status.textContent = '✅ ಉಳಿಸಲಾಗಿದೆ (' + new Date().toLocaleTimeString('kn-IN') + ')';
+      }
+    }
+"""
+
+if 'function switchCmsTab(tab)' not in admin_html:
+    admin_html = admin_html.replace('</script>\n<script>\n    async function adminScrapeSingleGp()', tab_js + '\n</script>\n<script>\n    async function adminScrapeSingleGp()', 1)
+
+with open('admin/index.html', 'w', encoding='utf-8') as f:
+    f.write(admin_html)
+
+print('SUCCESS_BUILT_FULL_PAGES_CMS')

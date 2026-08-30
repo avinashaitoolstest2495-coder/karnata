@@ -1,0 +1,210 @@
+{
+  "gp_id": "1504003054",
+  "gp_name_kn": "ನಿಲಜಿ",
+  "gp_name_en": "NILAJI",
+  "district_name_kn": "ಬೆಳಗಾವಿ",
+  "district_name_en": "BELAGAVI",
+  "taluk_name_kn": "ಬೆಳಗಾವಿ",
+  "taluk_name_en": "BELAGAVI",
+  "pin_code": "591124",
+  "lgd_code": "215712",
+  "total_staff": 9,
+  "total_beneficiaries": 1139,
+  "staff": [
+    {
+      "emp_name_kn": "ಶ್ರೀದೇವಿ ವೀರೇಶ ಹಿರೇಮಠ",
+      "emp_name_en": "SHRIDEVI VIRESH HIREMATH ",
+      "designation_kn": "ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ",
+      "mobile_no": "8660743929",
+      "email_id": "nilaji.bgm.bgm@gmail.com",
+      "emp_id": "GE_64650"
+    },
+    {
+      "emp_name_kn": "ಪ್ರವೀಣ ನಿಂಗಪ್ಪಾ ದೊಡ್ಡಮನಿ",
+      "emp_name_en": "Praveen Ningappa Doddamani ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "8951167317",
+      "email_id": "",
+      "emp_id": "E_130949"
+    },
+    {
+      "emp_name_kn": "ದಸ್ತಗೀರ ಮಹ್ಮದ ಹನೀಫ ಮುಲ್ಲಾ",
+      "emp_name_en": "Dastagir Mohammed Hanif Mulla ",
+      "designation_kn": "ಬಿಲ್ ಕಲೆಕ್ಟರ್",
+      "mobile_no": "9845149566",
+      "email_id": "",
+      "emp_id": "E_140556"
+    },
+    {
+      "emp_name_kn": "ಮಣಿಕ ಹಿರೆಮನಿ",
+      "emp_name_en": "Manik Hiremani ",
+      "designation_kn": "ಕ್ಲರ್ಕ್ ಕಮ್ ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್",
+      "mobile_no": "9916955677",
+      "email_id": "",
+      "emp_id": "E_130553"
+    },
+    {
+      "emp_name_kn": "ಸುನೀತಾ ಪ್ರವೀಣ್ ಪಾಟೀಲ್",
+      "emp_name_en": "Sunita Praveen patil ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8088436568",
+      "email_id": "",
+      "emp_id": "E_172037"
+    },
+    {
+      "emp_name_kn": "ಬಾಳಾರಾಮ್ ಪಾಟೀಲ",
+      "emp_name_en": "Balaram Patil ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "8951474299",
+      "email_id": "",
+      "emp_id": "E_130671"
+    },
+    {
+      "emp_name_kn": "ನಾಗೇಶ ಲಕ್ಷ್ಮಣ ಯಡ್ಡಿ",
+      "emp_name_en": "Nagesh Laxman Yaddi ",
+      "designation_kn": "ವಾಟರ್ ಆಪರೇಟರ್",
+      "mobile_no": "9743771124",
+      "email_id": "",
+      "emp_id": "E_130794"
+    },
+    {
+      "emp_name_kn": "ಗೋಪಾಲ ಕಲ್ಲಪ್ಪ ಗಾಡೇಕರ",
+      "emp_name_en": "Gopal Kallappa Gadekar ",
+      "designation_kn": "ಪರಿಚಾರಕ",
+      "mobile_no": "9741904149",
+      "email_id": "",
+      "emp_id": "E_130934"
+    },
+    {
+      "emp_name_kn": "ಮಹಾದೇವಿ ಹಡಪದ",
+      "emp_name_en": "Mahadevi Hadapad ",
+      "designation_kn": "ಗ್ರಂಥಪಾಲಕ",
+      "mobile_no": "7348966591",
+      "email_id": "",
+      "emp_id": "L_06501"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "service_name_kn": "ಕೈಗಾರಿಕಾ/ಕೃಷಿ ಆಧಾರಿತ ಉತ್ಪಾದನಾ ಘಟಕದ ಸ್ಥಾಪನೆಗೆ ಅನುಮತಿಗಾಗಿ ಅರ್ಜಿ",
+      "service_name_en": "Application for Permission for Establishment of Industrial/Agro -Based Production Unit",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಪರವಾನಗಿ",
+      "service_name_en": "Building Construction License",
+      "total_applications": 8,
+      "approved": 7,
+      "pending": 0,
+      "rejected": 1
+    },
+    {
+      "service_name_kn": "ನೀರು ಸರಬರಾಜಿನ ಸಂಪರ್ಕ ಕಡಿತ",
+      "service_name_en": "Disconnection of Water Supply",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "MGNREGA ಅಡಿಯಲ್ಲಿ ಕಾರ್ಮಿಕರಿಗೆ ಜಾಬ್ ಕಾರ್ಡ್ ವಿತರಣೆ",
+      "service_name_en": "Issue of Job card to Labours under MGNREGA",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕುಡಿಯುವ ನೀರಿನ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Drinking Water",
+      "total_applications": 549,
+      "approved": 548,
+      "pending": 1,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಬೀದಿ ದೀಪದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Street Light",
+      "total_applications": 354,
+      "approved": 354,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಗ್ರಾಮ ನೈರ್ಮಲ್ಯದ ನಿರ್ವಹಣೆ",
+      "service_name_en": "Maintenance of Village Sanitation",
+      "total_applications": 185,
+      "approved": 185,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ ನೀರು ಸರಬರಾಜು ಸಂಪರ್ಕ",
+      "service_name_en": "New Water Supply Connection",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ನಿರಾಕ್ಷೇಪಣಾ ಪ್ರಮಾಣಪತ್ರ",
+      "service_name_en": "No Objection Certificate",
+      "total_applications": 21,
+      "approved": 21,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಆಕ್ಯುಪೆನ್ಸಿ ಸರ್ಟಿಫಿಕೇಟ್",
+      "service_name_en": "Occupancy Certificate",
+      "total_applications": 16,
+      "approved": 16,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಓವರ್‌ಗ್ರೌಂಡ್ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯ/ಭೂಗತ ಕೇಬಲ್ ಮೂಲಸೌಕರ್ಯಗಳ ಅನುಮತಿ/ನಿಯಮಿತಗೊಳಿಸುವಿಕೆ",
+      "service_name_en": "Permission/Regularization Of New/Existing Overground Cable Infrastructure/Underground Cable Infrastructure",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಹೊಸ/ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೂರಸಂಪರ್ಕ ಮೂಲಸೌಕರ್ಯ ಗೋಪುರದ ಅನುಮತಿ/ನಿಯಮಿತೀಕರಣ",
+      "service_name_en": "Permission/Regularization Of New/Existing Telecommunication Infrastructure Tower",
+      "total_applications": 7,
+      "approved": 6,
+      "pending": 1,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ಕಾರ್ಮಿಕರಿಗೆ ಉದ್ಯೋಗ ಒದಗಿಸುವುದು",
+      "service_name_en": "Providing Employment to Labourers",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ರಸ್ತೆ ಕತ್ತರಿಸುವ ಅನುಮತಿ",
+      "service_name_en": "Road Cutting Permission",
+      "total_applications": 0,
+      "approved": 0,
+      "pending": 0,
+      "rejected": 0
+    },
+    {
+      "service_name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ",
+      "service_name_en": "Trade license",
+      "total_applications": 3,
+      "approved": 2,
+      "pending": 1,
+      "rejected": 0
+    }
+  ],
+  "updated_at": "2026-08-23T05:48:41.648Z"
+}

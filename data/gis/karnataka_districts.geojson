@@ -1,0 +1,1381 @@
+{
+  "type": "FeatureCollection",
+  "name": "Karnataka_31_Districts_Boundaries_2026",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "metadata": {
+    "authority": "Survey of India / Karnataka State Remote Sensing Applications Centre (KSRSAC)",
+    "total_districts": 31,
+    "updated_at": "2026-08-23"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "DIST_BENGALURU-URBAN",
+      "properties": {
+        "id": "bengaluru-urban",
+        "name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "name_en": "Bengaluru Urban",
+        "code": "KA-BEN",
+        "hq_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "hq_en": "Bengaluru Urban",
+        "hq_taluk": "bengaluru-urban",
+        "centroid": [
+          77.5946,
+          12.9716
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.2446,
+              12.6216
+            ],
+            [
+              77.9446,
+              12.6216
+            ],
+            [
+              77.9446,
+              13.3216
+            ],
+            [
+              77.2446,
+              13.3216
+            ],
+            [
+              77.2446,
+              12.6216
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_BENGALURU-RURAL",
+      "properties": {
+        "id": "bengaluru-rural",
+        "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "name_en": "Bengaluru Rural",
+        "code": "KA-BEN",
+        "hq_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "hq_en": "Bengaluru Rural",
+        "hq_taluk": "bengaluru-rural",
+        "centroid": [
+          77.7126,
+          13.2457
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.31259999999999,
+              12.845699999999999
+            ],
+            [
+              78.1126,
+              12.845699999999999
+            ],
+            [
+              78.1126,
+              13.6457
+            ],
+            [
+              77.31259999999999,
+              13.6457
+            ],
+            [
+              77.31259999999999,
+              12.845699999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_MYSURU",
+      "properties": {
+        "id": "mysuru",
+        "name_kn": "ಮೈಸೂರು",
+        "name_en": "Mysuru",
+        "code": "KA-MYS",
+        "hq_kn": "ಮೈಸೂರು",
+        "hq_en": "Mysuru",
+        "hq_taluk": "mysuru",
+        "centroid": [
+          76.6394,
+          12.2958
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.1394,
+              11.7958
+            ],
+            [
+              77.1394,
+              11.7958
+            ],
+            [
+              77.1394,
+              12.7958
+            ],
+            [
+              76.1394,
+              12.7958
+            ],
+            [
+              76.1394,
+              11.7958
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_MANDYA",
+      "properties": {
+        "id": "mandya",
+        "name_kn": "ಮಂಡ್ಯ",
+        "name_en": "Mandya",
+        "code": "KA-MAN",
+        "hq_kn": "ಮಂಡ್ಯ",
+        "hq_en": "Mandya",
+        "hq_taluk": "mandya",
+        "centroid": [
+          76.8951,
+          12.522
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.4951,
+              12.122
+            ],
+            [
+              77.2951,
+              12.122
+            ],
+            [
+              77.2951,
+              12.922
+            ],
+            [
+              76.4951,
+              12.922
+            ],
+            [
+              76.4951,
+              12.122
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_HASSAN",
+      "properties": {
+        "id": "hassan",
+        "name_kn": "ಹಾಸನ",
+        "name_en": "Hassan",
+        "code": "KA-HAS",
+        "hq_kn": "ಹಾಸನ",
+        "hq_en": "Hassan",
+        "hq_taluk": "hassan",
+        "centroid": [
+          76.1003,
+          13.0068
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.6003,
+              12.5068
+            ],
+            [
+              76.6003,
+              12.5068
+            ],
+            [
+              76.6003,
+              13.5068
+            ],
+            [
+              75.6003,
+              13.5068
+            ],
+            [
+              75.6003,
+              12.5068
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_KODAGU",
+      "properties": {
+        "id": "kodagu",
+        "name_kn": "ಕೊಡಗು",
+        "name_en": "Kodagu",
+        "code": "KA-KOD",
+        "hq_kn": "ಕೊಡಗು",
+        "hq_en": "Kodagu",
+        "hq_taluk": "kodagu",
+        "centroid": [
+          75.8069,
+          12.3375
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.3569,
+              11.887500000000001
+            ],
+            [
+              76.2569,
+              11.887500000000001
+            ],
+            [
+              76.2569,
+              12.7875
+            ],
+            [
+              75.3569,
+              12.7875
+            ],
+            [
+              75.3569,
+              11.887500000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_DAKSHINA-KANNADA",
+      "properties": {
+        "id": "dakshina-kannada",
+        "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "name_en": "Dakshina Kannada",
+        "code": "KA-DAK",
+        "hq_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "hq_en": "Dakshina Kannada",
+        "hq_taluk": "dakshina-kannada",
+        "centroid": [
+          74.9919,
+          12.8438
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.5419,
+              12.3938
+            ],
+            [
+              75.4419,
+              12.3938
+            ],
+            [
+              75.4419,
+              13.2938
+            ],
+            [
+              74.5419,
+              13.2938
+            ],
+            [
+              74.5419,
+              12.3938
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_UDUPI",
+      "properties": {
+        "id": "udupi",
+        "name_kn": "ಉಡುಪಿ",
+        "name_en": "Udupi",
+        "code": "KA-UDU",
+        "hq_kn": "ಉಡುಪಿ",
+        "hq_en": "Udupi",
+        "hq_taluk": "udupi",
+        "centroid": [
+          74.7421,
+          13.3409
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.34209999999999,
+              12.9409
+            ],
+            [
+              75.1421,
+              12.9409
+            ],
+            [
+              75.1421,
+              13.7409
+            ],
+            [
+              74.34209999999999,
+              13.7409
+            ],
+            [
+              74.34209999999999,
+              12.9409
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_SHIVAMOGGA",
+      "properties": {
+        "id": "shivamogga",
+        "name_kn": "ಶಿವಮೊಗ್ಗ",
+        "name_en": "Shivamogga",
+        "code": "KA-SHI",
+        "hq_kn": "ಶಿವಮೊಗ್ಗ",
+        "hq_en": "Shivamogga",
+        "hq_taluk": "shivamogga",
+        "centroid": [
+          75.5681,
+          13.9299
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.0181,
+              13.3799
+            ],
+            [
+              76.1181,
+              13.3799
+            ],
+            [
+              76.1181,
+              14.4799
+            ],
+            [
+              75.0181,
+              14.4799
+            ],
+            [
+              75.0181,
+              13.3799
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_CHIKKAMAGALURU",
+      "properties": {
+        "id": "chikkamagaluru",
+        "name_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "name_en": "Chikkamagaluru",
+        "code": "KA-CHI",
+        "hq_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "hq_en": "Chikkamagaluru",
+        "hq_taluk": "chikkamagaluru",
+        "centroid": [
+          75.7754,
+          13.3153
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.2754,
+              12.8153
+            ],
+            [
+              76.2754,
+              12.8153
+            ],
+            [
+              76.2754,
+              13.8153
+            ],
+            [
+              75.2754,
+              13.8153
+            ],
+            [
+              75.2754,
+              12.8153
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_TUMAKURU",
+      "properties": {
+        "id": "tumakuru",
+        "name_kn": "ತುಮಕೂರು",
+        "name_en": "Tumakuru",
+        "code": "KA-TUM",
+        "hq_kn": "ತುಮಕೂರು",
+        "hq_en": "Tumakuru",
+        "hq_taluk": "tumakuru",
+        "centroid": [
+          77.1173,
+          13.3379
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.5173,
+              12.7379
+            ],
+            [
+              77.7173,
+              12.7379
+            ],
+            [
+              77.7173,
+              13.937899999999999
+            ],
+            [
+              76.5173,
+              13.937899999999999
+            ],
+            [
+              76.5173,
+              12.7379
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_CHITRADURGA",
+      "properties": {
+        "id": "chitradurga",
+        "name_kn": "ಚಿತ್ರದುರ್ಗ",
+        "name_en": "Chitradurga",
+        "code": "KA-CHI",
+        "hq_kn": "ಚಿತ್ರದುರ್ಗ",
+        "hq_en": "Chitradurga",
+        "hq_taluk": "chitradurga",
+        "centroid": [
+          76.3984,
+          14.2226
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.8984,
+              13.7226
+            ],
+            [
+              76.8984,
+              13.7226
+            ],
+            [
+              76.8984,
+              14.7226
+            ],
+            [
+              75.8984,
+              14.7226
+            ],
+            [
+              75.8984,
+              13.7226
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_DAVANAGERE",
+      "properties": {
+        "id": "davanagere",
+        "name_kn": "ದಾವಣಗೆರೆ",
+        "name_en": "Davanagere",
+        "code": "KA-DAV",
+        "hq_kn": "ದಾವಣಗೆರೆ",
+        "hq_en": "Davanagere",
+        "hq_taluk": "davanagere",
+        "centroid": [
+          75.9218,
+          14.4644
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.4718,
+              14.0144
+            ],
+            [
+              76.37180000000001,
+              14.0144
+            ],
+            [
+              76.37180000000001,
+              14.914399999999999
+            ],
+            [
+              75.4718,
+              14.914399999999999
+            ],
+            [
+              75.4718,
+              14.0144
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_BELAGAVI",
+      "properties": {
+        "id": "belagavi",
+        "name_kn": "ಬೆಳಗಾವಿ",
+        "name_en": "Belagavi",
+        "code": "KA-BEL",
+        "hq_kn": "ಬೆಳಗಾವಿ",
+        "hq_en": "Belagavi",
+        "hq_taluk": "belagavi",
+        "centroid": [
+          74.4977,
+          15.8497
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.79769999999999,
+              15.149700000000001
+            ],
+            [
+              75.1977,
+              15.149700000000001
+            ],
+            [
+              75.1977,
+              16.5497
+            ],
+            [
+              73.79769999999999,
+              16.5497
+            ],
+            [
+              73.79769999999999,
+              15.149700000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_DHARWAD",
+      "properties": {
+        "id": "dharwad",
+        "name_kn": "ಧಾರವಾಡ",
+        "name_en": "Dharwad",
+        "code": "KA-DHA",
+        "hq_kn": "ಧಾರವಾಡ",
+        "hq_en": "Dharwad",
+        "hq_taluk": "dharwad",
+        "centroid": [
+          75.0078,
+          15.4589
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.6078,
+              15.0589
+            ],
+            [
+              75.40780000000001,
+              15.0589
+            ],
+            [
+              75.40780000000001,
+              15.8589
+            ],
+            [
+              74.6078,
+              15.8589
+            ],
+            [
+              74.6078,
+              15.0589
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_GADAG",
+      "properties": {
+        "id": "gadag",
+        "name_kn": "ಗದಗ",
+        "name_en": "Gadag",
+        "code": "KA-GAD",
+        "hq_kn": "ಗದಗ",
+        "hq_en": "Gadag",
+        "hq_taluk": "gadag",
+        "centroid": [
+          75.6167,
+          15.4167
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.21669999999999,
+              15.0167
+            ],
+            [
+              76.0167,
+              15.0167
+            ],
+            [
+              76.0167,
+              15.8167
+            ],
+            [
+              75.21669999999999,
+              15.8167
+            ],
+            [
+              75.21669999999999,
+              15.0167
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_HAVERI",
+      "properties": {
+        "id": "haveri",
+        "name_kn": "ಹಾವೇರಿ",
+        "name_en": "Haveri",
+        "code": "KA-HAV",
+        "hq_kn": "ಹಾವೇರಿ",
+        "hq_en": "Haveri",
+        "hq_taluk": "haveri",
+        "centroid": [
+          75.3998,
+          14.7957
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.9498,
+              14.3457
+            ],
+            [
+              75.8498,
+              14.3457
+            ],
+            [
+              75.8498,
+              15.2457
+            ],
+            [
+              74.9498,
+              15.2457
+            ],
+            [
+              74.9498,
+              14.3457
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_UTTARA-KANNADA",
+      "properties": {
+        "id": "uttara-kannada",
+        "name_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "name_en": "Uttara Kannada",
+        "code": "KA-UTT",
+        "hq_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "hq_en": "Uttara Kannada",
+        "hq_taluk": "uttara-kannada",
+        "centroid": [
+          74.6561,
+          14.7941
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.00609999999999,
+              14.1441
+            ],
+            [
+              75.3061,
+              14.1441
+            ],
+            [
+              75.3061,
+              15.4441
+            ],
+            [
+              74.00609999999999,
+              15.4441
+            ],
+            [
+              74.00609999999999,
+              14.1441
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_BAGALKOTE",
+      "properties": {
+        "id": "bagalkote",
+        "name_kn": "ಬಾಗಲಕೋಟೆ",
+        "name_en": "Bagalkote",
+        "code": "KA-BAG",
+        "hq_kn": "ಬಾಗಲಕೋಟೆ",
+        "hq_en": "Bagalkote",
+        "hq_taluk": "bagalkote",
+        "centroid": [
+          75.6965,
+          16.1831
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.1965,
+              15.6831
+            ],
+            [
+              76.1965,
+              15.6831
+            ],
+            [
+              76.1965,
+              16.6831
+            ],
+            [
+              75.1965,
+              16.6831
+            ],
+            [
+              75.1965,
+              15.6831
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_VIJAYAPURA",
+      "properties": {
+        "id": "vijayapura",
+        "name_kn": "ವಿಜಯಪುರ",
+        "name_en": "Vijayapura",
+        "code": "KA-VIJ",
+        "hq_kn": "ವಿಜಯಪುರ",
+        "hq_en": "Vijayapura",
+        "hq_taluk": "vijayapura",
+        "centroid": [
+          75.71,
+          16.8302
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.11,
+              16.2302
+            ],
+            [
+              76.30999999999999,
+              16.2302
+            ],
+            [
+              76.30999999999999,
+              17.430200000000003
+            ],
+            [
+              75.11,
+              17.430200000000003
+            ],
+            [
+              75.11,
+              16.2302
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_KALABURAGI",
+      "properties": {
+        "id": "kalaburagi",
+        "name_kn": "ಕಲಬುರಗಿ",
+        "name_en": "Kalaburagi",
+        "code": "KA-KAL",
+        "hq_kn": "ಕಲಬುರಗಿ",
+        "hq_en": "Kalaburagi",
+        "hq_taluk": "kalaburagi",
+        "centroid": [
+          76.8343,
+          17.3297
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.2343,
+              16.729699999999998
+            ],
+            [
+              77.4343,
+              16.729699999999998
+            ],
+            [
+              77.4343,
+              17.9297
+            ],
+            [
+              76.2343,
+              17.9297
+            ],
+            [
+              76.2343,
+              16.729699999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_YADGIR",
+      "properties": {
+        "id": "yadgir",
+        "name_kn": "ಯಾದಗಿರಿ",
+        "name_en": "Yadgir",
+        "code": "KA-YAD",
+        "hq_kn": "ಯಾದಗಿರಿ",
+        "hq_en": "Yadgir",
+        "hq_taluk": "yadgir",
+        "centroid": [
+          77.1382,
+          16.762
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.6882,
+              16.312
+            ],
+            [
+              77.5882,
+              16.312
+            ],
+            [
+              77.5882,
+              17.212
+            ],
+            [
+              76.6882,
+              17.212
+            ],
+            [
+              76.6882,
+              16.312
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_RAICHUR",
+      "properties": {
+        "id": "raichur",
+        "name_kn": "ರಾಯಚೂರು",
+        "name_en": "Raichur",
+        "code": "KA-RAI",
+        "hq_kn": "ರಾಯಚೂರು",
+        "hq_en": "Raichur",
+        "hq_taluk": "raichur",
+        "centroid": [
+          77.3439,
+          16.212
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.79390000000001,
+              15.661999999999999
+            ],
+            [
+              77.8939,
+              15.661999999999999
+            ],
+            [
+              77.8939,
+              16.762
+            ],
+            [
+              76.79390000000001,
+              16.762
+            ],
+            [
+              76.79390000000001,
+              15.661999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_KOPPAL",
+      "properties": {
+        "id": "koppal",
+        "name_kn": "ಕೊಪ್ಪಳ",
+        "name_en": "Koppal",
+        "code": "KA-KOP",
+        "hq_kn": "ಕೊಪ್ಪಳ",
+        "hq_en": "Koppal",
+        "hq_taluk": "koppal",
+        "centroid": [
+          76.1547,
+          15.3474
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.7047,
+              14.897400000000001
+            ],
+            [
+              76.60470000000001,
+              14.897400000000001
+            ],
+            [
+              76.60470000000001,
+              15.7974
+            ],
+            [
+              75.7047,
+              15.7974
+            ],
+            [
+              75.7047,
+              14.897400000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_BALLARI",
+      "properties": {
+        "id": "ballari",
+        "name_kn": "ಬಳ್ಳಾರಿ",
+        "name_en": "Ballari",
+        "code": "KA-BAL",
+        "hq_kn": "ಬಳ್ಳಾರಿ",
+        "hq_en": "Ballari",
+        "hq_taluk": "ballari",
+        "centroid": [
+          76.9214,
+          15.1394
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.4214,
+              14.6394
+            ],
+            [
+              77.4214,
+              14.6394
+            ],
+            [
+              77.4214,
+              15.6394
+            ],
+            [
+              76.4214,
+              15.6394
+            ],
+            [
+              76.4214,
+              14.6394
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_VIJAYANAGARA",
+      "properties": {
+        "id": "vijayanagara",
+        "name_kn": "ವಿಜಯನಗರ",
+        "name_en": "Vijayanagara",
+        "code": "KA-VIJ",
+        "hq_kn": "ವಿಜಯನಗರ",
+        "hq_en": "Vijayanagara",
+        "hq_taluk": "vijayanagara",
+        "centroid": [
+          76.387,
+          15.27
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.937,
+              14.82
+            ],
+            [
+              76.837,
+              14.82
+            ],
+            [
+              76.837,
+              15.719999999999999
+            ],
+            [
+              75.937,
+              15.719999999999999
+            ],
+            [
+              75.937,
+              14.82
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_CHIKKABALLAPURA",
+      "properties": {
+        "id": "chikkaballapura",
+        "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "name_en": "Chikkaballapura",
+        "code": "KA-CHI",
+        "hq_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "hq_en": "Chikkaballapura",
+        "hq_taluk": "chikkaballapura",
+        "centroid": [
+          77.731,
+          13.4356
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.28099999999999,
+              12.985600000000002
+            ],
+            [
+              78.181,
+              12.985600000000002
+            ],
+            [
+              78.181,
+              13.8856
+            ],
+            [
+              77.28099999999999,
+              13.8856
+            ],
+            [
+              77.28099999999999,
+              12.985600000000002
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_KOLAR",
+      "properties": {
+        "id": "kolar",
+        "name_kn": "ಕೋಲಾರ",
+        "name_en": "Kolar",
+        "code": "KA-KOL",
+        "hq_kn": "ಕೋಲಾರ",
+        "hq_en": "Kolar",
+        "hq_taluk": "kolar",
+        "centroid": [
+          78.1294,
+          13.1363
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6794,
+              12.686300000000001
+            ],
+            [
+              78.5794,
+              12.686300000000001
+            ],
+            [
+              78.5794,
+              13.5863
+            ],
+            [
+              77.6794,
+              13.5863
+            ],
+            [
+              77.6794,
+              12.686300000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_RAMANAGARA",
+      "properties": {
+        "id": "ramanagara",
+        "name_kn": "ರಾಮನಗರ",
+        "name_en": "Ramanagara",
+        "code": "KA-RAM",
+        "hq_kn": "ರಾಮನಗರ",
+        "hq_en": "Ramanagara",
+        "hq_taluk": "ramanagara",
+        "centroid": [
+          77.2817,
+          12.7156
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.8817,
+              12.3156
+            ],
+            [
+              77.6817,
+              12.3156
+            ],
+            [
+              77.6817,
+              13.1156
+            ],
+            [
+              76.8817,
+              13.1156
+            ],
+            [
+              76.8817,
+              12.3156
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_CHAMARAJANAGARA",
+      "properties": {
+        "id": "chamarajanagara",
+        "name_kn": "ಚಾಮರಾಜನಗರ",
+        "name_en": "Chamarajanagara",
+        "code": "KA-CHA",
+        "hq_kn": "ಚಾಮರಾಜನಗರ",
+        "hq_en": "Chamarajanagara",
+        "hq_taluk": "chamarajanagara",
+        "centroid": [
+          76.9439,
+          11.9261
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.4439,
+              11.4261
+            ],
+            [
+              77.4439,
+              11.4261
+            ],
+            [
+              77.4439,
+              12.4261
+            ],
+            [
+              76.4439,
+              12.4261
+            ],
+            [
+              76.4439,
+              11.4261
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DIST_BIDAR",
+      "properties": {
+        "id": "bidar",
+        "name_kn": "ಬೀದರ್",
+        "name_en": "Bidar",
+        "code": "KA-BID",
+        "hq_kn": "ಬೀದರ್",
+        "hq_en": "Bidar",
+        "hq_taluk": "bidar",
+        "centroid": [
+          77.5199,
+          17.9104
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.0699,
+              17.4604
+            ],
+            [
+              77.96990000000001,
+              17.4604
+            ],
+            [
+              77.96990000000001,
+              18.3604
+            ],
+            [
+              77.0699,
+              18.3604
+            ],
+            [
+              77.0699,
+              17.4604
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

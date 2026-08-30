@@ -6,6 +6,11 @@ pages_build_output_dir = "."
 [ai]
 binding = "AI"
 
+[[d1_databases]]
+binding = "DB"
+database_name = "karnata-ai-db"
+database_id = "a56eb43a-01e6-4dac-a98e-fa6ab0553231"
+
 [[kv_namespaces]]
 binding = "NK_DATA"
 id = "e8bb97f5898245daacfd93aa560586ab"
@@ -17,3 +22,9 @@ id = "e8bb97f5898245daacfd93aa560586ab"
 [vars]
 ENVIRONMENT = "production"
 SITE_NAME = "Karnata — Universe of Karnataka"
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+AI_DAILY_LIMIT = "1000"
+AI_CACHE_TTL = "86400"
+AI_MAX_INPUT_LENGTH = "1500"
+AI_ENABLE_RAG = "true"
+AI_ENABLE_AI = "true"

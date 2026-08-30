@@ -12,11 +12,12 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 display_url: https://karnata.in
-logo_url: https://karnata.in/karnata-logo.png
+logo_url: https://karnata.in/assets/icons/icon-512x512.png
 
 collections:
+  # 1. ARTICLES & NEWS
   - name: "articles"
-    label: "📰 ಲೇಖನಗಳು (News & Explainers)"
+    label: "📰 ಲೇಖನಗಳು (Articles & News)"
     label_singular: "ಲೇಖನ (Article)"
     folder: "data/articles"
     create: true
@@ -30,11 +31,104 @@ collections:
       - { label: "Target District/Constituency (Optional)", name: "target", widget: "string", required: false, hint: "ಉದಾ: bengaluru ಅಥವಾ varuna" }
       - { label: "Priority (1 - 10)", name: "priority", widget: "number", default: 10, value_type: "int", min: 1, max: 10 }
       - { label: "📌 Pin to Home Banner", name: "pin_home", widget: "boolean", default: true }
-      - { label: "ಕವರ್ ಚಿತ್ರ (Featured Image)", name: "cover_image", widget: "image", required: false }
-      - { label: "ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ (Meta Description & Excerpt)", name: "summary_kn", widget: "text", hint: "ಗೂಗಲ್ ಹಾಗೂ ಕಾರ್ಡ್‌ಗಳಿಗೆ 150 ಅಕ್ಷರಗಳ ಸಾರಾಂಶ" }
-      - { label: "Focus Keywords (SEO ಕೀವರ್ಡ್ಸ್)", name: "keywords", widget: "string", required: false, hint: "ಉದಾ: karnataka ministers list, ಸಚಿವರ ಪಟ್ಟಿ" }
+      - { label: "ಕವರ್ ಚಿತ್ರ (Cover Image)", name: "cover_image", widget: "image", required: false }
+      - { label: "ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ (Summary)", name: "summary_kn", widget: "text" }
+      - { label: "Focus Keywords", name: "keywords", widget: "string", required: false }
       - { label: "Google Schema Type", name: "schema_type", widget: "select", options: ["NewsArticle", "GovernmentService", "FAQPage", "BlogPosting"], default: "NewsArticle" }
       - { label: "ಲೇಖಕ (Author)", name: "author", widget: "string", default: "ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ತಂಡ" }
-      - { label: "ಪ್ರಕಟಣಾ ದಿನಾಂಕ (Publish Date)", name: "updated_at", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
-      - { label: "ಲೇಖನದ ಸಂಪೂರ್ಣ ವಿವರ (Article Body)", name: "body_html", widget: "markdown", hint: "ಇಲ್ಲಿ ಲೇಖನವನ್ನು ವಿಸ್ತಾರವಾಗಿ ಬರೆಯಿರಿ. Tables, Headers, Bold ಬಳಸಬಹುದು." }
+      - { label: "ಪ್ರಕಟಣಾ ದಿನಾಂಕ", name: "updated_at", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "ಲೇಖನದ ಸಂಪೂರ್ಣ ವಿವರ (Article Body)", name: "body_html", widget: "markdown" }
       - { label: "ಸ್ಥಿತಿ (Status)", name: "status", widget: "select", options: ["published", "draft"], default: "published" }
+
+  # 2. CORE WEB PAGES & EDUCATIONAL GUIDES
+  - name: "pages"
+    label: "📄 ವೆಬ್ ಪುಟಗಳು & ಮಾರ್ಗದರ್ಶಿಗಳು (Web Pages & Guides)"
+    files:
+      - label: "⛽ ಇಂಧನ ಬೆಲೆ & ತೆರಿಗೆ ಮಾರ್ಗದರ್ಶಿ (Petrol & Diesel Page)"
+        name: "petrol_price"
+        file: "petrol-price.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🪙 ಚಿನ್ನ & ಬೆಳ್ಳಿ ಬೆಲೆ ಮಾರ್ಗದರ್ಶಿ (Gold & Silver Rate Page)"
+        name: "gold_rate"
+        file: "gold-rate.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🌾 APMC ಮಾರುಕಟ್ಟೆ ದರ ಮಾರ್ಗದರ್ಶಿ (APMC Mandi Rates Page)"
+        name: "apmc_prices"
+        file: "apmc-prices.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🌊 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಮಾರ್ಗದರ್ಶಿ (Dam Levels Page)"
+        name: "dam_levels"
+        file: "dam-levels.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಯುನಿಕೋಡ್ ಮಾರ್ಗದರ್ಶಿ (Kannada Typing Page)"
+        name: "kannada_typing"
+        file: "kannada-typing.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🔮 ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ & AI ಕುಂಡಲಿ ಮಾರ್ಗದರ್ಶಿ (AI Jyothishya Page)"
+        name: "ai_jyothishya"
+        file: "ai-jyothishya.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🗳️ SIR ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ & ನಾಗರಿಕ ಹಕ್ಕುಗಳ ಮಾರ್ಗದರ್ಶಿ (Voter Roll Page)"
+        name: "voter_roll"
+        file: "karnataka-sir-voter-roll.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🏛️ ಕರ್ನಾಟಕ ಶಾಸಕರು & ಸಂಸದರು (MLA & MP Hub Page)"
+        name: "mla_mp"
+        file: "mla-mp.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "ℹ️ ನಮ್ಮ ಬಗ್ಗೆ (About Us Page)"
+        name: "about"
+        file: "about.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "🔒 ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy Page)"
+        name: "privacy"
+        file: "privacy-policy.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+      - label: "⚠️ ಅಧಿಕೃತ ಹಕ್ಕುತ್ಯಾಗ (Disclaimer Page)"
+        name: "disclaimer"
+        file: "disclaimer.html"
+        fields:
+          - { label: "Page HTML / Content", name: "body", widget: "code", default_language: "html" }
+
+  # 3. DISTRICT GUIDES & DIRECTORIES
+  - name: "district_guides"
+    label: "🗺️ ಜಿಲ್ಲಾವಾರು ಸಮಗ್ರ ಮಾರ್ಗದರ್ಶಿಗಳು (District Guides)"
+    files:
+      - label: "ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಸಮಗ್ರ ಗೈಡ್ (All Districts Data)"
+        name: "districts_data"
+        file: "data/district_comprehensive_guides.json"
+        fields:
+          - { label: "JSON Data", name: "body", widget: "code", default_language: "json" }
+
+  # 4. SITE SETTINGS & ANNOUNCEMENTS
+  - name: "site_settings"
+    label: "⚙️ ಸೈಟ್ ಕಾನ್ಫಿಗರೇಶನ್ & ಲೈವ್ ಅಲರ್ಟ್‌ಗಳು (Site Config & Alerts)"
+    files:
+      - label: "ಗ್ಲೋಬಲ್ ಸೈಟ್ ಕಾನ್ಫಿಗ್ (Site Config)"
+        name: "config_data"
+        file: "data/site_config.json"
+        fields:
+          - { label: "Site Name", name: "site_name", widget: "string", default: "Karnata.in" }
+          - { label: "Live Breaking Banner Text (Kannada)", name: "breaking_banner_kn", widget: "string", required: false }
+          - { label: "Show Breaking Banner", name: "show_breaking_banner", widget: "boolean", default: false }
+          - { label: "Footer Contact Email", name: "contact_email", widget: "string", default: "contact@karnata.in" }

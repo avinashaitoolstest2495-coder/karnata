@@ -1,0 +1,89 @@
+Created At: 2026-08-30T07:16:28+05:30
+Completed At: 2026-08-30T07:16:28+05:30
+File Path: `file:///c:/Users/avina/Downloads/karnata-site-with-cms/gold-rate.html`
+Total Lines: 2020
+Total Bytes: 162162
+Showing lines 840 to 920
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+840:               </div>
+841:             </div>
+842: 
+843:             <!-- Macro Commodity Impact Box -->
+844:             <div style="margin-top:22px; background:#F8FAFC; border:1.5px solid #CBD5E1; border-radius:14px; padding:16px;">
+845:               <div style="font-size:14.5px; font-weight:900; color:#1E293B; margin-bottom:8px;">
+846:                 🌐 ಜಾಗತಿಕ ಕಮಾಡಿಟಿ & ಆರ್ಥಿಕತೆ ಪ್ರಭಾವ (Macro Factors):
+847:               </div>
+848:               <div style="font-size:13px; color:#475569; line-height:1.7;">
+849:                 • <strong>ಯುಎಸ್ ಫೆಡ್ ಬಡ್ಡಿದರ (US Fed Rates):</strong> ಅಮೆರಿಕ ಬಡ್ಡಿದರ ಇಳಿಸಿದರೆ ಹೂಡಿಕೆದಾರರು ಚಿನ್ನದತ್ತ ಮುಖಮಾಡುತ್ತಾರೆ, ಬೆಲೆ ಏರುತ್ತದೆ.<br>
+850:                 • <strong>ಯುಎಸ್ ಡಾಲರ್ ಸೂಚ್ಯಂಕ (DXY):</strong> ಡಾಲರ್ ಬಲಗೊಂಡಾಗ ಜಾಗತಿಕ ಚಿನ್ನ ಇಳಿಯುತ್ತದೆ; ಡಾಲರ್ ದುರ್ಬಲಗೊಂಡಾಗ ಚಿನ್ನ ಜಿಗಿಯುತ್ತದೆ.<br>
+851:                 • <strong>ಕಚ್ಚಾ ತೈಲ (Crude Oil):</strong> ತೈಲ ಬೆಲೆ ಏರಿದರೆ ಜಾಗತಿಕ ಹಣದುಬ್ಬರ ಹೆಚ್ಚಾಗಿ ಚಿನ್ನಕ್ಕೆ 'ಸುರಕ್ಷಿತ ಸ್ವತ್ತು' (Safe Haven) ಬೇಡಿಕೆ ಬರುತ್ತದೆ.<br>
+852:                 • <strong>ಆಮದು ಸುಂಕ & ಜಿಎಸ್‌ಟಿ:</strong> ಭಾರತದಲ್ಲಿ ಚಿನ್ನದ ಮೇಲೆ 6% ಕಸ್ಟಮ್ಸ್ ಸುಂಕ + 3% ಜಿಎಸ್‌ಟಿ ಅನ್ವಯಿಸುತ್ತದೆ.
+853:               </div>
+854:             </div>
+855: 
+856:           </div>
+857: 
+858:           <!-- RIGHT: AI Smart Advice & When to Buy vs When to Sell -->
+859:           <div>
+860:             
+861:             <!-- Best Time to Buy -->
+862:             <div class="advice-card buy-window">
+863:               <div class="advice-title" style="color:#15803D;">
+864:                 <span>🟢 ಯಾವಾಗ ಚಿನ್ನ ಖರೀದಿಸಬೇಕು? (Smart Buying Window)</span>
+865:               </div>
+866:               <div class="advice-desc">
+867:                 • <strong>ದರ ತಿದ್ದುಪಡಿ ಸಮಯ (Price Dips):</strong> ಗರಿಷ್ಠ ಮಟ್ಟದಿಂದ 3% ರಿಂದ 5% ಬೆಲೆ ಇಳಿದಾಗ ಹಂತ ಹಂತವಾಗಿ (SIP ಮಾದರಿಯಲ್ಲಿ) ಖರೀದಿಸಿ.<br>
+868:                 • <strong>ಜುಲೈ-ಆಗಸ್ಟ್ ತಿಂಗಳುಗಳು:</strong> ಹಬ್ಬದ ಋತುವಿಗಿಂತ 2-3 ತಿಂಗಳು ಮುಂಚಿತವಾಗಿ ಖರೀದಿಸಿದರೆ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ಹಾಗೂ ಚಿನ್ನದ ಬೆಲೆಯಲ್ಲಿ ಭಾರಿ ಉಳಿತಾಯವಾಗುತ್ತದೆ.<br>
+869:                 • <strong>ದೀರ್ಘಕಾಲೀನ ಹೂಡಿಕೆಗೆ:</strong> ಸಾರ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB) ಅಥವಾ ಗೋಲ್ಡ್ ಇಟಿಎಫ್ (Gold ETF) ಮೂಲಕ ಖರೀದಿಸಿದರೆ 0% ಮೇಕಿಂಗ್ ಶುಲ್ಕ & ತೆರಿಗೆ ಮುಕ್ತ ಲಾಭ.
+870:               </div>
+871:             </div>
+872: 
+873:             <!-- Best Time to Sell / Book Profits -->
+874:             <div class="advice-card sell-window">
+875:               <div class="advice-title" style="color:#DC2626;">
+876:                 <span>🔴 ಯಾವಾಗ ಮಾರಾಟ ಮಾಡಬೇಕು / ಲಾಭ ಗಳಿಸಬೇಕು? (Profit Booking Window)</span>
+877:               </div>
+878:               <div class="advice-desc">
+879:                 • <strong>ಅಂತಾರಾಷ್ಟ್ರೀಯ ಬಿಕ್ಕಟ್ಟು / ಯುದ್ಧದ ಸಮಯ:</strong> ಜಾಗತಿಕ ಅನಿಶ್ಚಿತತೆಯಿಂದಾಗಿ ಚಿನ್ನವು ಸಾರ್ವಕಾಲಿಕ ದಾಖಲೆ (All-Time High) ಮಟ್ಟ ತಲುಪಿದಾಗ ಭಾಗಶಃ ಲಾಭ ಗಳಿಕೆ (Partial Profit Booking) ಮಾಡುವುದು ಜಾಣತನ.<br>
+880:                 • <strong>ದೀಪಾವಳಿ & ಧಂತೇರಸ್ ಸೀಸನ್:</strong> ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಚಿಲ್ಲರೆ ಬೇಡಿಕೆ ಉತ್ತುಂಗದಲ್ಲಿರುವಾಗ ಹಳೇ ಆಭರಣಗಳನ್ನು ಎಕ್ಸ್‌ಚೇಂಜ್ ಮಾಡಲು ಉತ್ತಮ ಸಮಯ.
+881:               </div>
+882:             </div>
+883: 
+884:             <!-- Gold-to-Silver Ratio (GSR) Strategy -->
+885:             <div class="advice-card gsr-window">
+886:               <div class="advice-title" style="color:#0284C7;">
+887:                 <span>⚖️ Gold-to-Silver Ratio (GSR) ಮಾರ್ಗದರ್ಶಿ</span>
+888:               </div>
+889:               <div class="advice-desc">
+890:                 ಇಂದಿನ GSR ಅನುಪಾತ <strong>62.7</strong> ಆಗಿದೆ. ಅನುಪಾತವು 80 ಕ್ಕಿಂತ ಹೆಚ್ಚಿದ್ದರೆ ಬೆಳ್ಳಿಯು ಕಡಿಮೆ ಮೌಲ್ಯದಲ್ಲಿದೆ ಎಂದರ್ಥ (ಬೆಳ್ಳಿ ಖರೀದಿಗೆ ಸುವರ್ಣಾವಕಾಶ). ಅನುಪಾತವು 60 ಕ್ಕಿಂತ ಕೆಳಗಿಳಿದರೆ ಚಿನ್ನದಲ್ಲಿ ಹೂಡಿಕೆ ಲಾಭದಾಯಕ.
+891:               </div>
+892:             </div>
+893: 
+894:             <!-- Investment Options Comparison -->
+895:             <div class="advice-card strategy-window">
+896:               <div class="advice-title" style="color:#92400E;">
+897:                 <span>💡 4 ಪ್ರಮುಖ ಚಿನ್ನ ಹೂಡಿಕೆ ವಿಧಾನಗಳ ಹೋಲಿಕೆ</span>
+898:               </div>
+899:               <div class="advice-desc">
+900:                 1. <strong>ಆಭರಣ ಚಿನ್ನ:</strong> ಧರಿಸಲು ಮಾತ್ರ ಸೂಕ್ತ. 10%-18% ಮೇಕಿಂಗ್ ವೇಸ್ಟೇಜ್ ನಷ್ಟವಾಗುತ್ತದೆ.<br>
+901:                 2. <strong>SGB (ಗೋಲ್ಡ್ ಬಾಂಡ್):</strong> ವಾರ್ಷಿಕ 2.5% ಹೆಚ್ಚುವರಿ ಬಡ್ಡಿ + 8 ವರ್ಷಗಳ ನಂತರ 0% ಕ್ಯಾಪಿಟಲ್ ಗೇನ್ಸ್ ಟ್ಯಾಕ್ಸ್.<br>
+902:                 3. <strong>Gold ETF / Digital Gold:</strong> ಡಿಮ್ಯಾಟ್ ಖಾತೆಯಲ್ಲಿ 1 ಗ್ರಾಂ ನಿಂದಲೂ ಸುಲಭ ಖರೀದಿ ಮತ್ತು ತಕ್ಷಣ ಮಾರಾಟದ ಅವಕಾಶ.
+903:               </div>
+904:             </div>
+905: 
+906:           </div>
+907: 
+908:         </div>
+909: 
+910:         <!-- 125-YEAR HISTORICAL MILESTONE TABLE -->
+911:         <div class="history-table-box">
+912:           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+913:             <h3 style="font-size:17px; font-weight:900; color:#0F172A;">📜 1901 ರಿಂದ 2026: 125 ವರ್ಷಗಳ ಚಿನ್ನ-ಬೆಳ್ಳಿ ಬೆಲೆ ಇತಿಹಾಸ & ಪ್ರಮುಖ ಮೈಲಿಗಲ್ಲುಗಳು</h3>
+914:             <span style="font-size:12px; color:#D97706; background:#FEF3C7; padding:4px 10px; border-radius:12px; font-weight:800;">ಐತಿಹಾಸಿಕ ದಾಖಲೆ</span>
+915:           </div>
+916:           <div style="overflow-x:auto;">
+917:             <table class="hist-table">
+918:               <thead>
+919:                 <tr>
+920:                   <th>ವರ್ಷ</th>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
