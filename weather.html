@@ -28933,687 +28933,11 @@ function selectDistrict(key) {
 
 
 
-async function loadWeatherData() {
 
-
-
-
-
-
-  const currentKey = activeDistrictKey || 'bengaluru_urban';
-
-
-
-
-
-
-  let data = null;
-
-
-
-
-
-
-
-
-
-
-
-
-
-  try {
-
-
-
-
-
-
-    const res = await fetch(`/api/weather?district=${currentKey}&v=${Date.now()}`, { cache: 'no-store' });
-
-
-
-
-
-
-    if (res.ok) {
-
-
-
-
-
-
-      data = await res.json();
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-  } catch(e) {
-
-
-
-
-
-
-    console.warn('API fetch notice, checking data loader:', e);
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (!data || !data.success || !data.districts) {
-
-
-
-
-
-
-    try {
-
-
-
-
-
-
-      if (typeof NK !== 'undefined' && NK.fetch) {
-
-
-
-
-
-
-        const rawW = await NK.fetch('weather', 'weather.json');
-
-
-
-
-
-
-        if (rawW && rawW.districts) {
-
-
-
-
-
-
-          const bd = rawW.districts[currentKey] || Object.values(rawW.districts)[0];
-
-
-
-
-
-
-          data = {
-
-
-
-
-
-
-            success: true,
-
-
-
-
-
-
-            district_key: currentKey,
-
-
-
-
-
-
-            district_kn: bd?.name_kn || 'ಬೆಂಗಳೂರು',
-
-
-
-
-
-
-            updated_at: rawW.updated_at,
-
-
-
-
-
-
-            ksndmc: { state_extremes: rawW.state_extremes, top_rainfall_locations: rawW.state_extremes?.top_rain_locations || [] },
-
-
-
-
-
-
-            ksndmc_alerts: rawW.ksndmc_alerts,
-
-
-
-
-
-
-            current: bd?.current,
-
-
-
-
-
-
-            hourly_24h: bd?.hourly_24h,
-
-
-
-
-
-
-            forecast_7d: bd?.forecast_7d,
-
-
-
-
-
-
-            forecast: bd?.forecast_7d,
-
-
-
-
-
-
-            districts: rawW.districts
-
-
-
-
-
-
-          };
-
-
-
-
-
-
-        }
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-    } catch(err) {
-
-
-
-
-
-
-      console.warn('Data loader fallback error:', err);
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (data && data.success) {
-
-
-
-
-
-
-    window.weatherStore = data;
-
-
-
-
-
-
-    weatherStore = data;
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const activeDist = data.districts?.[currentKey] || {
-
-
-
-
-
-
-      name_kn: data.district_kn,
-
-
-
-
-
-
-      key: data.district_key,
-
-
-
-
-
-
-      current: data.current,
-
-
-
-
-
-
-      hourly_24h: data.hourly_24h,
-
-
-
-
-
-
-      forecast_7d: data.forecast_7d,
-
-
-
-
-
-
-      forecast: data.forecast_7d
-
-
-
-
-
-
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-    renderHero(activeDist);
-
-
-
-
-
-
-    renderHourlyForecast(activeDist);
-
-
-
-
-
-
-    render7DayForecast(activeDist);
-
-
-
-
-
-
-    renderFaqAccordion(activeDist);
-
-
-
-
-
-
-    renderDistrictsGrid(data);
-
-
-
-
-
-
-    renderRealKSNDMCTweets(data);
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Load KSNDMC Telemetry & State Extremes
-
-
-
-
-
-
-  await renderSummaryAndCreativeCards(window.weatherStore);
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Load IMD Nowcasts
-
-
-
-
-
-
-  await loadImdNowcastWarnings();
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if (document.readyState === 'loading') {
-
-
-
-
-
-
-
-
-  document.addEventListener('DOMContentLoaded', loadWeatherData);
-
-
-
-
-
-
-
-
-} else {
-
-
-
-
-
-
-
-
-  loadWeatherData();
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/nav-component.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Leaflet & Weather Radar Module Scripts -->
-
-
-
-
-
-
-
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherRadarProvider.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/OpenMeteoProvider.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherSearch.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherTimeline.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherLegend.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherControls.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/WeatherMap.js"></script>
-
-
-
-
-
-
-
-
-<script src="/js/weather-radar/weather-radar-app.js"></script>
-
-
-
-
-
-
-
-
-<script>
-
-
-
-
-
-
-
-
-    // ══════════════════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-
-    // FETCH LIVE IMD BENGALURU DISTRICT NOWCAST & WARNINGS
-
-
-
-
-
-
-
-
-    // ══════════════════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-
-        let currentImdMode = '5day'; // '5day' or 'nowcast'
+// ══════════════════════════════════════════════════════════════════════
+// OFFICIAL IMD BENGALURU 5-DAY & 3-HOUR NOWCAST CONTROLLER
+// ══════════════════════════════════════════════════════════════════════
+let currentImdMode = '5day'; // '5day' or 'nowcast'
 let current5DayKey = 'Day_1';
 let currentImdRegion = 'all';
 let globalImdData = null;
@@ -29817,6 +29141,72 @@ async function loadImdNowcastWarnings() {
   }
 }
 
+async function loadWeatherData() {
+  const currentKey = activeDistrictKey || 'bengaluru_urban';
+  let data = null;
+
+  try {
+    const res = await fetch(`/api/weather?district=${currentKey}&v=${Date.now()}`, { cache: 'no-store' });
+    if (res.ok) {
+      data = await res.json();
+    }
+  } catch(e) {
+    console.warn('API fetch notice:', e);
+  }
+
+  if (!data || !data.success || !data.districts) {
+    try {
+      if (typeof NK !== 'undefined' && NK.fetch) {
+        const rawW = await NK.fetch('weather', 'weather.json');
+        if (rawW && rawW.districts) {
+          const bd = rawW.districts[currentKey] || Object.values(rawW.districts)[0];
+          data = {
+            success: true,
+            district_key: currentKey,
+            district_kn: bd?.name_kn || 'ಬೆಂಗಳೂರು',
+            updated_at: rawW.updated_at,
+            ksndmc: { state_extremes: rawW.state_extremes, top_rainfall_locations: rawW.state_extremes?.top_rainfall_locations || rawW.state_extremes?.top_rain_locations || [] },
+            ksndmc_alerts: rawW.ksndmc_alerts,
+            current: bd?.current,
+            hourly_24h: bd?.hourly_24h,
+            forecast_7d: bd?.forecast_7d,
+            forecast: bd?.forecast_7d,
+            districts: rawW.districts,
+            forecast_5days: rawW.forecast_5days,
+            nowcast: rawW.nowcast
+          };
+        }
+      }
+    } catch(err) {
+      console.warn('Fallback error:', err);
+    }
+  }
+
+  if (data && data.success) {
+    window.weatherStore = data;
+    weatherStore = data;
+
+    const activeDist = data.districts?.[currentKey] || {
+      name_kn: data.district_kn,
+      key: data.district_key,
+      current: data.current,
+      hourly_24h: data.hourly_24h,
+      forecast_7d: data.forecast_7d,
+      forecast: data.forecast_7d
+    };
+
+    if (typeof renderHero === 'function') renderHero(activeDist);
+    if (typeof renderHourlyForecast === 'function') renderHourlyForecast(activeDist);
+    if (typeof render7DayForecast === 'function') render7DayForecast(activeDist);
+    if (typeof renderFaqAccordion === 'function') renderFaqAccordion(activeDist);
+    if (typeof renderDistrictsGrid === 'function') renderDistrictsGrid(data);
+    if (typeof renderRealKSNDMCTweets === 'function') renderRealKSNDMCTweets(data);
+    if (typeof renderSummaryAndCreativeCards === 'function') renderSummaryAndCreativeCards(data);
+  }
+
+  await loadImdNowcastWarnings();
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', loadWeatherData);
 } else {
@@ -29824,6 +29214,132 @@ if (document.readyState === 'loading') {
 }
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/nav-component.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Leaflet & Weather Radar Module Scripts -->
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherRadarProvider.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/OpenMeteoProvider.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherSearch.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherTimeline.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherLegend.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherControls.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/WeatherMap.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/weather-radar/weather-radar-app.js"></script>
+
+
+
+
+
+
+
+
+
 
 
 
