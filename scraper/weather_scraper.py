@@ -6,6 +6,7 @@ import re
 import json
 import base64
 import time
+from datetime import datetime, timedelta
 from pathlib import Path
 from bs4 import BeautifulSoup
 
@@ -16,17 +17,169 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
+DISTRICT_ALIASES = [
+    ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", ["BANGLORE URBAN", "BENGALURU URBAN", "BENGALURU", "BANGALORE"]),
+    ("bengaluru_rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "Bengaluru Rural", ["BANGLORE RURAL", "BENGALURU RURAL"]),
+    ("mysuru", "ಮೈಸೂರು", "Mysuru", ["MYSORE", "MYSURU"]),
+    ("mandya", "ಮಂಡ್ಯ", "Mandya", ["MANDHYA", "MANDYA"]),
+    ("hassan", "ಹಾಸನ", "Hassan", ["HASSAN"]),
+    ("kodagu", "ಕೊಡಗು", "Kodagu", ["KODAGU", "COORG", "MADIKERI"]),
+    ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ", "Dakshina Kannada", ["DAKSHIN KANNADA", "DAKSHINA KANNADA", "MANGALORE", "MANGALURU"]),
+    ("udupi", "ಉಡುಪಿ", "Udupi", ["UDUPI"]),
+    ("uttara_kannada", "ಉತ್ತರ ಕನ್ನಡ", "Uttara Kannada", ["UTTAR KANNADA", "UTTARA KANNADA", "KARWAR"]),
+    ("shivamogga", "ಶಿವಮೊಗ್ಗ", "Shivamogga", ["SHIMOGA", "SHIVAMOGGA"]),
+    ("chikkamagaluru", "ಚಿಕ್ಕಮಗಳೂರು", "Chikkamagaluru", ["CHIKMAGALUR", "CHIKKAMAGALURU"]),
+    ("tumakuru", "ತುಮಕೂರು", "Tumakuru", ["TUMKUR", "TUMAKURU"]),
+    ("chitradurga", "ಚಿತ್ರದುರ್ಗ", "Chitradurga", ["CHITRADURGA"]),
+    ("davanagere", "ದಾವಣಗೆರೆ", "Davanagere", ["DAVANGERE", "DAVANAGERE"]),
+    ("belagavi", "ಬೆಳಗಾವಿ", "Belagavi", ["BELGAUM", "BELAGAVI"]),
+    ("dharwad", "ಧಾರವಾಡ", "Dharwad", ["DHARWAD", "HUBLI"]),
+    ("gadag", "ಗದಗ", "Gadag", ["GADAG"]),
+    ("haveri", "ಹಾವೇರಿ", "Haveri", ["HAVERI"]),
+    ("bagalkote", "ಬಾಗಲಕೋಟೆ", "Bagalkote", ["BAGALKOT", "BAGALKOTE"]),
+    ("vijayapura", "ವಿಜಯಪುರ", "Vijayapura", ["BIJAPUR", "VIJAYAPURA"]),
+    ("kalaburagi", "ಕಲಬುರಗಿ", "Kalaburagi", ["GULBARGA", "KALABURAGI"]),
+    ("yadgir", "ಯಾದಗಿರಿ", "Yadgir", ["YADGIR"]),
+    ("raichur", "ರಾಯಚೂರು", "Raichur", ["RAICHUR"]),
+    ("koppal", "ಕೊಪ್ಪಳ", "Koppal", ["KOPPAL", "KOPPALA"]),
+    ("ballari", "ಬಳ್ಳಾರಿ", "Ballari", ["BELLARY", "BALLARI"]),
+    ("vijayanagara", "ವಿಜಯನಗರ", "Vijayanagara", ["VIJAYANAGARA", "HOSAPETE"]),
+    ("chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "Chikkaballapura", ["CHIKBALLAPUR", "CHIKKABALLAPURA"]),
+    ("kolar", "ಕೋಲಾರ", "Kolar", ["KOLAR"]),
+    ("ramanagara", "ರಾಮನಗರ", "Ramanagara", ["RAMNAGAR", "RAMANAGARA", "RAMANAGARAM"]),
+    ("chamarajanagara", "ಚಾಮರಾಜನಗರ", "Chamarajanagar", ["CHAMARAJANAGAR", "CHAMARAJANAGARA"]),
+    ("bidar", "ಬೀದರ್", "Bidar", ["BIDAR"])
+]
+
+def parse_areas_from_html(html, source_name="IMD"):
+    scripts = re.findall(r'<script[^>]*>([\s\S]*?)</script>', html)
+    area_lookup = {}
+    for s in scripts:
+        if '"areas": [' in s:
+            dp_idx = s.find('"areas": [')
+            end_idx = s.find(']', dp_idx)
+            raw_areas_str = s[dp_idx + 9 : end_idx + 1]
+            try:
+                areas = json.loads(raw_areas_str)
+                for a in areas:
+                    t = (a.get('title') or '').upper().strip()
+                    area_lookup[t] = a
+                break
+            except Exception:
+                pass
+
+    warnings_dict = {}
+    for d_key, name_kn, name_en, aliases in DISTRICT_ALIASES:
+        matched = None
+        for al in aliases:
+            if al in area_lookup:
+                matched = area_lookup[al]
+                break
+        
+        color = (matched.get('color') if matched else '#008000').upper()
+        raw_info = matched.get('info') or matched.get('balloonText') or '' if matched else ''
+        clean_info = re.sub(r'<[^>]+>', ' ', raw_info).strip()
+        clean_info = re.sub(r'\s+', ' ', clean_info)
+
+        if '#FF0000' in color:
+            alert_lvl = 'RED'
+            alert_kn = 'ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'
+            icon = '🚨'
+            hazard_kn = 'ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ'
+        elif '#FFA500' in color or '#FF8C00' in color or '#FF7F00' in color:
+            alert_lvl = 'ORANGE'
+            alert_kn = 'ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'
+            icon = '⚠️'
+            hazard_kn = 'ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ'
+        elif '#FFFF00' in color or '#FFD700' in color:
+            alert_lvl = 'YELLOW'
+            alert_kn = 'ಹಳದಿ ನಿಗಾ (Yellow Watch)'
+            icon = '🌧️'
+            hazard_kn = 'ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ'
+        else:
+            alert_lvl = 'GREEN'
+            alert_kn = 'ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ'
+            icon = '🟢'
+            hazard_kn = 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'
+
+        warnings_dict[d_key] = {
+            "key": d_key,
+            "district_kn": name_kn,
+            "district_en": name_en,
+            "level": alert_lvl.lower(),
+            "alert_level": alert_lvl,
+            "alert_level_kn": alert_kn,
+            "hazard_kn": hazard_kn,
+            "icon": icon,
+            "color": color,
+            "warning_info": clean_info if clean_info else 'ಯಾವುದೇ ಸೈನೊಪ್ಟಿಕ್ ವಾಯುಭಾರ ಕುಸಿತ ಅಥವಾ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ ಹಸಿರು ವಲಯ).',
+            "source": source_name
+        }
+
+    return warnings_dict
+
 # ══════════════════════════════════════════════════════════════════════════════
-# 1. SCRAPE AUTHENTIC KSNDMC WEB DASHBOARD (LIVE GAUGE EXTREMES & RANGES)
+# 1. SCRAPE 5-DAY DISTRICT WARNINGS (DAY 1 TO DAY 5)
 # ══════════════════════════════════════════════════════════════════════════════
-def scrape_live_ksndmc():
-    print("Fetching live KSNDMC:804 WebDashboard...")
+def scrape_imd_5days():
+    print("Scraping 5-Day Forecast Warnings (Day 1 to Day 5)...")
+    forecast_5days = {}
+    base_date = datetime.now()
+
+    for idx, day_id in enumerate(['Day_1', 'Day_2', 'Day_3', 'Day_4', 'Day_5']):
+        url = f'https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day={day_id}'
+        target_date = base_date + timedelta(days=idx)
+        date_str = target_date.strftime("%Y-%m-%d")
+        kn_days = ["ಇಂದು", "ನಾಳೆ", "ನಾಳಿದ್ದು", "4ನೇ ದಿನ", "5ನೇ ದಿನ"]
+        
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+            with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
+                html = r.read().decode('utf-8', errors='ignore')
+                districts_map = parse_areas_from_html(html, f"IMD 5-Day Forecast ({day_id})")
+                
+                forecast_5days[day_id] = {
+                    "day_id": day_id,
+                    "day_label_kn": kn_days[idx],
+                    "date": date_str,
+                    "url": url,
+                    "total_districts": len(districts_map),
+                    "districts": districts_map
+                }
+                print(f"  OK {day_id} ({date_str}): {len(districts_map)} districts parsed")
+        except Exception as e:
+            print(f"  ERR {day_id}: {e}")
+
+    return forecast_5days
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 2. SCRAPE 3-HOUR REAL-TIME NOWCAST
+# ══════════════════════════════════════════════════════════════════════════════
+def scrape_imd_nowcast():
+    print("Scraping 3-Hour Real-Time Nowcast (districtwisewarnings_mc.php?id=13)...")
+    url = 'https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13'
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+        with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
+            html = r.read().decode('utf-8', errors='ignore')
+            districts_map = parse_areas_from_html(html, "IMD 3-Hour Real-Time Nowcast")
+            print(f"  OK Nowcast: {len(districts_map)} districts parsed")
+            return districts_map
+    except Exception as e:
+        print(f"  ERR Nowcast: {e}")
+        return {}
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 3. SCRAPE KSNDMC WEB DASHBOARD (:804)
+# ══════════════════════════════════════════════════════════════════════════════
+def scrape_ksndmc_dashboard():
+    print("Scraping KSNDMC:804 WebDashboard...")
     req = urllib.request.Request('https://ksndmc.org:804/', headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
     try:
         with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
             html = r.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        print("KSNDMC fetch error:", e)
+        print("KSNDMC error:", e)
         return None
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -129,124 +282,9 @@ def scrape_live_ksndmc():
     }
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 2. SCRAPE AUTHENTIC IMD 5-DAY DISTRICT-WISE WARNINGS FORECAST
+# 4. OPEN-METEO TELEMETRY (TEMPERATURE, RAIN, HUMIDITY, HOURLY, 7-DAY)
 # ══════════════════════════════════════════════════════════════════════════════
-def scrape_live_imd_warnings():
-    print("Fetching live IMD Bengaluru official 5-Day District-wise Warnings...")
-    url = 'https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13'
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-    try:
-        with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
-            html = r.read().decode('utf-8', errors='ignore')
-    except Exception as e:
-        print("IMD 5-day fetch error:", e)
-        return None
-
-    scripts = re.findall(r'<script[^>]*>([\s\S]*?)</script>', html)
-    area_lookup = {}
-    for s in scripts:
-        if '"areas": [' in s:
-            dp_idx = s.find('"areas": [')
-            end_idx = s.find(']', dp_idx)
-            raw_areas_str = s[dp_idx + 9 : end_idx + 1]
-            try:
-                areas = json.loads(raw_areas_str)
-                for a in areas:
-                    t = (a.get('title') or '').upper().strip()
-                    area_lookup[t] = a
-                break
-            except Exception as e:
-                pass
-
-    district_aliases = [
-        ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", ["BANGLORE URBAN", "BENGALURU URBAN", "BENGALURU"]),
-        ("bengaluru_rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "Bengaluru Rural", ["BANGLORE RURAL", "BENGALURU RURAL"]),
-        ("mysuru", "ಮೈಸೂರು", "Mysuru", ["MYSORE", "MYSURU"]),
-        ("mandya", "ಮಂಡ್ಯ", "Mandya", ["MANDHYA", "MANDYA"]),
-        ("hassan", "ಹಾಸನ", "Hassan", ["HASSAN"]),
-        ("kodagu", "ಕೊಡಗು", "Kodagu", ["KODAGU", "COORG", "MADIKERI"]),
-        ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ", "Dakshina Kannada", ["DAKSHIN KANNADA", "DAKSHINA KANNADA", "MANGALORE", "MANGALURU"]),
-        ("udupi", "ಉಡುಪಿ", "Udupi", ["UDUPI"]),
-        ("uttara_kannada", "ಉತ್ತರ ಕನ್ನಡ", "Uttara Kannada", ["UTTAR KANNADA", "UTTARA KANNADA", "KARWAR"]),
-        ("shivamogga", "ಶಿವಮೊಗ್ಗ", "Shivamogga", ["SHIMOGA", "SHIVAMOGGA"]),
-        ("chikkamagaluru", "ಚಿಕ್ಕಮಗಳೂರು", "Chikkamagaluru", ["CHIKMAGALUR", "CHIKKAMAGALURU"]),
-        ("tumakuru", "ತುಮಕೂರು", "Tumakuru", ["TUMKUR", "TUMAKURU"]),
-        ("chitradurga", "ಚಿತ್ರದುರ್ಗ", "Chitradurga", ["CHITRADURGA"]),
-        ("davanagere", "ದಾವಣಗೆರೆ", "Davanagere", ["DAVANGERE", "DAVANAGERE"]),
-        ("belagavi", "ಬೆಳಗಾವಿ", "Belagavi", ["BELGAUM", "BELAGAVI"]),
-        ("dharwad", "ಧಾರವಾಡ", "Dharwad", ["DHARWAD", "HUBLI"]),
-        ("gadag", "ಗದಗ", "Gadag", ["GADAG"]),
-        ("haveri", "ಹಾವೇರಿ", "Haveri", ["HAVERI"]),
-        ("bagalkote", "ಬಾಗಲಕೋಟೆ", "Bagalkote", ["BAGALKOT", "BAGALKOTE"]),
-        ("vijayapura", "ವಿಜಯಪುರ", "Vijayapura", ["BIJAPUR", "VIJAYAPURA"]),
-        ("kalaburagi", "ಕಲಬುರಗಿ", "Kalaburagi", ["GULBARGA", "KALABURAGI"]),
-        ("yadgir", "ಯಾದಗಿರಿ", "Yadgir", ["YADGIR"]),
-        ("raichur", "ರಾಯಚೂರು", "Raichur", ["RAICHUR"]),
-        ("koppal", "ಕೊಪ್ಪಳ", "Koppal", ["KOPPAL", "KOPPALA"]),
-        ("ballari", "ಬಳ್ಳಾರಿ", "Ballari", ["BELLARY", "BALLARI"]),
-        ("vijayanagara", "ವಿಜಯನಗರ", "Vijayanagara", ["VIJAYANAGARA", "HOSAPETE"]),
-        ("chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "Chikkaballapura", ["CHIKBALLAPUR", "CHIKKABALLAPURA"]),
-        ("kolar", "ಕೋಲಾರ", "Kolar", ["KOLAR"]),
-        ("ramanagara", "ರಾಮನಗರ", "Ramanagara", ["RAMNAGAR", "RAMANAGARA", "RAMANAGARAM"]),
-        ("chamarajanagara", "ಚಾಮರಾಜನಗರ", "Chamarajanagar", ["CHAMARAJANAGAR", "CHAMARAJANAGARA"]),
-        ("bidar", "ಬೀದರ್", "Bidar", ["BIDAR"])
-    ]
-
-    warnings_dict = {}
-    for d_key, name_kn, name_en, aliases in district_aliases:
-        matched = None
-        for al in aliases:
-            if al in area_lookup:
-                matched = area_lookup[al]
-                break
-        
-        color = (matched.get('color') if matched else '#008000').upper()
-        raw_info = matched.get('info') or matched.get('balloonText') or 'No Warning (ಹಸಿರು ವಲಯ - ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)' if matched else 'No Warning (ಹಸಿರು ವಲಯ - ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)'
-        clean_info = re.sub(r'<[^>]+>', ' ', raw_info).strip()
-        clean_info = re.sub(r'\s+', ' ', clean_info)
-
-        if '#FF0000' in color:
-            alert_lvl = 'RED'
-            alert_kn = 'ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'
-            icon = '🚨'
-            hazard_kn = 'ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ'
-        elif '#FFA500' in color or '#FF8C00' in color or '#FF7F00' in color:
-            alert_lvl = 'ORANGE'
-            alert_kn = 'ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'
-            icon = '⚠️'
-            hazard_kn = 'ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ'
-        elif '#FFFF00' in color or '#FFD700' in color:
-            alert_lvl = 'YELLOW'
-            alert_kn = 'ಹಳದಿ ನಿಗಾ (Yellow Watch)'
-            icon = '🌧️'
-            hazard_kn = 'ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ'
-        else:
-            alert_lvl = 'GREEN'
-            alert_kn = 'ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ'
-            icon = '🟢'
-            hazard_kn = 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'
-
-        warnings_dict[d_key] = {
-            "key": d_key,
-            "district_kn": name_kn,
-            "district_en": name_en,
-            "level": alert_lvl.lower(),
-            "alert_level": alert_lvl,
-            "alert_level_kn": alert_kn,
-            "hazard_kn": hazard_kn,
-            "icon": icon,
-            "color": color,
-            "warning_info": clean_info if clean_info != 'No Warning' else 'ಯಾವುದೇ ಸೈನೊಪ್ಟಿಕ್ ವಾಯುಭಾರ ಕುಸಿತ ಅಥವಾ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ ಹಸಿರು ವಲಯ).',
-            "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
-        }
-
-    print(f"Parsed {len(warnings_dict)} IMD 5-day district forecast warnings")
-    return warnings_dict
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 3. OPEN-METEO HOURLY & 7-DAY ACCURATE TELEMETRY ENGINE
-# ══════════════════════════════════════════════════════════════════════════════
-def fetch_open_meteo_telemetry():
+def fetch_telemetry():
     print("Fetching Open-Meteo current & forecast for Karnataka districts...")
     coords = [
         {"key":"bengaluru_urban", "name_kn":"ಬೆಂಗಳೂರು ನಗರ", "lat":12.9716, "lon":77.5946, "hq":"Bengaluru", "region":"south"},
@@ -405,7 +443,6 @@ def fetch_open_meteo_telemetry():
                 "hourly_24h": hourly_24h,
                 "forecast_7d": forecast_7d
             }
-            print(f"  OK {d['name_kn']}: {temp_c}°C | {desc_obj['kn']} | Rain {past_24h_rain:.1f}mm")
         except Exception as err:
             print(f"  ERR {d['name_kn']}: {err}")
 
@@ -421,20 +458,27 @@ def encrypt_payload(data_dict):
     return base64.b64encode(encrypted).decode('utf-8')
 
 def run_full_sync():
-    print("=== STARTING MASTER REAL-TIME METEOROLOGICAL UPDATE (IMD 5-DAY WARNINGS) ===")
-    ksndmc = scrape_live_ksndmc()
-    imd_warnings = scrape_live_imd_warnings()
-    districts = fetch_open_meteo_telemetry()
+    print("=== STARTING MASTER METEOROLOGICAL PIPELINE ===")
+    ksndmc = scrape_ksndmc_dashboard()
+    forecast_5days = scrape_imd_5days()
+    nowcast = scrape_imd_nowcast()
+    telemetry = fetch_telemetry()
 
-    # Save to data/weather.json
+    day1_districts = forecast_5days.get('Day_1', {}).get('districts', {})
+
     full_weather = {
         "date": time.strftime("%Y-%m-%d"),
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%S+05:30"),
-        "source": "Official KSNDMC Live WebDashboard + IMD Bengaluru 5-Day Warning Forecast + Open-Meteo",
+        "source": "Official IMD Bengaluru (5-Day Forecast + Nowcast) + KSNDMC WebDashboard (:804)",
         "state_extremes": ksndmc,
-        "imd_warnings": imd_warnings,
-        "total_districts": len(districts),
-        "districts": districts
+        "nowcast": {
+            "source": "https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13",
+            "districts": nowcast
+        },
+        "forecast_5days": forecast_5days,
+        "imd_warnings": day1_districts if day1_districts else nowcast,
+        "total_districts": len(telemetry),
+        "districts": telemetry
     }
 
     encrypted_payload = encrypt_payload(full_weather)
@@ -442,10 +486,9 @@ def run_full_sync():
     with open(weather_file, "w", encoding="utf-8") as f:
         json.dump({"payload": encrypted_payload}, f, ensure_ascii=False, indent=2)
 
-    # Save unencrypted district_warnings.json for quick access
     warnings_file = ROOT_DIR / "data" / "district_warnings.json"
     with open(warnings_file, "w", encoding="utf-8") as f:
-        json.dump({"Day_1": {"districts": imd_warnings}}, f, ensure_ascii=False, indent=2)
+        json.dump(forecast_5days, f, ensure_ascii=False, indent=2)
 
     print("=== SUCCESS: data/weather.json and data/district_warnings.json UPDATED ===")
 

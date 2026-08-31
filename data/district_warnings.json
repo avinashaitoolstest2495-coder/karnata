@@ -1,5 +1,10 @@
 {
   "Day_1": {
+    "day_id": "Day_1",
+    "day_label_kn": "ಇಂದು",
+    "date": "2026-08-31",
+    "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_1",
+    "total_districts": 31,
     "districts": {
       "bengaluru_urban": {
         "key": "bengaluru_urban",
@@ -12,7 +17,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BANGLORE URBAN : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "bengaluru_rural": {
         "key": "bengaluru_rural",
@@ -25,7 +30,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BANGLORE RURAL : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "mysuru": {
         "key": "mysuru",
@@ -38,7 +43,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "MYSORE : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "mandya": {
         "key": "mandya",
@@ -51,7 +56,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "MANDHYA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "hassan": {
         "key": "hassan",
@@ -64,7 +69,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "HASSAN : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "kodagu": {
         "key": "kodagu",
@@ -77,7 +82,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "KODAGU : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "dakshina_kannada": {
         "key": "dakshina_kannada",
@@ -90,7 +95,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "DAKSHIN KANNADA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "udupi": {
         "key": "udupi",
@@ -103,7 +108,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "UDUPI : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "uttara_kannada": {
         "key": "uttara_kannada",
@@ -116,7 +121,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "UTTAR KANNADA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "shivamogga": {
         "key": "shivamogga",
@@ -129,7 +134,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "SHIMOGA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "chikkamagaluru": {
         "key": "chikkamagaluru",
@@ -142,7 +147,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "CHIKMAGALUR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "tumakuru": {
         "key": "tumakuru",
@@ -155,7 +160,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "TUMKUR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "chitradurga": {
         "key": "chitradurga",
@@ -168,7 +173,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "CHITRADURGA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "davanagere": {
         "key": "davanagere",
@@ -181,7 +186,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "DAVANGERE : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "belagavi": {
         "key": "belagavi",
@@ -194,7 +199,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BELGAUM : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "dharwad": {
         "key": "dharwad",
@@ -207,7 +212,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "DHARWAD : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "gadag": {
         "key": "gadag",
@@ -220,7 +225,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "GADAG : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "haveri": {
         "key": "haveri",
@@ -233,7 +238,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "HAVERI : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "bagalkote": {
         "key": "bagalkote",
@@ -246,7 +251,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BAGALKOT : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "vijayapura": {
         "key": "vijayapura",
@@ -259,7 +264,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "kalaburagi": {
         "key": "kalaburagi",
@@ -272,7 +277,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "GULBARGA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "yadgir": {
         "key": "yadgir",
@@ -285,7 +290,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "YADGIR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "raichur": {
         "key": "raichur",
@@ -298,7 +303,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "RAICHUR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "koppal": {
         "key": "koppal",
@@ -311,7 +316,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "KOPPAL : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "ballari": {
         "key": "ballari",
@@ -324,7 +329,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BELLARY : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "vijayanagara": {
         "key": "vijayanagara",
@@ -337,7 +342,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "VIJAYANAGARA : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "chikkaballapura": {
         "key": "chikkaballapura",
@@ -350,7 +355,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "CHIKBALLAPUR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "kolar": {
         "key": "kolar",
@@ -363,7 +368,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "KOLAR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "ramanagara": {
         "key": "ramanagara",
@@ -376,7 +381,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "RAMNAGAR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "chamarajanagara": {
         "key": "chamarajanagara",
@@ -389,7 +394,7 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "CHAMARAJANAGAR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
       },
       "bidar": {
         "key": "bidar",
@@ -402,7 +407,1655 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "BIDAR : Strong Surface Winds Updated on:2026-08-31",
-        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
+        "source": "IMD 5-Day Forecast (Day_1)"
+      }
+    }
+  },
+  "Day_2": {
+    "day_id": "Day_2",
+    "day_label_kn": "ನಾಳೆ",
+    "date": "2026-09-01",
+    "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_2",
+    "total_districts": 31,
+    "districts": {
+      "bengaluru_urban": {
+        "key": "bengaluru_urban",
+        "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "district_en": "Bengaluru Urban",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE URBAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "bengaluru_rural": {
+        "key": "bengaluru_rural",
+        "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "district_en": "Bengaluru Rural",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE RURAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "mysuru": {
+        "key": "mysuru",
+        "district_kn": "ಮೈಸೂರು",
+        "district_en": "Mysuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MYSORE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "mandya": {
+        "key": "mandya",
+        "district_kn": "ಮಂಡ್ಯ",
+        "district_en": "Mandya",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MANDHYA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "hassan": {
+        "key": "hassan",
+        "district_kn": "ಹಾಸನ",
+        "district_en": "Hassan",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HASSAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "kodagu": {
+        "key": "kodagu",
+        "district_kn": "ಕೊಡಗು",
+        "district_en": "Kodagu",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KODAGU : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "dakshina_kannada": {
+        "key": "dakshina_kannada",
+        "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "district_en": "Dakshina Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAKSHIN KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "udupi": {
+        "key": "udupi",
+        "district_kn": "ಉಡುಪಿ",
+        "district_en": "Udupi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UDUPI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "uttara_kannada": {
+        "key": "uttara_kannada",
+        "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "district_en": "Uttara Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UTTAR KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "shivamogga": {
+        "key": "shivamogga",
+        "district_kn": "ಶಿವಮೊಗ್ಗ",
+        "district_en": "Shivamogga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "SHIMOGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "chikkamagaluru": {
+        "key": "chikkamagaluru",
+        "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "district_en": "Chikkamagaluru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKMAGALUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "tumakuru": {
+        "key": "tumakuru",
+        "district_kn": "ತುಮಕೂರು",
+        "district_en": "Tumakuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "TUMKUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "chitradurga": {
+        "key": "chitradurga",
+        "district_kn": "ಚಿತ್ರದುರ್ಗ",
+        "district_en": "Chitradurga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHITRADURGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "davanagere": {
+        "key": "davanagere",
+        "district_kn": "ದಾವಣಗೆರೆ",
+        "district_en": "Davanagere",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAVANGERE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "belagavi": {
+        "key": "belagavi",
+        "district_kn": "ಬೆಳಗಾವಿ",
+        "district_en": "Belagavi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELGAUM : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "dharwad": {
+        "key": "dharwad",
+        "district_kn": "ಧಾರವಾಡ",
+        "district_en": "Dharwad",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DHARWAD : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "gadag": {
+        "key": "gadag",
+        "district_kn": "ಗದಗ",
+        "district_en": "Gadag",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GADAG : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "haveri": {
+        "key": "haveri",
+        "district_kn": "ಹಾವೇರಿ",
+        "district_en": "Haveri",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HAVERI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "bagalkote": {
+        "key": "bagalkote",
+        "district_kn": "ಬಾಗಲಕೋಟೆ",
+        "district_en": "Bagalkote",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BAGALKOT : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "vijayapura": {
+        "key": "vijayapura",
+        "district_kn": "ವಿಜಯಪುರ",
+        "district_en": "Vijayapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "kalaburagi": {
+        "key": "kalaburagi",
+        "district_kn": "ಕಲಬುರಗಿ",
+        "district_en": "Kalaburagi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GULBARGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "yadgir": {
+        "key": "yadgir",
+        "district_kn": "ಯಾದಗಿರಿ",
+        "district_en": "Yadgir",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "YADGIR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "raichur": {
+        "key": "raichur",
+        "district_kn": "ರಾಯಚೂರು",
+        "district_en": "Raichur",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAICHUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "koppal": {
+        "key": "koppal",
+        "district_kn": "ಕೊಪ್ಪಳ",
+        "district_en": "Koppal",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOPPAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "ballari": {
+        "key": "ballari",
+        "district_kn": "ಬಳ್ಳಾರಿ",
+        "district_en": "Ballari",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELLARY : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "vijayanagara": {
+        "key": "vijayanagara",
+        "district_kn": "ವಿಜಯನಗರ",
+        "district_en": "Vijayanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "VIJAYANAGARA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "chikkaballapura": {
+        "key": "chikkaballapura",
+        "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "district_en": "Chikkaballapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKBALLAPUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "kolar": {
+        "key": "kolar",
+        "district_kn": "ಕೋಲಾರ",
+        "district_en": "Kolar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOLAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "ramanagara": {
+        "key": "ramanagara",
+        "district_kn": "ರಾಮನಗರ",
+        "district_en": "Ramanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAMNAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "chamarajanagara": {
+        "key": "chamarajanagara",
+        "district_kn": "ಚಾಮರಾಜನಗರ",
+        "district_en": "Chamarajanagar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHAMARAJANAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      },
+      "bidar": {
+        "key": "bidar",
+        "district_kn": "ಬೀದರ್",
+        "district_en": "Bidar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIDAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_2)"
+      }
+    }
+  },
+  "Day_3": {
+    "day_id": "Day_3",
+    "day_label_kn": "ನಾಳಿದ್ದು",
+    "date": "2026-09-02",
+    "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_3",
+    "total_districts": 31,
+    "districts": {
+      "bengaluru_urban": {
+        "key": "bengaluru_urban",
+        "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "district_en": "Bengaluru Urban",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE URBAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "bengaluru_rural": {
+        "key": "bengaluru_rural",
+        "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "district_en": "Bengaluru Rural",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE RURAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "mysuru": {
+        "key": "mysuru",
+        "district_kn": "ಮೈಸೂರು",
+        "district_en": "Mysuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MYSORE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "mandya": {
+        "key": "mandya",
+        "district_kn": "ಮಂಡ್ಯ",
+        "district_en": "Mandya",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MANDHYA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "hassan": {
+        "key": "hassan",
+        "district_kn": "ಹಾಸನ",
+        "district_en": "Hassan",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HASSAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "kodagu": {
+        "key": "kodagu",
+        "district_kn": "ಕೊಡಗು",
+        "district_en": "Kodagu",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KODAGU : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "dakshina_kannada": {
+        "key": "dakshina_kannada",
+        "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "district_en": "Dakshina Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAKSHIN KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "udupi": {
+        "key": "udupi",
+        "district_kn": "ಉಡುಪಿ",
+        "district_en": "Udupi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UDUPI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "uttara_kannada": {
+        "key": "uttara_kannada",
+        "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "district_en": "Uttara Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UTTAR KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "shivamogga": {
+        "key": "shivamogga",
+        "district_kn": "ಶಿವಮೊಗ್ಗ",
+        "district_en": "Shivamogga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "SHIMOGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "chikkamagaluru": {
+        "key": "chikkamagaluru",
+        "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "district_en": "Chikkamagaluru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKMAGALUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "tumakuru": {
+        "key": "tumakuru",
+        "district_kn": "ತುಮಕೂರು",
+        "district_en": "Tumakuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "TUMKUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "chitradurga": {
+        "key": "chitradurga",
+        "district_kn": "ಚಿತ್ರದುರ್ಗ",
+        "district_en": "Chitradurga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHITRADURGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "davanagere": {
+        "key": "davanagere",
+        "district_kn": "ದಾವಣಗೆರೆ",
+        "district_en": "Davanagere",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAVANGERE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "belagavi": {
+        "key": "belagavi",
+        "district_kn": "ಬೆಳಗಾವಿ",
+        "district_en": "Belagavi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELGAUM : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "dharwad": {
+        "key": "dharwad",
+        "district_kn": "ಧಾರವಾಡ",
+        "district_en": "Dharwad",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DHARWAD : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "gadag": {
+        "key": "gadag",
+        "district_kn": "ಗದಗ",
+        "district_en": "Gadag",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GADAG : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "haveri": {
+        "key": "haveri",
+        "district_kn": "ಹಾವೇರಿ",
+        "district_en": "Haveri",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HAVERI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "bagalkote": {
+        "key": "bagalkote",
+        "district_kn": "ಬಾಗಲಕೋಟೆ",
+        "district_en": "Bagalkote",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BAGALKOT : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "vijayapura": {
+        "key": "vijayapura",
+        "district_kn": "ವಿಜಯಪುರ",
+        "district_en": "Vijayapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "kalaburagi": {
+        "key": "kalaburagi",
+        "district_kn": "ಕಲಬುರಗಿ",
+        "district_en": "Kalaburagi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GULBARGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "yadgir": {
+        "key": "yadgir",
+        "district_kn": "ಯಾದಗಿರಿ",
+        "district_en": "Yadgir",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "YADGIR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "raichur": {
+        "key": "raichur",
+        "district_kn": "ರಾಯಚೂರು",
+        "district_en": "Raichur",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAICHUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "koppal": {
+        "key": "koppal",
+        "district_kn": "ಕೊಪ್ಪಳ",
+        "district_en": "Koppal",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOPPAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "ballari": {
+        "key": "ballari",
+        "district_kn": "ಬಳ್ಳಾರಿ",
+        "district_en": "Ballari",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELLARY : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "vijayanagara": {
+        "key": "vijayanagara",
+        "district_kn": "ವಿಜಯನಗರ",
+        "district_en": "Vijayanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "VIJAYANAGARA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "chikkaballapura": {
+        "key": "chikkaballapura",
+        "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "district_en": "Chikkaballapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKBALLAPUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "kolar": {
+        "key": "kolar",
+        "district_kn": "ಕೋಲಾರ",
+        "district_en": "Kolar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOLAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "ramanagara": {
+        "key": "ramanagara",
+        "district_kn": "ರಾಮನಗರ",
+        "district_en": "Ramanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAMNAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "chamarajanagara": {
+        "key": "chamarajanagara",
+        "district_kn": "ಚಾಮರಾಜನಗರ",
+        "district_en": "Chamarajanagar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHAMARAJANAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      },
+      "bidar": {
+        "key": "bidar",
+        "district_kn": "ಬೀದರ್",
+        "district_en": "Bidar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIDAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_3)"
+      }
+    }
+  },
+  "Day_4": {
+    "day_id": "Day_4",
+    "day_label_kn": "4ನೇ ದಿನ",
+    "date": "2026-09-03",
+    "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_4",
+    "total_districts": 31,
+    "districts": {
+      "bengaluru_urban": {
+        "key": "bengaluru_urban",
+        "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "district_en": "Bengaluru Urban",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE URBAN : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "bengaluru_rural": {
+        "key": "bengaluru_rural",
+        "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "district_en": "Bengaluru Rural",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE RURAL : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "mysuru": {
+        "key": "mysuru",
+        "district_kn": "ಮೈಸೂರು",
+        "district_en": "Mysuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MYSORE : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "mandya": {
+        "key": "mandya",
+        "district_kn": "ಮಂಡ್ಯ",
+        "district_en": "Mandya",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MANDHYA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "hassan": {
+        "key": "hassan",
+        "district_kn": "ಹಾಸನ",
+        "district_en": "Hassan",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HASSAN : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "kodagu": {
+        "key": "kodagu",
+        "district_kn": "ಕೊಡಗು",
+        "district_en": "Kodagu",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KODAGU : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "dakshina_kannada": {
+        "key": "dakshina_kannada",
+        "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "district_en": "Dakshina Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAKSHIN KANNADA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "udupi": {
+        "key": "udupi",
+        "district_kn": "ಉಡುಪಿ",
+        "district_en": "Udupi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UDUPI : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "uttara_kannada": {
+        "key": "uttara_kannada",
+        "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "district_en": "Uttara Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UTTAR KANNADA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "shivamogga": {
+        "key": "shivamogga",
+        "district_kn": "ಶಿವಮೊಗ್ಗ",
+        "district_en": "Shivamogga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "SHIMOGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "chikkamagaluru": {
+        "key": "chikkamagaluru",
+        "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "district_en": "Chikkamagaluru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKMAGALUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "tumakuru": {
+        "key": "tumakuru",
+        "district_kn": "ತುಮಕೂರು",
+        "district_en": "Tumakuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "TUMKUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "chitradurga": {
+        "key": "chitradurga",
+        "district_kn": "ಚಿತ್ರದುರ್ಗ",
+        "district_en": "Chitradurga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHITRADURGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "davanagere": {
+        "key": "davanagere",
+        "district_kn": "ದಾವಣಗೆರೆ",
+        "district_en": "Davanagere",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAVANGERE : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "belagavi": {
+        "key": "belagavi",
+        "district_kn": "ಬೆಳಗಾವಿ",
+        "district_en": "Belagavi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELGAUM : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "dharwad": {
+        "key": "dharwad",
+        "district_kn": "ಧಾರವಾಡ",
+        "district_en": "Dharwad",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DHARWAD : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "gadag": {
+        "key": "gadag",
+        "district_kn": "ಗದಗ",
+        "district_en": "Gadag",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GADAG : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "haveri": {
+        "key": "haveri",
+        "district_kn": "ಹಾವೇರಿ",
+        "district_en": "Haveri",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HAVERI : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "bagalkote": {
+        "key": "bagalkote",
+        "district_kn": "ಬಾಗಲಕೋಟೆ",
+        "district_en": "Bagalkote",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BAGALKOT : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "vijayapura": {
+        "key": "vijayapura",
+        "district_kn": "ವಿಜಯಪುರ",
+        "district_en": "Vijayapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "kalaburagi": {
+        "key": "kalaburagi",
+        "district_kn": "ಕಲಬುರಗಿ",
+        "district_en": "Kalaburagi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GULBARGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "yadgir": {
+        "key": "yadgir",
+        "district_kn": "ಯಾದಗಿರಿ",
+        "district_en": "Yadgir",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "YADGIR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "raichur": {
+        "key": "raichur",
+        "district_kn": "ರಾಯಚೂರು",
+        "district_en": "Raichur",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAICHUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "koppal": {
+        "key": "koppal",
+        "district_kn": "ಕೊಪ್ಪಳ",
+        "district_en": "Koppal",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOPPAL : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "ballari": {
+        "key": "ballari",
+        "district_kn": "ಬಳ್ಳಾರಿ",
+        "district_en": "Ballari",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELLARY : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "vijayanagara": {
+        "key": "vijayanagara",
+        "district_kn": "ವಿಜಯನಗರ",
+        "district_en": "Vijayanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "VIJAYANAGARA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "chikkaballapura": {
+        "key": "chikkaballapura",
+        "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "district_en": "Chikkaballapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKBALLAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "kolar": {
+        "key": "kolar",
+        "district_kn": "ಕೋಲಾರ",
+        "district_en": "Kolar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOLAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "ramanagara": {
+        "key": "ramanagara",
+        "district_kn": "ರಾಮನಗರ",
+        "district_en": "Ramanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAMNAGAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "chamarajanagara": {
+        "key": "chamarajanagara",
+        "district_kn": "ಚಾಮರಾಜನಗರ",
+        "district_en": "Chamarajanagar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHAMARAJANAGAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      },
+      "bidar": {
+        "key": "bidar",
+        "district_kn": "ಬೀದರ್",
+        "district_en": "Bidar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIDAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_4)"
+      }
+    }
+  },
+  "Day_5": {
+    "day_id": "Day_5",
+    "day_label_kn": "5ನೇ ದಿನ",
+    "date": "2026-09-04",
+    "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_5",
+    "total_districts": 31,
+    "districts": {
+      "bengaluru_urban": {
+        "key": "bengaluru_urban",
+        "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+        "district_en": "Bengaluru Urban",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE URBAN : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "bengaluru_rural": {
+        "key": "bengaluru_rural",
+        "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+        "district_en": "Bengaluru Rural",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BANGLORE RURAL : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "mysuru": {
+        "key": "mysuru",
+        "district_kn": "ಮೈಸೂರು",
+        "district_en": "Mysuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MYSORE : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "mandya": {
+        "key": "mandya",
+        "district_kn": "ಮಂಡ್ಯ",
+        "district_en": "Mandya",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "MANDHYA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "hassan": {
+        "key": "hassan",
+        "district_kn": "ಹಾಸನ",
+        "district_en": "Hassan",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HASSAN : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "kodagu": {
+        "key": "kodagu",
+        "district_kn": "ಕೊಡಗು",
+        "district_en": "Kodagu",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KODAGU : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "dakshina_kannada": {
+        "key": "dakshina_kannada",
+        "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "district_en": "Dakshina Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAKSHIN KANNADA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "udupi": {
+        "key": "udupi",
+        "district_kn": "ಉಡುಪಿ",
+        "district_en": "Udupi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UDUPI : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "uttara_kannada": {
+        "key": "uttara_kannada",
+        "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+        "district_en": "Uttara Kannada",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UTTAR KANNADA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "shivamogga": {
+        "key": "shivamogga",
+        "district_kn": "ಶಿವಮೊಗ್ಗ",
+        "district_en": "Shivamogga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "SHIMOGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "chikkamagaluru": {
+        "key": "chikkamagaluru",
+        "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+        "district_en": "Chikkamagaluru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKMAGALUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "tumakuru": {
+        "key": "tumakuru",
+        "district_kn": "ತುಮಕೂರು",
+        "district_en": "Tumakuru",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "TUMKUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "chitradurga": {
+        "key": "chitradurga",
+        "district_kn": "ಚಿತ್ರದುರ್ಗ",
+        "district_en": "Chitradurga",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHITRADURGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "davanagere": {
+        "key": "davanagere",
+        "district_kn": "ದಾವಣಗೆರೆ",
+        "district_en": "Davanagere",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAVANGERE : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "belagavi": {
+        "key": "belagavi",
+        "district_kn": "ಬೆಳಗಾವಿ",
+        "district_en": "Belagavi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELGAUM : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "dharwad": {
+        "key": "dharwad",
+        "district_kn": "ಧಾರವಾಡ",
+        "district_en": "Dharwad",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DHARWAD : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "gadag": {
+        "key": "gadag",
+        "district_kn": "ಗದಗ",
+        "district_en": "Gadag",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GADAG : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "haveri": {
+        "key": "haveri",
+        "district_kn": "ಹಾವೇರಿ",
+        "district_en": "Haveri",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HAVERI : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "bagalkote": {
+        "key": "bagalkote",
+        "district_kn": "ಬಾಗಲಕೋಟೆ",
+        "district_en": "Bagalkote",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BAGALKOT : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "vijayapura": {
+        "key": "vijayapura",
+        "district_kn": "ವಿಜಯಪುರ",
+        "district_en": "Vijayapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "kalaburagi": {
+        "key": "kalaburagi",
+        "district_kn": "ಕಲಬುರಗಿ",
+        "district_en": "Kalaburagi",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "GULBARGA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "yadgir": {
+        "key": "yadgir",
+        "district_kn": "ಯಾದಗಿರಿ",
+        "district_en": "Yadgir",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "YADGIR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "raichur": {
+        "key": "raichur",
+        "district_kn": "ರಾಯಚೂರು",
+        "district_en": "Raichur",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAICHUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "koppal": {
+        "key": "koppal",
+        "district_kn": "ಕೊಪ್ಪಳ",
+        "district_en": "Koppal",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOPPAL : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "ballari": {
+        "key": "ballari",
+        "district_kn": "ಬಳ್ಳಾರಿ",
+        "district_en": "Ballari",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELLARY : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "vijayanagara": {
+        "key": "vijayanagara",
+        "district_kn": "ವಿಜಯನಗರ",
+        "district_en": "Vijayanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "VIJAYANAGARA : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "chikkaballapura": {
+        "key": "chikkaballapura",
+        "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+        "district_en": "Chikkaballapura",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKBALLAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "kolar": {
+        "key": "kolar",
+        "district_kn": "ಕೋಲಾರ",
+        "district_en": "Kolar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KOLAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "ramanagara": {
+        "key": "ramanagara",
+        "district_kn": "ರಾಮನಗರ",
+        "district_en": "Ramanagara",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "RAMNAGAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "chamarajanagara": {
+        "key": "chamarajanagara",
+        "district_kn": "ಚಾಮರಾಜನಗರ",
+        "district_en": "Chamarajanagar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHAMARAJANAGAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "bidar": {
+        "key": "bidar",
+        "district_kn": "ಬೀದರ್",
+        "district_en": "Bidar",
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIDAR : No warning Updated on:2026-08-31",
+        "source": "IMD 5-Day Forecast (Day_5)"
       }
     }
   }
