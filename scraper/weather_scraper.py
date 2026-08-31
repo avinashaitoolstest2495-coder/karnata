@@ -17,43 +17,44 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-DISTRICT_ALIASES = [
-    ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", ["BANGLORE URBAN", "BENGALURU URBAN", "BENGALURU", "BANGALORE"]),
-    ("bengaluru_rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "Bengaluru Rural", ["BANGLORE RURAL", "BENGALURU RURAL"]),
-    ("mysuru", "ಮೈಸೂರು", "Mysuru", ["MYSORE", "MYSURU"]),
-    ("mandya", "ಮಂಡ್ಯ", "Mandya", ["MANDHYA", "MANDYA"]),
-    ("hassan", "ಹಾಸನ", "Hassan", ["HASSAN"]),
-    ("kodagu", "ಕೊಡಗು", "Kodagu", ["KODAGU", "COORG", "MADIKERI"]),
-    ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ", "Dakshina Kannada", ["DAKSHIN KANNADA", "DAKSHINA KANNADA", "MANGALORE", "MANGALURU"]),
-    ("udupi", "ಉಡುಪಿ", "Udupi", ["UDUPI"]),
-    ("uttara_kannada", "ಉತ್ತರ ಕನ್ನಡ", "Uttara Kannada", ["UTTAR KANNADA", "UTTARA KANNADA", "KARWAR"]),
-    ("shivamogga", "ಶಿವಮೊಗ್ಗ", "Shivamogga", ["SHIMOGA", "SHIVAMOGGA"]),
-    ("chikkamagaluru", "ಚಿಕ್ಕಮಗಳೂರು", "Chikkamagaluru", ["CHIKMAGALUR", "CHIKKAMAGALURU"]),
-    ("tumakuru", "ತುಮಕೂರು", "Tumakuru", ["TUMKUR", "TUMAKURU"]),
-    ("chitradurga", "ಚಿತ್ರದುರ್ಗ", "Chitradurga", ["CHITRADURGA"]),
-    ("davanagere", "ದಾವಣಗೆರೆ", "Davanagere", ["DAVANGERE", "DAVANAGERE"]),
-    ("belagavi", "ಬೆಳಗಾವಿ", "Belagavi", ["BELGAUM", "BELAGAVI"]),
-    ("dharwad", "ಧಾರವಾಡ", "Dharwad", ["DHARWAD", "HUBLI"]),
-    ("gadag", "ಗದಗ", "Gadag", ["GADAG"]),
-    ("haveri", "ಹಾವೇರಿ", "Haveri", ["HAVERI"]),
-    ("bagalkote", "ಬಾಗಲಕೋಟೆ", "Bagalkote", ["BAGALKOT", "BAGALKOTE"]),
-    ("vijayapura", "ವಿಜಯಪುರ", "Vijayapura", ["BIJAPUR", "VIJAYAPURA"]),
-    ("kalaburagi", "ಕಲಬುರಗಿ", "Kalaburagi", ["GULBARGA", "KALABURAGI"]),
-    ("yadgir", "ಯಾದಗಿರಿ", "Yadgir", ["YADGIR"]),
-    ("raichur", "ರಾಯಚೂರು", "Raichur", ["RAICHUR"]),
-    ("koppal", "ಕೊಪ್ಪಳ", "Koppal", ["KOPPAL", "KOPPALA"]),
-    ("ballari", "ಬಳ್ಳಾರಿ", "Ballari", ["BELLARY", "BALLARI"]),
-    ("vijayanagara", "ವಿಜಯನಗರ", "Vijayanagara", ["VIJAYANAGARA", "HOSAPETE"]),
-    ("chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "Chikkaballapura", ["CHIKBALLAPUR", "CHIKKABALLAPURA"]),
-    ("kolar", "ಕೋಲಾರ", "Kolar", ["KOLAR"]),
-    ("ramanagara", "ರಾಮನಗರ", "Ramanagara", ["RAMNAGAR", "RAMANAGARA", "RAMANAGARAM"]),
-    ("chamarajanagara", "ಚಾಮರಾಜನಗರ", "Chamarajanagar", ["CHAMARAJANAGAR", "CHAMARAJANAGARA"]),
-    ("bidar", "ಬೀದರ್", "Bidar", ["BIDAR"])
+# EXACT OFFICIAL 31 KARNATAKA DISTRICTS WITH IMD OBJECTID AND SHAPEFILE CODES
+KARNATAKA_31_MET = [
+    {"key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "id": 81, "lat": 12.9716, "lon": 77.5946, "hq": "Bengaluru", "region": "south"},
+    {"key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "id": 612, "lat": 13.0072, "lon": 77.5673, "hq": "Bengaluru Rural", "region": "south"},
+    {"key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "id": 71, "lat": 12.2958, "lon": 76.6394, "hq": "Mysuru", "region": "south"},
+    {"key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "id": 77, "lat": 12.5220, "lon": 76.8951, "hq": "Mandya", "region": "south"},
+    {"key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "id": 83, "lat": 13.0068, "lon": 76.1003, "hq": "Hassan", "region": "malnad"},
+    {"key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "id": 73, "lat": 12.3375, "lon": 75.8069, "hq": "Madikeri", "region": "malnad"},
+    {"key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "id": 80, "lat": 12.8438, "lon": 74.9919, "hq": "Mangaluru", "region": "coastal"},
+    {"key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "id": 86, "lat": 13.3409, "lon": 74.7421, "hq": "Udupi", "region": "coastal"},
+    {"key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "id": 96, "lat": 14.7941, "lon": 74.6561, "hq": "Karwar", "region": "coastal"},
+    {"key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "id": 88, "lat": 13.9299, "lon": 75.5681, "hq": "Shivamogga", "region": "malnad"},
+    {"key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "id": 84, "lat": 13.3153, "lon": 75.7754, "hq": "Chikkamagaluru", "region": "malnad"},
+    {"key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "id": 87, "lat": 13.3379, "lon": 77.1173, "hq": "Tumakuru", "region": "south"},
+    {"key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "id": 90, "lat": 14.2226, "lon": 76.3984, "hq": "Chitradurga", "region": "central"},
+    {"key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "id": 89, "lat": 14.4644, "lon": 75.9218, "hq": "Davanagere", "region": "central"},
+    {"key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "id": 111, "lat": 15.8497, "lon": 74.4977, "hq": "Belagavi", "region": "north"},
+    {"key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "id": 97, "lat": 15.4589, "lon": 75.0078, "hq": "Dharwad", "region": "north"},
+    {"key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "id": 99, "lat": 15.4167, "lon": 75.6167, "hq": "Gadag", "region": "north"},
+    {"key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "id": 93, "lat": 14.7957, "lon": 75.3998, "hq": "Haveri", "region": "central"},
+    {"key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "id": 110, "lat": 16.1831, "lon": 75.6965, "hq": "Bagalkote", "region": "north"},
+    {"key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "id": 119, "lat": 16.8302, "lon": 75.7100, "hq": "Vijayapura", "region": "north"},
+    {"key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "id": 124, "lat": 17.3297, "lon": 76.8343, "hq": "Kalaburagi", "region": "north"},
+    {"key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "id": 590, "lat": 16.7620, "lon": 77.1382, "hq": "Yadgir", "region": "north"},
+    {"key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "id": 105, "lat": 16.2120, "lon": 77.3439, "hq": "Raichur", "region": "north"},
+    {"key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "id": 101, "lat": 15.3474, "lon": 76.1547, "hq": "Koppal", "region": "north"},
+    {"key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "id": 100, "lat": 15.1394, "lon": 76.9214, "hq": "Ballari", "region": "north"},
+    {"key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "id": 807, "lat": 15.1720, "lon": 76.4560, "hq": "Hosapete", "region": "central"},
+    {"key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "id": 725, "lat": 13.4356, "lon": 77.7310, "hq": "Chikkaballapura", "region": "south"},
+    {"key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "id": 659, "lat": 13.1363, "lon": 78.1294, "hq": "Kolar", "region": "south"},
+    {"key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "id": 82, "lat": 12.7156, "lon": 77.2817, "hq": "Ramanagara", "region": "south"},
+    {"key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "id": 67, "lat": 11.9261, "lon": 76.9439, "hq": "Chamarajanagara", "region": "south"},
+    {"key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "id": 137, "lat": 17.9104, "lon": 77.5199, "hq": "Bidar", "region": "north"}
 ]
 
-def parse_areas_from_html(html, source_name="IMD"):
+def parse_areas_by_object_id(html, source_name="IMD"):
     scripts = re.findall(r'<script[^>]*>([\s\S]*?)</script>', html)
-    area_lookup = {}
+    by_id = {}
     for s in scripts:
         if '"areas": [' in s:
             dp_idx = s.find('"areas": [')
@@ -62,19 +63,17 @@ def parse_areas_from_html(html, source_name="IMD"):
             try:
                 areas = json.loads(raw_areas_str)
                 for a in areas:
-                    t = (a.get('title') or '').upper().strip()
-                    area_lookup[t] = a
+                    try:
+                        by_id[int(a.get('id'))] = a
+                    except Exception:
+                        pass
                 break
             except Exception:
                 pass
 
     warnings_dict = {}
-    for d_key, name_kn, name_en, aliases in DISTRICT_ALIASES:
-        matched = None
-        for al in aliases:
-            if al in area_lookup:
-                matched = area_lookup[al]
-                break
+    for d in KARNATAKA_31_MET:
+        matched = by_id.get(d["id"])
         
         color = (matched.get('color') if matched else '#008000').upper()
         raw_info = matched.get('info') or matched.get('balloonText') or '' if matched else ''
@@ -102,10 +101,11 @@ def parse_areas_from_html(html, source_name="IMD"):
             icon = '🟢'
             hazard_kn = 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'
 
-        warnings_dict[d_key] = {
-            "key": d_key,
-            "district_kn": name_kn,
-            "district_en": name_en,
+        warnings_dict[d["key"]] = {
+            "key": d["key"],
+            "district_kn": d["name_kn"],
+            "district_en": d["name_en"],
+            "imd_id": d["id"],
             "level": alert_lvl.lower(),
             "alert_level": alert_lvl,
             "alert_level_kn": alert_kn,
@@ -136,7 +136,7 @@ def scrape_imd_5days():
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
             with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
                 html = r.read().decode('utf-8', errors='ignore')
-                districts_map = parse_areas_from_html(html, f"IMD 5-Day Forecast ({day_id})")
+                districts_map = parse_areas_by_object_id(html, f"IMD 5-Day Forecast ({day_id})")
                 
                 forecast_5days[day_id] = {
                     "day_id": day_id,
@@ -146,7 +146,7 @@ def scrape_imd_5days():
                     "total_districts": len(districts_map),
                     "districts": districts_map
                 }
-                print(f"  OK {day_id} ({date_str}): {len(districts_map)} districts parsed")
+                print(f"  OK {day_id} ({date_str}): {len(districts_map)} districts parsed by OBJECTID")
         except Exception as e:
             print(f"  ERR {day_id}: {e}")
 
@@ -162,8 +162,8 @@ def scrape_imd_nowcast():
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
         with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
             html = r.read().decode('utf-8', errors='ignore')
-            districts_map = parse_areas_from_html(html, "IMD 3-Hour Real-Time Nowcast")
-            print(f"  OK Nowcast: {len(districts_map)} districts parsed")
+            districts_map = parse_areas_by_object_id(html, "IMD 3-Hour Real-Time Nowcast")
+            print(f"  OK Nowcast: {len(districts_map)} districts parsed by OBJECTID")
             return districts_map
     except Exception as e:
         print(f"  ERR Nowcast: {e}")
@@ -286,40 +286,6 @@ def scrape_ksndmc_dashboard():
 # ══════════════════════════════════════════════════════════════════════════════
 def fetch_telemetry():
     print("Fetching Open-Meteo current & forecast for Karnataka districts...")
-    coords = [
-        {"key":"bengaluru_urban", "name_kn":"ಬೆಂಗಳೂರು ನಗರ", "lat":12.9716, "lon":77.5946, "hq":"Bengaluru", "region":"south"},
-        {"key":"bengaluru_rural", "name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "lat":13.0072, "lon":77.5673, "hq":"Bengaluru Rural", "region":"south"},
-        {"key":"mysuru", "name_kn":"ಮೈಸೂರು", "lat":12.2958, "lon":76.6394, "hq":"Mysuru", "region":"south"},
-        {"key":"mandya", "name_kn":"ಮಂಡ್ಯ", "lat":12.5220, "lon":76.8951, "hq":"Mandya", "region":"south"},
-        {"key":"hassan", "name_kn":"ಹಾಸನ", "lat":13.0068, "lon":76.1003, "hq":"Hassan", "region":"malnad"},
-        {"key":"kodagu", "name_kn":"ಕೊಡಗು", "lat":12.3375, "lon":75.8069, "hq":"Madikeri", "region":"malnad"},
-        {"key":"dakshina_kannada", "name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ", "lat":12.8438, "lon":74.9919, "hq":"Mangaluru", "region":"coastal"},
-        {"key":"udupi", "name_kn":"ಉಡುಪಿ", "lat":13.3409, "lon":74.7421, "hq":"Udupi", "region":"coastal"},
-        {"key":"uttara_kannada", "name_kn":"ಉತ್ತರ ಕನ್ನಡ", "lat":14.7941, "lon":74.6561, "hq":"Karwar", "region":"coastal"},
-        {"key":"shivamogga", "name_kn":"ಶಿವಮೊಗ್ಗ", "lat":13.9299, "lon":75.5681, "hq":"Shivamogga", "region":"malnad"},
-        {"key":"chikkamagaluru", "name_kn":"ಚಿಕ್ಕಮಗಳೂರು", "lat":13.3153, "lon":75.7754, "hq":"Chikkamagaluru", "region":"malnad"},
-        {"key":"tumakuru", "name_kn":"ತುಮಕೂರು", "lat":13.3379, "lon":77.1173, "hq":"Tumakuru", "region":"south"},
-        {"key":"chitradurga", "name_kn":"ಚಿತ್ರದುರ್ಗ", "lat":14.2226, "lon":76.3984, "hq":"Chitradurga", "region":"central"},
-        {"key":"davanagere", "name_kn":"ದಾವಣಗೆರೆ", "lat":14.4644, "lon":75.9218, "hq":"Davanagere", "region":"central"},
-        {"key":"belagavi", "name_kn":"ಬೆಳಗಾವಿ", "lat":15.8497, "lon":74.4977, "hq":"Belagavi", "region":"north"},
-        {"key":"dharwad", "name_kn":"ಧಾರವಾಡ", "lat":15.4589, "lon":75.0078, "hq":"Dharwad", "region":"north"},
-        {"key":"gadag", "name_kn":"ಗದಗ", "lat":15.4167, "lon":75.6167, "hq":"Gadag", "region":"north"},
-        {"key":"haveri", "name_kn":"ಹಾವೇರಿ", "lat":14.7957, "lon":75.3998, "hq":"Haveri", "region":"central"},
-        {"key":"bagalkote", "name_kn":"ಬಾಗಲಕೋಟೆ", "lat":16.1831, "lon":75.6965, "hq":"Bagalkote", "region":"north"},
-        {"key":"vijayapura", "name_kn":"ವಿಜಯಪುರ", "lat":16.8302, "lon":75.7100, "hq":"Vijayapura", "region":"north"},
-        {"key":"kalaburagi", "name_kn":"ಕಲಬುರಗಿ", "lat":17.3297, "lon":76.8343, "hq":"Kalaburagi", "region":"north"},
-        {"key":"yadgir", "name_kn":"ಯಾದಗಿರಿ", "lat":16.7620, "lon":77.1382, "hq":"Yadgir", "region":"north"},
-        {"key":"raichur", "name_kn":"ರಾಯಚೂರು", "lat":16.2120, "lon":77.3439, "hq":"Raichur", "region":"north"},
-        {"key":"koppal", "name_kn":"ಕೊಪ್ಪಳ", "lat":15.3474, "lon":76.1547, "hq":"Koppal", "region":"north"},
-        {"key":"ballari", "name_kn":"ಬಳ್ಳಾರಿ", "lat":15.1394, "lon":76.9214, "hq":"Ballari", "region":"north"},
-        {"key":"vijayanagara", "name_kn":"ವಿಜಯನಗರ", "lat":15.1720, "lon":76.4560, "hq":"Hosapete", "region":"central"},
-        {"key":"chikkaballapura", "name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "lat":13.4356, "lon":77.7310, "hq":"Chikkaballapura", "region":"south"},
-        {"key":"kolar", "name_kn":"ಕೋಲಾರ", "lat":13.1363, "lon":78.1294, "hq":"Kolar", "region":"south"},
-        {"key":"ramanagara", "name_kn":"ರಾಮನಗರ", "lat":12.7156, "lon":77.2817, "hq":"Ramanagara", "region":"south"},
-        {"key":"chamarajanagara", "name_kn":"ಚಾಮರಾಜನಗರ", "lat":11.9261, "lon":76.9439, "hq":"Chamarajanagara", "region":"south"},
-        {"key":"bidar", "name_kn":"ಬೀದರ್", "lat":17.9104, "lon":77.5199, "hq":"Bidar", "region":"north"}
-    ]
-
     wmo_map = {
         0: {"kn": "ಶುಭ ಹವಾಮಾನ ☀️", "icon": "☀️"},
         1: {"kn": "ಹೆಚ್ಚಾಗಿ ಶುಭ 🌤️", "icon": "🌤️"},
@@ -341,7 +307,7 @@ def fetch_telemetry():
     }
 
     districts_dict = {}
-    for d in coords:
+    for d in KARNATAKA_31_MET:
         try:
             url = f"https://api.open-meteo.com/v1/forecast?latitude={d['lat']}&longitude={d['lon']}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,precipitation_probability&hourly=temperature_2m,precipitation_probability,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&past_days=1&forecast_days=7&timezone=Asia%2FKolkata"
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -458,7 +424,7 @@ def encrypt_payload(data_dict):
     return base64.b64encode(encrypted).decode('utf-8')
 
 def run_full_sync():
-    print("=== STARTING MASTER METEOROLOGICAL PIPELINE ===")
+    print("=== STARTING MASTER OBJECTID-PRECISE METEOROLOGICAL PIPELINE ===")
     ksndmc = scrape_ksndmc_dashboard()
     forecast_5days = scrape_imd_5days()
     nowcast = scrape_imd_nowcast()
@@ -486,6 +452,7 @@ def run_full_sync():
     with open(weather_file, "w", encoding="utf-8") as f:
         json.dump({"payload": encrypted_payload}, f, ensure_ascii=False, indent=2)
 
+    # Save unencrypted district_warnings.json for quick access
     warnings_file = ROOT_DIR / "data" / "district_warnings.json"
     with open(warnings_file, "w", encoding="utf-8") as f:
         json.dump(forecast_5days, f, ensure_ascii=False, indent=2)
