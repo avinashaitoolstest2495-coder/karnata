@@ -8,11 +8,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "BANGLORE URBAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "bengaluru_rural": {
         "key": "bengaluru_rural",
@@ -21,11 +21,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "BANGLORE RURAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "mysuru": {
         "key": "mysuru",
@@ -34,11 +34,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "MYSORE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "mandya": {
         "key": "mandya",
@@ -47,102 +47,102 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "MANDHYA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "hassan": {
         "key": "hassan",
         "district_kn": "ಹಾಸನ",
         "district_en": "Hassan",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "HASSAN : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "kodagu": {
         "key": "kodagu",
         "district_kn": "ಕೊಡಗು",
         "district_en": "Kodagu",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "KODAGU : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "dakshina_kannada": {
         "key": "dakshina_kannada",
         "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
         "district_en": "Dakshina Kannada",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DAKSHIN KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "udupi": {
         "key": "udupi",
         "district_kn": "ಉಡುಪಿ",
         "district_en": "Udupi",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UDUPI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "uttara_kannada": {
         "key": "uttara_kannada",
         "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
         "district_en": "Uttara Kannada",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "UTTAR KANNADA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "shivamogga": {
         "key": "shivamogga",
         "district_kn": "ಶಿವಮೊಗ್ಗ",
         "district_en": "Shivamogga",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "SHIMOGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "chikkamagaluru": {
         "key": "chikkamagaluru",
         "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
         "district_en": "Chikkamagaluru",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "CHIKMAGALUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "tumakuru": {
         "key": "tumakuru",
@@ -151,11 +151,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "TUMKUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "chitradurga": {
         "key": "chitradurga",
@@ -164,11 +164,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "CHITRADURGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "davanagere": {
         "key": "davanagere",
@@ -177,37 +177,37 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "DAVANGERE : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "belagavi": {
         "key": "belagavi",
         "district_kn": "ಬೆಳಗಾವಿ",
         "district_en": "Belagavi",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BELGAUM : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "dharwad": {
         "key": "dharwad",
         "district_kn": "ಧಾರವಾಡ",
         "district_en": "Dharwad",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "DHARWAD : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "gadag": {
         "key": "gadag",
@@ -216,11 +216,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "GADAG : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "haveri": {
         "key": "haveri",
@@ -229,11 +229,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "HAVERI : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "bagalkote": {
         "key": "bagalkote",
@@ -242,24 +242,24 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "BAGALKOT : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "vijayapura": {
         "key": "vijayapura",
         "district_kn": "ವಿಜಯಪುರ",
         "district_en": "Vijayapura",
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "Light rain: Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "BIJAPUR : No warning Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "kalaburagi": {
         "key": "kalaburagi",
@@ -268,11 +268,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "GULBARGA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "yadgir": {
         "key": "yadgir",
@@ -281,11 +281,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "YADGIR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "raichur": {
         "key": "raichur",
@@ -294,11 +294,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "RAICHUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "koppal": {
         "key": "koppal",
@@ -307,11 +307,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "KOPPAL : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "ballari": {
         "key": "ballari",
@@ -320,11 +320,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "BELLARY : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "vijayanagara": {
         "key": "vijayanagara",
@@ -333,11 +333,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "VIJAYANAGARA : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "chikkaballapura": {
         "key": "chikkaballapura",
@@ -346,11 +346,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "CHIKBALLAPUR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "kolar": {
         "key": "kolar",
@@ -359,11 +359,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "KOLAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "ramanagara": {
         "key": "ramanagara",
@@ -372,11 +372,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "RAMNAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "chamarajanagara": {
         "key": "chamarajanagara",
@@ -385,11 +385,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "CHAMARAJANAGAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       },
       "bidar": {
         "key": "bidar",
@@ -398,11 +398,11 @@
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢",
-        "icon": "⛅",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
         "color": "#008000",
-        "warning_info": "No Warning Time of issue: 2026-08-31 1900 Hrs Valid upto: 2200 Hrs",
-        "source": "IMD Bengaluru (Mausam id=13)"
+        "warning_info": "BIDAR : Strong Surface Winds Updated on:2026-08-31",
+        "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
       }
     }
   }

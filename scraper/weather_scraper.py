@@ -88,7 +88,6 @@ def scrape_live_ksndmc():
                     except ValueError:
                         pass
 
-    print(f"KSNDMC Top Rain: {len(top_rain)}, Max Temp: {len(top_max_temp)}, Min Temp: {len(top_min_temp)}")
     return {
         "highest_past_24h_rain": {
             "district_en": top_rain[0]["district_en"] if top_rain else "Shivamogga",
@@ -120,7 +119,7 @@ def scrape_live_ksndmc():
             {
                 "rank": i + 1,
                 "district_kn": r["district_kn"],
-                "gp_name": f"{r['gp_name']} ಗೇಜ್",
+                "gp_name": r['gp_name'],
                 "rainfall_mm": r["rainfall_mm"]
             } for i, r in enumerate(top_rain)
         ],
@@ -130,34 +129,34 @@ def scrape_live_ksndmc():
     }
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 2. SCRAPE AUTHENTIC IMD BENGALURU 31 DISTRICTS WARNINGS & NOWCAST
+# 2. SCRAPE AUTHENTIC IMD 5-DAY DISTRICT-WISE WARNINGS FORECAST
 # ══════════════════════════════════════════════════════════════════════════════
-def scrape_live_imd_nowcast():
-    print("Fetching live IMD Bengaluru warnings...")
-    req = urllib.request.Request('https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13', headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+def scrape_live_imd_warnings():
+    print("Fetching live IMD Bengaluru official 5-Day District-wise Warnings...")
+    url = 'https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13'
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
     try:
         with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
             html = r.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        print("IMD fetch error:", e)
+        print("IMD 5-day fetch error:", e)
         return None
 
     scripts = re.findall(r'<script[^>]*>([\s\S]*?)</script>', html)
-    if len(scripts) < 14:
-        return None
-    s14 = scripts[13]
-
-    dp_idx = s14.find('"areas": [')
-    if dp_idx == -1:
-        return None
-    end_idx = s14.find(']', dp_idx)
-    raw_areas_str = s14[dp_idx + 9 : end_idx + 1]
-    areas = json.loads(raw_areas_str)
-
     area_lookup = {}
-    for a in areas:
-        t = (a.get('title') or '').upper().strip()
-        area_lookup[t] = a
+    for s in scripts:
+        if '"areas": [' in s:
+            dp_idx = s.find('"areas": [')
+            end_idx = s.find(']', dp_idx)
+            raw_areas_str = s[dp_idx + 9 : end_idx + 1]
+            try:
+                areas = json.loads(raw_areas_str)
+                for a in areas:
+                    t = (a.get('title') or '').upper().strip()
+                    area_lookup[t] = a
+                break
+            except Exception as e:
+                pass
 
     district_aliases = [
         ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", ["BANGLORE URBAN", "BENGALURU URBAN", "BENGALURU"]),
@@ -202,7 +201,7 @@ def scrape_live_imd_nowcast():
                 break
         
         color = (matched.get('color') if matched else '#008000').upper()
-        raw_info = matched.get('info') or matched.get('balloonText') or 'No Warning (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ)' if matched else 'No Warning (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ)'
+        raw_info = matched.get('info') or matched.get('balloonText') or 'No Warning (ಹಸಿರು ವಲಯ - ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)' if matched else 'No Warning (ಹಸಿರು ವಲಯ - ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)'
         clean_info = re.sub(r'<[^>]+>', ' ', raw_info).strip()
         clean_info = re.sub(r'\s+', ' ', clean_info)
 
@@ -224,8 +223,8 @@ def scrape_live_imd_nowcast():
         else:
             alert_lvl = 'GREEN'
             alert_kn = 'ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ'
-            icon = '⛅'
-            hazard_kn = 'ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢'
+            icon = '🟢'
+            hazard_kn = 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'
 
         warnings_dict[d_key] = {
             "key": d_key,
@@ -237,11 +236,11 @@ def scrape_live_imd_nowcast():
             "hazard_kn": hazard_kn,
             "icon": icon,
             "color": color,
-            "warning_info": clean_info,
-            "source": "IMD Bengaluru (Mausam id=13)"
+            "warning_info": clean_info if clean_info != 'No Warning' else 'ಯಾವುದೇ ಸೈನೊಪ್ಟಿಕ್ ವಾಯುಭಾರ ಕುಸಿತ ಅಥವಾ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ ಹಸಿರು ವಲಯ).',
+            "source": "IMD Bengaluru (Mausam 5-Day Forecast)"
         }
 
-    print(f"Parsed {len(warnings_dict)} IMD district alerts")
+    print(f"Parsed {len(warnings_dict)} IMD 5-day district forecast warnings")
     return warnings_dict
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -422,18 +421,18 @@ def encrypt_payload(data_dict):
     return base64.b64encode(encrypted).decode('utf-8')
 
 def run_full_sync():
-    print("=== STARTING MASTER REAL-TIME METEOROLOGICAL UPDATE ===")
+    print("=== STARTING MASTER REAL-TIME METEOROLOGICAL UPDATE (IMD 5-DAY WARNINGS) ===")
     ksndmc = scrape_live_ksndmc()
-    imd_nowcast = scrape_live_imd_nowcast()
+    imd_warnings = scrape_live_imd_warnings()
     districts = fetch_open_meteo_telemetry()
 
     # Save to data/weather.json
     full_weather = {
         "date": time.strftime("%Y-%m-%d"),
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%S+05:30"),
-        "source": "Official KSNDMC Live WebDashboard + IMD Bengaluru Nowcast + Open-Meteo",
+        "source": "Official KSNDMC Live WebDashboard + IMD Bengaluru 5-Day Warning Forecast + Open-Meteo",
         "state_extremes": ksndmc,
-        "imd_warnings": imd_nowcast,
+        "imd_warnings": imd_warnings,
         "total_districts": len(districts),
         "districts": districts
     }
@@ -446,7 +445,7 @@ def run_full_sync():
     # Save unencrypted district_warnings.json for quick access
     warnings_file = ROOT_DIR / "data" / "district_warnings.json"
     with open(warnings_file, "w", encoding="utf-8") as f:
-        json.dump({"Day_1": {"districts": imd_nowcast}}, f, ensure_ascii=False, indent=2)
+        json.dump({"Day_1": {"districts": imd_warnings}}, f, ensure_ascii=False, indent=2)
 
     print("=== SUCCESS: data/weather.json and data/district_warnings.json UPDATED ===")
 
