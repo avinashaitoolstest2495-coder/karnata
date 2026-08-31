@@ -1,589 +1,454 @@
-import json
-import requests
-import time
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+import urllib.request
+import ssl
 import re
-import urllib3
+import json
+import base64
+import time
+from pathlib import Path
 from bs4 import BeautifulSoup
-from utils import store, log, ist_now, ist_date, telegram_alert
 
-urllib3.disable_warnings()
+ROOT_DIR = Path(r"c:\Users\avina\Downloads\karnata-site-with-cms")
+SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA"
 
-KARNATAKA_DISTRICTS = [
-    {"key":"bengaluru_urban",   "kn":"ಬೆಂಗಳೂರು ನಗರ",   "lat":12.9716, "lon":77.5946, "hq":"Bengaluru",        "region":"south"},
-    {"key":"bengaluru_rural",   "kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","lat":13.0072,"lon":77.5673, "hq":"Bengaluru Rural",  "region":"south"},
-    {"key":"mysuru",            "kn":"ಮೈಸೂರು",          "lat":12.2958, "lon":76.6394, "hq":"Mysuru",           "region":"south"},
-    {"key":"mandya",            "kn":"ಮಂಡ್ಯ",            "lat":12.5220, "lon":76.8951, "hq":"Mandya",           "region":"south"},
-    {"key":"hassan",            "kn":"ಹಾಸನ",             "lat":13.0068, "lon":76.1003, "hq":"Hassan",           "region":"malnad"},
-    {"key":"kodagu",            "kn":"ಕೊಡಗು",            "lat":12.3375, "lon":75.8069, "hq":"Madikeri",         "region":"malnad"},
-    {"key":"dakshina_kannada",  "kn":"ದಕ್ಷಿಣ ಕನ್ನಡ",    "lat":12.8438, "lon":74.9919, "hq":"Mangaluru",        "region":"coastal"},
-    {"key":"udupi",             "kn":"ಉಡುಪಿ",            "lat":13.3409, "lon":74.7421, "hq":"Udupi",            "region":"coastal"},
-    {"key":"shivamogga",        "kn":"ಶಿವಮೊಗ್ಗ",         "lat":13.9299, "lon":75.5681, "hq":"Shivamogga",        "region":"malnad"},
-    {"key":"chikkamagaluru",    "kn":"ಚಿಕ್ಕಮಗಳೂರು",     "lat":13.3153, "lon":75.7754, "hq":"Chikkamagaluru",   "region":"malnad"},
-    {"key":"tumakuru",          "kn":"ತುಮಕೂರು",          "lat":13.3379, "lon":77.1173, "hq":"Tumakuru",         "region":"south"},
-    {"key":"chitradurga",       "kn":"ಚಿತ್ರದುರ್ಗ",       "lat":14.2226, "lon":76.3984, "hq":"Chitradurga",      "region":"central"},
-    {"key":"davanagere",        "kn":"ದಾವಣಗೆರೆ",         "lat":14.4644, "lon":75.9218, "hq":"Davanagere",       "region":"central"},
-    {"key":"belagavi",          "kn":"ಬೆಳಗಾವಿ",          "lat":15.8497, "lon":74.4977, "hq":"Belagavi",         "region":"north"},
-    {"key":"dharwad",           "kn":"ಧಾರವಾಡ",           "lat":15.4589, "lon":75.0078, "hq":"Dharwad",          "region":"north"},
-    {"key":"gadag",             "kn":"ಗದಗ",              "lat":15.4167, "lon":75.6167, "hq":"Gadag",            "region":"north"},
-    {"key":"haveri",            "kn":"ಹಾವೇರಿ",           "lat":14.7957, "lon":75.3998, "hq":"Haveri",           "region":"central"},
-    {"key":"uttara_kannada",    "kn":"ಉತ್ತರ ಕನ್ನಡ",     "lat":14.7941, "lon":74.6561, "hq":"Karwar",           "region":"coastal"},
-    {"key":"bagalkote",         "kn":"ಬಾಗಲಕೋಟೆ",         "lat":16.1831, "lon":75.6965, "hq":"Bagalkote",        "region":"north"},
-    {"key":"vijayapura",        "kn":"ವಿಜಯಪುರ",          "lat":16.8302, "lon":75.7100, "hq":"Vijayapura",       "region":"north"},
-    {"key":"kalaburagi",        "kn":"ಕಲಬುರಗಿ",          "lat":17.3297, "lon":76.8343, "hq":"Kalaburagi",       "region":"north"},
-    {"key":"yadgir",            "kn":"ಯಾದಗಿರಿ",          "lat":16.7620, "lon":77.1382, "hq":"Yadgir",           "region":"north"},
-    {"key":"raichur",           "kn":"ರಾಯಚೂರು",          "lat":16.2120, "lon":77.3439, "hq":"Raichur",          "region":"north"},
-    {"key":"koppal",            "kn":"ಕೊಪ್ಪಳ",           "lat":15.3474, "lon":76.1547, "hq":"Koppal",           "region":"north"},
-    {"key":"ballari",           "kn":"ಬಳ್ಳಾರಿ",           "lat":15.1394, "lon":76.9214, "hq":"Ballari",          "region":"north"},
-    {"key":"vijayanagara",      "kn":"ವಿಜಯನಗರ",          "lat":15.1720, "lon":76.4560, "hq":"Hosapete",         "region":"central"},
-    {"key":"chikkaballapura",   "kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ",    "lat":13.4356, "lon":77.7310, "hq":"Chikkaballapura",  "region":"south"},
-    {"key":"kolar",             "kn":"ಕೋಲಾರ",            "lat":13.1363, "lon":78.1294, "hq":"Kolar",            "region":"south"},
-    {"key":"ramanagara",        "kn":"ರಾಮನಗರ",           "lat":12.7156, "lon":77.2817, "hq":"Ramanagara",       "region":"south"},
-    {"key":"chamarajanagara",   "kn":"ಚಾಮರಾಜನಗರ",       "lat":11.9261, "lon":76.9439, "hq":"Chamarajanagara",  "region":"south"},
-]
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
-WMO_CODES = {
-    0:  {"kn": "ಶುಭ ಹವಾಮಾನ ☀️",          "en": "Clear sky",          "icon": "☀️"},
-    1:  {"kn": "ಹೆಚ್ಚಾಗಿ ಶುಭ ☀️",          "en": "Mainly clear",       "icon": "🌤️"},
-    2:  {"kn": "ಭಾಗಶಃ ಮೋಡ ⛅",           "en": "Partly cloudy",      "icon": "⛅"},
-    3:  {"kn": "ಮೋಡ ☁️",                  "en": "Overcast",           "icon": "☁️"},
-    45: {"kn": "ಮಂಜು 🌫️",                 "en": "Fog",                "icon": "🌫️"},
-    48: {"kn": "ಐಸ್ ಮಂಜು 🌫️",             "en": "Icy fog",            "icon": "🌫️"},
-    51: {"kn": "ತುಂತುರು ಮಳೆ 🌦️",          "en": "Light drizzle",      "icon": "🌦️"},
-    53: {"kn": "ಮಧ್ಯಮ ತುಂತುರು 🌦️",        "en": "Moderate drizzle",   "icon": "🌦️"},
-    55: {"kn": "ಭಾರೀ ತುಂತುರು 🌧️",         "en": "Heavy drizzle",      "icon": "🌧️"},
-    61: {"kn": "ಹಗುರ ಮಳೆ 🌧️",             "en": "Slight rain",        "icon": "🌧️"},
-    63: {"kn": "ಮಧ್ಯಮ ಮಳೆ 🌧️",            "en": "Moderate rain",      "icon": "🌧️"},
-    65: {"kn": "ಭಾರೀ ಮಳೆ 🌧️",             "en": "Heavy rain",         "icon": "🌧️"},
-    80: {"kn": "ಮಳೆಯ ಸಾಧ್ಯತೆ 🌦️",         "en": "Rain showers",       "icon": "🌦️"},
-    81: {"kn": "ಮಳೆ ಸಾಧ್ಯ 🌧️",             "en": "Rain showers",       "icon": "🌧️"},
-    82: {"kn": "ಭಾರೀ ಮಳೆ ⚠️ 🌧️",          "en": "Heavy rain showers", "icon": "🌧️"},
-    95: {"kn": "ಗುಡುಗು ಮಳೆ ⛈️",           "en": "Thunderstorm",       "icon": "⛈️"},
-    96: {"kn": "ಆಲಿಕಲ್ಲು ⛈️",              "en": "Thunderstorm + hail","icon": "⛈️"},
-    99: {"kn": "ತೀವ್ರ ಗುಡುಗು ⚠️⛈️",       "en": "Heavy thunderstorm", "icon": "⛈️"},
-}
-
-DISTRICT_KN_MAP = {
-    "UDUPI": "ಉಡುಪಿ", "BELAGAVI": "ಬೆಳಗಾವಿ", "DAKSHINA KANNADA": "ದಕ್ಷಿಣ ಕನ್ನಡ",
-    "UTTARA KANNADA": "ಉತ್ತರ ಕನ್ನಡ", "KODAGU": "ಕೊಡಗು", "SHIVAMOGGA": "ಶಿವಮೊಗ್ಗ",
-    "CHIKKAMAGALURU": "ಚಿಕ್ಕಮಗಳೂರು", "BENGALURU URBAN": "ಬೆಂಗಳೂರು ನಗರ",
-    "BENGALURU RURAL": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "BENGALURU SOUTH": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ",
-    "MYSURU": "ಮೈಸೂರು", "MANDYA": "ಮಂಡ್ಯ", "HASSAN": "ಹಾಸನ", "TUMAKURU": "ತುಮಕೂರು",
-    "CHITRADURGA": "ಚಿತ್ರದುರ್ಗ", "DAVANAGERE": "ದಾವಣಗೆರೆ", "DHARWAD": "ಧಾರವಾಡ",
-    "GADAG": "ಗದಗ", "HAVERI": "ಹಾವೇರಿ", "BAGALKOTE": "ಬಾಗಲಕೋಟೆ", "VIJAYAPURA": "ವಿಜಯಪುರ",
-    "KALABURAGI": "ಕಲಬುರಗಿ", "YADGIR": "ಯಾದಗಿರಿ", "RAICHUR": "ರಾಯಚೂರು",
-    "KOPPALA": "ಕೊಪ್ಪಳ", "BALLARI": "ಬಳ್ಳಾರಿ", "VIJAYANAGARA": "ವಿಜಯನಗರ",
-    "CHIKKABALLAPURA": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "KOLAR": "ಕೋಲಾರ", "RAMANAGARA": "ರಾಮನಗರ",
-    "CHAMARAJANAGARA": "ಚಾಮರಾಜನಗರ", "BIDAR": "ಬೀದರ್"
-}
-
-def translate_kn(name: str) -> str:
-    up = name.strip().upper()
-    return DISTRICT_KN_MAP.get(up, name.strip())
-
-def get_weather_desc(code: int) -> dict:
-    return WMO_CODES.get(code, {"kn": "ಸಾಮಾನ್ಯ ಹವಾಮಾನ ⛅", "en": "Partly Cloudy", "icon": "⛅"})
-
-def translate_full_native_kannada(text: str) -> str:
-    clean_text = re.sub(r'#|Image|@w+', '', text).strip()
-    clean_text = re.sub(r'https?://S+', '', clean_text).strip()
-    single_line = re.sub(r's+', ' ', clean_text)
-
-    replacements = [
-        (r'24-Hour Rainfall Forecast for Karnataka', 'ಕರ್ನಾಟಕ ರಾಜ್ಯದ 24 ಗಂಟೆಗಳ ಮಳೆ ಮುನ್ಸೂಚನೆ:'),
-        (r'24-Hour Forecast for Bengaluru City', 'ಬೆಂಗಳೂರು ನಗರದ 24 ಗಂಟೆಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ:'),
-        (r'COASTAL KARNATAKA', '\n📍 ಕರಾವಳಿ ಕರ್ನಾಟಕ:'),
-        (r'SOUTH INTERIOR KARNATAKA & MALNAD', '\n📍 ದಕ್ಷಿಣ ಒಳನಾಡು ಮತ್ತು ಮಲೆನಾಡು:'),
-        (r'NORTH INTERIOR KARNATAKA', '\n📍 ಉತ್ತರ ಒಳನಾಡು:'),
-        (r'Heavy to very heavy rain with sustained wind (30-40 Kmph) likely to occur at one or two places over', 'ಗಂಟೆಗೆ 30-40 ಕಿ.ಮೀ ವೇಗದ ಗಾಳಿಯೊಂದಿಗೆ ಒಂದೆರಡು ಕಡೆ ಸಾಧಾರಣದಿಂದ ಅತ್ಯಂತ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ:'),
-        (r'Heavy rain with sustained wind (30-40 Kmph) likely to occur at one or two places over', 'ಗಂಟೆಗೆ 30-40 ಕಿ.ಮೀ ವೇಗದ ಗಾಳಿ ಸಹಿತ ಅಲ್ಲಲ್ಲಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ:'),
-        (r'Light to moderate rain with sustained wind (30-40 Kmph) likely to occur at many places over', 'ಗಂಟೆಗೆ 30-40 ಕಿ.ಮೀ ವೇಗದ ಗಾಳಿಯೊಂದಿಗೆ ಹಲವೆಡೆ ಹಗುರದಿಂದ ಮಧ್ಯಮ ಮಳೆ ಸಾಧ್ಯತೆ:'),
-        (r'Generally cloudy sky', 'ಸಾಮಾನ್ಯವಾಗಿ ಮೋಡಕವಿದ ವಾತಾವರಣ'),
-        (r'Red Alert', '🚨 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'),
-        (r'Orange Alert', '🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'),
-        (r'Yellow Alert', '🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Alert)'),
-        (r'Dakshina Kannada', 'ದಕ್ಷಿಣ ಕನ್ನಡ'),
-        (r'Uttara Kannada', 'ಉತ್ತರ ಕನ್ನಡ'),
-        (r'Udupi', 'ಉಡುಪಿ'),
-        (r'Kodagu', 'ಕೊಡಗು'),
-        (r'Shivamogga', 'ಶಿವಮೊಗ್ಗ'),
-        (r'Chikkamagaluru', 'ಚಿಕ್ಕಮಗಳೂರು'),
-        (r'Belagavi', 'ಬೆಳಗಾವಿ'),
-        (r'Bengaluru', 'ಬೆಂಗಳೂರು'),
-        (r'Mysuru', 'ಮೈಸೂರು'),
-        (r'Mandya', 'ಮಂಡ್ಯ'),
-        (r'Hassan', 'ಹಾಸನ'),
-        (r'Tumakuru', 'ತುಮಕೂರು'),
-        (r'Kolar', 'ಕೋಲಾರ'),
-        (r'Chikkaballapura', 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ'),
-        (r'Ramanagara', 'ರಾಮನಗರ'),
-        (r'Chamarajanagara', 'ಚಾಮರಾಜನಗರ'),
-        (r'Chitradurga', 'ಚಿತ್ರದುರ್ಗ'),
-        (r'Davanagere', 'ದಾವಣಗೆರೆ'),
-        (r'Ballari', 'ಬಳ್ಳಾರಿ'),
-        (r'Vijayanagara', 'ವಿಜಯನಗರ'),
-        (r'Kalburgi|Kalaburagi', 'ಕಲಬುರಗಿ'),
-        (r'Yadgir', 'ಯಾದಗಿರಿ'),
-        (r'Raichur', 'ರಾಯಚೂರು'),
-        (r'Koppal', 'ಕೊಪ್ಪಳ'),
-        (r'Gadag', 'ಗದಗ'),
-        (r'Haveri', 'ಹಾವೇರಿ'),
-        (r'Dharwad', 'ಧಾರವಾಡ'),
-        (r'Bagalkote', 'ಬಾಗಲಕೋಟೆ'),
-        (r'Vijayapura', 'ವಿಜಯಪುರ'),
-    ]
-
-    kn = single_line
-    for pat, repl in replacements:
-        kn = re.sub(pat, repl, kn, flags=re.I)
-
-    return kn.strip()
-
-def parse_alert_level(text: str) -> tuple[str, str]:
-    t_lower = text.lower()
-    if 'red alert' in t_lower or 'extremely heavy' in t_lower or '204.5mm' in t_lower or 'ಕೆಂಪು' in t_lower or 'ಪ್ರವಾಹ' in t_lower:
-        return 'red', '🚨 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'
-    elif 'orange alert' in t_lower or 'heavy to very heavy' in t_lower or '204.4mm' in t_lower or 'ಕಿತ್ತಳೆ' in t_lower:
-        return 'orange', '🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'
-    elif 'yellow alert' in t_lower or 'heavy rain' in t_lower or '115.4mm' in t_lower or 'ಹಳದಿ' in t_lower or 'ಮುನ್ನೆಚ್ಚರಿಕೆ' in t_lower:
-        return 'yellow', '🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Alert)'
-    return 'info', 'ℹ️ ಹವಾಮಾನ ಮಾಹಿತಿ'
-
-def fetch_real_ksndmc_tweets():
-    """Fetch 100% real, authentic tweets from official @KarnatakaSNDMC account via Twitter Syndication."""
-    processed_posts = []
-    
+# ══════════════════════════════════════════════════════════════════════════════
+# 1. SCRAPE AUTHENTIC KSNDMC WEB DASHBOARD (LIVE GAUGE EXTREMES & RANGES)
+# ══════════════════════════════════════════════════════════════════════════════
+def scrape_live_ksndmc():
+    print("Fetching live KSNDMC:804 WebDashboard...")
+    req = urllib.request.Request('https://ksndmc.org:804/', headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
     try:
-        url = "https://syndication.twitter.com/srv/timeline-profile/screen-name/KarnatakaSNDMC"
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-        r = requests.get(url, headers=headers, timeout=10)
-        if r.status_code == 200:
-            match = re.search(r'<script id="__NEXT_DATA__" type="application/json">([\s\S]*?)</script>', r.text)
-            if match:
-                data = json.loads(match.group(1))
-                entries = data.get("props", {}).get("pageProps", {}).get("timeline", {}).get("entries", [])
-                for e in entries:
-                    tweet = e.get("content", {}).get("tweet", {})
-                    if not tweet:
-                        continue
-                    full_raw = tweet.get("full_text", "")
-                    if not full_raw or full_raw.startswith("RT @"):
-                        continue
-                    
-                    tweet_id = tweet.get("id_str", "")
-                    created_at = tweet.get("created_at", "")
-                    
-                    # Determine alert type & badge
-                    alert_type, badge_kn = parse_alert_level(full_raw)
-                    if "#ಮುನ್ನೆಚ್ಚರಿಕೆ" in full_raw or "warning" in full_raw.lower():
-                        badge_kn = "🚨 KSNDMC ಅಧಿಕೃತ ಮುನ್ನೆಚ್ಚರಿಕೆ"
-                    elif "#ಮುಂಗಾರುಮಳೆ" in full_raw or "monsoon" in full_raw.lower():
-                        badge_kn = "🌧️ KSNDMC ಮುಂಗಾರು ಮಾಹಿತಿ"
-                    elif "#ತಾಪಮಾನ" in full_raw or "#ಶೀತ" in full_raw:
-                        badge_kn = "🌡️ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ"
-                    else:
-                        badge_kn = "📢 ಅಧಿಕೃತ ಅಪ್ಡೇಟ್ (@KarnatakaSNDMC)"
-
-                    processed_posts.append({
-                        "id": f"tweet_{tweet_id}",
-                        "title_kn": full_raw,
-                        "body_kn": full_raw,
-                        "time_kn": created_at[:16] if created_at else "ಅಧಿಕೃತ ಟ್ವೀಟ್",
-                        "badge": badge_kn,
-                        "type": alert_type,
-                        "source": "KarnatakaSNDMC",
-                        "link": f"https://x.com/KarnatakaSNDMC/status/{tweet_id}"
-                    })
-
-                    if len(processed_posts) >= 4:
-                        break
-
-                if processed_posts:
-                    log.info(f"✅ Successfully extracted {len(processed_posts)} genuine tweets from @KarnatakaSNDMC!")
-                    return processed_posts
+        with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
+            html = r.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        log.warning(f"⚠️ Twitter syndication fetch error: {e}")
-
-    return processed_posts
-    processed_posts = [
-        {
-            "id": "alert_ksndmc_1",
-            "title_kn": "🚨 ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ",
-            "body_kn": "ಉಡುಪಿ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಉತ್ತರ ಕನ್ನಡ ಮತ್ತು ಕೊಡಗು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗಂಟೆಗೆ 30-40 ಕಿ.ಮೀ ವೇಗದ ಗಾಳಿಯೊಂದಿಗೆ ಹಲವೆಡೆ ಭಾರೀ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ. ಸಾರ್ವಜನಿಕರು ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲು ಕೋರಲಾಗಿದೆ.",
-            "time_kn": "ಇಂದಿನ ಅಧಿಕೃತ KSNDMC ಮುನ್ಸೂಚನೆ",
-            "badge": "🚨 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)",
-            "type": "red",
-            "source": "KSNDMC",
-            "link": "https://x.com/KarnatakaSNDMC"
-        },
-        {
-            "id": "alert_ksndmc_2",
-            "title_kn": "🌧️ ಬೆಂಗಳೂರು ನಗರ ಹಾಗೂ ಗ್ರಾಮಾಂತರ: ಮೋಡಕವಿದ ವಾತಾವರಣ & ತುಂತುರು ಮಳೆ",
-            "body_kn": "ಬೆಂಗಳೂರು ನಗರ ಮತ್ತು ಸುತ್ತಮುತ್ತಲಿನ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಮಾನ್ಯವಾಗಿ ಮೋಡಕವಿದ ವಾತಾವರಣವಿದ್ದು, ಸಂಜೆ ಅಥವಾ ರಾತ್ರಿಯ ವೇಳೆ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ.",
-            "time_kn": "24 ಗಂಟೆಗಳ ಮುನ್ಸೂಚನೆ",
-            "badge": "🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Alert)",
-            "type": "yellow",
-            "source": "KSNDMC",
-            "link": "https://x.com/KarnatakaSNDMC"
-        },
-        {
-            "id": "alert_ksndmc_3",
-            "title_kn": "⚡ ಉತ್ತರ ಒಳನಾಡಿನ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ",
-            "body_kn": "ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ಗದಗ, ಹಾವೇರಿ ಹಾಗೂ ಕಲಬುರಗಿ ಜಿಲ್ಲೆಗಳ ಕೆಲವೆಡೆ ಗುಡುಗು ಮಿಂಚಿನೊಂದಿಗೆ ಹಗುರದಿಂದ ಮಧ್ಯಮ ಮಳೆಯಾಗುವ ನಿರೀಕ್ಷೆಯಿದೆ.",
-            "time_kn": "ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ",
-            "badge": "🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)",
-            "type": "orange",
-            "source": "KSNDMC",
-            "link": "https://x.com/KarnatakaSNDMC"
-        }
-    ]
-    return processed_posts
-
-def scrape_ksndmc_dashboard_live() -> dict | None:
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    html_text = ""
-
-    try:
-        r = requests.get("https://ksndmc.org:804/", headers=headers, timeout=10, verify=False)
-        if r.status_code == 200 and "HIGHEST RAINFALL" in r.text:
-            html_text = r.text
-            log.info("✅ Direct GET to https://ksndmc.org:804/ successful!")
-    except Exception as e:
-        log.warning(f"⚠️ Direct GET to ksndmc.org:804 failed: {e}. Trying Playwright fallback...")
-
-    if not html_text:
-        try:
-            from playwright.sync_api import sync_playwright
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
-                page.goto("https://www.ksndmc.org/kn/WebDashboard", wait_until="networkidle", timeout=30000)
-                time.sleep(4)
-                for frame in page.frames:
-                    c = frame.content()
-                    if "HIGHEST RAINFALL" in c or "175.6" in c:
-                        html_text = c
-                        break
-                browser.close()
-                log.info("✅ Playwright extracted dashboard frame HTML!")
-        except Exception as pe:
-            log.error(f"❌ Playwright fallback error: {pe}")
-
-    if not html_text:
+        print("KSNDMC fetch error:", e)
         return None
 
-    soup = BeautifulSoup(html_text, "html.parser")
-    tables = soup.find_all("table")
+    soup = BeautifulSoup(html, 'html.parser')
+    top_rain = []
+    top_max_temp = []
+    top_min_temp = []
 
-    top_rain_list = []
-    top_max_temp_list = []
-    top_min_temp_list = []
+    kn_map = {
+        "SHIVAMOGGA": "ಶಿವಮೊಗ್ಗ", "CHIKKAMAGALURU": "ಚಿಕ್ಕಮಗಳೂರು", "DAKSHINA KANNADA": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+        "UTTARA KANNADA": "ಉತ್ತರ ಕನ್ನಡ", "UDUPI": "ಉಡುಪಿ", "KODAGU": "ಕೊಡಗು", "BELAGAVI": "ಬೆಳಗಾವಿ",
+        "BALLARI": "ಬಳ್ಳಾರಿ", "KALABURAGI": "ಕಲಬುರಗಿ", "GADAG": "ಗದಗ", "BENGALURU URBAN": "ಬೆಂಗಳೂರು ನಗರ",
+        "BENGALURU RURAL": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "MYSURU": "ಮೈಸೂರು", "MANDYA": "ಮಂಡ್ಯ", "HASSAN": "ಹಾಸನ",
+        "TUMAKURU": "ತುಮಕೂರು", "CHITRADURGA": "ಚಿತ್ರದುರ್ಗ", "DAVANAGERE": "ದಾವಣಗೆರೆ", "DHARWAD": "ಧಾರವಾಡ",
+        "HAVERI": "ಹಾವೇರಿ", "BAGALKOTE": "ಬಾಗಲಕೋಟೆ", "VIJAYAPURA": "ವಿಜಯಪುರ", "YADGIR": "ಯಾದಗಿರಿ",
+        "RAICHUR": "ರಾಯಚೂರು", "KOPPAL": "ಕೊಪ್ಪಳ", "KOPPALA": "ಕೊಪ್ಪಳ", "VIJAYANAGARA": "ವಿಜಯನಗರ",
+        "CHIKKABALLAPURA": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "KOLAR": "ಕೋಲಾರ", "RAMANAGARA": "ರಾಮನಗರ", "CHAMARAJANAGAR": "ಚಾಮರಾಜನಗರ", "BIDAR": "ಬೀದರ್"
+    }
 
-    for tbl in tables:
-        txt = tbl.get_text(" ", strip=True)
-        rows = tbl.find_all("tr")
-
-        if "Top 5 Rainfall" in txt:
+    for tbl in soup.find_all('table'):
+        txt = tbl.get_text(' ', strip=True)
+        rows = tbl.find_all('tr')
+        if 'Top 5 Rainfall' in txt:
             for rw in rows[2:]:
-                cols = [c.get_text(strip=True) for c in rw.find_all(["td", "th"])]
+                cols = [c.get_text(strip=True) for c in rw.find_all(['td', 'th'])]
                 if len(cols) >= 3:
                     try:
-                        val = float(cols[2])
-                        top_rain_list.append({
+                        top_rain.append({
                             "district_en": cols[0],
-                            "name_kn": translate_kn(cols[0]),
-                            "station": cols[1],
-                            "rain_mm": val
+                            "district_kn": kn_map.get(cols[0].upper(), cols[0]),
+                            "gp_name": cols[1],
+                            "rainfall_mm": float(cols[2])
+                        })
+                    except ValueError:
+                        pass
+        elif 'Top 5 Max Temperature' in txt:
+            for rw in rows[2:]:
+                cols = [c.get_text(strip=True) for c in rw.find_all(['td', 'th'])]
+                if len(cols) >= 3:
+                    try:
+                        top_max_temp.append({
+                            "district_en": cols[0],
+                            "district_kn": kn_map.get(cols[0].upper(), cols[0]),
+                            "hobli": cols[1],
+                            "temp_c": float(cols[2])
+                        })
+                    except ValueError:
+                        pass
+        elif 'Top 5 Min Temperature' in txt:
+            for rw in rows[2:]:
+                cols = [c.get_text(strip=True) for c in rw.find_all(['td', 'th'])]
+                if len(cols) >= 3:
+                    try:
+                        top_min_temp.append({
+                            "district_en": cols[0],
+                            "district_kn": kn_map.get(cols[0].upper(), cols[0]),
+                            "hobli": cols[1],
+                            "temp_c": float(cols[2])
                         })
                     except ValueError:
                         pass
 
-        elif "Top 5 Max Temperature" in txt:
-            for rw in rows[2:]:
-                cols = [c.get_text(strip=True) for c in rw.find_all(["td", "th"])]
-                if len(cols) >= 3:
-                    try:
-                        val = float(cols[2])
-                        top_max_temp_list.append({
-                            "district_en": cols[0],
-                            "name_kn": translate_kn(cols[0]),
-                            "station": cols[1],
-                            "temp_c": val
-                        })
-                    except ValueError:
-                        pass
-
-        elif "Top 5 Min Temperature" in txt:
-            for rw in rows[2:]:
-                cols = [c.get_text(strip=True) for c in rw.find_all(["td", "th"])]
-                if len(cols) >= 3:
-                    try:
-                        val = float(cols[2])
-                        top_min_temp_list.append({
-                            "district_en": cols[0],
-                            "name_kn": translate_kn(cols[0]),
-                            "station": cols[1],
-                            "temp_c": val
-                        })
-                    except ValueError:
-                        pass
-
-    highest_rain = top_rain_list[0] if top_rain_list else {
-        "name_kn": "ಕೊಡಗು", "station": "Sampaje", "rain_mm": 140.0
-    }
-    max_temp = top_max_temp_list[0] if top_max_temp_list else {
-        "name_kn": "ರಾಯಚೂರು", "station": "Salgunda", "temp_c": 35.1
-    }
-    min_temp = top_min_temp_list[0] if top_min_temp_list else {
-        "name_kn": "ಮಂಡ್ಯ", "station": "Mandya", "temp_c": 12.1
-    }
-
+    print(f"KSNDMC Top Rain: {len(top_rain)}, Max Temp: {len(top_max_temp)}, Min Temp: {len(top_min_temp)}")
     return {
-        "highest_rain": highest_rain,
-        "max_temp": max_temp,
-        "min_temp": min_temp,
-        "top_rain_locations": top_rain_list,
-        "top_max_temp_locations": top_max_temp_list,
-        "top_min_temp_locations": top_min_temp_list,
+        "highest_past_24h_rain": {
+            "district_en": top_rain[0]["district_en"] if top_rain else "Shivamogga",
+            "name_kn": top_rain[0]["district_kn"] if top_rain else "ಶಿವಮೊಗ್ಗ",
+            "station": top_rain[0]["gp_name"] if top_rain else "Agumbe",
+            "rain_mm": top_rain[0]["rainfall_mm"] if top_rain else 57.4
+        },
+        "max_temp_district": {
+            "district_en": top_max_temp[0]["district_en"] if top_max_temp else "Dakshina Kannada",
+            "name_kn": top_max_temp[0]["district_kn"] if top_max_temp else "ದಕ್ಷಿಣ ಕನ್ನಡ",
+            "station": top_max_temp[0]["hobli"] if top_max_temp else "Kokkada",
+            "temp_c": top_max_temp[0]["temp_c"] if top_max_temp else 36.1
+        },
+        "min_temp_district": {
+            "district_en": top_min_temp[0]["district_en"] if top_min_temp else "Uttara Kannada",
+            "name_kn": top_min_temp[0]["district_kn"] if top_min_temp else "ಉತ್ತರ ಕನ್ನಡ",
+            "station": top_min_temp[0]["hobli"] if top_min_temp else "Sirsi",
+            "temp_c": top_min_temp[0]["temp_c"] if top_min_temp else 12.2
+        },
+        "heavy_rain_locations": [
+            {
+                "district_en": r["district_en"],
+                "name_kn": r["district_kn"],
+                "station": r["gp_name"],
+                "rain_mm": r["rainfall_mm"]
+            } for r in top_rain
+        ],
+        "top_rain_locations": [
+            {
+                "rank": i + 1,
+                "district_kn": r["district_kn"],
+                "gp_name": f"{r['gp_name']} ಗೇಜ್",
+                "rainfall_mm": r["rainfall_mm"]
+            } for i, r in enumerate(top_rain)
+        ],
+        "top_rainfall_locations": top_rain,
+        "top_max_temp_locations": top_max_temp,
+        "top_min_temp_locations": top_min_temp
     }
 
-def fetch_district_weather(district: dict) -> dict | None:
-    """Fetch Open-Meteo current, hourly_24h, and 7-day forecast for each district."""
-    url = (
-        f"https://api.open-meteo.com/v1/forecast"
-        f"?latitude={district['lat']}&longitude={district['lon']}"
-        f"&current=temperature_2m,relative_humidity_2m,apparent_temperature,"
-        f"precipitation,weather_code,wind_speed_10m,wind_direction_10m,"
-        f"precipitation_probability"
-        f"&hourly=temperature_2m,precipitation_probability,precipitation,weather_code"
-        f"&daily=weather_code,temperature_2m_max,temperature_2m_min,"
-        f"precipitation_sum,precipitation_probability_max,sunrise,sunset"
-        f"&past_days=1&forecast_days=7"
-        f"&timezone=Asia%2FKolkata"
-    )
-
+# ══════════════════════════════════════════════════════════════════════════════
+# 2. SCRAPE AUTHENTIC IMD BENGALURU 31 DISTRICTS WARNINGS & NOWCAST
+# ══════════════════════════════════════════════════════════════════════════════
+def scrape_live_imd_nowcast():
+    print("Fetching live IMD Bengaluru warnings...")
+    req = urllib.request.Request('https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13', headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
     try:
-        resp = requests.get(url, timeout=12)
-        resp.raise_for_status()
-        data = resp.json()
-
-        curr = data.get("current", {})
-        code = curr.get("weather_code", 0)
-        desc = get_weather_desc(code)
-        temp_c = curr.get("temperature_2m", 24.0)
-        feels_like = curr.get("apparent_temperature", temp_c)
-        humidity = curr.get("relative_humidity_2m", 70)
-        wind_kmh = curr.get("wind_speed_10m", 10.0)
-        wind_deg = curr.get("wind_direction_10m", 0)
-        precip_mm = curr.get("precipitation", 0.0)
-        precip_prob = curr.get("precipitation_probability", 0)
-
-        # 24h Hourly Forecast
-        hourly_raw = data.get("hourly", {})
-        times = hourly_raw.get("time", [])
-        h_temps = hourly_raw.get("temperature_2m", [])
-        h_probs = hourly_raw.get("precipitation_probability", [])
-        h_precips = hourly_raw.get("precipitation", [])
-        h_codes = hourly_raw.get("weather_code", [])
-
-        now_iso = ist_now()[:13]
-        start_idx = 0
-        for i, t in enumerate(times):
-            if t.startswith(now_iso):
-                start_idx = i
-                break
-
-        hourly_24h = []
-        for i in range(start_idx, min(start_idx + 24, len(times))):
-            h_code = h_codes[i] if i < len(h_codes) else 0
-            h_desc = get_weather_desc(h_code)
-            raw_t = times[i]
-            hour_str = raw_t[11:16] if len(raw_t) >= 16 else raw_t
-
-            hourly_24h.append({
-                "time": hour_str,
-                "temp_c": round(h_temps[i], 1) if i < len(h_temps) else temp_c,
-                "precip_prob": h_probs[i] if i < len(h_probs) else 0,
-                "precip_mm": round(h_precips[i], 1) if i < len(h_precips) else 0.0,
-                "desc_kn": h_desc["kn"],
-                "icon": h_desc["icon"],
-            })
-
-        # 7-Day Forecast
-        daily_raw = data.get("daily", {})
-        d_times = daily_raw.get("time", [])
-        d_max = daily_raw.get("temperature_2m_max", [])
-        d_min = daily_raw.get("temperature_2m_min", [])
-        d_precip = daily_raw.get("precipitation_sum", [])
-        d_prob_max = daily_raw.get("precipitation_probability_max", [])
-        d_codes = daily_raw.get("weather_code", [])
-
-        forecast_7d = []
-        day_names_kn = ["ಸೋಮ", "ಮಂಗಳ", "ಬುಧ", "ಗುರು", "ಶುಕ್ರ", "ಶನಿ", "ಭಾನು"]
-        for i in range(len(d_times)):
-            d_code = d_codes[i] if i < len(d_codes) else 0
-            d_desc = get_weather_desc(d_code)
-            d_date = d_times[i]
-            try:
-                weekday_idx = time.strptime(d_date, "%Y-%m-%d").tm_wday
-                day_label = "ಇಂದು" if i == 0 else day_names_kn[weekday_idx]
-            except Exception:
-                day_label = d_date
-
-            forecast_7d.append({
-                "date": d_date,
-                "day_kn": day_label,
-                "temp_max": round(d_max[i], 1) if i < len(d_max) else temp_c,
-                "temp_min": round(d_min[i], 1) if i < len(d_min) else temp_c - 5,
-                "precip_mm": round(d_precip[i], 1) if i < len(d_precip) else 0.0,
-                "precip_prob": d_prob_max[i] if i < len(d_prob_max) else 0,
-                "desc_kn": d_desc["kn"],
-                "icon": d_desc["icon"],
-            })
-
-        past_24h_rain = sum(h_precips[max(0, start_idx - 24):start_idx]) if start_idx > 0 else sum(h_precips[:24])
-
-        return {
-            "current": {
-                "temp_c": round(temp_c, 1),
-                "feels_like_c": round(feels_like, 1),
-                "humidity": humidity,
-                "wind_kmh": round(wind_kmh, 1),
-                "wind_dir_deg": wind_deg,
-                "precip_mm": round(precip_mm, 1),
-                "precip_prob": precip_prob,
-                "weather_code": code,
-                "desc_kn": desc["kn"],
-                "desc_en": desc["en"],
-                "icon": desc["icon"],
-                "past_24h_rain_mm": round(past_24h_rain, 1),
-            },
-            "hourly_24h": hourly_24h,
-            "forecast_7d": forecast_7d,
-        }
-
+        with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
+            html = r.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        log.error(f"❌ Open-Meteo error for {district['hq']}: {e}")
+        print("IMD fetch error:", e)
         return None
 
-def scrape_imd_karnataka_official() -> dict:
-    """Fetch official India Meteorological Department (IMD) Karnataka city-level observations."""
-    log.info("🌐 Scraping official India Meteorological Department (IMD) Karnataka page...")
-    imd_url = "https://mausam.imd.gov.in/bengaluru/mcdata/state_obs.json"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    
-    locations = {}
-    try:
-        r = requests.get(imd_url, headers=headers, timeout=10, verify=False)
-        if r.status_code == 200:
-            data = r.json()
-            for row in data:
-                loc_name = row.get("Station", "")
-                if loc_name:
-                    locations[loc_name.strip()] = {
-                        "name_en": loc_name,
-                        "name_kn": translate_kn(loc_name),
-                        "temp_max": row.get("MaxTemp"),
-                        "temp_min": row.get("MinTemp"),
-                        "rain_24h": row.get("Rainfall"),
-                        "humidity": row.get("Humidity"),
-                    }
-            log.info(f"✅ Discovered {len(locations)} official IMD Karnataka locations")
-    except Exception as e:
-        log.warning(f"⚠️ IMD API fetch: {e}")
+    scripts = re.findall(r'<script[^>]*>([\s\S]*?)</script>', html)
+    if len(scripts) < 14:
+        return None
+    s14 = scripts[13]
 
-    return locations
+    dp_idx = s14.find('"areas": [')
+    if dp_idx == -1:
+        return None
+    end_idx = s14.find(']', dp_idx)
+    raw_areas_str = s14[dp_idx + 9 : end_idx + 1]
+    areas = json.loads(raw_areas_str)
 
-def run():
-    log.info("🌦️ Starting Master Scraper: Official KSNDMC WebDashboard + Open-Meteo Telemetry...")
+    area_lookup = {}
+    for a in areas:
+        t = (a.get('title') or '').upper().strip()
+        area_lookup[t] = a
 
-    districts_data = {}
-    for d in KARNATAKA_DISTRICTS:
-        w = fetch_district_weather(d)
-        if w:
-            districts_data[d["key"]] = {
-                "name_kn": d["kn"],
-                "name_en": d["hq"],
-                "hq": d["hq"],
-                "lat": d["lat"],
-                "lon": d["lon"],
-                "region": d["region"],
-                "current": w["current"],
-                "hourly_24h": w["hourly_24h"],
-                "forecast_7d": w["forecast_7d"],
-            }
-            log.info(f"✅ {d['kn']}: {w['current']['temp_c']}°C | {w['current']['desc_kn']} | 24h rain={w['current']['past_24h_rain_mm']}mm")
-        time.sleep(0.15)
+    district_aliases = [
+        ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", ["BANGLORE URBAN", "BENGALURU URBAN", "BENGALURU"]),
+        ("bengaluru_rural", "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "Bengaluru Rural", ["BANGLORE RURAL", "BENGALURU RURAL"]),
+        ("mysuru", "ಮೈಸೂರು", "Mysuru", ["MYSORE", "MYSURU"]),
+        ("mandya", "ಮಂಡ್ಯ", "Mandya", ["MANDHYA", "MANDYA"]),
+        ("hassan", "ಹಾಸನ", "Hassan", ["HASSAN"]),
+        ("kodagu", "ಕೊಡಗು", "Kodagu", ["KODAGU", "COORG", "MADIKERI"]),
+        ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ", "Dakshina Kannada", ["DAKSHIN KANNADA", "DAKSHINA KANNADA", "MANGALORE", "MANGALURU"]),
+        ("udupi", "ಉಡುಪಿ", "Udupi", ["UDUPI"]),
+        ("uttara_kannada", "ಉತ್ತರ ಕನ್ನಡ", "Uttara Kannada", ["UTTAR KANNADA", "UTTARA KANNADA", "KARWAR"]),
+        ("shivamogga", "ಶಿವಮೊಗ್ಗ", "Shivamogga", ["SHIMOGA", "SHIVAMOGGA"]),
+        ("chikkamagaluru", "ಚಿಕ್ಕಮಗಳೂರು", "Chikkamagaluru", ["CHIKMAGALUR", "CHIKKAMAGALURU"]),
+        ("tumakuru", "ತುಮಕೂರು", "Tumakuru", ["TUMKUR", "TUMAKURU"]),
+        ("chitradurga", "ಚಿತ್ರದುರ್ಗ", "Chitradurga", ["CHITRADURGA"]),
+        ("davanagere", "ದಾವಣಗೆರೆ", "Davanagere", ["DAVANGERE", "DAVANAGERE"]),
+        ("belagavi", "ಬೆಳಗಾವಿ", "Belagavi", ["BELGAUM", "BELAGAVI"]),
+        ("dharwad", "ಧಾರವಾಡ", "Dharwad", ["DHARWAD", "HUBLI"]),
+        ("gadag", "ಗದಗ", "Gadag", ["GADAG"]),
+        ("haveri", "ಹಾವೇರಿ", "Haveri", ["HAVERI"]),
+        ("bagalkote", "ಬಾಗಲಕೋಟೆ", "Bagalkote", ["BAGALKOT", "BAGALKOTE"]),
+        ("vijayapura", "ವಿಜಯಪುರ", "Vijayapura", ["BIJAPUR", "VIJAYAPURA"]),
+        ("kalaburagi", "ಕಲಬುರಗಿ", "Kalaburagi", ["GULBARGA", "KALABURAGI"]),
+        ("yadgir", "ಯಾದಗಿರಿ", "Yadgir", ["YADGIR"]),
+        ("raichur", "ರಾಯಚೂರು", "Raichur", ["RAICHUR"]),
+        ("koppal", "ಕೊಪ್ಪಳ", "Koppal", ["KOPPAL", "KOPPALA"]),
+        ("ballari", "ಬಳ್ಳಾರಿ", "Ballari", ["BELLARY", "BALLARI"]),
+        ("vijayanagara", "ವಿಜಯನಗರ", "Vijayanagara", ["VIJAYANAGARA", "HOSAPETE"]),
+        ("chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "Chikkaballapura", ["CHIKBALLAPUR", "CHIKKABALLAPURA"]),
+        ("kolar", "ಕೋಲಾರ", "Kolar", ["KOLAR"]),
+        ("ramanagara", "ರಾಮನಗರ", "Ramanagara", ["RAMNAGAR", "RAMANAGARA", "RAMANAGARAM"]),
+        ("chamarajanagara", "ಚಾಮರಾಜನಗರ", "Chamarajanagar", ["CHAMARAJANAGAR", "CHAMARAJANAGARA"]),
+        ("bidar", "ಬೀದರ್", "Bidar", ["BIDAR"])
+    ]
 
-    dashboard_data = scrape_ksndmc_dashboard_live()
-    if not dashboard_data:
-        sorted_by_rain = sorted(districts_data.values(), key=lambda x: x["current"]["past_24h_rain_mm"], reverse=True)
-        sorted_by_max_t = sorted(districts_data.values(), key=lambda x: x["current"]["temp_c"], reverse=True)
-        sorted_by_min_t = sorted(districts_data.values(), key=lambda x: x["current"]["temp_c"])
+    warnings_dict = {}
+    for d_key, name_kn, name_en, aliases in district_aliases:
+        matched = None
+        for al in aliases:
+            if al in area_lookup:
+                matched = area_lookup[al]
+                break
+        
+        color = (matched.get('color') if matched else '#008000').upper()
+        raw_info = matched.get('info') or matched.get('balloonText') or 'No Warning (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ)' if matched else 'No Warning (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ)'
+        clean_info = re.sub(r'<[^>]+>', ' ', raw_info).strip()
+        clean_info = re.sub(r'\s+', ' ', clean_info)
 
-        dashboard_data = {
-            "highest_rain": {"name_kn": sorted_by_rain[0]["name_kn"] if sorted_by_rain else "ಕೊಡಗು", "station": sorted_by_rain[0]["name_en"] if sorted_by_rain else "Sampaje", "rain_mm": sorted_by_rain[0]["current"]["past_24h_rain_mm"] if sorted_by_rain else 140.0},
-            "max_temp": {"name_kn": sorted_by_max_t[0]["name_kn"] if sorted_by_max_t else "ರಾಯಚೂರು", "station": sorted_by_max_t[0]["name_en"] if sorted_by_max_t else "Salgunda", "temp_c": sorted_by_max_t[0]["current"]["temp_c"] if sorted_by_max_t else 35.1},
-            "min_temp": {"name_kn": sorted_by_min_t[0]["name_kn"] if sorted_by_min_t else "ಮಂಡ್ಯ", "station": sorted_by_min_t[0]["name_en"] if sorted_by_min_t else "Mandya", "temp_c": sorted_by_min_t[0]["current"]["temp_c"] if sorted_by_min_t else 12.1},
-            "top_rain_locations": [{"name_kn": x["name_kn"], "station": x["name_en"], "rain_mm": x["current"]["past_24h_rain_mm"]} for x in sorted_by_rain[:5]],
-            "top_max_temp_locations": [{"name_kn": x["name_kn"], "station": x["name_en"], "temp_c": x["current"]["temp_c"]} for x in sorted_by_max_t[:5]],
-            "top_min_temp_locations": [{"name_kn": x["name_kn"], "station": x["name_en"], "temp_c": x["current"]["temp_c"]} for x in sorted_by_min_t[:5]],
+        if '#FF0000' in color:
+            alert_lvl = 'RED'
+            alert_kn = 'ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'
+            icon = '🚨'
+            hazard_kn = 'ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ'
+        elif '#FFA500' in color or '#FF8C00' in color or '#FF7F00' in color:
+            alert_lvl = 'ORANGE'
+            alert_kn = 'ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'
+            icon = '⚠️'
+            hazard_kn = 'ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ'
+        elif '#FFFF00' in color or '#FFD700' in color:
+            alert_lvl = 'YELLOW'
+            alert_kn = 'ಹಳದಿ ನಿಗಾ (Yellow Watch)'
+            icon = '🌧️'
+            hazard_kn = 'ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ'
+        else:
+            alert_lvl = 'GREEN'
+            alert_kn = 'ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ'
+            icon = '⛅'
+            hazard_kn = 'ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢'
+
+        warnings_dict[d_key] = {
+            "key": d_key,
+            "district_kn": name_kn,
+            "district_en": name_en,
+            "level": alert_lvl.lower(),
+            "alert_level": alert_lvl,
+            "alert_level_kn": alert_kn,
+            "hazard_kn": hazard_kn,
+            "icon": icon,
+            "color": color,
+            "warning_info": clean_info,
+            "source": "IMD Bengaluru (Mausam id=13)"
         }
 
-    imd_locations = scrape_imd_karnataka_official()
-    tweets = fetch_real_ksndmc_tweets()
+    print(f"Parsed {len(warnings_dict)} IMD district alerts")
+    return warnings_dict
 
-    # Build rain alerts
-    rain_alerts = []
-    for dkey, dval in districts_data.items():
-        r = dval["current"].get("past_24h_rain_mm", 0.0)
-        p = dval["current"].get("precip_prob", 0)
-        if r >= 64.5 or p >= 85:
-            rain_alerts.append({
-                "district_kn": dval["name_kn"],
-                "district_en": dval["name_en"],
-                "level": "red" if r >= 115.5 else "orange",
-                "badge": "🚨 ಭಾರೀ ಮಳೆ ಎಚ್ಚರಿಕೆ (Heavy Rain)" if r >= 115.5 else "🟠 ಮಧ್ಯಮ ಮಳೆ (Moderate Rain)",
-                "rain_mm": r,
-                "precip_prob": p,
-            })
-        elif r >= 20.0 or p >= 60:
-            rain_alerts.append({
-                "district_kn": dval["name_kn"],
-                "district_en": dval["name_en"],
-                "level": "yellow",
-                "badge": "🟡 ತುಂತುರು / ಹಗುರ ಮಳೆ (Light Rain)",
-                "rain_mm": r,
-                "precip_prob": p,
-            })
+# ══════════════════════════════════════════════════════════════════════════════
+# 3. OPEN-METEO HOURLY & 7-DAY ACCURATE TELEMETRY ENGINE
+# ══════════════════════════════════════════════════════════════════════════════
+def fetch_open_meteo_telemetry():
+    print("Fetching Open-Meteo current & forecast for Karnataka districts...")
+    coords = [
+        {"key":"bengaluru_urban", "name_kn":"ಬೆಂಗಳೂರು ನಗರ", "lat":12.9716, "lon":77.5946, "hq":"Bengaluru", "region":"south"},
+        {"key":"bengaluru_rural", "name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "lat":13.0072, "lon":77.5673, "hq":"Bengaluru Rural", "region":"south"},
+        {"key":"mysuru", "name_kn":"ಮೈಸೂರು", "lat":12.2958, "lon":76.6394, "hq":"Mysuru", "region":"south"},
+        {"key":"mandya", "name_kn":"ಮಂಡ್ಯ", "lat":12.5220, "lon":76.8951, "hq":"Mandya", "region":"south"},
+        {"key":"hassan", "name_kn":"ಹಾಸನ", "lat":13.0068, "lon":76.1003, "hq":"Hassan", "region":"malnad"},
+        {"key":"kodagu", "name_kn":"ಕೊಡಗು", "lat":12.3375, "lon":75.8069, "hq":"Madikeri", "region":"malnad"},
+        {"key":"dakshina_kannada", "name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ", "lat":12.8438, "lon":74.9919, "hq":"Mangaluru", "region":"coastal"},
+        {"key":"udupi", "name_kn":"ಉಡುಪಿ", "lat":13.3409, "lon":74.7421, "hq":"Udupi", "region":"coastal"},
+        {"key":"uttara_kannada", "name_kn":"ಉತ್ತರ ಕನ್ನಡ", "lat":14.7941, "lon":74.6561, "hq":"Karwar", "region":"coastal"},
+        {"key":"shivamogga", "name_kn":"ಶಿವಮೊಗ್ಗ", "lat":13.9299, "lon":75.5681, "hq":"Shivamogga", "region":"malnad"},
+        {"key":"chikkamagaluru", "name_kn":"ಚಿಕ್ಕಮಗಳೂರು", "lat":13.3153, "lon":75.7754, "hq":"Chikkamagaluru", "region":"malnad"},
+        {"key":"tumakuru", "name_kn":"ತುಮಕೂರು", "lat":13.3379, "lon":77.1173, "hq":"Tumakuru", "region":"south"},
+        {"key":"chitradurga", "name_kn":"ಚಿತ್ರದುರ್ಗ", "lat":14.2226, "lon":76.3984, "hq":"Chitradurga", "region":"central"},
+        {"key":"davanagere", "name_kn":"ದಾವಣಗೆರೆ", "lat":14.4644, "lon":75.9218, "hq":"Davanagere", "region":"central"},
+        {"key":"belagavi", "name_kn":"ಬೆಳಗಾವಿ", "lat":15.8497, "lon":74.4977, "hq":"Belagavi", "region":"north"},
+        {"key":"dharwad", "name_kn":"ಧಾರವಾಡ", "lat":15.4589, "lon":75.0078, "hq":"Dharwad", "region":"north"},
+        {"key":"gadag", "name_kn":"ಗದಗ", "lat":15.4167, "lon":75.6167, "hq":"Gadag", "region":"north"},
+        {"key":"haveri", "name_kn":"ಹಾವೇರಿ", "lat":14.7957, "lon":75.3998, "hq":"Haveri", "region":"central"},
+        {"key":"bagalkote", "name_kn":"ಬಾಗಲಕೋಟೆ", "lat":16.1831, "lon":75.6965, "hq":"Bagalkote", "region":"north"},
+        {"key":"vijayapura", "name_kn":"ವಿಜಯಪುರ", "lat":16.8302, "lon":75.7100, "hq":"Vijayapura", "region":"north"},
+        {"key":"kalaburagi", "name_kn":"ಕಲಬುರಗಿ", "lat":17.3297, "lon":76.8343, "hq":"Kalaburagi", "region":"north"},
+        {"key":"yadgir", "name_kn":"ಯಾದಗಿರಿ", "lat":16.7620, "lon":77.1382, "hq":"Yadgir", "region":"north"},
+        {"key":"raichur", "name_kn":"ರಾಯಚೂರು", "lat":16.2120, "lon":77.3439, "hq":"Raichur", "region":"north"},
+        {"key":"koppal", "name_kn":"ಕೊಪ್ಪಳ", "lat":15.3474, "lon":76.1547, "hq":"Koppal", "region":"north"},
+        {"key":"ballari", "name_kn":"ಬಳ್ಳಾರಿ", "lat":15.1394, "lon":76.9214, "hq":"Ballari", "region":"north"},
+        {"key":"vijayanagara", "name_kn":"ವಿಜಯನಗರ", "lat":15.1720, "lon":76.4560, "hq":"Hosapete", "region":"central"},
+        {"key":"chikkaballapura", "name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "lat":13.4356, "lon":77.7310, "hq":"Chikkaballapura", "region":"south"},
+        {"key":"kolar", "name_kn":"ಕೋಲಾರ", "lat":13.1363, "lon":78.1294, "hq":"Kolar", "region":"south"},
+        {"key":"ramanagara", "name_kn":"ರಾಮನಗರ", "lat":12.7156, "lon":77.2817, "hq":"Ramanagara", "region":"south"},
+        {"key":"chamarajanagara", "name_kn":"ಚಾಮರಾಜನಗರ", "lat":11.9261, "lon":76.9439, "hq":"Chamarajanagara", "region":"south"},
+        {"key":"bidar", "name_kn":"ಬೀದರ್", "lat":17.9104, "lon":77.5199, "hq":"Bidar", "region":"north"}
+    ]
 
-    output = {
-        "date": ist_date(),
-        "updated_at": ist_now(),
-        "source": "KSNDMC (ksndmc.org:804) & Open-Meteo & IMD Bengaluru & @KarnatakaSNDMC",
-        "source_urls": [
-            "https://ksndmc.org:804/",
-            "https://www.ksndmc.org/kn/WebDashboard",
-            "https://mausam.imd.gov.in/bengaluru/",
-            "https://x.com/KarnatakaSNDMC",
-            "https://open-meteo.com/"
-        ],
-        "state_extremes": {
-            "highest_past_24h_rain": dashboard_data["highest_rain"],
-            "max_temp_district": dashboard_data["max_temp"],
-            "min_temp_district": dashboard_data["min_temp"],
-            "heavy_rain_locations": dashboard_data.get("top_rain_locations", []),
-        },
-        "ksndmc_alerts": tweets,
-        "rain_alerts": rain_alerts,
-        "imd_karnataka": imd_locations,
-        "total_districts": len(districts_data),
-        "districts": districts_data,
-        "note_kn": "ಈ ದತ್ತಾಂಶವು KSNDMC (ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ) ಹಾಗೂ IMD ಅಧಿಕೃತ ರೇಡಾರ್ ಆಧಾರಿತವಾಗಿದೆ."
+    wmo_map = {
+        0: {"kn": "ಶುಭ ಹವಾಮಾನ ☀️", "icon": "☀️"},
+        1: {"kn": "ಹೆಚ್ಚಾಗಿ ಶುಭ 🌤️", "icon": "🌤️"},
+        2: {"kn": "ಭಾಗಶಃ ಮೋಡ ⛅", "icon": "⛅"},
+        3: {"kn": "ಮೋಡ ಕವಿದ ವಾತಾವರಣ ☁️", "icon": "☁️"},
+        45: {"kn": "ಮಂಜು 🌫️", "icon": "🌫️"},
+        51: {"kn": "ಹಗುರ ತುಂತುರು 🌦️", "icon": "🌦️"},
+        53: {"kn": "ಮಧ್ಯಮ ತುಂತುರು 🌦️", "icon": "🌦️"},
+        55: {"kn": "ಭಾರೀ ತುಂತುರು 🌧️", "icon": "🌧️"},
+        61: {"kn": "ಹಗುರ ಮಳೆ 🌧️", "icon": "🌧️"},
+        63: {"kn": "ಮಧ್ಯಮ ಮಳೆ 🌧️", "icon": "🌧️"},
+        65: {"kn": "ಭಾರೀ ಮಳೆ 🌧️", "icon": "🌧️"},
+        80: {"kn": "ಮಳೆ ಸಾಧ್ಯತೆ 🌦️", "icon": "🌦️"},
+        81: {"kn": "ಸಾಧಾರಣ ಮಳೆ 🌧️", "icon": "🌧️"},
+        82: {"kn": "ಭಾರೀ ಮಳೆ 🌧️", "icon": "🌧️"},
+        95: {"kn": "ಗುಡುಗು ಮಳೆ ⛈️", "icon": "⛈️"},
+        96: {"kn": "ಆಲಿಕಲ್ಲು ಮಳೆ ⛈️", "icon": "⛈️"},
+        99: {"kn": "ತೀವ್ರ ಗುಡುಗು ⚠️⛈️", "icon": "⛈️"}
     }
+
+    districts_dict = {}
+    for d in coords:
+        try:
+            url = f"https://api.open-meteo.com/v1/forecast?latitude={d['lat']}&longitude={d['lon']}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,precipitation_probability&hourly=temperature_2m,precipitation_probability,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&past_days=1&forecast_days=7&timezone=Asia%2FKolkata"
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+
+            cur = data.get('current', {})
+            code = cur.get('weather_code', 0)
+            desc_obj = wmo_map.get(code, {"kn": "ಭಾಗಶಃ ಮೋಡ ⛅", "icon": "⛅"})
+            temp_c = round(cur.get('temperature_2m', 24.0), 1)
+            feels_like = round(cur.get('apparent_temperature', temp_c), 1)
+            humidity = cur.get('relative_humidity_2m', 75)
+            wind_kmh = round(cur.get('wind_speed_10m', 12.0), 1)
+            precip_mm = round(cur.get('precipitation', 0.0), 1)
+            precip_prob = cur.get('precipitation_probability', 0)
+
+            # Hourly 24h
+            hourly_raw = data.get('hourly', {})
+            h_times = hourly_raw.get('time', [])
+            h_temps = hourly_raw.get('temperature_2m', [])
+            h_probs = hourly_raw.get('precipitation_probability', [])
+            h_precips = hourly_raw.get('precipitation', [])
+            h_codes = hourly_raw.get('weather_code', [])
+
+            now_iso = time.strftime("%Y-%m-%dT%H")
+            start_idx = 0
+            for i, t in enumerate(h_times):
+                if t.startswith(now_iso):
+                    start_idx = i
+                    break
+
+            hourly_24h = []
+            for i in range(start_idx, min(start_idx + 24, len(h_times))):
+                c = h_codes[i] if i < len(h_codes) else 0
+                d_obj = wmo_map.get(c, {"kn": "ಮೋಡ", "icon": "⛅"})
+                raw_t = h_times[i]
+                hour_str = raw_t[11:16] if len(raw_t) >= 16 else raw_t
+                hourly_24h.append({
+                    "time": hour_str,
+                    "temp_c": round(h_temps[i], 1) if i < len(h_temps) else temp_c,
+                    "precip_prob": h_probs[i] if i < len(h_probs) else 0,
+                    "precip_mm": round(h_precips[i], 1) if i < len(h_precips) else 0.0,
+                    "desc_kn": d_obj["kn"],
+                    "icon": d_obj["icon"]
+                })
+
+            # 7-Day Forecast
+            d_raw = data.get('daily', {})
+            d_times = d_raw.get('time', [])
+            d_max = d_raw.get('temperature_2m_max', [])
+            d_min = d_raw.get('temperature_2m_min', [])
+            d_precip = d_raw.get('precipitation_sum', [])
+            d_probs = d_raw.get('precipitation_probability_max', [])
+            d_codes = d_raw.get('weather_code', [])
+
+            kn_weekdays = ["ಸೋಮ", "ಮಂಗಳ", "ಬುಧ", "ಗುರು", "ಶುಕ್ರ", "ಶನಿ", "ಭಾನು"]
+            forecast_7d = []
+            for i in range(len(d_times)):
+                c = d_codes[i] if i < len(d_codes) else 0
+                d_obj = wmo_map.get(c, {"kn": "ಸಾಧಾರಣ ಮಳೆ", "icon": "🌦️"})
+                d_date = d_times[i]
+                try:
+                    w_idx = time.strptime(d_date, "%Y-%m-%d").tm_wday
+                    day_label = "ಇಂದು" if i == 0 else kn_weekdays[w_idx]
+                except Exception:
+                    day_label = d_date
+
+                forecast_7d.append({
+                    "date": d_date,
+                    "day_kn": day_label,
+                    "temp_max": round(d_max[i], 1) if i < len(d_max) else temp_c,
+                    "temp_min": round(d_min[i], 1) if i < len(d_min) else temp_c - 5,
+                    "precip_mm": round(d_precip[i], 1) if i < len(d_precip) else 0.0,
+                    "precip_prob": d_probs[i] if i < len(d_probs) else 0,
+                    "desc_kn": d_obj["kn"],
+                    "icon": d_obj["icon"]
+                })
+
+            past_24h_rain = sum(h_precips[max(0, start_idx - 24):start_idx]) if start_idx > 0 else sum(h_precips[:24])
+
+            districts_dict[d['key']] = {
+                "key": d['key'],
+                "name_kn": d['name_kn'],
+                "hq": d['hq'],
+                "region": d['region'],
+                "current": {
+                    "temp_c": temp_c,
+                    "feels_like_c": feels_like,
+                    "humidity": humidity,
+                    "wind_kmh": wind_kmh,
+                    "precip_mm": precip_mm,
+                    "precip_prob": precip_prob,
+                    "rain_chance": precip_prob or int(precip_mm * 20),
+                    "weather_code": code,
+                    "desc_kn": desc_obj["kn"],
+                    "icon": desc_obj["icon"],
+                    "past_24h_rain_mm": round(past_24h_rain, 1)
+                },
+                "hourly_24h": hourly_24h,
+                "forecast_7d": forecast_7d
+            }
+            print(f"  OK {d['name_kn']}: {temp_c}°C | {desc_obj['kn']} | Rain {past_24h_rain:.1f}mm")
+        except Exception as err:
+            print(f"  ERR {d['name_kn']}: {err}")
+
+    return districts_dict
+
+def encrypt_payload(data_dict):
+    raw_str = json.dumps(data_dict, ensure_ascii=False)
+    raw_bytes = raw_str.encode('utf-8')
+    key_bytes = SECRET_KEY.encode('utf-8')
+    encrypted = bytearray()
+    for i, b in enumerate(raw_bytes):
+        encrypted.append(b ^ key_bytes[i % len(key_bytes)])
+    return base64.b64encode(encrypted).decode('utf-8')
+
+def run_full_sync():
+    print("=== STARTING MASTER REAL-TIME METEOROLOGICAL UPDATE ===")
+    ksndmc = scrape_live_ksndmc()
+    imd_nowcast = scrape_live_imd_nowcast()
+    districts = fetch_open_meteo_telemetry()
 
     # Save to data/weather.json
-    store("weather.json", "weather", output)
-    log.info(f"✅ Master Scraper Complete: {len(districts_data)} districts | Alerts={len(tweets)} | Rain Alerts={len(rain_alerts)}")
+    full_weather = {
+        "date": time.strftime("%Y-%m-%d"),
+        "updated_at": time.strftime("%Y-%m-%dT%H:%M:%S+05:30"),
+        "source": "Official KSNDMC Live WebDashboard + IMD Bengaluru Nowcast + Open-Meteo",
+        "state_extremes": ksndmc,
+        "imd_warnings": imd_nowcast,
+        "total_districts": len(districts),
+        "districts": districts
+    }
+
+    encrypted_payload = encrypt_payload(full_weather)
+    weather_file = ROOT_DIR / "data" / "weather.json"
+    with open(weather_file, "w", encoding="utf-8") as f:
+        json.dump({"payload": encrypted_payload}, f, ensure_ascii=False, indent=2)
+
+    # Save unencrypted district_warnings.json for quick access
+    warnings_file = ROOT_DIR / "data" / "district_warnings.json"
+    with open(warnings_file, "w", encoding="utf-8") as f:
+        json.dump({"Day_1": {"districts": imd_nowcast}}, f, ensure_ascii=False, indent=2)
+
+    print("=== SUCCESS: data/weather.json and data/district_warnings.json UPDATED ===")
 
 if __name__ == "__main__":
-    run()
+    run_full_sync()
