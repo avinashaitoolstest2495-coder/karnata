@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-08-31 22:20:46 IST  
+> **Generated:** 2026-09-01 05:53:00 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1715,7 +1715,7 @@
 
 # 💰 ಕರ್ನಾಟಕ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ಲೈವ್ ದರ & 125 ವರ್ಷಗಳ ಇತಿಹಾಸ (Gold & Silver Analytics)
 
-* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-08-31
+* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-09-01
 * **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹15682 / 1 ಗ್ರಾಂ (₹156,820 / 10 ಗ್ರಾಂ)
 * **22K ಆಭರಣ ಚಿನ್ನ:** ₹14370 / 1 ಗ್ರಾಂ (₹114,960 / 8 ಗ್ರಾಂ 1 ಪವನ್)
 * **ಬೆಳ್ಳಿ (Silver 999):** ₹260.0 / 1 ಗ್ರಾಂ (₹260,000 / 1 ಕೆಜಿ)

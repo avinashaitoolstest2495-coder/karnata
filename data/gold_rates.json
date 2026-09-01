@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-31T22:19:04+05:30",
-  "date": "2026-08-31",
+  "last_updated": "2026-09-01T05:50:51+05:30",
+  "date": "2026-09-01",
   "source": "ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ (Karnataka Bullion Market)",
   "base": {
     "24k_per_gram": 15682,
@@ -18,17 +18,17 @@
     "18": 11758
   },
   "yesterdayGold": {
-    "24": 15829,
-    "22": 14505,
-    "18": 11868
+    "24": 15682,
+    "22": 14370,
+    "18": 11758
   },
   "baseSilver": {
     "999": 260.0,
     "925": 240.5
   },
   "yesterdaySilver": {
-    "999": 220.62,
-    "925": 204.07
+    "999": 260.0,
+    "925": 240.5
   },
   "silver": {
     "999_per_gram": 260.0,
@@ -37,18 +37,18 @@
     "925_1kg": 240500
   },
   "changes": {
-    "24k": -147,
-    "22k": -135,
-    "18k": -110,
-    "silver_999": 39.38,
-    "silver_925": 36.43
+    "24k": 0,
+    "22k": 0,
+    "18k": 0,
+    "silver_999": 0.0,
+    "silver_925": 0.0
   },
   "change": {
-    "24k": -147,
-    "22k": -135,
-    "18k": -110,
-    "silver_999": 39.38,
-    "silver_925": 36.43
+    "24k": 0,
+    "22k": 0,
+    "18k": 0,
+    "silver_999": 0.0,
+    "silver_925": 0.0
   },
   "cities": {
     "bangalore": {
@@ -57,17 +57,17 @@
       "gold_22k_per_gram": 14370,
       "gold_24k_per_gram": 15682,
       "gold_18k_per_gram": 11758,
-      "gold_22k_yesterday": 14505,
-      "gold_24k_yesterday": 15829,
+      "gold_22k_yesterday": 14370,
+      "gold_24k_yesterday": 15682,
       "gold_22k_10g": 143700,
       "gold_24k_10g": 156820,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "mysore": {
       "name_kn": "ಮೈಸೂರು",
@@ -75,17 +75,17 @@
       "gold_22k_per_gram": 14365,
       "gold_24k_per_gram": 15677,
       "gold_18k_per_gram": 11754,
-      "gold_22k_yesterday": 14500,
-      "gold_24k_yesterday": 15824,
+      "gold_22k_yesterday": 14365,
+      "gold_24k_yesterday": 15677,
       "gold_22k_10g": 143650,
       "gold_24k_10g": 156770,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "hubli": {
       "name_kn": "ಹುಬ್ಬಳ್ಳಿ",
@@ -93,17 +93,17 @@
       "gold_22k_per_gram": 14362,
       "gold_24k_per_gram": 15674,
       "gold_18k_per_gram": 11752,
-      "gold_22k_yesterday": 14497,
-      "gold_24k_yesterday": 15821,
+      "gold_22k_yesterday": 14362,
+      "gold_24k_yesterday": 15674,
       "gold_22k_10g": 143620,
       "gold_24k_10g": 156740,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "mangalore": {
       "name_kn": "ಮಂಗಳೂರು",
@@ -111,17 +111,17 @@
       "gold_22k_per_gram": 14367,
       "gold_24k_per_gram": 15679,
       "gold_18k_per_gram": 11756,
-      "gold_22k_yesterday": 14502,
-      "gold_24k_yesterday": 15826,
+      "gold_22k_yesterday": 14367,
+      "gold_24k_yesterday": 15679,
       "gold_22k_10g": 143670,
       "gold_24k_10g": 156790,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "belgaum": {
       "name_kn": "ಬೆಳಗಾವಿ",
@@ -129,17 +129,17 @@
       "gold_22k_per_gram": 14360,
       "gold_24k_per_gram": 15672,
       "gold_18k_per_gram": 11750,
-      "gold_22k_yesterday": 14495,
-      "gold_24k_yesterday": 15819,
+      "gold_22k_yesterday": 14360,
+      "gold_24k_yesterday": 15672,
       "gold_22k_10g": 143600,
       "gold_24k_10g": 156720,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "gulbarga": {
       "name_kn": "ಕಲಬುರಗಿ",
@@ -147,17 +147,17 @@
       "gold_22k_per_gram": 14358,
       "gold_24k_per_gram": 15670,
       "gold_18k_per_gram": 11749,
-      "gold_22k_yesterday": 14493,
-      "gold_24k_yesterday": 15817,
+      "gold_22k_yesterday": 14358,
+      "gold_24k_yesterday": 15670,
       "gold_22k_10g": 143580,
       "gold_24k_10g": 156700,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "davangere": {
       "name_kn": "ದಾವಣಗೆರೆ",
@@ -165,17 +165,17 @@
       "gold_22k_per_gram": 14363,
       "gold_24k_per_gram": 15675,
       "gold_18k_per_gram": 11753,
-      "gold_22k_yesterday": 14498,
-      "gold_24k_yesterday": 15822,
+      "gold_22k_yesterday": 14363,
+      "gold_24k_yesterday": 15675,
       "gold_22k_10g": 143630,
       "gold_24k_10g": 156750,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "shimoga": {
       "name_kn": "ಶಿವಮೊಗ್ಗ",
@@ -183,17 +183,17 @@
       "gold_22k_per_gram": 14364,
       "gold_24k_per_gram": 15676,
       "gold_18k_per_gram": 11754,
-      "gold_22k_yesterday": 14499,
-      "gold_24k_yesterday": 15823,
+      "gold_22k_yesterday": 14364,
+      "gold_24k_yesterday": 15676,
       "gold_22k_10g": 143640,
       "gold_24k_10g": 156760,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "tumkur": {
       "name_kn": "ತುಮಕೂರು",
@@ -201,17 +201,17 @@
       "gold_22k_per_gram": 14366,
       "gold_24k_per_gram": 15678,
       "gold_18k_per_gram": 11755,
-      "gold_22k_yesterday": 14501,
-      "gold_24k_yesterday": 15825,
+      "gold_22k_yesterday": 14366,
+      "gold_24k_yesterday": 15678,
       "gold_22k_10g": 143660,
       "gold_24k_10g": 156780,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     },
     "hassan": {
       "name_kn": "ಹಾಸನ",
@@ -219,17 +219,17 @@
       "gold_22k_per_gram": 14361,
       "gold_24k_per_gram": 15673,
       "gold_18k_per_gram": 11751,
-      "gold_22k_yesterday": 14496,
-      "gold_24k_yesterday": 15820,
+      "gold_22k_yesterday": 14361,
+      "gold_24k_yesterday": 15673,
       "gold_22k_10g": 143610,
       "gold_24k_10g": 156730,
       "silver_per_gram": 260.0,
-      "silver_yesterday": 220.62,
+      "silver_yesterday": 260.0,
       "silver_per_kg": 260000,
-      "change_24k": -147,
-      "change_22k": -135,
-      "change_18k": -110,
-      "change_silver": 39.38
+      "change_24k": 0,
+      "change_22k": 0,
+      "change_18k": 0,
+      "change_silver": 0.0
     }
   },
   "history": [
@@ -2413,6 +2413,17 @@
     },
     {
       "date": "2026-08-31",
+      "gold22": 14370,
+      "gold24": 15682,
+      "gold18": 11758,
+      "silver999": 260.0,
+      "22k_per_gram": 14370,
+      "24k_per_gram": 15682,
+      "18k_per_gram": 11758,
+      "silver_per_gram": 260.0
+    },
+    {
+      "date": "2026-09-01",
       "gold22": 14370,
       "gold24": 15682,
       "gold18": 11758,
