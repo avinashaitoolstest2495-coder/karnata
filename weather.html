@@ -218,22 +218,22 @@
 <meta content="index, follow, max-snippet:-1, max-image-preview:large" name="googlebot"/>
 <meta content="index, follow, max-snippet:-1, max-image-preview:large" name="bingbot"/>
 <!-- Regional Geo Tags (Karnataka, India) -->
-<meta content="IN-KA" name="geo.region">
-<meta content="Karnataka, India" name="geo.placename">
-<meta content="12.9716;77.5946" name="geo.position">
-<meta content="12.9716, 77.5946" name="ICBM">
+<meta content="IN-KA" name="geo.region"/>
+<meta content="Karnataka, India" name="geo.placename"/>
+<meta content="12.9716;77.5946" name="geo.position"/>
+<meta content="12.9716, 77.5946" name="ICBM"/>
 <!-- Open Graph & Social Meta -->
-<meta content="website" property="og:type">
+<meta content="website" property="og:type"/>
 <meta content="ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ &amp; 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು | Karnataka Live Weather, KSNDMC Telemetry, IMD Nowcast — Karnata.in" property="og:title"/>
 <meta content="ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ, KSNDMC ರಿಯಲ್-ಟೈಮ್ ಮಳೆ ಟೆಲಿಮೆಟ್ರಿ, IMD ನೌಕಾಸ್ಟ್ ಎಚ್ಚರಿಕೆಗಳು, 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಕೃಷಿ ಮಳೆ ವಿಜ್ಞಾನ ಮಾರ್ಗದರ್ಶಿ." property="og:description"/>
 <meta content="https://karnata.in/weather" property="og:url"/>
 <meta content="ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ — Karnata.in" property="og:site_name"/>
 <meta content="kn_IN" property="og:locale"/>
-<meta content="en_IN" property="og:locale:alternate"/>
-<meta content="https://karnata.in/assets/images/og-karnata-preview.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ &amp; 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು | Karnataka Live Weather, KSNDMC Telemetry, IMD Nowcast — Karnata.in" name="twitter:title"/>
-<meta content="ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ, KSNDMC ರಿಯಲ್-ಟೈಮ್ ಮಳೆ ಟೆಲಿಮೆಟ್ರಿ, IMD ನೌಕಾಸ್ಟ್ ಎಚ್ಚರಿಕೆಗಳು, 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಕೃಷಿ ಮಳೆ ವಿಜ್ಞಾನ ಮಾರ್ಗದರ್ಶಿ." name="twitter:description"/>
+<meta content="en_IN" property="og:locale:alternate">
+<meta content="https://karnata.in/assets/images/og-karnata-preview.png" property="og:image">
+<meta content="summary_large_image" name="twitter:card">
+<meta content="ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ &amp; 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು | Karnataka Live Weather, KSNDMC Telemetry, IMD Nowcast — Karnata.in" name="twitter:title">
+<meta content="ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ, KSNDMC ರಿಯಲ್-ಟೈಮ್ ಮಳೆ ಟೆಲಿಮೆಟ್ರಿ, IMD ನೌಕಾಸ್ಟ್ ಎಚ್ಚರಿಕೆಗಳು, 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಕೃಷಿ ಮಳೆ ವಿಜ್ಞಾನ ಮಾರ್ಗದರ್ಶಿ." name="twitter:description">
 <meta content="https://karnata.in/assets/images/og-karnata-preview.png" name="twitter:image"/>
 <!-- AI GEO & Search Engine Directives -->
 <!-- Regional Geo Tags (Karnataka, India) -->
@@ -30524,6 +30524,147 @@ body {
 
 
 
+
+/* === KARNATA THEME IMD & NOWCAST CARD STYLES === */
+.imd-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.imd-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -4px rgba(0,0,0,0.08);
+}
+.imd-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.imd-card-title {
+  font-size: 17px;
+  font-weight: 900;
+  color: #0F172A;
+  line-height: 1.2;
+}
+.imd-card-sub {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748B;
+  margin-top: 2px;
+}
+.imd-badge {
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+.imd-badge-green {
+  background: #DCFCE7;
+  color: #166534;
+  border: 1px solid #BBF7D0;
+}
+.imd-badge-yellow {
+  background: #FEF9C3;
+  color: #854D0E;
+  border: 1px solid #FDE047;
+}
+.imd-badge-orange {
+  background: #FFEDD5;
+  color: #9A3412;
+  border: 1px solid #FDBA74;
+}
+.imd-badge-red {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+/* Card Themes */
+.imd-card-green {
+  border-color: #E2E8F0;
+  background: #FFFFFF;
+}
+.imd-card-yellow {
+  border-color: #FEF08A;
+  background: #FFFEF5;
+}
+.imd-card-orange {
+  border-color: #FED7AA;
+  background: #FFFBF7;
+}
+.imd-card-red {
+  border-color: #FECDD3;
+  background: #FEF8F8;
+}
+
+.imd-card-body {
+  background: #F8FAFC;
+  border-left: 3.5px solid #10B981;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+.imd-card-yellow .imd-card-body {
+  background: #FFFDF0;
+  border-left-color: #EAB308;
+}
+.imd-card-orange .imd-card-body {
+  background: #FFF8F1;
+  border-left-color: #F97316;
+}
+.imd-card-red .imd-card-body {
+  background: #FFF1F2;
+  border-left-color: #EF4444;
+}
+
+.imd-hazard-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #0F172A;
+  margin-bottom: 3px;
+}
+.imd-card-yellow .imd-hazard-title { color: #854D0E; }
+.imd-card-orange .imd-hazard-title { color: #9A3412; }
+.imd-card-red .imd-hazard-title { color: #991B1B; }
+
+.imd-hazard-desc {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.imd-card-footer {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 800;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.imd-region-tag {
+  background: #F1F5F9;
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+}
+.imd-source-tag {
+  color: #0284C7;
+  font-weight: 800;
+}
+
 </style>
 </meta></meta></meta></meta></meta></head>
 <body>
@@ -31201,12 +31342,12 @@ body {
       </div>
 <div style="display:inline-flex; align-items:center; gap:6px; background:#FEFCE8; color:#CA8A04; border:1px solid #FEF9C3; padding:5px 12px; border-radius:10px; font-size:12px; font-weight:900;">
 <span style="width:8px; height:8px; background:#CA8A04; border-radius:50%;"></span>
-<span id="cnt-yellow">0</span> ಹಳದಿ ನಿಗಾ
+<span id="cnt-yellow">9</span> ಹಳದಿ ನಿಗಾ
 
       </div>
 <div style="display:inline-flex; align-items:center; gap:6px; background:#F0FDF4; color:#16A34A; border:1px solid #DCFCE7; padding:5px 12px; border-radius:10px; font-size:12px; font-weight:900;">
 <span style="width:8px; height:8px; background:#16A34A; border-radius:50%;"></span>
-<span id="cnt-green">31</span> ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
+<span id="cnt-green">22</span> ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
 
       </div>
 </div>
@@ -31221,655 +31362,531 @@ body {
 </div>
 <!-- 31 Districts IMD Cards Grid -->
 <div id="imdNowcastContainer" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:16px;">
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="bengaluru_urban" data-region="south">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಬೆಂಗಳೂರು ನಗರ</div>
+<div class="imd-card-sub">Bengaluru Urban</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="bengaluru_rural" data-region="south">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬೆಂಗಳೂರು ನಗರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Bengaluru Urban</span>
+<div class="imd-card-title">ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</div>
+<div class="imd-card-sub">Bengaluru Rural</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="mysuru" data-region="south">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಮೈಸೂರು</div>
+<div class="imd-card-sub">Mysuru</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="mandya" data-region="south">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Bengaluru Rural</span>
+<div class="imd-card-title">ಮಂಡ್ಯ</div>
+<div class="imd-card-sub">Mandya</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="hassan" data-region="malnad">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಹಾಸನ</div>
+<div class="imd-card-sub">Hassan</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಲೆನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-yellow" data-district="kodagu" data-region="malnad">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಮೈಸೂರು</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Mysuru</span>
+<div class="imd-card-title">ಕೊಡಗು</div>
+<div class="imd-card-sub">Kodagu</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಲೆನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-yellow" data-district="dakshina_kannada" data-region="coastal">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ದಕ್ಷಿಣ ಕನ್ನಡ</div>
+<div class="imd-card-sub">Dakshina Kannada</div>
+</div>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಕರಾವಳಿ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-yellow" data-district="udupi" data-region="coastal">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಮಂಡ್ಯ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Mandya</span>
+<div class="imd-card-title">ಉಡುಪಿ</div>
+<div class="imd-card-sub">Udupi</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಕರಾವಳಿ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-yellow" data-district="uttara_kannada" data-region="coastal">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಉತ್ತರ ಕನ್ನಡ</div>
+<div class="imd-card-sub">Uttara Kannada</div>
+</div>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಕರಾವಳಿ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-yellow" data-district="shivamogga" data-region="malnad">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಹಾಸನ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Hassan</span>
+<div class="imd-card-title">ಶಿವಮೊಗ್ಗ</div>
+<div class="imd-card-sub">Shivamogga</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಲೆನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಲೆನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-yellow" data-district="chikkamagaluru" data-region="malnad">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಚಿಕ್ಕಮಗಳೂರು</div>
+<div class="imd-card-sub">Chikkamagaluru</div>
+</div>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಲೆನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="tumakuru" data-region="south">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಕೊಡಗು</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Kodagu</span>
+<div class="imd-card-title">ತುಮಕೂರು</div>
+<div class="imd-card-sub">Tumakuru</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಲೆನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="chitradurga" data-region="central">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಚಿತ್ರದುರ್ಗ</div>
+<div class="imd-card-sub">Chitradurga</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="davanagere" data-region="central">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ದಕ್ಷಿಣ ಕನ್ನಡ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Dakshina Kannada</span>
+<div class="imd-card-title">ದಾವಣಗೆರೆ</div>
+<div class="imd-card-sub">Davanagere</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಕರಾವಳಿ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-yellow" data-district="belagavi" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಬೆಳಗಾವಿ</div>
+<div class="imd-card-sub">Belagavi</div>
+</div>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-yellow" data-district="dharwad" data-region="north">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಉಡುಪಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Udupi</span>
+<div class="imd-card-title">ಧಾರವಾಡ</div>
+<div class="imd-card-sub">Dharwad</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1900 Hrs)</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಕರಾವಳಿ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="gadag" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಗದಗ</div>
+<div class="imd-card-sub">Gadag</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-yellow" data-district="haveri" data-region="central">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಉತ್ತರ ಕನ್ನಡ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Uttara Kannada</span>
+<div class="imd-card-title">ಹಾವೇರಿ</div>
+<div class="imd-card-sub">Haveri</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-yellow">🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ</div>
+<div class="imd-hazard-desc">ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: 1600 Hrs)</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಕರಾವಳಿ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="bagalkote" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಬಾಗಲಕೋಟೆ</div>
+<div class="imd-card-sub">Bagalkote</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="vijayapura" data-region="north">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಶಿವಮೊಗ್ಗ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Shivamogga</span>
+<div class="imd-card-title">ವಿಜಯಪುರ</div>
+<div class="imd-card-sub">Vijayapura</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಲೆನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="kalaburagi" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಕಲಬುರಗಿ</div>
+<div class="imd-card-sub">Kalaburagi</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="yadgir" data-region="north">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಚಿಕ್ಕಮಗಳೂರು</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Chikkamagaluru</span>
+<div class="imd-card-title">ಯಾದಗಿರಿ</div>
+<div class="imd-card-sub">Yadgir</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಲೆನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="raichur" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ರಾಯಚೂರು</div>
+<div class="imd-card-sub">Raichur</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="koppal" data-region="north">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ತುಮಕೂರು</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Tumakuru</span>
+<div class="imd-card-title">ಕೊಪ್ಪಳ</div>
+<div class="imd-card-sub">Koppal</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="ballari" data-region="central">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಬಳ್ಳಾರಿ</div>
+<div class="imd-card-sub">Ballari</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="vijayanagara" data-region="central">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಚಿತ್ರದುರ್ಗ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Chitradurga</span>
+<div class="imd-card-title">ವಿಜಯನಗರ</div>
+<div class="imd-card-sub">Vijayanagara</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="chikkaballapura" data-region="south">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ಚಿಕ್ಕಬಳ್ಳಾಪುರ</div>
+<div class="imd-card-sub">Chikkaballapura</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="kolar" data-region="south">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ದಾವಣಗೆರೆ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Davanagere</span>
+<div class="imd-card-title">ಕೋಲಾರ</div>
+<div class="imd-card-sub">Kolar</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="ramanagara" data-region="south">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+<div class="imd-card-title">ರಾಮನಗರ</div>
+<div class="imd-card-sub">Ramanagara</div>
+</div>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
+</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
+</div>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
+</div>
+</div>
+<div class="imd-card imd-card-green" data-district="chamarajanagara" data-region="south">
+<div class="imd-card-top">
 <div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬೆಳಗಾವಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Belagavi</span>
+<div class="imd-card-title">ಚಾಮರಾಜನಗರ</div>
+<div class="imd-card-sub">Chamarajanagar</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+<div class="imd-card imd-card-green" data-district="bidar" data-region="north">
+<div class="imd-card-top">
 <div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಧಾರವಾಡ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Dharwad</span>
+<div class="imd-card-title">ಬೀದರ್</div>
+<div class="imd-card-sub">Bidar</div>
 </div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
+<span class="imd-badge imd-badge-green">🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ</span>
 </div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
+<div class="imd-card-body">
+<div class="imd-hazard-title">🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)</div>
+<div class="imd-hazard-desc">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.</div>
 </div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಗದಗ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Gadag</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಹಾವೇರಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Haveri</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬಾಗಲಕೋಟೆ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Bagalkote</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ವಿಜಯಪುರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Vijayapura</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಕಲಬುರಗಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Kalaburagi</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಯಾದಗಿರಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Yadgir</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ರಾಯಚೂರು</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Raichur</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಕೊಪ್ಪಳ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Koppal</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬಳ್ಳಾರಿ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Ballari</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ವಿಜಯನಗರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Vijayanagara</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಮಧ್ಯ ಕರ್ನಾಟಕ</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಚಿಕ್ಕಬಳ್ಳಾಪುರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Chikkaballapura</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಕೋಲಾರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Kolar</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ರಾಮನಗರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Ramanagara</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಚಾಮರಾಜನಗರ</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Chamarajanagar</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ದಕ್ಷಿಣ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
-</div>
-</div>
-<div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-<div>
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-<div>
-<strong style="font-size:17px; font-weight:900; color:#0F172A; display:block; line-height:1.2;">ಬೀದರ್</strong>
-<span style="font-size:11px; font-weight:700; color:#64748B;">Bidar</span>
-</div>
-<span style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-              🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ
-            </span>
-</div>
-<div style="background:#F8FAFC; border-left:3.5px solid #10B981; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-<div style="font-size:13px; font-weight:900; color:#0F172A; margin-bottom:3px;">ಶಾಂತ ವಾತಾವರಣ (No Warning)</div>
-<div style="font-size:12px; color:#334155; line-height:1.45;">ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).</div>
-</div>
-</div>
-<div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid #E2E8F0; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-<span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ಉತ್ತರ ಒಳನಾಡು</span>
-<span style="color:#0284C7; font-weight:800;">🏛️ IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್</span>
+<div class="imd-card-footer">
+<span class="imd-region-tag">📍 ಉತ್ತರ ಒಳನಾಡು</span>
+<span class="imd-source-tag">⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</span>
 </div>
 </div></div>
 <div>IMD ಬೆಂಗಳೂರು ಅಧಿಕೃತ ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
@@ -31916,7 +31933,7 @@ body {
 </div>
 <!-- DISTRICT WEATHER GRID -->
 <div class="dist-weather-grid" id="district-grid">
-<div class="dw-card" onclick="selectDistrict('bengaluru_urban')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('bengaluru_urban')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬೆಂಗಳೂರು ನಗರ</div>
@@ -31929,10 +31946,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 80%</div>
 <div class="dws-item">💨 12 km/h</div>
-<div class="dws-item">🌡️ 75% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 75%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('bengaluru_rural')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('bengaluru_rural')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</div>
@@ -31945,10 +31962,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 80%</div>
 <div class="dws-item">💨 11 km/h</div>
-<div class="dws-item">🌡️ 79% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 79%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('mysuru')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('mysuru')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಮೈಸೂರು</div>
@@ -31961,10 +31978,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 75%</div>
 <div class="dws-item">💨 13 km/h</div>
-<div class="dws-item">🌡️ 78% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 78%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('mandya')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('mandya')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಮಂಡ್ಯ</div>
@@ -31977,10 +31994,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 82%</div>
 <div class="dws-item">💨 5 km/h</div>
-<div class="dws-item">🌡️ 92% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 92%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('hassan')">
+<div class="dw-card" data-region="malnad" onclick="selectDistrict('hassan')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಹಾಸನ</div>
@@ -31993,10 +32010,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 63%</div>
 <div class="dws-item">💨 17 km/h</div>
-<div class="dws-item">🌡️ 86% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 86%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('kodagu')">
+<div class="dw-card" data-region="malnad" onclick="selectDistrict('kodagu')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಕೊಡಗು</div>
@@ -32009,10 +32026,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 72%</div>
 <div class="dws-item">💨 13 km/h</div>
-<div class="dws-item">🌡️ 91% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 91%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('dakshina_kannada')">
+<div class="dw-card" data-region="coastal" onclick="selectDistrict('dakshina_kannada')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ದಕ್ಷಿಣ ಕನ್ನಡ</div>
@@ -32025,10 +32042,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 18%</div>
 <div class="dws-item">💨 6 km/h</div>
-<div class="dws-item">🌡️ 85% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 85%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('udupi')">
+<div class="dw-card" data-region="coastal" onclick="selectDistrict('udupi')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಉಡುಪಿ</div>
@@ -32041,10 +32058,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 31%</div>
 <div class="dws-item">💨 8 km/h</div>
-<div class="dws-item">🌡️ 89% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 89%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('uttara_kannada')">
+<div class="dw-card" data-region="coastal" onclick="selectDistrict('uttara_kannada')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಉತ್ತರ ಕನ್ನಡ</div>
@@ -32057,10 +32074,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 76%</div>
 <div class="dws-item">💨 6 km/h</div>
-<div class="dws-item">🌡️ 94% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 94%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('shivamogga')">
+<div class="dw-card" data-region="malnad" onclick="selectDistrict('shivamogga')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಶಿವಮೊಗ್ಗ</div>
@@ -32073,10 +32090,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 40%</div>
 <div class="dws-item">💨 16 km/h</div>
-<div class="dws-item">🌡️ 79% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 79%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('chikkamagaluru')">
+<div class="dw-card" data-region="malnad" onclick="selectDistrict('chikkamagaluru')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಚಿಕ್ಕಮಗಳೂರು</div>
@@ -32089,10 +32106,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 63%</div>
 <div class="dws-item">💨 16 km/h</div>
-<div class="dws-item">🌡️ 94% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 94%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('tumakuru')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('tumakuru')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ತುಮಕೂರು</div>
@@ -32105,10 +32122,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 73%</div>
 <div class="dws-item">💨 3 km/h</div>
-<div class="dws-item">🌡️ 91% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 91%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('chitradurga')">
+<div class="dw-card" data-region="central" onclick="selectDistrict('chitradurga')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಚಿತ್ರದುರ್ಗ</div>
@@ -32121,10 +32138,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 57%</div>
 <div class="dws-item">💨 18 km/h</div>
-<div class="dws-item">🌡️ 91% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 91%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('davanagere')">
+<div class="dw-card" data-region="central" onclick="selectDistrict('davanagere')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ದಾವಣಗೆರೆ</div>
@@ -32137,10 +32154,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 87%</div>
 <div class="dws-item">💨 11 km/h</div>
-<div class="dws-item">🌡️ 91% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 91%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('belagavi')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('belagavi')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬೆಳಗಾವಿ</div>
@@ -32153,10 +32170,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 52%</div>
 <div class="dws-item">💨 16 km/h</div>
-<div class="dws-item">🌡️ 85% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 85%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('dharwad')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('dharwad')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಧಾರವಾಡ</div>
@@ -32169,10 +32186,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 57%</div>
 <div class="dws-item">💨 18 km/h</div>
-<div class="dws-item">🌡️ 83% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 83%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('gadag')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('gadag')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಗದಗ</div>
@@ -32185,10 +32202,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 83%</div>
 <div class="dws-item">💨 15 km/h</div>
-<div class="dws-item">🌡️ 85% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 85%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('haveri')">
+<div class="dw-card" data-region="central" onclick="selectDistrict('haveri')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಹಾವೇರಿ</div>
@@ -32201,10 +32218,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 65%</div>
 <div class="dws-item">💨 19 km/h</div>
-<div class="dws-item">🌡️ 83% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 83%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('bagalkote')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('bagalkote')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬಾಗಲಕೋಟೆ</div>
@@ -32217,10 +32234,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 68%</div>
 <div class="dws-item">💨 17 km/h</div>
-<div class="dws-item">🌡️ 67% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 67%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('vijayapura')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('vijayapura')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ವಿಜಯಪುರ</div>
@@ -32233,10 +32250,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 70%</div>
 <div class="dws-item">💨 10 km/h</div>
-<div class="dws-item">🌡️ 76% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 76%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('kalaburagi')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('kalaburagi')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಕಲಬುರಗಿ</div>
@@ -32249,10 +32266,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 3%</div>
 <div class="dws-item">💨 8 km/h</div>
-<div class="dws-item">🌡️ 63% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 63%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('yadgir')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('yadgir')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಯಾದಗಿರಿ</div>
@@ -32265,10 +32282,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 1%</div>
 <div class="dws-item">💨 3 km/h</div>
-<div class="dws-item">🌡️ 71% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 71%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('raichur')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('raichur')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ರಾಯಚೂರು</div>
@@ -32281,10 +32298,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 8%</div>
 <div class="dws-item">💨 6 km/h</div>
-<div class="dws-item">🌡️ 64% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 64%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('koppal')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('koppal')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಕೊಪ್ಪಳ</div>
@@ -32297,10 +32314,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 94%</div>
 <div class="dws-item">💨 7 km/h</div>
-<div class="dws-item">🌡️ 85% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 85%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('ballari')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('ballari')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬಳ್ಳಾರಿ</div>
@@ -32313,10 +32330,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 71%</div>
 <div class="dws-item">💨 20 km/h</div>
-<div class="dws-item">🌡️ 65% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 65%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('vijayanagara')">
+<div class="dw-card" data-region="central" onclick="selectDistrict('vijayanagara')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ವಿಜಯನಗರ</div>
@@ -32329,10 +32346,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 87%</div>
 <div class="dws-item">💨 10 km/h</div>
-<div class="dws-item">🌡️ 96% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 96%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('chikkaballapura')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('chikkaballapura')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಚಿಕ್ಕಬಳ್ಳಾಪುರ</div>
@@ -32345,10 +32362,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 49%</div>
 <div class="dws-item">💨 12 km/h</div>
-<div class="dws-item">🌡️ 93% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 93%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('kolar')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('kolar')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಕೋಲಾರ</div>
@@ -32361,10 +32378,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 41%</div>
 <div class="dws-item">💨 26 km/h</div>
-<div class="dws-item">🌡️ 70% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 70%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('ramanagara')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('ramanagara')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ರಾಮನಗರ</div>
@@ -32377,10 +32394,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 79%</div>
 <div class="dws-item">💨 9 km/h</div>
-<div class="dws-item">🌡️ 94% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 94%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('chamarajanagara')">
+<div class="dw-card" data-region="south" onclick="selectDistrict('chamarajanagara')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಚಾಮರಾಜನಗರ</div>
@@ -32393,10 +32410,10 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 87%</div>
 <div class="dws-item">💨 10 km/h</div>
-<div class="dws-item">🌡️ 86% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 86%</div>
 </div>
 </div>
-<div class="dw-card" onclick="selectDistrict('bidar')">
+<div class="dw-card" data-region="north" onclick="selectDistrict('bidar')">
 <div class="dw-header">
 <div>
 <div class="dw-name">ಬೀದರ್</div>
@@ -32409,7 +32426,7 @@ body {
 <div class="dw-stats">
 <div class="dws-item">💧 17%</div>
 <div class="dws-item">💨 6 km/h</div>
-<div class="dws-item">🌡️ 70% ತೇವಾಂಶ</div>
+<div class="dws-item">🌡️ 70%</div>
 </div>
 </div></div>
 <!-- ══════════════════════════════════════════════════════════════════════
@@ -46439,208 +46456,110 @@ function filterImdRegion(region, btn) {
 
 
 function renderImdCards() {
-
   const container = document.getElementById('imdNowcastContainer');
-
   if (!container || !globalImdData) return;
 
-
-
   let districts = {};
-
+  let sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
   if (currentImdMode === '5day') {
-
     const dayObj = globalImdData.forecast_5days?.[current5DayKey] || {};
-
     districts = dayObj.districts || globalImdData.imd_warnings || {};
-
+    const knDays = { 'Day_1': 'ಇಂದು (Day 1)', 'Day_2': 'ನಾಳೆ (Day 2)', 'Day_3': 'ನಾಳಿದ್ದು (Day 3)', 'Day_4': '4ನೇ ದಿನ (Day 4)', 'Day_5': '5ನೇ ದಿನ (Day 5)' };
+    sourceLabel = `🏛️ IMD 5-ದಿನ ಮುನ್ಸೂಚನೆ (${knDays[current5DayKey] || current5DayKey})`;
   } else {
-
     districts = globalImdData.nowcast?.districts || globalImdData.districts || {};
-
+    sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
   }
-
-
 
   let countRed = 0, countOrange = 0, countYellow = 0, countGreen = 0;
-
   for (let k of Object.keys(districts)) {
-
     const lvl = (districts[k].alert_level || districts[k].level || 'GREEN').toUpperCase();
-
     if (lvl === 'RED') countRed++;
-
     else if (lvl === 'ORANGE') countOrange++;
-
     else if (lvl === 'YELLOW') countYellow++;
-
     else countGreen++;
-
   }
-
-
 
   const elR = document.getElementById('cnt-red');
-
   const elO = document.getElementById('cnt-orange');
-
   const elY = document.getElementById('cnt-yellow');
-
   const elG = document.getElementById('cnt-green');
-
   if (elR) elR.textContent = countRed;
-
   if (elO) elO.textContent = countOrange;
-
   if (elY) elY.textContent = countYellow;
-
   if (elG) elG.textContent = countGreen;
 
-
-
   let filteredKeys = Object.keys(districts);
-
   if (currentImdRegion !== 'all') {
-
     filteredKeys = filteredKeys.filter(k => DISTRICT_REGIONS[k] === currentImdRegion);
-
   }
-
-
 
   if (!filteredKeys.length) {
-
-    container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748B; grid-column:1/-1;">ಆಯ್ಕೆಮಾಡಿದ ವಲಯದಲ್ಲಿ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದೆ (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ).</div>`;
-
+    container.innerHTML = `<div style="text-align:center; padding:35px 20px; color:#64748B; grid-column:1/-1; background:#FFFFFF; border-radius:18px; border:1px solid #E2E8F0; font-size:14px; font-weight:700;">ಆಯ್ಕೆಮಾಡಿದ ವಲಯದಲ್ಲಿ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದೆ (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ).</div>`;
     return;
-
   }
 
-
-
   container.innerHTML = filteredKeys.map(k => {
-
     const d = districts[k];
-
     const regionKey = DISTRICT_REGIONS[k] || 'south';
-
     const regionKn = REGION_NAMES_KN[regionKey] || 'ಕರ್ನಾಟಕ';
-
-
-
-    let cardBg = '#FFFFFF';
-
-    let cardBorder = '#E2E8F0';
-
-    let badgeBg = '#DCFCE7';
-
-    let badgeColor = '#166534';
-
-    let badgeBorder = '#BBF7D0';
-
-    let titleColor = '#0F172A';
-
-    let infoBoxBg = '#F8FAFC';
-
-    let infoBorder = '#10B981';
-
-    let infoTextColor = '#334155';
-
-    let statusLabel = '🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ';
-
-
-
     const lvl = (d.alert_level || d.level || 'GREEN').toUpperCase();
 
+    let cardClass = "imd-card imd-card-green";
+    let badgeClass = "imd-badge imd-badge-green";
+    let statusLabel = "🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ";
+    let hazardTitle = "🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)";
+    let hazardDesc = "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.";
+
     if (lvl === 'RED') {
-
-      cardBg = '#FEF2F2'; cardBorder = '#FECDD3'; badgeBg = '#FEE2E2'; badgeColor = '#991B1B'; badgeBorder = '#F87171';
-
-      titleColor = '#991B1B'; infoBoxBg = '#FFFFFF'; infoBorder = '#DC2626'; infoTextColor = '#7F1D1D';
-
-      statusLabel = '🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)';
-
+      cardClass = "imd-card imd-card-red";
+      badgeClass = "imd-badge imd-badge-red";
+      statusLabel = "🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)";
+      hazardTitle = d.hazard_kn || "ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ";
+      hazardDesc = d.warning_info || "ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ, ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಿ.";
     } else if (lvl === 'ORANGE') {
-
-      cardBg = '#FFF7ED'; cardBorder = '#FED7AA'; badgeBg = '#FFEDD5'; badgeColor = '#9A3412'; badgeBorder = '#FB923C';
-
-      titleColor = '#9A3412'; infoBoxBg = '#FFFFFF'; infoBorder = '#EA580C'; infoTextColor = '#7C2D12';
-
-      statusLabel = '🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)';
-
+      cardClass = "imd-card imd-card-orange";
+      badgeClass = "imd-badge imd-badge-orange";
+      statusLabel = "🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)";
+      hazardTitle = d.hazard_kn || "ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ";
+      hazardDesc = d.warning_info || "ಭಾರೀ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ.";
     } else if (lvl === 'YELLOW') {
-
-      cardBg = '#FEFCE8'; cardBorder = '#FEF08A'; badgeBg = '#FEF9C3'; badgeColor = '#854D0E'; badgeBorder = '#FACC15';
-
-      titleColor = '#854D0E'; infoBoxBg = '#FFFFFF'; infoBorder = '#CA8A04'; infoTextColor = '#713F12';
-
-      statusLabel = '🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)';
-
+      cardClass = "imd-card imd-card-yellow";
+      badgeClass = "imd-badge imd-badge-yellow";
+      statusLabel = "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)";
+      hazardTitle = "🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ";
+      const rawWi = d.warning_info || '';
+      if (rawWi.includes('Valid upto:')) {
+        const vTime = rawWi.split('Valid upto:').pop().trim();
+        hazardDesc = `ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: ${vTime})`;
+      } else {
+        hazardDesc = "ಲಘು ಮಳೆ ಹಾಗೂ ಮೋಡ ಕವಿದ ವಾತಾವರಣ.";
+      }
     }
 
-
+    const dNameKn = d.district_kn || d.name_kn || k;
+    const dNameEn = d.district_en || d.name_en || '';
 
     return `
-
-      <div style="background:${cardBg}; border:1.5px solid ${cardBorder}; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03); transition:transform 0.2s, box-shadow 0.2s;">
-
-        <div>
-
-          <!-- Header Row -->
-
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-
-            <div>
-
-              <strong style="font-size:17px; font-weight:900; color:${titleColor}; display:block; line-height:1.2;">${d.district_kn || d.kn || d.district_en}</strong>
-
-              <span style="font-size:11px; font-weight:700; color:#64748B;">${d.district_en || ''}</span>
-
-            </div>
-
-            <span style="background:${badgeBg}; color:${badgeColor}; border:1px solid ${badgeBorder}; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-
-              ${statusLabel}
-
-            </span>
-
+      <div class="${cardClass}" data-region="${regionKey}" data-district="${k}">
+        <div class="imd-card-top">
+          <div>
+            <div class="imd-card-title">${dNameKn}</div>
+            <div class="imd-card-sub">${dNameEn}</div>
           </div>
-
-
-
-          <!-- Weather Info Block -->
-
-          <div style="background:${infoBoxBg}; border-left:3.5px solid ${infoBorder}; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-
-            <div style="font-size:13px; font-weight:900; color:${titleColor}; margin-bottom:3px;">${d.hazard_kn || 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'}</div>
-
-            <div style="font-size:12px; color:${infoTextColor}; line-height:1.45;">${(d.warning_info || 'ಯಾವುದೇ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ).').substring(0, 120)}</div>
-
-          </div>
-
+          <span class="${badgeClass}">${statusLabel}</span>
         </div>
-
-
-
-        <!-- Footer Row (Clean Region Tag & Mode, NO EXTERNAL LINKS) -->
-
-        <div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid ${cardBorder}; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-
-          <span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ${regionKn}</span>
-
-          <span style="color:#0284C7; font-weight:800;">🏛️ ${currentImdMode === '5day' ? 'IMD 5-ದಿನ ಮುನ್ಸೂಚನೆ' : 'IMD ಲೈವ್ ನೌಕಾಸ್ಟ್'}</span>
-
+        <div class="imd-card-body">
+          <div class="imd-hazard-title">${hazardTitle}</div>
+          <div class="imd-hazard-desc">${hazardDesc}</div>
         </div>
-
-      </div>
-
-    `;
-
+        <div class="imd-card-footer">
+          <span class="imd-region-tag">📍 ${regionKn}</span>
+          <span class="imd-source-tag">${sourceLabel}</span>
+        </div>
+      </div>`;
   }).join('');
-
 }
-
-
 
 async function loadImdNowcastWarnings() {
 

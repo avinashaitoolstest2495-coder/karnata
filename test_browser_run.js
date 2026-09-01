@@ -13784,208 +13784,110 @@ function filterImdRegion(region, btn) {
 
 
 function renderImdCards() {
-
   const container = document.getElementById('imdNowcastContainer');
-
   if (!container || !globalImdData) return;
 
-
-
   let districts = {};
-
+  let sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
   if (currentImdMode === '5day') {
-
     const dayObj = globalImdData.forecast_5days?.[current5DayKey] || {};
-
     districts = dayObj.districts || globalImdData.imd_warnings || {};
-
+    const knDays = { 'Day_1': 'ಇಂದು (Day 1)', 'Day_2': 'ನಾಳೆ (Day 2)', 'Day_3': 'ನಾಳಿದ್ದು (Day 3)', 'Day_4': '4ನೇ ದಿನ (Day 4)', 'Day_5': '5ನೇ ದಿನ (Day 5)' };
+    sourceLabel = `🏛️ IMD 5-ದಿನ ಮುನ್ಸೂಚನೆ (${knDays[current5DayKey] || current5DayKey})`;
   } else {
-
     districts = globalImdData.nowcast?.districts || globalImdData.districts || {};
-
+    sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
   }
-
-
 
   let countRed = 0, countOrange = 0, countYellow = 0, countGreen = 0;
-
   for (let k of Object.keys(districts)) {
-
     const lvl = (districts[k].alert_level || districts[k].level || 'GREEN').toUpperCase();
-
     if (lvl === 'RED') countRed++;
-
     else if (lvl === 'ORANGE') countOrange++;
-
     else if (lvl === 'YELLOW') countYellow++;
-
     else countGreen++;
-
   }
-
-
 
   const elR = document.getElementById('cnt-red');
-
   const elO = document.getElementById('cnt-orange');
-
   const elY = document.getElementById('cnt-yellow');
-
   const elG = document.getElementById('cnt-green');
-
   if (elR) elR.textContent = countRed;
-
   if (elO) elO.textContent = countOrange;
-
   if (elY) elY.textContent = countYellow;
-
   if (elG) elG.textContent = countGreen;
 
-
-
   let filteredKeys = Object.keys(districts);
-
   if (currentImdRegion !== 'all') {
-
     filteredKeys = filteredKeys.filter(k => DISTRICT_REGIONS[k] === currentImdRegion);
-
   }
-
-
 
   if (!filteredKeys.length) {
-
-    container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748B; grid-column:1/-1;">ಆಯ್ಕೆಮಾಡಿದ ವಲಯದಲ್ಲಿ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದೆ (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ).</div>`;
-
+    container.innerHTML = `<div style="text-align:center; padding:35px 20px; color:#64748B; grid-column:1/-1; background:#FFFFFF; border-radius:18px; border:1px solid #E2E8F0; font-size:14px; font-weight:700;">ಆಯ್ಕೆಮಾಡಿದ ವಲಯದಲ್ಲಿ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದೆ (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ).</div>`;
     return;
-
   }
 
-
-
   container.innerHTML = filteredKeys.map(k => {
-
     const d = districts[k];
-
     const regionKey = DISTRICT_REGIONS[k] || 'south';
-
     const regionKn = REGION_NAMES_KN[regionKey] || 'ಕರ್ನಾಟಕ';
-
-
-
-    let cardBg = '#FFFFFF';
-
-    let cardBorder = '#E2E8F0';
-
-    let badgeBg = '#DCFCE7';
-
-    let badgeColor = '#166534';
-
-    let badgeBorder = '#BBF7D0';
-
-    let titleColor = '#0F172A';
-
-    let infoBoxBg = '#F8FAFC';
-
-    let infoBorder = '#10B981';
-
-    let infoTextColor = '#334155';
-
-    let statusLabel = '🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ';
-
-
-
     const lvl = (d.alert_level || d.level || 'GREEN').toUpperCase();
 
+    let cardClass = "imd-card imd-card-green";
+    let badgeClass = "imd-badge imd-badge-green";
+    let statusLabel = "🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ";
+    let hazardTitle = "🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)";
+    let hazardDesc = "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.";
+
     if (lvl === 'RED') {
-
-      cardBg = '#FEF2F2'; cardBorder = '#FECDD3'; badgeBg = '#FEE2E2'; badgeColor = '#991B1B'; badgeBorder = '#F87171';
-
-      titleColor = '#991B1B'; infoBoxBg = '#FFFFFF'; infoBorder = '#DC2626'; infoTextColor = '#7F1D1D';
-
-      statusLabel = '🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)';
-
+      cardClass = "imd-card imd-card-red";
+      badgeClass = "imd-badge imd-badge-red";
+      statusLabel = "🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)";
+      hazardTitle = d.hazard_kn || "ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ";
+      hazardDesc = d.warning_info || "ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ, ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಿ.";
     } else if (lvl === 'ORANGE') {
-
-      cardBg = '#FFF7ED'; cardBorder = '#FED7AA'; badgeBg = '#FFEDD5'; badgeColor = '#9A3412'; badgeBorder = '#FB923C';
-
-      titleColor = '#9A3412'; infoBoxBg = '#FFFFFF'; infoBorder = '#EA580C'; infoTextColor = '#7C2D12';
-
-      statusLabel = '🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)';
-
+      cardClass = "imd-card imd-card-orange";
+      badgeClass = "imd-badge imd-badge-orange";
+      statusLabel = "🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)";
+      hazardTitle = d.hazard_kn || "ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ";
+      hazardDesc = d.warning_info || "ಭಾರೀ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ.";
     } else if (lvl === 'YELLOW') {
-
-      cardBg = '#FEFCE8'; cardBorder = '#FEF08A'; badgeBg = '#FEF9C3'; badgeColor = '#854D0E'; badgeBorder = '#FACC15';
-
-      titleColor = '#854D0E'; infoBoxBg = '#FFFFFF'; infoBorder = '#CA8A04'; infoTextColor = '#713F12';
-
-      statusLabel = '🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)';
-
+      cardClass = "imd-card imd-card-yellow";
+      badgeClass = "imd-badge imd-badge-yellow";
+      statusLabel = "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)";
+      hazardTitle = "🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ";
+      const rawWi = d.warning_info || '';
+      if (rawWi.includes('Valid upto:')) {
+        const vTime = rawWi.split('Valid upto:').pop().trim();
+        hazardDesc = `ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: ${vTime})`;
+      } else {
+        hazardDesc = "ಲಘು ಮಳೆ ಹಾಗೂ ಮೋಡ ಕವಿದ ವಾತಾವರಣ.";
+      }
     }
 
-
+    const dNameKn = d.district_kn || d.name_kn || k;
+    const dNameEn = d.district_en || d.name_en || '';
 
     return `
-
-      <div style="background:${cardBg}; border:1.5px solid ${cardBorder}; border-radius:18px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 14px rgba(0,0,0,0.03); transition:transform 0.2s, box-shadow 0.2s;">
-
-        <div>
-
-          <!-- Header Row -->
-
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
-
-            <div>
-
-              <strong style="font-size:17px; font-weight:900; color:${titleColor}; display:block; line-height:1.2;">${d.district_kn || d.kn || d.district_en}</strong>
-
-              <span style="font-size:11px; font-weight:700; color:#64748B;">${d.district_en || ''}</span>
-
-            </div>
-
-            <span style="background:${badgeBg}; color:${badgeColor}; border:1px solid ${badgeBorder}; font-size:11px; font-weight:900; padding:4px 10px; border-radius:12px; white-space:nowrap;">
-
-              ${statusLabel}
-
-            </span>
-
+      <div class="${cardClass}" data-region="${regionKey}" data-district="${k}">
+        <div class="imd-card-top">
+          <div>
+            <div class="imd-card-title">${dNameKn}</div>
+            <div class="imd-card-sub">${dNameEn}</div>
           </div>
-
-
-
-          <!-- Weather Info Block -->
-
-          <div style="background:${infoBoxBg}; border-left:3.5px solid ${infoBorder}; padding:10px 12px; border-radius:8px; margin-bottom:12px;">
-
-            <div style="font-size:13px; font-weight:900; color:${titleColor}; margin-bottom:3px;">${d.hazard_kn || 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'}</div>
-
-            <div style="font-size:12px; color:${infoTextColor}; line-height:1.45;">${(d.warning_info || 'ಯಾವುದೇ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ).').substring(0, 120)}</div>
-
-          </div>
-
+          <span class="${badgeClass}">${statusLabel}</span>
         </div>
-
-
-
-        <!-- Footer Row (Clean Region Tag & Mode, NO EXTERNAL LINKS) -->
-
-        <div style="font-size:11px; color:#64748B; font-weight:800; border-top:1px solid ${cardBorder}; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-
-          <span style="background:#F1F5F9; color:#475569; padding:2px 8px; border-radius:6px;">📍 ${regionKn}</span>
-
-          <span style="color:#0284C7; font-weight:800;">🏛️ ${currentImdMode === '5day' ? 'IMD 5-ದಿನ ಮುನ್ಸೂಚನೆ' : 'IMD ಲೈವ್ ನೌಕಾಸ್ಟ್'}</span>
-
+        <div class="imd-card-body">
+          <div class="imd-hazard-title">${hazardTitle}</div>
+          <div class="imd-hazard-desc">${hazardDesc}</div>
         </div>
-
-      </div>
-
-    `;
-
+        <div class="imd-card-footer">
+          <span class="imd-region-tag">📍 ${regionKn}</span>
+          <span class="imd-source-tag">${sourceLabel}</span>
+        </div>
+      </div>`;
   }).join('');
-
 }
-
-
 
 async function loadImdNowcastWarnings() {
 
