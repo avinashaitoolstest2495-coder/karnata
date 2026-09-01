@@ -101,6 +101,11 @@ def parse_areas_by_object_id(html, source_name="IMD"):
             icon = '🟢'
             hazard_kn = 'ಶಾಂತ ವಾತಾವರಣ (No Warning)'
 
+        if alert_lvl == 'GREEN':
+            warning_text = 'ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).'
+        else:
+            warning_text = clean_info if clean_info else f'{hazard_kn} ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ.'
+
         warnings_dict[d["key"]] = {
             "key": d["key"],
             "district_kn": d["name_kn"],
@@ -112,7 +117,7 @@ def parse_areas_by_object_id(html, source_name="IMD"):
             "hazard_kn": hazard_kn,
             "icon": icon,
             "color": color,
-            "warning_info": clean_info if clean_info else 'ಯಾವುದೇ ಸೈನೊಪ್ಟಿಕ್ ವಾಯುಭಾರ ಕುಸಿತ ಅಥವಾ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಸುರಕ್ಷಿತ ಹಸಿರು ವಲಯ).',
+            "warning_info": warning_text,
             "source": source_name
         }
 
