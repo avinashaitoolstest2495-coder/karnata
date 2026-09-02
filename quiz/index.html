@@ -1367,8 +1367,73 @@
     document.getElementById('hud-score').innerText = `${score} pts`;
 
     const formattedExp = q.explanation.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-    document.getElementById('exp-text-display').innerHTML = formattedExp;
-    document.getElementById('explanation-box').style.display = 'block';
+    const expBox = document.getElementById('explanation-box');
+    const expTitle = expBox.querySelector('.exp-title');
+    const expDesc = document.getElementById('exp-text-display');
+
+    if (isCorrect) {
+      expBox.style.borderLeft = '5px solid #10B981';
+      expBox.style.background = '#F0FDF4';
+      expBox.style.borderColor = '#BBF7D0';
+      if (expTitle) {
+        expTitle.innerHTML = `<span style="color:#065F46; font-size:15px; font-weight:900;">✅ ನಿಮ್ಮ ಉತ್ತರ ಸರಿ! — ಇದು ಏಕೆ ಸರಿ? (ಸಂಪೂರ್ಣ ವಿವರಣೆ):</span>`;
+      }
+      expDesc.innerHTML = `
+        <div style="color:#064E3B; margin-bottom:8px; font-weight:800; font-size:14.5px;">
+          🎯 ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಉತ್ತರ: <strong style="color:#059669;">"${q.options[selectedIdx]}"</strong> ನಿಖರವಾಗಿದೆ!
+        </div>
+        <div style="color:#1E293B; line-height:1.75; font-size:14px; background:#FFFFFF; border:1px solid #A7F3D0; border-radius:10px; padding:12px 14px;">
+          ${formattedExp}
+        </div>
+      `;
+    } else if (selectedIdx !== null) {
+      expBox.style.borderLeft = '5px solid #EF4444';
+      expBox.style.background = '#FEF2F2';
+      expBox.style.borderColor = '#FECACA';
+      if (expTitle) {
+        expTitle.innerHTML = `<span style="color:#991B1B; font-size:15px; font-weight:900;">❌ ನಿಮ್ಮ ಉತ್ತರ ತಪ್ಪು! — ಇದು ಏಕೆ ತಪ್ಪು ಮತ್ತು ಸರಿಯಾದ ಉತ್ತರ ಯಾವುದು?</span>`;
+      }
+      expDesc.innerHTML = `
+        <!-- WRONG ANSWER REASON -->
+        <div style="background:#FFF; border:1.5px solid #FCA5A5; border-radius:10px; padding:12px 14px; margin-bottom:12px;">
+          <div style="color:#991B1B; font-weight:900; font-size:14.5px; margin-bottom:4px;">
+            ⚠️ ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಉತ್ತರ: <span style="text-decoration:line-through; color:#DC2626; font-weight:900;">"${q.options[selectedIdx]}"</span> (ತಪ್ಪು)
+          </div>
+          <div style="color:#7F1D1D; font-size:13.5px; font-weight:700; line-height:1.5;">
+            ❓ ಇದು ಏಕೆ ತಪ್ಪು?: ಈ ಪ್ರಶ್ನೆಗೆ "${q.options[selectedIdx]}" ಸರಿಯಾದ ಉತ್ತರವಲ್ಲ. ಪ್ರಶ್ನೆಯ ಐತಿಹಾಸಿಕ ಮತ್ತು ಅಧಿಕೃತ ಸತ್ಯಾಂಶವನ್ನು ಕೆಳಗೆ ಪರಿಶೀಲಿಸಿ.
+          </div>
+        </div>
+
+        <!-- CORRECT ANSWER & WHY IT IS CORRECT -->
+        <div style="background:#F0FDF4; border:1.5px solid #86EFAC; border-radius:10px; padding:12px 14px;">
+          <div style="color:#166534; font-weight:900; font-size:15px; margin-bottom:8px;">
+            ✅ ಸರಿಯಾದ ಉತ್ತರ: <strong style="color:#15803D;">"${q.options[correctIdx]}"</strong> (ಇದು ಏಕೆ ಸರಿ?):
+          </div>
+          <div style="color:#1E293B; line-height:1.75; font-size:14px; background:#FFFFFF; border:1px solid #BBF7D0; border-radius:8px; padding:12px 14px;">
+            ${formattedExp}
+          </div>
+        </div>
+      `;
+    } else {
+      // Timeout
+      expBox.style.borderLeft = '5px solid #F59E0B';
+      expBox.style.background = '#FFFBEB';
+      expBox.style.borderColor = '#FDE68A';
+      if (expTitle) {
+        expTitle.innerHTML = `<span style="color:#92400E; font-size:15px; font-weight:900;">⏱️ ಸಮಯ ಮುಗಿದಿದೆ! — ಸರಿಯಾದ ಉತ್ತರ ಮತ್ತು ವಿಶ್ಲೇಷಣೆ:</span>`;
+      }
+      expDesc.innerHTML = `
+        <div style="background:#F0FDF4; border:1.5px solid #86EFAC; border-radius:10px; padding:12px 14px;">
+          <div style="color:#166534; font-weight:900; font-size:15px; margin-bottom:8px;">
+            ✅ ಸರಿಯಾದ ಉತ್ತರ: <strong style="color:#15803D;">"${q.options[correctIdx]}"</strong> (ಇದು ಏಕೆ ಸರಿ?):
+          </div>
+          <div style="color:#1E293B; line-height:1.75; font-size:14px; background:#FFFFFF; border:1px solid #BBF7D0; border-radius:8px; padding:12px 14px;">
+            ${formattedExp}
+          </div>
+        </div>
+      `;
+    }
+    expBox.style.display = 'block';
 
     const nextBtn = document.getElementById('next-q-btn');
     nextBtn.style.display = 'inline-flex';
