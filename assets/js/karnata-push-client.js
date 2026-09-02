@@ -3,6 +3,7 @@
  * 1. Automatically detects user's exact district via HTML5 Geolocation (Haversine 31 districts).
  * 2. Fetches active IMD weather alerts (Yellow, Orange, Red alerts).
  * 3. Dispatches native system push notifications strictly targeted to respective districts.
+ * 4. Includes instant testWeatherNotification() helper for user/developer verification.
  */
 
 (function() {
@@ -153,42 +154,42 @@
     const seenList = getSeenPushes();
 
     for (const item of feed) {
-      // Strictly verify this alert is for the user's geo-detected district or statewide
       const matchesDistrict = (item.target_district === 'all' || item.target_district === userDist);
-      const isWeatherAlert = ['yellow', 'orange', 'red'].includes((item.alert_level || '').toLowerCase());
 
       if (matchesDistrict && !seenList.includes(item.id)) {
         addSeenPush(item.id);
-
-        // Pop Native System Push Notification
-        if ('Notification' in window && Notification.permission === 'granted') {
-          const vibratePattern = item.alert_level === 'red'
-            ? [300, 100, 300, 100, 300]
-            : (item.alert_level === 'orange' ? [200, 100, 200] : [150, 100, 150]);
-
-          if ('serviceWorker' in navigator && navigator.serviceWorker.ready) {
-            navigator.serviceWorker.ready.then(reg => {
-              reg.showNotification(item.title, {
-                body: item.body,
-                icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
-                badge: item.badge || 'https://karnata.in/assets/icons/icon-192x192.png',
-                data: { url: item.url || `https://karnata.in/weather?district=${userDist}` },
-                vibrate: vibratePattern,
-                tag: item.id
-              });
-            });
-          } else {
-            new Notification(item.title, {
-              body: item.body,
-              icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
-              tag: item.id
-            });
-          }
-        } else if ('Notification' in window && Notification.permission !== 'denied') {
-          // Show non-intrusive in-page alert toast tailored to their district
-          showInPagePushBanner(item, userDist);
-        }
+        dispatchNotification(item, userDist);
       }
+    }
+  }
+
+  // Dispatch native notification or in-page toast
+  function dispatchNotification(item, userDist) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      const vibratePattern = item.alert_level === 'red'
+        ? [300, 100, 300, 100, 300]
+        : (item.alert_level === 'orange' ? [200, 100, 200] : [150, 100, 150]);
+
+      if ('serviceWorker' in navigator && navigator.serviceWorker.ready) {
+        navigator.serviceWorker.ready.then(reg => {
+          reg.showNotification(item.title, {
+            body: item.body,
+            icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
+            badge: item.badge || 'https://karnata.in/assets/icons/icon-192x192.png',
+            data: { url: item.url || `https://karnata.in/weather?district=${userDist}` },
+            vibrate: vibratePattern,
+            tag: item.id
+          });
+        });
+      } else {
+        new Notification(item.title, {
+          body: item.body,
+          icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
+          tag: item.id
+        });
+      }
+    } else if ('Notification' in window && Notification.permission !== 'denied') {
+      showInPagePushBanner(item, userDist);
     }
   }
 
@@ -234,6 +235,54 @@
       } catch(e) {}
     }
   };
+
+  // ══════════════════════════════════════════════════════════════════════════════
+  // ⚡ INSTANT TEST WEATHER NOTIFICATION HELPER (For User / Developer Verification)
+  // Usage in browser console:
+  //   testWeatherNotification('yellow')
+  //   testWeatherNotification('orange')
+  //   testWeatherNotification('red')
+  //   testWeatherNotification('yellow', 'kodagu')
+  // ══════════════════════════════════════════════════════════════════════════════
+  window.testWeatherNotification = async function(level = 'yellow', distKey = null) {
+    const dKey = distKey || getUserDistrict();
+    const dObj = KARNATAKA_31_DISTRICTS.find(d => d.key === dKey) || KARNATAKA_31_DISTRICTS[0];
+    const dKn = dObj.name_kn;
+    const lvl = (level || 'yellow').toLowerCase();
+
+    let testAlert = {
+      id: 'TEST-WEATHER-' + lvl.toUpperCase() + '-' + Date.now(),
+      alert_level: lvl,
+      target_district: dKey,
+      target_district_kn: dKn,
+      url: `https://karnata.in/weather?district=${dKey}`
+    };
+
+    if (lvl === 'red') {
+      testAlert.title = `🔴 ಕೆಂಪು ಕಟ್ಟೆಚ್ಚರ (Red Alert) — ${dKn}`;
+      testAlert.body = `[TEST] IMD ತುರ್ತು ಎಚ್ಚರಿಕೆ: ${dKn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ! ತಕ್ಷಣದ ಸುರಕ್ಷತಾ ಕ್ರಮಗಳನ್ನು ಪಾಲಿಸಿ.`;
+    } else if (lvl === 'orange') {
+      testAlert.title = `🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert) — ${dKn}`;
+      testAlert.body = `[TEST] IMD ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ: ${dKn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಭಾರೀ ಮಳೆ ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಾಧ್ಯತೆ. ಸುರಕ್ಷಿತವಾಗಿರಿ.`;
+    } else {
+      testAlert.title = `🟡 ಹಳದಿ ಮುನ್ನೆಚ್ಚರಿಕೆ (Yellow Watch) — ${dKn}`;
+      testAlert.body = `[TEST] IMD ಲೈವ್ ನೌಕಾಸ್ಟ್: ${dKn} ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ.`;
+    }
+
+    console.log('⚡ Triggering Test Weather Notification:', testAlert);
+    dispatchNotification(testAlert, dKey);
+  };
+
+  // URL test parameter listener (e.g. ?test_push=1 or ?test_alert=red)
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('test_push') || urlParams.has('test_alert')) {
+      const lvl = urlParams.get('test_alert') || 'yellow';
+      setTimeout(() => {
+        window.testWeatherNotification(lvl);
+      }, 1500);
+    }
+  } catch(e) {}
 
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
