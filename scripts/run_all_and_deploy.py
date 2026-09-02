@@ -44,6 +44,8 @@ def main():
     run_step("2. Petrol & Diesel Scraper", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()"])
     run_step("3. Dam Water Level Scraper (KSNDMC/WRD)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from dam_scraper import run; run()"])
     run_step("4. Weather Scraper (KSNDMC & IMD)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()"])
+    run_step("4b. Sync Weather Page HTML & DOM", [sys.executable, "scripts/sync_weather_page.py"])
+    run_step("4c. Sync Static DOM Telemetry", [sys.executable, "scripts/sync_all_static_dom.py"])
     run_step("5. APMC Market Prices Scraper", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()"])
     
     # 2. Scrape Multi-Source Kannada News, Schemes & Officers Directory

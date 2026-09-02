@@ -462,7 +462,8 @@ def run_full_sync():
     with open(warnings_file, "w", encoding="utf-8") as f:
         json.dump(forecast_5days, f, ensure_ascii=False, indent=2)
 
-    print("=== SUCCESS: data/weather.json and data/district_warnings.json UPDATED ===")
+run = run_full_sync
 
 if __name__ == "__main__":
     run_full_sync()
+
