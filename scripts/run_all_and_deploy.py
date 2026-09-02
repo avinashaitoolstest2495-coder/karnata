@@ -39,8 +39,16 @@ def main():
     # 0. Synchronize Newly Added Features / Pages from Root Workspace
     run_step("0. Auto-Sync New Features & Pages across Workspaces", [sys.executable, "scripts/auto_sync_workspaces.py"])
 
-    # 1. Scrape Live Rates & Sensors
-    run_step("1. Gold & Silver Scraper (Karnataka Bullion Direct)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"])
+    # 1. Scrape Live Rates & Sensors (Gold runs strictly at 10:00 AM, 10:30 AM, and 11:00 AM)
+    now_dt = datetime.now()
+    is_gold_time = (now_dt.hour == 10 and now_dt.minute in range(0, 36)) or \
+                   (now_dt.hour == 11 and now_dt.minute in range(0, 15)) or \
+                   (os.environ.get('FORCE_GOLD_UPDATE') == '1')
+    if is_gold_time:
+        run_step("1. Gold & Silver Scraper (10:00 AM / 10:30 AM / 11:00 AM Scheduled Run)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"])
+    else:
+        print(f"[{now_dt.strftime('%H:%M')}] Notice: Gold rates update only once daily at 10:00 AM, 10:30 AM, and 11:00 AM. Skipping gold scrape.")
+
     run_step("2. Petrol & Diesel Scraper", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()"])
     run_step("3. Dam Water Level Scraper (KSNDMC/WRD)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from dam_scraper import run; run()"])
     run_step("4. Weather Scraper (KSNDMC & IMD)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()"])

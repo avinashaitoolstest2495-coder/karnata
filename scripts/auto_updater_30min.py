@@ -32,14 +32,21 @@ try:
 except Exception as e:
     print("[WARN] Weather baking notice:", e)
 
-# 2b. Scrape latest Gold & Silver rates (Jos Alukkas & Bullion Market)
-try:
-    print("Step 2b: Scraping latest Gold & Silver live rates...")
-    gold_scraper_py = os.path.join(ROOT_DIR, 'scraper', 'gold_scraper.py')
-    subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
-    print("[OK] Gold rates scraped.")
-except Exception as e:
-    print("[WARN] Gold scraper notice:", e)
+# 2b. Scrape latest Gold & Silver rates (Runs strictly at 10:00 AM, 10:30 AM, and 11:00 AM only)
+now = datetime.now()
+is_gold_update_time = (now.hour == 10 and now.minute in range(0, 36)) or \
+                      (now.hour == 11 and now.minute in range(0, 15)) or \
+                      (os.environ.get('FORCE_GOLD_UPDATE') == '1')
+
+if is_gold_update_time:
+    try:
+        print(f"[{now.strftime('%H:%M')}] Step 2b: Gold update window active (10:00 AM / 10:30 AM / 11:00 AM). Scraping latest rates...")
+        subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
+        print("[OK] Gold rates scraped.")
+    except Exception as e:
+        print("[WARN] Gold scraper notice:", e)
+else:
+    print(f"[{now.strftime('%H:%M')}] Notice: Gold rates update only once daily at 10:00 AM, 10:30 AM, and 11:00 AM. Skipping gold scrape.")
 
 # 3. Sync static telemetry metrics into DOMs
 try:
