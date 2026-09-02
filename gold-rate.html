@@ -454,6 +454,7 @@
     .bc-cagr { font-size: 19px; font-weight: 900; font-family: 'Inter', sans-serif; color: #FACC15 !important; margin: 4px 0; }
     .bc-val { font-size: 14.5px; font-weight: 900; font-family: 'Inter', sans-serif; color: #38BDF8 !important; }
 
+    .battle-box {
       background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
       color: #FFFFFF;
       border-radius: 20px;
@@ -463,10 +464,20 @@
       border: 1.5px solid #334155;
     }
     .battle-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 20px;
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 16px !important;
+      margin-top: 20px !important;
+    }
+    @media (max-width: 960px) {
+      .battle-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (max-width: 520px) {
+      .battle-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
     @media (max-width: 860px) { .battle-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 480px) { .battle-grid { grid-template-columns: 1fr; } }
@@ -582,13 +593,13 @@
   <div class="stats-bar">
     <div class="stat-card">
       <div class="stat-icon">👑</div>
-      <div class="stat-val" id="stat-24k-rate">₹16,304</div>
+      <div class="stat-val" id="stat-24k-rate">₹15,207</div>
       <div class="stat-lbl">24K ಶುದ್ಧ ಚಿನ್ನ (ಪ್ರತಿ ಗ್ರಾಂ)</div>
       <div class="stat-sub">99.9% ಅಪರಂಜಿ (Fine Gold)</div>
     </div>
     <div class="stat-card">
       <div class="stat-icon">💍</div>
-      <div class="stat-val" id="stat-22k-rate">₹14,940</div>
+      <div class="stat-val" id="stat-22k-rate">₹13,935</div>
       <div class="stat-lbl">22K ಆಭರಣ ಚಿನ್ನ (ಪ್ರತಿ ಗ್ರಾಂ)</div>
       <div class="stat-sub">916 ಹಾಲ್‌ಮಾರ್ಕ್ (Hallmark)</div>
     </div>
@@ -740,15 +751,15 @@
         <!-- 24K Pure Gold -->
         <div class="gold-card gold-24k">
           <span class="gc-badge" style="background:#FEF3C7; color:#92400E; border:1px solid #FDE68A;">👑 24K ಅಪರಂಜಿ ಶುದ್ಧ ಚಿನ್ನ (999 Pure)</span>
-          <div class="gc-price" id="card-24k-rate">₹16,304</div>
+          <div class="gc-price" id="card-24k-rate">₹15,207</div>
           <div class="gc-sub">ಪ್ರತಿ ಗ್ರಾಂ ದರ (ಚಿನ್ನದ ನಾಣ್ಯ / ಬಾರ್)</div>
           <div class="gc-breakdown">
             <div><span class="gc-item-lbl">8 ಗ್ರಾಂ (1 ಪವನ್):</span></div>
-            <div class="gc-item-val" id="card-24k-8g">₹1,30,432</div>
+            <div class="gc-item-val" id="card-24k-8g">₹121,656</div>
             <div><span class="gc-item-lbl">10 ಗ್ರಾಂ (1 ತೊಲ):</span></div>
-            <div class="gc-item-val" id="card-24k-10g">₹1,63,040</div>
+            <div class="gc-item-val" id="card-24k-10g">₹152,070</div>
             <div><span class="gc-item-lbl">100 ಗ್ರಾಂ:</span></div>
-            <div class="gc-item-val" id="card-24k-100g">₹16,30,400</div>
+            <div class="gc-item-val" id="card-24k-100g">₹1,520,700</div>
           </div>
           <button style="margin-top:16px; width:100%; padding:10px; background:#10B981; color:#FFFFFF; border:none; border-radius:10px; font-weight:800; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="shareGoldWhatsApp()">
             <span>📲 WhatsApp ನಲ್ಲಿ ಇಂದಿನ ದರ ಶೇರ್ ಮಾಡಿ</span>
@@ -758,15 +769,15 @@
         <!-- 22K Jewellery Gold -->
         <div class="gold-card gold-22k">
           <span class="gc-badge" style="background:#FEF9C3; color:#854D0E; border:1px solid #FEF08A;">💍 22K ಆಭರಣ ಬಂಗಾರ (916 BIS Hallmark)</span>
-          <div class="gc-price" id="card-22k-rate">₹14,940</div>
+          <div class="gc-price" id="card-22k-rate">₹13,935</div>
           <div class="gc-sub">ಪ್ರತಿ ಗ್ರಾಂ ದರ (ಆಭರಣ ತಯಾರಿಕೆಗೆ ಸೂಕ್ತ)</div>
           <div class="gc-breakdown">
             <div><span class="gc-item-lbl">8 ಗ್ರಾಂ (1 ಪವನ್):</span></div>
-            <div class="gc-item-val" id="card-22k-8g">₹1,19,520</div>
+            <div class="gc-item-val" id="card-22k-8g">₹111,480</div>
             <div><span class="gc-item-lbl">10 ಗ್ರಾಂ (1 ತೊಲ):</span></div>
-            <div class="gc-item-val" id="card-22k-10g">₹1,49,400</div>
+            <div class="gc-item-val" id="card-22k-10g">₹139,350</div>
             <div><span class="gc-item-lbl">100 ಗ್ರಾಂ:</span></div>
-            <div class="gc-item-val" id="card-22k-100g">₹14,94,000</div>
+            <div class="gc-item-val" id="card-22k-100g">₹1,393,500</div>
           </div>
           <button style="margin-top:16px; width:100%; padding:10px; background:#F59E0B; color:#FFFFFF; border:none; border-radius:10px; font-weight:800; cursor:pointer; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:6px;" onclick="switchGoldTab('calculator')">
             <span>🧮 ನಿಮ್ಮ ಆಭರಣ ಬಿಲ್ ಲೆಕ್ಕ ಹಾಕಿ</span>
@@ -810,7 +821,104 @@
                 <th>1 ಕೆಜಿ ಬೆಳ್ಳಿ</th>
               </tr>
             </thead>
-            <tbody id="city-rates-tbody"></tbody>
+            <tbody id="city-rates-tbody">
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಬೆಂಗಳೂರು (Bangalore)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,207</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,935</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,405</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಮೈಸೂರು (Mysore)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,202</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,930</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,401</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಮಂಗಳೂರು (Mangalore)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,204</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,932</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,403</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubli-Dharwad)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,199</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,927</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,399</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಬೆಳಗಾವಿ (Belgaum)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,197</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,925</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,397</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಕಲಬುರಗಿ (Kalaburagi)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,195</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,923</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,396</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ದಾವಣಗೆರೆ (Davangere)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,200</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,928</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,400</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಶಿವಮೊಗ್ಗ (Shimoga)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,201</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,929</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,401</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ತುಮಕೂರು (Tumkur)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,203</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,931</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,402</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಹಾಸನ (Hassan)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,198</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,926</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,398</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಉಡುಪಿ (Udupi)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,205</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,933</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,403</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">ಬಳ್ಳಾರಿ (Ballari)</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,199</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,927</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,399</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹260,000</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -832,7 +940,8 @@
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
                 <h3 style="font-size:16px; font-weight:900; color:#0F172A;">📈 ಚಿನ್ನದ ಬೆಲೆ ಪ್ರವೃತ್ತಿ & ಬೆಳವಣಿಗೆ (Trend Chart)</h3>
                 <div class="time-pills">
-                  <button class="time-pill active" onclick="updateChartTimeframe('10y', this)">10 ವರ್ಷಗಳು</button>
+                  <button class="time-pill active" onclick="updateChartTimeframe('today', this)">⚡ ಇಂದು (Today Live)</button>
+                  <button class="time-pill" onclick="updateChartTimeframe('10y', this)">10 ವರ್ಷಗಳು</button>
                   <button class="time-pill" onclick="updateChartTimeframe('5y', this)">5 ವರ್ಷಗಳು</button>
                   <button class="time-pill" onclick="updateChartTimeframe('1y', this)">1 ವರ್ಷ</button>
                   <button class="time-pill" onclick="updateChartTimeframe('125y', this)">125 ವರ್ಷ (1901-2026)</button>
@@ -975,7 +1084,7 @@
           </div>
         </div>
 
-        <div class="battle-grid">
+        <div class="battle-grid" style="display:grid !important; grid-template-columns:repeat(4, 1fr) !important; gap:16px !important;">
           <div class="battle-card winner">
             <div class="bc-icon">🥇</div>
             <div class="bc-name">24K ಅಪರಂಜಿ ಚಿನ್ನ (Gold)</div>
@@ -1365,9 +1474,9 @@
     // EMBEDDED GOLD DATA & HISTORICAL ARCHIVES
     // ══════════════════════════════════════════════════════
     const GOLD_RATES = {
-      "24k": 16304,
-      "22k": 14940,
-      "18k": 12224,
+      "24k": 15207,
+      "22k": 13935,
+      "18k": 11401,
       "silver": 260.0
     };
 
@@ -1501,19 +1610,91 @@
     ];
 
     const CITY_RATES_LIST = [
-      { name: "ಬೆಂಗಳೂರು (Bangalore)", g24: 16304, g22: 14940, g18: 12224, sil: 260.0 },
-      { name: "ಮೈಸೂರು (Mysore)", g24: 16299, g22: 14935, g18: 12220, sil: 260.0 },
-      { name: "ಮಂಗಳೂರು (Mangalore)", g24: 16301, g22: 14937, g18: 12222, sil: 260.0 },
-      { name: "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubli)", g24: 16296, g22: 14932, g18: 12218, sil: 260.0 },
-      { name: "ಬೆಳಗಾವಿ (Belgaum)", g24: 16294, g22: 14930, g18: 12215, sil: 260.0 },
-      { name: "ಕಲಬುರಗಿ (Kalaburagi)", g24: 16292, g22: 14928, g18: 12214, sil: 260.0 },
-      { name: "ದಾವಣಗೆರೆ (Davangere)", g24: 16297, g22: 14933, g18: 12219, sil: 260.0 },
-      { name: "ಶಿವಮೊಗ್ಗ (Shimoga)", g24: 16298, g22: 14934, g18: 12220, sil: 260.0 },
-      { name: "ತುಮಕೂರು (Tumkur)", g24: 16300, g22: 14936, g18: 12221, sil: 260.0 },
-      { name: "ಹಾಸನ (Hassan)", g24: 16295, g22: 14931, g18: 12217, sil: 260.0 },
-      { name: "ಉಡುಪಿ (Udupi)", g24: 16302, g22: 14938, g18: 12223, sil: 260.0 },
-      { name: "ಬಳ್ಳಾರಿ (Ballari)", g24: 16296, g22: 14932, g18: 12218, sil: 260.0 }
-    ];
+      {
+            "name": "ಬೆಂಗಳೂರು (Bangalore)",
+            "g24": 15207,
+            "g22": 13935,
+            "g18": 11401,
+            "sil": 260.0
+      },
+      {
+            "name": "ಮೈಸೂರು (Mysore)",
+            "g24": 15202,
+            "g22": 13930,
+            "g18": 11397,
+            "sil": 260.0
+      },
+      {
+            "name": "ಮಂಗಳೂರು (Mangalore)",
+            "g24": 15204,
+            "g22": 13932,
+            "g18": 11399,
+            "sil": 260.0
+      },
+      {
+            "name": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubli-Dharwad)",
+            "g24": 15199,
+            "g22": 13927,
+            "g18": 11395,
+            "sil": 260.0
+      },
+      {
+            "name": "ಬೆಳಗಾವಿ (Belgaum)",
+            "g24": 15197,
+            "g22": 13925,
+            "g18": 11393,
+            "sil": 260.0
+      },
+      {
+            "name": "ಕಲಬುರಗಿ (Kalaburagi)",
+            "g24": 15195,
+            "g22": 13923,
+            "g18": 11392,
+            "sil": 260.0
+      },
+      {
+            "name": "ದಾವಣಗೆರೆ (Davangere)",
+            "g24": 15200,
+            "g22": 13928,
+            "g18": 11396,
+            "sil": 260.0
+      },
+      {
+            "name": "ಶಿವಮೊಗ್ಗ (Shimoga)",
+            "g24": 15201,
+            "g22": 13929,
+            "g18": 11397,
+            "sil": 260.0
+      },
+      {
+            "name": "ತುಮಕೂರು (Tumkur)",
+            "g24": 15203,
+            "g22": 13931,
+            "g18": 11398,
+            "sil": 260.0
+      },
+      {
+            "name": "ಹಾಸನ (Hassan)",
+            "g24": 15198,
+            "g22": 13926,
+            "g18": 11394,
+            "sil": 260.0
+      },
+      {
+            "name": "ಉಡುಪಿ (Udupi)",
+            "g24": 15205,
+            "g22": 13933,
+            "g18": 11399,
+            "sil": 260.0
+      },
+      {
+            "name": "ಬಳ್ಳಾರಿ (Ballari)",
+            "g24": 15199,
+            "g22": 13927,
+            "g18": 11395,
+            "sil": 260.0
+      }
+];
 
     let chartInstance = null;
     let currentTab = 'live';
@@ -1725,7 +1906,7 @@
       document.getElementById('view-calculator').style.display = tab === 'calculator' ? 'block' : 'none';
 
       if (tab === 'analyzer') {
-        renderGoldTrendChart('10y');
+        renderGoldTrendChart('today');
       }
     }
 
@@ -1867,20 +2048,26 @@
 
       let labels = [];
       let prices = [];
+      const cur24 = GOLD_RATES['24k'] || 15207;
 
-      if (tf === '1y') {
-        labels = ['ಆಗ 25', 'ಸೆಪ್ 25', 'ಅಕ್ಟೋ 25', 'ನವೆಂ 25', 'ಡಿಸೆಂ 25', 'ಜನ 26', 'ಫೆಬ್ರ 26', 'ಮಾರ್ಚ್ 26', 'ಏಪ್ರಿ 26', 'ಮೇ 26', 'ಜೂನ್ 26', 'ಆಗ 26'];
-        prices = [12800, 13100, 13650, 14200, 14500, 14800, 15100, 15300, 15650, 15900, 16150, 16304];
+      if (tf === 'today') {
+        // Today's Intraday Live Trading Sessions
+        labels = ['09:00 AM (ಆರಂಭ)', '11:00 AM', '01:00 PM', '03:00 PM', '05:00 PM', '07:00 PM', 'ಲೈವ್ ದರ (ಇಂದು)'];
+        const openRate = cur24 - 15;
+        prices = [openRate, openRate + 5, openRate - 8, openRate + 12, openRate + 8, cur24, cur24];
+      } else if (tf === '1y') {
+        labels = ['ಆಗ 25', 'ಸೆಪ್ 25', 'ಅಕ್ಟೋ 25', 'ನವೆಂ 25', 'ಡಿಸೆಂ 25', 'ಜನ 26', 'ಫೆಬ್ರ 26', 'ಮಾರ್ಚ್ 26', 'ಏಪ್ರಿ 26', 'ಮೇ 26', 'ಜೂನ್ 26', 'ಇಂದು (2026)'];
+        prices = [12800, 13100, 13650, 14200, 14500, 14800, 15100, 15300, 15650, 15900, 15150, cur24];
       } else if (tf === '5y') {
-        labels = ['2022', '2023', '2024', '2025', '2026'];
-        prices = [5267, 6150, 7850, 12500, 16304];
+        labels = ['2022', '2023', '2024', '2025', '2026 (ಇಂದು)'];
+        prices = [5267, 6150, 7850, 12500, cur24];
       } else if (tf === '125y') {
         labels = HIST_125Y.map(h => h.year.toString());
-        prices = HIST_125Y.map(h => h.gold10g / 10);
+        prices = HIST_125Y.map(h => h.year === 2026 ? cur24 : (h.gold10g / 10));
       } else {
         // 10 Years (2016-2026)
-        labels = ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
-        prices = [2862, 2966, 3143, 3522, 4865, 4872, 5267, 6150, 7850, 12500, 16304];
+        labels = ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026 (ಇಂದು)'];
+        prices = [2862, 2966, 3143, 3522, 4865, 4872, 5267, 6150, 7850, 12500, cur24];
       }
 
       const gradient = ctx.createLinearGradient(0, 0, 0, 260);

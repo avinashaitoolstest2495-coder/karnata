@@ -32,9 +32,18 @@ try:
 except Exception as e:
     print("[WARN] Weather baking notice:", e)
 
+# 2b. Scrape latest Gold & Silver rates (Jos Alukkas & Bullion Market)
+try:
+    print("Step 2b: Scraping latest Gold & Silver live rates...")
+    gold_scraper_py = os.path.join(ROOT_DIR, 'scraper', 'gold_scraper.py')
+    subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
+    print("[OK] Gold rates scraped.")
+except Exception as e:
+    print("[WARN] Gold scraper notice:", e)
+
 # 3. Sync static telemetry metrics into DOMs
 try:
-    print("Step 3: Syncing static DOM telemetry metrics...")
+    print("Step 3: Syncing static DOM telemetry metrics (Index, Weather, Gold-Rate)...")
     sync_dom_py = os.path.join(ROOT_DIR, 'scripts', 'sync_all_static_dom.py')
     subprocess.run([sys.executable, sync_dom_py], cwd=ROOT_DIR, check=True)
     print("[OK] Static DOMs synced.")

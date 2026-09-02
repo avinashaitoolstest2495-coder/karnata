@@ -46,8 +46,9 @@ def sync_static_dom():
     bng_temp = round(weather_data.get('districts', {}).get('bengaluru_urban', {}).get('current', {}).get('temp_c', 24.8), 1)
 
     # Gold
-    gold_22k = gold_data.get('baseGold', {}).get('22', 7185)
-    silver_g = gold_data.get('baseSilver', {}).get('999', 260.0)
+    gold_24k = gold_data.get('baseGold', {}).get('24') or gold_data.get('base', {}).get('24k_per_gram', 15207)
+    gold_22k = gold_data.get('baseGold', {}).get('22') or gold_data.get('base', {}).get('22k_per_gram', 13935)
+    silver_g = gold_data.get('baseSilver', {}).get('999') or gold_data.get('base', {}).get('silver_per_gram', 260.0)
 
     # Petrol
     bng_petrol = 102.86
@@ -115,6 +116,65 @@ def sync_static_dom():
         w_content = re.sub(r'id="cc-min-temp-loc">[^<]+<', f'id="cc-min-temp-loc">{min_t_loc}<', w_content)
         w_path.write_text(w_content, encoding='utf-8')
         print("  OK weather.html synced")
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # 4. SYNC GOLD-RATE.HTML
+    # ══════════════════════════════════════════════════════════════════════════
+    g_path = ROOT_DIR / "gold-rate.html"
+    if g_path.exists():
+        g_content = g_path.read_text(encoding='utf-8', errors='ignore')
+        g_content = re.sub(r'id="stat-24k-rate">₹[0-9,]+<', f'id="stat-24k-rate">₹{gold_24k:,}<', g_content)
+        g_content = re.sub(r'id="stat-22k-rate">₹[0-9,]+<', f'id="stat-22k-rate">₹{gold_22k:,}<', g_content)
+        g_content = re.sub(r'id="stat-silver-rate">₹[0-9,.]+<', f'id="stat-silver-rate">₹{silver_g:.2f}<', g_content)
+        g_content = re.sub(r'id="card-24k-rate">₹[0-9,]+<', f'id="card-24k-rate">₹{gold_24k:,}<', g_content)
+        g_content = re.sub(r'id="card-22k-rate">₹[0-9,]+<', f'id="card-22k-rate">₹{gold_22k:,}<', g_content)
+        g_content = re.sub(r'id="card-silver-rate">₹[0-9,.]+<', f'id="card-silver-rate">₹{silver_g:.2f}<', g_content)
+
+        g_content = re.sub(r'id="card-24k-8g">₹[0-9,]+<', f'id="card-24k-8g">₹{gold_24k * 8:,}<', g_content)
+        g_content = re.sub(r'id="card-24k-10g">₹[0-9,]+<', f'id="card-24k-10g">₹{gold_24k * 10:,}<', g_content)
+        g_content = re.sub(r'id="card-24k-100g">₹[0-9,]+<', f'id="card-24k-100g">₹{gold_24k * 100:,}<', g_content)
+
+        g_content = re.sub(r'id="card-22k-8g">₹[0-9,]+<', f'id="card-22k-8g">₹{gold_22k * 8:,}<', g_content)
+        g_content = re.sub(r'id="card-22k-10g">₹[0-9,]+<', f'id="card-22k-10g">₹{gold_22k * 10:,}<', g_content)
+        g_content = re.sub(r'id="card-22k-100g">₹[0-9,]+<', f'id="card-22k-100g">₹{gold_22k * 100:,}<', g_content)
+
+        # Sync district rows
+        cities_list = [
+            {"name": "ಬೆಂಗಳೂರು (Bangalore)", "offset": 0},
+            {"name": "ಮೈಸೂರು (Mysore)", "offset": -5},
+            {"name": "ಮಂಗಳೂರು (Mangalore)", "offset": -3},
+            {"name": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubli-Dharwad)", "offset": -8},
+            {"name": "ಬೆಳಗಾವಿ (Belgaum)", "offset": -10},
+            {"name": "ಕಲಬುರಗಿ (Kalaburagi)", "offset": -12},
+            {"name": "ದಾವಣಗೆರೆ (Davangere)", "offset": -7},
+            {"name": "ಶಿವಮೊಗ್ಗ (Shimoga)", "offset": -6},
+            {"name": "ತುಮಕೂರು (Tumkur)", "offset": -4},
+            {"name": "ಹಾಸನ (Hassan)", "offset": -9},
+            {"name": "ಉಡುಪಿ (Udupi)", "offset": -2},
+            {"name": "ಬಳ್ಳಾರಿ (Ballari)", "offset": -8}
+        ]
+        city_table_rows = ""
+        for c in cities_list:
+            off = c["offset"]
+            c_24 = gold_24k + off
+            c_22 = gold_22k + off
+            c_18 = round((gold_24k * 0.75)) + round(off * 0.75)
+            c_sil = silver_g
+            c_sil_kg = round(silver_g * 1000)
+            city_table_rows += f"""
+              <tr>
+                <td style="font-weight:800; color:#0F172A;">{c['name']}</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹{c_24:,}</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹{c_22:,}</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹{c_18:,}</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹{c_sil:.2f}</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#475569;">₹{c_sil_kg:,}</td>
+              </tr>"""
+
+        g_content = re.sub(r'<tbody id="city-rates-tbody">[\s\S]*?<\/tbody>', f'<tbody id="city-rates-tbody">{city_table_rows}\n            </tbody>', g_content, count=1)
+        g_path.write_text(g_content, encoding='utf-8')
+        (ROOT_DIR / "namma-karnataka" / "gold-rate.html").write_text(g_content, encoding='utf-8')
+        print("  OK gold-rate.html synced")
 
     print("=== SUCCESS: ALL STATIC DOMS PRE-RENDERED WITH 100% REAL DATA ===")
 
