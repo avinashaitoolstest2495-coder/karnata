@@ -73,8 +73,8 @@ def sync_weather():
                 "alert_level": "red",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
-                "title": f"🔴 ಕೆಂಪು ಕಟ್ಟೆಚ್ಚರ (Red Alert) — {d_name_kn}",
-                "body": f"IMD ತುರ್ತು ಎಚ್ಚರಿಕೆ: {d_name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ! ತಕ್ಷಣದ ಸುರಕ್ಷತಾ ಕ್ರಮಗಳನ್ನು ಪಾಲಿಸಿ.",
+                "title": f"🚨 {d_name_kn} ಕಟ್ಟೆಚ್ಚರ: ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ! (Red Alert)",
+                "body": f"ಅಧಿಕೃತ ಮುನ್ನೆಚ್ಚರಿಕೆ 🌊: {d_name_kn} ಸುತ್ತಮುತ್ತ ಪ್ರವಾಹ ಹಾಗೂ ತೀವ್ರ ಬಿರುಗಾಳಿ ಸಹಿತ ಅತಿ ಭಾರೀ ಮಳೆ ಸಂಭವ! ಅನಗತ್ಯ ಪ್ರಯಾಣ ತಪ್ಪಿಸಿ, ಸುರಕ್ಷಿತ ಕಟ್ಟಡಗಳಲ್ಲಿರಿ ➔",
                 "url": f"https://karnata.in/weather?district={k}",
                 "icon": "https://karnata.in/assets/icons/icon-512x512.png",
                 "topic": "weather_alert",
@@ -92,8 +92,8 @@ def sync_weather():
                 "alert_level": "orange",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
-                "title": f"🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert) — {d_name_kn}",
-                "body": f"IMD ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ: {d_name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಭಾರೀ ಮಳೆ ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಾಧ್ಯತೆ. ಸುರಕ್ಷಿತವಾಗಿರಿ.",
+                "title": f"⛈️ {d_name_kn}: ಬಿರುಸಿನ ಮಳೆ & ಗುಡುಗು ಮುನ್ನೆಚ್ಚರಿಕೆ! (Orange Alert)",
+                "body": f"IMD ಲೈವ್ ಎಚ್ಚರಿಕೆ ⚡: {d_name_kn} ಜಿಲ್ಲೆಯಾದ್ಯಂತ ಮುಂದಿನ ಕೆಲ ಗಂಟೆಗಳಲ್ಲಿ ಬಿರುಗಾಳಿ ಸಹಿತ ಧಾರಾಕಾರ ಮಳೆ ಸಾಧ್ಯತೆ! ಮರದ ಕೆಳಗೆ ಆಶ್ರಯ ಪಡೆಯಬೇಡಿ ➔",
                 "url": f"https://karnata.in/weather?district={k}",
                 "icon": "https://karnata.in/assets/icons/icon-512x512.png",
                 "topic": "weather_alert",
@@ -110,13 +110,14 @@ def sync_weather():
                 advice = 'ತುಂತುರು ಅಥವಾ ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ'
             accent = '#CA8A04'; bg = '#FEFCE8'
             # Geo Push Notification for Yellow Alert
+            adv_time = f"ಮಾನ್ಯತೆ: {v_time}" if 'Valid upto:' in raw_wi else "ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ"
             geo_weather_alerts.append({
                 "id": f"WEATHER-YELLOW-{k}-{datetime.now().strftime('%Y%m%d%H')}",
                 "alert_level": "yellow",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
-                "title": f"🟡 ಹಳದಿ ಮುನ್ನೆಚ್ಚರಿಕೆ (Yellow Watch) — {d_name_kn}",
-                "body": f"IMD ಲೈವ್ ನೌಕಾಸ್ಟ್: {d_name_kn} ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ ({advice}).",
+                "title": f"🌦️ {d_name_kn}: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+                "body": f"ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: {d_name_kn} ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ ({adv_time}). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
                 "url": f"https://karnata.in/weather?district={k}",
                 "icon": "https://karnata.in/assets/icons/icon-512x512.png",
                 "topic": "weather_alert",
