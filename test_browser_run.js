@@ -86,29 +86,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // 1. Dynamic Canvas Raindrop & Atmospheric Particle Engine
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -122,29 +100,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const canvas = document.getElementById('weatherCanvas');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -158,17 +114,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const ctx = canvas.getContext('2d');
 
 
@@ -176,29 +121,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   let width, height;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -219,40 +142,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   function resize() {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -266,29 +156,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     height = canvas.height = canvas.parentElement.offsetHeight;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -302,29 +170,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const count = Math.floor(width / 18);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -338,29 +184,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       raindrops.push({
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -374,29 +198,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         y: Math.random() * height,
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -410,29 +212,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         speed: Math.random() * 5 + 4,
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -446,29 +226,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -482,40 +240,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -536,17 +261,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     ctx.clearRect(0, 0, width, height);
 
 
@@ -554,29 +268,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     ctx.strokeStyle = 'rgba(186, 230, 253, 0.45)';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -597,40 +289,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     for (let r of raindrops) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -644,17 +303,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       ctx.moveTo(r.x, r.y);
 
 
@@ -662,29 +310,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       ctx.lineTo(r.x + 1.2, r.y + r.len);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -705,40 +331,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       r.y += r.speed;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -752,29 +345,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       if (r.y > height) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -788,29 +359,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         r.x = Math.random() * width;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -824,29 +373,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -860,40 +387,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -914,17 +408,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   resize();
 
 
@@ -932,29 +415,7 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   draw();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -975,28 +436,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Data & State Management
 
 
@@ -1004,47 +443,14 @@ try {
 
 
 
+window.districtWarnings5D = {"Nowcast": {"day_code": "Nowcast", "tab_label_kn": "⚡ 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್", "summary": {"red": 0, "orange": 0, "yellow": 9, "green": 22, "total_alerts": 9}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1600 Hrs Valid upto: 1900 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1900 Hrs)"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "yellow", "level_label_kn": "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)", "accent_color": "#CA8A04", "bg_color": "#FEFCE8", "raw_warning": "Light rain: Time of issue: 2026-09-01 1300 Hrs Valid upto: 1600 Hrs", "hazard_kn": "ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️", "advice_kn": "ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: 1600 Hrs)"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}, "Day_1": {"day_code": "Day_1", "tab_label_kn": "📅 ಇಂದು (Day 1)", "summary": {"red": 0, "orange": 0, "yellow": 0, "green": 31, "total_alerts": 0}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}, "Day_2": {"day_code": "Day_2", "tab_label_kn": "📅 ನಾಳೆ (Day 2)", "summary": {"red": 0, "orange": 0, "yellow": 0, "green": 31, "total_alerts": 0}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}, "Day_3": {"day_code": "Day_3", "tab_label_kn": "📅 ದಿನ 3 (Day 3)", "summary": {"red": 0, "orange": 0, "yellow": 0, "green": 31, "total_alerts": 0}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}, "Day_4": {"day_code": "Day_4", "tab_label_kn": "📅 ದಿನ 4 (Day 4)", "summary": {"red": 0, "orange": 0, "yellow": 0, "green": 31, "total_alerts": 0}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}, "Day_5": {"day_code": "Day_5", "tab_label_kn": "📅 ದಿನ 5 (Day 5)", "summary": {"red": 0, "orange": 0, "yellow": 0, "green": 31, "total_alerts": 0}, "districts": {"bengaluru_urban": {"district_key": "bengaluru_urban", "name_kn": "ಬೆಂಗಳೂರು ನಗರ", "name_en": "Bengaluru Urban", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bengaluru_rural": {"district_key": "bengaluru_rural", "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", "name_en": "Bengaluru Rural", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ramanagara": {"district_key": "ramanagara", "name_kn": "ರಾಮನಗರ", "name_en": "Ramanagara", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kolar": {"district_key": "kolar", "name_kn": "ಕೋಲಾರ", "name_en": "Kolar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkaballapura": {"district_key": "chikkaballapura", "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "name_en": "Chikkaballapura", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mandya": {"district_key": "mandya", "name_kn": "ಮಂಡ್ಯ", "name_en": "Mandya", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "mysuru": {"district_key": "mysuru", "name_kn": "ಮೈಸೂರು", "name_en": "Mysuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chamarajanagara": {"district_key": "chamarajanagara", "name_kn": "ಚಾಮರಾಜನಗರ", "name_en": "Chamarajanagar", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "tumakuru": {"district_key": "tumakuru", "name_kn": "ತುಮಕೂರು", "name_en": "Tumakuru", "region": "south", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dakshina_kannada": {"district_key": "dakshina_kannada", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "name_en": "Dakshina Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "udupi": {"district_key": "udupi", "name_kn": "ಉಡುಪಿ", "name_en": "Udupi", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "uttara_kannada": {"district_key": "uttara_kannada", "name_kn": "ಉತ್ತರ ಕನ್ನಡ", "name_en": "Uttara Kannada", "region": "coastal", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kodagu": {"district_key": "kodagu", "name_kn": "ಕೊಡಗು", "name_en": "Kodagu", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "hassan": {"district_key": "hassan", "name_kn": "ಹಾಸನ", "name_en": "Hassan", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chikkamagaluru": {"district_key": "chikkamagaluru", "name_kn": "ಚಿಕ್ಕಮಗಳೂರು", "name_en": "Chikkamagaluru", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "shivamogga": {"district_key": "shivamogga", "name_kn": "ಶಿವಮೊಗ್ಗ", "name_en": "Shivamogga", "region": "malnad", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "chitradurga": {"district_key": "chitradurga", "name_kn": "ಚಿತ್ರದುರ್ಗ", "name_en": "Chitradurga", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "davanagere": {"district_key": "davanagere", "name_kn": "ದಾವಣಗೆರೆ", "name_en": "Davanagere", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "haveri": {"district_key": "haveri", "name_kn": "ಹಾವೇರಿ", "name_en": "Haveri", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "ballari": {"district_key": "ballari", "name_kn": "ಬಳ್ಳಾರಿ", "name_en": "Ballari", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayanagara": {"district_key": "vijayanagara", "name_kn": "ವಿಜಯನಗರ", "name_en": "Vijayanagara", "region": "central", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "belagavi": {"district_key": "belagavi", "name_kn": "ಬೆಳಗಾವಿ", "name_en": "Belagavi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "dharwad": {"district_key": "dharwad", "name_kn": "ಧಾರವಾಡ", "name_en": "Dharwad", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "gadag": {"district_key": "gadag", "name_kn": "ಗದಗ", "name_en": "Gadag", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bagalkote": {"district_key": "bagalkote", "name_kn": "ಬಾಗಲಕೋಟೆ", "name_en": "Bagalkote", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "vijayapura": {"district_key": "vijayapura", "name_kn": "ವಿಜಯಪುರ", "name_en": "Vijayapura", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "koppal": {"district_key": "koppal", "name_kn": "ಕೊಪ್ಪಳ", "name_en": "Koppal", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "raichur": {"district_key": "raichur", "name_kn": "ರಾಯಚೂರು", "name_en": "Raichur", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "kalaburagi": {"district_key": "kalaburagi", "name_kn": "ಕಲಬುರಗಿ", "name_en": "Kalaburagi", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "yadgir": {"district_key": "yadgir", "name_kn": "ಯಾದಗಿರಿ", "name_en": "Yadgir", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}, "bidar": {"district_key": "bidar", "name_kn": "ಬೀದರ್", "name_en": "Bidar", "region": "north", "level": "green", "level_label_kn": "🟢 ಸಾಮಾನ್ಯ (No Warning)", "accent_color": "#16A34A", "bg_color": "#F0FDF4", "raw_warning": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).", "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ 🌤️", "advice_kn": "ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}};
 
 
 
 
 
 
-
-
-
-
-
-window.districtWarnings5D = {"Day_1":{"day_code":"Day_1","tab_label_kn":"ಇಂದು (Day 1)","summary":{"red":0,"orange":0,"yellow":16,"green":15,"total_alerts":16},"districts":{"bagalkote":{"district_key":"bagalkote","name_kn":"ಬಾಗಲಕೋಟೆ","name_en":"Bagalkote","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"udupi":{"district_key":"udupi","name_kn":"ಉಡುಪಿ","name_en":"Udupi","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chikkaballapura":{"district_key":"chikkaballapura","name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ","name_en":"Chikkaballapura","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayanagara":{"district_key":"vijayanagara","name_kn":"ವಿಜಯನಗರ","name_en":"Vijayanagara","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"shivamogga":{"district_key":"shivamogga","name_kn":"ಶಿವಮೊಗ್ಗ","name_en":"Shivamogga","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"kodagu":{"district_key":"kodagu","name_kn":"ಕೊಡಗು","name_en":"Kodagu","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"davanagere":{"district_key":"davanagere","name_kn":"ದಾವಣಗೆರೆ","name_en":"Davanagere","region":"central","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"ramanagara":{"district_key":"ramanagara","name_kn":"ರಾಮನಗರ","name_en":"Ramanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"raichur":{"district_key":"raichur","name_kn":"ರಾಯಚೂರು","name_en":"Raichur","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dakshina_kannada":{"district_key":"dakshina_kannada","name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ","name_en":"Dakshina Kannada","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"mysuru":{"district_key":"mysuru","name_kn":"ಮೈಸೂರು","name_en":"Mysuru","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"haveri":{"district_key":"haveri","name_kn":"ಹಾವೇರಿ","name_en":"Haveri","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dharwad":{"district_key":"dharwad","name_kn":"ಧಾರವಾಡ","name_en":"Dharwad","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"bengaluru_rural":{"district_key":"bengaluru_rural","name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","name_en":"Bengaluru Rural","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"belagavi":{"district_key":"belagavi","name_kn":"ಬೆಳಗಾವಿ","name_en":"Belagavi","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"uttara_kannada":{"district_key":"uttara_kannada","name_kn":"ಉತ್ತರ ಕನ್ನಡ","name_en":"Uttara Kannada","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"mandya":{"district_key":"mandya","name_kn":"ಮಂಡ್ಯ","name_en":"Mandya","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"tumakuru":{"district_key":"tumakuru","name_kn":"ತುಮಕೂರು","name_en":"Tumakuru","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"hassan":{"district_key":"hassan","name_kn":"ಹಾಸನ","name_en":"Hassan","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkamagaluru":{"district_key":"chikkamagaluru","name_kn":"ಚಿಕ್ಕಮಗಳೂರು","name_en":"Chikkamagaluru","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chitradurga":{"district_key":"chitradurga","name_kn":"ಚಿತ್ರದುರ್ಗ","name_en":"Chitradurga","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kolar":{"district_key":"kolar","name_kn":"ಕೋಲಾರ","name_en":"Kolar","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_urban":{"district_key":"bengaluru_urban","name_kn":"ಬೆಂಗಳೂರು ನಗರ","name_en":"Bengaluru Urban","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"yadgir":{"district_key":"yadgir","name_kn":"ಯಾದಗಿರಿ","name_en":"Yadgir","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"koppal":{"district_key":"koppal","name_kn":"ಕೊಪ್ಪಳ","name_en":"Koppal","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kalaburagi":{"district_key":"kalaburagi","name_kn":"ಕಲಬುರಗಿ","name_en":"Kalaburagi","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"gadag":{"district_key":"gadag","name_kn":"ಗದಗ","name_en":"Gadag","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chamarajanagara":{"district_key":"chamarajanagara","name_kn":"ಚಾಮರಾಜನಗರ","name_en":"Chamarajanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bidar":{"district_key":"bidar","name_kn":"ಬೀದರ್","name_en":"Bidar","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"ballari":{"district_key":"ballari","name_kn":"ಬಳ್ಳಾರಿ","name_en":"Ballari","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayapura":{"district_key":"vijayapura","name_kn":"ವಿಜಯಪುರ","name_en":"Vijayapura","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}},"Day_2":{"day_code":"Day_2","tab_label_kn":"ನಾಳೆ (Day 2)","summary":{"red":0,"orange":0,"yellow":15,"green":16,"total_alerts":15},"districts":{"haveri":{"district_key":"haveri","name_kn":"ಹಾವೇರಿ","name_en":"Haveri","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dharwad":{"district_key":"dharwad","name_kn":"ಧಾರವಾಡ","name_en":"Dharwad","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"bengaluru_rural":{"district_key":"bengaluru_rural","name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","name_en":"Bengaluru Rural","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"belagavi":{"district_key":"belagavi","name_kn":"ಬೆಳಗಾವಿ","name_en":"Belagavi","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"uttara_kannada":{"district_key":"uttara_kannada","name_kn":"ಉತ್ತರ ಕನ್ನಡ","name_en":"Uttara Kannada","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"mandya":{"district_key":"mandya","name_kn":"ಮಂಡ್ಯ","name_en":"Mandya","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"tumakuru":{"district_key":"tumakuru","name_kn":"ತುಮಕೂರು","name_en":"Tumakuru","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"hassan":{"district_key":"hassan","name_kn":"ಹಾಸನ","name_en":"Hassan","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkamagaluru":{"district_key":"chikkamagaluru","name_kn":"ಚಿಕ್ಕಮಗಳೂರು","name_en":"Chikkamagaluru","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chitradurga":{"district_key":"chitradurga","name_kn":"ಚಿತ್ರದುರ್ಗ","name_en":"Chitradurga","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kolar":{"district_key":"kolar","name_kn":"ಕೋಲಾರ","name_en":"Kolar","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_urban":{"district_key":"bengaluru_urban","name_kn":"ಬೆಂಗಳೂರು ನಗರ","name_en":"Bengaluru Urban","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"yadgir":{"district_key":"yadgir","name_kn":"ಯಾದಗಿರಿ","name_en":"Yadgir","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"koppal":{"district_key":"koppal","name_kn":"ಕೊಪ್ಪಳ","name_en":"Koppal","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kalaburagi":{"district_key":"kalaburagi","name_kn":"ಕಲಬುರಗಿ","name_en":"Kalaburagi","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"gadag":{"district_key":"gadag","name_kn":"ಗದಗ","name_en":"Gadag","region":"north","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chamarajanagara":{"district_key":"chamarajanagara","name_kn":"ಚಾಮರಾಜನಗರ","name_en":"Chamarajanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bidar":{"district_key":"bidar","name_kn":"ಬೀದರ್","name_en":"Bidar","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ballari":{"district_key":"ballari","name_kn":"ಬಳ್ಳಾರಿ","name_en":"Ballari","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bagalkote":{"district_key":"bagalkote","name_kn":"ಬಾಗಲಕೋಟೆ","name_en":"Bagalkote","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"udupi":{"district_key":"udupi","name_kn":"ಉಡುಪಿ","name_en":"Udupi","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"chikkaballapura":{"district_key":"chikkaballapura","name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ","name_en":"Chikkaballapura","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayanagara":{"district_key":"vijayanagara","name_kn":"ವಿಜಯನಗರ","name_en":"Vijayanagara","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"shivamogga":{"district_key":"shivamogga","name_kn":"ಶಿವಮೊಗ್ಗ","name_en":"Shivamogga","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"kodagu":{"district_key":"kodagu","name_kn":"ಕೊಡಗು","name_en":"Kodagu","region":"malnad","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"davanagere":{"district_key":"davanagere","name_kn":"ದಾವಣಗೆರೆ","name_en":"Davanagere","region":"central","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"ramanagara":{"district_key":"ramanagara","name_kn":"ರಾಮನಗರ","name_en":"Ramanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"raichur":{"district_key":"raichur","name_kn":"ರಾಯಚೂರು","name_en":"Raichur","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dakshina_kannada":{"district_key":"dakshina_kannada","name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ","name_en":"Dakshina Kannada","region":"coastal","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Heavy Rain     Strong Surface Winds   Updated on","hazard_kn":"ಉತ್ತಮ ಮಳೆ 🌧️, ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"mysuru":{"district_key":"mysuru","name_kn":"ಮೈಸೂರು","name_en":"Mysuru","region":"south","level":"yellow","level_label_kn":"🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)","accent_color":"#CA8A04","bg_color":"#FEFCE8","raw_warning":"Strong Surface Winds   Updated on","hazard_kn":"ಬಿರುಗಾಳಿ 💨","advice_kn":"ಸಾಧಾರಣ ಮಳೆ & ಗಾಳಿ, ಹವಾಮಾನ ಬದಲಾವಣೆ ಗಮನಿಸಿ"},"vijayapura":{"district_key":"vijayapura","name_kn":"ವಿಜಯಪುರ","name_en":"Vijayapura","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}},"Day_3":{"day_code":"Day_3","tab_label_kn":"ದಿನ 3 (Day 3)","summary":{"red":0,"orange":0,"yellow":0,"green":31,"total_alerts":0},"districts":{"davanagere":{"district_key":"davanagere","name_kn":"ದಾವಣಗೆರೆ","name_en":"Davanagere","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ramanagara":{"district_key":"ramanagara","name_kn":"ರಾಮನಗರ","name_en":"Ramanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dakshina_kannada":{"district_key":"dakshina_kannada","name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ","name_en":"Dakshina Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"raichur":{"district_key":"raichur","name_kn":"ರಾಯಚೂರು","name_en":"Raichur","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mysuru":{"district_key":"mysuru","name_kn":"ಮೈಸೂರು","name_en":"Mysuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"haveri":{"district_key":"haveri","name_kn":"ಹಾವೇರಿ","name_en":"Haveri","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dharwad":{"district_key":"dharwad","name_kn":"ಧಾರವಾಡ","name_en":"Dharwad","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_rural":{"district_key":"bengaluru_rural","name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","name_en":"Bengaluru Rural","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"belagavi":{"district_key":"belagavi","name_kn":"ಬೆಳಗಾವಿ","name_en":"Belagavi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"uttara_kannada":{"district_key":"uttara_kannada","name_kn":"ಉತ್ತರ ಕನ್ನಡ","name_en":"Uttara Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mandya":{"district_key":"mandya","name_kn":"ಮಂಡ್ಯ","name_en":"Mandya","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"hassan":{"district_key":"hassan","name_kn":"ಹಾಸನ","name_en":"Hassan","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"tumakuru":{"district_key":"tumakuru","name_kn":"ತುಮಕೂರು","name_en":"Tumakuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kolar":{"district_key":"kolar","name_kn":"ಕೋಲಾರ","name_en":"Kolar","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkamagaluru":{"district_key":"chikkamagaluru","name_kn":"ಚಿಕ್ಕಮಗಳೂರು","name_en":"Chikkamagaluru","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chitradurga":{"district_key":"chitradurga","name_kn":"ಚಿತ್ರದುರ್ಗ","name_en":"Chitradurga","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_urban":{"district_key":"bengaluru_urban","name_kn":"ಬೆಂಗಳೂರು ನಗರ","name_en":"Bengaluru Urban","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"yadgir":{"district_key":"yadgir","name_kn":"ಯಾದಗಿರಿ","name_en":"Yadgir","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"koppal":{"district_key":"koppal","name_kn":"ಕೊಪ್ಪಳ","name_en":"Koppal","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kalaburagi":{"district_key":"kalaburagi","name_kn":"ಕಲಬುರಗಿ","name_en":"Kalaburagi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"gadag":{"district_key":"gadag","name_kn":"ಗದಗ","name_en":"Gadag","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chamarajanagara":{"district_key":"chamarajanagara","name_kn":"ಚಾಮರಾಜನಗರ","name_en":"Chamarajanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bidar":{"district_key":"bidar","name_kn":"ಬೀದರ್","name_en":"Bidar","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ballari":{"district_key":"ballari","name_kn":"ಬಳ್ಳಾರಿ","name_en":"Ballari","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bagalkote":{"district_key":"bagalkote","name_kn":"ಬಾಗಲಕೋಟೆ","name_en":"Bagalkote","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"udupi":{"district_key":"udupi","name_kn":"ಉಡುಪಿ","name_en":"Udupi","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkaballapura":{"district_key":"chikkaballapura","name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ","name_en":"Chikkaballapura","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayanagara":{"district_key":"vijayanagara","name_kn":"ವಿಜಯನಗರ","name_en":"Vijayanagara","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"shivamogga":{"district_key":"shivamogga","name_kn":"ಶಿವಮೊಗ್ಗ","name_en":"Shivamogga","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kodagu":{"district_key":"kodagu","name_kn":"ಕೊಡಗು","name_en":"Kodagu","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayapura":{"district_key":"vijayapura","name_kn":"ವಿಜಯಪುರ","name_en":"Vijayapura","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}},"Day_4":{"day_code":"Day_4","tab_label_kn":"ದಿನ 4 (Day 4)","summary":{"red":0,"orange":0,"yellow":0,"green":31,"total_alerts":0},"districts":{"shivamogga":{"district_key":"shivamogga","name_kn":"ಶಿವಮೊಗ್ಗ","name_en":"Shivamogga","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kodagu":{"district_key":"kodagu","name_kn":"ಕೊಡಗು","name_en":"Kodagu","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"davanagere":{"district_key":"davanagere","name_kn":"ದಾವಣಗೆರೆ","name_en":"Davanagere","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ramanagara":{"district_key":"ramanagara","name_kn":"ರಾಮನಗರ","name_en":"Ramanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dakshina_kannada":{"district_key":"dakshina_kannada","name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ","name_en":"Dakshina Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"raichur":{"district_key":"raichur","name_kn":"ರಾಯಚೂರು","name_en":"Raichur","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mysuru":{"district_key":"mysuru","name_kn":"ಮೈಸೂರು","name_en":"Mysuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"haveri":{"district_key":"haveri","name_kn":"ಹಾವೇರಿ","name_en":"Haveri","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dharwad":{"district_key":"dharwad","name_kn":"ಧಾರವಾಡ","name_en":"Dharwad","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_rural":{"district_key":"bengaluru_rural","name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","name_en":"Bengaluru Rural","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"belagavi":{"district_key":"belagavi","name_kn":"ಬೆಳಗಾವಿ","name_en":"Belagavi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"uttara_kannada":{"district_key":"uttara_kannada","name_kn":"ಉತ್ತರ ಕನ್ನಡ","name_en":"Uttara Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mandya":{"district_key":"mandya","name_kn":"ಮಂಡ್ಯ","name_en":"Mandya","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"tumakuru":{"district_key":"tumakuru","name_kn":"ತುಮಕೂರು","name_en":"Tumakuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"hassan":{"district_key":"hassan","name_kn":"ಹಾಸನ","name_en":"Hassan","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chitradurga":{"district_key":"chitradurga","name_kn":"ಚಿತ್ರದುರ್ಗ","name_en":"Chitradurga","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kolar":{"district_key":"kolar","name_kn":"ಕೋಲಾರ","name_en":"Kolar","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkamagaluru":{"district_key":"chikkamagaluru","name_kn":"ಚಿಕ್ಕಮಗಳೂರು","name_en":"Chikkamagaluru","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_urban":{"district_key":"bengaluru_urban","name_kn":"ಬೆಂಗಳೂರು ನಗರ","name_en":"Bengaluru Urban","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"yadgir":{"district_key":"yadgir","name_kn":"ಯಾದಗಿರಿ","name_en":"Yadgir","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"koppal":{"district_key":"koppal","name_kn":"ಕೊಪ್ಪಳ","name_en":"Koppal","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kalaburagi":{"district_key":"kalaburagi","name_kn":"ಕಲಬುರಗಿ","name_en":"Kalaburagi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"gadag":{"district_key":"gadag","name_kn":"ಗದಗ","name_en":"Gadag","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chamarajanagara":{"district_key":"chamarajanagara","name_kn":"ಚಾಮರಾಜನಗರ","name_en":"Chamarajanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bidar":{"district_key":"bidar","name_kn":"ಬೀದರ್","name_en":"Bidar","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ballari":{"district_key":"ballari","name_kn":"ಬಳ್ಳಾರಿ","name_en":"Ballari","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bagalkote":{"district_key":"bagalkote","name_kn":"ಬಾಗಲಕೋಟೆ","name_en":"Bagalkote","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"udupi":{"district_key":"udupi","name_kn":"ಉಡುಪಿ","name_en":"Udupi","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkaballapura":{"district_key":"chikkaballapura","name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ","name_en":"Chikkaballapura","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayanagara":{"district_key":"vijayanagara","name_kn":"ವಿಜಯನಗರ","name_en":"Vijayanagara","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayapura":{"district_key":"vijayapura","name_kn":"ವಿಜಯಪುರ","name_en":"Vijayapura","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}},"Day_5":{"day_code":"Day_5","tab_label_kn":"ದಿನ 5 (Day 5)","summary":{"red":0,"orange":0,"yellow":0,"green":31,"total_alerts":0},"districts":{"tumakuru":{"district_key":"tumakuru","name_kn":"ತುಮಕೂರು","name_en":"Tumakuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"hassan":{"district_key":"hassan","name_kn":"ಹಾಸನ","name_en":"Hassan","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkamagaluru":{"district_key":"chikkamagaluru","name_kn":"ಚಿಕ್ಕಮಗಳೂರು","name_en":"Chikkamagaluru","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chitradurga":{"district_key":"chitradurga","name_kn":"ಚಿತ್ರದುರ್ಗ","name_en":"Chitradurga","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kolar":{"district_key":"kolar","name_kn":"ಕೋಲಾರ","name_en":"Kolar","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_urban":{"district_key":"bengaluru_urban","name_kn":"ಬೆಂಗಳೂರು ನಗರ","name_en":"Bengaluru Urban","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"yadgir":{"district_key":"yadgir","name_kn":"ಯಾದಗಿರಿ","name_en":"Yadgir","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"koppal":{"district_key":"koppal","name_kn":"ಕೊಪ್ಪಳ","name_en":"Koppal","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kalaburagi":{"district_key":"kalaburagi","name_kn":"ಕಲಬುರಗಿ","name_en":"Kalaburagi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"gadag":{"district_key":"gadag","name_kn":"ಗದಗ","name_en":"Gadag","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chamarajanagara":{"district_key":"chamarajanagara","name_kn":"ಚಾಮರಾಜನಗರ","name_en":"Chamarajanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bidar":{"district_key":"bidar","name_kn":"ಬೀದರ್","name_en":"Bidar","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ballari":{"district_key":"ballari","name_kn":"ಬಳ್ಳಾರಿ","name_en":"Ballari","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bagalkote":{"district_key":"bagalkote","name_kn":"ಬಾಗಲಕೋಟೆ","name_en":"Bagalkote","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"udupi":{"district_key":"udupi","name_kn":"ಉಡುಪಿ","name_en":"Udupi","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"chikkaballapura":{"district_key":"chikkaballapura","name_kn":"ಚಿಕ್ಕಬಳ್ಳಾಪುರ","name_en":"Chikkaballapura","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayanagara":{"district_key":"vijayanagara","name_kn":"ವಿಜಯನಗರ","name_en":"Vijayanagara","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"shivamogga":{"district_key":"shivamogga","name_kn":"ಶಿವಮೊಗ್ಗ","name_en":"Shivamogga","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"kodagu":{"district_key":"kodagu","name_kn":"ಕೊಡಗು","name_en":"Kodagu","region":"malnad","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"davanagere":{"district_key":"davanagere","name_kn":"ದಾವಣಗೆರೆ","name_en":"Davanagere","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"ramanagara":{"district_key":"ramanagara","name_kn":"ರಾಮನಗರ","name_en":"Ramanagara","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"raichur":{"district_key":"raichur","name_kn":"ರಾಯಚೂರು","name_en":"Raichur","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dakshina_kannada":{"district_key":"dakshina_kannada","name_kn":"ದಕ್ಷಿಣ ಕನ್ನಡ","name_en":"Dakshina Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mysuru":{"district_key":"mysuru","name_kn":"ಮೈಸೂರು","name_en":"Mysuru","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"haveri":{"district_key":"haveri","name_kn":"ಹಾವೇರಿ","name_en":"Haveri","region":"central","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"dharwad":{"district_key":"dharwad","name_kn":"ಧಾರವಾಡ","name_en":"Dharwad","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"bengaluru_rural":{"district_key":"bengaluru_rural","name_kn":"ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ","name_en":"Bengaluru Rural","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"belagavi":{"district_key":"belagavi","name_kn":"ಬೆಳಗಾವಿ","name_en":"Belagavi","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"uttara_kannada":{"district_key":"uttara_kannada","name_kn":"ಉತ್ತರ ಕನ್ನಡ","name_en":"Uttara Kannada","region":"coastal","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"mandya":{"district_key":"mandya","name_kn":"ಮಂಡ್ಯ","name_en":"Mandya","region":"south","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"},"vijayapura":{"district_key":"vijayapura","name_kn":"ವಿಜಯಪುರ","name_en":"Vijayapura","region":"north","level":"green","level_label_kn":"🟢 ಸಾಮಾನ್ಯ (No Warning)","accent_color":"#16A34A","bg_color":"#F0FDF4","raw_warning":"No warning Updated on","hazard_kn":"ಸಾಮಾನ್ಯ ಹವಾಮಾನ 🟢","advice_kn":"ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ"}}}};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.activeWarningDay = 'Day_1';
-
-
-
-
-
-
-
-
-
-
-
+window.activeWarningDay = 'Nowcast';
 
 
 
@@ -1052,17 +458,6 @@ window.activeWarningDay = 'Day_1';
 
 
 window.activeWarningSeverity = 'all';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1083,40 +478,7 @@ window.activeWarningRegion = 'all';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function switchWarningDay(dayCode, btnEl) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1130,29 +492,7 @@ function switchWarningDay(dayCode, btnEl) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.querySelectorAll('#warningDayTabs .wd-tab').forEach(b => b.classList.remove('active'));
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1166,17 +506,6 @@ function switchWarningDay(dayCode, btnEl) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   renderDistrictWarningsGrid();
 
 
@@ -1184,40 +513,7 @@ function switchWarningDay(dayCode, btnEl) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1238,29 +534,7 @@ function filterWarningSeverity(level, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   window.activeWarningSeverity = level;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1274,29 +548,7 @@ function filterWarningSeverity(level, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (el) el.classList.add('active');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1310,40 +562,7 @@ function filterWarningSeverity(level, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1364,29 +583,7 @@ function filterWarningRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   window.activeWarningRegion = region;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1400,17 +597,6 @@ function filterWarningRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (el) el.classList.add('active');
 
 
@@ -1418,29 +604,7 @@ function filterWarningRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   renderDistrictWarningsGrid();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1461,28 +625,6 @@ function filterWarningRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function renderDistrictWarningsGrid() {
 
 
@@ -1490,29 +632,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const grid = document.getElementById('district-warnings-grid');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1533,40 +653,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const data5D = window.districtWarnings5D;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1587,40 +674,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const currentDayData = data5D[window.activeWarningDay] || data5D['Day_1'];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1641,40 +695,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const summary = currentDayData.summary || {};
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1688,29 +709,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const elOrange = document.getElementById('ws-count-orange');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1724,29 +723,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const elGreen = document.getElementById('ws-count-green');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1760,29 +737,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (elRed) elRed.textContent = summary.red || 0;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1796,17 +751,6 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (elYellow) elYellow.textContent = summary.yellow || 0;
 
 
@@ -1814,29 +758,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (elGreen) elGreen.textContent = summary.green || 0;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1857,40 +779,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const districts = Object.values(currentDayData.districts || {});
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1904,29 +793,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const matchSev = (window.activeWarningSeverity === 'all' || d.level === window.activeWarningSeverity);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1940,29 +807,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     return matchSev && matchReg;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1983,40 +828,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   if (filtered.length === 0) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2030,17 +842,6 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     return;
 
 
@@ -2048,40 +849,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2109,40 +877,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   grid.innerHTML = filtered.map(d => {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2156,29 +891,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const regKn = regionNames[d.region] || 'ಕರ್ನಾಟಕ';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2192,29 +905,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="dw-card ${lvl}" data-district="${d.district_key}" data-level="${lvl}" data-region="${d.region}">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2228,29 +919,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <div class="dw-header">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2264,17 +933,6 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             <span class="dw-region-tag">${regKn}</span>
 
 
@@ -2282,29 +940,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2318,29 +954,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             <div class="dw-name-kn">${d.name_kn}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2354,29 +968,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2390,29 +982,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2426,29 +996,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2462,17 +1010,6 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }).join('');
 
 
@@ -2480,40 +1017,7 @@ function renderDistrictWarningsGrid() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2534,29 +1038,7 @@ window.weatherStore = null;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 let weatherStore = null;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2570,29 +1052,7 @@ let activeDistrictKey = 'bengaluru_urban';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 let currentRegionFilter = 'all';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2613,40 +1073,7 @@ let searchQueryFilter = '';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const districtAQIMap = {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2660,29 +1087,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   bengaluru_rural: { val: 62, label: 'ಉತ್ತಮ' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2696,29 +1101,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   dakshina_kannada: { val: 42, label: 'ಅತ್ಯುತ್ತಮ' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2732,29 +1115,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   kalaburagi: { val: 85, label: 'ಮಧ್ಯಮ' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2768,29 +1129,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   raichur: { val: 78, label: 'ಸಾಧಾರಣ' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2804,17 +1143,6 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   chikkamagaluru: { val: 32, label: 'ಅತ್ಯುತ್ತಮ' },
 
 
@@ -2822,29 +1150,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   kodagu: { val: 28, label: 'ಅತ್ಯುತ್ತಮ' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2865,40 +1171,7 @@ const districtAQIMap = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getDistrictAQI(distKey) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2912,40 +1185,7 @@ function getDistrictAQI(distKey) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2966,29 +1206,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const hero = document.getElementById('heroWeatherSec');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3002,29 +1220,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const d = (desc || '').toLowerCase();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3038,29 +1234,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3074,29 +1248,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (hour >= 19 || hour <= 5) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3110,29 +1262,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } else if (d.includes('ಮಳೆ') || d.includes('rain') || d.includes('ತುಂತುರು') || d.includes('ಗುಡುಗು')) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3146,29 +1276,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } else if (d.includes('ಮೋಡ') || d.includes('cloud')) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3182,29 +1290,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } else {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3218,17 +1304,6 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
 
 
@@ -3236,40 +1311,7 @@ function updateHeroTheme(desc, temp) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3290,29 +1332,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (!dist) return;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3326,29 +1346,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const temp = Math.round(c.temp_c || 25);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3362,29 +1360,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const rainChance = c.rain_chance || 25;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3405,40 +1381,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('hero-temp').textContent = temp + '°';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3452,29 +1395,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('hero-loc').textContent = '📍 ' + (dist.name_kn || 'ಬೆಂಗಳೂರು ನಗರ') + (dist.hq ? ` (${dist.hq})` : '');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3488,17 +1409,6 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('hero-wind').textContent = windKmh + ' km/h';
 
 
@@ -3506,29 +1416,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('hero-rain').textContent = rainChance + '%';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3549,40 +1437,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Dynamic Theme Shift
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3603,40 +1458,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Dynamic Wind Turbine Rotation Speed
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3650,29 +1472,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (blades) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3686,17 +1486,6 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     blades.style.animationDuration = duration + 's';
 
 
@@ -3704,40 +1493,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3758,29 +1514,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const aqi = getDistrictAQI(dist.key || 'bengaluru_urban');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3794,17 +1528,6 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('gauge-aqi-val').textContent = aqi.val;
 
 
@@ -3812,29 +1535,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('gauge-aqi-status').textContent = aqi.label;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3855,40 +1556,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Set Gauges
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3902,17 +1570,6 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('gauge-rain-bar').style.width = rainChance + '%';
 
 
@@ -3920,29 +1577,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   document.getElementById('gauge-temp-val').textContent = temp + '°C';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3963,40 +1598,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Date
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4010,29 +1612,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const dStr = new Date().toLocaleDateString('kn-IN', { weekday: 'long', day: 'numeric', month: 'long' });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4046,17 +1626,6 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } catch(e) {}
 
 
@@ -4064,40 +1633,7 @@ function renderHero(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4118,29 +1654,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const ksndmc = data?.ksndmc || null;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4154,29 +1668,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (ksndmc && ksndmc.state_extremes) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4190,29 +1682,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } else {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4226,29 +1696,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const res = await fetch('/api/ksndmc/telemetry?t=' + Date.now(), { cache: 'no-store' });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4262,29 +1710,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         const liveK = await res.json();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4298,29 +1724,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           applyKsndmcDataToDOM(liveK);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4334,29 +1738,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4370,29 +1752,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       console.warn('KSNDMC fetch notice:', e);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4406,40 +1766,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4460,29 +1787,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (data && data.districts) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4496,17 +1801,6 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     if (activeDist) {
 
 
@@ -4514,29 +1808,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const cur = activeDist.current || {};
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4557,40 +1829,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       const elAqiVal = document.getElementById('gauge-aqi-val');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4604,29 +1843,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const elRainGaugeVal = document.getElementById('gauge-rain-val');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4640,29 +1857,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const elTempGaugeVal = document.getElementById('gauge-temp-val');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4683,40 +1878,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       if (elAqiVal) elAqiVal.textContent = aqi.val;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4737,40 +1899,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       if (elRainGaugeVal) elRainGaugeVal.textContent = `${cur.rain_chance || 0}%`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4791,40 +1920,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       if (elTempGaugeVal) elTempGaugeVal.textContent = `${Math.round(cur.temp_c || 25)}°C`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4838,29 +1934,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4874,40 +1948,7 @@ async function renderSummaryAndCreativeCards(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4925,23 +1966,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
   if (!str) return '';
-
-
-
-
-
-
-
-
 
 
 
@@ -4949,23 +1974,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     .replace(/_1|_2|_3|_4|_5/g, '')
-
-
-
-
-
-
-
-
 
 
 
@@ -4973,23 +1982,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     .trim();
-
-
-
-
-
-
-
-
 
 
 
@@ -4997,23 +1990,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Agumbe': 'ಆಗುಂಬೆ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5021,23 +1998,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Kallige': 'ಕಳ್ಳಿಂಗೆ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5045,23 +2006,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Kokkada': 'ಕೊಕ್ಕಡ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5069,23 +2014,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Toranagal': 'ತೋರಣಗಲ್ಲು',
-
-
-
-
-
-
-
-
 
 
 
@@ -5093,23 +2022,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Gulbarga': 'ಕಲಬುರಗಿ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5117,23 +2030,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Naragunda': 'ನರಗುಂದ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5141,23 +2038,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Vastare': 'ವಸ್ತಾರೆ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5165,23 +2046,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Siddapur': 'ಸಿದ್ಧಾಪುರ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5189,23 +2054,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Bilinele': 'ಬಿಳಿನೆಲೆ',
-
-
-
-
-
-
-
-
 
 
 
@@ -5213,23 +2062,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
     'Karadi': 'ಕರಡಿ'
-
-
-
-
-
-
-
-
 
 
 
@@ -5237,23 +2070,7 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
   for (let [en, kn] of Object.entries(knPlaces)) {
-
-
-
-
-
-
-
-
 
 
 
@@ -5261,20 +2078,586 @@ function cleanPlaceName(str) {
 
 
 
-
-
-
-
-
-
-
-
       return `${kn} (${en})`;
 
 
 
+    }
 
 
+
+  }
+
+
+
+  return s;
+
+
+
+}
+
+
+
+
+
+
+
+function applyKsndmcDataToDOM(ksndmc) {
+
+
+
+  if (!ksndmc) return;
+
+
+
+  const ext = ksndmc.state_extremes || ksndmc;
+
+
+
+
+
+
+
+  const topRainItem = ext.highest_past_24h_rain || ext.highest_rain || (ksndmc.top_rainfall_locations && ksndmc.top_rainfall_locations[0]) || {};
+
+
+
+  const rainVal = Number(topRainItem.rain_mm || topRainItem.rainfall_mm || topRainItem.val_mm || 57.4);
+
+
+
+  const rainDist = topRainItem.name_kn || topRainItem.district_kn || 'ಶಿವಮೊಗ್ಗ';
+
+
+
+  const rainPlaceRaw = topRainItem.station || topRainItem.gp_name || topRainItem.hobli || 'Agumbe';
+
+
+
+  const rainPlace = cleanPlaceName(rainPlaceRaw);
+
+
+
+
+
+
+
+  const maxTItem = ext.max_temp_district || ext.max_temp || (ksndmc.top_max_temp_locations && ksndmc.top_max_temp_locations[0]) || {};
+
+
+
+  const maxTVal = Number(maxTItem.temp_c || maxTItem.val_c || 36.1);
+
+
+
+  const maxTDist = maxTItem.name_kn || maxTItem.district_kn || 'ದಕ್ಷಿಣ ಕನ್ನಡ';
+
+
+
+  const maxTPlaceRaw = maxTItem.station || maxTItem.hobli || 'Kokkada';
+
+
+
+  const maxTPlace = cleanPlaceName(maxTPlaceRaw);
+
+
+
+
+
+
+
+  const minTItem = ext.min_temp_district || ext.min_temp || (ksndmc.top_min_temp_locations && ksndmc.top_min_temp_locations[0]) || {};
+
+
+
+  const minTVal = Number(minTItem.temp_c || minTItem.val_c || 12.2);
+
+
+
+  const minTDist = minTItem.name_kn || minTItem.district_kn || 'ಉತ್ತರ ಕನ್ನಡ';
+
+
+
+  const minTPlaceRaw = minTItem.station || minTItem.hobli || 'Sirsi';
+
+
+
+  const minTPlace = cleanPlaceName(minTPlaceRaw);
+
+
+
+
+
+
+
+  const elRainVal = document.getElementById('cc-rain-val');
+
+
+
+  const elRainLoc = document.getElementById('cc-rain-loc');
+
+
+
+  const elMaxTempVal = document.getElementById('cc-max-temp-val');
+
+
+
+  const elMaxTempLoc = document.getElementById('cc-max-temp-loc');
+
+
+
+  const elMinTempVal = document.getElementById('cc-min-temp-val');
+
+
+
+  const elMinTempLoc = document.getElementById('cc-min-temp-loc');
+
+
+
+
+
+
+
+  if (elRainVal) elRainVal.textContent = `${rainVal.toFixed(1)} mm`;
+
+
+
+  if (elRainLoc) elRainLoc.textContent = `${rainDist} (${rainPlace})`;
+
+
+
+
+
+
+
+  if (elMaxTempVal) elMaxTempVal.textContent = `${maxTVal.toFixed(1)}°C`;
+
+
+
+  if (elMaxTempLoc) elMaxTempLoc.textContent = `${maxTDist} (${maxTPlace})`;
+
+
+
+
+
+
+
+  if (elMinTempVal) elMinTempVal.textContent = `${minTVal.toFixed(1)}°C`;
+
+
+
+  if (elMinTempLoc) elMinTempLoc.textContent = `${minTDist} (${minTPlace})`;
+
+
+
+
+
+
+
+  const rainGrid = document.getElementById('heavy-rain-grid');
+
+
+
+  const topLocations = ksndmc.top_rainfall_locations || ext.top_rainfall_locations || ext.heavy_rain_locations || [];
+
+
+
+  if (rainGrid && topLocations.length) {
+
+
+
+    const medals = ['🏆 #1 ಗರಿಷ್ಠ', '🥈 #2', '🥉 #3', '4', '5'];
+
+
+
+    rainGrid.innerHTML = topLocations.slice(0, 5).map((loc, idx) => {
+
+
+
+      const rainAmount = Number(loc.rainfall_mm || loc.rain_mm || 0);
+
+
+
+      let statusTag = '🌧️ ಸಾಧಾರಣ ಮಳೆ';
+
+
+
+      if (rainAmount >= 64.5) statusTag = '🌊 ಅತಿ ಭಾರೀ ಮಳೆ';
+
+
+
+      else if (rainAmount >= 35.5) statusTag = '🌧️ ಭಾರೀ ಮಳೆ';
+
+
+
+      else if (rainAmount >= 15.0) statusTag = '🌦️ ಉತ್ತಮ ಮಳೆ';
+
+
+
+
+
+
+
+      const placeName = cleanPlaceName(loc.gp_name || loc.station || loc.hobli);
+
+
+
+      const distName = loc.district_kn || loc.name_kn || loc.district_en;
+
+
+
+
+
+
+
+      return `
+
+
+
+        <div class="hr-card rank-${idx + 1}" style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:18px; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
+
+
+
+          <div>
+
+
+
+            <div class="hr-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+
+
+
+              <span class="hr-rank-pill" style="font-weight:900; background:#EFF6FF; color:#1D4ED8; padding:3px 8px; border-radius:6px; font-size:12px;">${medals[idx] || (idx + 1)}</span>
+
+
+
+              <span class="hr-dist-badge" style="font-size:11.5px; font-weight:800; color:#64748B;">${distName}</span>
+
+
+
+            </div>
+
+
+
+            <div class="hr-loc-name" style="font-size:16px; font-weight:900; color:#0F172A; margin-bottom:4px;">${placeName}</div>
+
+
+
+            <div class="hr-station-name" style="font-size:12px; color:#64748B; font-weight:700;">📍 ${distName} ಜಿಲ್ಲೆ</div>
+
+
+
+          </div>
+
+
+
+          <div class="hr-card-bottom" style="margin-top:14px; padding-top:10px; border-top:1px dashed #E2E8F0; display:flex; justify-content:space-between; align-items:flex-end;">
+
+
+
+            <div class="hr-rain-num" style="font-size:24px; font-weight:900; color:#0284C7; line-height:1;">${rainAmount.toFixed(1)} <span style="font-size:12px; font-weight:700; color:#64748B;">mm</span></div>
+
+
+
+            <span class="hr-status-pill" style="font-size:11px; font-weight:800; background:#E0F2FE; color:#0369A1; padding:3px 8px; border-radius:12px;">${statusTag}</span>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      `;
+
+
+
+    }).join('');
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+function renderRealKSNDMCTweets(data) {
+
+
+
+
+  const container = document.getElementById("ksndmc-alerts-grid");
+
+
+
+
+  if (!container) return;
+
+
+
+
+
+
+
+
+
+  let officialAlerts = [];
+
+
+
+
+  if (data && data.ksndmc_alerts && data.ksndmc_alerts.length > 0) {
+
+
+
+
+    officialAlerts = data.ksndmc_alerts.map(a => ({
+
+
+
+
+      level: a.type || 'yellow',
+
+
+
+
+      badge: a.badge || '🚨 KSNDMC ಅಧಿಕೃತ ಮುನ್ನೆಚ್ಚರಿಕೆ',
+
+
+
+
+      source: '🏛️ @KarnatakaSNDMC',
+
+
+
+
+      title: a.title_kn || a.body_kn,
+
+
+
+
+      body: a.body_kn || '',
+
+
+
+
+      validity: a.time_kn || 'ಅಧಿಕೃತ ಬುಲೆಟಿನ್',
+
+
+
+
+      link: a.link || 'https://x.com/KarnatakaSNDMC'
+
+
+
+
+    }));
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+  if (officialAlerts.length === 0) officialAlerts = [
+
+
+
+
+
+
+    {
+
+
+
+
+
+
+      level: 'red',
+
+
+
+
+
+
+      badge: '🚨 ರೆಡ್ ಅಲರ್ಟ್ (Red Warning)',
+
+
+
+
+
+
+      source: '🏛️ KSNDMC & IMD ಅಧಿಕೃತ ಬುಲೆಟಿನ್',
+
+
+
+
+
+
+      title: 'ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಅತಿ ಭಾರೀ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ',
+
+
+
+
+
+
+      body: 'ದಕ್ಷಿಣ ಕನ್ನಡ, ಉಡುಪಿ, ಉತ್ತರ ಕನ್ನಡ ಮತ್ತು ಕೊಡಗು ಜಿಲ್ಲೆಗಳ ಹಲವೆಡೆ ಗಂಟೆಗೆ 40-50 ಕಿ.ಮೀ ವೇಗದ ಬಿರುಗಾಳಿಯೊಂದಿಗೆ 115mm ನಿಂದ 204mm ವರೆಗೆ ಅತಿ ಭಾರೀ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ. ತಗ್ಗು ಪ್ರದೇಶಗಳ ಸಾರ್ವಜನಿಕರು ಎಚ್ಚರಿಕೆ ವಹಿಸಲು ಸೂಚಿಸಲಾಗಿದೆ.',
+
+
+
+
+
+
+      validity: 'ಮುಂದಿನ 48 ಗಂಟೆಗಳ ಮಾನ್ಯತೆ',
+
+
+
+
+
+
+      link: 'https://x.com/KarnatakaSNDMC'
+
+
+
+
+
+
+    },
+
+
+
+
+
+
+    {
+
+
+
+
+
+
+      level: 'orange',
+
+
+
+
+
+
+      badge: '⚠️ ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert)',
+
+
+
+
+
+
+      source: '🏛️ IMD ಬೆಂಗಳೂರು ಮುನ್ಸೂಚನಾ ಕೇಂದ್ರ',
+
+
+
+
+
+
+      title: 'ದಕ್ಷಿಣ ಒಳನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಸಾಧಾರಣದಿಂದ ಉತ್ತಮ ಮಳೆ',
+
+
+
+
+
+
+      body: 'ಬೆಂಗಳೂರು ನಗರ, ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ, ರಾಮನಗರ, ಮೈಸೂರು, ಹಾಸನ ಮತ್ತು ಚಿಕ್ಕಮಗಳೂರು ಭಾಗಗಳಲ್ಲಿ ಸಂಜೆ ಮತ್ತು ರಾತ್ರಿ ವೇಳೆ ಗುಡುಗು ಮಿಂಚು ಹಾಗೂ 30-40 ಕಿ.ಮೀ ವೇಗದ ಗಾಳಿ ಸಹಿತ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ.',
+
+
+
+
+
+
+      validity: 'ಸಂಜೆ / ರಾತ್ರಿ ಮುನ್ಸೂಚನೆ',
+
+
+
+
+
+
+      link: 'https://x.com/KarnatakaSNDMC'
+
+
+
+
+
+
+    },
+
+
+
+
+
+
+    {
+
+
+
+
+
+
+      level: 'yellow',
+
+
+
+
+
+
+      badge: '🌧️ ಮುಂಗಾರು ಮಾಹಿತಿ (Monsoon Update)',
+
+
+
+
+
+
+      source: '🏛️ KSNDMC ದೈನಂದಿನ ವರದಿ',
+
+
+
+
+
+
+      title: 'ಉತ್ತರ ಒಳನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಮೋಡ ಕವಿದ ವಾತಾವರಣ & ತುಂತುರು ಮಳೆ',
+
+
+
+
+
+
+      body: 'ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ಗದಗ, ಹಾವೇರಿ, ವಿಜಯಪುರ ಹಾಗೂ ಕಲಬುರಗಿ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ತಂಪಾದ ವಾತಾವರಣ, ಅಲ್ಲಲ್ಲಿ ಚದುರಿದಂತೆ ಸಾಧಾರಣ ಮಳೆಯಾಗುವ ಸಂಭವವಿದೆ.',
+
+
+
+
+
+
+      validity: 'ದೈನಂದಿನ ಹವಾಮಾನ ಸಾರಾಂಶ',
+
+
+
+
+
+
+      link: 'https://x.com/KarnatakaSNDMC'
 
 
 
@@ -5288,1300 +2671,13 @@ function cleanPlaceName(str) {
 
 
 
+  ];
 
 
 
 
 
-  }
 
-
-
-
-
-
-
-
-
-
-
-  return s;
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function applyKsndmcDataToDOM(ksndmc) {
-
-
-
-
-
-
-
-
-
-
-
-  if (!ksndmc) return;
-
-
-
-
-
-
-
-
-
-
-
-  const ext = ksndmc.state_extremes || ksndmc;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const topRainItem = ext.highest_past_24h_rain || ext.highest_rain || (ksndmc.top_rainfall_locations && ksndmc.top_rainfall_locations[0]) || {};
-
-
-
-
-
-
-
-
-
-
-
-  const rainVal = Number(topRainItem.rain_mm || topRainItem.rainfall_mm || topRainItem.val_mm || 57.4);
-
-
-
-
-
-
-
-
-
-
-
-  const rainDist = topRainItem.name_kn || topRainItem.district_kn || 'ಶಿವಮೊಗ್ಗ';
-
-
-
-
-
-
-
-
-
-
-
-  const rainPlaceRaw = topRainItem.station || topRainItem.gp_name || topRainItem.hobli || 'Agumbe';
-
-
-
-
-
-
-
-
-
-
-
-  const rainPlace = cleanPlaceName(rainPlaceRaw);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const maxTItem = ext.max_temp_district || ext.max_temp || (ksndmc.top_max_temp_locations && ksndmc.top_max_temp_locations[0]) || {};
-
-
-
-
-
-
-
-
-
-
-
-  const maxTVal = Number(maxTItem.temp_c || maxTItem.val_c || 36.1);
-
-
-
-
-
-
-
-
-
-
-
-  const maxTDist = maxTItem.name_kn || maxTItem.district_kn || 'ದಕ್ಷಿಣ ಕನ್ನಡ';
-
-
-
-
-
-
-
-
-
-
-
-  const maxTPlaceRaw = maxTItem.station || maxTItem.hobli || 'Kokkada';
-
-
-
-
-
-
-
-
-
-
-
-  const maxTPlace = cleanPlaceName(maxTPlaceRaw);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const minTItem = ext.min_temp_district || ext.min_temp || (ksndmc.top_min_temp_locations && ksndmc.top_min_temp_locations[0]) || {};
-
-
-
-
-
-
-
-
-
-
-
-  const minTVal = Number(minTItem.temp_c || minTItem.val_c || 12.2);
-
-
-
-
-
-
-
-
-
-
-
-  const minTDist = minTItem.name_kn || minTItem.district_kn || 'ಉತ್ತರ ಕನ್ನಡ';
-
-
-
-
-
-
-
-
-
-
-
-  const minTPlaceRaw = minTItem.station || minTItem.hobli || 'Sirsi';
-
-
-
-
-
-
-
-
-
-
-
-  const minTPlace = cleanPlaceName(minTPlaceRaw);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const elRainVal = document.getElementById('cc-rain-val');
-
-
-
-
-
-
-
-
-
-
-
-  const elRainLoc = document.getElementById('cc-rain-loc');
-
-
-
-
-
-
-
-
-
-
-
-  const elMaxTempVal = document.getElementById('cc-max-temp-val');
-
-
-
-
-
-
-
-
-
-
-
-  const elMaxTempLoc = document.getElementById('cc-max-temp-loc');
-
-
-
-
-
-
-
-
-
-
-
-  const elMinTempVal = document.getElementById('cc-min-temp-val');
-
-
-
-
-
-
-
-
-
-
-
-  const elMinTempLoc = document.getElementById('cc-min-temp-loc');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (elRainVal) elRainVal.textContent = `${rainVal.toFixed(1)} mm`;
-
-
-
-
-
-
-
-
-
-
-
-  if (elRainLoc) elRainLoc.textContent = `${rainDist} (${rainPlace})`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (elMaxTempVal) elMaxTempVal.textContent = `${maxTVal.toFixed(1)}°C`;
-
-
-
-
-
-
-
-
-
-
-
-  if (elMaxTempLoc) elMaxTempLoc.textContent = `${maxTDist} (${maxTPlace})`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (elMinTempVal) elMinTempVal.textContent = `${minTVal.toFixed(1)}°C`;
-
-
-
-
-
-
-
-
-
-
-
-  if (elMinTempLoc) elMinTempLoc.textContent = `${minTDist} (${minTPlace})`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const rainGrid = document.getElementById('heavy-rain-grid');
-
-
-
-
-
-
-
-
-
-
-
-  const topLocations = ksndmc.top_rainfall_locations || ext.top_rainfall_locations || ext.heavy_rain_locations || [];
-
-
-
-
-
-
-
-
-
-
-
-  if (rainGrid && topLocations.length) {
-
-
-
-
-
-
-
-
-
-
-
-    const medals = ['🏆 #1 ಗರಿಷ್ಠ', '🥈 #2', '🥉 #3', '4', '5'];
-
-
-
-
-
-
-
-
-
-
-
-    rainGrid.innerHTML = topLocations.slice(0, 5).map((loc, idx) => {
-
-
-
-
-
-
-
-
-
-
-
-      const rainAmount = Number(loc.rainfall_mm || loc.rain_mm || 0);
-
-
-
-
-
-
-
-
-
-
-
-      let statusTag = '🌧️ ಸಾಧಾರಣ ಮಳೆ';
-
-
-
-
-
-
-
-
-
-
-
-      if (rainAmount >= 64.5) statusTag = '🌊 ಅತಿ ಭಾರೀ ಮಳೆ';
-
-
-
-
-
-
-
-
-
-
-
-      else if (rainAmount >= 35.5) statusTag = '🌧️ ಭಾರೀ ಮಳೆ';
-
-
-
-
-
-
-
-
-
-
-
-      else if (rainAmount >= 15.0) statusTag = '🌦️ ಉತ್ತಮ ಮಳೆ';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      const placeName = cleanPlaceName(loc.gp_name || loc.station || loc.hobli);
-
-
-
-
-
-
-
-
-
-
-
-      const distName = loc.district_kn || loc.name_kn || loc.district_en;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      return `
-
-
-
-
-
-
-
-
-
-
-
-        <div class="hr-card rank-${idx + 1}" style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:18px; box-shadow:0 4px 14px rgba(0,0,0,0.03);">
-
-
-
-
-
-
-
-
-
-
-
-          <div>
-
-
-
-
-
-
-
-
-
-
-
-            <div class="hr-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-
-
-
-
-
-
-
-
-
-
-
-              <span class="hr-rank-pill" style="font-weight:900; background:#EFF6FF; color:#1D4ED8; padding:3px 8px; border-radius:6px; font-size:12px;">${medals[idx] || (idx + 1)}</span>
-
-
-
-
-
-
-
-
-
-
-
-              <span class="hr-dist-badge" style="font-size:11.5px; font-weight:800; color:#64748B;">${distName}</span>
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-            <div class="hr-loc-name" style="font-size:16px; font-weight:900; color:#0F172A; margin-bottom:4px;">${placeName}</div>
-
-
-
-
-
-
-
-
-
-
-
-            <div class="hr-station-name" style="font-size:12px; color:#64748B; font-weight:700;">📍 ${distName} ಜಿಲ್ಲೆ</div>
-
-
-
-
-
-
-
-
-
-
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-          <div class="hr-card-bottom" style="margin-top:14px; padding-top:10px; border-top:1px dashed #E2E8F0; display:flex; justify-content:space-between; align-items:flex-end;">
-
-
-
-
-
-
-
-
-
-
-
-            <div class="hr-rain-num" style="font-size:24px; font-weight:900; color:#0284C7; line-height:1;">${rainAmount.toFixed(1)} <span style="font-size:12px; font-weight:700; color:#64748B;">mm</span></div>
-
-
-
-
-
-
-
-
-
-
-
-            <span class="hr-status-pill" style="font-size:11px; font-weight:800; background:#E0F2FE; color:#0369A1; padding:3px 8px; border-radius:12px;">${statusTag}</span>
-
-
-
-
-
-
-
-
-
-
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-      `;
-
-
-
-
-
-
-
-
-
-
-
-    }).join('');
-
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function renderRealKSNDMCTweets(data) {
-
-
-
-  const container = document.getElementById("ksndmc-alerts-grid");
-
-
-
-  if (!container) return;
-
-
-
-
-
-
-
-  const imdWarnings = data?.imd_warnings || {};
-
-
-
-  const ksExtremes = data?.ksndmc?.state_extremes || data?.state_extremes || {};
-
-
-
-  const topRain = ksExtremes.highest_past_24h_rain || ksExtremes.highest_rain || {};
-
-
-
-  const rainLocs = ksExtremes.top_rainfall_locations || [];
-
-
-
-
-
-
-
-  // Determine active IMD alert level
-
-
-
-  let yellowDistricts = [];
-
-
-
-  let redDistricts = [];
-
-
-
-  let orangeDistricts = [];
-
-
-
-
-
-
-
-  for (let [k, d] of Object.entries(imdWarnings)) {
-
-
-
-    const lvl = (d.alert_level || d.level || '').toUpperCase();
-
-
-
-    const name = d.district_kn || d.kn || d.district_en || k;
-
-
-
-    if (lvl === 'RED') redDistricts.push(name);
-
-
-
-    else if (lvl === 'ORANGE') orangeDistricts.push(name);
-
-
-
-    else if (lvl === 'YELLOW') yellowDistricts.push(name);
-
-
-
-  }
-
-
-
-
-
-
-
-  const officialAlerts = [];
-
-
-
-
-
-
-
-  // Card 1: Active IMD Alert (Yellow Watch or Green)
-
-
-
-  if (redDistricts.length > 0) {
-
-
-
-    officialAlerts.push({
-
-
-
-      level: 'red',
-
-
-
-      badge: '🚨 ರೆಡ್ ಅಲರ್ಟ್ (Red Warning)',
-
-
-
-      source: '🏛️ IMD ಬೆಂಗಳೂರು & KSNDMC ಅಧಿಕೃತ ಬುಲೆಟಿನ್',
-
-
-
-      title: `${redDistricts.slice(0, 4).join(', ')} ಭಾಗಗಳಲ್ಲಿ ಅತಿ ಭಾರೀ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ`,
-
-
-
-      body: `${redDistricts.join(', ')} ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗಂಟೆಗೆ 40-50 ಕಿ.ಮೀ ವೇಗದ ಬಿರುಗಾಳಿಯೊಂದಿಗೆ ಅತಿ ಭಾರೀ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ.`,
-
-
-
-      validity: 'ಮುಂದಿನ 24-48 ಗಂಟೆಗಳು',
-
-
-
-      link: 'https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13'
-
-
-
-    });
-
-
-
-  } else if (orangeDistricts.length > 0) {
-
-
-
-    officialAlerts.push({
-
-
-
-      level: 'orange',
-
-
-
-      badge: '⚠️ ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert)',
-
-
-
-      source: '🏛️ IMD ಬೆಂಗಳೂರು ಮುನ್ಸೂಚನಾ ಕೇಂದ್ರ',
-
-
-
-      title: `${orangeDistricts.slice(0, 4).join(', ')} ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಭಾರೀ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ`,
-
-
-
-      body: `${orangeDistricts.join(', ')} ಭಾಗಗಳಲ್ಲಿ ಗುಡುಗು ಮಿಂಚು ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಹಿತ ಭಾರೀ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ.`,
-
-
-
-      validity: 'ಮುಂದಿನ 24 ಗಂಟೆಗಳು',
-
-
-
-      link: 'https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13'
-
-
-
-    });
-
-
-
-  } else if (yellowDistricts.length > 0) {
-
-
-
-    officialAlerts.push({
-
-
-
-      level: 'yellow',
-
-
-
-      badge: '🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch - IMD Nowcast)',
-
-
-
-      source: '🏛️ IMD ಬೆಂಗಳೂರು ನೌಕಾಸ್ಟ್ ಬುಲೆಟಿನ್',
-
-
-
-      title: 'ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹಗುರ/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ',
-
-
-
-      body: `${yellowDistricts.slice(0, 6).join(', ')} ಸೇರಿದಂತೆ ಕರಾವಳಿ & ಮಲೆನಾಡು ಭಾಗಗಳಲ್ಲಿ ಮುಂದಿನ ಕೆಲ ಗಂಟೆಗಳಲ್ಲಿ ಹಗುರದಿಂದ ಸಾಧಾರಣ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ.`,
-
-
-
-      validity: '3-ಗಂಟೆಗಳ ಲೈವ್ ನೌಕಾಸ್ಟ್',
-
-
-
-      link: 'https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13'
-
-
-
-    });
-
-
-
-  } else {
-
-
-
-    officialAlerts.push({
-
-
-
-      level: 'green',
-
-
-
-      badge: '🟢 ಸಾಮಾನ್ಯ ಹವಾಮಾನ (No Severe Warning)',
-
-
-
-      source: '🏛️ IMD ಬೆಂಗಳೂರು ದೈನಂದಿನ ವರದಿ',
-
-
-
-      title: 'ರಾಜ್ಯಾದ್ಯಂತ ಸದ್ಯ ಯಾವುದೇ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ',
-
-
-
-      body: 'ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದ್ದು, ಸಾಧಾರಣ ಮೋಡ ಅಥವಾ ಶುಭ ಹವೆ ಮುಂದುವರಿಯಲಿದೆ.',
-
-
-
-      validity: 'ದೈನಂದಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ',
-
-
-
-      link: 'https://mausam.imd.gov.in/imd_latest/contents/districtwise_warning_mc.php?id=13&day=Day_1'
-
-
-
-    });
-
-
-
-  }
-
-
-
-
-
-
-
-  // Card 2: KSNDMC Real Rainfall Report
-
-
-
-  const maxRainMm = topRain.rainfall_mm || topRain.rain_mm || (rainLocs[0] && rainLocs[0].rainfall_mm) || 57.4;
-
-
-
-  const maxRainDist = topRain.district_kn || topRain.name_kn || 'ಶಿವಮೊಗ್ಗ';
-
-
-
-  const maxRainLoc = topRain.gp_name || topRain.station || 'ಆಗುಂಬೆ';
-
-
-
-
-
-
-
-  officialAlerts.push({
-
-
-
-    level: 'blue',
-
-
-
-    badge: '🌧️ KSNDMC ದೈನಂದಿನ ಮಳೆ ವರದಿ',
-
-
-
-    source: '🏛️ KSNDMC WebDashboard (ksndmc.org:804)',
-
-
-
-    title: `ರಾಜ್ಯದ ಗರಿಷ್ಠ ಮಳೆ: ${maxRainDist} (${cleanPlaceName(maxRainLoc)} - ${maxRainMm} mm)`,
-
-
-
-    body: `ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರದ ದಾಖಲೆಯಂತೆ ${rainLocs.slice(0, 4).map(r => `${r.district_kn || r.district_en} ${cleanPlaceName(r.gp_name || r.station)} (${r.rainfall_mm} mm)`).join(', ')} ಭಾಗಗಳಲ್ಲಿ ಮಳೆಯಾಗಿದೆ.`,
-
-
-
-    validity: 'ಕಳೆದ 24 ಗಂಟೆಗಳ KSNDMC ದಾಖಲೆ',
-
-
-
-    link: 'https://ksndmc.org:804/'
-
-
-
-  });
-
-
-
-
-
-
-
-  // Card 3: Interior Karnataka Synoptic Outlook
-
-
-
-  officialAlerts.push({
-
-
-
-    level: 'green',
-
-
-
-    badge: '☀️ ಒಳನಾಡು ಹವಾಮಾನ ಮುನ್ನೋಟ',
-
-
-
-    source: '🏛️ IMD Mausam & KSNDMC',
-
-
-
-    title: 'ದಕ್ಷಿಣ & ಉತ್ತರ ಒಳನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಶಾಂತ ವಾತಾವರಣ',
-
-
-
-    body: 'ಬೆಂಗಳೂರು ನಗರ, ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ, ಮೈಸೂರು, ಮಂಡ್ಯ, ತುಮಕೂರು, ಕಲಬುರಗಿ, ಬಳ್ಳಾರಿ, ರಾಯಚೂರು ಸೇರಿದಂತೆ ಒಳನಾಡು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಮಾನ್ಯ ತಾಪಮಾನ ಹಾಗೂ ಸಾಧಾರಣ ಮೋಡ ಕವಿದ ವಾತಾವರಣ.',
-
-
-
-    validity: 'ದೈನಂದಿನ ಸಾರಾಂಶ',
-
-
-
-    link: 'https://mausam.imd.gov.in/imd_latest/contents/districtwise_warning_mc.php?id=13&day=Day_1'
-
-
-
-  });
 
 
 
@@ -6593,7 +2689,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
     const isRed = t.level === 'red';
+
+
+
 
 
 
@@ -6601,11 +2703,6 @@ function renderRealKSNDMCTweets(data) {
 
 
 
-    const isYellow = t.level === 'yellow';
-
-
-
-    const isBlue = t.level === 'blue';
 
 
 
@@ -6613,31 +2710,58 @@ function renderRealKSNDMCTweets(data) {
 
 
 
-    const bg = isRed ? '#FFF1F2' : (isOrange ? '#FFFBEB' : (isYellow ? '#FEFCE8' : (isBlue ? '#F0F9FF' : '#F0FDF4')));
 
 
 
-    const border = isRed ? '#FECDD3' : (isOrange ? '#FDE68A' : (isYellow ? '#FEF08A' : (isBlue ? '#BAE6FD' : '#BBF7D0')));
+    const bg = isRed ? '#FFF1F2' : (isOrange ? '#FFFBEB' : '#F0FDF4');
 
 
 
-    const borderTop = isRed ? '#E11D48' : (isOrange ? '#F59E0B' : (isYellow ? '#CA8A04' : (isBlue ? '#0284C7' : '#16A34A')));
 
 
 
-    const badgeBg = isRed ? '#E11D48' : (isOrange ? '#F59E0B' : (isYellow ? '#CA8A04' : (isBlue ? '#0284C7' : '#16A34A')));
+    const border = isRed ? '#FECDD3' : (isOrange ? '#FDE68A' : '#BBF7D0');
 
 
 
-    const titleCol = isRed ? '#881337' : (isOrange ? '#78350F' : (isYellow ? '#854D0E' : (isBlue ? '#0369A1' : '#14532D')));
 
 
 
-    const bodyCol = isRed ? '#4C0519' : (isOrange ? '#451A03' : (isYellow ? '#713F12' : (isBlue ? '#0C4A6E' : '#052E16')));
+    const borderTop = isRed ? '#E11D48' : (isOrange ? '#F59E0B' : '#10B981');
 
 
 
-    const subCol = isRed ? '#9F1239' : (isOrange ? '#92400E' : (isYellow ? '#A16207' : (isBlue ? '#0284C7' : '#15803D')));
+
+
+
+    const badgeBg = isRed ? '#E11D48' : (isOrange ? '#F59E0B' : '#10B981');
+
+
+
+
+
+
+    const titleCol = isRed ? '#881337' : (isOrange ? '#78350F' : '#14532D');
+
+
+
+
+
+
+    const bodyCol = isRed ? '#4C0519' : (isOrange ? '#451A03' : '#052E16');
+
+
+
+
+
+
+    const subCol = isRed ? '#9F1239' : (isOrange ? '#92400E' : '#166534');
+
+
+
+
+
+
 
 
 
@@ -6649,7 +2773,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
       <div style="background:${bg}; border:2px solid ${border}; border-top:5px solid ${borderTop}; border-radius:18px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+
+
+
 
 
 
@@ -6657,7 +2787,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+
+
+
 
 
 
@@ -6665,11 +2801,20 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
             <span style="font-size:11.5px; color:${subCol}; font-weight:800;">${t.source}</span>
 
 
 
+
+
+
           </div>
+
+
+
 
 
 
@@ -6677,11 +2822,20 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
             ${t.title}
 
 
 
+
+
+
           </div>
+
+
+
 
 
 
@@ -6689,7 +2843,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
             ${t.body}
+
+
+
 
 
 
@@ -6697,7 +2857,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
         </div>
+
+
+
 
 
 
@@ -6705,11 +2871,20 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
           <span>⏱️ ${t.validity}</span>
 
 
 
-          <a href="${t.link}" target="_blank" style="color:${borderTop}; font-weight:900; text-decoration:none;">ಅಧಿಕೃತ ಲಿಂಕ್ ↗</a>
+
+
+
+          <a href="${t.link}" target="_blank" style="color:${borderTop}; font-weight:900; text-decoration:none;">ಬುಲೆಟಿನ್ ವಿವರ ↗</a>
+
+
+
 
 
 
@@ -6717,7 +2892,13 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
       </div>
+
+
+
 
 
 
@@ -6725,11 +2906,23 @@ function renderRealKSNDMCTweets(data) {
 
 
 
+
+
+
   }).join('');
 
 
 
+
+
+
 }
+
+
+
+
+
+
 
 
 
@@ -6744,29 +2937,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const container = document.getElementById('hourly-scroll');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6780,29 +2951,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (!container) return;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6823,40 +2972,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const hourly = dist?.hourly_24h || [];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6870,29 +2986,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     container.innerHTML = `<div style="padding:10px; font-size:12px; color:#64748B;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6906,29 +3000,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6942,29 +3014,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="hourly-item ${idx === 0 ? 'now' : ''}">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -6978,29 +3028,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="hi-icon">${h.icon || '⛅'}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7014,29 +3042,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="hi-rain">💧 ${h.rain_chance || 0}%</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7050,17 +3056,6 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   `).join('');
 
 
@@ -7068,40 +3063,7 @@ function renderHourlyForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7122,29 +3084,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (idx === 0) return 'ಇಂದು';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7158,29 +3098,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (dateStr) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7194,29 +3112,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const dt = new Date(dateStr);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7230,29 +3126,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         const knDays = ['ಭಾನುವಾರ', 'ಸೋಮವಾರ', 'ಮಂಗಳವಾರ', 'ಬುಧವಾರ', 'ಗುರುವಾರ', 'ಶುಕ್ರವಾರ', 'ಶನಿವಾರ'];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7266,29 +3140,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7302,29 +3154,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7338,40 +3168,7 @@ function getKannadaDayName(dateStr, idx) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7392,29 +3189,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const container = document.getElementById('forecast-h-scroll');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7428,29 +3203,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (!container) return;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7471,40 +3224,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const forecast = dist?.forecast_7d || dist?.forecast || [];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7518,29 +3238,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     container.innerHTML = `<div style="padding:16px; font-size:13px; color:#64748B;">ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಲಭ್ಯವಿಲ್ಲ...</div>`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7554,40 +3252,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7608,29 +3273,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="forecast-h-card ${idx === 0 ? 'today' : ''}">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7644,29 +3287,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="fhc-date">${f.date || ''}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7680,29 +3301,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="fhc-desc">${f.desc_kn || 'ಸಾಮಾನ್ಯ ಹವಾಮಾನ'}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7716,29 +3315,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       <div class="fhc-temp-row">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7752,29 +3329,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         <span class="fhc-min">${Math.round(f.temp_min || 20)}°</span>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7788,29 +3343,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7824,40 +3357,7 @@ function render7DayForecast(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7878,17 +3378,6 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const container = document.getElementById('district-grid');
 
 
@@ -7896,29 +3385,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (!container || !data || !data.districts) return;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7939,40 +3406,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   if (currentRegionFilter !== 'all') {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7986,29 +3420,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8022,29 +3434,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const q = searchQueryFilter.toLowerCase().trim();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8058,40 +3448,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8112,17 +3469,6 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const c = d.current || {};
 
 
@@ -8130,29 +3476,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const alertClass = d.alert_level ? `alert-${d.alert_level}` : '';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8173,40 +3497,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return `
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8220,29 +3511,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         <div class="dw-header">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8256,29 +3525,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             <div class="dw-name">${d.name_kn}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8292,29 +3539,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8328,40 +3553,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8382,29 +3574,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <div class="dw-temp">${Math.round(c.temp_c || 25)}°</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8418,40 +3588,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8472,29 +3609,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <span>💧 ${c.rain_chance || 0}% ಮಳೆ</span>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8508,29 +3623,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <span>💦 ${c.humidity || 70}%</span>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8544,29 +3637,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         ${tagText ? `<span class="dw-alert-tag ${d.alert_level === 'red' ? 'tag-red' : 'tag-orange'}">${tagText}</span>` : ''}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8580,29 +3651,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     `;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8616,40 +3665,7 @@ function renderDistrictsGrid(data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8670,29 +3686,7 @@ function filterRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   currentRegionFilter = region;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8706,29 +3700,7 @@ function filterRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   el.classList.add('active');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8742,40 +3714,7 @@ function filterRegion(region, el) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8796,17 +3735,6 @@ function filterSearch(val) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   searchQueryFilter = val;
 
 
@@ -8814,29 +3742,7 @@ function filterSearch(val) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (weatherStore) renderDistrictsGrid(weatherStore);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8857,40 +3763,7 @@ function filterSearch(val) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const faqQuestions = [
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8904,29 +3777,7 @@ const faqQuestions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'rain_today', label: '🌧️ ಇಂದು ನನ್ನ ಏರಿಯಾದಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8940,29 +3791,7 @@ const faqQuestions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'tomorrow', label: '⛅ ನಾಳೆ ನನ್ನ ಏರಿಯಾದ ಹವಾಮಾನ ಹೇಗಿರುತ್ತೆ?' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8976,29 +3805,7 @@ const faqQuestions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'aqi', label: '🍃 ನನ್ನ ಏರಿಯಾದ AQI ವಾಯು ಗುಣಮಟ್ಟ ಎಷ್ಟು?' },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9012,17 +3819,6 @@ const faqQuestions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'wind_feel', label: '💨 ಗಾಳಿಯ ವೇಗ ಮತ್ತು ತಂಪಿನ ಅನುಭವವೆಷ್ಟು?' }
 
 
@@ -9030,40 +3826,7 @@ const faqQuestions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9091,40 +3854,7 @@ let openFaqKey = null; // Closed by default, user can click any to open
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getSelectedDistrictObj() {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9138,17 +3868,6 @@ function getSelectedDistrictObj() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   return weatherStore.districts[activeDistrictKey] || Object.values(weatherStore.districts)[0];
 
 
@@ -9156,40 +3875,7 @@ function getSelectedDistrictObj() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9210,29 +3896,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const c = dist.current || {};
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9246,29 +3910,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const feels = Math.round(c.feels_like || temp);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9282,29 +3924,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const windKmh = Math.round(c.wind_kmh || 12);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9318,29 +3938,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const desc = c.desc_kn || 'ಭಾಗಶಃ ಮೋಡ';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9354,29 +3952,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const aqi = getDistrictAQI(dist.key || 'bengaluru_urban');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9390,17 +3966,6 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const nextHour = hourly[1] || hourly[0] || {};
 
 
@@ -9408,29 +3973,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const forecast = dist.forecast || [];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9451,40 +3994,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   let title = '';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9498,29 +4008,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   let pills = [];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9541,40 +4029,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   switch (qKey) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9588,29 +4043,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `📍 ${nameKn} — ಇಂದಿನ ಲೈವ್ ಹವಾಮಾನ`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9624,29 +4057,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`🌡️ ಉಷ್ಣಾಂಶ: ${temp}°C`, `💧 ಆರ್ದ್ರತೆ: ${humidity}%`, `💨 ಗಾಳಿ: ${windKmh} km/h`, `🍃 AQI: ${aqi.val}`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9660,40 +4071,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9714,29 +4092,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `🌧️ ${nameKn} — ಇಂದು ಮಳೆ ಬರುತ್ತಾ?`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9750,29 +4106,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         body = `🌧️ <strong>ಹೌದು!</strong> ಇಂದು <strong>${nameKn}</strong> ನಲ್ಲಿ ಮಳೆ ಬೀಳುವ <strong>${rainChance}% ಗರಿಷ್ಠ ಸಾಧ್ಯತೆ</strong> ಇದೆ. ವಿಶೇಷವಾಗಿ ಸಂಜೆ ಅಥವಾ ರಾತ್ರಿಯ ವೇಳೆ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ತುಂತುರು ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ. ಹೊರಗೆ ಹೋಗುವಾಗ ಛತ್ರಿ ಇಟ್ಟುಕೊಳ್ಳುವುದು ಸೂಕ್ತ.`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9786,29 +4120,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         body = `⛅ ಇಂದು <strong>${nameKn}</strong> ನಲ್ಲಿ ಮಳೆಯ ಸಾಧ್ಯತೆ ಕೇವಲ <strong>${rainChance}%</strong> ಇದೆ. ದಿನದ ಬಹುತೇಕ ಭಾಗ ಮೋಡ ಕವಿದ ಅಥವಾ ಒಣ ಹವೆಯ ವಾತಾವರಣ ಇರಲಿದ್ದು, ಭಾರಿ ಮಳೆಯ ಲಕ್ಷಣಗಳಿಲ್ಲ.`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9822,29 +4134,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`🌧️ ಮಳೆ ಸಾಧ್ಯತೆ: ${rainChance}%`, `💦 ತೇವಾಂಶ: ${humidity}%`, `🚨 ಎಚ್ಚರಿಕೆ: ${dist.alert_level || 'Normal'}`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9858,40 +4148,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9912,29 +4169,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `⏱️ ${nameKn} — ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ಮಳೆ ಇದೆಯಾ?`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9948,29 +4183,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       if (nextRain >= 40) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9984,29 +4197,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       } else {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10020,29 +4211,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10056,17 +4225,6 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       aiQuery = `${nameKn} ಮುಂದಿನ 1 ಗಂಟೆಯಲ್ಲಿ ಮಳೆ ಬರುತ್ತಾ?`;
 
 
@@ -10074,40 +4232,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10128,29 +4253,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `⛅ ${nameKn} — ನಾಳಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10164,29 +4267,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const tMin = Math.round(tomorrow.min_temp || 20);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10200,29 +4281,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const tomorrowDayName = getKannadaDayName(tomorrow.date, 1);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10236,29 +4295,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`🔥 ಗರಿಷ್ಠ: ${tMax}°C`, `❄️ ಕನಿಷ್ಠ: ${tMin}°C`, `🌧️ ಮಳೆ: ${tRain}%`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10272,40 +4309,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10326,29 +4330,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `📅 ${nameKn} — ಮುಂದಿನ 7 ದಿನಗಳ ಸಂಪೂರ್ಣ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10362,29 +4344,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         const dName = getKannadaDayName(f.date, idx);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10398,29 +4358,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         const rChance = f.rain_chance || (f.rain_mm > 0 ? 65 : 20);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10434,29 +4372,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <span style="font-weight:800; color:#0F172A; min-width:130px;">🗓️ ${dName} (${dtFmt}):</span>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10470,29 +4386,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <span style="font-weight:800; color:#0284C7;">💧 ${rChance}% ಮಳೆ</span>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10506,29 +4400,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10542,29 +4414,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       body = `ಮುಂದಿನ 7 ದಿನಗಳಲ್ಲಿ <strong>${nameKn}</strong> ನಲ್ಲಿ ನಿರೀಕ್ಷಿತ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ವಿವರಗಳು:<br><div style="margin-top:10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:6px 14px;">${daysListHtml}</div>`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10578,17 +4428,6 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       aiQuery = `${nameKn} ಮುಂದಿನ 7 ದಿನಗಳ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ವರದಿ`;
 
 
@@ -10596,40 +4435,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10650,29 +4456,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `🍃 ${nameKn} — ವಾಯು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (AQI)`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10686,29 +4470,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`🍃 AQI: ${aqi.val}`, `🟢 ಗುಣಮಟ್ಟ: ${aqi.label}`, `🫁 ಸುರಕ್ಷಿತ ವಾತಾವರಣ`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10722,40 +4484,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10776,29 +4505,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `🚨 ${nameKn} — KSNDMC & IMD ಅಧಿಕೃತ ಮಳೆ ಎಚ್ಚರಿಕೆ`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10812,29 +4519,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         body = `🚨 <strong>ರೆಡ್ ಅಲರ್ಟ್ (Red Warning):</strong> ${nameKn} ಜಿಲ್ಲೆಗೆ KSNDMC ವತಿಯಿಂದ ಅತ್ಯಂತ ಭಾರೀ ಮಳೆಯ ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ. ನದಿ ತೀರ ಮತ್ತು ತಗ್ಗು ಪ್ರದೇಶಗಳ ಜನರು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಲ್ಲಿರಲು ಕೋರಲಾಗಿದೆ.`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10848,29 +4533,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         body = `⚠️ <strong>ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert):</strong> ${nameKn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಸಾಧಾರಣದಿಂದ ಭಾರೀ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ. ಸಾರ್ವಜನಿಕರು ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲು ಸೂಚಿಸಲಾಗಿದೆ.`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10884,29 +4547,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         body = `🟢 <strong>ಸಾಧಾರಣ ವಾತಾವರಣ (No Warning):</strong> ಪ್ರಸ್ತುತ ${nameKn} ಜಿಲ್ಲೆಗೆ ಯಾವುದೇ ಗಂಭೀರ ಪ್ರವಾಹ ಅಥವಾ ಭಾರೀ ಮಳೆ ರೆಡ್/ಆರೆಂಜ್ ಎಚ್ಚರಿಕೆ ಇರುವುದಿಲ್ಲ. ದಿನನಿತ್ಯದ ಚಟುವಟಿಕೆಗಳಿಗೆ ಯಾವುದೇ ಅಡಚಣೆಯಿಲ್ಲ.`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10920,29 +4561,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`🚨 ಅಲರ್ಟ್ ಮಟ್ಟ: ${dist.alert_level ? dist.alert_level.toUpperCase() : 'NORMAL'}`, `📢 KSNDMC ಅಧಿಕೃತ`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -10956,40 +4575,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11010,29 +4596,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       title = `💨 ${nameKn} — ಗಾಳಿಯ ವೇಗ ಮತ್ತು ಶೀತದ ಅನುಭವ`;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11046,29 +4610,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       pills = [`💨 ಗಾಳಿಯ ವೇಗ: ${windKmh} km/h`, `🌡️ ನೈಜ ಅನುಭವ: ${feels}°C`];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11082,29 +4624,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       break;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11118,17 +4638,6 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   return { title, body, pills, aiQuery };
 
 
@@ -11136,40 +4645,7 @@ function getFaqAnswerData(qKey, dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11190,29 +4666,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const container = document.getElementById('faqAccordionList');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11233,40 +4687,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const locBadge = document.getElementById('awDetectedLocName');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11287,28 +4708,6 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   container.innerHTML = faqQuestions.map(q => {
 
 
@@ -11316,29 +4715,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     const isOpen = (q.key === openFaqKey);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11359,40 +4736,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return `
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11406,29 +4750,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         <div class="faq-header" onclick="toggleFaq('${q.key}')">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11442,17 +4764,6 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <span class="faq-icon-arrow">▼</span>
 
 
@@ -11460,29 +4771,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11496,29 +4785,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <div style="font-size:16px; font-weight:800; color:#0369A1; margin-bottom:8px;">${ans.title}</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11532,29 +4799,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           <div class="faq-stats-strip">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11568,29 +4813,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11604,29 +4827,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             <a href="/ask.html?q=${encodeURIComponent(ans.aiQuery)}" class="faq-ask-ai-link">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11640,29 +4841,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             </a>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11676,29 +4855,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11712,29 +4869,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     `;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11748,40 +4883,7 @@ function renderFaqAccordion(dist) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11802,29 +4904,7 @@ function toggleFaq(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (openFaqKey === key) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11838,29 +4918,7 @@ function toggleFaq(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   } else {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11874,29 +4932,7 @@ function toggleFaq(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11910,17 +4946,6 @@ function toggleFaq(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (dist) renderFaqAccordion(dist);
 
 
@@ -11928,40 +4953,7 @@ function toggleFaq(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -11982,29 +4974,7 @@ function updateAskWeatherUI() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const dist = getSelectedDistrictObj();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12018,40 +4988,7 @@ function updateAskWeatherUI() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12072,29 +5009,7 @@ function updateAskWeatherUI() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 const karnatakaCoordinates = [
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12108,29 +5023,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'bengaluru_rural', name_kn: 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', lat: 13.2257, lon: 77.5750 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12144,29 +5037,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'dakshina_kannada', name_kn: 'ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)', lat: 12.9141, lon: 74.8560 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12180,29 +5051,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'uttara_kannada', name_kn: 'ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)', lat: 14.8185, lon: 74.1416 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12216,29 +5065,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'hubballi_dharwad', name_kn: 'ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ', lat: 15.3647, lon: 75.1240 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12252,29 +5079,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'ballari', name_kn: 'ಬಳ್ಳಾರಿ', lat: 15.1394, lon: 76.9214 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12288,29 +5093,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'shivamogga', name_kn: 'ಶಿವಮೊಗ್ಗ', lat: 13.9299, lon: 75.5681 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12324,29 +5107,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'kodagu', name_kn: 'ಕೊಡಗು (ಮಡಿಕೇರಿ)', lat: 12.4244, lon: 75.7382 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12360,29 +5121,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'tumakuru', name_kn: 'ತುಮಕೂರು', lat: 13.3379, lon: 77.1010 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12396,29 +5135,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'raichur', name_kn: 'ರಾಯಚೂರು', lat: 16.2120, lon: 77.3439 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12432,29 +5149,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'gadag', name_kn: 'ಗದಗ', lat: 15.4298, lon: 75.6315 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12468,29 +5163,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'vijayapura', name_kn: 'ವಿಜಯಪುರ', lat: 16.8302, lon: 75.7100 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12504,29 +5177,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'yadgir', name_kn: 'ಯಾದಗಿರಿ', lat: 16.7639, lon: 77.1378 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12540,29 +5191,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'mandya', name_kn: 'ಮಂಡ್ಯ', lat: 12.5218, lon: 76.8951 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12576,29 +5205,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'kolar', name_kn: 'ಕೋಲಾರ', lat: 13.1358, lon: 78.1291 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12612,17 +5219,6 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'chitradurga', name_kn: 'ಚಿತ್ರದುರ್ಗ', lat: 14.2251, lon: 76.3980 },
 
 
@@ -12630,29 +5226,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   { key: 'haveri', name_kn: 'ಹಾವೇರಿ', lat: 14.7954, lon: 75.3991 },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12673,40 +5247,7 @@ const karnatakaCoordinates = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getDistanceKm(lat1, lon1, lat2, lon2) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12720,29 +5261,7 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const dLat = (lat2 - lat1) * Math.PI / 180;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12756,29 +5275,7 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12792,29 +5289,7 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             Math.sin(dLon/2) * Math.sin(dLon/2);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12828,17 +5303,6 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   return R * c;
 
 
@@ -12846,40 +5310,7 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12900,29 +5331,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   if (!navigator.geolocation) {
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12936,29 +5345,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     return;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -12972,29 +5359,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const badge = document.getElementById('awDetectedLocName');
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13015,40 +5380,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   navigator.geolocation.getCurrentPosition(
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13062,29 +5394,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       const uLat = pos.coords.latitude;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13098,29 +5408,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13134,29 +5422,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       let minD = 99999;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13170,29 +5436,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         const dist = getDistanceKm(uLat, uLon, d.lat, d.lon);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13206,29 +5450,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
           minD = dist;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13242,17 +5464,6 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -13260,40 +5471,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13314,29 +5492,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         selectDistrict(closest.key);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13350,29 +5506,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13386,29 +5520,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
       if (badge) badge.textContent = getSelectedDistrictObj()?.name_kn || 'ಬೆಂಗಳೂರು';
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13422,29 +5534,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     },
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13458,17 +5548,6 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   );
 
 
@@ -13476,40 +5555,7 @@ function detectGPSLocation() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13530,17 +5576,6 @@ function selectDistrict(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   activeDistrictKey = key;
 
 
@@ -13548,29 +5583,7 @@ function selectDistrict(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   loadWeatherData();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -13584,17 +5597,6 @@ function selectDistrict(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -13606,490 +5608,367 @@ function selectDistrict(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ══════════════════════════════════════════════════════════════════════
-
-// OFFICIAL IMD BENGALURU 5-DAY & 3-HOUR NOWCAST CONTROLLER
-
-// ══════════════════════════════════════════════════════════════════════
-
-let currentImdMode = '5day'; // '5day' or 'nowcast'
-
-let current5DayKey = 'Day_1';
-
-let currentImdRegion = 'all';
-
-let globalImdData = null;
-
-
-
-const DISTRICT_REGIONS = {
-
-  'dakshina_kannada': 'coastal', 'udupi': 'coastal', 'uttara_kannada': 'coastal',
-
-  'shivamogga': 'malnad', 'chikkamagaluru': 'malnad', 'kodagu': 'malnad', 'hassan': 'malnad',
-
-  'bengaluru_urban': 'south', 'bengaluru_rural': 'south', 'mysuru': 'south', 'mandya': 'south',
-
-  'tumakuru': 'south', 'kolar': 'south', 'chikkaballapura': 'south', 'ramanagara': 'south', 'chamarajanagara': 'south',
-
-  'chitradurga': 'central', 'davanagere': 'central', 'haveri': 'central', 'vijayanagara': 'central',
-
-  'belagavi': 'north', 'dharwad': 'north', 'gadag': 'north', 'bagalkote': 'north', 'vijayapura': 'north',
-
-  'kalaburagi': 'north', 'yadgir': 'north', 'raichur': 'north', 'koppal': 'north', 'ballari': 'north', 'bidar': 'north'
-
-};
-
-
-
-const REGION_NAMES_KN = {
-
-  'coastal': 'ಕರಾವಳಿ', 'malnad': 'ಮಲೆನಾಡು', 'south': 'ದಕ್ಷಿಣ ಒಳನಾಡು', 'central': 'ಮಧ್ಯ ಕರ್ನಾಟಕ', 'north': 'ಉತ್ತರ ಒಳನಾಡು'
-
-};
-
-
-
-function setImdMode(mode) {
-
-  currentImdMode = mode;
-
-  const btn5 = document.getElementById('tab-btn-5day');
-
-  const btnNow = document.getElementById('tab-btn-nowcast');
-
-  const dayPills = document.getElementById('imd-day-pills');
-
-
-
-  if (mode === '5day') {
-
-    if (btn5) { btn5.style.background = '#0284C7'; btn5.style.color = '#FFF'; btn5.style.boxShadow = '0 3px 10px rgba(2,132,199,0.3)'; }
-
-    if (btnNow) { btnNow.style.background = 'transparent'; btnNow.style.color = '#64748B'; btnNow.style.boxShadow = 'none'; }
-
-    if (dayPills) dayPills.style.display = 'flex';
-
-  } else {
-
-    if (btn5) { btn5.style.background = 'transparent'; btn5.style.color = '#64748B'; btn5.style.boxShadow = 'none'; }
-
-    if (btnNow) { btnNow.style.background = '#0284C7'; btnNow.style.color = '#FFF'; btnNow.style.boxShadow = '0 3px 10px rgba(2,132,199,0.3)'; }
-
-    if (dayPills) dayPills.style.display = 'none';
-
-  }
-
-  renderImdCards();
-
-}
-
-
-
-function set5DayTab(dayKey) {
-
-  current5DayKey = dayKey;
-
-  const pills = ['Day_1', 'Day_2', 'Day_3', 'Day_4', 'Day_5'];
-
-  pills.forEach(p => {
-
-    const el = document.getElementById(`pill-${p}`);
-
-    if (el) {
-
-      if (p === dayKey) {
-
-        el.style.background = '#0F172A';
-
-        el.style.color = '#FFF';
-
-        el.style.borderColor = '#0F172A';
-
-        el.style.boxShadow = '0 2px 6px rgba(0,0,0,0.15)';
-
-      } else {
-
-        el.style.background = '#F8FAFC';
-
-        el.style.color = '#475569';
-
-        el.style.borderColor = '#E2E8F0';
-
-        el.style.boxShadow = 'none';
-
-      }
-
-    }
-
-  });
-
-  renderImdCards();
-
-}
-
-
-
-function filterImdRegion(region, btn) {
-
-  currentImdRegion = region;
-
-  document.querySelectorAll('.imd-r-btn').forEach(b => {
-
-    b.style.background = '#F1F5F9';
-
-    b.style.color = '#475569';
-
-  });
-
-  if (btn) {
-
-    btn.style.background = '#0284C7';
-
-    btn.style.color = '#FFF';
-
-  }
-
-  renderImdCards();
-
-}
-
-
-
-function renderImdCards() {
-  const container = document.getElementById('imdNowcastContainer');
-  if (!container || !globalImdData) return;
-
-  let districts = {};
-  let sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
-  if (currentImdMode === '5day') {
-    const dayObj = globalImdData.forecast_5days?.[current5DayKey] || {};
-    districts = dayObj.districts || globalImdData.imd_warnings || {};
-    const knDays = { 'Day_1': 'ಇಂದು (Day 1)', 'Day_2': 'ನಾಳೆ (Day 2)', 'Day_3': 'ನಾಳಿದ್ದು (Day 3)', 'Day_4': '4ನೇ ದಿನ (Day 4)', 'Day_5': '5ನೇ ದಿನ (Day 5)' };
-    sourceLabel = `🏛️ IMD 5-ದಿನ ಮುನ್ಸೂಚನೆ (${knDays[current5DayKey] || current5DayKey})`;
-  } else {
-    districts = globalImdData.nowcast?.districts || globalImdData.districts || {};
-    sourceLabel = '⚡ IMD 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್';
-  }
-
-  let countRed = 0, countOrange = 0, countYellow = 0, countGreen = 0;
-  for (let k of Object.keys(districts)) {
-    const lvl = (districts[k].alert_level || districts[k].level || 'GREEN').toUpperCase();
-    if (lvl === 'RED') countRed++;
-    else if (lvl === 'ORANGE') countOrange++;
-    else if (lvl === 'YELLOW') countYellow++;
-    else countGreen++;
-  }
-
-  const elR = document.getElementById('cnt-red');
-  const elO = document.getElementById('cnt-orange');
-  const elY = document.getElementById('cnt-yellow');
-  const elG = document.getElementById('cnt-green');
-  if (elR) elR.textContent = countRed;
-  if (elO) elO.textContent = countOrange;
-  if (elY) elY.textContent = countYellow;
-  if (elG) elG.textContent = countGreen;
-
-  let filteredKeys = Object.keys(districts);
-  if (currentImdRegion !== 'all') {
-    filteredKeys = filteredKeys.filter(k => DISTRICT_REGIONS[k] === currentImdRegion);
-  }
-
-  if (!filteredKeys.length) {
-    container.innerHTML = `<div style="text-align:center; padding:35px 20px; color:#64748B; grid-column:1/-1; background:#FFFFFF; border-radius:18px; border:1px solid #E2E8F0; font-size:14px; font-weight:700;">ಆಯ್ಕೆಮಾಡಿದ ವಲಯದಲ್ಲಿ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿರವಾಗಿದೆ (ಹಸಿರು ವಲಯ - ಸುರಕ್ಷಿತ).</div>`;
-    return;
-  }
-
-  container.innerHTML = filteredKeys.map(k => {
-    const d = districts[k];
-    const regionKey = DISTRICT_REGIONS[k] || 'south';
-    const regionKn = REGION_NAMES_KN[regionKey] || 'ಕರ್ನಾಟಕ';
-    const lvl = (d.alert_level || d.level || 'GREEN').toUpperCase();
-
-    let cardClass = "imd-card imd-card-green";
-    let badgeClass = "imd-badge imd-badge-green";
-    let statusLabel = "🟢 ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ";
-    let hazardTitle = "🌤️ ಶಾಂತ ಹವಾಮಾನ (No Warning)";
-    let hazardDesc = "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ.";
-
-    if (lvl === 'RED') {
-      cardClass = "imd-card imd-card-red";
-      badgeClass = "imd-badge imd-badge-red";
-      statusLabel = "🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)";
-      hazardTitle = d.hazard_kn || "ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ";
-      hazardDesc = d.warning_info || "ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ, ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಿ.";
-    } else if (lvl === 'ORANGE') {
-      cardClass = "imd-card imd-card-orange";
-      badgeClass = "imd-badge imd-badge-orange";
-      statusLabel = "🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)";
-      hazardTitle = d.hazard_kn || "ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ";
-      hazardDesc = d.warning_info || "ಭಾರೀ ಮಳೆಯಾಗುವ ಮುನ್ಸೂಚನೆ ಇದೆ.";
-    } else if (lvl === 'YELLOW') {
-      cardClass = "imd-card imd-card-yellow";
-      badgeClass = "imd-badge imd-badge-yellow";
-      statusLabel = "🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)";
-      hazardTitle = "🌧️ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ";
-      const rawWi = d.warning_info || '';
-      if (rawWi.includes('Valid upto:')) {
-        const vTime = rawWi.split('Valid upto:').pop().trim();
-        hazardDesc = `ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ (ಮಾನ್ಯತೆ: ${vTime})`;
-      } else {
-        hazardDesc = "ಲಘು ಮಳೆ ಹಾಗೂ ಮೋಡ ಕವಿದ ವಾತಾವರಣ.";
-      }
-    }
-
-    const dNameKn = d.district_kn || d.name_kn || k;
-    const dNameEn = d.district_en || d.name_en || '';
-
-    return `
-      <div class="${cardClass}" data-region="${regionKey}" data-district="${k}">
-        <div class="imd-card-top">
-          <div>
-            <div class="imd-card-title">${dNameKn}</div>
-            <div class="imd-card-sub">${dNameEn}</div>
-          </div>
-          <span class="${badgeClass}">${statusLabel}</span>
-        </div>
-        <div class="imd-card-body">
-          <div class="imd-hazard-title">${hazardTitle}</div>
-          <div class="imd-hazard-desc">${hazardDesc}</div>
-        </div>
-        <div class="imd-card-footer">
-          <span class="imd-region-tag">📍 ${regionKn}</span>
-          <span class="imd-source-tag">${sourceLabel}</span>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-async function loadImdNowcastWarnings() {
-
-  const timeElem = document.getElementById('imdNowcastUpdateTime');
-
-  let data = null;
-
-
-
-  try {
-
-    const res = await fetch('/api/weather/nowcast?t=' + Date.now(), { cache: 'no-store' });
-
-    if (res.ok) {
-
-      data = await res.json();
-
-    }
-
-  } catch(e) {
-
-    console.warn('Nowcast API notice:', e);
-
-  }
-
-
-
-  if (!data || !data.success) {
-
-    try {
-
-      if (typeof NK !== 'undefined' && NK.fetch) {
-
-        data = await NK.fetch('weather', 'weather.json');
-
-      }
-
-    } catch(err) {}
-
-  }
-
-
-
-  if (data) {
-
-    globalImdData = data;
-
-    if (timeElem && data.updated_at) {
-
-      timeElem.textContent = '⏱️ IMD UPDATE: ' + new Date(data.updated_at).toLocaleTimeString('kn-IN', { hour: '2-digit', minute: '2-digit' });
-
-    }
-
-    renderImdCards();
-
-  }
-
-}
 
 
 
 async function loadWeatherData() {
 
+
+
+
   const currentKey = activeDistrictKey || 'bengaluru_urban';
+
+
+
 
   let data = null;
 
 
 
+
+
+
+
+
+
   try {
+
+
+
 
     const res = await fetch(`/api/weather?district=${currentKey}&v=${Date.now()}`, { cache: 'no-store' });
 
+
+
+
     if (res.ok) {
+
+
+
 
       data = await res.json();
 
+
+
+
     }
+
+
+
 
   } catch(e) {
 
-    console.warn('API fetch notice:', e);
+
+
+
+    console.warn('API fetch notice, checking data loader:', e);
+
+
+
 
   }
+
+
+
+
+
+
 
 
 
   if (!data || !data.success || !data.districts) {
 
+
+
+
     try {
+
+
+
 
       if (typeof NK !== 'undefined' && NK.fetch) {
 
+
+
+
         const rawW = await NK.fetch('weather', 'weather.json');
+
+
+
 
         if (rawW && rawW.districts) {
 
+
+
+
           const bd = rawW.districts[currentKey] || Object.values(rawW.districts)[0];
+
+
+
 
           data = {
 
+
+
+
             success: true,
+
+
+
 
             district_key: currentKey,
 
+
+
+
             district_kn: bd?.name_kn || 'ಬೆಂಗಳೂರು',
+
+
+
 
             updated_at: rawW.updated_at,
 
-            ksndmc: { state_extremes: rawW.state_extremes, top_rainfall_locations: rawW.state_extremes?.top_rainfall_locations || rawW.state_extremes?.top_rain_locations || [] },
+
+
+
+            ksndmc: { state_extremes: rawW.state_extremes, top_rainfall_locations: rawW.state_extremes?.top_rain_locations || [] },
+
+
+
 
             ksndmc_alerts: rawW.ksndmc_alerts,
 
+
+
+
             current: bd?.current,
+
+
+
 
             hourly_24h: bd?.hourly_24h,
 
+
+
+
             forecast_7d: bd?.forecast_7d,
+
+
+
 
             forecast: bd?.forecast_7d,
 
-            districts: rawW.districts,
 
-            forecast_5days: rawW.forecast_5days,
 
-            nowcast: rawW.nowcast
+
+            districts: rawW.districts
+
+
+
 
           };
 
+
+
+
         }
+
+
+
 
       }
 
+
+
+
     } catch(err) {
 
-      console.warn('Fallback error:', err);
+
+
+
+      console.warn('Data loader fallback error:', err);
+
+
+
 
     }
 
+
+
+
   }
+
+
+
+
+
+
 
 
 
   if (data && data.success) {
 
+
+
+
     window.weatherStore = data;
+
+
+
 
     weatherStore = data;
 
 
 
+
+
+
+
+
+
     const activeDist = data.districts?.[currentKey] || {
+
+
+
 
       name_kn: data.district_kn,
 
+
+
+
       key: data.district_key,
+
+
+
 
       current: data.current,
 
+
+
+
       hourly_24h: data.hourly_24h,
+
+
+
 
       forecast_7d: data.forecast_7d,
 
+
+
+
       forecast: data.forecast_7d
+
+
+
 
     };
 
 
 
-    if (typeof renderHero === 'function') renderHero(activeDist);
 
-    if (typeof renderHourlyForecast === 'function') renderHourlyForecast(activeDist);
 
-    if (typeof render7DayForecast === 'function') render7DayForecast(activeDist);
 
-    if (typeof renderFaqAccordion === 'function') renderFaqAccordion(activeDist);
 
-    if (typeof renderDistrictsGrid === 'function') renderDistrictsGrid(data);
 
-    if (typeof renderRealKSNDMCTweets === 'function') renderRealKSNDMCTweets(data);
 
-    if (typeof renderSummaryAndCreativeCards === 'function') renderSummaryAndCreativeCards(data);
+    renderHero(activeDist);
+
+
+
+
+    renderHourlyForecast(activeDist);
+
+
+
+
+    render7DayForecast(activeDist);
+
+
+
+
+    renderFaqAccordion(activeDist);
+
+
+
+
+    renderDistrictsGrid(data);
+
+
+
+
+    renderRealKSNDMCTweets(data);
+
+
+
 
   }
 
 
 
-  await loadImdNowcastWarnings();
+
+
+
+
+
+
+  // Load KSNDMC Telemetry & State Extremes
+
+
+
+
+  await renderSummaryAndCreativeCards(window.weatherStore);
+  // Render warnings & nowcast dashboard
+  if (typeof renderDistrictWarningsGrid === 'function') renderDistrictWarningsGrid();
+
+
+
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
 if (document.readyState === 'loading') {
 
+
+
+
+
+
   document.addEventListener('DOMContentLoaded', loadWeatherData);
+
+
+
+
+
 
 } else {
 
+
+
+
+
+
   loadWeatherData();
 
+
+
+
+
+
 }
+
+
+
 
 
 

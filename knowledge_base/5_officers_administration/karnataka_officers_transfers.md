@@ -4,7 +4,7 @@
 
 ### koppal ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಸುರೇಶ್‌ ಬಿ. ಇಟ್ನಾಲ್‌
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ರಾಮ್ ಎಲ್ ಅರಸಿದ್ದಿ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಸಾಹಿಲ್ ಬಾಗ್ಲಾ
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ವರ್ನಿತ್ ನೇಗಿ
 
 ### mysuru ಜಿಲ್ಲೆ:
@@ -14,7 +14,7 @@
 
 ### bengaluru_urban ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಬಾಲಚಂದ್ರ ಎಸ್.‌ ಎನ್.‌
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ಶಿವಕುಮಾರ್
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಪ್ರವೀಣ್.ಕೆ.ಎನ್‌
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಲಭ್ಯವಿಲ್ಲ
 
 ### bengaluru_rural ಜಿಲ್ಲೆ:
@@ -39,7 +39,7 @@
 
 ### dakshina_kannada ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ದರ್ಶನ್ ಹೆಚ್ ವಿ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಅಮಿತ್ ಸಿಂಗ್
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಸಿ.ಹೆಚ್. ಸುಧೀರ್ ಕುಮಾರ್ ರೆಡ್ಡಿ
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ನರ್ವದೆ ವಿನಾಯಕ್‌ ಕಾರ್ಭಾರೀ
 
 ### kalaburagi ಜಿಲ್ಲೆ:
@@ -89,7 +89,7 @@
 
 ### gadag ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಸಿ.ಎನ್.ಶ್ರೀಧರ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ರೋಹನ್ ಜಗದೀಶ್
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಮಿಥುನ್ ಹೆಚ್  ಎನ್
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಮುಕುಲ್‌ ಜೈನ್
 
 ### haveri ಜಿಲ್ಲೆ:
@@ -134,7 +134,7 @@
 
 ### davanagere ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಗಂಗಾಧರಸ್ವಾಮಿ ಜಿ.ಎಂ.
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ಬಿ.ಆರ್. ರವಿಕಾಂತೇ ಗೌಡ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಶೇಖರ್ ಎಚ್ ತೆಕ್ಕಣ್ಣವರ್
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಗಿಟ್ಟೆ ಮಾಧವ್ ವಿಠ್ಠಲ್ ರಾವ್
 
 ### kolar ಜಿಲ್ಲೆ:
@@ -144,12 +144,12 @@
 
 ### chikkaballapura ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಪ್ರಭು ಜಿ.
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಕುಶಾಲ್ ಚೌಕ್ಸಿ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀಮತಿ ಪದ್ಮಿನಿ ಸಾಹು
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಡಾ|| ನವೀನ್ ಭಟ್ ವೈ
 
 ### ramanagara ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಯಶವಂತ್ ವಿ ಗುರುಕರ್
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಆರ್. ಶ್ರೀನಿವಾಸ್ ಗೌಡ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ರೋಹನ್ ಜಗದೀಶ್
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಅನ್ಮೋಲ್ ಜೈನ್
 
 ### kodagu ಜಿಲ್ಲೆ:
@@ -159,9 +159,56 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **30-08-2026:** Dr. Bhanu Prakash J, IPS (KN: 2023) Assistant Superintendent of Police, Tirthahalli Sub-Division, Shivamogga District. (ಆದೇಶ: DPAR 179 SPS 2026) — Dr. Bhanu Prakash J, IPS (KN: 2023) Assistant Superintendent of Police, Tirthahalli Sub-Division, Shivamogga District.
+
+Ms. Ishita Gupta, IPS (KN: 2024) Assistant Superintendent of Police, Karkala Sub-Division, Udupi District.
+
+Ms. Annanya Srivastav, IPS (KN: 2024) Assistant Superintendent of Police, Hubballi Rural Sub-division, Dharwad District.
+
+Sri Ranu Gupta, IPS (KN: 2024) Assistant Superintendent of Police, Bhatkala Sub-Division, Uttar Kannada District.
+* **29-08-2026:** Sri Harishekaran P, IPS (KN: 1996) Additional Director General of Police, Directorate of Civil Rights Enforcement. (ಆದೇಶ: e-DPAR 106 SPS 2026) — Sri Harishekaran P, IPS (KN: 1996) Additional Director General of Police, Directorate of Civil Rights Enforcement.
+
+Sri M Nanjundaswami, IPS (KN: 1997) Additional Director General of Police, Grievances & Human Rights.
+
+Sri Devajyoti Ray, IPS (KN: 1999) Additional Director General of Police, Crimes and Technical Services, Bengaluru.
+
+Sri Amit Singh, IPS (KN: 2007) Inspector General of Police, Karnataka State Reserve Police.
+
+Sri. Borase Bhushan Gulabrao, IPS (KN: 2009) Deputy Inspector General of Police and Commissioner of Police, Hubballi-Dharwad.
+
+Sri R Chethan, IPS (KN: 2010) Deputy Inspector General of Police, Western Range, Mangaluru.
+
+Sri Nikam Prakash Amrit, IPS (KN: 2012) Deputy Inspector General of Police & Commissioner of Police, Belagavi City.
+
+Sri Shiva Prakash Devaraju, IPS (KN: 2014) Superintendent of Police, Anti Narcotic Task Force.
+
+Smt Padmini Sahoo, IPS (KN: 2015) Superintendent of Police, Chikkaballapur District.
+
+Sri R. Srinivas Gowda, IPS (KN: 2016) Deputy Commissioner of Police, City Crime Branch-1.
+
+Dr. Shivakumar, IPS (KN: 2016) Superintendent of Police, Karnataka Lokayukta.
+
+Sri Kushal Chouksey, IPS (KN: 2018) Deputy Commissioner of Police, Administration, Bengaluru.
+
+Sri Sahil Bagla, IPS (KN: 2018) Superintendent of Police, Koppal.
+
+Sri Rohan Jagadeesh, IPS (KN: 2019) Superintendent of Police, Bengaluru South District (Ramanagara)
+
+Sri Mithun H.N, IPS (KN: 2020) Superintendent of Police, Gadag.
 * **29-08-2026:** Mallikarjun Reddy Patil, KAS (KN:2020), Privare Secretary to Hon'ble President Kalyana Karnataka Area Development Board, Kalaburagi is transferred with immediate effect and posted until further orders as Private Secretary to Minister for Minor Irigation and Science & Technology. (ಆದೇಶ: DPAR 119 SKT 2026) — Mallikarjun Reddy Patil, KAS (KN:2020), Privare Secretary to Hon'ble President Kalyana Karnataka Area Development Board, Kalaburagi is transferred with immediate effect and posted until further orders as Private Secretary to Minister for Minor Irigation and Science & Technology.
 * **29-08-2026:** Shri. Veerabhadra Hanchinal, KAS (KN:1998), Special Secretary to Government (State Protocol), Karnataka Government Secretariat, Bengaluru is placed in additional charge with immediate effect and until further orders as Private Secretary to the Hon'ble Deputy Speaker of the Karnataka Legislative Council. (ಆದೇಶ: DPAR 110 SKT 2026) — Shri. Veerabhadra Hanchinal, KAS (KN:1998), Special Secretary to Government (State Protocol), Karnataka Government Secretariat, Bengaluru is placed in additional charge with immediate effect and until further orders as Private Secretary to the Hon'ble Deputy Speaker of the Karnataka Legislative Council.
 * **29-08-2026:** Dr. Shripad S B, KAS (KN:1998), Private Secretary to the Hon'ble Deputy Speaker, Karnataka Legislative Assembly is transferred with immediate effect and posted until further orders as Private Secretary to Hon'ble minister for Textile and Sugar. (ಆದೇಶ: DPAR 110 SKT 2026) — Dr. Shripad S B, KAS (KN:1998), Private Secretary to the Hon'ble Deputy Speaker, Karnataka Legislative Assembly is transferred with immediate effect and posted until further orders as Private Secretary to Hon'ble minister for Textile and Sugar.
+* **29-08-2026:** Smt. Kathyayinidevi S, KAS (KN:2012), Chief Exicutiveofficer (Skill), Sanjeevini Karnataka State Rural Livelihood Mission, Bengaluru is placed in additional charge with immediate effect and until further orders as Chief Exicutiveofficer (Skill), Sanjeevini Karnataka State Rural Livelihood Mission, Bengaluru vice Smt. Kathyayinidevi S, KAS transferred. (ಆದೇಶ: DPAR 110 SKT 2026) — Smt. Kathyayinidevi S, KAS (KN:2012), Chief Exicutiveofficer (Skill), Sanjeevini Karnataka State Rural Livelihood Mission, Bengaluru is placed in additional charge with immediate effect and until further orders as Chief Exicutiveofficer (Skill), Sanjeevini Karnataka State Rural Livelihood Mission, Bengaluru vice Smt. Kathyayinidevi S, KAS transferred.
+    Shri. Shantharaju Y B, KAS (KN:2012), Director (Operations), Suvarna Arogya Suraksha Trust, Bengaluru is placed in additional charge with immediate effect and until further orders as Director (Operations), Suvarna Arogya Suraksha Trust, Bengaluru vice Shri. Shantharaju Y B, KAS transferred.
+    Smt. Susheelamma N, KAS (KN:1998),  is transferred with immediate effect and posted until further orders as Chief Administrative Officer, Institute of Gastroenterology Sciences and Organ Transplant, Bangalore.
+    Shri. Ravi M Tirlapur, KAS (KN:2012), Managing Director, Karnataka State Road Development Corporation, Bengaluru is transferred with immediate effect and posted until further orders as Managing Director, Karnataka Skill Development Corporation (KSDC), Bengaluru.
+    Dr. B Udaya Kumar Shetty, KAS (KN:2012), General manager, Karnataka Public Lands Corporation  Ltd.,, Bengaluru is transferred with immediate effect and posted until further orders as Chief Operative Officer, VB-G-RAM-G, Commissionarate of Rural development, Bengaluru.
+    Dr. Nagaraju S, KAS (KN:2010), Registrar, Karnataka Appellate Tribunal, Bangalore is transferred with immediate effect and posted until further orders as Chief Administrative officer, Jayadeva Institute of Cardivascular Scinces and Research, Bengaluru.
+    Dr. G Viswanatha, KAS (KN:1998),  is transferred with immediate effect and posted until further orders as Chief Administrative officer, Atal Bihari Vajapeyi Institute Medical College & Research, Bengaluru.
+    Arul Kumar, KAS (KN:2016), Deputy Secretary (Admin & Coordination), Finance Department is transferred with immediate effect and posted until further orders as Managing Director, Karnataka State Road Development Corporation, Bengaluru vice Shri. Ravi M Tirlapur, KAS transferred.
+    Smt. Kusuma Kumari S, KAS (KN:2006),  is transferred with immediate effect and posted until further orders as Registrar (Admin), Karnataka State Dr. Gangubai Hanagal University of Music and  Arts, Bangalore.
+    Dr Kavitha Yogappanavar, KAS (KN:2006), Special Land Acquisition Officer (SLAO), UKP, Badami, Bagalakote is transferred with immediate effect and posted until further orders as Chief Operative officer, National Rural Livelihood Mission (NRLM), Bengaluru.
+    Abhijin B, KAS (KN:2016), Joint Commissioner IT Cell Greater Bengaluru Authority Bengaluru is transferred with immediate effect and posted until further orders as Deputy Secretary (Admin & Coordination), Finance Department vice Arul Kumar, KAS transferred.
 * **19-08-2026:** Dr. Mythri H P S, KAS (KN:2011),  is transferred with immediate effect and posted until further orders as Assistant Commissioner, Shivamogga Sub-Division, Shivamogga vice Shri. G H Sathyanarayana, KAS transferred. (ಆದೇಶ: DPAR 58 SKT 2026) — Dr. Mythri H P S, KAS (KN:2011),  is transferred with immediate effect and posted until further orders as Assistant Commissioner, Shivamogga Sub-Division, Shivamogga vice Shri. G H Sathyanarayana, KAS transferred.
 * **19-08-2026:** Sowmya N Gowda, KAS (KN:2016), Special Land Acquisition Officer, Bengaluru Urban District, Bengaluru is transferred with immediate effect and posted until further orders as Deputy Secretary to Government (Land Acquisition, Rehabilitation and Reconstruction), Department of Revenue, Bengaluru. (ಆದೇಶ: DPAR 70 SKT 2026) — Sowmya N Gowda, KAS (KN:2016), Special Land Acquisition Officer, Bengaluru Urban District, Bengaluru is transferred with immediate effect and posted until further orders as Deputy Secretary to Government (Land Acquisition, Rehabilitation and Reconstruction), Department of Revenue, Bengaluru.
     Thabassum Zahera, KAS (KN:2016), Public Relations Officer, Tumkur City Corporation, Tumkuru is transferred with immediate effect and posted until further orders as Special Land Acquisition Officer (SLAO), Karnataka Industrial Area Development Board (KIADB), Tumkur vice Somappa Kadakol, KAS transferred.
@@ -260,6 +307,9 @@ Sri. Randeep D., IAS (KN: 2006), Secretary to Government (Panchayat Raj), Rural 
 * **16-07-2026:** Smt. Divya Prabhu G R J., IAS (KN:2014), Managing Director, Karnataka Renewable Energy Development Limited, Bengaluru (ಆದೇಶ: e-DPAR 246 SAS 2026) — Smt. Divya Prabhu G R J., IAS (KN:2014), Managing Director, Karnataka Renewable Energy Development Limited, Bengaluru
 
 Smt. Divya Prabhu G R J., IAS (KN:2014) is also placed in the concurrent charge of the post of Commissioner for Rural Development, Bengaluru
+* **16-07-2026:** Smt. Nisha James, IPS (KN: 2013) Superintendent of Police, Intelligence. (ಆದೇಶ: e-DPAR 192 SPS 2025) — Smt. Nisha James, IPS (KN: 2013) Superintendent of Police, Intelligence.
+
+Sri Mane Swapnil Tukaram, IPS (KN: 2022) Superintendent of Police, Intelligence, Kalaburagi.
 * **16-07-2026:** Mahesh B R, KAS (KN:2020), Chief Administrative Officer, Mysore Institute of Medical Sciences & Research, Mysuru is placed in additional charge with immediate effect and until further orders as Commissioner, Mysuru Development Authority, (MDA) Mysuru relieving Shri. Rakshith K R, KAS from additional charge. (ಆದೇಶ: DPAR 96 SKT 2026) — Mahesh B R, KAS (KN:2020), Chief Administrative Officer, Mysore Institute of Medical Sciences & Research, Mysuru is placed in additional charge with immediate effect and until further orders as Commissioner, Mysuru Development Authority, (MDA) Mysuru relieving Shri. Rakshith K R, KAS from additional charge.
 * **14-07-2026:** Nandish LM - Council Secretary, Ballary City council Corporation, Ballary (ಆದೇಶ: DPAR 80 SKT 2026) — Nandish LM - Council Secretary, Ballary City council Corporation, Ballary     
 Smt. Durgashree N, KAS (KN:2020), Deputy Director (Operations) 108- Health Care and 104- Health Helpline Command and Control Centre (CCC) Bangalore is transferred with immediate effect and posted until further orders as SLAO,KIADB, BMICP Bengaluru  vice Smt. Venkatalakshmi H S, KAS transferred.
@@ -275,17 +325,3 @@ Mallesh Tanga , KAS (KN:2020), SLAO, KIADB, Kalaburgi is transferred with immedi
 * **06-07-2026:** Mamatha Devi G S, KAS (KN:2017), Special Land Acquisition Officer (SLAO), Tumakuru-Rayagada Railway Project, Tumakuru is placed in additional charge with immediate effect and until further orders as Registrar (Admin), Dr. B R Ambedkar School of Economics University, Bengaluru . (ಆದೇಶ: DPAR 317 SKM 2026) — Mamatha Devi G S, KAS (KN:2017), Special Land Acquisition Officer (SLAO), Tumakuru-Rayagada Railway Project, Tumakuru is placed in additional charge with immediate effect and until further orders as Registrar (Admin), Dr. B R Ambedkar School of Economics University, Bengaluru .
 * **03-07-2026:** Smt. Ramya S., IAS (KN: 2013), Deputy Commissioner, Chitradurga District, Chitradurga (ಆದೇಶ: e-DPAR 208 SAS 2026) — Smt. Ramya S., IAS (KN: 2013), Deputy Commissioner, Chitradurga District, Chitradurga
 * **03-07-2026:** Notification number e-DPAR 208 SAS 2026 dated: 03.07.2026 is hereby withdrawn. (ಆದೇಶ: e-DPAR 208 SAS 2026) — Notification number e-DPAR 208 SAS 2026 dated: 03.07.2026 is hereby withdrawn.
-* **02-07-2026:** Sri. Harsh Gupta, IAS (KN: 1997), Principal Secretary to Government, Prajaseva Department, Bengaluru. (ಆದೇಶ: e-DPAR 205 SAS 2026) — Sri. Harsh Gupta, IAS (KN: 1997), Principal Secretary to Government, Prajaseva Department, Bengaluru.
-
-Sri. Harsh Gupta, IAS (KN: 1997) Chairman, Karnataka Appellate Tribunal, Bengaluru
-
-Dr. Ragapriya R., IAS (KN: 2011), Commissioner for Labour, Bengaluru
-
-Dr. Gopal Krishna H N., IAS (KN: 2012), Commissioner for Collegiate Education, Bengaluru
-
-Dr. Harish Kumar K., IAS (KN: 2012), Director, Department of Technical Education Bengaluru
-* **02-07-2026:** Sri. Manjunath J, IAS (KN: 2010), Secretary to Government, Department of Information and Public Relations, Bengaluru (ಆದೇಶ: e-DPAR 215 SAS 2026) — Sri. Manjunath J, IAS (KN: 2010), Secretary to Government, Department of Information and Public Relations, Bengaluru
-* **02-07-2026:** Shri. Veerabhadra Hanchinal, KAS (KN:1998),  is transferred with immediate effect and posted until further orders as  Additional secretary to Government (State Protocol), Karnataka Government Secretariat, Bangalore vice Dr. Venkateshmurthy V, KAS transferred. (ಆದೇಶ: DPAR 79 SKT 2026) — Shri. Veerabhadra Hanchinal, KAS (KN:1998),  is transferred with immediate effect and posted until further orders as  Additional secretary to Government (State Protocol), Karnataka Government Secretariat, Bangalore vice Dr. Venkateshmurthy V, KAS transferred.
-    Dr. Venkateshmurthy V, KAS (KN:2012),  Additional secretary to Government (State Protocol), Karnataka Government Secretariat, Bangalore is transferred with immediate effect and posted until further orders as Joint Secretary to Government, Department of Commerce & Industry (Mines), Vikasa Soudha Bengaluru vice Dr. G Viswanatha, KAS transferred.
-* **02-07-2026:** Shri. Yogesha T, KAS (KN:2010), Deputy Commissioner (Land Acquisition),  Greater Bangalore Development Authority, Ramanagara is transferred with immediate effect and posted until further orders as Private secretary to hon'ble minister for Greater Bengaluru authority,Bengaluru . (ಆದೇಶ: DPAR 75 SKT 2026) — Shri. Yogesha T, KAS (KN:2010), Deputy Commissioner (Land Acquisition),  Greater Bangalore Development Authority, Ramanagara is transferred with immediate effect and posted until further orders as Private secretary to hon'ble minister for Greater Bengaluru authority,Bengaluru .
-    Shri. Rudresh S N, KAS (KN:2012), Chief Administrative Officer, Karnataka Neeravari Nigam Limited (KNNL), Dharwad is transferred with immediate effect and posted until further orders as Deputy Commissioner (Land Acquisition),  Greater Bangalore Development Authority, Ramanagara vice Shri. Yogesha T, KAS transferred.
