@@ -193,18 +193,44 @@
     }
   }
 
-  // Non-intrusive alert toast for user's district
+  // Non-intrusive alert toast for user's district or statewide gold alerts
   function showInPagePushBanner(item, userDist) {
     let b = document.getElementById('karnata-live-district-alert-toast');
     if (!b) {
       b = document.createElement('div');
       b.id = 'karnata-live-district-alert-toast';
-      b.style.cssText = 'position:fixed; bottom:24px; right:20px; max-width:380px; width:90%; background:#0F172A; color:#FFF; border:2px solid #0284C7; border-radius:18px; padding:18px; z-index:9999999; box-shadow:0 20px 40px rgba(0,0,0,0.5); font-family:system-ui,-apple-system,sans-serif; animation:slideIn 0.3s ease;';
+      b.style.cssText = 'position:fixed; bottom:24px; right:20px; max-width:380px; width:90%; background:#0F172A; color:#FFF; border-radius:18px; padding:18px; z-index:9999999; box-shadow:0 20px 40px rgba(0,0,0,0.5); font-family:system-ui,-apple-system,sans-serif; animation:slideIn 0.3s ease;';
       document.body.appendChild(b);
     }
 
-    const badgeColor = item.alert_level === 'red' ? '#DC2626' : (item.alert_level === 'orange' ? '#EA580C' : '#CA8A04');
-    const badgeText = item.alert_level === 'red' ? '🔴 ರೆಡ್ ಅಲರ್ಟ್' : (item.alert_level === 'orange' ? '🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್' : '🟡 ಹಳದಿ ನಿಗಾ');
+    const isGold = (item.topic === 'gold_rate_alert' || (item.id && item.id.startsWith('GOLD-')));
+
+    let badgeColor = '#CA8A04';
+    let badgeText = '🟡 ಹಳದಿ ನಿಗಾ';
+    let actionBtnText = 'ಹವಾಮಾನ ವೀಕ್ಷಿಸಿ ➔';
+    let actionUrl = item.url || `/weather?district=${userDist}`;
+    let toastBorder = '2px solid #0284C7';
+
+    if (isGold) {
+      toastBorder = '2px solid #F59E0B';
+      actionBtnText = 'ಇಂದಿನ ದರ & ಲೆಕ್ಕ ನೋಡಿ ➔';
+      actionUrl = item.url || '/gold-rate';
+      if (item.alert_level === 'gold_drop') {
+        badgeColor = '#16A34A';
+        badgeText = '🪙 ದರ ಇಳಿಕೆ (10 AM Live)';
+      } else if (item.alert_level === 'gold_surge') {
+        badgeColor = '#D97706';
+        badgeText = '👑 ದರ ಜಿಗಿತ (10 AM Live)';
+      } else {
+        badgeColor = '#B45309';
+        badgeText = '🪙 ಲೈವ್ ದರ (10 AM Live)';
+      }
+    } else {
+      badgeColor = item.alert_level === 'red' ? '#DC2626' : (item.alert_level === 'orange' ? '#EA580C' : '#CA8A04');
+      badgeText = item.alert_level === 'red' ? '🔴 ರೆಡ್ ಅಲರ್ಟ್' : (item.alert_level === 'orange' ? '🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್' : '🟡 ಹಳದಿ ನಿಗಾ');
+    }
+
+    b.style.border = toastBorder;
 
     b.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
@@ -214,7 +240,7 @@
       <strong style="display:block; font-size:14.5px; font-weight:800; color:#F8FAFC; margin-bottom:5px;">${item.title}</strong>
       <p style="font-size:12.5px; color:#CBD5E1; line-height:1.45; margin-bottom:14px;">${item.body}</p>
       <div style="display:flex; gap:8px;">
-        <a href="${item.url || '/weather?district=' + userDist}" style="flex:1; background:#0284C7; color:#FFF; text-align:center; padding:9px; border-radius:10px; font-size:12.5px; font-weight:800; text-decoration:none;">ಹವಾಮಾನ ವೀಕ್ಷಿಸಿ ➔</a>
+        <a href="${actionUrl}" style="flex:1; background:${isGold ? '#D97706' : '#0284C7'}; color:#FFF; text-align:center; padding:9px; border-radius:10px; font-size:12.5px; font-weight:800; text-decoration:none;">${actionBtnText}</a>
         <button onclick="window.karnataRequestPushPermission()" style="background:#16A34A; color:#FFF; border:none; padding:9px 14px; border-radius:10px; font-size:12.5px; font-weight:800; cursor:pointer;">🔔 ಆನ್ ಮಾಡಿ</button>
       </div>
     `;
@@ -237,12 +263,35 @@
   };
 
   // ══════════════════════════════════════════════════════════════════════════════
-  // ⚡ INSTANT TEST WEATHER NOTIFICATION HELPER (For User / Developer Verification)
+  // ⚡ INSTANT TEST GOLD NOTIFICATION HELPER (For User / Developer Verification)
   // Usage in browser console:
-  //   testWeatherNotification('yellow')
-  //   testWeatherNotification('orange')
-  //   testWeatherNotification('red')
-  //   testWeatherNotification('yellow', 'kodagu')
+  //   testGoldNotification('drop')   // Test Gold price drop notification
+  //   testGoldNotification('surge')  // Test Gold price surge notification
+  // ══════════════════════════════════════════════════════════════════════════════
+  window.testGoldNotification = function(action = 'drop') {
+    const isDrop = action !== 'surge';
+    const testItem = {
+      id: 'TEST-GOLD-' + (isDrop ? 'DROP' : 'SURGE') + '-' + Date.now(),
+      alert_level: isDrop ? 'gold_drop' : 'gold_surge',
+      target_district: 'all',
+      target_district_kn: 'ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ',
+      title: isDrop 
+        ? '🪙 ಇಂದಿನ ಚಿನ್ನದ ದರದಲ್ಲಿ ಭಾರಿ ಇಳಿಕೆ! ₹398 ಕುಸಿತ — ಖರೀದಿಗೆ ಸುವರ್ಣಾವಕಾಶ?' 
+        : '👑 ಇಂದಿನ ಚಿನ್ನದ ದರದಲ್ಲಿ ಭಾರಿ ಜಿಗಿತ! 24K ₹15,207, 22K ₹13,935ಕ್ಕೆ ಏರಿಕೆ',
+      body: isDrop
+        ? '10 AM ಲೈವ್ ಅಪ್ಡೇಟ್: 24K ಚಿನ್ನ ಗ್ರಾಂಗೆ ₹398 ಇಳಿಕೆಯಾಗಿ ₹15,207 ಆಗಿದೆ! 22K ಆಭರಣ ಬಂಗಾರ ₹13,935 (1 ಪವನ್‌ಗೆ ₹2,920 ಉಳಿತಾಯ). ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ದರ ನೋಡಿ ➔'
+        : '10 AM ಲೈವ್ ಅಪ್ಡೇಟ್: ಇಂದು ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಗ್ರಾಂಗೆ ₹250 ಏರಿಕೆ ಕಂಡಿದೆ. 8 ಗ್ರಾಂ (1 ಪವನ್) ಬೆಲೆ ₹1,11,480. ಇಂದಿನ ಲೈವ್ ದರ ಮತ್ತು ಟ್ರೆಂಡ್ ವಿಶ್ಲೇಷಿಸಿ ➔',
+      url: 'https://karnata.in/gold-rate',
+      icon: 'https://karnata.in/assets/icons/icon-512x512.png',
+      badge: 'https://karnata.in/assets/icons/icon-192x192.png',
+      topic: 'gold_rate_alert',
+      created_at: new Date().toISOString()
+    };
+    dispatchNotification(testItem, getUserDistrict());
+  };
+
+  // ══════════════════════════════════════════════════════════════════════════════
+  // ⚡ INSTANT TEST WEATHER NOTIFICATION HELPER
   // ══════════════════════════════════════════════════════════════════════════════
   window.testWeatherNotification = async function(level = 'yellow', distKey = null) {
     const dKey = distKey || getUserDistrict();
@@ -273,7 +322,7 @@
     dispatchNotification(testAlert, dKey);
   };
 
-  // URL test parameter listener (e.g. ?test_push=1 or ?test_alert=red)
+  // URL test parameter listener (e.g. ?test_push=1, ?test_alert=red, ?test_gold=drop, ?test_gold=surge)
   try {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('test_push') || urlParams.has('test_alert')) {
@@ -281,6 +330,12 @@
       setTimeout(() => {
         window.testWeatherNotification(lvl);
       }, 1500);
+    }
+    if (urlParams.has('test_gold')) {
+      const gAction = urlParams.get('test_gold') || 'drop';
+      setTimeout(() => {
+        window.testGoldNotification(gAction);
+      }, 1200);
     }
   } catch(e) {}
 

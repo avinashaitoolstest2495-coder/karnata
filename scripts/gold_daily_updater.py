@@ -12,6 +12,10 @@ def run_gold_pipeline():
     print("Step 1: Scraping fresh gold rates...")
     subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
     
+    # 1b. Publish 10 AM Creative Gold Push Notification
+    print("Step 1b: Publishing 10 AM Creative Gold Push Notification...")
+    subprocess.run([sys.executable, "scripts/publish_gold_push.py"], cwd=ROOT_DIR, check=True)
+    
     # 2. Sync gold-rate.html DOM
     print("Step 2: Pre-rendering gold-rate.html static DOM...")
     subprocess.run([sys.executable, "scripts/sync_all_static_dom.py"], cwd=ROOT_DIR, check=True)

@@ -43,6 +43,9 @@ if is_gold_update_time:
         print(f"[{now.strftime('%H:%M')}] Step 2b: Gold update window active (10:00 AM / 10:30 AM / 11:00 AM). Scraping latest rates...")
         subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
         print("[OK] Gold rates scraped.")
+        # Publish Creative Gold Push Notification
+        subprocess.run([sys.executable, "scripts/publish_gold_push.py"], cwd=ROOT_DIR, check=True)
+        print("[OK] Gold push notification published.")
     except Exception as e:
         print("[WARN] Gold scraper notice:", e)
 else:
