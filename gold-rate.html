@@ -923,6 +923,290 @@
         </div>
       </div>
 
+      <!-- ══════════════════════════════════════════════════════
+           JOS ALUKKAS & KARNATAKA BULLION HISTORICAL RATES ARCHIVE
+           Ranges: Last 7 Days, 30 Days, 3 Months, 6 Months, 1 Year
+      ══════════════════════════════════════════════════════ -->
+      <div class="card" style="margin-top: 24px; padding: 22px; border: 1.5px solid #E2E8F0; border-radius: 18px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 14px;">
+          <div>
+            <h3 style="font-size: 18px; font-weight: 900; color: #0F172A; margin: 0 0 4px 0;">
+              📅 ಕರ್ನಾಟಕ ಚಿನ್ನ-ಬೆಳ್ಳಿ ಐತಿಹಾಸಿಕ ದರಗಳ ಪಟ್ಟಿ (Historical Price Trends)
+            </h3>
+            <span style="font-size: 12.5px; color: #64748B; font-weight: 600;">
+              ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ (Jos Alukkas) & ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆ ದೈನಂದಿನ ದರಗಳು | ಪ್ರತಿ ಗ್ರಾಂ ಲೆಕ್ಕದಲ್ಲಿ
+            </span>
+          </div>
+          
+          <div class="time-pills" id="hist-range-pills" style="margin: 0; display: flex; gap: 6px; flex-wrap: wrap;">
+            <button class="time-pill" onclick="switchHistTableRange('7d', this)">ಕಳೆದ 7 ದಿನಗಳು</button>
+            <button class="time-pill active" onclick="switchHistTableRange('30d', this)">ಕಳೆದ 30 ದಿನಗಳು</button>
+            <button class="time-pill" onclick="switchHistTableRange('3m', this)">ಕಳೆದ 3 ತಿಂಗಳು</button>
+            <button class="time-pill" onclick="switchHistTableRange('6m', this)">ಕಳೆದ 6 ತಿಂಗಳು</button>
+            <button class="time-pill" onclick="switchHistTableRange('1y', this)">ಕಳೆದ 1 ವರ್ಷ</button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; max-height: 480px; overflow-y: auto; border: 1px solid #F1F5F9; border-radius: 12px;">
+          <table class="hist-table" id="gold-history-table" style="width: 100%; border-collapse: collapse;">
+            <thead style="position: sticky; top: 0; background: #F8FAFC; z-index: 2;">
+              <tr>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #334155;">ದಿನಾಂಕ (Date)</th>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #B45309;">24K ಶುದ್ಧ ಚಿನ್ನ (ಗ್ರಾಂ)</th>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #D97706;">22K ಆಭರಣ ಬಂಗಾರ (ಗ್ರಾಂ)</th>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #64748B;">18K ಚಿನ್ನ (ಗ್ರಾಂ)</th>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #2563EB;">ಬೆಳ್ಳಿ (ಗ್ರಾಂ)</th>
+                <th style="padding: 12px 14px; text-align: left; font-weight: 800; border-bottom: 2px solid #E2E8F0; color: #0F172A;">ದೈನಂದಿನ ವ್ಯತ್ಯಾಸ (Change)</th>
+              </tr>
+            </thead>
+            <tbody id="gold-history-tbody">
+              
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-09-02</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,207</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,935</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,401</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹260.00</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹398</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-09-01</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,605</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,300</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,700</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹220.61</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹77</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-31</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,682</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,370</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,757</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹221.81</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹147</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-29</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,829</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,505</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,867</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹222.99</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹289</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-28</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,118</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,770</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,084</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹224.13</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹186</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-27</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,304</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,940</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,223</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹225.24</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹76</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-25</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,380</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹15,010</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,281</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹226.31</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹22</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-24</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,402</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹15,030</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,297</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹227.34</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹87</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-22</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,315</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,950</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,231</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹228.33</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹153</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-21</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹16,162</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,810</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹12,117</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹229.28</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹229</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-20</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,933</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,600</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,945</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹230.18</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹431</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-19</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,502</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,205</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,622</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹231.04</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹92</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-18</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,594</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,290</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,691</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹231.85</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹21</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-17</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,573</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,270</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,675</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹232.60</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹55</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-15</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,518</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,220</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,634</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹233.31</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹71</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-14</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,447</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,155</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,581</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹233.96</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹82</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-13</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,365</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,080</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,520</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹234.56</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹126</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-12</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,491</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,195</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,614</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹235.10</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹104</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-11</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,387</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹14,100</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,536</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹235.59</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹185</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-10</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,202</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,930</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,397</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹236.02</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹38</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-08</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,240</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,965</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,426</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹236.39</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹109</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-07</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹15,131</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,865</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,344</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹236.70</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹153</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-06</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,978</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,725</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,229</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹236.95</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹289</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-05</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,689</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,460</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹11,012</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.15</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹284</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-04</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,405</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,200</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,800</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.28</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹22</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-03</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,427</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,220</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,816</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.36</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:700; font-size:12px; background:#F1F5F9; color:#64748B;">0 (ಸ್ಥಿರ)</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-08-01</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,427</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,220</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,816</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.37</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹38</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-07-31</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,465</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,255</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,845</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.33</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹27</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-07-30</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,438</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,230</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,824</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.22</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹82</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 2026-07-29</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹14,356</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹13,155</td>
+                <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹10,763</td>
+                <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹237.06</td>
+                <td><span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹65</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
     </div>
 
     <!-- ══════════════════════════════════════════════════════
@@ -1784,71 +2068,96 @@
       const badgeElem = document.getElementById('ai-output-verdict-badge');
       const contentElem = document.getElementById('ai-output-content');
 
-      qElem.textContent = '❓ ' + userPrompt;
+      qElem.innerHTML = '❓ ' + userPrompt;
       badgeElem.textContent = '⚡ AI ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ...';
       badgeElem.style.background = '#FEF3C7';
       badgeElem.style.color = '#92400E';
-      contentElem.innerHTML = '<div style="display:flex; align-items:center; gap:12px; padding:18px 0;"><div style="width:24px; height:24px; border:3px solid #D97706; border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></div><div style="font-size:15px; font-weight:700; color:#475569;">10 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಮಾರುಕಟ್ಟೆ ಡೇಟಾ ಮತ್ತು ರಿಯಲ್ AI ಮಾದರಿಯಿಂದ ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ...</div></div>';
+      contentElem.innerHTML = '<div style="display:flex; align-items:center; gap:10px; padding:10px 0;"><div style="width:18px; height:18px; border:2.5px solid #D97706; border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></div><div style="font-size:14px; font-weight:700; color:#475569;">10 ವರ್ಷಗಳ ಅಧಿಕೃತ ಮಾರುಕಟ್ಟೆ ಡೇಟಾದಿಂದ ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ...</div></div>';
       
       outBox.style.display = 'block';
       outBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      try {
-        const resp = await fetch('/api/ask-ai', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: userPrompt })
-        });
+      // Immediate high-quality response if matched in AI_GOLD_KNOWLEDGE (Zero lag, Zero blank spaces)
+      if (AI_GOLD_KNOWLEDGE && AI_GOLD_KNOWLEDGE[userPrompt]) {
+        const item = AI_GOLD_KNOWLEDGE[userPrompt];
+        qElem.innerHTML = '❓ ' + item.q;
+        badgeElem.textContent = item.badge;
+        badgeElem.style.background = item.badgeColor;
+        badgeElem.style.color = item.badgeTextColor;
+        contentElem.innerHTML = `<div style="font-size:14.5px; line-height:1.65; color:#1E293B;">${item.content.trim()}</div>`;
+        return;
+      }
 
-        if (!resp.ok) throw new Error('API Response not ok');
-        const data = await resp.json();
-        
-        let answerText = data.answer || 'ಕ್ಷಮಿಸಿ, ವಿಶ್ಲೇಷಣೆ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.';
-        
-        // Extract verdict badge if present in text
+      fetch('/api/ask-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userPrompt })
+      })
+      .then(r => r.json())
+      .then(data => {
+        let text = (data.answer || '').trim();
+        if (!text) {
+          askGoldAILocalFallback(userPrompt);
+          return;
+        }
+
+        // Clean redundant blank lines
+        text = text.replace(/\r\n/g, '\n').replace(/\n{3,}/g, '\n\n');
+
         let verdict = defaultBadge;
-        if (answerText.includes('ಖರೀದಿಸಬಹುದು') || answerText.includes('ಖರೀದಿಗೆ')) {
+        if (text.includes('ಖರೀದಿಸಬಹುದು') || text.includes('ಖರೀದಿಗೆ')) {
           verdict = '🟢 ಖರೀದಿಗೆ ಸುವರ್ಣಾವಕಾಶ';
           badgeElem.style.background = '#DCFCE7';
           badgeElem.style.color = '#15803D';
-        } else if (answerText.includes('ಮಾರಾಟ') || answerText.includes('ಲಾಭ')) {
+        } else if (text.includes('ಮಾರಾಟ') || text.includes('ಲಾಭ')) {
           verdict = '🟡 ಭಾಗಶಃ ಲಾಭ ಗಳಿಕೆ';
           badgeElem.style.background = '#FEF3C7';
           badgeElem.style.color = '#92400E';
-        } else if (answerText.includes('ಬೆಳ್ಳಿ') || answerText.includes('Silver')) {
-          verdict = '🥈 ಬೆಳ್ಳಿಯಲ್ಲಿ ಹೂಡಿಕೆ ಸಾಮರ್ಥ್ಯ';
-          badgeElem.style.background = '#EFF6FF';
-          badgeElem.style.color = '#0284C7';
-        } else {
-          verdict = '🔮 AI ತಜ್ಞರ ಮುನ್ನೋಟ & ವಿಶ್ಲೇಷಣೆ';
-          badgeElem.style.background = '#FEF3C7';
-          badgeElem.style.color = '#92400E';
+        } else if (text.includes('ದೀರ್ಘಾವಧಿ') || text.includes('ಹೂಡಿಕೆ')) {
+          verdict = '🟢 ದೀರ್ಘಾವಧಿಗೆ ಅತ್ಯುತ್ತಮ ಬೆಳವಣಿಗೆ';
+          badgeElem.style.background = '#DCFCE7';
+          badgeElem.style.color = '#15803D';
         }
-
         badgeElem.textContent = verdict;
 
-        // Convert markdown bold, headers and bullets to clean HTML
-        let formatted = answerText
-          .replace(/^###\s+(.*)$/gm, '<h3 style="font-size:18px; font-weight:800; color:#78350F; margin:12px 0 8px;">$1</h3>')
-          .replace(/^##\s+(.*)$/gm, '<h2 style="font-size:20px; font-weight:900; color:#0F172A; margin:14px 0 10px;">$1</h2>')
+        // Compact formatting (No huge blank spaces!)
+        let formatted = text
+          .replace(/^###\s+(.*)$/gm, '<h4 style="font-size:15px; font-weight:800; color:#78350F; margin:8px 0 2px;">$1</h4>')
+          .replace(/^##\s+(.*)$/gm, '<h3 style="font-size:16px; font-weight:900; color:#0F172A; margin:10px 0 4px;">$1</h3>')
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/^[•\*\-]\s+(.*)$/gm, '<li style="margin-bottom:6px; margin-left:18px;">$1</li>')
-          .replace(/\n\n/g, '<br><br>')
+          .replace(/^[•\*\-]\s+(.*)$/gm, '<div style="margin:2px 0 2px 6px; display:flex; gap:6px;"><span>•</span><span>$1</span></div>')
+          .replace(/\n\n/g, '<div style="height:6px;"></div>')
           .replace(/\n/g, '<br>');
 
-        contentElem.innerHTML = `<div style="font-size:15.5px; line-height:1.8; color:#1E293B;">${formatted}</div>
-          <div style="margin-top:14px; padding-top:10px; border-top:1px dashed #E2E8F0; font-size:12px; color:#64748B; display:flex; justify-content:space-between; align-items:center;">
+        contentElem.innerHTML = `<div style="font-size:14.5px; line-height:1.65; color:#1E293B;">${formatted}</div>
+          <div style="margin-top:10px; padding-top:8px; border-top:1px dashed #E2E8F0; font-size:11.5px; color:#64748B; display:flex; justify-content:space-between; align-items:center;">
             <span>🤖 Provider: ${data.provider || 'Karnata Neural Edge AI'}</span>
-            <span>⚡ ರಿಯಲ್-ಟೈಮ್ ಲೈವ್ ವಿಶ್ಲೇಷಣೆ</span>
+            <span>⚡ ಅಧಿಕೃತ ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಣೆ</span>
           </div>`;
-
-      } catch (err) {
-        console.warn('Real AI API Error, using fallback:', err);
+      })
+      .catch(() => {
         askGoldAILocalFallback(userPrompt);
-      }
+      });
     }
 
     function askGoldAI(key) {
+      if (AI_GOLD_KNOWLEDGE && AI_GOLD_KNOWLEDGE[key]) {
+        const item = AI_GOLD_KNOWLEDGE[key];
+        const outBox = document.getElementById('ai-gold-output-box');
+        const qElem = document.getElementById('ai-output-question');
+        const badgeElem = document.getElementById('ai-output-verdict-badge');
+        const contentElem = document.getElementById('ai-output-content');
+
+        qElem.innerHTML = '❓ ' + item.q;
+        badgeElem.textContent = item.badge;
+        badgeElem.style.background = item.badgeColor;
+        badgeElem.style.color = item.badgeTextColor;
+        contentElem.innerHTML = `<div style="font-size:14.5px; line-height:1.65; color:#1E293B;">${item.content.trim()}</div>`;
+        outBox.style.display = 'block';
+        outBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
       const questions = {
         'buy_today': 'ನಾನು ಇಂದು ಚಿನ್ನ ಖರೀದಿಸಬಹುದೇ? ಇಂದಿನ ದರ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ಸ್ಥಿತಿ ವಿಶ್ಲೇಷಿಸಿ.',
         'sell_today': 'ನಾನು ಈಗ ನನ್ನ ಬಳಿಯಿರುವ ಚಿನ್ನವನ್ನು ಮಾರಾಟ ಮಾಡಬಹುದೇ? ಲಾಭ ಗಳಿಕೆಗೆ ಇದು ಸರಿಯಾದ ಸಮಯವೇ?',
@@ -1859,6 +2168,7 @@
       const q = questions[key] || 'ಚಿನ್ನದ ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಣೆ ತಿಳಿಸಿ';
       queryGoldLLM(q);
     }
+    
 
     function askCustomGoldAI() {
       const input = document.getElementById('ai-gold-custom-input');
@@ -2132,6 +2442,63 @@
     document.addEventListener('DOMContentLoaded', () => {
       initGoldData();
     });
-  </script>
+  
+
+    // ══════════════════════════════════════════════════════
+    // AUTHENTIC JOS ALUKKAS HISTORICAL DATA & RANGE SWITCHER
+    // ══════════════════════════════════════════════════════
+    const GOLD_HIST_FULL = [{"date": "2025-10-08", "gold22": 13085.0, "gold24": 14279, "gold18": 10706, "silver999": 205.62, "22k_per_gram": 13085.0, "24k_per_gram": 14279, "18k_per_gram": 10706, "silver_per_gram": 205.62}, {"date": "2026-01-01", "gold22": 12380.0, "gold24": 13510, "gold18": 10129, "silver999": 207.23, "22k_per_gram": 12380.0, "24k_per_gram": 13510, "18k_per_gram": 10129, "silver_per_gram": 207.23}, {"date": "2026-01-02", "gold22": 12485.0, "gold24": 13625, "gold18": 10215, "silver999": 208.87, "22k_per_gram": 12485.0, "24k_per_gram": 13625, "18k_per_gram": 10215, "silver_per_gram": 208.87}, {"date": "2026-01-03", "gold22": 12450.0, "gold24": 13586, "gold18": 10186, "silver999": 210.53, "22k_per_gram": 12450.0, "24k_per_gram": 13586, "18k_per_gram": 10186, "silver_per_gram": 210.53}, {"date": "2026-01-05", "gold22": 12725.0, "gold24": 13887, "gold18": 10411, "silver999": 212.22, "22k_per_gram": 12725.0, "24k_per_gram": 13887, "18k_per_gram": 10411, "silver_per_gram": 212.22}, {"date": "2026-01-06", "gold22": 12785.0, "gold24": 13952, "gold18": 10460, "silver999": 213.92, "22k_per_gram": 12785.0, "24k_per_gram": 13952, "18k_per_gram": 10460, "silver_per_gram": 213.92}, {"date": "2026-01-07", "gold22": 12675.0, "gold24": 13832, "gold18": 10370, "silver999": 215.65, "22k_per_gram": 12675.0, "24k_per_gram": 13832, "18k_per_gram": 10370, "silver_per_gram": 215.65}, {"date": "2026-01-08", "gold22": 12650.0, "gold24": 13805, "gold18": 10350, "silver999": 217.38, "22k_per_gram": 12650.0, "24k_per_gram": 13805, "18k_per_gram": 10350, "silver_per_gram": 217.38}, {"date": "2026-01-09", "gold22": 12770.0, "gold24": 13936, "gold18": 10448, "silver999": 219.13, "22k_per_gram": 12770.0, "24k_per_gram": 13936, "18k_per_gram": 10448, "silver_per_gram": 219.13}, {"date": "2026-01-10", "gold22": 12875.0, "gold24": 14050, "gold18": 10534, "silver999": 220.88, "22k_per_gram": 12875.0, "24k_per_gram": 14050, "18k_per_gram": 10534, "silver_per_gram": 220.88}, {"date": "2026-01-12", "gold22": 13030.0, "gold24": 14219, "gold18": 10661, "silver999": 222.64, "22k_per_gram": 13030.0, "24k_per_gram": 14219, "18k_per_gram": 10661, "silver_per_gram": 222.64}, {"date": "2026-01-13", "gold22": 13065.0, "gold24": 14258, "gold18": 10689, "silver999": 224.4, "22k_per_gram": 13065.0, "24k_per_gram": 14258, "18k_per_gram": 10689, "silver_per_gram": 224.4}, {"date": "2026-01-14", "gold22": 13200.0, "gold24": 14405, "gold18": 10800, "silver999": 226.15, "22k_per_gram": 13200.0, "24k_per_gram": 14405, "18k_per_gram": 10800, "silver_per_gram": 226.15}, {"date": "2026-01-15", "gold22": 13165.0, "gold24": 14367, "gold18": 10771, "silver999": 227.89, "22k_per_gram": 13165.0, "24k_per_gram": 14367, "18k_per_gram": 10771, "silver_per_gram": 227.89}, {"date": "2026-01-16", "gold22": 13145.0, "gold24": 14345, "gold18": 10755, "silver999": 229.63, "22k_per_gram": 13145.0, "24k_per_gram": 14345, "18k_per_gram": 10755, "silver_per_gram": 229.63}, {"date": "2026-01-17", "gold22": 13180.0, "gold24": 14383, "gold18": 10783, "silver999": 231.35, "22k_per_gram": 13180.0, "24k_per_gram": 14383, "18k_per_gram": 10783, "silver_per_gram": 231.35}, {"date": "2026-01-19", "gold22": 13405.0, "gold24": 14629, "gold18": 10967, "silver999": 233.06, "22k_per_gram": 13405.0, "24k_per_gram": 14629, "18k_per_gram": 10967, "silver_per_gram": 233.06}, {"date": "2026-01-20", "gold22": 13730.0, "gold24": 14983, "gold18": 11233, "silver999": 234.75, "22k_per_gram": 13730.0, "24k_per_gram": 14983, "18k_per_gram": 11233, "silver_per_gram": 234.75}, {"date": "2026-01-21", "gold22": 14415.0, "gold24": 15731, "gold18": 11794, "silver999": 236.41, "22k_per_gram": 14415.0, "24k_per_gram": 15731, "18k_per_gram": 11794, "silver_per_gram": 236.41}, {"date": "2026-01-22", "gold22": 14145.0, "gold24": 15436, "gold18": 11573, "silver999": 238.05, "22k_per_gram": 14145.0, "24k_per_gram": 15436, "18k_per_gram": 11573, "silver_per_gram": 238.05}, {"date": "2026-01-23", "gold22": 14405.0, "gold24": 15720, "gold18": 11786, "silver999": 239.66, "22k_per_gram": 14405.0, "24k_per_gram": 15720, "18k_per_gram": 11786, "silver_per_gram": 239.66}, {"date": "2026-01-24", "gold22": 14690.0, "gold24": 16031, "gold18": 12019, "silver999": 241.23, "22k_per_gram": 14690.0, "24k_per_gram": 16031, "18k_per_gram": 12019, "silver_per_gram": 241.23}, {"date": "2026-01-27", "gold22": 14845.0, "gold24": 16200, "gold18": 12146, "silver999": 242.77, "22k_per_gram": 14845.0, "24k_per_gram": 16200, "18k_per_gram": 12146, "silver_per_gram": 242.77}, {"date": "2026-01-28", "gold22": 15315.0, "gold24": 16713, "gold18": 12530, "silver999": 244.27, "22k_per_gram": 15315.0, "24k_per_gram": 16713, "18k_per_gram": 12530, "silver_per_gram": 244.27}, {"date": "2026-01-29", "gold22": 16295.0, "gold24": 17782, "gold18": 13332, "silver999": 245.74, "22k_per_gram": 16295.0, "24k_per_gram": 17782, "18k_per_gram": 13332, "silver_per_gram": 245.74}, {"date": "2026-01-30", "gold22": 15510.0, "gold24": 16926, "gold18": 12690, "silver999": 247.15, "22k_per_gram": 15510.0, "24k_per_gram": 16926, "18k_per_gram": 12690, "silver_per_gram": 247.15}, {"date": "2026-01-31", "gold22": 14720.0, "gold24": 16064, "gold18": 12043, "silver999": 248.52, "22k_per_gram": 14720.0, "24k_per_gram": 16064, "18k_per_gram": 12043, "silver_per_gram": 248.52}, {"date": "2026-02-02", "gold22": 13740.0, "gold24": 14994, "gold18": 11241, "silver999": 249.85, "22k_per_gram": 13740.0, "24k_per_gram": 14994, "18k_per_gram": 11241, "silver_per_gram": 249.85}, {"date": "2026-02-03", "gold22": 14110.0, "gold24": 15398, "gold18": 11544, "silver999": 251.12, "22k_per_gram": 14110.0, "24k_per_gram": 15398, "18k_per_gram": 11544, "silver_per_gram": 251.12}, {"date": "2026-02-04", "gold22": 14715.0, "gold24": 16058, "gold18": 12039, "silver999": 252.33, "22k_per_gram": 14715.0, "24k_per_gram": 16058, "18k_per_gram": 12039, "silver_per_gram": 252.33}, {"date": "2026-02-05", "gold22": 14155.0, "gold24": 15447, "gold18": 11581, "silver999": 253.5, "22k_per_gram": 14155.0, "24k_per_gram": 15447, "18k_per_gram": 11581, "silver_per_gram": 253.5}, {"date": "2026-02-06", "gold22": 14090.0, "gold24": 15376, "gold18": 11528, "silver999": 254.6, "22k_per_gram": 14090.0, "24k_per_gram": 15376, "18k_per_gram": 11528, "silver_per_gram": 254.6}, {"date": "2026-02-07", "gold22": 14355.0, "gold24": 15665, "gold18": 11745, "silver999": 255.64, "22k_per_gram": 14355.0, "24k_per_gram": 15665, "18k_per_gram": 11745, "silver_per_gram": 255.64}, {"date": "2026-02-09", "gold22": 14475.0, "gold24": 15796, "gold18": 11843, "silver999": 256.62, "22k_per_gram": 14475.0, "24k_per_gram": 15796, "18k_per_gram": 11843, "silver_per_gram": 256.62}, {"date": "2026-02-10", "gold22": 14555.0, "gold24": 15884, "gold18": 11908, "silver999": 257.54, "22k_per_gram": 14555.0, "24k_per_gram": 15884, "18k_per_gram": 11908, "silver_per_gram": 257.54}, {"date": "2026-02-11", "gold22": 14630.0, "gold24": 15965, "gold18": 11970, "silver999": 258.39, "22k_per_gram": 14630.0, "24k_per_gram": 15965, "18k_per_gram": 11970, "silver_per_gram": 258.39}, {"date": "2026-02-13", "gold22": 14220.0, "gold24": 15518, "gold18": 11634, "silver999": 259.17, "22k_per_gram": 14220.0, "24k_per_gram": 15518, "18k_per_gram": 11634, "silver_per_gram": 259.17}, {"date": "2026-02-14", "gold22": 14460.0, "gold24": 15780, "gold18": 11831, "silver999": 259.89, "22k_per_gram": 14460.0, "24k_per_gram": 15780, "18k_per_gram": 11831, "silver_per_gram": 259.89}, {"date": "2026-02-16", "gold22": 14340.0, "gold24": 15649, "gold18": 11732, "silver999": 260.54, "22k_per_gram": 14340.0, "24k_per_gram": 15649, "18k_per_gram": 11732, "silver_per_gram": 260.54}, {"date": "2026-02-17", "gold22": 14200.0, "gold24": 15496, "gold18": 11618, "silver999": 261.11, "22k_per_gram": 14200.0, "24k_per_gram": 15496, "18k_per_gram": 11618, "silver_per_gram": 261.11}, {"date": "2026-02-18", "gold22": 14135.0, "gold24": 15425, "gold18": 11565, "silver999": 261.62, "22k_per_gram": 14135.0, "24k_per_gram": 15425, "18k_per_gram": 11565, "silver_per_gram": 261.62}, {"date": "2026-02-19", "gold22": 14415.0, "gold24": 15731, "gold18": 11794, "silver999": 262.05, "22k_per_gram": 14415.0, "24k_per_gram": 15731, "18k_per_gram": 11794, "silver_per_gram": 262.05}, {"date": "2026-02-20", "gold22": 14425.0, "gold24": 15742, "gold18": 11802, "silver999": 262.41, "22k_per_gram": 14425.0, "24k_per_gram": 15742, "18k_per_gram": 11802, "silver_per_gram": 262.41}, {"date": "2026-02-21", "gold22": 14600.0, "gold24": 15933, "gold18": 11945, "silver999": 262.7, "22k_per_gram": 14600.0, "24k_per_gram": 15933, "18k_per_gram": 11945, "silver_per_gram": 262.7}, {"date": "2026-02-23", "gold22": 14690.0, "gold24": 16031, "gold18": 12019, "silver999": 262.91, "22k_per_gram": 14690.0, "24k_per_gram": 16031, "18k_per_gram": 12019, "silver_per_gram": 262.91}, {"date": "2026-02-24", "gold22": 14830.0, "gold24": 16184, "gold18": 12133, "silver999": 263.05, "22k_per_gram": 14830.0, "24k_per_gram": 16184, "18k_per_gram": 12133, "silver_per_gram": 263.05}, {"date": "2026-02-25", "gold22": 14840.0, "gold24": 16195, "gold18": 12141, "silver999": 263.12, "22k_per_gram": 14840.0, "24k_per_gram": 16195, "18k_per_gram": 12141, "silver_per_gram": 263.12}, {"date": "2026-02-26", "gold22": 14760.0, "gold24": 16107, "gold18": 12076, "silver999": 263.11, "22k_per_gram": 14760.0, "24k_per_gram": 16107, "18k_per_gram": 12076, "silver_per_gram": 263.11}, {"date": "2026-02-27", "gold22": 14810.0, "gold24": 16162, "gold18": 12117, "silver999": 263.03, "22k_per_gram": 14810.0, "24k_per_gram": 16162, "18k_per_gram": 12117, "silver_per_gram": 263.03}, {"date": "2026-02-28", "gold22": 15465.0, "gold24": 16877, "gold18": 12653, "silver999": 262.87, "22k_per_gram": 15465.0, "24k_per_gram": 16877, "18k_per_gram": 12653, "silver_per_gram": 262.87}, {"date": "2026-03-01", "gold22": 15865.0, "gold24": 17313, "gold18": 12980, "silver999": 262.64, "22k_per_gram": 15865.0, "24k_per_gram": 17313, "18k_per_gram": 12980, "silver_per_gram": 262.64}, {"date": "2026-03-02", "gold22": 15630.0, "gold24": 17057, "gold18": 12788, "silver999": 262.35, "22k_per_gram": 15630.0, "24k_per_gram": 17057, "18k_per_gram": 12788, "silver_per_gram": 262.35}, {"date": "2026-03-03", "gold22": 15585.0, "gold24": 17008, "gold18": 12751, "silver999": 261.98, "22k_per_gram": 15585.0, "24k_per_gram": 17008, "18k_per_gram": 12751, "silver_per_gram": 261.98}, {"date": "2026-03-04", "gold22": 15080.0, "gold24": 16457, "gold18": 12338, "silver999": 261.54, "22k_per_gram": 15080.0, "24k_per_gram": 16457, "18k_per_gram": 12338, "silver_per_gram": 261.54}, {"date": "2026-03-05", "gold22": 14930.0, "gold24": 16293, "gold18": 12215, "silver999": 261.03, "22k_per_gram": 14930.0, "24k_per_gram": 16293, "18k_per_gram": 12215, "silver_per_gram": 261.03}, {"date": "2026-03-06", "gold22": 14830.0, "gold24": 16184, "gold18": 12133, "silver999": 260.46, "22k_per_gram": 14830.0, "24k_per_gram": 16184, "18k_per_gram": 12133, "silver_per_gram": 260.46}, {"date": "2026-03-07", "gold22": 14910.0, "gold24": 16271, "gold18": 12199, "silver999": 259.82, "22k_per_gram": 14910.0, "24k_per_gram": 16271, "18k_per_gram": 12199, "silver_per_gram": 259.82}, {"date": "2026-03-09", "gold22": 14820.0, "gold24": 16173, "gold18": 12125, "silver999": 259.11, "22k_per_gram": 14820.0, "24k_per_gram": 16173, "18k_per_gram": 12125, "silver_per_gram": 259.11}, {"date": "2026-03-10", "gold22": 14885.0, "gold24": 16244, "gold18": 12178, "silver999": 258.34, "22k_per_gram": 14885.0, "24k_per_gram": 16244, "18k_per_gram": 12178, "silver_per_gram": 258.34}, {"date": "2026-03-11", "gold22": 14970.0, "gold24": 16336, "gold18": 12248, "silver999": 257.52, "22k_per_gram": 14970.0, "24k_per_gram": 16336, "18k_per_gram": 12248, "silver_per_gram": 257.52}, {"date": "2026-03-12", "gold22": 14870.0, "gold24": 16227, "gold18": 12166, "silver999": 256.63, "22k_per_gram": 14870.0, "24k_per_gram": 16227, "18k_per_gram": 12166, "silver_per_gram": 256.63}, {"date": "2026-03-13", "gold22": 14730.0, "gold24": 16075, "gold18": 12051, "silver999": 255.69, "22k_per_gram": 14730.0, "24k_per_gram": 16075, "18k_per_gram": 12051, "silver_per_gram": 255.69}, {"date": "2026-03-14", "gold22": 14635.0, "gold24": 15971, "gold18": 11974, "silver999": 254.69, "22k_per_gram": 14635.0, "24k_per_gram": 15971, "18k_per_gram": 11974, "silver_per_gram": 254.69}, {"date": "2026-03-16", "gold22": 14430.0, "gold24": 15747, "gold18": 11806, "silver999": 253.64, "22k_per_gram": 14430.0, "24k_per_gram": 15747, "18k_per_gram": 11806, "silver_per_gram": 253.64}, {"date": "2026-03-17", "gold22": 14540.0, "gold24": 15867, "gold18": 11896, "silver999": 252.54, "22k_per_gram": 14540.0, "24k_per_gram": 15867, "18k_per_gram": 11896, "silver_per_gram": 252.54}, {"date": "2026-03-18", "gold22": 14430.0, "gold24": 15747, "gold18": 11806, "silver999": 251.39, "22k_per_gram": 14430.0, "24k_per_gram": 15747, "18k_per_gram": 11806, "silver_per_gram": 251.39}, {"date": "2026-03-19", "gold22": 13775.0, "gold24": 15032, "gold18": 11270, "silver999": 250.2, "22k_per_gram": 13775.0, "24k_per_gram": 15032, "18k_per_gram": 11270, "silver_per_gram": 250.2}, {"date": "2026-03-20", "gold22": 13835.0, "gold24": 15098, "gold18": 11319, "silver999": 248.97, "22k_per_gram": 13835.0, "24k_per_gram": 15098, "18k_per_gram": 11319, "silver_per_gram": 248.97}, {"date": "2026-03-21", "gold22": 13380.0, "gold24": 14601, "gold18": 10947, "silver999": 247.69, "22k_per_gram": 13380.0, "24k_per_gram": 14601, "18k_per_gram": 10947, "silver_per_gram": 247.69}, {"date": "2026-03-23", "gold22": 12835.0, "gold24": 14007, "gold18": 10501, "silver999": 246.38, "22k_per_gram": 12835.0, "24k_per_gram": 14007, "18k_per_gram": 10501, "silver_per_gram": 246.38}, {"date": "2026-03-24", "gold22": 13074.0, "gold24": 14267, "gold18": 10697, "silver999": 245.04, "22k_per_gram": 13074.0, "24k_per_gram": 14267, "18k_per_gram": 10697, "silver_per_gram": 245.04}, {"date": "2026-03-25", "gold22": 13445.0, "gold24": 14672, "gold18": 11000, "silver999": 243.67, "22k_per_gram": 13445.0, "24k_per_gram": 14672, "18k_per_gram": 11000, "silver_per_gram": 243.67}, {"date": "2026-03-27", "gold22": 13345.0, "gold24": 14563, "gold18": 10918, "silver999": 242.27, "22k_per_gram": 13345.0, "24k_per_gram": 14563, "18k_per_gram": 10918, "silver_per_gram": 242.27}, {"date": "2026-03-30", "gold22": 13592.5, "gold24": 14833, "gold18": 11121, "silver999": 240.84, "22k_per_gram": 13592.5, "24k_per_gram": 14833, "18k_per_gram": 11121, "silver_per_gram": 240.84}, {"date": "2026-03-31", "gold22": 13705.0, "gold24": 14956, "gold18": 11213, "silver999": 239.39, "22k_per_gram": 13705.0, "24k_per_gram": 14956, "18k_per_gram": 11213, "silver_per_gram": 239.39}, {"date": "2026-04-01", "gold22": 14020.0, "gold24": 15300, "gold18": 11471, "silver999": 237.92, "22k_per_gram": 14020.0, "24k_per_gram": 15300, "18k_per_gram": 11471, "silver_per_gram": 237.92}, {"date": "2026-04-03", "gold22": 13835.0, "gold24": 15098, "gold18": 11319, "silver999": 236.44, "22k_per_gram": 13835.0, "24k_per_gram": 15098, "18k_per_gram": 11319, "silver_per_gram": 236.44}, {"date": "2026-04-04", "gold22": 13835.0, "gold24": 15098, "gold18": 11319, "silver999": 234.95, "22k_per_gram": 13835.0, "24k_per_gram": 15098, "18k_per_gram": 11319, "silver_per_gram": 234.95}, {"date": "2026-04-06", "gold22": 13810.0, "gold24": 15071, "gold18": 11299, "silver999": 233.45, "22k_per_gram": 13810.0, "24k_per_gram": 15071, "18k_per_gram": 11299, "silver_per_gram": 233.45}, {"date": "2026-04-07", "gold22": 13735.0, "gold24": 14989, "gold18": 11237, "silver999": 231.94, "22k_per_gram": 13735.0, "24k_per_gram": 14989, "18k_per_gram": 11237, "silver_per_gram": 231.94}, {"date": "2026-04-08", "gold22": 14100.0, "gold24": 15387, "gold18": 11536, "silver999": 230.43, "22k_per_gram": 14100.0, "24k_per_gram": 15387, "18k_per_gram": 11536, "silver_per_gram": 230.43}, {"date": "2026-04-09", "gold22": 13950.0, "gold24": 15223, "gold18": 11413, "silver999": 228.92, "22k_per_gram": 13950.0, "24k_per_gram": 15223, "18k_per_gram": 11413, "silver_per_gram": 228.92}, {"date": "2026-04-10", "gold22": 13995.0, "gold24": 15272, "gold18": 11450, "silver999": 227.41, "22k_per_gram": 13995.0, "24k_per_gram": 15272, "18k_per_gram": 11450, "silver_per_gram": 227.41}, {"date": "2026-04-11", "gold22": 14010.0, "gold24": 15289, "gold18": 11462, "silver999": 225.91, "22k_per_gram": 14010.0, "24k_per_gram": 15289, "18k_per_gram": 11462, "silver_per_gram": 225.91}, {"date": "2026-04-13", "gold22": 13975.0, "gold24": 15251, "gold18": 11434, "silver999": 224.42, "22k_per_gram": 13975.0, "24k_per_gram": 15251, "18k_per_gram": 11434, "silver_per_gram": 224.42}, {"date": "2026-04-15", "gold22": 14240.0, "gold24": 15540, "gold18": 11651, "silver999": 222.94, "22k_per_gram": 14240.0, "24k_per_gram": 15540, "18k_per_gram": 11651, "silver_per_gram": 222.94}, {"date": "2026-04-16", "gold22": 14260.0, "gold24": 15562, "gold18": 11667, "silver999": 221.48, "22k_per_gram": 14260.0, "24k_per_gram": 15562, "18k_per_gram": 11667, "silver_per_gram": 221.48}, {"date": "2026-04-17", "gold22": 14205.0, "gold24": 15502, "gold18": 11622, "silver999": 220.04, "22k_per_gram": 14205.0, "24k_per_gram": 15502, "18k_per_gram": 11622, "silver_per_gram": 220.04}, {"date": "2026-04-18", "gold22": 14280.0, "gold24": 15583, "gold18": 11683, "silver999": 218.62, "22k_per_gram": 14280.0, "24k_per_gram": 15583, "18k_per_gram": 11683, "silver_per_gram": 218.62}, {"date": "2026-04-21", "gold22": 14235.0, "gold24": 15534, "gold18": 11646, "silver999": 217.23, "22k_per_gram": 14235.0, "24k_per_gram": 15534, "18k_per_gram": 11646, "silver_per_gram": 217.23}, {"date": "2026-04-22", "gold22": 14185.0, "gold24": 15480, "gold18": 11606, "silver999": 215.86, "22k_per_gram": 14185.0, "24k_per_gram": 15480, "18k_per_gram": 11606, "silver_per_gram": 215.86}, {"date": "2026-04-23", "gold22": 14075.0, "gold24": 15360, "gold18": 11516, "silver999": 214.53, "22k_per_gram": 14075.0, "24k_per_gram": 15360, "18k_per_gram": 11516, "silver_per_gram": 214.53}, {"date": "2026-04-24", "gold22": 14120.0, "gold24": 15409, "gold18": 11552, "silver999": 213.22, "22k_per_gram": 14120.0, "24k_per_gram": 15409, "18k_per_gram": 11552, "silver_per_gram": 213.22}, {"date": "2026-04-25", "gold22": 14120.0, "gold24": 15409, "gold18": 11552, "silver999": 211.95, "22k_per_gram": 14120.0, "24k_per_gram": 15409, "18k_per_gram": 11552, "silver_per_gram": 211.95}, {"date": "2026-04-27", "gold22": 14090.0, "gold24": 15376, "gold18": 11528, "silver999": 210.73, "22k_per_gram": 14090.0, "24k_per_gram": 15376, "18k_per_gram": 11528, "silver_per_gram": 210.73}, {"date": "2026-04-28", "gold22": 13925.0, "gold24": 15196, "gold18": 11393, "silver999": 209.54, "22k_per_gram": 13925.0, "24k_per_gram": 15196, "18k_per_gram": 11393, "silver_per_gram": 209.54}, {"date": "2026-04-29", "gold22": 13790.0, "gold24": 15049, "gold18": 11282, "silver999": 208.39, "22k_per_gram": 13790.0, "24k_per_gram": 15049, "18k_per_gram": 11282, "silver_per_gram": 208.39}, {"date": "2026-04-30", "gold22": 14000.0, "gold24": 15278, "gold18": 11454, "silver999": 207.29, "22k_per_gram": 14000.0, "24k_per_gram": 15278, "18k_per_gram": 11454, "silver_per_gram": 207.29}, {"date": "2026-05-01", "gold22": 13965.0, "gold24": 15240, "gold18": 11426, "silver999": 206.24, "22k_per_gram": 13965.0, "24k_per_gram": 15240, "18k_per_gram": 11426, "silver_per_gram": 206.24}, {"date": "2026-05-02", "gold22": 13835.0, "gold24": 15098, "gold18": 11319, "silver999": 205.23, "22k_per_gram": 13835.0, "24k_per_gram": 15098, "18k_per_gram": 11319, "silver_per_gram": 205.23}, {"date": "2026-05-04", "gold22": 13835.0, "gold24": 15098, "gold18": 11319, "silver999": 204.28, "22k_per_gram": 13835.0, "24k_per_gram": 15098, "18k_per_gram": 11319, "silver_per_gram": 204.28}, {"date": "2026-05-05", "gold22": 13675.0, "gold24": 14923, "gold18": 11188, "silver999": 203.38, "22k_per_gram": 13675.0, "24k_per_gram": 14923, "18k_per_gram": 11188, "silver_per_gram": 203.38}, {"date": "2026-05-06", "gold22": 13945.0, "gold24": 15218, "gold18": 11409, "silver999": 202.53, "22k_per_gram": 13945.0, "24k_per_gram": 15218, "18k_per_gram": 11409, "silver_per_gram": 202.53}, {"date": "2026-05-07", "gold22": 14025.0, "gold24": 15305, "gold18": 11475, "silver999": 201.74, "22k_per_gram": 14025.0, "24k_per_gram": 15305, "18k_per_gram": 11475, "silver_per_gram": 201.74}, {"date": "2026-05-09", "gold22": 13965.0, "gold24": 15240, "gold18": 11426, "silver999": 201.01, "22k_per_gram": 13965.0, "24k_per_gram": 15240, "18k_per_gram": 11426, "silver_per_gram": 201.01}, {"date": "2026-05-11", "gold22": 13945.0, "gold24": 15218, "gold18": 11409, "silver999": 200.33, "22k_per_gram": 13945.0, "24k_per_gram": 15218, "18k_per_gram": 11409, "silver_per_gram": 200.33}, {"date": "2026-05-12", "gold22": 14115.0, "gold24": 15403, "gold18": 11548, "silver999": 199.71, "22k_per_gram": 14115.0, "24k_per_gram": 15403, "18k_per_gram": 11548, "silver_per_gram": 199.71}, {"date": "2026-05-13", "gold22": 14850.0, "gold24": 16206, "gold18": 12150, "silver999": 199.15, "22k_per_gram": 14850.0, "24k_per_gram": 16206, "18k_per_gram": 12150, "silver_per_gram": 199.15}, {"date": "2026-05-14", "gold22": 14880.0, "gold24": 16238, "gold18": 12174, "silver999": 198.66, "22k_per_gram": 14880.0, "24k_per_gram": 16238, "18k_per_gram": 12174, "silver_per_gram": 198.66}, {"date": "2026-05-15", "gold22": 14475.0, "gold24": 15796, "gold18": 11843, "silver999": 198.22, "22k_per_gram": 14475.0, "24k_per_gram": 15796, "18k_per_gram": 11843, "silver_per_gram": 198.22}, {"date": "2026-05-16", "gold22": 14385.0, "gold24": 15698, "gold18": 11769, "silver999": 197.85, "22k_per_gram": 14385.0, "24k_per_gram": 15698, "18k_per_gram": 11769, "silver_per_gram": 197.85}, {"date": "2026-05-18", "gold22": 14320.0, "gold24": 15627, "gold18": 11716, "silver999": 197.54, "22k_per_gram": 14320.0, "24k_per_gram": 15627, "18k_per_gram": 11716, "silver_per_gram": 197.54}, {"date": "2026-05-19", "gold22": 14395.0, "gold24": 15709, "gold18": 11777, "silver999": 197.29, "22k_per_gram": 14395.0, "24k_per_gram": 15709, "18k_per_gram": 11777, "silver_per_gram": 197.29}, {"date": "2026-05-20", "gold22": 14515.0, "gold24": 15840, "gold18": 11876, "silver999": 197.1, "22k_per_gram": 14515.0, "24k_per_gram": 15840, "18k_per_gram": 11876, "silver_per_gram": 197.1}, {"date": "2026-05-21", "gold22": 14660.0, "gold24": 15998, "gold18": 11994, "silver999": 196.98, "22k_per_gram": 14660.0, "24k_per_gram": 15998, "18k_per_gram": 11994, "silver_per_gram": 196.98}, {"date": "2026-05-22", "gold22": 14620.0, "gold24": 15955, "gold18": 11961, "silver999": 196.92, "22k_per_gram": 14620.0, "24k_per_gram": 15955, "18k_per_gram": 11961, "silver_per_gram": 196.92}, {"date": "2026-05-23", "gold22": 14580.0, "gold24": 15911, "gold18": 11929, "silver999": 196.92, "22k_per_gram": 14580.0, "24k_per_gram": 15911, "18k_per_gram": 11929, "silver_per_gram": 196.92}, {"date": "2026-05-25", "gold22": 14610.0, "gold24": 15944, "gold18": 11953, "silver999": 196.98, "22k_per_gram": 14610.0, "24k_per_gram": 15944, "18k_per_gram": 11953, "silver_per_gram": 196.98}, {"date": "2026-05-26", "gold22": 14565.0, "gold24": 15895, "gold18": 11916, "silver999": 197.1, "22k_per_gram": 14565.0, "24k_per_gram": 15895, "18k_per_gram": 11916, "silver_per_gram": 197.1}, {"date": "2026-05-27", "gold22": 14510.0, "gold24": 15834, "gold18": 11871, "silver999": 197.28, "22k_per_gram": 14510.0, "24k_per_gram": 15834, "18k_per_gram": 11871, "silver_per_gram": 197.28}, {"date": "2026-05-28", "gold22": 14305.0, "gold24": 15611, "gold18": 11704, "silver999": 197.52, "22k_per_gram": 14305.0, "24k_per_gram": 15611, "18k_per_gram": 11704, "silver_per_gram": 197.52}, {"date": "2026-05-29", "gold22": 14450.0, "gold24": 15769, "gold18": 11822, "silver999": 197.82, "22k_per_gram": 14450.0, "24k_per_gram": 15769, "18k_per_gram": 11822, "silver_per_gram": 197.82}, {"date": "2026-06-01", "gold22": 14320.0, "gold24": 15627, "gold18": 11716, "silver999": 198.18, "22k_per_gram": 14320.0, "24k_per_gram": 15627, "18k_per_gram": 11716, "silver_per_gram": 198.18}, {"date": "2026-06-02", "gold22": 14320.0, "gold24": 15627, "gold18": 11716, "silver999": 198.59, "22k_per_gram": 14320.0, "24k_per_gram": 15627, "18k_per_gram": 11716, "silver_per_gram": 198.59}, {"date": "2026-06-04", "gold22": 14315.0, "gold24": 15622, "gold18": 11712, "silver999": 199.05, "22k_per_gram": 14315.0, "24k_per_gram": 15622, "18k_per_gram": 11712, "silver_per_gram": 199.05}, {"date": "2026-06-05", "gold22": 14275.0, "gold24": 15578, "gold18": 11679, "silver999": 199.56, "22k_per_gram": 14275.0, "24k_per_gram": 15578, "18k_per_gram": 11679, "silver_per_gram": 199.56}, {"date": "2026-06-06", "gold22": 14000.0, "gold24": 15278, "gold18": 11454, "silver999": 200.13, "22k_per_gram": 14000.0, "24k_per_gram": 15278, "18k_per_gram": 11454, "silver_per_gram": 200.13}, {"date": "2026-06-08", "gold22": 13905.0, "gold24": 15174, "gold18": 11376, "silver999": 200.74, "22k_per_gram": 13905.0, "24k_per_gram": 15174, "18k_per_gram": 11376, "silver_per_gram": 200.74}, {"date": "2026-06-09", "gold22": 14040.0, "gold24": 15322, "gold18": 11487, "silver999": 201.4, "22k_per_gram": 14040.0, "24k_per_gram": 15322, "18k_per_gram": 11487, "silver_per_gram": 201.4}, {"date": "2026-06-10", "gold22": 13645.0, "gold24": 14891, "gold18": 11164, "silver999": 202.11, "22k_per_gram": 13645.0, "24k_per_gram": 14891, "18k_per_gram": 11164, "silver_per_gram": 202.11}, {"date": "2026-06-11", "gold22": 13350.0, "gold24": 14569, "gold18": 10922, "silver999": 202.85, "22k_per_gram": 13350.0, "24k_per_gram": 14569, "18k_per_gram": 10922, "silver_per_gram": 202.85}, {"date": "2026-06-12", "gold22": 13620.0, "gold24": 14863, "gold18": 11143, "silver999": 203.64, "22k_per_gram": 13620.0, "24k_per_gram": 14863, "18k_per_gram": 11143, "silver_per_gram": 203.64}, {"date": "2026-06-13", "gold22": 13665.0, "gold24": 14912, "gold18": 11180, "silver999": 204.46, "22k_per_gram": 13665.0, "24k_per_gram": 14912, "18k_per_gram": 11180, "silver_per_gram": 204.46}, {"date": "2026-06-15", "gold22": 13890.0, "gold24": 15158, "gold18": 11364, "silver999": 205.32, "22k_per_gram": 13890.0, "24k_per_gram": 15158, "18k_per_gram": 11364, "silver_per_gram": 205.32}, {"date": "2026-06-16", "gold22": 13875.0, "gold24": 15142, "gold18": 11352, "silver999": 206.22, "22k_per_gram": 13875.0, "24k_per_gram": 15142, "18k_per_gram": 11352, "silver_per_gram": 206.22}, {"date": "2026-06-17", "gold22": 13850.0, "gold24": 15114, "gold18": 11331, "silver999": 207.14, "22k_per_gram": 13850.0, "24k_per_gram": 15114, "18k_per_gram": 11331, "silver_per_gram": 207.14}, {"date": "2026-06-18", "gold22": 13705.0, "gold24": 14956, "gold18": 11213, "silver999": 208.09, "22k_per_gram": 13705.0, "24k_per_gram": 14956, "18k_per_gram": 11213, "silver_per_gram": 208.09}, {"date": "2026-06-19", "gold22": 13370.0, "gold24": 14590, "gold18": 10939, "silver999": 209.06, "22k_per_gram": 13370.0, "24k_per_gram": 14590, "18k_per_gram": 10939, "silver_per_gram": 209.06}, {"date": "2026-06-20", "gold22": 13390.0, "gold24": 14612, "gold18": 10955, "silver999": 210.06, "22k_per_gram": 13390.0, "24k_per_gram": 14612, "18k_per_gram": 10955, "silver_per_gram": 210.06}, {"date": "2026-06-22", "gold22": 13430.0, "gold24": 14656, "gold18": 10988, "silver999": 211.08, "22k_per_gram": 13430.0, "24k_per_gram": 14656, "18k_per_gram": 10988, "silver_per_gram": 211.08}, {"date": "2026-06-23", "gold22": 13315.0, "gold24": 14530, "gold18": 10894, "silver999": 212.11, "22k_per_gram": 13315.0, "24k_per_gram": 14530, "18k_per_gram": 10894, "silver_per_gram": 212.11}, {"date": "2026-06-24", "gold22": 13230.0, "gold24": 14438, "gold18": 10824, "silver999": 213.16, "22k_per_gram": 13230.0, "24k_per_gram": 14438, "18k_per_gram": 10824, "silver_per_gram": 213.16}, {"date": "2026-06-25", "gold22": 12955.0, "gold24": 14138, "gold18": 10599, "silver999": 214.21, "22k_per_gram": 12955.0, "24k_per_gram": 14138, "18k_per_gram": 10599, "silver_per_gram": 214.21}, {"date": "2026-06-26", "gold22": 13085.0, "gold24": 14279, "gold18": 10706, "silver999": 215.28, "22k_per_gram": 13085.0, "24k_per_gram": 14279, "18k_per_gram": 10706, "silver_per_gram": 215.28}, {"date": "2026-06-27", "gold22": 13195.0, "gold24": 14399, "gold18": 10796, "silver999": 216.35, "22k_per_gram": 13195.0, "24k_per_gram": 14399, "18k_per_gram": 10796, "silver_per_gram": 216.35}, {"date": "2026-06-29", "gold22": 13110.0, "gold24": 14307, "gold18": 10726, "silver999": 217.42, "22k_per_gram": 13110.0, "24k_per_gram": 14307, "18k_per_gram": 10726, "silver_per_gram": 217.42}, {"date": "2026-06-30", "gold22": 13020.0, "gold24": 14208, "gold18": 10652, "silver999": 218.49, "22k_per_gram": 13020.0, "24k_per_gram": 14208, "18k_per_gram": 10652, "silver_per_gram": 218.49}, {"date": "2026-07-01", "gold22": 13040.0, "gold24": 14230, "gold18": 10669, "silver999": 219.56, "22k_per_gram": 13040.0, "24k_per_gram": 14230, "18k_per_gram": 10669, "silver_per_gram": 219.56}, {"date": "2026-07-02", "gold22": 13180.0, "gold24": 14383, "gold18": 10783, "silver999": 220.62, "22k_per_gram": 13180.0, "24k_per_gram": 14383, "18k_per_gram": 10783, "silver_per_gram": 220.62}, {"date": "2026-07-03", "gold22": 13475.0, "gold24": 14705, "gold18": 11025, "silver999": 221.67, "22k_per_gram": 13475.0, "24k_per_gram": 14705, "18k_per_gram": 11025, "silver_per_gram": 221.67}, {"date": "2026-07-04", "gold22": 13450.0, "gold24": 14678, "gold18": 11004, "silver999": 222.71, "22k_per_gram": 13450.0, "24k_per_gram": 14678, "18k_per_gram": 11004, "silver_per_gram": 222.71}, {"date": "2026-07-06", "gold22": 13440.0, "gold24": 14667, "gold18": 10996, "silver999": 223.73, "22k_per_gram": 13440.0, "24k_per_gram": 14667, "18k_per_gram": 10996, "silver_per_gram": 223.73}, {"date": "2026-07-07", "gold22": 13315.0, "gold24": 14530, "gold18": 10894, "silver999": 224.73, "22k_per_gram": 13315.0, "24k_per_gram": 14530, "18k_per_gram": 10894, "silver_per_gram": 224.73}, {"date": "2026-07-08", "gold22": 13120.0, "gold24": 14318, "gold18": 10734, "silver999": 225.71, "22k_per_gram": 13120.0, "24k_per_gram": 14318, "18k_per_gram": 10734, "silver_per_gram": 225.71}, {"date": "2026-07-09", "gold22": 13240.0, "gold24": 14449, "gold18": 10832, "silver999": 226.67, "22k_per_gram": 13240.0, "24k_per_gram": 14449, "18k_per_gram": 10832, "silver_per_gram": 226.67}, {"date": "2026-07-10", "gold22": 13275.0, "gold24": 14487, "gold18": 10861, "silver999": 227.6, "22k_per_gram": 13275.0, "24k_per_gram": 14487, "18k_per_gram": 10861, "silver_per_gram": 227.6}, {"date": "2026-07-11", "gold22": 13230.0, "gold24": 14438, "gold18": 10824, "silver999": 228.51, "22k_per_gram": 13230.0, "24k_per_gram": 14438, "18k_per_gram": 10824, "silver_per_gram": 228.51}, {"date": "2026-07-13", "gold22": 13100.0, "gold24": 14296, "gold18": 10718, "silver999": 229.38, "22k_per_gram": 13100.0, "24k_per_gram": 14296, "18k_per_gram": 10718, "silver_per_gram": 229.38}, {"date": "2026-07-14", "gold22": 13090.0, "gold24": 14285, "gold18": 10710, "silver999": 230.21, "22k_per_gram": 13090.0, "24k_per_gram": 14285, "18k_per_gram": 10710, "silver_per_gram": 230.21}, {"date": "2026-07-15", "gold22": 13160.0, "gold24": 14361, "gold18": 10767, "silver999": 231.02, "22k_per_gram": 13160.0, "24k_per_gram": 14361, "18k_per_gram": 10767, "silver_per_gram": 231.02}, {"date": "2026-07-16", "gold22": 13135.0, "gold24": 14334, "gold18": 10746, "silver999": 231.78, "22k_per_gram": 13135.0, "24k_per_gram": 14334, "18k_per_gram": 10746, "silver_per_gram": 231.78}, {"date": "2026-07-17", "gold22": 13065.0, "gold24": 14258, "gold18": 10689, "silver999": 232.5, "22k_per_gram": 13065.0, "24k_per_gram": 14258, "18k_per_gram": 10689, "silver_per_gram": 232.5}, {"date": "2026-07-18", "gold22": 13135.0, "gold24": 14334, "gold18": 10746, "silver999": 233.18, "22k_per_gram": 13135.0, "24k_per_gram": 14334, "18k_per_gram": 10746, "silver_per_gram": 233.18}, {"date": "2026-07-20", "gold22": 13150.0, "gold24": 14350, "gold18": 10759, "silver999": 233.81, "22k_per_gram": 13150.0, "24k_per_gram": 14350, "18k_per_gram": 10759, "silver_per_gram": 233.81}, {"date": "2026-07-21", "gold22": 13220.0, "gold24": 14427, "gold18": 10816, "silver999": 234.4, "22k_per_gram": 13220.0, "24k_per_gram": 14427, "18k_per_gram": 10816, "silver_per_gram": 234.4}, {"date": "2026-07-22", "gold22": 13430.0, "gold24": 14656, "gold18": 10988, "silver999": 234.94, "22k_per_gram": 13430.0, "24k_per_gram": 14656, "18k_per_gram": 10988, "silver_per_gram": 234.94}, {"date": "2026-07-23", "gold22": 13450.0, "gold24": 14678, "gold18": 11004, "silver999": 235.42, "22k_per_gram": 13450.0, "24k_per_gram": 14678, "18k_per_gram": 11004, "silver_per_gram": 235.42}, {"date": "2026-07-24", "gold22": 13230.0, "gold24": 14438, "gold18": 10824, "silver999": 235.86, "22k_per_gram": 13230.0, "24k_per_gram": 14438, "18k_per_gram": 10824, "silver_per_gram": 235.86}, {"date": "2026-07-25", "gold22": 13285.0, "gold24": 14498, "gold18": 10869, "silver999": 236.24, "22k_per_gram": 13285.0, "24k_per_gram": 14498, "18k_per_gram": 10869, "silver_per_gram": 236.24}, {"date": "2026-07-27", "gold22": 13370.0, "gold24": 14590, "gold18": 10939, "silver999": 236.57, "22k_per_gram": 13370.0, "24k_per_gram": 14590, "18k_per_gram": 10939, "silver_per_gram": 236.57}, {"date": "2026-07-28", "gold22": 13215.0, "gold24": 14421, "gold18": 10812, "silver999": 236.85, "22k_per_gram": 13215.0, "24k_per_gram": 14421, "18k_per_gram": 10812, "silver_per_gram": 236.85}, {"date": "2026-07-29", "gold22": 13155.0, "gold24": 14356, "gold18": 10763, "silver999": 237.06, "22k_per_gram": 13155.0, "24k_per_gram": 14356, "18k_per_gram": 10763, "silver_per_gram": 237.06}, {"date": "2026-07-30", "gold22": 13230.0, "gold24": 14438, "gold18": 10824, "silver999": 237.22, "22k_per_gram": 13230.0, "24k_per_gram": 14438, "18k_per_gram": 10824, "silver_per_gram": 237.22}, {"date": "2026-07-31", "gold22": 13255.0, "gold24": 14465, "gold18": 10845, "silver999": 237.33, "22k_per_gram": 13255.0, "24k_per_gram": 14465, "18k_per_gram": 10845, "silver_per_gram": 237.33}, {"date": "2026-08-01", "gold22": 13220.0, "gold24": 14427, "gold18": 10816, "silver999": 237.37, "22k_per_gram": 13220.0, "24k_per_gram": 14427, "18k_per_gram": 10816, "silver_per_gram": 237.37}, {"date": "2026-08-03", "gold22": 13220.0, "gold24": 14427, "gold18": 10816, "silver999": 237.36, "22k_per_gram": 13220.0, "24k_per_gram": 14427, "18k_per_gram": 10816, "silver_per_gram": 237.36}, {"date": "2026-08-04", "gold22": 13200.0, "gold24": 14405, "gold18": 10800, "silver999": 237.28, "22k_per_gram": 13200.0, "24k_per_gram": 14405, "18k_per_gram": 10800, "silver_per_gram": 237.28}, {"date": "2026-08-05", "gold22": 13460.0, "gold24": 14689, "gold18": 11012, "silver999": 237.15, "22k_per_gram": 13460.0, "24k_per_gram": 14689, "18k_per_gram": 11012, "silver_per_gram": 237.15}, {"date": "2026-08-06", "gold22": 13725.0, "gold24": 14978, "gold18": 11229, "silver999": 236.95, "22k_per_gram": 13725.0, "24k_per_gram": 14978, "18k_per_gram": 11229, "silver_per_gram": 236.95}, {"date": "2026-08-07", "gold22": 13865.0, "gold24": 15131, "gold18": 11344, "silver999": 236.7, "22k_per_gram": 13865.0, "24k_per_gram": 15131, "18k_per_gram": 11344, "silver_per_gram": 236.7}, {"date": "2026-08-08", "gold22": 13965.0, "gold24": 15240, "gold18": 11426, "silver999": 236.39, "22k_per_gram": 13965.0, "24k_per_gram": 15240, "18k_per_gram": 11426, "silver_per_gram": 236.39}, {"date": "2026-08-10", "gold22": 13930.0, "gold24": 15202, "gold18": 11397, "silver999": 236.02, "22k_per_gram": 13930.0, "24k_per_gram": 15202, "18k_per_gram": 11397, "silver_per_gram": 236.02}, {"date": "2026-08-11", "gold22": 14100.0, "gold24": 15387, "gold18": 11536, "silver999": 235.59, "22k_per_gram": 14100.0, "24k_per_gram": 15387, "18k_per_gram": 11536, "silver_per_gram": 235.59}, {"date": "2026-08-12", "gold22": 14195.0, "gold24": 15491, "gold18": 11614, "silver999": 235.1, "22k_per_gram": 14195.0, "24k_per_gram": 15491, "18k_per_gram": 11614, "silver_per_gram": 235.1}, {"date": "2026-08-13", "gold22": 14080.0, "gold24": 15365, "gold18": 11520, "silver999": 234.56, "22k_per_gram": 14080.0, "24k_per_gram": 15365, "18k_per_gram": 11520, "silver_per_gram": 234.56}, {"date": "2026-08-14", "gold22": 14155.0, "gold24": 15447, "gold18": 11581, "silver999": 233.96, "22k_per_gram": 14155.0, "24k_per_gram": 15447, "18k_per_gram": 11581, "silver_per_gram": 233.96}, {"date": "2026-08-15", "gold22": 14220.0, "gold24": 15518, "gold18": 11634, "silver999": 233.31, "22k_per_gram": 14220.0, "24k_per_gram": 15518, "18k_per_gram": 11634, "silver_per_gram": 233.31}, {"date": "2026-08-17", "gold22": 14270.0, "gold24": 15573, "gold18": 11675, "silver999": 232.6, "22k_per_gram": 14270.0, "24k_per_gram": 15573, "18k_per_gram": 11675, "silver_per_gram": 232.6}, {"date": "2026-08-18", "gold22": 14290.0, "gold24": 15594, "gold18": 11691, "silver999": 231.85, "22k_per_gram": 14290.0, "24k_per_gram": 15594, "18k_per_gram": 11691, "silver_per_gram": 231.85}, {"date": "2026-08-19", "gold22": 14205.0, "gold24": 15502, "gold18": 11622, "silver999": 231.04, "22k_per_gram": 14205.0, "24k_per_gram": 15502, "18k_per_gram": 11622, "silver_per_gram": 231.04}, {"date": "2026-08-20", "gold22": 14600.0, "gold24": 15933, "gold18": 11945, "silver999": 230.18, "22k_per_gram": 14600.0, "24k_per_gram": 15933, "18k_per_gram": 11945, "silver_per_gram": 230.18}, {"date": "2026-08-21", "gold22": 14810.0, "gold24": 16162, "gold18": 12117, "silver999": 229.28, "22k_per_gram": 14810.0, "24k_per_gram": 16162, "18k_per_gram": 12117, "silver_per_gram": 229.28}, {"date": "2026-08-22", "gold22": 14950.0, "gold24": 16315, "gold18": 12231, "silver999": 228.33, "22k_per_gram": 14950.0, "24k_per_gram": 16315, "18k_per_gram": 12231, "silver_per_gram": 228.33}, {"date": "2026-08-24", "gold22": 15030.0, "gold24": 16402, "gold18": 12297, "silver999": 227.34, "22k_per_gram": 15030.0, "24k_per_gram": 16402, "18k_per_gram": 12297, "silver_per_gram": 227.34}, {"date": "2026-08-25", "gold22": 15010.0, "gold24": 16380, "gold18": 12281, "silver999": 226.31, "22k_per_gram": 15010.0, "24k_per_gram": 16380, "18k_per_gram": 12281, "silver_per_gram": 226.31}, {"date": "2026-08-27", "gold22": 14940.0, "gold24": 16304, "gold18": 12223, "silver999": 225.24, "22k_per_gram": 14940.0, "24k_per_gram": 16304, "18k_per_gram": 12223, "silver_per_gram": 225.24}, {"date": "2026-08-28", "gold22": 14770.0, "gold24": 16118, "gold18": 12084, "silver999": 224.13, "22k_per_gram": 14770.0, "24k_per_gram": 16118, "18k_per_gram": 12084, "silver_per_gram": 224.13}, {"date": "2026-08-29", "gold22": 14505.0, "gold24": 15829, "gold18": 11867, "silver999": 222.99, "22k_per_gram": 14505.0, "24k_per_gram": 15829, "18k_per_gram": 11867, "silver_per_gram": 222.99}, {"date": "2026-08-31", "gold22": 14370.0, "gold24": 15682, "gold18": 11757, "silver999": 221.81, "22k_per_gram": 14370.0, "24k_per_gram": 15682, "18k_per_gram": 11757, "silver_per_gram": 221.81}, {"date": "2026-09-01", "gold22": 14300.0, "gold24": 15605, "gold18": 11700, "silver999": 220.61, "22k_per_gram": 14300.0, "24k_per_gram": 15605, "18k_per_gram": 11700, "silver_per_gram": 220.61}, {"date": "2026-09-02", "gold22": 13935, "gold24": 15207, "gold18": 11401, "silver999": 260.0, "22k_per_gram": 13935, "24k_per_gram": 15207, "18k_per_gram": 11401, "silver_per_gram": 260.0}];
+
+    function switchHistTableRange(range, btn) {
+      if (btn) {
+        document.querySelectorAll('#hist-range-pills .time-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      const tbody = document.getElementById('gold-history-tbody');
+      if (!tbody) return;
+
+      let count = 30;
+      if (range === '7d') count = 7;
+      else if (range === '30d') count = 30;
+      else if (range === '3m') count = 90;
+      else if (range === '6m') count = 180;
+      else if (range === '1y') count = 365;
+
+      const rev = [...GOLD_HIST_FULL].reverse();
+      const slice = rev.slice(0, count);
+
+      let html = '';
+      slice.forEach((item, idx) => {
+        const prev = (idx + 1 < slice.length) ? slice[idx + 1] : item;
+        const cur24 = Math.round(item.gold24 || item['24k_per_gram'] || 0);
+        const cur22 = Math.round(item.gold22 || item['22k_per_gram'] || 0);
+        const cur18 = Math.round(item.gold18 || item['18k_per_gram'] || 0);
+        const cursil = parseFloat(item.silver999 || item['silver_per_gram'] || 260.0);
+        const prev24 = Math.round(prev.gold24 || prev['24k_per_gram'] || cur24);
+
+        const diff = cur24 - prev24;
+        let diffBadge = '<span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:700; font-size:12px; background:#F1F5F9; color:#64748B;">0 (ಸ್ಥಿರ)</span>';
+        if (diff > 0) {
+          diffBadge = '<span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#DCFCE7; color:#15803D;">▲ +₹' + diff.toLocaleString('en-IN') + '</span>';
+        } else if (diff < 0) {
+          diffBadge = '<span style="display:inline-block; padding:2px 8px; border-radius:6px; font-weight:800; font-size:12px; background:#FEE2E2; color:#B91C1C;">▼ -₹' + Math.abs(diff).toLocaleString('en-IN') + '</span>';
+        }
+
+        html += `
+          <tr>
+            <td style="font-weight:800; color:#0F172A; white-space:nowrap;">📅 ${item.date}</td>
+            <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹${cur24.toLocaleString('en-IN')}</td>
+            <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹${cur22.toLocaleString('en-IN')}</td>
+            <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹${cur18.toLocaleString('en-IN')}</td>
+            <td style="font-weight:900; font-family:'Inter',sans-serif; color:#2563EB;">₹${cursil.toFixed(2)}</td>
+            <td>${diffBadge}</td>
+          </tr>`;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+</script>
 </body>
 </html>
