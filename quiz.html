@@ -898,14 +898,14 @@
   <h1 class="quiz-hero-title">ದೈನಂದಿನ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ</h1>
   <p class="quiz-hero-sub">ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳು — ಕರ್ನಾಟಕದ ಇತಿಹಾಸ, ಭೂಗೋಳ, ಸಾಹಿತ್ಯ, ಸಂವಿಧಾನ &amp; 31 ಜಿಲ್ಲೆಗಳ ಕುರಿತು ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿ, ನಿಮ್ಮ ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ!</p>
 
-  <!-- CATEGORY FILTER CHIPS -->
-  <div class="quiz-chips">
-    <button class="q-chip active" onclick="loadQuizCategory('all', this)">🌟 ದೈನಂದಿನ 20 (Daily 20)</button>
-    <button class="q-chip" onclick="loadQuizCategory('history', this)">🏛️ ಇತಿಹಾಸ &amp; ರಾಜವಂಶ</button>
-    <button class="q-chip" onclick="loadQuizCategory('geography', this)">🏞️ ಭೂಗೋಳ &amp; ನದಿಗಳು</button>
-    <button class="q-chip" onclick="loadQuizCategory('districts', this)">📍 31 ಜಿಲ್ಲೆಗಳು</button>
-    <button class="q-chip" onclick="loadQuizCategory('literature', this)">📖 ಸಾಹಿತ್ಯ &amp; ಕಲೆ</button>
-    <button class="q-chip" onclick="loadQuizCategory('polity', this)">⚖️ ಆಡಳಿತ &amp; ಸಂವಿಧಾನ</button>
+  <!-- OFFICIAL STATEWIDE CHALLENGE HIGHLIGHT -->
+  <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; position:relative; z-index:2; margin-top:14px;">
+    <span style="background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.3); border-radius:20px; padding:6px 16px; font-size:13px; font-weight:800; color:#FFF;">🏆 ರಾಜ್ಯಾದ್ಯಂತ ಏಕೈಕ ದೈನಂದಿನ ಸವಾಲು</span>
+    <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:700; color:#E2E8F0;">🏛️ ಇತಿಹಾಸ</span>
+    <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:700; color:#E2E8F0;">🏞️ ಭೂಗೋಳ</span>
+    <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:700; color:#E2E8F0;">📍 31 ಜಿಲ್ಲೆಗಳು</span>
+    <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:700; color:#E2E8F0;">📖 ಸಾಹಿತ್ಯ</span>
+    <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:6px 14px; font-size:12.5px; font-weight:700; color:#E2E8F0;">⚖️ ಯೋಜನೆಗಳು & ಆಡಳಿತ</span>
   </div>
 </section>
 
@@ -1199,56 +1199,44 @@
     btn.innerText = audioEnabled ? '🔊 ಧ್ವನಿ: ಆನ್' : '🔇 ಧ್ವನಿ: ಆಫ್';
   }
 
-  async function fetchQuiz(category = 'all') {
-    // 1. Try Today's Dedicated Daily Quiz file first
+  async function fetchQuiz() {
+    // 1. Load today's official single 20-questions set (Same for everyone)
     try {
       const dRes = await fetch('/data/daily_quiz.json?v=' + Date.now());
       if (dRes.ok) {
         const dData = await dRes.json();
         if (dData && dData.questions && dData.questions.length > 0) {
-          if (category === 'all') {
-            return dData.questions;
-          } else {
-            const filtered = dData.questions.filter(q => q.category === category);
-            if (filtered.length >= 3) return filtered;
-          }
+          return dData.questions.slice(0, 20);
         }
       }
     } catch (e) {}
 
-    // 2. Try Edge API
+    // 2. Fallback to API
     try {
-      const todayStr = new Date().toISOString().slice(0, 10);
-      const res = await fetch(`/api/quiz?date=${todayStr}&category=${category}`);
+      const res = await fetch('/api/quiz');
       if (res.ok) {
         const data = await res.json();
         if (data.questions && data.questions.length > 0) {
-          return data.questions;
+          return data.questions.slice(0, 20);
         }
       }
     } catch (e) {}
 
-    // 3. Fallback to Master Karnataka Question Bank
+    // 3. Fallback to master bank
     try {
       const sRes = await fetch('/data/karnataka_quiz_bank.json?v=' + Date.now());
       if (sRes.ok) {
-        const allQuestions = await sRes.json();
-        if (category === 'all') {
-          return allQuestions;
-        }
-        return allQuestions.filter(q => q.category === category);
+        const allQ = await sRes.json();
+        return allQ.slice(0, 20);
       }
     } catch (e) {}
 
     return [];
   }
 
-  async function loadQuizCategory(cat, btn) {
-    document.querySelectorAll('.q-chip').forEach(c => c.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-
-    document.getElementById('q-text-display').innerText = 'ಪ್ರಶ್ನೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...';
-    currentQuestions = await fetchQuiz(cat);
+  async function startDailyQuiz() {
+    document.getElementById('q-text-display').innerText = 'ಇಂದಿನ ಅಧಿಕೃತ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...';
+    currentQuestions = await fetchQuiz();
     
     if (currentQuestions.length > 20) {
       currentQuestions = currentQuestions.slice(0, 20);
@@ -1269,6 +1257,10 @@
     document.getElementById('quiz-play-card').style.display = 'block';
 
     renderCurrentQuestion();
+  }
+
+  async function loadQuizCategory(cat, btn) {
+    return startDailyQuiz();
   }
 
   function renderCurrentQuestion() {
