@@ -77,6 +77,15 @@ try:
 except Exception as e:
     print("[WARN] Sync notice:", e)
 
+# 5. Check and publish scheduled social media slots (16 Daily Slots)
+try:
+    print("Step 5: Checking scheduled social media slots...")
+    social_runner_py = os.path.join(ROOT_DIR, 'scripts', 'social_scheduler_runner.py')
+    subprocess.run([sys.executable, social_runner_py], cwd=ROOT_DIR, check=True)
+    print("[OK] Social slots checked.")
+except Exception as e:
+    print("[WARN] Social publisher notice:", e)
+
 # 5. Deploy to Cloudflare Pages
 try:
     print("Step 5: Deploying updated weather and site to Cloudflare Pages...")

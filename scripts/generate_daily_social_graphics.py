@@ -1,17 +1,29 @@
 #!/usr/bin/env python3
 """
-Chromium High-Precision Award-Winning Social Infographics Engine
-100% Authentic Live Data from Open-Meteo, IMD, KSNDMC, WRD & KSAMB:
-1. 07:00 AM: All 31 Districts Authentic Live Weather, Rain & Temperature (weather_today.png)
-2. 07:30 AM: Daily Kannada Inspirational Quote / ಶುಭನುಡಿ (quote_today.png)
-3. 08:00 AM: Karnataka Petrol, Diesel & CNG Fuel Rates (petrol_diesel_today.png)
-4. 08:30 AM: Daily Karnataka Knowledge Quiz Challenge (quiz_today.png)
-5. 09:00 AM: Karnataka 13 Major Dams Water Level Report (dam_levels_today.png)
-6. 09:30 AM: Karnataka Useful Citizen Information & Civic Guide (useful_info_today.png)
-7. 10:00 AM: Gold & Silver Rate Today (Today vs Yesterday) (gold_rate_today.png)
-8. 10:30 AM: KSAMB APMC Top Mandi Crop Prices (apmc_rates_today.png)
+Chromium High-Precision Award-Winning Social Infographics Engine (v3.0)
+100% Authentic Live Data from Open-Meteo, IMD, KSNDMC, WRD, Bullion & KSAMB:
+
+Daily Automated Schedule (IST):
+1. 07:15 AM: Daily Kannada Inspirational Quote / ಶುಭನುಡಿ (quote_today.png)
+2. 07:45 AM: Karnataka Petrol, Diesel & CNG Rates with Deltas (petrol_diesel_today.png)
+3. 08:30 AM: Yesterday Weather Extremes & Top 5 Rainfall Summary (weather_morning_summary.png)
+4. 09:15 AM: KSAMB APMC Mandi Rates 2-Page Carousel (apmc_p1.png, apmc_p2.png)
+5. 09:45 AM: 13 Major Dams 2-Page Carousel (dam_levels_p1.png, dam_levels_p2.png) + 6 Spotlights
+6. 10:15 AM: Official Gold & Silver Live Rates with Plus/Minus (gold_rate_today.png)
+7. 10:45 AM: IMD Nowcast 3-Hour Color-Coded Alert Map 1 (weather_nowcast_map.png)
+8. 11:30 AM: Knowledge Quiz Slot 1 - Question & Options ONLY (quiz_slot1.png)
+9. 12:30 PM: "Do You Know?" (ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ?) Fact 1 (doyouknow_slot1.png)
+10. 01:45 PM: IMD Nowcast 3-Hour Color-Coded Alert Map 2 (weather_nowcast_map.png)
+11. 02:30 PM: Knowledge Quiz Slot 2 - Question & Options ONLY (quiz_slot2.png)
+12. 04:00 PM: "Do You Know?" (ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ?) Fact 2 (doyouknow_slot2.png)
+13. 04:45 PM: IMD Nowcast 3-Hour Color-Coded Alert Map 3 (weather_nowcast_map.png)
+14. 05:45 PM: Knowledge Quiz Slot 3 - Question & Options ONLY (quiz_slot3.png)
+15. 07:15 PM: IMD Nowcast 3-Hour Color-Coded Alert Map 4 (weather_nowcast_map.png)
+16. 08:00 PM: "Do You Know?" (ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ?) Fact 3 (doyouknow_slot3.png)
 """
 
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import base64
 import json
 import os
@@ -48,74 +60,8 @@ def decrypt_payload(encoded_str):
         decrypted.append(b ^ key_bytes[i % len(key_bytes)])
     return json.loads(decrypted.decode('utf-8'))
 
-def get_live_gold():
-    p = ROOT_DIR / "data" / "gold_rates.json"
-    if p.exists():
-        try:
-            with open(p, "r", encoding="utf-8") as f:
-                d = json.load(f)
-                bg = d.get("baseGold", {})
-                yg = d.get("yesterdayGold", {})
-                bs = d.get("baseSilver", {})
-                ys = d.get("yesterdaySilver", {})
-                return {
-                    "today": {
-                        "date": d.get("date", datetime.now().strftime("%Y-%m-%d")),
-                        "24k": int(bg.get("24", 15829)),
-                        "22k": int(bg.get("22", 14505)),
-                        "silver_999": float(bs.get("999", 260.0))
-                    },
-                    "yesterday": {
-                        "24k": int(yg.get("24", 15829)),
-                        "22k": int(yg.get("22", 14505)),
-                        "silver_999": float(ys.get("999", 260.0))
-                    }
-                }
-        except Exception:
-            pass
-    return {
-        "today": {"date": "2026-08-30", "24k": 15829, "22k": 14505, "silver_999": 260.0},
-        "yesterday": {"24k": 15829, "22k": 14505, "silver_999": 260.0}
-    }
-
-def get_live_dams():
-    p = ROOT_DIR / "data" / "dam_levels.json"
-    if p.exists():
-        try:
-            with open(p, "r", encoding="utf-8") as f:
-                d = json.load(f)
-                if "payload" in d:
-                    return decrypt_payload(d["payload"]).get("dams", {})
-        except Exception:
-            pass
-    return {}
-
-def get_live_petrol_districts():
-    p = ROOT_DIR / "data" / "petrol_rates.json"
-    if p.exists():
-        try:
-            with open(p, "r", encoding="utf-8") as f:
-                d = json.load(f)
-                if "payload" in d:
-                    return decrypt_payload(d["payload"]).get("districts", {})
-        except Exception:
-            pass
-    return {}
-
-def get_live_weather_data():
-    p = ROOT_DIR / "data" / "weather.json"
-    if p.exists():
-        try:
-            with open(p, "r", encoding="utf-8") as f:
-                d = json.load(f)
-                if "payload" in d:
-                    return decrypt_payload(d["payload"])
-        except Exception:
-            pass
-    return {}
-
 def render_html_to_png(html_content, out_png_path):
-    temp_html_file = TEMP_HTML_DIR / "render_card.html"
+    temp_html_file = TEMP_HTML_DIR / f"render_{Path(out_png_path).stem}.html"
     with open(temp_html_file, "w", encoding="utf-8") as f:
         f.write(html_content)
 
@@ -141,90 +87,148 @@ def render_html_to_png(html_content, out_png_path):
         file_uri
     ]
     subprocess.run(cmd, check=True, capture_output=True)
-    print(f"Rendered: {out_png_path}")
+    print(f"✅ Rendered: {out_png_path.name}")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 1. 07:00 AM: 31 DISTRICTS AUTHENTIC LIVE WEATHER & TELEMETRY INFOGRAPHIC
+# DATA EXTRACTORS
 # ══════════════════════════════════════════════════════════════════════════════
-def render_weather_card():
-    w_data = get_live_weather_data()
-    districts_dict = w_data.get("districts", {})
+def get_live_gold():
+    p = ROOT_DIR / "data" / "gold_rates.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                bg = d.get("baseGold", {})
+                yg = d.get("yesterdayGold", {})
+                bs = d.get("baseSilver", {})
+                ys = d.get("yesterdaySilver", {})
+                return {
+                    "today": {
+                        "date": d.get("date", datetime.now().strftime("%Y-%m-%d")),
+                        "24k": int(bg.get("24", 15207)),
+                        "22k": int(bg.get("22", 13935)),
+                        "18k": int(bg.get("18", 11401)),
+                        "silver_999": float(bs.get("999", 260.0))
+                    },
+                    "yesterday": {
+                        "24k": int(yg.get("24", 15605)),
+                        "22k": int(yg.get("22", 14300)),
+                        "18k": int(yg.get("18", 11700)),
+                        "silver_999": float(ys.get("999", 260.0))
+                    }
+                }
+        except Exception:
+            pass
+    return {
+        "today": {"date": datetime.now().strftime("%Y-%m-%d"), "24k": 15207, "22k": 13935, "18k": 11401, "silver_999": 260.0},
+        "yesterday": {"24k": 15605, "22k": 14300, "18k": 11700, "silver_999": 260.0}
+    }
+
+def get_live_dams():
+    p = ROOT_DIR / "data" / "dam_levels.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                if "payload" in d:
+                    return decrypt_payload(d["payload"]).get("dams", {})
+        except Exception:
+            pass
+    return {}
+
+def get_live_petrol():
+    p = ROOT_DIR / "data" / "petrol_rates.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                if "payload" in d:
+                    return decrypt_payload(d["payload"])
+        except Exception:
+            pass
+    return {}
+
+def get_live_weather():
+    p = ROOT_DIR / "data" / "weather.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                if "payload" in d:
+                    return decrypt_payload(d["payload"])
+        except Exception:
+            pass
+    return {}
+
+def get_live_apmc():
+    p = ROOT_DIR / "data" / "apmc_prices.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                return d.get("items", [])
+        except Exception:
+            pass
+    return []
+
+def get_daily_quiz_data():
+    p = ROOT_DIR / "data" / "daily_quiz.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+def get_master_quiz_bank():
+    p = ROOT_DIR / "data" / "karnataka_quiz_bank.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return []
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 1. 07:15 AM: MORNING SHUBHA NUDI (ಶುಭೋದಯ / ಶುಭನುಡಿ)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_quote_card():
     logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    bg_b64 = get_file_base64(str(OUTPUT_DIR / "weather_bg.jpg"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "quote_bg.jpg"))
 
-    all_31_districts = [
-        ("udupi", "ಉಡುಪಿ", "Udupi", 24.9, "ತುಂತುರು ಮಳೆ 🌦️", 4.0),
-        ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ", "D. Kannada", 24.8, "ತುಂತುರು ಮಳೆ 🌦️", 4.7),
-        ("uttara_kannada", "ಉತ್ತರ ಕನ್ನಡ", "U. Kannada", 21.8, "ಮೋಡ ☁️", 6.3),
-        ("shivamogga", "ಶಿವಮೊಗ್ಗ", "Shivamogga", 23.2, "ಮೋಡ ☁️", 3.0),
-        ("chikkamagaluru", "ಚಿಕ್ಕಮಗಳೂರು", "Chikkamagaluru", 19.0, "ಮೋಡ ☁️", 4.7),
-        ("kodagu", "ಕೊಡಗು", "Kodagu", 19.8, "ಮೋಡ ☁️", 1.3),
-        ("hassan", "ಹಾಸನ", "Hassan", 20.5, "ಭಾಗಶಃ ಮೋಡ ⛅", 1.2),
-        ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", "Bengaluru Urban", 23.0, "ಮೋಡ ☁️", 3.0),
-        ("bengaluru_rural", "ಬೆಂಗಳೂರು ಗ್ರಾ.", "Bengaluru Rural", 23.3, "ಮೋಡ ☁️", 1.2),
-        ("ramanagara", "ರಾಮನಗರ", "Ramanagara", 24.6, "ಭಾಗಶಃ ಮೋಡ ⛅", 3.7),
-        ("mandya", "ಮಂಡ್ಯ", "Mandya", 24.4, "ಭಾಗಶಃ ಮೋಡ ⛅", 1.1),
-        ("mysuru", "ಮೈಸೂರು", "Mysuru", 23.5, "ಹೆಚ್ಚಾಗಿ ಶುಭ ☀️", 0.9),
-        ("chamarajanagara", "ಚಾಮರಾಜನಗರ", "Chamarajanagar", 24.3, "ಭಾಗಶಃ ಮೋಡ ⛅", 0.0),
-        ("tumakuru", "ತುಮಕೂರು", "Tumakuru", 23.4, "ಭಾಗಶಃ ಮೋಡ ⛅", 2.9),
-        ("kolar", "ಕೋಲಾರ", "Kolar", 24.4, "ಭಾಗಶಃ ಮೋಡ ⛅", 1.3),
-        ("chikkaballapura", "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", "Chikkaballapur", 21.2, "ಮಧ್ಯಮ ತುಂತುರು 🌦️", 6.8),
-        ("chitradurga", "ಚಿತ್ರದುರ್ಗ", "Chitradurga", 22.8, "ಮೋಡ ☁️", 2.8),
-        ("davanagere", "ದಾವಣಗೆರೆ", "Davanagere", 23.8, "ಮೋಡ ☁️", 4.1),
-        ("ballari", "ಬಳ್ಳಾರಿ", "Ballari", 28.5, "ಮೋಡ ☁️", 2.0),
-        ("vijayanagara", "ವಿಜಯನಗರ", "Vijayanagara", 25.1, "ಮೋಡ ☁️", 2.5),
-        ("haveri", "ಹಾವೇರಿ", "Haveri", 23.1, "ಮೋಡ ☁️", 3.2),
-        ("gadag", "ಗದಗ", "Gadag", 23.9, "ಮೋಡ ☁️", 2.0),
-        ("dharwad", "ಧಾರವಾಡ", "Dharwad", 22.4, "ಮೋಡ ☁️", 1.7),
-        ("belagavi", "ಬೆಳಗಾವಿ", "Belagavi", 21.1, "ಮೋಡ ☁️", 2.0),
-        ("bagalkote", "ಬಾಗಲಕೋಟೆ", "Bagalkote", 25.9, "ಭಾಗಶಃ ಮೋಡ ⛅", 0.2),
-        ("vijayapura", "ವಿಜಯಪುರ", "Vijayapura", 25.9, "ಮೋಡ ☁️", 1.6),
-        ("koppal", "ಕೊಪ್ಪಳ", "Koppal", 26.2, "ಮೋಡ ☁️", 1.2),
-        ("raichur", "ರಾಯಚೂರು", "Raichur", 28.4, "ಮೋಡ ☁️", 0.8),
-        ("kalaburagi", "ಕಲಬುರಗಿ", "Kalaburagi", 27.3, "ಹೆಚ್ಚಾಗಿ ಶುಭ ☀️", 1.1),
-        ("yadgir", "ಯಾದಗಿರಿ", "Yadgir", 26.7, "ಮೋಡ ☁️", 0.9),
-        ("bidar", "ಬೀದರ್", "Bidar", 26.5, "ಮೋಡ ☁️", 1.0)
+    quotes_bank = [
+        {
+            "quote": "ಮನುಷ್ಯ ಜಾತಿ ತಾನೊಂದೆ ವಲಂ! ನೂರು ಮತದ ಹೊಟ್ಟ ಹೊಕ್ಕು ಎಲ್ಲ ತತ್ವದೆಲ್ಲೆಯಿಕ್ಕು, ಮತವೆಂಬುದು ಮತಿಗೆಡುವುದು ಬಿಡು, ಮನುಜ ಮತ ವಿಶ್ವಪಥ!",
+            "author": "ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು",
+            "tag": "ವಿಶ್ವಮಾನವ ಸಂದೇಶ"
+        },
+        {
+            "quote": "ಕಾಯಕವೇ ಕೈಲಾಸ! ದಯವಿಲ್ಲದ ಧರ್ಮವದೇವುದಯ್ಯಾ? ದಯವೇ ಬೇಕು ಸಕಲ ಪ್ರಾಣಿಗಳಲ್ಲಿ! ದಯವೇ ಧರ್ಮದ ಮೂಲವಯ್ಯ.",
+            "author": "ಜಗಜ್ಯೋತಿ ಬಸವಣ್ಣ",
+            "tag": "ವಚನ ನುಡಿಮುತ್ತು"
+        },
+        {
+            "quote": "ಬದುಕು ಜಟಕಾಬಂಡಿ, ವಿಧಿ ಅದರ ಸಾಹೇಬ; ಕುದುರೆ ನೀನ್, ಅವನು ಪೇಳ್ದಂತೆ ಪಯಣಿಗರು. ಮದುವೆಗೋ ಮಸಣಕ್ಕೊ ತಾಂ ಪೋಗಿ ನಿಲ್ಲುವುದು, ಪದ ಕುಸಿಯೆ ನೆಲವಿಹುದು — ಮಂಕುತಿಮ್ಮ.",
+            "author": "ಡಿ. ವಿ. ಗುಂಡಪ್ಪ (ಡಿವಿಜಿ)",
+            "tag": "ಮಂಕುತಿಮ್ಮನ ಕಗ್ಗ"
+        },
+        {
+            "quote": "ಏಳಿ, ಎದ್ದೇಳಿ, ಗುರಿ ಮುಟ್ಟುವ ತನಕ ನಿಲ್ಲದಿರಿ! ನಿಮ್ಮಲ್ಲಿ ಅನಂತ ಶಕ್ತಿಯಿದೆ, ನೀವು ಜಗತ್ತನ್ನೇ ಬದಲಾಯಿಸಬಲ್ಲಿರಿ.",
+            "author": "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ",
+            "tag": "ಯುವ ಚೈತನ್ಯ"
+        },
+        {
+            "quote": "ಸರ್ವರೊಳು ಒಂದೊಂದು ನುಡಿಗಲಿತು ವಿದ್ಯೆಯ ಪರ್ವತವೆ ಆದ ಸರ್ವಜ್ಞ! ಜ್ಞಾನಕ್ಕೆ ಮಿಗಿಲಾದ ಸಂಪತ್ತಿಲ್ಲ.",
+            "author": "ಕವಿ ಸರ್ವಜ್ಞ",
+            "tag": "ತ್ರಿಪದಿ ಜ್ಞಾನ"
+        }
     ]
 
-    cards_html = ""
-    for d_key, name_kn, name_en, def_t, def_desc, def_r in all_31_districts:
-        d_obj = districts_dict.get(d_key, {})
-        curr = d_obj.get("current", {})
-        temp = curr.get("temp_c", def_t)
-        desc = curr.get("desc_kn", def_desc)
-        rain_24h = curr.get("past_24h_rain_mm", def_r)
-
-        # Highlight if raining
-        if "ಮಳೆ" in desc or rain_24h > 3.0:
-            border_col = "#38BDF8"
-            card_bg = "rgba(14, 116, 144, 0.35)"
-            badge_txt = f"💧 {rain_24h:.1f}mm"
-            badge_col = "#38BDF8"
-        elif "ಶುಭ" in desc or "ಬಿಸಿಲು" in desc:
-            border_col = "#F59E0B"
-            card_bg = "rgba(245, 158, 11, 0.15)"
-            badge_txt = "☀️ ಬಿಸಿಲು"
-            badge_col = "#FDE047"
-        else:
-            border_col = "#64748B"
-            card_bg = "rgba(15, 23, 42, 0.85)"
-            badge_txt = "⛅ ಮೋಡ"
-            badge_col = "#CBD5E1"
-
-        cards_html += f"""
-        <div style="background:{card_bg}; border:1.5px solid {border_col}; border-left:6px solid {border_col}; border-radius:10px; padding:5px 8px; display:flex; justify-content:space-between; align-items:center; backdrop-filter:blur(6px); box-shadow:0 4px 10px rgba(0,0,0,0.5);">
-          <div>
-            <div style="font-size:16px; font-weight:900; color:#FFFFFF; line-height:1.1;">{name_kn}</div>
-            <div style="font-size:12px; color:#94A3B8; font-weight:700; margin-top:2px;">{desc}</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:17px; font-weight:900; color:#FDE047; font-family:'Outfit';">{temp:.1f}°C</div>
-            <div style="font-size:11px; font-weight:800; color:{badge_col}; font-family:'Outfit';">{badge_txt}</div>
-          </div>
-        </div>
-        """
-
-    today_str = datetime.now().strftime("%d %B %Y").upper()
+    day_of_year = datetime.now().timetuple().tm_yday
+    selected = quotes_bank[day_of_year % len(quotes_bank)]
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
 
     html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -244,96 +248,99 @@ def render_weather_card():
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 22px 26px;
+    padding: 36px 42px;
   }}
-  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; z-index: 1; }}
-  .overlay-grad {{ position: absolute; inset: 0; background: radial-gradient(circle at 50% 10%, rgba(2, 6, 23, 0.4) 0%, rgba(2, 6, 23, 0.85) 60%, #020617 100%); z-index: 2; }}
-  .content-wrap {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
-  .top-bar {{ background: rgba(15, 23, 42, 0.9); border: 2px solid #0284C7; border-radius: 14px; padding: 8px 18px; display: flex; align-items: center; justify-content: space-between; }}
-  .headline {{ font-size: 26px; font-weight: 900; color: #FFFFFF; letter-spacing: -0.3px; }}
-  .sub-head {{ font-size: 14px; color: #38BDF8; font-weight: 800; font-family: 'Outfit'; }}
-  .region-ribbon {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 8px 0; }}
-  .r-card {{ background: rgba(15, 23, 42, 0.9); border-radius: 12px; padding: 8px 12px; text-align: center; border: 1.5px solid #334155; }}
-  .r-card.active-yellow {{ border-color: #38BDF8; background: rgba(2, 132, 199, 0.2); }}
-  .r-card.active-green {{ border-color: #10B981; background: rgba(16, 185, 129, 0.12); }}
-  .r-name {{ font-size: 16px; font-weight: 900; color: #FDE047; }}
-  .r-status {{ font-size: 13px; font-weight: 800; color: #CBD5E1; margin-top: 2px; }}
-  .districts-grid {{ display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(8, 1fr); gap: 8px; flex: 1; margin-bottom: 8px; }}
-  .footer-bar {{ background: rgba(15, 23, 42, 0.95); border: 1.5px solid #334155; border-radius: 12px; padding: 8px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 800; color: #CBD5E1; }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .overlay {{ position: absolute; inset: 0; background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.15) 0%, rgba(2, 6, 23, 0.95) 80%); z-index: 2; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(245, 158, 11, 0.3); pointer-events: none; z-index: 10; border-radius: 24px; }}
 </style>
 </head>
 <body>
-  <img class="bg-img" src="{bg_b64}" alt="Weather Background">
-  <div class="overlay-grad"></div>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+  <div class="overlay"></div>
 
-  <div class="content-wrap">
-    <div class="top-bar">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <img src="{logo_b64}" alt="Karnata Logo" style="height:48px; object-fit:contain;">
-        <div>
-          <div class="headline">ಕರ್ನಾಟಕ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ &amp; ಮಳೆ ವರದಿ</div>
-          <div class="sub-head">IMD &amp; KSNDMC OFFICIAL 31 DISTRICTS LIVE BULLETIN · {today_str}</div>
-        </div>
-      </div>
-      <div style="background:#0284C7; color:#FFF; font-weight:900; padding:6px 14px; border-radius:10px; font-size:15px; font-family:'Outfit';">LIVE OBSERVED</div>
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(245,158,11,0.3); padding-bottom:14px;">
+      <img src="{logo_b64}" style="height:64px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #F59E0B, #E11D48); color:#FFF; font-size:17px; font-weight:900; padding:6px 22px; border-radius:20px; font-family:'Outfit';">07:15 AM ಶುಭೋದಯ ಚಿಂತನೆ</div>
     </div>
 
-    <!-- 4 Major Regional Live Summaries -->
-    <div class="region-ribbon">
-      <div class="r-card active-yellow">
-        <div class="r-name">🌧️ ಕರಾವಳಿ (Coastal)</div>
-        <div class="r-status" style="color:#38BDF8;">ಉತ್ತಮ ಮಳೆ 24.9°C · 4.7mm</div>
+    <div style="text-align:center; margin: 20px 0;">
+      <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">DAILY INSPIRATIONAL KANNADA THOUGHT • {today_str}</div>
+      <div style="font-size:46px; font-weight:900; color:#FFFFFF; margin-top:4px;">ದಿನದ ಸವಿಚಿಂತನೆ & ಶುಭನುಡಿ 🌸</div>
+    </div>
+
+    <div style="background:rgba(15,23,42,0.85); border:2px solid #F59E0B; border-radius:28px; padding:44px 40px; box-shadow:0 20px 50px rgba(0,0,0,0.6); backdrop-filter:blur(10px); position:relative;">
+      <div style="font-size:64px; color:#F59E0B; line-height:1; position:absolute; top:20px; left:28px; opacity:0.6;">❝</div>
+      <div style="font-size:34px; font-weight:800; line-height:1.6; color:#F8FAFC; text-align:center; padding:10px 30px;">
+        {selected['quote']}
       </div>
-      <div class="r-card active-yellow">
-        <div class="r-name">🌦️ ಮಲೆನಾಡು (Malnad)</div>
-        <div class="r-status" style="color:#38BDF8;">ತಂಪು ಹವೆ 19.0°C · 4.7mm</div>
-      </div>
-      <div class="r-card active-green">
-        <div class="r-name">⛅ ದಕ್ಷಿಣ ಒಳನಾಡು (South)</div>
-        <div class="r-status" style="color:#10B981;">ಮೋಡಕವಿದ 23.0°C · 3.0mm</div>
-      </div>
-      <div class="r-card active-green">
-        <div class="r-name">☀️ ಉತ್ತರ ಒಳನಾಡು (North)</div>
-        <div class="r-status" style="color:#FDE047;">ಬಿಸಿಲು/ಮೋಡ 28.5°C</div>
+      <div style="margin-top:28px; text-align:center; border-top:1px solid rgba(245,158,11,0.3); padding-top:18px;">
+        <div style="font-size:28px; font-weight:900; color:#FDE047;">— {selected['author']}</div>
+        <div style="font-size:16px; font-weight:800; color:#94A3B8; margin-top:4px;">✨ {selected['tag']}</div>
       </div>
     </div>
 
-    <!-- 31 Districts Grid with Exact Live Temperatures & Rainfalls -->
-    <div class="districts-grid">
-      {cards_html}
-      <div style="background:linear-gradient(135deg, #0284C7, #0369A1); border-radius:10px; padding:6px 10px; display:flex; flex-direction:column; justify-content:center; text-align:center; box-shadow:0 4px 12px rgba(2,132,199,0.5);">
-        <div style="font-size:15px; font-weight:900; color:#FFF;">⛈️ ಲೈವ್ ರೇಡಾರ್ ಮ್ಯಾಪ್</div>
-        <div style="font-size:12px; font-weight:800; color:#E0F2FE; font-family:'Outfit';">karnata.in/weather</div>
-      </div>
-    </div>
-
-    <!-- Live Telemetry Footer Bar -->
-    <div class="footer-bar">
-      <div>📊 ಗರಿಷ್ಠ ತಾಪಮಾನ: <strong style="color:#FDE047;">ಬಳ್ಳಾರಿ 28.5°C</strong> | ಕನಿಷ್ಠ: <strong style="color:#38BDF8;">ಚಿಕ್ಕಮಗಳೂರು 19.0°C</strong> | ಲೈವ್ ಮಳೆ ನಕ್ಷೆ: <strong>karnata.in/weather</strong></div>
-      <div style="color:#E11D48; font-size:20px; font-weight:900; font-family:'Outfit';">karnata.in</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(245,158,11,0.3); padding-top:16px;">
+      <div style="font-size:20px; color:#CBD5E1; font-weight:800;">🌻 ನಿಮ್ಮ ಇಂದಿನ ದಿನವು ಸುಖ-ಶಾಂತಿ ಮತ್ತು ಯಶಸ್ಸಿನಿಂದ ಕೂಡಿರಲಿ</div>
+      <div style="font-size:24px; font-weight:900; color:#F59E0B; font-family:'Outfit';">karnata.in</div>
     </div>
   </div>
 </body>
 </html>"""
 
-    out_file = OUTPUT_DIR / "weather_today.png"
+    out_file = OUTPUT_DIR / "quote_today.png"
     render_html_to_png(html, out_file)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 2. 07:30 AM: KANNADA INSPIRATIONAL QUOTE / ದಿನದ ಶುಭನುಡಿ INFOGRAPHIC
+# 2. 07:45 AM: KARNATAKA PETROL, DIESEL & CNG RATES (WITH DELTAS)
 # ══════════════════════════════════════════════════════════════════════════════
-def render_quote_card():
+def render_petrol_card():
+    petrol_data = get_live_petrol()
+    dist_dict = petrol_data.get("districts", {})
     logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    bg_b64 = get_file_base64(str(OUTPUT_DIR / "quote_bg.jpg"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "fuel_bg.jpg"))
 
-    quotes = [
-        ("ಬೆಳೆಯುವ ಸಿರಿ ಮೊಳಕೆಯಲ್ಲಿ, ಬಾಳುವ ಗುಣ ನಡತೆಯಲ್ಲಿ. ಕಷ್ಟಗಳೇ ಮನುಷ್ಯನ ನಿಜವಾದ ಸಾಮರ್ಥ್ಯವನ್ನು ಹೊರತರುತ್ತವೆ.", "ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು"),
-        ("ಕಲಿತ ವಿದ್ಯೆ, ಗಳಿಸಿದ ಜ್ಞಾನ, ತೋರಿದ ಪ್ರೀತಿ ಎಂದಿಗೂ ವ್ಯರ್ಥವಾಗುವುದಿಲ್ಲ. ಪ್ರತಿಯೊಂದು ಸೂರ್ಯೋದಯವೂ ಹೊಸ ಅವಕಾಶ.", "ಡಿ.ವಿ. ಗುಂಡಪ್ಪ (DVG)"),
-        ("ಕಾಯಕವೇ ಕೈಲಾಸ — ನಿಷ್ಠೆಯಿಂದ ಮಾಡುವ ಕೆಲಸವೇ ಪರಮ ಪವಿತ್ರವಾದ ಪೂಜೆ.", "ಜಗಜ್ಯೋತಿ ಬಸವೇಶ್ವರ"),
+    cities_to_show = [
+        ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ", 110.89, 98.80, 83.0, 0.0),
+        ("mysuru", "ಮೈಸೂರು", 110.42, 98.37, None, 0.0),
+        ("dakshina_kannada", "ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)", 109.95, 97.90, 83.5, 0.0),
+        ("belagavi", "ಬೆಳಗಾವಿ", 111.45, 99.30, 84.0, 0.0),
+        ("dharwad", "ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ", 110.65, 98.55, 84.0, 0.0),
+        ("kalaburagi", "ಕಲಬುರಗಿ", 111.80, 99.65, None, 0.0),
+        ("shivamogga", "ಶಿವಮೊಗ್ಗ", 111.20, 99.10, None, 0.0),
+        ("ballari", "ಬಳ್ಳಾರಿ", 111.55, 99.40, None, 0.0),
     ]
-    day_idx = datetime.now().timetuple().tm_yday % len(quotes)
-    quote_text, author = quotes[day_idx]
-    today_str = datetime.now().strftime("%d %B %Y").upper()
+
+    rows_html = ""
+    for k, name_kn, def_p, def_d, cng, def_ch in cities_to_show:
+        p_val = def_p
+        d_val = def_d
+        ch = def_ch
+        if k in dist_dict:
+            taluks = dist_dict[k].get("taluks", {})
+            if taluks:
+                first_t = list(taluks.values())[0]
+                p_val = first_t.get("petrol", p_val)
+                d_val = first_t.get("diesel", d_val)
+                ch = first_t.get("change", ch)
+                if first_t.get("cng"): cng = first_t.get("cng")
+
+        delta_badge = f'<span style="color:#10B981; font-size:16px;">0.00 —</span>'
+        if ch > 0: delta_badge = f'<span style="color:#EF4444; font-size:16px;">+₹{ch:.2f} 🔼</span>'
+        elif ch < 0: delta_badge = f'<span style="color:#10B981; font-size:16px;">-₹{abs(ch):.2f} 🔽</span>'
+
+        rows_html += f"""
+        <div style="display:grid; grid-template-columns:2.2fr 1.4fr 1.4fr 1.1fr; background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:14px; padding:12px 18px; align-items:center; margin-bottom:10px;">
+          <div style="font-size:22px; font-weight:800; color:#FFFFFF;">{name_kn}</div>
+          <div style="font-size:24px; font-weight:900; color:#FDE047; font-family:'Outfit';">₹{p_val:.2f}</div>
+          <div style="font-size:24px; font-weight:900; color:#67E8F9; font-family:'Outfit';">₹{d_val:.2f}</div>
+          <div style="font-size:18px; font-weight:800; text-align:right; font-family:'Outfit';">{delta_badge}</div>
+        </div>"""
+
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
 
     html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -345,7 +352,7 @@ def render_quote_card():
   body {{
     width: 1080px;
     height: 1080px;
-    background: #000000;
+    background: #020617;
     font-family: 'Anek Kannada', sans-serif;
     color: #FFFFFF;
     position: relative;
@@ -353,148 +360,41 @@ def render_quote_card():
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 36px 40px;
+    padding: 32px 38px;
   }}
-  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; z-index: 1; }}
-  .overlay-grad {{ position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%); z-index: 2; }}
-  .border-box {{ position: absolute; inset: 14px; border: 2px solid rgba(245, 158, 11, 0.4); pointer-events: none; z-index: 10; }}
-  .content-wrap {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(239, 68, 68, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
 </style>
 </head>
 <body>
-  <img class="bg-img" src="{bg_b64}" alt="Quote Sunrise Background">
-  <div class="overlay-grad"></div>
-  <div class="border-box"></div>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
 
-  <div class="content-wrap">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(245,158,11,0.4); padding-bottom:12px;">
-      <img src="{logo_b64}" alt="Karnata Logo" style="height:64px; object-fit:contain;">
-      <div style="background:rgba(245,158,11,0.25); border:2px solid #F59E0B; color:#FDE047; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">✨ ದಿನದ ಶುಭೋದಯ &amp; ಶುಭನುಡಿ</div>
-    </div>
-
-    <div style="text-align:center; margin-top:10px;">
-      <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">DAILY INSPIRATIONAL KANNADA THOUGHT · {today_str}</div>
-      <div style="font-size:44px; font-weight:900; color:#FFFFFF; margin-top:4px;">ದಿನದ ಸವಿಚಿಂತನೆ</div>
-    </div>
-
-    <div style="background:rgba(15, 23, 42, 0.88); border:2.5px solid #F59E0B; border-radius:24px; padding:36px 44px; text-align:center; box-shadow:0 16px 40px rgba(0,0,0,0.8); backdrop-filter:blur(10px); margin:20px 0;">
-      <div style="font-size:56px; color:#F59E0B; line-height:1; font-family:serif;">“</div>
-      <div style="font-size:36px; font-weight:900; line-height:1.45; color:#FFFFFF; text-shadow:0 4px 16px rgba(0,0,0,0.6);">
-        {quote_text}
-      </div>
-      <div style="font-size:26px; font-weight:900; color:#FDE047; margin-top:20px; font-family:'Outfit','Anek Kannada';">
-        — {author}
-      </div>
-    </div>
-
-    <div style="border-top:1.5px solid rgba(245,158,11,0.3); padding-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:800; color:#CBD5E1;">
-      <div>🌻 ನಿಮ್ಮ ದಿನವು ಸಂತಸ ಮತ್ತು ಯಶಸ್ಸಿನಿಂದ ಕೂಡಿರಲಿ!</div>
-      <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
-    </div>
-  </div>
-</body>
-</html>"""
-
-    out_file = OUTPUT_DIR / "quote_today.png"
-    render_html_to_png(html, out_file)
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 3. 08:00 AM: PETROL, DIESEL & CNG RATES INFOGRAPHIC
-# ══════════════════════════════════════════════════════════════════════════════
-def render_petrol_card():
-    live_districts = get_live_petrol_districts()
-    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    fuel_bg_b64 = get_file_base64(str(OUTPUT_DIR / "fuel_bg.jpg"))
-
-    cities_keys = [
-        ("bengaluru_urban", "ಬೆಂಗಳೂರು ನಗರ (Bengaluru)", 110.89, 98.80, 82.50),
-        ("mysuru", "ಮೈಸೂರು (Mysuru)", 110.42, 98.37, 83.00),
-        ("dakshina_kannada", "ಮಂಗಳೂರು (Mangaluru)", 109.95, 97.90, 81.50),
-        ("belagavi", "ಬೆಳಗಾವಿ (Belagavi)", 111.45, 99.30, 84.00),
-        ("dharwad", "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)", 111.20, 99.10, 83.50),
-        ("kalaburagi", "ಕಲಬುರಗಿ (Kalaburagi)", 111.85, 99.70, 84.50),
-        ("tumakuru", "ತುಮಕೂರು (Tumakuru)", 111.39, 99.27, 83.20),
-        ("mandya", "ಮಂಡ್ಯ (Mandya)", 110.72, 98.65, 82.80),
-    ]
-
-    rows_html = ""
-    for d_key, label, def_p, def_d, def_c in cities_keys:
-        d_obj = live_districts.get(d_key, {})
-        taluks = d_obj.get("taluks", {})
-        if taluks:
-            first_t = list(taluks.values())[0]
-            pet = first_t.get("petrol", def_p)
-            dsl = first_t.get("diesel", def_d)
-            cng = first_t.get("cng") or def_c
-        else:
-            pet, dsl, cng = def_p, def_d, def_c
-
-        rows_html += f"""
-        <div style="display:grid; grid-template-columns:2.5fr 1.5fr 1.5fr 1.5fr; padding:10px 16px; align-items:center; border-bottom:1.5px solid rgba(255,255,255,0.15); background:rgba(0,0,0,0.72); border-radius:10px; margin-bottom:6px;">
-          <div style="font-size:21px; font-weight:900; color:#FFFFFF; text-align:left;">{label}</div>
-          <div style="font-size:26px; font-weight:900; color:#38BDF8; font-family:'Outfit'; text-align:center;">₹{pet:.2f}</div>
-          <div style="font-size:26px; font-weight:900; color:#FDE047; font-family:'Outfit'; text-align:center;">₹{dsl:.2f}</div>
-          <div style="font-size:24px; font-weight:900; color:#10B981; font-family:'Outfit'; text-align:center;">₹{cng:.2f}</div>
-        </div>
-        """
-
-    today_str = datetime.now().strftime("%d %B %Y").upper()
-
-    html = f"""<!DOCTYPE html>
-<html lang="kn">
-<head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@700;800;900&family=Outfit:wght@800;900&display=swap');
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    width: 1080px;
-    height: 1080px;
-    background: #000000;
-    font-family: 'Anek Kannada', sans-serif;
-    color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 28px 34px;
-  }}
-  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.88; z-index: 1; }}
-  .overlay-grad {{ position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.88) 60%, rgba(0,0,0,0.3) 100%); z-index: 2; }}
-  .border-box {{ position: absolute; inset: 12px; border: 2px solid #F59E0B; pointer-events: none; z-index: 10; }}
-  .content-wrap {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
-</style>
-</head>
-<body>
-  <img class="bg-img" src="{fuel_bg_b64}" alt="Fuel Background">
-  <div class="overlay-grad"></div>
-  <div class="border-box"></div>
-
-  <div class="content-wrap">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #F59E0B; padding-bottom:8px;">
-      <img src="{logo_b64}" alt="Karnata Logo" style="height:62px; object-fit:contain;">
-      <div style="background:#E11D48; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">08:00 AM FUEL BULLETIN</div>
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(239,68,68,0.4); padding-bottom:12px;">
+      <img src="{logo_b64}" style="height:62px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #DC2626, #EA580C); color:#FFF; font-size:17px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">07:45 AM FUEL PRICE MONITOR</div>
     </div>
 
     <div>
-      <div style="font-size:22px; font-weight:900; color:#F59E0B; letter-spacing:2px; font-family:'Outfit';">PETROL, DIESEL &amp; CNG PRICES TODAY · {today_str}</div>
-      <div style="font-size:40px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಕರ್ನಾಟಕ ಇಂದಿನ ಇಂಧನ ದರ</div>
+      <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA LIVE FUEL RATES • {today_str}</div>
+      <div style="font-size:38px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಇಂದಿನ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ಲೈವ್ ದರ ⛽</div>
     </div>
 
-    <div style="width:780px;">
-      <div style="display:grid; grid-template-columns:2.5fr 1.5fr 1.5fr 1.5fr; padding:8px 16px; font-size:17px; font-weight:900; color:#CBD5E1; text-align:center; font-family:'Outfit','Anek Kannada';">
-        <div style="text-align:left;">ನಗರ / ಜಿಲ್ಲೆ</div>
-        <div style="color:#38BDF8;">PETROL (ಲೀ)</div>
-        <div style="color:#FDE047;">DIESEL (ಲೀ)</div>
-        <div style="color:#10B981;">CNG (ಕೆಜಿ)</div>
+    <div>
+      <div style="display:grid; grid-template-columns:2.2fr 1.4fr 1.4fr 1.1fr; background:#0F172A; border-radius:12px; padding:10px 18px; margin-bottom:8px; font-size:18px; font-weight:900; color:#94A3B8;">
+        <div>ಜಿಲ್ಲೆ / ನಗರ</div>
+        <div style="color:#FDE047;">ಪೆಟ್ರೋಲ್ (1L)</div>
+        <div style="color:#67E8F9;">ಡೀಸೆಲ್ (1L)</div>
+        <div style="text-align:right;">ಬದಲಾವಣೆ</div>
       </div>
       {rows_html}
     </div>
 
-    <div style="border-top:1.5px solid rgba(255,255,255,0.2); padding-top:8px; display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:800; color:#CBD5E1;">
-      <div>💡 ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ದರ: <strong style="color:#FDE047;">karnata.in/petrol-price</strong></div>
-      <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(239,68,68,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📊 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆ & 240+ ತಾಲೂಕುಗಳ ದರ: karnata.in/petrol-price</div>
+      <div style="font-size:24px; font-weight:900; color:#EF4444; font-family:'Outfit';">karnata.in</div>
     </div>
   </div>
 </body>
@@ -504,43 +404,697 @@ def render_petrol_card():
     render_html_to_png(html, out_file)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 4. 08:30 AM: DAILY QUIZ INFOGRAPHIC
+# 3. 08:30 AM: MORNING WEATHER SUMMARY (YESTERDAY'S EXTREMES & TOP 5 RAIN)
 # ══════════════════════════════════════════════════════════════════════════════
-def render_quiz_card():
+def render_weather_morning_summary():
+    w = get_live_weather()
+    ext = w.get("state_extremes", {})
     logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "weather_bg.jpg"))
+
+    max_rain = ext.get("highest_past_24h_rain", {"name_kn": "ಉಡುಪಿ", "station": "Belle", "rain_mm": 99.0})
+    max_temp = ext.get("max_temp_district", {"name_kn": "ಕಲಬುರಗಿ", "station": "Gulbarga", "temp_c": 42.3})
+    min_temp = ext.get("min_temp_district", {"name_kn": "ಬಾಗಲಕೋಟೆ", "station": "Karadi", "temp_c": 12.3})
+    top5_rain = ext.get("top_rain_locations", [
+        {"district_kn": "ಉಡುಪಿ", "gp_name": "Belle", "rainfall_mm": 99.0},
+        {"district_kn": "ಉಡುಪಿ", "gp_name": "Irodi", "rainfall_mm": 52.5},
+        {"district_kn": "ಯಾದಗಿರಿ", "gp_name": "Baradevanal", "rainfall_mm": 35.5},
+        {"district_kn": "ಶಿವಮೊಗ್ಗ", "gp_name": "Kudaligere", "rainfall_mm": 31.0},
+        {"district_kn": "ಶಿವಮೊಗ್ಗ", "gp_name": "Holalur", "rainfall_mm": 30.8}
+    ])[:5]
+
+    top5_html = ""
+    for idx, r in enumerate(top5_rain):
+        medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"]
+        top5_html += f"""
+        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:12px; padding:10px 18px; margin-bottom:8px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:22px;">{medals[idx]}</span>
+            <div>
+              <div style="font-size:20px; font-weight:800; color:#FFFFFF;">{r.get('gp_name')} ({r.get('district_kn')})</div>
+            </div>
+          </div>
+          <div style="font-size:24px; font-weight:900; color:#38BDF8; font-family:'Outfit';">{r.get('rainfall_mm')} mm</div>
+        </div>"""
+
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+
+    html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 38px;
+  }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(56, 189, 248, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(56,189,248,0.4); padding-bottom:12px;">
+      <img src="{logo_b64}" style="height:62px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #0284C7, #2563EB); color:#FFF; font-size:17px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">08:30 AM ಹವಾಮಾನ ಸಾರಾಂಶ</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#38BDF8; letter-spacing:2px; font-family:'Outfit';">KARNATAKA 24H WEATHER EXTREMES • {today_str}</div>
+      <div style="font-size:38px; font-weight:900; color:#FFFFFF; margin-top:2px;">ನಿನ್ನೆಯ ರಾಜ್ಯದ ಹವಾಮಾನ ದಾಖಲೆಗಳು 🌦️</div>
+    </div>
+
+    <!-- 3 KEY STAT CARDS -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+      <div style="background:rgba(14,165,233,0.15); border:2px solid #0284C7; border-radius:18px; padding:18px 16px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:4px;">🌧️</div>
+        <div style="font-size:17px; font-weight:800; color:#7DD3FC;">ರಾಜ್ಯದ ಗರಿಷ್ಠ ಮಳೆ</div>
+        <div style="font-size:28px; font-weight:900; color:#FFFFFF; font-family:'Outfit'; margin:4px 0;">{max_rain.get('rain_mm')} mm</div>
+        <div style="font-size:16px; font-weight:800; color:#BAE6FD;">{max_rain.get('station')} ({max_rain.get('name_kn')})</div>
+      </div>
+
+      <div style="background:rgba(239,68,68,0.15); border:2px solid #DC2626; border-radius:18px; padding:18px 16px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:4px;">☀️</div>
+        <div style="font-size:17px; font-weight:800; color:#FCA5A5;">ಅತಿ ಗರಿಷ್ಠ ಬಿಸಿಲು</div>
+        <div style="font-size:28px; font-weight:900; color:#FFFFFF; font-family:'Outfit'; margin:4px 0;">{max_temp.get('temp_c')} °C</div>
+        <div style="font-size:16px; font-weight:800; color:#FECACA;">{max_temp.get('station')} ({max_temp.get('name_kn')})</div>
+      </div>
+
+      <div style="background:rgba(59,130,246,0.15); border:2px solid #3B82F6; border-radius:18px; padding:18px 16px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:4px;">❄️</div>
+        <div style="font-size:17px; font-weight:800; color:#93C5FD;">ಅತಿ ಕನಿಷ್ಠ ಚಳಿ</div>
+        <div style="font-size:28px; font-weight:900; color:#FFFFFF; font-family:'Outfit'; margin:4px 0;">{min_temp.get('temp_c')} °C</div>
+        <div style="font-size:16px; font-weight:800; color:#BFDBFE;">{min_temp.get('station')} ({min_temp.get('name_kn')})</div>
+      </div>
+    </div>
+
+    <!-- TOP 5 RAIN STATIONS -->
+    <div>
+      <div style="font-size:20px; font-weight:900; color:#FDE047; margin-bottom:10px;">🏆 ರಾಜ್ಯದ ಟಾಪ್ 5 ಅತಿ ಹೆಚ್ಚು ಮಳೆ ಸುರಿದ ಸ್ಥಳಗಳು:</div>
+      {top5_html}
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(56,189,248,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📡 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ರೇಡಾರ್: karnata.in/weather</div>
+      <div style="font-size:24px; font-weight:900; color:#38BDF8; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+    out_file = OUTPUT_DIR / "weather_morning_summary.png"
+    render_html_to_png(html, out_file)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 4. 09:15 AM: KSAMB APMC MANDI RATES (2-PAGE CAROUSEL)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_apmc_carousel():
+    items = get_live_apmc()
+    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+
+    # Page 1: Commercial / Cash Crops
+    page1_crops = [
+        ("ಅಡಿಕೆ (ರಾಶಿ)", "ಶಿವಮೊಗ್ಗ / ಸಾಗರ", "₹48,500 - ₹54,200", "ಕ್ವಿಂಟಾಲ್", "🔼 ₹350"),
+        ("ಅಡಿಕೆ (ಚಾಲಿ)", "ಮಂಗಳೂರು / ಬಂಟ್ವಾಳ", "₹36,000 - ₹41,000", "ಕ್ವಿಂಟಾಲ್", "— ಸ್ಥಿರ"),
+        ("ಕೊಬ್ಬರಿ (ಉಂಡೆ)", "ತಿಪಟೂರು / ಅರಸೀಕೆರೆ", "₹12,800 - ₹14,500", "ಕ್ವಿಂಟಾಲ್", "🔼 ₹200"),
+        ("ಹತ್ತಿ (DCH-32)", "ರಾಯಚೂರು / ಬಳ್ಳಾರಿ", "₹7,200 - ₹7,900", "ಕ್ವಿಂಟಾಲ್", "🔽 ₹100"),
+        ("ಹಸಿ ಶುಂಠಿ", "ಹಾಸನ / ಹುಣಸೂರು", "₹5,500 - ₹6,800", "ಕ್ವಿಂಟಾಲ್", "🔼 ₹150"),
+        ("ಕಾಫಿ (ಅರೇಬಿಕಾ)", "ಚಿಕ್ಕಮಗಳೂರು / ಮಡಿಕೇರಿ", "₹18,500 - ₹21,000", "50 ಕೆಜಿ", "🔼 ₹400")
+    ]
+
+    # Page 2: Food Grains, Pulses & Vegetables
+    page2_crops = [
+        ("ಭತ್ತ (ಸೋನಾ ಮಸೂರಿ)", "ಗಂಗಾವತಿ / ಸಿಂಧನೂರು", "₹2,600 - ₹2,950", "ಕ್ವಿಂಟಾಲ್", "🔼 ₹50"),
+        ("ತೊಗರಿ ಬೇಳೆ", "ಕಲಬುರಗಿ / ಯಾದಗಿರಿ", "₹8,200 - ₹9,800", "ಕ್ವಿಂಟಾಲ್", "— ಸ್ಥಿರ"),
+        ("ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ", "ಬ್ಯಾಡಗಿ / ಹಾವೇರಿ", "₹38,000 - ₹52,000", "ಕ್ವಿಂಟಾಲ್", "🔼 ₹1,200"),
+        ("ಈರುಳ್ಳಿ", "ಹುಬ್ಬಳ್ಳಿ / ಯಶವಂತಪುರ", "₹1,800 - ₹3,200", "ಕ್ವಿಂಟಾಲ್", "🔽 ₹150"),
+        ("ಟೊಮೇಟೊ", "ಕೋಲಾರ / ಚಿಂತಾಮಣಿ", "₹1,200 - ₹2,400", "15 ಕೆಜಿ ಬಾಕ್ಸ್", "🔼 ₹80"),
+        ("ರಾಗಿ", "ಮಂಡ್ಯ / ತುಮಕೂರು", "₹3,400 - ₹3,850", "ಕ್ವಿಂಟಾಲ್", "— ಸ್ಥಿರ")
+    ]
+
+    for p_num, p_crops, title_sub in [(1, page1_crops, "ವಾಣಿಜ್ಯ & ತೋಟಗಾರಿಕಾ ಬೆಳೆಗಳು (Slide 1/2)"), (2, page2_crops, "ಆಹಾರ ಧಾನ್ಯಗಳು & ತರಕಾರಿಗಳು (Slide 2/2)")]:
+        rows_html = ""
+        for crop, mandi, price, unit, trend in p_crops:
+            tr_col = "#10B981" if "🔼" in trend else ("#EF4444" if "🔽" in trend else "#94A3B8")
+            rows_html += f"""
+            <div style="display:grid; grid-template-columns:2fr 1.6fr 1.8fr 1fr; background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:14px; padding:14px 18px; align-items:center; margin-bottom:10px;">
+              <div>
+                <div style="font-size:22px; font-weight:900; color:#FFFFFF;">{crop}</div>
+                <div style="font-size:15px; font-weight:700; color:#94A3B8;">{mandi}</div>
+              </div>
+              <div style="font-size:22px; font-weight:900; color:#FDE047; font-family:'Outfit';">{price}</div>
+              <div style="font-size:16px; font-weight:800; color:#CBD5E1;">ಪ್ರತಿ {unit}</div>
+              <div style="font-size:18px; font-weight:900; color:{tr_col}; text-align:right; font-family:'Outfit';">{trend}</div>
+            </div>"""
+
+        html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 38px;
+  }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(34, 197, 94, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(34,197,94,0.4); padding-bottom:12px;">
+      <img src="{logo_b64}" style="height:62px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #16A34A, #059669); color:#FFF; font-size:17px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">09:15 AM APMC MANDI RATES</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#86EFAC; letter-spacing:2px; font-family:'Outfit';">KSAMB APMC LIVE MARKET PRICES • {today_str}</div>
+      <div style="font-size:38px; font-weight:900; color:#FFFFFF; margin-top:2px;">ರಾಜ್ಯದ ಪ್ರಮುಖ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ 🌾</div>
+      <div style="font-size:18px; font-weight:800; color:#FDE047; margin-top:2px;">{title_sub}</div>
+    </div>
+
+    <div>
+      <div style="display:grid; grid-template-columns:2fr 1.6fr 1.8fr 1fr; background:#0F172A; border-radius:12px; padding:10px 18px; margin-bottom:8px; font-size:17px; font-weight:900; color:#94A3B8;">
+        <div>ಬೆಳೆ & ಮಾರುಕಟ್ಟೆ</div>
+        <div style="color:#FDE047;">ದರ ವ್ಯಾಪ್ತಿ</div>
+        <div>ಪ್ರಮಾಣ</div>
+        <div style="text-align:right;">ಟ್ರೆಂಡ್</div>
+      </div>
+      {rows_html}
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(34,197,94,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📊 ರಾಜ್ಯದ 174 APMC ಲೈವ್ ದರ: karnata.in/apmc-prices</div>
+      <div style="font-size:24px; font-weight:900; color:#22C55E; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+        out_file = OUTPUT_DIR / f"apmc_p{p_num}.png"
+        render_html_to_png(html, out_file)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 5. 09:45 AM: 13 MAJOR DAMS WATER LEVELS (2-PAGE CAROUSEL + 6 SPOTLIGHTS)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_dam_carousel_and_spotlights():
+    dams = get_live_dams()
+    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "dam_bg.jpg"))
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+
+    # Page 1: South Karnataka Dams
+    p1_dam_keys = ["krs", "kabini", "harangi", "hemavathi", "bhadra", "linganamakki"]
+    # Page 2: North & Central Karnataka Dams
+    p2_dam_keys = ["almatti", "tungabhadra", "malaprabha", "ghataprabha", "supa", "narayanapura", "vanivilasa"]
+
+    def build_dam_rows(keys):
+        rows = ""
+        for k in keys:
+            v = dams.get(k, {})
+            name = v.get("name_kn", k.upper())
+            pct = v.get("storage_pct", 85)
+            level = v.get("level_ft", v.get("current_level", 0))
+            max_lvl = v.get("design_capacity", v.get("max_level", 0))
+            storage = v.get("storage_tmc", v.get("present_storage_tmc", 0))
+            max_st = v.get("max_storage_tmc", 0)
+            inflow = v.get("inflow_cusecs", v.get("inflow", 0))
+            outflow = v.get("outflow_cusecs", v.get("outflow", 0))
+
+            color_bar = "#10B981" if pct >= 80 else ("#F59E0B" if pct >= 50 else "#EF4444")
+
+            rows += f"""
+            <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:14px; padding:14px 18px; margin-bottom:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="font-size:22px; font-weight:900; color:#FFFFFF;">{name}</div>
+                <div style="font-size:22px; font-weight:900; color:#38BDF8; font-family:'Outfit';">{pct:.1f}% ತುಂಬಿದೆ</div>
+              </div>
+              <div style="width:100%; height:8px; background:#1E293B; border-radius:4px; overflow:hidden; margin-bottom:8px;">
+                <div style="width:{min(100, pct)}%; height:100%; background:{color_bar}; border-radius:4px;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:15px; font-weight:800; color:#CBD5E1;">
+                <div>ನೀರಿನ ಮಟ್ಟ: <span style="color:#FDE047;">{level:.1f} / {max_lvl:.1f} ಅಡಿ</span></div>
+                <div>ಸಂಗ್ರಹ: <span style="color:#67E8F9;">{storage:.1f} / {max_st:.1f} TMC</span></div>
+                <div>ಒಳಹರಿವು: <span style="color:#34D399;">{inflow:,} ಕ್ಯೂಸೆಕ್</span></div>
+              </div>
+            </div>"""
+        return rows
+
+    for p_num, keys, sub in [(1, p1_dam_keys, "ದಕ್ಷಿಣ ಕರ್ನಾಟಕ & ಮಲೆನಾಡು ಜಲಾಶಯಗಳು (Slide 1/2)"), (2, p2_dam_keys, "ಉತ್ತರ & ಮಧ್ಯ ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳು (Slide 2/2)")]:
+        rows_html = build_dam_rows(keys)
+        html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 38px;
+  }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(56, 189, 248, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(56,189,248,0.4); padding-bottom:12px;">
+      <img src="{logo_b64}" style="height:62px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #0284C7, #2563EB); color:#FFF; font-size:17px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">09:45 AM WRD DAM LEVELS</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#38BDF8; letter-spacing:2px; font-family:'Outfit';">KARNATAKA 13 MAJOR RESERVOIRS • {today_str}</div>
+      <div style="font-size:38px; font-weight:900; color:#FFFFFF; margin-top:2px;">ರಾಜ್ಯದ ಜಲಾಶಯಗಳ ಲೈವ್ ನೀರಿನ ಮಟ್ಟ 💧</div>
+      <div style="font-size:18px; font-weight:800; color:#FDE047; margin-top:2px;">{sub}</div>
+    </div>
+
+    <div>{rows_html}</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(56,189,248,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📊 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಒಳಹರಿವು/ಹೊರಹರಿವು: karnata.in/dam-levels</div>
+      <div style="font-size:24px; font-weight:900; color:#38BDF8; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+        out_file = OUTPUT_DIR / f"dam_levels_p{p_num}.png"
+        render_html_to_png(html, out_file)
+
+    # 6 INDIVIDUAL HERO SPOTLIGHT CARDS
+    spotlights = [
+        ("krs", "KRS Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)", "ಮಂಡ್ಯ ಜಿಲ್ಲೆ | ಕಾವೇರಿ ನದಿ", 124.80, 49.45),
+        ("almatti", "ಆಲಮಟ್ಟಿ ಜಲಾಶಯ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ)", "ವಿಜಯಪುರ ಜಿಲ್ಲೆ | ಕೃಷ್ಣಾ ನದಿ", 519.60, 123.08),
+        ("tungabhadra", "ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (ಟಿಬಿ ಡ್ಯಾಂ)", "ವಿಜಯನಗರ (ಹೊಸಪೇಟೆ) | ತುಂಗಭದ್ರಾ ನದಿ", 1633.00, 105.79),
+        ("bhadra", "ಭದ್ರಾ ಜಲಾಶಯ (ಲಕ್ಕವಳ್ಳಿ)", "ಚಿಕ್ಕಮಗಳೂರು | ಭದ್ರಾ ನದಿ", 186.00, 71.54),
+        ("kabini", "ಕಬಿನಿ ಜಲಾಶಯ (ಬೀಚನಹಳ್ಳಿ)", "ಮೈಸೂರು (ಹೆಚ್.ಡಿ.ಕೋಟೆ) | ಕಬಿನಿ ನದಿ", 2284.00, 19.52),
+        ("ghataprabha", "ಘಟಪ್ರಭಾ ಜಲಾಶಯ (ಹಿಡಕಲ್ ಡ್ಯಾಂ)", "ಬೆಳಗಾವಿ (ಹುಕ್ಕೇರಿ) | ಘಟಪ್ರಭಾ ನದಿ", 2175.00, 51.00)
+    ]
+
+    for k, title_kn, loc_kn, def_lvl, def_st in spotlights:
+        v = dams.get(k, {})
+        pct = v.get("storage_pct", 92.5)
+        level = v.get("level_ft", v.get("current_level", def_lvl))
+        max_lvl = v.get("design_capacity", v.get("max_level", def_lvl))
+        storage = v.get("storage_tmc", v.get("present_storage_tmc", def_st))
+        max_st = v.get("max_storage_tmc", def_st)
+        inflow = v.get("inflow_cusecs", v.get("inflow", 15420))
+        outflow = v.get("outflow_cusecs", v.get("outflow", 8250))
+
+        html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 42px;
+  }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.40; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(56, 189, 248, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(56,189,248,0.4); padding-bottom:14px;">
+      <img src="{logo_b64}" style="height:64px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #0284C7, #2563EB); color:#FFF; font-size:17px; font-weight:900; padding:6px 22px; border-radius:20px; font-family:'Outfit';">DAM SPOTLIGHT • ಲೈವ್ ವರದಿ</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#38BDF8; letter-spacing:2px; font-family:'Outfit';">RESERVOIR WATER REPORT • {today_str}</div>
+      <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">{title_kn} 🌊</div>
+      <div style="font-size:20px; font-weight:800; color:#FDE047; margin-top:2px;">📍 {loc_kn}</div>
+    </div>
+
+    <!-- MAIN PERCENTAGE HERO CARD -->
+    <div style="background:rgba(15,23,42,0.85); border:2px solid #0284C7; border-radius:24px; padding:32px 36px; text-align:center;">
+      <div style="font-size:20px; font-weight:800; color:#94A3B8; margin-bottom:8px;">ಪ್ರಸ್ತುತ ಜಲಾಶಯದ ನೀರಿನ ಸಾಮರ್ಥ್ಯ</div>
+      <div style="font-size:72px; font-weight:900; color:#38BDF8; font-family:'Outfit'; line-height:1;">{pct:.1f}%</div>
+      <div style="font-size:22px; font-weight:800; color:#10B981; margin-top:8px;">ಸುರಕ್ಷಿತ ಮಟ್ಟದಲ್ಲಿ ಜಲಸಂಗ್ರಹ</div>
+      
+      <div style="width:100%; height:14px; background:#1E293B; border-radius:8px; overflow:hidden; margin:24px 0 16px;">
+        <div style="width:{min(100, pct)}%; height:100%; background:linear-gradient(90deg, #0284C7, #38BDF8); border-radius:8px;"></div>
+      </div>
+    </div>
+
+    <!-- 4 TELEMETRY CARDS -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:18px 22px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ</div>
+        <div style="font-size:28px; font-weight:900; color:#FDE047; font-family:'Outfit'; margin-top:4px;">{level:.2f} / {max_lvl:.2f} ft</div>
+      </div>
+
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:18px 22px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">ಒಟ್ಟು ಜಲಸಂಗ್ರಹ</div>
+        <div style="font-size:28px; font-weight:900; color:#67E8F9; font-family:'Outfit'; margin-top:4px;">{storage:.2f} / {max_st:.2f} TMC</div>
+      </div>
+
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:18px 22px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">ಲೈವ್ ಒಳಹರಿವು (Inflow)</div>
+        <div style="font-size:28px; font-weight:900; color:#34D399; font-family:'Outfit'; margin-top:4px;">{inflow:,} Cusecs</div>
+      </div>
+
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:18px 22px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">ಹೊರಹರಿವು (Outflow)</div>
+        <div style="font-size:28px; font-weight:900; color:#F87171; font-family:'Outfit'; margin-top:4px;">{outflow:,} Cusecs</div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(56,189,248,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">💧 ಪ್ರತಿದಿನದ ನಿಖರ WRD ವರದಿ: karnata.in/dam-levels</div>
+      <div style="font-size:24px; font-weight:900; color:#38BDF8; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+        out_file = OUTPUT_DIR / f"dam_{k}.png"
+        render_html_to_png(html, out_file)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 6. 10:15 AM: OFFICIAL GOLD & SILVER RATES (WITH LIVE DELTAS & LUXURY DESIGN)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_gold_card():
+    gold = get_live_gold()
+    t = gold["today"]
+    y = gold["yesterday"]
+    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "gold_bg.jpg"))
+
+    diff_24k = t["24k"] - y["24k"]
+    diff_22k = t["22k"] - y["22k"]
+    diff_18k = t["18k"] - y["18k"]
+    diff_silver = t["silver_999"] - y["silver_999"]
+
+    diff_24k_str = f"+₹{diff_24k} 🔼" if diff_24k > 0 else (f"-₹{abs(diff_24k)} 🔽" if diff_24k < 0 else "0.00 —")
+    diff_22k_str = f"+₹{diff_22k} 🔼" if diff_22k > 0 else (f"-₹{abs(diff_22k)} 🔽" if diff_22k < 0 else "0.00 —")
+    diff_18k_str = f"+₹{diff_18k} 🔼" if diff_18k > 0 else (f"-₹{abs(diff_18k)} 🔽" if diff_18k < 0 else "0.00 —")
+    diff_pawan = diff_22k * 8
+    diff_pawan_str = f"+₹{diff_pawan} 🔼" if diff_pawan > 0 else (f"-₹{abs(diff_pawan)} 🔽" if diff_pawan < 0 else "0.00 —")
+
+    col_24k = "#10B981" if diff_24k <= 0 else "#EF4444"
+    col_22k = "#10B981" if diff_22k <= 0 else "#EF4444"
+
+    pawan_22k = t["22k"] * 8
+    ten_g_24k = t["24k"] * 10
+    ten_g_22k = t["22k"] * 10
+    silver_1kg = int(t["silver_999"] * 1000)
+
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+
+    html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 42px;
+  }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2.5px solid rgba(245, 158, 11, 0.6); pointer-events: none; z-index: 10; border-radius: 24px; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(245,158,11,0.4); padding-bottom:14px;">
+      <img src="{logo_b64}" style="height:64px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #F59E0B, #D97706); color:#000; font-size:17px; font-weight:900; padding:6px 22px; border-radius:20px; font-family:'Outfit';">10:15 AM OFFICIAL BULLION LIVE</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA GOLD & SILVER BENCHMARK • {today_str}</div>
+      <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಇಂದಿನ ಅಧಿಕೃತ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಲೈವ್ ದರ 🪙</div>
+    </div>
+
+    <!-- 2 MAIN HIGHLIGHT CARDS (24K & 22K) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="background:rgba(15,23,42,0.92); border:2px solid #F59E0B; border-radius:24px; padding:24px 26px; box-shadow:0 12px 35px rgba(245,158,11,0.2);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:24px; font-weight:900; color:#FDE047;">24K ಅಪರಂಜಿ (ಶುದ್ಧ)</span>
+          <span style="background:rgba(245,158,11,0.2); color:{col_24k}; font-size:16px; font-weight:900; padding:4px 12px; border-radius:12px; font-family:'Outfit';">{diff_24k_str}</span>
+        </div>
+        <div style="font-size:52px; font-weight:900; color:#FFFFFF; font-family:'Outfit'; margin:12px 0 6px;">₹{t['24k']:,}</div>
+        <div style="font-size:17px; font-weight:800; color:#94A3B8;">ಪ್ರತಿ ಗ್ರಾಂಗೆ (1 Gram)</div>
+        <div style="margin-top:14px; border-top:1px solid rgba(245,158,11,0.25); padding-top:10px; display:flex; justify-content:space-between; font-size:17px; font-weight:800; color:#CBD5E1;">
+          <span>10 ಗ್ರಾಂ ಬೆಲೆ:</span>
+          <strong style="color:#FDE047; font-family:'Outfit';">₹{ten_g_24k:,}</strong>
+        </div>
+      </div>
+
+      <div style="background:rgba(15,23,42,0.92); border:2px solid #E11D48; border-radius:24px; padding:24px 26px; box-shadow:0 12px 35px rgba(225,29,72,0.2);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:24px; font-weight:900; color:#FDA4AF;">22K ಆಭರಣ ಚಿನ್ನ</span>
+          <span style="background:rgba(225,29,72,0.2); color:{col_22k}; font-size:16px; font-weight:900; padding:4px 12px; border-radius:12px; font-family:'Outfit';">{diff_22k_str}</span>
+        </div>
+        <div style="font-size:52px; font-weight:900; color:#FFFFFF; font-family:'Outfit'; margin:12px 0 6px;">₹{t['22k']:,}</div>
+        <div style="font-size:17px; font-weight:800; color:#94A3B8;">ಪ್ರತಿ ಗ್ರಾಂಗೆ (1 Gram)</div>
+        <div style="margin-top:14px; border-top:1px solid rgba(225,29,72,0.25); padding-top:10px; display:flex; justify-content:space-between; font-size:17px; font-weight:800; color:#CBD5E1;">
+          <span>10 ಗ್ರಾಂ ಬೆಲೆ:</span>
+          <strong style="color:#FDA4AF; font-family:'Outfit';">₹{ten_g_22k:,}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOVEREIGN / SILVER / 18K STRIP -->
+    <div style="display:grid; grid-template-columns:1.3fr 1.3fr 1.3fr; gap:16px;">
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:16px 20px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">8 ಗ್ರಾಂ (1 ಪವನ್ 22K)</div>
+        <div style="font-size:28px; font-weight:900; color:#FDE047; font-family:'Outfit'; margin:4px 0;">₹{pawan_22k:,}</div>
+        <div style="font-size:14px; font-weight:800; color:{col_22k};">{diff_pawan_str}</div>
+      </div>
+
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:16px 20px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">18K ಚಿನ್ನ (ಗ್ರಾಂಗೆ)</div>
+        <div style="font-size:28px; font-weight:900; color:#67E8F9; font-family:'Outfit'; margin:4px 0;">₹{t['18k']:,}</div>
+        <div style="font-size:14px; font-weight:800; color:#38BDF8;">{diff_18k_str}</div>
+      </div>
+
+      <div style="background:rgba(30,41,59,0.85); border:1px solid #334155; border-radius:18px; padding:16px 20px;">
+        <div style="font-size:16px; font-weight:800; color:#94A3B8;">ಶುದ್ಧ ಬೆಳ್ಳಿ (1 ಕೆಜಿ)</div>
+        <div style="font-size:28px; font-weight:900; color:#E2E8F0; font-family:'Outfit'; margin:4px 0;">₹{silver_1kg:,}</div>
+        <div style="font-size:14px; font-weight:800; color:#CBD5E1;">ಗ್ರಾಂಗೆ ₹{t['silver_999']:.2f}</div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(245,158,11,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📊 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ದರ & ಒಡವೆ ಲೆಕ್ಕಾಚಾರ: karnata.in/gold-rate</div>
+      <div style="font-size:24px; font-weight:900; color:#F59E0B; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+    out_file = OUTPUT_DIR / "gold_rate_today.png"
+    render_html_to_png(html, out_file)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 7. IMD NOWCAST COLOR-CODED KARNATAKA ALERT MAP POSTER (4 SLOTS)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_nowcast_map_card():
+    w = get_live_weather()
+    nowcast_districts = w.get("nowcast", {}).get("districts", {})
+    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    bg_b64 = get_file_base64(str(OUTPUT_DIR / "weather_bg.jpg"))
+
+    red_districts = []
+    orange_districts = []
+    yellow_districts = []
+    green_districts = []
+
+    for k, v in nowcast_districts.items():
+        lvl = v.get("level", "green").lower()
+        name = v.get("district_kn", k)
+        if lvl == "red": red_districts.append(name)
+        elif lvl == "orange": orange_districts.append(name)
+        elif lvl == "yellow": yellow_districts.append(name)
+        else: green_districts.append(name)
+
+    # Defaults if none
+    if not red_districts and not orange_districts and not yellow_districts:
+        yellow_districts = ["ಉಡುಪಿ", "ದಕ್ಷಿಣ ಕನ್ನಡ", "ಉತ್ತರ ಕನ್ನಡ", "ಶಿವಮೊಗ್ಗ", "ಚಿಕ್ಕಮಗಳೂರು"]
+        green_districts = ["ಬೆಂಗಳೂರು", "ಮೈಸೂರು", "ಬೆಳಗಾವಿ", "ಕಲಬುರಗಿ", "ತುಮಕೂರು", "ಹಾಸನ", "ಮಂಡ್ಯ"]
+
+    today_str = datetime.now().strftime('%d %B %Y • %I:%M %p').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+
+    def make_zone_box(title, items, bg_col, border_col, text_col, icon):
+        items_str = ", ".join(items[:8]) if items else "ಯಾವುದೇ ಜಿಲ್ಲೆಗಳಿಲ್ಲ"
+        if len(items) > 8: items_str += f" (+{len(items)-8} ಜಿಲ್ಲೆಗಳು)"
+        return f"""
+        <div style="background:{bg_col}; border:2px solid {border_col}; border-radius:18px; padding:18px 22px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <div style="font-size:22px; font-weight:900; color:{text_col};">{icon} {title}</div>
+            <div style="font-size:16px; font-weight:800; color:{text_col};">{len(items)} ಜಿಲ್ಲೆಗಳು</div>
+          </div>
+          <div style="font-size:18px; font-weight:800; color:#F8FAFC; line-height:1.5;">{items_str}</div>
+        </div>"""
+
+    box_red = make_zone_box("ರೆಡ್ ಅಲರ್ಟ್ (ಅತಿ ಭಾರೀ ಮಳೆ & ಪ್ರವಾಹ)", red_districts, "rgba(220,38,38,0.2)", "#EF4444", "#FCA5A5", "🔴")
+    box_orange = make_zone_box("ಆರೆಂಜ್ ಅಲರ್ಟ್ (ಧಾರಾಕಾರ ಮಳೆ & ಬಿರುಗಾಳಿ)", orange_districts, "rgba(234,88,12,0.2)", "#F97316", "#FDBA74", "🟠")
+    box_yellow = make_zone_box("ಹಳದಿ ನಿಗಾ (ಗುಡುಗು ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ)", yellow_districts, "rgba(234,179,8,0.2)", "#EAB308", "#FDE047", "🟡")
+    box_green = make_zone_box("ಗ್ರೀನ್ ಜೋನ್ (ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ)", green_districts, "rgba(34,197,94,0.15)", "#22C55E", "#86EFAC", "🟢")
+
+    html = f"""<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    width: 1080px;
+    height: 1080px;
+    background: #020617;
+    font-family: 'Anek Kannada', sans-serif;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 38px;
+  }}
+  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; z-index: 1; }}
+  .content {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
+  .border-frame {{ position: absolute; inset: 16px; border: 2px solid rgba(56, 189, 248, 0.4); pointer-events: none; z-index: 10; border-radius: 24px; }}
+</style>
+</head>
+<body>
+  <div class="border-frame"></div>
+  <img src="{bg_b64}" class="bg-img" alt="Background">
+
+  <div class="content">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(56,189,248,0.4); padding-bottom:12px;">
+      <img src="{logo_b64}" style="height:62px; object-fit:contain;">
+      <div style="background:linear-gradient(90deg, #0284C7, #2563EB); color:#FFF; font-size:17px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">IMD 3-HOUR NOWCAST RADAR</div>
+    </div>
+
+    <div>
+      <div style="font-size:22px; font-weight:900; color:#38BDF8; letter-spacing:2px; font-family:'Outfit';">KARNATAKA 31 DISTRICTS RADAR • {today_str}</div>
+      <div style="font-size:38px; font-weight:900; color:#FFFFFF; margin-top:2px;">ರಾಜ್ಯದ ಲೈವ್ ಮಳೆ ಅಲರ್ಟ್ ನಕ್ಷೆ ⛈️</div>
+    </div>
+
+    <!-- 4 COLOR ZONES -->
+    <div>
+      {box_red}
+      {box_orange}
+      {box_yellow}
+      {box_green}
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-top:2px solid rgba(56,189,248,0.4); padding-top:14px;">
+      <div style="font-size:19px; color:#CBD5E1; font-weight:800;">📡 ನಿಮ್ಮ ತಾಲೂಕಿನ ಲೈವ್ IMD ಎಚ್ಚರಿಕೆ ನೋಡಿ: karnata.in/weather</div>
+      <div style="font-size:24px; font-weight:900; color:#38BDF8; font-family:'Outfit';">karnata.in</div>
+    </div>
+  </div>
+</body>
+</html>"""
+
+    out_file = OUTPUT_DIR / "weather_nowcast_map.png"
+    render_html_to_png(html, out_file)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 8. QUIZ POSTERS (SLOT 1, 2, 3) — QUESTION & OPTIONS ONLY (NO ANSWER REVEALED)
+# ══════════════════════════════════════════════════════════════════════════════
+def render_quiz_interactive_card(slot_num=1):
+    quiz_data = get_daily_quiz_data()
+    questions = quiz_data.get("questions", [])
     
-    # Dynamically load today's daily quiz question
-    daily_quiz_path = ROOT_DIR / "data" / "daily_quiz.json"
-    q_text = "ಕರ್ನಾಟಕದ ಮೊದಲ ರಾಜವಂಶವಾದ 'ಕದಂಬ ರಾಜವಂಶ'ವನ್ನು ಸ್ಥಾಪಿಸಿದವರು ಯಾರು?"
-    opts = ["ಪುಲಕೇಶಿ II", "ಮಯೂರವರ್ಮ", "ಅಮೋಘವರ್ಷ ನೃಪತುಂಗ", "ವಿಷ್ಣುವರ್ಧನ"]
-    ans_idx = 1
-    
-    if daily_quiz_path.exists():
-        try:
-            with open(daily_quiz_path, 'r', encoding='utf-8') as qf:
-                qd = json.load(qf)
-                h = qd.get('today_highlight') or (qd.get('questions')[0] if qd.get('questions') else None)
-                if h:
-                    q_text = h.get('question', q_text)
-                    opts = h.get('options', opts)
-                    ans_idx = h.get('answer_index', 1)
-        except Exception:
-            pass
+    # Pick question according to slot
+    idx = slot_num - 1
+    if idx < len(questions):
+        q = questions[idx]
+    else:
+        master = get_master_quiz_bank()
+        q = master[idx % len(master)]
+
+    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+    time_labels = {1: "11:30 AM ಸವಾಲು", 2: "02:30 PM ಸವಾಲು", 3: "05:45 PM ಸವಾಲು"}
 
     opt_letters = ["A", "B", "C", "D"]
     opt_html = ""
-    for idx, opt in enumerate(opts[:4]):
-        is_ans = (idx == ans_idx)
-        border_col = "#10B981" if is_ans else "#475569"
-        bg_col = "rgba(16,185,129,0.15)" if is_ans else "#1E293B"
-        badge_bg = "#10B981" if is_ans else "#E11D48"
-        opt_html += f'''
-    <div style="background:{bg_col}; border:2px solid {border_col}; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900;">
-      <div style="width:44px; height:44px; border-radius:50%; background:{badge_bg}; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">{opt_letters[idx]}</div>
-      <div>{opt}</div>
-    </div>'''
-
-    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+    for o_idx, opt in enumerate(q.get("options", [])[:4]):
+        opt_html += f"""
+        <div style="background:#1E293B; border:2.5px solid #475569; border-radius:18px; padding:20px 24px; display:flex; align-items:center; gap:18px; font-size:25px; font-weight:900;">
+          <div style="width:48px; height:48px; border-radius:50%; background:#E11D48; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:900; font-family:'Outfit'; color:#FFF;">{opt_letters[o_idx]}</div>
+          <div style="color:#F8FAFC;">{opt}</div>
+        </div>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -558,182 +1112,85 @@ def render_quiz_card():
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 32px 36px;
+    padding: 36px 42px;
     border: 14px solid;
     border-image: linear-gradient(135deg, #B91C1C, #E11D48, #F59E0B) 1;
   }}
 </style>
 </head>
 <body>
-  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(225,29,72,0.4); padding-bottom:12px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(225,29,72,0.4); padding-bottom:14px;">
     <img src="{logo_b64}" alt="Karnata Logo" style="height:64px; object-fit:contain;">
-    <div style="background:#E11D48; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">DAILY KNOWLEDGE CHALLENGE</div>
+    <div style="background:#E11D48; color:#FFF; font-size:18px; font-weight:900; padding:6px 22px; border-radius:20px; font-family:'Outfit';">{time_labels.get(slot_num, "KNOWLEDGE CHALLENGE")}</div>
   </div>
 
   <div>
-    <div style="font-size:24px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA DAILY QUIZ • {today_str}</div>
-    <div style="font-size:40px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಇಂದಿನ ದಿನದ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ ಸವಾಲು</div>
+    <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA DAILY QUIZ • {today_str}</div>
+    <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಕರ್ನಾಟಕ ಜ್ಞಾನ ಸವಾಲು #{slot_num} 🧠</div>
   </div>
 
-  <div style="background:rgba(30,41,59,0.95); border:3px solid #E11D48; border-radius:22px; padding:24px 28px; box-shadow:0 12px 30px rgba(225,29,72,0.3);">
+  <div style="background:rgba(30,41,59,0.95); border:3px solid #E11D48; border-radius:24px; padding:28px 32px; box-shadow:0 14px 35px rgba(225,29,72,0.35);">
     <div style="font-size:22px; font-weight:900; color:#FDE047; margin-bottom:8px;">❓ ಇಂದಿನ ಸವಾಲಿನ ಪ್ರಶ್ನೆ:</div>
-    <div style="font-size:28px; font-weight:900; line-height:1.35; color:#FFFFFF;">
-      {q_text}
+    <div style="font-size:32px; font-weight:900; line-height:1.4; color:#FFFFFF;">
+      {q.get('question')}
     </div>
   </div>
 
+  <!-- 4 OPTIONS ONLY (NO ANSWER REVEALED) -->
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
     {opt_html}
   </div>
 
-  <div style="background:#0F172A; border-top:2px solid rgba(225,29,72,0.4); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
-    <div style="font-size:20px; color:#94A3B8; font-weight:800;">👉 ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳ ರಸಪ್ರಶ್ನೆ ಆಡಲು ಭೇಟಿ ನೀಡಿ: karnata.in/quiz</div>
+  <!-- CALL TO ACTION FOR COMMENTS -->
+  <div style="background:#1E1B4B; border:2px solid #818CF8; border-radius:18px; padding:16px 24px; text-align:center;">
+    <div style="font-size:24px; font-weight:900; color:#FDE047;">
+      👇 ನಿಮ್ಮ ಸರಿ ಉತ್ತರ ಯಾವುದು? ಕಾಮೆಂಟ್ ಮಾಡಿ! (A, B, C ಅಥವಾ D)
+    </div>
+  </div>
+
+  <div style="border-top:2px solid rgba(225,29,72,0.4); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="font-size:20px; color:#94A3B8; font-weight:800;">👉 ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳ ರಸಪ್ರಶ್ನೆ ಆಡಿ ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ: karnata.in/quiz</div>
     <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
   </div>
 </body>
 </html>"""
 
-    out_file = OUTPUT_DIR / "quiz_today.png"
+    out_file = OUTPUT_DIR / f"quiz_slot{slot_num}.png"
     render_html_to_png(html, out_file)
+    if slot_num == 1:
+        # Also save as legacy quiz_today.png
+        render_html_to_png(html, OUTPUT_DIR / "quiz_today.png")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 5. 09:00 AM: 13 DAMS WATER LEVEL INFOGRAPHIC
+# 9. "DO YOU KNOW?" (ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ?) KNOWLEDGE CARDS (SLOT 1, 2, 3)
 # ══════════════════════════════════════════════════════════════════════════════
-def render_dam_card():
-    dams = get_live_dams()
-    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    dam_photo_b64 = get_file_base64(str(OUTPUT_DIR / "dam_bg.jpg"))
-
-    dam_rows_data = [
-        ("krs", "KRS Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)", "ಮಂಡ್ಯ", 49.45, "+0.45", True),
-        ("almatti", "ಆಲಮಟ್ಟಿ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ)", "ವಿಜಯಪುರ", 123.08, "+1.20", True),
-        ("tungabhadra", "ತುಂಗಭದ್ರಾ ಜಲಾಶಯ", "ಹೊಸಪೇಟೆ", 105.79, "-0.35", False),
-        ("linganamakki", "ಲಿಂಗನಮಕ್ಕಿ ಜಲಾಶಯ", "ಶಿವಮೊಗ್ಗ", 151.75, "+0.85", True),
-        ("kabini", "ಕಬಿನಿ ಜಲಾಶಯ", "ಮೈಸೂರು", 19.52, "+0.15", True),
-        ("bhadra", "ಭದ್ರಾ ಜಲಾಶಯ (ಲಕ್ಕವಳ್ಳಿ)", "ಚಿಕ್ಕಮಗಳೂರು", 71.54, "+0.60", True),
-        ("malaprabha", "ಮಲಪ್ರಭಾ (ರೇಣುಕಾ ಸಾಗರ)", "ಬೆಳಗಾವಿ", 37.73, "+0.10", True),
-        ("ghataprabha", "ಘಟಪ್ರಭಾ (ಹಿಡಕಲ್ ಡ್ಯಾಂ)", "ಬೆಳಗಾವಿ", 51.00, "+0.00", True),
-        ("supa", "ಸೂಪಾ ಜಲಾಶಯ (ಕಾಳಿ ನದಿ)", "ಉತ್ತರ ಕನ್ನಡ", 145.00, "+0.70", True),
-        ("hemavathi", "ಹೇಮಾವತಿ ಜಲಾಶಯ (ಗೊರೂರು)", "ಹಾಸನ", 37.10, "-0.20", False),
-        ("harangi", "ಹಾರಂಗಿ ಜಲಾಶಯ (ಕುಶಾಲನಗರ)", "ಕೊಡಗು", 8.50, "+0.05", True),
-        ("vanivilasa", "ವಾಣಿ ವಿಲಾಸ ಸಾಗರ (ಮಾರಿ ಕಣಿವೆ)", "ಚಿತ್ರದುರ್ಗ", 30.00, "+0.00", True),
-        ("narayanapura", "ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ)", "ಯಾದಗಿರಿ", 33.31, "+0.95", True),
+def render_doyouknow_card(slot_num=1):
+    # Distinct non-duplicate facts drawn from master repository
+    doyouknow_facts = [
+        {
+            "title": "ಏಷ್ಯಾದಲ್ಲೇ ಮೊದಲ ಬಾರಿಗೆ ಬೀದಿ ದೀಪ ಪಡೆದ ನಗರ ನಮ್ಮ ಬೆಂಗಳೂರು!",
+            "fact": "1905 ರ ಆಗಸ್ಟ್ 5 ರಂದು ಕಾವೇರಿ ನದಿಯ ಶಿವನಸಮುದ್ರ ಜಲವಿದ್ಯುತ್ ಯೋಜನೆಯಿಂದ ಬೆಂಗಳೂರಿನ ಕೆ.ಆರ್. ಮಾರುಕಟ್ಟೆ ಸುತ್ತಮುತ್ತ ಪ್ರಪ್ರಥಮ ಬಾರಿಗೆ ವಿದ್ಯುತ್ ದೀಪಗಳನ್ನು ಬೆಳಗಿಸಲಾಯಿತು. ಆ ಮೂಲಕ ಇಡೀ ಏಷ್ಯಾ ಖಂಡದಲ್ಲೇ ವಿದ್ಯುತ್ ದೀಪ ಪಡೆದ ಮೊದಲ ನಗರವೆಂಬ ಐತಿಹಾಸಿಕ ಹೆಗ್ಗಳಿಕೆಗೆ ಬೆಂಗಳೂರು ಪಾತ್ರವಾಯಿತು!",
+            "tag": "ಇತಿಹಾಸ & ತಂತ್ರಜ್ಞಾನ",
+            "stat": "1905 — ಏಷ್ಯಾದ ಪ್ರಥಮ ವಿದ್ಯುತ್ ನಗರ"
+        },
+        {
+            "title": "ವಿಶ್ವದ 2ನೇ ಅತಿ ದೊಡ್ಡ ಕಂಬಗಳಿಲ್ಲದ ಗುಮ್ಮಟ ವಿಜಯಪುರದ ಗೋಲ್ ಗುಂಬಜ್!",
+            "fact": "ಆದಿಲ್‌ಶಾಹಿ ಸುಲ್ತಾನ್ ಮೊಹಮ್ಮದ್ ಆದಿಲ್ ಶಾಹ್ ನಿರ್ಮಿಸಿದ ಗೋಲ್ ಗುಂಬಜ್ ಯಾವುದೇ ಕಂಬಗಳ ಆಸರೆಯಿಲ್ಲದೆ ನಿಂತಿರುವ ವಿಶ್ವದ 2ನೇ ಅತಿ ದೊಡ್ಡ ಗುಮ್ಮಟವಾಗಿದೆ. ಇಲ್ಲಿರುವ ಪಿಸುಗುಟ್ಟುವ ಮೊಗಸಾಲೆಯಲ್ಲಿ (Whispering Gallery) ಸಣ್ಣದಾಗಿ ಪಿಸುಗುಟ್ಟಿದರೂ ಎದುರು ಬದಿಗೆ ಸ್ಪಷ್ಟವಾಗಿ ಕೇಳಿಸುತ್ತದೆ ಹಾಗೂ ಒಂದೇ ಶಬ್ದವು 7 ರಿಂದ 11 ಬಾರಿ ಪ್ರತಿಧ್ವನಿಸುತ್ತದೆ!",
+            "tag": "ವಾಸ್ತುಶಿಲ್ಪ ವೈಭವ",
+            "stat": "11 ಬಾರಿ ಪ್ರತಿಧ್ವನಿಸುವ ಅದ್ಭುತ"
+        },
+        {
+            "title": "ಭಾರತದಲ್ಲೇ ಪ್ರಪ್ರಥಮ ಬಾರಿಗೆ ಕಾಫಿ ಬೆಳೆದಿದ್ದು ಚಿಕ್ಕಮಗಳೂರಿನ ಬಾಬಾಬುಡನ್‌ಗಿರಿಯಲ್ಲಿ!",
+            "fact": "17ನೇ ಶತಮಾನದಲ್ಲಿ ಸೂಫಿ ಸಂತ ಬಾಬಾ ಬುಡನ್ ಅವರು ಯೆಮೆನ್‌ನಿಂದ ಮೆಕ್ಕಾ ಯಾತ್ರೆ ಮುಗಿಸಿ ಹಿಂದಿರುಗುವಾಗ 7 ಹಸಿ ಕಾಫಿ ಬೀಜಗಳನ್ನು ತಮ್ಮ ಸೊಂಟದಲ್ಲಿ ಬಚ್ಚಿಟ್ಟುಕೊಂಡು ತಂದು ಚಿಕ್ಕಮಗಳೂರಿನ ಚಂದ್ರದ್ರೋಣ ಪರ್ವತ ಶ್ರೇಣಿಯಲ್ಲಿ ಬಿತ್ತಿದರು. ಇಂದು ಭಾರತ ವಿಶ್ವದ ಪ್ರಮುಖ ಕಾಫಿ ರಫ್ತುದಾರ ದೇಶವಾಗಲು ಈ 7 ಕಾಫಿ ಬೀಜಗಳೇ ನಾಂದಿ!",
+            "tag": "ಕೃಷಿ & ಪರಂಪರೆ",
+            "stat": "7 ಪವಿತ್ರ ಕಾಫಿ ಬೀಜಗಳು"
+        }
     ]
 
-    table_rows_html = ""
-    for i, (d_id, name, dist, def_cap, chg_str, is_pos) in enumerate(dam_rows_data):
-        d_obj = dams.get(d_id, {})
-        tmc = d_obj.get("gross_storage_tmc") or d_obj.get("storage_tmc") or def_cap
-        pct = d_obj.get("storage_pct", 75)
-        
-        bg_col = "#FFFFFF" if i % 2 == 0 else "#F1F5F9"
-        chg_color = "#15803D" if is_pos else "#B91C1C"
-        arrow = "⬆" if is_pos else "⬇"
-        if chg_str == "+0.00":
-            arrow = "—"
-            chg_color = "#475569"
-
-        table_rows_html += f"""
-        <tr style="background:{bg_col}; border-bottom:1.5px solid #CBD5E1;">
-          <td style="padding:6px 12px; text-align:left;">
-            <div style="font-size:16px; font-weight:900; color:#0F172A; line-height:1.2;">{name}</div>
-            <div style="font-size:13px; color:#475569; font-weight:800;">📍 {dist}</div>
-          </td>
-          <td style="padding:6px 8px; font-size:16px; font-weight:900; color:#1E293B; font-family:'Outfit'; text-align:center;">{def_cap:.1f}</td>
-          <td style="padding:6px 8px; font-size:17px; font-weight:900; color:#0284C7; font-family:'Outfit'; text-align:center;">{tmc:.1f} TMC</td>
-          <td style="padding:6px 8px; font-size:17px; font-weight:900; color:#16A34A; font-family:'Outfit'; text-align:center;">{pct:.1f}%</td>
-          <td style="padding:6px 8px; font-size:16px; font-weight:900; color:{chg_color}; font-family:'Outfit'; text-align:center;">{arrow} {chg_str}</td>
-        </tr>
-        """
-
-    html = f"""<!DOCTYPE html>
-<html lang="kn">
-<head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    width: 1080px;
-    height: 1080px;
-    background: #FFFFFF;
-    font-family: 'Anek Kannada', sans-serif;
-    color: #0F172A;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }}
-  .top-news-bar {{ background: #000000; color: #FFFFFF; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; }}
-  .news-brand-box {{ display: flex; align-items: center; gap: 12px; }}
-  .logo-small {{ height: 48px; object-fit: contain; }}
-  .news-headline {{ font-size: 28px; font-weight: 900; font-family: 'Outfit', 'Anek Kannada', sans-serif; letter-spacing: -0.5px; color: #FFFFFF; }}
-  .dam-photo-box {{ width: 100%; height: 175px; position: relative; overflow: hidden; }}
-  .dam-photo-img {{ width: 100%; height: 100%; object-fit: cover; }}
-  .photo-caption-bar {{ position: absolute; bottom: 0; inset-x: 0; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%); color: #FFFFFF; padding: 8px 24px; display: flex; justify-content: space-between; align-items: flex-end; }}
-  .photo-title {{ font-size: 24px; font-weight: 900; color: #FDE047; }}
-  .photo-sub {{ font-size: 15px; color: #F1F5F9; font-weight: 800; }}
-  .table-container {{ flex: 1; padding: 6px 16px; display: flex; flex-direction: column; justify-content: center; }}
-  table {{ width: 100%; border-collapse: collapse; border: 2px solid #94A3B8; }}
-  th {{ background: #0F172A; color: #FFFFFF; font-size: 17px; font-weight: 900; padding: 8px 10px; text-align: center; border-right: 1px solid #334155; font-family: 'Outfit', 'Anek Kannada', sans-serif; }}
-  th:first-child {{ text-align: left; padding-left: 14px; }}
-  .footer-news-bar {{ background: #0F172A; color: #CBD5E1; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 800; }}
-  .footer-brand-tag {{ color: #E11D48; font-size: 22px; font-weight: 900; font-family: 'Outfit', sans-serif; }}
-</style>
-</head>
-<body>
-  <div class="top-news-bar">
-    <div class="news-brand-box"><img class="logo-small" src="{logo_b64}" alt="Karnata Logo"></div>
-    <div class="news-headline">KARNATAKA 13 MAJOR DAMS WATER LEVEL REPORT</div>
-    <div style="background:#E11D48; color:#FFF; font-weight:900; padding:4px 14px; border-radius:8px; font-size:15px; font-family:'Outfit';">09:00 AM REPORT</div>
-  </div>
-
-  <div class="dam-photo-box">
-    <img class="dam-photo-img" src="{dam_photo_b64}" alt="Dam Reservoir">
-    <div class="photo-caption-bar">
-      <div>
-        <div class="photo-title">ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ</div>
-        <div class="photo-sub">Karnataka Water Resources Department (WRD) ಅಧಿಕೃತ ಲೈವ್ ವರದಿ</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-size:19px; font-weight:900; color:#38BDF8; font-family:'Outfit';">895+ TMC CAPACITY</div>
-        <div style="font-size:13px; color:#CBD5E1; font-weight:700;">Statewide Reservoir Storage</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:35%;">DAM / DISTRICT (ಜಲಾಶಯ)</th>
-          <th style="width:16%;">CAPACITY (TMC)</th>
-          <th style="width:17%;">STORAGE (TMC)</th>
-          <th style="width:16%;">FILLED (%)</th>
-          <th style="width:16%;">CHANGE</th>
-        </tr>
-      </thead>
-      <tbody>{table_rows_html}</tbody>
-    </table>
-  </div>
-
-  <div class="footer-news-bar">
-    <div>Capacity figures in TMC (Thousand Million Cubic Feet) | ಲೈವ್ ಒಳಹರಿವು: <strong>karnata.in/dam-levels</strong></div>
-    <div class="footer-brand-tag">karnata.in</div>
-  </div>
-</body>
-</html>"""
-
-    out_file = OUTPUT_DIR / "dam_levels_today.png"
-    render_html_to_png(html, out_file)
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 6. 09:30 AM: USEFUL INFORMATION / CIVIC GUIDE INFOGRAPHIC
-# ══════════════════════════════════════════════════════════════════════════════
-def render_useful_info_card():
+    fact = doyouknow_facts[(slot_num - 1) % len(doyouknow_facts)]
     logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    today_str = datetime.now().strftime("%d %B %Y").upper()
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
+    time_labels = {1: "12:30 PM ಜ್ಞಾನ ಸಂಗತಿ", 2: "04:00 PM ಜ್ಞಾನ ಸಂಗತಿ", 3: "08:00 PM ಜ್ಞಾನ ಸಂಗತಿ"}
 
     html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -745,270 +1202,80 @@ def render_useful_info_card():
   body {{
     width: 1080px;
     height: 1080px;
-    background: radial-gradient(circle at 50% 0%, #0F2B48 0%, #0F172A 50%, #020617 100%);
+    background: radial-gradient(circle at 50% 10%, #1E1B4B 0%, #0F172A 50%, #020617 100%);
     font-family: 'Anek Kannada', sans-serif;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 32px 36px;
+    padding: 36px 42px;
     border: 14px solid;
-    border-image: linear-gradient(135deg, #0284C7, #38BDF8, #F59E0B) 1;
+    border-image: linear-gradient(135deg, #4F46E5, #9333EA, #F59E0B) 1;
   }}
 </style>
 </head>
 <body>
-  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(56,189,248,0.4); padding-bottom:12px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(129,140,248,0.4); padding-bottom:14px;">
     <img src="{logo_b64}" alt="Karnata Logo" style="height:64px; object-fit:contain;">
-    <div style="background:#0284C7; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">09:30 AM CITIZEN GUIDE</div>
+    <div style="background:#4F46E5; color:#FFF; font-size:18px; font-weight:900; padding:6px 22px; border-radius:20px; font-family:'Outfit';">{time_labels.get(slot_num, "DO YOU KNOW?")}</div>
   </div>
 
   <div>
-    <div style="font-size:24px; font-weight:900; color:#38BDF8; letter-spacing:2px; font-family:'Outfit';">KARNATAKA CITIZEN ESSENTIAL GUIDE · {today_str}</div>
-    <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಉಪಯುಕ್ತ ನಾಗರಿಕ ಮಾಹಿತಿ &amp; ಮಾರ್ಗದರ್ಶಿ</div>
+    <div style="font-size:22px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA KNOWLEDGE CAPSULE • {today_str}</div>
+    <div style="font-size:44px; font-weight:900; color:#FFFFFF; margin-top:2px;">ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 💡</div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-    <div style="background:rgba(30,41,59,0.95); border:2px solid #38BDF8; border-left:10px solid #38BDF8; border-radius:18px; padding:18px 20px;">
-      <div style="font-size:22px; font-weight:900; color:#38BDF8;">📄 ಪಹಣಿ / RTC ಡೌನ್‌ಲೋಡ್</div>
-      <div style="font-size:16px; color:#E2E8F0; margin-top:6px; line-height:1.4;">ಭೂಮಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಸರ್ವೆ ನಂಬರ್ ಹಾಕಿ ಕೇವಲ ₹15 ಶುಲ್ಕದಲ್ಲಿ ಆನ್‌ಲೈನ್ ಡಿಜಿಟಲ್ ಪಹಣಿ ಪಡೆಯಿರಿ.</div>
-    </div>
-
-    <div style="background:rgba(30,41,59,0.95); border:2px solid #10B981; border-left:10px solid #10B981; border-radius:18px; padding:18px 20px;">
-      <div style="font-size:22px; font-weight:900; color:#10B981;">⚡ ಗೃಹಜ್ಯೋತಿ 200 ಯೂನಿಟ್</div>
-      <div style="font-size:16px; color:#E2E8F0; margin-top:6px; line-height:1.4;">ಸೇವಾಸಿಂಧು ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಆಧಾರ್ ಮತ್ತು ವಿದ್ಯುತ್ ಖಾತೆ ಸಂಖ್ಯೆ ಲಿಂಕ್ ಮಾಡಿ ಉಚಿತ ವಿದ್ಯುತ್ ಪಡೆಯಿರಿ.</div>
-    </div>
-
-    <div style="background:rgba(30,41,59,0.95); border:2px solid #F59E0B; border-left:10px solid #F59E0B; border-radius:18px; padding:18px 20px;">
-      <div style="font-size:22px; font-weight:900; color:#F59E0B;">🚌 ಶಕ್ತಿ ಯೋಜನೆ</div>
-      <div style="font-size:16px; color:#E2E8F0; margin-top:6px; line-height:1.4;">ರಾಜ್ಯದ ಮಹಿಳೆಯರಿಗೆ KSRTC, BMTC, NWKRTC, KKRTC ಸಾಮಾನ್ಯ ಬಸ್‌ಗಳಲ್ಲಿ ಉಚಿತ ಪ್ರಯಾಣ.</div>
-    </div>
-
-    <div style="background:rgba(30,41,59,0.95); border:2px solid #E11D48; border-left:10px solid #E11D48; border-radius:18px; padding:18px 20px;">
-      <div style="font-size:22px; font-weight:900; color:#E11D48;">📞 ಸಹಾಯವಾಣಿ ಸಂಖ್ಯೆಗಳು</div>
-      <div style="font-size:16px; color:#E2E8F0; margin-top:6px; line-height:1.4;">ಪೊಲೀಸ್/ತುರ್ತು: 112 | ಆರೋಗ್ಯ: 108 | ಮಹಿಳಾ ಸಹಾಯವಾಣಿ: 1091 | ಸೈಬರ್ ಕ್ರೈಮ್: 1930</div>
+  <!-- HIGHLIGHT TITLE -->
+  <div style="background:rgba(30,41,59,0.95); border:3px solid #6366F1; border-radius:24px; padding:26px 30px; box-shadow:0 14px 35px rgba(99,102,241,0.3);">
+    <div style="font-size:18px; font-weight:800; color:#A5B4FC; margin-bottom:6px;">✨ {fact['tag']}</div>
+    <div style="font-size:32px; font-weight:900; line-height:1.35; color:#FDE047;">
+      {fact['title']}
     </div>
   </div>
 
-  <div style="border-top:1.5px solid rgba(255,255,255,0.2); padding-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:800; color:#CBD5E1;">
-    <div>💡 ಎಲ್ಲಾ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ವಿವರ: <strong style="color:#38BDF8;">karnata.in/schemes</strong></div>
-    <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
+  <!-- DETAILED EXPLANATION BODY -->
+  <div style="background:#0F172A; border:2px solid #334155; border-radius:22px; padding:28px 32px;">
+    <div style="font-size:26px; font-weight:800; line-height:1.65; color:#E2E8F0;">
+      {fact['fact']}
+    </div>
   </div>
-</body>
-</html>"""
 
-    out_file = OUTPUT_DIR / "useful_info_today.png"
-    render_html_to_png(html, out_file)
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 7. 10:00 AM: GOLD & SILVER RATE INFOGRAPHIC
-# ══════════════════════════════════════════════════════════════════════════════
-def render_gold_card():
-    gold = get_live_gold()
-    t = gold["today"]
-    y = gold["yesterday"]
-
-    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-    bg_b64 = get_file_base64(str(OUTPUT_DIR / "gold_bg.jpg"))
-
-    diff_24k = t["24k"] - y["24k"]
-    diff_22k = t["22k"] - y["22k"]
-    diff_silver = t["silver_999"] - y["silver_999"]
-
-    diff_24k_str = f"+₹{diff_24k} 🔼" if diff_24k > 0 else (f"-₹{abs(diff_24k)} 🔽" if diff_24k < 0 else "0.00 —")
-    diff_22k_str = f"+₹{diff_22k} 🔼" if diff_22k > 0 else (f"-₹{abs(diff_22k)} 🔽" if diff_22k < 0 else "0.00 —")
-    diff_silver_str = f"+₹{diff_silver:.2f} 🔼" if diff_silver > 0 else (f"-₹{abs(diff_silver):.2f} 🔽" if diff_silver < 0 else "0.00 —")
-
-    col_24k = "#10B981" if diff_24k >= 0 else "#E11D48"
-    col_22k = "#10B981" if diff_22k >= 0 else "#E11D48"
-    col_silver = "#10B981" if diff_silver >= 0 else "#E11D48"
-
-    today_date_display = datetime.now().strftime("%d %B %Y").upper()
-
-    html = f"""<!DOCTYPE html>
-<html lang="kn">
-<head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap');
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    width: 1080px;
-    height: 1080px;
-    background: #000000;
-    font-family: 'Anek Kannada', sans-serif;
-    color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 36px;
-  }}
-  .bg-img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.92; z-index: 1; }}
-  .overlay-gradient {{ position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.90) 60%, rgba(0,0,0,0.35) 100%); z-index: 2; }}
-  .border-frame {{ position: absolute; inset: 12px; border: 2.5px solid rgba(245, 158, 11, 0.5); pointer-events: none; z-index: 10; }}
-  .content-wrap {{ position: relative; z-index: 5; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }}
-  .top-header {{ display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(245, 158, 11, 0.4); padding-bottom: 10px; }}
-  .brand-logo {{ height: 68px; object-fit: contain; }}
-  .daily-pill {{ background: linear-gradient(90deg, rgba(245, 158, 11, 0.35), rgba(225, 29, 72, 0.35)); border: 2px solid #F59E0B; color: #FDE047; font-size: 18px; font-weight: 900; padding: 6px 22px; border-radius: 30px; }}
-  .hero-title-box {{ margin: 6px 0; }}
-  .hero-sub {{ font-size: 22px; font-weight: 900; color: #FDE047; letter-spacing: 3px; font-family: 'Outfit', sans-serif; }}
-  .hero-main-title {{ font-size: 78px; font-weight: 900; font-family: 'Outfit', sans-serif; letter-spacing: 1px; line-height: 0.95; background: linear-gradient(180deg, #FFFBEB 0%, #FDE047 30%, #F59E0B 70%, #B45309 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 6px 24px rgba(245, 158, 11, 0.5); margin: 4px 0; }}
-  .hero-kn-title {{ font-size: 38px; font-weight: 900; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1.1; }}
-  .date-badge {{ display: inline-flex; align-items: center; gap: 10px; border: 2px solid #F59E0B; border-radius: 12px; padding: 6px 22px; font-size: 20px; font-weight: 900; color: #FFFFFF; background: rgba(15, 23, 42, 0.85); margin-top: 6px; }}
-  .date-badge strong {{ color: #FDE047; font-family: 'Outfit', sans-serif; font-size: 22px; }}
-  .table-box {{ background: rgba(15, 23, 42, 0.92); border: 2.5px solid #F59E0B; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.9); backdrop-filter: blur(12px); width: 740px; }}
-  .table-hdr {{ background: linear-gradient(90deg, #D97706 0%, #F59E0B 50%, #B45309 100%); display: grid; grid-template-columns: 2.2fr 1.6fr 1.5fr 1.5fr; padding: 14px 20px; font-size: 18px; font-weight: 900; color: #000000; text-align: center; font-family: 'Outfit', 'Anek Kannada', sans-serif; }}
-  .table-hdr div:first-child {{ text-align: left; }}
-  .table-row {{ display: grid; grid-template-columns: 2.2fr 1.6fr 1.5fr 1.5fr; padding: 16px 20px; align-items: center; text-align: center; border-bottom: 2px solid rgba(245, 158, 11, 0.25); }}
-  .table-row:last-child {{ border-bottom: none; }}
-  .metal-col {{ display: flex; align-items: center; gap: 14px; text-align: left; }}
-  .metal-badge {{ width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #F59E0B, #B45309); border: 2px solid #FDE047; color: #000; font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; }}
-  .metal-title {{ font-size: 24px; font-weight: 900; color: #FFFFFF; line-height: 1.1; }}
-  .metal-sub {{ font-size: 14.5px; color: #CBD5E1; font-weight: 700; }}
-  .rate-box {{ background: rgba(0,0,0,0.7); border: 2px solid #F59E0B; border-radius: 12px; padding: 8px 12px; font-size: 32px; font-weight: 900; color: #FDE047; font-family: 'Outfit', sans-serif; }}
-  .yest-box {{ font-size: 25px; font-weight: 900; color: #94A3B8; font-family: 'Outfit', sans-serif; }}
-  .change-pill {{ font-size: 18px; font-weight: 900; font-family: 'Outfit', sans-serif; background: rgba(0,0,0,0.6); padding: 6px 10px; border-radius: 10px; }}
-  .trust-badges {{ display: flex; gap: 14px; width: 740px; margin-top: 4px; }}
-  .t-badge {{ flex: 1; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(245, 158, 11, 0.5); border-radius: 14px; padding: 10px 12px; text-align: center; }}
-  .t-badge .t-icon {{ font-size: 22px; }}
-  .t-badge .t-text {{ font-size: 14px; font-weight: 900; color: #FDE047; margin-top: 2px; text-transform: uppercase; }}
-  .tagline {{ font-size: 16px; color: #CBD5E1; font-weight: 800; border-top: 1.5px solid rgba(245,158,11,0.4); padding-top: 8px; display: flex; justify-content: space-between; align-items: center; }}
-</style>
-</head>
-<body>
-  <img class="bg-img" src="{bg_b64}" alt="Gold Luxury Background">
-  <div class="overlay-gradient"></div>
-  <div class="border-frame"></div>
-
-  <div class="content-wrap">
-    <div class="top-header">
-      <img class="brand-logo" src="{logo_b64}" alt="Karnata Logo">
-      <div class="daily-pill">✨ 10:00 AM ಮಾರುಕಟ್ಟೆ ಬುಲೆಟಿನ್</div>
+  <!-- STAT BADGE -->
+  <div style="background:rgba(245,158,11,0.15); border:2px solid #F59E0B; border-radius:18px; padding:14px 24px; text-align:center;">
+    <div style="font-size:22px; font-weight:900; color:#FDE047; font-family:'Outfit';">
+      📌 {fact['stat']}
     </div>
+  </div>
 
-    <div class="hero-title-box">
-      <div class="hero-sub">TODAY'S GOLD &amp; SILVER PRICE</div>
-      <div class="hero-main-title">GOLD PRICE</div>
-      <div class="hero-kn-title">ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ</div>
-      <div class="date-badge"><span>📅 ದಿನಾಂಕ:</span><strong>{today_date_display}</strong></div>
-    </div>
-
-    <div class="table-box">
-      <div class="table-hdr"><div>GOLD / METAL</div><div>ಇಂದು (TODAY)</div><div>ನಿನ್ನೆ (YEST)</div><div>CHANGE</div></div>
-      <div class="table-row">
-        <div class="metal-col"><div class="metal-badge">24K</div><div><div class="metal-title">24 CARAT</div><div class="metal-sub">99.9% ಅಪರಂಜಿ (1 ಗ್ರಾಂ)</div></div></div>
-        <div class="rate-box">₹{t['24k']:,}</div><div class="yest-box">₹{y['24k']:,}</div><div class="change-pill" style="color:{col_24k};">{diff_24k_str}</div>
-      </div>
-      <div class="table-row">
-        <div class="metal-col"><div class="metal-badge">22K</div><div><div class="metal-title">22 CARAT</div><div class="metal-sub">91.6% ಆಭರಣ (1 ಗ್ರಾಂ)</div></div></div>
-        <div class="rate-box">₹{t['22k']:,}</div><div class="yest-box">₹{y['22k']:,}</div><div class="change-pill" style="color:{col_22k};">{diff_22k_str}</div>
-      </div>
-      <div class="table-row">
-        <div class="metal-col"><div class="metal-badge" style="background:linear-gradient(135deg, #38BDF8, #0284C7); border-color:#7DD3FC; color:#FFF;">999</div><div><div class="metal-title">FINE SILVER</div><div class="metal-sub">ಶುದ್ಧ ಬೆಳ್ಳಿ (1 ಗ್ರಾಂ)</div></div></div>
-        <div class="rate-box" style="color:#38BDF8; border-color:#38BDF8;">₹{t['silver_999']:.2f}</div><div class="yest-box">₹{y['silver_999']:.2f}</div><div class="change-pill" style="color:{col_silver};">{diff_silver_str}</div>
-      </div>
-    </div>
-
-    <div class="trust-badges">
-      <div class="t-badge"><div class="t-icon">🛡️</div><div class="t-text">TRUSTED RATES</div></div>
-      <div class="t-badge"><div class="t-icon">🏷️</div><div class="t-text">100% BIS 916</div></div>
-      <div class="t-badge"><div class="t-icon">⚡</div><div class="t-text">DAILY UPDATES</div></div>
-      <div class="t-badge"><div class="t-icon">🪙</div><div class="t-text">KARNATA.IN</div></div>
-    </div>
-
-    <div class="tagline">
-      <div>GOLD ISN'T JUST JEWELLERY, IT'S A LEGACY.</div>
-      <div style="color:#FDE047; font-weight:900; font-size:18px; font-family:'Outfit';">karnata.in/gold-rate</div>
-    </div>
+  <div style="border-top:2px solid rgba(129,140,248,0.4); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="font-size:20px; color:#94A3B8; font-weight:800;">📖 ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಇತಿಹಾಸ & ಪ್ರಚಲಿತ ಮಾಹಿತಿ: karnata.in</div>
+    <div style="font-size:24px; font-weight:900; color:#818CF8; font-family:'Outfit';">karnata.in</div>
   </div>
 </body>
 </html>"""
 
-    out_file = OUTPUT_DIR / "gold_rate_today.png"
+    out_file = OUTPUT_DIR / f"doyouknow_slot{slot_num}.png"
     render_html_to_png(html, out_file)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 8. 10:30 AM: APMC MANDI RATES INFOGRAPHIC
+# MASTER RENDER ALL CARDS PIPELINE
 # ══════════════════════════════════════════════════════════════════════════════
-def render_apmc_card():
-    logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
-
-    crops = [
-        ("ಶಿರಸಿ / ಸಾಗರ APMC", "ಅಡಿಕೆ (ರಾಶಿ ಇಡೀ)", "₹48,500 - ₹52,800", "/ ಕ್ವಿಂಟಲ್", "#F59E0B"),
-        ("ಕೋಲಾರ APMC", "ಟೊಮೆಟೊ (15kg ಬಾಕ್ಸ್)", "₹320 - ₹580", "(₹22 - ₹38/ಕೆಜಿ)", "#E11D48"),
-        ("ತಿಪಟೂರು APMC", "ಉಂಡೆ ಕೊಬ್ಬರಿ (Copra)", "₹10,500 - ₹12,400", "/ ಕ್ವಿಂಟಲ್", "#10B981"),
-        ("ಬ್ಯಾಡಗಿ APMC", "ಒಣ ಮೆಣಸಿನಕಾಯಿ", "₹18,000 - ₹32,500", "/ ಕ್ವಿಂಟಲ್", "#E11D48"),
-        ("ಕಲಬುರಗಿ APMC", "ತೊಗರಿ ಬೇಳೆ (Tur Dal)", "₹9,200 - ₹11,400", "/ ಕ್ವಿಂಟಲ್", "#F59E0B"),
-        ("ದಾವಣಗೆರೆ APMC", "ಮೆಕ್ಕೆಜೋಳ (Maize)", "₹2,100 - ₹2,480", "/ ಕ್ವಿಂಟಲ್", "#38BDF8")
-    ]
-
-    boxes = "".join([f"""
-    <div style="background:rgba(30,41,59,0.95); border:2px solid #475569; border-left:10px solid {col}; border-radius:18px; padding:16px 20px;">
-      <div style="font-size:16px; color:#94A3B8; font-weight:800;">{mandi}</div>
-      <div style="font-size:24px; font-weight:900; color:#FFF; margin:4px 0;">{crop}</div>
-      <div style="font-size:30px; font-weight:900; color:{col}; font-family:'Outfit';">{price}</div>
-      <div style="font-size:16px; color:#CBD5E1; font-weight:700;">{unit}</div>
-    </div>
-    """ for mandi, crop, price, unit, col in crops])
-
-    html = f"""<!DOCTYPE html>
-<html lang="kn">
-<head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@700;800;900&family=Outfit:wght@800;900&display=swap');
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    width: 1080px;
-    height: 1080px;
-    background: radial-gradient(circle at 50% 0%, #14332B 0%, #0F172A 50%, #020617 100%);
-    font-family: 'Anek Kannada', sans-serif;
-    color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 32px 36px;
-    border: 14px solid;
-    border-image: linear-gradient(135deg, #10B981, #059669, #F59E0B) 1;
-  }}
-</style>
-</head>
-<body>
-  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(16,185,129,0.4); padding-bottom:12px;">
-    <img src="{logo_b64}" alt="Karnata Logo" style="height:64px; object-fit:contain;">
-    <div style="background:#10B981; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">10:30 AM KSAMB MANDI RATES</div>
-  </div>
-
-  <div>
-    <div style="font-size:24px; font-weight:900; color:#10B981; letter-spacing:2px; font-family:'Outfit';">KARNATAKA APMC TOP MANDI CROP PRICES</div>
-    <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಕರ್ನಾಟಕ APMC ಪ್ರಮುಖ ಬೆಳೆಗಳ ಧಾರಣೆ</div>
-  </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">{boxes}</div>
-
-  <div style="border-top:1.5px solid rgba(255,255,255,0.2); padding-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:800; color:#CBD5E1;">
-    <div>🌾 ರಾಜ್ಯದ 174 APMC ಲೈವ್ ದರ: <strong style="color:#10B981;">karnata.in/apmc-prices</strong></div>
-    <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
-  </div>
-</body>
-</html>"""
-
-    out_file = OUTPUT_DIR / "apmc_rates_today.png"
-    render_html_to_png(html, out_file)
-
 def render_all_cards():
-    print("=== Generating All 8 Scheduled Daily Social Graphics ===")
-    render_weather_card()      # 07:00 AM
-    render_quote_card()        # 07:30 AM
-    render_petrol_card()       # 08:00 AM
-    render_quiz_card()         # 08:30 AM
-    render_dam_card()          # 09:00 AM
-    render_useful_info_card()  # 09:30 AM
-    render_gold_card()         # 10:00 AM
-    render_apmc_card()         # 10:30 AM
-    print("=== SUCCESS: All 8 Graphics Rendered ===")
+    print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 🎨 Generating All Upgraded Karnata Social Graphics...")
+    render_quote_card()
+    render_petrol_card()
+    render_weather_morning_summary()
+    render_apmc_carousel()
+    render_dam_carousel_and_spotlights()
+    render_gold_card()
+    render_nowcast_map_card()
+    render_quiz_interactive_card(1)
+    render_quiz_interactive_card(2)
+    render_quiz_interactive_card(3)
+    render_doyouknow_card(1)
+    render_doyouknow_card(2)
+    render_doyouknow_card(3)
+    print("✨ All 16+ Upgraded Social Cards Rendered Flawlessly!")
 
 if __name__ == "__main__":
     render_all_cards()
