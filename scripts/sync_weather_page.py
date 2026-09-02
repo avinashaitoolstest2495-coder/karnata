@@ -1,6 +1,7 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
-import json, base64, re
+import json, base64, re, time
+from datetime import datetime
 from pathlib import Path
 from bs4 import BeautifulSoup
 
@@ -35,7 +36,7 @@ def decrypt_payload(raw_json):
     return raw_json
 
 def sync_weather():
-    print("=== SYNCING LATEST WEATHER DATA INTO WEATHER.HTML ===")
+    print("=== SYNCING LATEST WEATHER DATA INTO WEATHER.HTML & GEO PUSH ALERTS ===")
     weather_file = ROOT_DIR / "data" / "weather.json"
     if not weather_file.exists():
         print("[ERROR] data/weather.json not found!")
@@ -51,33 +52,76 @@ def sync_weather():
     master_d5 = {}
     nc_dist_dict = {}
     nc_summary = {"red": 0, "orange": 0, "yellow": 0, "green": 0, "total_alerts": 0}
+    geo_weather_alerts = []
 
     for k, d in nowcast_dists.items():
         region = DISTRICT_REGIONS.get(k, 'south')
         lvl = (d.get('alert_level') or d.get('level') or 'green').lower()
+        d_name_kn = d.get('district_kn') or d.get('name_kn') or k
+        d_name_en = d.get('district_en') or d.get('name_en') or ''
+        raw_wi = d.get('warning_info', '')
+
         if lvl == 'red':
             nc_summary['red'] += 1
             level_label = '🔴 ಕೆಂಪು ಎಚ್ಚರಿಕೆ (Red Alert)'
             hazard = d.get('hazard_kn') or 'ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ'
             advice = d.get('warning_info') or 'ತಕ್ಷಣದ ಸುರಕ್ಷತಾ ಕ್ರಮಗಳನ್ನು ಪಾಲಿಸಿ'
             accent = '#E11D48'; bg = '#FFF1F2'
+            # Geo Push Notification for Red Alert
+            geo_weather_alerts.append({
+                "id": f"WEATHER-RED-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "alert_level": "red",
+                "target_district": k,
+                "target_district_kn": d_name_kn,
+                "title": f"🔴 ಕೆಂಪು ಕಟ್ಟೆಚ್ಚರ (Red Alert) — {d_name_kn}",
+                "body": f"IMD ತುರ್ತು ಎಚ್ಚರಿಕೆ: {d_name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಅತಿ ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ! ತಕ್ಷಣದ ಸುರಕ್ಷತಾ ಕ್ರಮಗಳನ್ನು ಪಾಲಿಸಿ.",
+                "url": f"https://karnata.in/weather?district={k}",
+                "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+                "topic": "weather_alert",
+                "created_at": datetime.now().isoformat()
+            })
         elif lvl == 'orange':
             nc_summary['orange'] += 1
             level_label = '🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert)'
             hazard = d.get('hazard_kn') or 'ಭಾರೀ ಮಳೆ ಸಾಧ್ಯತೆ'
             advice = d.get('warning_info') or 'ಮುಂಜಾಗ್ರತಾ ಕ್ರಮಗಳನ್ನು ಪಾಲಿಸಿ'
             accent = '#D97706'; bg = '#FFFBEB'
+            # Geo Push Notification for Orange Alert
+            geo_weather_alerts.append({
+                "id": f"WEATHER-ORANGE-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "alert_level": "orange",
+                "target_district": k,
+                "target_district_kn": d_name_kn,
+                "title": f"🟠 ಕಿತ್ತಳೆ ಎಚ್ಚರಿಕೆ (Orange Alert) — {d_name_kn}",
+                "body": f"IMD ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ: {d_name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಭಾರೀ ಮಳೆ ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಾಧ್ಯತೆ. ಸುರಕ್ಷಿತವಾಗಿರಿ.",
+                "url": f"https://karnata.in/weather?district={k}",
+                "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+                "topic": "weather_alert",
+                "created_at": datetime.now().isoformat()
+            })
         elif lvl == 'yellow':
             nc_summary['yellow'] += 1
             level_label = '🟡 ಹಳದಿ ನಿಗಾ (Yellow Watch)'
             hazard = 'ಲಘು / ಸಾಧಾರಣ ಮಳೆ 🌧️'
-            raw_wi = d.get('warning_info', '')
             if 'Valid upto:' in raw_wi:
                 v_time = raw_wi.split('Valid upto:').pop().strip()
                 advice = f"ತುಂತುರು/ಸಾಧಾರಣ ಮಳೆ (<5 mm/hr) (ಮಾನ್ಯತೆ: {v_time})"
             else:
                 advice = 'ತುಂತುರು ಅಥವಾ ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ'
             accent = '#CA8A04'; bg = '#FEFCE8'
+            # Geo Push Notification for Yellow Alert
+            geo_weather_alerts.append({
+                "id": f"WEATHER-YELLOW-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "alert_level": "yellow",
+                "target_district": k,
+                "target_district_kn": d_name_kn,
+                "title": f"🟡 ಹಳದಿ ಮುನ್ನೆಚ್ಚರಿಕೆ (Yellow Watch) — {d_name_kn}",
+                "body": f"IMD ಲೈವ್ ನೌಕಾಸ್ಟ್: {d_name_kn} ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಲಘು / ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ ({advice}).",
+                "url": f"https://karnata.in/weather?district={k}",
+                "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+                "topic": "weather_alert",
+                "created_at": datetime.now().isoformat()
+            })
         else:
             nc_summary['green'] += 1
             level_label = '🟢 ಸಾಮಾನ್ಯ (No Warning)'
@@ -87,14 +131,14 @@ def sync_weather():
 
         nc_dist_dict[k] = {
             "district_key": k,
-            "name_kn": d.get('district_kn') or d.get('name_kn') or k,
-            "name_en": d.get('district_en') or d.get('name_en') or '',
+            "name_kn": d_name_kn,
+            "name_en": d_name_en,
             "region": region,
             "level": lvl,
             "level_label_kn": level_label,
             "accent_color": accent,
             "bg_color": bg,
-            "raw_warning": d.get('warning_info', ''),
+            "raw_warning": raw_wi,
             "hazard_kn": hazard,
             "advice_kn": advice
         }
@@ -107,6 +151,42 @@ def sync_weather():
         "districts": nc_dist_dict
     }
 
+    # Also check 5-day forecast Day 1 alerts and add if any orange/red
+    day1_raw = forecast_5d.get('Day_1', {}).get('districts', {})
+    for k, d in day1_raw.items():
+        lvl = (d.get('alert_level') or d.get('level') or 'green').lower()
+        if lvl in ['orange', 'red']:
+            d_name_kn = d.get('district_kn') or d.get('name_kn') or k
+            existing = [a for a in geo_weather_alerts if a['target_district'] == k]
+            if not existing:
+                geo_weather_alerts.append({
+                    "id": f"FORECAST-{lvl.upper()}-{k}-{datetime.now().strftime('%Y%m%d')}",
+                    "alert_level": lvl,
+                    "target_district": k,
+                    "target_district_kn": d_name_kn,
+                    "title": f"🚨 {lvl.upper()} ALERT — {d_name_kn}",
+                    "body": f"IMD ಅಧಿಕೃತ 24-ಗಂಟೆ ಮುನ್ಸೂಚನೆ: {d_name_kn} ಜಿಲ್ಲೆಯಲ್ಲಿ ಭಾರೀ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ.",
+                    "url": f"https://karnata.in/weather?district={k}",
+                    "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+                    "topic": "weather_alert",
+                    "created_at": datetime.now().isoformat()
+                })
+
+    # Save live_push_feed.json for instant client fetching and edge sync
+    push_feed_obj = {
+        "updated_at": datetime.now().isoformat(),
+        "total_active_alerts": len(geo_weather_alerts),
+        "feed": geo_weather_alerts
+    }
+    feed_path = ROOT_DIR / "data" / "live_push_feed.json"
+    feed_path.write_text(json.dumps(push_feed_obj, ensure_ascii=False, indent=2), encoding='utf-8')
+    
+    nk_feed_path = ROOT_DIR / "namma-karnataka" / "data" / "live_push_feed.json"
+    if nk_feed_path.parent.exists():
+        nk_feed_path.write_text(json.dumps(push_feed_obj, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"Generated {len(geo_weather_alerts)} geo-targeted weather push alerts into data/live_push_feed.json!")
+
+    # Build Day_1 to Day_5
     day_kn_labels = {
         'Day_1': '📅 ಇಂದು (Day 1)',
         'Day_2': '📅 ನಾಳೆ (Day 2)',
@@ -221,98 +301,7 @@ def sync_weather():
         warn_grid.clear()
         warn_grid.append(BeautifulSoup(grid_cards_html, 'html.parser'))
 
-    # Pre-render Hourly Forecast
-    hourly_list = bengaluru.get('hourly_24h', [])
-    hourly_html = ""
-    for idx, h in enumerate(hourly_list):
-        is_now = "now" if idx == 0 else ""
-        time_str = h.get('time', f"{idx}:00")
-        icon_str = h.get('icon', '⛅')
-        temp_str = f"{round(h.get('temp_c', 24))}°"
-        rain_chance = h.get('rain_chance', h.get('precip_prob', 0))
-        hourly_html += f"""
-        <div class="hourly-item {is_now}">
-          <div class="hi-time">{time_str}</div>
-          <div class="hi-icon">{icon_str}</div>
-          <div class="hi-temp">{temp_str}</div>
-          <div class="hi-rain">💧 {rain_chance}%</div>
-        </div>"""
-
-    el_hourly = soup.find(id='hourly-scroll')
-    if el_hourly:
-        el_hourly.clear()
-        el_hourly.append(BeautifulSoup(hourly_html, 'html.parser'))
-
-    # Pre-render 7-Day Forecast
-    forecast_list = bengaluru.get('forecast_7d', [])
-    forecast_html = ""
-    for idx, f in enumerate(forecast_list):
-        is_today = "today" if idx == 0 else ""
-        day_kn = f.get('day_kn', 'ಇಂದು' if idx == 0 else ('ನಾಳೆ' if idx == 1 else 'ದಿನ'))
-        date_str = f.get('date', '')
-        icon_str = f.get('icon', '⛅')
-        desc_str = f.get('desc_kn', 'ಸಾಮಾನ್ಯ ಹವಾಮಾನ')
-        rain_prob = f.get('precip_prob', 0)
-        temp_max = round(f.get('temp_max', 28))
-        temp_min = round(f.get('temp_min', 20))
-        forecast_html += f"""
-        <div class="forecast-h-card {is_today}">
-          <div class="fhc-day">{day_kn}</div>
-          <div class="fhc-date">{date_str}</div>
-          <div class="fhc-icon">{icon_str}</div>
-          <div class="fhc-desc">{desc_str}</div>
-          <div class="fhc-rain-pill">💧 {rain_prob}%</div>
-          <div class="fhc-temp-row">
-            <span class="fhc-max">{temp_max}°</span>
-            <span class="fhc-min">{temp_min}°</span>
-          </div>
-        </div>"""
-
-    el_forecast = soup.find(id='forecast-h-scroll')
-    if el_forecast:
-        el_forecast.clear()
-        el_forecast.append(BeautifulSoup(forecast_html, 'html.parser'))
-
-    # Pre-render 31 Districts Live Weather Grid
-    district_grid_html = ""
-    for k, d in districts.items():
-        c = d.get('current', {})
-        temp_c = round(c.get('temp_c', 25))
-        rain_chance = c.get('rain_chance', 0)
-        humidity = c.get('humidity', 70)
-        wind_kmh = round(c.get('wind_kmh', 10))
-        desc_kn = c.get('desc_kn', 'ಭಾಗಶಃ ಮೋಡ')
-        icon_str = c.get('icon', '⛅')
-        hq_str = d.get('hq', '')
-        d_name = d.get('name_kn', k)
-        alert_class = f"alert-{d.get('alert_level')}" if d.get('alert_level') else ""
-
-        district_grid_html += f"""
-          <div class="dw-card {alert_class}" onclick="selectDistrict('{k}')">
-            <div class="dw-header">
-              <div>
-                <div class="dw-name">{d_name}</div>
-                <div class="dw-hq">{hq_str}</div>
-              </div>
-              <div class="dw-icon">{icon_str}</div>
-            </div>
-            <div class="dw-temp-row">
-              <span class="dw-temp">{temp_c}°</span>
-              <span class="dw-desc">{desc_kn}</span>
-            </div>
-            <div class="dw-stats">
-              <span>💧 {rain_chance}%</span>
-              <span>💨 {wind_kmh} km/h</span>
-              <span>🌡️ {humidity}%</span>
-            </div>
-          </div>"""
-
-    el_grid = soup.find(id='district-grid')
-    if el_grid:
-        el_grid.clear()
-        el_grid.append(BeautifulSoup(district_grid_html, 'html.parser'))
-
-    # 3. Update window.districtWarnings5D in script
+    # Update window.districtWarnings5D in script
     for s in soup.find_all('script'):
         if s.string and 'window.districtWarnings5D =' in s.string:
             sc = s.string
@@ -322,11 +311,18 @@ def sync_weather():
             s.string = sc[:idx1] + f'window.districtWarnings5D = {new_json}' + sc[idx2:]
             break
 
+    # Ensure push client script is loaded in weather.html without touching anything else
+    push_script = soup.find('script', src='/assets/js/karnata-push-client.js')
+    if not push_script:
+        new_push_tag = soup.new_tag('script', src='/assets/js/karnata-push-client.js')
+        soup.body.append(new_push_tag)
+        print("Included karnata-push-client.js in weather.html")
+
     # Save to both locations
     final_html = str(soup)
     ROOT_DIR.joinpath("weather.html").write_text(final_html, encoding='utf-8')
     ROOT_DIR.joinpath("namma-karnataka", "weather.html").write_text(final_html, encoding='utf-8')
-    print("=== SUCCESS: weather.html synced with latest IMD Nowcast & KSNDMC data ===")
+    print("=== SUCCESS: weather.html synced with latest IMD Nowcast & Geo-Push Alerts ===")
 
 if __name__ == "__main__":
     sync_weather()

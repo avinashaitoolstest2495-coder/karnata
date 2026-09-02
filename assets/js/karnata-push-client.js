@@ -1,7 +1,8 @@
 /**
- * Karnata.in — Autonomous Real-Time Geo & District Push Notification Listener
- * Automatically detects user district, subscribes, and pops native notification
- * the instant a transfer, weather alert, or article is published.
+ * Karnata.in — Autonomous Real-Time Geo & District Push Notification Engine
+ * 1. Automatically detects user's exact district via HTML5 Geolocation (Haversine 31 districts).
+ * 2. Fetches active IMD weather alerts (Yellow, Orange, Red alerts).
+ * 3. Dispatches native system push notifications strictly targeted to respective districts.
  */
 
 (function() {
@@ -9,39 +10,77 @@
   const STORAGE_KEY_SUB_ID = 'karnata_push_sub_id';
   const STORAGE_KEY_SEEN_PUSHES = 'karnata_seen_push_ids';
 
-  const KARNATAKA_DISTRICTS = {
-    "bengaluru_urban": "ಬೆಂಗಳೂರು ನಗರ",
-    "bengaluru_rural": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
-    "mysuru": "ಮೈಸೂರು",
-    "belagavi": "ಬೆಳಗಾವಿ",
-    "dharwad": "ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ",
-    "dakshina_kannada": "ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)",
-    "kalaburagi": "ಕಲಬುರಗಿ",
-    "tumakuru": "ತುಮಕೂರು",
-    "shivamogga": "ಶಿವಮೊಗ್ಗ",
-    "ballari": "ಬಳ್ಳಾರಿ",
-    "vijayanagara": "ವಿಜಯನಗರ",
-    "vijayapura": "ವಿಜಯಪುರ",
-    "bagalkote": "ಬಾಗಲಕೋಟೆ",
-    "bidar": "ಬೀದರ್",
-    "raichur": "ರಾಯಚೂರು",
-    "koppal": "ಕೊಪ್ಪಳ",
-    "gadag": "ಗದಗ",
-    "haveri": "ಹಾವೇರಿ",
-    "uttara_kannada": "ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)",
-    "udupi": "ಉಡುಪಿ",
-    "chikkamagaluru": "ಚಿಕ್ಕಮಗಳೂರು",
-    "hassan": "ಹಾಸನ",
-    "mandya": "ಮಂಡ್ಯ",
-    "chamarajanagar": "ಚಾಮರಾಜನಗರ",
-    "chitradurga": "ಚಿತ್ರದುರ್ಗ",
-    "davanagere": "ದಾವಣಗೆರೆ",
-    "kolar": "ಕೋಲಾರ",
-    "chikkaballapura": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
-    "ramanagara": "ರಾಮನಗರ",
-    "kodagu": "ಕೊಡಗು (ಮಡಿಕೇರಿ)",
-    "yadgir": "ಯಾದಗಿರಿ"
-  };
+  // Exact 31 Karnataka Districts with Official District Headquarter Coordinates
+  const KARNATAKA_31_DISTRICTS = [
+    { key: "bengaluru_urban", name_kn: "ಬೆಂಗಳೂರು ನಗರ", lat: 12.9716, lon: 77.5946 },
+    { key: "bengaluru_rural", name_kn: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", lat: 13.0072, lon: 77.5673 },
+    { key: "mysuru", name_kn: "ಮೈಸೂರು", lat: 12.2958, lon: 76.6394 },
+    { key: "mandya", name_kn: "ಮಂಡ್ಯ", lat: 12.5220, lon: 76.8951 },
+    { key: "hassan", name_kn: "ಹಾಸನ", lat: 13.0068, lon: 76.1003 },
+    { key: "kodagu", name_kn: "ಕೊಡಗು", lat: 12.3375, lon: 75.8069 },
+    { key: "dakshina_kannada", name_kn: "ದಕ್ಷಿಣ ಕನ್ನಡ (ಮಂಗಳೂರು)", lat: 12.8438, lon: 74.9919 },
+    { key: "udupi", name_kn: "ಉಡುಪಿ", lat: 13.3409, lon: 74.7421 },
+    { key: "uttara_kannada", name_kn: "ಉತ್ತರ ಕನ್ನಡ (ಕಾರವಾರ)", lat: 14.7941, lon: 74.6561 },
+    { key: "shivamogga", name_kn: "ಶಿವಮೊಗ್ಗ", lat: 13.9299, lon: 75.5681 },
+    { key: "chikkamagaluru", name_kn: "ಚಿಕ್ಕಮಗಳೂರು", lat: 13.3153, lon: 75.7754 },
+    { key: "tumakuru", name_kn: "ತುಮಕೂರು", lat: 13.3379, lon: 77.1173 },
+    { key: "chitradurga", name_kn: "ಚಿತ್ರದುರ್ಗ", lat: 14.2226, lon: 76.3984 },
+    { key: "davanagere", name_kn: "ದಾವಣಗೆರೆ", lat: 14.4644, lon: 75.9218 },
+    { key: "belagavi", name_kn: "ಬೆಳಗಾವಿ", lat: 15.8497, lon: 74.4977 },
+    { key: "dharwad", name_kn: "ಧಾರವಾಡ / ಹುಬ್ಬಳ್ಳಿ", lat: 15.4589, lon: 75.0078 },
+    { key: "gadag", name_kn: "ಗದಗ", lat: 15.4167, lon: 75.6167 },
+    { key: "haveri", name_kn: "ಹಾವೇರಿ", lat: 14.7957, lon: 75.3998 },
+    { key: "bagalkote", name_kn: "ಬಾಗಲಕೋಟೆ", lat: 16.1831, lon: 75.6965 },
+    { key: "vijayapura", name_kn: "ವಿಜಯಪುರ", lat: 16.8302, lon: 75.7100 },
+    { key: "kalaburagi", name_kn: "ಕಲಬುರಗಿ", lat: 17.3297, lon: 76.8343 },
+    { key: "yadgir", name_kn: "ಯಾದಗಿರಿ", lat: 16.7620, lon: 77.1382 },
+    { key: "raichur", name_kn: "ರಾಯಚೂರು", lat: 16.2120, lon: 77.3439 },
+    { key: "koppal", name_kn: "ಕೊಪ್ಪಳ", lat: 15.3474, lon: 76.1547 },
+    { key: "ballari", name_kn: "ಬಳ್ಳಾರಿ", lat: 15.1394, lon: 76.9214 },
+    { key: "vijayanagara", name_kn: "ವಿಜಯನಗರ", lat: 15.1720, lon: 76.4560 },
+    { key: "chikkaballapura", name_kn: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", lat: 13.4356, lon: 77.7310 },
+    { key: "kolar", name_kn: "ಕೋಲಾರ", lat: 13.1363, lon: 78.1294 },
+    { key: "ramanagara", name_kn: "ರಾಮನಗರ", lat: 12.7156, lon: 77.2817 },
+    { key: "chamarajanagara", name_kn: "ಚಾಮರಾಜನಗರ", lat: 11.9261, lon: 76.9439 },
+    { key: "bidar", name_kn: "ಬೀದರ್", lat: 17.9104, lon: 77.5199 }
+  ];
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then((reg) => {
+      console.log('✅ Karnata SW Ready:', reg.scope);
+    }).catch((err) => {
+      console.warn('⚠️ SW Register notice:', err);
+    });
+  }
+
+  // Haversine formula to find nearest Karnataka district HQ
+  function getDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+  }
+
+  function findNearestDistrict(userLat, userLon) {
+    // Metro Bengaluru bounding box check
+    if (userLat >= 12.75 && userLat <= 13.25 && userLon >= 77.30 && userLon <= 77.85) {
+      return KARNATAKA_31_DISTRICTS.find(d => d.key === 'bengaluru_urban') || KARNATAKA_31_DISTRICTS[0];
+    }
+    let nearest = KARNATAKA_31_DISTRICTS[0];
+    let minDist = Infinity;
+    for (const d of KARNATAKA_31_DISTRICTS) {
+      const dist = getDistance(userLat, userLon, d.lat, d.lon);
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = d;
+      }
+    }
+    return nearest;
+  }
 
   function getUserDistrict() {
     return localStorage.getItem(STORAGE_KEY_DISTRICT) || 'bengaluru_urban';
@@ -62,119 +101,145 @@
     }
   }
 
-  // Register subscription with Cloudflare
-  async function syncSubscriptionWithEdge(distKey) {
-    let subId = localStorage.getItem(STORAGE_KEY_SUB_ID);
-    if (!subId) {
-      subId = 'SUB-' + Math.random().toString(36).substring(2, 9);
-      localStorage.setItem(STORAGE_KEY_SUB_ID, subId);
+  // Auto-detect Geo-Location
+  function detectUserGeoLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const nearest = findNearestDistrict(pos.coords.latitude, pos.coords.longitude);
+          const prevDist = localStorage.getItem(STORAGE_KEY_DISTRICT);
+          localStorage.setItem(STORAGE_KEY_DISTRICT, nearest.key);
+          console.log('📍 Geo-Location Detected District:', nearest.name_kn, `(${nearest.key})`);
+          if (prevDist !== nearest.key) {
+            checkLiveDistrictPushFeed();
+          }
+        },
+        (err) => {
+          console.warn('Geolocation notice:', err.message);
+        },
+        { timeout: 8000, maximumAge: 3600000 }
+      );
     }
-    const dist = distKey || getUserDistrict();
-    try {
-      await fetch('/api/push/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subscriber_id: subId,
-          district: dist,
-          district_kn: KARNATAKA_DISTRICTS[dist] || dist,
-          topics: ['transfers', 'weather', 'fuel_gold', 'apmc', 'breaking']
-        })
-      });
-    } catch(e) {}
   }
 
-  // Autonomous Real-Time Feed Checker
+  // Check live district push feed (Edge API with static data fallback)
   async function checkLiveDistrictPushFeed() {
-    const dist = getUserDistrict();
+    const userDist = getUserDistrict();
+    let feed = [];
+
+    // 1. Try Cloudflare Worker API
     try {
-      const res = await fetch(`/api/push/feed?district=${dist}&t=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`/api/push/feed?district=${userDist}&t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
-        const feed = data.feed || [];
-        if (!feed.length) return;
-
-        const seenList = getSeenPushes();
-
-        for (let item of feed) {
-          if (!seenList.includes(item.id)) {
-            addSeenPush(item.id);
-
-            // Pop native notification if allowed
-            if (Notification.permission === 'granted') {
-              if ('serviceWorker' in navigator) {
-                const reg = await navigator.serviceWorker.ready;
-                reg.showNotification(item.title, {
-                  body: item.body,
-                  icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
-                  badge: item.badge || 'https://karnata.in/assets/icons/icon-192x192.png',
-                  data: { url: item.url || 'https://karnata.in/officers?tab=transfers' },
-                  vibrate: [200, 100, 200],
-                  tag: item.id
-                });
-              } else {
-                new Notification(item.title, { body: item.body, icon: item.icon });
-              }
-            } else if (Notification.permission !== 'denied') {
-              // Auto request permission on user interest
-              showInPagePushBanner(item);
-            }
-          }
-        }
+        feed = data.feed || [];
       }
     } catch(e) {}
+
+    // 2. Fallback to direct static JSON feed
+    if (!feed.length) {
+      try {
+        const staticRes = await fetch(`/data/live_push_feed.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          const allAlerts = staticData.feed || [];
+          feed = allAlerts.filter(item => item.target_district === 'all' || item.target_district === userDist);
+        }
+      } catch(e) {}
+    }
+
+    if (!feed.length) return;
+
+    const seenList = getSeenPushes();
+
+    for (const item of feed) {
+      // Strictly verify this alert is for the user's geo-detected district or statewide
+      const matchesDistrict = (item.target_district === 'all' || item.target_district === userDist);
+      const isWeatherAlert = ['yellow', 'orange', 'red'].includes((item.alert_level || '').toLowerCase());
+
+      if (matchesDistrict && !seenList.includes(item.id)) {
+        addSeenPush(item.id);
+
+        // Pop Native System Push Notification
+        if ('Notification' in window && Notification.permission === 'granted') {
+          const vibratePattern = item.alert_level === 'red'
+            ? [300, 100, 300, 100, 300]
+            : (item.alert_level === 'orange' ? [200, 100, 200] : [150, 100, 150]);
+
+          if ('serviceWorker' in navigator && navigator.serviceWorker.ready) {
+            navigator.serviceWorker.ready.then(reg => {
+              reg.showNotification(item.title, {
+                body: item.body,
+                icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
+                badge: item.badge || 'https://karnata.in/assets/icons/icon-192x192.png',
+                data: { url: item.url || `https://karnata.in/weather?district=${userDist}` },
+                vibrate: vibratePattern,
+                tag: item.id
+              });
+            });
+          } else {
+            new Notification(item.title, {
+              body: item.body,
+              icon: item.icon || 'https://karnata.in/assets/icons/icon-512x512.png',
+              tag: item.id
+            });
+          }
+        } else if ('Notification' in window && Notification.permission !== 'denied') {
+          // Show non-intrusive in-page alert toast tailored to their district
+          showInPagePushBanner(item, userDist);
+        }
+      }
+    }
   }
 
-  function showInPagePushBanner(item) {
+  // Non-intrusive alert toast for user's district
+  function showInPagePushBanner(item, userDist) {
     let b = document.getElementById('karnata-live-district-alert-toast');
     if (!b) {
       b = document.createElement('div');
       b.id = 'karnata-live-district-alert-toast';
-      b.style.cssText = 'position:fixed; top:20px; right:20px; max-width:380px; width:90%; background:#0F172A; color:#FFF; border:1px solid #334155; border-radius:16px; padding:16px; z-index:9999999; box-shadow:0 20px 40px rgba(0,0,0,0.5); font-family:system-ui,sans-serif; animation:slideIn 0.3s ease;';
+      b.style.cssText = 'position:fixed; bottom:24px; right:20px; max-width:380px; width:90%; background:#0F172A; color:#FFF; border:2px solid #0284C7; border-radius:18px; padding:18px; z-index:9999999; box-shadow:0 20px 40px rgba(0,0,0,0.5); font-family:system-ui,-apple-system,sans-serif; animation:slideIn 0.3s ease;';
       document.body.appendChild(b);
     }
+
+    const badgeColor = item.alert_level === 'red' ? '#DC2626' : (item.alert_level === 'orange' ? '#EA580C' : '#CA8A04');
+    const badgeText = item.alert_level === 'red' ? '🔴 ರೆಡ್ ಅಲರ್ಟ್' : (item.alert_level === 'orange' ? '🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್' : '🟡 ಹಳದಿ ನಿಗಾ');
+
     b.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-        <div style="font-size:11px; font-weight:800; background:#E11D48; color:#FFF; padding:2px 8px; border-radius:4px;">🚨 ಲೈವ್ ಅಲರ್ಟ್</div>
-        <button onclick="this.parentElement.parentElement.style.display='none'" style="background:none; border:none; color:#94A3B8; font-size:16px; cursor:pointer;">✕</button>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+        <div style="font-size:11.5px; font-weight:800; background:${badgeColor}; color:#FFF; padding:3px 9px; border-radius:6px;">${badgeText}</div>
+        <button onclick="this.parentElement.parentElement.style.display='none'" style="background:none; border:none; color:#94A3B8; font-size:18px; cursor:pointer; padding:0 4px;">✕</button>
       </div>
-      <strong style="display:block; font-size:14.5px; color:#F8FAFC; margin-bottom:4px;">${item.title}</strong>
-      <p style="font-size:12.5px; color:#CBD5E1; line-height:1.4; margin-bottom:12px;">${item.body}</p>
+      <strong style="display:block; font-size:14.5px; font-weight:800; color:#F8FAFC; margin-bottom:5px;">${item.title}</strong>
+      <p style="font-size:12.5px; color:#CBD5E1; line-height:1.45; margin-bottom:14px;">${item.body}</p>
       <div style="display:flex; gap:8px;">
-        <a href="${item.url}" style="flex:1; background:#2563EB; color:#FFF; text-align:center; padding:8px; border-radius:8px; font-size:12.5px; font-weight:700; text-decoration:none;">ವೀಕ್ಷಿಸಿ ➔</a>
-        <button onclick="window.karnataRequestPushPermission()" style="background:#059669; color:#FFF; border:none; padding:8px 12px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">🔔 ಆನ್ ಮಾಡಿ</button>
+        <a href="${item.url || '/weather?district=' + userDist}" style="flex:1; background:#0284C7; color:#FFF; text-align:center; padding:9px; border-radius:10px; font-size:12.5px; font-weight:800; text-decoration:none;">ಹವಾಮಾನ ವೀಕ್ಷಿಸಿ ➔</a>
+        <button onclick="window.karnataRequestPushPermission()" style="background:#16A34A; color:#FFF; border:none; padding:9px 14px; border-radius:10px; font-size:12.5px; font-weight:800; cursor:pointer;">🔔 ಆನ್ ಮಾಡಿ</button>
       </div>
     `;
+    b.style.display = 'block';
   }
 
-  // Auto-detect Geo-Location if permitted
-  function autoDetectGeo() {
-    if (navigator.geolocation && !localStorage.getItem(STORAGE_KEY_DISTRICT)) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        let matched = 'bengaluru_urban';
-        if (lat > 15.5 && lon < 75.0) matched = 'belagavi';
-        else if (lat > 15.0 && lon > 74.8 && lon < 75.6) matched = 'dharwad';
-        else if (lat < 12.6 && lon > 76.2 && lon < 77.0) matched = 'mysuru';
-        else if (lat > 17.0) matched = 'kalaburagi';
-        else if (lat > 12.8 && lat < 13.5 && lon < 75.2) matched = 'dakshina_kannada';
-
-        localStorage.setItem(STORAGE_KEY_DISTRICT, matched);
-        syncSubscriptionWithEdge(matched);
-      }, () => {
-        syncSubscriptionWithEdge('bengaluru_urban');
-      });
-    } else {
-      syncSubscriptionWithEdge(getUserDistrict());
+  // Global helper for user click on "ಆನ್ ಮಾಡಿ"
+  window.karnataRequestPushPermission = async function() {
+    if ('Notification' in window) {
+      try {
+        const perm = await Notification.requestPermission();
+        if (perm === 'granted') {
+          console.log('✅ Push notification permission granted!');
+          const toast = document.getElementById('karnata-live-district-alert-toast');
+          if (toast) toast.style.display = 'none';
+          checkLiveDistrictPushFeed();
+        }
+      } catch(e) {}
     }
-  }
+  };
 
-  // Setup Real-time Reactive Listener
+  // Initialize
   document.addEventListener('DOMContentLoaded', () => {
-    autoDetectGeo();
-    // Fast Polling loop (every 15s for true real-time automatic triggers)
-    setInterval(checkLiveDistrictPushFeed, 15000);
-    setTimeout(checkLiveDistrictPushFeed, 1500);
+    detectUserGeoLocation();
+    setTimeout(checkLiveDistrictPushFeed, 2000);
+    // Periodic check every 30 seconds
+    setInterval(checkLiveDistrictPushFeed, 30000);
   });
 })();
