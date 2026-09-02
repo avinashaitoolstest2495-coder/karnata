@@ -5979,3 +5979,23 @@ setTimeout(() => {
 } catch(e) {
   console.error("RUNTIME ERROR THROWN:", e);
 }
+
+console.log('Testing interactive buttons...');
+if (typeof switchWarningDay === 'function') {
+  console.log('Testing switchWarningDay(Day_1)...');
+  switchWarningDay('Day_1');
+  console.log('activeWarningDay is now:', window.activeWarningDay);
+  console.log('Testing switchWarningDay(Nowcast)...');
+  switchWarningDay('Nowcast');
+  console.log('activeWarningDay is now:', window.activeWarningDay);
+} else {
+  console.error('FAIL: switchWarningDay is NOT a function!');
+}
+
+if (typeof toggleFaq === 'function') {
+  console.log('Testing toggleFaq(now)...');
+  toggleFaq('now');
+  console.log('openFaqKey is now:', openFaqKey);
+} else {
+  console.error('FAIL: toggleFaq is NOT a function!');
+}
