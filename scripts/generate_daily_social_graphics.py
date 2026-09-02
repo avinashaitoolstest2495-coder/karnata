@@ -508,6 +508,39 @@ def render_petrol_card():
 # ══════════════════════════════════════════════════════════════════════════════
 def render_quiz_card():
     logo_b64 = get_file_base64(str(ROOT_DIR / "karnata-logo.png"))
+    
+    # Dynamically load today's daily quiz question
+    daily_quiz_path = ROOT_DIR / "data" / "daily_quiz.json"
+    q_text = "ಕರ್ನಾಟಕದ ಮೊದಲ ರಾಜವಂಶವಾದ 'ಕದಂಬ ರಾಜವಂಶ'ವನ್ನು ಸ್ಥಾಪಿಸಿದವರು ಯಾರು?"
+    opts = ["ಪುಲಕೇಶಿ II", "ಮಯೂರವರ್ಮ", "ಅಮೋಘವರ್ಷ ನೃಪತುಂಗ", "ವಿಷ್ಣುವರ್ಧನ"]
+    ans_idx = 1
+    
+    if daily_quiz_path.exists():
+        try:
+            with open(daily_quiz_path, 'r', encoding='utf-8') as qf:
+                qd = json.load(qf)
+                h = qd.get('today_highlight') or (qd.get('questions')[0] if qd.get('questions') else None)
+                if h:
+                    q_text = h.get('question', q_text)
+                    opts = h.get('options', opts)
+                    ans_idx = h.get('answer_index', 1)
+        except Exception:
+            pass
+
+    opt_letters = ["A", "B", "C", "D"]
+    opt_html = ""
+    for idx, opt in enumerate(opts[:4]):
+        is_ans = (idx == ans_idx)
+        border_col = "#10B981" if is_ans else "#475569"
+        bg_col = "rgba(16,185,129,0.15)" if is_ans else "#1E293B"
+        badge_bg = "#10B981" if is_ans else "#E11D48"
+        opt_html += f'''
+    <div style="background:{bg_col}; border:2px solid {border_col}; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900;">
+      <div style="width:44px; height:44px; border-radius:50%; background:{badge_bg}; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">{opt_letters[idx]}</div>
+      <div>{opt}</div>
+    </div>'''
+
+    today_str = datetime.now().strftime('%d %B %Y').replace('September', 'ಸೆಪ್ಟೆಂಬರ್').replace('October', 'ಅಕ್ಟೋಬರ್')
 
     html = f"""<!DOCTYPE html>
 <html lang="kn">
@@ -534,50 +567,27 @@ def render_quiz_card():
 <body>
   <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(225,29,72,0.4); padding-bottom:12px;">
     <img src="{logo_b64}" alt="Karnata Logo" style="height:64px; object-fit:contain;">
-    <div style="background:#E11D48; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">08:30 AM KNOWLEDGE CHALLENGE</div>
+    <div style="background:#E11D48; color:#FFF; font-size:18px; font-weight:900; padding:6px 20px; border-radius:20px; font-family:'Outfit';">DAILY KNOWLEDGE CHALLENGE</div>
   </div>
 
   <div>
-    <div style="font-size:24px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA DAILY QUIZ OF THE DAY</div>
-    <div style="font-size:42px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಇಂದಿನ ದಿನದ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ</div>
+    <div style="font-size:24px; font-weight:900; color:#FDE047; letter-spacing:2px; font-family:'Outfit';">KARNATAKA DAILY QUIZ • {today_str}</div>
+    <div style="font-size:40px; font-weight:900; color:#FFFFFF; margin-top:2px;">ಇಂದಿನ ದಿನದ ಕರ್ನಾಟಕ ರಸಪ್ರಶ್ನೆ ಸವಾಲು</div>
   </div>
 
   <div style="background:rgba(30,41,59,0.95); border:3px solid #E11D48; border-radius:22px; padding:24px 28px; box-shadow:0 12px 30px rgba(225,29,72,0.3);">
     <div style="font-size:22px; font-weight:900; color:#FDE047; margin-bottom:8px;">❓ ಇಂದಿನ ಸವಾಲಿನ ಪ್ರಶ್ನೆ:</div>
-    <div style="font-size:30px; font-weight:900; line-height:1.35; color:#FFFFFF;">
-      ಕರ್ನಾಟಕದ ಪ್ರಾಚೀನ ಲಕ್ಷಣ ಗ್ರಂಥ 'ಕವಿರಾಜಮಾರ್ಗ' ಯಾವ ರಾಜವಂಶದ ಕಾಲದಲ್ಲಿ ರಚನೆಯಾಯಿತು?
+    <div style="font-size:28px; font-weight:900; line-height:1.35; color:#FFFFFF;">
+      {q_text}
     </div>
   </div>
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-    <div style="background:#1E293B; border:2px solid #475569; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900;">
-      <div style="width:44px; height:44px; border-radius:50%; background:#E11D48; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">A</div>
-      <div>ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯ</div>
-    </div>
-
-    <div style="background:rgba(16,185,129,0.25); border:3px solid #10B981; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900; color:#10B981;">
-      <div style="width:44px; height:44px; border-radius:50%; background:#10B981; color:#FFF; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">B</div>
-      <div>ರಾಷ್ಟ್ರಕೂಟರು (ಸರಿ ಉತ್ತರ!)</div>
-    </div>
-
-    <div style="background:#1E293B; border:2px solid #475569; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900;">
-      <div style="width:44px; height:44px; border-radius:50%; background:#E11D48; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">C</div>
-      <div>ಬಾದಾಮಿ ಚಾಲುಕ್ಯರು</div>
-    </div>
-
-    <div style="background:#1E293B; border:2px solid #475569; border-radius:18px; padding:18px 24px; display:flex; align-items:center; gap:16px; font-size:24px; font-weight:900;">
-      <div style="width:44px; height:44px; border-radius:50%; background:#E11D48; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; font-family:'Outfit';">D</div>
-      <div>ಹೊಯ್ಸಳ ಸಾಮ್ರಾಜ್ಯ</div>
-    </div>
+    {opt_html}
   </div>
 
-  <div style="background:rgba(225,29,72,0.25); border:2.5px solid #E11D48; border-radius:18px; padding:16px 24px; text-align:center;">
-    <div style="font-size:24px; font-weight:900; color:#FDE047; margin-bottom:4px;">🏆 ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳು — ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ!</div>
-    <div style="font-size:28px; font-weight:900; color:#FFFFFF; font-family:'Outfit';">karnata.in/quiz</div>
-  </div>
-
-  <div style="border-top:1.5px solid rgba(255,255,255,0.2); padding-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:17px; font-weight:800; color:#CBD5E1;">
-    <div>🧠 ಕರ್ನಾಟಕದ ಸ್ಪರ್ಧಾತ್ಮಕ ಪರೀಕ್ಷಾ ಜ್ಞಾನ ಭಂಡಾರ</div>
+  <div style="background:#0F172A; border-top:2px solid rgba(225,29,72,0.4); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="font-size:20px; color:#94A3B8; font-weight:800;">👉 ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳ ರಸಪ್ರಶ್ನೆ ಆಡಲು ಭೇಟಿ ನೀಡಿ: karnata.in/quiz</div>
     <div style="font-size:24px; font-weight:900; color:#E11D48; font-family:'Outfit';">karnata.in</div>
   </div>
 </body>

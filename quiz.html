@@ -915,6 +915,15 @@
   <!-- ACTIVE PLAYING CARD -->
   <div class="quiz-card" id="quiz-play-card">
     
+        <!-- DAILY EDITION BANNER -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#FFFBEB; border:1.5px solid #FCD34D; border-radius:14px; padding:10px 16px; margin-bottom:14px;">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:16px;">📅</span>
+        <strong id="quiz-edition-badge" style="font-size:13.5px; font-weight:900; color:#92400E;">ಕರ್ನಾಟಕ ದೈನಂದಿನ ರಸಪ್ರಶ್ನೆ • ಸಂಚಿಕೆ #245 • 02 ಸೆಪ್ಟೆಂಬರ್ 2026</strong>
+      </div>
+      <span style="font-size:11.5px; font-weight:800; background:#DCFCE7; color:#15803D; padding:3px 10px; border-radius:20px;">⚡ ಇಂದಿನ ಹೊಸ 20 ಪ್ರಶ್ನೆಗಳು</span>
+    </div>
+
     <!-- TOP HUD -->
     <div class="quiz-hud">
       <div class="hud-pill">
@@ -1191,6 +1200,23 @@
   }
 
   async function fetchQuiz(category = 'all') {
+    // 1. Try Today's Dedicated Daily Quiz file first
+    try {
+      const dRes = await fetch('/data/daily_quiz.json?v=' + Date.now());
+      if (dRes.ok) {
+        const dData = await dRes.json();
+        if (dData && dData.questions && dData.questions.length > 0) {
+          if (category === 'all') {
+            return dData.questions;
+          } else {
+            const filtered = dData.questions.filter(q => q.category === category);
+            if (filtered.length >= 3) return filtered;
+          }
+        }
+      }
+    } catch (e) {}
+
+    // 2. Try Edge API
     try {
       const todayStr = new Date().toISOString().slice(0, 10);
       const res = await fetch(`/api/quiz?date=${todayStr}&category=${category}`);
@@ -1200,14 +1226,17 @@
           return data.questions;
         }
       }
-    } catch (e) {
-      console.warn('API fetch notice, using static bank:', e);
-    }
+    } catch (e) {}
 
+    // 3. Fallback to Master Karnataka Question Bank
     try {
-      const sRes = await fetch('/data/karnataka_quiz_bank.json');
+      const sRes = await fetch('/data/karnataka_quiz_bank.json?v=' + Date.now());
       if (sRes.ok) {
-        return await sRes.json();
+        const allQuestions = await sRes.json();
+        if (category === 'all') {
+          return allQuestions;
+        }
+        return allQuestions.filter(q => q.category === category);
       }
     } catch (e) {}
 

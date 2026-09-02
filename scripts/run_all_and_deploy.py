@@ -55,6 +55,7 @@ def main():
     run_step("4b. Sync Weather Page HTML & DOM", [sys.executable, "scripts/sync_weather_page.py"])
     run_step("4c. Sync Static DOM Telemetry", [sys.executable, "scripts/sync_all_static_dom.py"])
     run_step("5. APMC Market Prices Scraper", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()"])
+    run_step("5b. Generate Daily Karnataka Quiz (20 Fresh Questions)", [sys.executable, "scripts/generate_daily_quiz.py"])
     
     # 2. Scrape Multi-Source Kannada News, Schemes & Officers Directory
     run_step("6. Multi-Portal Kannada News Scraper (All 31 Districts)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from local_news_scraper import run; run()"])

@@ -51,6 +51,15 @@ if is_gold_update_time:
 else:
     print(f"[{now.strftime('%H:%M')}] Notice: Gold rates update only once daily at 10:00 AM, 10:30 AM, and 11:00 AM. Skipping gold scrape.")
 
+# 2c. Generate Daily Karnataka Quiz
+try:
+    print("Step 2c: Generating Daily Karnataka Quiz & Knowledge Challenge...")
+    quiz_gen_py = os.path.join(ROOT_DIR, 'scripts', 'generate_daily_quiz.py')
+    subprocess.run([sys.executable, quiz_gen_py], cwd=ROOT_DIR, check=True)
+    print("[OK] Daily Quiz generated.")
+except Exception as e:
+    print("[WARN] Daily Quiz notice:", e)
+
 # 3. Sync static telemetry metrics into DOMs
 try:
     print("Step 3: Syncing static DOM telemetry metrics (Index, Weather, Gold-Rate)...")
