@@ -864,7 +864,7 @@
     
     <!-- 1. KARNATAKA & ADMINISTRATION -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>👑 ಕರ್ನಾಟಕ &amp; ಆಡಳಿತ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -882,7 +882,7 @@
 
     <!-- 2. ELECTIONS & REPRESENTATIVES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>🗳️ ಚುನಾವಣೆ &amp; ಪ್ರತಿನಿಧಿಗಳು</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -895,7 +895,7 @@
 
     <!-- 3. AGRI, WATER & WEATHER -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>💧 ಕೃಷಿ, ನೀರು &amp; ಹವಾಮಾನ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -908,7 +908,7 @@
 
     <!-- 4. FINANCE & MARKET RATES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>💰 ಹಣಕಾಸು &amp; ಮಾರುಕಟ್ಟೆ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -923,7 +923,7 @@
 
     <!-- 5. AI & DIGITAL SERVICES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>🔮 AI &amp; ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1810,18 +1810,19 @@
   });
 
   // Robust Navigation Dropdown Handler (Mobile & Desktop)
-  document.querySelectorAll('.nav-tab-dropbtn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
+  window.toggleNavDropdown = function(btn, e) {
+    if (e) {
       e.preventDefault();
       e.stopPropagation();
-      const parent = this.closest('.nav-tab-dropdown');
-      const isOpen = parent.classList.contains('open');
-      document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
-      if (!isOpen) {
-        parent.classList.add('open');
-      }
-    });
-  });
+    }
+    const parent = btn.closest('.nav-tab-dropdown');
+    if (!parent) return;
+    const isOpen = parent.classList.contains('open');
+    document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+    if (!isOpen) {
+      parent.classList.add('open');
+    }
+  };
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.nav-tab-dropdown')) {

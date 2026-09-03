@@ -349,6 +349,125 @@ input { font-family: var(--font); outline: none; border: none; }
   display: none;
 }
 
+.mh-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFF1F2;
+  border: 1.5px solid #FECDD3;
+  border-radius: 30px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #E11D48;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.mh-menu-btn:hover {
+  background: #E11D48;
+  color: #FFF;
+  border-color: #E11D48;
+}
+@media (min-width: 1024px) {
+  .mh-menu-btn { display: none !important; }
+}
+
+/* ── Mobile Nav Drawer ── */
+.mnd-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999999;
+  justify-content: flex-end;
+}
+.mnd-overlay.show {
+  display: flex !important;
+  animation: fadeInDrop 0.2s ease;
+}
+.mnd-sheet {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 360px;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: -8px 0 32px rgba(15, 23, 42, 0.3);
+  display: flex;
+  flex-direction: column;
+  animation: mndSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes mndSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.mnd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.mnd-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: #0F172A;
+}
+.mnd-close-btn {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mnd-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.mnd-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mnd-g-title {
+  font-size: 12px;
+  font-weight: 900;
+  color: #E11D48;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #F1F5F9;
+  margin-bottom: 2px;
+}
+.mnd-g-links a {
+  display: block;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1E293B;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.mnd-g-links a:hover, .mnd-g-links a:active {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
 /* ══════════════════════════════════════════════════════
    CREATIVE NAV TABS BAR — Frosted Glass & Pill Design
 ══════════════════════════════════════════════════════ */
@@ -568,25 +687,19 @@ input { font-family: var(--font); outline: none; border: none; }
 
 /* ══════════════════════════════════════════════════════
    CREATIVE DAILY QUIZ CHALLENGE WIDGET ON HOMEPAGE
+   (High-Contrast, Crisp, Clean & 100% Mobile Friendly)
 ══════════════════════════════════════════════════════ */
 .home-quiz-challenge-card {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-  border: 2px solid #38BDF8;
-  border-radius: 20px;
-  padding: 22px;
-  margin-bottom: 24px;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.25), 0 0 20px rgba(56, 189, 248, 0.15);
-  color: #FFFFFF;
-  position: relative;
-  overflow: hidden;
-}
-.home-quiz-challenge-card::before {
-  content: '';
-  position: absolute;
-  top: -50%; right: -20%;
-  width: 320px; height: 320px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
-  pointer-events: none;
+  background: #FFFFFF !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-top: 4px solid #E11D48 !important;
+  border-radius: 20px !important;
+  padding: 22px !important;
+  margin-top: 14px !important;
+  margin-bottom: 28px !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07) !important;
+  color: #0F172A !important;
+  position: relative !important;
 }
 .hqc-badge-row {
   display: flex;
@@ -599,162 +712,176 @@ input { font-family: var(--font); outline: none; border: none; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(225, 29, 72, 0.2);
-  border: 1px solid #FB7185;
-  color: #FFE4E6;
-  font-size: 12px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 100px;
+  background: #E11D48 !important;
+  color: #FFFFFF !important;
+  font-size: 11.5px !important;
+  font-weight: 900 !important;
+  padding: 4px 12px !important;
+  border-radius: 100px !important;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.35);
 }
 .hqc-pulse {
-  width: 8px; height: 8px;
-  background: #F43F5E;
+  width: 7px; height: 7px;
+  background: #FFFFFF;
   border-radius: 50%;
-  box-shadow: 0 0 8px #F43F5E;
-  animation: hqcPulseAnim 1.4s infinite;
+  animation: hqcPulseAnim 1.3s infinite;
 }
 @keyframes hqcPulseAnim {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
 }
 .hqc-edition-pill {
-  background: rgba(56, 189, 248, 0.18);
-  border: 1px solid #38BDF8;
-  color: #BAE6FD;
-  font-size: 12px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 100px;
+  background: #EFF6FF !important;
+  border: 1px solid #BFDBFE !important;
+  color: #1D4ED8 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  padding: 4px 12px !important;
+  border-radius: 100px !important;
 }
 .hqc-stat-pill {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #CBD5E1;
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 100px;
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 100px !important;
 }
 .hqc-title {
-  font-size: 18px;
-  font-weight: 900;
-  color: #F8FAFC;
-  margin: 0 0 14px 0;
-  line-height: 1.4;
-  font-family: 'Anek Kannada', sans-serif;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  color: #0F172A !important;
+  margin: 0 0 14px 0 !important;
+  line-height: 1.4 !important;
+  font-family: 'Anek Kannada', sans-serif !important;
 }
 .hqc-question-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 14px;
+  background: #F8FAFC !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  padding: 16px !important;
+  margin-bottom: 14px !important;
 }
 .hqc-q-num {
-  font-size: 12px;
-  font-weight: 800;
-  color: #38BDF8;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  color: #E11D48 !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+  letter-spacing: 0.5px;
 }
 .hqc-q-text {
-  font-size: 16px;
-  font-weight: 800;
-  color: #FFFFFF;
-  line-height: 1.5;
+  font-size: 17px !important;
+  font-weight: 900 !important;
+  color: #0F172A !important;
+  line-height: 1.5 !important;
 }
 .hqc-options-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  margin-bottom: 14px;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 10px !important;
+  margin-bottom: 14px !important;
 }
 .hqc-opt-btn {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
-  border-radius: 12px;
-  padding: 12px 14px;
-  color: #F1F5F9;
-  font-size: 14px;
-  font-weight: 700;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: inherit;
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  color: #1E293B !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: inherit !important;
 }
 .hqc-opt-btn:hover:not([disabled]) {
-  background: rgba(56, 189, 248, 0.15);
-  border-color: #38BDF8;
+  background: #EFF6FF !important;
+  border-color: #2563EB !important;
+  color: #1D4ED8 !important;
   transform: translateY(-2px);
 }
 .hqc-opt-letter {
-  width: 24px; height: 24px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.12);
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: #F1F5F9 !important;
+  color: #334155 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
+  font-size: 12.5px !important;
+  font-weight: 900 !important;
   flex-shrink: 0;
+  border: 1px solid #E2E8F0;
 }
 .hqc-opt-btn.correct {
-  background: rgba(16, 185, 129, 0.25) !important;
+  background: #ECFDF5 !important;
   border-color: #10B981 !important;
-  color: #A7F3D0 !important;
+  color: #065F46 !important;
+}
+.hqc-opt-btn.correct .hqc-opt-letter {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #10B981 !important;
 }
 .hqc-opt-btn.wrong {
-  background: rgba(239, 68, 68, 0.25) !important;
+  background: #FEF2F2 !important;
   border-color: #EF4444 !important;
-  color: #FECACA !important;
+  color: #991B1B !important;
+}
+.hqc-opt-btn.wrong .hqc-opt-letter {
+  background: #EF4444 !important;
+  color: #FFFFFF !important;
+  border-color: #EF4444 !important;
 }
 .hqc-feedback-box {
-  background: rgba(15, 23, 42, 0.7);
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 16px;
+  background: #F8FAFC !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  padding: 16px !important;
+  margin-bottom: 16px !important;
   animation: fadeInDrop 0.2s ease;
 }
 .hqc-fb-header {
-  font-size: 15px;
-  font-weight: 900;
-  margin-bottom: 6px;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  margin-bottom: 8px !important;
 }
 .hqc-fb-exp {
-  font-size: 13px;
-  color: #E2E8F0;
-  line-height: 1.5;
+  font-size: 13.5px !important;
+  color: #334155 !important;
+  line-height: 1.6 !important;
 }
 .hqc-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 14px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  border-top: 1px solid #E2E8F0 !important;
+  padding-top: 14px !important;
 }
 .hqc-play-btn {
-  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
-  color: #FFFFFF;
-  font-size: 14.5px;
-  font-weight: 900;
-  padding: 12px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%) !important;
+  color: #FFFFFF !important;
+  font-size: 14.5px !important;
+  font-weight: 900 !important;
+  padding: 12px 22px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 .hqc-play-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.5);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.45) !important;
 }
 
 
@@ -1835,6 +1962,10 @@ input.clean-search-input:focus,
       <button class="mh-notif" onclick="showNotif()" title="ಅಧಿಸೂಚನೆ">
         🔔<div class="notif-dot" id="notif-dot"></div>
       </button>
+      <button class="mh-menu-btn" onclick="toggleMobileNavDrawer()" title="ಎಲ್ಲಾ ಮೆನು">
+        <span style="font-size:16px;">☰</span>
+        <span>ಮೆನು</span>
+      </button>
     </div>
   </div>
 </header>
@@ -1845,7 +1976,7 @@ input.clean-search-input:focus,
     
     <!-- 1. KARNATAKA & ADMINISTRATION -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>👑 ಕರ್ನಾಟಕ & ಆಡಳಿತ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1863,7 +1994,7 @@ input.clean-search-input:focus,
 
     <!-- 2. ELECTIONS & REPRESENTATIVES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>🗳️ ಚುನಾವಣೆ & ಪ್ರತಿನಿಧಿಗಳು</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1876,7 +2007,7 @@ input.clean-search-input:focus,
 
     <!-- 3. AGRI, WATER & WEATHER -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>💧 ಕೃಷಿ, ನೀರು & ಹವಾಮಾನ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1889,7 +2020,7 @@ input.clean-search-input:focus,
 
     <!-- 4. FINANCE & MARKET RATES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>💰 ಹಣಕಾಸು & ಮಾರುಕಟ್ಟೆ</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1904,7 +2035,7 @@ input.clean-search-input:focus,
 
     <!-- 5. AI & DIGITAL SERVICES (bhoomi & kaveri removed) -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>🔮 AI & ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1917,9 +2048,9 @@ input.clean-search-input:focus,
       </div>
     </div>
 
-        <!-- 6. SCHEME GUIDES -->
+    <!-- 6. SCHEME GUIDES -->
     <div class="nav-tab-dropdown">
-      <button class="nav-tab-dropbtn" onclick="this.parentElement.classList.toggle('open')">
+      <button class="nav-tab-dropbtn" onclick="toggleNavDropdown(this, event)">
         <span>📚 ಸರ್ಕಾರಿ ಮಾರ್ಗದರ್ಶಿಗಳು</span>
         <span style="font-size:8px; margin-left:2px;">▼</span>
       </button>
@@ -1931,7 +2062,7 @@ input.clean-search-input:focus,
         <a href="/article/panchatantra-village-budget-grants" class="nav-tab-dropitem">🌾 ಪಂಚತಂತ್ರ ಗ್ರಾಮ ಅನುದಾನ</a>
       </div>
     </div>
-</div>
+  </div>
 </nav>
 
 <!-- ══ ALERT STRIP ══════════════════════════════════════ -->
@@ -2019,51 +2150,6 @@ input.clean-search-input:focus,
       </div>
     </div>
 
-    <!-- ══ CREATIVE DAILY QUIZ CHALLENGE WIDGET ══ -->
-    <div class="sh" style="margin-top:24px; margin-bottom:12px;">
-      <div class="sh-title"><div class="sh-icon" style="background:#FFF1F2; color:#E11D48;">🧠</div>ದಿನದ ಕರ್ನಾಟಕ ಜ್ಞಾನ ಸವಾಲು</div>
-      <a href="quiz.html" class="sh-link" style="color:#E11D48; font-weight:800;">ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ →</a>
-    </div>
-
-    <div class="home-quiz-challenge-card" id="home-quiz-widget">
-      <div class="hqc-header">
-        <div class="hqc-badge-row">
-          <span class="hqc-live-pill"><span class="hqc-pulse"></span> ಇಂದಿನ ಲೈವ್ ಸಂಚಿಕೆ</span>
-          <span class="hqc-edition-pill" id="hqc-edition-badge">ಸಂಚಿಕೆ #246</span>
-          <span class="hqc-stat-pill">⏱️ 60 ಸೆಕೆಂಡ್ | 📜 ಉಚಿತ ಪ್ರಮಾಣಪತ್ರ | 🔄 ಶೂನ್ಯ ಪುನರಾವರ್ತನೆ</span>
-        </div>
-        <h3 class="hqc-title">ಇಂದಿನ ವಿಶೇಷ ಪ್ರಶ್ನೆ: ಸರಿಯಾದ ಉತ್ತರ ಆಯ್ಕೆಮಾಡಿ ನಿಮ್ಮ ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿಕೊಳ್ಳಿ!</h3>
-      </div>
-
-      <div class="hqc-body">
-        <div class="hqc-question-box">
-          <div class="hqc-q-num">💡 ಇಂದಿನ ಮುಖ್ಯಾಂಶ ಪ್ರಶ್ನೆ (QUESTION OF THE DAY)</div>
-          <div class="hqc-q-text" id="hqc-q-text">
-            ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯವನ್ನು 1916 ರಲ್ಲಿ ಸ್ಥಾಪಿಸಿದ ದೂರದೃಷ್ಟಿಯ ಮಹಾರಾಜರು ಯಾರು?
-          </div>
-        </div>
-
-        <div class="hqc-options-grid" id="hqc-options-box">
-          <!-- Options injected dynamically -->
-        </div>
-
-        <div class="hqc-feedback-box" id="hqc-feedback" style="display:none;">
-          <div class="hqc-fb-header" id="hqc-fb-status"></div>
-          <div class="hqc-fb-exp" id="hqc-fb-text"></div>
-        </div>
-      </div>
-
-      <div class="hqc-footer">
-        <div style="font-size:13px; color:#CBD5E1; line-height:1.4;">
-          ✨ ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳು! KPSC, KAS ಮತ್ತು ಸ್ಪರ್ಧಾತ್ಮಕ ಪರೀಕ್ಷೆಗಳ ತಯಾರಿಗೆ ಅತ್ಯುತ್ತಮ.
-        </div>
-        <a href="quiz.html" class="hqc-play-btn">
-          <span>🏆 ಎಲ್ಲಾ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ & ಇ-ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ</span>
-          <span>→</span>
-        </a>
-      </div>
-    </div>
-
     <!-- TOOLS GRID -->
     <div class="sh">
       <div class="sh-title"><div class="sh-icon">🛠️</div>ಉಪಯುಕ್ತ ಸೇವೆಗಳು</div>
@@ -2120,6 +2206,51 @@ input.clean-search-input:focus,
     </div>
     <div class="dam-chips" id="dam-chips">
       <div style="color:var(--text-muted);font-size:13px;padding:20px;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+    </div>
+
+    <!-- ══ CREATIVE DAILY QUIZ CHALLENGE WIDGET (AFTER DAM WATER LEVEL) ══ -->
+    <div class="sh" style="margin-top:28px; margin-bottom:12px;">
+      <div class="sh-title"><div class="sh-icon" style="background:#FFF1F2; color:#E11D48;">🧠</div>ದಿನದ ಕರ್ನಾಟಕ ಜ್ಞಾನ ಸವಾಲು</div>
+      <a href="quiz.html" class="sh-link" style="color:#E11D48; font-weight:800;">ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ →</a>
+    </div>
+
+    <div class="home-quiz-challenge-card" id="home-quiz-widget">
+      <div class="hqc-header">
+        <div class="hqc-badge-row">
+          <span class="hqc-live-pill"><span class="hqc-pulse"></span> ಇಂದಿನ ಲೈವ್ ಸಂಚಿಕೆ</span>
+          <span class="hqc-edition-pill" id="hqc-edition-badge">ಸಂಚಿಕೆ #246</span>
+          <span class="hqc-stat-pill">⏱️ 60 ಸೆಕೆಂಡ್ | 📜 ಉಚಿತ ಇ-ಪ್ರಮಾಣಪತ್ರ</span>
+        </div>
+        <h3 class="hqc-title">ಇಂದಿನ ವಿಶೇಷ ಪ್ರಶ್ನೆಗೆ ಉತ್ತರಿಸಿ! ನಿಮ್ಮ ಕರ್ನಾಟಕ ಸಾಮಾನ್ಯ ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿಕೊಳ್ಳಿ</h3>
+      </div>
+
+      <div class="hqc-body">
+        <div class="hqc-question-box">
+          <div class="hqc-q-num">💡 ಇಂದಿನ ಮುಖ್ಯಾಂಶ ಪ್ರಶ್ನೆ (QUESTION OF THE DAY)</div>
+          <div class="hqc-q-text" id="hqc-q-text">
+            ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯವನ್ನು 1916 ರಲ್ಲಿ ಸ್ಥಾಪಿಸಿದ ದೂರದೃಷ್ಟಿಯ ಮಹಾರಾಜರು ಯಾರು?
+          </div>
+        </div>
+
+        <div class="hqc-options-grid" id="hqc-options-box">
+          <!-- Injected dynamically with high contrast options -->
+        </div>
+
+        <div class="hqc-feedback-box" id="hqc-feedback" style="display:none;">
+          <div class="hqc-fb-header" id="hqc-fb-status"></div>
+          <div class="hqc-fb-exp" id="hqc-fb-text"></div>
+        </div>
+      </div>
+
+      <div class="hqc-footer">
+        <div style="font-size:13.5px; font-weight:700; color:#475569; line-height:1.4;">
+          ✨ ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳು! KPSC, KAS ಹಾಗೂ ಸ್ಪರ್ಧಾತ್ಮಕ ಪರೀಕ್ಷೆಗಳಿಗೆ ಅತ್ಯುತ್ತಮ.
+        </div>
+        <a href="quiz.html" class="hqc-play-btn">
+          <span>🏆 ಎಲ್ಲಾ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ & ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ</span>
+          <span>→</span>
+        </a>
+      </div>
     </div>
 
         <!-- ══ GOVERNMENT GUIDES & CITIZEN SCHEMES ══════════════════════ -->
@@ -2281,6 +2412,84 @@ input.clean-search-input:focus,
     <a href="/karnataka-local-news" class="mn-btn"><span class="mn-icon">📰</span><span class="mn-label">ಸುದ್ದಿ</span></a>
   </div>
 </nav>
+
+<!-- ══ MOBILE NAVIGATION DRAWER (Full Categories) ══ -->
+<div class="mnd-overlay" id="mobile-nav-drawer" onclick="if(event.target===this) toggleMobileNavDrawer()">
+  <div class="mnd-sheet">
+    <div class="mnd-header">
+      <div class="mnd-title">🌐 ಕರ್ನಾಟಕ ಸಮಗ್ರ ಸೇವೆಗಳು</div>
+      <button class="mnd-close-btn" onclick="toggleMobileNavDrawer()">✕</button>
+    </div>
+    <div class="mnd-body">
+      
+      <div class="mnd-group">
+        <div class="mnd-g-title">👑 ಕರ್ನಾಟಕ & ಆಡಳಿತ</div>
+        <div class="mnd-g-links">
+          <a href="karnataka.html">👑 ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ</a>
+          <a href="gba.html">🏙️ GBA ಬೆಂಗಳೂರು (5 ಪಾಲಿಕೆಗಳು & 369 ವಾರ್ಡ್)</a>
+          <a href="gram-panchayat.html">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ (5,958 GPs)</a>
+          <a href="nanna-sthala.html">📍 ನನ್ನ ಸ್ಥಳ (My Location)</a>
+          <a href="cabinet-ministers.html">👥 ಸಚಿವ ಸಂಪುಟ (33 ಸಚಿವರು)</a>
+          <a href="former-cms.html">📜 ಮಾಜಿ ಮುಖ್ಯಮಂತ್ರಿಗಳು</a>
+          <a href="local-government.html">🏛️ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು (810 ULB)</a>
+          <a href="officers.html">👥 ಅಧಿಕಾರಿಗಳ ಡೈರೆಕ್ಟರಿ</a>
+        </div>
+      </div>
+
+      <div class="mnd-group">
+        <div class="mnd-g-title">🗳️ ಚುನಾವಣೆ & ಪ್ರತಿನಿಧಿಗಳು</div>
+        <div class="mnd-g-links">
+          <a href="mla-mp.html">🏛️ ಶಾಸಕರು, MLC & ಸಂಸದರು (MLA/MP)</a>
+          <a href="karnataka-sir-voter-roll.html">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ</a>
+          <a href="karnataka-elections.html">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+        </div>
+      </div>
+
+      <div class="mnd-group">
+        <div class="mnd-g-title">💧 ಕೃಷಿ, ನೀರು & ಹವಾಮಾನ</div>
+        <div class="mnd-g-links">
+          <a href="dam-levels.html">💧 ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Live Dam Levels)</a>
+          <a href="weather.html">🌧️ ಹವಾಮಾನ & ಮಳೆ ವರದಿ</a>
+          <a href="apmc-prices.html">🌾 APMC ಮಾರುಕಟ್ಟೆ ದರಗಳು</a>
+        </div>
+      </div>
+
+      <div class="mnd-group">
+        <div class="mnd-g-title">💰 ಹಣಕಾಸು & ಮಾರುಕಟ್ಟೆ</div>
+        <div class="mnd-g-links">
+          <a href="petrol-price.html">⛽ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ</a>
+          <a href="gold-rate.html">🪙 ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ</a>
+          <a href="emi-calculator.html">🏦 EMI ಲೆಕ್ಕಾಚಾರ</a>
+          <a href="sip-calculator.html">📈 SIP ಲೆಕ್ಕಾಚಾರ</a>
+          <a href="salary-calculator.html">💰 ಸಂಬಳದ ಲೆಕ್ಕ</a>
+        </div>
+      </div>
+
+      <div class="mnd-group">
+        <div class="mnd-g-title">🔮 AI & ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</div>
+        <div class="mnd-g-links">
+          <a href="quiz.html" style="color:#E11D48; font-weight:800;">🧠 ದೈನಂದಿನ ರಸಪ್ರಶ್ನೆ (Daily Quiz)</a>
+          <a href="ask.html">🤖 askKARNATA AI ಸಹಾಯಕ</a>
+          <a href="ai-jyothishya.html">🔮 AI ಜ್ಯೋತಿಷ್ಯ & ಕುಂಡಲಿ</a>
+          <a href="kannada-typing.html">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಅನುವಾದ</a>
+          <a href="scheme-checker.html">📋 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</a>
+        </div>
+      </div>
+
+      <div class="mnd-group">
+        <div class="mnd-g-title">📚 ಸರ್ಕಾರಿ ಮಾರ್ಗದರ್ಶಿಗಳು</div>
+        <div class="mnd-g-links">
+          <a href="/article/gruha-lakshmi-status-check-2026">🌸 ಗೃಹಲಕ್ಷ್ಮಿ ₹2000 ಸ್ಟೇಟಸ್ ಚೆಕ್</a>
+          <a href="/article/karnataka-bhoomi-rtc-pahani-online">📜 ಭೂಮಿ RTC ಪಹಣಿ ಆನ್‌ಲೈನ್</a>
+          <a href="/article/karnataka-dam-water-storage-analysis">💧 ಜಲಾಶಯಗಳ ನೀರಿನ ಸಂಗ್ರಹ</a>
+          <a href="/article/karnataka-gba-5-corporations-guide">🏙️ GBA 5 ಮಹಾನಗರ ಪಾಲಿಕೆಗಳು</a>
+          <a href="/article/panchatantra-village-budget-grants">🌾 ಪಂಚತಂತ್ರ ಗ್ರಾಮ ಅನುದಾನ</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- ══ GEO BOTTOM SHEET ══════════════════════════════ -->
 <div class="geo-overlay" id="geo-overlay">
@@ -3436,22 +3645,30 @@ function restore(){
 }
 
 // ── ROBUST NAVIGATION DROPDOWN HANDLER (Mobile Modal & Desktop) ──
-document.querySelectorAll('.nav-tab-dropbtn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
+window.toggleNavDropdown = function(btn, e) {
+  if (e) {
     e.preventDefault();
     e.stopPropagation();
-    const parent = this.closest('.nav-tab-dropdown');
-    const isOpen = parent.classList.contains('open');
-    document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
-    if (!isOpen) {
-      parent.classList.add('open');
-    }
-  });
-});
+  }
+  const parent = btn.closest('.nav-tab-dropdown');
+  if (!parent) return;
+  const isOpen = parent.classList.contains('open');
+  document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+  if (!isOpen) {
+    parent.classList.add('open');
+  }
+};
+
+window.toggleMobileNavDrawer = function() {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  if (drawer) {
+    drawer.classList.toggle('show');
+  }
+};
 
 // Close nav dropdowns on outside click or when tapping close
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.nav-tab-dropdown')) {
+  if (!e.target.closest('.nav-tab-dropdown') && !e.target.closest('.mh-menu-btn')) {
     document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
   }
 });
