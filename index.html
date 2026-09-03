@@ -452,6 +452,8 @@ input { font-family: var(--font); outline: none; border: none; }
   gap: 5px;
   cursor: pointer;
   font-family: inherit;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-tab-dropdown:hover .nav-tab-dropbtn, .nav-tab-dropdown.open .nav-tab-dropbtn {
   background: #EFF6FF;
@@ -460,25 +462,12 @@ input { font-family: var(--font); outline: none; border: none; }
 }
 .nav-tab-menu {
   display: none;
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
   background: #FFFFFF;
-  min-width: 220px;
   border-radius: 16px;
-  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(226, 232, 240, 0.8);
   border: 1px solid #E2E8F0;
   padding: 8px;
   z-index: 99999;
-  backdrop-filter: blur(12px);
-}
-.nav-tab-dropdown:hover .nav-tab-menu, .nav-tab-dropdown.open .nav-tab-menu, .nav-tab-dropdown:focus-within .nav-tab-menu {
-  display: block;
-  animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@keyframes fadeInDrop {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 .nav-tab-dropitem {
   display: flex;
@@ -491,34 +480,283 @@ input { font-family: var(--font); outline: none; border: none; }
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 .nav-tab-dropitem:hover {
   background: #EFF6FF;
   color: #2563EB;
   padding-left: 18px;
 }
+
+/* ─── DESKTOP DROPDOWNS (>= 1024px) ─── */
 @media (min-width: 1024px) {
   .nav-tabs, .nav-tabs-inner {
     overflow: visible !important;
   }
+  .nav-tab-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 230px;
+  }
+  .nav-tab-dropdown:hover .nav-tab-menu,
+  .nav-tab-dropdown.open .nav-tab-menu,
+  .nav-tab-dropdown:focus-within .nav-tab-menu {
+    display: block;
+    animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes fadeInDrop {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
-.nav-tab-dropitem {
+
+/* ─── MOBILE MODAL DROPDOWNS (< 1024px) ─── */
+@media (max-width: 1023px) {
+  .nav-tab-dropdown.open .nav-tab-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 110px !important;
+    left: 14px !important;
+    right: 14px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    z-index: 9999999 !important;
+    background: #FFFFFF !important;
+    border: 2px solid #3B82F6 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 60px -10px rgba(15, 23, 42, 0.45), 0 0 0 100vmax rgba(15, 23, 42, 0.55) !important;
+    padding: 12px !important;
+    animation: mobileSheetPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  @keyframes mobileSheetPop {
+    from { opacity: 0; transform: translateY(-12px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .nav-tab-dropdown.open .nav-tab-menu::before {
+    content: "✕ ಮುಚ್ಚಿ (ಟ್ಯಾಪ್ ಮಾಡಿ)";
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 800;
+    color: #DC2626;
+    padding: 4px 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #E2E8F0;
+    margin-bottom: 6px;
+  }
+  .nav-tab-dropitem {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    white-space: normal !important;
+    border-bottom: 1px solid #F1F5F9;
+    line-height: 1.35;
+  }
+  .nav-tab-dropitem:last-child {
+    border-bottom: none;
+  }
+  .nav-tab-dropitem:active {
+    background: #EFF6FF;
+    color: #2563EB;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   CREATIVE DAILY QUIZ CHALLENGE WIDGET ON HOMEPAGE
+══════════════════════════════════════════════════════ */
+.home-quiz-challenge-card {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border: 2px solid #38BDF8;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.25), 0 0 20px rgba(56, 189, 248, 0.15);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+.home-quiz-challenge-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hqc-badge-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
-  padding: 8px 12px;
-  font-size: 12.5px;
+  margin-bottom: 12px;
+}
+.hqc-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(225, 29, 72, 0.2);
+  border: 1px solid #FB7185;
+  color: #FFE4E6;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.hqc-pulse {
+  width: 8px; height: 8px;
+  background: #F43F5E;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #F43F5E;
+  animation: hqcPulseAnim 1.4s infinite;
+}
+@keyframes hqcPulseAnim {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+.hqc-edition-pill {
+  background: rgba(56, 189, 248, 0.18);
+  border: 1px solid #38BDF8;
+  color: #BAE6FD;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.hqc-stat-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #CBD5E1;
+  font-size: 11.5px;
   font-weight: 700;
-  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.hqc-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: #F8FAFC;
+  margin: 0 0 14px 0;
+  line-height: 1.4;
+  font-family: 'Anek Kannada', sans-serif;
+}
+.hqc-question-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.hqc-q-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #38BDF8;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hqc-q-text {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.5;
+}
+.hqc-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.hqc-opt-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #F1F5F9;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: inherit;
+}
+.hqc-opt-btn:hover:not([disabled]) {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38BDF8;
+  transform: translateY(-2px);
+}
+.hqc-opt-letter {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.hqc-opt-btn.correct {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #10B981 !important;
+  color: #A7F3D0 !important;
+}
+.hqc-opt-btn.wrong {
+  background: rgba(239, 68, 68, 0.25) !important;
+  border-color: #EF4444 !important;
+  color: #FECACA !important;
+}
+.hqc-feedback-box {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  animation: fadeInDrop 0.2s ease;
+}
+.hqc-fb-header {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+.hqc-fb-exp {
+  font-size: 13px;
+  color: #E2E8F0;
+  line-height: 1.5;
+}
+.hqc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+}
+.hqc-play-btn {
+  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 900;
+  padding: 12px 20px;
+  border-radius: 12px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.15s ease;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.nav-tab-dropitem:hover {
-  background: var(--k-red-glow);
-  color: var(--k-red);
+.hqc-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.5);
 }
+
 
 /* ══════════════════════════════════════════════════════
    DYNAMIC LANDMARK HERO BANNER
@@ -1562,17 +1800,17 @@ input.clean-search-input:focus,
 <div class="ticker-wrap">
   <div class="ticker-label"><div class="pulse-ring"></div>🔴 ಲೈವ್‌</div>
   <div class="ticker-track" id="ticker-track">
-    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹14370/g</span></span>
+    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹13935/g</span></span>
     <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹110.89/L</span></span>
     <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">99%</span></span>
-    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">24.6°C ⛅</span></span>
+    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">19.9°C ⛅</span></span>
     <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹260.00/g</span></span>
     <span class="ticker-item">🌾 ಟೊಮ್ಯಾಟೋ <span class="t-val t-val-tomato">₹28/kg</span></span>
     <!-- Loop clone -->
-    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹14370/g</span></span>
+    <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹13935/g</span></span>
     <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹110.89/L</span></span>
     <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">99%</span></span>
-    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">24.6°C ⛅</span></span>
+    <span class="ticker-item">🌡️ ಹವಾಮಾನ <span class="t-val t-val-temp">19.9°C ⛅</span></span>
     <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹260.00/g</span></span>
     <span class="ticker-item">🌾 ಟೊಮ್ಯಾಟೋ <span class="t-val t-val-tomato">₹28/kg</span></span>
   </div>
@@ -1752,7 +1990,7 @@ input.clean-search-input:focus,
       <div class="live-card card-gold" onclick="location.href='gold-rate.html'">
         <div class="lc-top"><span class="lc-emoji">🥇</span></div>
         <div class="lc-label">22K ಚಿನ್ನ / ಗ್ರಾಂ</div>
-        <div class="lc-val red" id="lc-gold">₹14370</div>
+        <div class="lc-val red" id="lc-gold">₹13935</div>
         <div class="lc-change" id="lc-gold-ch">▲ +₹80 ಇಂದು</div>
       </div>
       <div class="live-card card-petrol" onclick="location.href='petrol-price.html'">
@@ -1764,7 +2002,7 @@ input.clean-search-input:focus,
       <div class="live-card card-weather" onclick="location.href='weather.html'">
         <div class="lc-top"><span class="lc-emoji" id="lc-w-icon">🌤️</span></div>
         <div class="lc-label" id="lc-w-city">ಹವಾಮಾನ</div>
-        <div class="lc-val forest" id="lc-temp">24.6°C</div>
+        <div class="lc-val forest" id="lc-temp">19.9°C</div>
         <div class="lc-change nc" id="lc-w-desc">ಭಾಗಶಃ ಮೋಡ</div>
       </div>
       <div class="live-card card-dam" onclick="location.href='dam-levels.html'">
@@ -1781,6 +2019,51 @@ input.clean-search-input:focus,
       </div>
     </div>
 
+    <!-- ══ CREATIVE DAILY QUIZ CHALLENGE WIDGET ══ -->
+    <div class="sh" style="margin-top:24px; margin-bottom:12px;">
+      <div class="sh-title"><div class="sh-icon" style="background:#FFF1F2; color:#E11D48;">🧠</div>ದಿನದ ಕರ್ನಾಟಕ ಜ್ಞಾನ ಸವಾಲು</div>
+      <a href="quiz.html" class="sh-link" style="color:#E11D48; font-weight:800;">ಪೂರ್ಣ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ →</a>
+    </div>
+
+    <div class="home-quiz-challenge-card" id="home-quiz-widget">
+      <div class="hqc-header">
+        <div class="hqc-badge-row">
+          <span class="hqc-live-pill"><span class="hqc-pulse"></span> ಇಂದಿನ ಲೈವ್ ಸಂಚಿಕೆ</span>
+          <span class="hqc-edition-pill" id="hqc-edition-badge">ಸಂಚಿಕೆ #246</span>
+          <span class="hqc-stat-pill">⏱️ 60 ಸೆಕೆಂಡ್ | 📜 ಉಚಿತ ಪ್ರಮಾಣಪತ್ರ | 🔄 ಶೂನ್ಯ ಪುನರಾವರ್ತನೆ</span>
+        </div>
+        <h3 class="hqc-title">ಇಂದಿನ ವಿಶೇಷ ಪ್ರಶ್ನೆ: ಸರಿಯಾದ ಉತ್ತರ ಆಯ್ಕೆಮಾಡಿ ನಿಮ್ಮ ಜ್ಞಾನ ಪರೀಕ್ಷಿಸಿಕೊಳ್ಳಿ!</h3>
+      </div>
+
+      <div class="hqc-body">
+        <div class="hqc-question-box">
+          <div class="hqc-q-num">💡 ಇಂದಿನ ಮುಖ್ಯಾಂಶ ಪ್ರಶ್ನೆ (QUESTION OF THE DAY)</div>
+          <div class="hqc-q-text" id="hqc-q-text">
+            ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯವನ್ನು 1916 ರಲ್ಲಿ ಸ್ಥಾಪಿಸಿದ ದೂರದೃಷ್ಟಿಯ ಮಹಾರಾಜರು ಯಾರು?
+          </div>
+        </div>
+
+        <div class="hqc-options-grid" id="hqc-options-box">
+          <!-- Options injected dynamically -->
+        </div>
+
+        <div class="hqc-feedback-box" id="hqc-feedback" style="display:none;">
+          <div class="hqc-fb-header" id="hqc-fb-status"></div>
+          <div class="hqc-fb-exp" id="hqc-fb-text"></div>
+        </div>
+      </div>
+
+      <div class="hqc-footer">
+        <div style="font-size:13px; color:#CBD5E1; line-height:1.4;">
+          ✨ ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳು! KPSC, KAS ಮತ್ತು ಸ್ಪರ್ಧಾತ್ಮಕ ಪರೀಕ್ಷೆಗಳ ತಯಾರಿಗೆ ಅತ್ಯುತ್ತಮ.
+        </div>
+        <a href="quiz.html" class="hqc-play-btn">
+          <span>🏆 ಎಲ್ಲಾ 20 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಡಿ & ಇ-ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
     <!-- TOOLS GRID -->
     <div class="sh">
       <div class="sh-title"><div class="sh-icon">🛠️</div>ಉಪಯುಕ್ತ ಸೇವೆಗಳು</div>
@@ -1788,6 +2071,10 @@ input.clean-search-input:focus,
     </div>
 
     <div class="tools-grid">
+      <a href="quiz.html" class="tool-tile" style="border:1.5px solid #FDA4AF; background:linear-gradient(135deg, #FFF1F2 0%, #FFF 100%);">
+        <div class="tt-icon-wrap" style="background:#E11D48; color:#fff;">🧠</div>
+        <span class="tt-label" style="font-weight:900; color:#BE123C;">ದೈನಂದಿನ ರಸಪ್ರಶ್ನೆ</span>
+      </a>
       <a href="emi-calculator.html"    class="tool-tile">
         <div class="tt-icon-wrap bg-t-1">🏦</div>
         <span class="tt-label">EMI ಲೆಕ್ಕಾಚಾರ</span>
@@ -3148,12 +3435,118 @@ function restore(){
   }
 }
 
-// Close nav dropdowns on outside click
+// ── ROBUST NAVIGATION DROPDOWN HANDLER (Mobile Modal & Desktop) ──
+document.querySelectorAll('.nav-tab-dropbtn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const parent = this.closest('.nav-tab-dropdown');
+    const isOpen = parent.classList.contains('open');
+    document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+    if (!isOpen) {
+      parent.classList.add('open');
+    }
+  });
+});
+
+// Close nav dropdowns on outside click or when tapping close
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.nav-tab-dropdown')) {
     document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
   }
 });
+
+// Desktop Hover Handler
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth >= 1024) {
+    document.querySelectorAll('.nav-tab-dropdown').forEach(function(dd) {
+      var closeTimer;
+      dd.addEventListener('mouseenter', function() {
+        clearTimeout(closeTimer);
+        document.querySelectorAll('.nav-tab-dropdown').forEach(function(other) {
+          if (other !== dd) other.classList.remove('open');
+        });
+        dd.classList.add('open');
+      });
+      dd.addEventListener('mouseleave', function() {
+        closeTimer = setTimeout(function() {
+          dd.classList.remove('open');
+        }, 250);
+      });
+    });
+  }
+});
+
+// ── HOME DAILY QUIZ DYNAMIC INTERACTIVE ENGINE ──
+let homeQuizData = null;
+async function initHomeQuiz() {
+  const qBox = document.getElementById('hqc-q-text');
+  const optBox = document.getElementById('hqc-options-box');
+  const fbBox = document.getElementById('hqc-feedback');
+  const edBadge = document.getElementById('hqc-edition-badge');
+  if (!qBox || !optBox) return;
+
+  try {
+    const res = await fetch('/data/daily_quiz.json?t=' + Date.now());
+    if (res.ok) {
+      homeQuizData = await res.json();
+    }
+  } catch(e) {
+    console.log('Using default quiz question');
+  }
+
+  const q = (homeQuizData && homeQuizData.questions && homeQuizData.questions.length > 0)
+    ? homeQuizData.questions[0]
+    : {
+        question: "ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯವನ್ನು 1916 ರಲ್ಲಿ ಸ್ಥಾಪಿಸಿದ ದೂರದೃಷ್ಟಿಯ ಮಹಾರಾಜರು ಯಾರು?",
+        options: ["ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್", "ಜಯಚಾಮರಾಜೇಂದ್ರ ಒಡೆಯರ್", "ಹತ್ತನೇ ಚಾಮರಾಜ ಒಡೆಯರ್", "ಮುಮ್ಮಡಿ ಕೃಷ್ಣರಾಜ"],
+        answer_index: 0,
+        explanation: "<strong>ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ (ದಿವಾನ ಸರ್ ಎಂ.ವಿ. ಅವರ ಸಹಯೋಗದಲ್ಲಿ)</strong> 1916 ರಲ್ಲಿ ಮೈಸೂರು ವಿಶ್ವವಿದ್ಯಾಲಯ ಸ್ಥಾಪಿಸಿದರು. ಇದು ದೇಶದ 6ನೇ ಪ್ರಾಚೀನ ವಿಶ್ವವಿದ್ಯಾಲಯ."
+      };
+
+  if (homeQuizData && homeQuizData.edition) {
+    edBadge.innerText = homeQuizData.edition;
+  }
+
+  qBox.innerText = q.question;
+  optBox.innerHTML = '';
+  fbBox.style.display = 'none';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'hqc-opt-btn';
+    btn.innerHTML = `<span class="hqc-opt-letter">${letters[idx]}</span><span>${opt}</span>`;
+    btn.onclick = () => handleHomeQuizAnswer(idx, q, btn, optBox, fbBox);
+    optBox.appendChild(btn);
+  });
+}
+
+function handleHomeQuizAnswer(selectedIndex, q, clickedBtn, optBox, fbBox) {
+  const buttons = optBox.querySelectorAll('.hqc-opt-btn');
+  buttons.forEach(b => b.disabled = true);
+
+  const isCorrect = (selectedIndex === q.answer_index);
+  if (isCorrect) {
+    clickedBtn.classList.add('correct');
+    fbBox.innerHTML = `
+      <div class="hqc-fb-header" style="color:#10B981;">🎉 ಸರಿಯಾದ ಉತ್ತರ! ಅತ್ಯುತ್ತಮ!</div>
+      <div class="hqc-fb-exp">${q.explanation}</div>
+    `;
+  } else {
+    clickedBtn.classList.add('wrong');
+    if (buttons[q.answer_index]) {
+      buttons[q.answer_index].classList.add('correct');
+    }
+    fbBox.innerHTML = `
+      <div class="hqc-fb-header" style="color:#F43F5E;">❌ ಇದು ತಪ್ಪು! ಸರಿ ಉತ್ತರ: ${q.options[q.answer_index]}</div>
+      <div class="hqc-fb-exp">${q.explanation}</div>
+    `;
+  }
+  fbBox.style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', initHomeQuiz);
 
 // ── Init ───────────────────────────────────────────────
 restore();
@@ -3179,25 +3572,6 @@ loadAll();
     }
   });
 </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.nav-tab-dropdown').forEach(function(dd) {
-        var closeTimer;
-        dd.addEventListener('mouseenter', function() {
-          clearTimeout(closeTimer);
-          document.querySelectorAll('.nav-tab-dropdown').forEach(function(other) {
-            if (other !== dd) other.classList.remove('open');
-          });
-          dd.classList.add('open');
-        });
-        dd.addEventListener('mouseleave', function() {
-          closeTimer = setTimeout(function() {
-            dd.classList.remove('open');
-          }, 300);
-        });
-      });
-    });
-  </script>
 
 <script src="/assets/js/karnata-push-client.js" defer></script>
 </body>

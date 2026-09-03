@@ -179,25 +179,12 @@
     }
     .nav-tab-menu {
       display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
       background: #FFFFFF;
-      min-width: 240px;
       border-radius: 16px;
-      box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.15);
+      box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(226, 232, 240, 0.8);
       border: 1px solid #E2E8F0;
       padding: 8px;
       z-index: 99999;
-      backdrop-filter: blur(12px);
-    }
-    .nav-tab-dropdown:hover .nav-tab-menu, .nav-tab-dropdown.open .nav-tab-menu, .nav-tab-dropdown:focus-within .nav-tab-menu {
-      display: block;
-      animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes fadeInDrop {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     .nav-tab-dropitem {
       display: flex;
@@ -220,6 +207,71 @@
     @media (min-width: 1024px) {
       .nav-tabs, .nav-tabs-inner {
         overflow: visible !important;
+      }
+      .nav-tab-menu {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 240px;
+      }
+      .nav-tab-dropdown:hover .nav-tab-menu,
+      .nav-tab-dropdown.open .nav-tab-menu,
+      .nav-tab-dropdown:focus-within .nav-tab-menu {
+        display: block;
+        animation: fadeInDrop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes fadeInDrop {
+        from { opacity: 0; transform: translateY(-6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+    @media (max-width: 1023px) {
+      .nav-tab-dropdown.open .nav-tab-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        position: fixed !important;
+        top: 110px !important;
+        left: 14px !important;
+        right: 14px !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: 440px !important;
+        margin: 0 auto !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        z-index: 9999999 !important;
+        background: #FFFFFF !important;
+        border: 2px solid #3B82F6 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 25px 60px -10px rgba(15, 23, 42, 0.45), 0 0 0 100vmax rgba(15, 23, 42, 0.55) !important;
+        padding: 12px !important;
+        animation: mobileSheetPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+      @keyframes mobileSheetPop {
+        from { opacity: 0; transform: translateY(-12px) scale(0.96); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .nav-tab-dropdown.open .nav-tab-menu::before {
+        content: "✕ ಮುಚ್ಚಿ (ಟ್ಯಾಪ್ ಮಾಡಿ)";
+        display: block;
+        text-align: right;
+        font-size: 12px;
+        font-weight: 800;
+        color: #DC2626;
+        padding: 4px 8px 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #E2E8F0;
+        margin-bottom: 6px;
+      }
+      .nav-tab-dropitem {
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        white-space: normal !important;
+        border-bottom: 1px solid #F1F5F9;
+        line-height: 1.35;
+      }
+      .nav-tab-dropitem:last-child {
+        border-bottom: none;
       }
     }
 
@@ -1003,8 +1055,8 @@
       <div class="ring-total">/ 20 ಅಂಕಗಳು</div>
     </div>
 
-    <div class="badge-title" id="final-badge-title">👑 ಕನ್ನಡ ನಾಡ ಪ್ರಭು</div>
-    <div class="badge-sub" id="final-badge-desc">ಅದ್ಭುತ ಸಾಧನೆ! ಕರ್ನಾಟಕದ ಇತಿಹಾಸ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಆಡಳಿತದ ಕುರಿತು ನಿಮಗೆ ಅತ್ಯುನ್ನತ ಪಾಂಡಿತ್ಯವಿದೆ.</div>
+    <div class="badge-title" id="final-badge-title">🏆 ಕರ್ನಾಟಕ ಜ್ಞಾನ ರತ್ನ</div>
+    <div class="badge-sub" id="final-badge-desc">ಅಸಾಧಾರಣ ಸಾಧನೆ! ಕರ್ನಾಟಕದ ಇತಿಹಾಸ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಆಡಳಿತದ ಕುರಿತು ನಿಮಗೆ ಅತ್ಯುನ್ನತ ಪಾಂಡಿತ್ಯವಿದೆ.</div>
 
     <!-- USER NAME INPUT FIELD FOR CERTIFICATE -->
     <div class="name-input-box">
@@ -1130,7 +1182,7 @@
   let used5050 = false;
   let usedSkip = false;
   let userAnswersLog = [];
-  let currentBadgeTitle = '👑 ಕನ್ನಡ ನಾಡ ಪ್ರಭು';
+  let currentBadgeTitle = '🏆 ಕರ್ನಾಟಕ ಜ್ಞಾನ ರತ್ನ';
 
   // Web Audio API Synthesizer
   let audioCtx = null;
@@ -1514,16 +1566,16 @@
     let badgeDesc = 'ಉತ್ತಮ ಪ್ರಯತ್ನ! ನಿತ್ಯವೂ ರಸಪ್ರಶ್ನೆ ಆಡುವುದರಿಂದ ನಿಮ್ಮ ಕರ್ನಾಟಕ ಸಾಮಾನ್ಯ ಜ್ಞಾನ ಮತ್ತಷ್ಟು ಹೆಚ್ಚುತ್ತದೆ.';
     
     if (correctCount >= 19) {
-      badgeTitle = '👑 ಕನ್ನಡ ನಾಡ ಪ್ರಭು';
+      badgeTitle = '🏆 ಕರ್ನಾಟಕ ಜ್ಞಾನ ರತ್ನ';
       badgeDesc = 'ಅಸಾಧಾರಣ ಸಾಧನೆ! ಕರ್ನಾಟಕದ ಇತಿಹಾಸ, ಭಾಷೆ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಆಡಳಿತದ ಕುರಿತು ನಿಮಗೆ ಅತ್ಯುನ್ನತ ಸಾರ್ವಭೌಮ ಪಾಂಡಿತ್ಯವಿದೆ.';
     } else if (correctCount >= 16) {
-      badgeTitle = '🏛️ ಕರ್ನಾಟಕ ಪ್ರಜ್ಞಾವಂತ';
+      badgeTitle = '🎯 ಕರ್ನಾಟಕ ಮಾಸ್ಟರ್ ಮೈಂಡ್';
       badgeDesc = 'ಪ್ರಶಂಸನೀಯ ಜ್ಞಾನ! ನಿಮ್ಮ ಕರ್ನಾಟಕ ಇತಿಹಾಸ ಮತ್ತು ಸಾಮಾನ್ಯ ಜ್ಞಾನದ ಮಟ್ಟ ಅತ್ಯಂತ ಪ್ರಬುದ್ಧವಾಗಿದೆ.';
     } else if (correctCount >= 12) {
-      badgeTitle = '🎯 ಕರ್ನಾಟಕ ಜ್ಞಾನ ಸಾಧಕ';
-      badgeDesc = 'ಉತ್ತಮ ಪ್ರದರ್ಶನ! ಇನ್ನಷ್ಟು ಪರಿಶ್ರಮದಿಂದ ನೀವು ಕನ್ನಡ ನಾಡ ಪ್ರಭು ಪಟ್ಟ ಮುಡಿಗೇರಿಸಿಕೊಳ್ಳಬಹುದು.';
+      badgeTitle = '💡 ಪ್ರಬುದ್ಧ ಜ್ಞಾನ ಸಾಧಕ';
+      badgeDesc = 'ಉತ್ತಮ ಪ್ರದರ್ಶನ! ಇನ್ನಷ್ಟು ಪರಿಶ್ರಮದಿಂದ ನೀವು ಕರ್ನಾಟಕ ಜ್ಞಾನ ರತ್ನ ಗೌರವ ಮುಡಿಗೇರಿಸಿಕೊಳ್ಳಬಹುದು.';
     } else if (correctCount >= 8) {
-      badgeTitle = '🌿 ಕನ್ನಡ ಕಲಿ ಸಾಧಕ';
+      badgeTitle = '🚀 ಜ್ಞಾನ ಚತುರ';
       badgeDesc = 'ಉತ್ತಮ ಆರಂಭ! ನಿತ್ಯವೂ ಅಭ್ಯಾಸ ಮಾಡುವ ಮೂಲಕ ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ವೃದ್ಧಿಸಿಕೊಳ್ಳಿ.';
     }
 
@@ -1755,6 +1807,20 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     loadQuizCategory('all', null);
+  });
+
+  // Robust Navigation Dropdown Handler (Mobile & Desktop)
+  document.querySelectorAll('.nav-tab-dropbtn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = this.closest('.nav-tab-dropdown');
+      const isOpen = parent.classList.contains('open');
+      document.querySelectorAll('.nav-tab-dropdown.open').forEach(d => d.classList.remove('open'));
+      if (!isOpen) {
+        parent.classList.add('open');
+      }
+    });
   });
 
   document.addEventListener('click', (e) => {
