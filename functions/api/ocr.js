@@ -62,33 +62,37 @@ If multiple officers are listed in a table, return an item for each officer row.
     // 1. Try Gemini Vision / AI Gateway if available
     const geminiKey = env?.GEMINI_API_KEY || env?.GOOGLE_API_KEY || '';
     if (geminiKey && imageBase64) {
-      try {
-        const cleanBase64 = imageBase64.replace(/^data:image\/[a-z]+;base64,/, '');
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`;
-        const res = await fetch(geminiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{
-              parts: [
-                { text: systemPrompt },
-                { inline_data: { mime_type: "image/jpeg", data: cleanBase64 } }
-              ]
-            }],
-            generationConfig: { response_mime_type: "application/json", temperature: 0.1 }
-          }),
-          signal: AbortSignal.timeout(15000)
-        });
+      const cleanBase64 = imageBase64.replace(/^data:image\/[a-z]+;base64,/, '');
+      const ocrModels = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.1-pro'];
+      for (const m of ocrModels) {
+        try {
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${geminiKey}`;
+          const res = await fetch(geminiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{
+                parts: [
+                  { text: systemPrompt },
+                  { inline_data: { mime_type: "image/jpeg", data: cleanBase64 } }
+                ]
+              }],
+              generationConfig: { response_mime_type: "application/json", temperature: 0.1 }
+            }),
+            signal: AbortSignal.timeout(15000)
+          });
 
-        if (res.ok) {
-          const gData = await res.json();
-          const txt = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (txt) {
-            extractedData = JSON.parse(txt);
+          if (res.ok) {
+            const gData = await res.json();
+            const txt = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (txt) {
+              extractedData = JSON.parse(txt);
+              break;
+            }
           }
+        } catch (e) {
+          console.warn(`[Gemini OCR ${m} Error]:`, e);
         }
-      } catch (e) {
-        console.error('Gemini Vision error:', e);
       }
     }
 

@@ -70,13 +70,13 @@ def get_gemini_api_key() -> str:
 
 
 def call_gemini_grounded(prompt: str, enable_search: bool = True, max_retries: int = 3) -> str | None:
-    """Calls Gemini 2.0 API with Google Search Grounding and JSON output mode."""
+    """Calls Gemini 3.8/3.7/3.6/3.1 API with Google Search Grounding and JSON output mode."""
     api_key = get_gemini_api_key()
     if not api_key:
         log.error("❌ GEMINI_API_KEY not found in environment, .env, or config.json")
         return None
 
-    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+    models = ["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.1-pro"]
     
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -89,24 +89,24 @@ def call_gemini_grounded(prompt: str, enable_search: bool = True, max_retries: i
     if enable_search:
         payload["tools"] = [{"googleSearch": {}}]
 
-    for attempt in range(1, max_retries + 1):
-        try:
-            resp = requests.post(gemini_url, json=payload, timeout=25)
-            if resp.status_code in (429, 400):
-                log.warning(f"⚠️ Gemini API returned {resp.status_code}. Switching immediately to fallback engine...")
-                return None
-            resp.raise_for_status()
-            data = resp.json()
-            candidates = data.get("candidates", [])
-            if candidates and "content" in candidates[0]:
-                parts = candidates[0]["content"].get("parts", [])
-                text_parts = [p.get("text", "") for p in parts if "text" in p]
-                return "\n".join(text_parts)
-        except Exception as e:
-            log.warning(f"⚠️ Gemini Grounded attempt {attempt}/{max_retries} failed: {e}")
-            if attempt == max_retries:
-                log.error(f"❌ Gemini Grounded failed after {max_retries} attempts: {e}")
-                return None
+    for model in models:
+        gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+        for attempt in range(1, 2):
+            try:
+                resp = requests.post(gemini_url, json=payload, timeout=25)
+                if resp.status_code in (429, 400, 403, 404):
+                    log.warning(f"⚠️ Gemini {model} returned {resp.status_code}. Trying next model...")
+                    break
+                resp.raise_for_status()
+                data = resp.json()
+                candidates = data.get("candidates", [])
+                if candidates and "content" in candidates[0]:
+                    parts = candidates[0]["content"].get("parts", [])
+                    text_parts = [p.get("text", "") for p in parts if "text" in p]
+                    return "\n".join(text_parts)
+            except Exception as e:
+                log.warning(f"⚠️ Gemini {model} attempt failed: {e}")
+                break
     return None
 
 

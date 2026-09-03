@@ -48,7 +48,12 @@ def save_history(hist):
 
 def generate_with_gemini_ai(api_key, today_str):
     print(f"  [GEMINI AI] Contacting Google Gemini AI to generate 20 fresh questions for {today_str}...")
-    models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
+    models = [
+        "gemini-3.8-flash",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3.1-pro"
+    ]
     
     prompt = f"""You are Karnataka's chief KPSC/KAS exam quizmaster. Generate today's ({today_str}) official set of exactly 20 high-quality, authentic Karnataka General Knowledge questions in pure Kannada.
 
