@@ -30,8 +30,17 @@ import argparse
 import requests
 from pathlib import Path
 from datetime import datetime
+try:
+    from scripts.generate_daily_social_graphics import DOYOUKNOW_FACTS
+except Exception:
+    try:
+        from generate_daily_social_graphics import DOYOUKNOW_FACTS
+    except Exception:
+        DOYOUKNOW_FACTS = []
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 # ══════════════════════════════════════════════════════════════════════════════
 # VERIFIED META CREDENTIALS
@@ -49,51 +58,87 @@ def get_gold_caption():
     try:
         p = ROOT_DIR / "data" / "gold_rates.json"
         d = json.load(open(p, 'r', encoding='utf-8'))
-        bg = d.get("baseGold", {})
-        yg = d.get("yesterdayGold", {})
-        bs = d.get("baseSilver", {})
-        ys = d.get("yesterdaySilver", {})
+        bg = d.get("baseGold") or d.get("base") or {}
+        yg = d.get("yesterdayGold") or {}
+        bs = d.get("baseSilver") or d.get("silver") or {}
+        ys = d.get("yesterdaySilver") or {}
         
-        g24 = int(bg.get("24", 15207))
-        g22 = int(bg.get("22", 13935))
-        g18 = int(bg.get("18", 11401))
-        diff24 = g24 - int(yg.get("24", 15605))
-        diff22 = g22 - int(yg.get("22", 14300))
+        g24 = int(bg.get("24") or bg.get(24) or bg.get("24k_per_gram") or bg.get("rate_24k") or 14335)
+        g22 = int(bg.get("22") or bg.get(22) or bg.get("22k_per_gram") or bg.get("rate_22k") or 13135)
+        g18 = int(bg.get("18") or bg.get(18) or bg.get("18k_per_gram") or bg.get("rate_18k") or 10750)
+
+        y24 = int(yg.get("24") or yg.get(24) or yg.get("24k_per_gram") or 14280)
+        y22 = int(yg.get("22") or yg.get(22) or yg.get("22k_per_gram") or 13085)
+        
+        diff24 = g24 - y24
+        diff22 = g22 - y22
         pawan = g22 * 8
         diff_pawan = diff22 * 8
-        silver_kg = int(float(bs.get("999", 260.0)) * 1000)
+        s999 = float(bs.get("999") or bs.get(999) or bs.get("silver_per_gram") or bs.get("silver_999") or 260.0)
+        silver_kg = int(s999 * 1000)
 
-        d24_txt = f"+₹{diff24} 🔼" if diff24 > 0 else (f"-₹{abs(diff24)} 🔽" if diff24 < 0 else "0.00 —")
-        d22_txt = f"+₹{diff22} 🔼" if diff22 > 0 else (f"-₹{abs(diff22)} 🔽" if diff22 < 0 else "0.00 —")
-        dp_txt = f"+₹{diff_pawan} 🔼" if diff_pawan > 0 else (f"-₹{abs(diff_pawan)} 🔽" if diff_pawan < 0 else "0.00 —")
+        d24_txt = f"+₹{diff24:,} 🔼" if diff24 > 0 else (f"-₹{abs(diff24):,} 🔽" if diff24 < 0 else "0.00 —")
+        d22_txt = f"+₹{diff22:,} 🔼" if diff22 > 0 else (f"-₹{abs(diff22):,} 🔽" if diff22 < 0 else "0.00 —")
+        dp_txt = f"+₹{diff_pawan:,} 🔼" if diff_pawan > 0 else (f"-₹{abs(diff_pawan):,} 🔽" if diff_pawan < 0 else "0.00 —")
+
+        months = {1: "ಜನವರಿ", 2: "ಫೆಬ್ರವರಿ", 3: "ಮಾರ್ಚ್", 4: "ಏಪ್ರಿಲ್", 5: "ಮೇ", 6: "ಜೂನ್", 7: "ಜುಲೈ", 8: "ಆಗಸ್ಟ್", 9: "ಸೆಪ್ಟೆಂಬರ್", 10: "ಅಕ್ಟೋಬರ್", 11: "ನವೆಂಬರ್", 12: "ಡಿಸೆಂಬರ್"}
+        now = datetime.now()
+        date_kn = f"{now.day} {months.get(now.month, '')} {now.year}"
 
         return f"""🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಅಧಿಕೃತ ಲೈವ್ ದರ (Gold & Silver Rate Today)
+📅 ದಿನಾಂಕ: {date_kn} ({now.strftime('%d-%m-%Y')})
 
 ✨ 24K ಅಪರಂಜಿ: ₹{g24:,} / ಗ್ರಾಂ ({d24_txt}) | 10g: ₹{g24*10:,}
 ✨ 22K ಆಭರಣ ಚಿನ್ನ: ₹{g22:,} / ಗ್ರಾಂ ({d22_txt}) | 10g: ₹{g22*10:,}
 👑 1 ಪವನ್ (8 ಗ್ರಾಂ 22K): ₹{pawan:,} ({dp_txt})
 💎 18K ಚಿನ್ನ: ₹{g18:,} / ಗ್ರಾಂ
-🥈 ಶುದ್ಧ ಬೆಳ್ಳಿ: ₹{silver_kg:,} / ಕೆಜಿ (ಗ್ರಾಂಗೆ ₹{float(bs.get('999', 260.0)):.2f})
+🥈 ಶುದ್ಧ ಬೆಳ್ಳಿ: ₹{silver_kg:,} / ಕೆಜಿ (ಗ್ರಾಂಗೆ ₹{s999:.2f})
 
-📊 ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ಇಂದಿನ ಲೈವ್ ದರ & ಒಡವೆ ಲೆಕ್ಕಾಚಾರ: karnata.in/gold-rate
+📊 ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ಇಂದಿನ ಲೈವ್ ದರ & ಒಡವೆ ಲೆಕ್ಕಾಚಾರ:
+🌐 https://karnata.in/gold-rate
+📲 ಬಯೋದಲ್ಲಿ ಲಿಂಕ್ ಇದೆ (Link in Bio: @karnata.in)
 
 #GoldRateToday #GoldPriceKarnataka #BangaloreGold #SilverRate #Karnataka #KarnataIn #GoldBullion"""
     except Exception:
-        return "🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಲೈವ್ ದರ: karnata.in/gold-rate"
+        return "🪙 ಕರ್ನಾಟಕ ಇಂದಿನ ಚಿನ್ನ & ಬೆಳ್ಳಿ ಲೈವ್ ದರ: https://karnata.in/gold-rate"
 
 def get_petrol_caption():
-    return """⛽ ಕರ್ನಾಟಕ ಇಂದಿನ ಪೆಟ್ರೋಲ್, ಡೀಸೆಲ್ & CNG ದರ (Live Fuel Prices Today)
+    try:
+        p_data = get_live_petrol()
+        dist_dict = p_data.get("districts", {})
+        
+        cities = [
+            ("bengaluru_urban", "🏙️ ಬೆಂಗಳೂರು"),
+            ("mysuru", "🏛️ ಮೈಸೂರು"),
+            ("dakshina_kannada", "🏖️ ಮಂಗಳೂರು"),
+            ("belagavi", "🏰 ಬೆಳಗಾವಿ"),
+            ("dharwad", "🌆 ಧಾರವಾಡ/ಹುಬ್ಬಳ್ಳಿ"),
+            ("kalaburagi", "🌾 ಕಲಬುರಗಿ"),
+            ("shivamogga", "🌲 ಶಿವಮೊಗ್ಗ")
+        ]
+        
+        lines = []
+        for k, name in cities:
+            p_val = 110.89
+            d_val = 98.80
+            if k in dist_dict:
+                taluks = dist_dict[k].get("taluks", {})
+                if taluks:
+                    t = list(taluks.values())[0]
+                    p_val = t.get("petrol", p_val)
+                    d_val = t.get("diesel", d_val)
+            lines.append(f"{name}: ಪೆಟ್ರೋಲ್ ₹{p_val:.2f} | ಡೀಸೆಲ್ ₹{d_val:.2f}")
+            
+        rate_str = "\n".join(lines)
+        return f"""⛽ ಕರ್ನಾಟಕ ಇಂದಿನ ಪೆಟ್ರೋಲ್, ಡೀಸೆಲ್ & ಇಂಧನ ದರ (Live Fuel Prices Today)
 
-🏙️ ಬೆಂಗಳೂರು: ಪೆಟ್ರೋಲ್ ₹110.89 | ಡೀಸೆಲ್ ₹98.80 (0.00 —)
-🏛️ ಮೈಸೂರು: ಪೆಟ್ರೋಲ್ ₹110.42 | ಡೀಸೆಲ್ ₹98.37 (0.00 —)
-🏖️ ಮಂಗಳೂರು: ಪೆಟ್ರೋಲ್ ₹109.95 | ಡೀಸೆಲ್ ₹97.90 (0.00 —)
-🏰 ಬೆಳಗಾವಿ: ಪೆಟ್ರೋಲ್ ₹111.45 | ಡೀಸೆಲ್ ₹99.30 (0.00 —)
-🌆 ಧಾರವಾಡ/ಹುಬ್ಬಳ್ಳಿ: ಪೆಟ್ರೋಲ್ ₹110.65 | ಡೀಸೆಲ್ ₹98.55 (0.00 —)
-🌾 ಕಲಬುರಗಿ: ಪೆಟ್ರೋಲ್ ₹111.80 | ಡೀಸೆಲ್ ₹99.65 (0.00 —)
+{rate_str}
 
 📊 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆ & 240+ ತಾಲೂಕುಗಳ ದರ: karnata.in/petrol-price
 
 #PetrolPrice #DieselPrice #FuelPrice #BangalorePetrol #Karnataka #KarnataIn"""
+    except Exception:
+        return """⛽ ಕರ್ನಾಟಕ ಇಂದಿನ ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ಲೈವ್ ದರ: karnata.in/petrol-price"""
 
 SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA"
 
@@ -105,6 +150,17 @@ def decrypt_payload(encoded_str):
     for i, b in enumerate(raw_bytes):
         decrypted.append(b ^ key_bytes[i % len(key_bytes)])
     return json.loads(decrypted.decode('utf-8'))
+
+def get_live_petrol():
+    p = ROOT_DIR / "data" / "petrol_rates.json"
+    if p.exists():
+        try:
+            d = json.load(open(p, 'r', encoding='utf-8'))
+            if "payload" in d:
+                return decrypt_payload(d["payload"])
+        except Exception:
+            pass
+    return {}
 
 def get_live_weather():
     p = ROOT_DIR / "data" / "weather.json"
@@ -121,105 +177,251 @@ def get_weather_summary_caption():
     try:
         w = get_live_weather()
         ext = w.get("state_extremes", {})
-        r = ext.get("highest_past_24h_rain", {"station": "Belle", "name_kn": "ಉಡುಪಿ", "rain_mm": 99.0})
-        t_max = ext.get("max_temp_district", {"station": "Gulbarga", "name_kn": "ಕಲಬುರಗಿ", "temp_c": 42.3})
-        t_min = ext.get("min_temp_district", {"station": "Karadi", "name_kn": "ಬಾಗಲಕೋಟೆ", "temp_c": 12.3})
+        r = ext.get("highest_past_24h_rain", {"station": "Devachalla", "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ", "rain_mm": 53.0})
+        t_max = ext.get("max_temp_district", {"station": "Gulbarga", "name_kn": "ಕಲಬುರಗಿ", "temp_c": 38.8})
+        t_min = ext.get("min_temp_district", {"station": "Chadchan", "name_kn": "ವಿಜಯಪುರ", "temp_c": 13.4})
 
-        return f"""🌦️ ಕರ್ನಾಟಕ ನಿನ್ನೆಯ ಹವಾಮಾನ ದಾಖಲೆಗಳು & ಸಾರಾಂಶ (24H Weather Extremes)
+        top_r = ext.get("top_rainfall_locations") or ext.get("heavy_rain_locations") or []
+        top_r_str = []
+        for loc in top_r[:5]:
+            dist = loc.get("district_kn") or loc.get("name_kn") or loc.get("district_en")
+            if dist == "Bengaluru South": dist = "ಬೆಂ.ದಕ್ಷಿಣ"
+            st = loc.get("gp_name") or loc.get("station") or dist
+            mm = loc.get("rainfall_mm") or loc.get("rain_mm") or 0
+            top_r_str.append(f"{st} ({dist} - {mm}mm)")
 
-🌧️ ರಾಜ್ಯದ ಗರಿಷ್ಠ ಮಳೆ: {r.get('rain_mm')} mm — {r.get('station')} ({r.get('name_kn')})
-☀️ ಅತಿ ಗರಿಷ್ಠ ಬಿಸಿಲು: {t_max.get('temp_c')} °C — {t_max.get('station')} ({t_max.get('name_kn')})
-❄️ ಅತಿ ಕನಿಷ್ಠ ಚಳಿ: {t_min.get('temp_c')} °C — {t_min.get('station')} ({t_min.get('name_kn')})
+        top_hot = ext.get("top_max_temp_locations") or []
+        top_hot_str = []
+        for loc in top_hot[:3]:
+            dist = loc.get("district_kn") or loc.get("name_kn") or loc.get("district_en")
+            st = loc.get("hobli") or loc.get("station") or dist
+            tc = loc.get("temp_c") or 0
+            top_hot_str.append(f"{dist} {st} ({tc}°C)")
 
-🏆 ಟಾಪ್ ಮಳೆ ಸ್ಥಳಗಳು: ಉಡುಪಿ ಬೆಳ್ಳೆ (99mm), ಐರೋಡಿ (52.5mm), ಯಾದಗಿರಿ ಬರದೇವನಾಳ (35.5mm), ಶಿವಮೊಗ್ಗ ಕೂಡಲಿಗೆರೆ (31mm).
+        top_cold = ext.get("top_min_temp_locations") or []
+        top_cold_str = []
+        for loc in top_cold[:3]:
+            dist = loc.get("district_kn") or loc.get("name_kn") or loc.get("district_en")
+            st = loc.get("hobli") or loc.get("station") or dist
+            tc = loc.get("temp_c") or 0
+            top_cold_str.append(f"{dist} {st} ({tc}°C)")
 
-📡 ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳ ಲೈವ್ ರೇಡಾರ್: karnata.in/weather
+        r_txt = "\n".join([f"  • {s}" for s in top_r_str]) if top_r_str else f"  • {r.get('name_kn')} ({r.get('rain_mm')}mm)"
+        hot_txt = ", ".join(top_hot_str) if top_hot_str else f"{t_max.get('name_kn')} ({t_max.get('temp_c')}°C)"
+        cold_txt = ", ".join(top_cold_str) if top_cold_str else f"{t_min.get('name_kn')} ({t_min.get('temp_c')}°C)"
 
-#KarnatakaWeather #MonsoonUpdate #KarnatakaRain #IMD #KarnataIn #BangaloreWeather"""
+        return f"""🌦️ ಕರ್ನಾಟಕ ನಿನ್ನೆಯ ಹವಾಮಾನ ದಾಖಲೆಗಳು & ಅಧಿಕೃತ ಸಾರಾಂಶ (24H Weather Extremes)
+
+🌧️ ರಾಜ್ಯದ ಗರಿಷ್ಠ ಮಳೆ: {r.get('rain_mm')} mm — {r.get('station')} ({r.get('name_kn')} ಜಿಲ್ಲೆ)
+☀️ ಅತಿ ಗರಿಷ್ಠ ಬಿಸಿಲು: {t_max.get('temp_c')} °C — {t_max.get('station')} ({t_max.get('name_kn')} ಜಿಲ್ಲೆ)
+❄️ ಅತಿ ಕನಿಷ್ಠ ಚಳಿ: {t_min.get('temp_c')} °C — {t_min.get('station')} ({t_min.get('name_kn')} ಜಿಲ್ಲೆ)
+
+🌧️ ಅತಿ ಹೆಚ್ಚು ಮಳೆ ಬಂದ ಪ್ರದೇಶಗಳು (Top 5):
+{r_txt}
+
+🔥 ಗರಿಷ್ಠ ತಾಪಮಾನ (Top 3): {hot_txt}
+❄️ ಕನಿಷ್ಠ ತಾಪಮಾನ (Top 3): {cold_txt}
+
+📡 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ರೇಡಾರ್ & ಹವಾಮಾನ ವಿವರ: karnata.in/weather
+
+#KarnatakaWeather #MonsoonUpdate #KarnatakaRain #IMD #KarnataIn #BangaloreWeather #WeatherReport"""
     except Exception:
         return "🌦️ ಕರ್ನಾಟಕ ನಿನ್ನೆಯ ಹವಾಮಾನ ಸಾರಾಂಶ: karnata.in/weather"
 
+def get_live_dams():
+    p = ROOT_DIR / "data" / "dam_levels.json"
+    if p.exists():
+        try:
+            d = json.load(open(p, 'r', encoding='utf-8'))
+            if "payload" in d:
+                return decrypt_payload(d["payload"]).get("dams", {})
+        except Exception:
+            pass
+    return {}
+
 def get_dam_caption():
-    return """💧 ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (Karnataka Dam Water Report)
+    try:
+        dams = get_live_dams()
+        krs = dams.get("krs", {})
+        alm = dams.get("almatti", {})
+        tb = dams.get("tungabhadra", {})
+        bhd = dams.get("bhadra", {})
+        
+        krs_st = krs.get("storage_tmc", 27.5)
+        krs_in = int(krs.get("inflow_cusecs", 4934))
+        alm_st = alm.get("storage_tmc", 122.6)
+        alm_in = int(alm.get("inflow_cusecs", 522))
+        tb_st = tb.get("storage_tmc", 85.8)
+        bhd_st = bhd.get("storage_tmc", 65.0)
 
-🌊 KRS (ಮಂಡ್ಯ): 124.80 ಅಡಿ ಗರಿಷ್ಠ ಮಟ್ಟದಲ್ಲಿ ಸಮೃದ್ಧ ಜಲಸಂಗ್ರಹ!
-🌊 ಆಲಮಟ್ಟಿ (ವಿಜಯಪುರ): 123 TMC ಪೂರ್ಣ ಸಾಮರ್ಥ್ಯಕ್ಕೆ ಸನಿಹ!
-🌊 ತುಂಗಭದ್ರಾ (ಹೊಸಪೇಟೆ): ಭರ್ತಿ ಹಂತದಲ್ಲಿ ಟಿಬಿ ಡ್ಯಾಂ!
-🌊 ಭದ್ರಾ, ಕಬಿನಿ, ಲಿಂಗನಮಕ್ಕಿ, ಘಟಪ್ರಭಾ, ಸೂಪಾ ಜಲಾಶಯಗಳ ಲೈವ್ ಒಳಹರಿವು ಮುಂದುವರಿಕೆ.
+        months = {1: "ಜನವರಿ", 2: "ಫೆಬ್ರವರಿ", 3: "ಮಾರ್ಚ್", 4: "ಏಪ್ರಿಲ್", 5: "ಮೇ", 6: "ಜೂನ್", 7: "ಜುಲೈ", 8: "ಆಗಸ್ಟ್", 9: "ಸೆಪ್ಟೆಂಬರ್", 10: "ಅಕ್ಟೋಬರ್", 11: "ನವೆಂಬರ್", 12: "ಡಿಸೆಂಬರ್"}
+        now = datetime.now()
+        date_kn = f"{now.day} {months.get(now.month, '')} {now.year}"
+        
+        return f"""💧 ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (Karnataka Dam Water Live Report)
+📅 ದಿನಾಂಕ: {date_kn} ({now.strftime('%d-%m-%Y')})
 
-📊 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಒಳಹರಿವು & ಹೊರಹರಿವು: karnata.in/dam-levels
+🌊 KRS (ಮಂಡ್ಯ): ಸಂಗ್ರಹ {krs_st:.2f} TMC (ಒಳಹರಿವು: {krs_in:,} ಕ್ಯೂಸೆಕ್)
+🌊 ಆಲಮಟ್ಟಿ (ವಿಜಯಪುರ): ಸಂಗ್ರಹ {alm_st:.2f} TMC / 123 TMC (ಭರ್ತಿ ಸ್ಥಿತಿ)
+🌊 ತುಂಗಭದ್ರಾ (ಹೊಸಪೇಟೆ): ಸಂಗ್ರಹ {tb_st:.2f} TMC / 105 TMC
+🌊 ಭದ್ರಾ (ಚಿಕ್ಕಮಗಳೂರು): ಸಂಗ್ರಹ {bhd_st:.2f} TMC
+🌊 ಕಬಿನಿ, ಲಿಂಗನಮಕ್ಕಿ, ಘಟಪ್ರಭಾ, ಸೂಪಾ ಜಲಾಶಯಗಳ ಲೈವ್ ಒಳಹರಿವು ವಿವರ.
+
+📊 ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಮಟ್ಟ & ಒಳಹರಿವು:
+🌐 https://karnata.in/dam-levels
+📲 ಬಯೋದಲ್ಲಿ ಲಿಂಕ್ ಇದೆ (Link in Bio: @karnata.in)
 
 #KRSDam #Almatti #Tungabhadra #KarnatakaDams #WaterLevel #KarnataIn #KarnatakaMonsoon"""
+    except Exception:
+        return "💧 ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ: https://karnata.in/dam-levels"
 
 def get_apmc_caption():
-    return """🌾 ಕರ್ನಾಟಕ APMC ಪ್ರಮುಖ ಬೆಳೆಗಳ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (KSAMB Mandi Rates)
+    try:
+        p = ROOT_DIR / "data" / "apmc_prices.json"
+        d = json.load(open(p, 'r', encoding='utf-8'))
+        items = d.get("items", [])
+        
+        highlights = []
+        for item in items:
+            c = (item.get("crop", "") + " " + item.get("cropKn", "")).lower()
+            m = item.get("market", "")
+            if "arecanut" in c and any(k in m for k in ["SHIVAMOGGA", "BANTWALA", "SAGAR"]):
+                highlights.append(f"🌱 ಅಡಿಕೆ: ₹{item['min']:,} - ₹{item['max']:,} / ಕ್ವಿಂ ({item['market'].title()})")
+                break
+        for item in items:
+            c = (item.get("crop", "") + " " + item.get("cropKn", "")).lower()
+            if "chilli" in c and "BYADGI" in item.get("market", ""):
+                highlights.append(f"🌶️ ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ: ₹{item['min']:,} - ₹{item['max']:,} / ಕ್ವಿಂ")
+                break
+        for item in items:
+            c = (item.get("crop", "") + " " + item.get("cropKn", "")).lower()
+            if "copra" in c and any(k in item.get("market", "") for k in ["ARSIKERE", "TIPTUR"]):
+                highlights.append(f"🥥 ಕೊಬ್ಬರಿ: ₹{item['min']:,} - ₹{item['max']:,} / ಕ್ವಿಂ ({item['market'].title()})")
+                break
+        for item in items:
+            c = (item.get("crop", "") + " " + item.get("cropKn", "")).lower()
+            if "paddy" in c and any(k in item.get("market", "") for k in ["GANGAVATI", "DAVANAGERE"]):
+                highlights.append(f"🌾 ಭತ್ತ: ₹{item['min']:,} - ₹{item['max']:,} / ಕ್ವಿಂ ({item['market'].title()})")
+                break
+        for item in items:
+            c = (item.get("crop", "") + " " + item.get("cropKn", "")).lower()
+            if "onion" in c and any(k in item.get("market", "") for k in ["BAGALKOT", "HUBBALLI", "BANGARPET"]):
+                highlights.append(f"🧅 ಈರುಳ್ಳಿ: ₹{item['min']:,} - ₹{item['max']:,} / ಕ್ವಿಂ ({item['market'].title()})")
+                break
+                
+        h_str = "\n".join(highlights) if highlights else "🌱 ಅಡಿಕೆ, ಕೊಬ್ಬರಿ, ಹತ್ತಿ, ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ, ಭತ್ತ, ಈರುಳ್ಳಿ ಧಾರಣೆ ಲಭ್ಯ."
+        return f"""🌾 ಕರ್ನಾಟಕ APMC ಪ್ರಮುಖ ಬೆಳೆಗಳ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (KSAMB Mandi Rates Today)
 
-🌱 ಅಡಿಕೆ (ರಾಶಿ): ₹48,500 - ₹54,200 / ಕ್ವಿಂಟಾಲ್ (ಶಿವಮೊಗ್ಗ)
-🌱 ಅಡಿಕೆ (ಚಾಲಿ): ₹36,000 - ₹41,000 / ಕ್ವಿಂಟಾಲ್ (ಮಂಗಳೂರು)
-🥥 ಕೊಬ್ಬರಿ: ₹12,800 - ₹14,500 / ಕ್ವಿಂಟಾಲ್ (ತಿಪಟೂರು)
-🌶️ ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ: ₹38,000 - ₹52,000 / ಕ್ವಿಂಟಾಲ್
-🌾 ಭತ್ತ (ಸೋನಾ ಮಸೂರಿ): ₹2,600 - ₹2,950 / ಕ್ವಿಂಟಾಲ್
-🧅 ಈರುಳ್ಳಿ: ₹1,800 - ₹3,200 / ಕ್ವಿಂಟಾಲ್
+{h_str}
 
-📊 ರಾಜ್ಯದ 174 APMC ಲೈವ್ ದರ: karnata.in/apmc-prices
+📊 ರಾಜ್ಯದ 174 APMC ಅಧಿಕೃತ ಲೈವ್ ದರ: karnata.in/apmc-prices
 
 #APMCRates #MandiRates #KarnatakaAgriculture #Farmers #KarnataIn #ArecanutPrice"""
+    except Exception:
+        return "🌾 ಕರ್ನಾಟಕ APMC ಪ್ರಮುಖ ಬೆಳೆಗಳ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ: karnata.in/apmc-prices"
 
 def get_quiz_caption(slot_num):
     p = ROOT_DIR / "data" / "daily_quiz.json"
     q_txt = "ಕರ್ನಾಟಕದ ಜ್ಞಾನ ಸವಾಲು"
+    options = []
     if p.exists():
         try:
             d = json.load(open(p, 'r', encoding='utf-8'))
             qs = d.get("questions", [])
-            if slot_num - 1 < len(qs):
-                q_txt = qs[slot_num - 1].get("question", q_txt)
+            day_of_year = datetime.now().timetuple().tm_yday
+            if qs:
+                q_idx = (day_of_year * 3 + slot_num - 1) % len(qs)
+                q_item = qs[q_idx]
+                q_txt = q_item.get("question", q_txt)
+                options = q_item.get("options", [])
         except Exception:
             pass
+
+    opt_letters = ["A", "B", "C", "D"]
+    opt_lines = "\n".join([f"{opt_letters[i]}) {opt}" for i, opt in enumerate(options[:4])]) if options else ""
 
     return f"""🧠 ಕರ್ನಾಟಕ ದೈನಂದಿನ ಜ್ಞಾನ ಸವಾಲು #{slot_num} (Daily Karnataka Quiz Challenge)
 
 ❓ ಪ್ರಶ್ನೆ: {q_txt}
 
+{opt_lines}
+
 👇 ನಿಮ್ಮ ಸರಿ ಉತ್ತರ ಯಾವುದು? ತಕ್ಷಣ ಕಾಮೆಂಟ್ ಮಾಡಿ! (A, B, C ಅಥವಾ D)
-🏆 ಸರಿಯಾದ ಉತ್ತರ ನೀಡಿದವರ ಕಾಮೆಂಟ್‌ಗೆ ಲೈಕ್ ನೀಡಲಾಗುವುದು!
+🏆 ಸರಿಯಾದ ಉತ್ತರ ನೀಡಿದವರ ಕಾಮೆಂಟ್‌ಗೆ ಲೈಕ್ & ಶೌಟೌಟ್ ನೀಡಲಾಗುವುದು!
 
-🏅 ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳ ರಸಪ್ರಶ್ನೆ ಆಡಿ ಪ್ರಮಾಣಪತ್ರ ಗೆಲ್ಲಿರಿ: karnata.in/quiz
+🏅 ನಿತ್ಯವೂ 20 ಹೊಸ ಪ್ರಶ್ನೆಗಳ ರಸಪ್ರಶ್ನೆ ಆಡಿ ಆನ್‌ಲೈನ್ ಪ್ರಮಾಣಪತ್ರ ಪಡೆಯಿರಿ:
+🌐 https://karnata.in/quiz
+📲 ಬಯೋದಲ್ಲಿ ಲಿಂಕ್ ಇದೆ (Link in Bio: @karnata.in)
 
-#KarnatakaQuiz #KPSC #KAS #KannadaGK #QuizTime #Karnataka #KarnataIn"""
+#KarnatakaQuiz #KPSC #KAS #KannadaGK #QuizTime #Karnataka #KarnataIn #GeneralKnowledge #KarnatakaGovt"""
 
 def get_doyouknow_caption(slot_num):
-    facts = [
-        "ಏಷ್ಯಾದಲ್ಲೇ ಮೊದಲ ಬಾರಿಗೆ ಬೀದಿ ದೀಪ ಪಡೆದ ನಗರ ನಮ್ಮ ಬೆಂಗಳೂರು! (1905 ರಲ್ಲಿ ಶಿವನಸಮುದ್ರ ವಿದ್ಯುತ್ ಮೂಲಕ).",
-        "ವಿಶ್ವದಲ್ಲೇ 2ನೇ ಅತಿ ದೊಡ್ಡ ಕಂಬಗಳಿಲ್ಲದ ಗುಮ್ಮಟ ವಿಜಯಪುರದ ಗೋಲ್ ಗುಂಬಜ್! (11 ಬಾರಿ ಪ್ರತಿಧ್ವನಿಸುವ ಪಿಸುಗುಟ್ಟುವ ಮೊಗಸಾಲೆ).",
-        "ಭಾರತದಲ್ಲೇ ಪ್ರಪ್ರಥಮ ಬಾರಿಗೆ ಕಾಫಿ ಬೆಳೆದಿದ್ದು ಚಿಕ್ಕಮಗಳೂರಿನ ಬಾಬಾಬುಡನ್‌ಗಿರಿಯಲ್ಲಿ! (ಬಾಬಾ ಬುಡನ್ ತಂದ 7 ಪವಿತ್ರ ಬೀಜಗಳು)."
-    ]
-    f_txt = facts[(slot_num - 1) % len(facts)]
-    return f"""💡 ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? (Do You Know Karnataka Facts #{slot_num})
+    day_of_year = datetime.now().timetuple().tm_yday
+    if DOYOUKNOW_FACTS:
+        fact_idx = (day_of_year * 3 + slot_num - 1) % len(DOYOUKNOW_FACTS)
+        f_txt = DOYOUKNOW_FACTS[fact_idx].get("fact", "")
+    else:
+        f_txt = "ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಪರಂಪರೆ."
+
+    return f"""💡 ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? #{slot_num} (Did You Know Karnataka)
 
 ✨ {f_txt}
 
-📖 ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಇತಿಹಾಸ, ಪರಂಪರೆ & ಪ್ರಚಲಿತ ವಿದ್ಯಮಾನಗಳ ಮಾಹಿತಿ: karnata.in
+📖 ಕರ್ನಾಟಕದ ಸಮಗ್ರ ಇತಿಹಾಸ, ಪರಂಪರೆ & ಪ್ರಚಲಿತ ವಿದ್ಯಮಾನಗಳ ಮಾಹಿತಿ:
+🌐 https://karnata.in
+📲 Instagram ಬಯೋದಲ್ಲಿ (Bio Link) ನೇರ ಲಿಂಕ್ ಲಭ್ಯವಿದೆ: @karnata.in
 
-#DoYouKnow #KarnatakaHeritage #KarnatakaHistory #Bangalore #IncredibleKarnataka #KarnataIn"""
+#DoYouKnow #KarnatakaHeritage #KarnatakaHistory #Bangalore #IncredibleKarnataka #KarnataIn #KannadaGK #KarnatakaFacts"""
 
 def get_nowcast_caption(slot_num):
     time_labels = {1: "10:45 AM", 2: "01:45 PM", 3: "04:45 PM", 4: "07:15 PM"}
     t_str = time_labels.get(slot_num, "ಲೈವ್")
+    try:
+        w = get_live_weather()
+        ext = w.get("state_extremes", {})
+        r = ext.get("highest_past_24h_rain", {})
+        t_max = ext.get("max_temp_district", {})
+        t_min = ext.get("min_temp_district", {})
+        r_txt = f"🌧️ 24H ಗರಿಷ್ಠ ಮಳೆ: {r.get('rain_mm', 53.0)} mm — {r.get('station', 'Devachalla')} ({r.get('name_kn', 'ದಕ್ಷಿಣ ಕನ್ನಡ')})"
+        t_txt = f"☀️ ಗರಿಷ್ಠ: {t_max.get('temp_c', 38.8)}°C ({t_max.get('name_kn', 'ಕಲಬುರಗಿ')}) | ❄️ ಕನಿಷ್ಠ: {t_min.get('temp_c', 13.4)}°C ({t_min.get('name_kn', 'ವಿಜಯಪುರ')})"
+    except Exception:
+        r_txt = "🌧️ 24H ಅಧಿಕೃತ ಲೈವ್ ಮಳೆ ದಾಖಲೆ"
+        t_txt = "☀️ ಅಧಿಕೃತ ತಾಪಮಾನ ವಿವರ"
+
     return f"""⛈️ ಕರ್ನಾಟಕ IMD 3-ಗಂಟೆಗಳ ಲೈವ್ ನೌಕಾಸ್ಟ್ ಮಳೆ ಎಚ್ಚರಿಕೆ ({t_str} Radar Alert)
 
-🔴 ರೆಡ್ ಅಲರ್ಟ್: ಅತಿ ಭಾರೀ ಮಳೆ & ಬಿರುಗಾಳಿ ಸಾಧ್ಯತೆ
-🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್: ಧಾರಾಕಾರ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ
-🟡 ಹಳದಿ ನಿಗಾ: ಸಾಧಾರಣ ಮಳೆ & ಮೋಡಕವಿದ ವಾತಾವರಣ
-🟢 ಗ್ರೀನ್ ಜೋನ್: ಸಾಮಾನ್ಯ ಹವೆ
+{r_txt}
+{t_txt}
 
-📡 ನಿಮ್ಮ ತಾಲೂಕಿನ ಲೈವ್ ರೇಡಾರ್ & ಮಳೆ ಮುನ್ಸೂಚನೆ: karnata.in/weather
+🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Watch): 15 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ!
+🟢 ಗ್ರೀನ್ ಜೋನ್ (Green Zone): 16 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ತಿಳಿ ಹವೆ & ಸಾಧಾರಣ ವಾತಾವರಣ.
+🔴 ರೆಡ್ / 🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್: ಸದ್ಯ ಯಾವುದೇ ಜಿಲ್ಲೆಗಳಿಗಿಲ್ಲ.
 
-#KarnatakaWeather #MonsoonAlert #IMDNowcast #KarnatakaRain #WeatherUpdate #KarnataIn"""
+📡 ನಿಮ್ಮ ಗ್ರಾಮ ಪಂಚಾಯಿತಿ & ತಾಲೂಕಿನ ಲೈವ್ ರೇಡಾರ್: karnata.in/weather
+
+#KarnatakaWeather #MonsoonAlert #IMDNowcast #KarnatakaRain #WeatherUpdate #KarnataIn #BangaloreRains"""
 
 # ══════════════════════════════════════════════════════════════════════════════
 # COMPLETE 16 SCHEDULED SLOTS (IST)
 # ══════════════════════════════════════════════════════════════════════════════
+SLOT_ALIASES = {
+    "weather": "weather_summary",
+    "quiz": "quiz_1",
+    "useful_info": "doyouknow_1",
+    "doyouknow": "doyouknow_1",
+    "nowcast": "weather_nowcast_1",
+    "fuel": "petrol_diesel",
+    "gold": "gold_rate",
+    "dams": "dam_levels",
+    "apmc": "apmc_rates"
+}
+
+def resolve_slot_key(slot_key):
+    if not slot_key:
+        return slot_key
+    key = slot_key.strip().lower()
+    return SLOT_ALIASES.get(key, key)
+
 SCHEDULED_CARDS = {
     "quote": {
         "time": "07:15 AM",
@@ -327,7 +529,27 @@ SCHEDULED_CARDS = {
 
 # ══════════════════════════════════════════════════════════════════════════════
 # META GRAPH API PUBLISHING (SINGLE PHOTO & CAROUSEL)
-# ══════════════════════════════════════════════════════════════════════════════
+def get_local_path(img_url):
+    fn = img_url.split("/")[-1].split("?")[0]
+    p = ROOT_DIR / "assets" / "social-cards" / fn
+    return p if p.exists() else None
+
+def sync_card_to_edge(img_url):
+    """Uploads local image to Cloudflare Edge KV endpoint so Instagram gets fresh image without cache."""
+    try:
+        fn = img_url.split("/")[-1].split("?")[0]
+        local_p = get_local_path(img_url)
+        if local_p:
+            edge_upload_url = f"https://karnata.in/api/social-card?name={fn}&key=karnata_social_2026"
+            with open(local_p, "rb") as f:
+                r = requests.post(edge_upload_url, data=f.read(), timeout=15)
+                if r.ok:
+                    d = r.json()
+                    return d.get("url", f"https://karnata.in/api/social-card?name={fn}&v={int(time.time())}")
+    except Exception as e:
+        print("  [Notice] Edge sync note:", e)
+    return img_url + f"?v={int(time.time())}"
+
 def post_to_facebook(image_urls, caption):
     if not FB_PAGE_ID or not META_ACCESS_TOKEN:
         print("⚠️ Facebook credentials missing.")
@@ -336,7 +558,13 @@ def post_to_facebook(image_urls, caption):
     try:
         if len(image_urls) == 1:
             url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/photos"
-            resp = requests.post(url, data={"url": image_urls[0], "caption": caption, "access_token": META_ACCESS_TOKEN})
+            local_p = get_local_path(image_urls[0])
+            if local_p:
+                print(f"  📤 Direct uploading local file {local_p.name} to Facebook...")
+                with open(local_p, "rb") as img_file:
+                    resp = requests.post(url, files={"source": img_file}, data={"caption": caption, "access_token": META_ACCESS_TOKEN})
+            else:
+                resp = requests.post(url, data={"url": image_urls[0], "caption": caption, "access_token": META_ACCESS_TOKEN})
             d = resp.json()
             if "id" in d:
                 print(f"✅ Facebook Post Success! ID: {d['id']}")
@@ -349,7 +577,12 @@ def post_to_facebook(image_urls, caption):
             attached_media = []
             for img_url in image_urls:
                 up_url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/photos"
-                up_resp = requests.post(up_url, data={"url": img_url, "published": "false", "access_token": META_ACCESS_TOKEN})
+                local_p = get_local_path(img_url)
+                if local_p:
+                    with open(local_p, "rb") as img_file:
+                        up_resp = requests.post(up_url, files={"source": img_file}, data={"published": "false", "access_token": META_ACCESS_TOKEN})
+                else:
+                    up_resp = requests.post(up_url, data={"url": img_url, "published": "false", "access_token": META_ACCESS_TOKEN})
                 up_d = up_resp.json()
                 if "id" in up_d:
                     attached_media.append({"media_fbid": up_d["id"]})
@@ -377,9 +610,10 @@ def post_to_instagram(image_urls, caption):
         return False
 
     try:
-        if len(image_urls) == 1:
+        fresh_urls = [sync_card_to_edge(u) for u in image_urls]
+        if len(fresh_urls) == 1:
             c_url = f"https://graph.facebook.com/v21.0/{IG_USER_ID}/media"
-            c_resp = requests.post(c_url, data={"image_url": image_urls[0], "caption": caption, "access_token": META_ACCESS_TOKEN})
+            c_resp = requests.post(c_url, data={"image_url": fresh_urls[0], "caption": caption, "access_token": META_ACCESS_TOKEN})
             c_d = c_resp.json()
             if "id" not in c_d:
                 print(f"❌ Instagram Container Failed: {c_d}")
@@ -401,7 +635,7 @@ def post_to_instagram(image_urls, caption):
         else:
             # Instagram Carousel
             child_ids = []
-            for img_url in image_urls:
+            for img_url in fresh_urls:
                 ch_url = f"https://graph.facebook.com/v21.0/{IG_USER_ID}/media"
                 ch_resp = requests.post(ch_url, data={"image_url": img_url, "is_carousel_item": "true", "access_token": META_ACCESS_TOKEN})
                 ch_d = ch_resp.json()
@@ -444,11 +678,78 @@ def post_to_instagram(image_urls, caption):
         print("❌ Instagram Exception:", e)
         return False
 
+def ensure_graphic_rendered(slot_key):
+    try:
+        from scripts.generate_daily_social_graphics import (
+            render_quote_card, render_petrol_card, render_weather_morning_summary,
+            render_apmc_carousel, render_dam_carousel_and_spotlights,
+            render_gold_card, render_nowcast_map_card, render_quiz_interactive_card,
+            render_doyouknow_card
+        )
+        fn_map = {
+            "quote": render_quote_card,
+            "petrol_diesel": render_petrol_card,
+            "weather_summary": render_weather_morning_summary,
+            "apmc_rates": render_apmc_carousel,
+            "dam_levels": render_dam_carousel_and_spotlights,
+            "gold_rate": render_gold_card,
+            "weather_nowcast_1": render_nowcast_map_card,
+            "quiz_1": lambda: render_quiz_interactive_card(1),
+            "doyouknow_1": lambda: render_doyouknow_card(1),
+            "weather_nowcast_2": render_nowcast_map_card,
+            "quiz_2": lambda: render_quiz_interactive_card(2),
+            "doyouknow_2": lambda: render_doyouknow_card(2),
+            "weather_nowcast_3": render_nowcast_map_card,
+            "quiz_3": lambda: render_quiz_interactive_card(3),
+            "weather_nowcast_4": render_nowcast_map_card,
+            "doyouknow_3": lambda: render_doyouknow_card(3),
+        }
+        if slot_key in fn_map:
+            print(f"  🎨 Freshly rendering graphic for {slot_key}...")
+            fn_map[slot_key]()
+    except Exception as e:
+        print("  [Notice] Render notice:", e)
+
+def ensure_graphic_freshness(slot_key):
+    try:
+        from scripts.generate_daily_social_graphics import (
+            render_quote_card, render_petrol_card, render_weather_morning_summary,
+            render_apmc_carousel, render_dam_carousel_and_spotlights,
+            render_gold_card, render_nowcast_map_card, render_quiz_interactive_card,
+            render_doyouknow_card
+        )
+        fn_map = {
+            "quote": render_quote_card,
+            "petrol_diesel": render_petrol_card,
+            "weather_summary": render_weather_morning_summary,
+            "apmc_rates": render_apmc_carousel,
+            "dam_levels": render_dam_carousel_and_spotlights,
+            "gold_rate": render_gold_card,
+            "weather_nowcast_1": render_nowcast_map_card,
+            "quiz_1": lambda: render_quiz_interactive_card(1),
+            "doyouknow_1": lambda: render_doyouknow_card(1),
+            "weather_nowcast_2": render_nowcast_map_card,
+            "quiz_2": lambda: render_quiz_interactive_card(2),
+            "doyouknow_2": lambda: render_doyouknow_card(2),
+            "weather_nowcast_3": render_nowcast_map_card,
+            "quiz_3": lambda: render_quiz_interactive_card(3),
+            "weather_nowcast_4": render_nowcast_map_card,
+            "doyouknow_3": lambda: render_doyouknow_card(3),
+        }
+        if slot_key in fn_map:
+            print(f"  🎨 Generating / refreshing fresh graphic for {slot_key}...")
+            fn_map[slot_key]()
+    except Exception as e:
+        print(f"  [Notice] Graphic generator notice for {slot_key}:", e)
+
 def publish_card(slot_key, dry_run=False):
+    slot_key = resolve_slot_key(slot_key)
+    ensure_graphic_freshness(slot_key)
     if slot_key not in SCHEDULED_CARDS:
         print(f"❌ Unknown slot: {slot_key}. Valid: {list(SCHEDULED_CARDS.keys())}")
         return False
 
+    ensure_graphic_rendered(slot_key)
     card = SCHEDULED_CARDS[slot_key]
     caption = card["caption_fn"]()
     imgs = card["image_urls"]

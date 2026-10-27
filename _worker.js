@@ -22021,6 +22021,10 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
 
 
 
+    if (url.pathname === '/api/social-card' || url.pathname === '/api/social-card/') {
+      return handleSocialCardBinaryRequest(request, env);
+    }
+
     if (url.pathname === '/api/social/cards' || url.pathname === '/api/social/cards/') {
 
 
@@ -22930,6 +22934,91 @@ async function handleQuizRequest(request, env) {
 
 
 
+
+async function handleSocialCardBinaryRequest(request, env) {
+  const url = new URL(request.url);
+  const name = url.searchParams.get('name') || 'card.png';
+  const kv = env.NK_DATA || env.TRANSFERS_KV;
+
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  // POST: Upload fresh binary image from Python generator / scheduler
+  if (request.method === 'POST') {
+    const authHeader = request.headers.get('Authorization') || '';
+    const secret = url.searchParams.get('key') || '';
+    if (secret !== 'karnata_social_2026' && !authHeader.includes('karnata_social_2026')) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (!kv) {
+      return new Response(JSON.stringify({ error: 'KV not bound' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    try {
+      const buffer = await request.arrayBuffer();
+      await kv.put('scard_' + name, buffer, { expirationTtl: 86400 * 7 });
+      return new Response(JSON.stringify({
+        success: true,
+        name: name,
+        url: `https://karnata.in/api/social-card?name=${encodeURIComponent(name)}&v=${Date.now()}`
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    } catch (err) {
+      return new Response(JSON.stringify({ error: err.message }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+  }
+
+  // GET: Serve binary image directly to Instagram / Facebook Meta crawler
+  if (request.method === 'GET') {
+    if (kv) {
+      try {
+        const imgBuffer = await kv.get('scard_' + name, { type: 'arrayBuffer' });
+        if (imgBuffer) {
+          return new Response(imgBuffer, {
+            headers: {
+              ...corsHeaders,
+              'Content-Type': name.endsWith('.jpg') ? 'image/jpeg' : 'image/png',
+              'Cache-Control': 'public, max-age=60, s-maxage=60, must-revalidate'
+            }
+          });
+        }
+      } catch (e) {
+        console.error("KV read error for social card:", e);
+      }
+    }
+
+    // Fallback: fetch from static assets
+    try {
+      const assetUrl = new URL(`/assets/social-cards/${name}`, request.url);
+      const assetResp = await env.ASSETS.fetch(new Request(assetUrl));
+      if (assetResp.ok) {
+        return assetResp;
+      }
+    } catch (ae) {}
+
+    return Response.redirect(`https://karnata.in/assets/social-cards/${name}`, 302);
+  }
+
+  return new Response("Method not allowed", { status: 405 });
+}
 
 async function handleSocialCardsRequest(request, env) {
 

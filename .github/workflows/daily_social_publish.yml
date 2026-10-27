@@ -2,39 +2,63 @@ name: Karnataka Daily Automated 30-Min Social Media Publisher
 
 on:
   schedule:
-    # 07:00 AM IST (01:30 UTC): Weather
-    - cron: '30 1 * * *'
-    # 07:30 AM IST (02:00 UTC): Best Quote / ಶುಭನುಡಿ
-    - cron: '0 2 * * *'
-    # 08:00 AM IST (02:30 UTC): Petrol & Fuel Rates
-    - cron: '30 2 * * *'
-    # 08:30 AM IST (03:00 UTC): Daily Quiz
+    # 07:15 AM IST (01:45 UTC): ಶುಭೋದಯ ಚಿಂತನೆ (quote)
+    - cron: '45 1 * * *'
+    # 07:45 AM IST (02:15 UTC): ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ (petrol_diesel)
+    - cron: '15 2 * * *'
+    # 08:30 AM IST (03:00 UTC): ಹವಾಮಾನ ಸಾರಾಂಶ (weather_summary)
     - cron: '0 3 * * *'
-    # 09:00 AM IST (03:30 UTC): 13 Dams Water Level
-    - cron: '30 3 * * *'
-    # 09:30 AM IST (04:00 UTC): Useful Citizen Information
-    - cron: '0 4 * * *'
-    # 10:00 AM IST (04:30 UTC): Gold & Silver Price
-    - cron: '30 4 * * *'
-    # 10:30 AM IST (05:00 UTC): APMC Mandi Rates
-    - cron: '0 5 * * *'
+    # 09:15 AM IST (03:45 UTC): APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (apmc_rates)
+    - cron: '45 3 * * *'
+    # 09:45 AM IST (04:15 UTC): 13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (dam_levels)
+    - cron: '15 4 * * *'
+    # 10:15 AM IST (04:45 UTC): ಚಿನ್ನ & ಬೆಳ್ಳಿ ಲೈವ್ ದರ (gold_rate)
+    - cron: '45 4 * * *'
+    # 10:45 AM IST (05:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 1 (weather_nowcast_1)
+    - cron: '15 5 * * *'
+    # 11:30 AM IST (06:00 UTC): ರಸಪ್ರಶ್ನೆ 1 (quiz_1)
+    - cron: '0 6 * * *'
+    # 12:30 PM IST (07:00 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 1 (doyouknow_1)
+    - cron: '0 7 * * *'
+    # 01:45 PM IST (08:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 2 (weather_nowcast_2)
+    - cron: '15 8 * * *'
+    # 02:30 PM IST (09:00 UTC): ರಸಪ್ರಶ್ನೆ 2 (quiz_2)
+    - cron: '0 9 * * *'
+    # 04:00 PM IST (10:30 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 2 (doyouknow_2)
+    - cron: '30 10 * * *'
+    # 04:45 PM IST (11:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 3 (weather_nowcast_3)
+    - cron: '15 11 * * *'
+    # 05:45 PM IST (12:15 UTC): ರಸಪ್ರಶ್ನೆ 3 (quiz_3)
+    - cron: '15 12 * * *'
+    # 07:15 PM IST (13:45 UTC): IMD ಮಳೆ ನಕ್ಷೆ 4 (weather_nowcast_4)
+    - cron: '45 13 * * *'
+    # 08:00 PM IST (14:30 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 3 (doyouknow_3)
+    - cron: '30 14 * * *'
   workflow_dispatch:
     inputs:
       slot:
-        description: 'Select Slot to Publish (or all)'
+        description: 'Select Slot to Publish (or dry-all)'
         required: true
-        default: 'all'
+        default: 'dry-all'
         type: choice
         options:
-          - all
-          - weather
+          - dry-all
           - quote
           - petrol_diesel
-          - quiz
-          - dam_levels
-          - useful_info
-          - gold_rate
+          - weather_summary
           - apmc_rates
+          - dam_levels
+          - gold_rate
+          - weather_nowcast_1
+          - quiz_1
+          - doyouknow_1
+          - weather_nowcast_2
+          - quiz_2
+          - doyouknow_2
+          - weather_nowcast_3
+          - quiz_3
+          - weather_nowcast_4
+          - doyouknow_3
 
 jobs:
   publish_social_slot:
@@ -48,8 +72,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Dependencies
-        run: pip install requests
+      - name: Install System Dependencies (Chromium & Kannada Fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser fonts-knda fonts-indic fonts-noto-cjk
+          pip install requests
 
       - name: Determine & Execute Scheduled Slot
         env:
@@ -61,25 +88,43 @@ jobs:
           python -c "
           import os, datetime
           manual = os.environ.get('MANUAL_SLOT')
-          if manual and manual != 'all':
+          if manual and manual != 'dry-all':
               slot = manual
-          elif manual == 'all':
-              slot = 'all'
+          elif manual == 'dry-all':
+              slot = 'dry-all'
           else:
               # Compute IST time (UTC + 5:30)
               now_utc = datetime.datetime.now(datetime.timezone.utc)
               ist_h = (now_utc.hour + 5 + (now_utc.minute + 30)//60) % 24
               ist_m = (now_utc.minute + 30) % 60
-              
-              if ist_h == 7 and ist_m < 15: slot = 'weather'
-              elif ist_h == 7: slot = 'quote'
-              elif ist_h == 8 and ist_m < 15: slot = 'petrol_diesel'
-              elif ist_h == 8: slot = 'quiz'
-              elif ist_h == 9 and ist_m < 15: slot = 'dam_levels'
-              elif ist_h == 9: slot = 'useful_info'
-              elif ist_h == 10 and ist_m < 15: slot = 'gold_rate'
-              elif ist_h == 10: slot = 'apmc_rates'
-              else: slot = 'all'
+              cur_mins = ist_h * 60 + ist_m
+
+              schedule = [
+                  ('quote', 7*60 + 15),
+                  ('petrol_diesel', 7*60 + 45),
+                  ('weather_summary', 8*60 + 30),
+                  ('apmc_rates', 9*60 + 15),
+                  ('dam_levels', 9*60 + 45),
+                  ('gold_rate', 10*60 + 15),
+                  ('weather_nowcast_1', 10*60 + 45),
+                  ('quiz_1', 11*60 + 30),
+                  ('doyouknow_1', 12*60 + 30),
+                  ('weather_nowcast_2', 13*60 + 45),
+                  ('quiz_2', 14*60 + 30),
+                  ('doyouknow_2', 16*60 + 0),
+                  ('weather_nowcast_3', 16*60 + 45),
+                  ('quiz_3', 17*60 + 45),
+                  ('weather_nowcast_4', 19*60 + 15),
+                  ('doyouknow_3', 20*60 + 0),
+              ]
+
+              slot = 'quote'
+              min_diff = 9999
+              for s_name, s_mins in schedule:
+                  diff = abs(cur_mins - s_mins)
+                  if diff < min_diff:
+                      min_diff = diff
+                      slot = s_name
 
           print(f'Triggering slot: {slot}')
           os.system(f'python scripts/auto_publish_social.py --slot {slot}')
