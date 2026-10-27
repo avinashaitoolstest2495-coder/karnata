@@ -54,6 +54,14 @@ BASE_URL = "https://karnata.in/assets/social-cards"
 # ══════════════════════════════════════════════════════════════════════════════
 # DYNAMIC CAPTION GENERATORS
 # ══════════════════════════════════════════════════════════════════════════════
+def get_kannada_date_str():
+    months = {
+        1: "ಜನವರಿ", 2: "ಫೆಬ್ರವರಿ", 3: "ಮಾರ್ಚ್", 4: "ಏಪ್ರಿಲ್", 5: "ಮೇ", 6: "ಜೂನ್",
+        7: "ಜುಲೈ", 8: "ಆಗಸ್ಟ್", 9: "ಸೆಪ್ಟೆಂಬರ್", 10: "ಅಕ್ಟೋಬರ್", 11: "ನವೆಂಬರ್", 12: "ಡಿಸೆಂಬರ್"
+    }
+    now = datetime.now()
+    return f"{now.day} {months.get(now.month, '')} {now.year}"
+
 def get_gold_caption():
     try:
         p = ROOT_DIR / "data" / "gold_rates.json"
@@ -376,30 +384,63 @@ def get_doyouknow_caption(slot_num):
 def get_nowcast_caption(slot_num):
     time_labels = {1: "10:45 AM", 2: "01:45 PM", 3: "04:45 PM", 4: "07:15 PM"}
     t_str = time_labels.get(slot_num, "ಲೈವ್")
+    date_kn = get_kannada_date_str()
     try:
         w = get_live_weather()
         ext = w.get("state_extremes", {})
         r = ext.get("highest_past_24h_rain", {})
         t_max = ext.get("max_temp_district", {})
         t_min = ext.get("min_temp_district", {})
-        r_txt = f"🌧️ 24H ಗರಿಷ್ಠ ಮಳೆ: {r.get('rain_mm', 53.0)} mm — {r.get('station', 'Devachalla')} ({r.get('name_kn', 'ದಕ್ಷಿಣ ಕನ್ನಡ')})"
-        t_txt = f"☀️ ಗರಿಷ್ಠ: {t_max.get('temp_c', 38.8)}°C ({t_max.get('name_kn', 'ಕಲಬುರಗಿ')}) | ❄️ ಕನಿಷ್ಠ: {t_min.get('temp_c', 13.4)}°C ({t_min.get('name_kn', 'ವಿಜಯಪುರ')})"
-    except Exception:
+
+        r_dst = r.get('name_kn') or r.get('district_en', '')
+        r_st = r.get('station', '')
+        r_loc = f"{r_dst} ({r_st})" if r_st and r_dst else (r_dst or r_st)
+        r_txt = f"🌧️ 24H ಗರಿಷ್ಠ ಮಳೆ: {float(r.get('rain_mm', 0.0)):.1f} mm — {r_loc}" if r_loc else "🌧️ 24H ಅಧಿಕೃತ ಲೈವ್ ಮಳೆ ದಾಖಲೆ"
+
+        max_dst = t_max.get('name_kn') or t_max.get('district_en', '')
+        min_dst = t_min.get('name_kn') or t_min.get('district_en', '')
+        t_txt = f"☀️ ಗರಿಷ್ಠ: {float(t_max.get('temp_c', 0.0)):.1f}°C ({max_dst}) | ❄️ ಕನಿಷ್ಠ: {float(t_min.get('temp_c', 0.0)):.1f}°C ({min_dst})"
+
+        warnings = w.get("imd_warnings", {})
+        red_dists = [v.get("district_kn", k) for k, v in warnings.items() if v.get("level") == "red"]
+        orange_dists = [v.get("district_kn", k) for k, v in warnings.items() if v.get("level") == "orange"]
+        yellow_dists = [v.get("district_kn", k) for k, v in warnings.items() if v.get("level") == "yellow"]
+        green_dists = [v.get("district_kn", k) for k, v in warnings.items() if v.get("level") == "green" or not v.get("level")]
+
+        if not red_dists and not orange_dists and not yellow_dists:
+            alert_lines = (
+                f"🟢 ಗ್ರೀನ್ ಜೋನ್ (Green Zone): ರಾಜ್ಯದ ಎಲ್ಲಾ {len(green_dists) or 31} ಜಿಲ್ಲೆಗಳಲ್ಲೂ ಶಾಂತ ಹವೆ & ಸಾಮಾನ್ಯ ವಾತಾವರಣ (ಯಾವುದೇ ಭಾರಿ ಮಳೆ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ).\n"
+                f"🔴 ರೆಡ್ / 🟠 ಆರೆಂಜ್ / 🟡 ಯೆಲ್ಲೋ ಅಲರ್ಟ್: ಸದ್ಯ ರಾಜ್ಯದ ಯಾವುದೇ ಜಿಲ್ಲೆಗಳಿಗೂ ಇಲ್ಲ (0 ಜಿಲ್ಲೆ)."
+            )
+        else:
+            parts = []
+            if red_dists:
+                parts.append(f"🔴 ರೆಡ್ ಅಲರ್ಟ್ ({len(red_dists)} ಜಿಲ್ಲೆ): {', '.join(red_dists[:5])}{'...' if len(red_dists) > 5 else ''}")
+            if orange_dists:
+                parts.append(f"🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್ ({len(orange_dists)} ಜಿಲ್ಲೆ): {', '.join(orange_dists[:5])}{'...' if len(orange_dists) > 5 else ''}")
+            if yellow_dists:
+                parts.append(f"🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ ({len(yellow_dists)} ಜಿಲ್ಲೆ): {', '.join(yellow_dists[:6])}{'...' if len(yellow_dists) > 6 else ''}")
+            if green_dists:
+                parts.append(f"🟢 ಗ್ರೀನ್ ಜೋನ್ ({len(green_dists)} ಜಿಲ್ಲೆ): ಸಾಮಾನ್ಯ ತಿಳಿ ಹವೆ.")
+            alert_lines = "\n".join(parts)
+    except Exception as e:
         r_txt = "🌧️ 24H ಅಧಿಕೃತ ಲೈವ್ ಮಳೆ ದಾಖಲೆ"
         t_txt = "☀️ ಅಧಿಕೃತ ತಾಪಮಾನ ವಿವರ"
+        alert_lines = "🟢 ಗ್ರೀನ್ ಜೋನ್ (Green Zone): ರಾಜ್ಯಾದ್ಯಂತ ಸಾಧಾರಣ ವಾತಾವರಣ."
 
-    return f"""⛈️ ಕರ್ನಾಟಕ IMD 3-ಗಂಟೆಗಳ ಲೈವ್ ನೌಕಾಸ್ಟ್ ಮಳೆ ಎಚ್ಚರಿಕೆ ({t_str} Radar Alert)
+    return f"""⛈️ ಕರ್ನಾಟಕ IMD ಲೈವ್ ನೌಕಾಸ್ಟ್ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ ({t_str} • {date_kn})
 
 {r_txt}
 {t_txt}
 
-🟡 ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Watch): 15 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ ಸಾಧ್ಯತೆ!
-🟢 ಗ್ರೀನ್ ಜೋನ್ (Green Zone): 16 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ತಿಳಿ ಹವೆ & ಸಾಧಾರಣ ವಾತಾವರಣ.
-🔴 ರೆಡ್ / 🟠 ಆರೆಂಜ್ ಅಲರ್ಟ್: ಸದ್ಯ ಯಾವುದೇ ಜಿಲ್ಲೆಗಳಿಗಿಲ್ಲ.
+{alert_lines}
 
-📡 ನಿಮ್ಮ ಗ್ರಾಮ ಪಂಚಾಯಿತಿ & ತಾಲೂಕಿನ ಲೈವ್ ರೇಡಾರ್: karnata.in/weather
+📡 ನಿಮ್ಮ ತಾಲೂಕು & ಗ್ರಾಮ ಪಂಚಾಯಿತಿಯ ನಿಖರ ಲೈವ್ ರೇಡಾರ್ ಮ್ಯಾಪ್:
+🌐 https://karnata.in/weather
+📲 Instagram ಬಯೋದಲ್ಲಿ (Bio Link) ನೇರ ಲಿಂಕ್ ಲಭ್ಯವಿದೆ: @karnata.in
 
-#KarnatakaWeather #MonsoonAlert #IMDNowcast #KarnatakaRain #WeatherUpdate #KarnataIn #BangaloreRains"""
+#KarnatakaWeather #MonsoonAlert #IMDNowcast #KarnatakaRain #WeatherUpdate #KarnataIn #BangaloreRains #WeatherForecast"""
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # COMPLETE 16 SCHEDULED SLOTS (IST)

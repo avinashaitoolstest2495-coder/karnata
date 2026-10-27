@@ -1614,63 +1614,26 @@ def render_nowcast_map_card():
     with open(map_path, "r", encoding="utf-8") as f:
         map_geo = json.load(f)
 
-    # Use live IMD warnings from data/imd_live_warnings.json
-    IMD_TO_ID = {
-        'BAGALKOT': 'bagalkote',
-        'BALLARI': 'ballari',
-        'BELAGAVI': 'belagavi',
-        'BENGALURU RURAL': 'bengaluru_rural',
-        'BENGALURU URBAN': 'bengaluru_urban',
-        'BIDAR': 'bidar',
-        'CHAMARAJANAGAR': 'chamarajanagara',
-        'CHIK BALLAPUR': 'chikkaballapura',
-        'CHIKKAMAGALURU': 'chikkamagaluru',
-        'CHITRADURGA': 'chitradurga',
-        'DAKSHINA  KANNADA': 'dakshina_kannada',
-        'DAVANGERE': 'davanagere',
-        'DHARWAD': 'dharwad',
-        'GADAG': 'gadag',
-        'HASSAN': 'hassan',
-        'HAVERI': 'haveri',
-        'KALABURAGI': 'kalaburagi',
-        'KODAGU': 'kodagu',
-        'KOLAR': 'kolar',
-        'KOPPAL': 'koppal',
-        'MANDYA': 'mandya',
-        'MYSURU': 'mysuru',
-        'RAICHUR': 'raichur',
-        'RAMANAGARAM': 'ramanagara',
-        'SHIVAMOGGA': 'shivamogga',
-        'TUMAKURU': 'tumakuru',
-        'UDUPI': 'udupi',
-        'UTTARA  KANNADA': 'uttara_kannada',
-        'VIJAYAPURA': 'vijayapura',
-        'VIJAYANAGARA': 'vijayanagara',
-        'YADGIR': 'yadgir'
-    }
-
-    imd_live_path = ROOT_DIR / "data" / "imd_live_warnings.json"
-    live_district_colors = {}
-    if imd_live_path.exists():
-        try:
-            with open(imd_live_path, "r", encoding="utf-8") as f:
-                imd_live = json.load(f)
-            for imd_k, v in imd_live.items():
-                did = IMD_TO_ID.get(imd_k)
-                if did:
-                    col = v.get("color", "").upper()
-                    if "#FFFF00" in col:
-                        live_district_colors[did] = "yellow"
-                    elif "#FF0000" in col or "#DC2626" in col:
-                        live_district_colors[did] = "red"
-                    elif "#FFA500" in col or "#EA580C" in col:
-                        live_district_colors[did] = "orange"
-                    else:
-                        live_district_colors[did] = "green"
-        except Exception:
-            pass
-
     imd_warnings = w.get("imd_warnings", {})
+
+    # Keep data/imd_live_warnings.json synchronized with live data
+    imd_live_path = ROOT_DIR / "data" / "imd_live_warnings.json"
+    try:
+        updated_imd_live = {}
+        for did_k, winfo in imd_warnings.items():
+            en_name = winfo.get("district_en", "").upper()
+            if en_name:
+                updated_imd_live[en_name] = {
+                    "title": en_name,
+                    "color": winfo.get("color", "#008000"),
+                    "level": winfo.get("level", "green"),
+                    "hazard_kn": winfo.get("hazard_kn", "ಶಾಂತ ವಾತಾವರಣ 🌤️")
+                }
+        if updated_imd_live:
+            with open(imd_live_path, "w", encoding="utf-8") as f:
+                json.dump(updated_imd_live, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
 
     ALERT_CONFIG = {
         "red": {
@@ -1720,18 +1683,14 @@ def render_nowcast_map_card():
         did = dist["id"]
         dname = dist["name_kn"]
         short_lbl = dist.get("short_label", dname)
-        lvl = live_district_colors.get(did)
-        if not lvl:
-            lvl = imd_warnings.get(did, {}).get("level", "green").lower()
+        lvl = imd_warnings.get(did, {}).get("level", "green").lower()
         if lvl not in buckets: lvl = "green"
         buckets[lvl].append((did, dname, short_lbl))
 
     svg_elements = []
     for dist in map_geo["districts"]:
         did = dist["id"]
-        lvl = live_district_colors.get(did)
-        if not lvl:
-            lvl = imd_warnings.get(did, {}).get("level", "green").lower()
+        lvl = imd_warnings.get(did, {}).get("level", "green").lower()
         cfg = ALERT_CONFIG.get(lvl, ALERT_CONFIG["green"])
         fill_col = cfg["color"]
         filter_attr = 'filter="url(#glow-yellow)"' if lvl == 'yellow' else ('filter="url(#glow-red)"' if lvl == 'red' else '')
@@ -1818,22 +1777,207 @@ def render_nowcast_map_card():
       </g>
     </svg>'''
 
-    def make_district_chips(items_list, border_col, bg_col, text_col):
+    def make_district_chips(items_list, border_col, bg_col, text_col, max_count=None):
         chips = []
-        for did, full_name, short_name in items_list:
+        subset = items_list[:max_count] if max_count else items_list
+        for did, full_name, short_name in subset:
             chips.append(f'''
             <span style="display:inline-flex; align-items:center; background:{bg_col}; border:1px solid {border_col}; color:{text_col}; border-radius:8px; padding:3px 8px; font-size:14px; font-weight:800; white-space:nowrap; margin:2px 3px 2px 0; backdrop-filter:blur(6px); box-shadow:0 2px 4px rgba(0,0,0,0.2);">
               {short_name}
             </span>''')
+        if max_count and len(items_list) > max_count:
+            chips.append(f'''
+            <span style="display:inline-flex; align-items:center; background:rgba(255,255,255,0.08); border:1px solid #475569; color:#94A3B8; border-radius:8px; padding:3px 8px; font-size:13px; font-weight:800; margin:2px 3px 2px 0;">
+              +{len(items_list) - max_count} ಜಿಲ್ಲೆಗಳು
+            </span>''')
         return "".join(chips)
 
-    yellow_chips = make_district_chips(buckets["yellow"], "rgba(250, 204, 21, 0.45)", "rgba(250, 204, 21, 0.12)", "#FEF08A")
-    green_chips = make_district_chips(buckets["green"][:12], "rgba(16, 185, 129, 0.35)", "rgba(16, 185, 129, 0.12)", "#A7F3D0")
-    if len(buckets["green"]) > 12:
-        green_chips += f'''
-        <span style="display:inline-flex; align-items:center; background:rgba(255,255,255,0.08); border:1px solid #475569; color:#94A3B8; border-radius:8px; padding:3px 8px; font-size:13px; font-weight:800; margin:2px 3px 2px 0;">
-          +{len(buckets["green"]) - 12} ಜಿಲ್ಲೆಗಳು
-        </span>'''
+    num_red = len(buckets["red"])
+    num_orange = len(buckets["orange"])
+    num_yellow = len(buckets["yellow"])
+    num_green = len(buckets["green"])
+
+    counter_grid_html = f'''
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 6px 6px; display:flex; flex-direction:column; align-items:center;">
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span style="font-size:12px;">🔴</span>
+              <span style="font-size: 12px; font-weight: 800; color: #FCA5A5;">ರೆಡ್</span>
+            </div>
+            <span style="font-size: 14px; font-weight: 900; color: {'#EF4444' if num_red > 0 else '#94A3B8'}; font-family:'Outfit'; margin-top:2px;">{num_red} ಜಿಲ್ಲೆ</span>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 12px; padding: 6px 6px; display:flex; flex-direction:column; align-items:center;">
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span style="font-size:12px;">🟠</span>
+              <span style="font-size: 12px; font-weight: 800; color: #FDBA74;">ಆರೆಂಜ್</span>
+            </div>
+            <span style="font-size: 14px; font-weight: 900; color: {'#F97316' if num_orange > 0 else '#94A3B8'}; font-family:'Outfit'; margin-top:2px;">{num_orange} ಜಿಲ್ಲೆ</span>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(250, 204, 21, 0.3); border-radius: 12px; padding: 6px 6px; display:flex; flex-direction:column; align-items:center;">
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span style="font-size:12px;">🟡</span>
+              <span style="font-size: 12px; font-weight: 800; color: #FEF08A;">ಹಳದಿ</span>
+            </div>
+            <span style="font-size: 14px; font-weight: 900; color: {'#FACC15' if num_yellow > 0 else '#94A3B8'}; font-family:'Outfit'; margin-top:2px;">{num_yellow} ಜಿಲ್ಲೆ</span>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 6px 6px; display:flex; flex-direction:column; align-items:center;">
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span style="font-size:12px;">🟢</span>
+              <span style="font-size: 12px; font-weight: 800; color: #A7F3D0;">ಗ್ರೀನ್</span>
+            </div>
+            <span style="font-size: 14px; font-weight: 900; color: #10B981; font-family:'Outfit'; margin-top:2px;">{num_green} ಜಿಲ್ಲೆ</span>
+          </div>
+        </div>'''
+
+    has_active_alerts = bool(num_red or num_orange or num_yellow)
+
+    if not has_active_alerts:
+        all_green_chips = make_district_chips(buckets["green"], "rgba(16, 185, 129, 0.35)", "rgba(16, 185, 129, 0.12)", "#A7F3D0", max_count=18)
+        alert_section_html = f'''
+        <div class="alert-box box-green" style="margin: 6px 0; padding: 18px 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:40px; height:40px; border-radius:12px; background:rgba(16, 185, 129, 0.25); border:1.5px solid #10B981; display:flex; align-items:center; justify-content:center; font-size:22px;">
+                🌤️
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 900; color: #A7F3D0; line-height: 1.1;">
+                  ಗ್ರೀನ್ ಜೋನ್ (Green Zone)
+                </div>
+                <div style="font-size: 14px; font-weight: 700; color: #6EE7B7;">
+                  ರಾಜ್ಯಾದ್ಯಂತ ತಿಳಿ ಹವೆ & ಸಾಧಾರಣ ವಾತಾವರಣ
+                </div>
+              </div>
+            </div>
+            <div style="background: linear-gradient(135deg, #10B981, #059669); color:#FFFFFF; font-family:'Outfit'; font-size: 16px; font-weight: 900; padding: 4px 14px; border-radius: 20px; box-shadow:0 4px 12px rgba(16, 185, 129, 0.35);">
+              {num_green}/31 ಜಿಲ್ಲೆಗಳು
+            </div>
+          </div>
+
+          <div style="background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.25); border-radius:12px; padding:10px 14px; margin-bottom:10px;">
+            <div style="font-size: 14px; font-weight: 800; color: #E0F2FE; line-height: 1.35;">
+              🟢 <b>IMD ಮುನ್ಸೂಚನೆ:</b> ಪ್ರಸ್ತುತ ರಾಜ್ಯದ ಯಾವುದೇ ಜಿಲ್ಲೆಯಲ್ಲೂ ಭಾರಿ ಮಳೆ ಅಥವಾ ಗುಡುಗು-ಮಿಂಚಿನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ. ಎಲ್ಲ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹವಾಮಾನ ಶಾಂತವಾಗಿದೆ.
+            </div>
+          </div>
+
+          <div style="font-size:12px; font-weight:800; color:#94A3B8; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">
+            ಶಾಂತ ವಾತಾವರಣವಿರುವ ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು:
+          </div>
+          <div style="display:flex; flex-wrap:wrap;">
+            {all_green_chips}
+          </div>
+        </div>'''
+    else:
+        cards = []
+        if buckets["red"]:
+            red_chips = make_district_chips(buckets["red"], "rgba(239, 68, 68, 0.45)", "rgba(239, 68, 68, 0.15)", "#FCA5A5")
+            cards.append(f'''
+            <div class="alert-box box-red">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:34px; height:34px; border-radius:10px; background:rgba(239, 68, 68, 0.2); border:1px solid #EF4444; display:flex; align-items:center; justify-content:center; font-size:18px;">
+                    🔴
+                  </div>
+                  <div>
+                    <div style="font-size: 20px; font-weight: 900; color: #FCA5A5; line-height: 1.1;">
+                      ರೆಡ್ ಅಲರ್ಟ್ (Red Warning)
+                    </div>
+                    <div style="font-size: 13px; font-weight: 700; color: #CBD5E1;">
+                      ಅತಿ ಭಾರೀ ಮಳೆ & ಮುನ್ನೆಚ್ಚರಿಕೆ (Take Action)
+                    </div>
+                  </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #EF4444, #DC2626); color:#FFFFFF; font-family:'Outfit'; font-size: 16px; font-weight: 900; padding: 3px 14px; border-radius: 20px;">
+                  {len(buckets["red"])} ಜಿಲ್ಲೆಗಳು
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
+                {red_chips}
+              </div>
+            </div>''')
+
+        if buckets["orange"]:
+            orange_chips = make_district_chips(buckets["orange"], "rgba(249, 115, 22, 0.45)", "rgba(249, 115, 22, 0.15)", "#FDBA74")
+            cards.append(f'''
+            <div class="alert-box box-orange">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:34px; height:34px; border-radius:10px; background:rgba(249, 115, 22, 0.2); border:1px solid #F97316; display:flex; align-items:center; justify-content:center; font-size:18px;">
+                    🟠
+                  </div>
+                  <div>
+                    <div style="font-size: 20px; font-weight: 900; color: #FDBA74; line-height: 1.1;">
+                      ಆರೆಂಜ್ ಅಲರ್ಟ್ (Orange Alert)
+                    </div>
+                    <div style="font-size: 13px; font-weight: 700; color: #CBD5E1;">
+                      ಧಾರಾಕಾರ ಮಳೆ / ಬಿರುಗಾಳಿ (Be Prepared)
+                    </div>
+                  </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #F97316, #EA580C); color:#FFFFFF; font-family:'Outfit'; font-size: 16px; font-weight: 900; padding: 3px 14px; border-radius: 20px;">
+                  {len(buckets["orange"])} ಜಿಲ್ಲೆಗಳು
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
+                {orange_chips}
+              </div>
+            </div>''')
+
+        if buckets["yellow"]:
+            yellow_chips = make_district_chips(buckets["yellow"], "rgba(250, 204, 21, 0.45)", "rgba(250, 204, 21, 0.12)", "#FEF08A")
+            cards.append(f'''
+            <div class="alert-box box-yellow">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:34px; height:34px; border-radius:10px; background:rgba(250, 204, 21, 0.2); border:1px solid #FACC15; display:flex; align-items:center; justify-content:center; font-size:18px;">
+                    ⚡
+                  </div>
+                  <div>
+                    <div style="font-size: 20px; font-weight: 900; color: #FEF08A; line-height: 1.1;">
+                      ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Watch)
+                    </div>
+                    <div style="font-size: 13px; font-weight: 700; color: #CBD5E1;">
+                      ಗುಡುಗು, ಮಿಂಚು ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ
+                    </div>
+                  </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #FACC15, #EAB308); color:#060C18; font-family:'Outfit'; font-size: 16px; font-weight: 900; padding: 3px 14px; border-radius: 20px; box-shadow:0 4px 12px rgba(250, 204, 21, 0.3);">
+                  {len(buckets["yellow"])} ಜಿಲ್ಲೆಗಳು
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
+                {yellow_chips}
+              </div>
+            </div>''')
+
+        if buckets["green"]:
+            green_chips = make_district_chips(buckets["green"], "rgba(16, 185, 129, 0.35)", "rgba(16, 185, 129, 0.12)", "#A7F3D0", max_count=10)
+            cards.append(f'''
+            <div class="alert-box box-green">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:32px; height:32px; border-radius:10px; background:rgba(16, 185, 129, 0.2); border:1px solid #10B981; display:flex; align-items:center; justify-content:center; font-size:16px;">
+                    🌤️
+                  </div>
+                  <div>
+                    <div style="font-size: 19px; font-weight: 900; color: #A7F3D0; line-height: 1.1;">
+                      ಗ್ರೀನ್ ಜೋನ್ (Green Zone)
+                    </div>
+                    <div style="font-size: 13px; font-weight: 700; color: #94A3B8;">
+                      ಸಾಮಾನ್ಯ ಹವೆ & ತಿಳಿ ವಾತಾವರಣ (ಯಾವುದೇ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)
+                    </div>
+                  </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #10B981, #059669); color:#FFFFFF; font-family:'Outfit'; font-size: 15px; font-weight: 900; padding: 3px 12px; border-radius: 20px;">
+                  {len(buckets["green"])} ಜಿಲ್ಲೆಗಳು
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
+                {green_chips}
+              </div>
+            </div>''')
+
+        alert_section_html = "\n".join(cards)
 
     rain_top = state_extremes.get("highest_past_24h_rain", {})
     r_st = rain_top.get('station', '')
@@ -2005,6 +2149,24 @@ def render_nowcast_map_card():
     top: 0; left: 0; width: 6px; height: 100%;
   }}
 
+  .box-red {{
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.14) 0%, rgba(185, 28, 28, 0.05) 100%);
+    border: 1.5px solid rgba(239, 68, 68, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }}
+  .box-red::before {{
+    background: linear-gradient(180deg, #EF4444, #DC2626);
+  }}
+
+  .box-orange {{
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.14) 0%, rgba(194, 65, 12, 0.05) 100%);
+    border: 1.5px solid rgba(249, 115, 22, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }}
+  .box-orange::before {{
+    background: linear-gradient(180deg, #F97316, #EA580C);
+  }}
+
   .box-yellow {{
     background: linear-gradient(135deg, rgba(250, 204, 21, 0.12) 0%, rgba(202, 138, 4, 0.05) 100%);
     border: 1.5px solid rgba(250, 204, 21, 0.35);
@@ -2106,72 +2268,9 @@ def render_nowcast_map_card():
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 7px 12px; display:flex; align-items:center; justify-content:space-between;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="font-size:14px;">🔴</span>
-              <span style="font-size: 14px; font-weight: 800; color: #FCA5A5;">ರೆಡ್ ಅಲರ್ಟ್</span>
-            </div>
-            <span style="font-size: 13px; font-weight: 800; color: #94A3B8; font-family:'Outfit';">0 ಜಿಲ್ಲೆ</span>
-          </div>
-          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 12px; padding: 7px 12px; display:flex; align-items:center; justify-content:space-between;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span style="font-size:14px;">🟠</span>
-              <span style="font-size: 14px; font-weight: 800; color: #FDBA74;">ಆರೆಂಜ್ ಅಲರ್ಟ್</span>
-            </div>
-            <span style="font-size: 13px; font-weight: 800; color: #94A3B8; font-family:'Outfit';">0 ಜಿಲ್ಲೆ</span>
-          </div>
-        </div>
+        {counter_grid_html}
 
-        <div class="alert-box box-yellow">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <div style="width:34px; height:34px; border-radius:10px; background:rgba(250, 204, 21, 0.2); border:1px solid #FACC15; display:flex; align-items:center; justify-content:center; font-size:18px;">
-                ⚡
-              </div>
-              <div>
-                <div style="font-size: 20px; font-weight: 900; color: #FEF08A; line-height: 1.1;">
-                  ಹಳದಿ ಎಚ್ಚರಿಕೆ (Yellow Watch)
-                </div>
-                <div style="font-size: 13px; font-weight: 700; color: #CBD5E1;">
-                  ಗುಡುಗು, ಮಿಂಚು ಹಾಗೂ ಬಿರುಗಾಳಿ ಸಹಿತ ಸಾಧಾರಣ ಮಳೆ
-                </div>
-              </div>
-            </div>
-            <div style="background: linear-gradient(135deg, #FACC15, #EAB308); color:#060C18; font-family:'Outfit'; font-size: 16px; font-weight: 900; padding: 3px 14px; border-radius: 20px; box-shadow:0 4px 12px rgba(250, 204, 21, 0.3);">
-              {len(buckets["yellow"])} ಜಿಲ್ಲೆಗಳು
-            </div>
-          </div>
-
-          <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
-            {yellow_chips}
-          </div>
-        </div>
-
-        <div class="alert-box box-green">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <div style="width:32px; height:32px; border-radius:10px; background:rgba(16, 185, 129, 0.2); border:1px solid #10B981; display:flex; align-items:center; justify-content:center; font-size:16px;">
-                🌤️
-              </div>
-              <div>
-                <div style="font-size: 19px; font-weight: 900; color: #A7F3D0; line-height: 1.1;">
-                  ಗ್ರೀನ್ ಜೋನ್ (Green Zone)
-                </div>
-                <div style="font-size: 13px; font-weight: 700; color: #94A3B8;">
-                  ಸಾಮಾನ್ಯ ಹವೆ & ತಿಳಿ ವಾತಾವರಣ (ಯಾವುದೇ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ)
-                </div>
-              </div>
-            </div>
-            <div style="background: linear-gradient(135deg, #10B981, #059669); color:#FFFFFF; font-family:'Outfit'; font-size: 15px; font-weight: 900; padding: 3px 12px; border-radius: 20px;">
-              {len(buckets["green"])} ಜಿಲ್ಲೆಗಳು
-            </div>
-          </div>
-
-          <div style="display:flex; flex-wrap:wrap; margin-top: 6px;">
-            {green_chips}
-          </div>
-        </div>
+        {alert_section_html}
 
         <div class="telemetry-strip">
           <div>
@@ -2292,6 +2391,11 @@ def save_social_captions_json():
                 "title": f"🌾 ಕರ್ನಾಟಕ APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ • {date_kn}",
                 "caption": get_apmc_caption(),
                 "image_url": "https://karnata.in/assets/social-cards/apmc_p1.png"
+            },
+            "weather_nowcast": {
+                "title": f"⛈️ ಕರ್ನಾಟಕ IMD ಲೈವ್ ನೌಕಾಸ್ಟ್ ಮಳೆ ಮುನ್ನೆಚ್ಚರಿಕೆ • {date_kn}",
+                "caption": get_nowcast_caption(1),
+                "image_url": "https://karnata.in/assets/social-cards/weather_nowcast_map.png"
             }
         }
         cap_file = OUTPUT_DIR / "social_captions.json"
