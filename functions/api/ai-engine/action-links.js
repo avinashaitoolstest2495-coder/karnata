@@ -8,7 +8,8 @@ export function generateSmartActionLinks(normalizedQ, intent) {
 
   // 1. SIR & Voter Guide
   if (intent === 'SIR' || intent === 'VOTER' || q.includes('sir') || q.includes('ಮತದಾರ') || q.includes('voter')) {
-    links.push({ title: "🔎 SIR Draft Roll ಹುಡುಕಿ", url: "/karnataka-sir-voter-roll.html", icon: "🗳️" });
+    links.push({ title: "🗳️ SIR Final Roll (ಅಂತಿಮ ಪಟ್ಟಿ)", url: "/karnataka-sir-voters-final-list.html", icon: "✅" });
+    links.push({ title: "🔎 SIR Draft Roll (ಕರಡು ಪಟ್ಟಿ)", url: "/karnataka-sir-voter-roll.html", icon: "🗳️" });
   }
 
   // 2. Guarantee Schemes

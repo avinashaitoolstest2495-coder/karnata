@@ -309,14 +309,19 @@ html, body {
       <!-- Desktop Dropdown Menu Links -->
       <div class="nk-nav-links nk-nav-links-desktop">
         <!-- BUTTON 1: KARNATAKA & ADMINISTRATION -->
-        <div class="nk-nav-dropdown ${isActive('/karnataka') || isActive('/gba') || isActive('/gram-panchayat') || isActive('/nanna-sthala') || isActive('/cabinet-ministers') || isActive('/former-cms') ? 'active' : ''}">
+        <div class="nk-nav-dropdown ${isActive('/karnataka') || isActive('/districts') || isActive('/gba') || isActive('/gram-panchayat') || isActive('/nanna-sthala') || isActive('/cabinet-ministers') || isActive('/former-cms') ? 'active' : ''}">
           <button class="nk-nav-dropbtn" onclick="this.parentElement.classList.toggle('open')">
             <span>👑 ಕರ್ನಾಟಕ & ಆಡಳಿತ</span>
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
             <a href="/karnataka" class="nk-drop-item ${isActive('/karnataka') ? 'active' : ''}">👑 ಕರ್ನಾಟಕ ಸಮಗ್ರ ದರ್ಶನ</a>
+            <a href="/districts" class="nk-drop-item ${isActive('/districts') ? 'active' : ''}">🗺️ 31 ಜಿಲ್ಲೆಗಳ ಪೋರ್ಟಲ್</a>
             <a href="/gba" class="nk-drop-item ${isActive('/gba') ? 'active' : ''}">🏙️ GBA ಬೆಂಗಳೂರು (5 ಪಾಲಿಕೆಗಳು & 369 ವಾರ್ಡ್)</a>
+            <a href="/bengaluru-metro" class="nk-drop-item ${isActive('/bengaluru-metro') ? 'active' : ''}">🚇 ನಮ್ಮ ಮೆಟ್ರೋ (Namma Metro ಲೈವ್ & ನಕ್ಷೆ)</a>
+            <a href="/bengaluru-bmtc-bus" class="nk-drop-item ${isActive('/bengaluru-bmtc-bus') ? 'active' : ''}">🚌 ಬಿಎಂಟಿಸಿ ಬಸ್ (BMTC Bus Routes & Pass)</a>
+            <a href="/karnataka-ksrtc-bus" class="nk-drop-item ${isActive('/karnataka-ksrtc-bus') ? 'active' : ''}">🔴 KSRTC / NWKRTC / KKRTC ಬಸ್ & ಬುಕಿಂಗ್</a>
+            <a href="/bigg-boss-kannada-13" class="nk-drop-item ${isActive('/bigg-boss-kannada-13') ? 'active' : ''}" style="color:#D97706; font-weight:800;">✈️ ಬಿಗ್ ಬಾಸ್ 13 (BBK13 Airlines & Games)</a>
             <a href="/gram-panchayat" class="nk-drop-item ${isActive('/gram-panchayat') ? 'active' : ''}">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ (5,958 GPs)</a>
             <a href="/nanna-sthala" class="nk-drop-item ${isActive('/nanna-sthala') ? 'active' : ''}">📍 ನನ್ನ ಸ್ಥಳ (My Location)</a>
             <a href="/cabinet-ministers" class="nk-drop-item ${isActive('/cabinet-ministers') ? 'active' : ''}">👥 ಸಚಿವ ಸಂಪುಟ (33 ಸಚಿವರು)</a>
@@ -327,14 +332,15 @@ html, body {
         </div>
 
         <!-- BUTTON 2: ELECTIONS & REPRESENTATIVES -->
-        <div class="nk-nav-dropdown ${isActive('/mla-mp') || isActive('/karnataka-sir-voter-roll') || isActive('/karnataka-elections') ? 'active' : ''}">
+        <div class="nk-nav-dropdown ${isActive('/mla-mp') || isActive('/karnataka-sir-voters-final-list') || isActive('/karnataka-sir-voter-roll') || isActive('/karnataka-elections') ? 'active' : ''}">
           <button class="nk-nav-dropbtn" onclick="this.parentElement.classList.toggle('open')">
             <span>🗳️ ಚುನಾವಣೆ & ಪ್ರತಿನಿಧಿಗಳು</span>
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
             <a href="/mla-mp" class="nk-drop-item ${isActive('/mla-mp') ? 'active' : ''}">🏛️ ಶಾಸಕರು, MLC & ಸಂಸದರು (MLA / MLC / MP)</a>
-            <a href="/karnataka-sir-voter-roll/" class="nk-drop-item ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ</a>
+            <a href="/karnataka-sir-voters-final-list/" class="nk-drop-item ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಅಂತಿಮ ಪಟ್ಟಿ (Final List)</a>
+            <a href="/karnataka-sir-voter-roll/" class="nk-drop-item ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ (Draft Roll)</a>
             <a href="/karnataka-elections" class="nk-drop-item ${isActive('/karnataka-elections') ? 'active' : ''}">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
           </div>
         </div>
@@ -409,13 +415,19 @@ html, body {
 
   <!-- Mobile Quick Navigation Rail (Clean Horizontal Touch Scroll) -->
   <div class="nk-mobile-rail">
+    <a href="/districts" class="nk-mobile-chip ${isActive('/districts') ? 'active' : ''}">🗺️ 31 ಜಿಲ್ಲೆಗಳು</a>
     <a href="/weather" class="nk-mobile-chip ${isActive('/weather') ? 'active' : ''}">🌧️ ಹವಾಮಾನ</a>
     <a href="/gold-rate" class="nk-mobile-chip ${isActive('/gold-rate') ? 'active' : ''}">🪙 ಚಿನ್ನದ ದರ</a>
     <a href="/dam-levels" class="nk-mobile-chip ${isActive('/dam-levels') ? 'active' : ''}">💧 ಡ್ಯಾಂ ಮಟ್ಟ</a>
     <a href="/apmc-prices" class="nk-mobile-chip ${isActive('/apmc-prices') ? 'active' : ''}">🌾 APMC</a>
-    <a href="/karnataka-sir-voter-roll/" class="nk-mobile-chip ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR ವೋಟರ್</a>
+    <a href="/karnataka-sir-voters-final-list/" class="nk-mobile-chip ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}" style="color:#047857; font-weight:900; background:#ECFDF5; border-color:#A7F3D0;">🗳️ SIR ಅಂತಿಮ ಪಟ್ಟಿ</a>
+    <a href="/karnataka-sir-voter-roll/" class="nk-mobile-chip ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR ಕರಡು ಪಟ್ಟಿ</a>
     <a href="/cabinet-ministers" class="nk-mobile-chip ${isActive('/cabinet-ministers') ? 'active' : ''}">👥 ಸಚಿವರು</a>
     <a href="/gba" class="nk-mobile-chip ${isActive('/gba') ? 'active' : ''}">🏙️ GBA</a>
+    <a href="/bengaluru-metro" class="nk-mobile-chip ${isActive('/bengaluru-metro') ? 'active' : ''}">🚇 ನಮ್ಮ ಮೆಟ್ರೋ</a>
+    <a href="/bengaluru-bmtc-bus" class="nk-mobile-chip ${isActive('/bengaluru-bmtc-bus') ? 'active' : ''}">🚌 ಬಿಎಂಟಿಸಿ</a>
+    <a href="/karnataka-ksrtc-bus" class="nk-mobile-chip ${isActive('/karnataka-ksrtc-bus') ? 'active' : ''}">🔴 KSRTC ಬಸ್</a>
+    <a href="/bigg-boss-kannada-13" class="nk-mobile-chip ${isActive('/bigg-boss-kannada-13') ? 'active' : ''}" style="color:#B45309; font-weight:900; background:#FEF3C7; border-color:#FDE68A;">✈️ BBK13 ಏರ್ಲೈನ್ಸ್</a>
     <a href="/ask" class="nk-mobile-chip ${isActive('/ask') ? 'active' : ''}">🤖 askAI</a>
     <a href="/petrol-price" class="nk-mobile-chip ${isActive('/petrol-price') ? 'active' : ''}">⛽ ಇಂಧನ</a>
     <a href="/article/gruha-lakshmi-status-check-2026" class="nk-mobile-chip">🌸 ಗೃಹಲಕ್ಷ್ಮಿ</a>
