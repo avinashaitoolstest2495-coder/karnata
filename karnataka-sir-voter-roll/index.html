@@ -1478,6 +1478,71 @@
       }
     }
 
+    
+    function formatRelationType(type) {
+      if (!type) return 'ಸಂಬಂಧಿ (Relative)';
+      const t = String(type).trim().toUpperCase();
+      if (t === 'F' || t === 'FATHER') return 'ತಂದೆ (Father)';
+      if (t === 'H' || t === 'HUSBAND') return 'ಪತಿ/ಗಂಡ (Husband)';
+      if (t === 'M' || t === 'MOTHER') return 'ತಾಯಿ (Mother)';
+      if (t === 'W' || t === 'WIFE') return 'ಪತ್ನಿ (Wife)';
+      if (t === 'O' || t === 'OTHER') return 'ಇತರರು (Other)';
+      return type;
+    }
+
+    function formatGender(gender) {
+      if (!gender) return '—';
+      const g = String(gender).trim().toUpperCase();
+      if (g === 'M' || g === 'MALE') return 'ಪುರುಷ (Male)';
+      if (g === 'F' || g === 'FEMALE') return 'ಮಹಿಳೆ (Female)';
+      if (g === 'T' || g === 'THIRD') return 'ತೃತೀಯ ಲಿಂಗ (Third Gender)';
+      return gender;
+    }
+
+    function printVoterSlip(btn) {
+      const card = btn.closest('.voter-slip-card');
+      if (!card) {
+        window.print();
+        return;
+      }
+      const printClone = card.cloneNode(true);
+      printClone.querySelectorAll('.no-print').forEach(el => el.remove());
+
+      const win = window.open('', '_blank', 'width=850,height=750');
+      win.document.write(`<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <title>ಮತದಾರರ ಮಾಹಿತಿ ಚೀಟಿ - ECI Voter Slip</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif, 'Noto Sans Kannada'; padding: 25px; color: #1e293b; background: #fff; }
+    .voter-slip-card { border: 2px solid #2563EB !important; border-radius: 12px; padding: 20px; box-shadow: none !important; }
+    @media print { body { padding: 0; } }
+  </style>
+</head>
+<body>
+  ${printClone.outerHTML}
+  <div style="margin-top:20px; font-size:11px; color:#64748B; text-align:center; border-top:1px dashed #CBD5E1; padding-top:10px;">
+    ಭಾರತ ಚುನಾವಣಾ ಆಯೋಗ (ECI) ಅಧಿಕೃತ ಮತದಾರರ ಮಾಹಿತಿ | ಮುದ್ರಣ ದಿನಾಂಕ: ${new Date().toLocaleDateString('kn-IN')} | ಕೃಪೆ: karnata.in
+  </div>
+  <script>
+    window.onload = function() { window.print(); }
+  <\/script>
+</body>
+</html>`);
+      win.document.close();
+    }
+
+    function copyVoterSummary(btn, epic, name, part, sl, ac, dist, ps) {
+      const text = `ವೋಟರ್ ವಿವರಗಳು (ECI Voter Slip 2026):\nಹೆಸರು: ${name}\nವೋಟರ್ ಐಡಿ (EPIC): ${epic}\nಕ್ರಮ ಸಂಖ್ಯೆ (Serial No): ${sl || 'ಲಭ್ಯವಿಲ್ಲ'}\nಭಾಗ ಸಂಖ್ಯೆ (Part): ${part}\nವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ${ac}\nಜಿಲ್ಲೆ: ${dist}\nಮತಗಟ್ಟೆ: ${ps}\nಮೂಲ: karnata.in / ECI`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✓ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!';
+        setTimeout(() => { btn.innerHTML = orig; }, 2500);
+      });
+    }
+
     async function submitEpicSearch() {
       const epic = (document.getElementById('inpEpicNumber').value || '').trim();
       const cap = (document.getElementById('inpEpicCaptcha').value || '').trim();
@@ -1561,18 +1626,130 @@
 
         wrap.innerHTML = '';
         d.results.forEach(v => {
-          const kanPdf = `https://voters.eci.gov.in/eroll/2026/s10/sir-draftroll/${v.acNumber}/2026-EROLLGEN-S10-${v.acNumber}-SIR-DraftRoll-Revision1-KAN-${v.partNumber}-WI.pdf`;
+          const draftKanPdf = `https://voters.eci.gov.in/eroll/2026/s10/sir-draftroll/${v.acNumber}/2026-EROLLGEN-S10-${v.acNumber}-SIR-DraftRoll-Revision1-KAN-${v.partNumber}-WI.pdf`;
+          const finalKanPdf = `https://voters.eci.gov.in/eroll/2026/s10/sir-finalroll/${v.acNumber}/2026-EROLLGEN-S10-${v.acNumber}-SIR-FinalRoll-Revision1-KAN-${v.partNumber}-WI.pdf`;
+
+          const fullName = v.nameKn ? `${v.nameKn} <span style="font-size:15px; font-weight:700; color:#475569;">(${v.name})</span>` : (v.name || '—');
+          const relName = (v.relativeNameKn || v.relativeName)
+            ? `${v.relativeNameKn || v.relativeName} ${v.relativeName && v.relativeNameKn ? '<span style="font-size:13px; color:#64748B;">(' + v.relativeName + ')</span>' : ''}`
+            : '—';
+          const relType = formatRelationType(v.relationType);
+          const gender = formatGender(v.gender);
+          const parliament = v.parliamentNameKn || v.parliamentName ? `${v.parliamentNumber ? 'PC #' + v.parliamentNumber + ' — ' : ''}${v.parliamentNameKn || v.parliamentName}` : 'ಕರ್ನಾಟಕ (Karnataka)';
+          const partDisplay = `ಭಾಗ #${v.partNumber}${v.partNameKn ? ' — ' + v.partNameKn : (v.partName ? ' — ' + v.partName : '')}`;
+          const pollingStationDisplay = v.pollingStationKn || v.pollingStation || '—';
+
           const card = document.createElement('div');
-          card.style.cssText = 'background:#FFFFFF; border:2px solid var(--k-blue); border-radius:14px; padding:18px; margin-bottom:14px;';
+          card.className = 'voter-slip-card';
+          card.style.cssText = 'background:#FFFFFF; border:2px solid #2563EB; border-radius:16px; padding:22px; margin-bottom:20px; box-shadow:0 10px 25px -5px rgba(37,99,235,0.12); position:relative;';
+
+          const cleanName = (v.nameKn || v.name || '').replace(/'/g, "\'");
+          const cleanAc = `${v.acNumber} — ${v.acNameKn || v.acName || ''}`.replace(/'/g, "\'");
+          const cleanDist = (v.districtName || '').replace(/'/g, "\'");
+          const cleanPs = (pollingStationDisplay || '').replace(/'/g, "\'");
+
           card.innerHTML = `
-            <div style="font-weight:900; font-size:18px; color:var(--k-blue); margin-bottom:6px;">${v.nameKn || v.name} (${v.epicNumber})</div>
-            <div style="font-size:14.5px; color:var(--ink2); margin-bottom:12px; line-height:1.5;">
-              District: <strong>${v.districtName}</strong> | AC: <strong>${v.acNumber} — ${v.acNameKn || v.acName}</strong><br>
-              Part: <strong>Part #${v.partNumber}</strong> | Polling Station: <strong>${v.pollingStationKn || v.pollingStation}</strong>
+            <!-- Slip Header -->
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; border-bottom:1.5px solid #E2E8F0; padding-bottom:14px; margin-bottom:16px;">
+              <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-size:12px; font-weight:800; padding:4px 10px; border-radius:20px; margin-bottom:6px;">
+                  <span>🇮🇳</span> ಅಧಿಕೃತ ಮತದಾರರ ಮಾಹಿತಿ ಚೀಟಿ | ECI VOTER SLIP 2026
+                </div>
+                <h3 style="margin:4px 0 0 0; font-size:21px; font-weight:900; color:#1E3A8A; line-height:1.3;">
+                  ${fullName}
+                </h3>
+              </div>
+              <div style="text-align:right;">
+                <div style="display:inline-flex; align-items:center; gap:6px; background:#F8FAFC; border:1.5px solid #CBD5E1; padding:5px 12px; border-radius:10px;">
+                  <span style="font-size:11px; font-weight:800; color:#64748B; text-transform:uppercase;">EPIC No</span>
+                  <strong style="font-size:16px; font-weight:900; color:#0F172A; letter-spacing:0.5px;">${v.epicNumber}</strong>
+                  <button type="button" onclick="navigator.clipboard.writeText('${v.epicNumber}'); this.textContent='✓ Copied'; setTimeout(()=>this.textContent='📋 Copy', 2000);" style="background:#E2E8F0; border:none; border-radius:6px; padding:2px 8px; font-size:11px; font-weight:700; cursor:pointer; color:#334155; margin-left:4px;">📋 Copy</button>
+                </div>
+                <div style="font-size:11px; font-weight:700; color:#2563EB; margin-top:4px;">✅ Active Voter Record</div>
+              </div>
             </div>
-            <a href="${kanPdf}" target="_blank" rel="noopener noreferrer" style="background:var(--k-green); color:#FFF; padding:12px 18px; border-radius:10px; font-weight:900; font-size:14.5px; display:inline-block; text-decoration:none;">
-              📥 DOWNLOAD DRAFT ROLL PDF
-            </a>
+
+            <!-- Key Highlights Banner: Serial No & Booth No -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; background:linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border:1.5px solid #93C5FD; border-radius:12px; padding:14px 16px; margin-bottom:16px;">
+              <div>
+                <div style="font-size:11.5px; font-weight:800; color:#1E40AF; text-transform:uppercase; letter-spacing:0.5px;">ಮತದಾರರ ಕ್ರಮ ಸಂಖ್ಯೆ (Serial No.)</div>
+                <div style="font-size:22px; font-weight:900; color:#1E3A8A; margin-top:2px;">
+                  ${v.serialNumber ? '#' + v.serialNumber : '<span style="font-size:13px; font-weight:700; color:#6B7280;">ಪರಿಷ್ಕರಣೆಯಲ್ಲಿದೆ (In Roll)</span>'}
+                </div>
+                <div style="font-size:11px; color:#2563EB;">ಮತಗಟ್ಟೆ ಪಟ್ಟಿಯ ಸಾಲು ಸಂಖ್ಯೆ</div>
+              </div>
+              <div>
+                <div style="font-size:11.5px; font-weight:800; color:#1E40AF; text-transform:uppercase; letter-spacing:0.5px;">ಭಾಗ ಸಂಖ್ಯೆ (Part / Booth No.)</div>
+                <div style="font-size:22px; font-weight:900; color:#1E3A8A; margin-top:2px;">
+                  Part #${v.partNumber}
+                </div>
+                <div style="font-size:11px; color:#2563EB;">${v.partNameKn || v.partName || 'ಮತಗಟ್ಟೆ ಭಾಗ'}</div>
+              </div>
+              <div>
+                <div style="font-size:11.5px; font-weight:800; color:#1E40AF; text-transform:uppercase; letter-spacing:0.5px;">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (Assembly AC)</div>
+                <div style="font-size:18px; font-weight:900; color:#1E3A8A; margin-top:4px;">
+                  AC #${v.acNumber}
+                </div>
+                <div style="font-size:11.5px; color:#2563EB; font-weight:700;">${v.acNameKn || v.acName}</div>
+              </div>
+            </div>
+
+            <!-- Detail Grid -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px 16px; font-size:13.5px; color:#334155; line-height:1.5; margin-bottom:18px;">
+              
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:10px 12px;">
+                <div style="font-size:11px; font-weight:800; color:#64748B; text-transform:uppercase;">ಸಂಬಂಧಿಕರ ಹೆಸರು (Relative Name)</div>
+                <div style="font-weight:800; color:#0F172A; font-size:14.5px; margin-top:2px;">
+                  ${relName}
+                </div>
+                <div style="font-size:11.5px; color:#64748B; margin-top:2px;">ಸಂಬಂಧ: <strong>${relType}</strong></div>
+              </div>
+
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:10px 12px;">
+                <div style="font-size:11px; font-weight:800; color:#64748B; text-transform:uppercase;">ವಯಸ್ಸು ಮತ್ತು ಲಿಂಗ (Age & Gender)</div>
+                <div style="font-weight:800; color:#0F172A; font-size:14.5px; margin-top:2px;">
+                  ${v.age ? v.age + ' ವರ್ಷ' : '—'} | ${gender}
+                </div>
+                <div style="font-size:11.5px; color:#64748B; margin-top:2px;">ಜಿಲ್ಲೆ: <strong>${v.districtName || '—'}</strong></div>
+              </div>
+
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:10px 12px;">
+                <div style="font-size:11px; font-weight:800; color:#64748B; text-transform:uppercase;">ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ (Parliamentary PC)</div>
+                <div style="font-weight:800; color:#0F172A; font-size:14.5px; margin-top:2px;">
+                  ${parliament}
+                </div>
+                <div style="font-size:11.5px; color:#64748B; margin-top:2px;">ರಾಜ್ಯ: <strong>ಕರ್ನಾಟಕ (Karnataka)</strong></div>
+              </div>
+
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:12px 14px; grid-column: 1 / -1;">
+                <div style="font-size:11px; font-weight:800; color:#64748B; text-transform:uppercase;">🏫 ಮತಗಟ್ಟೆಯ ಹೆಸರು ಮತ್ತು ಸ್ಥಳ (Polling Station)</div>
+                <div style="font-weight:900; color:#1E3A8A; font-size:15px; margin-top:3px; line-height:1.4;">
+                  ${pollingStationDisplay}
+                </div>
+                ${v.sectionNameKn || v.sectionName ? `
+                  <div style="font-size:12px; color:#475569; margin-top:4px;">
+                    📍 ವಿಭಾಗ / ವಾರ್ಡ್ (Section): <strong>${v.sectionNameKn || v.sectionName}</strong>
+                  </div>
+                ` : ''}
+              </div>
+
+            </div>
+
+            <!-- Download & Actions Bar -->
+            <div class="no-print" style="border-top:1.5px solid #E2E8F0; padding-top:16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <a href="${finalKanPdf}" target="_blank" rel="noopener noreferrer" style="background:#059669; color:#FFF; padding:10px 16px; border-radius:8px; font-weight:800; font-size:13.5px; display:inline-flex; align-items:center; gap:6px; text-decoration:none;">
+                📥 ಡೌನ್‌ಲೋಡ್ ಅಂತಿಮ ಪಟ್ಟಿ (Final Roll)
+              </a>
+              <a href="${draftKanPdf}" target="_blank" rel="noopener noreferrer" style="background:#2563EB; color:#FFF; padding:10px 16px; border-radius:8px; font-weight:800; font-size:13.5px; display:inline-flex; align-items:center; gap:6px; text-decoration:none;">
+                📥 ಕರಡು ಪಟ್ಟಿ (Draft Roll)
+              </a>
+              <button type="button" onclick="printVoterSlip(this)" style="background:#0F172A; color:#FFF; border:none; padding:10px 15px; border-radius:8px; font-weight:800; font-size:13.5px; cursor:pointer; display:inline-flex; align-items:center; gap:5px;">
+                🖨️ ಪ್ರಿಂಟ್ ಸ್ಲಿಪ್ (Print)
+              </button>
+              <button type="button" onclick="copyVoterSummary(this, '${v.epicNumber}', '${cleanName}', '${v.partNumber}', '${v.serialNumber || ''}', '${cleanAc}', '${cleanDist}', '${cleanPs}')" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#334155; padding:10px 15px; border-radius:8px; font-weight:800; font-size:13.5px; cursor:pointer; display:inline-flex; align-items:center; gap:5px;">
+                📋 ವಿವರ ಕಾಪಿ
+              </button>
+            </div>
           `;
           wrap.appendChild(card);
         });

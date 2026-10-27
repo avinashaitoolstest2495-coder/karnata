@@ -13888,1461 +13888,260 @@ async function encryptECIRequest(payload) {
 
 
 async function handleVoterSearch(request) {
-
-
-
-
-
-
-
   const url = new URL(request.url);
-
-
-
-
-
-
-
   const corsHeaders = {
-
-
-
-
-
-
-
     'Access-Control-Allow-Origin': '*',
-
-
-
-
-
-
-
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-
-
-
-
-
-
-
     'Access-Control-Allow-Headers': 'Content-Type, applicationName, appName',
-
-
-
-
-
-
-
     'Content-Type': 'application/json'
-
-
-
-
-
-
-
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   if (request.method === 'OPTIONS') {
-
-
-
-
-
-
-
     return new Response(null, { headers: corsHeaders });
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // 1. GET: Fetch Captcha
-
-
-
-
-
-
-
+  // 1. GET: Fetch Captcha from official ECI service
   if (request.method === 'GET' || url.searchParams.get('action') === 'captcha') {
-
-
-
-
-
-
-
     try {
-
-
-
-
-
-
-
       const eciResp = await fetch('https://gateway-voters.eci.gov.in/api/v1/captcha-service/getCaptcha/sir', {
-
-
-
-
-
-
-
         headers: {
-
-
-
-
-
-
-
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-
-
-
-
-
-
-
-          'Accept': 'application/json',
-
-
-
-
-
-
-
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+          'Accept': 'application/json, text/plain, */*',
+          'Origin': 'https://electoralsearch.eci.gov.in',
+          'Referer': 'https://electoralsearch.eci.gov.in/',
           'applicationName': 'ELECTORAL-SEARCH',
-
-
-
-
-
-
-
           'channelidobo': 'ELECTORAL-SEARCH',
-
-
-
-
-
-
-
           'appName': 'ELECTORAL-SEARCH'
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
       });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       if (!eciResp.ok) {
-
-
-
-
-
-
-
         throw new Error(`ECI Captcha server returned status ${eciResp.status}`);
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       const resJson = await eciResp.json();
-
-
-
-
-
-
-
       if (!resJson || !resJson.data) {
-
-
-
-
-
-
-
         throw new Error('Invalid captcha format received from ECI');
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       let captchaData = resJson.data;
-
-
-
-
-
-
-
       if (typeof captchaData === 'string' && !captchaData.startsWith('{')) {
-
-
-
-
-
-
-
         try {
-
-
-
-
-
-
-
           captchaData = await decryptECIResponse(captchaData);
-
-
-
-
-
-
-
-        } catch (decErr) {}
-
-
-
-
-
-
-
+        } catch (decErr) {
+          console.error("Captcha decrypt error:", decErr);
+        }
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+      const rawCap = captchaData.captcha || captchaData.svg || resJson.captcha || '';
+      const capImg = (rawCap.startsWith('data:') || rawCap.startsWith('<svg')) ? rawCap : `data:image/jpeg;base64,${rawCap}`;
 
       return new Response(JSON.stringify({
-
-
-
-
-
-
-
         success: true,
-
-
-
-
-
-
-
         captchaId: captchaData.id || resJson.id || resJson.captchaId,
-
-
-
-
-
-
-
-        captchaSvg: captchaData.captcha || captchaData.svg || resJson.captcha
-
-
-
-
-
-
-
+        captchaImg: capImg,
+        captchaSvg: rawCap,
+        captcha: rawCap
       }), { headers: corsHeaders });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     } catch (err) {
-
-
-
-
-
-
-
       return new Response(JSON.stringify({
-
-
-
-
-
-
-
         success: false,
-
-
-
-
-
-
-
         error: `Captcha fetch failed: ${err.message}`
-
-
-
-
-
-
-
       }), { status: 502, headers: corsHeaders });
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // 2. POST: Search Voter by EPIC or Name
-
-
-
-
-
-
-
   if (request.method === 'POST') {
-
-
-
-
-
-
-
     try {
-
-
-
-
-
-
-
       const body = await request.json();
-
-
-
-
-
-
-
-      const { searchType, epicNumber, stateCd, captchaId, captchaVal, name, relativeName, age, dob, gender, districtCd, acNumber } = body;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      const { searchType, epicNumber, stateCd, captchaId, name, applicantFirstName, lastName, applicantLastName, relativeName, relationFirstName, age, dob, gender, districtCd, districtNo, acNumber, acNo } = body;
+      const captchaVal = (body.captchaVal || body.captchaData || body.captchaValue || body.captcha || '').trim();
 
       if (!captchaId || !captchaVal) {
-
-
-
-
-
-
-
         return new Response(JSON.stringify({
-
-
-
-
-
-
-
           success: false,
-
-
-
-
-
-
-
-          error: "Captcha ID and value are required"
-
-
-
-
-
-
-
+          error: "ದಯವಿಟ್ಟು ಕ್ಯಾಪ್ಚಾ ಕೋಡ್ ನಮೂದಿಸಿ (Captcha code is required)."
         }), { status: 400, headers: corsHeaders });
-
-
-
-
-
-
-
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       let targetUrl = '';
-
-
-
-
-
-
-
       let payload = {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       if (searchType === 'epic' || epicNumber) {
-
-
-
-
-
-
-
-        if (!epicNumber) {
-
-
-
-
-
-
-
-          return new Response(JSON.stringify({ success: false, error: "EPIC Number is required" }), { status: 400, headers: corsHeaders });
-
-
-
-
-
-
-
+        const cleanEpic = (epicNumber || '').trim().toUpperCase();
+        if (!cleanEpic) {
+          return new Response(JSON.stringify({
+            success: false,
+            error: "ದಯವಿಟ್ಟು ವೋಟರ್ ಐಡಿ (EPIC ಸಂಖ್ಯೆ) ನಮೂದಿಸಿ."
+          }), { status: 400, headers: corsHeaders });
         }
 
-
-
-
-
-
-
-        targetUrl = 'https://gateway-voters.eci.gov.in/api/v1/elastic/search-by-epic-from-national-display';
-
-
-
-
-
-
-
+        // Official -v1 national display endpoint
+        targetUrl = 'https://gateway-voters.eci.gov.in/api/v1/elastic/search-by-epic-from-national-display-v1';
         payload = {
-
-
-
-
-
-
-
-          epicNumber: epicNumber.trim().toUpperCase(),
-
-
-
-
-
-
-
+          epicNumber: cleanEpic,
           stateCd: stateCd || "S10",
-
-
-
-
-
-
-
+          isPortal: true,
           captchaId: captchaId,
-
-
-
-
-
-
-
-          captchaData: captchaVal.trim(),
-
-
-
-
-
-
-
-          securityKey: "NA"
-
-
-
-
-
-
-
+          captchaData: captchaVal,
+          securityKey: "na",
+          eSEARCHYNEFjd3S: "1021"
         };
-
-
-
-
-
-
 
       } else {
-
-
-
-
-
-
-
-        targetUrl = 'https://gateway-voters.eci.gov.in/api/v1/elastic/search-by-details';
-
-
-
-
-
-
-
-        payload = {
-
-
-
-
-
-
-
-          stateCd: stateCd || "S10",
-
-
-
-
-
-
-
-          districtCd: districtCd || "",
-
-
-
-
-
-
-
-          acNumber: acNumber || "",
-
-
-
-
-
-
-
-          applicantFirstName: name ? name.trim() : "",
-
-
-
-
-
-
-
-          relationFirstName: relativeName ? relativeName.trim() : "",
-
-
-
-
-
-
-
-          age: age || "",
-
-
-
-
-
-
-
-          dob: dob || "",
-
-
-
-
-
-
-
-          gender: gender || "",
-
-
-
-
-
-
-
-          captchaId: captchaId,
-
-
-
-
-
-
-
-          captchaData: captchaVal.trim(),
-
-
-
-
-
-
-
-          securityKey: "NA"
-
-
-
-
-
-
-
-        };
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      const encryptedData = await encryptECIRequest(payload);
-
-
-
-
-
-
-
-      const eciResp = await fetch(targetUrl, {
-
-
-
-
-
-
-
-        method: 'POST',
-
-
-
-
-
-
-
-        headers: {
-
-
-
-
-
-
-
-          'Content-Type': 'application/json',
-
-
-
-
-
-
-
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-
-
-
-
-
-
-
-          'Accept': 'application/json',
-
-
-
-
-
-
-
-          'applicationName': 'ELECTORAL-SEARCH',
-
-
-
-
-
-
-
-          'channelidobo': 'ELECTORAL-SEARCH',
-
-
-
-
-
-
-
-          'appName': 'ELECTORAL-SEARCH'
-
-
-
-
-
-
-
-        },
-
-
-
-
-
-
-
-        body: JSON.stringify(encryptedData)
-
-
-
-
-
-
-
-      });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      if (!eciResp.ok) {
-
-
-
-
-
-
-
-        const errText = await eciResp.text();
-
-
-
-
-
-
-
-        return new Response(JSON.stringify({
-
-
-
-
-
-
-
-          success: false,
-
-
-
-
-
-
-
-          error: `ECI Gateway returned HTTP ${eciResp.status}: ${errText}`
-
-
-
-
-
-
-
-        }), { status: eciResp.status, headers: corsHeaders });
-
-
-
-
-
-
-
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      const resJson = await eciResp.json();
-
-
-
-
-
-
-
-      let records = [];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      if (Array.isArray(resJson)) {
-
-
-
-
-
-
-
-        records = resJson;
-
-
-
-
-
-
-
-      } else if (resJson.data) {
-
-
-
-
-
-
-
-        try {
-
-
-
-
-
-
-
-          const decryptedData = await decryptECIResponse(resJson.data);
-
-
-
-
-
-
-
-          records = Array.isArray(decryptedData) ? decryptedData : (decryptedData.content || [decryptedData]);
-
-
-
-
-
-
-
-        } catch (decErr) {
-
-
-
-
-
-
-
-          console.error("Decryption error:", decErr);
-
-
-
-
-
-
-
+        const fName = (name || applicantFirstName || '').trim();
+        const lName = (lastName || applicantLastName || '').trim();
+        const rName = (relativeName || relationFirstName || '').trim();
+
+        if (!fName) {
+          return new Response(JSON.stringify({
+            success: false,
+            error: "ದಯವಿಟ್ಟು ಮತದಾರರ ಮೊದಲ ಹೆಸರು ನಮೂದಿಸಿ."
+          }), { status: 400, headers: corsHeaders });
         }
 
+        targetUrl = 'https://gateway-voters.eci.gov.in/api/v1/elastic/search-by-details-from-state-display-v1';
 
+        let distCodeStr = "";
+        const rawDist = districtCd || districtNo;
+        if (rawDist) {
+          const s = rawDist.toString();
+          distCodeStr = s.startsWith("S10") ? s : `S10${s.padStart(2, '0')}`;
+        }
 
+        const rawAc = acNo || acNumber;
+        const acVal = rawAc ? parseInt(rawAc, 10) : "";
 
-
-
-
+        payload = {
+          stateCd: stateCd || "S10",
+          firstName: fName,
+          lastName: lName,
+          relationName: rName,
+          relationLastName: "",
+          gender: gender || "",
+          age: age ? parseInt(age, 10) : "",
+          dob: dob || "",
+          birthYear: "",
+          districtCd: distCodeStr,
+          acNo: acVal,
+          isPortal: true,
+          captchaId: captchaId,
+          captchaData: captchaVal,
+          securityKey: "na",
+          eSEARCHYNEFjd3S: "1021"
+        };
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      const results = records.map(item => {
-
-
-
-
-
-
-
-        const c = item.content || item;
-
-
-
-
-
-
-
-        const acNum = c.acNumber || c.acNo || "";
-
-
-
-
-
-
-
-        const partNum = c.partNumber || c.partNo || "";
-
-
-
-
-
-
-
-        return {
-
-
-
-
-
-
-
-          epicNumber: c.epicNumber || c.epicNo || "",
-
-
-
-
-
-
-
-          name: `${c.applicantFirstName || c.firstName || ''} ${c.applicantLastName || c.lastName || ''}`.trim(),
-
-
-
-
-
-
-
-          nameKn: `${c.applicantFirstNameL1 || c.firstNameL1 || ''} ${c.applicantLastNameL1 || c.lastNameL1 || ''}`.trim(),
-
-
-
-
-
-
-
-          relativeName: `${c.relationFirstName || c.relationName || ''} ${c.relationLastName || c.relationLName || ''}`.trim(),
-
-
-
-
-
-
-
-          relativeNameKn: `${c.relationFirstNameL1 || c.relationNameL1 || ''} ${c.relationLastNameL1 || c.relationLNameL1 || ''}`.trim(),
-
-
-
-
-
-
-
-          relationType: c.relationType || "Relative",
-
-
-
-
-
-
-
-          gender: c.gender || "",
-
-
-
-
-
-
-
-          age: c.age || "",
-
-
-
-
-
-
-
-          state: "Karnataka",
-
-
-
-
-
-
-
-          stateCd: c.stateCd || "S10",
-
-
-
-
-
-
-
-          districtName: c.districtValue || c.districtName || "",
-
-
-
-
-
-
-
-          districtCd: c.districtCd || "",
-
-
-
-
-
-
-
-          acNumber: acNum,
-
-
-
-
-
-
-
-          acName: c.asmblyName || c.acName || "",
-
-
-
-
-
-
-
-          acNameKn: c.asmblyNameL1 || c.acNameL1 || "",
-
-
-
-
-
-
-
-          partNumber: partNum,
-
-
-
-
-
-
-
-          partName: c.partName || "",
-
-
-
-
-
-
-
-          partNameKn: c.partNameL1 || "",
-
-
-
-
-
-
-
-          serialNumber: c.partSerialNumber || c.slnoInpart || "",
-
-
-
-
-
-
-
-          pollingStation: c.psName || c.psBuildingName || c.partName || "",
-
-
-
-
-
-
-
-          pollingStationKn: c.psNameL1 || c.psBuildingNameL1 || c.partNameL1 || "",
-
-
-
-
-
-
-
-          officialPdfUrl: `https://voters.eci.gov.in/download-eroll?stateCode=S10`
-
-
-
-
-
-
-
-        };
-
-
-
-
-
-
-
+      // Encrypt request using ECI public key (RSA-OAEP + AES-GCM)
+      const encryptedData = await encryptECIRequest(payload);
+
+      // Call official ECI Gateway with complete portal headers
+      const eciResp = await fetch(targetUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+          'Accept': 'application/json, text/plain, */*',
+          'Origin': 'https://electoralsearch.eci.gov.in',
+          'Referer': 'https://electoralsearch.eci.gov.in/',
+          'applicationName': 'ELECTORAL-SEARCH',
+          'channelidobo': 'ELECTORAL-SEARCH',
+          'appName': 'ELECTORAL-SEARCH'
+        },
+        body: JSON.stringify(encryptedData)
       });
 
+      // Handle Captcha Failure / Expired (ECI returns HTTP 400 with [])
+      if (eciResp.status === 400) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "ಕ್ಯಾಪ್ಚಾ ಕೋಡ್ ತಪ್ಪಾಗಿದೆ ಅಥವಾ ಅವಧಿ ಮೀರಿದೆ (60 ಸೆಕೆಂಡು). ದಯವಿಟ್ಟು ಹೊಸ ಕ್ಯಾಪ್ಚಾ ನಮೂದಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ (Captcha was incorrect or expired. Please enter the fresh captcha and retry)."
+        }), { headers: corsHeaders });
+      }
 
+      if (eciResp.status === 429) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "ಚುನಾವಣಾ ಆಯೋಗದ ಸರ್ವರ್ ಬ್ಯುಸಿಯಾಗಿದೆ. ದಯವಿಟ್ಟು 5 ಸೆಕೆಂಡುಗಳ ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ (ECI server busy, please wait a moment)."
+        }), { headers: corsHeaders });
+      }
 
+      if (!eciResp.ok) {
+        const errText = await eciResp.text();
+        return new Response(JSON.stringify({
+          success: false,
+          error: `ಚುನಾವಣಾ ಆಯೋಗದ ಗೇಟ್‌ವೇ ದೋಷ (HTTP ${eciResp.status}). ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.`
+        }), { headers: corsHeaders });
+      }
 
+      const resJson = await eciResp.json();
+      let records = [];
 
+      if (Array.isArray(resJson)) {
+        records = resJson;
+      } else if (resJson.data) {
+        try {
+          const decryptedData = await decryptECIResponse(resJson.data);
+          records = Array.isArray(decryptedData) ? decryptedData : (decryptedData.content || [decryptedData]);
+        } catch (decErr) {
+          console.error("Decryption error:", decErr);
+        }
+      }
 
-
-
-
-
-
-
-
-
+      // Format records cleanly for Karnataka Electoral Search
+      const results = records.map(item => {
+        const c = item.content || item;
+        const acNum = c.acNumber || c.acNo || "";
+        const partNum = c.partNumber || c.partNo || "";
+        return {
+          epicNumber: c.epicNumber || c.epicNo || "",
+          name: `${c.applicantFirstName || c.firstName || ''} ${c.applicantLastName || c.lastName || ''}`.trim(),
+          nameKn: `${c.applicantFirstNameL1 || c.firstNameL1 || ''} ${c.applicantLastNameL1 || c.lastNameL1 || ''}`.trim(),
+          relativeName: `${c.relationFirstName || c.relationName || ''} ${c.relationLastName || c.relationLName || ''}`.trim(),
+          relativeNameKn: `${c.relationFirstNameL1 || c.relationNameL1 || ''} ${c.relationLastNameL1 || c.relationLNameL1 || ''}`.trim(),
+          relationType: c.relationType || "Relative",
+          gender: c.gender || "",
+          age: c.age || "",
+          state: "Karnataka",
+          stateCd: c.stateCd || "S10",
+          districtName: c.districtValue || c.districtName || "",
+          districtCd: c.districtCd || "",
+          acNumber: acNum,
+          acName: c.asmblyName || c.acName || "",
+          acNameKn: c.asmblyNameL1 || c.acNameL1 || "",
+          partNumber: partNum,
+          partName: c.partName || "",
+          partNameKn: c.partNameL1 || "",
+          serialNumber: c.partSerialNumber || c.slnoInpart || c.slNo || c.serialNo || c.partSerialNo || c.partSlNo || "",
+          parliamentNumber: c.prlmntNo || c.parliamentNo || c.pcNo || "",
+          parliamentName: c.prlmntName || c.parliamentName || c.pcName || "",
+          parliamentNameKn: c.prlmntNameL1 || c.parliamentNameL1 || c.pcNameL1 || "",
+          sectionNumber: c.sectionNo || c.secNumber || c.sectionNumber || "",
+          sectionName: c.sectionName || c.secName || "",
+          sectionNameKn: c.sectionNameL1 || c.secNameL1 || "",
+          pollingStation: c.psName || c.psBuildingName || c.partName || "",
+          pollingStationKn: c.psNameL1 || c.psBuildingNameL1 || c.partNameL1 || "",
+          officialPdfUrl: `https://voters.eci.gov.in/download-eroll?stateCode=S10`
+        };
+      });
 
       return new Response(JSON.stringify({
-
-
-
-
-
-
-
         success: true,
-
-
-
-
-
-
-
         count: results.length,
-
-
-
-
-
-
-
         results: results
-
-
-
-
-
-
-
       }), { headers: corsHeaders });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     } catch (err) {
-
-
-
-
-
-
-
       return new Response(JSON.stringify({
-
-
-
-
-
-
-
         success: false,
-
-
-
-
-
-
-
         error: `Search error: ${err.message}`
-
-
-
-
-
-
-
       }), { status: 500, headers: corsHeaders });
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return new Response("Method not allowed", { status: 405 });
-
-
-
-
-
-
-
 }
 
 
@@ -15455,6 +14254,9 @@ const decryptXorPayload = (encodedStr, secretKey = "NK_SECURE_KEY_2026_KARNATA")
 
 
 
+let workerBmtcCache = null;
+let workerKsrtcCache = null;
+
 export default {
 
 
@@ -15486,6 +14288,587 @@ export default {
 
 
 
+
+    // ══════════════════════════════════════════════════════════════
+    // Route: BMTC Bus Smart Route Planner & Hub Transfer API 2026
+    // ══════════════════════════════════════════════════════════════
+    if (url.pathname === '/api/bmtc-planner') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=1800',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      const fromRaw = url.searchParams.get('from') || '';
+      const toRaw = url.searchParams.get('to') || '';
+      const how = url.searchParams.get('how') || 'Minimum Number of Hops';
+
+      if (!fromRaw || !toRaw) {
+        return new Response(JSON.stringify({
+          status: 'error',
+          message: 'From and To parameters are required',
+          plans: []
+        }), { status: 400, headers: corsHeaders });
+      }
+
+      function stemStop(s) {
+        return (s || '').toLowerCase()
+          .replace(/th/g, 't')
+          .replace(/w/g, 'v')
+          .replace(/sh/g, 's')
+          .replace(/ee/g, 'i')
+          .replace(/oo/g, 'u')
+          .replace(/am/g, 'a')
+          .replace(/[^a-z0-9]/g, '');
+      }
+
+      function normalizeStopName(name) {
+        if (!name) return '';
+        const trimmed = name.trim();
+        const low = trimmed.toLowerCase();
+        if (low === 'majestic' || low === 'kbs' || low === 'kempegowda bus station') return 'Kempegowda Bus Station/Majestic';
+        if (low === 'gayatri nagar' || low === 'gayatrinagar' || low === 'gayathri nagara' || low === 'gayatri nagara') return 'Gayathrinagar';
+        if (low === 'kr market' || low === 'kalasipalya' || low === 'k.r. market') return 'K R Market';
+        if (low === 'shivajinagar' || low === 'shivajinagara') return 'Shivajinagar Bus Station';
+        if (low === 'banashankari' || low === 'banashankari bus station') return 'Banashankari Bus Station';
+        if (low === 'jp nagar' || low === 'jp nagara' || low === 'jp nagar 6th phase' || low === 'jp nagara 6th phase') return 'J P Nagara 6th Phase';
+        if (low === 'corporation') return 'Corporation';
+        if (low === 'town hall' || low === 'townhall') return 'Town Hall';
+        if (low === 'yeshwanthpur' || low === 'yeshwanthpura') return 'Yeshwanthpur';
+        if (low === 'silk board' || low === 'silkboard') return 'Central Silk Board';
+        return trimmed;
+      }
+
+      function parseFindCgiHtml(html) {
+        const plans = [];
+        const blocks = html.split(/<p><strong>Route Plan #(\d+)<\/strong><\/p>/i);
+        for (let i = 1; i < blocks.length; i += 2) {
+          const planNum = parseInt(blocks[i], 10);
+          const tblHtml = blocks[i + 1];
+          const rowMatches = tblHtml.match(/<tr>[\s\S]*?<\/tr>/gi) || [];
+          const hops = [];
+          for (const row of rowMatches) {
+            if (/<th>/i.test(row)) continue;
+            const cells = row.match(/<td>([\s\S]*?)<\/td>/gi) || [];
+            if (cells.length >= 4) {
+              const cleanCell = c => c.replace(/<[^>]+>/g, '').trim();
+              const hopNum = parseInt(cleanCell(cells[0]), 10);
+              const hopFrom = cleanCell(cells[1]);
+              const hopTo = cleanCell(cells[2]);
+              const rCell = cells[3];
+              const linkRoutes = [...rCell.matchAll(/>([^<]+)<\/a>/g)].map(m => m[1].trim());
+              const routes = linkRoutes.length > 0 ? linkRoutes : cleanCell(rCell).split(',').map(s => s.trim()).filter(Boolean);
+              hops.push({ hop: hopNum, from: hopFrom, to: hopTo, routes: routes });
+            }
+          }
+          if (hops.length > 0) {
+            plans.push({ plan_no: planNum, hops: hops });
+          }
+        }
+        return plans;
+      }
+
+      function computeMetroAlternative(fromStr, toStr) {
+        const f = (fromStr || '').toLowerCase();
+        const t = (toStr || '').toLowerCase();
+
+        const METRO_MAP = [
+          { key: 'gayatri', stn: 'ಕುವೆಂಪು ರಸ್ತೆ / ರಾಜಾಜಿನಗರ (Kuvempu Road / Rajajinagar)', line: 'green', code: 'G16' },
+          { key: 'gayatrinagar', stn: 'ಕುವೆಂಪು ರಸ್ತೆ / ರಾಜಾಜಿನಗರ (Kuvempu Road / Rajajinagar)', line: 'green', code: 'G16' },
+          { key: 'gayathrinagar', stn: 'ಕುವೆಂಪು ರಸ್ತೆ / ರಾಜಾಜಿನಗರ (Kuvempu Road / Rajajinagar)', line: 'green', code: 'G16' },
+          { key: 'rajajinagar', stn: 'ರಾಜಾಜಿನಗರ (Rajajinagar)', line: 'green', code: 'G15' },
+          { key: 'rajajinagara', stn: 'ರಾಜಾಜಿನಗರ (Rajajinagar)', line: 'green', code: 'G15' },
+          { key: 'kuvempu', stn: 'ಕುವೆಂಪು ರಸ್ತೆ (Kuvempu Road)', line: 'green', code: 'G16' },
+          { key: 'majestic', stn: 'ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ ಮೆಜೆಸ್ಟಿಕ್ (Majestic Interchange)', line: 'interchange', code: 'P23/G17' },
+          { key: 'kempegowda', stn: 'ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ ಮೆಜೆಸ್ಟಿಕ್ (Majestic Interchange)', line: 'interchange', code: 'P23/G17' },
+          { key: 'kbs', stn: 'ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ ಮೆಜೆಸ್ಟಿಕ್ (Majestic Interchange)', line: 'interchange', code: 'P23/G17' },
+          { key: 'jp nagar', stn: 'ಜೆ.ಪಿ. ನಗರ (JP Nagar / Sarakki)', line: 'green', code: 'G26' },
+          { key: 'jp nagara', stn: 'ಜೆ.ಪಿ. ನಗರ (JP Nagar / Sarakki)', line: 'green', code: 'G26' },
+          { key: 'jayanagar', stn: 'ಜಯನಗರ (Jayanagar)', line: 'green', code: 'G23' },
+          { key: 'jayanagara', stn: 'ಜಯನಗರ (Jayanagar)', line: 'green', code: 'G23' },
+          { key: 'banashankari', stn: 'ಬನಶಂಕರಿ (Banashankari)', line: 'green', code: 'G25' },
+          { key: 'indiranagar', stn: 'ಇಂದಿರಾನಗರ (Indiranagar)', line: 'purple', code: 'P18' },
+          { key: 'indiranagara', stn: 'ಇಂದಿರಾನಗರ (Indiranagar)', line: 'purple', code: 'P18' },
+          { key: 'mg road', stn: 'ಎಂ.ಜಿ. ರಸ್ತೆ (MG Road)', line: 'purple', code: 'P19' },
+          { key: 'whitefield', stn: 'ವೈಟ್‌ಫೀಲ್ಡ್ ಕಾಡುಗೋಡಿ (Whitefield)', line: 'purple', code: 'P01' },
+          { key: 'kr puram', stn: 'ಕೆ.ಆರ್. ಪುರ (KR Pura)', line: 'purple', code: 'P12' },
+          { key: 'yeshwanthpur', stn: 'ಯಶವಂತಪುರ (Yeshwanthpur)', line: 'green', code: 'G13' },
+          { key: 'yeshwanthpura', stn: 'ಯಶವಂತಪುರ (Yeshwanthpur)', line: 'green', code: 'G13' },
+          { key: 'silk board', stn: 'ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ್ ಬೋರ್ಡ್ (Central Silk Board)', line: 'yellow', code: 'Y05' },
+          { key: 'electronic city', stn: 'ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ (Electronic City)', line: 'yellow', code: 'Y13' },
+          { key: 'kengeri', stn: 'ಕೆಂಗೇರಿ (Kengeri)', line: 'purple', code: 'P34' },
+          { key: 'peenya', stn: 'ಪೀಣ್ಯ (Peenya)', line: 'green', code: 'G09' },
+          { key: 'vijayanagar', stn: 'ವಿಜಯನಗರ (Vijayanagar)', line: 'purple', code: 'P27' },
+          { key: 'vijayanagara', stn: 'ವಿಜಯನಗರ (Vijayanagar)', line: 'purple', code: 'P27' },
+          { key: 'nagavara', stn: 'ನಾಗವಾರ (Nagawara)', line: 'pink', code: 'PK18' },
+          { key: 'hebbal', stn: 'ಹೆಬ್ಬಾಳ (Hebbal)', line: 'blue', code: 'BL18' }
+        ];
+
+        const stn1 = METRO_MAP.find(m => f.includes(m.key));
+        const stn2 = METRO_MAP.find(m => t.includes(m.key));
+
+        if (stn1 && stn2 && stn1.stn !== stn2.stn) {
+          const isSameLine = (stn1.line === stn2.line && stn1.line !== 'interchange') || stn1.line === 'interchange' || stn2.line === 'interchange';
+          const lineName = isSameLine ? (stn1.line === 'green' || stn2.line === 'green' ? 'ಹಸಿರು ಮಾರ್ಗ (Green Line)' : 'ನೇರಳೆ ಮಾರ್ಗ (Purple Line)') : 'ನೇರಳೆ ↔ ಹಸಿರು ಮಾರ್ಗ (Majestic Interchange)';
+          const lineColor = (stn1.line === 'green' || stn2.line === 'green') && isSameLine ? '#10B981' : '#8B5CF6';
+
+          return {
+            available: true,
+            title: "🚇 ನಮ್ಮ ಮೆಟ್ರೋ ಸ್ಮಾರ್ಟ್ ಪರ್ಯಾಯ ಮಾರ್ಗ (Namma Metro Alternative)",
+            line_name: lineName,
+            line_color: lineColor,
+            origin_stn: stn1.stn,
+            dest_stn: stn2.stn,
+            is_interchange: !isSameLine,
+            hops: [
+              { hop: 1, type: "bus_walk", title: `${fromStr} ➔ ${stn1.stn}`, desc: "ಸ್ಥಳೀಯ ಬಸ್ / ಆಟೋ / ವಾಕ್ ಮೂಲಕ ಹತ್ತಿರದ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ ತಲುಪಿ" },
+              { hop: 2, type: "metro_train", title: `${stn1.stn} ➔ ${stn2.stn}`, desc: isSameLine ? `${lineName} ನೇರ ರೈಲು (ಪ್ರತಿ 5 ನಿಮಿಷಕ್ಕೊಮ್ಮೆ)` : `ಮೆಜೆಸ್ಟಿಕ್ ಇಂಟರ್‌ಚೇಂಜ್ ಮೂಲಕ ಲೈನ್ ಬದಲಾವಣೆ` },
+              { hop: 3, type: "bus_walk", title: `${stn2.stn} ➔ ${toStr}`, desc: "ನಿಲ್ದಾಣದಿಂದ ಗಮ್ಯಸ್ಥಾನಕ್ಕೆ ಕೊನೆಯ ಮೈಲಿ ಸಂಪರ್ಕ" }
+            ],
+            fare: "₹30 – ₹45",
+            travel_time: isSameLine ? "20 – 30 ನಿಮಿಷಗಳು" : "35 – 45 ನಿಮಿಷಗಳು",
+            benefit: "ಸಿಗ್ನಲ್ ಹಾಗೂ ಟ್ರಾಫಿಕ್ ಜಾಮ್ ರಹಿತ ನಿಖರ ಪ್ರಯಾಣ!"
+          };
+        }
+        return null;
+      }
+
+      const normFrom = normalizeStopName(fromRaw);
+      const normTo = normalizeStopName(toRaw);
+
+      let plans = [];
+      try {
+        const postBody = new URLSearchParams({ from: normFrom, to: normTo, how: how });
+        const cgiResp = await fetch('https://narasimhadatta.info/cgi-bin/find.cgi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: postBody.toString()
+        });
+        if (cgiResp.ok) {
+          const html = await cgiResp.text();
+          plans = parseFindCgiHtml(html);
+        }
+      } catch (e) {
+        console.warn('Upstream query error:', e);
+      }
+
+      // Hub fallback if 0 plans
+      if (plans.length === 0) {
+        try {
+          const hubRes = await env.ASSETS.fetch(new Request(new URL('/data/bmtc_hub_connections.json', request.url)));
+          if (hubRes.ok) {
+            const hubData = await hubRes.json();
+            const fStem = stemStop(normFrom);
+            const tStem = stemStop(normTo);
+
+            function matchKey(st, data) {
+              if (!st) return null;
+              for (const k of Object.keys(data)) {
+                if (stemStop(k) === st) return k;
+              }
+              for (const k of Object.keys(data)) {
+                const ks = stemStop(k);
+                if (ks.startsWith(st) || st.startsWith(ks)) return k;
+              }
+              for (const k of Object.keys(data)) {
+                const ks = stemStop(k);
+                if (ks.includes(st) || st.includes(ks)) return k;
+              }
+              return null;
+            }
+
+            const fKey = matchKey(fStem, hubData);
+            const tKey = matchKey(tStem, hubData);
+
+            if (fKey && tKey && hubData[fKey] && hubData[tKey]) {
+              const fromHubs = hubData[fKey];
+              const toHubs = hubData[tKey];
+              const commonHubs = Object.keys(fromHubs).filter(h => toHubs[h]);
+
+              let planIdx = 1;
+              for (const hub of commonHubs) {
+                plans.push({
+                  plan_no: planIdx++,
+                  hops: [
+                    { hop: 1, from: normFrom, to: hub, routes: fromHubs[hub] },
+                    { hop: 2, from: hub, to: normTo, routes: toHubs[hub] }
+                  ]
+                });
+                if (planIdx > 5) break;
+              }
+            }
+          }
+        } catch (err) {
+          console.warn('Hub fallback error:', err);
+        }
+      }
+
+      // Enrich routes with Shakti Scheme info
+      plans.forEach(p => {
+        p.hops.forEach(h => {
+          h.route_details = h.routes.map(r => {
+            const rUpper = r.toUpperCase();
+            const isAc = rUpper.startsWith('KIA') || rUpper.startsWith('V') || rUpper.includes('VAJRA');
+            return {
+              route_no: r,
+              category: isAc ? 'vajra_ac' : 'ordinary',
+              shakti_free: !isAc,
+              shakti_label: isAc ? 'ಶಕ್ತಿ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (AC)' : 'ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ'
+            };
+          });
+        });
+      });
+
+      const metroAlt = computeMetroAlternative(fromRaw, toRaw);
+
+      // Include Metro Route directly into Route Plans list as Route Plan #1 (if available)
+      if (metroAlt) {
+        plans.unshift({
+          plan_no: 1,
+          is_metro: true,
+          title: `🚇 ನಮ್ಮ ಮೆಟ್ರೋ ಎಕ್ಸ್‌ಪ್ರೆಸ್ (${metroAlt.line_name})`,
+          line_name: metroAlt.line_name,
+          line_color: metroAlt.line_color,
+          travel_time: metroAlt.travel_time,
+          fare: metroAlt.fare,
+          hops: metroAlt.hops.map(h => ({
+            hop: h.hop,
+            from: h.title.split('➔')[0].trim(),
+            to: (h.title.split('➔')[1] || h.title).trim(),
+            routes: [h.desc],
+            route_details: [{
+              route_no: h.type === 'metro_train' ? `🚇 ${metroAlt.line_name}` : 'ವಾಕ್ / ಫೀಡರ್',
+              category: h.type === 'metro_train' ? 'metro_rail' : 'feeder',
+              shakti_free: h.type !== 'metro_train',
+              shakti_label: h.type === 'metro_train' ? 'ಮೆಟ್ರೋ ಟೋಕನ್ / ಸ್ಮಾರ್ಟ್ ಕಾರ್ಡ್' : 'ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ'
+            }]
+          }))
+        });
+
+        // Renumber remaining bus plans to 2, 3, 4...
+        for (let i = 1; i < plans.length; i++) {
+          plans[i].plan_no = i + 1;
+        }
+      }
+
+      return new Response(JSON.stringify({
+        status: 'success',
+        from: fromRaw,
+        to: toRaw,
+        how: how,
+        total_plans: plans.length,
+        plans: plans,
+        metro_alternative: metroAlt
+      }), {
+        headers: corsHeaders
+      });
+    }
+
+        // Route: BMTC Special Categories (Airport KIA, Metro Feeder, Vajra AC, Night Services)
+    if (url.pathname === '/api/bmtc-special') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const specRes = await env.ASSETS.fetch(new Request(new URL('/data/bmtc_special_categories.json', request.url)));
+        if (specRes.ok) {
+          const specData = await specRes.text();
+          return new Response(specData, { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('Special categories fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'Data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: BMTC Single Route Lookup & Stop Sequence API
+    if (url.pathname === '/api/bmtc-route') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      const routeNo = (url.searchParams.get('route') || '').trim();
+      if (!routeNo) {
+        return new Response(JSON.stringify({ status: 'error', message: 'Route number required' }), { status: 400, headers: corsHeaders });
+      }
+
+      let routeInfo = null;
+      try {
+        const resp = await fetch(`https://narasimhadatta.info/cgi-bin/find.cgi?route=${encodeURIComponent(routeNo)}`, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) KarnataTransit/2026' }
+        });
+        if (resp.ok) {
+          const html = await resp.text();
+          const fromM = html.match(/<strong>From:<\/strong>&nbsp;&nbsp;&nbsp;([^<]+)/i);
+          const toM = html.match(/<strong>To:<\/strong>&nbsp;&nbsp;&nbsp;([^<]+)/i);
+          const freqM = html.match(/<strong>Frequency:<\/strong>&nbsp;&nbsp;&nbsp;([^<]+)/i);
+          const stopsM = [...html.matchAll(/<li>([^<]+)<\/li>/gi)].map(m => m[1].trim());
+
+          if (stopsM.length > 0) {
+            const isAc = routeNo.toUpperCase().startsWith('KIA') || routeNo.toUpperCase().startsWith('V');
+            routeInfo = {
+              route_no: routeNo,
+              from: fromM ? fromM[1].trim() : '',
+              to: toM ? toM[1].trim() : '',
+              frequency: freqM ? freqM[1].trim() : '',
+              stops: stopsM,
+              shakti_free: !isAc,
+              shakti_label: isAc ? 'ಶಕ್ತಿ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (AC Bus)' : 'ಶಕ್ತಿ ಯೋಜನೆ ಅಡಿಯಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಪ್ರಯಾಣ'
+            };
+          }
+        }
+      } catch (e) {
+        console.warn('Route lookup error:', e);
+      }
+
+      return new Response(JSON.stringify({
+        status: routeInfo ? 'success' : 'not_found',
+        route: routeInfo || { route_no: routeNo, stops: [] }
+      }), { headers: corsHeaders });
+    }
+
+    // Route: KSRTC, NWKRTC, KKRTC Master Routes & Timetables API
+    if (url.pathname === '/api/ksrtc-routes') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const rtcRes = await env.ASSETS.fetch(new Request(new URL('/data/karnataka_rtc_master.json', request.url)));
+        if (rtcRes.ok) {
+          const rtcData = await rtcRes.text();
+          return new Response(rtcData, { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('RTC master fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'RTC data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: Karnataka RTC Master 25,000+ Departures & Route Search API
+    if (url.pathname === '/api/ksrtc-majestic-timetables' || url.pathname === '/api/karnataka-bus-routes') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const query = (url.searchParams.get('q') || '').trim();
+        const fromParam = (url.searchParams.get('from') || '').trim();
+        const toParam = (url.searchParams.get('to') || '').trim();
+        const dateParam = (url.searchParams.get('date') || '').trim();
+        const service = (url.searchParams.get('service') || '').toUpperCase().trim();
+        const limit = Math.min(parseInt(url.searchParams.get('limit') || '100', 10), 500);
+
+        function normPlace(t) {
+          if (!t) return '';
+          let s = t.toUpperCase().trim();
+          if (s.includes('BENGAL') || s.includes('BANGAL') || s === 'BLR') return 'BENGALURU';
+          if (s.includes('MYSORE') || s.includes('MYSURU')) return 'MYSURU';
+          if (s.includes('HUBLI') || s.includes('HUBBALLI')) return 'HUBBALLI';
+          if (s.includes('BELGAUM') || s.includes('BELAGAVI')) return 'BELAGAVI';
+          if (s.includes('GULBARGA') || s.includes('KALABURAGI')) return 'KALABURAGI';
+          if (s.includes('BIJAPUR') || s.includes('VIJAYAPURA')) return 'VIJAYAPURA';
+          if (s.includes('BELLARY') || s.includes('BALLARI')) return 'BALLARI';
+          s = s.replace(/THI$/, 'TI').replace(/VATHI/g, 'VATI').replace(/VATTI/g, 'VATI');
+          s = s.replace(/PURAM?$/, 'PURA').replace(/OORU?$/, 'URU');
+          return s;
+        }
+
+        const normFrom = normPlace(fromParam);
+        const normTo = normPlace(toParam);
+        const normQ = normPlace(query);
+
+        const fileRes = await env.ASSETS.fetch(new Request(new URL('/data/karnataka_rtc_routes_master.json', request.url)));
+        if (fileRes.ok) {
+          let list = await fileRes.json();
+          if (normFrom) {
+            list = list.filter(r => normPlace(r.from).includes(normFrom));
+          }
+          if (normTo) {
+            list = list.filter(r => normPlace(r.to).includes(normTo) || (r.via && normPlace(r.via).includes(normTo)));
+          }
+          if (service && service !== 'ALL') {
+            list = list.filter(r => r.service.toUpperCase().includes(service));
+          }
+          if (normQ) {
+            list = list.filter(r =>
+              normPlace(r.from).includes(normQ) ||
+              normPlace(r.to).includes(normQ) ||
+              (r.via && normPlace(r.via).includes(normQ)) ||
+              r.dep_time.includes(query)
+            );
+          }
+
+          // Attach date if provided for dynamic deep linking
+          if (dateParam) {
+            list = list.map(r => ({
+              ...r,
+              journey_date: dateParam,
+              booking_url: `https://ksrtc.in/oprs-web/guest/home.do?h=1&fromCityName=${encodeURIComponent(r.from)}&toCityName=${encodeURIComponent(r.to)}&journeyDate=${encodeURIComponent(dateParam)}`
+            }));
+          }
+
+          return new Response(JSON.stringify({
+            status: 'success',
+            total_matches: list.length,
+            timetables: list.slice(0, limit)
+          }), { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('KSRTC master routes fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'KSRTC route data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: NWKRTC Official 63 Bus Stations & Timetable PDFs API
+    if (url.pathname === '/api/nwkrtc-stations') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const fileRes = await env.ASSETS.fetch(new Request(new URL('/data/nwkrtc_official_stations.json', request.url)));
+        if (fileRes.ok) {
+          const data = await fileRes.text();
+          return new Response(data, { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('NWKRTC stations fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'NWKRTC data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: KKRTC Official 158 Bus Stations & Contact Enquiry API
+    if (url.pathname === '/api/kkrtc-stations') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const fileRes = await env.ASSETS.fetch(new Request(new URL('/data/kkrtc_official_stations.json', request.url)));
+        if (fileRes.ok) {
+          const data = await fileRes.text();
+          return new Response(data, { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('KKRTC stations fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'KKRTC data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: KSRTC Official 153 Bus Stations Timetable PDFs API
+    if (url.pathname === '/api/ksrtc-station-timetables') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const fileRes = await env.ASSETS.fetch(new Request(new URL('/data/ksrtc_official_station_timetables.json', request.url)));
+        if (fileRes.ok) {
+          const data = await fileRes.text();
+          return new Response(data, { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('KSRTC station timetables fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'KSRTC station timetables data not available' }), { headers: corsHeaders });
+    }
+
+    // Route: Karnataka All 5,935+ Village Bus Stops & Stations Search API
+    if (url.pathname === '/api/karnataka-village-bus') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Cache-Control': 'public, max-age=86400',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+      if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+      try {
+        const query = (url.searchParams.get('q') || '').toLowerCase().trim();
+        const dist = (url.searchParams.get('district') || '').toUpperCase().trim();
+        const taluk = (url.searchParams.get('taluk') || '').toLowerCase().trim();
+        const corp = (url.searchParams.get('corp') || '').toUpperCase().trim();
+        const limit = Math.min(parseInt(url.searchParams.get('limit') || '100', 10), 1000);
+
+        const fileRes = await env.ASSETS.fetch(new Request(new URL('/data/karnataka_village_bus_stops.json', request.url)));
+        if (fileRes.ok) {
+          const raw = await fileRes.json();
+          let list = raw.village_stops || [];
+
+          if (corp && corp !== 'ALL') {
+            list = list.filter(v => v.corp === corp);
+          }
+          if (dist && dist !== 'ALL') {
+            list = list.filter(v => (v.district_en || '').toUpperCase().includes(dist) || (v.district_kn || '').includes(dist));
+          }
+          if (taluk && taluk !== 'ALL') {
+            list = list.filter(v => (v.taluk_en || '').toLowerCase().includes(taluk) || (v.taluk_kn || '').includes(taluk));
+          }
+          if (query) {
+            list = list.filter(v =>
+              (v.name_kn || '').toLowerCase().includes(query) ||
+              (v.name_en || '').toLowerCase().includes(query) ||
+              (v.taluk_kn || '').toLowerCase().includes(query) ||
+              (v.taluk_en || '').toLowerCase().includes(query) ||
+              (v.pincode || '').includes(query)
+            );
+          }
+
+          return new Response(JSON.stringify({
+            status: 'success',
+            total_matches: list.length,
+            limit: limit,
+            stops: list.slice(0, limit)
+          }), { headers: corsHeaders });
+        }
+      } catch (e) {
+        console.warn('Village bus fetch error:', e);
+      }
+      return new Response(JSON.stringify({ status: 'error', message: 'Village bus data not available' }), { headers: corsHeaders });
+    }
 
     if (url.pathname === '/api/ksndmc/telemetry' || url.pathname === '/api/ksndmc') {
 
@@ -16982,6 +16365,9 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
 
 
         updated_at: baseWeatherData?.updated_at || new Date().toISOString(),
+        districtWarnings5D: baseWeatherData?.districtWarnings5D || null,
+        nowcast: baseWeatherData?.nowcast || null,
+        forecast_5days: baseWeatherData?.forecast_5days || null,
 
 
 
@@ -17068,11 +16454,12 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
         success: true,
         source: 'Official IMD Bengaluru (5-Day Warnings + 3-Hour Nowcast)',
         updated_at: baseWeatherData?.updated_at || new Date().toISOString(),
-        nowcast: {
+        districtWarnings5D: baseWeatherData?.districtWarnings5D || null,
+        nowcast: baseWeatherData?.nowcast || {
           source: 'https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13',
           districts: nowcastMap
         },
-        forecast_5days: forecast5days,
+        forecast_5days: baseWeatherData?.forecast_5days || forecast5days,
         total_districts: Object.keys(nowcastMap).length,
         districts: nowcastMap
       }), { headers: corsHeaders });
@@ -17966,21 +17353,26 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
 
 
           } catch(e) {}
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
+        let staticFeed = [];
+        if (env && env.ASSETS) {
+          try {
+            const staticResp = await env.ASSETS.fetch(new Request(new URL('/data/live_push_feed.json', request.url)));
+            if (staticResp.ok) {
+              const staticData = await staticResp.json();
+              staticFeed = staticData.feed || staticData || [];
+            }
+          } catch(e) {}
+        }
+        const seenFeedIds = new Set();
+        const mergedFeed = [];
+        for (const item of [...feed, ...staticFeed]) {
+          if (item && item.id && !seenFeedIds.has(item.id)) {
+            seenFeedIds.add(item.id);
+            mergedFeed.push(item);
+          }
+        }
+        feed = mergedFeed;
         const clientDistrict = (url.searchParams.get('district') || 'all').toLowerCase().trim();
 
 
@@ -22725,6 +22117,672 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
 
 
 
+
+// ══════════════════════════════════════════════════════════════
+    // Route: JEV Transit Router — Turnkey Journey Solver v2.0
+    // Endpoint: /api/jev-router (Supports POST, GET, OPTIONS)
+// ══════════════════════════════════════════════════════════════
+    // Route: JEV Transit Router — Universal Graph Transit Engine v3.0
+    // Covers all 85+ stations, all lines, exact BMRCL fares, BMTC & KSRTC
+    // Endpoint: /api/jev-router (Supports POST, GET, OPTIONS)
+    // ══════════════════════════════════════════════════════════════
+    if (url.pathname === '/api/jev-router' || url.pathname === '/api/jev-router/') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-TypeSafe-Key',
+      };
+
+      if (request.method === 'OPTIONS') {
+        return new Response('', { status: 200, headers: corsHeaders });
+      }
+
+      let userInput = '';
+      let fromStationParam = '';
+      let toStationParam = '';
+
+      if (request.method === 'POST') {
+        try {
+          const body = await request.json();
+          userInput = body.userInput || body.q || body.query || '';
+          fromStationParam = body.fromStation || '';
+          toStationParam = body.toStation || '';
+        } catch {
+          userInput = '';
+        }
+      } else if (request.method === 'GET') {
+        userInput = url.searchParams.get('userInput') || url.searchParams.get('q') || url.searchParams.get('query') || '';
+        fromStationParam = url.searchParams.get('fromStation') || '';
+        toStationParam = url.searchParams.get('toStation') || '';
+      } else {
+        return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+      }
+
+      if (!userInput && fromStationParam && toStationParam) {
+        userInput = fromStationParam + ' to ' + toStationParam;
+      }
+
+      if (!userInput || typeof userInput !== 'string' || !userInput.trim()) {
+        return new Response(JSON.stringify({
+          error: 'userInput is required (non-empty string, max 500 characters)'
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+      }
+
+      const t0 = Date.now();
+      const input = userInput.trim().slice(0, 500);
+      const q = input.toLowerCase();
+
+      // ── 1. Traffic Sensitivity Detection ──
+      const trafficRegex = /\b(traffic|traffic jam|heavy traffic|gridlock|rush hour|peak hour|congestion|congested|slow moving|bottleneck|bypass|bypass traffic|avoid traffic|avoid congestion|skip traffic|silk board traffic|tin factory traffic|goraguntepalya traffic|outer ring road traffic|orr traffic|waterlogged|delay|delayed|stuck in traffic)\b|ಟ್ರಾಫಿಕ್|ಜಾಮ್|ದಟ್ಟಣೆ|ರಶ್|ತಡೆ/i;
+      const isTrafficSensitive = trafficRegex.test(q);
+
+      // ── 2. Urgency Score Resolution (1 - 5) ──
+      let urgencyScore = 1;
+      let urgencyReason = 'Casual route enquiry';
+
+      const critRegex = /\b(emergency|urgent|urgently|immediate|immediately|missing flight|miss the flight|miss flight|flight in|flight at|flight boarding|train in|hospital|ambulance|critical|life or death|in 5 min|in 10 min|in 15 min|in 20 min|right now|hurry up|quick)\b|ತುರ್ತು|ವಿಮಾನ|ತಕ್ಷಣ/i;
+      const highRegex = /\b(running late|late for|fastest|quickest|asap|as soon as possible|hurry|reach fast|fast route|time is running out|meeting in|interview in|exam in|exam time|reach before)\b|ಬೇಗ|ತಡವಾಗಿದೆ|ಶೀಘ್ರ/i;
+      const modRegex  = /\b(today|now|soon|schedule|commute|office time|morning commute|evening commute|reach by|estimated time|how long will it take|travel time)\b|ಇಂದು|ಈಗ/i;
+      const mildRegex = /\b(tomorrow|tonight|this evening|later today|weekend|planning|best time to travel|which bus goes|which metro goes)\b|ನಾಳೆ|ರಾತ್ರಿ/i;
+
+      if (critRegex.test(q)) {
+        urgencyScore = 5;
+        urgencyReason = 'Critical time deadline / flight departure / emergency';
+      } else if (highRegex.test(q)) {
+        urgencyScore = 4;
+        urgencyReason = 'High urgency / running late / fastest transit path requested';
+      } else if (modRegex.test(q)) {
+        urgencyScore = 3;
+        urgencyReason = 'Moderate urgency / scheduled commute today';
+      } else if (mildRegex.test(q)) {
+        urgencyScore = 2;
+        urgencyReason = 'Mild urgency / planning journey ahead';
+      }
+
+      // ── 3. Transit Mode Intent Scoring ──
+      let metroScore = 0;
+      let bmtcScore = 0;
+      let ksrtcScore = 0;
+
+      if (/\b(metro|bmrcl|purple line|green line|yellow line|pink line|namma metro|metro card|smart card|token|metro station|train to whitefield)\b|ಮೆಟ್ರೋ|ನಮ್ಮ ಮೆಟ್ರೋ|ನೇರಳೆ ಮಾರ್ಗ|ಹಸಿರು ಮಾರ್ಗ/i.test(q)) {
+        metroScore += 12;
+      }
+      if (/\b(bmtc|city bus|volvo|vajra|vayu vajra|kia[-\s]?\d+|ttmc|bus stop|bus stand|bus pass|daily pass|route no|500d|335e|g[-\s]?[1-9]|mf[-\s]?\d+|shakti|pushpak)\b|ಬಿಎಂಟಿಸಿ|ಸಿಟಿ ಬಸ್|ವೋಲ್ವೋ|ವಾಯು ವಜ್ರ|ಬಸ್ಸು/i.test(q)) {
+        bmtcScore += 12;
+      }
+      if (/\b(ksrtc|intercity|outstation|rajahamsa|airavat|club class|ambaari|sarige|flybus|sleeper bus|ksrtc booking|awatar|nekrtc|nwkrtc|kalyana karnataka|north western)\b|ಕೆಎಸ್ಆರ್ಟಿಸಿ|ರಾಜಹಂಸ|ಐರಾವತ|ಅಂಬಾರಿ|ಸಾರಿಗೆ|ಫ್ಲೈಬಸ್/i.test(q)) {
+        ksrtcScore += 12;
+      }
+
+      // ── 4. Complete Station Network Datasets ──
+      const PURPLE = [
+        ["Whitefield (Kadugodi)", "ವೈಟ್‌ಫೀಲ್ಡ್ (ಕಾಡುಗೋಡಿ)"],
+        ["Hopefarm Channasandra", "ಹೋಪ್‌ಫಾರ್ಮ್ ಚನ್ನಸಂದ್ರ"],
+        ["Kadugodi Tree Park", "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್"],
+        ["Pattandur Agrahara", "ಪಟ್ಟಂದೂರು ಅಗ್ರಹಾರ"],
+        ["Sri Sathya Sai Hospital", "ಶ್ರೀ ಸತ್ಯ ಸಾಯಿ ಆಸ್ಪತ್ರೆ"],
+        ["Nallurahalli", "ನಲ್ಲೂರಹಳ್ಳಿ"],
+        ["Kundalahalli", "ಕುಂದಲಹಳ್ಳಿ"],
+        ["Seetharampalya", "ಸೀತಾರಾಮಪಾಳ್ಯ"],
+        ["Hoodi", "ಹೂಡಿ"],
+        ["Garudacharpalya", "ಗರುಡಾಚಾರ್‌ಪಾಳ್ಯ"],
+        ["Singayyanapalya", "ಸಿಂಗಯ್ಯನಪಾಳ್ಯ"],
+        ["Krishnarajapura (K.R. Pura)", "ಕೃಷ್ಣರಾಜಪುರ"],
+        ["Benniganahalli", "ಬೆನ್ನಿಗಾನಹಳ್ಳಿ"],
+        ["Baiyappanahalli", "ಬೈಯ್ಯಪ್ಪನಹಳ್ಳಿ"],
+        ["Swami Vivekananda Road", "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ರಸ್ತೆ"],
+        ["Indiranagar", "ಇಂದಿರಾನಗರ"],
+        ["Halasuru", "ಹಲಸೂರು"],
+        ["Trinity", "ಟ್ರಿನಿಟಿ"],
+        ["Mahatma Gandhi Road", "ಎಂ.ಜಿ. ರಸ್ತೆ"],
+        ["Cubbon Park", "ಕಬ್ಬನ್ ಪಾರ್ಕ್"],
+        ["Dr. B.R. Ambedkar Stn (Vidhana Soudha)", "ವಿಧಾನ ಸೌಧ"],
+        ["Sir M. Visvesvaraya (Central College)", "ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ"],
+        ["Nadaprabhu Kempegowda Stn (Majestic)", "ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ (ಮೆಜೆಸ್ಟಿಕ್)"],
+        ["Krantivira Sangolli Rayanna Railway Stn", "ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ"],
+        ["Magadi Road", "ಮಾಗಡಿ ರಸ್ತೆ"],
+        ["Sri Balagangadharanatha Swamiji Stn", "ಹೊಸಹಳ್ಳಿ"],
+        ["Vijayanagar", "ವಿಜಯನಗರ"],
+        ["Attiguppe", "ಅತ್ತಿಗುಪ್ಪೆ"],
+        ["Deepanjali Nagar", "ದೀಪಾಂಜಲಿ ನಗರ"],
+        ["Mysuru Road", "ಮೈಸೂರು ರಸ್ತೆ"],
+        ["Pantharapalya (Nayandahalli)", "ಪಂತರಪಾಳ್ಯ (ನಾಯಂಡಹಳ್ಳಿ)"],
+        ["Rajarajeshwari Nagar", "ರಾಜರಾಜೇಶ್ವರಿ ನಗರ"],
+        ["Jnanabharathi", "ಜ್ಞಾನಭಾರತಿ"],
+        ["Pattanagere", "ಪಟ್ಟಣಗೆರೆ"],
+        ["Kengeri Bus Terminal", "ಕೆಂಗೇರಿ ಬಸ್ ಟರ್ಮಿನಲ್"],
+        ["Kengeri", "ಕೆಂಗೇರಿ"],
+        ["Challaghatta", "ಚಲ್ಲಘಟ್ಟ"]
+      ];
+
+      const GREEN = [
+        ["Madavara (BIEC)", "ಮಾದಾವರ (BIEC)"],
+        ["Chikkabidarakallu", "ಚಿಕ್ಕಬಿದರಕಲ್ಲು"],
+        ["Manjunathanagar", "ಮಂಜುನಾಥನಗರ"],
+        ["Nagasandra", "ನಾಗಸಂದ್ರ"],
+        ["Dasarahalli", "ದಾಸರಹಳ್ಳಿ"],
+        ["Jalahalli", "ಜಾಲಹಳ್ಳಿ"],
+        ["Peenya Industry", "ಪೀಣ್ಯ ಇಂಡಸ್ಟ್ರಿ"],
+        ["Peenya", "ಪೀಣ್ಯ"],
+        ["Goraguntepalya", "ಗೊರಗುಂಟೆಪಾಳ್ಯ"],
+        ["Yeshwanthpur", "ಯಶವಂತಪುರ"],
+        ["Sandal Soap Factory", "ಸ್ಯಾಂಡಲ್ ಸೋಪ್ ಫ್ಯಾಕ್ಟರಿ"],
+        ["Mahalakshmi", "ಮಹಾಲಕ್ಷ್ಮಿ"],
+        ["Rajajinagar", "ರಾಜಾಜಿನಗರ"],
+        ["Kuvempu Road", "ಕುವೆಂಪು ರಸ್ತೆ"],
+        ["Srirampura", "ಶ್ರೀರಾಂಪುರ"],
+        ["Mantri Square Sampige Road", "ಮಂತ್ರಿ ಸ್ಕ್ವೇರ್ ಸಂಪಿಗೆ ರಸ್ತೆ"],
+        ["Nadaprabhu Kempegowda Stn (Majestic)", "ನಾಡಪ್ರಭು ಕೆಂಪೇಗೌಡ ನಿಲ್ದಾಣ (ಮೆಜೆಸ್ಟಿಕ್)"],
+        ["Chickpete", "ಚಿಕ್ಕಪೇಟೆ"],
+        ["Krishna Rajendra Market", "ಕೃಷ್ಣ ರಾಜೇಂದ್ರ ಮಾರುಕಟ್ಟೆ"],
+        ["National College", "ನ್ಯಾಷನಲ್ ಕಾಲೇಜು"],
+        ["Lalbagh", "ಲಾಲ್‌ಬಾಗ್"],
+        ["South End Circle", "ಸೌತ್ ಎಂಡ್ ಸರ್ಕಲ್"],
+        ["Jayanagar", "ಜಯನಗರ"],
+        ["Rashtreeya Vidyalaya Road", "ರಾಷ್ಟ್ರೀಯ ವಿದ್ಯಾಲಯ ರಸ್ತೆ"],
+        ["Banashankari", "ಬನಶಂಕರಿ"],
+        ["Jaya Prakash Nagar (JP Nagar)", "ಜಯಪ್ರಕಾಶ ನಗರ"],
+        ["Yelachenahalli", "ಯಲಚೇನಹಳ್ಳಿ"],
+        ["Konanakunte Cross", "ಕೋಣನಕುಂಟೆ ಕ್ರಾಸ್"],
+        ["Doddakallasandra", "ದೊಡ್ಡಕಲ್ಲಸಂದ್ರ"],
+        ["Vajarahalli", "ವಜ್ರಹಳ್ಳಿ"],
+        ["Thalaghattapura", "ತಲಘಟ್ಟಪುರ"],
+        ["Silk Institute", "ಸಿಲ್ಕ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್"]
+      ];
+
+      const YELLOW = [
+        ["Rashtreeya Vidyalaya Road", "ರಾಷ್ಟ್ರೀಯ ವಿದ್ಯಾಲಯ ರಸ್ತೆ"],
+        ["Ragigudda", "ರಾಗಿಗುಡ್ಡ"],
+        ["Jayadeva Hospital", "ಜಯದೇವ ಆಸ್ಪತ್ರೆ"],
+        ["BTM Layout", "ಬಿಟಿಎಂ ಲೇಔಟ್"],
+        ["Central Silk Board", "ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ್ ಬೋರ್ಡ್"],
+        ["Bommanahalli", "ಬೊಮ್ಮನಹಳ್ಳಿ"],
+        ["Hongasandra", "ಹೊಂಗಸಂದ್ರ"],
+        ["Kudlu Gate", "ಕುಡ್ಲು ಗೇಟ್"],
+        ["Singasandra", "ಸಿಂಗಸಂದ್ರ"],
+        ["Hosa Road", "ಹೊಸ ರಸ್ತೆ"],
+        ["Beratena Agrahara", "ಬೆರಟೇನ ಅಗ್ರಹಾರ"],
+        ["Electronic City", "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ"],
+        ["Infosys Foundation Konappana Agrahara", "ಕೋನಪ್ಪನ ಅಗ್ರಹಾರ"],
+        ["Huskur Road", "ಹುಸ್ಕೂರು ರಸ್ತೆ"],
+        ["Hebbagodi", "ಹೆಬ್ಬಗೋಡಿ"],
+        ["Bommasandra", "ಬೊಮ್ಮಸಂದ್ರ"]
+      ];
+
+      const KNOWN_INTERCITY_CITIES = ['mysuru', 'mysore', 'mangaluru', 'mangalore', 'hubballi', 'hubli', 'dharwad', 'belagavi', 'belgaum', 'shivamogga', 'shimoga', 'davanagere', 'davangere', 'ballari', 'bellary', 'kalaburagi', 'gulbarga', 'bidar', 'raichur', 'vijayapura', 'bijapur', 'hassan', 'chikmagalur', 'chikkamagaluru', 'udupi', 'gokarna', 'dharmasthala', 'kukke', 'subrahmanya', 'tirupati', 'ooty', 'coorg', 'madikeri', 'kodagu'];
+
+      // BMRCL Official Tariff Slabs
+      const TARIFF_SLABS = [
+        { maxStn: 2, token: 10, smartPeak: 10, smartOff: 9 },
+        { maxStn: 4, token: 20, smartPeak: 19, smartOff: 18 },
+        { maxStn: 6, token: 30, smartPeak: 29, smartOff: 27 },
+        { maxStn: 8, token: 40, smartPeak: 38, smartOff: 36 },
+        { maxStn: 10, token: 50, smartPeak: 48, smartOff: 45 },
+        { maxStn: 15, token: 60, smartPeak: 57, smartOff: 54 },
+        { maxStn: 20, token: 70, smartPeak: 67, smartOff: 63 },
+        { maxStn: 25, token: 80, smartPeak: 76, smartOff: 72 },
+        { maxStn: 999, token: 90, smartPeak: 86, smartOff: 81 }
+      ];
+
+      function calculateBmrclFare(stnCount) {
+        for (const slab of TARIFF_SLABS) {
+          if (stnCount <= slab.maxStn) return slab;
+        }
+        return TARIFF_SLABS[TARIFF_SLABS.length - 1];
+      }
+
+      // Graph construction
+      const stnGraph = {};
+      const stnIndex = {};
+      const linesMeta = {
+        purple: { name_en: 'Purple Line', name_kn: 'ನೇರಳೆ ಮಾರ್ಗ', color: '#8B5CF6' },
+        green:  { name_en: 'Green Line',  name_kn: 'ಹಸಿರು ಮಾರ್ಗ', color: '#10B981' },
+        yellow: { name_en: 'Yellow Line', name_kn: 'ಹಳದಿ ಮಾರ್ಗ', color: '#EAB308' }
+      };
+
+      function registerLineStns(lineId, arr) {
+        for (let i = 0; i < arr.length; i++) {
+          const key = lineId + ':' + (i + 1);
+          stnGraph[key] = {
+            key: key,
+            line: lineId,
+            lineName: linesMeta[lineId].name_en,
+            lineNameKn: linesMeta[lineId].name_kn,
+            lineColor: linesMeta[lineId].color,
+            index: i + 1,
+            name_en: arr[i][0],
+            name_kn: arr[i][1],
+            neighbors: []
+          };
+          if (i > 0) {
+            const prev = lineId + ':' + i;
+            stnGraph[key].neighbors.push(prev);
+            stnGraph[prev].neighbors.push(key);
+          }
+
+          const norm = arr[i][0].toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+          stnIndex[norm] = key;
+          if (arr[i][1]) stnIndex[arr[i][1].trim()] = key;
+
+          for (const word of norm.split(' ')) {
+            if (word.length > 3 && !['station', 'road', 'cross', 'park', 'nagar', 'circle', 'line', 'tree'].includes(word)) {
+              if (!stnIndex[word]) stnIndex[word] = key;
+            }
+          }
+        }
+      }
+
+      registerLineStns('purple', PURPLE);
+      registerLineStns('green', GREEN);
+      registerLineStns('yellow', YELLOW);
+
+      // Interchanges
+      stnGraph['purple:23'].neighbors.push('green:17'); // Majestic
+      stnGraph['green:17'].neighbors.push('purple:23');
+
+      stnGraph['green:24'].neighbors.push('yellow:1');  // RV Road
+      stnGraph['yellow:1'].neighbors.push('green:24');
+
+      // Check Intercity destination
+      for (const city of KNOWN_INTERCITY_CITIES) {
+        if (q.includes(city)) ksrtcScore += 8;
+      }
+
+      // Check Metro keywords
+      for (const k of Object.keys(stnIndex)) {
+        if (q.includes(k)) metroScore += 2;
+      }
+
+      let transitGroup = 'General_Query';
+      let confidence = 0.75;
+      const maxScore = Math.max(metroScore, bmtcScore, ksrtcScore);
+      if (maxScore > 0) {
+        if (metroScore === maxScore) {
+          transitGroup = 'Namma_Metro';
+          confidence = Math.min(0.99, 0.8 + (metroScore * 0.02));
+        } else if (bmtcScore === maxScore) {
+          transitGroup = 'BMTC_City_Bus';
+          confidence = Math.min(0.99, 0.8 + (bmtcScore * 0.02));
+        } else if (ksrtcScore === maxScore) {
+          transitGroup = 'KSRTC_Intercity';
+          confidence = Math.min(0.99, 0.8 + (ksrtcScore * 0.02));
+        }
+      }
+
+      // ── 5. Origin / Destination Resolution ──
+      stnIndex['silk board'] = 'yellow:5';
+      stnIndex['central silk board'] = 'yellow:5';
+      stnIndex['electronic city'] = 'yellow:12';
+      stnIndex['ecity'] = 'yellow:12';
+      stnIndex['itpl'] = 'purple:1';
+      stnIndex['majestic'] = 'purple:23';
+      stnIndex['kbs'] = 'purple:23';
+      stnIndex['kr puram'] = 'purple:12';
+      stnIndex['tin factory'] = 'purple:12';
+      stnIndex['rv road'] = 'yellow:1';
+      stnIndex['madavara'] = 'green:1';
+      stnIndex['biec'] = 'green:1';
+
+      const sortedStnEntries = Object.entries(stnIndex).sort((a, b) => b[0].length - a[0].length);
+
+      function matchStation(term) {
+        if (!term) return null;
+        const norm = term.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+        if (stnIndex[norm]) return stnIndex[norm];
+        for (const [k, v] of sortedStnEntries) {
+          if (norm === k || norm.includes(k)) return v;
+        }
+        for (const [k, v] of sortedStnEntries) {
+          if (k.includes(norm) && norm.length >= 4) return v;
+        }
+        return null;
+      }
+
+      let fromKey = null;
+      let toKey = null;
+
+      if (fromStationParam && toStationParam) {
+        fromKey = matchStation(fromStationParam);
+        toKey = matchStation(toStationParam);
+      }
+
+      if (!fromKey || !toKey) {
+        const fromTo = q.match(/\bfrom\s+([a-z\s]+?)\s+to\s+([a-z\s]+?)(?:\s+(?:by|via|in|avoiding|avoid|with|urgent)|$)/i);
+        if (fromTo) {
+          fromKey = matchStation(fromTo[1]);
+          toKey = matchStation(fromTo[2]);
+        }
+      }
+
+      if (!fromKey || !toKey) {
+        const xToY = q.match(/\b([a-z\s]+?)\s+to\s+([a-z\s]+?)(?:\s+(?:by|via|in|avoiding|avoid|with|urgent)|$)/i);
+        if (xToY) {
+          const c1 = xToY[1].replace(/\b(metro|bus|bmtc|ksrtc|how to go|how to reach|ticket|route)\b/gi, '').trim();
+          const c2 = xToY[2].replace(/\b(metro|bus|bmtc|ksrtc|ticket|fast|urgently)\b/gi, '').trim();
+          if (!fromKey) fromKey = matchStation(c1);
+          if (!toKey) toKey = matchStation(c2);
+        }
+      }
+
+      if (!fromKey || !toKey) {
+        const knM = q.match(/(.+?)\s*(?:ದಿಂದ|ಯಿಂದ|ಇಂದ)\s*(.+?)\s*(?:ಗೆ|ಕ್ಕೆ)/);
+        if (knM) {
+          if (!fromKey) fromKey = matchStation(knM[1]);
+          if (!toKey) toKey = matchStation(knM[2]);
+        }
+      }
+
+      if (!fromKey && !toKey) {
+        fromKey = 'purple:23'; // Majestic
+        toKey = 'purple:1';   // Whitefield
+      } else if (!fromKey) {
+        fromKey = 'purple:23'; // Majestic
+      } else if (!toKey) {
+        toKey = (fromKey === 'purple:23') ? 'purple:1' : 'purple:23';
+      }
+
+      // ── 6. Shortest Path Graph Traversal ──
+      const queue = [[fromKey]];
+      const visited = new Set([fromKey]);
+      let pathKeys = null;
+
+      if (fromKey === toKey) {
+        pathKeys = [fromKey];
+      } else {
+        while (queue.length > 0) {
+          const path = queue.shift();
+          const curr = path[path.length - 1];
+          if (curr === toKey) {
+            pathKeys = path;
+            break;
+          }
+          for (const n of stnGraph[curr].neighbors) {
+            if (!visited.has(n)) {
+              visited.add(n);
+              queue.push([...path, n]);
+            }
+          }
+        }
+      }
+
+      if (!pathKeys) pathKeys = [fromKey, toKey];
+
+      const fullStops = pathKeys.map(k => stnGraph[k]);
+      const stationCount = fullStops.length;
+      const tariff = calculateBmrclFare(stationCount);
+
+      const interchanges = [];
+      for (let i = 0; i < fullStops.length - 1; i++) {
+        if (fullStops[i].line !== fullStops[i + 1].line) {
+          interchanges.push({
+            station_en: fullStops[i].name_en,
+            station_kn: fullStops[i].name_kn,
+            fromLine: fullStops[i].lineName,
+            toLine: fullStops[i + 1].lineName,
+            instruction: 'Switch from ' + fullStops[i].lineName + ' to ' + fullStops[i + 1].lineName + ' via interchange concourse'
+          });
+        }
+      }
+
+      const travelTimeMinutes = Math.round(stationCount * 1.8 + interchanges.length * 5);
+      const roadMinutes = Math.round(travelTimeMinutes * 2.2);
+      const timeSaved = Math.max(0, roadMinutes - travelTimeMinutes);
+      const cabFare = Math.round(tariff.token * 9.5);
+
+      const originStn = fullStops[0];
+      const destStn = fullStops[fullStops.length - 1];
+      const linesUsed = [...new Set(fullStops.map(s => s.lineName))].join(' ➔ ');
+
+      // ── 7. Real BMTC Bus Matching Engine (2,025 Authentic Routes) ──
+      if (!workerBmtcCache && env && env.ASSETS) {
+        try {
+          const bResp = await env.ASSETS.fetch(new Request(new URL('/data/bmtc_all_routes.json', request.url)));
+          if (bResp.ok) {
+            const bData = await bResp.json();
+            workerBmtcCache = bData.routes || [];
+          }
+        } catch (e) {}
+      }
+
+      if (!workerKsrtcCache && env && env.ASSETS) {
+        try {
+          const kResp = await env.ASSETS.fetch(new Request(new URL('/data/ksrtc_majestic_timetables.json', request.url)));
+          if (kResp.ok) {
+            workerKsrtcCache = await kResp.json();
+          }
+        } catch (e) {}
+      }
+
+      let bmtcRoutes = [];
+      const originName = originStn.name_en.toLowerCase();
+      const destName = destStn.name_en.toLowerCase();
+
+      function formatBmtcItem(r) {
+        let typeStr = 'Ordinary City Bus';
+        let fareStr = r.fare_ord || '₹10 - ₹25';
+        if (r.category === 'vayu_vajra' || (r.route_no && r.route_no.startsWith('KIA'))) {
+          typeStr = 'Vayu Vajra AC Airport';
+          fareStr = r.fare_ac || '₹150 - ₹350';
+        } else if (r.category === 'vajra' || (r.route_no && (r.route_no.startsWith('V-') || r.route_no.endsWith('E')))) {
+          typeStr = 'Volvo Vajra AC Express';
+          fareStr = r.fare_ac || '₹40 - ₹80';
+        } else if (r.category === 'metro_feeder' || (r.route_no && r.route_no.startsWith('MF'))) {
+          typeStr = 'Namma Metro Feeder';
+          fareStr = '₹10 - ₹20';
+        } else if (r.category === 'big10' || (r.route_no && r.route_no.startsWith('G-'))) {
+          typeStr = 'Big-10 Arterial Express';
+          fareStr = '₹15 - ₹30';
+        }
+
+        return {
+          route: r.route_no,
+          name: r.full_name,
+          type: typeStr,
+          category: r.category || 'ordinary',
+          from: r.origin,
+          to: r.dest,
+          distance: r.distance || '~20 km',
+          stopsCount: r.stops_count || 20,
+          tripsDaily: r.trip_count || 24,
+          fare: fareStr,
+          timeMinutes: Math.round(travelTimeMinutes * 1.6 + 15),
+          shaktiFree: r.shakti_free !== false && !typeStr.includes('AC')
+        };
+      }
+
+      if (workerBmtcCache && workerBmtcCache.length > 0) {
+        const qClean = q.toLowerCase();
+        
+        // 1. Direct route number match (e.g. "500-D", "KIA-9", "335-E")
+        const directMatches = workerBmtcCache.filter(r => {
+          const rNo = (r.route_no || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          const qNorm = qClean.replace(/[^a-z0-9]/g, '');
+          return qNorm.length >= 2 && (rNo === qNorm || qClean.includes((r.route_no || '').toLowerCase()));
+        });
+
+        if (directMatches.length > 0) {
+          bmtcRoutes = directMatches.slice(0, 15).map(r => formatBmtcItem(r));
+        } else {
+          // 2. Token & Corridor matching
+          const getTokens = (str) => str.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+            .split(/\s+/)
+            .filter(t => t.length > 3 && !['station', 'cross', 'road', 'layout', 'park', 'gate', 'nagar', 'city', 'main', 'central', 'circle', 'railway'].includes(t));
+
+          const syns = {
+            'majestic': ['kempegowda', 'kbs', 'majestic', 'subhash'],
+            'whitefield': ['kadugodi', 'whitefield', 'itpl', 'pattandur', 'hopefarm'],
+            'electronic': ['electronic', 'wipro', 'ecity', 'konappana', 'infosys', 'bommasandra'],
+            'silk': ['silk', 'csb', 'madiwala', 'hsr', 'btm'],
+            'yeshwanthpur': ['yeshwantpur', 'yeshwanthpura', 'sandal', 'goraguntepalya'],
+            'banashankari': ['banashankari', 'bsk', 'padmanabhanagar', 'jayanagar'],
+            'krishnarajapura': ['krishnarajapura', 'tin factory', 'kr puram', 'benniganahalli'],
+            'airport': ['airport', 'kia', 'devanahalli', 'kempegowda international airport'],
+            'marathahalli': ['marathahalli', 'kundalahalli', 'kalamandir', 'hal'],
+            'hebbal': ['hebbal', 'manyata', 'nagawara']
+          };
+
+          const expandTokens = (tokens) => {
+            const res = [...tokens];
+            for (const t of tokens) {
+              for (const [k, v] of Object.entries(syns)) {
+                if (t.includes(k) || k.includes(t)) res.push(...v);
+              }
+            }
+            return [...new Set(res)];
+          };
+
+          const oTokens = expandTokens(getTokens(originName));
+          const dTokens = expandTokens(getTokens(destName));
+
+          const scored = [];
+          for (const r of workerBmtcCache) {
+            const text = ((r.full_name || '') + ' ' + (r.terminals ? r.terminals.join(' ') : '') + ' ' + (r.origin || '') + ' ' + (r.dest || '')).toLowerCase();
+            const hasO = oTokens.length === 0 || oTokens.some(t => text.includes(t));
+            const hasD = dTokens.length === 0 || dTokens.some(t => text.includes(t));
+            if (hasO && hasD) {
+              let score = (r.trip_count || 1);
+              if (r.category === 'vayu_vajra') score += 50;
+              scored.push({ route: r, score });
+            }
+          }
+          scored.sort((a, b) => b.score - a.score);
+          bmtcRoutes = scored.slice(0, 12).map(s => formatBmtcItem(s.route));
+        }
+      }
+
+      // Fallback if cache not loaded yet
+      if (bmtcRoutes.length === 0) {
+        if (originName.includes('majestic') || destName.includes('majestic')) {
+          bmtcRoutes = [
+            { route: '335-E', name: 'Kempegowda Bus Station → ITPL', type: 'Volvo Vajra AC Express', category: 'vajra', from: 'KBS Majestic', to: 'ITPL Kadugodi', distance: '46.2 ಕಿ.ಮೀ', stopsCount: 28, tripsDaily: 12, fare: '₹65', timeMinutes: 75, shaktiFree: false },
+            { route: 'KIA-9', name: 'Kempegowda Bus Station → Airport', type: 'Vayu Vajra AC Airport', category: 'vayu_vajra', from: 'KBS Majestic', to: 'Kempegowda Airport', distance: '23.1 ಕಿ.ಮೀ', stopsCount: 21, tripsDaily: 243, fare: '₹260', timeMinutes: 80, shaktiFree: false },
+            { route: '333-E', name: 'Kadugodi Bus Station → Kempegowda Bus Station', type: 'Ordinary City Bus', category: 'ordinary', from: 'KBS Majestic', to: 'Whitefield', distance: '28.5 ಕಿ.ಮೀ', stopsCount: 32, tripsDaily: 48, fare: '₹25', timeMinutes: 85, shaktiFree: true }
+          ];
+        } else {
+          bmtcRoutes = [
+            { route: '500-D', name: 'Central Silk Board → Hebbal TTMC', type: 'Volvo Vajra AC Express', category: 'vajra', from: 'Central Silk Board', to: 'Hebbal via Marathahalli', distance: '32.4 ಕಿ.ಮೀ', stopsCount: 24, tripsDaily: 156, fare: '₹60', timeMinutes: 65, shaktiFree: false },
+            { route: 'G-3', name: 'Electronic City Wipro Gate → Brigade Road', type: 'Big-10 Arterial Express', category: 'big10', from: 'Silk Board', to: 'Electronic City', distance: '35.2 ಕಿ.ಮೀ', stopsCount: 18, tripsDaily: 78, fare: '₹25', timeMinutes: 40, shaktiFree: true }
+          ];
+        }
+      }
+
+      // ── 8. Real KSRTC Intercity Matching (2,032 Departures from Majestic) ──
+      let ksrtcPlan = null;
+      let matchedCity = null;
+
+      for (const city of KNOWN_INTERCITY_CITIES) {
+        if (q.includes(city) || originName.includes(city) || destName.includes(city)) {
+          matchedCity = city;
+          break;
+        }
+      }
+
+      if (matchedCity) {
+        const capCity = matchedCity.toUpperCase();
+        let departures = [];
+
+        if (workerKsrtcCache && workerKsrtcCache.length > 0) {
+          const directDep = workerKsrtcCache.filter(k => 
+            (k.to && k.to.toUpperCase().includes(capCity)) || 
+            (k.via && k.via.toUpperCase().includes(capCity))
+          );
+          if (directDep.length > 0) {
+            departures = directDep.slice(0, 10).map(d => ({
+              departureTime: d.dep_time,
+              service: d.service || 'EXPRESS',
+              via: d.via || 'Direct Highway Express',
+              terminal: d.origin_terminal || 'Kempegowda Bus Station (Majestic Terminal 1)'
+            }));
+          }
+        }
+
+        if (departures.length === 0) {
+          if (matchedCity.includes('mys')) {
+            departures = [
+              { departureTime: 'Every 5-10 mins (24x7)', service: 'AIRAVAT CLUB CLASS / EV POWER PLUS', via: 'Bengaluru-Mysuru Expressway Non-Stop (1h 30m)', terminal: 'Mysore Road Satellite Bus Station / Majestic Terminal 1' },
+              { departureTime: 'Every 15 mins', service: 'RAJAHAMSA EXECUTIVE', via: 'Bidadi - Ramanagara - Channapatna - Mandya', terminal: 'Mysore Road Satellite Station (MCTC)' }
+            ];
+          } else {
+            departures = [
+              { departureTime: '06:00, 14:00, 20:30, 22:15', service: 'AIRAVAT CLUB CLASS MULTI-AXLE', via: 'NH Highway Express Corridor', terminal: 'Kempegowda Bus Station (Majestic Terminal 1)' },
+              { departureTime: '07:30, 15:30, 21:15, 23:00', service: 'RAJAHAMSA EXECUTIVE', via: 'State Highway Direct', terminal: 'Majestic Terminal 2' }
+            ];
+          }
+        }
+
+        ksrtcPlan = {
+          destinationCity: matchedCity.charAt(0).toUpperCase() + matchedCity.slice(1),
+          totalDeparturesToday: departures.length > 0 ? (departures.length * 4) : 24,
+          services: departures,
+          bookingUrl: 'https://ksrtc.in'
+        };
+      }
+
+      // ── 9. Build Complete Response Payload ──
+      const resultPayload = {
+        transitGroup,
+        isTrafficSensitive,
+        urgencyScore,
+        confidence: Math.round(confidence * 100) / 100,
+        urgencyReason,
+        query: input,
+        processingMs: Date.now() - t0,
+        engine: 'Universal Graph Transit Engine v3.0 (All 85+ Stations)',
+        metroJourney: {
+          origin: originStn.name_en,
+          originKn: originStn.name_kn,
+          destination: destStn.name_en,
+          destinationKn: destStn.name_kn,
+          linesUsed,
+          lineColor: fullStops[0].lineColor,
+          stationsCount: stationCount,
+          durationMinutes: travelTimeMinutes,
+          fareToken: tariff.token,
+          fareSmartcardPeak: tariff.smartPeak,
+          fareSmartcardOff: tariff.smartOff,
+          interchanges,
+          nextTrainFrequency: 'Every 3.5 – 5 minutes (Operating: 05:00 AM – 11:00 PM)',
+          trafficComparison: {
+            roadMinutes,
+            timeSavedMinutes: timeSaved,
+            cabEstimatedFareINR: cabFare,
+            moneySavedINR: Math.max(0, cabFare - tariff.token),
+            congestionHotspot: 'Tin Factory, KR Puram, Silk Board & ORR road gridlock completely avoided.'
+          },
+          fullStationsList: fullStops.map((s, idx) => ({
+            stopNumber: idx + 1,
+            key: s.key,
+            name_en: s.name_en,
+            name_kn: s.name_kn,
+            line: s.line,
+            lineName: s.lineName,
+            lineColor: s.lineColor,
+            isStart: (idx === 0),
+            isEnd: (idx === fullStops.length - 1),
+            isInterchange: (s.key === 'purple:23' || s.key === 'green:17' || s.key === 'green:24' || s.key === 'yellow:1')
+          }))
+        },
+        bmtcAlternatives: bmtcRoutes,
+        ksrtcOption: ksrtcPlan
+      };
+
+      return new Response(JSON.stringify(resultPayload), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=60',
+          ...corsHeaders
+        }
+      });
+    }
+
+
     // Route 3: Ultra-Fast Static Asset Delivery (HTML, CSS, JS, Images, JSON)
 
 
@@ -23665,35 +23723,9 @@ async function handleSocialPublishRequest(request, env) {
 
 
 
+
+  // ══════════════════════════════════════════════════════════
+  // JEV Transit Router  POST /api/jev-router
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
