@@ -45,33 +45,36 @@ export async function onRequest(context) {
         stateData = {
           currentWeek: 8,
           predictionLockTime: Date.now() + 86400000 * 4, // 4 days from now
-          evictionNominees: ["C05", "C06", "C08", "C10", "C12", "C14"],
+          evictionNominees: ["C05", "C06", "C08", "C10", "C12"],
           predictionStats: {
-            "C05": 18,
-            "C06": 22,
-            "C08": 30,
+            "C05": 22,
+            "C06": 24,
+            "C08": 32,
             "C10": 12,
-            "C12": 10,
-            "C14": 8
+            "C12": 10
           },
-          totalPredictions: 1420,
+          wildcards: ["C17", "C18", "C19"],
+          totalPredictions: 1980,
           debateReactions: {
-            "C01": { support: 520, nominate: 45, drama: 480 },
-            "C02": { support: 340, nominate: 280, drama: 410 },
+            "C01": { support: 920, nominate: 45, drama: 480 },
+            "C02": { support: 840, nominate: 120, drama: 510 },
             "C03": { support: 610, nominate: 30, drama: 190 },
             "C04": { support: 430, nominate: 60, drama: 150 },
-            "C05": { support: 690, nominate: 40, drama: 310 },
-            "C06": { support: 280, nominate: 510, drama: 620 },
+            "C05": { support: 790, nominate: 340, drama: 610 },
+            "C06": { support: 680, nominate: 410, drama: 520 },
             "C07": { support: 590, nominate: 90, drama: 330 },
-            "C08": { support: 710, nominate: 320, drama: 890 },
+            "C08": { support: 710, nominate: 420, drama: 890 },
             "C09": { support: 310, nominate: 120, drama: 220 },
-            "C10": { support: 440, nominate: 110, drama: 250 },
+            "C10": { support: 640, nominate: 210, drama: 350 },
             "C11": { support: 480, nominate: 95, drama: 210 },
-            "C12": { support: 530, nominate: 130, drama: 380 },
+            "C12": { support: 530, nominate: 230, drama: 480 },
             "C13": { support: 390, nominate: 80, drama: 170 },
             "C14": { support: 420, nominate: 90, drama: 240 },
             "C15": { support: 360, nominate: 110, drama: 280 },
-            "C16": { support: 670, nominate: 50, drama: 590 }
+            "C16": { support: 670, nominate: 550, drama: 990 },
+            "C17": { support: 1450, nominate: 20, drama: 180 },
+            "C18": { support: 890, nominate: 210, drama: 820 },
+            "C19": { support: 740, nominate: 190, drama: 760 }
           }
         };
       }
