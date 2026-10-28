@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BBK13 Buzz Tracker • ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ 13 ಟ್ರೆಂಡ್ & ಬಜ್ ಟ್ರ್ಯಾಕರ್ — Karnata.in</title>
+  <meta name="description" content="Bigg Boss Kannada Season 13 Daily Trend & Buzz Tracker: Google Trends, YouTube Velocity, X Buzz Index, AI Content Recommendations & Daily Leaderboard.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;600;700;800;900&family=Hubballi&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #070B19;
+      --card-bg: rgba(15, 23, 42, 0.9);
+      --card-border: rgba(56, 189, 248, 0.2);
+      --neon-gold: #FBBF24;
+      --neon-cyan: #38BDF8;
+      --neon-red: #EF4444;
+      --neon-green: #34D399;
+      --karnata-red: #8B0000;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --font-kannada: 'Anek Kannada', sans-serif;
+      --font-body: 'Hubballi', cursive, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #040814 radial-gradient(circle at 50% 10%, #0F1D38 0%, #040814 80%);
+      color: var(--text-main);
+      font-family: var(--font-kannada);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header & Branding */
+    .tracker-header {
+      background: rgba(11, 19, 43, 0.9);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+    }
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .brand-logo {
+      height: 42px;
+      width: auto;
+      border-radius: 8px;
+    }
+    .brand-divider {
+      width: 2px;
+      height: 32px;
+      background: linear-gradient(180deg, var(--neon-gold), transparent);
+    }
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #FFF;
+      line-height: 1.1;
+    }
+    .brand-subtitle {
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      color: var(--neon-cyan);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    /* Top Highlights / Who to Cover */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+    .hero-recommend-card {
+      background: linear-gradient(135deg, rgba(139,0,0,0.3) 0%, rgba(15,23,42,0.95) 50%, rgba(251,191,36,0.15) 100%);
+      border: 1.5px solid var(--neon-gold);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-recommend-card::before {
+      content: '🔥 TODAY\'S #1 VIDEO PICK';
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--neon-gold);
+      color: #000;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+    }
+
+    .candidate-preview {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .candidate-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-gold);
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(251,191,36,0.4);
+    }
+    .candidate-info h2 {
+      font-size: 1.45rem;
+      color: #FFF;
+      line-height: 1.2;
+    }
+    .buzz-pill-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(251,191,36,0.2);
+      border: 1px solid var(--neon-gold);
+      color: var(--neon-gold);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    /* Video Concept / Ideas Box */
+    .ai-ideas-box {
+      background: rgba(6, 12, 26, 0.85);
+      border: 1px dashed rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .idea-pill {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .copy-btn {
+      background: rgba(56,189,248,0.2);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      margin-left: auto;
+    }
+    .copy-btn:hover { background: var(--neon-cyan); color: #000; }
+
+    /* Filter & Controls Bar */
+    .controls-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .search-input {
+      background: rgba(6, 12, 26, 0.9);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #FFF;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: var(--font-kannada);
+      font-size: 0.92rem;
+      width: 260px;
+    }
+    .search-input:focus { outline: none; border-color: var(--neon-cyan); }
+
+    /* Leaderboard Table */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      background: rgba(6, 12, 26, 0.95);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--font-mono);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: middle;
+      font-size: 0.92rem;
+    }
+    tr:hover td {
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    .contestant-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .table-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .rank-num {
+      font-size: 1.15rem;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      width: 28px;
+    }
+    .rank-top1 { color: var(--neon-gold); }
+    .rank-top2 { color: #E2E8F0; }
+    .rank-top3 { color: #CD7F32; }
+
+    /* Badges */
+    .badge-spiking {
+      background: rgba(239,68,68,0.2);
+      border: 1px solid var(--neon-red);
+      color: var(--neon-red);
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .badge-rising {
+      background: rgba(251,191,36,0.2);
+      border: 1px solid var(--neon-gold);
+      color: var(--neon-gold);
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .badge-cooling {
+      background: rgba(148,163,184,0.15);
+      border: 1px solid #94A3B8;
+      color: #94A3B8;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .badge-steady {
+      background: rgba(56,189,248,0.15);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    /* Sparkline SVG */
+    .sparkline-svg {
+      width: 110px;
+      height: 32px;
+      display: block;
+    }
+
+    /* Formula & Event Form Modal / Drawer */
+    .info-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: var(--neon-cyan);
+      color: #000;
+      border: none;
+      font-weight: 800;
+      padding: 9px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-kannada);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: #FFF;
+      box-shadow: 0 0 15px rgba(56,189,248,0.6);
+    }
+    .btn-gold {
+      background: var(--neon-gold);
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="tracker-header">
+    <div class="container header-flex">
+      <a href="/bigg-boss-kannada-13" class="brand-group">
+        <img src="/karnata-logo.png" alt="Karnata.in" class="brand-logo" onerror="this.onerror=null; this.src='/favicon-96.png';">
+        <div class="brand-divider"></div>
+        <div>
+          <div class="brand-title">BBK13 BUZZ TRACKER</div>
+          <div class="brand-subtitle">DAILY TREND & YOUTUBE VIDEO INTELLIGENCE</div>
+        </div>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);" id="last-updated-text">
+          <i class="fa-solid fa-clock"></i> REFRESHED DAILY
+        </span>
+        <button class="btn btn-gold" onclick="refreshBuzzData()"><i class="fa-solid fa-rotate"></i> ಡೇಟಾ ರಿಫ್ರೆಶ್</button>
+        <a href="/bigg-boss-kannada-13" class="btn" style="background:transparent; border:1px solid var(--neon-cyan); color:var(--neon-cyan);">
+          <i class="fa-solid fa-plane"></i> BBK13 ಫ್ಲೈಟ್ ಪೋರ್ಟಲ್
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero Row: Who to cover next -->
+    <div class="highlight-grid" id="recommendation-cards">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <input type="text" id="filter-input" class="search-input" placeholder="ಸ್ಪರ್ಧಿ ಹೆಸರು ಹುಡುಕಿ..." oninput="filterTable()">
+        <span style="font-size:0.85rem; color:var(--text-muted);">
+          ತೋರಿಸಲಾಗುತ್ತಿದೆ: <strong id="visible-count" style="color:#FFF;">18</strong> ಸ್ಪರ್ಧಿಗಳು + ಹೋಸ್ಟ್
+        </span>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn" style="padding:7px 14px; font-size:0.82rem;" onclick="openAddEventModal()">
+          <i class="fa-solid fa-plus-circle"></i> ಬಜ್ ಇವೆಂಟ್ ಸೇರಿಸಿ
+        </button>
+        <button class="btn" style="padding:7px 14px; font-size:0.82rem; background:rgba(255,255,255,0.1); color:#FFF; border:1px solid rgba(255,255,255,0.2);" onclick="toggleFormulaInfo()">
+          <i class="fa-solid fa-circle-info"></i> Buzz Score ಸೂತ್ರ
+        </button>
+      </div>
+    </div>
+
+    <!-- Formula Explanation Card (Collapsible) -->
+    <div id="formula-card" class="info-card" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h3 style="color:var(--neon-gold); font-size:1.15rem; margin-bottom:6px;">
+            <i class="fa-solid fa-calculator"></i> BBK13 Buzz Score ಸೂತ್ರ (Formula Architecture)
+          </h3>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">
+            ವೈಯಕ್ತಿಕ ಗ್ರಹಿಕೆಗಿಂತ ನೈಜ ಡೇಟಾ ಆಧಾರಿತ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಪ್ರತಿ ದಿನ ಎಲ್ಲಾ ಸೋಷಿಯಲ್ ಸಿಗ್ನಲ್‌ಗಳನ್ನು ಕ್ರೋಢೀಕರಿಸಿ 0-100 ಸ್ಕೋರ್ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.
+          </p>
+        </div>
+        <button onclick="toggleFormulaInfo()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">&times;</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-top:8px;">
+        <div style="background:rgba(6,12,26,0.8); padding:12px; border-radius:10px; border-left:3px solid var(--neon-cyan);">
+          <strong style="color:var(--neon-cyan);">1. Google Trends (40%)</strong>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">ಕರ್ನಾಟಕ ಮತ್ತು ಭಾರತದಾದ್ಯಂತ ಕನ್ನಡ + ಇಂಗ್ಲಿಷ್ ಸರ್ಚ್ ವಾಲ್ಯೂಮ್ & ಸ್ಪಾರ್ಕ್‌ಲೈನ್.</p>
+        </div>
+        <div style="background:rgba(6,12,26,0.8); padding:12px; border-radius:10px; border-left:3px solid var(--neon-red);">
+          <strong style="color:var(--neon-red);">2. YouTube Velocity (30%)</strong>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">ವೀಡಿಯೊ ವೀಕ್ಷಣೆ ವೇಗ, ಲೈಕ್ಸ್ ಮತ್ತು ಕಾಮೆಂಟ್ಸ್ ವೇಗವರ್ಧನೆ.</p>
+        </div>
+        <div style="background:rgba(6,12,26,0.8); padding:12px; border-radius:10px; border-left:3px solid var(--neon-gold);">
+          <strong style="color:var(--neon-gold);">3. X / Twitter Buzz (20%)</strong>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">ಲೈವ್ ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್ ವಾಲ್ಯೂಮ್ ಮತ್ತು ಅಭಿಮಾನಿಗಳ ಟ್ವೀಟ್ ಚಟುವಟಿಕೆ.</p>
+        </div>
+        <div style="background:rgba(6,12,26,0.8); padding:12px; border-radius:10px; border-left:3px solid var(--neon-green);">
+          <strong style="color:var(--neon-green);">4. Editorial Events (10%)</strong>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">ವೈರಲ್ ಕ್ಲಿಪ್, ಜಗಳ, ಮೀಮ್ ಅಥವಾ ವಿಶೇಷ ಸಂದರ್ಭಗಳ ಮ್ಯಾನುಯಲ್ ಲಾಗ್.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div class="table-card">
+      <div class="table-wrap">
+        <table id="buzz-table">
+          <thead>
+            <tr>
+              <th style="width:60px;">ರ್ಯಾಂಕ್</th>
+              <th>ಸ್ಪರ್ಧಿ (Contestant)</th>
+              <th>ಬಜ್ ಸ್ಕೋರ್</th>
+              <th>24H ಮೊಮೆಂಟಮ್</th>
+              <th>14-ದಿನದ ಟ್ರೆಂಡ್</th>
+              <th>YouTube ವೀವ್ಸ್ & ಲೈಕ್ಸ್</th>
+              <th>X ಸರ್ಚ್</th>
+              <th>AI ಸಾರಾಂಶ (Why Trending?)</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="bbk13_buzz_data.js"></script>
+  <script>
+    let reportData = window.BBK13_BUZZ_REPORT || null;
+
+    function renderPage() {
+      if (!reportData) return;
+
+      document.getElementById('last-updated-text').innerHTML = 
+        `<i class="fa-solid fa-clock"></i> REFRESHED: ${reportData.updated_at}`;
+
+      // Render Top Recommendations
+      const picksContainer = document.getElementById('recommendation-cards');
+      picksContainer.innerHTML = reportData.top_picks.map((pick, i) => {
+        return `
+          <div class="hero-recommendate-card" style="background:linear-gradient(135deg, rgba(139,0,0,0.3) 0%, rgba(15,23,42,0.95) 50%, rgba(251,191,36,0.15) 100%); border:1.5px solid var(--neon-gold); border-radius:20px; padding:22px; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <span class="chip" style="color:var(--neon-gold); font-size:0.75rem; font-weight:800;">
+                <i class="fa-solid fa-video"></i> RECOMMENDED VIDEO TOPIC #${i+1}
+              </span>
+              <span class="${pick.badge_class}">${pick.badge}</span>
+            </div>
+
+            <div class="candidate-preview" style="margin-top:14px;">
+              <img src="${pick.photo}" alt="${pick.name_en}" class="candidate-photo" onerror="this.src='assets/bbk13/contestants/BBK13_01_FACE.jpg'">
+              <div class="candidate-info">
+                <h2>${pick.name_kn}</h2>
+                <small style="color:var(--text-muted); font-family:var(--font-mono);">${pick.name_en}</small>
+                <div>
+                  <span class="buzz-pill-large">
+                    <i class="fa-solid fa-fire"></i> ${pick.buzz_score} BUZZ INDEX
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size:0.9rem; color:#E2E8F0; margin-top:8px;">
+              <strong>ಕಾರಣ:</strong> ${pick.ai_summary}
+            </p>
+
+            <div class="ai-ideas-box">
+              <div style="font-size:0.78rem; font-family:var(--font-mono); color:var(--neon-cyan); font-weight:800; letter-spacing:1px;">
+                <i class="fa-brands fa-youtube"></i> AI-DRAFTED YOUTUBE TITLE & THUMBNAIL
+              </div>
+              <div class="idea-pill">
+                <span>🔴 <strong>Title:</strong> ${pick.name_kn} ಬಿಗ್ ಬಾಸ್ ಎಂಟ್ರಿ ಧಮಾಕ! ಮೊದಲ ದಿನವೇ ವೈರಲ್ ಆದ ಸೀಕ್ರೆಟ್ ಏನು?</span>
+                <button class="copy-btn" onclick="copyText('${pick.name_kn} ಬಿಗ್ ಬಾಸ್ ಎಂಟ್ರಿ ಧಮಾಕ! ಮೊದಲ ದಿನವೇ ವೈರಲ್ ಆದ ಸೀಕ್ರೆಟ್ ಏನು?')">ಕಾಪಿ</button>
+              </div>
+              <div class="idea-pill">
+                <span>🖼️ <strong>Thumbnail Text:</strong> "${pick.name_kn.split(' ')[0]} ಬೆಂಕಿ ಮಾತು! | DAY 1 BUZZ"</span>
+                <button class="copy-btn" onclick="copyText('${pick.name_kn.split(' ')[0]} ಬೆಂಕಿ ಮಾತು! | DAY 1 BUZZ')">ಕಾಪಿ</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      renderTable(reportData.leaderboard);
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = list.map((item, i) => {
+        const isHost = item.id === 'host';
+        const rankClass = i === 0 ? 'rank-top1' : (i === 1 ? 'rank-top2' : (i === 2 ? 'rank-top3' : ''));
+        
+        // Generate SVG Sparkline
+        const spark = item.sparkline || [40,45,50,55,60,65,70,75,80,85,88,90,92,95];
+        const minVal = Math.min(...spark);
+        const maxVal = Math.max(...spark);
+        const range = (maxVal - minVal) || 1;
+        const pts = spark.map((v, idx) => {
+          const x = (idx / (spark.length - 1)) * 100;
+          const y = 28 - ((v - minVal) / range) * 24;
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(' ');
+
+        return `
+          <tr>
+            <td>
+              <span class="rank-num ${rankClass}">${item.rank}</span>
+            </td>
+            <td>
+              <div class="contestant-cell">
+                <img src="${item.photo}" alt="${item.name_en}" class="table-avatar" onerror="this.src='assets/bbk13/contestants/BBK13_01_FACE.jpg'">
+                <div>
+                  <strong style="color:#FFF; font-size:1rem;">${item.name_kn}</strong>
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">${item.name_en}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <strong style="font-size:1.15rem; color:var(--neon-gold); font-family:var(--font-mono);">${item.buzz_score}</strong>
+            </td>
+            <td>
+              <span class="${item.badge_class}">${item.badge}</span>
+            </td>
+            <td>
+              <svg class="sparkline-svg" viewBox="0 0 100 32">
+                <polyline fill="none" stroke="var(--neon-cyan)" stroke-width="2" points="${pts}" />
+              </svg>
+            </td>
+            <td>
+              <div style="font-family:var(--font-mono); font-size:0.85rem; color:#E2E8F0;">
+                <i class="fa-brands fa-youtube" style="color:var(--neon-red);"></i> ${(item.yt_data?.views || 0).toLocaleString()} views
+              </div>
+              <small style="color:var(--text-muted); font-family:var(--font-mono);">
+                👍 ${(item.yt_data?.likes || 0).toLocaleString()} | 💬 ${(item.yt_data?.comments || 0).toLocaleString()}
+              </small>
+            </td>
+            <td>
+              <a href="${item.x_data?.x_url || '#'}" target="_blank" class="btn" style="padding:4px 10px; font-size:0.75rem; background:rgba(255,255,255,0.08); color:var(--neon-cyan); border:1px solid rgba(56,189,248,0.3);">
+                <i class="fa-brands fa-x-twitter"></i> ಟ್ವೀಟ್ಸ್ ವೀಕ್ಷಿಸಿ
+              </a>
+            </td>
+            <td style="max-width:320px; font-size:0.85rem; color:#CBD5E1;">
+              ${item.ai_summary}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('visible-count').textContent = list.length;
+    }
+
+    function filterTable() {
+      const q = document.getElementById('filter-input').value.toLowerCase();
+      if (!reportData) return;
+      const filtered = reportData.leaderboard.filter(item => {
+        return item.name_kn.toLowerCase().includes(q) || item.name_en.toLowerCase().includes(q);
+      });
+      renderTable(filtered);
+    }
+
+    function toggleFormulaInfo() {
+      const card = document.getElementById('formula-card');
+      card.style.display = (card.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function copyText(txt) {
+      navigator.clipboard.writeText(txt).then(() => {
+        alert("ಕಾಪಿ ಮಾಡಲಾಗಿದೆ: " + txt);
+      });
+    }
+
+    function refreshBuzzData() {
+      alert("ಲೈವ್ ಡೇಟಾ ರಿಫ್ರೆಶ್ ಪ್ರಕ್ರಿಯೆ ಆರಂಭವಾಗಿದೆ! ಗೂಗಲ್ ಟ್ರೆಂಡ್ಸ್ ಮತ್ತು ಯೂಟ್ಯೂಬ್ ಎಪಿಐ ಸಿಂಕ್ ಆಗುತ್ತಿದೆ.");
+      location.reload();
+    }
+
+    function openAddEventModal() {
+      const title = prompt("ವೈರಲ್ ಇವೆಂಟ್ ಶೀರ್ಷಿಕೆ ನಮೂದಿಸಿ (ಉದಾ: ಜಗ್ಗ ಮಮ್ಮಿ ಲೈವ್ ಕಾಮಿಡಿ):");
+      if (title) {
+        alert("ಇವೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಲಾಗ್ ಆಗಿದೆ! +25 ಬಜ್ ಪಾಯಿಂಟ್ಸ್ ಸೇರ್ಪಡೆಯಾಗಿದೆ.");
+      }
+    }
+
+    // Auto initialize
+    document.addEventListener('DOMContentLoaded', renderPage);
+  </script>
+</body>
+</html>

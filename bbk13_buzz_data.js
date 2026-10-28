@@ -1,0 +1,1137 @@
+window.BBK13_BUZZ_REPORT = {
+  "updated_at": "2026-10-28 06:58:37 IST",
+  "total_contestants": 19,
+  "top_picks": [
+    {
+      "id": "c01",
+      "num": "01",
+      "name_kn": "ಜಗ್ಗ ಮಮ್ಮಿ alias ಜಗದೀಶ",
+      "name_en": "Jagadeesh MB (Jagga Mummy)",
+      "photo": "assets/bbk13/contestants/BBK13_01_FACE.jpg",
+      "status": "active",
+      "buzz_score": 93.0,
+      "diff_24h": 0,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 92,
+      "sparkline": [
+        47,
+        43,
+        46,
+        54,
+        55,
+        61,
+        62,
+        75,
+        80,
+        74,
+        82,
+        92,
+        92,
+        92
+      ],
+      "regional": {
+        "Bengaluru": 85,
+        "Mysuru": 98,
+        "Hubballi-Dharwad": 85,
+        "Mangaluru": 80,
+        "Rest of Karnataka": 85
+      },
+      "yt_data": {
+        "views": 482000,
+        "likes": 39400,
+        "comments": 2480,
+        "velocity": 94
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Jagadeesh%20MB%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 5,
+        "score": 100
+      },
+      "ig_score": 92,
+      "editorial_score": 80,
+      "ai_summary": "ಮಾಜಿ ಕ್ಯಾಪ್ಟನ್ ಜಗ್ಗ ಮಮ್ಮಿ ಅವರ ಮುಗ್ಧ ಹಾಸ್ಯ, ದೊಡ್ಡಮನೆಯ ರೇಷನ್ ತಮಾಷೆ ಹಾಗೂ ರೀಲ್ಸ್ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ವೈರಲ್ ಹವಾ ಮುಂದುವರಿಸಿದೆ.",
+      "rank": 1,
+      "rank_change": "–"
+    },
+    {
+      "id": "c02",
+      "num": "02",
+      "name_kn": "ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ",
+      "name_en": "Soundarya Shetty",
+      "photo": "assets/bbk13/contestants/BBK13_02_FACE.jpg",
+      "status": "active",
+      "buzz_score": 92.7,
+      "diff_24h": 8,
+      "badge": "👑 Chief Captain",
+      "badge_class": "badge-spiking",
+      "gt_score": 100,
+      "sparkline": [
+        41,
+        51,
+        55,
+        59,
+        57,
+        63,
+        64,
+        77,
+        78,
+        78,
+        90,
+        84,
+        92,
+        100
+      ],
+      "regional": {
+        "Bengaluru": 90,
+        "Mysuru": 100,
+        "Hubballi-Dharwad": 86,
+        "Mangaluru": 100,
+        "Rest of Karnataka": 83
+      },
+      "yt_data": {
+        "views": 395000,
+        "likes": 31200,
+        "comments": 1950,
+        "velocity": 89
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Soundarya%20Shetty%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 4,
+        "score": 80
+      },
+      "ig_score": 86,
+      "editorial_score": 100,
+      "ai_summary": "ಮ್ಯೂಸಿಯಂ ಕಳ್ಳತನ ಚಾಲೆಂಜ್‌ನಲ್ಲಿ ಜಯಗಳಿಸಿ 8ನೇ ವಾರದ ಚೀಫ್ ಕ್ಯಾಪ್ಟನ್ ಆಗಿರುವ ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ, ಮನೆಯ ನಿಯಮ ಪಾಲನೆ ವಿಚಾರದಲ್ಲಿ ಗಗನ್ ಜೊತೆ ಜಟಾಪಟಿ ನಡೆಸಿದ್ದು ಯೂಟ್ಯೂಬ್‌ನಲ್ಲಿ #1 ಟ್ರೆಂಡಿಂಗ್!",
+      "rank": 2,
+      "rank_change": "–"
+    }
+  ],
+  "leaderboard": [
+    {
+      "id": "c01",
+      "num": "01",
+      "name_kn": "ಜಗ್ಗ ಮಮ್ಮಿ alias ಜಗದೀಶ",
+      "name_en": "Jagadeesh MB (Jagga Mummy)",
+      "photo": "assets/bbk13/contestants/BBK13_01_FACE.jpg",
+      "status": "active",
+      "buzz_score": 93.0,
+      "diff_24h": 0,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 92,
+      "sparkline": [
+        47,
+        43,
+        46,
+        54,
+        55,
+        61,
+        62,
+        75,
+        80,
+        74,
+        82,
+        92,
+        92,
+        92
+      ],
+      "regional": {
+        "Bengaluru": 85,
+        "Mysuru": 98,
+        "Hubballi-Dharwad": 85,
+        "Mangaluru": 80,
+        "Rest of Karnataka": 85
+      },
+      "yt_data": {
+        "views": 482000,
+        "likes": 39400,
+        "comments": 2480,
+        "velocity": 94
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Jagadeesh%20MB%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 5,
+        "score": 100
+      },
+      "ig_score": 92,
+      "editorial_score": 80,
+      "ai_summary": "ಮಾಜಿ ಕ್ಯಾಪ್ಟನ್ ಜಗ್ಗ ಮಮ್ಮಿ ಅವರ ಮುಗ್ಧ ಹಾಸ್ಯ, ದೊಡ್ಡಮನೆಯ ರೇಷನ್ ತಮಾಷೆ ಹಾಗೂ ರೀಲ್ಸ್ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ವೈರಲ್ ಹವಾ ಮುಂದುವರಿಸಿದೆ.",
+      "rank": 1,
+      "rank_change": "–"
+    },
+    {
+      "id": "c02",
+      "num": "02",
+      "name_kn": "ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ",
+      "name_en": "Soundarya Shetty",
+      "photo": "assets/bbk13/contestants/BBK13_02_FACE.jpg",
+      "status": "active",
+      "buzz_score": 92.7,
+      "diff_24h": 8,
+      "badge": "👑 Chief Captain",
+      "badge_class": "badge-spiking",
+      "gt_score": 100,
+      "sparkline": [
+        41,
+        51,
+        55,
+        59,
+        57,
+        63,
+        64,
+        77,
+        78,
+        78,
+        90,
+        84,
+        92,
+        100
+      ],
+      "regional": {
+        "Bengaluru": 90,
+        "Mysuru": 100,
+        "Hubballi-Dharwad": 86,
+        "Mangaluru": 100,
+        "Rest of Karnataka": 83
+      },
+      "yt_data": {
+        "views": 395000,
+        "likes": 31200,
+        "comments": 1950,
+        "velocity": 89
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Soundarya%20Shetty%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 4,
+        "score": 80
+      },
+      "ig_score": 86,
+      "editorial_score": 100,
+      "ai_summary": "ಮ್ಯೂಸಿಯಂ ಕಳ್ಳತನ ಚಾಲೆಂಜ್‌ನಲ್ಲಿ ಜಯಗಳಿಸಿ 8ನೇ ವಾರದ ಚೀಫ್ ಕ್ಯಾಪ್ಟನ್ ಆಗಿರುವ ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ, ಮನೆಯ ನಿಯಮ ಪಾಲನೆ ವಿಚಾರದಲ್ಲಿ ಗಗನ್ ಜೊತೆ ಜಟಾಪಟಿ ನಡೆಸಿದ್ದು ಯೂಟ್ಯೂಬ್‌ನಲ್ಲಿ #1 ಟ್ರೆಂಡಿಂಗ್!",
+      "rank": 2,
+      "rank_change": "–"
+    },
+    {
+      "id": "c05",
+      "num": "05",
+      "name_kn": "ಗಗನ್ ಚಿನ್ನಪ್ಪ",
+      "name_en": "Gagan Chinnappa",
+      "photo": "assets/bbk13/contestants/BBK13_05_FACE.jpg",
+      "status": "active",
+      "buzz_score": 77.9,
+      "diff_24h": 3,
+      "badge": "🔥 Rising",
+      "badge_class": "badge-rising",
+      "gt_score": 91,
+      "sparkline": [
+        43,
+        42,
+        48,
+        53,
+        60,
+        59,
+        66,
+        62,
+        67,
+        76,
+        80,
+        79,
+        88,
+        91
+      ],
+      "regional": {
+        "Bengaluru": 79,
+        "Mysuru": 94,
+        "Hubballi-Dharwad": 78,
+        "Mangaluru": 74,
+        "Rest of Karnataka": 84
+      },
+      "yt_data": {
+        "views": 260000,
+        "likes": 19800,
+        "comments": 1150,
+        "velocity": 75
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Gagan%20Chinnappa%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 75,
+      "editorial_score": 70,
+      "ai_summary": "ವಾರ 08 ಡೇಂಜರ್ ಝೋನ್‌ನಲ್ಲಿ ನಾಮಿನೇಟ್ ಆಗಿರುವ ಗಗನ್ ಚಿನ್ನಪ್ಪ, ಕ್ಯಾಪ್ಟನ್ಸಿ ಟಾಸ್ಕ್ ನಿಯಮಗಳ ವಿರುದ್ಧ ಕಿಡಿಕಾರಿದ್ದು ಭಾರೀ ಚರ್ಚೆಯಾಗುತ್ತಿದೆ.",
+      "rank": 3,
+      "rank_change": "–"
+    },
+    {
+      "id": "c16",
+      "num": "16",
+      "name_kn": "ಮಹಾಕವಿ ಮಂಜ",
+      "name_en": "Mahakavi Manja",
+      "photo": "assets/bbk13/contestants/BBK13_16_FACE.jpg",
+      "status": "eliminated",
+      "buzz_score": 77.6,
+      "diff_24h": 9,
+      "badge": "⛔ Red Card",
+      "badge_class": "badge-cooling",
+      "gt_score": 95,
+      "sparkline": [
+        36,
+        46,
+        51,
+        55,
+        62,
+        56,
+        68,
+        66,
+        68,
+        73,
+        77,
+        85,
+        86,
+        95
+      ],
+      "regional": {
+        "Bengaluru": 85,
+        "Mysuru": 96,
+        "Hubballi-Dharwad": 79,
+        "Mangaluru": 78,
+        "Rest of Karnataka": 85
+      },
+      "yt_data": {
+        "views": 152608,
+        "likes": 11946,
+        "comments": 658,
+        "velocity": 62
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Mahakavi%20Manja%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 59,
+      "editorial_score": 90,
+      "ai_summary": "ನಿಯಮ ಉಲ್ಲಂಘನೆ ಮತ್ತು ಯಶಸ್ ಕೃಷ್ಣ ವಿರುದ್ಧ ಅನುಚಿತ ವರ್ತನೆಗಾಗಿ ಕಿಚ್ಚ ಸುದೀಪ್ ಅವರಿಂದ ನೇರ 'ರೆಡ್ ಕಾರ್ಡ್' ಪಡೆದು ಎಲಿಮಿನೇಟ್ ಆದ ಮಹಾಕವಿ ಮಂಜ.",
+      "rank": 4,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c06",
+      "num": "06",
+      "name_kn": "ಸಂಗೀತ ಭಟ್",
+      "name_en": "Sangeetha Bhat",
+      "photo": "assets/bbk13/contestants/BBK13_06_FACE.jpg",
+      "status": "active",
+      "buzz_score": 76.2,
+      "diff_24h": 5,
+      "badge": "🔥 Rising",
+      "badge_class": "badge-rising",
+      "gt_score": 87,
+      "sparkline": [
+        41,
+        38,
+        48,
+        51,
+        54,
+        49,
+        63,
+        64,
+        66,
+        72,
+        69,
+        78,
+        82,
+        87
+      ],
+      "regional": {
+        "Bengaluru": 80,
+        "Mysuru": 88,
+        "Hubballi-Dharwad": 67,
+        "Mangaluru": 69,
+        "Rest of Karnataka": 77
+      },
+      "yt_data": {
+        "views": 285000,
+        "likes": 21400,
+        "comments": 1280,
+        "velocity": 78
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Sangeetha%20Bhat%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 4,
+        "score": 80
+      },
+      "ig_score": 84,
+      "editorial_score": 20,
+      "ai_summary": "8ನೇ ವಾರದ ನಾಮಿನೇಷನ್‌ನಲ್ಲಿರುವ ಸಂಗೀತ ಭಟ್ ಅವರು ಈ ವಾರದ ನಿರ್ಗಮನದಿಂದ ಪಾರಾಗಲು ಅಭಿಮಾನಿಗಳ ಬೆಂಬಲ ಪಡೆಯುತ್ತಿದ್ದಾರೆ.",
+      "rank": 5,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c08",
+      "num": "08",
+      "name_kn": "ಎನ್. ಓಂಪ್ರಕಾಶ್ ರಾವ್",
+      "name_en": "N. Om Prakash Rao",
+      "photo": "assets/bbk13/contestants/BBK13_08_FACE.jpg",
+      "status": "active",
+      "buzz_score": 74.1,
+      "diff_24h": 1,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 78,
+      "sparkline": [
+        38,
+        34,
+        41,
+        45,
+        46,
+        48,
+        62,
+        56,
+        65,
+        65,
+        75,
+        79,
+        77,
+        78
+      ],
+      "regional": {
+        "Bengaluru": 78,
+        "Mysuru": 85,
+        "Hubballi-Dharwad": 67,
+        "Mangaluru": 68,
+        "Rest of Karnataka": 76
+      },
+      "yt_data": {
+        "views": 340000,
+        "likes": 26800,
+        "comments": 1640,
+        "velocity": 83
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Om%20Prakash%20Rao%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 4,
+        "score": 80
+      },
+      "ig_score": 76,
+      "editorial_score": 20,
+      "ai_summary": "8ನೇ ವಾರದ ನಾಮಿನೇಷನ್‌ನಲ್ಲಿರುವ ಹಿರಿಯ ನಿರ್ದೇಶಕ ಓಂಪ್ರಕಾಶ್ ರಾವ್ ಅವರು ಎಲಿಮಿನೇಷನ್ ಭೀತಿಯಿಂದ ಪಾರಾಗಲು ವೀಕ್ಷಕರ ಮತ ಕೋರುತ್ತಿದ್ದಾರೆ.",
+      "rank": 6,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c09",
+      "num": "09",
+      "name_kn": "ಕಿರಣ್ ಶಾಸ್ತ್ರಿ",
+      "name_en": "Kiran Shastri",
+      "photo": "assets/bbk13/contestants/BBK13_09_FACE.jpg",
+      "status": "active",
+      "buzz_score": 69.3,
+      "diff_24h": 3,
+      "badge": "🔥 Rising",
+      "badge_class": "badge-rising",
+      "gt_score": 69,
+      "sparkline": [
+        31,
+        35,
+        33,
+        36,
+        49,
+        49,
+        51,
+        58,
+        57,
+        57,
+        67,
+        66,
+        66,
+        69
+      ],
+      "regional": {
+        "Bengaluru": 61,
+        "Mysuru": 75,
+        "Hubballi-Dharwad": 57,
+        "Mangaluru": 59,
+        "Rest of Karnataka": 62
+      },
+      "yt_data": {
+        "views": 298000,
+        "likes": 22100,
+        "comments": 1390,
+        "velocity": 79
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Kiran%20Shastri%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 4,
+        "score": 80
+      },
+      "ig_score": 73,
+      "editorial_score": 20,
+      "ai_summary": "ಕಿರಣ್ ಶಾಸ್ತ್ರಿ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 7,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c10",
+      "num": "10",
+      "name_kn": "ಆಸಿಯಾ ಫಿದೋಸ್",
+      "name_en": "Asiya Firdose",
+      "photo": "assets/bbk13/contestants/BBK13_10_FACE.jpg",
+      "status": "active",
+      "buzz_score": 68.9,
+      "diff_24h": 10,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 84,
+      "sparkline": [
+        32,
+        36,
+        43,
+        43,
+        47,
+        53,
+        51,
+        59,
+        66,
+        66,
+        66,
+        67,
+        74,
+        84
+      ],
+      "regional": {
+        "Bengaluru": 76,
+        "Mysuru": 82,
+        "Hubballi-Dharwad": 72,
+        "Mangaluru": 66,
+        "Rest of Karnataka": 66
+      },
+      "yt_data": {
+        "views": 128722,
+        "likes": 9774,
+        "comments": 905,
+        "velocity": 71
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Asiya%20Firdose%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 58,
+      "editorial_score": 20,
+      "ai_summary": "8ನೇ ವಾರದ ನಾಮಿನೇಷನ್ ಪಟ್ಟಿಯಲ್ಲಿರುವ ಗಾಯಕಿ ಆಸಿಯಾ ಫಿರ್ದೋಸ್ ಪರ ಅವರ ಅಭಿಮಾನಿ ಬಳಗ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ವೋಟಿಂಗ್ ಕ್ಯಾಂಪೇನ್ ನಡೆಸುತ್ತಿದೆ.",
+      "rank": 8,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c14",
+      "num": "14",
+      "name_kn": "ಯಶಸ್ ಕೃಷ್ಣ",
+      "name_en": "Yashas Krishna",
+      "photo": "assets/bbk13/contestants/BBK13_14_FACE.jpg",
+      "status": "active",
+      "buzz_score": 67.7,
+      "diff_24h": 1,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 81,
+      "sparkline": [
+        43,
+        38,
+        42,
+        45,
+        55,
+        58,
+        59,
+        65,
+        67,
+        66,
+        70,
+        80,
+        80,
+        81
+      ],
+      "regional": {
+        "Bengaluru": 81,
+        "Mysuru": 90,
+        "Hubballi-Dharwad": 79,
+        "Mangaluru": 72,
+        "Rest of Karnataka": 74
+      },
+      "yt_data": {
+        "views": 136147,
+        "likes": 10146,
+        "comments": 767,
+        "velocity": 71
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Yashas%20Krishna%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 52,
+      "editorial_score": 20,
+      "ai_summary": "ಮಂಜ ಜೊತೆಗಿನ ತೀವ್ರ ವಾಗ್ವಾದ ಹಾಗೂ ಕಿಚ್ಚನ ಪಂಚಾಯ್ತಿಯಲ್ಲಿ ಎಚ್ಚರಿಕೆ ಪಡೆದ ಯಶಸ್ ಕೃಷ್ಣ ಸೋಶಿಯಲ್ ಮೀಡಿಯಾ ಬಜ್‌ನಲ್ಲಿ ಮುಂಚೂಣಿಯಲ್ಲಿದ್ದಾರೆ.",
+      "rank": 9,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c04",
+      "num": "04",
+      "name_kn": "ಪ್ರಥಮಾ ಪ್ರಸಾದ್",
+      "name_en": "Prathama Prasad",
+      "photo": "assets/bbk13/contestants/BBK13_04_FACE.jpg",
+      "status": "active",
+      "buzz_score": 63.5,
+      "diff_24h": 6,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 69,
+      "sparkline": [
+        31,
+        30,
+        36,
+        39,
+        37,
+        40,
+        44,
+        55,
+        54,
+        56,
+        57,
+        62,
+        63,
+        69
+      ],
+      "regional": {
+        "Bengaluru": 60,
+        "Mysuru": 69,
+        "Hubballi-Dharwad": 62,
+        "Mangaluru": 57,
+        "Rest of Karnataka": 66
+      },
+      "yt_data": {
+        "views": 245000,
+        "likes": 18200,
+        "comments": 1080,
+        "velocity": 73
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Prathama%20Prasad%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 78,
+      "editorial_score": 20,
+      "ai_summary": "ಪ್ರಥಮಾ ಪ್ರಸಾದ್ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 10,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c12",
+      "num": "12",
+      "name_kn": "ವೈಷ್ಣವಿ",
+      "name_en": "Vaishnavi",
+      "photo": "assets/bbk13/contestants/BBK13_12_FACE.jpg",
+      "status": "active",
+      "buzz_score": 62.8,
+      "diff_24h": 9,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 68,
+      "sparkline": [
+        31,
+        30,
+        30,
+        39,
+        38,
+        44,
+        50,
+        44,
+        52,
+        57,
+        62,
+        61,
+        59,
+        68
+      ],
+      "regional": {
+        "Bengaluru": 64,
+        "Mysuru": 73,
+        "Hubballi-Dharwad": 60,
+        "Mangaluru": 55,
+        "Rest of Karnataka": 57
+      },
+      "yt_data": {
+        "views": 199405,
+        "likes": 10747,
+        "comments": 672,
+        "velocity": 72
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Vaishnavi%20BBK13%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 63,
+      "editorial_score": 20,
+      "ai_summary": "ವೈಷ್ಣವಿ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 11,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c11",
+      "num": "11",
+      "name_kn": "ತಾಂಡವ್ ರಾಮ್",
+      "name_en": "Thandav Ram",
+      "photo": "assets/bbk13/contestants/BBK13_11_FACE.jpg",
+      "status": "active",
+      "buzz_score": 62.4,
+      "diff_24h": 7,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 79,
+      "sparkline": [
+        29,
+        41,
+        45,
+        48,
+        52,
+        54,
+        52,
+        55,
+        55,
+        59,
+        68,
+        64,
+        72,
+        79
+      ],
+      "regional": {
+        "Bengaluru": 75,
+        "Mysuru": 79,
+        "Hubballi-Dharwad": 65,
+        "Mangaluru": 63,
+        "Rest of Karnataka": 64
+      },
+      "yt_data": {
+        "views": 165545,
+        "likes": 10810,
+        "comments": 707,
+        "velocity": 56
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Thandav%20Ram%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 63,
+      "editorial_score": 20,
+      "ai_summary": "ವಾರ 08 ನಿರ್ಗಮನ ಗೇಟ್‌ನಲ್ಲಿರುವ ತಾಂಡವ್ ರಾಮ್ ಅವರ ಆಟದ ವೈಖರಿ ಮತ್ತು ಟಾಸ್ಕ್ ಪ್ರದರ್ಶನ ಚರ್ಚೆಯಲ್ಲಿದೆ.",
+      "rank": 12,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c13",
+      "num": "13",
+      "name_kn": "ಧನುಷ್ ಮಂಜುನಾಥ್",
+      "name_en": "Dhanush Manjunath",
+      "photo": "assets/bbk13/contestants/BBK13_13_FACE.jpg",
+      "status": "active",
+      "buzz_score": 61.9,
+      "diff_24h": 11,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 77,
+      "sparkline": [
+        34,
+        34,
+        39,
+        38,
+        45,
+        43,
+        47,
+        60,
+        58,
+        65,
+        61,
+        71,
+        66,
+        77
+      ],
+      "regional": {
+        "Bengaluru": 65,
+        "Mysuru": 73,
+        "Hubballi-Dharwad": 67,
+        "Mangaluru": 62,
+        "Rest of Karnataka": 65
+      },
+      "yt_data": {
+        "views": 193391,
+        "likes": 10518,
+        "comments": 917,
+        "velocity": 57
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Dhanush%20Manjunath%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 60,
+      "editorial_score": 20,
+      "ai_summary": "8ನೇ ವಾರದ ನಾಮಿನೇಷನ್‌ನಲ್ಲಿರುವ ಧನುಷ್ ಮಂಜುನಾಥ್ ಅವರು ಸುರಕ್ಷಿತ ಸ್ಥಾನಕ್ಕೇರಲು ಶ್ರಮಿಸುತ್ತಿದ್ದಾರೆ.",
+      "rank": 13,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c03",
+      "num": "03",
+      "name_kn": "ಅವಿನಾಶ್ ಶಟಮರ್ಷನ",
+      "name_en": "Avinash Shatamarshan",
+      "photo": "assets/bbk13/contestants/BBK13_03_FACE.jpg",
+      "status": "active",
+      "buzz_score": 59.3,
+      "diff_24h": -7,
+      "badge": "📉 Cooling",
+      "badge_class": "badge-cooling",
+      "gt_score": 60,
+      "sparkline": [
+        24,
+        36,
+        37,
+        42,
+        39,
+        46,
+        42,
+        53,
+        50,
+        52,
+        60,
+        61,
+        67,
+        60
+      ],
+      "regional": {
+        "Bengaluru": 62,
+        "Mysuru": 63,
+        "Hubballi-Dharwad": 54,
+        "Mangaluru": 54,
+        "Rest of Karnataka": 57
+      },
+      "yt_data": {
+        "views": 176063,
+        "likes": 9650,
+        "comments": 714,
+        "velocity": 71
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Avinash%20Shatamarshan%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 61,
+      "editorial_score": 20,
+      "ai_summary": "ಅವಿನಾಶ್ ಶಟಮರ್ಷನ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 14,
+      "rank_change": "–"
+    },
+    {
+      "id": "c15",
+      "num": "15",
+      "name_kn": "ಲಿಖಿತ್ ಗೊಂಡಿ",
+      "name_en": "Likith Gondi",
+      "photo": "assets/bbk13/contestants/BBK13_15_FACE.jpg",
+      "status": "active",
+      "buzz_score": 58.8,
+      "diff_24h": 5,
+      "badge": "🔥 Rising",
+      "badge_class": "badge-rising",
+      "gt_score": 64,
+      "sparkline": [
+        26,
+        36,
+        36,
+        35,
+        42,
+        41,
+        39,
+        45,
+        49,
+        57,
+        57,
+        62,
+        59,
+        64
+      ],
+      "regional": {
+        "Bengaluru": 62,
+        "Mysuru": 66,
+        "Hubballi-Dharwad": 58,
+        "Mangaluru": 52,
+        "Rest of Karnataka": 54
+      },
+      "yt_data": {
+        "views": 110511,
+        "likes": 13415,
+        "comments": 472,
+        "velocity": 64
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Likith%20Gondi%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 54,
+      "editorial_score": 20,
+      "ai_summary": "ಲಿಖಿತ್ ಗೊಂಡಿ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 15,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c07",
+      "num": "07",
+      "name_kn": "ಕಾವ್ಯ ಗೌಡ",
+      "name_en": "Kavya Gowda",
+      "photo": "assets/bbk13/contestants/BBK13_07_FACE.jpg",
+      "status": "active",
+      "buzz_score": 57.3,
+      "diff_24h": 0,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 64,
+      "sparkline": [
+        29,
+        31,
+        31,
+        34,
+        41,
+        39,
+        43,
+        49,
+        51,
+        54,
+        59,
+        59,
+        64,
+        64
+      ],
+      "regional": {
+        "Bengaluru": 61,
+        "Mysuru": 67,
+        "Hubballi-Dharwad": 55,
+        "Mangaluru": 56,
+        "Rest of Karnataka": 63
+      },
+      "yt_data": {
+        "views": 140567,
+        "likes": 13181,
+        "comments": 851,
+        "velocity": 59
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Kavya%20Gowda%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 71,
+      "editorial_score": 20,
+      "ai_summary": "ಕಾವ್ಯ ಗೌಡ ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 16,
+      "rank_change": "–"
+    },
+    {
+      "id": "c18",
+      "num": "18",
+      "name_kn": "ಸ್ಪೆಷಲ್ ಗೆಸ್ಟ್ ಎಂಟ್ರಿ (ಶೀಘ್ರದಲ್ಲೇ)",
+      "name_en": "Wildcard Contestant 02",
+      "photo": "assets/bbk13/contestants/BBK13_02_FACE.jpg",
+      "status": "upcoming",
+      "buzz_score": 51.8,
+      "diff_24h": 6,
+      "badge": "⚡ Spiking",
+      "badge_class": "badge-spiking",
+      "gt_score": 45,
+      "sparkline": [
+        23,
+        15,
+        18,
+        20,
+        21,
+        29,
+        26,
+        34,
+        35,
+        32,
+        40,
+        32,
+        39,
+        45
+      ],
+      "regional": {
+        "Bengaluru": 39,
+        "Mysuru": 45,
+        "Hubballi-Dharwad": 32,
+        "Mangaluru": 34,
+        "Rest of Karnataka": 37
+      },
+      "yt_data": {
+        "views": 182916,
+        "likes": 10973,
+        "comments": 914,
+        "velocity": 66
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=BBK13%20Guest%20Entry%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 66,
+      "editorial_score": 20,
+      "ai_summary": "ಸ್ಪೆಷಲ್ ಗೆಸ್ಟ್ ಎಂಟ್ರಿ (ಶೀಘ್ರದಲ್ಲೇ) ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 17,
+      "rank_change": "↑"
+    },
+    {
+      "id": "c17",
+      "num": "17",
+      "name_kn": "ವೈಲ್ಡ್ ಕಾರ್ಡ್ ಎಂಟ್ರಿ (ಶೀಘ್ರದಲ್ಲೇ)",
+      "name_en": "Wildcard Contestant 01",
+      "photo": "assets/bbk13/contestants/BBK13_01_FACE.jpg",
+      "status": "upcoming",
+      "buzz_score": 48.7,
+      "diff_24h": 1,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 41,
+      "sparkline": [
+        19,
+        20,
+        26,
+        25,
+        28,
+        31,
+        27,
+        38,
+        31,
+        41,
+        41,
+        40,
+        40,
+        41
+      ],
+      "regional": {
+        "Bengaluru": 44,
+        "Mysuru": 46,
+        "Hubballi-Dharwad": 39,
+        "Mangaluru": 38,
+        "Rest of Karnataka": 44
+      },
+      "yt_data": {
+        "views": 177387,
+        "likes": 8300,
+        "comments": 880,
+        "velocity": 61
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=BBK13%20Wildcard%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 3,
+        "score": 60
+      },
+      "ig_score": 63,
+      "editorial_score": 20,
+      "ai_summary": "ವೈಲ್ಡ್ ಕಾರ್ಡ್ ಎಂಟ್ರಿ (ಶೀಘ್ರದಲ್ಲೇ) ಅವರ 8ನೇ ವಾರದ ಆಟ ಮತ್ತು ದೊಡ್ಮನೆಯ ಸನ್ನಿವೇಶ ವೀಕ್ಷಕರಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+      "rank": 18,
+      "rank_change": "↑"
+    },
+    {
+      "id": "host",
+      "num": "HOST",
+      "name_kn": "ಕಿಚ್ಚ ಸುದೀಪ್",
+      "name_en": "Kiccha Sudeep",
+      "photo": "assets/bbk13/house/BBK13_SUDEEP_CHIEF.jpg",
+      "status": "host",
+      "buzz_score": 96.6,
+      "diff_24h": -2,
+      "badge": "😴 Steady",
+      "badge_class": "badge-steady",
+      "gt_score": 98,
+      "sparkline": [
+        48,
+        53,
+        51,
+        54,
+        57,
+        63,
+        71,
+        72,
+        73,
+        83,
+        86,
+        86,
+        100,
+        98
+      ],
+      "regional": {
+        "Bengaluru": 99,
+        "Mysuru": 100,
+        "Hubballi-Dharwad": 90,
+        "Mangaluru": 84,
+        "Rest of Karnataka": 93
+      },
+      "yt_data": {
+        "views": 1850000,
+        "likes": 165000,
+        "comments": 11200,
+        "velocity": 98
+      },
+      "x_data": {
+        "x_url": "https://x.com/search?q=Kiccha%20Sudeep%20bigg%20boss%20kannada&f=live",
+        "buzz_level": 5,
+        "score": 100
+      },
+      "ig_score": 97,
+      "editorial_score": 80,
+      "ai_summary": "ವಾರಾಂತ್ಯದ ಪಂಚಾಯ್ತಿಯಲ್ಲಿ ₹2.5 ಲಕ್ಷ ಮೈಕ್ ಡ್ಯಾಮೇಜ್ ಪ್ರಕರಣಕ್ಕೆ ಖಡಕ್ ಕ್ಲಾಸ್ ತೆಗೆದುಕೊಂಡ ಕಿಚ್ಚ ಸುದೀಪ್ ಅವರ ಖಡಕ್ ಮಾತುಗಳು ವೈರಲ್!",
+      "rank": "CAPTAIN",
+      "rank_change": "👑"
+    }
+  ],
+  "editorial_events": [
+    {
+      "date": "2026-10-28",
+      "contestant_id": "c02",
+      "type": "captaincy",
+      "title": "ಮ್ಯೂಸಿಯಂ ಕಳ್ಳತನ ಚಾಲೆಂಜ್‌ನಲ್ಲಿ ಜಯಗಳಿಸಿ 8ನೇ ವಾರದ ಚೀಫ್ ಕ್ಯಾಪ್ಟನ್ ಆದ ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ!",
+      "points": 50
+    },
+    {
+      "date": "2026-10-27",
+      "contestant_id": "c16",
+      "type": "red_card",
+      "title": "ಮಾಡ್ರನ್ ಮಹಾಕವಿ ಮಂಜಗೆ ಕಿಚ್ಚ ಸುದೀಪ್ ಅವರಿಂದ ನೇರ ರೆಡ್ ಕಾರ್ಡ್ & ತಕ್ಷಣ ದೊಡ್ಮನೆಯಿಂದ ಗೇಟ್ ಪಾಸ್!",
+      "points": 45
+    },
+    {
+      "date": "2026-10-26",
+      "contestant_id": "c01",
+      "type": "viral_clip",
+      "title": "ಜಗ್ಗ ಮಮ್ಮಿ ಅವರ ರೇಷನ್ ಕಾಮಿಡಿ ಪಂಚ್ ಹಾಗೂ ಡೈಲಾಗ್ಸ್ ಸೋಷಿಯಲ್ ಮೀಡಿಯಾದಲ್ಲಿ ಸೂಪರ್ ವೈರಲ್!",
+      "points": 40
+    },
+    {
+      "date": "2026-10-26",
+      "contestant_id": "c05",
+      "type": "fight",
+      "title": "ಕ್ಯಾಪ್ಟನ್ಸಿ ರೂಲ್ಸ್ ವಿಚಾರವಾಗಿ ಸೌಂದರ್ಯ ಶೆಟ್ಟಿ ವಿರುದ್ಧ ಗಗನ್ ಚಿನ್ನಪ್ಪ ನೇರ ವಾಗ್ವಾದ!",
+      "points": 35
+    },
+    {
+      "date": "2026-10-25",
+      "contestant_id": "host",
+      "type": "panchayat",
+      "title": "₹2.5 ಲಕ್ಷ ಬೆಲೆಯ ಮೈಕ್ ಡ್ಯಾಮೇಜ್ ಪ್ರಕರಣಕ್ಕೆ ವಾರಾಂತ್ಯ ಪಂಚಾಯ್ತಿಯಲ್ಲಿ ಸುದೀಪ್ ಖಡಕ್ ಎಚ್ಚರಿಕೆ!",
+      "points": 40
+    }
+  ]
+};
