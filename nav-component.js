@@ -386,13 +386,14 @@ html, body {
         </div>
 
         <!-- BUTTON 5: AI & DIGITAL SERVICES -->
-        <div class="nk-nav-dropdown ${isActive('/ask') || isActive('/ai-jyothishya') || isActive('/kannada-typing') || isActive('/scheme-checker') ? 'active' : ''}">
+        <div class="nk-nav-dropdown ${isActive('/ask') || isActive('/ai-jyothishya') || isActive('/kannada-typing') || isActive('/sahitya-kannada-keyboard') || isActive('/scheme-checker') ? 'active' : ''}">
           <button class="nk-nav-dropbtn" onclick="this.parentElement.classList.toggle('open')">
             <span>🔮 AI & ಡಿಜಿಟಲ್ ಸೇವೆಗಳು</span>
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
             <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#047857; font-weight:900;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಪರಿಶೀಲಕ (885+)</a>
+            <a href="/sahitya-kannada-keyboard" class="nk-drop-item ${isActive('/sahitya-kannada-keyboard') ? 'active' : ''}" style="color:#B45309; font-weight:900;">⌨️ ಸಾಹಿತ್ಯ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ ಆ್ಯಪ್ (Sahitya App)</a>
             <a href="/ask" class="nk-drop-item ${isActive('/ask') ? 'active' : ''}">🤖 askKARNATA AI ಸಹಾಯಕ</a>
             <a href="/ai-jyothishya" class="nk-drop-item ${isActive('/ai-jyothishya') ? 'active' : ''}">🔮 AI ಜ್ಯೋತಿಷ್ಯ & ಕುಂಡಲಿ</a>
             <a href="/kannada-typing" class="nk-drop-item ${isActive('/kannada-typing') ? 'active' : ''}">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಅನುವಾದ</a>
@@ -429,6 +430,7 @@ html, body {
   <!-- Mobile Quick Navigation Rail (Clean Horizontal Touch Scroll) -->
   <div class="nk-mobile-rail">
     <a href="/scheme-checker" class="nk-mobile-chip ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2; border-color:#FECACA;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (885+)</a>
+    <a href="/sahitya-kannada-keyboard" class="nk-mobile-chip ${isActive('/sahitya-kannada-keyboard') ? 'active' : ''}" style="color:#B45309; font-weight:900; background:#FEF3C7; border-color:#FDE68A;">⌨️ ಸಾಹಿತ್ಯ ಕೀಬೋರ್ಡ್</a>
     <a href="/districts" class="nk-mobile-chip ${isActive('/districts') ? 'active' : ''}">🗺️ 31 ಜಿಲ್ಲೆಗಳು</a>
     <a href="/weather" class="nk-mobile-chip ${isActive('/weather') ? 'active' : ''}">🌧️ ಹವಾಮಾನ</a>
     <a href="/gold-rate" class="nk-mobile-chip ${isActive('/gold-rate') ? 'active' : ''}">🪙 ಚಿನ್ನದ ದರ</a>
