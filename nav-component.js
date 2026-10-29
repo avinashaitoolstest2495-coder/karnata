@@ -351,9 +351,9 @@ html, body {
           </button>
           <div class="nk-dropdown-menu">
             <a href="/mla-mp" class="nk-drop-item ${isActive('/mla-mp') ? 'active' : ''}">🏛️ ಶಾಸಕರು, MLC & ಸಂಸದರು (MLA / MLC / MP)</a>
-            <a href="/karnataka-sir-voters-final-list/" class="nk-drop-item ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಅಂತಿಮ ಪಟ್ಟಿ (Final List)</a>
-            <a href="/karnataka-sir-voter-roll/" class="nk-drop-item ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ (Draft Roll)</a>
-            <a href="/karnataka-elections" class="nk-drop-item ${isActive('/karnataka-elections') ? 'active' : ''}">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+            <a href="/karnataka-sir-voters-final-list" class="nk-drop-item ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಅಂತಿಮ ಪಟ್ಟಿ (Final List)</a>
+            <a href="/karnataka-sir-voter-roll" class="nk-drop-item ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ (Draft Roll)</a>
+            <a href="/karnataka-sir-voters-final-list" class="nk-drop-item ${isActive('/karnataka-elections') ? 'active' : ''}">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
           </div>
         </div>
 
@@ -392,7 +392,7 @@ html, body {
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
-            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#047857; font-weight:900;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಪರಿಶೀಲಕ (106+)</a>
+            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#047857; font-weight:900;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಪರಿಶೀಲಕ (885+)</a>
             <a href="/ask" class="nk-drop-item ${isActive('/ask') ? 'active' : ''}">🤖 askKARNATA AI ಸಹಾಯಕ</a>
             <a href="/ai-jyothishya" class="nk-drop-item ${isActive('/ai-jyothishya') ? 'active' : ''}">🔮 AI ಜ್ಯೋತಿಷ್ಯ & ಕುಂಡಲಿ</a>
             <a href="/kannada-typing" class="nk-drop-item ${isActive('/kannada-typing') ? 'active' : ''}">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಅನುವಾದ</a>
@@ -406,12 +406,12 @@ html, body {
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
-            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2;">✨ ಎಲ್ಲಾ 106+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಚೆಕ್</a>
-            <a href="/article/gruha-lakshmi-status-check-2026" class="nk-drop-item">🌸 ಗೃಹಲಕ್ಷ್ಮಿ ₹2000 ಸ್ಟೇಟಸ್ ಚೆಕ್</a>
-            <a href="/article/karnataka-bhoomi-rtc-pahani-online" class="nk-drop-item">📜 ಭೂಮಿ RTC ಪಹಣಿ ಆನ್‌ಲೈನ್</a>
-            <a href="/article/karnataka-dam-water-storage-analysis" class="nk-drop-item">💧 ಜಲಾಶಯಗಳ ನೀರಿನ ಸಂಗ್ರಹ</a>
-            <a href="/article/karnataka-gba-5-corporations-guide" class="nk-drop-item">🏙️ GBA 5 ಮಹಾನಗರ ಪಾಲಿಕೆಗಳು</a>
-            <a href="/article/panchatantra-village-budget-grants" class="nk-drop-item">🌾 ಪಂಚತಂತ್ರ ಗ್ರಾಮ ಅನುದಾನ</a>
+            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2;">✨ ಎಲ್ಲಾ 885+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಚೆಕ್</a>
+            <a href="/scheme-checker?id=gruha-lakshmi" class="nk-drop-item">🌸 ಗೃಹಲಕ್ಷ್ಮಿ ₹2000 ಸ್ಟೇಟಸ್ ಚೆಕ್</a>
+            <a href="/scheme-checker?id=raita-siri" class="nk-drop-item">📜 ಭೂಮಿ RTC ಪಹಣಿ ಆನ್‌ಲೈನ್</a>
+            <a href="/dam-levels" class="nk-drop-item">💧 ಜಲಾಶಯಗಳ ನೀರಿನ ಸಂಗ್ರಹ</a>
+            <a href="/gba" class="nk-drop-item">🏙️ GBA 5 ಮಹಾನಗರ ಪಾಲಿಕೆಗಳು</a>
+            <a href="/gram-panchayat" class="nk-drop-item">🌾 ಪಂಚತಂತ್ರ ಗ್ರಾಮ ಅನುದಾನ</a>
           </div>
         </div>
       </div>
@@ -428,14 +428,14 @@ html, body {
 
   <!-- Mobile Quick Navigation Rail (Clean Horizontal Touch Scroll) -->
   <div class="nk-mobile-rail">
-    <a href="/scheme-checker" class="nk-mobile-chip ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2; border-color:#FECACA;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (106+)</a>
+    <a href="/scheme-checker" class="nk-mobile-chip ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2; border-color:#FECACA;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (885+)</a>
     <a href="/districts" class="nk-mobile-chip ${isActive('/districts') ? 'active' : ''}">🗺️ 31 ಜಿಲ್ಲೆಗಳು</a>
     <a href="/weather" class="nk-mobile-chip ${isActive('/weather') ? 'active' : ''}">🌧️ ಹವಾಮಾನ</a>
     <a href="/gold-rate" class="nk-mobile-chip ${isActive('/gold-rate') ? 'active' : ''}">🪙 ಚಿನ್ನದ ದರ</a>
     <a href="/dam-levels" class="nk-mobile-chip ${isActive('/dam-levels') ? 'active' : ''}">💧 ಡ್ಯಾಂ ಮಟ್ಟ</a>
     <a href="/apmc-prices" class="nk-mobile-chip ${isActive('/apmc-prices') ? 'active' : ''}">🌾 APMC</a>
-    <a href="/karnataka-sir-voters-final-list/" class="nk-mobile-chip ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}" style="color:#047857; font-weight:900; background:#ECFDF5; border-color:#A7F3D0;">🗳️ SIR ಅಂತಿಮ ಪಟ್ಟಿ</a>
-    <a href="/karnataka-sir-voter-roll/" class="nk-mobile-chip ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR ಕರಡು ಪಟ್ಟಿ</a>
+    <a href="/karnataka-sir-voters-final-list" class="nk-mobile-chip ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}" style="color:#047857; font-weight:900; background:#ECFDF5; border-color:#A7F3D0;">🗳️ SIR ಅಂತಿಮ ಪಟ್ಟಿ</a>
+    <a href="/karnataka-sir-voter-roll" class="nk-mobile-chip ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR ಕರಡು ಪಟ್ಟಿ</a>
     <a href="/cabinet-ministers" class="nk-mobile-chip ${isActive('/cabinet-ministers') ? 'active' : ''}">👥 ಸಚಿವರು</a>
     <a href="/gba" class="nk-mobile-chip ${isActive('/gba') ? 'active' : ''}">🏙️ GBA</a>
     <a href="/bengaluru-metro" class="nk-mobile-chip ${isActive('/bengaluru-metro') ? 'active' : ''}">🚇 ನಮ್ಮ ಮೆಟ್ರೋ</a>
@@ -444,7 +444,7 @@ html, body {
     <a href="/bigg-boss-kannada-13" class="nk-mobile-chip ${isActive('/bigg-boss-kannada-13') ? 'active' : ''}" style="color:#B45309; font-weight:900; background:#FEF3C7; border-color:#FDE68A;">✈️ BBK13 ಏರ್ಲೈನ್ಸ್</a>
     <a href="/ask" class="nk-mobile-chip ${isActive('/ask') ? 'active' : ''}">🤖 askAI</a>
     <a href="/petrol-price" class="nk-mobile-chip ${isActive('/petrol-price') ? 'active' : ''}">⛽ ಇಂಧನ</a>
-    <a href="/article/gruha-lakshmi-status-check-2026" class="nk-mobile-chip">🌸 ಗೃಹಲಕ್ಷ್ಮಿ</a>
+    <a href="/scheme-checker?id=gruha-lakshmi" class="nk-mobile-chip">🌸 ಗೃಹಲಕ್ಷ್ಮಿ</a>
   </div>
 </div>
 `;

@@ -38,6 +38,8 @@ const NKSeo = (() => {
     if (path.includes('salary-calc'))      return 'salary';
     if (path.includes('sip-calc'))         return 'sip';
     if (path.includes('scheme-checker'))   return 'scheme';
+    if (path.includes('karnataka-sir-voters-final-list')) return 'voter_final';
+    if (path.includes('karnataka-sir-voter-roll')) return 'voter_draft';
     if (path.includes('more-tools'))       return 'tools';
     if (path.includes('weather'))          return 'weather';
     if (path.includes('news-explainer'))   return 'news';

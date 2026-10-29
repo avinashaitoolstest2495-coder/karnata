@@ -2,9 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://karnata.in/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://karnata.in/karnataka-sir-voters-final-list</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://karnata.in/scheme-checker</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://karnata.in/karnataka-sir-voter-roll</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://karnata.in/ask</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://karnata.in/apmc-prices</loc>
@@ -35,42 +59,6 @@
     <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/article/gruha-lakshmi-status-check-2026</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/article/karnataka-bhoomi-rtc-pahani-online</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/article/karnataka-dam-water-storage-analysis</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/article/karnataka-gba-5-corporations-guide</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/article/panchatantra-village-budget-grants</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/karnataka-sir-voter-roll</loc>
-    <lastmod>2026-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://karnata.in/cabinet-ministers</loc>
@@ -367,12 +355,6 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://karnata.in/ask</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://karnata.in/emi-calculator</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -387,12 +369,6 @@
   <url>
     <loc>https://karnata.in/salary-calculator</loc>
     <lastmod>2026-09-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/scheme-checker</loc>
-    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -493,32 +469,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://karnata.in/karnataka-elections</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://karnata.in/karnataka-ksrtc-bus</loc>
     <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/karnataka-local-news</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/karnataka-sir-voters-final-list</loc>
-    <lastmod>2026-10-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karnata.in/karnataka-stories</loc>
-    <lastmod>2026-09-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
