@@ -146,139 +146,157 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <body>
 
 <div class="topnav">
-  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
   <div class="page-title">💧 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
 
 <div class="container">
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER WITH IMAGE -->
   <div class="dam-hero-card">
-    <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
-    <h1 class="dh-title">ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam)</h1>
-    <div class="dh-sub">
-      <span>🌊 ನದಿ: ಕಬಿನಿ ನದಿ</span>
-      <span>🏛️ ಜಿಲ್ಲೆ: ಮೈಸೂರು (ಹೆಚ್.ಡಿ. ಕೋಟೆ)</span>
+    <div class="hero-img-wrap">
+      <img src="/images/kabini_dam.jpg" alt="ಕಬಿನಿ ಅಣೆಕಟ್ಟು" class="hero-img">
+      <div class="hero-overlay">
+        <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
+        <h1 class="dh-title">ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam)</h1>
+        <div class="dh-sub">
+          <span>🌊 ನದಿ: ಕಬಿನಿ ನದಿ (ಕಪಿಲಾ)</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಮೈಸೂರು (ಎಚ್.ಡಿ. ಕೋಟೆ / ಬೀಚನಹಳ್ಳಿ)</span>
+        </div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
+      </div>
     </div>
-    <div class="dh-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
   </div>
 
-  <!-- METRICS -->
+  <!-- 5 METRIC CARDS -->
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--green)">18.21 TMC</div>
-      <div class="mc-sub">93.2% ತುಂಬಿದೆ (19.52 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--green)" id="kabini-m-storage">13.426 TMC</div>
+      <div class="mc-sub" id="kabini-m-sub">68.8% ತುಂಬಿದೆ (19.516 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val">19.516 TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">2278.20 ಅಡಿ</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL): 2284.00 ಅಡಿ</div>
+      <div class="mc-val" id="kabini-m-level">2273.42 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 2284.00 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">28,009</div>
+      <div class="mc-val" style="color:var(--green)" id="kabini-m-inflow">2,128</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">14,958</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="kabini-m-outflow">500</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- CREATIVE 30-DAY AREA CHART -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📈 ಕಬಿನಿ ಅಣೆಕಟ್ಟು — 30 ದಿನದ ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ &amp; ಒಳಹರಿವು ಟ್ರೆಂಡ್</div>
-    </div>
-    <div class="creative-chart-wrap">
-      <svg class="svg-chart" viewBox="0 0 800 200" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1B7A4B" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#1B7A4B" stop-opacity="0.05"/>
-          </linearGradient>
-        </defs>
-        <path class="area-path" d="M 40,120 Q 150,110 250,80 T 450,50 T 650,30 T 760,25 L 760,180 L 40,180 Z" />
-        <path class="line-path" d="M 40,120 Q 150,110 250,80 T 450,50 T 650,30 T 760,25" />
-      </svg>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:var(--ink3); font-family:var(--font-en);">
-      <span>01 ಜುಲೈ 2026</span>
-      <span>10 ಜುಲೈ</span>
-      <span>20 ಜುಲೈ</span>
-      <span>02 ಆಗಸ್ಟ್ 2026 (ಇಂದು)</span>
-    </div>
-  </div>
-
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    </div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">2284.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">2240.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">19.52 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">15.67 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div><div class="spec-val">18.21 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ ಸಂಗ್ರಹ (Live Storage)</div><div class="spec-val">8.40 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಬೀಚನಹಳ್ಳಿ, ಹೆಚ್.ಡಿ. ಕೋಟೆ, ಮೈಸೂರು</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1974</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY & BACKGROUND ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📜 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಮುಖ ವಿವರಗಳು</div>
-    </div>
-    <div class="history-article">
-      <p><strong>ಕಬಿನಿ ಅಣೆಕಟ್ಟು (Kabini Dam)</strong> ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಹೆಚ್.ಡಿ. ಕೋಟೆ ತಾಲೂಕಿನ ಬೀಚನಹಳ್ಳಿ ಬಳಿ ಕಬಿನಿ ನದಿಗೆ (ಕಾಪಿಲಾ ನದಿ) ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಪ್ರಮುಖ ಜಲಾಶಯವಾಗಿದೆ. ಕಬಿನಿ ನದಿಯು ಕಾವೇರಿ ನದಿಯ ಪ್ರಮುಖ ಉಪನದಿಯಾಗಿದ್ದು, ವಯನಾಡ್ ವೈಲ್ಡ್‌ಲೈಫ್ ಸಂರಕ್ಷಿತ ಅರಣ್ಯ ಪ್ರದೇಶದಲ್ಲಿ ಉದ್ಭವಿಸುತ್ತದೆ.</p>
-
-      <h3>🏗️ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ಕುಡಿಯುವ ನೀರು ಪೂರೈಕೆ:</h3>
-      <p>1974 ರಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ಈ ಅಣೆಕಟ್ಟು 19.52 TMC ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದೆ. ಮುಂಗಾರು ಮಳೆಯ ಆರಂಭದಲ್ಲೇ ಕಬಿನಿ ಜಲಾಶಯ ಶೀಘ್ರವಾಗಿ ತುಂಬುವ ವೈಶಿಷ್ಟ್ಯ ಹೊಂದಿದೆ. ಈ ಜಲಾಶಯದಿಂದ ಮೈಸೂರು ನಗರಕ್ಕೆ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ಕಾವೇರಿ ನೀರು ಹರಿಸಲು ಮಹತ್ವದ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.</p>
-
-      <h3>🐘 ಕಬಿನಿ ವನ್ಯಜೀವಿ ಧಾಮ &amp; ಪ್ರವಾಸೋದ್ಯಮ:</h3>
-      <p>ಕಬಿನಿ ಜಲಾಶಯದ ಹಿನ್ನೀರು ಪ್ರದೇಶವು ವಿಶ್ವಪ್ರಸಿದ್ಧ <strong>ಕಬಿನಿ ಸಫಾರಿ ಮತ್ತು ನಾಗರಹೊಳೆ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನಕ್ಕೆ</strong> ಹೊಂದಿಕೊಂಡಿದ್ದು, ದಕ್ಷಿಣ ಭಾರತದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಆನೆಗಳು ಮತ್ತು ಕಪ್ಪು ಚಿರತೆ (Black Panther) ಕಾಣಸಿಗುವ ಶ್ರೇಷ್ಠ ಅರಣ್ಯ ವಲಯವಾಗಿದೆ.</p>
-    </div>
-  </div>
-
-  <!-- RELATED NEWS -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📰 ಕಬಿನಿ ಅಣೆಕಟ್ಟು ತಾಜಾ ಸುದ್ದಿ (Kabini Dam Latest News)</div>
-    </div>
-    <div class="news-card-item">
-      <div class="news-title">🌊 ಕಬಿನಿ ಜಲಾಶಯದಿಂದ ಕಾವೇರಿ ನದಿಗೆ 15,000 ಕ್ಯೂಸೆಕ್ಸ್ ನೀರು ಬಿಡುಗಡೆ — ನದಿಪಾತ್ರದ ಜನರಿಗೆ ಎಚ್ಚರಿಕೆ</div>
-      <div class="news-date">02 ಆಗಸ್ಟ್ 2026</div>
-    </div>
-    <div class="news-card-item">
-      <div class="news-title">🌧️ ವಯನಾಡ್ ಮಲೆನಾಡು ಭಾಗದಲ್ಲಿ ಧೋಕಾ ಮಳೆ: ಕಬಿನಿ ಅಣೆಕಟ್ಟಿಗೆ ಹರಿದುಬಂದ ಭಾರಿ ಒಳಹರಿವು</div>
-      <div class="news-date">31 ಜುಲೈ 2026</div>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ಕಬಿನಿ ಜಲಾಶಯ (Kabini Reservoir - H.D. Kote) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಕಬಿನಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ: ವಯನಾಡಿನ ಮುಂಗಾರು ಸಿರಿ, ಮೈಸೂರಿನ ಕೃಷಿ ಸಂಜೀವಿನಿ ಮತ್ತು ಕಾಡಂಚಿನ ಜಲವೈಭವ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಕಬಿನಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ಹೆಚ್.ಡಿ. ಕೋಟೆ ತಾಲೂಕಿನ ಬೀಚನಹಳ್ಳಿ ಬಳಿ ನಿರ್ಮಿಸಲಾದ ಈ ಜಲಾಶಯವು ಕಾವೇರಿ ಕೊಳ್ಳದ ಪ್ರಮುಖ ಅಂಗವಾಗಿದೆ. ಮುಂಗಾರು ಮಳೆಯ ಆರಂಭದಲ್ಲೇ ಅತ್ಯಂತ ವೇಗವಾಗಿ ಭರ್ತಿಯಾಗುವ ಅಣೆಕಟ್ಟಾಗಿದೆ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಮೈಸೂರು ಮತ್ತು ಚಾಮರಾಜನಗರ ಜಿಲ್ಲೆಗಳ 1.25 ಲಕ್ಷ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರಾವರಿ ಒದಗಿಸುತ್ತದೆ. ತಮಿಳುನಾಡಿಗೆ ಕಾವೇರಿ ನೀರು ಹರಿಸುವಲ್ಲಿ ಕಬಿನಿಯ ಪಾತ್ರ ಮಹತ್ವದ್ದಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಕಬಿನಿ ಬ್ಯಾಕ್‌ವಾಟರ್ಸ್ ಮತ್ತು ನಾಗರಹೊಳೆ ಅಭಯಾರಣ್ಯವು ವನ್ಯಜೀವಿ ಪ್ರಿಯರು ಹಾಗೂ ಸಫಾರಿ ಪ್ರವಾಸಿಗರ ಸ್ವರ್ಗವಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ದಕ್ಷಿಣ ಕರ್ನಾಟಕದ ಕಾವೇರಿ ಜಲಾನಯನ ಪ್ರದೇಶದಲ್ಲಿ ಮಳೆಗಾಲದ ಮೊದಲ ಗಂಭೀರ ಹೆಜ್ಜೆಯನ್ನು ಗುರುತಿಸಬೇಕೆಂದರೆ ಅದು ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಎಚ್.ಡಿ. ಕೋಟೆ ತಾಲೂಕಿನ ‘ಕಬಿನಿ ಜಲಾಶಯ’ದಲ್ಲಿ (ಕಪಿಲಾ ಅಣೆಕಟ್ಟು). ಕೇರಳದ ವಯನಾಡು ಕಣಿವೆಗಳಲ್ಲಿ ಮುಂಗಾರು ಮಳೆ ಆರ್ಭಟಿಸಲು ಶುರುಮಾಡುತ್ತಿದ್ದಂತೆಯೇ, ಅತ್ತ ಕಬಿನಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ ಕ್ಷಣಕ್ಷಣಕ್ಕೂ ಪುಟಿದೇಳುತ್ತದೆ. ಕಾವೇರಿ ಕಣಿವೆಯಲ್ಲೇ ಅತ್ಯಂತ ವೇಗವಾಗಿ ಭರ್ತಿಯಾಗುವ ಅಣೆಕಟ್ಟು ಎಂಬ ಹೆಗ್ಗಳಿಕೆ ಈ ಜಲಾಶಯಕ್ಕಿದೆ.
     </p>
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಪ್ರತಿದಿನ ಕಾವೇರಿ ನೀರಾವರಿ ನಿಗಮ ಮತ್ತು ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಬಿಡುಗಡೆ ಮಾಡುವ ಕಬಿನಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level), ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವಿನ ಅಂಕಿ-ಅಂಶಗಳು ಮೈಸೂರು, ಚಾಮರಾಜನಗರ ಜಿಲ್ಲೆಗಳ ರೈತರಿಗೆ ಮಾತ್ರವಲ್ಲದೆ, ಕಾವೇರಿ ಜಲವಿವಾದದ ಸೂಕ್ಷ್ಮ ಲೆಕ್ಕಾಚಾರಗಳಿಗೂ ದಿಕ್ಸೂಚಿಯಾಗಿವೆ. ನಿಸರ್ಗದ ವನ್ಯಲೋಕ ಮತ್ತು ಮನುಷ್ಯನ ಕೃಷಿ ಬದುಕಿನ ನಡುವೆ ಸಮತೋಲನ ಕಾಯ್ದುಕೊಂಡಿರುವ ಕಬಿನಿ ಅಣೆಕಟ್ಟಿನ ಸಮಗ್ರ ಒಳನೋಟ ಇಲ್ಲಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌿 ವಯನಾಡಿನ ಬೆಟ್ಟಗಳಿಂದ ಬೀಚನಹಳ್ಳಿಯವರೆಗೆ: ನದಿಯ ಉಗಮ ಮತ್ತು ಜಲಾನಯನ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಬಿನಿ ಅಥವಾ ‘ಕಪಿಲಾ’ ನದಿಯು ಕಾವೇರಿ ನದಿಯ ಬಲದಂಡೆಯ ಅತ್ಯಂತ ಬಲಿಷ್ಠ ಉಪನದಿ. ಈ ನದಿಯು ಕೇರಳದ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ವಯನಾಡು ಜಿಲ್ಲೆಯಲ್ಲಿ ಉಗಮಿಸುವ ‘ಪನಮರಂ’ ಮತ್ತು ‘ಮಾನಂದವಾಡಿ’ ಎಂಬ ಎರಡು ನದಿಗಳ ಸಂಗಮದಿಂದ ರೂಪತಾಳುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಸುಮಾರು 2,142 ಚದರ ಕಿಲೋಮೀಟರ್ ವಿಸ್ತಾರವಾದ ಜಲಾನಯನ ಪ್ರದೇಶವನ್ನು (Catchment Area) ಹೊಂದಿರುವ ಕಬಿನಿ ನದಿಯ ಸಿಂಹಪಾಲು (ಸುಮಾರು 70% ಕ್ಕೂ ಹೆಚ್ಚು) ಜಲಾನಯನ ಪ್ರದೇಶವು ಕೇರಳದ ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ. ದೇಶದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಮಳೆ ಬೀಳುವ ಪ್ರದೇಶಗಳಲ್ಲಿ ಒಂದಾದ ವಯನಾಡಿನಲ್ಲಿ ಮುಂಗಾರು ಮಳೆ ಚುರುಕಾದಾಗ, ಕಬಿನಿ ನದಿಯು ಉಕ್ಕಿ ಹರಿಯುತ್ತದೆ. ನದಿಯು ಕೇರಳದ ಗಡಿ ದಾಟಿ ಕರ್ನಾಟಕವನ್ನು ಪ್ರವೇಶಿಸಿ ಎಚ್.ಡಿ. ಕೋಟೆ ತಾಲೂಕಿನ ಬೀಚನಹಳ್ಳಿ ಬಳಿ ತಲುಪುವ ಹೊತ್ತಿಗೆ ಬೃಹತ್ ಜಲರಾಶಿಯಾಗಿ ಮಾರ್ಪಡುತ್ತದೆ. ನಂತರ ಈ ನದಿಯು ಐತಿಹಾಸಿಕ ತಿರುಮಕೂಡಲು ನರಸೀಪುರದಲ್ಲಿ (ಟಿ. ನರಸೀಪುರ) ಕಾವೇರಿ ಹಾಗೂ ಪುರಾಣ ಪ್ರಸಿದ್ಧ ಸ್ಪಟಿಕ ಸರೋವರದೊಂದಿಗೆ (ಗುಪ್ತಗಾಮಿನಿ) ತ್ರಿವೇಣಿ ಸಂಗಮವನ್ನು ನಿರ್ಮಿಸುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📏 ಜಲಾಶಯದ ತಾಂತ್ರಿಕ ಸಾಮರ್ಥ್ಯ, ನೀರಿನ ಮಟ್ಟ ಮತ್ತು ಗೇಟ್ಗಳ ವಿವರ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      1974ರಲ್ಲಿ ನಿರ್ಮಾಣಗೊಂಡ ಕಬಿನಿ ಅಣೆಕಟ್ಟು ಮಣ್ಣಿನ ಏರಿ ಮತ್ತು ಕಾಂಕ್ರೀಟ್ ಸ್ಪಿಲ್ವೇ ಒಳಗೊಂಡ ಸಂಯೋಜಿತ (Composite Dam) ರಚನೆಯಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಗರಿಷ್ಠ ನೀರಿನ ಮಟ್ಟ (Full Reservoir Level - FRL):</strong> ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 2,284.00 ಅಡಿಗಳು (696.16 ಮೀಟರ್).</li>
+      <li><strong>ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ (Gross Storage):</strong> 19.52 ಟಿಎಂಸಿ (TMC).</li>
+      <li><strong>ಬಳಕೆ ಮಾಡಬಹುದಾದ ನೀರು (Live Storage):</strong> ಸುಮಾರು 15.67 ಟಿಎಂಸಿ.</li>
+      <li><strong>ಡೆಡ್ ಸ್ಟೋರೇಜ್ (Dead Storage):</strong> ಸುಮಾರು 3.85 ಟಿಎಂಸಿ ನೀರು ಜಲಾಶಯದ ತಳಮಟ್ಟದಲ್ಲಿ ಶಾಶ್ವತವಾಗಿ ಸಂಗ್ರಹವಾಗಿರುತ್ತದೆ.</li>
+      <li><strong>ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> ನದಿಯ ಪ್ರವಾಹದ ನೀರನ್ನು ನಿಯಂತ್ರಿಸಿ ಹೊರಹಾಕಲು ಜಲಾಶಯದಲ್ಲಿ 4 ಬೃಹತ್ ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು (Radial Crest Gates) ಅಳವಡಿಸಲಾಗಿದೆ.</li>
+    </ul>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಬಿನಿ ಜಲಾಶಯದ ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ 19.52 ಟಿಎಂಸಿ ಮಾತ್ರವಿದ್ದರೂ, ಮಳೆಗಾಲದಲ್ಲಿ ಕೇವಲ ಎರಡರಿಂದ ಮೂರು ದಿನಗಳ ಧಾರಾಕಾರ ಮಳೆಗೆ ಇಡೀ ಜಲಾಶಯ ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾಗುವ ಅಸಾಧಾರಣ ಒಳಹರಿವಿನ ಶಕ್ತಿಯನ್ನು ಇದು ಹೊಂದಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಮೈಸೂರು-ಚಾಮರಾಜನಗರದ ಕೃಷಿ ಸಿರಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಬಿನಿ ಅಣೆಕಟ್ಟು ನಿರ್ಮಾಣವಾಗುವ ಮೊದಲು ಮೈಸೂರು ಮತ್ತು ಚಾಮರಾಜನಗರ ಜಿಲ್ಲೆಯ ಹಲವು ಭಾಗಗಳು ಮಳೆಯಾಶ್ರಿತ ಒಣಭೂಮಿಗಳಾಗಿದ್ದವು. ಕಬಿನಿಯ ಕಾಲುವೆಗಳು ಬಂದ ನಂತರ ಈ ಭಾಗದ ಕೃಷಿ ಭೂಚಿತ್ರಣವೇ ಬದಲಾಯಿತು:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಕಬಿನಿ ಎಡದಂಡೆ ನಾಲೆ (Left Bank Canal):</strong> ಎಚ್.ಡಿ. ಕೋಟೆ, ಮೈಸೂರು ತಾಲೂಕು ಮತ್ತು ನಂಜನಗೂಡು ತಾಲೂಕಿನ ಒಣಭೂಮಿಗಳಿಗೆ ನೀರುಣಿಸುತ್ತದೆ.</li>
+      <li><strong>ಕಬಿನಿ ಬಲದಂಡೆ ನಾಲೆ (Right Bank Canal):</strong> ನಂಜನಗೂಡು, ಟಿ. ನರಸೀಪುರ ಹಾಗೂ ಚಾಮರಾಜನಗರ ಜಿಲ್ಲೆಯ ಗಡಿ ಭಾಗದ ತಾಲೂಕುಗಳಿಗೆ ಹರಿದು ಲಕ್ಷಾಂತರ ಎಕರೆ ಭೂಮಿಯನ್ನು ಹಸನು ಮಾಡುತ್ತದೆ.</li>
+      <li><strong>ಪ್ರಮುಖ ಬೆಳೆಗಳು:</strong> ಕಬಿನಿ ನೀರಿನ ಆಸರೆಯಿಂದಾಗಿ ಈ ಭಾಗದಲ್ಲಿ ಭತ್ತ, ಕಬ್ಬು, ಅರಿಶಿನ, ಬಾಳೆ ಮತ್ತು ಹತ್ತಿ ಬೆಳೆಗಳು ಸಮೃದ್ಧವಾಗಿ ಬೆಳೆಯುತ್ತವೆ. ವಿಶೇಷವಾಗಿ ನಂಜನಗೂಡಿನ ಪ್ರಸಿದ್ಧ ರಸಬಾಳೆ ಬೆಳೆಗೆ ಕಪಿಲಾ ನದಿಯ ಮೆಕ್ಕಲು ಮಣ್ಣಿನ ತೇವಾಂಶವೇ ಜೀವಾಳ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚖️ ಕಾವೇರಿ ಜಲ ಹಂಚಿಕೆ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ತಲುಪುವ ನಿರ್ಣಾಯಕ ನೀರು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಾವೇರಿ ಜಲ ವಿವಾದ ಮತ್ತು ನೀರು ಹಂಚಿಕೆಯ ವಿಷಯದಲ್ಲಿ ಕಬಿನಿ ಜಲಾಶಯ ಅತ್ಯಂತ ತಂತ್ರಜ್ಞಾನಾತ್ಮಕ ಮತ್ತು ಆಯಕಟ್ಟಿನ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ. ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಜಲಾಶಯಕ್ಕೆ ಹೋಲಿಸಿದರೆ ಕಬಿನಿ ಜಲಾಶಯವು ಕಾವೇರಿ ನದಿಯ ಕೆಳಭಾಗದಲ್ಲಿದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಾವೇರಿ ಜಲ ನಿರ್ವಹಣಾ ಪ್ರಾಧಿಕಾರದ (CWMA) ನಿರ್ದೇಶನದಂತೆ ತಮಿಳುನಾಡಿಗೆ ಬಿಳಿಗುಂಡ್ಲು ಮಾಪನ ಕೇಂದ್ರದ ಮೂಲಕ ನೀರು ಹರಿಸಬೇಕಾದ ಸಂದರ್ಭದಲ್ಲಿ ಕಬಿನಿ ಜಲಾಶಯವೇ ಮೊದಲ ಆಸರೆ. ಜೂನ್-ಜುಲೈ ತಿಂಗಳಲ್ಲಿ ಕೆಆರ್ಎಸ್ ಜಲಾಶಯ ಇನ್ನೂ ಭರ್ತಿಯಾಗದಿದ್ದರೂ, ಕಬಿನಿ ಬೇಗನೆ ಭರ್ತಿಯಾಗಿ ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ನದಿಗೆ ಹರಿಸುವುದರಿಂದ, ತಮಿಳುನಾಡಿನ ಮೆಟ್ಟೂರು ಜಲಾಶಯಕ್ಕೆ ಆರಂಭಿಕ ಹಂತದ ನೀರಿನ ಪಾಲು ಕಬಿನಿಯಿಂದಲೇ ತಲುಪುತ್ತದೆ. ಇದು ರಾಜ್ಯಗಳ ನಡುವಿನ ಜಲ ಬಿಕ್ಕಟ್ಟನ್ನು ತಗ್ಗಿಸಲು ನೆರವಾಗುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚨 ನಂಜನಗೂಡು ಮತ್ತು ಟಿ. ನರಸೀಪುರ ನದಿ ಪಾತ್ರದಲ್ಲಿ ಪ್ರವಾಹದ ತಲ್ಲಣ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ವಯನಾಡಿನಲ್ಲಿ ಭಾರಿ ಮಳೆಯಾಗಿ ಕಬಿನಿ ಜಲಾಶಯಕ್ಕೆ 40,000 ದಿಂದ 80,000 ಕ್ಯೂಸೆಕ್ ಒಳಹರಿವು ಬಂದಾಗ, ಅಣೆಕಟ್ಟಿನ ಸುರಕ್ಷತೆಗಾಗಿ ನಾಲ್ಕೂ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ತೆರೆಯಲಾಗುತ್ತದೆ. ಈ ಸಂದರ್ಭದಲ್ಲಿ ನದಿ ಪಾತ್ರದಲ್ಲಿ ಉಂಟಾಗುವ ಪರಿಣಾಮಗಳು ಹೀಗಿವೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ನಂಜನಗೂಡಿನ ದಕ್ಷಿಣ ಕಾಶಿ ಜಲಾವೃತ:</strong> ಕಪಿಲಾ ನದಿಗೆ 30,000 ಕ್ಯೂಸೆಕ್‌ಗಿಂತ ಹೆಚ್ಚು ನೀರು ಬಿಡುತ್ತಿದ್ದಂತೆಯೇ, ಐತಿಹಾಸಿಕ ನಂಜನಗೂಡು ಶ್ರೀಕಂಠೇಶ್ವರ (ನಂಜುಂಡೇಶ್ವರ) ದೇವಾಲಯದ ನದಿ ತೀರದ ಸ್ನಾನಘಟ್ಟ, ಹದಿನಾರು ಕಾಲು ಮಂಟಪ ಮತ್ತು ಪರಶುರಾಮ ದೇವಾಲಯಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ.</li>
+      <li><strong>ಸಂಪರ್ಕ ಕಡಿತ:</strong> ನಂಜನಗೂಡಿನ ಹಳ್ಳದ ದಾರಿಯ ಸೇತುವೆ ಮುಳುಗಡೆಯಾಗಿ ಸುತ್ತಮುತ್ತಲಿನ ಹಳ್ಳಿಗಳ ಸಂಪರ್ಕ ಕಡಿತಗೊಳ್ಳುತ್ತದೆ.</li>
+      <li><strong>ತ್ರಿವೇಣಿ ಸಂಗಮ ಮುಳುಗಡೆ:</strong> ಟಿ. ನರಸೀಪುರದ ಗುಂಜಾನರಸಿಂಹಸ್ವಾಮಿ ಮತ್ತು ಅಗಸ್ತ್ಯೇಶ್ವರ ದೇವಾಲಯಗಳ ಮೆಟ್ಟಿಲುಗಳು ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಗುತ್ತವೆ. ಮುನ್ನೆಚ್ಚರಿಕಾ ಕ್ರಮವಾಗಿ ಸೈರನ್ ಮೊಳಗಿಸಿ ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಿಗೆ ಸ್ಥಳಾಂತರಿಸಲಾಗುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🐘 ಹಿನ್ನೀರು ಮತ್ತು ವನ್ಯಜೀವಿಗಳ ಸ್ವರ್ಗ: ನಾಗರಹೊಳೆ-ಬಂಡೀಪುರ ಸಂಗಮ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಬಿನಿ ಜಲಾಶಯವು ಜಗತ್ತಿನಲ್ಲೇ ಅತ್ಯಂತ ಅಪರೂಪದ ಜೀವವೈವಿಧ್ಯದ ಕೇಂದ್ರವಾಗಿದೆ. ಈ ಜಲಾಶಯದ ಹಿನ್ನೀರು ಎರಡು ವಿಶ್ವವಿಖ್ಯಾತ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನಗಳಾದ ‘ನಾಗರಹೊಳೆ’ (ರಾಜೀವ್ ಗಾಂಧಿ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನ) ಮತ್ತು ‘ಬಂಡೀಪುರ ಹುಲಿ ಸಂರಕ್ಷಿತ ಪ್ರದೇಶ’ಗಳ ನಡುವೆ ನೈಸರ್ಗಿಕ ಗಡಿಯಾಗಿ ಹರಿಯುತ್ತದೆ.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಏಷ್ಯಾದ ಅತಿ ದೊಡ್ಡ ಆನೆಗಳ ಸಮ್ಮಿಲನ:</strong> ಬೇಸಿಗೆಯ ದಿನಗಳಲ್ಲಿ (ಫೆಬ್ರವರಿಯಿಂದ ಮೇ ವರೆಗೆ) ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ ಇಳಿದಾಗ, ಹಿನ್ನೀರಿನ ಹಸಿರು ಹುಲ್ಲುಗಾವಲಿನಲ್ಲಿ ನೂರಾರು ಏಷ್ಯನ್ ಆನೆಗಳು ಹಿಂಡುಹಿಂಡಾಗಿ ಸೇರುತ್ತವೆ. ಇದು ವಿಶ್ವದಲ್ಲೇ ಏಷ್ಯನ್ ಆನೆಗಳ ಅತಿ ದೊಡ್ಡ ವಾರ್ಷಿಕ ಸಮ್ಮಿಲನ ಎಂದು ಪ್ರಸಿದ್ಧವಾಗಿದೆ.</li>
+      <li><strong>ವನ್ಯಜೀವಿ ಪ್ರವಾಸೋದ್ಯಮ:</strong> ಹುಲಿ, ಚಿರತೆ, ಕರಡಿ, ಕಾಡುಕೋಣಗಳು ಹಾಗೂ ಅಪರೂಪದ ಕಪ್ಪು ಚಿರತೆಯ (Black Panther) ಆವಾಸಸ್ಥಾನವಾಗಿರುವ ಕಬಿನಿ ಹಿನ್ನೀರಿನ ಬೋಟ್ ಸಫಾರಿ ಜಾಗತಿಕ ಪ್ರವಾಸಿಗರನ್ನು ಸೂಜಿಗಲ್ಲಿನಂತೆ ಸೆಳೆಯುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌧️ ಪರಿಸರ ಸೂಕ್ಷ್ಮತೆ, ವಯನಾಡು ದುರಂತಗಳು ಮತ್ತು ಆಧುನಿಕ ಜಲನಿರ್ವಹಣೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಇತ್ತೀಚಿನ ವರ್ಷಗಳಲ್ಲಿ ಜಾಗತಿಕ ತಾಪಮಾನ ಮತ್ತು ಹವಾಮಾನ ವೈಪರೀತ್ಯದಿಂದಾಗಿ ಕಬಿನಿಯ ಮೂಲ ಜಲಾನಯನ ಪ್ರದೇಶವಾದ ವಯನಾಡಿನಲ್ಲಿ ಭೀಕರ ಭೂಕುಸಿತಗಳು ಹಾಗೂ ಅನಿರೀಕ್ಷಿತ ಮೇಘಸ್ಫೋಟಗಳು ಸಂಭವಿಸುತ್ತಿವೆ. ಅಪಾರ ಪ್ರಮಾಣದ ಮಣ್ಣು ಮತ್ತು ಕಲ್ಲುಬಂಡೆಗಳು ನದಿಯೊಂದಿಗೆ ಕೊಚ್ಚಿ ಬರುತ್ತಿರುವುದು ಜಲಾಶಯದಲ್ಲಿ ಹೂಳು ತುಂಬುವ ಆತಂಕವನ್ನು ಹೆಚ್ಚಿಸಿದೆ. ಇದನ್ನು ನಿಭಾಯಿಸಲು, ತುರ್ತು ಪ್ರವಾಹ ನಿಯಂತ್ರಣ ಕೊಠಡಿಗಳು ಹಾಗೂ ಕೇರಳದ ಜಲಮಾಪನ ಕೇಂದ್ರಗಳೊಂದಿಗೆ ರಿಯಲ್-ಟೈಮ್ ಟೆಲಿಮೆಟ್ರಿ ಸಂಪರ್ಕವನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ. ವಯನಾಡಿನಲ್ಲಿ ಮಳೆಯ ಪ್ರಮಾಣ ಹೆಚ್ಚಾದ ತಕ್ಷಣವೇ ಇಲ್ಲಿನ ಎಂಜಿನಿಯರ್‌ಗಳು ಜಲಾಶಯದ ಮಟ್ಟವನ್ನು ಹಂತ-ಹಂತವಾಗಿ ನಿಯಂತ್ರಿಸುವ ಅತ್ಯಾಧುನಿಕ ಜಲನಿರ್ವಹಣಾ ಪದ್ಧತಿಯನ್ನು ಅನುಸರಿಸುತ್ತಿದ್ದಾರೆ.
+    </p>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಕಬಿನಿ ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಕಬಿನಿ ಅಣೆಕಟ್ಟು ಕಾವೇರಿ ಕಣಿವೆಯಲ್ಲೇ ಅತ್ಯಂತ ಶೀಘ್ರವಾಗಿ ಭರ್ತಿಯಾಗುವುದು ಏಕೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕಬಿನಿ ನದಿಯ 70%ಕ್ಕೂ ಹೆಚ್ಚು ಜಲಾನಯನ ಪ್ರದೇಶವು ಅತಿ ಹೆಚ್ಚು ಮಳೆ ಬೀಳುವ ಕೇರಳದ ವಯನಾಡಿನಲ್ಲಿದೆ. ಕೇವಲ 2 ರಿಂದ 3 ದಿನಗಳ ಧಾರಾಕಾರ ಮಳೆಗೆ 19.52 ಟಿಎಂಸಿ ಸಾಮರ್ಥ್ಯದ ಈ ಜಲಾಶಯ ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಕಾವೇರಿ ಜಲ ಹಂಚಿಕೆ ವಿವಾದದ ಸಮಯದಲ್ಲಿ ಕಬಿನಿ ನೀರಿನ ಮಹತ್ವವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕಬಿನಿ ಕೆಆರ್ಎಸ್ ಗಿಂತ ಕೆಳಭಾಗದಲ್ಲಿದೆ. ಜೂನ್-ಜುಲೈನಲ್ಲಿ ಕೆಆರ್ಎಸ್ ಇನ್ನೂ ತುಂಬದಿದ್ದರೂ, ಕಬಿನಿ ಬೇಗನೆ ಭರ್ತಿಯಾಗಿ ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ಹರಿಸುವುದರಿಂದ ತಮಿಳುನಾಡಿಗೆ ಬಿಳಿಗುಂಡ್ಲು ಮೂಲಕ ಆರಂಭಿಕ ನೀರಿನ ಪಾಲು ಕಬಿನಿಯಿಂದಲೇ ತಲುಪುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಕಬಿನಿ ನದಿಗೆ ಭಾರಿ ಪ್ರಮಾಣದಲ್ಲಿ ನೀರು ಬಿಟ್ಟಾಗ ನಂಜನಗೂಡಿನಲ್ಲಿ ಉಂಟಾಗುವ ಪರಿಣಾಮಗಳೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">30,000 ಕ್ಯೂಸೆಕ್‌ಗಿಂತ ಹೆಚ್ಚು ನೀರು ಬಿಟ್ಟರೆ ಐತಿಹಾಸಿಕ ನಂಜನಗೂಡು ಶ್ರೀಕಂಠೇಶ್ವರ ದೇವಾಲಯದ ನದಿ ತೀರದ ಸ್ನಾನಘಟ್ಟ, ಹದಿನಾರು ಕಾಲು ಮಂಟಪ ಮತ್ತು ಪರಶುರಾಮ ದೇವಾಲಯಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ. ಟಿ. ನರಸೀಪುರದ ತ್ರಿವೇಣಿ ಸಂಗಮವೂ ಮುಳುಗಡೆಯಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನಾಗರಹೊಳೆ ಮತ್ತು ಬಂಡೀಪುರ ಅಭಯಾರಣ್ಯಗಳ ನಡುವೆ ಕಬಿನಿ ಹಿನ್ನೀರಿನ ವಿಶೇಷತೆಯೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕಬಿನಿ ಹಿನ್ನೀರು ನಾಗರಹೊಳೆ ಮತ್ತು ಬಂಡೀಪುರ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನಗಳ ನೈಸರ್ಗಿಕ ಗಡಿಯಾಗಿದೆ. ಬೇಸಿಗೆಯಲ್ಲಿ ನೀರಿಳಿದಾಗ ಚಿಗುರುವ ಹಸಿರು ಹುಲ್ಲುಗಾವಲಿಗೆ ನೂರಾರು ಕಾಡಾನೆಗಳು ಸೇರುತ್ತವೆ (ವಿಶ್ವದಲ್ಲೇ ಏಷ್ಯನ್ ಆನೆಗಳ ಅತಿ ದೊಡ್ಡ ವಾರ್ಷಿಕ ಸಮ್ಮಿಲನ), ಇದು ಅಪರೂಪದ ಕಪ್ಪು ಚಿರತೆ (Black Panther) ಮತ್ತು ಹುಲಿ ಸಫಾರಿ ತಾಣವಾಗಿದೆ.</p>
+    </div>
   </div>
 
 </div>

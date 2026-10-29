@@ -144,10 +144,9 @@ def store(filename: str, kv_key: str, data: dict):
     clean_data = sanitize_dict(data)
     encrypted_payload = encrypt_payload(clean_data)
     
-    payload_wrapper = {
-        "v": 1,
-        "payload": encrypted_payload
-    }
+    payload_wrapper = dict(clean_data)
+    payload_wrapper["v"] = 1
+    payload_wrapper["payload"] = encrypted_payload
     save_json(filename, payload_wrapper)
     push_to_cloudflare_kv(kv_key, payload_wrapper)
 

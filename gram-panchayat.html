@@ -460,6 +460,53 @@
     }
     .btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
   </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Karnataka Gram Panchayat Directory & Services - Panchatantra Portal",
+  "description": "Search 5,935+ Gram Panchayats across 31 Karnataka districts with PDO contacts, voter lists, property tax, and e-governance services.",
+  "url": "https://karnata.in/gram-panchayat",
+  "spatialCoverage": {
+    "@type": "AdministrativeArea",
+    "name": "Karnataka"
+  }
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".gp-card",
+      ".panchayat-meta",
+      ".faq-answer"
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many Gram Panchayats are there in Karnataka and how can I find my PDO contact?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karnataka has 5,935 Gram Panchayats across 31 districts. You can search your Gram Panchayat by district or taluk on Karnata.in to find Panchayat Development Officer (PDO) contacts, e-Swathu property status, Bapuji Seva Kendra services, and local development works."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ಕರ್ನಾಟಕದ ಗ್ರಾಮ ಪಂಚಾಯತಿಗಳ ಮಾಹಿತಿ ಮತ್ತು ಪಿಡಿಒ ಸಂಪರ್ಕ ವಿವರ ಹುಡುಕುವುದು ಹೇಗೆ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karnata.in ಗ್ರಾಮ ಪಂಚಾಯತ್ ಡೈರೆಕ್ಟರಿಯಲ್ಲಿ ಕರ್ನಾಟಕದ 5,935+ ಗ್ರಾ.ಪಂ.ಗಳ ಮಾಹಿತಿ, ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ (PDO) ಸಂಪರ್ಕ ವಿವರ, ಇ-ಸ್ವತ್ತು ಮತ್ತು ಬಾಪೂಜಿ ಸೇವಾ ಕೇಂದ್ರದ ಸೇವೆಗಳನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಬಹುದು."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -527,21 +574,987 @@
           <option value="ALL">🏘️ ಎಲ್ಲಾ ತಾಲೂಕುಗಳು (All Taluks)</option>
         </select>
       </div>
-      <div id="resultsCountText" style="font-size:15px; font-weight:800; color:#475569;">
-        ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...
-      </div>
+      <div id="resultsCountText" style="font-size:15px; font-weight:800; color:#475569;">ಒಟ್ಟು 5,935 ಗ್ರಾಮ ಪಂಚಾಯಿತಿಗಳು</div>
     </div>
 
     <!-- Results Grid -->
     <div class="grid" id="gpGrid">
-      <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
-        <div style="font-size:42px; margin-bottom:12px;">⏳</div>
-        <h3 style="font-size:20px; font-weight:900;">ಕರ್ನಾಟಕ ಗ್ರಾಮ ಪಂಚಾಯತ್ ದತ್ತಾಂಶ ಲೋಡ್ ಆಗುತ್ತಿದೆ...</h3>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಜಮ್ಮನಕಟ್ಟಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಎಮ್ ಎಸ್ ವಾರದ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001001')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕಟಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ರಾಮಚಂದ್ರ  ಮೆತ್ರಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001002')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕಾಕನೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮಹೆಬೂಬಸಾಬ್ ಆರ್ ಚಿಕ್ಕೊಪ್ಪ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001003')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕಾತರಕಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸೈಯ್ಯದಅಹ್ಮದ್ ಕೆರೂರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001004')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕೆಲವಡಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸುಭಾಸಚಂದ್ರ ಹೊಲೇರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001005')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕೋಟಿಕಲ್ಲ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಆರತಿ ರವಿ ಕ್ಷತ್ರಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001006')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕಿತ್ತಲಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶಿವಕುಮಾರ್ ವೈ. ಬಲವಂತನವರ್</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001007')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 13 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಕುಲಗೇರಿ ಕ್ರಾಸ್</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸದಾನಂದ ಜಿ ಪರಸನ್ನವರ್</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001008')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಆಡಗಲ್ಲ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶಿವಪ್ಪ ಕೊಂತಿಕಲ್</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001009')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಚೋಳಚಗುಡ್ಡ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸಂತೋಷಕುಮಾರ ಮೋಕಾಶಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001010')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಫಕೀರಬೂದಿಹಾಳ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಭಾರತಿ ಬದ್ನೂರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001011')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಪಟ್ಟದಕಲ್ಲ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ನಾಜಮೀನ ರಾಮದುರ್ಗ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001012')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಪರ್ವತಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶಿವಲಿಂಗಯ್ಯಾ ಹಿರೆಮಠ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001013')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಜಾಲಿಹಾಳ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ರೇಣುಕಾ ಹುನಗುಂಡಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001014')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 12 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಬೇಲೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಇಮಾಮಸಾಬ ರಾಜೇಸಾಬ ಹವಾಲ್ದಾರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001015')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ನಂದಿಕೇಶ್ವರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮುತ್ತಪ್ಪ ಚಲವಾದಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001016')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ನಾಗರಾಳ-SP</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮಹಾಂತೇಶ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001017')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಲಾಯದಗುಂದಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಗೋಪಾಲಕೃಷ್ಣ ಭೀಮಪ್ಪ ನಾಯಕ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001018')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಮಮಟಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸವಿತಾ ನಂದೆಪ್ಪನವರ್</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001019')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಮಂಗಳೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮೈಲೇರಪ್ಪ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001020')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಮುತ್ತಲಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ರಾಜು ಮುಗಳಖೋಡ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001021')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಮುಷ್ಠಿಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶೋಭಾ ಚವಾನಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001022')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಸೂಳಿಕೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಗಂಗುಬಾಯಿ ಮಲ್ಲಪ್ಪ ಕಾಳಗಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001023')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಅನವಾಲ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸುಮಂಗಲಾ ಮಲೇನ್ನವರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001024')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹಲಕುರ್ಕಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಗೌರಮ್ಮ ಎಸ್ ಶಿರೂರು</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001025')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹಂಸನೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮಂಜುನಾಥ ಅರಳಿಕಟ್ಟಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001026')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 8 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹಳದೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಗುಳೇದಗುಡ್ಡ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಗೂಳಪ್ಪ ಹೊರಟ್ಟಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001027')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹುಲ್ಲಿಕೇರಿ - ಇನಾಮ್</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಸೌಮ್ಯ ಪಾಟೀಲ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001028')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹೂಲಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಮಹಾನಂದಾ ಮಲ್ಲಪ್ಪ ಭೂಸಗೊಂಡ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001029')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹೆಬ್ಬಳ್ಳಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಗೋಪಿನಾಥ ಅರ್ಚಕ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001030')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹೊಸೂರ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶರಣಪ್ಪ ಹೊಸಳ್ಳಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001031')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 11 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ನೀರಬೂದಿಹಾಳ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಚೇತನ ಹೊಸಮನಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001032')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 9 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ನೀರಲಕೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶ್ರೀಕಾಂತ್  ಕೊಟ್ಟಗಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001033')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 7 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ನೀಲಗುಂದ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ತಿಮ್ಮಣ್ಣ ಮಾರುತಿ ಕುಂದರಗಿ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001034')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 10 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಆಲೂರು ಎಸ್ ಕೆ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ಶೇಖರಪ್ಪ ತೋಟರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001036')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
+      </div>
+      <div class="gp-card">
+        <div class="card-top">
+          <span class="gp-badge">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್</span>
+          <span class="staff-count-pill">👥 6 ಸಿಬ್ಬಂದಿ</span>
+        </div>
+
+        <h3 class="gp-title">ಹಾಲಿಗೇರಿ</h3>
+
+        <div class="gp-meta">
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
+            <span class="meta-val">ಬಾಗಲಕೋಟೆ</span>
+          </div>
+          <div class="gp-meta-row">
+            <span class="meta-lbl">ತಾಲೂಕು:</span>
+            <span class="meta-val">ಬಾದಾಮಿ</span>
+          </div>
+              <div class="gp-meta-row" style="margin-top:2px;">
+                <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
+                <span class="meta-val" style="color:#059669;">ರಾಜಶೇಖರ ಗುದಗೆನ್ನವರ</span>
+              </div>
+        </div>
+
+        <button class="btn-profile" onclick="openGpModal('1501001037')">
+          👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
+        </button>
       </div>
     </div>
 
     <!-- Pagination -->
-    <div class="pagination-bar" id="paginationBar" style="display:none;">
+    <div class="pagination-bar" id="paginationBar" style="display:flex;">
       <button class="btn-page" id="prevBtn" onclick="changePage(-1)">← ಹಿಂದಿನ ಪುಟ</button>
       <span id="pageIndicator" style="font-weight:800; font-size:15px; color:#1E293B;">ಪುಟ 1</span>
       <button class="btn-page" id="nextBtn" onclick="changePage(1)">ಮುಂದಿನ ಪುಟ →</button>

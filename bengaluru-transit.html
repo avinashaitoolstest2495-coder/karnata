@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bengaluru Smart Transit Radar — Full Network Route Solver, Metro Fares & Bus Guide | Karnata.in</title>
+  <meta name="description" content="Complete Bengaluru transit routing platform. Full station-by-station navigation across all 85+ Namma Metro stations, official BMRCL fare calculator, BMTC bus alternatives, and road congestion savings." />
+  <link rel="icon" href="/favicon.png" />
+
+  <style>
+    /* ── Reset & Modern Design Tokens ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #090d16;
+      --surface: #111726;
+      --surface-glass: rgba(17, 23, 38, 0.85);
+      --surface-2: #192238;
+      --surface-3: #222d4a;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.4);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --purple: #8b5cf6;
+      --green: #10b981;
+      --yellow: #eab308;
+      --cyan: #06b6d4;
+      --hazard: #ef4444;
+      --hazard-bg: rgba(239, 68, 68, 0.12);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --shadow-card: 0 12px 36px -4px rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      background-image: 
+        radial-gradient(at 10% 15%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
+        radial-gradient(at 90% 80%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ── Live Network Status Ribbon ─────────────────────────────────────────── */
+    .status-ribbon {
+      background: rgba(10, 15, 26, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+    }
+    .status-ribbon::-webkit-scrollbar { display: none; }
+    .status-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: livePulse 2s infinite;
+    }
+    .pulse-dot.amber { background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
+    @keyframes livePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    /* ── Navigation Header ──────────────────────────────────────────────────── */
+    .nav-header {
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-badge-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      border-radius: var(--radius-sm);
+      display: grid; place-items: center;
+      font-size: 19px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+    }
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+    .nav-subtitle { font-size: 11px; color: var(--text-muted); display: block; }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-link-btn {
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .nav-link-btn:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.25);
+      background: var(--surface-3);
+    }
+
+    /* ── Main Container ─────────────────────────────────────────────────────── */
+    .main-container {
+      flex: 1;
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* ── Hero Copy ──────────────────────────────────────────────────────────── */
+    .hero-section { text-align: center; margin-bottom: 28px; }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: #c084fc;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, #93c5fd 80%, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ── Mode Toggle Controls ── */
+    .mode-selector {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .mode-tab-pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mode-tab-pill.active {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+    }
+
+    /* ── Search & Dropdown Console Card ─────────────────────────────────────── */
+    .search-card {
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+    }
+
+    /* Natural Query Form */
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .search-icon-btn {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      padding-left: 6px;
+    }
+    #searchInput {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 0;
+    }
+    #searchInput::placeholder { color: var(--text-dim); }
+    .route-submit-btn {
+      padding: 12px 26px;
+      background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+      border: none;
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+      flex-shrink: 0;
+    }
+    .route-submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.55);
+    }
+    .route-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Direct Station Dropdown Pickers */
+    .station-picker-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .select-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .select-box label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .select-box select {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    .select-box select option {
+      background: #111726;
+      color: #fff;
+    }
+    .swap-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: grid; place-items: center;
+      font-size: 18px;
+      transition: all 0.2s ease;
+    }
+    .swap-btn:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+      transform: rotate(180deg);
+    }
+
+    /* ── Quick Trending Chips ───────────────────────────────────────────────── */
+    .quick-chips {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .quick-chips::-webkit-scrollbar { display: none; }
+    .chip-btn {
+      padding: 6px 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chip-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: var(--surface-3);
+    }
+
+    /* ── Hazard Banner ──────────────────────────────────────────────────────── */
+    #hazardBanner {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--hazard-bg);
+      border: 1.5px solid var(--hazard);
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+    }
+    #hazardBanner.visible { display: flex; }
+    .hazard-icon-box { font-size: 26px; flex-shrink: 0; }
+    .hazard-title { font-size: 14px; font-weight: 700; color: #f87171; margin-bottom: 2px; }
+    .hazard-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── Urgency Strip ──────────────────────────────────────────────────────── */
+    #urgencyStrip {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    #urgencyStrip.visible { display: flex; }
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .urgency-badge.level-1 { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+    .urgency-badge.level-2 { background: rgba(132, 204, 22, 0.15); color: #a3e635; }
+    .urgency-badge.level-3 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .urgency-badge.level-4 { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+    .urgency-badge.level-5 { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+
+    /* ── Turnkey Journey Canvas Card ────────────────────────────────────────── */
+    .journey-solution-card {
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .journey-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .route-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: #fff;
+    }
+    .journey-title {
+      font-size: clamp(20px, 4.5vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .arrow-divider { color: var(--text-dim); }
+
+    /* ── Metric Cards ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .metric-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .metric-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: #38bdf8;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ── Official BMRCL Fare Matrix Card ── */
+    .fare-matrix-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .fare-matrix-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fare-slabs-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .fare-box {
+      background: var(--surface-3);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+    .fare-box__type { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .fare-box__amount { font-size: 20px; font-weight: 800; color: #fff; }
+    .fare-box__desc { font-size: 10px; color: #34d399; margin-top: 2px; }
+
+    /* ── Traffic vs Transit Comparison ── */
+    .comparison-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .comparison-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .compare-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .compare-label {
+      width: 120px;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .compare-bar-track {
+      flex: 1;
+      height: 10px;
+      background: var(--surface-3);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    .compare-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.8s ease;
+    }
+    .compare-time {
+      width: 80px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Expandable Station List (The Complete Itinerary) ── */
+    .station-accordion {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .accordion-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      width: 100%;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .accordion-header:hover { background: var(--surface-3); }
+    .accordion-body {
+      padding: 0 20px 20px;
+      display: none;
+    }
+    .accordion-body.open { display: block; }
+    .stn-step-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .stn-step-item:last-child { border-bottom: none; }
+    .stn-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    .stn-dot-line {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .stn-names { flex: 1; }
+    .stn-en { font-size: 14px; font-weight: 600; color: #fff; }
+    .stn-kn { font-size: 12px; color: var(--text-muted); }
+    .interchange-alert {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      margin: 12px 0;
+      font-size: 13px;
+      color: #fbbf24;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── BMTC Bus Alternatives Card ── */
+    .bus-alternatives-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .bus-card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shakti-badge {
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .bus-route-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bus-route-row:last-child { border-bottom: none; }
+    .bus-route-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      background: #0891b2;
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    /* ── BMTC & KSRTC Filter Tabs & Modern Grid ── */
+    .transit-tabs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+    .transit-tab-pill {
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .transit-tab-pill:hover, .transit-tab-pill.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #60a5fa;
+    }
+    .bus-grid-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 12px;
+    }
+    .bus-card-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .bus-card-item:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+    .bus-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .bus-badge-ordinary { background: #059669; color: #fff; }
+    .bus-badge-vajra { background: #2563eb; color: #fff; }
+    .bus-badge-airport { background: #0891b2; color: #fff; }
+    .bus-badge-big10 { background: #d97706; color: #fff; }
+    .bus-meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bus-tag {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .ksrtc-departure-card {
+      background: var(--surface);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .ksrtc-departure-card:hover { border-color: rgba(16, 185, 129, 0.6); }
+    .dep-time-badge {
+      font-size: 18px;
+      font-weight: 800;
+      color: #34d399;
+      font-feature-settings: "tnum";
+    }
+    .ksrtc-service-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      text-transform: uppercase;
+    }
+
+    /* ── Autocomplete Dropdown ── */
+    .autocomplete-results {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: #111726;
+      border: 1px solid var(--border-accent);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+    .autocomplete-item {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 13px;
+    }
+    .autocomplete-item:hover {
+      background: var(--surface-2);
+    }
+    .autocomplete-type {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text-muted);
+    }
+
+    /* ── Action Buttons Hub ── */
+    .action-hub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .action-btn {
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .action-btn.primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    }
+    .action-btn.primary:hover { transform: translateY(-1px); }
+    .action-btn.secondary {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: #fff;
+    }
+    .action-btn.secondary:hover {
+      background: var(--surface-3);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty-icon { font-size: 52px; margin-bottom: 14px; }
+    .empty-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+
+    /* ── Skeleton ── */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--radius-sm);
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .sk-bar { height: 18px; margin-bottom: 12px; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: #1e293b; color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 13px;
+      display: none; align-items: center; gap: 8px;
+      z-index: 1000;
+    }
+    #toast.show { display: flex; }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px; text-align: center;
+      font-size: 12px; color: var(--text-dim);
+      background: var(--surface);
+    }
+    .site-footer a { color: #38bdf8; text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── 1. Telemetry Status Ribbon ── -->
+  <aside class="status-ribbon" aria-label="Network Telemetry">
+    <div class="status-item"><span class="pulse-dot"></span> <strong>Namma Metro:</strong> Purple & Green & Yellow Lines Running (All 85 Stations)</div>
+    <div class="status-item"><span class="pulse-dot amber"></span> <strong>BMTC City:</strong> 6,400 Buses Live • Shakti Scheme 100% Free for Women</div>
+    <div class="status-item"><span class="pulse-dot"></span> <strong>KSRTC:</strong> Bengaluru-Mysuru Expressway Normal</div>
+  </aside>
+
+  <!-- ── 2. Sticky Glass Header ── -->
+  <header class="nav-header">
+    <a href="/" class="nav-brand">
+      <div class="nav-badge-icon" aria-hidden="true">⚡</div>
+      <div>
+        <span class="nav-title">Karnata Transit Radar</span>
+        <span class="nav-subtitle">ಬೆಂಗಳೂರು ಸಮಗ್ರ ಸಾರಿಗೆ & ಮೆಟ್ರೋ ದರ ಗೈಡ್</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="/bengaluru-metro.html" class="nav-link-btn">🚇 Metro Map</a>
+      <a href="/bengaluru-bmtc-bus.html" class="nav-link-btn">🚌 BMTC Buses</a>
+      <a href="/karnataka-ksrtc-bus.html" class="nav-link-btn">🚍 KSRTC Intercity</a>
+    </nav>
+  </header>
+
+  <!-- ── 3. Main Container ── -->
+  <main class="main-container" role="main">
+
+    <!-- Hero Header -->
+    <section class="hero-section">
+      <div class="hero-pill">⚡ Universal Bengaluru Transit Engine v3.0</div>
+      <h1 class="hero-title">Bengaluru Complete Route Solver</h1>
+      <p class="hero-desc">
+        Calculate full station itineraries across all 85+ stations on Purple, Green & Yellow lines, official BMRCL fare slabs, parallel BMTC buses, and road gridlock bypass.
+      </p>
+    </section>
+
+    <!-- Search & Station Dropdown Card -->
+    <section class="search-card" aria-label="Find any route">
+      
+      <!-- Natural Language Query Bar -->
+      <form id="searchForm" class="search-input-wrap">
+        <div class="search-icon-btn" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search any route, bus number (e.g. 500-D, 335-E, KIA-9), metro station or city…" 
+          autocomplete="off" 
+          maxlength="500" 
+        />
+        <button type="submit" id="searchBtn" class="route-submit-btn">
+          <span>Find Route</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div id="searchSuggestions" class="autocomplete-results" role="listbox" aria-label="Transit suggestions"></div>
+      </form>
+
+      <!-- All Stations Direct Dropdown Selectors -->
+      <div class="station-picker-row">
+        <div class="select-box">
+          <label for="fromSelect">🛫 Origin Station / Bus Hub</label>
+          <select id="fromSelect">
+            <option value="">Select Origin…</option>
+          </select>
+        </div>
+
+        <button type="button" class="swap-btn" id="swapBtn" title="Swap Origin and Destination" aria-label="Swap Stations">
+          ⇄
+        </button>
+
+        <div class="select-box">
+          <label for="toSelect">🛬 Destination Station / Hub / City</label>
+          <select id="toSelect">
+            <option value="">Select Destination…</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Quick Trending Route Chips -->
+      <div class="quick-chips" role="list" aria-label="Popular smart corridors">
+        <button type="button" class="chip-btn" data-query="Metro from Majestic to Whitefield">🚇 Majestic ➔ Whitefield</button>
+        <button type="button" class="chip-btn" data-query="Jayanagar to Whitefield">🟣 Jayanagar ➔ Whitefield</button>
+        <button type="button" class="chip-btn" data-query="Silk Board to Electronic City">🟡 Silk Board ➔ E-City</button>
+        <button type="button" class="chip-btn" data-query="Silk Board to Hebbal BMTC 500-D">🚌 Silk Board ➔ Hebbal (500-D)</button>
+        <button type="button" class="chip-btn" data-query="Majestic to Airport BMTC KIA-9">✈️ Majestic ➔ Airport (KIA-9)</button>
+        <button type="button" class="chip-btn" data-query="Bengaluru to Mysuru KSRTC bus">🚍 Bengaluru ➔ Mysuru Express</button>
+        <button type="button" class="chip-btn" data-query="Bengaluru to Mangaluru KSRTC bus">🚍 Bengaluru ➔ Mangaluru</button>
+        <button type="button" class="chip-btn" data-query="Bengaluru to Madikeri KSRTC bus">🚍 Bengaluru ➔ Madikeri (Coorg)</button>
+      </div>
+
+    </section>
+
+    <!-- Hazard Alert Banner -->
+    <div id="hazardBanner" role="alert" aria-live="assertive">
+      <div class="hazard-icon-box" aria-hidden="true">⚠️</div>
+      <div>
+        <div class="hazard-title">Road Congestion Alert</div>
+        <div class="hazard-desc" id="hazardMsg">Severe traffic detected on arterial roads. Namma Metro grade-separated tracks guarantee on-time arrival.</div>
+      </div>
+    </div>
+
+    <!-- Urgency Strip -->
+    <div id="urgencyStrip" aria-live="polite">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="urgency-badge level-1" id="urgencyBadge">⏱️ Urgency: Casual</span>
+        <span id="urgencyReasonText" style="color:var(--text-muted);">Route analyzed across Bengaluru network</span>
+      </div>
+      <div style="color:var(--text-dim);font-size:12px;" id="latencyLabel">⚡ 2ms</div>
+    </div>
+
+    <!-- ── 4. Turnkey Route Result Canvas ── -->
+    <section class="journey-solution-card" id="solutionCard">
+      
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon" aria-hidden="true">🧭</div>
+        <div class="empty-title">Select or type any Bengaluru route above</div>
+        <p>Pick any of the 85+ stations on Purple, Green, or Yellow lines to calculate full station itineraries, exact BMRCL fares, and parallel BMTC buses.</p>
+      </div>
+
+      <!-- Skeleton Loader -->
+      <div id="skeletonLoader" style="display:none;">
+        <div class="skeleton sk-bar" style="width:30%;"></div>
+        <div class="skeleton sk-bar" style="width:70%;height:32px;margin-bottom:20px;"></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+          <div class="skeleton sk-bar" style="height:70px;"></div>
+          <div class="skeleton sk-bar" style="height:70px;"></div>
+          <div class="skeleton sk-bar" style="height:70px;"></div>
+          <div class="skeleton sk-bar" style="height:70px;"></div>
+        </div>
+        <div class="skeleton sk-bar" style="height:110px;"></div>
+      </div>
+
+      <!-- Dynamic Real Journey Content -->
+      <div id="journeyContent" style="display:none;">
+        <!-- Filled by renderCompleteJourney() -->
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="toast" role="status"><span aria-hidden="true">✅</span> <span id="toastMsg">Itinerary copied!</span></div>
+
+  <footer class="site-footer">
+    <p><a href="/">Karnata.in</a> — Universe of Karnataka · Universal Transit Engine v3.0</p>
+  </footer>
+
+  <!-- ── 5. Client Script & Datasets ────────────────────────────────────────── -->
+  <script>
+    'use strict';
+
+    // ── Station Catalog (All 85 Operational Stations) ──
+    const ALL_STATIONS = [
+      // Purple Line (37 stations)
+      { key: "purple:1", line: "Purple Line", color: "#8b5cf6", en: "Whitefield (Kadugodi)", kn: "ವೈಟ್‌ಫೀಲ್ಡ್ (ಕಾಡುಗೋಡಿ)" },
+      { key: "purple:2", line: "Purple Line", color: "#8b5cf6", en: "Hopefarm Channasandra", kn: "ಹೋಪ್‌ಫಾರ್ಮ್ ಚನ್ನಸಂದ್ರ" },
+      { key: "purple:3", line: "Purple Line", color: "#8b5cf6", en: "Kadugodi Tree Park", kn: "ಕಾಡುಗೋಡಿ ಟ್ರೀ ಪಾರ್ಕ್" },
+      { key: "purple:4", line: "Purple Line", color: "#8b5cf6", en: "Pattandur Agrahara", kn: "ಪಟ್ಟಂದೂರು ಅಗ್ರಹಾರ" },
+      { key: "purple:5", line: "Purple Line", color: "#8b5cf6", en: "Sri Sathya Sai Hospital", kn: "ಶ್ರೀ ಸತ್ಯ ಸಾಯಿ ಆಸ್ಪತ್ರೆ" },
+      { key: "purple:6", line: "Purple Line", color: "#8b5cf6", en: "Nallurahalli", kn: "ನಲ್ಲೂರಹಳ್ಳಿ" },
+      { key: "purple:7", line: "Purple Line", color: "#8b5cf6", en: "Kundalahalli", kn: "ಕುಂದಲಹಳ್ಳಿ" },
+      { key: "purple:8", line: "Purple Line", color: "#8b5cf6", en: "Seetharampalya", kn: "ಸೀತಾರಾಮಪಾಳ್ಯ" },
+      { key: "purple:9", line: "Purple Line", color: "#8b5cf6", en: "Hoodi", kn: "ಹೂಡಿ" },
+      { key: "purple:10", line: "Purple Line", color: "#8b5cf6", en: "Garudacharpalya", kn: "ಗರುಡಾಚಾರ್‌ಪಾಳ್ಯ" },
+      { key: "purple:11", line: "Purple Line", color: "#8b5cf6", en: "Singayyanapalya", kn: "ಸಿಂಗಯ್ಯನಪಾಳ್ಯ" },
+      { key: "purple:12", line: "Purple Line", color: "#8b5cf6", en: "Krishnarajapura (KR Puram)", kn: "ಕೃಷ್ಣರಾಜಪುರ" },
+      { key: "purple:13", line: "Purple Line", color: "#8b5cf6", en: "Benniganahalli", kn: "ಬೆನ್ನಿಗಾನಹಳ್ಳಿ" },
+      { key: "purple:14", line: "Purple Line", color: "#8b5cf6", en: "Baiyappanahalli", kn: "ಬೈಯ್ಯಪ್ಪನಹಳ್ಳಿ" },
+      { key: "purple:15", line: "Purple Line", color: "#8b5cf6", en: "Swami Vivekananda Road", kn: "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ರಸ್ತೆ" },
+      { key: "purple:16", line: "Purple Line", color: "#8b5cf6", en: "Indiranagar", kn: "ಇಂದಿರಾನಗರ" },
+      { key: "purple:17", line: "Purple Line", color: "#8b5cf6", en: "Halasuru", kn: "ಹಲಸೂರು" },
+      { key: "purple:18", line: "Purple Line", color: "#8b5cf6", en: "Trinity", kn: "ಟ್ರಿನಿಟಿ" },
+      { key: "purple:19", line: "Purple Line", color: "#8b5cf6", en: "Mahatma Gandhi Road (MG Road)", kn: "ಎಂ.ಜಿ. ರಸ್ತೆ" },
+      { key: "purple:20", line: "Purple Line", color: "#8b5cf6", en: "Cubbon Park", kn: "ಕಬ್ಬನ್ ಪಾರ್ಕ್" },
+      { key: "purple:21", line: "Purple Line", color: "#8b5cf6", en: "Dr. B.R. Ambedkar Stn (Vidhana Soudha)", kn: "ವಿಧಾನ ಸೌಧ" },
+      { key: "purple:22", line: "Purple Line", color: "#8b5cf6", en: "Sir M. Visvesvaraya (Central College)", kn: "ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ" },
+      { key: "purple:23", line: "Purple Line", color: "#8b5cf6", en: "Nadaprabhu Kempegowda Stn (Majestic)", kn: "ಮೆಜೆಸ್ಟಿಕ್ ಇಂಟರ್‌ಚೇಂಜ್" },
+      { key: "purple:24", line: "Purple Line", color: "#8b5cf6", en: "Krantivira Sangolli Rayanna Railway Stn", kn: "ಕ್ರಾಂತಿವೀರ ಸಂಗೊಳ್ಳಿ ರಾಯಣ್ಣ" },
+      { key: "purple:25", line: "Purple Line", color: "#8b5cf6", en: "Magadi Road", kn: "ಮಾಗಡಿ ರಸ್ತೆ" },
+      { key: "purple:26", line: "Purple Line", color: "#8b5cf6", en: "Hosahalli", kn: "ಹೊಸಹಳ್ಳಿ" },
+      { key: "purple:27", line: "Purple Line", color: "#8b5cf6", en: "Vijayanagar", kn: "ವಿಜಯನಗರ" },
+      { key: "purple:28", line: "Purple Line", color: "#8b5cf6", en: "Attiguppe", kn: "ಅತ್ತಿಗುಪ್ಪೆ" },
+      { key: "purple:29", line: "Purple Line", color: "#8b5cf6", en: "Deepanjali Nagar", kn: "ದೀಪಾಂಜಲಿ ನಗರ" },
+      { key: "purple:30", line: "Purple Line", color: "#8b5cf6", en: "Mysuru Road", kn: "ಮೈಸೂರು ರಸ್ತೆ" },
+      { key: "purple:31", line: "Purple Line", color: "#8b5cf6", en: "Pantharapalya (Nayandahalli)", kn: "ನಾಯಂಡಹಳ್ಳಿ" },
+      { key: "purple:32", line: "Purple Line", color: "#8b5cf6", en: "Rajarajeshwari Nagar", kn: "ರಾಜರಾಜೇಶ್ವರಿ ನಗರ" },
+      { key: "purple:33", line: "Purple Line", color: "#8b5cf6", en: "Jnanabharathi", kn: "ಜ್ಞಾನಭಾರತಿ" },
+      { key: "purple:34", line: "Purple Line", color: "#8b5cf6", en: "Pattanagere", kn: "ಪಟ್ಟಣಗೆರೆ" },
+      { key: "purple:35", line: "Purple Line", color: "#8b5cf6", en: "Kengeri Bus Terminal", kn: "ಕೆಂಗೇರಿ ಬಸ್ ಟರ್ಮಿನಲ್" },
+      { key: "purple:36", line: "Purple Line", color: "#8b5cf6", en: "Kengeri", kn: "ಕೆಂಗೇರಿ" },
+      { key: "purple:37", line: "Purple Line", color: "#8b5cf6", en: "Challaghatta", kn: "ಚಲ್ಲಘಟ್ಟ" },
+
+      // Green Line (32 stations)
+      { key: "green:1", line: "Green Line", color: "#10b981", en: "Madavara (BIEC)", kn: "ಮಾದಾವರ (BIEC)" },
+      { key: "green:2", line: "Green Line", color: "#10b981", en: "Chikkabidarakallu", kn: "ಚಿಕ್ಕಬಿದರಕಲ್ಲು" },
+      { key: "green:3", line: "Green Line", color: "#10b981", en: "Manjunathanagar", kn: "ಮಂಜುನಾಥನಗರ" },
+      { key: "green:4", line: "Green Line", color: "#10b981", en: "Nagasandra", kn: "ನಾಗಸಂದ್ರ" },
+      { key: "green:5", line: "Green Line", color: "#10b981", en: "Dasarahalli", kn: "ದಾಸರಹಳ್ಳಿ" },
+      { key: "green:6", line: "Green Line", color: "#10b981", en: "Jalahalli", kn: "ಜಾಲಹಳ್ಳಿ" },
+      { key: "green:7", line: "Green Line", color: "#10b981", en: "Peenya Industry", kn: "ಪೀಣ್ಯ ಇಂಡಸ್ಟ್ರಿ" },
+      { key: "green:8", line: "Green Line", color: "#10b981", en: "Peenya", kn: "ಪೀಣ್ಯ" },
+      { key: "green:9", line: "Green Line", color: "#10b981", en: "Goraguntepalya", kn: "ಗೊರಗುಂಟೆಪಾಳ್ಯ" },
+      { key: "green:10", line: "Green Line", color: "#10b981", en: "Yeshwanthpur", kn: "ಯಶವಂತಪುರ" },
+      { key: "green:11", line: "Green Line", color: "#10b981", en: "Sandal Soap Factory", kn: "ಸ್ಯಾಂಡಲ್ ಸೋಪ್ ಫ್ಯಾಕ್ಟರಿ" },
+      { key: "green:12", line: "Green Line", color: "#10b981", en: "Mahalakshmi", kn: "ಮಹಾಲಕ್ಷ್ಮಿ" },
+      { key: "green:13", line: "Green Line", color: "#10b981", en: "Rajajinagar", kn: "ರಾಜಾಜಿನಗರ" },
+      { key: "green:14", line: "Green Line", color: "#10b981", en: "Kuvempu Road", kn: "ಕುವೆಂಪು ರಸ್ತೆ" },
+      { key: "green:15", line: "Green Line", color: "#10b981", en: "Srirampura", kn: "ಶ್ರೀರಾಂಪುರ" },
+      { key: "green:16", line: "Green Line", color: "#10b981", en: "Mantri Square Sampige Road", kn: "ಸಂಪಿಗೆ ರಸ್ತೆ" },
+      { key: "green:17", line: "Green Line", color: "#10b981", en: "Nadaprabhu Kempegowda Stn (Majestic)", kn: "ಮೆಜೆಸ್ಟಿಕ್ ಇಂಟರ್‌ಚೇಂಜ್" },
+      { key: "green:18", line: "Green Line", color: "#10b981", en: "Chickpete", kn: "ಚಿಕ್ಕಪೇಟೆ" },
+      { key: "green:19", line: "Green Line", color: "#10b981", en: "Krishna Rajendra Market (KR Market)", kn: "ಕೃಷ್ಣ ರಾಜೇಂದ್ರ ಮಾರುಕಟ್ಟೆ" },
+      { key: "green:20", line: "Green Line", color: "#10b981", en: "National College", kn: "ನ್ಯಾಷನಲ್ ಕಾಲೇಜು" },
+      { key: "green:21", line: "Green Line", color: "#10b981", en: "Lalbagh", kn: "ಲಾಲ್‌ಬಾಗ್" },
+      { key: "green:22", line: "Green Line", color: "#10b981", en: "South End Circle", kn: "ಸೌತ್ ಎಂಡ್ ಸರ್ಕಲ್" },
+      { key: "green:23", line: "Green Line", color: "#10b981", en: "Jayanagar", kn: "ಜಯನಗರ" },
+      { key: "green:24", line: "Green Line", color: "#10b981", en: "Rashtreeya Vidyalaya Road (RV Road)", kn: "ಆರ್.ವಿ. ರಸ್ತೆ" },
+      { key: "green:25", line: "Green Line", color: "#10b981", en: "Banashankari", kn: "ಬನಶಂಕರಿ" },
+      { key: "green:26", line: "Green Line", color: "#10b981", en: "Jaya Prakash Nagar (JP Nagar)", kn: "ಜೆ.ಪಿ. ನಗರ" },
+      { key: "green:27", line: "Green Line", color: "#10b981", en: "Yelachenahalli", kn: "ಯಲಚೇನಹಳ್ಳಿ" },
+      { key: "green:28", line: "Green Line", color: "#10b981", en: "Konanakunte Cross", kn: "ಕೋಣನಕುಂಟೆ ಕ್ರಾಸ್" },
+      { key: "green:29", line: "Green Line", color: "#10b981", en: "Doddakallasandra", kn: "ದೊಡ್ಡಕಲ್ಲಸಂದ್ರ" },
+      { key: "green:30", line: "Green Line", color: "#10b981", en: "Vajarahalli", kn: "ವಜ್ರಹಳ್ಳಿ" },
+      { key: "green:31", line: "Green Line", color: "#10b981", en: "Thalaghattapura", kn: "ತಲಘಟ್ಟಪುರ" },
+      { key: "green:32", line: "Green Line", color: "#10b981", en: "Silk Institute", kn: "ಸಿಲ್ಕ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್" },
+
+      // Yellow Line (16 stations)
+      { key: "yellow:1", line: "Yellow Line", color: "#eab308", en: "Rashtreeya Vidyalaya Road (RV Road)", kn: "ಆರ್.ವಿ. ರಸ್ತೆ" },
+      { key: "yellow:2", line: "Yellow Line", color: "#eab308", en: "Ragigudda", kn: "ರಾಗಿಗುಡ್ಡ" },
+      { key: "yellow:3", line: "Yellow Line", color: "#eab308", en: "Jayadeva Hospital", kn: "ಜಯದೇವ ಆಸ್ಪತ್ರೆ" },
+      { key: "yellow:4", line: "Yellow Line", color: "#eab308", en: "BTM Layout", kn: "ಬಿಟಿಎಂ ಲೇಔಟ್" },
+      { key: "yellow:5", line: "Yellow Line", color: "#eab308", en: "Central Silk Board", kn: "ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ್ ಬೋರ್ಡ್" },
+      { key: "yellow:6", line: "Yellow Line", color: "#eab308", en: "Bommanahalli", kn: "ಬೊಮ್ಮನಹಳ್ಳಿ" },
+      { key: "yellow:7", line: "Yellow Line", color: "#eab308", en: "Hongasandra", kn: "ಹೊಂಗಸಂದ್ರ" },
+      { key: "yellow:8", line: "Yellow Line", color: "#eab308", en: "Kudlu Gate", kn: "ಕುಡ್ಲು ಗೇಟ್" },
+      { key: "yellow:9", line: "Yellow Line", color: "#eab308", en: "Singasandra", kn: "ಸಿಂಗಸಂದ್ರ" },
+      { key: "yellow:10", line: "Yellow Line", color: "#eab308", en: "Hosa Road", kn: "ಹೊಸ ರಸ್ತೆ" },
+      { key: "yellow:11", line: "Yellow Line", color: "#eab308", en: "Beratena Agrahara", kn: "ಬೆರಟೇನ ಅಗ್ರಹಾರ" },
+      { key: "yellow:12", line: "Yellow Line", color: "#eab308", en: "Electronic City", kn: "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ" },
+      { key: "yellow:13", line: "Yellow Line", color: "#eab308", en: "Infosys Konappana Agrahara", kn: "ಕೋನಪ್ಪನ ಅಗ್ರಹಾರ" },
+      { key: "yellow:14", line: "Yellow Line", color: "#eab308", en: "Huskur Road", kn: "ಹುಸ್ಕೂರು ರಸ್ತೆ" },
+      { key: "yellow:15", line: "Yellow Line", color: "#eab308", en: "Hebbagodi", kn: "ಹೆಬ್ಬಗೋಡಿ" },
+      { key: "yellow:16", line: "Yellow Line", color: "#eab308", en: "Bommasandra", kn: "ಬೊಮ್ಮಸಂದ್ರ" }
+    ];
+
+    // ── Major Bus Hubs & Outstation Destinations ──
+    const MAJOR_BMTC_HUBS = [
+      { en: "Central Silk Board", kn: "ಸೆಂಟ್ರಲ್ ಸಿಲ್ಕ್ ಬೋರ್ಡ್", type: "BMTC Hub" },
+      { en: "Kempegowda Bus Station (Majestic)", kn: "ಕೆಂಪೇಗೌಡ ಬಸ್ ನಿಲ್ದಾಣ ಮೆಜೆಸ್ಟಿಕ್", type: "BMTC Hub" },
+      { en: "Whitefield (ITPL)", kn: "ವೈಟ್‌ಫೀಲ್ಡ್ ಐಟಿಪಿಎಲ್", type: "BMTC Hub" },
+      { en: "Electronic City (Wipro Gate)", kn: "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ", type: "BMTC Hub" },
+      { en: "Marathahalli Bridge", kn: "ಮಾರತ್‌ಹಳ್ಳಿ ಬ್ರಿಡ್ಜ್", type: "BMTC Hub" },
+      { en: "Hebbal TTMC", kn: "ಹೆಬ್ಬಾಳ ಟಿಟಿಎಂಸಿ", type: "BMTC Hub" },
+      { en: "Banashankari TTMC", kn: "ಬನಶಂಕರಿ ಟಿಟಿಎಂಸಿ", type: "BMTC Hub" },
+      { en: "Shivajinagar Bus Stand", kn: "ಶಿವಾಜಿನಗರ ಬಸ್ ನಿಲ್ದಾಣ", type: "BMTC Hub" },
+      { en: "KR Puram / Tin Factory", kn: "ಕೆ.ಆರ್. ಪುರಂ / ಟಿನ್ ಫ್ಯಾಕ್ಟರಿ", type: "BMTC Hub" },
+      { en: "Kempegowda International Airport", kn: "ಕೆಂಪೇಗೌಡ ವಿಮಾನ ನಿಲ್ದಾಣ", type: "Airport" }
+    ];
+
+    const MAJOR_KSRTC_DESTINATIONS = [
+      { en: "Mysuru", kn: "ಮೈಸೂರು", type: "KSRTC Intercity" },
+      { en: "Mangaluru", kn: "ಮಂಗಳೂರು", type: "KSRTC Intercity" },
+      { en: "Madikeri (Coorg)", kn: "ಮಡಿಕೇರಿ", type: "KSRTC Intercity" },
+      { en: "Hubballi / Dharwad", kn: "ಹುಬ್ಬಳ್ಳಿ", type: "KSRTC Intercity" },
+      { en: "Belagavi", kn: "ಬೆಳಗಾವಿ", type: "KSRTC Intercity" },
+      { en: "Davanagere", kn: "ದಾವಣಗೆರೆ", type: "KSRTC Intercity" },
+      { en: "Shivamogga", kn: "ಶಿವಮೊಗ್ಗ", type: "KSRTC Intercity" },
+      { en: "Ballari", kn: "ಬಳ್ಳಾರಿ", type: "KSRTC Intercity" },
+      { en: "Udupi", kn: "ಉಡುಪಿ", type: "KSRTC Intercity" },
+      { en: "Hassan", kn: "ಹಾಸನ", type: "KSRTC Intercity" },
+      { en: "Dharmasthala", kn: "ಧರ್ಮಸ್ಥಳ", type: "KSRTC Intercity" },
+      { en: "Gokarna", kn: "ಗೋಕರ್ಣ", type: "KSRTC Intercity" }
+    ];
+
+    // Populate Dropdowns
+    const fromSelect = document.getElementById('fromSelect');
+    const toSelect = document.getElementById('toSelect');
+
+    function populateStationDropdowns() {
+      const groups = {
+        'Purple Line': document.createElement('optgroup'),
+        'Green Line': document.createElement('optgroup'),
+        'Yellow Line': document.createElement('optgroup'),
+        'BMTC Hubs': document.createElement('optgroup'),
+        'KSRTC Intercity': document.createElement('optgroup')
+      };
+      groups['Purple Line'].label = '🟣 Purple Line (Whitefield ↔ Challaghatta)';
+      groups['Green Line'].label = '🟢 Green Line (Madavara ↔ Silk Institute)';
+      groups['Yellow Line'].label = '🟡 Yellow Line (RV Road ↔ Bommasandra)';
+      groups['BMTC Hubs'].label = '🚌 Major BMTC Bus Hubs & Corridors';
+      groups['KSRTC Intercity'].label = '🚍 KSRTC Karnataka Destinations';
+
+      const groups2 = {
+        'Purple Line': document.createElement('optgroup'),
+        'Green Line': document.createElement('optgroup'),
+        'Yellow Line': document.createElement('optgroup'),
+        'BMTC Hubs': document.createElement('optgroup'),
+        'KSRTC Intercity': document.createElement('optgroup')
+      };
+      groups2['Purple Line'].label = '🟣 Purple Line (Whitefield ↔ Challaghatta)';
+      groups2['Green Line'].label = '🟢 Green Line (Madavara ↔ Silk Institute)';
+      groups2['Yellow Line'].label = '🟡 Yellow Line (RV Road ↔ Bommasandra)';
+      groups2['BMTC Hubs'].label = '🚌 Major BMTC Bus Hubs & Corridors';
+      groups2['KSRTC Intercity'].label = '🚍 KSRTC Karnataka Destinations';
+
+      ALL_STATIONS.forEach(stn => {
+        const opt1 = document.createElement('option');
+        opt1.value = stn.en;
+        opt1.textContent = `${stn.en} (${stn.kn})`;
+        groups[stn.line].appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = stn.en;
+        opt2.textContent = `${stn.en} (${stn.kn})`;
+        groups2[stn.line].appendChild(opt2);
+      });
+
+      MAJOR_BMTC_HUBS.forEach(hub => {
+        const opt1 = document.createElement('option');
+        opt1.value = hub.en;
+        opt1.textContent = `🚌 ${hub.en} (${hub.kn})`;
+        groups['BMTC Hubs'].appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = hub.en;
+        opt2.textContent = `🚌 ${hub.en} (${hub.kn})`;
+        groups2['BMTC Hubs'].appendChild(opt2);
+      });
+
+      MAJOR_KSRTC_DESTINATIONS.forEach(city => {
+        const opt1 = document.createElement('option');
+        opt1.value = city.en;
+        opt1.textContent = `🚍 ${city.en} (${city.kn})`;
+        groups['KSRTC Intercity'].appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = city.en;
+        opt2.textContent = `🚍 ${city.en} (${city.kn})`;
+        groups2['KSRTC Intercity'].appendChild(opt2);
+      });
+
+      Object.values(groups).forEach(g => fromSelect.appendChild(g));
+      Object.values(groups2).forEach(g => toSelect.appendChild(g));
+
+      // Defaults
+      fromSelect.value = "Nadaprabhu Kempegowda Stn (Majestic)";
+      toSelect.value = "Whitefield (Kadugodi)";
+    }
+    populateStationDropdowns();
+
+    // ── Client-side Dataset Prefetch ──
+    let ALL_BMTC_ROUTES = [];
+    let ALL_KSRTC_DEPARTURES = [];
+
+    async function loadTransitDatabases() {
+      try {
+        const [bRes, kRes] = await Promise.all([
+          fetch('/data/bmtc_all_routes.json').then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch('/data/ksrtc_majestic_timetables.json').then(r => r.ok ? r.json() : null).catch(() => null)
+        ]);
+        if (bRes && bRes.routes) ALL_BMTC_ROUTES = bRes.routes;
+        if (kRes && Array.isArray(kRes)) ALL_KSRTC_DEPARTURES = kRes;
+      } catch (e) {
+        console.warn('Background transit datasets load notice:', e);
+      }
+    }
+    loadTransitDatabases();
+
+    // ── DOM References ──
+    const form = document.getElementById('searchForm');
+    const input = document.getElementById('searchInput');
+    const btn = document.getElementById('searchBtn');
+    const swapBtn = document.getElementById('swapBtn');
+    const suggestionsBox = document.getElementById('searchSuggestions');
+    const hazardBanner = document.getElementById('hazardBanner');
+    const hazardMsg = document.getElementById('hazardMsg');
+    const urgencyStrip = document.getElementById('urgencyStrip');
+    const urgencyBadge = document.getElementById('urgencyBadge');
+    const urgencyReasonText = document.getElementById('urgencyReasonText');
+    const latencyLabel = document.getElementById('latencyLabel');
+    const emptyState = document.getElementById('emptyState');
+    const skeletonLoader = document.getElementById('skeletonLoader');
+    const journeyContent = document.getElementById('journeyContent');
+    const solutionCard = document.getElementById('solutionCard');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+
+    let currentPayload = null;
+    let currentBmtcList = [];
+    let activeBmtcCategory = 'all';
+
+    // ── Autocomplete Search Engine ──
+    let debounceTimer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const val = input.value.trim().toLowerCase();
+      if (val.length < 2) {
+        suggestionsBox.style.display = 'none';
+        suggestionsBox.innerHTML = '';
+        return;
+      }
+
+      debounceTimer = setTimeout(() => {
+        const results = [];
+        const valNorm = val.replace(/[^a-z0-9]/g, '');
+
+        // 1. Direct BMTC route numbers (500-D, 335-E, KIA-9)
+        if (ALL_BMTC_ROUTES.length > 0) {
+          const matchedRoutes = ALL_BMTC_ROUTES.filter(r => {
+            const rNo = (r.route_no || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            return rNo.startsWith(valNorm) || rNo.includes(valNorm) || (r.full_name && r.full_name.toLowerCase().includes(val));
+          }).slice(0, 4);
+
+          matchedRoutes.forEach(r => {
+            results.push({
+              title: `${r.route_no}: ${r.origin} ➔ ${r.dest}`,
+              type: r.category === 'vayu_vajra' ? '✈️ Airport Bus' : (r.category === 'vajra' ? '🔵 Volvo Vajra' : '🚌 BMTC Bus'),
+              query: `${r.origin} to ${r.dest} BMTC ${r.route_no}`
+            });
+          });
+        }
+
+        // 2. Metro stations
+        const matchedStns = ALL_STATIONS.filter(s => 
+          s.en.toLowerCase().includes(val) || (s.kn && s.kn.includes(val))
+        ).slice(0, 3);
+        matchedStns.forEach(s => {
+          results.push({
+            title: `${s.en} (${s.kn})`,
+            type: `🚇 ${s.line}`,
+            query: `Metro to ${s.en}`
+          });
+        });
+
+        // 3. KSRTC cities
+        const matchedCities = MAJOR_KSRTC_DESTINATIONS.filter(c => 
+          c.en.toLowerCase().includes(val) || c.kn.includes(val)
+        ).slice(0, 3);
+        matchedCities.forEach(c => {
+          results.push({
+            title: `Bengaluru ➔ ${c.en} (${c.kn})`,
+            type: '🚍 KSRTC Outstation',
+            query: `Bengaluru to ${c.en} KSRTC bus`
+          });
+        });
+
+        if (results.length === 0) {
+          suggestionsBox.style.display = 'none';
+          return;
+        }
+
+        suggestionsBox.innerHTML = results.map(item => `
+          <div class="autocomplete-item" data-query="${escapeHtml(item.query)}">
+            <span style="font-weight:600;">${escapeHtml(item.title)}</span>
+            <span class="autocomplete-type">${escapeHtml(item.type)}</span>
+          </div>
+        `).join('');
+        suggestionsBox.style.display = 'block';
+
+        suggestionsBox.querySelectorAll('.autocomplete-item').forEach(el => {
+          el.addEventListener('click', () => {
+            const q = el.dataset.query;
+            input.value = q;
+            suggestionsBox.style.display = 'none';
+            fetchRoute(null, null, q);
+          });
+        });
+      }, 150);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!form.contains(e.target)) {
+        suggestionsBox.style.display = 'none';
+      }
+    });
+
+    // ── Dropdown Change Listeners ──
+    fromSelect.addEventListener('change', () => {
+      if (fromSelect.value && toSelect.value) {
+        input.value = `${fromSelect.value} to ${toSelect.value}`;
+        fetchRoute(fromSelect.value, toSelect.value);
+      }
+    });
+
+    toSelect.addEventListener('change', () => {
+      if (fromSelect.value && toSelect.value) {
+        input.value = `${fromSelect.value} to ${toSelect.value}`;
+        fetchRoute(fromSelect.value, toSelect.value);
+      }
+    });
+
+    swapBtn.addEventListener('click', () => {
+      const tmp = fromSelect.value;
+      fromSelect.value = toSelect.value;
+      toSelect.value = tmp;
+      if (fromSelect.value && toSelect.value) {
+        input.value = `${fromSelect.value} to ${toSelect.value}`;
+        fetchRoute(fromSelect.value, toSelect.value);
+      }
+    });
+
+    // ── Form Submission ──
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      suggestionsBox.style.display = 'none';
+      const q = input.value.trim();
+      if (!q) return;
+      fetchRoute(null, null, q);
+    });
+
+    // ── Quick Chips ──
+    document.querySelectorAll('.chip-btn').forEach(c => {
+      c.addEventListener('click', () => {
+        input.value = c.dataset.query;
+        fetchRoute(null, null, c.dataset.query);
+      });
+    });
+
+    // ── Route Fetcher ──
+    async function fetchRoute(fromStation = null, toStation = null, queryText = null) {
+      setLoading(true);
+
+      const payload = {};
+      if (fromStation && toStation) {
+        payload.fromStation = fromStation;
+        payload.toStation = toStation;
+      }
+      if (queryText) {
+        payload.userInput = queryText;
+      } else {
+        payload.userInput = `${fromStation} to ${toStation}`;
+      }
+
+      try {
+        const res = await fetch('/api/jev-router', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || `Server status ${res.status}`);
+        }
+
+        const data = await res.json();
+        currentPayload = data;
+        renderCompleteJourney(data);
+
+      } catch (err) {
+        renderError(err.message || 'Route calculation failed.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function setLoading(loading) {
+      btn.disabled = loading;
+      input.disabled = loading;
+      if (loading) {
+        emptyState.style.display = 'none';
+        journeyContent.style.display = 'none';
+        skeletonLoader.style.display = 'block';
+        hazardBanner.classList.remove('visible');
+        urgencyStrip.classList.remove('visible');
+      } else {
+        skeletonLoader.style.display = 'none';
+      }
+    }
+
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ── Helper: Real BMTC Client Matcher & Formatter ──
+    function formatBmtcItemClient(r) {
+      let typeStr = 'Ordinary City Bus';
+      let fareStr = r.fare_ord || '₹10 - ₹25';
+      if (r.category === 'vayu_vajra' || (r.route_no && r.route_no.startsWith('KIA'))) {
+        typeStr = 'Vayu Vajra AC Airport';
+        fareStr = r.fare_ac || '₹150 - ₹350';
+      } else if (r.category === 'vajra' || (r.route_no && (r.route_no.startsWith('V-') || r.route_no.endsWith('E')))) {
+        typeStr = 'Volvo Vajra AC Express';
+        fareStr = r.fare_ac || '₹40 - ₹80';
+      } else if (r.category === 'metro_feeder' || (r.route_no && r.route_no.startsWith('MF'))) {
+        typeStr = 'Namma Metro Feeder';
+        fareStr = '₹10 - ₹20';
+      } else if (r.category === 'big10' || (r.route_no && r.route_no.startsWith('G-'))) {
+        typeStr = 'Big-10 Arterial Express';
+        fareStr = '₹15 - ₹30';
+      }
+
+      return {
+        route: r.route_no,
+        name: r.full_name,
+        type: typeStr,
+        category: r.category || 'ordinary',
+        from: r.origin,
+        to: r.dest,
+        distance: r.distance || '~20 km',
+        stopsCount: r.stops_count || 20,
+        tripsDaily: r.trip_count || 24,
+        fare: fareStr,
+        timeMinutes: 45,
+        shaktiFree: r.shakti_free !== false && !typeStr.includes('AC')
+      };
+    }
+
+    function findMatchingClientBmtc(origin, dest, query) {
+      if (!ALL_BMTC_ROUTES || ALL_BMTC_ROUTES.length === 0) return [];
+      const qClean = (query || '').toLowerCase().trim();
+      const oClean = (origin || '').toLowerCase().replace(/\(.*?\)/g, '').trim();
+      const dClean = (dest || '').toLowerCase().replace(/\(.*?\)/g, '').trim();
+
+      // 1. Direct route number match (e.g. "500-D", "KIA-9", "335-E")
+      const directMatches = ALL_BMTC_ROUTES.filter(r => {
+        const rNo = (r.route_no || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const qNorm = qClean.replace(/[^a-z0-9]/g, '');
+        return qNorm.length >= 2 && (rNo === qNorm || qClean.includes((r.route_no || '').toLowerCase()));
+      });
+      if (directMatches.length > 0) {
+        return directMatches.slice(0, 15).map(r => formatBmtcItemClient(r));
+      }
+
+      // 2. Keyword & Corridor matching
+      const getTokens = (str) => str.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(t => t.length > 3 && !['station', 'cross', 'road', 'layout', 'park', 'gate', 'nagar', 'city', 'main', 'central', 'circle', 'railway'].includes(t));
+
+      const syns = {
+        'majestic': ['kempegowda', 'kbs', 'majestic', 'subhash'],
+        'whitefield': ['kadugodi', 'whitefield', 'itpl', 'pattandur', 'hopefarm'],
+        'electronic': ['electronic', 'wipro', 'ecity', 'konappana', 'infosys', 'bommasandra'],
+        'silk': ['silk', 'csb', 'madiwala', 'hsr', 'btm'],
+        'yeshwanthpur': ['yeshwantpur', 'yeshwanthpura', 'sandal', 'goraguntepalya'],
+        'banashankari': ['banashankari', 'bsk', 'padmanabhanagar', 'jayanagar'],
+        'krishnarajapura': ['krishnarajapura', 'tin factory', 'kr puram', 'benniganahalli'],
+        'airport': ['airport', 'kia', 'devanahalli', 'kempegowda international airport'],
+        'marathahalli': ['marathahalli', 'kundalahalli', 'kalamandir', 'hal'],
+        'hebbal': ['hebbal', 'manyata', 'nagawara']
+      };
+
+      const expandTokens = (tokens) => {
+        const res = [...tokens];
+        for (const t of tokens) {
+          for (const [k, v] of Object.entries(syns)) {
+            if (t.includes(k) || k.includes(t)) res.push(...v);
+          }
+        }
+        return [...new Set(res)];
+      };
+
+      const oTokens = expandTokens(getTokens(oClean));
+      const dTokens = expandTokens(getTokens(dClean));
+
+      const scored = [];
+      for (const r of ALL_BMTC_ROUTES) {
+        const text = ((r.full_name || '') + ' ' + (r.terminals ? r.terminals.join(' ') : '') + ' ' + (r.origin || '') + ' ' + (r.dest || '')).toLowerCase();
+        const hasO = oTokens.length === 0 || oTokens.some(t => text.includes(t));
+        const hasD = dTokens.length === 0 || dTokens.some(t => text.includes(t));
+        if (hasO && hasD) {
+          let score = (r.trip_count || 1);
+          if (r.category === 'vayu_vajra') score += 50;
+          scored.push({ route: r, score });
+        }
+      }
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, 16).map(s => formatBmtcItemClient(s.route));
+    }
+
+    // ── Helper: BMTC Card HTML Generator ──
+    function renderBmtcCardHtml(b) {
+      let badgeClass = 'bus-badge-ordinary';
+      let typeLabel = b.type || 'Ordinary City Bus';
+      const cat = (b.category || '').toLowerCase();
+      const rNo = (b.route || b.route_no || '').toLowerCase();
+
+      if (cat === 'vajra' || typeLabel.includes('Vajra') || rNo.startsWith('v-') || rNo.endsWith('e')) {
+        badgeClass = 'bus-badge-vajra';
+        if (!typeLabel.includes('Vajra')) typeLabel = 'Volvo Vajra AC Express';
+      } else if (cat === 'vayu_vajra' || typeLabel.includes('Airport') || rNo.startsWith('kia')) {
+        badgeClass = 'bus-badge-airport';
+        if (!typeLabel.includes('Airport')) typeLabel = 'Vayu Vajra AC Airport';
+      } else if (cat === 'big10' || typeLabel.includes('Big-10') || rNo.startsWith('g-')) {
+        badgeClass = 'bus-badge-big10';
+        if (!typeLabel.includes('Big-10')) typeLabel = 'Big-10 Arterial Express';
+      }
+
+      const isShakti = b.shaktiFree !== false && !typeLabel.includes('AC') && !badgeClass.includes('vajra') && !badgeClass.includes('airport');
+
+      return `
+        <div class="bus-card-item">
+          <div class="bus-card-top">
+            <span class="bus-route-badge ${badgeClass}">${escapeHtml(b.route || b.route_no)}</span>
+            <div style="font-size:14px;font-weight:800;color:#38bdf8;">${escapeHtml(b.fare || b.fare_ord || '₹10 - ₹25')}</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:#fff;font-size:13px;line-height:1.4;">${escapeHtml(b.name || b.full_name || (b.from + ' ➔ ' + b.to))}</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${escapeHtml(typeLabel)}</div>
+          </div>
+          <div class="bus-meta-tags">
+            <span class="bus-tag">📏 ${escapeHtml(b.distance || '~20 km')}</span>
+            <span class="bus-tag">🔄 ${b.tripsDaily || b.trip_count || 24} Trips/Day</span>
+            ${b.stopsCount || b.stops_count ? `<span class="bus-tag">🛑 ${b.stopsCount || b.stops_count} Stops</span>` : ''}
+          </div>
+          ${isShakti ? `<div class="shakti-badge" style="align-self:flex-start;">🌸 Shakti Scheme: 100% Free for Karnataka Women</div>` : ''}
+        </div>
+      `;
+    }
+
+    // ── Global Filter BMTC Function ──
+    window.filterBmtcCategory = function(cat) {
+      activeBmtcCategory = cat;
+      document.querySelectorAll('.transit-tab-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.cat === cat);
+      });
+      const container = document.getElementById('bmtcCardsGrid');
+      if (!container) return;
+
+      const filtered = currentBmtcList.filter(b => {
+        const catName = (b.category || '').toLowerCase();
+        const typeName = (b.type || '').toLowerCase();
+        const rNo = (b.route || b.route_no || '').toLowerCase();
+        if (cat === 'all') return true;
+        if (cat === 'shakti') return b.shaktiFree !== false && !typeName.includes('ac') && !catName.includes('vajra') && !catName.includes('airport');
+        if (cat === 'vajra') return catName === 'vajra' || typeName.includes('vajra') || rNo.startsWith('v-') || rNo.endsWith('e');
+        if (cat === 'airport') return catName === 'vayu_vajra' || typeName.includes('airport') || rNo.startsWith('kia');
+        if (cat === 'feeder') return catName === 'big10' || catName === 'metro_feeder' || typeName.includes('feeder') || typeName.includes('big-10') || rNo.startsWith('g-') || rNo.startsWith('mf');
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column:1/-1;color:var(--text-muted);font-size:13px;padding:12px 0;">No buses found for this filter category.</div>`;
+      } else {
+        container.innerHTML = filtered.map(b => renderBmtcCardHtml(b)).join('');
+      }
+    };
+
+    // ── Master Journey Renderer ──
+    function renderCompleteJourney(data) {
+      const { isTrafficSensitive, urgencyScore, urgencyReason, processingMs, metroJourney, bmtcAlternatives, ksrtcOption, query } = data;
+      const mj = metroJourney || {};
+      const tc = mj.trafficComparison || {};
+      const stops = mj.fullStationsList || [];
+
+      // Update Dropdowns to match resolved stations
+      if (mj.origin) fromSelect.value = mj.origin;
+      if (mj.destination) toSelect.value = mj.destination;
+
+      // Hazard & Urgency
+      if (isTrafficSensitive) {
+        hazardMsg.textContent = tc.congestionHotspot || 'Heavy road bottleneck detected. Namma Metro grade-separated line recommended.';
+        hazardBanner.classList.add('visible');
+      } else {
+        hazardBanner.classList.remove('visible');
+      }
+
+      urgencyStrip.classList.add('visible');
+      latencyLabel.textContent = `⚡ Engine latency: ${processingMs || 1}ms`;
+      urgencyReasonText.textContent = urgencyReason || 'Route calculated across Bengaluru network';
+      urgencyBadge.className = `urgency-badge level-${urgencyScore || 1}`;
+      const icons = ['', '🔍 Casual (1/5)', '📅 Planning (2/5)', '⏱️ Commute (3/5)', '⚡ Running Late (4/5)', '🚨 Critical Emergency (5/5)'];
+      urgencyBadge.textContent = icons[urgencyScore] || `Urgency ${urgencyScore}/5`;
+
+      // Interchanges HTML
+      let interchangeHtml = '';
+      if (mj.interchanges && mj.interchanges.length > 0) {
+        interchangeHtml = mj.interchanges.map(ic => `
+          <div class="interchange-alert">
+            <span>🔄 Interchange:</span>
+            <span>${escapeHtml(ic.station_en)} (${escapeHtml(ic.station_kn || '')}) — ${escapeHtml(ic.instruction)}</span>
+          </div>
+        `).join('');
+      }
+
+      // Complete Sequential Stations HTML
+      const stopsListHtml = stops.map(s => `
+        <div class="stn-step-item">
+          <div class="stn-num">${s.stopNumber}</div>
+          <div class="stn-dot-line" style="background:${s.lineColor};"></div>
+          <div class="stn-names">
+            <div class="stn-en">${escapeHtml(s.name_en)} ${s.isStart ? '🛫 (Origin)' : (s.isEnd ? '🛬 (Destination)' : '')}</div>
+            <div class="stn-kn">${escapeHtml(s.name_kn || '')} · <span style="color:${s.lineColor};font-size:11px;">${escapeHtml(s.lineName)}</span></div>
+          </div>
+        </div>
+      `).join('');
+
+      // Merge BMTC Routes (Server matches + Client DB search)
+      let combinedBmtc = Array.isArray(bmtcAlternatives) ? [...bmtcAlternatives] : [];
+      if (ALL_BMTC_ROUTES.length > 0) {
+        const clientMatches = findMatchingClientBmtc(mj.origin, mj.destination, query || input.value);
+        clientMatches.forEach(cm => {
+          if (!combinedBmtc.some(x => (x.route || x.route_no) === cm.route_no)) {
+            combinedBmtc.push(cm);
+          }
+        });
+      }
+      currentBmtcList = combinedBmtc;
+
+      // BMTC Counts for filter tabs
+      const shaktiCount = currentBmtcList.filter(b => b.shaktiFree !== false && !(b.type || '').toLowerCase().includes('ac')).length;
+      const vajraCount = currentBmtcList.filter(b => (b.category || '').toLowerCase() === 'vajra' || (b.type || '').toLowerCase().includes('vajra')).length;
+      const airportCount = currentBmtcList.filter(b => (b.category || '').toLowerCase() === 'vayu_vajra' || (b.type || '').toLowerCase().includes('airport') || (b.route || '').startsWith('KIA')).length;
+      const feederCount = currentBmtcList.filter(b => (b.category || '').toLowerCase() === 'big10' || (b.category || '').toLowerCase() === 'metro_feeder' || (b.route || '').startsWith('G-')).length;
+
+      // Comparison Box HTML
+      let compareBoxHtml = '';
+      if (tc.roadMinutes) {
+        const metroPct = Math.min(100, Math.round((mj.durationMinutes / tc.roadMinutes) * 100));
+        compareBoxHtml = `
+          <div class="comparison-box">
+            <div class="comparison-title">
+              <span>Road Traffic vs Metro Comparison</span>
+              <span style="color:#34d399;font-weight:700;">⚡ Saves ~${tc.timeSavedMinutes} Mins vs Road Cab</span>
+            </div>
+            
+            <div class="compare-row">
+              <div class="compare-label" style="color:#c084fc;">
+                <span>🚇</span> Namma Metro
+              </div>
+              <div class="compare-bar-track">
+                <div class="compare-bar-fill" style="width:${metroPct}%;background:linear-gradient(90deg,#8b5cf6,#3b82f6);"></div>
+              </div>
+              <div class="compare-time" style="color:#c084fc;">${mj.durationMinutes} Mins</div>
+            </div>
+
+            <div class="compare-row">
+              <div class="compare-label" style="color:#f87171;">
+                <span>🚗</span> Road Cab/Auto
+              </div>
+              <div class="compare-bar-track">
+                <div class="compare-bar-fill" style="width:100%;background:#ef4444;"></div>
+              </div>
+              <div class="compare-time" style="color:#f87171;">${tc.roadMinutes} Mins</div>
+            </div>
+
+            <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">
+              💡 Estimated Cab Fare: <strong>₹${tc.cabEstimatedFareINR}</strong>. Namma Metro saves <strong>₹${tc.moneySavedINR}</strong> on this journey.
+            </div>
+          </div>
+        `;
+      }
+
+      // KSRTC Box if available
+      let ksrtcHtml = '';
+      if (ksrtcOption) {
+        const depList = ksrtcOption.services || [];
+        ksrtcHtml = `
+          <div class="bus-alternatives-card" style="border-color:rgba(16, 185, 129, 0.4);">
+            <div class="bus-card-title" style="color:#34d399;">
+              <span>🚍 KSRTC Authentic Departures ➔ ${escapeHtml(ksrtcOption.destinationCity)}</span>
+              <span class="shakti-badge">${ksrtcOption.totalDeparturesToday || depList.length} Scheduled Today</span>
+            </div>
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Origin Terminal: Kempegowda Bus Station (Majestic Terminal 1 & 2) / Mysore Road Satellite Station</div>
+            
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              ${depList.map(s => `
+                <div class="ksrtc-departure-card">
+                  <div>
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+                      <span class="dep-time-badge">${escapeHtml(s.departureTime || s.departure || 'Scheduled')}</span>
+                      <span class="ksrtc-service-pill">${escapeHtml(s.service || s.name || 'EXPRESS')}</span>
+                    </div>
+                    <div style="font-size:12px;color:#fff;font-weight:600;">Via: ${escapeHtml(s.via || 'Highway Corridor')}</div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Platform: ${escapeHtml(s.terminal || 'Majestic Terminal 1')}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <a href="https://ksrtc.in" target="_blank" rel="noopener" class="action-btn primary" style="font-size:11px;padding:6px 12px;border-radius:6px;box-shadow:none;">
+                      🎟️ Book Seat
+                    </a>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--text-muted);">Real-time timetables sourced from official KSRTC schedule directory</span>
+              <a href="https://ksrtc.in" target="_blank" rel="noopener" class="action-btn secondary" style="font-size:12px;padding:8px 16px;">
+                🌐 Full KSRTC Portal
+              </a>
+            </div>
+          </div>
+        `;
+      }
+
+      journeyContent.innerHTML = `
+        <div class="journey-header">
+          <div>
+            <div class="route-pill-badge" style="border-color:${mj.lineColor};">
+              <span style="color:${mj.lineColor};font-size:16px;">●</span>
+              ${escapeHtml(mj.linesUsed || 'Namma Metro Corridor')}
+            </div>
+            <div class="journey-title">
+              <span>${escapeHtml(mj.origin)}</span>
+              <span class="arrow-divider">➔</span>
+              <span>${escapeHtml(mj.destination)}</span>
+            </div>
+          </div>
+          <button type="button" class="nav-link-btn" onclick="copyTripDetails()" style="cursor:pointer;" title="Share">
+            📋 Share Plan
+          </button>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">⏱️ Total Travel Time</div>
+            <div class="metric-value">${mj.durationMinutes} <span style="font-size:14px;color:var(--text-muted);">Mins</span></div>
+            <div class="metric-sub">${mj.interchanges && mj.interchanges.length > 0 ? '1 Transfer' : 'Direct Train'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">🪙 Token Fare</div>
+            <div class="metric-value">₹${mj.fareToken}</div>
+            <div class="metric-sub">Single Journey Ticket</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">💳 Smartcard Fare</div>
+            <div class="metric-value">₹${mj.fareSmartcardPeak}</div>
+            <div class="metric-sub">Off-Peak: ₹${mj.fareSmartcardOff}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">🚉 Stations Traveled</div>
+            <div class="metric-value">${mj.stationsCount}</div>
+            <div class="metric-sub">${escapeHtml(mj.linesUsed)}</div>
+          </div>
+        </div>
+
+        ${interchangeHtml}
+
+        <!-- Official BMRCL Tariff Breakdown -->
+        <div class="fare-matrix-card">
+          <div class="fare-matrix-title">
+            <span>Official BMRCL Tariff & Smartcard Savings</span>
+            <span style="color:#38bdf8;">BMRCL Fare Formula</span>
+          </div>
+          <div class="fare-slabs-row">
+            <div class="fare-box">
+              <div class="fare-box__type">Single Token</div>
+              <div class="fare-box__amount">₹${mj.fareToken}</div>
+              <div class="fare-box__desc">Standard Fare</div>
+            </div>
+            <div class="fare-box">
+              <div class="fare-box__type">Smartcard (Peak)</div>
+              <div class="fare-box__amount">₹${mj.fareSmartcardPeak}</div>
+              <div class="fare-box__desc">5% Instant Discount</div>
+            </div>
+            <div class="fare-box">
+              <div class="fare-box__type">Smartcard (Off-Peak)</div>
+              <div class="fare-box__amount">₹${mj.fareSmartcardOff}</div>
+              <div class="fare-box__desc">10% Off (Non-Peak)</div>
+            </div>
+          </div>
+        </div>
+
+        ${compareBoxHtml}
+
+        <!-- Expandable All Stations List -->
+        <div class="station-accordion">
+          <button type="button" class="accordion-header" id="accordionBtn" onclick="toggleStationAccordion()">
+            <span>🚉 View Full Station Itinerary (${stops.length} Stations in Order)</span>
+            <span id="accordionArrow" style="font-size:16px;">▾</span>
+          </button>
+          <div class="accordion-body" id="accordionBody">
+            ${stopsListHtml}
+          </div>
+        </div>
+
+        <!-- BMTC Bus Alternatives -->
+        <div class="bus-alternatives-card">
+          <div class="bus-card-title">
+            <span>🚌 BMTC Real Bus Routes (${currentBmtcList.length} Authentic Network Routes Found)</span>
+            <span class="shakti-badge">🌸 Shakti Scheme: 100% Free for Women</span>
+          </div>
+
+          <!-- Interactive Filter Tabs -->
+          <div class="transit-tabs-row">
+            <button type="button" class="transit-tab-pill active" data-cat="all" onclick="filterBmtcCategory('all')">
+              All Routes (${currentBmtcList.length})
+            </button>
+            <button type="button" class="transit-tab-pill" data-cat="shakti" onclick="filterBmtcCategory('shakti')">
+              🌸 Shakti Free Ordinary (${shaktiCount})
+            </button>
+            <button type="button" class="transit-tab-pill" data-cat="vajra" onclick="filterBmtcCategory('vajra')">
+              🔵 Volvo Vajra AC (${vajraCount})
+            </button>
+            <button type="button" class="transit-tab-pill" data-cat="airport" onclick="filterBmtcCategory('airport')">
+              ✈️ Airport Vayu Vajra (${airportCount})
+            </button>
+            <button type="button" class="transit-tab-pill" data-cat="feeder" onclick="filterBmtcCategory('feeder')">
+              ⚡ Big-10 & Feeders (${feederCount})
+            </button>
+          </div>
+
+          <!-- Dynamic Bus Cards Grid -->
+          <div class="bus-grid-list" id="bmtcCardsGrid">
+            ${currentBmtcList.length > 0 
+              ? currentBmtcList.map(b => renderBmtcCardHtml(b)).join('')
+              : '<div style="color:var(--text-muted);font-size:13px;grid-column:1/-1;">BMTC feeder buses available at terminal hubs.</div>'
+            }
+          </div>
+        </div>
+
+        ${ksrtcHtml}
+
+        <div class="action-hub">
+          <a href="https://wa.me/918105556677?text=Hi" target="_blank" rel="noopener" class="action-btn primary">
+            🎟️ Buy WhatsApp QR Ticket (5% Discount)
+          </a>
+          <a href="/bengaluru-metro.html" class="action-btn secondary">
+            🗺️ Interactive Metro Map & GPS Stations
+          </a>
+          <a href="/bengaluru-bmtc-bus.html" class="action-btn secondary">
+            🚌 BMTC Route Timetables & Passes
+          </a>
+        </div>
+      `;
+
+      emptyState.style.display = 'none';
+      journeyContent.style.display = 'block';
+    }
+
+    // ── Toggle Station Accordion ──
+    window.toggleStationAccordion = function() {
+      const body = document.getElementById('accordionBody');
+      const arrow = document.getElementById('accordionArrow');
+      if (body.classList.contains('open')) {
+        body.classList.remove('open');
+        arrow.textContent = '▾';
+      } else {
+        body.classList.add('open');
+        arrow.textContent = '▴';
+      }
+    };
+
+    // ── Share / Copy Helper ──
+    window.copyTripDetails = function() {
+      if (!currentPayload || !currentPayload.metroJourney) return;
+      const m = currentPayload.metroJourney;
+      const text = `🚇 Namma Metro Route: ${m.origin} ➔ ${m.destination}\nStations: ${m.stationsCount} stops (${m.linesUsed})\nTime: ~${m.durationMinutes} mins | Fare: ₹${m.fareToken} (Smartcard: ₹${m.fareSmartcardPeak})\nFull Itinerary via Karnata.in Transit Radar`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Complete itinerary copied to clipboard!');
+      }).catch(() => {
+        showToast('Route: ' + m.origin + ' to ' + m.destination);
+      });
+    };
+
+    function renderError(msg) {
+      emptyState.style.display = 'none';
+      journeyContent.style.display = 'block';
+      journeyContent.innerHTML = `
+        <div class="empty-state" style="color:var(--hazard);">
+          <div class="empty-icon">⚠️</div>
+          <div class="empty-title">Transit Routing Notice</div>
+          <p>${escapeHtml(msg)}</p>
+          <button type="button" class="route-submit-btn" style="margin-top:20px;" onclick="fetchRoute('Nadaprabhu Kempegowda Stn (Majestic)', 'Whitefield (Kadugodi)')">
+            Try Demo: Majestic ➔ Whitefield
+          </button>
+        </div>
+      `;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Initial calculation on page load
+    if (fromSelect.value && toSelect.value) {
+      fetchRoute(fromSelect.value, toSelect.value);
+    }
+  </script>
+
+</body>
+</html>

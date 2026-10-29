@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ಕರ್ನಾಟಕ RTC ಅಧಿಕೃತ ಬಸ್ ಮಾರ್ಗಗಳು, ವೇಳಾಪಟ್ಟಿ & ನೇರ ಬುಕಿಂಗ್ | KSRTC Awatar Bus Search</title>
+  <meta name="description" content="ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಬಸ್ ಮಾರ್ಗಗಳು: ನಿರ್ಗಮನ (From), ಗಮ್ಯಸ್ಥಾನ (To), ಪ್ರಯಾಣದ ದಿನಾಂಕ ಆಯ್ಕೆ ಮಾಡಿ ವೇಳಾಪಟ್ಟಿ ಪರಿಶೀಲಿಸಿ & ಅಧಿಕೃತ Awatar (ksrtc.in) ನಲ್ಲಿ ನೇರ ಟಿಕೆಟ್ ಕಾಯ್ದಿರಿಸಿ.">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --ksrtc-red: #c01927;
+      --ksrtc-dark: #8c0d18;
+      --ksrtc-gold: #f59e0b;
+      --ksrtc-blue: #0284c7;
+      --ksrtc-green: #10b981;
+      --ksrtc-bg: #f8fafc;
+      --card-border: #e2e8f0;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--ksrtc-bg);
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+    }
+    .unified-hero {
+      background: linear-gradient(135deg, #8c0d18 0%, #c01927 50%, #d9383a 100%);
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .hero-badge.shakti {
+      background: #059669;
+      border-color: #34d399;
+    }
+    .unified-hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0 0 10px;
+      letter-spacing: -0.5px;
+    }
+    .unified-hero p {
+      font-size: 1.05rem;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      color: #fee2e2;
+      line-height: 1.6;
+    }
+    
+    /* ALL-IN-ONE SEARCH BAR CONTAINER */
+    .search-box-card {
+      max-width: 1080px;
+      margin: -25px auto 40px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px 30px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f1f5f9;
+      position: relative;
+      z-index: 10;
+    }
+    .search-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .search-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 180px 180px auto;
+      gap: 14px;
+      align-items: end;
+    }
+    @media (max-width: 950px) {
+      .search-inputs-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .search-inputs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .input-field-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .input-field-wrap label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .input-field-wrap input,
+    .input-field-wrap select {
+      height: 48px;
+      padding: 0 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #ffffff;
+    }
+    .input-field-wrap input:focus,
+    .input-field-wrap select:focus {
+      border-color: var(--ksrtc-red);
+      box-shadow: 0 0 0 4px rgba(192, 25, 39, 0.12);
+    }
+    .btn-search-main {
+      height: 48px;
+      padding: 0 26px;
+      background: var(--ksrtc-red);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(192, 25, 39, 0.3);
+    }
+    .btn-search-main:hover {
+      background: var(--ksrtc-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Quick Origin/Destination Pills */
+    .quick-places-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .quick-chip {
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #334155;
+      transition: all 0.15s ease;
+      border: 1px solid #e2e8f0;
+    }
+    .quick-chip:hover {
+      background: #fee2e2;
+      color: var(--ksrtc-red);
+      border-color: #fca5a5;
+    }
+
+    /* MAIN CONTENT CONTAINER */
+    .container-main {
+      max-width: 1120px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    /* RESULTS SUMMARY HEADER */
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: #ffffff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .results-count {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #0f172a;
+    }
+    .results-count span {
+      color: var(--ksrtc-red);
+    }
+
+    /* BUS CARD DESIGN */
+    .bus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bus-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      border: 1.5px solid #e2e8f0;
+      display: grid;
+      grid-template-columns: 160px 1fr 220px;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .bus-card:hover {
+      border-color: #fca5a5;
+      box-shadow: 0 8px 20px -5px rgba(192, 25, 39, 0.1);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 850px) {
+      .bus-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Time & Class Column */
+    .col-time {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .dep-time {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dep-time i {
+      color: var(--ksrtc-red);
+      font-size: 1.2rem;
+    }
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fee2e2;
+      color: var(--ksrtc-dark);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .service-tag.airavat {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    .service-tag.rajahamsa {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    /* Route & Via Column */
+    .col-route {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .route-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .route-arrow {
+      color: var(--ksrtc-red);
+    }
+    .via-text {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .via-text i {
+      margin-top: 3px;
+      color: #94a3b8;
+    }
+    .features-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .feature-pill {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .feature-pill.shakti {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Booking Action Column */
+    .col-action {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    @media (max-width: 850px) {
+      .col-action {
+        align-items: stretch;
+      }
+    }
+    .btn-book-awatar {
+      background: #16a34a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+      transition: all 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .btn-book-awatar:hover {
+      background: #15803d;
+      transform: translateY(-1px);
+    }
+    .btn-live-track {
+      background: #f8fafc;
+      color: #334155;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+      width: 100%;
+      box-sizing: border-box;
+      transition: all 0.15s ease;
+    }
+    .btn-live-track:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* OFFICIAL SOURCES SECTION */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 50px;
+    }
+    .source-box {
+      background: #ffffff;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .source-box h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: #0f172a;
+      font-weight: 800;
+    }
+    .source-box p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .source-box a {
+      color: var(--ksrtc-red);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header style="background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+        <span style="background: #c01927; color: white; font-weight: 900; padding: 4px 10px; border-radius: 8px; font-size: 1.2rem;">ಕರ್ನಾಟಕ</span>
+        <span style="font-weight: 800; color: #0f172a; font-size: 1.1rem;">karnata.in</span>
+      </a>
+      <div style="display: flex; gap: 14px; align-items: center;">
+        <a href="/bmtc" style="font-size: 0.9rem; font-weight: 700; color: #475569; text-decoration: none;">🚌 BMTC ಮೆಟ್ರೋ</a>
+        <a href="https://ksrtc.in" target="_blank" style="background: #c01927; color: white; font-size: 0.85rem; font-weight: 800; padding: 6px 14px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+          <i class="fas fa-ticket-alt"></i> Awatar ಬುಕಿಂಗ್
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="unified-hero">
+    <div class="hero-badge-container">
+      <span class="hero-badge"><i class="fas fa-bus"></i> KSRTC • NWKRTC • KKRTC</span>
+      <span class="hero-badge shakti"><i class="fas fa-female"></i> ಶಕ್ತಿ ಯೋಜನೆ: ಸಾಮಾನ್ಯ ಮತ್ತು ವೇಗದೂತ ಬಸ್‌ಗಳಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ 100% ಉಚಿತ</span>
+      <span class="hero-badge"><i class="fas fa-database"></i> 25,000+ ಅಧಿಕೃತ ವೇಳಾಪಟ್ಟಿ ದತ್ತಾಂಶ</span>
+    </div>
+    <h1>ಕರ್ನಾಟಕ RTC ಅಧಿಕೃತ ಬಸ್ ಮಾರ್ಗ & ಟಿಕೆಟ್ ಬುಕಿಂಗ್</h1>
+    <p>ನಿಮ್ಮ ನಿರ್ಗಮನ ಸ್ಥಳ (Departure), ತಲುಪುವ ಸ್ಥಳ (Destination) ಮತ್ತು ಪ್ರಯಾಣದ ದಿನಾಂಕ ಆಯ್ಕೆ ಮಾಡಿ. ಅಧಿಕೃತ ವೇಳಾಪಟ್ಟಿ ಪರಿಶೀಲಿಸಿ ನೇರವಾಗಿ Awatar (ksrtc.in) ನಲ್ಲಿ ಆನ್‌ಲೈನ್ ಟಿಕೆಟ್ ಬುಕ್ ಮಾಡಿ.</p>
+  </section>
+
+  <!-- ALL-IN-ONE SEARCH BAR -->
+  <div class="search-box-card">
+    <div class="search-title-row">
+      <div class="search-title">
+        <i class="fas fa-search-location" style="color: var(--ksrtc-red);"></i>
+        ಬಸ್ ಮಾರ್ಗ & ವೇಳಾಪಟ್ಟಿ ಶೋಧಕ (All-in-One Route Finder)
+      </div>
+      <span style="font-size: 0.85rem; font-weight: 700; color: #64748b;">
+        <i class="fas fa-check-circle" style="color: #10b981;"></i> ಅಧಿಕೃತ PDF ಗಳಿಂದ ಸಂಸ್ಕರಿಸಲಾಗಿದೆ
+      </span>
+    </div>
+
+    <form id="routeSearchForm" onsubmit="event.preventDefault(); triggerSearch();">
+      <div class="search-inputs-grid">
+        <!-- FROM -->
+        <div class="input-field-wrap">
+          <label><i class="fas fa-map-marker-alt" style="color: #ef4444;"></i> ಎಲ್ಲಿಂದ (From)</label>
+          <input type="text" id="inputFrom" list="fromList" placeholder="ಉದಾ: BENGALURU, MYSURU..." value="BENGALURU">
+          <datalist id="fromList">
+            <option value="1-183"><option value="ABAJALPUR"><option value="AFZLPUR"><option value="ALANDA"><option value="ALNAVAR"><option value="ALNAVARA"><option value="ALUR"><option value="AMMINABAVI,"><option value="ANKALAGI"><option value="ANKOLA"><option value="AOURANGABAD"><option value="ARASIKERI"><option value="ARAWATAGI"><option value="AREHALLI"><option value="ARSIKERE"><option value="ATHANI"><option value="AURANGABAD"><option value="BADAMI"><option value="BAGALKOTE"><option value="BAGLAKOT"><option value="BAGLKOT"><option value="BAILAHONGAL"><option value="BAILHONGAL"><option value="BALLARI"><option value="BANAHALLI"><option value="BANAHATTI"><option value="BANAVARA"><option value="BANGLOORE"><option value="BARAMATHI"><option value="BARAMATI"><option value="BASARGI"><option value="BATKAL"><option value="BAYDAGI"><option value="BCROAD"><option value="BDAMI"><option value="BELAGAVI"><option value="BELGAM"><option value="BELGUM"><option value="BELLATTI"><option value="BELUR"><option value="BENGALORE"><option value="BENGALURU"><option value="BENGALURU (BASAVESHWARA PEENYA)"><option value="BENGALURU (MAJESTIC)"><option value="BENGALURU (SATELLITE/MYSORE RD)"><option value="BENGALURU (SHANTINAGAR)"><option value="BERYA"><option value="BETAGERI"><option value="BETAGERI,"><option value="BETGERI"><option value="BETTADAPURA"><option value="BHADRAVATHI"><option value="BHARAMASAGARA"><option value="BHATKAL"><option value="BHOGUR,"><option value="BIDAR"><option value="BIDER"><option value="BILIKERE"><option value="BIRUR"><option value="BNGP KLR"><option value="BORVELI"><option value="BSKL"><option value="BYADAGI"><option value="BYADGI"><option value="CHALLAKERE"><option value="CHAMARAJANAGARA"><option value="CHANNARAYAPATNA"><option value="CHENNAI"><option value="CHICKBALLAPUR"><option value="CHIKKAMAGALORE"><option value="CHIKKANAYAKANAHALLIBS"><option value="CHIKKODI"><option value="CHIKMAGALUR"><option value="CHIKODI"><option value="CHINCHOLI"><option value="COIMBATORE"><option value="DABASPETEBS"><option value="DANDELI"><option value="DAVANAGAERE"><option value="DAVANAGERE"><option value="DAVANGERE"><option value="DAVNGERI"><option value="DHAEWAD"><option value="DHARAWAD"><option value="DHARMASHTAL"><option value="DHARMASTAL"><option value="DHARMASTHAL"><option value="DHARMASTHALANEWBUSSTAND"><option value="DHARWAD"><option value="DHARWAR"><option value="DHAVANGERE"><option value="DNR"><option value="DOORI"><option value="DUMMAWAD"><option value="ERNAKULAM"><option value="GADAG"><option value="GADAG,NBS"><option value="GADAGNBS"><option value="GADAHINGJAJ"><option value="GADAHINGLAJ"><option value="GADAHINGLAJA"><option value="GAJENDARAGAD"><option value="GAJENDRAGAD"><option value="GAJENDRAGADA"><option value="GAJENDRGAD"><option value="GAMBHYPOOR"><option value="GANDSI"><option value="GANGAVATI"><option value="GARAG,"><option value="GARAG,TADAKOD"><option value="GARAGA"><option value="GARAGA,"><option value="GODACHI"><option value="GOKAK"><option value="GUBBIBS"><option value="GUDDAPUR"><option value="GUDOOR"><option value="GUDUR"><option value="GULBURGA"><option value="GULBURGAMUDDEBUHAL"><option value="GULEDGUDDA"><option value="GUNDLUPETE"><option value="GURMATKAL"><option value="HADAGALI"><option value="HALEBEEDU"><option value="HALETEGUR,"><option value="HALIYAL"><option value="HALLIGERI"><option value="HALLIGERI,"><option value="HANAGAL"><option value="HANGAL"><option value="HANUMANAL"><option value="HANURU"><option value="HARIHARA"><option value="HARPN"><option value="HASAN"><option value="HASSAN"><option value="HASSANCITYBUSSTAND"><option value="HATTI"><option value="HAVERI"><option value="HBHALLI"><option value="HEBBALE"><option value="HEBBURUBS"><option value="HEREKERUR"><option value="HIREKERUR"><option value="HIRIYURU"><option value="HOLALKERE"><option value="HOLEALUR"><option value="HOLENARASIPURA"><option value="HONNALI"><option value="HONNAVAR"><option value="HOSADURGA"><option value="HOSAPETE"><option value="HOSPET"><option value="HOSURU"><option value="HUBBALI"><option value="HUBBALLI"><option value="HULAKOPPA"><option value="HULAKOPPA,"><option value="HULIYURDURGABS"><option value="HULLAHALLI"><option value="HUNAGUND"><option value="HUNASUR"><option value="HUNGUND"><option value="HYDERABAD"><option value="HYDRABAD"><option value="ICHALAKARANJI"><option value="ICHALKARANJI"><option value="ILAKAL"><option value="ILKAL"><option value="INAMAHOGAL,"><option value="INAMAHONGALA,"><option value="INDI"><option value="INH,"><option value="JAGALURU"><option value="JAMAKHANDI"><option value="JAMKHANDI"><option value="JAVAGL"><option value="JC PURA"><option value="KABBENUR,"><option value="KABBUR"><option value="KADUR"><option value="KALABURAGI"><option value="KALABURGI"><option value="KALBURGI"><option value="KALGATAGI"><option value="KALGHATGI"><option value="KALLE"><option value="KALLURU,"><option value="KALSAPURA"><option value="KAMBARAGANNI,"><option value="KAMBARAGANNIO,"><option value="KANAPUR"><option value="KANKATTE"><option value="KARAWAR"><option value="KARWAR"><option value="KASHANATTI"><option value="KATTEMALALAVADI"><option value="KDALGI"><option value="KGF KLR"><option value="KHANAPUR"><option value="KHILLEGAON"><option value="KHOLLAPUR"><option value="KITTUR"><option value="KITTUR,"><option value="KLD"><option value="KLR KLR"><option value="KMKR"><option value="KODLIPETE"><option value="KOLAPUR"><option value="KOLAR"><option value="KOLLAPUR"><option value="KOLLEGALA"><option value="KOPPAL"><option value="KORATAGERE"><option value="KOTTIGEHARA"><option value="KOZHIKODE"><option value="KPLLAPUR"><option value="KRPETEBUSSTAND"><option value="KUKKESUBRAHMANYA"><option value="KUKNUR"><option value="KUMBARAKOPPA"><option value="KUMTA"><option value="KUMUTA"><option value="KUNDAPUR"><option value="KUNDAPURA"><option value="KUNIGAL"><option value="KUPARAGAV"><option value="KURAGODA"><option value="KURGOD"><option value="KUSHALANAGARA"><option value="KUSTAGI"><option value="KUVEMPUNAGARA"><option value="KYARAKOPPA,"><option value="LAKSHMISHWAR"><option value="LATHOR"><option value="LAXMESHWAR"><option value="LAXMESHWARA"><option value="LAXMESHWER"><option value="LAXMISWAR"><option value="LINGASGUR"><option value="LINGSUR"><option value="MADAGAV"><option value="MADDURBUSSTAND"><option value="MADHANABAVI,"><option value="MADHUGIRI"><option value="MADIKOPPA"><option value="MADRAS"><option value="MAHABALESHWAR"><option value="MALAVALLIBUSSTAND"><option value="MANDYABUSSTAND"><option value="MANDYALA,"><option value="MANGALORE"><option value="MANGALURU"><option value="MANTRALAYA"><option value="MAPSA"><option value="MAREWAD,"><option value="MAREWADA"><option value="MASKI"><option value="MAYSORE"><option value="MBL KLR"><option value="MDGN"><option value="MHADANABAVI,"><option value="MIRAJ"><option value="MIRAL"><option value="MIRLE"><option value="MLAKSHMISHWAR"><option value="MLR KLR"><option value="MMHILLS"><option value="MORAB,"><option value="MUDAGERI"><option value="MUDALGI"><option value="MUDDEBIHAL"><option value="MUDHOL"><option value="MUDIGERE"><option value="MUDIGERI"><option value="MUDUGERE"><option value="MUGALI,"><option value="MUGALKOD"><option value="MUMBAI"><option value="MUMBAI (MH)"><option value="MUNDARAGI"><option value="MUNDARGI"><option value="MUNOLI"><option value="MURDESHWAR"><option value="MYSORE"><option value="MYSURUCITYBS"><option value="N/0"><option value="N/OUT"><option value="NAGAMANGALABUSSTAND"><option value="NANJANGUDNEWBS"><option value="NANJANGUDOLDBS"><option value="NARAGUND"><option value="NARAGUNDA"><option value="NARGUND"><option value="NARGUNDUND"><option value="NASIK"><option value="NAVALGUND"><option value="NEERSAGARA"><option value="NIDAGATTA"><option value="NIGADI"><option value="NIPPANI"><option value="NITTURBS"><option value="OOTY"><option value="PANAJI (GOA)"><option value="PANCHANALLI"><option value="PANDAVAPURABUSSTAND"><option value="PANDRAPUR"><option value="PIMPRI0"><option value="PIRIYAPATNA"><option value="PUNA"><option value="PUNE"><option value="PUNE (MH)"><option value="PUTTURBUSSTAND"><option value="RAICHUR"><option value="RAMDURAG"><option value="RAMDURGA"><option value="RAMNAGAR"><option value="RAMNATHPURA"><option value="RANANDUR"><option value="RANEBENNUR"><option value="RANEBENUR"><option value="RAYABAG"><option value="RAYACHUR"><option value="RAYBAG"><option value="RAYCHOR"><option value="RAYCHUR"><option value="RON"><option value="RONA"><option value="SAB"><option value="SADALAGA"><option value="SAGAR"><option value="SAGARA"><option value="SAKALESHPURA"><option value="SAKARAYAPATNA"><option value="SALIGRAMA"><option value="SANGLI"><option value="SANKESHWAR"><option value="SANKESWAR"><option value="SATHNURBUSSTAND"><option value="SAVADATTI"><option value="SAVANUR"><option value="SHAKTINAGAR"><option value="SHEDAM"><option value="SHIGNAHALLI,"><option value="SHIKARIPURA"><option value="SHIMOGA"><option value="SHIMOGGA"><option value="SHINDAGI"><option value="SHINGANALLI"><option value="SHIRAHATTI"><option value="SHIRSI"><option value="SHIRUR,"><option value="SHIRUR,BYALYAL,"><option value="SHIVALLI"><option value="SHIVALLI,"><option value="SHIVAMOGGA"><option value="SIDNUR"><option value="SIMOGGA"><option value="SINDHANUR"><option value="SINDNUR"><option value="SIRA"><option value="SIRIGERE"><option value="SOLLAPUR"><option value="SOMAWARAPETE"><option value="SONDUR"><option value="SRIBASAVESHWARA"><option value="SRINGERI"><option value="SRIRANGAPATNABUSSTAND"><option value="SRSI"><option value="SUREBAN"><option value="SURPUR"><option value="SVP KLR"><option value="TALIKOT"><option value="TALIKOTE"><option value="TALIKOTI"><option value="TARIKERE"><option value="TERADAL"><option value="TERAKANAMBI"><option value="TERDAL"><option value="THANA"><option value="THANE"><option value="THIRUVANATHAPURAM"><option value="THRISSUR"><option value="TIPTUR"><option value="TIRUPATHI"><option value="TNARASIPURA"><option value="TRICHY"><option value="TULAJAPUR"><option value="TULJAPUR"><option value="TUMAKURU"><option value="TURUVEKERE"><option value="UDUPI"><option value="ULAVI"><option value="UPPINANGADY"><option value="VANAHALLI,"><option value="VASCO"><option value="VASKO"><option value="VIJAYAPUR"><option value="VIJAYAPURA"><option value="VIJAYPURABUSSTAND"><option value="VIRAJPETE"><option value="VISHALAGAD"><option value="VKS"><option value="YADAWAD"><option value="YADAWAD,"><option value="YADAWADA,"><option value="YADAYUR"><option value="YADGIR"><option value="YADGIRI"><option value="YAGATI"><option value="YALANDURU"><option value="YALLAPUR"><option value="YARAGATTI"><option value="YARGATTI"><option value="YELBURGA"><option value="ZÁªÀTUÉGÉ"><option value="ªÀÄÄAQÀGÀV"><option value="ºÀQÀUÀ°"><option value="ºÀÄ§Â½Î"><option value="ºÁ£ÀUÀ¯Ï">
+          </datalist>
+        </div>
+
+        <!-- TO -->
+        <div class="input-field-wrap">
+          <label><i class="fas fa-flag-checkered" style="color: #10b981;"></i> ಎಲ್ಲಿಗೆ (Destination)</label>
+          <input type="text" id="inputTo" list="toList" placeholder="ಉದಾ: DHARMASTHALA, MANGALURU..." value="DHARMASTHALA">
+          <datalist id="toList">
+            <option value="06:00"><option value="09:00"><option value="1DUMMAWAD,"><option value="ABAJALPUR"><option value="ABBANA"><option value="ADAKIHOSUR"><option value="ADARSHA"><option value="ADHRSHA"><option value="ADICHUNCHANAGIRI"><option value="ADYAR"><option value="AFZALPUR"><option value="AFZALPURA"><option value="AGASALAKATTA"><option value="AGNI"><option value="AGRAHARAGATE"><option value="AGUBI"><option value="AGUMBE"><option value="AJAMANALTANDA"><option value="AJAMPUR"><option value="AJJAMPUR"><option value="AJRA"><option value="AJRI"><option value="AKALA"><option value="AKKISAGAR"><option value="ALADAHALLI"><option value="ALAGAWADI"><option value="ALAGHATTA"><option value="ALANAVAR"><option value="ALAND"><option value="ALANDA"><option value="ALATHUR"><option value="ALDURU"><option value="ALEPPEY"><option value="ALGVADI"><option value="ALIKE"><option value="ALLI"><option value="ALNAVAR"><option value="ALNDA"><option value="ALUR"><option value="ALURU"><option value="AMARAPURA"><option value="AMINGADA"><option value="AMMANAKOPPA"><option value="AMMEMBALA"><option value="ANANTAPUR"><option value="ANANTHAPURA"><option value="ANANTHPURA"><option value="ANANTPUR"><option value="ANAVATTI"><option value="ANEKAL"><option value="ANEKALLU"><option value="ANEKANNABADI"><option value="ANEMADAGU"><option value="ANGREKANAHALLI"><option value="ANKALGI"><option value="ANKALIMATA"><option value="ANKLI"><option value="ANKOLA"><option value="ANNECHAKANAHALLI"><option value="ANNIGERI"><option value="ANTUR,BENTUR"><option value="ANUGUVALLI"><option value="ANVATTI"><option value="ANVERI"><option value="AORANGABAD"><option value="AOURANGABAD"><option value="ARAHUNASI"><option value="ARAKALAGUD"><option value="ARAKALAGUDU"><option value="ARAKALAVADI"><option value="ARAKALGODU"><option value="ARAKALGUD"><option value="ARAKALGUDU"><option value="ARASHIKERE"><option value="ARASIKERE"><option value="ARAVATAGI"><option value="AREHALLI"><option value="ARKALAGUDU"><option value="ARKALGUD"><option value="ARLAVADA"><option value="ARSIKERE"><option value="ASAGODU"><option value="ASHRIHAL"><option value="ASUNDI"><option value="ATHANI"><option value="ATHNI"><option value="ATHVAL CITY"><option value="ATHVALU CITY"><option value="ATHVALU HAMPAPURA"><option value="ATTIMAGGE"><option value="AURAD"><option value="AURADA"><option value="AURAGABAD"><option value="AURANGABAD"><option value="AURNGABAD"><option value="AVANTHI"><option value="AVVALABETTA"><option value="AVVALDODDI"><option value="AWARAD"><option value="B,C,ROAD"><option value="B.C.ROAD"><option value="B.KOTHAKOTA"><option value="B.PURA"><option value="BACHAHALLI"><option value="BACHAREDDYHALLI"><option value="BACHEGOWDANAHALLI"><option value="BACHENAHALLI"><option value="BACHENALLI"><option value="BADAMI"><option value="BADRAVATHI"><option value="BADRAVATI"><option value="BADRAVATTI"><option value="BADRAVTHI"><option value="BADTRAVATHI"><option value="BAGALAKOT"><option value="BAGALAKOTE"><option value="BAGALKOTE"><option value="BAGAMANDALA"><option value="BAGEPALLI"><option value="BAGEWADI"><option value="BAGLKOT"><option value="BAILAHONGAL"><option value="BAILAHONGALA"><option value="BAILHONGAL"><option value="BAILUR"><option value="BAINDURU"><option value="BAJAGURU"><option value="BALAGUNDA"><option value="BALEHONNUR"><option value="BALELE"><option value="BALIJAKHANDRIGA"><option value="BALKI"><option value="BALLALA"><option value="BALLARI"><option value="BALLARY"><option value="BALUR-HORATTI"><option value="BALYAL"><option value="BANAHALLI"><option value="BANAHATTI"><option value="BANASHETTIHALLI"><option value="BANAVAR"><option value="BANAVARA"><option value="BANAVASI"><option value="BANDIGUDDA"><option value="BANDROLLI"><option value="BANGAGALORE"><option value="BANGALORE(N S"><option value="BANGALUR"><option value="BANGARPETE"><option value="BANGLORE">
+          </datalist>
+        </div>
+
+        <!-- DATE -->
+        <div class="input-field-wrap">
+          <label><i class="far fa-calendar-alt" style="color: #0284c7;"></i> ದಿನಾಂಕ (Date)</label>
+          <input type="date" id="inputDate" value="2026-09-06">
+        </div>
+
+        <!-- SERVICE CLASS -->
+        <div class="input-field-wrap">
+          <label><i class="fas fa-couch" style="color: #f59e0b;"></i> ಸೇವಾ ವರ್ಗ</label>
+          <select id="inputService">
+            <option value="ALL">ಎಲ್ಲಾ ಸೇವೆಗಳು (All)</option>
+            <option value="AIRAVAT">Airavat Club Class / AC</option>
+            <option value="AMBAARI">Ambaari Utsav / Dream Class</option>
+            <option value="RAJAHAMSA">Rajahamsa Executive</option>
+            <option value="SLEEPER">Non-AC Sleeper</option>
+            <option value="EXPRESS">Express / Sarige</option>
+          </select>
+        </div>
+
+        <!-- SEARCH BUTTON -->
+        <button type="submit" class="btn-search-main">
+          <i class="fas fa-search"></i> ಶೋಧಿಸಿ
+        </button>
+      </div>
+    </form>
+
+    <!-- Quick destination chips -->
+    <div class="quick-places-row">
+      <span style="font-weight: 800; color: #0f172a;"><i class="fas fa-fire" style="color: #ea580c;"></i> ಜನಪ್ರಿಯ ಮಾರ್ಗಗಳು:</span>
+      <span class="quick-chip" onclick="setQuickSearch('HUBBALLI', 'BELAGAVI')">🔵 ಹುಬ್ಬಳ್ಳಿ ➔ ಬೆಳಗಾವಿ (72+ ಬಸ್)</span>
+      <span class="quick-chip" onclick="setQuickSearch('KALABURAGI', 'BIDAR')">🟢 ಕಲಬುರಗಿ ➔ ಬೀದರ್</span>
+      <span class="quick-chip" onclick="setQuickSearch('VIJAYAPURA', 'HUBBALLI')">🔵 ವಿಜಯಪುರ ➔ ಹುಬ್ಬಳ್ಳಿ</span>
+      <span class="quick-chip" onclick="setQuickSearch('BALLARI', 'BENGALURU')">🟢 ಬಳ್ಳಾರಿ ➔ ಬೆಂಗಳೂರು</span>
+      <span class="quick-chip" onclick="setQuickSearch('KALABURAGI', 'RAICHUR')">🟢 ಕಲಬುರಗಿ ➔ ರಾಯಚೂರು</span>
+      <span class="quick-chip" onclick="setQuickSearch('BENGALURU', 'BELAGAVI')">🔴 ಬೆಂಗಳೂರು ➔ ಬೆಳಗಾವಿ</span>
+      <span class="quick-chip" onclick="setQuickSearch('BENGALURU', 'DHARMASTHALA')">🔴 ಬೆಂಗಳೂರು ➔ ಧರ್ಮಸ್ಥಳ</span>
+      <span class="quick-chip" onclick="setQuickSearch('BENGALURU', 'MYSURU')">🔴 ಬೆಂಗಳೂರು ➔ ಮೈಸೂರು</span>
+      <span class="quick-chip" onclick="setQuickSearch('MANGALURU', 'UDUPI')">🔴 ಮಂಗಳೂರು ➔ ಉಡುಪಿ</span>
+      <span class="quick-chip" onclick="setQuickSearch('GADAG', 'BENGALURU')">🔵 ಗದಗ ➔ ಬೆಂಗಳೂರು</span>
+    </div>
+  </div>
+
+  <!-- MAIN RESULTS SECTION -->
+  <main class="container-main">
+    <div class="results-bar">
+      <div class="results-count" id="resultsSummary">
+        ಲೋಡ್ ಆಗುತ್ತಿದೆ...
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; background: #dcfce7; padding: 4px 10px; border-radius: 6px;">
+          <i class="fas fa-ticket-alt"></i> Awatar ನೇರ ಲಿಂಕ್
+        </span>
+      </div>
+    </div>
+
+    <!-- BUS CARDS LIST -->
+    <div class="bus-list" id="busList">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- OFFICIAL INFORMATION & SOURCES -->
+    <div class="sources-grid">
+      <div class="source-box">
+        <h4><i class="fas fa-ticket-alt" style="color: #c01927;"></i> KSRTC Awatar ಆನ್‌ಲೈನ್ ಬುಕಿಂಗ್</h4>
+        <p>ಕರ್ನಾಟಕ ರಾಜ್ಯ ರಸ್ತೆ ಸಾರಿಗೆ ನಿಗಮದ ಅಧಿಕೃತ ಆನ್‌ಲೈನ್ ಟಿಕೆಟ್ ಬುಕಿಂಗ್ ಪೋರ್ಟಲ್.</p>
+        <a href="https://ksrtc.in" target="_blank">ksrtc.in ಅಧಿಕೃತ ಪೋರ್ಟಲ್ <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="source-box">
+        <h4><i class="fas fa-file-pdf" style="color: #c01927;"></i> ಕೆಂಪೇಗೌಡ ಬಸ್ ನಿಲ್ದಾಣ ಮಾಸ್ಟರ್ PDF</h4>
+        <p>ಮೆಜೆಸ್ಟಿಕ್‌ನಿಂದ ಹೊರಡುವ 2,032 ಕ್ಕೂ ಹೆಚ್ಚು ಬಸ್‌ಗಳ ಅಧಿಕೃತ 74 ಪುಟಗಳ ವೇಳಾಪಟ್ಟಿ.</p>
+        <a href="https://ksrtc.karnataka.gov.in/storage/pdf-files/Time%20Table/BengaluruKempegowda.pdf" target="_blank">ಮಾಸ್ಟರ್ PDF ಡೌನ್‌ಲೋಡ್ <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="source-box">
+        <h4><i class="fas fa-building" style="color: #0284c7;"></i> NWKRTC ವಾಯವ್ಯ ಸಾರಿಗೆ</h4>
+        <p>ಹುಬ್ಬಳ್ಳಿ, ಬೆಳಗಾವಿ, ಗದಗ, ಬಾಗಲಕೋಟೆ ವಿಭಾಗಗಳ 63 ಬಸ್ ನಿಲ್ದಾಣಗಳ ಅಧಿಕೃತ ವಿವರಗಳು.</p>
+        <a href="https://nwkrtc.karnataka.gov.in/52/bus-time-table/en" target="_blank">NWKRTC ಪೋರ್ಟಲ್ <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="source-box">
+        <h4><i class="fas fa-phone-alt" style="color: #10b981;"></i> KKRTC ಕಲ್ಯಾಣ ಸಾರಿಗೆ ವಿಚಾರಣೆ</h4>
+        <p>ಕಲಬುರಗಿ, ಬೀದರ್, ರಾಯಚೂರು, ಕೊಪ್ಪಳ 158 ನಿಲ್ದಾಣಗಳ ಫೋನ್ ವಿಚಾರಣಾ ಕೇಂದ್ರಗಳು.</p>
+        <a href="https://kkrtc.karnataka.gov.in/34/bus-stations/en" target="_blank">KKRTC ಪೋರ್ಟಲ್ <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let currentMasterRoutes = [];
+
+    async function triggerSearch() {
+      const fromVal = document.getElementById('inputFrom').value.trim();
+      const toVal = document.getElementById('inputTo').value.trim();
+      const dateVal = document.getElementById('inputDate').value.trim();
+      const serviceVal = document.getElementById('inputService').value;
+
+      const summary = document.getElementById('resultsSummary');
+      const listEl = document.getElementById('busList');
+
+      summary.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ಮಾರ್ಗಗಳನ್ನು ಶೋಧಿಸಲಾಗುತ್ತಿದೆ...`;
+
+      // 1. Instant Client-side Search (Zero Worker Requests, Works 100% in Browser)
+      if (currentMasterRoutes && currentMasterRoutes.length > 0) {
+        searchClientSide(fromVal, toVal, serviceVal, dateVal);
+        return;
+      }
+
+      // 2. Fallback to API if master routes not loaded yet
+      try {
+        let apiUrl = `/api/karnataka-bus-routes?from=${encodeURIComponent(fromVal)}&to=${encodeURIComponent(toVal)}&service=${encodeURIComponent(serviceVal)}&date=${encodeURIComponent(dateVal)}&limit=150`;
+        const res = await fetch(apiUrl);
+        if (res.ok && (res.headers.get('content-type') || '').includes('application/json')) {
+          const data = await res.json();
+          renderResults(data.timetables || [], fromVal, toVal, dateVal);
+          return;
+        }
+        throw new Error('API request failed or returned HTML');
+      } catch (err) {
+        console.warn('API fallback, searching client side...', err);
+        searchClientSide(fromVal, toVal, serviceVal, dateVal);
+      }
+    }
+
+    function normPlace(t) {
+      if (!t) return '';
+      let s = t.toUpperCase().trim();
+      if (s.includes('BENGAL') || s.includes('BANGAL') || s === 'BLR') return 'BENGALURU';
+      if (s.includes('MYSORE') || s.includes('MYSURU')) return 'MYSURU';
+      if (s.includes('HUBLI') || s.includes('HUBBALLI')) return 'HUBBALLI';
+      if (s.includes('BELGAUM') || s.includes('BELAGAVI')) return 'BELAGAVI';
+      if (s.includes('GULBARGA') || s.includes('KALABURAGI')) return 'KALABURAGI';
+      if (s.includes('BIJAPUR') || s.includes('VIJAYAPURA')) return 'VIJAYAPURA';
+      if (s.includes('BELLARY') || s.includes('BALLARI')) return 'BALLARI';
+      s = s.replace(/THI$/, 'TI').replace(/VATHI/g, 'VATI').replace(/VATTI/g, 'VATI');
+      s = s.replace(/PURAM?$/, 'PURA').replace(/OORU?$/, 'URU');
+      return s;
+    }
+
+    function searchClientSide(fromVal, toVal, serviceVal, dateVal) {
+      const summary = document.getElementById('resultsSummary');
+      const listEl = document.getElementById('busList');
+
+      const qFrom = normPlace(fromVal);
+      const qTo = normPlace(toVal);
+
+      let filtered = currentMasterRoutes.filter(r => {
+        const rFrom = normPlace(r.from);
+        const rTo = normPlace(r.to);
+        const rVia = r.via ? normPlace(r.via) : '';
+
+        const matchFrom = !qFrom || rFrom.includes(qFrom);
+        const matchTo = !qTo || rTo.includes(qTo) || rVia.includes(qTo);
+        const matchSvc = serviceVal === 'ALL' || r.service.toUpperCase().includes(serviceVal);
+        return matchFrom && matchTo && matchSvc;
+      });
+
+      renderResults(filtered, fromVal, toVal, dateVal);
+    }
+
+    function renderResults(buses, fromVal, toVal, dateVal) {
+      const summary = document.getElementById('resultsSummary');
+      const listEl = document.getElementById('busList');
+
+      if (!buses || buses.length === 0) {
+        summary.innerHTML = `<span>0 ಬಸ್‌ಗಳು ಲಭ್ಯ</span> (${fromVal || 'ಯಾವುದೇ'} ➔ ${toVal || 'ಯಾವುದೇ'})`;
+        listEl.innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
+            <i class="fas fa-bus-alt" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 14px;"></i>
+            <h3 style="margin: 0 0 8px; color: #334155;">ಯಾವುದೇ ನೇರ ಬಸ್ ಲಭ್ಯವಿಲ್ಲ</h3>
+            <p style="margin: 0 0 20px; color: #64748b; font-size: 0.95rem;">ದಯವಿಟ್ಟು ಪರ್ಯಾಯ ನಿಲ್ದಾಣ ಅಥವಾ ಸೇವಾ ವರ್ಗ ಬದಲಿಸಿ ಶೋಧಿಸಿ ಅಥವಾ ನೇರವಾಗಿ Awatar ನಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ.</p>
+            <a href="https://ksrtc.in/oprs-web/guest/home.do?h=1&fromCityName=${encodeURIComponent(fromVal)}&toCityName=${encodeURIComponent(toVal)}" target="_blank" class="btn-book-awatar" style="max-width: 260px; margin: 0 auto;">
+              <i class="fas fa-external-link-alt"></i> Awatar ನಲ್ಲಿ ಪರಿಶೀಲಿಸಿ
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      summary.innerHTML = `<span>${buses.length} ಬಸ್‌ಗಳು ಲಭ್ಯ</span> | ${fromVal} ➔ ${toVal} (${dateVal})`;
+
+      let html = '';
+      buses.forEach(b => {
+        const service = b.service || 'EXPRESS';
+        let serviceClass = '';
+        if (service.includes('AIRAVAT') || service.includes('AMBAARI')) serviceClass = 'airavat';
+        else if (service.includes('RAJAHAMSA')) serviceClass = 'rajahamsa';
+
+        const isShakti = service.includes('SARIGE') || service.includes('EXPRESS') || service.includes('ORDINARY');
+        const bookingLink = b.booking_url || `https://ksrtc.in/oprs-web/guest/home.do?h=1&fromCityName=${encodeURIComponent(b.from)}&toCityName=${encodeURIComponent(b.to)}&journeyDate=${encodeURIComponent(dateVal)}`;
+
+        html += `
+          <div class="bus-card">
+            <!-- Time & Service -->
+            <div class="col-time">
+              <div class="dep-time"><i class="far fa-clock"></i> ${b.dep_time}</div>
+              <div class="service-tag ${serviceClass}">${service}</div>
+              <span style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px;">${b.source || 'ಅಧಿಕೃತ KSRTC PDF'}</span>
+            </div>
+
+            <!-- Route Details -->
+            <div class="col-route">
+              <div class="route-header">
+                <span>${b.from}</span>
+                <i class="fas fa-arrow-right route-arrow"></i>
+                <span>${b.to}</span>
+              </div>
+              <div class="via-text">
+                <i class="fas fa-route"></i>
+                <span><strong>ಮಾರ್ಗ (Via):</strong> ${b.via || 'ನೇರ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಮಾರ್ಗ (Direct Arterial Route)'}</span>
+              </div>
+              <div class="features-row">
+                <span class="feature-pill"><i class="fas fa-shield-alt"></i> ಅಧಿಕೃತ ನಿಗಮ</span>
+                ${isShakti ? '<span class="feature-pill shakti"><i class="fas fa-female"></i> ಶಕ್ತಿ ಯೋಜನೆ: ಉಚಿತ</span>' : '<span class="feature-pill"><i class="fas fa-snowflake"></i> AC ಪ್ರೀಮಿಯಂ</span>'}
+                <span class="feature-pill"><i class="fas fa-chair"></i> ಆಸನ ಲಭ್ಯತೆ</span>
+              </div>
+            </div>
+
+            <!-- Action & Awatar Booking -->
+            <div class="col-action">
+              <a href="${bookingLink}" target="_blank" class="btn-book-awatar">
+                <i class="fas fa-ticket-alt"></i> Awatar ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ
+              </a>
+              <a href="https://ksrtc.in" target="_blank" class="btn-live-track">
+                <i class="fas fa-info-circle"></i> ಆಸನ ಲಭ್ಯತೆ ನೋಡಿ
+              </a>
+            </div>
+          </div>
+        `;
+      });
+
+      listEl.innerHTML = html;
+    }
+
+    function setQuickSearch(from, to) {
+      document.getElementById('inputFrom').value = from;
+      document.getElementById('inputTo').value = to;
+      triggerSearch();
+    }
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Pre-fetch master routes for instant offline responsiveness
+      fetch('/data/karnataka_rtc_routes_master.json')
+        .then(r => r.json())
+        .then(data => {
+          currentMasterRoutes = data;
+          triggerSearch();
+        })
+        .catch(e => {
+          console.warn('Initial master routes load error:', e);
+          triggerSearch();
+        });
+    });
+  </script>
+</body>
+</html>

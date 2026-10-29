@@ -1,4 +1,6 @@
-# Karnata.in Robots.txt for Search Engines & AI Crawlers (GEO / AI SEO)
+# Google AdSense Crawler (Unrestricted access for ad placement & site review)
+User-agent: Mediapartners-Google
+Allow: /
 
 User-agent: *
 Allow: /
@@ -12,6 +14,20 @@ Disallow: /studio/
 Disallow: /imd_hub/
 Disallow: /officers-admin
 Disallow: /push-admin
+Disallow: /article$
+Disallow: /article.html
+Disallow: /karnataka-stories
+Disallow: /karnataka-stories.html
+Disallow: /constituency-detail
+Disallow: /constituency-detail.html
+Disallow: /scheme-detail
+Disallow: /scheme-detail.html
+Disallow: /dam-details
+Disallow: /dam-details.html
+Disallow: /karnataka-elections
+Disallow: /karnataka-elections.html
+Disallow: /test_
+Disallow: /*test*
 
 # AI Search Engines & Crawlers
 User-agent: GPTBot

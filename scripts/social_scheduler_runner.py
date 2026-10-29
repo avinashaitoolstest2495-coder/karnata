@@ -30,6 +30,8 @@ from pathlib import Path
 from datetime import datetime
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 HISTORY_FILE = ROOT_DIR / "data" / "social_publish_history.json"
 
 SLOT_SCHEDULE = [
@@ -132,9 +134,10 @@ def check_and_publish_due_slots(dry_run=False):
             from scripts.auto_publish_social import publish_card
             ok = publish_card(slot_key, dry_run=dry_run)
             if ok:
-                published.append(slot_key)
-                history["published_slots"] = published
-                save_history(history)
+                if not dry_run:
+                    published.append(slot_key)
+                    history["published_slots"] = published
+                    save_history(history)
                 print(f"  ✅ Successfully posted {slot_key}!")
         except Exception as e:
             print(f"  ❌ Publishing exception for {slot_key}:", e)

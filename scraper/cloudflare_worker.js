@@ -355,6 +355,13 @@ async function scrapeWeather(env) {
         console.error(`  ❌ ${city.key} weather failed:`, e.message);
       }
     }
+    const result = {
+      date: istDate(),
+      updated_at: istNow(),
+      source: 'Open-Meteo & IMD Karnataka',
+      is_live: true,
+      cities,
+    };
 
     await kvPut(env, 'weather', result);
     console.log('✅ Weather saved for', Object.keys(cities).length, 'cities');
@@ -450,8 +457,8 @@ export default {
       ctx.waitUntil(Promise.all([scrapeDams(env), scrapeAPMC(env)]));
     }
 
-    // 5. Weather: Every hour (0 * * * *) & KSNDMC telemetry
-    if (cron === "0 * * * *" || cron.includes("* * * *")) {
+    // 5. Weather: Every 30 minutes (*/30 * * * *) & KSNDMC telemetry
+    if (cron === "*/30 * * * *" || cron === "0 * * * *" || cron.includes("* * * *")) {
       ctx.waitUntil(scrapeWeather(env));
     }
   },

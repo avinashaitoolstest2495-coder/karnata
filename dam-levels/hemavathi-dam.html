@@ -126,96 +126,150 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <body>
 
 <div class="topnav">
-  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
   <div class="page-title">💧 ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
 
 <div class="container">
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER WITH IMAGE -->
   <div class="dam-hero-card">
-    <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
-    <h1 class="dh-title">ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು (Hemavathi Dam)</h1>
-    <div class="dh-sub">
-      <span>🌊 ನದಿ: ಹೇಮಾವತಿ ನದಿ</span>
-      <span>🏛️ ಜಿಲ್ಲೆ: ಹಾಸನ (ಗೊರೂರು)</span>
+    <div class="hero-img-wrap">
+      <img src="/images/hemavathi_dam.jpg" alt="ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು" class="hero-img">
+      <div class="hero-overlay">
+        <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
+        <h1 class="dh-title">ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು (Hemavathi Dam)</h1>
+        <div class="dh-sub">
+          <span>🌊 ನದಿ: ಹೇಮಾವತಿ ನದಿ</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಹಾಸನ (ಗೊರೂರು)</span>
+        </div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
+      </div>
     </div>
-    <div class="dh-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
   </div>
 
-  <!-- METRICS -->
+  <!-- 5 METRIC CARDS -->
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--blue)">28.96 TMC</div>
-      <div class="mc-sub">72.6% ತುಂಬಿದೆ (37.10 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--green)" id="hemavathi-m-storage">17.402 TMC</div>
+      <div class="mc-sub" id="hemavathi-m-sub">46.9% ತುಂಬಿದೆ (37.103 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val">37.103 TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">2911.35 ಅಡಿ</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL): 2922.00 ಅಡಿ</div>
+      <div class="mc-val" id="hemavathi-m-level">2895.95 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 2922.00 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">11,887</div>
+      <div class="mc-val" style="color:var(--green)" id="hemavathi-m-inflow">3,189</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">500</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="hemavathi-m-outflow">300</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    </div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">2922.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">2850.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">37.10 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">35.76 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div><div class="spec-val">28.96 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ ಸಂಗ್ರಹ (Live Storage)</div><div class="spec-val">22.59 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಗೊರೂರು, ಹಾಸನ ಜಿಲ್ಲೆ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1979</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY & BACKGROUND ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📜 ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಮುಖ ವಿವರಗಳು</div>
-    </div>
-    <div class="history-article">
-      <p><strong>ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು (Hemavathi Dam)</strong> ಹಾಸನ ಜಿಲ್ಲೆಯ ಗೊರೂರು ಬಳಿ ಹೇಮಾವತಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಬೃಹತ್ ಜಲಾಶಯವಾಗಿದೆ. ಹೇಮಾವತಿ ನದಿಯು ಚಿಕ್ಕಮಗಳೂರು ಜಿಲ್ಲೆಯ ಮುಡಿಗೆರೆ ತಾಲೂಕಿನ ಬಳ್ಳಾಳರಾಯನದುರ್ಗದಲ್ಲಿ ಉದ್ಭವಿಸಿ ಕಾವೇರಿ ನದಿಯನ್ನು ಸೇರುತ್ತದೆ.</p>
-
-      <h3>🏗️ ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಯೋಜನೆ:</h3>
-      <p>1979 ರಲ್ಲಿ ಪೂರ್ಣಗೊಂಡ ಈ ಜಲಾಶಯ 37.10 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದೆ. ಇದರಿಂದ ಹಾಸನ, ಮಂಡ್ಯ, ಮತ್ತು ತುಮಕೂರು ಜಿಲ್ಲೆಗಳ <strong>6.5 ಲಕ್ಷ ಎಕರೆಗೂ ಹೆಚ್ಚು ಕೃಷಿ ಭೂಮಿಗೆ</strong> ನೀರಾವರಿ ಒದಗಿಸಲಾಗುತ್ತದೆ.</p>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ಹೇಮಾವತಿ ಜಲಾಶಯ (Hemavathi Dam - Gorur) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಹೇಮಾವತಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ: ಮಲೆನಾಡಿನ ಜಲಸಿರಿ, ಬಯಲುಸೀಮೆಯ ಸಂಜೀವಿನಿ ಮತ್ತು ಗೊರೂರು ಅಣೆಕಟ್ಟಿನ ಸಮಗ್ರ ಚಿತ್ರಣ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಹಾಸನ ತಾಲೂಕಿನ ಗೊರೂರು ಬಳಿ ನಿರ್ಮಿಸಲಾದ ಈ ಅಣೆಕಟ್ಟು ಕಾವೇರಿ ಕೊಳ್ಳದ ಅತ್ಯಂತ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಹಾಸನ, ಮಂಡ್ಯ, ತುಮಕೂರು ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಗಳ 6.5 ಲಕ್ಷ ಎಕರೆ ಪ್ರದೇಶಕ್ಕೆ ನೀರುಣಿಸುತ್ತದೆ. ತುಮಕೂರು ಜಿಲ್ಲೆಯ ಕುಡಿಯುವ ನೀರಿನ ಪ್ರಮುಖ ಮೂಲವಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಗೊರೂರು ಅಣೆಕಟ್ಟಿನ ಹಿನ್ನೀರಿನಲ್ಲಿರುವ ಮುಳುಗಡೆಯಾದ ಶ್ರೇಷ್ಠ ಶೆಟ್ಟಿಹಳ್ಳಿ ರೋಸರಿ ಚರ್ಚ್ (Shettihalli Drowned Church) ವಿಶ್ವಪ್ರಸಿದ್ಧವಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಕರ್ನಾಟಕದ ನೀರಾವರಿ ಇತಿಹಾಸದಲ್ಲಿ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಮಳೆಯನ್ನು ಬಯಲುಸೀಮೆಯ ಒಣಭೂಮಿಗೆ ಉಡುಗೊರೆಯಾಗಿ ನೀಡಿದ ಹೆಗ್ಗಳಿಕೆ ಹಾಸನ ಜಿಲ್ಲೆಯ ‘ಹೇಮಾವತಿ ಜಲಾಶಯ’ಕ್ಕೆ (ಗೊರೂರು ಅಣೆಕಟ್ಟು) ಸಲ್ಲುತ್ತದೆ. ಕಾವೇರಿ ನದಿಯ ಪ್ರಮುಖ ಉಪನದಿಯಾದ ಹೇಮಾವತಿಗೆ ಅಡ್ಡಲಾಗಿ ಹಾಸನ ತಾಲೂಕಿನ ಗೊರೂರು ಬಳಿ ನಿರ್ಮಿಸಲಾಗಿರುವ ಈ ಬೃಹತ್ ಜಲಾಶಯವು ಹಾಸನ, ಮಂಡ್ಯ ಹಾಗೂ ತುಮಕೂರು ಜಿಲ್ಲೆಗಳ ಪಾಲಿನ ಅನ್ನದ ಬಟ್ಟಲು.
     </p>
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಪ್ರತಿದಿನ ಕಾವೇರಿ ನೀರಾವರಿ ನಿಗಮ ಮತ್ತು ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಪ್ರಕಟಿಸುವ ಹೇಮಾವತಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level), ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವಿನ ಅಂಕಿ-ಅಂಶಗಳು ಲಕ್ಷಾಂತರ ರೈತರ ಕೃಷಿ ಭವಿಷ್ಯವನ್ನು ನಿರ್ಧರಿಸುತ್ತವೆ. ಮಲೆನಾಡಿನ ಕಾಫಿ ಕಣಿವೆಗಳಲ್ಲಿ ಮಳೆ ಅಬ್ಬರಿಸಿ ಗೊರೂರು ಅಣೆಕಟ್ಟು ಭರ್ತಿಯಾಯಿತೆಂದರೆ, ನೂರಾರು ಕಿಲೋಮೀಟರ್ ದೂರದ ತುಮಕೂರು, ತಿಪಟೂರು, ಕುಣಿಗಲ್ ಭಾಗದ ಕೆರೆ-ಕಟ್ಟೆಗಳಿಗೂ ಜೀವಕಳೆ ಬರುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏔️ ಬಳ್ಳಾಳರಾಯನ ದುರ್ಗದಿಂದ ಗೊರೂರಿನವರೆಗೆ: ನದಿಯ ಉಗಮ ಮತ್ತು ಜಲಾನಯನ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹೇಮಾವತಿ ನದಿಯು ಕಾವೇರಿ ಕೊಳ್ಳದ ಅತ್ಯಂತ ರಭಸದ ನದಿಗಳಲ್ಲಿ ಒಂದು. ಚಿಕ್ಕಮಗಳೂರು ಜಿಲ್ಲೆಯ ಮೂಡಿಗೆರೆ ತಾಲೂಕಿನ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ‘ಬಳ್ಳಾಳರಾಯನ ದುರ್ಗ’ ಬೆಟ್ಟದ ಜಾವಳಿ ಬಳಿ ಜನ್ಮತಾಳುವ ಈ ನದಿ, ಮೂಡಿಗೆರೆ ಮತ್ತು ಸಕಲೇಶಪುರದ ಕಡಿದಾದ ಕಣಿವೆ-ಕಾಡುಗಳ ಮೂಲಕ ಹರಿದು ಬರುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಸುಮಾರು 5,410 ಚದರ ಕಿಲೋಮೀಟರ್‌ಗಳಷ್ಟು ವಿಶಾಲವಾದ ಜಲಾನಯನ ಪ್ರದೇಶವನ್ನು (Catchment Area) ಹೊಂದಿರುವ ಈ ನದಿಗೆ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಮುಂಗಾರು ಮಳೆಯೇ ಮೂಲ ಶಕ್ತಿ. ಸಕಲೇಶಪುರ, ಬಿಸಿಲೆ ಘಾಟ್, ಮೂಡಿಗೆರೆ ಮತ್ತು ಆಲೂರು ಭಾಗಗಳಲ್ಲಿ ಧಾರಾಕಾರ ಮಳೆ ಸುರಿದಾಗ ಹೇಮಾವತಿಯ ಒಡಲು ತುಂಬಿ ತುಳುಕುತ್ತದೆ. ಗೊರೂರು ತಲುಪುವ ಮುನ್ನ ಪ್ರಸಿದ್ಧ ‘ಯಾಗಚಿ’ ನದಿಯೂ ಹೇಮಾವತಿಯೊಂದಿಗೆ ಸಂಗಮಗೊಳ್ಳುವುದರಿಂದ, ಮಳೆಗಾಲದ ಉತ್ತುಂಗದಲ್ಲಿ ಜಲಾಶಯಕ್ಕೆ ದಿನಕ್ಕೆ 30,000 ದಿಂದ 70,000 ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ಒಳಹರಿವು (Inflow) ದಾಖಲಾಗುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📏 ಅಣೆಕಟ್ಟಿನ ತಾಂತ್ರಿಕ ವಿವರ, ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ನೀರಿನ ಮಟ್ಟ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      1960ರ ದಶಕದ ಕೊನೆಯಲ್ಲಿ ಯೋಜನೆಯನ್ನು ರೂಪಿಸಿ, 1979ರಲ್ಲಿ ಸಂಪೂರ್ಣಗೊಳಿಸಲಾದ ಹೇಮಾವತಿ ಜಲಾಶಯವು ಮಣ್ಣಿನ ದಂಡೆ (Earthen Dam) ಮತ್ತು ಕಲ್ಲಿನ ಗಾರೆ-ಕಾಂಕ್ರೀಟ್‌ನಿಂದ ಕೂಡಿದ ಸಂಯೋಜಿತ ಅಣೆಕಟ್ಟಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಗರಿಷ್ಠ ನೀರಿನ ಮಟ್ಟ (Full Reservoir Level - FRL):</strong> ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 2,922.00 ಅಡಿಗಳು (890.62 ಮೀಟರ್).</li>
+      <li><strong>ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ (Gross Storage):</strong> 37.103 ಟಿಎಂಸಿ (TMC).</li>
+      <li><strong>ಬಳಕೆ ಮಾಡಬಹುದಾದ ನೀರು (Live Storage):</strong> ಸುಮಾರು 33.80 ಟಿಎಂಸಿ ನೀರನ್ನು ಕೃಷಿ, ಕೈಗಾರಿಕೆ ಮತ್ತು ಕುಡಿಯುವ ಉದ್ದೇಶಕ್ಕೆ ಬಳಸಬಹುದು.</li>
+      <li><strong>ಡೆಡ್ ಸ್ಟೋರೇಜ್ (Dead Storage):</strong> ಜಲಾಶಯದ ಅತ್ಯಂತ ತಳಮಟ್ಟದಲ್ಲಿರುವ ಸುಮಾರು 3.30 ಟಿಎಂಸಿ ನೀರು ಜಲಾಶಯದ ಸುರಕ್ಷತೆ ಮತ್ತು ಜಲಚರಗಳ ಸಂರಕ್ಷಣೆಗೆ ಕಾಯ್ದಿರಿಸಲ್ಪಟ್ಟಿರುತ್ತದೆ.</li>
+      <li><strong>ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> ಪ್ರವಾಹದ ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ನಿಯಂತ್ರಿಸಿ ಹೊರಹಾಕಲು ಜಲಾಶಯಕ್ಕೆ 6 ಬೃಹತ್ ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚇 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಬಾಗೂರು-ನವಿಲೆ ಸುರಂಗದ ಎಂಜಿನಿಯರಿಂಗ್ ಅದ್ಭುತ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹೇಮಾವತಿ ಜಲಾಶಯದ ನಿಜವಾದ ಶಕ್ತಿ ಇರುವುದು ಅದರ ವಿಸ್ತಾರವಾದ ಕಾಲುವೆ ಜಾಲದಲ್ಲಿ. ಸುಮಾರು 6.5 ಲಕ್ಷಕ್ಕೂ ಅಧಿಕ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುವ ಈ ವ್ಯವಸ್ಥೆಯು ಮಳೆಯಾಶ್ರಿತ ಒಣಭೂಮಿಗಳಿಗೆ ಹೊಸ ಜೀವ ನೀಡಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (Left Bank Canal):</strong> ಇದು ಈ ಯೋಜನೆಯ ಅತ್ಯಂತ ಮಹತ್ವದ ಕಾಲುವೆ. ಈ ಕಾಲುವೆಯ ನೀರನ್ನು ಹಾಸನದಿಂದ ತುಮಕೂರು ಜಿಲ್ಲೆಯ ಗಡಿ ದಾಟಿಸಲು ನಿರ್ಮಿಸಲಾದ ‘ಬಾಗೂರು-ನವಿಲೆ ಸುರಂಗ’ (Bagur-Navile Tunnel) ಏಷ್ಯಾದಲ್ಲೇ ಅತಿ ಉದ್ದದ ನೀರಾವರಿ ಸುರಂಗಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ (ಸುಮಾರು 9.7 ಕಿ.ಮೀ ಉದ್ದ). ಈ ಕಾಲುವೆಯ ಮೂಲಕ ತುಮಕೂರು, ತಿಪಟೂರು, ತುರುವೇಕೆರೆ, ಚಿಕ್ಕನಾಯಕನಹಳ್ಳಿ, ಕುಣಿಗಲ್ ಮತ್ತು ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ನಾಗಮಂಗಲ ತಾಲೂಕುಗಳಿಗೆ ನೀರು ತಲುಪುತ್ತದೆ.</li>
+      <li><strong>ಬಲದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (Right Bank Canal):</strong> ಹಾಸನ ತಾಲೂಕು, ಹೊಳೆನರಸೀಪುರ, ಚನ್ನರಾಯಪಟ್ಟಣ ಹಾಗೂ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೆ.ಆರ್. ಪೇಟೆ ತಾಲೂಕಿನ ಲಕ್ಷಾಂತರ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತದೆ.</li>
+      <li><strong>ಬೆಳೆಗಳ ವೈಭವ:</strong> ಭತ್ತ, ರಾಗಿ, ಕಬ್ಬು, ತೆಂಗು ಮತ್ತು ಅಡಿಕೆ ತೋಟಗಳಿಗೆ ಈ ಕಾಲುವೆಗಳ ನೀರೇ ಆಧಾರ. ಪ್ರತಿವರ್ಷ ನವೆಂಬರ್‌ನಲ್ಲಿ ಜಲಾಶಯದ ಮಟ್ಟವನ್ನು ಪರಿಶೀಲಿಸಿ ನೀರಾವರಿ ಸಲಹಾ ಸಮಿತಿ (ICC) ಕಾಲುವೆಗಳಿಗೆ ನೀರು ಹರಿಸುವ ದಿನಗಳನ್ನು ನಿಗದಿಪಡಿಸುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌊 ಕಾವೇರಿ ಕಣಿವೆಯ ಬಲವರ್ಧನೆ ಮತ್ತು ಕೆಆರ್ಎಸ್ಗೆ ಜೀವಜಲ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹೇಮಾವತಿ ಕೇವಲ ಹಾಸನ-ತುಮಕೂರು ಜಿಲ್ಲೆಗಳಿಗೆ ಸೀಮಿತವಾದ ಅಣೆಕಟ್ಟಲ್ಲ; ಇದು ಮಂಡ್ಯದ ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಜಲಾಶಯದ ಪ್ರಮುಖ ರಕ್ಷಾಕವಚ. ಗೊರೂರು ಅಣೆಕಟ್ಟಿನಿಂದ ಹೊರಬಿಡುವ ಹೆಚ್ಚುವರಿ ನೀರು ಹೊಳೆನರಸೀಪುರದ ಮೂಲಕ ಹರಿದು, ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೆ.ಆರ್. ಪೇಟೆ ತಾಲೂಕಿನ ಅಕ್ಕಿಹೆಬ್ಬಾಳು ಬಳಿ ಕಾವೇರಿ ನದಿಯೊಂದಿಗೆ ಸಂಗಮಗೊಂಡು ನೇರವಾಗಿ ಕೆಆರ್ಎಸ್ ಹಿನ್ನೀರನ್ನು ಸೇರುತ್ತದೆ. ಸಾಮಾನ್ಯ ವರ್ಷಗಳಲ್ಲಿ ಹೇಮಾವತಿ ಜಲಾಶಯ ಜುಲೈ ಅಥವಾ ಆಗಸ್ಟ್ ತಿಂಗಳಿನಲ್ಲಿ ಭರ್ತಿಯಾದಾಗ, ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ನದಿಗೆ ಹರಿಸಲಾಗುತ್ತದೆ. ಈ ನೀರು ಕೆಆರ್ಎಸ್ ಜಲಾಶಯವು ಶೀಘ್ರವಾಗಿ 124.80 ಅಡಿ ತಲುಪಲು ಬಹುಮುಖ್ಯ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚨 ಪ್ರವಾಹ ನಿಯಂತ್ರಣ ಮತ್ತು ಹೊಳೆನರಸೀಪುರ ನದಿ ಪಾತ್ರದ ಎಚ್ಚರಿಕೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಮಳೆಗಾಲದಲ್ಲಿ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಮೇಘಸ್ಫೋಟವಾದಾಗ ಹೇಮಾವತಿ ಜಲಾಶಯಕ್ಕೆ ಒಳಹರಿವು ಕ್ಷಣಾರ್ಧದಲ್ಲಿ ದುಪ್ಪಟ್ಟಾಗುತ್ತದೆ. ಜಲಾಶಯದ ಮಟ್ಟ 2,920 ಅಡಿ ದಾಟುತ್ತಿದ್ದಂತೆಯೇ ಎಲ್ಲಾ ಆರು ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ತೆರೆದು ನದಿಗೆ ನೀರು ಹರಿಸಲಾಗುತ್ತದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>20,000 ದಿಂದ 40,000 ಕ್ಯೂಸೆಕ್ ಹೊರಹರಿವು:</strong> ನದಿಯಲ್ಲಿ ಪ್ರವಾಹದ ಮಟ್ಟ ಹೆಚ್ಚಾಗಿ, ಕೆಳಭಾಗದ ಹೊಳೆನರಸೀಪುರ ಪಟ್ಟಣದ ಚನ್ನಕೇಶವ ಮತ್ತು ಲಕ್ಷ್ಮೀನರಸಿಂಹ ದೇವಾಲಯಗಳ ಸ್ನಾನಘಟ್ಟಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ.</li>
+      <li><strong>50,000 ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ನೀರು:</strong> ನದಿ ತೀರದ ತೋಟಗಳು, ಬಾಳೆ ಬೆಳೆಗಳು ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಗುತ್ತವೆ. ಹೊಳೆನರಸೀಪುರ ಮತ್ತು ಹಾಸನ ಗ್ರಾಮಾಂತರ ತಗ್ಗು ಪ್ರದೇಶಗಳಲ್ಲಿ ಪ್ರವಾಹದ ಮುನ್ನೆಚ್ಚರಿಕೆ ರವಾನಿಸಿ, ಸಾರ್ವಜನಿಕರು ನದಿಯ ದಡಕ್ಕೆ ತೆರಳದಂತೆ ನಿಷೇಧಾಜ್ಞೆ ವಿಧಿಸಲಾಗುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⛪ ಶೆಟ್ಟಿಹಳ್ಳಿಯ ಮುಳುಗಡೆ ಚರ್ಚ್: ವಿಸ್ಮಯಕಾರಿ ಜಲಪ್ರವಾಸೋದ್ಯಮ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹೇಮಾವತಿ ಜಲಾಶಯದ ಪ್ರಸ್ತಾಪ ಬಂದಾಗ ನೆನಪಾಗುವುದು ಜಲಾಶಯದ ಹಿನ್ನೀರಿನಲ್ಲಿರುವ ‘ಶೆಟ್ಟಿಹಳ್ಳಿ ರೋಸರಿ ಚರ್ಚ್’ (Shettihalli Rosary Church). 1860ರ ಸುಮಾರಿನಲ್ಲಿ ಫ್ರೆಂಚ್ ಮಿಷನರಿಗಳಿಂದ ನಿರ್ಮಿಸಲ್ಪಟ್ಟ ಈ ಗೋಥಿಕ್ ಶೈಲಿಯ ಭವ್ಯ ಚರ್ಚ್, 1970ರ ದಶಕದಲ್ಲಿ ಗೊರೂರು ಅಣೆಕಟ್ಟು ನಿರ್ಮಾಣವಾದಾಗ ಹಿನ್ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಯಿತು.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ವಿಸ್ಮಯಕಾರಿ ದೃಶ್ಯ:</strong> ಮಳೆಗಾಲದಲ್ಲಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ ಏರಿಕೆಯಾದಾಗ ಈ ಚರ್ಚ್ ಸಂಪೂರ್ಣವಾಗಿ ಮುಳುಗಿ, ಅದರ ಮೇಲ್ಭಾಗದ ಶಿಲುಬೆ ಗೋಪುರ ಮಾತ್ರ ನೀರಿನ ಮೇಲೆ ತೇಲುವಂತೆ ಕಾಣಿಸುತ್ತದೆ. ಬೇಸಿಗೆಯಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಇಳಿದಾಗ ಚರ್ಚ್ ಸಂಪೂರ್ಣವಾಗಿ ಭೂಮಿಯ ಮೇಲೆ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ!</li>
+      <li><strong>ಪ್ರವಾಸಿಗರ ಸ್ವರ್ಗ:</strong> ದೇಶದ ನಾನಾ ಭಾಗಗಳಿಂದ ಛಾಯಾಗ್ರಾಹಕರು, ಪ್ರವಾಸಿಗರು ಮತ್ತು ಸಿನಿಮಾರಂಗದವರು ಈ ‘ಮುಳುಗಡೆ ಚರ್ಚ್’ ನೋಡಲು ಆಗಮಿಸುತ್ತಾರೆ. ಜೊತೆಗೆ ಗೊರೂರು ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದ ಉದ್ಯಾನವನ, ಯೋಗಾನರಸಿಂಹ ಹಾಗೂ ಪರವಾಸುದೇವ ದೇವಾಲಯಗಳು ಪ್ರಮುಖ ಆಕರ್ಷಣೆಗಳಾಗಿವೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚰 ಕುಡಿಯುವ ನೀರಿನ ಭದ್ರತೆ ಮತ್ತು ಕೆರೆ ತುಂಬಿಸುವ ಯೋಜನೆಗಳು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಇತ್ತೀಚಿನ ವರ್ಷಗಳಲ್ಲಿ ಹೇಮಾವತಿ ಜಲಾಶಯವು ಬಯಲುಸೀಮೆಯ ಅಂತರ್ಜಲ ವೃದ್ಧಿಗೆ ಪ್ರಮುಖ ಅಸ್ತ್ರವಾಗಿದೆ. ಹಾಸನ ನಗರ, ಚನ್ನರಾಯಪಟ್ಟಣ, ಅರಸೀಕೆರೆ, ತಿಪಟೂರು ನಗರಗಳಿಗೆ ನಿರಂತರ ಕುಡಿಯುವ ನೀರು ಒದಗಿಸುವುದರ ಜೊತೆಗೆ, ನೂರಾರು ಕೋಟಿ ವೆಚ್ಚದ ‘ಎತ್ತಿನಹೊಳೆ ಯೋಜನೆ’ ಮತ್ತು ಕೆರೆ ತುಂಬಿಸುವ ಯೋಜನೆಗಳಿಗೆ ಹೇಮಾವತಿಯ ಜಲಾನಯನವೇ ಪ್ರಧಾನ ಆಧಾರವಾಗಿದೆ. ತುಮಕೂರು ಮತ್ತು ಮಂಡ್ಯ ಜಿಲ್ಲೆಗಳ ನೂರಾರು ಸಣ್ಣಪುಟ್ಟ ಕೆರೆಗಳಿಗೆ ಹೇಮಾವತಿಯ ನೀರನ್ನು ಹರಿಸಿ ಅಂತರ್ಜಲ ಮಟ್ಟವನ್ನು ಹೆಚ್ಚಿಸಲಾಗುತ್ತಿದೆ.
+    </p>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಹೇಮಾವತಿ ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಹೇಮಾವತಿ ಜಲಾಶಯ ಎಲ್ಲಿದೆ ಮತ್ತು ಇದರ ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಎಷ್ಟು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಹಾಸನ ತಾಲೂಕಿನ ಗೊರೂರು ಬಳಿ ಹೇಮಾವತಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ 1979ರಲ್ಲಿ ನಿರ್ಮಿಸಲಾಯಿತು. ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL) 2,922.00 ಅಡಿಗಳು ಮತ್ತು ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ 37.103 ಟಿಎಂಸಿ ಆಗಿದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಏಷ್ಯಾದ ಪ್ರಸಿದ್ಧ ಬಾಗೂರು-ನವಿಲೆ ಸುರಂಗದ (Bagur-Navile Tunnel) ಪ್ರಾಮುಖ್ಯತೆ ಏನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಇದು ಏಷ್ಯಾದಲ್ಲೇ ಅತಿ ಉದ್ದದ ನೀರಾವರಿ ಸುರಂಗಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ (ಸುಮಾರು 9.7 ಕಿ.ಮೀ). ಇದರ ಮೂಲಕ ಹೇಮಾವತಿ ಎಡದಂಡೆ ಕಾಲುವೆಯು ಹಾಸನದಿಂದ ತುಮಕೂರು, ತಿಪಟೂರು, ಕುಣಿಗಲ್ ಹಾಗೂ ಮಂಡ್ಯದ ನಾಗಮಂಗಲ ತಾಲೂಕುಗಳಿಗೆ ನೀರು ಒಯ್ಯುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಶೆಟ್ಟಿಹಳ್ಳಿ ರೋಸರಿ ಚರ್ಚ್‌ನ (ಮುಳುಗಡೆ ಚರ್ಚ್) ವಿಸ್ಮಯವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">1860ರ ಫ್ರೆಂಚ್ ಗೋಥಿಕ್ ಶೈಲಿಯ ಶೆಟ್ಟಿಹಳ್ಳಿ ರೋಸರಿ ಚರ್ಚ್ ಹೇಮಾವತಿ ಹಿನ್ನೀರಿನಲ್ಲಿದೆ. ಮಳೆಗಾಲದಲ್ಲಿ ಸಂಪೂರ್ಣ ನೀರಿನಲ್ಲಿ ಮುಳುಗಿ ಶಿಲುಬೆ ಗೋಪುರ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ; ಬೇಸಿಗೆಯಲ್ಲಿ ನೀರಿಳಿದಾಗ ಸಂಪೂರ್ಣವಾಗಿ ಭೂಮಿಯ ಮೇಲೆ ಪ್ರತ್ಯಕ್ಷವಾಗುತ್ತದೆ!</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಹೇಮಾವತಿಯಿಂದ ಹರಿಯುವ ನೀರು ಕೆಆರ್ಎಸ್ ಜಲಾಶಯಕ್ಕೆ ಹೇಗೆ ತಲುಪುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಹೊಳೆನರಸೀಪುರದ ಮೂಲಕ ಹರಿದು ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೆ.ಆರ್. ಪೇಟೆ ತಾಲೂಕಿನ ಅಕ್ಕಿಹೆಬ್ಬಾಳು ಬಳಿ ಕಾವೇರಿ ನದಿಯೊಂದಿಗೆ ಸಂಗಮಗೊಂಡು ನೇರವಾಗಿ ಕೆಆರ್ಎಸ್ ಹಿನ್ನೀರನ್ನು ಸೇರುತ್ತದೆ.</p>
+    </div>
   </div>
 
 </div>

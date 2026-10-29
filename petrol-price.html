@@ -282,6 +282,39 @@ body .hero-title {
 </style>
 <script src="/seo.js" defer></script>
 <script src="/data-loader.js" defer></script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".hero-price",
+      ".district-table",
+      ".faq-answer"
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is today's petrol and diesel price in Bengaluru and Karnataka?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Today's petrol price in Bengaluru is approximately ₹102.92 per litre and diesel is ₹88.99 per litre. Karnata.in tracks daily synchronized prices across all 31 districts of Karnataka based on IOCL, BPCL, and HPCL revisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಪೆಟ್ರೋಲ್ ಮತ್ತು ಡೀಸೆಲ್ ದರ ಎಷ್ಟು?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಇಂದಿನ ಪೆಟ್ರೋಲ್, ಡೀಸೆಲ್ ಮತ್ತು ಸಿಎನ್‌ಜಿ ದರವನ್ನು Karnata.in ನಲ್ಲಿ ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ 6:00 ಗಂಟೆಗೆ ನೇರವಾಗಿ ನವೀಕರಿಸಲಾಗುತ್ತದೆ."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -305,21 +338,21 @@ body .hero-title {
     <div class="petrol-big-card">
       <div class="pbc-fuel">ಪೆಟ್ರೋಲ್ (Petrol)</div>
       <div class="pbc-icon">⛽</div>
-      <div class="pbc-price" id="hero-petrol">₹102.86</div>
+      <div class="pbc-price" id="hero-petrol">₹110.89</div>
       <div class="pbc-unit">ಪ್ರತಿ ಲೀಟರ್</div>
       <div class="pbc-change nc">Live Rate</div>
     </div>
     <div class="petrol-big-card">
       <div class="pbc-fuel">ಡೀಸೆಲ್ (Diesel)</div>
       <div class="pbc-icon">🛢️</div>
-      <div class="pbc-price" id="hero-diesel">₹88.94</div>
+      <div class="pbc-price" id="hero-diesel">₹98.80</div>
       <div class="pbc-unit">ಪ್ರತಿ ಲೀಟರ್</div>
       <div class="pbc-change nc">Live Rate</div>
     </div>
     <div class="petrol-big-card">
       <div class="pbc-fuel">ಪ್ರೀಮಿಯಂ ಪೆಟ್ರೋಲ್ (Power)</div>
       <div class="pbc-icon">⚡</div>
-      <div class="pbc-price" id="hero-power">₹110.36</div>
+      <div class="pbc-price" id="hero-power">₹118.39</div>
       <div class="pbc-unit">ಪ್ರತಿ ಲೀಟರ್</div>
       <div class="pbc-change nc">Live Rate</div>
     </div>
@@ -352,7 +385,7 @@ body .hero-title {
     <div class="filter-grid">
       <!-- District Dropdown -->
       <select class="selector-box" id="district-select" onchange="onDistrictChange()">
-        <option value="all">📍 ಎಲ್ಲಾ 30 ಜಿಲ್ಲೆಗಳು (All Districts)</option>
+        <option value="all">📍 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳು (All Districts)</option>
       </select>
 
       <!-- City / Area Dropdown -->
@@ -807,12 +840,13 @@ const dateStr = now.toLocaleDateString('kn-IN', { weekday:'long', year:'numeric'
 document.getElementById('hero-date').textContent = 'ಸ್ವಯಂಚಾಲಿತ ಲೈವ್ ನವೀಕರಣ: ' + dateStr;
 document.getElementById('today-date').textContent = dateStr;
 
-// MASTER DISTRICT & CITIES DATASET (30 Districts, 189 Cities)
+// MASTER DISTRICT & CITIES DATASET (31 Districts, 196 Cities)
 let DISTRICTS_DATA = {
   bengaluru_urban: { name_en: "Bengaluru Urban", name_kn: "ಬೆಂಗಳೂರು ನಗರ", taluks: { bengaluru: { name_en: "Bengaluru", name_kn: "ಬೆಂಗಳೂರು", latitude: 12.959265, longitude: 77.653376, petrol: 110.89, diesel: 98.8 }, yelahanka: { name_en: "Yelahanka", name_kn: "ಯಲಹಂಕ", latitude: 13.152582, longitude: 77.568112, petrol: 110.89, diesel: 98.8 }, kengeri: { name_en: "Kengeri", name_kn: "ಕೆಂಗೇರಿ", latitude: 12.912761, longitude: 77.485541, petrol: 110.89, diesel: 98.8 }, peenya: { name_en: "Peenya", name_kn: "ಪೀಣ್ಯ", latitude: 13.013401, longitude: 77.50899, petrol: 110.89, diesel: 98.8 }, anekal: { name_en: "Anekal", name_kn: "ಆನೇಕಲ್", latitude: 12.789843, longitude: 77.625967, petrol: 110.89, diesel: 98.8 } } },
   koppal: { name_en: "Koppal", name_kn: "ಕೊಪ್ಪಳ", taluks: { gangavathi: { name_en: "Gangavathi", name_kn: "ಗಂಗಾವತಿ", latitude: 15.438473, longitude: 76.538075, petrol: 111.83, diesel: 99.7 }, koppal: { name_en: "Koppal", name_kn: "ಕೊಪ್ಪಳ", latitude: 15.34956, longitude: 76.16484, petrol: 111.83, diesel: 99.7 }, yelburga: { name_en: "Yelburga", name_kn: "ಯಲಬುರ್ಗಾ", latitude: 15.466741, longitude: 76.003861, petrol: 111.83, diesel: 99.7 }, kushtagi: { name_en: "Kushtagi", name_kn: "ಕುಷ್ಟಗಿ", latitude: 15.737206, longitude: 76.196641, petrol: 111.83, diesel: 99.7 }, karatagi: { name_en: "Karatagi", name_kn: "ಕಾರಟಗಿ", latitude: 15.619851, longitude: 76.638538, petrol: 111.83, diesel: 99.7 }, kanakagiri: { name_en: "Kanakagiri", name_kn: "ಕನಕಗಿರಿ", latitude: 15.569966, longitude: 76.424335, petrol: 111.83, diesel: 99.7 } } },
   vijayapura: { name_en: "Vijayapura", name_kn: "ವಿಜಯಪುರ", taluks: { vijayapura: { name_en: "Vijayapura", name_kn: "ವಿಜಯಪುರ", latitude: 16.78632, longitude: 75.7205, petrol: 111.39, diesel: 99.27 }, sindagi: { name_en: "Sindagi", name_kn: "ಸیندಗಿ", latitude: 16.870926, longitude: 75.497312, petrol: 111.39, diesel: 99.27 }, muddebihal: { name_en: "Muddebihal", name_kn: "ಮುದ್ದೇಬಿಹಾಳ", latitude: 16.342895, longitude: 76.129617, petrol: 111.39, diesel: 99.27 }, basavana_bagewadi: { name_en: "Basavana Bagewadi", name_kn: "ಬಸವನ ಬಾಗೇವಾಡಿ", latitude: 16.571336, longitude: 75.979339, petrol: 111.39, diesel: 99.27 }, indi: { name_en: "Indi", name_kn: "ಇಂಡಿ", latitude: 17.177492, longitude: 75.956285, petrol: 111.39, diesel: 99.27 }, chadchan: { name_en: "Chadchan", name_kn: "ಚಡಚಣ", latitude: 17.315163, longitude: 75.652884, petrol: 111.39, diesel: 99.27 } } },
   bagalkot: { name_en: "Bagalkot", name_kn: "ಬಾಗಲಕೋಟೆ", taluks: { bagalkot: { name_en: "Bagalkot", name_kn: "ಬಾಗಲಕೋಟೆ", latitude: 16.200178, longitude: 75.613475, petrol: 111.43, diesel: 99.34 }, mudhol: { name_en: "Mudhol", name_kn: "ಮುಧೋಳ", latitude: 16.340437, longitude: 75.27353, petrol: 111.43, diesel: 99.34 }, jamkhandi: { name_en: "Jamkhandi", name_kn: "ಜಮಖಂಡಿ", latitude: 16.548377, longitude: 75.182388, petrol: 111.43, diesel: 99.34 }, badami: { name_en: "Badami", name_kn: "ಬಾದಾಮಿ", latitude: 15.909709, longitude: 75.686254, petrol: 111.43, diesel: 99.34 }, bilgi: { name_en: "Bilgi", name_kn: "ಬೀಳಗಿ", latitude: 16.416765, longitude: 75.434959, petrol: 111.43, diesel: 99.34 }, ilkal: { name_en: "Ilkal", name_kn: "ಇಲಕಲ್", latitude: 15.981443, longitude: 76.102995, petrol: 111.43, diesel: 99.34 }, rabkavi_banhatti: { name_en: "Rabkavi Banhatti", name_kn: "ರಬಕವಿ ಬನಹಟ್ಟಿ", latitude: 16.491384, longitude: 75.139957, petrol: 111.43, diesel: 99.34 } } },
+  dharwad: { name_en: "Dharwad", name_kn: "ಧಾರವಾಡ", taluks: { hubballi: { name_en: "Hubballi", name_kn: "ಹುಬ್ಬಳ್ಳಿ", latitude: 15.3647, longitude: 75.124, petrol: 111.2, diesel: 99.12 }, dharwad: { name_en: "Dharwad", name_kn: "ಧಾರವಾಡ", latitude: 15.4589, longitude: 75.0078, petrol: 111.2, diesel: 99.12 }, kalghatgi: { name_en: "Kalghatgi", name_kn: "ಕಲಘಟಗಿ", latitude: 15.1822, longitude: 74.9744, petrol: 111.2, diesel: 99.12 }, kundgol: { name_en: "Kundgol", name_kn: "ಕುಂದಗೋಳ", latitude: 15.257, longitude: 75.253, petrol: 111.2, diesel: 99.12 }, navalgund: { name_en: "Navalgund", name_kn: "ನವಲಗುಂದ", latitude: 15.566, longitude: 75.365, petrol: 111.2, diesel: 99.12 }, alnavar: { name_en: "Alnavar", name_kn: "ಅಳ್ನಾವರ", latitude: 15.433, longitude: 74.733, petrol: 111.2, diesel: 99.12 }, annigeri: { name_en: "Annigeri", name_kn: "ಅಣ್ಣಿಗೇರಿ", latitude: 15.435, longitude: 75.432, petrol: 111.2, diesel: 99.12 } } },
   belagavi: { name_en: "Belagavi", name_kn: "ಬೆಳಗಾವಿ", taluks: { belgaum: { name_en: "Belgaum", name_kn: "ಬೆಳಗಾವಿ", latitude: 15.868329, longitude: 74.529144, petrol: 110.7, diesel: 98.66 }, nipani: { name_en: "Nipani", name_kn: "ನಿಪ್ಪಾಣಿ", latitude: 16.397231, longitude: 74.380541, petrol: 110.7, diesel: 98.66 }, gokak: { name_en: "Gokak", name_kn: "ಗೋಕಾಕ್", latitude: 16.160043, longitude: 74.848708, petrol: 110.7, diesel: 98.66 }, bailhongal: { name_en: "Bailhongal", name_kn: "ಬೈಲಹೊಂಗಲ", latitude: 15.814701, longitude: 74.848101, petrol: 110.7, diesel: 98.66 }, chikkodi: { name_en: "Chikkodi", name_kn: "ಚಿಕ್ಕೋಡಿ", latitude: 16.426163, longitude: 74.587892, petrol: 110.7, diesel: 98.66 }, athani: { name_en: "Athani", name_kn: "ಅಥಣಿ", latitude: 16.720887, longitude: 75.059476, petrol: 110.7, diesel: 98.66 }, raibag: { name_en: "Raibag", name_kn: "ರಾಯಭಾಗ", latitude: 16.501544, longitude: 74.760505, petrol: 110.7, diesel: 98.66 }, ramdurg: { name_en: "Ramdurg", name_kn: "ರಾಮದುರ್ಗ", latitude: 15.950208, longitude: 75.288791, petrol: 110.7, diesel: 98.66 }, saundatti: { name_en: "Saundatti", name_kn: "ಸವದತ್ತಿ", latitude: 15.77126, longitude: 75.114355, petrol: 110.7, diesel: 98.66 }, khanapur: { name_en: "Khanapur", name_kn: "ಖಾನಾಪುರ", latitude: 15.645201, longitude: 74.503101, petrol: 110.7, diesel: 98.66 }, hukkeri: { name_en: "Hukkeri", name_kn: "ಹುಕ್ಕೇರಿ", latitude: 16.332902, longitude: 74.413365, petrol: 110.7, diesel: 98.66 }, kagwad: { name_en: "Kagwad", name_kn: "ಕಾಗವಾಡ", latitude: 16.708846, longitude: 74.713347, petrol: 110.7, diesel: 98.66 } } }
 };
 
@@ -828,7 +862,7 @@ function fmt(n, fallback = 110.89) {
 
 function populateDistrictDropdown() {
   const distSelect = document.getElementById('district-select');
-  distSelect.innerHTML = '<option value="all">📍 ಎಲ್ಲಾ 30 ಜಿಲ್ಲೆಗಳು (All Districts)</option>';
+  distSelect.innerHTML = '<option value="all">📍 ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳು (All Districts)</option>';
 
   const distKeys = Object.keys(DISTRICTS_DATA);
   distKeys.forEach(key => {

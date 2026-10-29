@@ -274,6 +274,17 @@ def run() -> dict:
     store("dam_levels.json", "dam_levels", output)
     log.info(f"✅ Dams saved: {len(dams)} reservoirs | avg={output['summary']['avg_pct']}% | "
              f"total={round(tmc,1)}/{round(cap,1)} TMC")
+
+    try:
+        import subprocess, sys, os
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        bake_py = os.path.join(root_dir, "scripts", "apply_dam_fixes.py")
+        if os.path.exists(bake_py):
+            subprocess.run([sys.executable, bake_py], cwd=root_dir, check=False)
+            log.info("✅ Auto-baked live dam telemetry into HTML pages.")
+    except Exception as eb:
+        log.warning(f"⚠️ Dam bake notice: {eb}")
+
     return output
 
 

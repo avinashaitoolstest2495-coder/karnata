@@ -1,0 +1,1384 @@
+{
+  "stations": [
+    {
+      "name_kn": "ಬೆಂಗಳೂರು (ಕೆಂಪೇಗೌಡ ಬಸ್ ನಿಲ್ದಾಣ - ಮೆಜೆಸ್ಟಿಕ್)",
+      "name_en": "Bengaluru Majestic (KBS)",
+      "code": "SBC",
+      "corp": "KSRTC",
+      "district": "Bengaluru Urban",
+      "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+      "lat": 12.9774,
+      "lon": 77.5708,
+      "terminal_type": "ಕೇಂದ್ರೀಯ ಪ್ರಧಾನ ಟರ್ಮಿನಲ್",
+      "platforms": "1-30"
+    },
+    {
+      "name_kn": "ಬೆಂಗಳೂರು (ಶಾಂತಿನಗರ ಬಿಎಂಟಿಸಿ/ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಟಿಟಿಎಂಸಿ)",
+      "name_en": "Bengaluru Shanthinagar TTMC",
+      "code": "SNT",
+      "corp": "KSRTC",
+      "district": "Bengaluru Urban",
+      "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+      "lat": 12.9554,
+      "lon": 77.5932,
+      "terminal_type": "ತಮಿಳುನಾಡು & ಆಂಧ್ರ/ಕೇರಳ ಮಾರ್ಗ ಟರ್ಮಿನಲ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ಬೆಂಗಳೂರು (ಮೈಸೂರು ರಸ್ತೆ ಸ್ಯಾಟಲೈಟ್ ಬಸ್ ನಿಲ್ದಾಣ - MCTC)",
+      "name_en": "Bengaluru Mysore Road Satellite (MCTC)",
+      "code": "MCTC",
+      "corp": "KSRTC",
+      "district": "Bengaluru Urban",
+      "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
+      "lat": 12.9515,
+      "lon": 77.5401,
+      "terminal_type": "ಮೈಸೂರು/ಕೇರಳ ಹೆದ್ದಾರಿ ಟರ್ಮಿನಲ್",
+      "platforms": "1-16"
+    },
+    {
+      "name_kn": "ಮೈಸೂರು (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - ಸಿಬಿಎಸ್)",
+      "name_en": "Mysuru Central Bus Stand (CBS)",
+      "code": "MYS",
+      "corp": "KSRTC",
+      "district": "Mysuru",
+      "district_kn": "ಮೈಸೂರು",
+      "lat": 12.3106,
+      "lon": 76.6548,
+      "terminal_type": "ಪ್ರಧಾನ ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-24"
+    },
+    {
+      "name_kn": "ಮೈಸೂರು (ನಗರ ಬಸ್ ನಿಲ್ದಾಣ - ಸಿಟಿ ಬಸ್ ಸ್ಟ್ಯಾಂಡ್)",
+      "name_en": "Mysuru City Bus Stand",
+      "code": "MYC",
+      "corp": "KSRTC",
+      "district": "Mysuru",
+      "district_kn": "ಮೈಸೂರು",
+      "lat": 12.3082,
+      "lon": 76.6531,
+      "terminal_type": "ನಗರ ಸಾರಿಗೆ",
+      "platforms": "1-18"
+    },
+    {
+      "name_kn": "ಮಂಗಳೂರು (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಕೆ.ಎಸ್. ರಾವ್ ರಸ್ತೆ/ಬಿಜೈ ಟರ್ಮಿನಲ್)",
+      "name_en": "Mangaluru Bejai KSRTC Terminal",
+      "code": "MNG",
+      "corp": "KSRTC",
+      "district": "Dakshina Kannada",
+      "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+      "lat": 12.8841,
+      "lon": 74.8475,
+      "terminal_type": "ಕರಾವಳಿ ಪ್ರಧಾನ ಟರ್ಮಿನಲ್",
+      "platforms": "1-16"
+    },
+    {
+      "name_kn": "ಉಡುಪಿ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Udupi KSRTC Bus Stand",
+      "code": "UDP",
+      "corp": "KSRTC",
+      "district": "Udupi",
+      "district_kn": "ಉಡುಪಿ",
+      "lat": 13.3409,
+      "lon": 74.7421,
+      "terminal_type": "ಕರಾವಳಿ ಡಿವಿಷನ್",
+      "platforms": "1-10"
+    },
+    {
+      "name_kn": "ಕುಂದಾಪುರ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Kundapura Bus Stand",
+      "code": "KND",
+      "corp": "KSRTC",
+      "district": "Udupi",
+      "district_kn": "ಉಡುಪಿ",
+      "lat": 13.6267,
+      "lon": 74.6917,
+      "terminal_type": "ಉಪವಿಭಾಗ",
+      "platforms": "1-8"
+    },
+    {
+      "name_kn": "ಧರ್ಮಸ್ಥಳ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Dharmasthala Bus Stand",
+      "code": "DHM",
+      "corp": "KSRTC",
+      "district": "Dakshina Kannada",
+      "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+      "lat": 12.9578,
+      "lon": 75.3813,
+      "terminal_type": "ಪುಣ್ಯಕ್ಷೇತ್ರ ಹಬ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ಸುಬ್ರಹ್ಮಣ್ಯ (ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Kukke Subramanya Bus Stand",
+      "code": "KUK",
+      "corp": "KSRTC",
+      "district": "Dakshina Kannada",
+      "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+      "lat": 12.6631,
+      "lon": 75.6186,
+      "terminal_type": "ಪುಣ್ಯಕ್ಷೇತ್ರ ಹಬ್",
+      "platforms": "1-8"
+    },
+    {
+      "name_kn": "ಮಡಿಕೇರಿ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Madikeri KSRTC Bus Stand",
+      "code": "MDK",
+      "corp": "KSRTC",
+      "district": "Kodagu",
+      "district_kn": "ಕೊಡಗು",
+      "lat": 12.4244,
+      "lon": 75.7382,
+      "terminal_type": "ಮಲೆನಾಡು ಪ್ರಧಾನ ಟರ್ಮಿನಲ್",
+      "platforms": "1-10"
+    },
+    {
+      "name_kn": "ಹಾಸನ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Hassan Central Bus Stand",
+      "code": "HSN",
+      "corp": "KSRTC",
+      "district": "Hassan",
+      "district_kn": "ಹಾಸನ",
+      "lat": 13.0033,
+      "lon": 76.1004,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-18"
+    },
+    {
+      "name_kn": "ಶಿವಮೊಗ್ಗ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Shivamogga KSRTC Bus Stand",
+      "code": "SMC",
+      "corp": "KSRTC",
+      "district": "Shivamogga",
+      "district_kn": "ಶಿವಮೊಗ್ಗ",
+      "lat": 13.9299,
+      "lon": 75.5681,
+      "terminal_type": "ಮಲೆನಾಡು ಗೇಟ್‌ವೇ",
+      "platforms": "1-20"
+    },
+    {
+      "name_kn": "ಚಿಕ್ಕಮಗಳೂರು (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Chikkamagaluru Bus Stand",
+      "code": "CKM",
+      "corp": "KSRTC",
+      "district": "Chikkamagaluru",
+      "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+      "lat": 13.3153,
+      "lon": 75.7754,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ತುಮಕೂರು (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಕೇಂದ್ರೀಯ ನಿಲ್ದಾಣ)",
+      "name_en": "Tumakuru KSRTC Bus Stand",
+      "code": "TMK",
+      "corp": "KSRTC",
+      "district": "Tumakuru",
+      "district_kn": "ತುಮಕೂರು",
+      "lat": 13.3379,
+      "lon": 77.101,
+      "terminal_type": "ಹೆದ್ದಾರಿ ಪ್ರಧಾನ ಜಂಕ್ಷನ್",
+      "platforms": "1-22"
+    },
+    {
+      "name_kn": "ಚಿತ್ರದುರ್ಗ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Chitradurga Bus Stand",
+      "code": "CTA",
+      "corp": "KSRTC",
+      "district": "Chitradurga",
+      "district_kn": "ಚಿತ್ರದುರ್ಗ",
+      "lat": 14.2251,
+      "lon": 76.402,
+      "terminal_type": "ಕೇಂದ್ರ ಕರ್ನಾಟಕ ಹಬ್",
+      "platforms": "1-16"
+    },
+    {
+      "name_kn": "ದಾವಣಗೆರೆ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Davanagere KSRTC Bus Stand",
+      "code": "DVG",
+      "corp": "KSRTC",
+      "district": "Davanagere",
+      "district_kn": "ದಾವಣಗೆರೆ",
+      "lat": 14.4644,
+      "lon": 75.9218,
+      "terminal_type": "ಮಧ್ಯ ಕರ್ನಾಟಕ ಟರ್ಮಿನಲ್",
+      "platforms": "1-20"
+    },
+    {
+      "name_kn": "ಕೋಲಾರ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Kolar KSRTC Bus Stand",
+      "code": "KLR",
+      "corp": "KSRTC",
+      "district": "Kolar",
+      "district_kn": "ಕೋಲಾರ",
+      "lat": 13.1358,
+      "lon": 78.1328,
+      "terminal_type": "ಪೂರ್ವ ಕರ್ನಾಟಕ ಹಬ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Chikkaballapura Bus Stand",
+      "code": "CBP",
+      "corp": "KSRTC",
+      "district": "Chikkaballapura",
+      "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+      "lat": 13.4325,
+      "lon": 77.7275,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-10"
+    },
+    {
+      "name_kn": "ರಾಮನಗರ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Ramanagara Bus Stand",
+      "code": "RMN",
+      "corp": "KSRTC",
+      "district": "Ramanagara",
+      "district_kn": "ರಾಮನಗರ",
+      "lat": 12.7209,
+      "lon": 77.2799,
+      "terminal_type": "ಉಪವಿಭಾಗ",
+      "platforms": "1-8"
+    },
+    {
+      "name_kn": "ಮಂಡ್ಯ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Mandya KSRTC Bus Stand",
+      "code": "MDY",
+      "corp": "KSRTC",
+      "district": "Mandya",
+      "district_kn": "ಮಂಡ್ಯ",
+      "lat": 12.5218,
+      "lon": 76.8951,
+      "terminal_type": "ಹೆದ್ದಾರಿ ಟರ್ಮಿನಲ್",
+      "platforms": "1-14"
+    },
+    {
+      "name_kn": "ಚಾಮರಾಜನಗರ (ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Chamarajanagar Bus Stand",
+      "code": "CRN",
+      "corp": "KSRTC",
+      "district": "Chamarajanagar",
+      "district_kn": "ಚಾಮರಾಜನಗರ",
+      "lat": 11.9261,
+      "lon": 76.9437,
+      "terminal_type": "ದಕ್ಷಿಣ ಗಡಿ ಟರ್ಮಿನಲ್",
+      "platforms": "1-10"
+    },
+    {
+      "name_kn": "ಹುಬ್ಬಳ್ಳಿ (ಹೊಸ ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - CBT/Gokul Road)",
+      "name_en": "Hubballi New Central Bus Stand (Gokul Road)",
+      "code": "HBL",
+      "corp": "NWKRTC",
+      "district": "Dharwad",
+      "district_kn": "ಧಾರವಾಡ",
+      "lat": 15.3647,
+      "lon": 75.124,
+      "terminal_type": "NWKRTC ಮುಖ್ಯ ಪ್ರಧಾನ ಕಚೇರಿ & ಮೆಗಾ ಹಬ್",
+      "platforms": "1-32"
+    },
+    {
+      "name_kn": "ಧಾರವಾಡ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - CBT)",
+      "name_en": "Dharwad Central Bus Stand (CBT)",
+      "code": "DWD",
+      "corp": "NWKRTC",
+      "district": "Dharwad",
+      "district_kn": "ಧಾರವಾಡ",
+      "lat": 15.4589,
+      "lon": 75.0078,
+      "terminal_type": "NWKRTC ಪ್ರಮುಖ ಡಿವಿಷನ್",
+      "platforms": "1-18"
+    },
+    {
+      "name_kn": "ಬೆಳಗಾವಿ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - CBT)",
+      "name_en": "Belagavi Central Bus Stand (CBT)",
+      "code": "BGM",
+      "corp": "NWKRTC",
+      "district": "Belagavi",
+      "district_kn": "ಬೆಳಗಾವಿ",
+      "lat": 15.8497,
+      "lon": 74.4977,
+      "terminal_type": "ಉತ್ತರ ಗಡಿನಾಡು ಪ್ರಧಾನ ಹಬ್",
+      "platforms": "1-26"
+    },
+    {
+      "name_kn": "ಚಿಕ್ಕೋಡಿ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Chikkodi Bus Stand",
+      "code": "CKD",
+      "corp": "NWKRTC",
+      "district": "Belagavi",
+      "district_kn": "ಬೆಳಗಾವಿ",
+      "lat": 16.4328,
+      "lon": 74.5954,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ವಿಜಯಪುರ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - ಬಿಜಾಪುರ)",
+      "name_en": "Vijayapura Central Bus Stand",
+      "code": "BJP",
+      "corp": "NWKRTC",
+      "district": "Vijayapura",
+      "district_kn": "ವಿಜಯಪುರ",
+      "lat": 16.8302,
+      "lon": 75.71,
+      "terminal_type": "ವಿಭಾಗೀಯ ಪ್ರಧಾನ ಟರ್ಮಿನಲ್",
+      "platforms": "1-22"
+    },
+    {
+      "name_kn": "ಬಾಗಲಕೋಟೆ (ನವನಗರ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Bagalkote Navanagar Bus Stand",
+      "code": "BGK",
+      "corp": "NWKRTC",
+      "district": "Bagalkote",
+      "district_kn": "ಬಾಗಲಕೋಟೆ",
+      "lat": 16.1875,
+      "lon": 75.6987,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-16"
+    },
+    {
+      "name_kn": "ಗದಗ (ಹೊಸ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Gadag New Bus Stand",
+      "code": "GDG",
+      "corp": "NWKRTC",
+      "district": "Gadag",
+      "district_kn": "ಗದಗ",
+      "lat": 15.4285,
+      "lon": 75.6341,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-14"
+    },
+    {
+      "name_kn": "ಹಾವೇರಿ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Haveri Central Bus Stand",
+      "code": "HVR",
+      "corp": "NWKRTC",
+      "district": "Haveri",
+      "district_kn": "ಹಾವೇರಿ",
+      "lat": 14.7954,
+      "lon": 75.3991,
+      "terminal_type": "ಹೆದ್ದಾರಿ ಟರ್ಮಿನಲ್",
+      "platforms": "1-14"
+    },
+    {
+      "name_kn": "ಕಾರವಾರ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Karwar Central Bus Stand",
+      "code": "KRW",
+      "corp": "NWKRTC",
+      "district": "Uttara Kannada",
+      "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+      "lat": 14.8135,
+      "lon": 74.1298,
+      "terminal_type": "ಉತ್ತರ ಕರಾವಳಿ ಹಬ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ಶಿರಸಿ (ಹೊಸ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Sirsi New Bus Stand",
+      "code": "SRS",
+      "corp": "NWKRTC",
+      "district": "Uttara Kannada",
+      "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+      "lat": 14.6195,
+      "lon": 74.8354,
+      "terminal_type": "ಮಲೆನಾಡು ಘಾಟ್ ವಿಭಾಗ",
+      "platforms": "1-14"
+    },
+    {
+      "name_kn": "ಗೋಕರ್ಣ (ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Gokarna Bus Stand",
+      "code": "GOK",
+      "corp": "NWKRTC",
+      "district": "Uttara Kannada",
+      "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
+      "lat": 14.5426,
+      "lon": 74.3188,
+      "terminal_type": "ಧಾರ್ಮಿಕ & ಪ್ರವಾಸೋದ್ಯಮ ತಾಣ",
+      "platforms": "1-6"
+    },
+    {
+      "name_kn": "ಕಲಬುರಗಿ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ - CBT ಗುಲ್ಬರ್ಗಾ)",
+      "name_en": "Kalaburagi Central Bus Stand (CBT)",
+      "code": "KLB",
+      "corp": "KKRTC",
+      "district": "Kalaburagi",
+      "district_kn": "ಕಲಬುರಗಿ",
+      "lat": 17.3297,
+      "lon": 76.8343,
+      "terminal_type": "KKRTC ಮುಖ್ಯ ಪ್ರಧಾನ ಕಚೇರಿ & ಮೆಗಾ ಹಬ್",
+      "platforms": "1-30"
+    },
+    {
+      "name_kn": "ಬಳ್ಳಾರಿ (ಹೊಸ ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Ballari New Central Bus Stand",
+      "code": "BLY",
+      "corp": "KKRTC",
+      "district": "Ballari",
+      "district_kn": "ಬಳ್ಳಾರಿ",
+      "lat": 15.1394,
+      "lon": 76.9214,
+      "terminal_type": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ದಕ್ಷಿಣ ಹಬ್",
+      "platforms": "1-22"
+    },
+    {
+      "name_kn": "ವಿಜಯನಗರ (ಹೊಸಪೇಟೆ ಬಸ್ ನಿಲ್ದಾಣ / ಹಂಪಿ ಗೇಟ್‌ವೇ)",
+      "name_en": "Hosapete Central Bus Stand (Vijayanagara)",
+      "code": "HPT",
+      "corp": "KKRTC",
+      "district": "Vijayanagara",
+      "district_kn": "ವಿಜಯನಗರ",
+      "lat": 15.2689,
+      "lon": 76.3909,
+      "terminal_type": "ವಿಶ್ವ ಪರಂಪರೆ ಹಂಪಿ ಟರ್ಮಿನಲ್",
+      "platforms": "1-18"
+    },
+    {
+      "name_kn": "ಬೀದರ್ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Bidar Central Bus Stand",
+      "code": "BDR",
+      "corp": "KKRTC",
+      "district": "Bidar",
+      "district_kn": "ಬೀದರ್",
+      "lat": 17.9104,
+      "lon": 77.5199,
+      "terminal_type": "ಉತ್ತರ ಗಡಿ ಕಿರೀಟ ಟರ್ಮಿನಲ್",
+      "platforms": "1-16"
+    },
+    {
+      "name_kn": "ರಾಯಚೂರು (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Raichur Central Bus Stand",
+      "code": "RCR",
+      "corp": "KKRTC",
+      "district": "Raichur",
+      "district_kn": "ರಾಯಚೂರು",
+      "lat": 16.2076,
+      "lon": 77.3463,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-18"
+    },
+    {
+      "name_kn": "ಕೊಪ್ಪಳ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Koppal Central Bus Stand",
+      "code": "KPL",
+      "corp": "KKRTC",
+      "district": "Koppal",
+      "district_kn": "ಕೊಪ್ಪಳ",
+      "lat": 15.3557,
+      "lon": 76.1557,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-14"
+    },
+    {
+      "name_kn": "ಯಾದಗಿರಿ (ಕೇಂದ್ರೀಯ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Yadgir Central Bus Stand",
+      "code": "YDG",
+      "corp": "KKRTC",
+      "district": "Yadgir",
+      "district_kn": "ಯಾದಗಿರಿ",
+      "lat": 16.763,
+      "lon": 77.1378,
+      "terminal_type": "ವಿಭಾಗೀಯ ಟರ್ಮಿನಲ್",
+      "platforms": "1-12"
+    },
+    {
+      "name_kn": "ತಿರುಪತಿ (ಆರ್ಟಿಸಿ ಬಸ್ ನಿಲ್ದಾಣ)",
+      "name_en": "Tirupati RTC Central Bus Stand",
+      "code": "TPT",
+      "corp": "KSRTC",
+      "district": "Andhra Pradesh",
+      "district_kn": "ಆಂಧ್ರಪ್ರದೇಶ",
+      "lat": 13.6288,
+      "lon": 79.4192,
+      "terminal_type": "ಅಂತಾರಾಜ್ಯ ಪುಣ್ಯಕ್ಷೇತ್ರ ಹಬ್",
+      "platforms": "1-20"
+    },
+    {
+      "name_kn": "ಚೆನ್ನೈ (ಸಿಎಂಬಿಟಿ ಕೊಯಂಬೇಡು)",
+      "name_en": "Chennai CMBT Koyambedu",
+      "code": "MAS",
+      "corp": "KSRTC",
+      "district": "Tamil Nadu",
+      "district_kn": "ತಮಿಳುನಾಡು",
+      "lat": 13.0694,
+      "lon": 80.1948,
+      "terminal_type": "ಅಂತಾರಾಜ್ಯ ಮೆಗಾ ಟರ್ಮಿನಲ್",
+      "platforms": "1-35"
+    },
+    {
+      "name_kn": "ಹೈದರಾಬಾದ್ (ಎಂಜಿಬಿಎಸ್ ಇಮ್ಲಿಬನ್)",
+      "name_en": "Hyderabad MGBS Imlibun",
+      "code": "HYD",
+      "corp": "KKRTC",
+      "district": "Telangana",
+      "district_kn": "ತೆಲಂಗಾಣ",
+      "lat": 17.3786,
+      "lon": 78.4816,
+      "terminal_type": "ಅಂತಾರಾಜ್ಯ ಪ್ರಧಾನ ಹಬ್",
+      "platforms": "1-40"
+    },
+    {
+      "name_kn": "ಪಣಜಿ (ಗೋವಾ ಕದಂಬ ಬಸ್ ಟರ್ಮಿನಲ್)",
+      "name_en": "Panaji Kadamba Bus Terminal (Goa)",
+      "code": "GOA",
+      "corp": "NWKRTC",
+      "district": "Goa",
+      "district_kn": "ಗೋವಾ",
+      "lat": 15.4989,
+      "lon": 73.8278,
+      "terminal_type": "ಅಂತಾರಾಜ್ಯ ಕರಾವಳಿ ಹಬ್",
+      "platforms": "1-15"
+    },
+    {
+      "name_kn": "ಪುಣೆ (ಸ್ವರ್‌ಗೇಟ್ / ಶಿವಾಜಿನಗರ)",
+      "name_en": "Pune Swargate / Shivajinagar",
+      "code": "PUN",
+      "corp": "NWKRTC",
+      "district": "Maharashtra",
+      "district_kn": "ಮಹಾರಾಷ್ಟ್ರ",
+      "lat": 18.5018,
+      "lon": 73.8586,
+      "terminal_type": "ಅಂತಾರಾಜ್ಯ ಕೈಗಾರಿಕಾ ಹಬ್",
+      "platforms": "1-25"
+    }
+  ],
+  "services": [
+    {
+      "brand_kn": "ಫ್ಲೈಬಸ್ (Flybus)",
+      "brand_en": "Flybus",
+      "corp": "KSRTC",
+      "bus_type": "ಮಲ್ಟಿ-ಆಕ್ಸಲ್ ವೋಲ್ವೋ ಸ್ಕ್ಯಾನಿಯಾ ಎಸಿ (Multi-Axle AC)",
+      "features": "ವಿಮಾನ ನಿಲ್ದಾಣ ನೇರ ಸಂಪರ್ಕ, ಲೈವ್ ಫ್ಲೈಟ್ ಡಿಸ್ಪ್ಲೇ, ವೈ-ಫೈ, ಜಿಪಿಎಸ್, ಪ್ಯಾಂಟ್ರಿ & ಟಾಯ್ಲೆಟ್",
+      "shakti_free": false,
+      "shakti_note": "ಶಕ್ತಿ ಯೋಜನೆ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (ಪ್ರೀಮಿಯಂ AC)",
+      "key_routes": [
+        "ಕೆಂಪೇಗೌಡ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA) ➔ ಮೈಸೂರು",
+        "KIA ವಿಮಾನ ನಿಲ್ದಾಣ ➔ ಮಡಿಕೇರಿ",
+        "KIA ➔ ಕುಂದಾಪುರ/ಮಂಗಳೂರು"
+      ]
+    },
+    {
+      "brand_kn": "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್ (Airavat Club Class)",
+      "brand_en": "Airavat Club Class",
+      "corp": "KSRTC / NWKRTC / KKRTC",
+      "bus_type": "ವೋಲ್ವೋ & ಸ್ಕ್ಯಾನಿಯಾ ಮಲ್ಟಿ-ಆಕ್ಸಲ್ ಸೆಮಿ-ಸ್ಲೀಪರ್ ಎಸಿ",
+      "features": "ಅತ್ಯಂತ ಆರಾಮದಾಯಕ ಪುಷ್‌ಬ್ಯಾಕ್ ಸೀಟುಗಳು, ಪ್ರತಿಯೊಂದು ಸೀಟಿಗೂ ಮೊಬೈಲ್ ಚಾರ್ಜರ್, ಸ್ಮೂತ್ ಸಸ್ಪೆನ್ಷನ್",
+      "shakti_free": false,
+      "shakti_note": "ಶಕ್ತಿ ಯೋಜನೆ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (AC Bus)",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಮಂಗಳೂರು",
+        "ಬೆಂಗಳೂರು ➔ ಹುಬ್ಬಳ್ಳಿ/ಬೆಳಗಾವಿ",
+        "ಬೆಂಗಳೂರು ➔ ಕಲಬುರಗಿ",
+        "ಬೆಂಗಳೂರು ➔ ತಿರುಪತಿ/ಚೆನ್ನೈ/ಹೈದರಾಬಾದ್"
+      ]
+    },
+    {
+      "brand_kn": "ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್ (Ambaari Dream Class)",
+      "brand_en": "Ambaari Dream Class",
+      "corp": "KSRTC",
+      "bus_type": "ವೋಲ್ವೋ ಮಲ್ಟಿ-ಆಕ್ಸಲ್ ಎಸಿ ಸ್ಲೀಪರ್ (AC Sleeper)",
+      "features": "ವೈಯಕ್ತಿಕ ಸ್ಲೀಪರ್ ಬರ್ತ್‌ಗಳು, ಪ್ರೀಮಿಯಂ ಬೆಡ್ಡಿಂಗ್, ಎಲ್ಇಡಿ ಲೈಟಿಂಗ್, ನೈಟ್ ಜರ್ನಿ ಲಕ್ಸುರಿ",
+      "shakti_free": false,
+      "shakti_note": "ಶಕ್ತಿ ಯೋಜನೆ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (AC Sleeper)",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಬೆಳಗಾವಿ/ಪುಣೆ",
+        "ಬೆಂಗಳೂರು ➔ ಕುಂದಾಪುರ",
+        "ಬೆಂಗಳೂರು ➔ ವಿಜಯಪುರ",
+        "ಬೆಂಗಳೂರು ➔ ಹೈದರಾಬಾದ್"
+      ]
+    },
+    {
+      "brand_kn": "ಅಂಬಾರಿ ಉತ್ಸವ್ (Ambaari Utsav)",
+      "brand_en": "Ambaari Utsav",
+      "corp": "KSRTC",
+      "bus_type": "ವೋಲ್ವೋ 9600 ಪ್ರೀಮಿಯಂ ಲಕ್ಸುರಿ ಸ್ಲೀಪರ್ (ಭಾರತದ ಅತ್ಯುನ್ನತ ಬಸ್)",
+      "features": "ಏರೋಡೈನಾಮಿಕ್ ಡಿಸೈನ್, ವೈಡ್ ಸ್ಲೀಪರ್ ಬೆರ್ತ್‌ಗಳು, ಪನೋರಮಿಕ್ ಗ್ಲಾಸ್ ಕಿಟಕಿಗಳು",
+      "shakti_free": false,
+      "shakti_note": "ಶಕ್ತಿ ಯೋಜನೆ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (Ultra Luxury AC)",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಪಣಜಿ (ಗೋವಾ)",
+        "ಬೆಂಗಳೂರು ➔ ತಿರುವನಂತಪುರಂ",
+        "ಬೆಂಗಳೂರು ➔ ಮುಂಬೈ",
+        "ಬೆಂಗಳೂರು ➔ ಮಂಗಳೂರು"
+      ]
+    },
+    {
+      "brand_kn": "ಪಲ್ಲಕ್ಕಿ (Pallakki - ಉತ್ಸವ ಸ್ಲೀಪರ್)",
+      "brand_en": "Pallakki Non-AC Sleeper",
+      "corp": "KSRTC",
+      "bus_type": "ನಾನ್-ಎಸಿ ಪ್ರೀಮಿಯಂ ಸ್ಲೀಪರ್ (Non-AC Sleeper)",
+      "features": "ಕೈಗೆಟುಕುವ ದರದಲ್ಲಿ ನೈಟ್ ಸ್ಲೀಪರ್ ಸೌಲಭ್ಯ, ವೈಯಕ್ತಿಕ ಚಾರ್ಜಿಂಗ್ ಪಾಯಿಂಟ್",
+      "shakti_free": false,
+      "shakti_note": "ಸ್ಲೀಪರ್ ಬಸ್‌ಗಳಿಗೆ ಶಕ್ತಿ ಅನ್ವಯಿಸುವುದಿಲ್ಲ (ಆಸನ ಕಾಯ್ದಿರಿಸುವಿಕೆ ಕಡ್ಡಾಯ)",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಶಿವಮೊಗ್ಗ",
+        "ಬೆಂಗಳೂರು ➔ ಬೆಳಗಾವಿ",
+        "ಬೆಂಗಳೂರು ➔ ಬೀದರ್",
+        "ಬೆಂಗಳೂರು ➔ ಕಾರವಾರ"
+      ]
+    },
+    {
+      "brand_kn": "ರಾಜಹಂಸ (Rajahamsa Executive)",
+      "brand_en": "Rajahamsa Executive",
+      "corp": "KSRTC / NWKRTC / KKRTC",
+      "bus_type": "2+2 ಪುಷ್‌ಬ್ಯಾಕ್ ಸೆಮಿ-ಡಿಲಕ್ಸ್ (Deluxe Air Suspension)",
+      "features": "ಕರ್ನಾಟಕದ ಜನಪ್ರಿಯ ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಬಸ್, ಆರಾಮದಾಯಕ ಏರ್ ಸಸ್ಪೆನ್ಷನ್ ಪ್ರಯಾಣ",
+      "shakti_free": false,
+      "shakti_note": "ರಾಜಹಂಸ ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಬಸ್‌ಗೆ ಶಕ್ತಿ ಅನ್ವಯಿಸುವುದಿಲ್ಲ",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಧರ್ಮಸ್ಥಳ",
+        "ಬೆಂಗಳೂರು ➔ ಮಂತ್ರಾಲಯ",
+        "ಬೆಂಗಳೂರು ➔ ದಾವಣಗೆರೆ",
+        "ಹುಬ್ಬಳ್ಳಿ ➔ ಕಲಬುರಗಿ"
+      ]
+    },
+    {
+      "brand_kn": "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (Karnataka Sarige)",
+      "brand_en": "Karnataka Sarige (Express)",
+      "corp": "KSRTC",
+      "bus_type": "ಸಾಮಾನ್ಯ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಕೆಂಪು ಬಸ್ (Red Express Bus)",
+      "features": "ರಾಜ್ಯದ ಪ್ರತಿ ತಾಲೂಕು ಮತ್ತು ಹಳ್ಳಿಗಳನ್ನು ಸಂಪರ್ಕಿಸುವ ಅತ್ಯಂತ ವಿಶ್ವಾಸಾರ್ಹ ಬಸ್ ಸೇವೆ",
+      "shakti_free": true,
+      "shakti_note": "100% ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ (ಕರ್ನಾಟಕದ ಮಹಿಳೆಯರಿಗೆ ಶೂನ್ಯ ಟಿಕೆಟ್)",
+      "key_routes": [
+        "ಬೆಂಗಳೂರು ➔ ಮೈಸೂರು/ಹಾಸನ/ತುಮಕೂರು/ಕೋಲಾರ/ಚಿಕ್ಕಮಗಳೂರು/ಶಿವಮೊಗ್ಗ"
+      ]
+    },
+    {
+      "brand_kn": "ವಾಯವ್ಯ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (NWKRTC Sarige)",
+      "brand_en": "NWKRTC Sarige",
+      "corp": "NWKRTC",
+      "bus_type": "ವಾಯವ್ಯ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಮತ್ತು ಗ್ರಾಮೀಣ ಬಸ್ಸುಗಳು",
+      "features": "ಹುಬ್ಬಳ್ಳಿ, ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ, ಗದಗ, ಹಾವೇರಿ, ಉತ್ತರ ಕನ್ನಡ ಸಂಪರ್ಕ",
+      "shakti_free": true,
+      "shakti_note": "100% ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ (ಮಹಿಳೆಯರಿಗೆ ಸಂಪೂರ್ಣ ಉಚಿತ)",
+      "key_routes": [
+        "ಹುಬ್ಬಳ್ಳಿ ➔ ಬೆಳಗಾವಿ",
+        "ಧಾರವಾಡ ➔ ವಿಜಯಪುರ",
+        "ಹುಬ್ಬಳ್ಳಿ ➔ ಕಾರವಾರ/ಶಿರಸಿ",
+        "ಬೆಳಗಾವಿ ➔ ಚಿಕ್ಕೋಡಿ/ಬಾಗಲಕೋಟೆ"
+      ]
+    },
+    {
+      "brand_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (KKRTC Sarige)",
+      "brand_en": "KKRTC Sarige",
+      "corp": "KKRTC",
+      "bus_type": "ಕಲ್ಯಾಣ ರಥ & ಸಾಮಾನ್ಯ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಬಸ್ಸುಗಳು",
+      "features": "ಕಲಬುರಗಿ, ಬೀದರ್, ರಾಯಚೂರು, ಕೊಪ್ಪಳ, ಬಳ್ಳಾರಿ, ವಿಜಯನಗರ, ಯಾದಗಿರಿ ಭಾಗಗಳ ಜೀವನಾಡಿ",
+      "shakti_free": true,
+      "shakti_note": "100% ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ (ಮಹಿಳೆಯರಿಗೆ ಶೂನ್ಯ ದರದ ಟಿಕೆಟ್)",
+      "key_routes": [
+        "ಕಲಬುರಗಿ ➔ ಬೀದರ್",
+        "ಕಲಬುರಗಿ ➔ ರಾಯಚೂರು/ಬಳ್ಳಾರಿ",
+        "ಹೊಸಪೇಟೆ ➔ ಕೊಪ್ಪಳ/ಯಾದಗಿರಿ",
+        "ಕಲಬುರಗಿ ➔ ಬೆಂಗಳೂರು"
+      ]
+    },
+    {
+      "brand_kn": "ನಗರ ಸಾರಿಗೆ & ಗ್ರಾಮಾಂತರ (City & Grama Sarige)",
+      "brand_en": "City & Rural Sarige",
+      "corp": "KSRTC / NWKRTC / KKRTC",
+      "bus_type": "ನಗರ ಬಸ್ಸುಗಳು & ಹಳ್ಳಿ ಸಂಪರ್ಕ ಗ್ರಾಮೀಣ ಬಸ್ಸುಗಳು",
+      "features": "ಮೈಸೂರು ನಗರ ಸಾರಿಗೆ, ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ಬಿಆರ್‌ಟಿಎಸ್ (Chigari BRTS), ಕಲಬುರಗಿ ನಗರ ಸಾರಿಗೆ",
+      "shakti_free": true,
+      "shakti_note": "100% ಶಕ್ತಿ ಯೋಜನೆ ಉಚಿತ (ಮಹಿಳೆಯರಿಗೆ ನಗರ & ಗ್ರಾಮೀಣ ಬಸ್ ಸಂಪೂರ್ಣ ಉಚಿತ)",
+      "key_routes": [
+        "ಮೈಸೂರು ನಗರ ರಸ್ತೆಗಳು",
+        "ಹುಬ್ಬಳ್ಳಿ ➔ ಧಾರವಾಡ ಚಿಗರಿ ಬಿಆರ್‌ಟಿಎಸ್",
+        "ಕಲಬುರಗಿ ಸಿಟಿ"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಮೈಸೂರು",
+      "to_en": "Mysuru",
+      "corp": "KSRTC",
+      "distance": "145 ಕಿ.ಮೀ (ಬೆಂಗಳೂರು-ಮೈಸೂರು ಎಕ್ಸ್‌ಪ್ರೆಸ್‌ವೇ)",
+      "duration": "2 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 5 ರಿಂದ 10 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (24x7 ಸೇವೆ)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್ ಎಸಿ",
+        "ಫ್ಲೈಬಸ್ KIA"
+      ],
+      "fare_ordinary": "₹160 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹280 (ರಾಜಹಂಸ) · ₹420 (ಐರಾವತ AC) · ₹800 (ಫ್ಲೈಬಸ್)",
+      "via": "ಬಿಡದಿ, ರಾಮನಗರ, ಚನ್ನಪಟ್ಟಣ, ಮದ್ದೂರು, ಮಂಡ್ಯ, ಶ್ರೀರಂಗಪಟ್ಟಣ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಮಂಗಳೂರು",
+      "to_en": "Mangaluru",
+      "corp": "KSRTC",
+      "distance": "350 ಕಿ.ಮೀ (ಶಿರಾಡಿ / ಚಾರ್ಮಾಡಿ ಘಾಟ್)",
+      "duration": "7 – 8 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಹಗಲು & ರಾತ್ರಿ ಸ್ಲೀಪರ್‌ಗಳು)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್ ಎಸಿ ಸ್ಲೀಪರ್"
+      ],
+      "fare_ordinary": "₹390 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹650 (ರಾಜಹಂಸ) · ₹980 (ಐರಾವತ) · ₹1,350 (ಅಂಬಾರಿ ಉತ್ಸವ್)",
+      "via": "ನೆಲಮಂಗಲ, ಕುಣಿಗಲ್, ಚನ್ನರಾಯಪಟ್ಟಣ, ಹಾಸನ, ಸಕಲೇಶಪುರ, ಉಪ್ಪಿನಂಗಡಿ, ಬಿ.ಸಿ. ರೋಡ್",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "to_en": "Hubballi",
+      "corp": "KSRTC / NWKRTC",
+      "distance": "410 ಕಿ.ಮೀ (NH-48 ಪುಣೆ-ಬೆಂಗಳೂರು ಹೆದ್ದಾರಿ)",
+      "duration": "6 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (24x7 ಹೈವೇ ಕಾರಿಡಾರ್)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್",
+        "ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್"
+      ],
+      "fare_ordinary": "₹460 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹750 (ರಾಜಹಂಸ) · ₹1,100 (ಐರಾವತ) · ₹1,450 (ಅಂಬಾರಿ ಸ್ಲೀಪರ್)",
+      "via": "ತುಮಕೂರು, ಶಿರಾ, ಹಿರಿಯೂರು, ಚಿತ್ರದುರ್ಗ, ದಾವಣಗೆರೆ, ರಾಣೆಬೆನ್ನೂರು, ಹಾವೇರಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಬೆಳಗಾವಿ",
+      "to_en": "Belagavi",
+      "corp": "NWKRTC / KSRTC",
+      "distance": "505 ಕಿ.ಮೀ",
+      "duration": "8 – 9 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್"
+      ],
+      "fare_ordinary": "₹560 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹900 (ರಾಜಹಂಸ) · ₹1,350 (ಐರಾವತ) · ₹1,700 (ಅಂಬಾರಿ ಉತ್ಸವ್)",
+      "via": "ಚಿತ್ರದುರ್ಗ, ದಾವಣಗೆರೆ, ಹುಬ್ಬಳ್ಳಿ, ಧಾರವಾಡ, ಕಿತ್ತೂರು",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಧರ್ಮಸ್ಥಳ",
+      "to_en": "Dharmasthala",
+      "corp": "KSRTC",
+      "distance": "300 ಕಿ.ಮೀ",
+      "duration": "6 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ವಿಶೇಷ ಪುಣ್ಯಕ್ಷೇತ್ರ ಸೇವೆ)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ ಎಕ್ಸಿಕ್ಯೂಟಿವ್",
+        "ಐರಾವತ ಎಸಿ"
+      ],
+      "fare_ordinary": "₹340 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹570 (ರಾಜಹಂಸ) · ₹850 (ಐರಾವತ)",
+      "via": "ಹಾಸನ, ಸಕಲೇಶಪುರ, ಶಿರಾಡಿ ಘಾಟ್, ನೆಲ್ಯಾಡಿ, ಉಜಿರೆ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ",
+      "to_en": "Kukke Subramanya",
+      "corp": "KSRTC",
+      "distance": "285 ಕಿ.ಮೀ",
+      "duration": "6 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ"
+      ],
+      "fare_ordinary": "₹320 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹540 (ರಾಜಹಂಸ) · ₹820 (ಐರಾವತ)",
+      "via": "ನೆಲಮಂಗಲ, ಹಾಸನ, ಸಕಲೇಶಪುರ, ಗುಂಡ್ಯ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಕಲಬುರಗಿ (ಗುಲ್ಬರ್ಗಾ)",
+      "to_en": "Kalaburagi",
+      "corp": "KKRTC / KSRTC",
+      "distance": "570 ಕಿ.ಮೀ",
+      "duration": "10 – 11 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಹಗಲು & ರಾತ್ರಿ ಸ್ಲೀಪರ್‌ಗಳು)",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ಕಲ್ಯಾಣ ರಥ",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ",
+        "ಅಂಬಾರಿ ಸ್ಲೀಪರ್"
+      ],
+      "fare_ordinary": "₹640 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹990 (ರಾಜಹಂಸ) · ₹1,450 (ಐರಾವತ) · ₹1,850 (ಅಂಬಾರಿ)",
+      "via": "ತುಮಕೂರು, ಸಿರಾ, ಚಿತ್ರದುರ್ಗ, ಬಳ್ಳಾರಿ, ಸಿಂಧನೂರು, ರಾಯಚೂರು, ಜೇವರ್ಗಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಶಿವಮೊಗ್ಗ",
+      "to_en": "Shivamogga",
+      "corp": "KSRTC",
+      "distance": "280 ಕಿ.ಮೀ",
+      "duration": "5 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಪಲ್ಲಕ್ಕಿ ಸ್ಲೀಪರ್",
+        "ಐರಾವತ"
+      ],
+      "fare_ordinary": "₹310 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹510 (ರಾಜಹಂಸ) · ₹750 (ಪಲ್ಲಕ್ಕಿ) · ₹850 (ಐರಾವತ)",
+      "via": "ತುಮಕೂರು, ತಿಪಟೂರು, ಅರಸೀಕೆರೆ, ಕಡೂರು, ಭದ್ರಾವತಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ದಾವಣಗೆರೆ",
+      "to_en": "Davanagere",
+      "corp": "KSRTC",
+      "distance": "260 ಕಿ.ಮೀ",
+      "duration": "4 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್"
+      ],
+      "fare_ordinary": "₹290 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹480 (ರಾಜಹಂಸ) · ₹760 (ಐರಾವತ)",
+      "via": "ತುಮಕೂರು, ಸಿರಾ, ಚಿತ್ರದುರ್ಗ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ವಿಜಯಪುರ (ಬಿಜಾಪುರ)",
+      "to_en": "Vijayapura",
+      "corp": "NWKRTC / KSRTC",
+      "distance": "530 ಕಿ.ಮೀ",
+      "duration": "9 – 10 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 40 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್"
+      ],
+      "fare_ordinary": "₹590 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹940 (ರಾಜಹಂಸ) · ₹1,550 (ಅಂಬಾರಿ ಸ್ಲೀಪರ್)",
+      "via": "ಚಿತ್ರದುರ್ಗ, ಹೊಸಪೇಟೆ, ಕುಷ್ಟಗಿ, ಇಲಕಲ್, ಬಾಗಲಕೋಟೆ, ಆಲಮಟ್ಟಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಹೊಸಪೇಟೆ (ಹಂಪಿ)",
+      "to_en": "Hosapete (Hampi)",
+      "corp": "KKRTC / KSRTC",
+      "distance": "330 ಕಿ.ಮೀ",
+      "duration": "6 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್"
+      ],
+      "fare_ordinary": "₹370 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹600 (ರಾಜಹಂಸ) · ₹920 (ಐರಾವತ)",
+      "via": "ತುಮಕೂರು, ಹಿರಿಯೂರು, ಚಳ್ಳಕೆರೆ, ಕೂಡ್ಲಿಗಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಉಡುಪಿ / ಕುಂದಾಪುರ",
+      "to_en": "Udupi / Kundapura",
+      "corp": "KSRTC",
+      "distance": "400 ಕಿ.ಮೀ",
+      "duration": "8 – 9 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್"
+      ],
+      "fare_ordinary": "₹440 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹720 (ರಾಜಹಂಸ) · ₹1,150 (ಐರಾವತ) · ₹1,500 (ಅಂಬಾರಿ)",
+      "via": "ಹಾಸನ, ಸಕಲೇಶಪುರ, ಮಂಗಳೂರು, ಮುಲ್ಕಿ, ಉಡುಪಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಮಡಿಕೇರಿ (ಕೂರ್ಗ್)",
+      "to_en": "Madikeri (Coorg)",
+      "corp": "KSRTC",
+      "distance": "260 ಕಿ.ಮೀ",
+      "duration": "5 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಫ್ಲೈಬಸ್ KIA",
+        "ಐರಾವತ"
+      ],
+      "fare_ordinary": "₹290 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹520 (ರಾಜಹಂಸ) · ₹800 (ಐರಾವತ)",
+      "via": "ಮಂಡ್ಯ, ಮೈಸೂರು, ಹುಣಸೂರು, ಪಿರಿಯಾಪಟ್ಟಣ, ಕುಶಾಲನಗರ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+      "to_en": "Chikkamagaluru",
+      "corp": "KSRTC",
+      "distance": "240 ಕಿ.ಮೀ",
+      "duration": "4 ಗಂಟೆ 45 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ"
+      ],
+      "fare_ordinary": "₹270 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹460 (ರಾಜಹಂಸ) · ₹710 (ಐರಾವತ)",
+      "via": "ನೆಲಮಂಗಲ, ಕುಣಿಗಲ್, ಹಾಸನ, ಬೇಲೂರು",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಬಳ್ಳಾರಿ",
+      "to_en": "Ballari",
+      "corp": "KKRTC / KSRTC",
+      "distance": "310 ಕಿ.ಮೀ",
+      "duration": "5 ಗಂಟೆ 45 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ"
+      ],
+      "fare_ordinary": "₹350 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹580 (ರಾಜಹಂಸ) · ₹890 (ಐರಾವತ)",
+      "via": "ತುಮಕೂರು, ಸಿರಾ, ಹಿರಿಯೂರು, ಚಳ್ಳಕೆರೆ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಬೀದರ್",
+      "to_en": "Bidar",
+      "corp": "KKRTC / KSRTC",
+      "distance": "670 ಕಿ.ಮೀ",
+      "duration": "12 – 13 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 1 ಗಂಟೆಗೊಂದು ಬಸ್ (ರಾತ್ರಿ ಸ್ಲೀಪರ್ ಲಭ್ಯ)",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ಪಲ್ಲಕ್ಕಿ",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್"
+      ],
+      "fare_ordinary": "₹750 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹1,150 (ರಾಜಹಂಸ) · ₹1,650 (ಪಲ್ಲಕ್ಕಿ) · ₹2,100 (ಅಂಬಾರಿ ಉತ್ಸವ್)",
+      "via": "ಚಿತ್ರದುರ್ಗ, ರಾಯಚೂರು, ಕಲಬುರಗಿ, ಹುಮ್ನಾಬಾದ್",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ತಿರುಪತಿ",
+      "to_en": "Tirupati",
+      "corp": "KSRTC",
+      "distance": "250 ಕಿ.ಮೀ",
+      "duration": "5 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (24x7 ಪುಣ್ಯಕ್ಷೇತ್ರ ಸೇವೆ)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಕರ್ನಾಟಕ ಗಡಿವರೆಗೆ ಶಕ್ತಿ ಉಚಿತ)",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್ ಎಸಿ"
+      ],
+      "fare_ordinary": "₹280",
+      "fare_premium": "₹470 (ರಾಜಹಂಸ) · ₹750 (ಐರಾವತ AC)",
+      "via": "ಹೊಸಕೋಟೆ, ಕೋಲಾರ, ಮುಳಬಾಗಿಲು, ಪಲಮನೇರು, ಚಿತ್ತೂರು",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಚೆನ್ನೈ",
+      "to_en": "Chennai",
+      "corp": "KSRTC",
+      "distance": "340 ಕಿ.ಮೀ",
+      "duration": "6 – 7 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್ ಎಸಿ"
+      ],
+      "fare_ordinary": "₹380",
+      "fare_premium": "₹640 (ರಾಜಹಂಸ) · ₹980 (ಐರಾವತ AC)",
+      "via": "ಹೊಸೂರು, ಕೃಷ್ಣಗಿರಿ, ವೇಲ್ಲೂರು, ಕಾಂಚಿಪುರಂ, ಪೂನಮಲ್ಲಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಹೈದರಾಬಾದ್",
+      "to_en": "Hyderabad",
+      "corp": "KSRTC / KKRTC",
+      "distance": "570 ಕಿ.ಮೀ",
+      "duration": "9 – 10 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಹೆಚ್ಚಾಗಿ ನೈಟ್ ಸ್ಲೀಪರ್ಸ್)",
+      "services": [
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್",
+        "ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್ ಎಸಿ ಸ್ಲೀಪರ್"
+      ],
+      "fare_ordinary": "₹620",
+      "fare_premium": "₹990 (ರಾಜಹಂಸ) · ₹1,490 (ಐರಾವತ) · ₹1,890 (ಅಂಬಾರಿ)",
+      "via": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ಬಾಗೇಪಲ್ಲಿ, ಅನಂತಪುರ, ಕರ್ನೂಲ್, ಜಡ್ಚೆರ್ಲಾ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಪಣಜಿ (ಗೋವಾ)",
+      "to_en": "Panaji (Goa)",
+      "corp": "KSRTC / NWKRTC",
+      "distance": "590 ಕಿ.ಮೀ",
+      "duration": "11 – 12 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿದಿನ ಸಂಜೆ ಪ್ರಮುಖ ಸ್ಲೀಪರ್ ನಿರ್ಗಮನಗಳು",
+      "services": [
+        "ರಾಜಹಂಸ",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್ ಲಕ್ಸುರಿ ಎಸಿ ಸ್ಲೀಪರ್"
+      ],
+      "fare_ordinary": "₹680",
+      "fare_premium": "₹1,150 (ರಾಜಹಂಸ) · ₹1,950 (ಅಂಬಾರಿ ಉತ್ಸವ್)",
+      "via": "ತುಮಕೂರು, ದಾವಣಗೆರೆ, ಹುಬ್ಬಳ್ಳಿ, ಧಾರವಾಡ, ಅಳ್ನಾವರ, ರಾಮನಗರ, ಮೊಲ್ಲೆಮ್",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಬೆಂಗಳೂರು",
+      "from_en": "Bengaluru",
+      "to_kn": "ಪುಣೆ",
+      "to_en": "Pune",
+      "corp": "NWKRTC / KSRTC",
+      "distance": "840 ಕಿ.ಮೀ",
+      "duration": "14 – 15 ಗಂಟೆಗಳು",
+      "frequency": "ಪ್ರತಿದಿನ ಸಂಜೆ ನಿಯಮಿತ ಎಸಿ ಸ್ಲೀಪರ್ಸ್",
+      "services": [
+        "ಐರಾವತ ಮಲ್ಟಿ-ಆಕ್ಸಲ್",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್ ಎಸಿ ಸ್ಲೀಪರ್"
+      ],
+      "fare_ordinary": "₹920",
+      "fare_premium": "₹1,850 (ಐರಾವತ) · ₹2,400 (ಅಂಬಾರಿ ಉತ್ಸವ್)",
+      "via": "ಚಿತ್ರದುರ್ಗ, ಹುಬ್ಬಳ್ಳಿ, ಬೆಳಗಾವಿ, ಕೊಲ್ಲಾಪುರ, ಸತಾರಾ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "from_en": "Hubballi",
+      "to_kn": "ಬೆಳಗಾವಿ",
+      "to_en": "Belagavi",
+      "corp": "NWKRTC",
+      "distance": "95 ಕಿ.ಮೀ",
+      "duration": "1 ಗಂಟೆ 45 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಹೈ-ಫ್ರೀಕ್ವೆನ್ಸಿ ಕಾರಿಡಾರ್)",
+      "services": [
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ",
+        "ನಗರ ಎಕ್ಸ್‌ಪ್ರೆಸ್"
+      ],
+      "fare_ordinary": "₹110 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹190 (ರಾಜಹಂಸ)",
+      "via": "ಧಾರವಾಡ, ನರೇಂದ್ರ ಬೈಪಾಸ್, ಗರಗ್, ಕಿತ್ತೂರು, ಹಿರೇಬಾಗೇವಾಡಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "from_en": "Hubballi",
+      "to_kn": "ಧಾರವಾಡ",
+      "to_en": "Dharwad",
+      "corp": "NWKRTC",
+      "distance": "20 ಕಿ.ಮೀ (ಚಿಗಳಿ BRTS ಹಸಿರು ಕಾರಿಡಾರ್)",
+      "duration": "30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 3 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಚಿಗಳಿ ಹೈ-ಫ್ರೀಕ್ವೆನ್ಸಿ)",
+      "services": [
+        "ಚಿಗಳಿ BRTS AC & ನಾನ್-ಎಸಿ (ಶಕ್ತಿ ಉಚಿತ 🟢)"
+      ],
+      "fare_ordinary": "₹25 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹35 (AC ಚಿಗರಿ)",
+      "via": "ನವನಗರ, ರಾಯಾಪುರ, ವಿದ್ಯಾಗಿರಿ, ಜುಬಿಲಿ ಸರ್ಕಲ್",
+      "booking_available": false
+    },
+    {
+      "from_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "from_en": "Hubballi",
+      "to_kn": "ಕಾರವಾರ",
+      "to_en": "Karwar",
+      "corp": "NWKRTC",
+      "distance": "165 ಕಿ.ಮೀ",
+      "duration": "3 ಗಂಟೆ 45 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹190 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹320 (ರಾಜಹಂಸ)",
+      "via": "ಕಲಘಟಗಿ, ಯಲ್ಲಾಪುರ (ಅರಬೈಲ್ ಘಾಟ್), ಅಂಕೋಲಾ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "from_en": "Hubballi",
+      "to_kn": "ವಿಜಯಪುರ",
+      "to_en": "Vijayapura",
+      "corp": "NWKRTC",
+      "distance": "195 ಕಿ.ಮೀ",
+      "duration": "4 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 25 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹220 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹360 (ರಾಜಹಂಸ)",
+      "via": "ನರಗುಂದ, ಕುಳಗೇರಿ ಕ್ರಾಸ್, ಬಾಗಲಕೋಟೆ, ಆಲಮಟ್ಟಿ, ಕೊಲ್ಹಾರ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಹುಬ್ಬಳ್ಳಿ",
+      "from_en": "Hubballi",
+      "to_kn": "ಕಲಬುರಗಿ",
+      "to_en": "Kalaburagi",
+      "corp": "NWKRTC / KKRTC",
+      "distance": "340 ಕಿ.ಮೀ",
+      "duration": "7 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 45 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹380 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹610 (ರಾಜಹಂಸ)",
+      "via": "ಗದಗ, ಕೊಪ್ಪಳ, ಕುಷ್ಟಗಿ, ಇಲಕಲ್, ಶಹಾಪುರ, ಜೇವರ್ಗಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಕಲಬುರಗಿ",
+      "from_en": "Kalaburagi",
+      "to_kn": "ಬೀದರ್",
+      "to_en": "Bidar",
+      "corp": "KKRTC",
+      "distance": "120 ಕಿ.ಮೀ",
+      "duration": "2 ಗಂಟೆ 30 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹140 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹240 (ರಾಜಹಂಸ)",
+      "via": "ಕಮಲಾಪುರ, ಹುಮ್ನಾಬಾದ್, ಮನ್ನಾಎಖೇಳ್ಳಿ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಕಲಬುರಗಿ",
+      "from_en": "Kalaburagi",
+      "to_kn": "ರಾಯಚೂರು",
+      "to_en": "Raichur",
+      "corp": "KKRTC",
+      "distance": "180 ಕಿ.ಮೀ",
+      "duration": "4 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹210 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹340 (ರಾಜಹಂಸ)",
+      "via": "ಜೇವರ್ಗಿ, ಶಹಾಪುರ, ಸುರಪುರ, ದೇವದುರ್ಗ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಕಲಬುರಗಿ",
+      "from_en": "Kalaburagi",
+      "to_kn": "ಬಳ್ಳಾರಿ",
+      "to_en": "Ballari",
+      "corp": "KKRTC",
+      "distance": "290 ಕಿ.ಮೀ",
+      "duration": "6 ಗಂಟೆ",
+      "frequency": "ಪ್ರತಿ 40 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹330 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹520 (ರಾಜಹಂಸ)",
+      "via": "ಶಹಾಪುರ, ರಾಯಚೂರು, ಮಾನ್ವಿ, ಸಿಂಧನೂರು, ಸಿರುಗುಪ್ಪ",
+      "booking_available": true
+    },
+    {
+      "from_kn": "ಮಂಗಳೂರು",
+      "from_en": "Mangaluru",
+      "to_kn": "ಉಡುಪಿ",
+      "to_en": "Udupi",
+      "corp": "KSRTC",
+      "distance": "55 ಕಿ.ಮೀ (NH-66 ಕರಾವಳಿ ಎಕ್ಸ್‌ಪ್ರೆಸ್)",
+      "duration": "1 ಗಂಟೆ 10 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್ (ಹಗಲು-ರಾತ್ರಿ)",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ವೋಲ್ವೋ ಎಸಿ"
+      ],
+      "fare_ordinary": "₹65 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹110 (ವೋಲ್ವೋ ಎಸಿ)",
+      "via": "ಸುರತ್ಕಲ್, ಪಡುಬಿದ್ರಿ, ಕಾಪು, ಕಟಪಾಡಿ",
+      "booking_available": false
+    },
+    {
+      "from_kn": "ಮೈಸೂರು",
+      "from_en": "Mysuru",
+      "to_kn": "ಹಾಸನ",
+      "to_en": "Hassan",
+      "corp": "KSRTC",
+      "distance": "120 ಕಿ.ಮೀ",
+      "duration": "2 ಗಂಟೆ 45 ನಿಮಿಷ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೊಂದು ಬಸ್",
+      "services": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (ಶಕ್ತಿ ಉಚಿತ 🟢)",
+        "ರಾಜಹಂಸ"
+      ],
+      "fare_ordinary": "₹135 (ಮಹಿಳೆಯರಿಗೆ ₹0 ಶಕ್ತಿ)",
+      "fare_premium": "₹230 (ರಾಜಹಂಸ)",
+      "via": "ಶ್ರೀರಂಗಪಟ್ಟಣ, ಪಾಂಡವಪುರ, ಕೆ.ಆರ್. ಪೇಟೆ, ಚನ್ನರಾಯಪಟ್ಟಣ ಅಥವಾ ಕೆ.ಆರ್. ನಗರ, ಹೊಳೆನರಸೀಪುರ",
+      "booking_available": true
+    }
+  ],
+  "corporations": {
+    "KSRTC": {
+      "name_kn": "ಕರ್ನಾಟಕ ರಾಜ್ಯ ರಸ್ತೆ ಸಾರಿಗೆ ನಿಗಮ (KSRTC)",
+      "name_en": "Karnataka State Road Transport Corporation",
+      "hq_kn": "ಶಾಂತಿನಗರ, ಬೆಂಗಳೂರು",
+      "hq_en": "Shanthinagar, Bengaluru",
+      "established": 1961,
+      "fleet_size": "8,200+ ಬಸ್ಸುಗಳು",
+      "divisions": 16,
+      "color": "#DC2626",
+      "shakti_free_types": [
+        "ಕರ್ನಾಟಕ ಸಾರಿಗೆ",
+        "ನಗರ ಸಾರಿಗೆ",
+        "ಗ್ರಾಮೀಣ ಸಾರಿಗೆ (ನಾನ್-ಎಸಿ)"
+      ],
+      "premium_types": [
+        "ಫ್ಲೈಬಸ್",
+        "ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್",
+        "ಅಂಬಾರಿ ಉತ್ಸವ್",
+        "ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್",
+        "ಪಲ್ಲಕ್ಕಿ",
+        "ರಾಜಹಂಸ"
+      ],
+      "official_booking_url": "https://ksrtc.in",
+      "helpline": "080-49596666 / 080-26252625"
+    },
+    "NWKRTC": {
+      "name_kn": "ವಾಯವ್ಯ ಕರ್ನಾಟಕ ರಸ್ತೆ ಸಾರಿಗೆ ಸಂಸ್ಥೆ (NWKRTC)",
+      "name_en": "North Western Karnataka Road Transport Corporation",
+      "hq_kn": "ಗೋಕುಲ ರಸ್ತೆ, ಹುಬ್ಬಳ್ಳಿ",
+      "hq_en": "Gokul Road, Hubballi",
+      "established": 1997,
+      "fleet_size": "4,700+ ಬಸ್ಸುಗಳು",
+      "divisions": 8,
+      "coverage": "ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ, ಗದಗ, ಹಾವೇರಿ, ಉತ್ತರ ಕನ್ನಡ",
+      "color": "#0284C7",
+      "shakti_free_types": [
+        "ವಾಯವ್ಯ ಸಾರಿಗೆ",
+        "ಚಿಗಳಿ BRTS (ನಾನ್-ಎಸಿ)",
+        "ಗ್ರಾಮೀಣ ಸಾರಿಗೆ"
+      ],
+      "premium_types": [
+        "ಐರಾವತ",
+        "ಅಂಬಾರಿ",
+        "ರಾಜಹಂಸ",
+        "ಚಿಗಳಿ AC BRTS"
+      ],
+      "official_booking_url": "https://ksrtc.in",
+      "helpline": "0836-2237511"
+    },
+    "KKRTC": {
+      "name_kn": "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ ರಸ್ತೆ ಸಾರಿಗೆ ಸಂಸ್ಥೆ (KKRTC)",
+      "name_en": "Kalyana Karnataka Road Transport Corporation",
+      "hq_kn": "ಕಲಬುರಗಿ (ಗುಲ್ಬರ್ಗಾ)",
+      "hq_en": "Kalaburagi",
+      "established": 2000,
+      "fleet_size": "4,300+ ಬಸ್ಸುಗಳು",
+      "divisions": 9,
+      "coverage": "ಕಲಬುರಗಿ, ಬೀದರ್, ರಾಯಚೂರು, ಕೊಪ್ಪಳ, ಬಳ್ಳಾರಿ, ವಿಜಯನಗರ, ಯಾದಗಿರಿ",
+      "color": "#059669",
+      "shakti_free_types": [
+        "ಕಲ್ಯಾಣ ಸಾರಿಗೆ",
+        "ಕಲ್ಯಾಣ ರಥ (ನಾನ್-ಎಸಿ)",
+        "ನಗರ ಸಾರಿಗೆ"
+      ],
+      "premium_types": [
+        "ಕಲ್ಯಾಣ ರಥ ಪ್ರೀಮಿಯಂ",
+        "ರಾಜಹಂಸ",
+        "ಐರಾವತ"
+      ],
+      "official_booking_url": "https://ksrtc.in",
+      "helpline": "08472-227688"
+    }
+  },
+  "shakti_rules": {
+    "free": [
+      "ಕರ್ನಾಟಕ ಸಾರಿಗೆ (KSRTC Ordinary / Express)",
+      "ವಾಯವ್ಯ ಸಾರಿಗೆ (NWKRTC Ordinary / Express)",
+      "ಕಲ್ಯಾಣ ಸಾರಿಗೆ (KKRTC Ordinary / Express)",
+      "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ಚಿಗರಿ ಬಿಆರ್‌ಟಿಎಸ್ (ನಾನ್-ಎಸಿ)",
+      "ಮೈಸೂರು, ಕಲಬುರಗಿ, ಮಂಗಳೂರು, ಬೆಳಗಾವಿ ನಗರ & ಗ್ರಾಮಾಂತರ ಬಸ್ಸುಗಳು"
+    ],
+    "paid": [
+      "ಫ್ಲೈಬಸ್ (Flybus KIA Airport AC)",
+      "ಐರಾವತ & ಐರಾವತ ಕ್ಲಬ್ ಕ್ಲಾಸ್ (Airavat AC)",
+      "ಅಂಬಾರಿ ಉತ್ಸವ್ & ಅಂಬಾರಿ ಡ್ರೀಮ್ ಕ್ಲಾಸ್ (Ambaari AC Sleeper)",
+      "ಪಲ್ಲಕ್ಕಿ ಸ್ಲೀಪರ್ (Pallakki Non-AC Sleeper - ಕಡ್ಡಾಯ ರಿಸರ್ವೇಶನ್)",
+      "ರಾಜಹಂಸ ಎಕ್ಸಿಕ್ಯೂಟಿವ್ (Rajahamsa Executive)",
+      "ಅಂತಾರಾಜ್ಯ ಗಡಿಯ ನಂತರದ ದೂರ (Out of Karnataka distance)"
+    ],
+    "documents": "ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಅಧಿಕೃತ ವಿಳಾಸ ಪುರಾವೆ (ಆಧಾರ್ ಕಾರ್ಡ್, ವೋಟರ್ ಐಡಿ, ಚಾಲನಾ ಪರವಾನಗಿ, ಸೇವಾ ಸಿಂಧು ಶಕ್ತಿ ಸ್ಮಾರ್ಟ್ ಕಾರ್ಡ್)"
+  },
+  "booking_links": {
+    "ksrtc_portal": "https://ksrtc.in",
+    "ksrtc_app": "https://play.google.com/store/apps/details?id=com.ksrtc.awatar.awatarapp",
+    "advance_days": "30 ದಿನಗಳ ಮುಂಚಿತವಾಗಿ ಆನ್‌ಲೈನ್ ಟಿಕೆಟ್ ಬುಕ್ ಮಾಡಬಹುದು",
+    "round_trip_discount": "ರೌಂಡ್ ಟ್ರಿಪ್ (ಹೋಗಿ-ಬರುವ ಟಿಕೆಟ್) ಬುಕ್ ಮಾಡಿದರೆ ಶೇ. 10 ರಿಯಾಯಿತಿ"
+  },
+  "total_village_stops_count": 5935,
+  "total_districts": 31,
+  "total_taluks": 238
+}

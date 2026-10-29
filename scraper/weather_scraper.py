@@ -168,11 +168,47 @@ def scrape_imd_nowcast():
         with urllib.request.urlopen(req, context=ctx, timeout=12) as r:
             html = r.read().decode('utf-8', errors='ignore')
             districts_map = parse_areas_by_object_id(html, "IMD 3-Hour Real-Time Nowcast")
-            print(f"  OK Nowcast: {len(districts_map)} districts parsed by OBJECTID")
-            return districts_map
+
+            # Extract Issue Time & Valid Upto
+            m_issue = re.search(r'Time\s*of\s*issue\s*:?\s*([0-9\-]+)?\s*([0-9:]+\s*(?:Hrs|IST)?)', html, re.I)
+            m_valid = re.search(r'Valid\s*upto\s*:?\s*([0-9:]+\s*(?:Hrs|IST)?)', html, re.I)
+            issue_time = ""
+            valid_upto = ""
+            if m_issue:
+                issue_time = f"{m_issue.group(1) or ''} {m_issue.group(2) or ''}".strip()
+            if m_valid:
+                valid_upto = m_valid.group(1).strip()
+
+            # Also check district balloons for issue time/validity if header was sparse
+            for d in districts_map.values():
+                raw = d.get('warning_info', '')
+                if not issue_time and 'Time of issue:' in raw:
+                    sub = re.search(r'Time\s*of\s*issue\s*:?\s*([0-9\-]+)?\s*([0-9:]+\s*(?:Hrs|IST)?)', raw, re.I)
+                    if sub: issue_time = f"{sub.group(1) or ''} {sub.group(2) or ''}".strip()
+                if not valid_upto and 'Valid upto:' in raw:
+                    sub2 = re.search(r'Valid\s*upto\s*:?\s*([0-9:]+\s*(?:Hrs|IST)?)', raw, re.I)
+                    if sub2: valid_upto = sub2.group(1).strip()
+
+                # Clean up raw warning text
+                clean_text = raw
+                if 'Time of issue:' in clean_text:
+                    clean_text = clean_text.split('Time of issue:')[0].strip()
+                clean_text = re.sub(r'[\(\s]+$', '', clean_text).strip()
+                if not clean_text or clean_text.lower() == 'no warning':
+                    clean_text = 'ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).'
+                d['warning_info'] = clean_text
+
+            print(f"  OK Nowcast: {len(districts_map)} districts | Issue: {issue_time} | Valid: {valid_upto}")
+            return {
+                "source": url,
+                "date": datetime.now().strftime("%Y-%m-%d"),
+                "issue_time": issue_time or datetime.now().strftime("%Y-%m-%d %H:00 Hrs"),
+                "valid_upto": valid_upto or "ಮುಂದಿನ 3 ಗಂಟೆಗಳು",
+                "districts": districts_map
+            }
     except Exception as e:
         print(f"  ERR Nowcast: {e}")
-        return {}
+        return {"source": url, "districts": {}}
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 3. SCRAPE KSNDMC WEB DASHBOARD (:804)
@@ -350,10 +386,12 @@ def fetch_telemetry():
                 d_obj = wmo_map.get(c, {"kn": "ಮೋಡ", "icon": "⛅"})
                 raw_t = h_times[i]
                 hour_str = raw_t[11:16] if len(raw_t) >= 16 else raw_t
+                prob_val = h_probs[i] if i < len(h_probs) else 0
                 hourly_24h.append({
                     "time": hour_str,
                     "temp_c": round(h_temps[i], 1) if i < len(h_temps) else temp_c,
-                    "precip_prob": h_probs[i] if i < len(h_probs) else 0,
+                    "precip_prob": prob_val,
+                    "rain_chance": prob_val,
                     "precip_mm": round(h_precips[i], 1) if i < len(h_precips) else 0.0,
                     "desc_kn": d_obj["kn"],
                     "icon": d_obj["icon"]
@@ -437,6 +475,8 @@ def run_full_sync():
 
     day1_districts = forecast_5days.get('Day_1', {}).get('districts', {})
 
+    nowcast_districts = nowcast.get('districts', {}) if isinstance(nowcast, dict) else nowcast
+
     full_weather = {
         "date": time.strftime("%Y-%m-%d"),
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%S+05:30"),
@@ -444,10 +484,12 @@ def run_full_sync():
         "state_extremes": ksndmc,
         "nowcast": {
             "source": "https://mausam.imd.gov.in/imd_latest/contents/districtwisewarnings_mc.php?id=13",
-            "districts": nowcast
+            "issue_time": nowcast.get('issue_time', '') if isinstance(nowcast, dict) else '',
+            "valid_upto": nowcast.get('valid_upto', '') if isinstance(nowcast, dict) else '',
+            "districts": nowcast_districts
         },
         "forecast_5days": forecast_5days,
-        "imd_warnings": day1_districts if day1_districts else nowcast,
+        "imd_warnings": day1_districts if day1_districts else nowcast_districts,
         "total_districts": len(telemetry),
         "districts": telemetry
     }

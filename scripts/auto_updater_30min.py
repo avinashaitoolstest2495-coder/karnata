@@ -60,6 +60,15 @@ try:
 except Exception as e:
     print("[WARN] Daily Quiz notice:", e)
 
+# 2d. Scrape latest Karnataka Dam Water Levels & Bake HTML Pages
+try:
+    print("Step 2d: Scraping latest Karnataka Dam Water Levels (Karnataka Water API)...")
+    dam_scraper_py = os.path.join(ROOT_DIR, 'scripts', 'run_dam_scraper.py')
+    subprocess.run([sys.executable, dam_scraper_py], cwd=ROOT_DIR, check=True)
+    print("[OK] Dam water levels scraped and baked.")
+except Exception as e:
+    print("[WARN] Dam scraper notice:", e)
+
 # 3. Sync static telemetry metrics into DOMs
 try:
     print("Step 3: Syncing static DOM telemetry metrics (Index, Weather, Gold-Rate)...")
@@ -89,7 +98,7 @@ except Exception as e:
 # 5. Deploy to Cloudflare Pages
 try:
     print("Step 5: Deploying updated weather and site to Cloudflare Pages...")
-    subprocess.run(['npx', 'wrangler', 'pages', 'deploy', '.', '--project-name=karnata', '--commit-dirty=true'], cwd=NK_DIR, shell=True, check=True)
+    subprocess.run(['npx', '--yes', 'wrangler', 'pages', 'deploy', '.', '--project-name=karnata', '--commit-dirty=true'], cwd=ROOT_DIR, shell=True, check=True)
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] [SUCCESS] Karnata.in deployed successfully!")
 except Exception as e:
     print("[ERROR] Deployment error:", e)

@@ -239,44 +239,49 @@ def check_dam():
 
 
 def check_weather():
-    """Alert districts with heavy rain forecast in their own language."""
+    """Alert districts with heavy rain forecast (Yellow, Orange, Red alerts only, throttled to 3 hours)."""
+    import time
     data = _read_data("weather.json")
     if not data:
         return
 
     districts = data.get("districts", {})
     state = _load_state()
-    alerted_today = state.get("weather_alerted_date")
-    today = data.get("date", "")
-
-    # Reset daily — only one rain alert per district per day
-    if alerted_today != today:
-        state["weather_alerted_districts"] = []
-        state["weather_alerted_date"] = today
-
-    already_alerted = set(state.get("weather_alerted_districts", []))
+    weather_timestamps = state.get("weather_district_last_ts", {})
+    now_ts = int(time.time())
+    THREE_HOURS_SECS = 3 * 3600  # 3 Hours (10,800 seconds)
 
     for dist_key, dist in districts.items():
         current = dist.get("current", {})
         rain_chance = current.get("rain_chance", 0)
         name_kn = dist.get("name_kn", dist_key)
+        alert_lvl = (dist.get("alert_level") or current.get("alert_level") or "").lower().strip()
 
-        if rain_chance >= RAIN_HEAVY_PCT and dist_key not in already_alerted:
-            send_push(
-                title_kn=f"🌧️ {name_kn} — ಭಾರೀ ಮಳೆ ಎಚ್ಚರಿಕೆ",
-                body_kn=f"ಇಂದು {name_kn}ನಲ್ಲಿ {rain_chance}% ಮಳೆ ಸಾಧ್ಯತೆ. ಹೊರಗೆ ಹೋಗುವ ಮೊದಲು ಸಿದ್ಧವಾಗಿರಿ.",
-                filter_tags=[
-                    {"field": "tag", "key": "district", "relation": "=", "value": dist.get("hq", name_kn)},
-                    {"operator": "AND"},
-                    {"field": "tag", "key": "pref_rain", "relation": "=", "value": "true"},
-                ],
-                url="/weather.html",
-            )
-            already_alerted.add(dist_key)
+        # ONLY IF YELLOW, ORANGE, OR RED ALERT!
+        is_qualifying_alert = (alert_lvl in ["yellow", "orange", "red"]) or (rain_chance >= RAIN_HEAVY_PCT)
+        if not is_qualifying_alert:
+            continue
 
-    state["weather_alerted_districts"] = list(already_alerted)
+        # ONLY ONCE EVERY THREE HOURS!
+        last_ts = weather_timestamps.get(dist_key, 0)
+        if now_ts - last_ts < THREE_HOURS_SECS:
+            log.info(f"⏳ Weather alert for {dist_key} suppressed (3-hour cooldown active: {(THREE_HOURS_SECS - (now_ts - last_ts)) // 60}m remaining)")
+            continue
+
+        send_push(
+            title_kn=f"🌧️ {name_kn} — ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ({alert_lvl.upper() if alert_lvl else 'ಮಳೆ'})",
+            body_kn=f"{name_kn}ನಲ್ಲಿ ಮುಂದಿನ 3 ಗಂಟೆಗಳಲ್ಲಿ ಬಿರುಗಾಳಿ ಅಥವಾ ಭಾರೀ ಮಳೆ ಸಂಭವ ({rain_chance}% ಸಾಧ್ಯತೆ). ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ.",
+            filter_tags=[
+                {"field": "tag", "key": "district", "relation": "=", "value": dist.get("hq", name_kn)},
+                {"operator": "AND"},
+                {"field": "tag", "key": "pref_rain", "relation": "=", "value": "true"},
+            ],
+            url="/weather.html",
+        )
+        weather_timestamps[dist_key] = now_ts
+
+    state["weather_district_last_ts"] = weather_timestamps
     _save_state(state)
-
 
 def send_morning_custom_bulletin(district_key: str = "bengaluru-urban"):
     """Send customized morning bulletin push notification containing petrol, dam, weather, top 5 news, gold rate, and important updates."""

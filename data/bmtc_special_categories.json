@@ -1,0 +1,413 @@
+{
+  "airport_kia": [
+    {
+      "route_no": "KIA-4",
+      "origin_kn": "ಹೆಚ್.ಎ.ಎಲ್ ಮುಖ್ಯ ಗೇಟ್",
+      "origin_en": "HAL Main Gate",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಇಂದಿರಾನಗರ, ಕಂಟೋನ್ಮೆಂಟ್, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹260",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-5",
+      "origin_kn": "ಬನಶಂಕರಿ ಟಿಟಿಎಂಸಿ",
+      "origin_en": "Banashankari TTMC",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಜಯನಗರ, ಶಾಂತಿನಗರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹310",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-6",
+      "origin_kn": "ಕಾಡುಗೋಡಿ ಬಸ್ ನಿಲ್ದಾಣ (ವೈಟ್‌ಫೀಲ್ಡ್)",
+      "origin_en": "Kadugodi Bus Station (Whitefield)",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಹೂಡಿ, ಕೆ.ಆರ್. ಪುರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹330",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-7",
+      "origin_kn": "ಹೆಚ್.ಎಸ್.ಆರ್. ಲೇಔಟ್ (ಬಿಡಿಎ ಕಾಂಪ್ಲೆಕ್ಸ್)",
+      "origin_en": "HSR Layout (BDA Complex)",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಕೋರಮಂಗಲ, ದೊಮ್ಮಲೂರು, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 25 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹300",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-7A",
+      "origin_kn": "ಸರ್ಜಾಪುರ",
+      "origin_en": "Sarjapur",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಡೊಮ್ಮಸಂದ್ರ, ಕಾರ್ಮೆಲಾರಾಮ್, ಬೆಳ್ಳಂದೂರು, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 40 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹340",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-8",
+      "origin_kn": "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ (ಇನ್ಫೋಸಿಸ್ ಗೇಟ್)",
+      "origin_en": "Electronic City (Infosys Gate)",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಸಿಲ್ಕ್ ಬೋರ್ಡ್, ಮಾರತ್‌ಹಳ್ಳಿ, ಕೆ.ಆರ್. ಪುರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹350",
+      "trip_type": "24x7 ಸೇವೆ (ಹೈ-ಫ್ರೀಕ್ವೆನ್ಸಿ)",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-8A",
+      "origin_kn": "ಚಂದಾಪುರ",
+      "origin_en": "Chandapura",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಬೊಮ್ಮಸಂದ್ರ, ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ, ಸಿಲ್ಕ್ ಬೋರ್ಡ್",
+      "frequency": "ಪ್ರತಿ 45 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹380",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-9",
+      "origin_kn": "ಕೆಂಪೇಗೌಡ ಬಸ್ ನಿಲ್ದಾಣ (ಮೆಜೆಸ್ಟಿಕ್)",
+      "origin_en": "Kempegowda Bus Station (Majestic)",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಆನಂದ್ ರಾವ್ ಸರ್ಕಲ್, ಕಾವೇರಿ ಥಿಯೇಟರ್, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೆ (ಅತಿ ಹೆಚ್ಚು ಬಸ್‌ಗಳು)",
+      "fare": "₹260",
+      "trip_type": "24x7 ಸೇವೆ (ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೆ)",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-10",
+      "origin_kn": "ಮೈಸೂರು ರಸ್ತೆ ಸ್ಯಾಟಲೈಟ್ ಬಸ್ ನಿಲ್ದಾಣ (MCTC)",
+      "origin_en": "Mysore Road Satellite Bus Station",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ವಿಜಯನಗರ, ರಾಜಾಜಿನಗರ, ಯಶವಂತಪುರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 25 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹300",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-14",
+      "origin_kn": "ಬಿ.ಟಿ.ಎಂ. ಲೇಔಟ್ (ಕುವೆಂಪು ನಗರ)",
+      "origin_en": "BTM Layout (Kuvempunagar)",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಜಯದೇವ, ಆಡುಗೋಡಿ, ಶಾಂತಿನಗರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹310",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-15",
+      "origin_kn": "ವೈಟ್‌ಫೀಲ್ಡ್ (ವೈಟ್‌ಫೀಲ್ಡ್ ಟಿಟಿಎಂಸಿ)",
+      "origin_en": "Whitefield TTMC",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ಐಟಿಪಿಎಲ್, ಹೂಡಿ, ಬಾಗಲೂರು ಕ್ರಾಸ್",
+      "frequency": "ಪ್ರತಿ 30 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹330",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    },
+    {
+      "route_no": "KIA-17",
+      "origin_kn": "ನೆಲಮಂಗಲ ಬಸ್ ನಿಲ್ದಾಣ",
+      "origin_en": "Nelamangala Bus Station",
+      "dest_kn": "ಕೆಂಪೇಗೌಡ ಅಂತಾರಾಷ್ಟ್ರೀಯ ವಿಮಾನ ನಿಲ್ದಾಣ (KIA)",
+      "dest_en": "Kempegowda International Airport",
+      "via": "ದಾಸರಹಳ್ಳಿ, ಪೀಣ್ಯ, ಯಶವಂತಪುರ, ಹೆಬ್ಬಾಳ",
+      "frequency": "ಪ್ರತಿ 45 ನಿಮಿಷಕ್ಕೆ",
+      "fare": "₹320",
+      "trip_type": "24x7 ಸೇವೆ",
+      "shakti_free": false
+    }
+  ],
+  "metro_feeder": [
+    {
+      "route_no": "MF-1",
+      "origin_kn": "ಕುವೆಂಪು ರಸ್ತೆ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "Kuvempu Road Metro Station",
+      "dest_kn": "ಚಂದ್ರ ಲೇಔಟ್ / ನಾಗರಭಾವಿ",
+      "dest_en": "Chandra Layout / Nagarabhavi",
+      "metro_line": "ಹಸಿರು ಮಾರ್ಗ (Green Line)",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಕುವೆಂಪು ರಸ್ತೆ ಮೆಟ್ರೋ",
+        "ರಾಜಾಜಿನಗರ 1ನೇ ಬ್ಲಾಕ್",
+        "ಬಸವೇಶ್ವರನಗರ",
+        "ವೆಸ್ಟ್ ಆಫ್ ಕಾರ್ಡ್ ರಸ್ತೆ",
+        "ಚಂದ್ರ ಲೇಔಟ್"
+      ]
+    },
+    {
+      "route_no": "MF-5",
+      "origin_kn": "ಬೈಯಪ್ಪನಹಳ್ಳಿ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "Baiyappanahalli Metro Station",
+      "dest_kn": "ಐಟಿಪಿಎಲ್ / ವೈಟ್‌ಫೀಲ್ಡ್",
+      "dest_en": "ITPL / Whitefield",
+      "metro_line": "ನೇರಳೆ ಮಾರ್ಗ (Purple Line)",
+      "frequency": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಬೈಯಪ್ಪನಹಳ್ಳಿ ಮೆಟ್ರೋ",
+        "ಕೆ.ಆರ್. ಪುರ ರೈಲ್ವೆ ನಿಲ್ದಾಣ",
+        "ಮಹದೇವಪುರ",
+        "ಹೂಡಿ",
+        "ಐಟಿಪಿಎಲ್"
+      ]
+    },
+    {
+      "route_no": "MF-12",
+      "origin_kn": "ಸ್ವಾಮಿ ವಿವೇಕಾನಂದ ರಸ್ತೆ ಮೆಟ್ರೋ",
+      "origin_en": "SV Road Metro Station",
+      "dest_kn": "ಬಾಗಮನೆ ಟೆಕ್ ಪಾರ್ಕ್ (ಸಿ.ವಿ. ರಾಮನ್ ನಗರ)",
+      "dest_en": "Bagmane Tech Park (CV Raman Nagar)",
+      "metro_line": "ನೇರಳೆ ಮಾರ್ಗ (Purple Line)",
+      "frequency": "ಪ್ರತಿ 12 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಎಸ್.ವಿ. ರಸ್ತೆ ಮೆಟ್ರೋ",
+        "ಬಿನ್ನಿ ಮಿಲ್",
+        "ಬಾಗಮನೆ ಟೆಕ್ ಪಾರ್ಕ್"
+      ]
+    },
+    {
+      "route_no": "MF-13",
+      "origin_kn": "ಇಂದಿರಾನಗರ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "Indiranagar Metro Station",
+      "dest_kn": "ದೊಮ್ಮಲೂರು / ಕೋರಮಂಗಲ",
+      "dest_en": "Domlur / Koramangala",
+      "metro_line": "ನೇರಳೆ ಮಾರ್ಗ (Purple Line)",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಇಂದಿರಾನಗರ ಮೆಟ್ರೋ",
+        "100 ಅಡಿ ರಸ್ತೆ",
+        "ದೊಮ್ಮಲೂರು ಟಿಟಿಎಂಸಿ",
+        "ಕೋರಮಂಗಲ ಇಂಟರ್ಮೀಡಿಯೆಟ್ ರಿಂಗ್ ರೋಡ್"
+      ]
+    },
+    {
+      "route_no": "MF-17",
+      "origin_kn": "ಯಶವಂತಪುರ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "Yeshwanthpur Metro Station",
+      "dest_kn": "ಮಲ್ಲೇಶ್ವರಂ / ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+      "dest_en": "Malleshwaram / Mahalakshmi Layout",
+      "metro_line": "ಹಸಿರು ಮಾರ್ಗ (Green Line)",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಯಶವಂತಪುರ ಟಿಟಿಎಂಸಿ",
+        "ಇಸ್ಕಾನ್ ದೇವಸ್ಥಾನ",
+        "ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್",
+        "ಮಲ್ಲೇಶ್ವರಂ 18ನೇ ಕ್ರಾಸ್"
+      ]
+    },
+    {
+      "route_no": "MF-21",
+      "origin_kn": "ಕೆಂಗೇರಿ ಮೆಟ್ರೋ ಟರ್ಮಿನಲ್",
+      "origin_en": "Kengeri Metro Terminal",
+      "dest_kn": "ರಾಜರಾಜೇಶ್ವರಿನಗರ ದೇವಸ್ಥಾನ",
+      "dest_en": "Rajarajeshwarinagar Temple",
+      "metro_line": "ನೇರಳೆ ಮಾರ್ಗ (Purple Line)",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಕೆಂಗೇರಿ ಮೆಟ್ರೋ",
+        "ಬಿಎಂಟಿಸಿ ಕೆಂಗೇರಿ ಡಿಪೋ",
+        "ಆರ್.ಆರ್. ನಗರ ಗೇಟ್",
+        "ದೇವಸ್ಥಾನ ವೃತ್ತ"
+      ]
+    },
+    {
+      "route_no": "MF-26",
+      "origin_kn": "ಬನಶಂಕರಿ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "Banashankari Metro Station",
+      "dest_kn": "ಉತ್ತರಹಳ್ಳಿ / ಪದ್ಮನಾಭನಗರ",
+      "dest_en": "Uttarahalli / Padmanabhanagar",
+      "metro_line": "ಹಸಿರು ಮಾರ್ಗ (Green Line)",
+      "frequency": "ಪ್ರತಿ 12 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಬನಶಂಕರಿ ಮೆಟ್ರೋ",
+        "ಕತ್ರಿಗುಪ್ಪೆ",
+        "ಕಾದಂಬ",
+        "ಪದ್ಮನಾಭನಗರ",
+        "ಉತ್ತರಹಳ್ಳಿ"
+      ]
+    },
+    {
+      "route_no": "MF-28",
+      "origin_kn": "ಜೆ.ಪಿ. ನಗರ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ",
+      "origin_en": "JP Nagar Metro Station",
+      "dest_kn": "ಜೆ.ಪಿ. ನಗರ 7ನೇ & 8ನೇ ಹಂತ",
+      "dest_en": "JP Nagar 7th & 8th Phase",
+      "metro_line": "ಹಸಿರು ಮಾರ್ಗ (Green Line)",
+      "frequency": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಜೆ.ಪಿ. ನಗರ ಮೆಟ್ರೋ",
+        "ಸಾರಕ್ಕಿ ಜಂಕ್ಷನ್",
+        "ಆರ್‌ಬಿಐ ಲೇಔಟ್",
+        "ಬ್ರಿಗೇಡ್ ಮಿಲೇನಿಯಂ",
+        "ಜೆ.ಪಿ. ನಗರ 8ನೇ ಹಂತ"
+      ]
+    },
+    {
+      "route_no": "MF-42",
+      "origin_kn": "ಸಿಲ್ಕ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್ ಮೆಟ್ರೋ",
+      "origin_en": "Silk Institute Metro",
+      "dest_kn": "ಕಗ್ಗಲಿಪುರ / ಆರ್ಟ್ ಆಫ್ ಲಿವಿಂಗ್",
+      "dest_en": "Kaggalipura / Art of Living",
+      "metro_line": "ಹಸಿರು ಮಾರ್ಗ (Green Line)",
+      "frequency": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಸಿಲ್ಕ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್",
+        "ವಾಜರಹಳ್ಳಿ",
+        "ತಲಘಟ್ಟಪುರ",
+        "ಆರ್ಟ್ ಆಫ್ ಲಿವಿಂಗ್",
+        "ಕಗ್ಗಲಿಪುರ"
+      ]
+    },
+    {
+      "route_no": "MF-376",
+      "origin_kn": "ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿ ಮೆಟ್ರೋ",
+      "origin_en": "Electronic City Metro",
+      "dest_kn": "ವಿಪ್ರೋ ಗೇಟ್ / ಇನ್ಫೋಸಿಸ್ ಫೇಸ್ 1 & 2",
+      "dest_en": "Wipro Gate / Infosys Phase 1 & 2",
+      "metro_line": "ಹಳದಿ ಮಾರ್ಗ (Yellow Line)",
+      "frequency": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೆ",
+      "shakti_free": true,
+      "stops": [
+        "ಎಸಿಟಿ ಮೆಟ್ರೋ",
+        "ಟೋಲ್ ಗೇಟ್",
+        "ವಿಪ್ರೋ ಗೇಟ್",
+        "ಎಚ್‌ಪಿ ಅವಿನ್ಯೂ",
+        "ಇನ್ಫೋಸಿಸ್ ಗೇಟ್"
+      ]
+    }
+  ],
+  "special_services": {
+    "vajra": [
+      {
+        "route_no": "V-500D",
+        "origin": "Hebbal",
+        "dest": "Central Silk Board",
+        "via": "Tin Factory, Marathahalli, Bellandur, Sarjapur Cross",
+        "fare": "₹45 - ₹90",
+        "freq": "ಪ್ರತಿ 8 ನಿಮಿಷಕ್ಕೆ (High-Frequency ORR Volvo)"
+      },
+      {
+        "route_no": "V-500CA",
+        "origin": "Banashankari TTMC",
+        "dest": "ITPL (Whitefield)",
+        "via": "Silk Board, Bellandur, Marathahalli",
+        "fare": "₹60 - ₹110",
+        "freq": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ"
+      },
+      {
+        "route_no": "V-335E",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "Kadugodi Bus Station",
+        "via": "Corporation, Domlur, HAL, Marathahalli, ITPL",
+        "fare": "₹55 - ₹100",
+        "freq": "ಪ್ರತಿ 12 ನಿಮಿಷಕ್ಕೆ"
+      },
+      {
+        "route_no": "V-356CW",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "Electronic City Wipro Gate",
+        "via": "Shanthinagar, Dairy Circle, Silk Board, Bommanahalli",
+        "fare": "₹50 - ₹95",
+        "freq": "ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ"
+      },
+      {
+        "route_no": "V-201R",
+        "origin": "Yeshwanthpur TTMC",
+        "dest": "Central Silk Board",
+        "via": "Malleshwaram, MG Road, Koramangala",
+        "fare": "₹50 - ₹90",
+        "freq": "ಪ್ರತಿ 20 ನಿಮಿಷಕ್ಕೆ"
+      }
+    ],
+    "night_services": [
+      {
+        "route_no": "Night-1 (252)",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "Peenya 2nd Stage",
+        "timings": "11:15 PM, 12:30 AM, 01:45 AM, 03:00 AM, 04:15 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      },
+      {
+        "route_no": "Night-2 (315)",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "KR Puram / Whitefield",
+        "timings": "11:00 PM, 12:15 AM, 01:30 AM, 02:45 AM, 04:00 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      },
+      {
+        "route_no": "Night-3 (365)",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "Bannerghatta National Park",
+        "timings": "11:30 PM, 12:45 AM, 02:00 AM, 03:15 AM, 04:30 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      },
+      {
+        "route_no": "Night-4 (215)",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "JP Nagar 6th Phase",
+        "timings": "11:20 PM, 12:35 AM, 01:50 AM, 03:05 AM, 04:20 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      },
+      {
+        "route_no": "Night-5 (356)",
+        "origin": "Kempegowda Bus Station (Majestic)",
+        "dest": "Electronic City / Attibele",
+        "timings": "11:10 PM, 12:20 AM, 01:40 AM, 03:00 AM, 04:15 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      },
+      {
+        "route_no": "Night-6 (401)",
+        "origin": "Yeshwanthpur TTMC",
+        "dest": "Yelahanka Old Town",
+        "timings": "11:30 PM, 01:00 AM, 02:30 AM, 04:00 AM",
+        "fare": "ಸಾಮಾನ್ಯ ದರ + ₹5 ನೈಟ್ ಸೆಸ್"
+      }
+    ],
+    "sightseeing": [
+      {
+        "name": "ಬೆಂಗಳೂರು ರೌಂಡ್ಸ್ (Bangalore Rounds / Sightseeing)",
+        "bus_type": "ಹವಾನಿಯಂತ್ರಿತ ಪ್ರೀಮಿಯಂ ವೋಲ್ವೋ ಬಸ್",
+        "places": "ವಿಧಾನಸೌಧ, ಕಬ್ಬನ್ ಪಾರ್ಕ್, ಲಾಲ್‌ಬಾಗ್ ಗ್ಲಾಸ್ ಹೌಸ್, ಬಸವನಗುಡಿ ಬುಲ್ ಟೆಂಪಲ್, ಟಿಪ್ಪು ಸುಲ್ತಾನ್ ಕೋಟೆ, ಇಸ್ಕಾನ್ ದೇವಸ್ಥಾನ, ಬೆಂಗಳೂರು ಅರಮನೆ",
+        "timing": "ಬೆಳಿಗ್ಗೆ 08:30 ರಿಂದ ಸಂಜೆ 06:00 (ದಿನವಿಡೀ)",
+        "fare": "ವಯಸ್ಕರಿಗೆ: ₹400 · ಮಕ್ಕಳಿಗೆ: ₹300",
+        "starting_point": "ಕೆಂಪೇಗೌಡ ಬಸ್ ನಿಲ್ದಾಣ (Majestic BMTC Reservation Counter)"
+      }
+    ]
+  }
+}

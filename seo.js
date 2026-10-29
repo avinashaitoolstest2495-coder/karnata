@@ -31,14 +31,19 @@ const NKSeo = (() => {
     const path = window.location.pathname;
     if (path.includes('gold-rate'))        return 'gold';
     if (path.includes('dam-level'))        return 'dam';
+    if (path.includes('petrol-price'))     return 'petrol';
+    if (path.includes('apmc-price'))       return 'apmc';
     if (path.includes('civic-finder'))     return 'civic';
     if (path.includes('emi-calculator'))   return 'emi';
     if (path.includes('salary-calc'))      return 'salary';
+    if (path.includes('sip-calc'))         return 'sip';
+    if (path.includes('scheme-checker'))   return 'scheme';
     if (path.includes('more-tools'))       return 'tools';
     if (path.includes('weather'))          return 'weather';
     if (path.includes('news-explainer'))   return 'news';
     if (path.includes('status-checker'))   return 'status';
     if (path.includes('kannada-typing'))   return 'typing';
+    if (path.includes('bengaluru-metro') || path.includes('metro')) return 'metro';
     if (path.includes('districts/'))       return 'district';
     return 'home';
   }
@@ -83,6 +88,26 @@ const NKSeo = (() => {
         target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/civic-finder.html?q={search_term_string}` },
         'query-input': 'required name=search_term_string',
       },
+    };
+  }
+
+  // ─── Home page schema ───────────────────────────────────
+  function homeSchema() {
+    return [orgSchema(), websiteSchema()];
+  }
+
+  // ─── BreadcrumbList schema ──────────────────────────────
+  function breadcrumbSchema(items) {
+    if (!Array.isArray(items) || items.length === 0) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.url.startsWith('http') ? item.url : `${SITE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`
+      }))
     };
   }
 
@@ -477,6 +502,15 @@ const NKSeo = (() => {
         schemas = [orgSchema(), websiteSchema()];
         updateOGMeta({ title: 'ಸರ್ಕಾರಿ ಯೋಜನೆ ಅರ್ಹತೆ — Karnataka Government Schemes Eligibility 2026 | Karnata.in', url: '/scheme-checker.html' });
         break;
+      case 'metro':
+        schemas = [orgSchema(), websiteSchema()];
+        updateOGMeta({
+          title: 'ನಮ್ಮ ಮೆಟ್ರೋ ಬೆಂಗಳೂರು — Namma Metro Live Interactive Map, Route & Fare Calculator | Karnata.in',
+          description: 'ಬೆಂಗಳೂರು ನಮ್ಮ ಮೆಟ್ರೋ 5 ಮಾರ್ಗಗಳು (ನೇರಳೆ, ಹಸಿರು, ಹಳದಿ, ಗುಲಾಬಿ, ನೀಲಿ), 132 ನಿಲ್ದಾಣಗಳು, ನೈಜ ಜಿಪಿಎಸ್ ನಕ್ಷೆ, ಟಿಕೆಟ್ ದರ & ಮಾರ್ಗ ಶೋಧಕ.',
+          url: '/bengaluru-metro.html'
+        });
+        injectSchema([breadcrumbSchema([{name:'ಮುಖಪುಟ',url:'/'},{name:'ನಮ್ಮ ಮೆಟ್ರೋ',url:'/bengaluru-metro.html'}]), ...schemas]);
+        return;
       case 'weather':
         schemas = [orgSchema(), weatherSchema()];
         updateOGMeta({ title: 'ಕರ್ನಾಟಕ ಹವಾಮಾನ ಇಂದು — Karnataka Weather Forecast & Rain Alerts | Karnata.in', url: '/weather.html' });

@@ -132,7 +132,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 
 <div class="topnav">
   <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
-  <div class="page-title">💧 ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ) ಅಣೆಕಟ್ಟು</div>
+  <div class="page-title">💧 ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ) ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
 
@@ -141,14 +141,15 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <!-- HERO BANNER WITH IMAGE -->
   <div class="dam-hero-card">
     <div class="hero-img-wrap">
-      <img src="/images/narayanapura_dam.jpg" alt="ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು" class="hero-img">
+      <img src="/images/narayanapura_dam.jpg" alt="ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ) ಅಣೆಕಟ್ಟು" class="hero-img">
       <div class="hero-overlay">
         <div class="dh-tag">📍 ಜಲಾನಯನ: ಕೃಷ್ಣಾ (Krishna Basin)</div>
-        <h1 class="dh-title">ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ) ಅಣೆಕಟ್ಟು</h1>
+        <h1 class="dh-title">ಬಸವ ಸಾಗರ - ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು (Basava Sagara Dam)</h1>
         <div class="dh-sub">
           <span>🌊 ನದಿ: ಕೃಷ್ಣಾ ನದಿ</span>
-          <span>🏛️ ಜಿಲ್ಲೆ: ಯಾದಗಿರಿ (ಶಹಾಪುರ)</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಯಾದಗಿರಿ (ಹುಣಸಗಿ / ಸುರಪುರ)</span>
         </div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
       </div>
     </div>
   </div>
@@ -157,70 +158,164 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--green)">29.57 TMC</div>
-      <div class="mc-sub">88.8% ತುಂಬಿದೆ</div>
+      <div class="mc-val" style="color:var(--green)" id="narayanapura-m-storage">33.22 TMC</div>
+      <div class="mc-sub" id="narayanapura-m-sub">99.7% ತುಂಬಿದೆ (33.313 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
-      <div class="mc-val">33.31 TMC</div>
+      <div class="mc-val">33.313 TMC</div>
       <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">491.50 ಮೀಟರ್</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 492.25 ಮೀಟರ್</div>
+      <div class="mc-val" id="narayanapura-m-level">1614.9 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 1614.99 ಅಡಿ (492.25 ಮೀ)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">1,10,000</div>
+      <div class="mc-val" style="color:var(--green)" id="narayanapura-m-inflow">15,019</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">1,08,500</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="narayanapura-m-outflow">2,458</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">492.25 ಮೀ (1615.00 ಅಡಿ)</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">485.00 ಮೀ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">33.313 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">30.50 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ನಾರಾಯಣಪುರ, ಶಹಾಪುರ, ಯಾದಗಿರಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1982</div></div>
+  <!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <div style="display:inline-block; background:#E0F2FE; color:#0369A1; font-weight:700; font-size:12px; padding:4px 10px; border-radius:6px; margin-bottom:12px;">
+      📰 ಇನ್ವೆಸ್ಟಿಗೇಟಿವ್ ಫೀಚರ್ &amp; ಎಡಿಟೋರಿಯಲ್ ಡಾಸಿಯರ್ (Editorial Dossier &amp; Deep-Dive Spotlight)
     </div>
-  </div>
-
-  <!-- HISTORY ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">📜 ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ</div>
-    <div class="history-article">
-      <p><strong>ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ) ಅಣೆಕಟ್ಟು (Narayanapura Dam)</strong> ಯಾದಗಿರಿ ಜಿಲ್ಲೆಯ ಹುಣಸಗಿ/ಶಹಾಪುರ ತಾಲೂಕಿನ ನಾರಾಯಣಪುರ ಬಳಿ ಕೃಷ್ಣಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಬೃಹತ್ ಅಣೆಕಟ್ಟಾಗಿದೆ. 12 ನೇ ಶತಮಾನದ ಭಕ್ತಿ ಭಂಡಾರಿ ಜಗಜ್ಯೋತಿ ಬಸವೇಶ್ವರರ ಗೌರವಾರ್ಥ ಇದಕ್ಕೆ <strong>'ಬಸವ ಸಾಗರ'</strong> ಎಂದು ನಾಮಕರಣ ಮಾಡಲಾಗಿದೆ.</p>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ನಾರಾಯಣಪುರ ಜಲಾಶಯ (Narayanapura Dam - Basava Sagara) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಬಸವ ಸಾಗರ (ನಾರಾಯಣಪುರ ಜಲಾಶಯ): ಕೃಷ್ಣೆಯ ಹಂಚಿಕೆ ತಾಣ, ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ತೊಗರಿ-ಭತ್ತದ ಕಣಜ ಮತ್ತು ಸ್ಕಾಡಾ ಜಲಕ್ರಾಂತಿ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಸುರಪುರ ತಾಲೂಕಿನ ಸಿದ್ದಾಪುರ ಬಳಿ ಕೃಷ್ಣಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಬಸವ ಸಾಗರ ಜಲಾಶಯ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಕೃಷ್ಣಾ ಮೇಲ್ದಂಡೆ ಯೋಜನೆಯ 2ನೇ ಹಂತವಾಗಿದ್ದು, ರಾಯಚೂರು ಮತ್ತು ಯಾದಗಿರಿ ಜಿಲ್ಲೆಗಳ 4.5 ಲಕ್ಷ ಹೆಕ್ಟೇರ್ ಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಛಾಯಾ ಭಗವತಿ ದೇವಸ್ಥಾನ ಮತ್ತು ನಾರಾಯಣಪುರ ಹಿನ್ನೀರು ಪ್ರಸಿದ್ಧವಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟಿನ ಅವಳಿ ಜಲಾಶಯವಾಗಿರುವ ಬಸವ ಸಾಗರವು ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ಅತ್ಯಂತ ಹಿಂದುಳಿದ ಜಿಲ್ಲೆಗಳಾದ ಯಾದಗಿರಿ, ಕಲಬುರಗಿ ಮತ್ತು ರಾಯಚೂರು ಭಾಗಕ್ಕೆ ಹೇಗೆ ಆರ್ಥಿಕ ಕ್ರಾಂತಿಯ ಜೀವಸೆಲೆಯಾಗಿದೆ ಎಂಬುದನ್ನು ಇದು ತಾಂತ್ರಿಕ ಹಾಗೂ ಪ್ರಾದೇಶಿಕ ವಾಸ್ತವಗಳೊಂದಿಗೆ ವಿವರಿಸುತ್ತದೆ.
     </p>
+
+    <!-- QUICK SNAPSHOT -->
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:18px; margin:20px 0;">
+      <h3 style="font-size:17px; font-weight:800; color:#0F172A; margin-top:0; margin-bottom:12px;">
+        📌 [ಹೈಡ್ರೋ-ಲೆಡ್ಜರ್: ಜಲಾಶಯದ ತ್ವರಿತ ತಾಂತ್ರಿಕ ಡೇಟಾ]
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; font-size:14px; color:#334155;">
+        <div><strong>• ಅಧಿಕೃತ ಹೆಸರು:</strong> ಬಸವ ಸಾಗರ ಜಲಾಶಯ (ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು)</div>
+        <div><strong>• ನದಿಯ ಮೂಲ:</strong> ಕೃಷ್ಣಾ ನದಿ (ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ಕೆಳಭಾಗ)</div>
+        <div><strong>• ಭೌಗೋಳಿಕ ನೆಲೆ:</strong> ನಾರಾಯಣಪುರ, ಹುಣಸಗಿ ತಾಲೂಕು (ಹಳೆಯ ಸುರಪುರ ತಾಲೂಕು), ಯಾದಗಿರಿ ಜಿಲ್ಲೆ</div>
+        <div><strong>• ಯೋಜನೆಯ ಹಿನ್ನೆಲೆ:</strong> ಮೇಲ್ದಂಡೆ ಕೃಷ್ಣಾ ಯೋಜನೆ (UKP - ಹಂತ 1 &amp; 2)</div>
+        <div><strong>• ಪೂರ್ಣ ಜಲಾಶಯ ಮಟ್ಟ (FRL):</strong> 492.25 ಮೀಟರ್ (ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 1,614.99 ಅಡಿಗಳು)</div>
+        <div><strong>• ಒಟ್ಟು ಜಲಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ (Gross Storage):</strong> 33.31 ಟಿಎಂಸಿ (TMC)</div>
+        <div><strong>• ಬಳಕೆ ಮಾಡಬಹುದಾದ ನೀರು (Live Storage):</strong> ಸುಮಾರು 30.50 ಟಿಎಂಸಿ</div>
+        <div><strong>• ಡೆಡ್ ಸ್ಟೋರೇಜ್ (Dead Storage):</strong> 2.81 ಟಿಎಂಸಿ</div>
+        <div><strong>• ಕ್ರಸ್ಟ್ ಗೇಟ್ಗಳು:</strong> 30 ಬೃಹತ್ ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್ಗಳು</div>
+        <div><strong>• ನೇರ ಪ್ರಯೋಜನ ಪಡೆಯುವ ಜಿಲ್ಲೆಗಳು:</strong> ಯಾದಗಿರಿ, ಕಲಬುರಗಿ ಮತ್ತು ರಾಯಚೂರು</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🔗 ಆಲಮಟ್ಟಿಯ ಒಡನಾಡಿ: ಮೇಲ್ದಂಡೆ ಕೃಷ್ಣಾ ಯೋಜನೆಯ ಕಾರ್ಯತಂತ್ರದ ಕೊಂಡಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಬಸವ ಸಾಗರ ಜಲಾಶಯವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬೇಕೆಂದರೆ ಮೇಲ್ದಂಡೆ ಕೃಷ್ಣಾ ಯೋಜನೆಯ (UKP) ಇಡೀ ನಕ್ಷೆಯನ್ನು ನೋಡಬೇಕು. ಮೇಲ್ಭಾಗದ ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ) ಕೃಷ್ಣೆಯ ಭಾರಿ ಪ್ರವಾಹದ ನೀರನ್ನು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವ ‘ಬೃಹತ್ ಜಲಸಂಗ್ರಹಾಗಾರ’ವಾದರೆ, ಕೆಳಭಾಗದಲ್ಲಿರುವ ನಾರಾಯಣಪುರ ಜಲಾಶಯವು ಆ ನೀರನ್ನು ಲಕ್ಷಾಂತರ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ಹಂಚುವ ‘ಪ್ರಧಾನ ವಿತರಣಾ ಕೇಂದ್ರ’ (Diversion &amp; Balancing Reservoir) ಆಗಿದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆಲಮಟ್ಟಿಯಿಂದ ಹೊರಬಿಡುವ ಪ್ರತಿ ಹನಿ ನೀರೂ ಕೃಷ್ಣಾ ನದಿಯ ಪಾತ್ರದ ಮೂಲಕ ಸಾಗಿ ನಾರಾಯಣಪುರದ ಬಸವ ಸಾಗರವನ್ನು ಸೇರುತ್ತದೆ. 1982ರಲ್ಲಿ ಲೋಕಾರ್ಪಣೆಗೊಂಡ ಈ ಅಣೆಕಟ್ಟಿಗೆ ಜಗಜ್ಯೋತಿ ಬಸವೇಶ್ವರರ ನೆನಪಿನಲ್ಲಿ ‘ಬಸವ ಸಾಗರ’ ಎಂದು ನಾಮಕರಣ ಮಾಡಲಾಯಿತು. ಸುಮಾರು 33.31 ಟಿಎಂಸಿ ನೀರನ್ನು ಸದಾ ಸಮತೋಲನದಲ್ಲಿಟ್ಟುಕೊಂಡು, ಕಾಲುವೆಗಳ ಮೂಲಕ ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ಒಣಭೂಮಿಗೆ ಹರಿಸುವ ಗುರುತರ ಜವಾಬ್ದಾರಿಯನ್ನು ಈ ಜಲಾಶಯ ಹೊತ್ತಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚙️ ಅಣೆಕಟ್ಟಿನ ಎಂಜಿನಿಯರಿಂಗ್ ಗಾಂಭೀರ್ಯ ಮತ್ತು 30 ಕ್ರಸ್ಟ್ ಗೇಟ್ಗಳು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು ಕಲ್ಲಿನ ಕಾಂಕ್ರೀಟ್ ಸ್ಪಿಲ್ವೇ ಮತ್ತು ಬೃಹತ್ ಮಣ್ಣಿನ ಒಡ್ಡುಗಳನ್ನು (Composite Dam) ಒಳಗೊಂಡ ಭದ್ರ ರಚನೆಯಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಅಣೆಕಟ್ಟಿನ ವಿಸ್ತಾರ:</strong> ಅಣೆಕಟ್ಟಿನ ಒಟ್ಟು ಉದ್ದ ಬರೋಬ್ಬರಿ 10.6 ಕಿಲೋಮೀಟರ್ (ಮಣ್ಣಿನ ಏರಿಗಳು ಸೇರಿ). ಇದು ಕರ್ನಾಟಕದ ಅತ್ಯಂತ ಉದ್ದನೆಯ ಅಣೆಕಟ್ಟುಗಳ ಸಾಲಿನಲ್ಲಿ ನಿಲ್ಲುತ್ತದೆ.</li>
+      <li><strong>30 ರೇಡಿಯಲ್ ಗೇಟ್ಗಳ ರಕ್ಷಣಾ ಕವಚ:</strong> ಮಳೆಗಾಲದಲ್ಲಿ ಆಲಮಟ್ಟಿಯಿಂದ 2 ರಿಂದ 4 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್ ನೀರು ಏಕಾಏಕಿ ನುಗ್ಗಿ ಬಂದಾಗ, ಬಸವ ಸಾಗರಕ್ಕೆ ಯಾವುದೇ ಧಕ್ಕೆಯಾಗದಂತೆ ತಕ್ಷಣ ನೀರನ್ನು ಕೆಳಕ್ಕೆ ಹರಿಸಲು 30 ಬೃಹತ್ ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್ಗಳನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ. ಒಳಹರಿವು ಹೆಚ್ಚಾದಾಗ ಈ ಮೂವತ್ತೂ ಗೇಟ್ಗಳನ್ನು ಏಕಕಾಲದಲ್ಲಿ ತೆರೆದಾಗ ಕೃಷ್ಣೆಯ ರೌದ್ರಾವತಾರ ಕಣ್ಮನ ಸೆಳೆಯುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📡 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಏಷ್ಯಾದ ಅತಿ ದೊಡ್ಡ ಸ್ಕಾಡಾ (SCADA) ಕ್ರಾಂತಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ನಾರಾಯಣಪುರ ಜಲಾಶಯವು ಭಾರತೀಯ ನೀರಾವರಿ ಇತಿಹಾಸದಲ್ಲೇ ಅತ್ಯಾಧುನಿಕ ತಂತ್ರಜ್ಞಾನ ಅಳವಡಿಸಿಕೊಂಡ ಹೆಗ್ಗಳಿಕೆಗೆ ಪಾತ್ರವಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ನಾರಾಯಣಪುರ ಎಡದಂಡೆ ಕಾಲುವೆ (NLBC):</strong> ಈ ಯೋಜನೆಯ ಪ್ರಮುಖ ಕಾಲುವೆ. ಹುಣಸಗಿ, ಸುರಪುರ, ಶಹಾಪುರ, ಯಾದಗಿರಿ ಹಾಗೂ ಕಲಬುರಗಿ ಜಿಲ್ಲೆಯ ಜೇವರ್ಗಿ ತಾಲೂಕುಗಳ ಮೂಲಕ ಸಾಗುತ್ತದೆ.</li>
+      <li><strong>ನಾರಾಯಣಪುರ ಬಲದಂಡೆ ಕಾಲುವೆ (NRBC):</strong> ರಾಯಚೂರು ಜಿಲ್ಲೆಯ ಲಿಂಗಸುಗೂರು, ದೇವದುರ್ಗ ಮತ್ತು ರಾಯಚೂರು ಗ್ರಾಮೀಣ ಭಾಗದ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತದೆ.</li>
+      <li><strong>ಸ್ಕಾಡಾ ಆಟೋಮೇಷನ್ (SCADA Technology):</strong> ಕೃಷ್ಣಾ ಭಾಗ್ಯ ಜಲ ನಿಗಮವು (KBJNL) ಎನ್ಎಲ್ಬಿಸಿ ಕಾಲುವೆ ಜಾಲದಲ್ಲಿ ಏಷ್ಯಾದಲ್ಲೇ ಅತಿ ದೊಡ್ಡದಾದ ‘ಸ್ವಯಂಚಾಲಿತ ಗೇಟ್ ನಿಯಂತ್ರಣ ವ್ಯವಸ್ಥೆ’ಯನ್ನು (SCADA) ಜಾರಿಗೆ ತಂದಿದೆ. ಕಾಲುವೆಯ ಕೊನೆಯ ಹಂತದ (Tail-end) ರೈತರಿಗೂ ನಿಖರವಾಗಿ ನೀರು ತಲುಪುವಂತೆ ಮಾಡಲು, ಕಂಪ್ಯೂಟರ್ ನಿಯಂತ್ರಿತ ಸಂವೇದಕಗಳ ಮೂಲಕ ನೀರನ್ನು ಹಂಚಲಾಗುತ್ತದೆ. ಇದರಿಂದ ನೀರಿನ ಪೋಲಾಗುವಿಕೆ ಗಣನೀಯವಾಗಿ ಕಡಿಮೆಯಾಗಿದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ‘ತೊಗರಿ ಮತ್ತು ಭತ್ತದ ಸಿರಿ’: ಕೃಷಿ ಬದುಕಿನ ಕಾಯಕಲ್ಪ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಒಂದು ಕಾಲಕ್ಕೆ ಉದ್ಯೋಗವಿಲ್ಲದೆ ಮುಂಬೈ, ಪುಣೆಗೆ ಗುಳೆ ಹೋಗುತ್ತಿದ್ದ ಯಾದಗಿರಿ ಮತ್ತು ಕಲಬುರಗಿ ಜಿಲ್ಲೆಯ ಜನರ ಬದುಕಿಗೆ ಬಸವ ಸಾಗರ ಹೊಸ ಆಶಾಕಿರಣ ನೀಡಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ತೊಗರಿ ಕಣಜಕ್ಕೆ ಜಲಬಲ:</strong> ಜಿಐ ಟ್ಯಾಗ್ (GI Tag) ಹೊಂದಿರುವ ವಿಶ್ವಪ್ರಸಿದ್ಧ ಕಲಬುರಗಿ ತೊಗರಿ ಬೆಳೆಗೆ ಬಸವ ಸಾಗರದ ಕಾಲುವೆಗಳ ತೇವಾಂಶವೇ ಜೀವಾಳ. ಮಳೆ ಕೈಕೊಟ್ಟಾಗಲೂ ಈ ಕಾಲುವೆಗಳ ನೀರು ತೊಗರಿ ಬೆಳೆಯನ್ನು ರಕ್ಷಿಸುತ್ತದೆ.</li>
+      <li><strong>ಸೋನಾ ಮಸೂರಿ ಭತ್ತದ ಕ್ರಾಂತಿ:</strong> ಸುರಪುರ, ಶಹಾಪುರ ಮತ್ತು ಜೇವರ್ಗಿ ತಾಲೂಕುಗಳು ಇಂದು ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ‘ಭತ್ತದ ಕಣಜ’ಗಳಾಗಿ ಹೊರಹೊಮ್ಮಿವೆ. ಪ್ರತಿವರ್ಷ ಲಕ್ಷಾಂತರ ಟನ್ ಉತ್ಕೃಷ್ಟ ದರ್ಜೆಯ ಸೋನಾ ಮಸೂರಿ ಭತ್ತ ಇಲ್ಲಿ ಉತ್ಪಾದನೆಯಾಗುತ್ತದೆ.</li>
+      <li><strong>ಹತ್ತಿ ಮತ್ತು ಮೆಣಸಿನಕಾಯಿ:</strong> ವಾಣಿಜ್ಯ ಬೆಳೆಗಳಾದ ಹತ್ತಿ ಮತ್ತು ಕೆಂಪು ಮೆಣಸಿನಕಾಯಿ ಬೆಳೆಯುವ ರೈತರಿಗೆ ಈ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವೇ ಆರ್ಥಿಕ ಭದ್ರತೆಯ ಅಡಿಪಾಯ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌊 ತಿಂತಿಣಿ ಮೌನೇಶ್ವರ ಮತ್ತು ರಾಯಚೂರು ಗಡಿ ಭಾಗದ ಪ್ರವಾಹ ನಿರ್ವಹಣೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಮಳೆಗಾಲದಲ್ಲಿ ಆಲಮಟ್ಟಿ ಭರ್ತಿಯಾಗಿ ಬಸವ ಸಾಗರಕ್ಕೆ ಭಾರಿ ಪ್ರಮಾಣದ ನೀರು ಹರಿದು ಬಂದಾಗ, ನಾರಾಯಣಪುರದ 30 ಗೇಟ್ಗಳಿಂದ ಕೃಷ್ಣಾ ನದಿಯ ಪಾತ್ರಕ್ಕೆ ನೀರು ಬಿಡಲಾಗುತ್ತದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ತಿಂತಿಣಿ ಸೇತುವೆ ಮುಳುಗಡೆ:</strong> ನಾರಾಯಣಪುರದಿಂದ 1 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್ಗಿಂತ ಹೆಚ್ಚು ನೀರು ಹೊರಬಿಟ್ಟರೆ, ದೇವದುರ್ಗ ತಾಲೂಕಿನ ಐತಿಹಾಸಿಕ ತಿಂತಿಣಿ ಬ್ರಿಡ್ಜ್ ಮಟ್ಟಕ್ಕೆ ನೀರು ಬರುತ್ತದೆ. ನದಿ ತೀರದ ಪವಿತ್ರ ತಿಂತಿಣಿ ಮೌನೇಶ್ವರ ಸನ್ನಿಧಿಯ ಸ್ನಾನಘಟ್ಟಗಳು ಸಂಪೂರ್ಣ ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ.</li>
+      <li><strong>ರಾಯಚೂರು ನಡುಗಡ್ಡೆಗಳ ಆತಂಕ:</strong> ರಾಯಚೂರು ಜಿಲ್ಲೆಯ ಲಿಂಗಸುಗೂರು ಮತ್ತು ದೇವದುರ್ಗ ವ್ಯಾಪ್ತಿಯ ಕುರುವಾಕುಲ, ಕರಕಲಗಡ್ಡಿ ಮುಂತಾದ ಕೃಷ್ಣಾ ನದಿಯ ನಡುಗಡ್ಡೆ ಗ್ರಾಮಗಳು ಜಲಾವೃತಗೊಂಡು ಸಂಪರ್ಕ ಕಡಿತಗೊಳ್ಳುತ್ತವೆ. ಇಂತಹ ಸಂದರ್ಭಗಳಲ್ಲಿ ಜಿಲ್ಲಾಡಳಿತವು ಬೋಟ್ಗಳ ಮೂಲಕ ಗ್ರಾಮಸ್ಥರನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಿಗೆ ರವಾನಿಸುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚡ ತೆಲಂಗಾಣ ಗಡಿ ಜಲಸಂಪರ್ಕ ಮತ್ತು ಜೂರಾಲ್ ಕೊಂಡಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ನಾರಾಯಣಪುರ ಜಲಾಶಯದಿಂದ ಹೊರಹರಿಯುವ ಕೃಷ್ಣಾ ನದಿಯ ನೀರು ಕರ್ನಾಟಕದ ಗಡಿಯನ್ನು ದಾಟಿ ನೇರವಾಗಿ ನೆರೆಯ ತೆಲಂಗಾಣ ರಾಜ್ಯದ ‘ಪ್ರಿಯದರ್ಶಿನಿ ಜೂರಾಲ್ ಯೋಜನೆ’ಯನ್ನು (Jurala Project) ಸೇರುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹೀಗಾಗಿ, ಕೃಷ್ಣಾ ಜಲವಿವಾದ ನ್ಯಾಯಾಧಿಕರಣದ (KWDT) ನಿಯಮಗಳ ಪ್ರಕಾರ, ತೆಲಂಗಾಣ ಮತ್ತು ಆಂಧ್ರಪ್ರದೇಶದ ಜಲಾಶಯಗಳಿಗೆ ಹರಿಯುವ ನೀರಿನ ನಿಖರ ಲೆಕ್ಕಾಚಾರವು ನಾರಾಯಣಪುರದ ಡಿಸ್ಚಾರ್ಜ್ ಡೇಟಾವನ್ನು ಆಧರಿಸಿರುತ್ತದೆ. ಈ ಜಲಾಶಯವು ಅಂತರರಾಜ್ಯ ಜಲಸೌಹಾರ್ದತೆಯನ್ನು ಕಾಪಾಡುವಲ್ಲಿ ಅತ್ಯಂತ ಪ್ರಮುಖ ತಾಂತ್ರಿಕ ಕೊಂಡಿಯಾಗಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ನಿಸರ್ಗ ತಾಣ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೃಷಿ ಮಹತ್ವದ ಜೊತೆಗೆ ಬಸವ ಸಾಗರವು ಸುಂದರ ವಾರಾಂತ್ಯದ ತಾಣವಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಅಣೆಕಟ್ಟಿನ ಉದ್ಯಾನವನ:</strong> ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದಲ್ಲಿ ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾದ ಹಸಿರು ಹುಲ್ಲುಹಾಸಿನ ಉದ್ಯಾನವನ ಮತ್ತು ಕಾರಂಜಿಗಳು ಸ್ಥಳೀಯ ಜನರಿಗೆ ನೆಚ್ಚಿನ ಪಿಕ್ನಿಕ್ ಸ್ಪಾಟ್.</li>
+      <li><strong>ಸುರಪುರದ ಇತಿಹಾಸದ ನಂಟು:</strong> ಸಮೀಪದಲ್ಲೇ ಇರುವ ಐತಿಹಾಸಿಕ ಸುರಪುರ ಸಂಸ್ಥಾನ, ರಾಜಾ ವೆಂಕಟಪ್ಪ ನಾಯಕನ ಕೋಟೆ ಮತ್ತು ನಾರಾಯಣಪುರದ ಹಿನ್ನೀರಿನ ಸೂರ್ಯಾಸ್ತದ ನೋಟ ಪ್ರವಾಸಿಗರನ್ನು ಆಕರ್ಷಿಸುತ್ತದೆ.</li>
+      <li><strong>ಜಲವಿದ್ಯುತ್ ಸ್ಥಾವರ:</strong> ಅಣೆಕಟ್ಟಿನ ಎಡಭಾಗದಲ್ಲಿ ಸಣ್ಣ ಪ್ರಮಾಣದ ಜಲವಿದ್ಯುತ್ ಉತ್ಪಾದನಾ ಘಟಕಗಳಿದ್ದು, ಸ್ಥಳೀಯ ವಿದ್ಯುತ್ ಗ್ರಿಡ್ಗೆ ನೆರವಾಗುತ್ತಿವೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📢 ಸಾರ್ವಜನಿಕ ಮತ್ತು ರೈತರ ಜಲಸೂತ್ರಗಳು (Field Advisory)</h3>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಜಲಸಂಗ್ರಹದ ನಿರ್ವಹಣೆ:</strong> ಬಸವ ಸಾಗರದಲ್ಲಿ ಸದಾ ಕನಿಷ್ಠ 20 ರಿಂದ 25 ಟಿಎಂಸಿ ನೀರನ್ನು ಕಾಯ್ದುಕೊಳ್ಳಲಾಗುತ್ತದೆ; ಆಲಮಟ್ಟಿಯಿಂದ ನೀರು ಬರುತ್ತಿದ್ದಂತೆಯೇ ಕಾಲುವೆಗಳಿಗೆ ನಿಯಮಿತವಾಗಿ ಹರಿಸಲಾಗುತ್ತದೆ.</li>
+      <li><strong>ಐಸಿಸಿ ಸಭೆಯ ಪಾತ್ರ:</strong> ಪ್ರತಿ ಹಂಗಾಮಿನ ಆರಂಭದಲ್ಲಿ ಯಾದಗಿರಿ ಮತ್ತು ಕಲಬುರಗಿ ಜಿಲ್ಲಾಡಳಿತಗಳು ಸಭೆ ನಡೆಸಿ ಕಾಲುವೆಗಳಿಗೆ ನೀರು ಹರಿಸುವ ‘ಆನ್ &amp; ಆಫ್’ ದಿನಗಳನ್ನು ಅಧಿಕೃತವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ.</li>
+      <li><strong>ನೀರಿನ ಸದ್ಬಳಕೆ:</strong> ಸ್ಕಾಡಾ ತಂತ್ರಜ್ಞಾನವಿರುವುದರಿಂದ ಕಾಲುವೆಯ ನೀರನ್ನು ಪೋಲು ಮಾಡದೆ, ಆಧುನಿಕ ಕೃಷಿ ಪದ್ಧತಿಗಳ ಮೂಲಕ ಕಡಿಮೆ ನೀರಿನಲ್ಲಿ ಅಧಿಕ ಇಳುವರಿ ಪಡೆಯಲು ರೈತರು ಒತ್ತು ನೀಡಬೇಕಿದೆ.</li>
+    </ul>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:18px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಬಸವ ಸಾಗರ (ನಾರಾಯಣಪುರ) ಜಲಾಶಯ: ಸಾರ್ವಜನಿಕ ಮತ್ತು ರೈತರ FAQ ಗಳು (Creative FAQs)
+    </h3>
+    
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಬಸವ ಸಾಗರ ಮತ್ತು ಆಲಮಟ್ಟಿ ಜಲಾಶಯಗಳ ನಡುವಿನ ಮುಖ್ಯ ಸಂಬಂಧವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಆಲಮಟ್ಟಿ ಜಲಾಶಯವು (123 TMC) ಕೃಷ್ಣಾ ನದಿಯ ಮಹಾ ಪ್ರವಾಹದ ನೀರನ್ನು ತಡೆದು ಸಂಗ್ರಹಿಸುವ ಮುಖ್ಯ ಜಲಾಶಯವಾದರೆ, ಕೆಳಭಾಗದಲ್ಲಿರುವ ನಾರಾಯಣಪುರದ ಬಸವ ಸಾಗರವು (33.31 TMC) ಆಲಮಟ್ಟಿಯಿಂದ ಹರಿದುಬಂದ ನೀರನ್ನು ಸಮತೋಲನದಲ್ಲಿಟ್ಟುಕೊಂಡು ಎಡದಂಡೆ ಮತ್ತು ಬಲದಂಡೆ ಕಾಲುವೆಗಳ ಮೂಲಕ ಯಾದಗಿರಿ, ಕಲಬುರಗಿ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳಿಗೆ ಹಂಚುವ ಪ್ರಮುಖ ವಿತರಣಾ ಸಮತೋಲನ ಅಣೆಕಟ್ಟಾಗಿದೆ.</p>
+    </div>
+
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನಾರಾಯಣಪುರ ಎಡದಂಡೆ ಕಾಲುವೆಯಲ್ಲಿ ಸ್ಕಾಡಾ (SCADA) ತಂತ್ರಜ್ಞಾನದ ಉಪಯೋಗವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಏಷ್ಯಾದ ಅತಿ ದೊಡ್ಡ ಸ್ಕಾಡಾ ಆಟೋಮೇಷನ್ ವ್ಯವಸ್ಥೆಯ ಮೂಲಕ ಕಂಪ್ಯೂಟರ್ ನಿಯಂತ್ರಿತ ಗೇಟ್‌ಗಳು ಮತ್ತು ಸೆನ್ಸರ್‌ಗಳನ್ನು ಬಳಸಿ ಕಾಲುವೆಯ ತುದಿಯ (Tail-end) ರೈತರಿಗೂ ನಿಖರವಾಗಿ ಸಮಾನ ಪ್ರಮಾಣದಲ್ಲಿ ನೀರು ತಲುಪುವಂತೆ ಮಾಡಲಾಗುತ್ತದೆ. ಇದರಿಂದ ನೀರಿನ ವ್ಯರ್ಥ ಪೋಲಾಗುವಿಕೆ ಗಣನೀಯವಾಗಿ ಕಡಿಮೆಯಾಗಿದೆ.</p>
+    </div>
+
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನಾರಾಯಣಪುರದಿಂದ 1 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್‌ಗಿಂತ ಹೆಚ್ಚು ನೀರು ಹರಿಸಿದರೆ ಯಾವ ಸ್ಥಳಗಳು ಮುಳುಗಡೆಯಾಗುತ್ತವೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ದೇವದುರ್ಗ ತಾಲೂಕಿನ ಐತಿಹಾಸಿಕ ತಿಂತಿಣಿ ಸೇತುವೆ ಮತ್ತು ತಿಂತಿಣಿ ಮೌನೇಶ್ವರ ದೇವಸ್ಥಾನದ ಸ್ನಾನಘಟ್ಟಗಳು ಮುಳುಗಡೆಯಾಗುತ್ತವೆ. ಜೊತೆಗೆ ರಾಯಚೂರು ಜಿಲ್ಲೆಯ ಕುರುವಾಕುಲ, ಕರಕಲಗಡ್ಡಿ ಮುಂತಾದ ನಡುಗಡ್ಡೆ ಗ್ರಾಮಗಳ ರಸ್ತೆ ಸಂಪರ್ಕ ಕಡಿತಗೊಳ್ಳುತ್ತದೆ.</p>
+    </div>
+
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನಾರಾಯಣಪುರ ಜಲಾಶಯದಿಂದ ಬಿಟ್ಟ ನೀರು ಮುಂದೆ ಯಾವ ಅಣೆಕಟ್ಟನ್ನು ಸೇರುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ನಾರಾಯಣಪುರದಿಂದ ಹೊರಹರಿಯುವ ಕೃಷ್ಣಾ ನದಿಯು ಕರ್ನಾಟಕದ ಗಡಿ ದಾಟಿ ನೇರವಾಗಿ ನೆರೆಯ ತೆಲಂಗಾಣ ರಾಜ್ಯದ ಪ್ರಿಯದರ್ಶಿನಿ ಜೂರಾಲ್ ಯೋಜನೆಗೆ (Jurala Project) ಸೇರುತ್ತದೆ.</p>
+    </div>
+
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನಾರಾಯಣಪುರ ಜಲಾಶಯ ವೀಕ್ಷಣೆಗೆ ಪ್ರವಾಸಿಗರಿಗೆ ಯಾವ ಆಕರ್ಷಣೆಗಳಿವೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">30 ಬೃಹತ್ ರೇಡಿಯಲ್ ಗೇಟ್‌ಗಳಿಂದ ಹರಿಯುವ ಕೃಷ್ಣೆಯ ವೈಭವ, ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದ ಉದ್ಯಾನವನ, ಛಾಯಾ ಭಗವತಿ ಜಲಪಾತ/ದೇವಸ್ಥಾನ, ಹಿನ್ನೀರಿನ ಸೂರ್ಯಾಸ್ತ ಮತ್ತು ಸಮೀಪದ ಐತಿಹಾಸಿಕ ಸುರಪುರ ಸಂಸ್ಥಾನದ ಕೋಟೆ ಪ್ರಮುಖ ಪ್ರವಾಸಿ ಆಕರ್ಷಣೆಗಳಾಗಿವೆ.</p>
+    </div>
   </div>
 
 </div>

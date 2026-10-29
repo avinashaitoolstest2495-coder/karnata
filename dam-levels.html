@@ -53,7 +53,7 @@
   <!-- Open Graph & Social Meta -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300;400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="/data-loader.js"></script>
+
 <style>
 :root {
   --blue: #0F3A5D; --blue-lt: #EBF5FB; --blue-mid: #2980B9; --cyan: #00D2FF;
@@ -293,6 +293,56 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <script src="/seo.js" defer></script>
 <script src="/data-loader.js" defer></script>
 <link rel="stylesheet" href="/karnata-theme.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".summary-stat",
+      ".dam-live-title",
+      ".faq-answer",
+      ".stat-val"
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the live water level of KRS Dam today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The live water level of Krishna Raja Sagara (KRS) Dam is currently tracked daily with live gross storage around 60.5% (29.9 TMC out of 49.45 TMC gross capacity), with an inflow of ~6,200 cusecs and outflow of ~4,100 cusecs as reported by KSNDMC and WRD Karnataka."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ ಎಷ್ಟು?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಾದ ಕೆ.ಆರ್.ಎಸ್ (ಮಂಡ್ಯ), ಆಲಮಟ್ಟಿ (ವಿಜಯಪುರ), ತುಂಗಭದ್ರಾ (ಹೊಸಪೇಟೆ), ಹಾರಂಗಿ, ಹೇಮಾವತಿ, ಭದ್ರಾ ಮತ್ತು ಮಲಪ್ರಭಾ ಡ್ಯಾಂಗಳ ನೀರಿನ ಮಟ್ಟ, ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವಿನ ದೈನಂದಿನ ಲೈವ್ ಮಾಹಿತಿಯನ್ನು Karnata.in ಪೋರ್ಟಲ್‌ನಲ್ಲಿ KSNDMC ಅಧಿಕೃತ ದತ್ತಾಂಶದೊಂದಿಗೆ ನೇರವಾಗಿ ನವೀಕರಿಸಲಾಗುತ್ತದೆ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Almatti dam full right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almatti Dam (Lal Bahadur Shastri Sagar) in Vijayapura is near its full reservoir capacity, currently maintaining approximately 99.8% gross storage (122.8 TMC out of 123.08 TMC) to support irrigation and power generation across North Karnataka."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often are Karnataka dam water levels updated on Karnata.in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karnata.in updates dam levels every morning directly from Karnataka State Natural Disaster Monitoring Centre (KSNDMC) and Water Resources Department (WRD) official reports."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -307,7 +357,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <div class="dam-hero">
   <h1>💧 ಕರ್ನಾಟಕ ಅಣೆಕಟ್ಟು ನೀರಿನ ಮಟ್ಟ (Live Dam Levels)</h1>
   <p>ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳ ಇಂದಿನ ಪ್ರಸ್ತುತ ನೀರಿನ ಮಟ್ಟ — KSNDMC (ದಿನಕ್ಕೆ 2 ಬಾರಿ ನವೀಕರಣ: ಬೆಳಿಗ್ಗೆ 9:00 &amp; ಮಧ್ಯಾಹ್ನ 12:00)</p>
-  <div class="update-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: ಲೋಡ್ ಆಗುತ್ತಿದೆ...</div>
+  <div class="update-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) (ದಿನಕ್ಕೆ 2 ಬಾರಿ ನವೀಕರಣ: ಬೆಳಿಗ್ಗೆ 9:00 &amp; ಮಧ್ಯಾಹ್ನ 12:00 — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ)</div>
 
   <!-- SVG ANIMATED WATER WAVES -->
   <div class="waves-container">
@@ -329,31 +379,31 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <div class="summary-strip">
   <div class="sum-card">
     <div class="sum-icon">🌊</div>
-    <div class="sum-val" id="sum-avg">70%</div>
+    <div class="sum-val" id="sum-avg">67.7%</div>
     <div class="sum-label">ಸರಾಸರಿ ಮಟ್ಟ</div>
     <div class="sum-change" style="color:var(--green)">▲ 3.2% ಈ ವಾರ</div>
   </div>
   <div class="sum-card">
     <div class="sum-icon">✅</div>
-    <div class="sum-val" id="sum-full">6</div>
+    <div class="sum-val" id="sum-full">4</div>
     <div class="sum-label">75%+ ತುಂಬಿದವು</div>
     <div class="sum-change" style="color:var(--green)">ಉತ್ತಮ ಸ್ಥಿತಿ</div>
   </div>
   <div class="sum-card">
     <div class="sum-icon">⚠️</div>
-    <div class="sum-val" id="sum-low">1</div>
+    <div class="sum-val" id="sum-low">0</div>
     <div class="sum-label">40%ಕ್ಕಿಂತ ಕಡಿಮೆ</div>
     <div class="sum-change" style="color:var(--amber)">ಗಮನ ಬೇಕು</div>
   </div>
   <div class="sum-card">
     <div class="sum-icon">💧</div>
-    <div class="sum-val" id="sum-present-tmc">590.9 TMC</div>
+    <div class="sum-val" id="sum-present-tmc">582.9 TMC</div>
     <div class="sum-label">ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ</div>
     <div class="sum-change" style="color:var(--blue-mid)">Present Storage</div>
   </div>
   <div class="sum-card">
     <div class="sum-icon">🏗️</div>
-    <div class="sum-val" id="sum-gross-cap">864.1 TMC</div>
+    <div class="sum-val" id="sum-gross-cap">866.3 TMC</div>
     <div class="sum-label">ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ</div>
     <div class="sum-change" style="color:var(--ink2)">Gross Capacity</div>
   </div>
@@ -361,7 +411,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 
 <!-- CLEAN CREATIVE NARRATIVE BRIEF ANALYSIS -->
 <div class="alert-container">
-  <div class="hydro-lines" id="dynamic-analysis-lines"></div>
+  <div class="hydro-lines" id="dynamic-analysis-lines">
+    <div class="brief-analysis-badge">📌 ಸಾರಾಂಶ (29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026))</div>
+    <div class="brief-analysis-text"><strong>ಕರ್ನಾಟಕ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ:</strong> ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು ಮತ್ತು ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು ಸೇರಿದಂತೆ ಪ್ರಮುಖ ಜಲಾಶಯಗಳಲ್ಲಿ ಅಧಿಕ ಒಳಹರಿವು ದಾಖಲಾಗಿದೆ. ಕರ್ನಾಟಕದ ಒಟ್ಟು 13 ಪ್ರಮುಖ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ಪ್ರಸ್ತುತ <strong>582.9 TMC (67.7%)</strong> ನೀರು ಸಂಗ್ರಹವಾಗಿದ್ದು, <strong>4</strong> ಜಲಾಶಯಗಳು 75%+ ಭರ್ತಿಯಾಗಿವೆ.</div>
+  </div>
 </div>
 
 <!-- CENTERED FILTER BAR (NO FILTER WORD) -->
@@ -376,456 +429,455 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <!-- DAM GRID WRAPPER -->
 <div class="wrap">
   <div class="dam-grid" id="dam-grid">
-
-    <div class="dam-card" data-basin="krishna" data-pct="99.7">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಕೃಷ್ಣ · <span class="dam-district">ವಿಜಯಪುರ</span></div>
+      <div class="dam-card" data-basin="krishna" data-pct="60.1">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">122.658</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಕೃಷ್ಣ · <span class="dam-district">ವಿಜಯಪುರ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">60.1% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 123.081 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:99.7%; background:#10B981;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">23,339</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">73.944</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 123.081 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">18,000</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:60.1%; background:#F59E0B;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="cauvery" data-pct="98.4">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಹಾರಂಗಿ · <span class="dam-district">ಕೊಡಗು</span></div>
-        </div>
-        <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">8.361</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 8.5 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:98.4%; background:#10B981;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">2,534</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">1,700</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">250</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="cauvery" data-pct="75.5">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#00D2FF" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಹೇಮಾವತಿ · <span class="dam-district">ಹಾಸನ</span></div>
+      <div class="dam-card" data-basin="cauvery" data-pct="63.1">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-good">75.5% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">27.998</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಹಾರಂಗಿ · <span class="dam-district">ಕೊಡಗು</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">63.1% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 37.103 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:75.5%; background:#00D2FF;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">4,455</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">5.366</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 8.5 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">3,500</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:63.1%; background:#F59E0B;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="cauvery" data-pct="62.8">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">K.R.Sagara Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)</div>
-          <div class="dam-river">🌊 ನದಿ: ಕಾವೇರಿ · <span class="dam-district">ಮಂಡ್ಯ</span></div>
-        </div>
-        <span class="dam-status-badge status-medium">62.8% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">31.043</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 49.452 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:62.8%; background:#F59E0B;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">3,864</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">5,828</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">828</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">200</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="cauvery" data-pct="59.7">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಕಬಿನಿ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಕಬಿನಿ · <span class="dam-district">ಮೈಸೂರು</span></div>
+      <div class="dam-card" data-basin="cauvery" data-pct="46.9">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#EF4444" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-medium">59.7% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">11.657</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಹೇಮಾವತಿ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಹೇಮಾವತಿ · <span class="dam-district">ಹಾಸನ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">46.9% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 19.516 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:59.7%; background:#F59E0B;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">3,218</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">17.402</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 37.103 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">3,000</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:46.9%; background:#EF4444;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="58.7">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಮಲಪ್ರಭಾ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಮಲಪ್ರಭಾ · <span class="dam-district">ಬೆಳಗಾವಿ</span></div>
-        </div>
-        <span class="dam-status-badge status-medium">58.7% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">22.137</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 37.73 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:58.7%; background:#F59E0B;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">3,189</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">300</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="99.7">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಕೃಷ್ಣ · <span class="dam-district">ಯಾದಗಿರಿ</span></div>
+      <div class="dam-card" data-basin="cauvery" data-pct="53.3">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">33.22</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">K.R.Sagara Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)</div>
+            <div class="dam-river">🌊 ನದಿ: ಕಾವೇರಿ · <span class="dam-district">ಮಂಡ್ಯ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">53.3% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 33.313 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:99.7%; background:#10B981;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">18,561</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">26.354</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 49.452 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">6,000</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:53.3%; background:#F59E0B;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="90.4">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ತುಂಗಭದ್ರ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ತುಂಗಭದ್ರ · <span class="dam-district">ವಿಜಯನಗರ</span></div>
-        </div>
-        <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">95.619</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 105.788 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:90.4%; background:#10B981;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">4,939</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">2,486</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">1,379</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="87">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#00D2FF" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಭದ್ರಾ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಭದ್ರಾ · <span class="dam-district">ಚಿಕ್ಕಮಗಳೂರು</span></div>
+      <div class="dam-card" data-basin="cauvery" data-pct="68.8">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-good">87% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">62.214</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಕಬಿನಿ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಕಬಿನಿ · <span class="dam-district">ಮೈಸೂರು</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">68.8% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 71.535 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:87%; background:#00D2FF;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">2,981</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">13.426</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 19.516 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">213</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:68.8%; background:#F59E0B;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="73.2">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ವಾಣಿವಿಲಾಸ ಸಾಗರ</div>
-          <div class="dam-river">🌊 ನದಿ: ವೇದಾವತಿ · <span class="dam-district">ಚಿತ್ರದುರ್ಗ</span></div>
-        </div>
-        <span class="dam-status-badge status-medium">73.2% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">21.95</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 30 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:73.2%; background:#F59E0B;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">2,128</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">500</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="krishna" data-pct="99.8">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಘಟಪ್ರಭಾ · <span class="dam-district">ಬೆಳಗಾವಿ</span></div>
+      <div class="dam-card" data-basin="krishna" data-pct="55.4">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">50.899</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಮಲಪ್ರಭಾ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಮಲಪ್ರಭಾ · <span class="dam-district">ಬೆಳಗಾವಿ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">55.4% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 51 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:99.8%; background:#10B981;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">2,816</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">20.896</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 37.73 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">0</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:55.4%; background:#F59E0B;"></div>
         </div>
-      </div>
-    </div>
-    <div class="dam-card" data-basin="sharavathi" data-pct="78">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#00D2FF" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಲಿಂಗನಮಕ್ಕಿ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಶರಾವತಿ · <span class="dam-district">ಶಿವಮೊಗ್ಗ</span></div>
-        </div>
-        <span class="dam-status-badge status-good">78% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">118.3</span>
-          <span class="unit">TMC</span>
-        </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 151.75 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:78%; background:#00D2FF;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">28,500</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
-        </div>
-        <div class="dam-metric-box">
-          <div class="m-val">1,200</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">194</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dam-card" data-basin="sharavathi" data-pct="70">
-      <div class="dam-card-wave-bg">
-        <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
-          <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
-        </svg>
-      </div>
-      <div class="dam-card-header">
-        <div class="dam-name-wrap">
-          <div class="dam-name">ಸೂಪ ಅಣೆಕಟ್ಟು</div>
-          <div class="dam-river">🌊 ನದಿ: ಕಾಳಿ · <span class="dam-district">ಉತ್ತರ ಕನ್ನಡ</span></div>
+      <div class="dam-card" data-basin="krishna" data-pct="41.9">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#EF4444" opacity="0.18"></path>
+          </svg>
         </div>
-        <span class="dam-status-badge status-medium">70% ತುಂಬಿದೆ</span>
-      </div>
-      <div class="dam-storage-stat">
-        <div class="storage-primary">
-          <span class="num">103.28</span>
-          <span class="unit">TMC</span>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ತುಂಗಭದ್ರ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ತುಂಗಭದ್ರ · <span class="dam-district">ವಿಜಯನಗರ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">41.9% ತುಂಬಿದೆ</span>
         </div>
-        <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 147.54 TMC</div>
-      </div>
-      <div class="dam-bar-track">
-        <div class="dam-bar-fill" style="width:70%; background:#F59E0B;"></div>
-      </div>
-      <div class="dam-metric-grid">
-        <div class="dam-metric-box">
-          <div class="m-val">18,400</div>
-          <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">44.377</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 105.788 TMC</div>
         </div>
-        <div class="dam-metric-box">
-          <div class="m-val">500</div>
-          <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:41.9%; background:#EF4444;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">795</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
         </div>
       </div>
-    </div>
-</div>
+      <div class="dam-card" data-basin="krishna" data-pct="78.2">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#00D2FF" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಭದ್ರಾ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಭದ್ರಾ · <span class="dam-district">ಚಿಕ್ಕಮಗಳೂರು</span></div>
+          </div>
+          <span class="dam-status-badge status-good">78.2% ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">55.963</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 71.535 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:78.2%; background:#00D2FF;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">401</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">100</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dam-card" data-basin="krishna" data-pct="65.8">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ವಾಣಿವಿಲಾಸ ಸಾಗರ</div>
+            <div class="dam-river">🌊 ನದಿ: ವೇದಾವತಿ · <span class="dam-district">ಚಿತ್ರದುರ್ಗ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">65.8% ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">19.743</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 30.0 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:65.8%; background:#F59E0B;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dam-card" data-basin="krishna" data-pct="99.3">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್) ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಘಟಪ್ರಭಾ · <span class="dam-district">ಬೆಳಗಾವಿ</span></div>
+          </div>
+          <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">50.619</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 51.0 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:99.3%; background:#10B981;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">0</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dam-card" data-basin="sharavathi" data-pct="78.0">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#00D2FF" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಲಿಂಗನಮಕ್ಕಿ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಶರಾವತಿ · <span class="dam-district">ಶಿವಮೊಗ್ಗ</span></div>
+          </div>
+          <span class="dam-status-badge status-good">78.0% ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">118.3</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 151.75 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:78.0%; background:#00D2FF;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">28,500</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">1,200</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dam-card" data-basin="krishna" data-pct="99.7">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#10B981" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಕೃಷ್ಣ · <span class="dam-district">ಯಾದಗಿರಿ</span></div>
+          </div>
+          <span class="dam-status-badge status-full">ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">33.22</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 33.313 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:99.7%; background:#10B981;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">15,019</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">2,458</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dam-card" data-basin="sharavathi" data-pct="70.0">
+        <div class="dam-card-wave-bg">
+          <svg class="card-wave" viewBox="0 0 500 60" preserveAspectRatio="none">
+            <path d="M0,20 C150,45 350,-5 500,20 L500,60 L0,60 Z" fill="#F59E0B" opacity="0.18"></path>
+          </svg>
+        </div>
+        <div class="dam-card-header">
+          <div class="dam-name-wrap">
+            <div class="dam-name">ಸೂಪ ಅಣೆಕಟ್ಟು</div>
+            <div class="dam-river">🌊 ನದಿ: ಕಾಳಿ · <span class="dam-district">ಉತ್ತರ ಕನ್ನಡ</span></div>
+          </div>
+          <span class="dam-status-badge status-medium">70.0% ತುಂಬಿದೆ</span>
+        </div>
+        <div class="dam-storage-stat">
+          <div class="storage-primary">
+            <span class="num">103.28</span>
+            <span class="unit">TMC</span>
+          </div>
+          <div class="storage-max">ಸಾಮರ್ಥ್ಯ: 147.54 TMC</div>
+        </div>
+        <div class="dam-bar-track">
+          <div class="dam-bar-fill" style="width:70.0%; background:#F59E0B;"></div>
+        </div>
+        <div class="dam-metric-grid">
+          <div class="dam-metric-box">
+            <div class="m-val">18,400</div>
+            <div class="m-lbl">⬇️ ಒಳಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+          <div class="dam-metric-box">
+            <div class="m-val">500</div>
+            <div class="m-lbl">⬆️ ಹೊರಹರಿವು (ಕ್ಯೂಸೆಕ್ಸ್)</div>
+          </div>
+        </div>
+      </div>
+  </div>
 
   <!-- COMPREHENSIVE KARNATAKA DAMS & HYDROLOGY GUIDE ARTICLE -->
   <article class="article-container font-kannada" style="line-height: 1.85; color: #222; font-size: 16px; margin-top: 40px; padding: 25px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: var(--shadow);">
 
     <header>
-      <h1 style="font-size: 28px; color: #0f172a; margin-bottom: 12px; font-weight: 700;">ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳು, ನೀರಿನ ಮಟ್ಟ, ನದಿ ಕೊಳ್ಳಗಳು ಮತ್ತು ನೀರಾವರಿ ನಿರ್ವಹಣೆಯ ಸಮಗ್ರ ಕೈಪಿಡಿ (Karnataka Dams &amp; Hydrology Guide)</h1>
+      <h2 style="font-size: 28px; color: #0f172a; margin-bottom: 12px; font-weight: 700;">ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಜಲಾಶಯಗಳು, ನೀರಿನ ಮಟ್ಟ, ನದಿ ಕೊಳ್ಳಗಳು ಮತ್ತು ನೀರಾವರಿ ನಿರ್ವಹಣೆಯ ಸಮಗ್ರ ಕೈಪಿಡಿ (Karnataka Dams &amp; Hydrology Guide)</h2>
       <p style="color: #64748b; font-size: 14px; margin-bottom: 24px;">ಪ್ರಕಟಣೆ: Karnata.in ಜಲಸಂಪನ್ಮೂಲ &amp; ಕೃಷಿ ವಿಭಾಗ | ಕೊನೆಯ ನವೀಕರಣ: 2026</p>
     </header>
 
@@ -904,104 +956,104 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಕೆ.ಆರ್.ಎಸ್ (ಕೃಷ್ಣರಾಜ ಸಾಗರ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಮಂಡ್ಯ (ಕಾವೇರಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">124.80 ಅಡಿ / <strong>49.45 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>31.47 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px;">63.6%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 17,427</span> / <span style="color:#2563eb;">⬆️ 2,454</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>26.354 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">53.3%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 2,486</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 1,379</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಬೆಂಗಳೂರು &amp; ಮೈಸೂರು ಕುಡಿಯುವ ನೀರು, ಮಂಡ್ಯ-ಮೈಸೂರು ಕಬ್ಬು ಮತ್ತು ಭತ್ತದ ಬೆಳೆಗಳ ನೀರಾವರಿ. ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ ಅವರ ತಾಂತ್ರಿಕ ಮೇರುಕೃತಿ.</td>
             </tr>
             <tr data-dam-key="almatti">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಆಲಮಟ್ಟಿ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ವಿಜಯಪುರ (ಕೃಷ್ಣಾ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">519.60 ಮೀಟರ್ / <strong>123.08 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>122.66 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px;">99.7%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 28,420</span> / <span style="color:#2563eb;">⬆️ 24,500</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>73.944 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">60.1%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 0</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 250</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಉತ್ತರ ಕರ್ನಾಟಕದ ಅತಿ ದೊಡ್ಡ ಅಣೆಕಟ್ಟು (UKP). ಬಾಗಲಕೋಟೆ, ವಿಜಯಪುರ, ಕಲಬುರಗಿ, ಯಾದಗಿರಿ ಜಿಲ್ಲೆಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ಆಸರೆ ಮತ್ತು 290 MW ವಿದ್ಯುತ್.</td>
             </tr>
             <tr data-dam-key="tungabhadra">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ತುಂಗಭದ್ರಾ (ಟಿ.ಬಿ. ಡ್ಯಾಂ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ವಿಜಯನಗರ (ತುಂಗಭದ್ರಾ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">1,633.00 ಅಡಿ / <strong>105.78 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>95.62 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px;">90.4%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 15,952</span> / <span style="color:#2563eb;">⬆️ 0</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>44.377 TMC</strong> <span style="background:#fee2e2; color:#991b1b; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">41.9%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 0</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 795</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಬಳ್ಳಾರಿ, ವಿಜಯನಗರ, ಕೊಪ್ಪಳ, ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳು ಮತ್ತು ಆಂಧ್ರಪ್ರದೇಶದ ಗಡಿ ಭಾಗದ ಭತ್ತದ ಕಣಜಕ್ಕೆ ನೀರುಣಿಸುವ ಜೀವನಾಡಿ.</td>
             </tr>
             <tr data-dam-key="kabini">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಕಬಿನಿ</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಮೈಸೂರು (ಕಪಿಲಾ/ಕಬಿನಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">2,284.00 ಅಡಿ / <strong>19.52 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>13.08 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px;">67.0%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 7,676</span> / <span style="color:#2563eb;">⬆️ 6,100</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>13.426 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">68.8%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 2,128</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 500</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕೇರಳದ ವೈನಾಡು ಮಳೆಯಿಂದಾಗಿ ಮುಂಗಾರಿನಲ್ಲಿ ಮೊದಲು ಭರ್ತಿಯಾಗುವ ಜಲಾಶಯ. ಮೈಸೂರು, ಚಾಮರಾಜನಗರ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ನೀರು ಹರಿಸುವಲ್ಲಿ ಪ್ರಮುಖ ಪಾತ್ರ.</td>
             </tr>
             <tr data-dam-key="hemavathi">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಹೇಮಾವತಿ</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಹಾಸನ (ಹೇಮಾವತಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">2,922.00 ಅಡಿ / <strong>37.10 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>30.09 TMC</strong> <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:12px;">81.1%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 2,210</span> / <span style="color:#2563eb;">⬆️ 1,800</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>17.402 TMC</strong> <span style="background:#fee2e2; color:#991b1b; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">46.9%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 3,189</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 300</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಹಾಸನ, ತುಮಕೂರು ಮತ್ತು ಮಂಡ್ಯ ಜಿಲ್ಲೆಗಳ ಬಯಲು ಸೀಮೆ ಭಾಗದ ಕೆರೆಗಳನ್ನು ತುಂಬಿಸುವ ಪ್ರಮುಖ ಜಲಾಶಯ.</td>
             </tr>
             <tr data-dam-key="linganamakki">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಲಿಂಗನಮಕ್ಕಿ</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಶಿವಮೊಗ್ಗ (ಶರಾವತಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">1,819.00 ಅಡಿ / <strong>151.75 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>118.30 TMC</strong> <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:12px;">78.0%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 28,500</span> / <span style="color:#2563eb;">⬆️ 1,200</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>118.3 TMC</strong> <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">78.0%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 28,500</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 1,200</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕರ್ನಾಟಕದ ಅತಿ ದೊಡ್ಡ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯದ ಜಲಾಶಯ. ಶರಾವತಿ ಜಲವಿದ್ಯುತ್ ಯೋಜನೆಯ ಮೂಲಕ ರಾಜ್ಯದ ಶೇಕಡಾ 30% ಕ್ಕಿಂತ ಹೆಚ್ಚು ಜಲವಿದ್ಯುತ್ ಉತ್ಪಾದನೆ ಮಾಡುತ್ತದೆ.</td>
             </tr>
             <tr data-dam-key="supa">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಸೂಪಾ ಅಣೆಕಟ್ಟು</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಉತ್ತರ ಕನ್ನಡ (ಕಾಳಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">564.00 ಮೀಟರ್ / <strong>147.54 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>103.28 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px;">70.0%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 18,400</span> / <span style="color:#2563eb;">⬆️ 500</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>103.28 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">70.0%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 18,400</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 500</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕಾಳಿ ನದಿ ಕೊಳ್ಳದ ಬೃಹತ್ ಜಲವಿದ್ಯುತ್ ಕೇಂದ್ರ (ನಾಗಝರಿ ಪವರ್ ಹೌಸ್).</td>
             </tr>
             <tr data-dam-key="bhadra">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಭದ್ರಾ ಜಲಾಶಯ</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಚಿಕ್ಕಮಗಳೂರು (ಲಕ್ಕವಳ್ಳಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">186.00 ಅಡಿ / <strong>71.53 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>60.27 TMC</strong> <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:12px;">84.2%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 4,628</span> / <span style="color:#2563eb;">⬆️ 100</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>55.963 TMC</strong> <span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">78.2%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 401</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 100</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಶಿವಮೊಗ್ಗ, ದಾವಣಗೆರೆ ಮತ್ತು ಚಿತ್ರದುರ್ಗ ಜಿಲ್ಲೆಗಳ ರೈತರ ಜೀವನಾಡಿ. ಭದ್ರಾ ಮೇಲ್ದಂಡೆ ಯೋಜನೆಗೆ (Upper Bhadra) ಆಧಾರ.</td>
             </tr>
             <tr data-dam-key="ghataprabha">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಬೆಳಗಾವಿ (ಘಟಪ್ರಭಾ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">2,175.00 ಅಡಿ / <strong>51.00 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>50.73 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px;">99.5%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 4,261</span> / <span style="color:#2563eb;">⬆️ 2,750</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>50.619 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">99.3%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 0</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 0</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಬೆಳಗಾವಿ ಮತ್ತು ಬಾಗಲಕೋಟೆ ಜಿಲ್ಲೆಗಳ ಕಬ್ಬು ಬೆಳೆಗಾರರ ಪ್ರಮುಖ ನೀರಾವರಿ ಆಧಾರ.</td>
             </tr>
             <tr data-dam-key="malaprabha">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಮಲಪ್ರಭಾ (ನವಿಲುತೀರ್ಥ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಬೆಳಗಾವಿ (ಸವದತ್ತಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">2,079.50 ಅಡಿ / <strong>37.73 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>22.52 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px;">59.7%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 2,376</span> / <span style="color:#2563eb;">⬆️ 0</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>20.896 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">55.4%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 0</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 194</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ಅವಳಿ ನಗರಗಳ ಕುಡಿಯುವ ನೀರು ಮತ್ತು ಗದಗ, ಬಾಗಲಕೋಟೆ ನೀರಾವರಿ.</td>
             </tr>
             <tr data-dam-key="harangi">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಕೊಡಗು (ಹಾರಂಗಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">2,859.00 ಅಡಿ / <strong>8.50 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>8.34 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px;">98.1%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 4,275</span> / <span style="color:#2563eb;">⬆️ 2,858</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>5.366 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">63.1%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 828</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 200</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕಾವೇರಿ ಜಲಾನಯನ ಪ್ರದೇಶದ ಪ್ರಮುಖ ಉಪಜಲಾಶಯ, ಕೊಡಗು &amp; ಮೈಸೂರು ಗಡಿಭಾಗದ ಕೃಷಿಗೆ ಆಸರೆ.</td>
             </tr>
             <tr data-dam-key="narayanapura">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ನಾರಾಯಣಪುರ (ಬಸವ ಸಾಗರ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಯಾದಗಿರಿ (ಕೃಷ್ಣಾ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">492.25 ಮೀಟರ್ / <strong>33.31 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>33.22 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px;">99.7%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 24,538</span> / <span style="color:#2563eb;">⬆️ 12,525</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>33.22 TMC</strong> <span style="background:#dcfce7; color:#166534; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">99.7%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 15,019</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 2,458</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕೃಷ್ಣಾ ಮೇಲ್ದಂಡೆ ಯೋಜನೆ (UKP) ಎರಡನೇ ಹಂತ, ಯಾದಗಿರಿ, ಕಲಬುರಗಿ ಮತ್ತು ರಾಯಚೂರು ನೀರಾವರಿ.</td>
             </tr>
             <tr data-dam-key="vanivilasa">
               <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>ವಾಣಿವಿಲಾಸ ಸಾಗರ (ಮಾರಿಕಣಿವೆ)</strong></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">ಚಿತ್ರದುರ್ಗ (ವೇದಾವತಿ ನದಿ)</td>
               <td style="padding: 10px; border: 1px solid #e2e8f0;">142.00 ಅಡಿ / <strong>30.00 TMC</strong></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>22.42 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px;">74.7%</span></td>
-              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a;">⬇️ 0</span> / <span style="color:#2563eb;">⬆️ 0</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-storage-cell"><strong>19.743 TMC</strong> <span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:700;">65.8%</span></td>
+              <td style="padding: 10px; border: 1px solid #e2e8f0;" class="tbl-flow-cell"><span style="color:#16a34a; font-weight:600;">⬇️ 0</span> / <span style="color:#2563eb; font-weight:600;">⬆️ 0</span></td>
               <td style="padding: 10px; border: 1px solid #e2e8f0; font-size: 13px;">ಕರ್ನಾಟಕದ ಅತ್ಯಂತ ಹಳೆಯ ಮಾನವ ನಿರ್ಮಿತ ಜಲಾಶಯ. ಚಿತ್ರದುರ್ಗ ಮತ್ತು ಹಿರಿಯೂರು ಭಾಗದ ನೀರಾವರಿ ಕಲ್ಪವೃಕ್ಷ.</td>
             </tr>
           </tbody>
@@ -1488,7 +1540,7 @@ if (document.readyState === 'loading') {
   loadDamData();
 }
 </script>
-<script src="/data-loader.js"></script>
+
 <script src="/nav-component.js"></script>
 </body>
 </html>

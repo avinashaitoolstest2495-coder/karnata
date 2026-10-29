@@ -1,12 +1,17 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 import json, base64, re, time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT_DIR = Path(r"c:\Users\avina\Downloads\karnata-site-with-cms")
 SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA"
+
+KN_MONTHS = {
+    1: 'ಜನ', 2: 'ಫೆಬ್ರ', 3: 'ಮಾರ್ಚ್', 4: 'ಏಪ್ರಿಲ್', 5: 'ಮೇ', 6: 'ಜೂನ್',
+    7: 'ಜುಲೈ', 8: 'ಆಗ', 9: 'ಸೆಪ್', 10: 'ಅಕ್ಟೋ', 11: 'ನವೆಂ', 12: 'ಡಿಸೆಂ'
+}
 
 DISTRICT_REGIONS = {
     'bengaluru_urban': 'south', 'bengaluru_rural': 'south', 'ramanagara': 'south', 'kolar': 'south',
@@ -35,6 +40,15 @@ def decrypt_payload(raw_json):
         return json.loads(decrypted.decode('utf-8'))
     return raw_json
 
+def encrypt_payload(data_dict):
+    raw_str = json.dumps(data_dict, ensure_ascii=False)
+    raw_bytes = raw_str.encode('utf-8')
+    key_bytes = SECRET_KEY.encode('utf-8')
+    encrypted = bytearray()
+    for i, b in enumerate(raw_bytes):
+        encrypted.append(b ^ key_bytes[i % len(key_bytes)])
+    return base64.b64encode(encrypted).decode('utf-8')
+
 def sync_weather():
     print("=== SYNCING LATEST WEATHER DATA INTO WEATHER.HTML & GEO PUSH ALERTS ===")
     weather_file = ROOT_DIR / "data" / "weather.json"
@@ -53,6 +67,12 @@ def sync_weather():
     nc_dist_dict = {}
     nc_summary = {"red": 0, "orange": 0, "yellow": 0, "green": 0, "total_alerts": 0}
     geo_weather_alerts = []
+    # 3-Hour Time Block Window (00-03, 03-06, 06-09, 09-12, 12-15, 15-18, 18-21, 21-24)
+    now_dt = datetime.now()
+    block_start_h = (now_dt.hour // 3) * 3
+    block_end_h = block_start_h + 3
+    block_tag = f"B{block_start_h:02d}TO{block_end_h:02d}"
+    day_tag = now_dt.strftime('%Y%m%d')
 
     for k, d in nowcast_dists.items():
         region = DISTRICT_REGIONS.get(k, 'south')
@@ -69,7 +89,9 @@ def sync_weather():
             accent = '#E11D48'; bg = '#FFF1F2'
             # Geo Push Notification for Red Alert
             geo_weather_alerts.append({
-                "id": f"WEATHER-RED-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "id": f"WEATHER-RED-{k}-{day_tag}-{block_tag}",
+                "interval_hours": 3,
+                "block": block_tag,
                 "alert_level": "red",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
@@ -88,7 +110,9 @@ def sync_weather():
             accent = '#D97706'; bg = '#FFFBEB'
             # Geo Push Notification for Orange Alert
             geo_weather_alerts.append({
-                "id": f"WEATHER-ORANGE-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "id": f"WEATHER-ORANGE-{k}-{day_tag}-{block_tag}",
+                "interval_hours": 3,
+                "block": block_tag,
                 "alert_level": "orange",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
@@ -112,7 +136,9 @@ def sync_weather():
             # Geo Push Notification for Yellow Alert
             adv_time = f"ಮಾನ್ಯತೆ: {v_time}" if 'Valid upto:' in raw_wi else "ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ"
             geo_weather_alerts.append({
-                "id": f"WEATHER-YELLOW-{k}-{datetime.now().strftime('%Y%m%d%H')}",
+                "id": f"WEATHER-YELLOW-{k}-{day_tag}-{block_tag}",
+                "interval_hours": 3,
+                "block": block_tag,
                 "alert_level": "yellow",
                 "target_district": k,
                 "target_district_kn": d_name_kn,
@@ -161,7 +187,9 @@ def sync_weather():
             existing = [a for a in geo_weather_alerts if a['target_district'] == k]
             if not existing:
                 geo_weather_alerts.append({
-                    "id": f"FORECAST-{lvl.upper()}-{k}-{datetime.now().strftime('%Y%m%d')}",
+                    "id": f"FORECAST-{lvl.upper()}-{k}-{day_tag}-{block_tag}",
+                    "interval_hours": 3,
+                    "block": block_tag,
                     "alert_level": lvl,
                     "target_district": k,
                     "target_district_kn": d_name_kn,
@@ -187,14 +215,20 @@ def sync_weather():
         nk_feed_path.write_text(json.dumps(push_feed_obj, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f"Generated {len(geo_weather_alerts)} geo-targeted weather push alerts into data/live_push_feed.json!")
 
-    # Build Day_1 to Day_5
-    day_kn_labels = {
-        'Day_1': '📅 ಇಂದು (Day 1)',
-        'Day_2': '📅 ನಾಳೆ (Day 2)',
-        'Day_3': '📅 ದಿನ 3 (Day 3)',
-        'Day_4': '📅 ದಿನ 4 (Day 4)',
-        'Day_5': '📅 ದಿನ 5 (Day 5)'
-    }
+    # Build Day_1 to Day_5 with dynamic Kannada date labels
+    now_dt = datetime.now()
+    day_kn_labels = {}
+    for idx_d, d_code in enumerate(['Day_1', 'Day_2', 'Day_3', 'Day_4', 'Day_5']):
+        target_dt = now_dt + timedelta(days=idx_d)
+        d_num = f"{target_dt.day:02d}"
+        m_kn = KN_MONTHS.get(target_dt.month, 'ಸೆಪ್')
+        if idx_d == 0:
+            pref = "📅 ಇಂದು"
+        elif idx_d == 1:
+            pref = "📅 ನಾಳೆ"
+        else:
+            pref = f"📅 ದಿನ {idx_d + 1}"
+        day_kn_labels[d_code] = f"{pref} ({d_num} {m_kn})"
 
     for d_code in ['Day_1', 'Day_2', 'Day_3', 'Day_4', 'Day_5']:
         day_raw = forecast_5d.get(d_code, {}).get('districts', {})
@@ -302,6 +336,20 @@ def sync_weather():
         warn_grid.clear()
         warn_grid.append(BeautifulSoup(grid_cards_html, 'html.parser'))
 
+    # Update #warningDayTabs buttons with current dynamic dates
+    day_tabs_el = soup.find(id='warningDayTabs')
+    if day_tabs_el:
+        tabs_html = f"""
+      <button class="wd-tab active" onclick="switchWarningDay('Nowcast', this)">⚡ 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</button>
+      <button class="wd-tab" onclick="switchWarningDay('Day_1', this)">{day_kn_labels['Day_1']}</button>
+      <button class="wd-tab" onclick="switchWarningDay('Day_2', this)">{day_kn_labels['Day_2']}</button>
+      <button class="wd-tab" onclick="switchWarningDay('Day_3', this)">{day_kn_labels['Day_3']}</button>
+      <button class="wd-tab" onclick="switchWarningDay('Day_4', this)">{day_kn_labels['Day_4']}</button>
+      <button class="wd-tab" onclick="switchWarningDay('Day_5', this)">{day_kn_labels['Day_5']}</button>
+"""
+        day_tabs_el.clear()
+        day_tabs_el.append(BeautifulSoup(tabs_html, 'html.parser'))
+
     # Update window.districtWarnings5D in script
     for s in soup.find_all('script'):
         if s.string and 'window.districtWarnings5D =' in s.string:
@@ -318,6 +366,16 @@ def sync_weather():
         new_push_tag = soup.new_tag('script', src='/assets/js/karnata-push-client.js')
         soup.body.append(new_push_tag)
         print("Included karnata-push-client.js in weather.html")
+
+    # Also save districtWarnings5D directly into data/weather.json
+    weather_data['districtWarnings5D'] = master_d5
+    weather_data['updated_at'] = datetime.now().isoformat()
+    enc_w = encrypt_payload(weather_data)
+    weather_file.write_text(json.dumps({"payload": enc_w}, ensure_ascii=False, indent=2), encoding='utf-8')
+    nk_w_file = ROOT_DIR / "namma-karnataka" / "data" / "weather.json"
+    if nk_w_file.parent.exists():
+        nk_w_file.write_text(json.dumps({"payload": enc_w}, ensure_ascii=False, indent=2), encoding='utf-8')
+    print("Updated data/weather.json with master districtWarnings5D!")
 
     # Save to both locations
     final_html = str(soup)

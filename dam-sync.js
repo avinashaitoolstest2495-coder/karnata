@@ -112,12 +112,19 @@
       const inflow = formatNum(Math.round(dam.inflow_cusecs || 0));
       const outflow = formatNum(Math.round(dam.outflow_cusecs || 0));
       const level = dam.level_ft ? parseFloat(dam.level_ft).toFixed(2) : (dam.current_level_ft || '');
-      const dateStr = dam.date || data.date || new Date().toLocaleDateString('kn-IN');
+      let dateStr = dam.date || data.date || '';
+      if (dateStr && dateStr.includes('-')) {
+        const parts = dateStr.split('-');
+        if (parts[0].length === 4) {
+          dateStr = `${parts[2]}-${parts[1]}-${parts[0]}`;
+        }
+      }
+      if (!dateStr) dateStr = new Date().toLocaleDateString('en-GB');
 
       // 1. Update Update Time Stamps
       const updateEl = document.getElementById('update-time') || document.getElementById('dam-update-time');
       if (updateEl) {
-        updateEl.textContent = `ಕೊನೆ ನವೀಕರಣ: ${dateStr} — KSNDMC ಲೈವ್ ವರದಿ`;
+        updateEl.textContent = `ಕೊನೆ ನವೀಕರಣ: ${dateStr} — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ`;
       }
 
       // 2. Update Metric Cards
@@ -163,10 +170,12 @@
         const valEl = card.querySelector('.mc-val');
         if (!valEl) return;
 
-        if (txt.includes('ಸಂಗ್ರಹ') || txt.includes('Storage')) {
+        if (txt.includes('ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ') || txt.includes('Present Storage') || (txt.includes('ಸಂಗ್ರಹ') && !txt.includes('ಸಾಮರ್ಥ್ಯ') && !txt.includes('Gross'))) {
           valEl.textContent = `${storage} TMC`;
           const sub = card.querySelector('.mc-sub');
           if (sub) sub.textContent = `${pct}% ತುಂಬಿದೆ (${grossCap} TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)`;
+        } else if (txt.includes('ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ') || txt.includes('Gross Storage') || txt.includes('Gross Capacity')) {
+          valEl.textContent = `${grossCap} TMC`;
         } else if (txt.includes('ಜಲಮಟ್ಟ') || txt.includes('Level')) {
           if (level) valEl.textContent = `${level} ಅಡಿ`;
         } else if (txt.includes('ಒಳಹರಿವು') || txt.includes('Inflow')) {

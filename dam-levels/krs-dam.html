@@ -158,7 +158,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <body>
 
 <div class="topnav">
-  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
   <div class="page-title">💧 KRS ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
@@ -168,129 +168,159 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <!-- HERO BANNER WITH IMAGE -->
   <div class="dam-hero-card">
     <div class="hero-img-wrap">
-      <img src="/images/krs_dam.jpg" alt="KRS ಅಣೆಕಟ್ಟು" class="hero-img">
+      <img src="/images/krs_dam.jpg" alt="ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಅಣೆಕಟ್ಟು" class="hero-img">
       <div class="hero-overlay">
         <div class="dh-tag">📍 ಜಲಾನಯನ: ಕಾವೇರಿ (Cauvery Basin)</div>
-        <h1 class="dh-title">KRS ಅಣೆಕಟ್ಟು (ಕೃಷ್ಣರಾಜ ಸಾಗರ)</h1>
+        <h1 class="dh-title">ಕೃಷ್ಣರಾಜ ಸಾಗರ - ಕೆಆರ್ಎಸ್ ಅಣೆಕಟ್ಟು (KRS Dam)</h1>
         <div class="dh-sub">
           <span>🌊 ನದಿ: ಕಾವೇರಿ ನದಿ</span>
-          <span>🏛️ ಜಿಲ್ಲೆ: ಮಂಡ್ಯ / ಮೈಸೂರು</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಮಂಡ್ಯ (ಶ್ರೀರಂಗಪಟ್ಟಣ / ಕಣ್ಣಂಬಾಡಿ)</span>
         </div>
-        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
       </div>
     </div>
   </div>
 
-  <!-- METRICS -->
+  <!-- 5 METRIC CARDS -->
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" id="krs-m-storage" style="color:var(--amber)">23.08 TMC</div>
-      <div class="mc-sub" id="krs-m-sub">46.7% ತುಂಬಿದೆ (49.45 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--green)" id="krs-m-storage">26.354 TMC</div>
+      <div class="mc-sub" id="krs-m-sub">53.3% ತುಂಬಿದೆ (49.452 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val">49.452 TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val" id="krs-m-level">108.45 ಅಡಿ</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL): 124.80 ಅಡಿ</div>
+      <div class="mc-val" id="krs-m-level">2448.28 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 2449.66 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" id="krs-m-inflow" style="color:var(--green)">32,048</div>
+      <div class="mc-val" style="color:var(--green)" id="krs-m-inflow">2,486</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" id="krs-m-outflow" style="color:var(--blue-mid)">1,450</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="krs-m-outflow">1,379</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- CREATIVE 30-DAY AREA CHART -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📈 KRS ಅಣೆಕಟ್ಟು — 30 ದಿನದ ನೀರಿನ ಸಂಗ್ರಹ &amp; ಒಳಹರಿವು ಟ್ರೆಂಡ್</div>
-    </div>
-    <div class="creative-chart-wrap">
-      <svg class="svg-chart" viewBox="0 0 800 200" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#E67E22" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#E67E22" stop-opacity="0.05"/>
-          </linearGradient>
-        </defs>
-        <path class="area-path" d="M 40,170 Q 150,165 250,150 T 450,120 T 650,110 T 760,105 L 760,180 L 40,180 Z" />
-        <path class="line-path" stroke="#E67E22" d="M 40,170 Q 150,165 250,150 T 450,120 T 650,110 T 760,105" />
-        <path class="inflow-line" d="M 40,175 Q 150,160 250,110 T 450,50 T 650,60 T 760,45" />
-        <circle class="chart-dot" cx="40" cy="170" r="4"><title>01 ಜುಲೈ: 12.2 TMC</title></circle>
-        <circle class="chart-dot" cx="150" cy="165" r="4"><title>10 ಜುಲೈ: 14.8 TMC</title></circle>
-        <circle class="chart-dot" cx="250" cy="150" r="4"><title>18 ಜುಲೈ: 16.4 TMC</title></circle>
-        <circle class="chart-dot" cx="450" cy="120" r="4"><title>25 ಜುಲೈ: 19.5 TMC</title></circle>
-        <circle class="chart-dot" cx="650" cy="110" r="4"><title>30 ಜುಲೈ: 21.8 TMC</title></circle>
-        <circle class="chart-dot" cx="760" cy="105" r="5" fill="#E74C3C"><title>ಇಂದು (ಆಗಸ್ಟ್): 23.08 TMC</title></circle>
-      </svg>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:var(--ink3); font-family:var(--font-en);">
-      <span>01 ಜುಲೈ 2026</span>
-      <span>10 ಜುಲೈ</span>
-      <span>20 ಜುಲೈ</span>
-      <span>ಇಂದು</span>
-    </div>
-  </div>
-
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    </div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">124.80 ಅಡಿ (38.04 ಮೀ)</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">60.00 ಅಡಿ (18.28 ಮೀ)</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">49.452 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">45.240 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಇಂದಿನ ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage)</div><div class="spec-val" id="krs-s-gross">23.078 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಇಂದಿನ ಸಕ್ರಿಯ ಸಂಗ್ರಹ (Live Storage)</div><div class="spec-val" id="krs-s-live">14.700 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಮುಖ್ಯ ಇಂಜಿನಿಯರ್ / ವಾಸ್ತುಶಿಲ್ಪಿ</div><div class="spec-val" style="font-family:var(--font-kn)">ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1911 - 1931</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY & BACKGROUND ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📜 KRS ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ</div>
-    </div>
-    <div class="history-article">
-      <p><strong>ಕೃಷ್ಣರಾಜ ಸಾಗರ ಅಣೆಕಟ್ಟು (KRS Dam)</strong> ಭಾರತದ ಎಂಜಿನಿಯರಿಂಗ್ ಅದ್ಭುತಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ಮೈಸೂರು ಸಂಸ್ಥಾನದ ಮಹಾರಾಜ ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ಅವರ ಆಳ್ವಿಕೆಯಲ್ಲಿ, ಭಾರತ ರತ್ನ <strong>ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ</strong> ಅವರ ದಿವ್ಯ ನೇತೃತ್ವ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್ ನೈಪುಣ್ಯದಲ್ಲಿ ಈ ಅಣೆಕಟ್ಟನ್ನು ಕಾವೇರಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲೂಕಿನಲ್ಲಿ ನಿರ್ಮಿಸಲಾಯಿತು.</p>
-
-      <h3>🏗️ ಸುರ್ಕಿ ಗಾರೆ ಮತ್ತು ನಿರ್ಮಾಣ ತಂತ್ರಜ್ಞಾನ:</h3>
-      <p>1911 ರಲ್ಲಿ ಪ್ರಾರಂಭವಾದ ನಿರ್ಮಾಣ ಕಾಮಗಾರಿ 1931 ರಲ್ಲಿ ಪೂರ್ಣಗೊಂಡಿತು. ವಿಶೇಷವೆಂದರೆ, ಅಂದಿನ ಕಾಲದಲ್ಲಿ ಸಿಮೆಂಟ್ ಬಳಸದೆ <em>'ಸುರ್ಕಿ ಗಾರೆ' (Surkhi Mortar)</em> ಬಳಸಿ ಈ ಬೃಹತ್ ಅಣೆಕಟ್ಟನ್ನು ನಿರ್ಮಿಸಲಾಯಿತು. ಇದು ವಿಶ್ವದಲ್ಲೇ ಅತ್ಯಂತ ಗಟ್ಟಿಮುಟ್ಟಾದ ಸುರ್ಕಿ ಗಾರೆ ಅಣೆಕಟ್ಟು ಎನಿಸಿಕೊಂಡಿದೆ.</p>
-
-      <h3>🌾 ಬೆಳೆಗಳಿಗೆ ಜೀವಜಲ &amp; ಬೆಂಗಳೂರು ಕುಡಿಯುವ ನೀರು:</h3>
-      <p>ಮಂಡ್ಯ ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಲಕ್ಷಾಂತರ ಎಕರೆ ಕಬ್ಬು ಮತ್ತು ಭತ್ತದ ಗದ್ದೆಗಳಿಗೆ ನೀರು ಒದಗಿಸುವುದಲ್ಲದೆ, ರಾಜಧಾನಿ <strong>ಬೆಂಗಳೂರು ನಗರ</strong> ಮತ್ತು ಮೈಸೂರು ನಗರಗಳ ಶೇಕಡಾ 80 ಕ್ಕೂ ಹೆಚ್ಚು ಜನಸಂಖ್ಯೆಗೆ ಕುಡಿಯುವ ನೀರನ್ನು ಪೂರೈಸುವ ಮುಖ್ಯ ಆಧಾರ ಸ್ತಂಭವೇ KRS ಅಣೆಕಟ್ಟು.</p>
-
-      <h3>⛲ ವಿಶ್ವಪ್ರಸಿದ್ಧ ಬೃಂದಾವನ ಉದ್ಯಾನವನ (Brindavan Gardens):</h3>
-      <p>ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದಲ್ಲಿ ವಿಶ್ವವಿಖ್ಯಾತ <strong>ಬೃಂದಾವನ ಉದ್ಯಾನವನ (Brindavan Gardens)</strong> ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾಗಿದೆ. ಇಲ್ಲಿನ ವರ್ಣರಂಜಿತ ಸಂಗೀತ ಕಾರಂಜಿ (Musical Fountain) ಮತ್ತು ಬೆಳಕಿನ ವಿನ್ಯಾಸವನ್ನು ವೀಕ್ಷಿಸಲು ಪ್ರತಿದಿನ ಸಾವಿರಾರು ದೇಶ-ವಿದೇಶಿ ಪ್ರವಾಸಿಗರು ಆಗಮಿಸುತ್ತಾರೆ.</p>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ಕೃಷ್ಣರಾಜ ಸಾಗರ ಜಲಾಶಯ (KRS Dam - Mysuru/Mandya) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ: ಕಾವೇರಿಯ ಒಡಲು, ಸಕ್ಕರೆ ಸೀಮೆಯ ಕೃಷಿ ಮತ್ತು ಕೋಟ್ಯಂತರ ಜನರ ಜೀವಜಲ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಮೈಸೂರಿನ ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ಅವರ ಆಡಳಿತಾವಧಿಯಲ್ಲಿ ಭಾರತ ರತ್ನ ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ ಅವರ ಅದ್ಭುತ ಇಂಜಿನಿಯರಿಂಗ್ ಕೌಶಲ್ಯದಿಂದ ನಿರ್ಮಾಣಗೊಂಡ ಐತಿಹಾಸಿಕ ಜಲಾಶಯ. ಮೈಸೂರು, ಮಂಡ್ಯ ಮತ್ತು ಬೆಂಗಳೂರು ನಗರಗಳ ಜೀವನಾಡಿ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ವಿಶ್ವೇಶ್ವರಯ್ಯ ನಾಲೆ (VC Canal), ದೇವರಾಜ ಅರಸ್ ನಾಲೆ, ಚಿಕ್ಕದೇವರಾಯ ಸಾಗರ ನಾಲೆಗಳ ಮೂಲಕ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಭತ್ತ ಮತ್ತು ಕಬ್ಬು ಬೆಳೆಗಾರರಿಗೆ ನೀರುಣಿಸುತ್ತದೆ. ಬೆಂಗಳೂರಿನ 1.4 ಕೋಟಿ ನಾಗರಿಕರಿಗೆ ಕುಡಿಯುವ ನೀರಿನ ಪ್ರಮುಖ ಆಧಾರವಾಗಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ವಿಶ್ವವಿಖ್ಯಾತ ಬೃಂದಾವನ ಗಾರ್ಡನ್ (Brindavan Gardens) ಮತ್ತು ಸಂಗೀತ ಕಾರಂಜಿಗಳು ದೇಶ-ವಿದೇಶದ ಪ್ರವಾಸಿಗರನ್ನು ಆಕರ್ಷಿಸುತ್ತವೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ದಕ್ಷಿಣ ಕರ್ನಾಟಕದ ಪಾಲಿಗೆ ‘ಕಾವೇರಿ’ ಕೇವಲ ಒಂದು ನದಿಯಲ್ಲ; ತಾಯಿ, ಜೀವನಾಡಿ ಮತ್ತು ಭಾವನಾತ್ಮಕ ಶಕ್ತಿ. ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲೂಕಿನ ಕಣ್ಣಂಬಾಡಿ ಬಳಿ ನಿರ್ಮಿಸಲಾಗಿರುವ ಐತಿಹಾಸಿಕ ‘ಕೃಷ್ಣರಾಜ ಸಾಗರ’ (KRS) ಜಲಾಶಯವು ಇಡೀ ಹಳೆ ಮೈಸೂರು ಭಾಗದ ಕೃಷಿ, ಕೈಗಾರಿಕೆ ಹಾಗೂ ಕುಡಿಯುವ ನೀರಿನ ಬೆನ್ನೆಲುಬಾಗಿದೆ.
     </p>
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ಕಾವೇರಿ ನೀರಾವರಿ ನಿಗಮ ಮತ್ತು ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಪ್ರಕಟಿಸುವ ಕೆಆರ್ಎಸ್ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟದ (Water Level) ಅಂಕಿ-ಅಂಶಗಳು ಕೇವಲ ಮಂಡ್ಯದ ರೈತರನ್ನಷ್ಟೇ ಅಲ್ಲ, ಬೆಂಗಳೂರು ಮಹಾನಗರದ ಕೋಟ್ಯಂತರ ನಿವಾಸಿಗಳು ಹಾಗೂ ನೆರೆಯ ತಮಿಳುನಾಡಿನ ಜನರ ಕಣ್ಣುಗಳನ್ನೂ ತನ್ನತ್ತ ಸೆಳೆಯುತ್ತವೆ. ಕೊಡಗಿನ ಬೆಟ್ಟಗುಡ್ಡಗಳಲ್ಲಿ ಮಳೆ ಸುರಿದು ಕಣ್ಣಂಬಾಡಿ ಕಟ್ಟೆ ತುಂಬಿತೆಂದರೆ ನಾಡಿನಾದ್ಯಂತ ಸಂಭ್ರಮದ ವಾತಾವರಣ ನೆಲೆಸುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏛️ ಕಣ್ಣಂಬಾಡಿ ಕಟ್ಟೆಯ ಐತಿಹಾಸಿಕ ಹಿನ್ನೆಲೆ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್ ಚಮತ್ಕಾರ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್ ಜಲಾಶಯದ ಕಲ್ಲು-ಕಲ್ಲುಗಳಲ್ಲೂ ನಿಸ್ವಾರ್ಥ ಆಡಳಿತ ಮತ್ತು ಅಪ್ರತಿಮ ಎಂಜಿನಿಯರಿಂಗ್ ಪ್ರತಿಭೆಯ ಕಥೆಯಿದೆ. 1870ರ ದಶಕದಲ್ಲಿ ಮೈಸೂರು ಸಂಸ್ಥಾನ ಕಂಡ ಭೀಕರ ಕ್ಷಾಮಕ್ಕೆ (ದಾತೀ ಬರಗಾಲ) ಶಾಶ್ವತ ಪರಿಹಾರ ಕಂಡುಕೊಳ್ಳಲು, ರಾಜರ್ಷಿ ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ಮತ್ತು ಭಾರತ ರತ್ನ ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯನವರು ರೂಪಿಸಿದ ಮಹತ್ವಾಕಾಂಕ್ಷೆಯ ಯೋಜನೆಯೇ ಈ ಅಣೆಕಟ್ಟು.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಣದ ತೀವ್ರ ಕೊರತೆ ಎದುರಾದಾಗ, ನಾಡಿನ ಜನರ ಹಸಿವನ್ನು ನೀಗಿಸಲು ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ಅವರು ತಮ್ಮ ರಾಜಮನೆತನದ ಆಭರಣಗಳನ್ನು ಮುಂಬೈನಲ್ಲಿ ಗಿರವಿ ಇಟ್ಟು ಕಾಮಗಾರಿಯನ್ನು ಮುಂದುವರಿಸಿದ್ದು ಇತಿಹಾಸದ ಸುವರ್ಣ ಪುಟ. 1911ರಲ್ಲಿ ಆರಂಭವಾದ ನಿರ್ಮಾಣ ಕಾಮಗಾರಿ 1932ರಲ್ಲಿ ಸಂಪೂರ್ಣಗೊಂಡಿತು. ಸಿಮೆಂಟ್ ಲಭ್ಯವಿಲ್ಲದ ಆ ಕಾಲದಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ತಯಾರಿಸಿದ ‘ಸುರ್ಕಿ ಗಾರೆ’ (Surki Mortar - ಸುಟ್ಟ ಇಟ್ಟಿಗೆ ಪುಡಿ ಮತ್ತು ಸುಣ್ಣದ ಮಿಶ್ರಣ) ಬಳಸಿ ನಿರ್ಮಿಸಲಾದ ಈ ಅಣೆಕಟ್ಟು ಇಂದಿಗೂ ವಿಶ್ವ ಎಂಜಿನಿಯರಿಂಗ್ ಲೋಕದ ಕೌತುಕವಾಗಿ ತಲೆಎತ್ತಿ ನಿಂತಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📏 ನೀರಿನ ಮಟ್ಟ, ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ತಾಂತ್ರಿಕ ವಿವರಗಳು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವನ್ನು ಅಡಿಗಳಲ್ಲಿ ಹಾಗೂ ಸಂಗ್ರಹಣಾ ಪ್ರಮಾಣವನ್ನು ಟಿಎಂಸಿಗಳಲ್ಲಿ (TMC) ಅಳೆಯಲಾಗುತ್ತದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಗರಿಷ್ಠ ಮಟ್ಟ (Full Reservoir Level - FRL):</strong> ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 124.80 ಅಡಿಗಳು.</li>
+      <li><strong>ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ (Gross Storage):</strong> 49.452 ಟಿಎಂಸಿ.</li>
+      <li><strong>ಡೆಡ್ ಸ್ಟೋರೇಜ್ (Dead Storage):</strong> ಸುಮಾರು 4.4 ಟಿಎಂಸಿ ನೀರು ಜಲಾಶಯದ ಅತ್ಯಂತ ಕೆಳಮಟ್ಟದಲ್ಲಿದ್ದು, ಇದನ್ನು ಕಾಲುವೆಗಳಿಗೆ ಹರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಇದು ಜಲಾಶಯದ ತಾಂತ್ರಿಕ ಸುರಕ್ಷತೆ ಮತ್ತು ಜಲಚರಗಳ ಸಂರಕ್ಷಣೆಗೆ ಮೀಸಲಾಗಿರುತ್ತದೆ.</li>
+      <li><strong>ಸ್ಲೂಯಿಸ್ ಮತ್ತು ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> ನದಿಯ ಪ್ರವಾಹ ನಿಯಂತ್ರಣ, ಕಾಲುವೆಗಳಿಗೆ ನೀರು ಹಂಚಿಕೆ ಹಾಗೂ ಕೆಳಭಾಗಕ್ಕೆ ನೀರು ಬಿಡಲು ವಿವಿಧ ಹಂತಗಳಲ್ಲಿ ಒಟ್ಟು 150ಕ್ಕೂ ಹೆಚ್ಚು ಗೇಟ್‌ಗಳು ಮತ್ತು ಸ್ಲೂಯಿಸ್‌ಗಳನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌊 ತಲಕಾವೇರಿಯಿಂದ ಕಣ್ಣಂಬಾಡಿಯವರೆಗೆ: ಜಲಾನಯನ ಮತ್ತು ಒಳಹರಿವಿನ ಗತಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್ ಜಲಾಶಯಕ್ಕೆ ಜೀವ ಕಳೆ ಬರುವುದು ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಮಳೆಯಿಂದ. ಕೊಡಗು ಜಿಲ್ಲೆಯ ಬ್ರಹ್ಮಗಿರಿ ಬೆಟ್ಟದ ತಲಕಾವೇರಿಯಲ್ಲಿ ಉಗಮಿಸುವ ಕಾವೇರಿ, ಭಾಗಮಂಡಲದ ತ್ರಿವೇಣಿ ಸಂಗಮವನ್ನು ದಾಟಿ ವಿಶಾಲ ಬಯಲು ಸೀಮೆಗೆ ಧಾವಿಸುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೊಡಗಿನ ಭಾಗಮಂಡಲ, ನಾಪೋಕ್ಲು, ಮಡಿಕೇರಿ ಸೇರಿದಂತೆ ಜಲಾನಯನ ಪ್ರದೇಶಗಳಲ್ಲಿ (Catchment Area) ಮುಂಗಾರು ಮಳೆ ಚುರುಕಾದಾಗ ಜಲಾಶಯಕ್ಕೆ ಒಳಹರಿವು (Inflow) ಹೆಚ್ಚಾಗುತ್ತದೆ. ಜೊತೆಗೆ, ಹೇಮಾವತಿ, ಲಕ್ಷ್ಮಣತೀರ್ಥ ಹಾಗೂ ಹಾರಂಗಿ ಜಲಾಶಯಗಳಿಂದ ಹೊರಬಿಡುವ ಹೆಚ್ಚುವರಿ ನೀರು ಕೂಡ ಕೆಆರ್ಎಸ್ ಅನ್ನೇ ಸೇರುತ್ತದೆ. ಮಳೆಗಾಲದಲ್ಲಿ ಒಳಹರಿವು ದಿನಕ್ಕೆ 40,000 ದಿಂದ 80,000 ಕ್ಯೂಸೆಕ್ ದಾಟಿದಾಗ ಜಲಾಶಯವು ಕೆಲವೇ ದಿನಗಳಲ್ಲಿ ಗರಿಷ್ಠ ಮಟ್ಟವಾದ 124.80 ಅಡಿಯನ್ನು ಮುಟ್ಟುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚰 ಬೆಂಗಳೂರು-ಮೈಸೂರಿನ ಜೀವಜಲ ಮತ್ತು ಕುಡಿಯುವ ನೀರಿನ ಅನಿವಾರ್ಯತೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಇಂದು ಕೆಆರ್ಎಸ್ ಕೇವಲ ಕೃಷಿ ಅಣೆಕಟ್ಟಾಗಿ ಉಳಿದಿಲ್ಲ; ಬದಲಿಗೆ ಕರ್ನಾಟಕದ ರಾಜಧಾನಿ ಬೆಂಗಳೂರಿನ ಬಾಯಾರಿಕೆ ನೀಗಿಸುವ ಏಕೈಕ ಜಲಮೂಲವಾಗಿದೆ.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಬೆಂಗಳೂರು ಮಹಾನಗರ:</strong> ಸಿಲಿಕಾನ್ ಸಿಟಿಯ 1.4 ಕೋಟಿಗೂ ಅಧಿಕ ಜನರಿಗೆ ಕಾವೇರಿ ನೀರು ಪೂರೈಕೆ ಯೋಜನೆ (ಹಂತ 1 ರಿಂದ ಹಂತ 5ರ ವರೆಗೆ) ಮೂಲಕ ನಿತ್ಯ ಕುಡಿಯುವ ನೀರು ಸರಬರಾಜಾಗುತ್ತದೆ. ಬೆಂಗಳೂರು ನಗರಕ್ಕೆ ಮಾತ್ರ ವಾರ್ಷಿಕವಾಗಿ ಕನಿಷ್ಠ 20 ರಿಂದ 24 ಟಿಎಂಸಿ ನೀರು ಮೀಸಲಿಡಬೇಕಾಗುತ್ತದೆ.</li>
+      <li><strong>ಮೈಸೂರು ಮತ್ತು ಮಂಡ್ಯ:</strong> ಮೈಸೂರು ನಗರ, ಶ್ರೀರಂಗಪಟ್ಟಣ, ಮಂಡ್ಯ, ರಾಮನಗರ ಮತ್ತು ಚನ್ನಪಟ್ಟಣ ನಗರಗಳಿಗೆ ಕುಡಿಯುವ ನೀರು ಕೆಆರ್ಎಸ್ ಜಲಾಶಯದಿಂದಲೇ ಪೂರೈಕೆಯಾಗುತ್ತದೆ.</li>
+    </ul>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಮಳೆ ಕೊರತೆಯಾಗಿ ಜಲಾಶಯದಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ 80 ಅಡಿಗಿಂತ ಕೆಳಗೆ ಇಳಿದರೆ, ಕೃಷಿಗೆ ನೀಡುವ ನೀರನ್ನು ಕಡಿತಗೊಳಿಸಿ ಸಂಪೂರ್ಣ ನೀರನ್ನು ಕುಡಿಯುವ ಉದ್ದೇಶಕ್ಕಾಗಿಯೇ ಕಾಯ್ದಿರಿಸುವ ಪರಿಸ್ಥಿತಿ ಎದುರಾಗುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ವಿಸಿ ನಾಲೆ ಮತ್ತು ಮಂಡ್ಯದ ಕೃಷಿ ಕ್ರಾಂತಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್‌ನಿಂದ ಹರಿಯುವ ಪ್ರಮುಖ ಕಾಲುವೆಗಳ ಪೈಕಿ ಅತ್ಯಂತ ಮಹತ್ವದ್ದು ‘ವಿಶ್ವೇಶ್ವರಯ್ಯ ನಾಲೆ’ (VC Canal). ಈ ನಾಲೆ ನಿರ್ಮಾಣವಾದ ನಂತರವೇ ಒಣಭೂಮಿಯಾಗಿದ್ದ ಮಂಡ್ಯ ಜಿಲ್ಲೆ ಹಚ್ಚಹಸಿರಿನ ‘ಸಕ್ಕರೆ ಸೀಮೆ’ಯಾಗಿ ಪರಿವರ್ತನೆಯಾಯಿತು:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ವಿಸಿ ನಾಲೆ (Visvesvaraya Canal):</strong> ಶ್ರೀರಂಗಪಟ್ಟಣ, ಮಂಡ್ಯ, ಮದ್ದೂರು ಮತ್ತು ಮಳವಳ್ಳಿ ತಾಲೂಕುಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಭೂಮಿಗೆ ಜೀವ ನೀಡುತ್ತದೆ.</li>
+      <li><strong>ಬೆಳೆಗಳ ವೈಭವ:</strong> ಮಂಡ್ಯದ ಪ್ರಸಿದ್ಧ ಕಬ್ಬು ಮತ್ತು ಭತ್ತದ ಬೆಳೆಗಳಿಗೆ ಈ ಕಾಲುವೆಯ ನೀರಿನ ಹರಿವೇ ಆಧಾರ.</li>
+      <li><strong>ಇತರ ಕಾಲುವೆಗಳು:</strong> ಬಲದಂಡೆ ಮತ್ತು ಎಡದಂಡೆ ಕೆಳಮಟ್ಟದ ಕಾಲುವೆಗಳು ಮೈಸೂರು ಹಾಗೂ ಮಂಡ್ಯ ಭಾಗದ ತೋಟಗಾರಿಕಾ ಬೆಳೆಗಳಿಗೆ ನೀರುಣಿಸುತ್ತವೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚖️ ಕಾವೇರಿ ಜಲ ವಿವಾದ ಮತ್ತು ನೀರು ಹಂಚಿಕೆಯ ಸೂಕ್ಷ್ಮತೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವು ಕರ್ನಾಟಕ ಮತ್ತು ತಮಿಳುನಾಡು ನಡುವಿನ ಅಂತಾರಾಜ್ಯ ಜಲ ವಿವಾದದ ಕೇಂದ್ರಬಿಂದುವೂ ಹೌದು. ಕಾವೇರಿ ಜಲ ನಿರ್ವಹಣಾ ಪ್ರಾಧಿಕಾರ (CWMA) ಮತ್ತು ಕಾವೇರಿ ನೀರು ನಿಯಂತ್ರಣ ಸಮಿತಿ (CWRC) ನಿಗದಿಪಡಿಸಿದ ಕೋಟಾದಂತೆ, ತಮಿಳುನಾಡಿಗೆ ಬಿಳಿಗುಂಡ್ಲು ಮಾಪನ ಕೇಂದ್ರದ ಮೂಲಕ ನೀರು ಹರಿಸಬೇಕಿರುತ್ತದೆ. ಸಾಮಾನ್ಯ ಮಳೆಯ ವರ್ಷಗಳಲ್ಲಿ ಜಲಾಶಯ ಭರ್ತಿಯಾದಾಗ ಯಾವುದೇ ಬಿಕ್ಕಟ್ಟು ಇರುವುದಿಲ್ಲ; ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ನದಿಗೆ ಹರಿಸಲಾಗುತ್ತದೆ. ಆದರೆ, ಮಳೆ ಕೊರತೆಯುಂಟಾದ (Distress Year) ವರ್ಷಗಳಲ್ಲಿ ಕೆಆರ್ಎಸ್ ನೀರಿನ ಮಟ್ಟ ಕುಸಿದಾಗ, ಸ್ಥಳೀಯ ರೈತರ ಬೆಳೆಗಳಿಗೆ, ಬೆಂಗಳೂರಿನ ಕುಡಿಯುವ ನೀರಿಗೆ ಮತ್ತು ತಮಿಳುನಾಡಿನ ಬೇಡಿಕೆಗೆ ನೀರು ಹೊಂದಿಸುವುದು ಸರ್ಕಾರಕ್ಕೆ ದೊಡ್ಡ ಸವಾಲಾಗಿ ಪರಿಣಮಿಸುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚨 ಪ್ರವಾಹ ನಿರ್ವಹಣೆ ಮತ್ತು ನದಿ ತೀರದ ಎಚ್ಚರಿಕೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಜಲಾಶಯ ಗರಿಷ್ಠ ಮಟ್ಟವಾದ 124.80 ಅಡಿ ತಲುಪಿದ ನಂತರ, ಒಳಹರಿವಿನಷ್ಟೇ ಪ್ರಮಾಣದ ನೀರನ್ನು ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳ ಮೂಲಕ ಕಾವೇರಿ ನದಿಗೆ ಬಿಡಲಾಗುತ್ತದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>30,000 – 50,000 ಕ್ಯೂಸೆಕ್ ಹೊರಹರಿವು:</strong> ವಿಶ್ವವಿಖ್ಯಾತ ರಂಗನತಿಟ್ಟು ಪಕ್ಷಿಧಾಮದ ನಡುಗಡ್ಡೆಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ ಮತ್ತು ದೋಣಿ ವಿಹಾರವನ್ನು ತಾತ್ಕಾಲಿಕವಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತದೆ.</li>
+      <li><strong>70,000 ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ನೀರು:</strong> ಶ್ರೀರಂಗಪಟ್ಟಣದ ಪಶ್ಚಿಮವಾಹಿನಿ, ಗೋಸಾಯ್‌ಘಾಟ್, ಸ್ನಾನಘಟ್ಟಗಳು ಹಾಗೂ ಬಲಮುರಿ-ಎಡಮುರಿ ಜಲಪಾತಗಳು ಮುಳುಗಡೆ ಹಂತ ತಲುಪುತ್ತವೆ. ತಗ್ಗು ಪ್ರದೇಶಗಳಲ್ಲಿ ಪ್ರವಾಹದ ಮುನ್ಸೂಚನೆ ನೀಡಿ ಸಾರ್ವಜನಿಕರಿಗೆ ನದಿಗೆ ಇಳಿಯದಂತೆ ಕಟ್ಟೆಚ್ಚರ ವಹಿಸಲಾಗುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌺 ಬೃಂದಾವನ ಉದ್ಯಾನವನ ಮತ್ತು ಪ್ರವಾಸೋದ್ಯಮದ ಆಕರ್ಷಣೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕೆಆರ್ಎಸ್ ಕೇವಲ ತಾಂತ್ರಿಕ ಜಲಾಶಯ ಮಾತ್ರವಲ್ಲ, ಜಾಗತಿಕ ಪ್ರವಾಸಿ ಭೂಪಟದಲ್ಲಿ ಮಿನುಗುವ ತಾಣ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಬೃಂದಾವನ ಗಾರ್ಡನ್ಸ್ (Brindavan Gardens):</strong> ಮೊಘಲ್ ಶೈಲಿಯಲ್ಲಿ ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ಮೆಟ್ಟಿಲುಗಳ ಉದ್ಯಾನವನ ದೇಶ-ವಿದೇಶಗಳ ಲಕ್ಷಾಂತರ ಪ್ರವಾಸಿಗರನ್ನು ಆಕರ್ಷಿಸುತ್ತದೆ.</li>
+      <li><strong>ಸಂಗೀತ ಕಾರಂಜಿ (Musical Fountain):</strong> ಸಂಜೆಯ ಕತ್ತಲಲ್ಲಿ ಬಣ್ಣಬಣ್ಣದ ದೀಪಾಲಂಕಾರದೊಂದಿಗೆ ಸಂಗೀತದ ತಾಳಕ್ಕೆ ನರ್ತಿಸುವ ಕಾರಂಜಿ ಪ್ರವಾಸಿಗರ ಕಣ್ಮನ ಸೆಳೆಯುತ್ತದೆ.</li>
+      <li><strong>ವೇಣುಗೋಪಾಲಸ್ವಾಮಿ ದೇವಾಲಯ:</strong> ಜಲಾಶಯದ ಹಿನ್ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಗಿದ್ದ 12ನೇ ಶತಮಾನದ ಹೊಯ್ಸಳ ಶೈಲಿಯ ಐತಿಹಾಸಿಕ ವೇಣುಗೋಪಾಲಸ್ವಾಮಿ ದೇವಸ್ಥಾನವನ್ನು ಹೊಸ ಕಣ್ಣಂಬಾಡಿ ಬಳಿ ಅದ್ಭುತವಾಗಿ ಪುನರ್ ನಿರ್ಮಿಸಲಾಗಿದ್ದು, ಹಿನ್ನೀರಿನ ಪ್ರಕೃತಿ ಸೌಂದರ್ಯಕ್ಕೆ ಮತ್ತಷ್ಟು ಕಳೆ ತಂದಿದೆ.</li>
+    </ul>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS) ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ KRS ಜಲಾಶಯವನ್ನು ನಿರ್ಮಿಸಿದ್ದು ಯಾರು ಮತ್ತು ಇದರ ಹಿನ್ನೆಲೆ ಏನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಮೈಸೂರು ಸಂಸ್ಥಾನದ ರಾಜರ್ಷಿ ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್ ಮತ್ತು ಭಾರತ ರತ್ನ ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ ಅವರ ಮುನ್ನೋಟದಲ್ಲಿ 1911 ರಿಂದ 1932ರ ಅವಧಿಯಲ್ಲಿ ಸಿಮೆಂಟ್ ಬದಲಿಗೆ ಸ್ಥಳೀಯ ‘ಸುರ್ಕಿ ಗಾರೆ’ ಬಳಸಿ ನಿರ್ಮಿಸಲಾಯಿತು.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ KRS ಜಲಾಶಯದ ಗರಿಷ್ಠ ಮಟ್ಟ (FRL) ಮತ್ತು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಎಷ್ಟು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL) 124.80 ಅಡಿಗಳು. ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ 49.452 ಟಿಎಂಸಿ (ಡೆಡ್ ಸ್ಟೋರೇಜ್ 4.4 ಟಿಎಂಸಿ).</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಬೆಂಗಳೂರು ಮಹಾನಗರಕ್ಕೆ KRS ನಿಂದ ಎಷ್ಟು ನೀರು ಬೇಕಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಬೆಂಗಳೂರಿನ 1.4 ಕೋಟಿ ಜನರಿಗೆ ಕಾವೇರಿ ಹಂತ 1 ರಿಂದ 5ರ ಮೂಲಕ ನೀರು ಸರಬರಾಜಾಗುತ್ತಿದ್ದು, ನಗರಕ್ಕೆ ವಾರ್ಷಿಕ ಕನಿಷ್ಠ 20 ರಿಂದ 24 ಟಿಎಂಸಿ ಕಾವೇರಿ ನೀರು KRS ನಿಂದ ಮೀಸಲಿಡಬೇಕಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯನ್ನು ‘ಸಕ್ಕರೆ ಸೀಮೆ’ಯಾಗಿಸಿದ ಕೀರ್ತಿ ಯಾವ ನಾಲೆಗೆ ಸಲ್ಲುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಸರ್ ಎಂ.ವಿ. ಅವರ ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ‘ವಿಶ್ವೇಶ್ವರಯ್ಯ ನಾಲೆ’ (VC Canal). ಇದು ಶ್ರೀರಂಗಪಟ್ಟಣ, ಮಂಡ್ಯ, ಮದ್ದೂರು ಮತ್ತು ಮಳವಳ್ಳಿ ಭಾಗದ ಕಬ್ಬು ಮತ್ತು ಭತ್ತದ ಬೆಳೆಗಳಿಗೆ ಜೀವ ನೀಡಿದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಕೆಆರ್ಎಸ್‌ನಿಂದ ಭಾರಿ ನೀರು ಹೊರಬಿಟ್ಟಾಗ ರಂಗನತಿಟ್ಟು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದಲ್ಲಿ ಏನಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">30,000 ರಿಂದ 50,000 ಕ್ಯೂಸೆಕ್ ಹೊರಹರಿವು ಬಂದಾಗ ರಂಗನತಿಟ್ಟು ಪಕ್ಷಿಧಾಮದ ನಡುಗಡ್ಡೆಗಳು ಜಲಾವೃತಗೊಂಡು ದೋಣಿ ವಿಹಾರ ಸ್ಥಗಿತಗೊಳ್ಳುತ್ತದೆ. 70,000+ ಕ್ಯೂಸೆಕ್ ದಾಟಿದರೆ ಶ್ರೀರಂಗಪಟ್ಟಣದ ಪಶ್ಚಿಮವಾಹಿನಿ, ಗೋಸಾಯ್‌ಘಾಟ್ ಮತ್ತು ಬಲಮುರಿ-ಎಡಮುರಿ ಜಲಪಾತಗಳು ಮುಳುಗಡೆ ಹಂತ ತಲುಪುತ್ತವೆ.</p>
+    </div>
   </div>
 
 </div>

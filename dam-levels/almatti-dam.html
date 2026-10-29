@@ -166,7 +166,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <body>
 
 <div class="topnav">
-  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
   <div class="page-title">💧 ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
@@ -182,9 +182,9 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
         <h1 class="dh-title">ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು (Almatti Dam)</h1>
         <div class="dh-sub">
           <span>🌊 ನದಿ: ಕೃಷ್ಣಾ ನದಿ</span>
-          <span>🏛️ ಜಿಲ್ಲೆ: ವಿಜಯಪುರ / ಬಾಗಲಕೋಟೆ</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ವಿಜಯಪುರ (ನಿಡಗುಂದಿ)</span>
         </div>
-        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
       </div>
     </div>
   </div>
@@ -193,101 +193,110 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--blue)">112.95 TMC</div>
-      <div class="mc-sub">91.7% ತುಂಬಿದೆ</div>
+      <div class="mc-val" style="color:var(--green)" id="almatti-m-storage">73.944 TMC</div>
+      <div class="mc-sub" id="almatti-m-sub">60.1% ತುಂಬಿದೆ (123.081 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
-      <div class="mc-val">123.08 TMC</div>
+      <div class="mc-val">123.081 TMC</div>
       <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">1702.73 ಅಡಿ</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 1704.81 ಅಡಿ</div>
+      <div class="mc-val" id="almatti-m-level">1693.188 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 1704.72 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">92,500</div>
+      <div class="mc-val" style="color:var(--green)" id="almatti-m-inflow">0</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">1,10,433</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="almatti-m-outflow">250</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- CREATIVE 30-DAY AREA CHART -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📈 ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು — 30 ದಿನದ ನೀರಿನ ಸಂಗ್ರಹ &amp; ಒಳಹರಿವು ಟ್ರೆಂಡ್</div>
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <div style="display:inline-block; background:#E0F2FE; color:#0369A1; font-weight:700; font-size:12px; padding:4px 10px; border-radius:6px; margin-bottom:12px;">
+      📰 ಇನ್ವೆಸ್ಟಿಗೇಟಿವ್ ಫೀಚರ್ &amp; ಎಡಿಟೋರಿಯಲ್ ಡಾಸಿಯರ್ (Editorial Dossier &amp; Deep-Dive Spotlight)
     </div>
-    <div class="creative-chart-wrap">
-      <svg class="svg-chart" viewBox="0 0 800 200" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#2980B9" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#2980B9" stop-opacity="0.05"/>
-          </linearGradient>
-        </defs>
-        <!-- Area fill -->
-        <path class="area-path" d="M 40,160 Q 150,150 250,110 T 450,50 T 650,40 T 760,35 L 760,180 L 40,180 Z" />
-        <!-- Storage Line -->
-        <path class="line-path" d="M 40,160 Q 150,150 250,110 T 450,50 T 650,40 T 760,35" />
-        <!-- Inflow dashed line -->
-        <path class="inflow-line" d="M 40,170 Q 150,160 250,130 T 450,40 T 650,30 T 760,25" />
-        <!-- Points -->
-        <circle class="chart-dot" cx="40" cy="160" r="4"><title>01 ಜುಲೈ: 45.2 TMC</title></circle>
-        <circle class="chart-dot" cx="150" cy="150" r="4"><title>10 ಜುಲೈ: 52.0 TMC</title></circle>
-        <circle class="chart-dot" cx="250" cy="110" r="4"><title>18 ಜುಲೈ: 68.4 TMC</title></circle>
-        <circle class="chart-dot" cx="450" cy="50" r="4"><title>25 ಜುಲೈ: 88.7 TMC</title></circle>
-        <circle class="chart-dot" cx="650" cy="40" r="4"><title>30 ಜುಲೈ: 93.5 TMC</title></circle>
-        <circle class="chart-dot" cx="760" cy="35" r="5" fill="#E74C3C"><title>ಇಂದು (02 ಆಗಸ್ಟ್): 95.34 TMC</title></circle>
-      </svg>
-    </div>
-    <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; color:var(--ink3); font-family:var(--font-en);">
-      <span>01 ಜುಲೈ 2026</span>
-      <span>10 ಜುಲೈ</span>
-      <span>20 ಜುಲೈ</span>
-      <span>02 ಆಗಸ್ಟ್ 2026 (ಇಂದು)</span>
-    </div>
-  </div>
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಆಲಮಟ್ಟಿ ಜಲಾಶಯ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ): ಉತ್ತರ ಕರ್ನಾಟಕದ ಭಾಗ್ಯರೇಖೆ, ಕೃಷ್ಣೆಯ ಜಲವೈಭವ ಮತ್ತು 524 ಮೀಟರ್ ಎತ್ತರದ ಮಹಾ ಹೋರಾಟ
+    </h2>
 
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
+    <!-- QUICK SNAPSHOT -->
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:18px; margin:20px 0;">
+      <h3 style="font-size:17px; font-weight:800; color:#0F172A; margin-top:0; margin-bottom:12px;">
+        📌 ಕ್ವಿಕ್ ಸ್ನ್ಯಾಪ್‌ಶಾಟ್ (ಜಲಾಶಯದ ಇಂದಿನ ತ್ವರಿತ ನೋಟ):
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; font-size:14px; color:#334155;">
+        <div><strong>• ಅಧಿಕೃತ ಹೆಸರು:</strong> ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ (Lal Bahadur Shastri Sagar)</div>
+        <div><strong>• ನದಿಯ ಮೂಲ:</strong> ಕೃಷ್ಣಾ ನದಿ (ಮಹಾರಾಷ್ಟ್ರದ ಮಹಾಬಲೇಶ್ವರ)</div>
+        <div><strong>• ಸ್ಥಳ:</strong> ಆಲಮಟ್ಟಿ, ನಿಡಗುಂದಿ ತಾಲೂಕು, ವಿಜಯಪುರ ಜಿಲ್ಲೆ</div>
+        <div><strong>• ಪ್ರಸ್ತುತ ಗರಿಷ್ಠ ಮಟ್ಟ (FRL):</strong> 519.60 ಮೀಟರ್ (1,704.72 ಅಡಿ)</div>
+        <div><strong>• ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ:</strong> 123.081 ಟಿಎಂಸಿ (TMC)</div>
+        <div><strong>• ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> 26 ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು</div>
+        <div><strong>• ಜಲವಿದ್ಯುತ್ ಉತ್ಪಾದನೆ:</strong> 290 ಮೆಗಾವ್ಯಾಟ್ (Almatti Dam Powerhouse)</div>
+        <div><strong>• ನೇರ ಪ್ರಯೋಜನ ಪಡೆಯುವ ಜಿಲ್ಲೆಗಳು:</strong> ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ, ಬೆಳಗಾವಿ, ಕಲಬುರಗಿ, ಯಾದಗಿರಿ ಮತ್ತು ರಾಯಚೂರು</div>
+      </div>
     </div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">1704.81 ಅಡಿ (524.25 ಮೀ)</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">1663.04 ಅಡಿ (506.89 ಮೀ)</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಿಲ್ ಮಟ್ಟ (Cill Level)</div><div class="spec-val">1625.10 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">123.081 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">105.470 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಇಂದಿನ ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage)</div><div class="spec-val">112.945 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕಾಲುವೆ ಹರಿವು (Canal Withdrawal)</div><div class="spec-val">433 ಕ್ಯೂಸೆಕ್ಸ್</div></div>
-      <div class="spec-item"><div class="spec-lbl">ವಿದ್ಯುತ್ ಉತ್ಪಾದನಾ ಸಾಮರ್ಥ್ಯ</div><div class="spec-val">290 MW (ಮೆಗಾವ್ಯಾಟ್)</div></div>
-    </div>
-  </div>
 
-  <!-- HISTORY & BACKGROUND ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📜 ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಮುಖ ಲಕ್ಷಣಗಳು</div>
-    </div>
-    <div class="history-article">
-      <p><strong>ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು (Almatti Dam)</strong> ಕರ್ನಾಟಕದ ಅತ್ಯಂತ ಪ್ರಮುಖ ಮತ್ತು ಅತಿ ದೊಡ್ಡ ಅಣೆಕಟ್ಟುಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ಇದನ್ನು ಉತ್ತರ ಕರ್ನಾಟಕದ ಜೀವನಾಡಿಯಾದ ಕೃಷ್ಣಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ವಿಜಯಪುರ ಮತ್ತು ಬಾಗಲಕೋಟೆ ಜಿಲ್ಲೆಗಳ ಗಡಿಯಲ್ಲಿ ನಿರ್ಮಿಸಲಾಗಿದೆ. ಈ ಯೋಜನೆಗೆ ಭಾರತದ ಮಾಜಿ ಪ್ರಧಾನಮಂತ್ರಿ ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಅವರ ಸ್ಮರಣಾರ್ಥ <em>'ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ'</em> ಎಂದು ಹೆಸರಿಡಲಾಗಿದೆ.</p>
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌊 ಕೃಷ್ಣೆಯ ರೌದ್ರಾವತಾರ ಮತ್ತು ಆಲಮಟ್ಟಿಯ ಹುಟ್ಟು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಬರಪೀಡಿತ ಉತ್ತರ ಕರ್ನಾಟಕದ ನೆಲಕ್ಕೆ ಕೃಷ್ಣೆಯ ನೀರು ಹರಿಸಬೇಕೆಂಬುದು ಸ್ವಾತಂತ್ರ್ಯ ಪೂರ್ವದ ಕನಸು. 1964ರಲ್ಲಿ ಅಂದಿನ ಪ್ರಧಾನಿ ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಅವರು ಅಡಿಗಲ್ಲು ಹಾಕಿದ ‘ಮೇಲ್ದಂಡೆ ಕೃಷ್ಣಾ ಯೋಜನೆ’ಯ (UKP - Upper Krishna Project) ಮೊದಲ ಹಂತವಾಗಿ ಈ ಬೃಹತ್ ಅಣೆಕಟ್ಟು ನಿರ್ಮಾಣವಾಯಿತು.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      2005ರಲ್ಲಿ ಕಾಮಗಾರಿ ಮುಕ್ತಾಯಗೊಂಡು, 2006ರಲ್ಲಿ ಅಂದಿನ ರಾಷ್ಟ್ರಪತಿ ಡಾ. ಎ.ಪಿ.ಜೆ. ಅಬ್ದುಲ್ ಕಲಾಂ ಅವರಿಂದ ರಾಷ್ಟ್ರಕ್ಕೆ ಸಮರ್ಪಿಸಲ್ಪಟ್ಟ ಈ ಜಲಾಶಯಕ್ಕೆ ಮಾಜಿ ಪ್ರಧಾನಿಗಳ ಗೌರವಾರ್ಥ ‘ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ’ ಎಂದು ನಾಮಕರಣ ಮಾಡಲಾಯಿತು. ಮಹಾರಾಷ್ಟ್ರದ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಹುಟ್ಟಿ ಹರಿದು ಬರುವ ಕೃಷ್ಣಾ ನದಿಗೆ ವಿಜಯಪುರ-ಬಾಗಲಕೋಟೆ ಗಡಿಯಲ್ಲಿ ನಿರ್ಮಿಸಲಾಗಿರುವ ಈ ಕಲ್ಲಿನ ಗಾರೆ ಮತ್ತು ಮಣ್ಣಿನ ಸಂಯೋಜಿತ ಅಣೆಕಟ್ಟು, ಇಂದು ರಾಜ್ಯದ ಎರಡನೇ ಅತಿ ದೊಡ್ಡ ಜಲಾಶಯವಾಗಿ ನಿಂತಿದೆ.
+    </p>
 
-      <h3>🏗️ ನಿರ್ಮಾಣ ಮತ್ತು ಸಾಮರ್ಥ್ಯ:</h3>
-      <p>ಕೃಷ್ಣಾ ಮೇಲ್ದಂಡೆ ಯೋಜನೆಯ (Upper Krishna Project) ಮುಖ್ಯ ಭಾಗವಾಗಿ ಈ ಅಣೆಕಟ್ಟನ್ನು ಜುಲೈ 2005 ರಲ್ಲಿ ಪೂರ್ಣಗೊಳಿಸಿ ಲೋಕಾರ್ಪಣೆ ಮಾಡಲಾಯಿತು. ಅಣೆಕಟ್ಟು 123.08 TMC ಒಟ್ಟು ನೀರಿನ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯವನ್ನು ಹೊಂದಿದ್ದು, 1704.81 ಅಡಿ ಗರಿಷ್ಠ ಜಲಮಟ್ಟ ಹೊಂದಿದೆ.</p>
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚖️ ಡ್ಯಾಂ ಎತ್ತರದ ಜಿದ್ದಾಜಿದ್ದಿ: 519.60 ಮೀಟರ್‌ನಿಂದ 524.25 ಮೀಟರ್‌ಗೆ ಏಕೆ ಏರಬೇಕು?</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟದ ಚರ್ಚೆ ಬಂದಾಗಲೆಲ್ಲಾ ಕೇಳಿಬರುವ ಪ್ರಮುಖ ಅಂಶವೆಂದರೆ ಅದರ ‘ಎತ್ತರ ಹೆಚ್ಚಳ’ದ ಹೋರಾಟ. ಇದು ಕೇವಲ ಗೋಡೆಯ ಎತ್ತರದ ಪ್ರಶ್ನೆಯಲ್ಲ; ಉತ್ತರ ಕರ್ನಾಟಕದ ಸುಮಾರು 6 ಲಕ್ಷ ಹೆಕ್ಟೇರ್ ಹೆಚ್ಚುವರಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುವ ಜೀವನ್ಮರಣದ ಪ್ರಶ್ನೆ.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ (519.60 ಮೀಟರ್):</strong> ಸುಪ್ರೀಂ ಕೋರ್ಟ್ ಆದೇಶದಂತೆ ಸದ್ಯಕ್ಕೆ ಜಲಾಶಯದಲ್ಲಿ ನೀರನ್ನು ಗರಿಷ್ಠ 519.60 ಮೀಟರ್ ಎತ್ತರಕ್ಕೆ (123 ಟಿಎಂಸಿ) ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲು ಅನುಮತಿ ಇದೆ.</li>
+      <li><strong>ನ್ಯಾಯಾಧಿಕರಣದ ತೀರ್ಪು (524.256 ಮೀಟರ್):</strong> ನ್ಯಾ| ಬ್ರಿಜೇಶ್ ಕುಮಾರ್ ನೇತೃತ್ವದ ಕೃಷ್ಣಾ ಜಲವಿವಾದ ನ್ಯಾಯಾಧಿಕರಣ-2 (KWDT-II), ಕರ್ನಾಟಕಕ್ಕೆ ಹೆಚ್ಚುವರಿ 130 ಟಿಎಂಸಿ ನೀರನ್ನು ಬಳಸಿಕೊಳ್ಳಲು ಅನುಮತಿ ನೀಡಿದ್ದು, ಡ್ಯಾಂ ಎತ್ತರವನ್ನು 524.256 ಮೀಟರ್‌ಗೆ ಹೆಚ್ಚಿಸಿಕೊಳ್ಳಲು ಹಸಿರು ನಿಶಾನೆ ತೋರಿದೆ.</li>
+      <li><strong>ಕೇಂದ್ರದ ಗೆಜೆಟ್ ಅಧಿಸೂಚನೆ ಅಡೆತಡೆ:</strong> ಆಂಧ್ರಪ್ರದೇಶ ಮತ್ತು ತೆಲಂಗಾಣ ರಾಜ್ಯಗಳು ಈ ತೀರ್ಪನ್ನು ಪ್ರಶ್ನಿಸಿ ಸುಪ್ರೀಂ ಕೋರ್ಟ್ ಮೆಟ್ಟಿಲೇರಿರುವುದರಿಂದ, ಕೇಂದ್ರ ಸರ್ಕಾರ ಈವರೆಗೆ ಅಂತಿಮ ಗೆಜೆಟ್ ನೋಟಿಫಿಕೇಶನ್ ಹೊರಡಿಸಿಲ್ಲ.</li>
+      <li><strong>524 ಮೀಟರ್ ಆದರೆ ಏನಾಗುತ್ತದೆ?:</strong> ಜಲಾಶಯದ ಎತ್ತರ 524.25 ಮೀಟರ್‌ಗೆ ಏರಿದರೆ, ಹೆಚ್ಚುವರಿಯಾಗಿ ಬರೋಬ್ಬರಿ 130 ಟಿಎಂಸಿಗೂ ಹೆಚ್ಚು ನೀರನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು. ಯುಕೆಪಿ 3ನೇ ಹಂತದ ಯೋಜನೆಗಳಾದ ಮುಳವಾಡ, ಚಿಮ್ಮಲಗಿ, ಇಂಡಿ, ರಾಂಪುರ ಏತ ನೀರಾವರಿ ಯೋಜನೆಗಳಿಗೆ ಪೂರ್ಣ ಪ್ರಮಾಣದ ಜಲಬಲ ಸಿಗಲಿದೆ.</li>
+    </ul>
 
-      <h3>🌾 ನೀರಾವರಿ ಮತ್ತು ವಿದ್ಯುತ್ ಯೋಜನೆ:</h3>
-      <p>ಈ ಅಣೆಕಟ್ಟಿನಿಂದ ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ, ಕಲ್ಬುರ್ಗಿ, ಯಾದಗಿರಿ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ ಸುಮಾರು <strong>6 ಲಕ್ಷಕ್ಕೂ ಹೆಚ್ಚು ಹೆಕ್ಟೇರ್ ಕೃಷಿ ಭೂಮಿಗೆ</strong> ನೀರಾವರಿ ಸೌಲಭ್ಯ ದೊರೆಯುತ್ತದೆ. ಅಣೆಕಟ್ಟಿನ ಬಲದಂಡೆಯಲ್ಲಿ 290 ಮೆಗಾವ್ಯಾಟ್ ಸಾಮರ್ಥ್ಯದ ಜಲವಿದ್ಯುತ್ ಸ್ಥಾವರವಿದ್ದು, ವಾರ್ಷಿಕ ಲಕ್ಷಾಂತರ ಯೂನಿಟ್ ಹಸಿರು ವಿದ್ಯುತ್ ಉತ್ಪಾದಿಸಲಾಗುತ್ತದೆ.</p>
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌧️ ಮಹಾರಾಷ್ಟ್ರದ ಒಳಹರಿವು ಮತ್ತು ಕೊಲ್ಹಾಪುರ-ಸಾಂಗ್ಲಿ ಪ್ರವಾಹದ ಕೊಂಡಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವು ಮಹಾರಾಷ್ಟ್ರದ ಜಲಸ್ಥಿತಿಯೊಂದಿಗೆ ನೇರ ಸಂಪರ್ಕ ಹೊಂದಿದೆ. ಪ್ರತಿವರ್ಷ ಜುಲೈ-ಆಗಸ್ಟ್ ತಿಂಗಳಲ್ಲಿ ಮಹಾರಾಷ್ಟ್ರದ ಕೊಯ್ನಾ, ಮಹಾಬಲೇಶ್ವರ ಭಾಗದಲ್ಲಿ ಧಾರಾಕಾರ ಮಳೆಯಾದಾಗ, ಕೊಯ್ನಾ ಜಲಾಶಯ, ವಾರಣಾ ಮತ್ತು ರಾಜಾರಾಮ್ ಬ್ಯಾರೇಜ್‌ಗಳಿಂದ ಕೃಷ್ಣಾ ನದಿಗೆ ಲಕ್ಷಾಂತರ ಕ್ಯೂಸೆಕ್ ನೀರು ಧುಮ್ಮಿಕ್ಕುತ್ತದೆ.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಒಳಹರಿವಿನ ಬಿರುಗಾಳಿ:</strong> ಈ ಸಂದರ್ಭದಲ್ಲಿ ಆಲಮಟ್ಟಿಗೆ ದಿನಕ್ಕೆ 2 ಲಕ್ಷದಿಂದ 4 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್‌ವರೆಗೂ ಒಳಹರಿವು (Inflow) ನುಗ್ಗುತ್ತದೆ. 2019 ಮತ್ತು 2021ರ ಭೀಕರ ಪ್ರವಾಹದ ವೇಳೆ ಆಲಮಟ್ಟಿ ಒಳಹರಿವು 5 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್ ದಾಟಿತ್ತು.</li>
+      <li><strong>ಪ್ರವಾಹ ನಿರ್ವಹಣೆ:</strong> ಮಹಾರಾಷ್ಟ್ರದ ಸಾಂಗ್ಲಿ ಮತ್ತು ಕೊಲ್ಹಾಪುರ ನಗರಗಳು ಮುಳುಗಡೆಯಾಗಲು ಆಲಮಟ್ಟಿ ಹಿನ್ನೀರಿನ ಹಿಮ್ಮುಖ ಹರಿವೇ (Backwater Effect) ಕಾರಣ ಎಂಬ ಆರೋಪಗಳು ಕೇಳಿಬರುತ್ತವೆ. ಆದರೆ, ಕರ್ನಾಟಕದ ಎಂಜಿನಿಯರ್‌ಗಳು ಆಲಮಟ್ಟಿಯ ಎಲ್ಲಾ 26 ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ಮುಂಚಿತವಾಗಿಯೇ ತೆರೆದು, ಒಳಬಂದಷ್ಟೇ ನೀರನ್ನು ನದಿಯ ಕೆಳಭಾಗದ ನಾರಾಯಣಪುರ (ಬಸವಸಾಗರ) ಜಲಾಶಯಕ್ಕೆ ಹರಿಸಿ ಅತ್ಯಂತ ಚಾಕಚಕ್ಯತೆಯಿಂದ ಪ್ರವಾಹವನ್ನು ನಿಯಂತ್ರಿಸುತ್ತಿದ್ದಾರೆ.</li>
+    </ul>
 
-      <h3>🌴 ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ರಾಕ್ ಗಾರ್ಡನ್:</h3>
-      <p>ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು ಕೇವಲ ನೀರಾವರಿ ಯೋಜನೆಯಷ್ಟೇ ಅಲ್ಲದೆ, ಪ್ರಸಿದ್ಧ ಪ್ರವಾಸಿ ತಾಣವಾಗಿದೆ. ಅಣೆಕಟ್ಟಿನ ಪಕ್ಕದಲ್ಲೇ ಅತ್ಯಾಕರ್ಷಕ <strong>ರಾಕ್ ಗಾರ್ಡನ್ (Rock Garden)</strong>, ಸಂಗೀತ ಕಾರಂಜಿ (Musical Fountain), ದೋಣಿ ವಿಹಾರ (Boating) ಮತ್ತು ಕೃಷ್ಣಾ ಉದ್ಯಾನವನಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾಗಿದೆ.</p>
-    </div>
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಉತ್ತರ ಕರ್ನಾಟಕದ ಕೃಷಿ ಕ್ರಾಂತಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಒಂದು ಕಾಲಕ್ಕೆ ಭೀಕರ ಬರದ ನಾಡಾಗಿದ್ದ ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ ಜಿಲ್ಲೆಗಳು ಇಂದು ದ್ರಾಕ್ಷಿ, ದಾಳಿಂಬೆ, ನಿಂಬೆ ಮತ್ತು ಕಬ್ಬಿನ ಕಣಜವಾಗಿ ಮಾರ್ಪಟ್ಟಿರಲು ಆಲಮಟ್ಟಿಯ ನೀರೇ ಕಾರಣ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಆಲಮಟ್ಟಿ ಎಡದಂಡೆ ಕಾಲುವೆ (ALBC):</strong> ವಿಜಯಪುರ ಜಿಲ್ಲೆಯ ಲಕ್ಷಾಂತರ ಎಕರೆ ಒಣಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತದೆ.</li>
+      <li><strong>ಆಲಮಟ್ಟಿ ಬಲದಂಡೆ ಕಾಲುವೆ (ARBC):</strong> ಬಾಗಲಕೋಟೆ ಜಿಲ್ಲೆಯ ಮುದ್ದೇಬಿಹಾಳ, ಬಾಗಲಕೋಟೆ ಗ್ರಾಮೀಣ ಭಾಗದ ಬೆಳೆಗಳಿಗೆ ಆಸರೆಯಾಗಿದೆ.</li>
+      <li><strong>ಏತ ನೀರಾವರಿ ಯೋಜನೆಗಳ ತಾಯಿಬೇರು:</strong> ಮುಳವಾಡ ಏತ ನೀರಾವರಿ (ಭಾರತದ ಬೃಹತ್ ಲಿಫ್ಟ್ ಇರಿಗೇಷನ್‌ಗಳಲ್ಲಿ ಒಂದು), ಆಲಮಟ್ಟಿ ವಿದ್ಯುತ್ ಉತ್ಪಾದನಾ ಕಾಲುವೆಗಳು ಮತ್ತು ನೂರಾರು ಕೆರೆ ತುಂಬಿಸುವ ಯೋಜನೆಗಳು ಈ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವನ್ನೇ ನಂಬಿಕೊಂಡಿವೆ.</li>
+      <li><strong>ಜಲವಿದ್ಯುತ್ ಘಟಕ:</strong> ಅಣೆಕಟ್ಟಿನ ಬಲಭಾಗದಲ್ಲಿರುವ ಭೂಗರ್ಭ ವಿದ್ಯುತ್ ಸ್ಥಾವರದಲ್ಲಿ 290 ಮೆಗಾವ್ಯಾಟ್ ಹಸಿರು ವಿದ್ಯುತ್ ಉತ್ಪಾದಿಸಿ ರಾಜ್ಯದ ವಿದ್ಯುತ್ ಗ್ರಿಡ್‌ಗೆ ನೀಡಲಾಗುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">💔 ಬಾಗಲಕೋಟೆಯ ತ್ಯಾಗ ಮತ್ತು ಮುಳುಗಡೆಯ ಕಣ್ಣೀರು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ಜಲವೈಭವದ ಹಿಂದೆ ಸಾವಿರಾರು ಹಳ್ಳಿಗಳ ಜನರ ಬಲಿದಾನವಿದೆ. ಅಣೆಕಟ್ಟು 519.60 ಮೀಟರ್ ತಲುಪಿದಾಗಲೇ ಇಡೀ ಬಾಗಲಕೋಟೆ ಹಳೆಯ ನಗರ, ಬೀಳಗಿ, ಜಮಖಂಡಿ ತಾಲೂಕಿನ ನೂರಾರು ಫಲವತ್ತಾದ ಗ್ರಾಮಗಳು ಮತ್ತು ಸಾವಿರಾರು ಎಕರೆ ಕೃಷಿ ಭೂಮಿ ಕೃಷ್ಣೆಯ ಒಡಲಲ್ಲಿ ಶಾಶ್ವತವಾಗಿ ಮುಳುಗಿಹೋದವು. ಒಂದು ಇಡೀ ಜಿಲ್ಲಾ ಕೇಂದ್ರವೇ (ಬಾಗಲಕೋಟೆ) ಜಲಾಶಯದ ಹಿನ್ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಗಿ, ‘ನವನಗರ’ ಎಂಬ ಹೊಸ ನಗರವನ್ನು ನಿರ್ಮಿಸಿ ಜನರನ್ನು ಸ್ಥಳಾಂತರಿಸಲಾಯಿತು. ಇನ್ನು ಡ್ಯಾಂ ಎತ್ತರವನ್ನು 524 ಮೀಟರ್‌ಗೆ ಹೆಚ್ಚಿಸಿದರೆ ಇನ್ನೂ 20ಕ್ಕೂ ಹೆಚ್ಚು ಹಳ್ಳಿಗಳು ಮತ್ತು 1.3 ಲಕ್ಷ ಎಕರೆ ಜಮೀನು ಮುಳುಗಡೆಯಾಗಲಿದ್ದು, ಸಂತ್ರಸ್ತರಿಗೆ ಪರಿಹಾರ ಮತ್ತು ಪುನರ್ವಸತಿ (R&amp;R) ಕಲ್ಪಿಸುವುದು ಸರ್ಕಾರದ ಮುಂದಿರುವ ಬಹುದೊಡ್ಡ ಸವಾಲಾಗಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌴 ಪ್ರವಾಸೋದ್ಯಮದ ಹೆಮ್ಮೆಯ ತಾಣ: ಕೃಷ್ಣೆಯ ತೀರದಲ್ಲಿ ಉದ್ಯಾನಗಳ ಲೋಕ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟು ಕೇವಲ ನೀರಾವರಿ ಯೋಜನೆಯಲ್ಲ; ಇದು ಉತ್ತರ ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಪ್ರವಾಸಿ ಆಕರ್ಷಣೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಮೊಘಲ್ ಗಾರ್ಡನ್ &amp; ರಾಕ್ ಗಾರ್ಡನ್:</strong> ಬೃಂದಾವನ ಮಾದರಿಯಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ಭವ್ಯ ಉದ್ಯಾನವನಗಳು ಮತ್ತು ಸ್ಥಳೀಯ ಜನಜೀವನವನ್ನು ಬಿಂಬಿಸುವ ರಾಕ್ ಗಾರ್ಡನ್ ಪ್ರವಾಸಿಗರ ಮನಸೆಳೆಯುತ್ತದೆ.</li>
+      <li><strong>ಮ್ಯೂಸಿಕಲ್ ಲೇಸರ್ ಫೌಂಟೇನ್:</strong> ಸಂಜೆಯ ವೇಳೆ ನೀರಿನ ಚಿಮ್ಮಾಟ ಮತ್ತು ಲೇಸರ್ ಬೆಳಕಿನೊಂದಿಗೆ ನಾದಬ್ರಹ್ಮನ ಸಂಗೀತ ಮೊಳಗುವ ದೃಶ್ಯ ಅದ್ಭುತ.</li>
+      <li><strong>ಕೃಷ್ಣಾ ಬೋಟಿಂಗ್:</strong> ವಿಶಾಲ ಹಿನ್ನೀರಿನಲ್ಲಿ ಬೋಟಿಂಗ್ ಸೌಲಭ್ಯವಿದ್ದು, ಜಲಾಶಯದ ರಮಣೀಯ ನೋಟವನ್ನು ಕಣ್ತುಂಬಿಕೊಳ್ಳಬಹುದು.</li>
+    </ul>
   </div>
 
   <!-- HISTORICAL DATA TABLE -->
@@ -324,24 +333,31 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
     </div>
   </div>
 
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ಆಲಮಟ್ಟಿ ಜಲಾಶಯ (Almatti Dam - Lal Bahadur Shastri Sagar) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
-    </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಆಲಮಟ್ಟಿ ಜಲಾಶಯವು ಉತ್ತರ ಕರ್ನಾಟಕದ ಕೃಷಿ ಕ್ರಾಂತಿಯ ಕೇಂದ್ರಬಿಂದುವಾಗಿದೆ. ಕೃಷ್ಣಾ ಮೇಲ್ದಂಡೆ ಯೋಜನೆಯ (Upper Krishna Project) ಮೊದಲ ಹಂತವಾಗಿ ನಿರ್ಮಾಣಗೊಂಡ ಈ ಅಣೆಕಟ್ಟು ವಿಜಯಪುರ, ಬಾಗಲಕೋಟೆ, ಬೆಳಗಾವಿ, ಕಲಬುರಗಿ, ಯಾದಗಿರಿ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ ಲಕ್ಷಾಂತರ ರೈತ ಕುಟುಂಬಗಳಿಗೆ ಜೀವನಾಡಿಯಾಗಿದೆ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟಿನ ಎಡದಂಡೆ ಮತ್ತು ಬಲದಂಡೆ ಕಾಲುವೆಗಳು ಹಾಗೂ ಇಂಡಿ, ಮುಳವಾಡ, ರಾಂಪುರ ಏತ ನೀರಾವರಿ ಯೋಜನೆಗಳ ಮೂಲಕ 6 ಲಕ್ಷಕ್ಕೂ ಅಧಿಕ ಹೆಕ್ಟೇರ್ ಕೃಷಿ ಭೂಮಿಗೆ ನಿರಂತರ ನೀರು ಪೂರೈಸಲಾಗುತ್ತದೆ. ಇಲ್ಲಿ 290 ಮೆಗಾವ್ಯಾಟ್ ವಿದ್ಯುತ್ ಉತ್ಪಾದಿಸುವ ಜಲವಿದ್ಯುತ್ ಸ್ಥಾವರವಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಆಲಮಟ್ಟಿಯ ಮೊಘಲ್ ಗಾರ್ಡನ್, ಸಂಗೀತ ಕಾರಂಜಿ, ಬೋಟಿಂಗ್ ಮತ್ತು ರಾಕ್ ಗಾರ್ಡನ್ ರಾಜ್ಯದ ಪ್ರಮುಖ ಪ್ರವಾಸಿ ಆಕರ್ಷಣೆಗಳಾಗಿವೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
-    </p>
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ ಇಂದಿನ ನೀರಿನ ಮಟ್ಟವನ್ನು ಯಾರು ನಿರ್ವಹಿಸುತ್ತಾರೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕರ್ನಾಟಕ ನೀರಾವರಿ ನಿಗಮ ನಿಯಮಿತ (KNNL), ಕೃಷ್ಣಾ ಭಾಗ್ಯ ಜಲ ನಿಗಮ (KBJNL) ಮತ್ತು ಕಂದಾಯ ಇಲಾಖೆಯ ಸಹಯೋಗದಲ್ಲಿ ನೀರಿನ ಮಟ್ಟ ಹಾಗೂ ಹೊರಹರಿವನ್ನು ನಿರ್ವಹಿಸಲಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಆಲಮಟ್ಟಿಯಿಂದ ಹೊರಬಿಡುವ ನೀರು ಎಲ್ಲಿಗೆ ತಲುಪುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಆಲಮಟ್ಟಿ ಜಲಾಶಯದ 26 ಗೇಟ್‌ಗಳಿಂದ ಹೊರಬಿಡುವ ನೀರು ನೇರವಾಗಿ ಕೆಳಭಾಗದಲ್ಲಿರುವ ಯಾದಗಿರಿ ಜಿಲ್ಲೆಯ ‘ನಾರಾಯಣಪುರ ಜಲಾಶಯ’ವನ್ನು (ಬಸವಸಾಗರ) ಸೇರುತ್ತದೆ. ಅಲ್ಲಿಂದ ರಾಯಚೂರು, ಯಾದಗಿರಿ ಹಾಗೂ ಆಂಧ್ರದ ಗಡಿಗೆ ಹರಿಯುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಆಲಮಟ್ಟಿ ಜಲಾಶಯ ಯಾವಾಗ ಭರ್ತಿಯಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಸಾಮಾನ್ಯವಾಗಿ ಮಹಾರಾಷ್ಟ್ರದ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಜುಲೈ ತಿಂಗಳಲ್ಲಿ ಮಳೆ ತೀವ್ರಗೊಂಡಾಗ ಆಲಮಟ್ಟಿಗೆ ಭಾರಿ ಒಳಹರಿವು ಬರುತ್ತದೆ. ಜುಲೈ ಕೊನೆ ಅಥವಾ ಆಗಸ್ಟ್ ಮೊದಲ ವಾರದಲ್ಲಿ ಜಲಾಶಯ ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಆಲಮಟ್ಟಿ ಅಣೆಕಟ್ಟಿನ ಎತ್ತರವನ್ನು 524.25 ಮೀಟರ್‌ಗೆ ಏರಿಸಿದರೆ ಆಗುವ ಲಾಭವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಹೆಚ್ಚುವರಿಯಾಗಿ ಬರೋಬ್ಬರಿ 130 ಟಿಎಂಸಿಗೂ ಹೆಚ್ಚು ನೀರನ್ನು ಸಂಗ್ರಹಿಸಬಹುದು. ಯುಕೆಪಿ 3ನೇ ಹಂತದ ಮುಳವಾಡ, ಚಿಮ್ಮಲಗಿ, ಇಂಡಿ, ರಾಂಪುರ ಏತ ನೀರಾವರಿ ಯೋಜನೆಗಳಿಗೆ ಪೂರ್ಣ ಪ್ರಮಾಣದ ನೀರು ದೊರೆತು ಉತ್ತರ ಕರ್ನಾಟಕದ 6 ಲಕ್ಷ ಹೆಕ್ಟೇರ್ ಒಣಭೂಮಿ ಹಸಿರಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಆಲಮಟ್ಟಿ ಜಲಾಶಯದಲ್ಲಿ ಪ್ರವಾಸಿಗರಿಗೆ ಯಾವ ಪ್ರಮುಖ ಆಕರ್ಷಣೆಗಳಿವೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಮೊಘಲ್ ಗಾರ್ಡನ್, ಸುಂದರ ರಾಕ್ ಗಾರ್ಡನ್, ಸಂಜೆ ನಡೆಯುವ ಸಂಗೀತ ಕಾರಂಜಿ &amp; ಲೇಸರ್ ಶೋ ಹಾಗೂ ವಿಶಾಲ ಹಿನ್ನೀರಿನ ಬೋಟಿಂಗ್ ಪ್ರಮುಖ ಆಕರ್ಷಣೆಗಳಾಗಿವೆ.</p>
+    </div>
   </div>
 
 </div>

@@ -10,7 +10,9 @@ else:
     ROOT_DIR = BASE_DIR
     SUB_DIR = BASE_DIR / "namma-karnataka"
 
-IGNORE_DIRS = {".git", "node_modules", "scratch", "logs", ".system_generated", "__pycache__", ".wrangler", ".vscode"}
+IGNORE_DIRS = {".git", "node_modules", "scratch", "logs", ".system_generated", "__pycache__", ".wrangler", ".vscode", "scripts_archive"}
+IGNORE_FILE_PREFIXES = ("scratch_", "test_", "temp_", "tmp_")
+IGNORE_FILE_EXTS = {".log", ".tmp", ".bak"}
 
 def sync_directories(src: Path, dst: Path):
     if not src.exists() or not dst.exists(): return 0
@@ -21,6 +23,8 @@ def sync_directories(src: Path, dst: Path):
         target_dir = dst / rel if rel != "." else dst
         target_dir.mkdir(parents=True, exist_ok=True)
         for f in files:
+            if f.startswith(IGNORE_FILE_PREFIXES) or any(f.endswith(ext) for ext in IGNORE_FILE_EXTS):
+                continue
             sf = Path(root) / f
             df = target_dir / f
             if not df.exists() or (sf.stat().st_mtime > df.stat().st_mtime and sf.stat().st_size != df.stat().st_size):

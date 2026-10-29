@@ -118,8 +118,9 @@ for rel_file in all_pages:
     html = re.sub(r'<title>[\s\S]*?</title>', f'<title>{title_text}</title>', html, count=1)
 
     # Construct complete SEO block
+    kw_topic = "ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ, ಹವಾಮಾನ, ಚಿನ್ನದ ದರ, APMC, ಜಲಾಶಯಗಳು" if meta_info['base_name'] == 'index' else meta_info['base_name'].replace('-', ' ')
     seo_block = f"""  <meta name="description" content="{desc_text}" />
-  <meta name="keywords" content="ಕರ್ನಾಟಕ, Karnata.in, {meta_info['base_name'].replace('-', ' ')}" />
+  <meta name="keywords" content="ಕರ್ನಾಟಕ, Karnata.in, {kw_topic}" />
   <link rel="canonical" href="{meta_info['url']}" />
 
   <!-- AI GEO & Search Engine Directives -->

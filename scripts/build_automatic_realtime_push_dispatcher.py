@@ -270,8 +270,19 @@ CLIENT_ENHANCED_JS = r"""/**
         if (!feed.length) return;
 
         const seenList = getSeenPushes();
+        const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
 
         for (let item of feed) {
+          const isWeather = (item.topic === 'weather_alert' || (item.id && (item.id.startsWith('WEATHER-') || item.id.startsWith('FORECAST-'))));
+          if (isWeather) {
+            const lvl = (item.alert_level || '').toLowerCase().trim();
+            if (!['yellow', 'orange', 'red'].includes(lvl)) continue;
+            const storageKey = 'karnata_last_weather_notif_ts_' + dist;
+            const lastAlertTs = parseInt(localStorage.getItem(storageKey) || '0', 10);
+            if (Date.now() - lastAlertTs < THREE_HOURS_MS) continue;
+            localStorage.setItem(storageKey, Date.now().toString());
+          }
+
           if (!seenList.includes(item.id)) {
             addSeenPush(item.id);
 

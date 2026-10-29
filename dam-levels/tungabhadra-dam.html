@@ -147,7 +147,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
 <body>
 
 <div class="topnav">
-  <a href="dam-levels.html" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
+  <a href="/dam-levels" class="back-btn">← ಅಣೆಕಟ್ಟು ಪಟ್ಟಿ</a>
   <div class="page-title">💧 ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು ವಿವರಗಳು</div>
   <div class="live-badge"><div class="live-dot"></div> LIVE KSNDMC</div>
 </div>
@@ -163,85 +163,153 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
         <h1 class="dh-title">ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು (Tungabhadra Dam)</h1>
         <div class="dh-sub">
           <span>🌊 ನದಿ: ತುಂಗಭದ್ರಾ ನದಿ</span>
-          <span>🏛️ ಜಿಲ್ಲೆ: ವಿಜಯನಗರ (ಹೊಸಪೇಟೆ)</span>
+          <span>🏛️ ಜಿಲ್ಲೆ: ಹೊಸಪೇಟೆ (ವಿಜಯನಗರ / ಕೊಪ್ಪಳ)</span>
         </div>
-        <div class="dh-time">ಕೊನೆ ನವೀಕರಣ: 02 ಆಗಸ್ಟ್ 2026 — KSNDMC</div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
       </div>
     </div>
   </div>
 
-  <!-- METRICS -->
+  <!-- 5 METRIC CARDS -->
   <div class="metrics-grid">
     <div class="metric-card">
-      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಒಟ್ಟು ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--amber)">40.80 TMC</div>
-      <div class="mc-sub">38.5% ತುಂಬಿದೆ (105.78 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+      <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
+      <div class="mc-val" style="color:var(--green)" id="tungabhadra-m-storage">44.377 TMC</div>
+      <div class="mc-sub" id="tungabhadra-m-sub">41.9% ತುಂಬಿದೆ (105.788 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
+      <div class="mc-val">105.788 TMC</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">1611.59 ಅಡಿ</div>
-      <div class="mc-sub">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL): 1633.00 ಅಡಿ</div>
+      <div class="mc-val" id="tungabhadra-m-level">1613.24 ಅಡಿ</div>
+      <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 1633.00 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">25,811</div>
+      <div class="mc-val" style="color:var(--green)" id="tungabhadra-m-inflow">0</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">1,195</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="tungabhadra-m-outflow">795</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    </div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">1633.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">1582.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">105.788 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">100.80 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಇಂದಿನ ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage)</div><div class="spec-val">40.805 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಇಂದಿನ ಸಕ್ರಿಯ ಸಂಗ್ರಹ (Live Storage)</div><div class="spec-val">30.389 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಹೊಸಪೇಟೆ, ವಿಜಯನಗರ ಜಿಲ್ಲೆ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1949 - 1953</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY & BACKGROUND ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">
-      <div class="cb-title-text">📜 ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಾಮುಖ್ಯತೆ</div>
-    </div>
-    <div class="history-article">
-      <p><strong>ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು (Tungabhadra Dam)</strong> ವಿಜಯನಗರ ಜಿಲ್ಲೆಯ ಹೊಸಪೇಟೆಯ ಬಳಿ ತುಂಗಭದ್ರಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಬಹುಪಯೋಗಿ ಜಲಾಶಯವಾಗಿದೆ. ಇದು ಕರ್ನಾಟಕ, ಆಂಧ್ರಪ್ರದೇಶ ಮತ್ತು ತೆಲಂಗಾಣ ರಾಜ್ಯಗಳ ಜಂಟಿ ಯೋಜನೆಯಾಗಿದ್ದು, ರಾಯಚೂರು, ಬಳ್ಳಾರಿ, ಕೊಪ್ಪಳ ಮತ್ತು ವಿಜಯನಗರ ಜಿಲ್ಲೆಗಳ ಕೃಷಿ ಕ್ಷೇತ್ರದ ಜೀವನಾಡಿಯಾಗಿದೆ.</p>
-
-      <h3>🏗️ ಇತಿಹಾಸ ಮತ್ತು ಬಹುಪಯೋಗಿ ಯೋಜನೆ:</h3>
-      <p>ಈ ಅಣೆಕಟ್ಟಿನ ನಿರ್ಮಾಣ ಕಾಮಗಾರಿ 1949 ರಲ್ಲಿ ಪ್ರಾರಂಭವಾಗಿ 1953 ರಲ್ಲಿ ಮುಕ್ತಾಯಗೊಂಡಿತು. ಅಣೆಕಟ್ಟು 105.78 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ ಹೊಂದಿದ್ದು, 33 ಕ್ರೆಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ಹೊಂದಿದೆ. ಈ ಯೋಜನೆಯಿಂದ ಸುಮಾರು <strong>12 ಲಕ್ಷ ಎಕರೆಗಿಂತಲೂ ಹೆಚ್ಚು ಕೃಷಿ ಭೂಮಿಗೆ</strong> ನೀರಾವರಿ ಒದಗಿಸಲಾಗುತ್ತದೆ.</p>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ತುಂಗಭದ್ರಾ ಜಲಾಶಯ (Tungabhadra Dam - Pampa Sagara) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ತುಂಗಭದ್ರಾ ಜಲಾಶಯ: ಪಂಪಾಸಾಗರದ ಒಡಲು, ನೀರಿನ ಮಟ್ಟದ ಮಹತ್ವ ಮತ್ತು ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ಜೀವನಾಡಿಯ ಸಮಗ್ರ ಕಥನ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಹೊಸಪೇಟೆ ಬಳಿ ನಿರ್ಮಿಸಲಾದ ಪಂಪಾಸಾಗರ ಜಲಾಶಯವು ಕರ್ನಾಟಕ ಮತ್ತು ಆಂಧ್ರಪ್ರದೇಶ ರಾಜ್ಯಗಳ ಜಂಟಿ ಮಹತ್ವಾಕಾಂಕ್ಷೆಯ ಯೋಜನೆಯಾಗಿದೆ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಬಳ್ಳಾರಿ, ವಿಜಯನಗರ, ಕೊಪ್ಪಳ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ 3.5 ಲಕ್ಷ ಹೆಕ್ಟೇರ್ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತದೆ. ಬಳ್ಳಾರಿಯ ಭತ್ತ ಹಾಗೂ ಮೆಕ್ಕೆಜೋಳ ಉತ್ಪಾದನೆಗೆ ಇದು ಪ್ರಮುಖ ಆಧಾರ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಜಪಾನೀಸ್ ಗಾರ್ಡನ್, ಜಿಂಕೆ ವನ ಮತ್ತು ಹಂಪಿ ವಿಶ್ವ ಪರಂಪರೆಯ ತಾಣಕ್ಕೆ ಸಮೀಪದಲ್ಲಿದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಕರ್ನಾಟಕದ ಕೃಷಿ ಕ್ಷೇತ್ರದ ಇತಿಹಾಸದಲ್ಲಿ ತುಂಗಭದ್ರಾ ಜಲಾಶಯಕ್ಕೆ (ಪಂಪಾಸಾಗರ) ಅತ್ಯಂತ ವಿಶಿಷ್ಟವಾದ ಸ್ಥಾನವಿದೆ. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಗತವೈಭವವನ್ನು ಮಡಿಲಲ್ಲಿ ಹೊತ್ತು ಮಲಗಿರುವ ಹೊಸಪೇಟೆಯ ಮುನಿರಾಬಾದ್ ಬಳಿ, ತುಂಗಭದ್ರಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾಗಿರುವ ಈ ಬೃಹತ್ ಅಣೆಕಟ್ಟು ಕೇವಲ ಸಿಮೆಂಟ್ ಮತ್ತು ಕಲ್ಲಿನ ಕಾಂಕ್ರೀಟ್ ಗೋಡೆಯಲ್ಲ. ಇದು ಕರ್ನಾಟಕದ ಕೊಪ್ಪಳ, ವಿಜಯನಗರ, ಬಳ್ಳಾರಿ, ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳು ಹಾಗೂ ನೆರೆಯ ಆಂಧ್ರಪ್ರದೇಶದ ಕರ್ನೂಲ್, ಅನಂತಪುರ ಭಾಗದ ಲಕ್ಷಾಂತರ ರೈತರ ನರನಾಡಿ.
     </p>
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಪ್ರತಿದಿನ ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಹಾಗೂ ತುಂಗಭದ್ರಾ ನೀರಾವರಿ ಮಂಡಳಿ ಪ್ರಕಟಿಸುವ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟದ (Water Level) ಅಂಕಿ-ಅಂಶಗಳು ಈ ಭಾಗದ ಗ್ರಾಮೀಣ ಬದುಕಿನ ನಾಡಿಮಿಡಿತವನ್ನು ನಿರ್ಧರಿಸುತ್ತವೆ. ಮಲೆನಾಡಿನಲ್ಲಿ ಮಳೆಗಾಲ ಆರಂಭವಾಗಿ ತುಂಗಭದ್ರೆಯ ಒಳಹರಿವು ಹೆಚ್ಚಿತೆಂದರೆ ಇಲ್ಲಿನ ರೈತರ ಮನೆಗಳಲ್ಲಿ ಹಬ್ಬದ ಕಳೆ ಮೂಡುತ್ತದೆ; ಅದೇ ನೀರಿನ ಮಟ್ಟ ಕುಸಿದರೆ ಇಡೀ ಪ್ರದೇಶದಲ್ಲಿ ಬರಗಾಲದ ಕರಿನೆರಳು ಆವರಿಸುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🗺️ ಜಲಾನಯನ ಭೂಗೋಳ ಮತ್ತು ಒಳಹರಿವಿನ ರಹಸ್ಯ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ತುಂಗಭದ್ರಾ ಜಲಾಶಯಕ್ಕೆ ನೀರು ಎಲ್ಲಿಂದ ಬರುತ್ತದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ಅದರ ಜಲವೈಭವದ ಅರಿವಿಗೆ ಅತ್ಯಗತ್ಯ. ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ವರಾಹ ಪರ್ವತದಲ್ಲಿ ಜನಿಸುವ ‘ತುಂಗಾ’ ಮತ್ತು ‘ಭದ್ರಾ’ ನದಿಗಳು ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲೆಯ ಪವಿತ್ರ ಕೂಡ್ಲಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಸಂಗಮಗೊಂಡು ‘ತುಂಗಭದ್ರಾ’ ನದಿಯಾಗಿ ಅವತರಿಸುತ್ತವೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಚಿಕ್ಕಮಗಳೂರು, ಶಿವಮೊಗ್ಗ, ದಾವಣಗೆರೆ ಮತ್ತು ಹಾವೇರಿ ಜಿಲ್ಲೆಗಳ ಸುಮಾರು 28,180 ಚದರ ಕಿಲೋಮೀಟರ್ ವಿಸ್ತಾರವಾದ ಜಲಾನಯನ ಪ್ರದೇಶದಿಂದ (Catchment Area) ಹರಿದು ಬರುವ ಮಳೆಯ ನೀರು ಹೊಸಪೇಟೆಯ ಈ ಜಲಾಶಯವನ್ನು ಸೇರುತ್ತದೆ. ವರದಾ ಮತ್ತು ಕುಮದ್ವತಿ ನದಿಗಳೂ ತುಂಗಭದ್ರೆಯನ್ನು ಸೇರುವುದರಿಂದ, ಮಲೆನಾಡಿನಲ್ಲಿ ಮುಂಗಾರು ಮಳೆ ಚುರುಕಾದಾಗ ಜಲಾಶಯಕ್ಕೆ ದಿನಕ್ಕೆ 50,000 ದಿಂದ 1.5 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್‌ವರೆಗೂ ಒಳಹರಿವು (Inflow) ದಾಖಲಾಗುತ್ತದೆ. ಪ್ರತಿ ಸೆಕೆಂಡಿಗೆ ಒಂದು ಘನ ಅಡಿ ನೀರು ಹರಿದು ಬಂದರೆ ಅದನ್ನು 1 ಕ್ಯೂಸೆಕ್ ಎನ್ನಲಾಗುತ್ತದೆ. ಸರಿಸುಮಾರು 11,500 ಕ್ಯೂಸೆಕ್ ನೀರು ಸತತ 24 ಗಂಟೆ ಹರಿದು ಬಂದರೆ ಅದು ಬರೋಬ್ಬರಿ 1 ಟಿಎಂಸಿ ನೀರಿಗೆ ಸಮಾನ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏗️ ಅಣೆಕಟ್ಟಿನ ವಾಸ್ತುಶಿಲ್ಪ, ಎಂಜಿನಿಯರಿಂಗ್ ಮತ್ತು ಸಾಮರ್ಥ್ಯದ ವಾಸ್ತವ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಸ್ವಾತಂತ್ರ್ಯೋತ್ತರ ಭಾರತದ ಪ್ರಥಮ ಬಹುಪಯೋಗಿ ನದಿ ಕಣಿವೆ ಯೋಜನೆಗಳಲ್ಲಿ ಒಂದಾದ ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟಿನ ಕಾಮಗಾರಿ 1949ರಲ್ಲಿ ಆರಂಭವಾಗಿ 1953ರಲ್ಲಿ ಮುಕ್ತಾಯವಾಯಿತು. ಮದ್ರಾಸ್ ಪ್ರೆಸಿಡೆನ್ಸಿ ಮತ್ತು ಹೈದರಾಬಾದ್ ನಿಜಾಮ ಸಂಸ್ಥಾನಗಳ ಜಂಟಿ ಯೋಜನೆಯಾಗಿದ್ದ ಇದನ್ನು ಖ್ಯಾತ ಮುಖ್ಯ ಎಂಜಿನಿಯರ್ ಡಾ. ಎಂ. ತಿರುಮಲೈ ಅಯ್ಯಂಗಾರ್ ಅವರ ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ ನಿರ್ಮಿಸಲಾಯಿತು.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಗರಿಷ್ಠ ಮಟ್ಟ (Full Reservoir Level - FRL):</strong> ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 1,633.00 ಅಡಿಗಳು.</li>
+      <li><strong>ಮೂಲ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ:</strong> ಅಣೆಕಟ್ಟು ನಿರ್ಮಾಣವಾದ ಆರಂಭದ ದಿನಗಳಲ್ಲಿ ಇದರ ಗರಿಷ್ಠ ಜಲಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ 133 ಟಿಎಂಸಿ ಆಗಿತ್ತು.</li>
+      <li><strong>ಹೂಳಿನಿಂದಾದ ಸಾಮರ್ಥ್ಯ ಕುಸಿತ:</strong> ಕಳೆದ ಏಳು ದಶಕಗಳಲ್ಲಿ ನದಿಯೊಂದಿಗೆ ಹರಿದು ಬಂದ ನೈಸರ್ಗಿಕ ಮಣ್ಣು ಮತ್ತು ಹೂಳು ಜಲಾಶಯದ ತಳಭಾಗದಲ್ಲಿ ಶೇಖರಗೊಂಡಿದೆ. ಪರಿಣಾಮವಾಗಿ, ಇಂದು ಜಲಾಶಯದ ಗರಿಷ್ಠ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಸುಮಾರು 105.788 ಟಿಎಂಸಿಗೆ ಕುಸಿದಿದೆ. ಅಂದರೆ ಜಲಾಶಯದಲ್ಲಿ 30 ಟಿಎಂಸಿಗೂ ಹೆಚ್ಚು ನೀರು ಸಂಗ್ರಹಿಸುವ ಜಾಗವನ್ನು ಕೇವಲ ಮಣ್ಣು ಆಕ್ರಮಿಸಿಕೊಂಡಿದೆ.</li>
+      <li><strong>ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> ನದಿಯ ಹೆಚ್ಚುವರಿ ಪ್ರವಾಹದ ನೀರನ್ನು ನಿಯಂತ್ರಿಸಿ ಹೊರಹಾಕಲು ಜಲಾಶಯಕ್ಕೆ 60x20 ಅಡಿ ಅಳತೆಯ ಒಟ್ಟು 33 ಬೃಹತ್ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚠️ ಹತ್ತೊಂಬತ್ತನೇ ಗೇಟ್ ದುರಂತ ಮತ್ತು ಅಪ್ರತಿಮ ತಾಂತ್ರಿಕ ಸಾಹಸ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ತುಂಗಭದ್ರಾ ಜಲಾಶಯದ ಇತಿಹಾಸದಲ್ಲಿ 2024ರ ಆಗಸ್ಟ್ ತಿಂಗಳು ಕರಾಳ ಅಧ್ಯಾಯವಾಗಿ ದಾಖಲಾಗಬೇಕಿತ್ತು. ಜಲಾಶಯ ಭರ್ತಿಯಾಗಿ 1,633 ಅಡಿ ಮುಟ್ಟಿದ್ದ ಸಂದರ್ಭದಲ್ಲಿ, ಮಧ್ಯರಾತ್ರಿ 19ನೇ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ನ ಚೈನ್ ಲಿಂಕ್ ಏಕಾಏಕಿ ತುಂಡಾಗಿ ರಕ್ಕಸ ಗಾತ್ರದ ಗೇಟ್ ನೀರಿನ ಸೆಳೆತಕ್ಕೆ ನದಿಗೆ ಕೊಚ್ಚಿಹೋಯಿತು. ಕ್ಷಣಾರ್ಧದಲ್ಲಿ ಬರೋಬ್ಬರಿ 35,000 ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ನೀರು ನಿಯಂತ್ರಣವಿಲ್ಲದೆ ನದಿಗೆ ನುಗ್ಗತೊಡಗಿತು. ಜಲಾಶಯ ಬಹುತೇಕ ಖಾಲಿಯಾಗಿ ಎರಡನೇ ಬೆಳೆಗೆ ಹನಿ ನೀರೂ ಉಳಿಯುವುದಿಲ್ಲ ಎಂಬ ಆತಂಕ ಕಲ್ಯಾಣ ಕರ್ನಾಟಕದ ರೈತರನ್ನು ತಲ್ಲಣಗೊಳಿಸಿತು.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಆದರೆ, ಈ ಬಿಕ್ಕಟ್ಟಿನ ವೇಳೆ 80 ವರ್ಷದ ಹಿರಿಯ ಹೈಡ್ರಾಲಿಕ್ ತಜ್ಞ ನಾರಾಯಣ ಕನ್ನಯ್ಯ ನಾಯ್ಡು ಅವರ ತಾಂತ್ರಿಕ ಚಾಕಚಕ್ಯತೆ ಇತಿಹಾಸ ನಿರ್ಮಿಸಿತು. ಸ್ಥಳೀಯ ಜಿಂದಾಲ್ (JSW) ಕಾರ್ಖಾನೆ, ನಾರಾಯಣ ಎಂಜಿನಿಯರಿಂಗ್ ಮತ್ತು ರಾಜ್ಯ ನೀರಾವರಿ ಇಲಾಖೆಯ ನೂರಾರು ಕಾರ್ಮಿಕರು ರಭಸವಾಗಿ ಹರಿಯುವ ನೀರಿನ ಒತ್ತಡದ ನಡುವೆಯೂ ಹಗಲಿರುಳು ಶ್ರಮಿಸಿದರು. ಕೇವಲ ಐದೇ ದಿನಗಳಲ್ಲಿ ಐದು ಬೃಹತ್ ‘ಸ್ಟಾಪ್‌ಲಾಗ್ ಎಲಿಮೆಂಟ್’ಗಳನ್ನು ನೀರಿನೊಳಗೆ ಇಳಿಸಿ ನೀರು ಪೋಲಾಗುವುದನ್ನು ಯಶಸ್ವಿಯಾಗಿ ತಡೆದರು. ಈ ಸಾಹಸವು ಸುಮಾರು 60 ಟಿಎಂಸಿ ನೀರನ್ನು ಸಂರಕ್ಷಿಸಿತು. ಈ ಘಟನೆಯ ನಂತರ ಜಲಾಶಯದ ಎಲ್ಲಾ 33 ಗೇಟ್‌ಗಳ ತಾಂತ್ರಿಕ ಸುರಕ್ಷತೆ, ಸರಪಳಿಗಳ ಬಲ ಮತ್ತು ಹೈಡ್ರಾಲಿಕ್ ಒತ್ತಡವನ್ನು ಸಂವೇದಕಗಳ ಮೂಲಕ ಸತತವಾಗಿ ಮಾನಿಟರ್ ಮಾಡಲಾಗುತ್ತಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಕೃಷಿ ಆರ್ಥಿಕತೆಯ ನಾಡಿಮಿಡಿತ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ತುಂಗಭದ್ರಾ ಕೇವಲ ವಿದ್ಯುತ್ ತಯಾರಿಕೆಗೆ ಸೀಮಿತವಾಗಿಲ್ಲ; ಇದು ಕರ್ನಾಟಕ ಮತ್ತು ಆಂಧ್ರಪ್ರದೇಶದ ಸುಮಾರು 12 ಲಕ್ಷಕ್ಕೂ ಅಧಿಕ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುವ ಬೃಹತ್ ಕಾಲುವೆ ಜಾಲವನ್ನು ಹೊಂದಿದೆ. ಈ ಕಾಲುವೆಗಳಿಗೆ ನೀರು ಹರಿಸುವ ತೀರ್ಮಾನವು ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟವನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಮುನಿರಾಬಾದ್ ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (LBMC):</strong> ಕೊಪ್ಪಳ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ ಪಾಲಿನ ಅನ್ನದ ಕಣಜ. ವಿಶ್ವವಿಖ್ಯಾತ ‘ಸೋನಾ ಮಸೂರಿ’ ಭತ್ತವನ್ನು ಬೆಳೆಯುವ ಗಂಗಾವತಿ, ಸಿಂಧನೂರು ಮತ್ತು ಮಾನ್ವಿ ತಾಲೂಕುಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಗದ್ದೆಗಳು ಈ ಕಾಲುವೆಯ ನೀರಿನಿಂದಲೇ ಹಸಿರಾಗುತ್ತವೆ.</li>
+      <li><strong>ಬಲದಂಡೆ ಕೆಳಮಟ್ಟದ ಕಾಲುವೆ (RBLLC):</strong> ಹೊಸಪೇಟೆ, ಕಂಪ್ಲಿ, ಕುರುಗೋಡು ಮತ್ತು ಬಳ್ಳಾರಿ ಗ್ರಾಮೀಣ ಭಾಗವನ್ನು ದಾಟಿ ಆಂಧ್ರದ ಕರ್ನೂಲ್ ಜಿಲ್ಲೆಗೆ ಕುಡಿಯುವ ಹಾಗೂ ಕೃಷಿ ನೀರನ್ನು ಒದಗಿಸುತ್ತದೆ.</li>
+      <li><strong>ಬಲದಂಡೆ ಮೇಲ್ಮಟ್ಟದ ಕಾಲುವೆ (RBHLC):</strong> ಬಳ್ಳಾರಿಯ ಮಳೆಯಾಶ್ರಿತ ಒಣಭೂಮಿ ಪ್ರದೇಶಗಳು ಹಾಗೂ ಆಂಧ್ರದ ಅನಂತಪುರ ಜಿಲ್ಲೆಯ ಗಡಿ ಭಾಗಕ್ಕೆ ವರದಾನವಾಗಿದೆ.</li>
+      <li><strong>ರಾಯ ಮತ್ತು ಬಸವಣ್ಣ ಪುರಾತನ ಕಾಲುವೆಗಳು:</strong> ವಿಜಯನಗರದ ಅರಸರ ಕಾಲದ ಸಾಂಪ್ರದಾಯಿಕ ತಂತ್ರಜ್ಞಾನವನ್ನು ಆಧರಿಸಿ ಆಧುನೀಕರಣಗೊಂಡಿರುವ ಈ ಕಾಲುವೆಗಳು ಹೊಸಪೇಟೆ ಸುತ್ತಮುತ್ತಲಿನ ಕಬ್ಬು, ಬಾಳೆ ಮತ್ತು ತೋಟಗಾರಿಕಾ ಬೆಳೆಗಳಿಗೆ ನಿರಂತರ ನೀರುಣಿಸುತ್ತವೆ.</li>
+    </ul>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಪ್ರತಿವರ್ಷ ನವೆಂಬರ್ ತಿಂಗಳಿನಲ್ಲಿ ಜಲಾಶಯದಲ್ಲಿ 85 ಟಿಎಂಸಿಗೂ ಹೆಚ್ಚು ನೀರು ಸಂಗ್ರಹವಿದ್ದರೆ ಮಾತ್ರ ನೀರಾವರಿ ಸಲಹಾ ಸಮಿತಿ (ICC) ಸಭೆ ನಡೆಸಿ, ಮುಂಗಾರು ಹಾಗೂ ಹಿಂಗಾರು (ಎರಡನೇ ಬೆಳೆ) ಎರಡಕ್ಕೂ ಸಂಪೂರ್ಣ ನೀರು ನೀಡಲು ಆದೇಶಿಸುತ್ತದೆ. ನೀರಿನ ಮಟ್ಟ ಕುಸಿದರೆ ಕುಡಿಯುವ ನೀರಿಗೆ ಮೊದಲ ಆದ್ಯತೆ ನೀಡಿ ಬೆಳೆಗಳಿಗೆ ನೀರು ಕಡಿತಗೊಳಿಸಲಾಗುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⚠️ ಹೂಳಿನ ಸಮಸ್ಯೆ ಮತ್ತು ನವಲಿ ಸಮಾಂತರ ಜಲಾಶಯದ ಅನಿವಾರ್ಯತೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಪ್ರತಿವರ್ಷ ಮಳೆಗಾಲದಲ್ಲಿ ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು 1,633 ಅಡಿ ತಲುಪಿ ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾದರೂ, ಒಳಭಾಗದಲ್ಲಿ ತುಂಬಿರುವ 32 ರಿಂದ 35 ಟಿಎಂಸಿ ಹೂಳು ಇಡೀ ಯೋಜನೆಯ ಪಾಲಿಗೆ ನುಂಗಲಾರದ ತುತ್ತಾಗಿದೆ. ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಕಡಿಮೆಯಾಗಿರುವುದರಿಂದ, ಮಳೆಗಾಲದಲ್ಲಿ ಬರುವ ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ಅನಿವಾರ್ಯವಾಗಿ ಆಂಧ್ರಪ್ರದೇಶದ ಮೂಲಕ ಸಮುದ್ರಕ್ಕೆ ಹರಿಸಬೇಕಾಗುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಜಲಾಶಯದಿಂದ ಹೂಳು ತೆಗೆಯುವುದು ತಾಂತ್ರಿಕವಾಗಿ ಮತ್ತು ಆರ್ಥಿಕವಾಗಿ ಅಪಾರ ವೆಚ್ಚದಾಯಕ ಹಾಗೂ ಪರಿಸರಕ್ಕೆ ಹಾನಿಕಾರಕವೆಂದು ತಜ್ಞರು ಸ್ಪಷ್ಟಪಡಿಸಿದ್ದಾರೆ. ಹೀಗಾಗಿ ಇದಕ್ಕೆ ಏಕೈಕ ದೀರ್ಘಕಾಲಿಕ ಪರಿಹಾರವೆಂದರೆ ಕೊಪ್ಪಳ ಜಿಲ್ಲೆಯ ನವಲಿ ಬಳಿ ಸಮಾನಾಂತರ ಜಲಾಶಯ (Navali Balancing Reservoir) ನಿರ್ಮಾಣ. ಈ ನವಲಿ ಯೋಜನೆಯಿಂದ ಕಳೆದುಹೋದ 30 ಟಿಎಂಸಿ ನೀರನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಸಂಗ್ರಹಿಸಿ, ಅಗತ್ಯವಿದ್ದಾಗ ತುಂಗಭದ್ರಾ ಕಾಲುವೆಗಳಿಗೆ ಹರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. ಕರ್ನಾಟಕ, ಆಂಧ್ರ ಮತ್ತು ತೆಲಂಗಾಣ ಸರ್ಕಾರಗಳ ಜಂಟಿ ಸಹಮತದೊಂದಿಗೆ ಈ ಯೋಜನೆ ಜಾರಿಯಾಗಬೇಕಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚨 ಪ್ರವಾಹ ನಿಯಂತ್ರಣ ಮತ್ತು ನದಿತೀರದ ಐತಿಹಾಸಿಕ ತಾಣಗಳ ಎಚ್ಚರಿಕೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಮಳೆಗಾಲದಲ್ಲಿ ತುಂಗಭದ್ರಾ ಜಲಾಶಯದ ಸುರಕ್ಷತೆಯ ದೃಷ್ಟಿಯಿಂದ ಗೇಟ್‌ಗಳನ್ನು ತೆರೆದು ನದಿಗೆ ನೀರು ಬಿಟ್ಟಾಗ, ನದಿ ಪಾತ್ರದಲ್ಲಿ ಉಂಟಾಗುವ ಬದಲಾವಣೆಗಳು ಅತ್ಯಂತ ನಿರ್ಣಾಯಕ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>25,000 ದಿಂದ 50,000 ಕ್ಯೂಸೆಕ್ ಹೊರಹರಿವು:</strong> ನದಿಯ ಮಟ್ಟ ಏರಿಕೆಯಾಗಿ ವಿಶ್ವ ಪರಂಪರೆ ತಾಣವಾದ ಹಂಪಿಯ ಚಕ್ರತೀರ್ಥ, ಕೋದಂಡರಾಮ ದೇವಾಲಯ ಮತ್ತು ಪುರಂದರ ಮಂಟಪದ ಮೆಟ್ಟಿಲುಗಳು ನೀರಿನಲ್ಲಿ ಮುಳುಗಡೆಯಾಗುತ್ತವೆ.</li>
+      <li><strong>75,000 ದಿಂದ 1 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್ ಹೊರಹರಿವು:</strong> ಕೊಪ್ಪಳ ಮತ್ತು ಬಳ್ಳಾರಿ ಜಿಲ್ಲೆಗಳನ್ನು ಬೆಸೆಯುವ ಐತಿಹಾಸಿಕ ಕಂಪ್ಲಿ-ಗಂಗಾವತಿ ಸೇತುವೆಯ ಮೇಲಿಂದ ನೀರು ಹರಿಯಲಾರಂಭಿಸಿ ಸಂಚಾರ ಸಂಪೂರ್ಣ ಸ್ಥಗಿತಗೊಳ್ಳುತ್ತದೆ.</li>
+      <li><strong>1 ಲಕ್ಷ ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ನೀರು:</strong> ನದಿ ತೀರದ ಬಾಳೆ ತೋಟಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ. ನದಿಯ ಕೆಳಭಾಗದ ಗ್ರಾಮಗಳಲ್ಲಿ ಸೈರನ್ ಮೊಳಗಿಸಿ ಜನರನ್ನು ಮತ್ತು ಜಾನುವಾರುಗಳನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳಗಳಿಗೆ ಸ್ಥಳಾಂತರಿಸಲಾಗುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏞️ ಪರಿಸರ ವೈವಿಧ್ಯ, ಜಲವಿದ್ಯುತ್ ಮತ್ತು ಪ್ರವಾಸೋದ್ಯಮ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ತುಂಗಭದ್ರಾ ಅಣೆಕಟ್ಟು ಕೇವಲ ನೀರಾವರಿಗಷ್ಟೇ ಸೀಮಿತವಾಗಿಲ್ಲ. ಜಲಾಶಯದ ಎಡದಂಡೆ ಮತ್ತು ಬಲದಂಡೆಯ ವಿದ್ಯುತ್ ಸ್ಥಾವರಗಳಲ್ಲಿ ಹೈಡ್ರೋ-ಎಲೆಕ್ಟ್ರಿಕ್ ಪವರ್ ಉತ್ಪಾದಿಸಿ ರಾಜ್ಯದ ಗ್ರಿಡ್‌ಗೆ ನೀಡಲಾಗುತ್ತದೆ. ಜೊತೆಗೆ ಈ ಜಲಾಶಯವು ಅಂತರರಾಷ್ಟ್ರೀಯ ಮಟ್ಟದ ಪ್ರವಾಸಿ ಆಕರ್ಷಣೆಯಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ವೈಕುಂಠ ಅತಿಥಿಗೃಹ ಬೆಟ್ಟ:</strong> ಬೆಟ್ಟದ ಮೇಲಿಂದ ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ನೋಡಿದರೆ ಪಂಪಾಸಾಗರದ ನೀಲಿ ಜಲರಾಶಿ ಚಿನ್ನದಂತೆ ಕಂಗೊಳಿಸುತ್ತದೆ.</li>
+      <li><strong>ಉದ್ಯಾನವನ ಮತ್ತು ಸಂಗೀತ ಕಾರಂಜಿ:</strong> ಕೆಳಭಾಗದ ಜಪಾನೀಸ್ ಗಾರ್ಡನ್ ಹಾಗೂ ಸಂಜೆ ನಡೆಯುವ ಸಂಗೀತ ಕಾರಂಜಿ (Musical Fountain) ಪ್ರವಾಸಿಗರನ್ನು ಸೆಳೆಯುತ್ತದೆ.</li>
+      <li><strong>ನೀರನಾಯಿ ಅಭಯಾರಣ್ಯ (Otter Reserve):</strong> ಜಲಾಶಯದ ಕೆಳಭಾಗದ ತುಂಗಭದ್ರಾ ನದಿ ಪಾತ್ರದಲ್ಲಿ ದೇಶದ ಏಕೈಕ ನೈಸರ್ಗಿಕ ನೀರನಾಯಿ ಸಂರಕ್ಷಿತ ವಲಯವಿದೆ. ಸಮೀಪದ ದರೋಜಿ ಕರಡಿ ಧಾಮ ಹಾಗೂ ಹಂಪಿ ಸ್ಮಾರಕಗಳು ಈ ಪ್ರವಾಸಕ್ಕೆ ಸಾಥ್ ನೀಡುತ್ತವೆ.</li>
+    </ul>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ತುಂಗಭದ್ರಾ ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ತುಂಗಭದ್ರಾ (ಪಂಪಾಸಾಗರ) ಜಲಾಶಯ ಎಲ್ಲಿದೆ ಮತ್ತು ನಿರ್ಮಾಣವಾಗಿದ್ದು ಯಾವಾಗ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ವಿಜಯನಗರ ಜಿಲ್ಲೆಯ ಹೊಸಪೇಟೆಯ ಮುನಿರಾಬಾದ್ ಬಳಿ ತುಂಗಭದ್ರಾ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ. 1949ರಲ್ಲಿ ಆರಂಭವಾಗಿ 1953ರಲ್ಲಿ ಖ್ಯಾತ ಮುಖ್ಯ ಎಂಜಿನಿಯರ್ ಡಾ. ಎಂ. ತಿರುಮಲೈ ಅಯ್ಯಂಗಾರ್ ಅವರ ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ ನಿರ್ಮಾಣವಾಯಿತು.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ತುಂಗಭದ್ರಾ ಜಲಾಶಯದ ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ಇಂದಿನ ವಾಸ್ತವ ಸಂಗ್ರಹ ಎಷ್ಟು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (FRL) 1,633.00 ಅಡಿಗಳು. ಮೂಲ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ 133 ಟಿಎಂಸಿ ಇತ್ತು, ಆದರೆ 7 ದಶಕಗಳಲ್ಲಿ 30+ ಟಿಎಂಸಿ ಹೂಳು ತುಂಬಿರುವುದರಿಂದ ಇಂದಿನ ಗರಿಷ್ಠ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಸುಮಾರು 105.788 ಟಿಎಂಸಿಗೆ ಕುಸಿದಿದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ 2024ರ ಆಗಸ್ಟ್‌ನಲ್ಲಿ ನಡೆದ 19ನೇ ಗೇಟ್ ದುರಂತವನ್ನು ಹೇಗೆ ಸರಿಪಡಿಸಲಾಯಿತು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">19ನೇ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ನ ಚೈನ್ ಲಿಂಕ್ ತುಂಡಾಗಿ 35,000+ ಕ್ಯೂಸೆಕ್ ನೀರು ಪೋಲಾಗುತ್ತಿದ್ದಾಗ, 80 ವರ್ಷದ ಹಿರಿಯ ತಜ್ಞ ನಾರಾಯಣ ಕನ್ನಯ್ಯ ನಾಯ್ಡು, JSW ಕಾರ್ಖಾನೆ ಮತ್ತು ನೀರಾವರಿ ಇಲಾಖೆ ಕೇವಲ 5 ದಿನಗಳಲ್ಲಿ ಸ್ಟಾಪ್‌ಲಾಗ್ ಎಲಿಮೆಂಟ್‌ಗಳನ್ನು ಇಳಿಸಿ ಸುಮಾರು 60 ಟಿಎಂಸಿ ನೀರನ್ನು ಸಂರಕ್ಷಿಸಿದರು.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಮುನಿರಾಬಾದ್ ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆಯು (LBMC) ಯಾವ ಬೆಳೆಗಳಿಗೆ ಆಧಾರವಾಗಿದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕೊಪ್ಪಳ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ ವಿಶ್ವವಿಖ್ಯಾತ ‘ಸೋನಾ ಮಸೂರಿ’ ಭತ್ತ ಬೆಳೆಯುವ ಗಂಗಾವತಿ, ಸಿಂಧನೂರು ಮತ್ತು ಮಾನ್ವಿ ತಾಲೂಕುಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಗದ್ದೆಗಳಿಗೆ ಇದು ನೀರುಣಿಸುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ನವಲಿ ಸಮಾನಾಂತರ ಜಲಾಶಯದ (Navali Balancing Reservoir) ಅಗತ್ಯವೇನು?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ತುಂಗಭದ್ರೆಯಲ್ಲಿ ತುಂಬಿರುವ 30+ ಟಿಎಂಸಿ ಹೂಳನ್ನು ತೆಗೆಯುವುದು ಅಸಾಧ್ಯವಾಗಿರುವುದರಿಂದ, ಕೊಪ್ಪಳ ಜಿಲ್ಲೆಯ ನವಲಿ ಬಳಿ ಸಮಾನಾಂತರ ಜಲಾಶಯ ನಿರ್ಮಿಸಿ ಕಳೆದುಹೋದ 30 ಟಿಎಂಸಿ ನೀರನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಸಂಗ್ರಹಿಸಲು ಯೋಜನೆ ರೂಪಿಸಲಾಗಿದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ತುಂಗಭದ್ರೆಯಿಂದ ನದಿಗೆ ನೀರು ಬಿಟ್ಟಾಗ ಹಂಪಿಗೆ ಯಾವ ಪರಿಣಾಮ ಬೀರುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">25,000 ದಿಂದ 50,000 ಕ್ಯೂಸೆಕ್ ನೀರು ಬಿಟ್ಟರೆ ಹಂಪಿಯ ಚಕ್ರತೀರ್ಥ, ಕೋದಂಡರಾಮ ದೇವಾಲಯ ಮತ್ತು ಪುರಂದರ ಮಂಟಪದ ಮೆಟ್ಟಿಲುಗಳು ಮುಳುಗಡೆಯಾಗುತ್ತವೆ. 75,000+ ಕ್ಯೂಸೆಕ್ ದಾಟಿದರೆ ಕಂಪ್ಲಿ-ಗಂಗಾವತಿ ಸೇತುವೆ ಮೇಲೆ ನೀರು ಹರಿದು ಸಂಚಾರ ಸ್ಥಗಿತಗೊಳ್ಳುತ್ತದೆ.</p>
+    </div>
   </div>
 
 </div>

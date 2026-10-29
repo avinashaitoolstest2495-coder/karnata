@@ -60,9 +60,12 @@ def sync_static_dom():
 
     # Dam (KRS)
     krs_dam = dam_data.get('dams', {}).get('krs', {})
-    krs_lvl = krs_dam.get('current_level_ft', 124.80)
-    krs_max = krs_dam.get('max_level_ft', 124.80)
-    krs_pct = "99%" if krs_lvl >= 124 else f"{(krs_lvl/krs_max*100):.1f}%"
+    if 'storage_pct' in krs_dam:
+        krs_pct = f"{krs_dam['storage_pct']}%"
+    else:
+        krs_lvl = krs_dam.get('level_ft') or krs_dam.get('current_level_ft', 124.80)
+        krs_max = krs_dam.get('max_level_ft', 124.80)
+        krs_pct = f"{(krs_lvl/krs_max*100):.1f}%"
 
     print(f"Metrics: Weather Rain={rain_val}, Bengaluru Temp={bng_temp}°C, Gold 22k=₹{gold_22k}/g, Petrol=₹{bng_petrol}/L, KRS={krs_pct}")
 

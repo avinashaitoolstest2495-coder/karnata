@@ -380,20 +380,21 @@ html, body {
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
+            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#047857; font-weight:900;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಪರಿಶೀಲಕ (106+)</a>
             <a href="/ask" class="nk-drop-item ${isActive('/ask') ? 'active' : ''}">🤖 askKARNATA AI ಸಹಾಯಕ</a>
             <a href="/ai-jyothishya" class="nk-drop-item ${isActive('/ai-jyothishya') ? 'active' : ''}">🔮 AI ಜ್ಯೋತಿಷ್ಯ & ಕುಂಡಲಿ</a>
             <a href="/kannada-typing" class="nk-drop-item ${isActive('/kannada-typing') ? 'active' : ''}">⌨️ ಕನ್ನಡ ಟೈಪಿಂಗ್ & ಅನುವಾದ</a>
-            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}">📋 ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</a>
           </div>
         </div>
 
         <!-- BUTTON 6: SCHEME GUIDES & ARTICLES -->
-        <div class="nk-nav-dropdown ${isActive('/article') ? 'active' : ''}">
+        <div class="nk-nav-dropdown ${isActive('/article') || isActive('/scheme-checker') ? 'active' : ''}">
           <button class="nk-nav-dropbtn" onclick="this.parentElement.classList.toggle('open')">
-            <span>📚 ಸರ್ಕಾರಿ ಮಾರ್ಗದರ್ಶಿಗಳು</span>
+            <span>📚 ಸರ್ಕಾರಿ ಯೋಜನೆ & ಮಾರ್ಗದರ್ಶಿ</span>
             <span style="font-size:8px; margin-left:2px;">▼</span>
           </button>
           <div class="nk-dropdown-menu">
+            <a href="/scheme-checker" class="nk-drop-item ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2;">✨ ಎಲ್ಲಾ 106+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಅರ್ಹತೆ ಚೆಕ್</a>
             <a href="/article/gruha-lakshmi-status-check-2026" class="nk-drop-item">🌸 ಗೃಹಲಕ್ಷ್ಮಿ ₹2000 ಸ್ಟೇಟಸ್ ಚೆಕ್</a>
             <a href="/article/karnataka-bhoomi-rtc-pahani-online" class="nk-drop-item">📜 ಭೂಮಿ RTC ಪಹಣಿ ಆನ್‌ಲೈನ್</a>
             <a href="/article/karnataka-dam-water-storage-analysis" class="nk-drop-item">💧 ಜಲಾಶಯಗಳ ನೀರಿನ ಸಂಗ್ರಹ</a>
@@ -415,6 +416,7 @@ html, body {
 
   <!-- Mobile Quick Navigation Rail (Clean Horizontal Touch Scroll) -->
   <div class="nk-mobile-rail">
+    <a href="/scheme-checker" class="nk-mobile-chip ${isActive('/scheme-checker') ? 'active' : ''}" style="color:#B91C1C; font-weight:900; background:#FEF2F2; border-color:#FECACA;">🏛️ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು (106+)</a>
     <a href="/districts" class="nk-mobile-chip ${isActive('/districts') ? 'active' : ''}">🗺️ 31 ಜಿಲ್ಲೆಗಳು</a>
     <a href="/weather" class="nk-mobile-chip ${isActive('/weather') ? 'active' : ''}">🌧️ ಹವಾಮಾನ</a>
     <a href="/gold-rate" class="nk-mobile-chip ${isActive('/gold-rate') ? 'active' : ''}">🪙 ಚಿನ್ನದ ದರ</a>

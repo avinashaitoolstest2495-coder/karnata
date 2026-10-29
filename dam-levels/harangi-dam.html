@@ -149,6 +149,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
           <span>🌊 ನದಿ: ಹಾರಂಗಿ ನದಿ (ಕಾವೇರಿ ಉಪನದಿ)</span>
           <span>🏛️ ಜಿಲ್ಲೆ: ಕೊಡಗು (ಸೋಮವಾರಪೇಟೆ)</span>
         </div>
+        <div class="dh-time" id="update-time">ಕೊನೆ ನವೀಕರಣ: 29-10-2026 (29 ಅಕ್ಟೋಬರ್ 2026) — KSNDMC / ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ ಲೈವ್ ವರದಿ</div>
       </div>
     </div>
   </div>
@@ -157,71 +158,131 @@ body { font-family: var(--font-kn); background: var(--bg); color: var(--ink); -w
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="mc-label">💧 ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ (Present Storage)</div>
-      <div class="mc-val" style="color:var(--green)">7.75 TMC</div>
-      <div class="mc-sub">91.2% ತುಂಬಿದೆ</div>
+      <div class="mc-val" style="color:var(--green)" id="harangi-m-storage">5.366 TMC</div>
+      <div class="mc-sub" id="harangi-m-sub">63.1% ತುಂಬಿದೆ (8.5 TMC ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">🏗️ ಒಟ್ಟು ಸಾಮರ್ಥ್ಯ (Gross Storage)</div>
-      <div class="mc-val">8.50 TMC</div>
+      <div class="mc-val">8.5 TMC</div>
       <div class="mc-sub">ಗರಿಷ್ಠ ಸಾಮರ್ಥ್ಯ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">📏 ಪ್ರಸ್ತುತ ಜಲಮಟ್ಟ</div>
-      <div class="mc-val">2854.10 ಅಡಿ</div>
+      <div class="mc-val" id="harangi-m-level">2847.52 ಅಡಿ</div>
       <div class="mc-sub">ಗರಿಷ್ಠ (FRL): 2859.00 ಅಡಿ</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬇️ ಒಳಹರಿವು (Inflow)</div>
-      <div class="mc-val" style="color:var(--green)">10,430</div>
+      <div class="mc-val" style="color:var(--green)" id="harangi-m-inflow">828</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
     <div class="metric-card">
       <div class="mc-label">⬆️ ಹೊರಹರಿವು (Outflow)</div>
-      <div class="mc-val" style="color:var(--blue-mid)">14,470</div>
+      <div class="mc-val" style="color:var(--blue-mid)" id="harangi-m-outflow">200</div>
       <div class="mc-sub">ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs)</div>
     </div>
   </div>
 
-  <!-- SPECS TABLE GRID -->
-  <div class="card-box">
-    <div class="cb-title">⚙️ ಅಣೆಕಟ್ಟು ತಾಂತ್ರಿಕ ವಿವರಣೆ (Technical Specifications)</div>
-    <div class="specs-grid">
-      <div class="spec-item"><div class="spec-lbl">ಗರಿಷ್ಠ ಜಲಮಟ್ಟ (F.R.L)</div><div class="spec-val">2859.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಕನಿಷ್ಠ ಜಲಮಟ್ಟ (M.D.D.L)</div><div class="spec-val">2800.00 ಅಡಿ</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಒಟ್ಟು ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Gross Capacity)</div><div class="spec-val">8.50 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸಕ್ರಿಯ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ (Live Capacity)</div><div class="spec-val">8.07 TMC</div></div>
-      <div class="spec-item"><div class="spec-lbl">ಸ್ಥಳ</div><div class="spec-val" style="font-family:var(--font-kn)">ಹುಡ್ಗೂರು, ಸೋಮವಾರಪೇಟೆ, ಕೊಡಗು</div></div>
-      <div class="spec-item"><div class="spec-lbl">ನಿರ್ಮಾಣ ವರ್ಷ</div><div class="spec-val">1982</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY ARTICLE -->
-  <div class="card-box">
-    <div class="cb-title">📜 ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ</div>
-    <div class="history-article">
-      <p><strong>ಹಾರಂಗಿ ಅಣೆಕಟ್ಟು (Harangi Dam)</strong> ಕೊಡಗು ಜಿಲ್ಲೆಯ ಸೋಮವಾರಪೇಟೆ ತಾಲೂಕಿನ ಹುಡ್ಗೂರು ಗ್ರಾಮದ ಬಳಿ ಹಾರಂಗಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಅಣೆಕಟ್ಟಾಗಿದೆ. ಹಾರಂಗಿ ನದಿಯು ಪುಷ್ಪಗಿರಿ ಬೆಟ್ಟಸಾಲಿನಲ್ಲಿ ಹುಟ್ಟಿ ಕಾವೇರಿ ನದಿಗೆ ಹುಡ್ಗೂರು ಬಳಿ ಸೇರುತ್ತದೆ.</p>
-      <p>1982 ರಲ್ಲಿ ನಿರ್ಮಾಣಗೊಂಡ ಈ ಅಣೆಕಟ್ಟು ಕೊಡಗು ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಪಿರಿಯಾಪಟ್ಟಣ, ಹುಣಸೂರು ತಾಲೂಕುಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಭೂಮಿಗೆ ನೀರಾವರಿ ಒದಗಿಸುತ್ತದೆ.</p>
-    </div>
-  </div>
-
-
-  <!-- AUTHORITATIVE HYDROLOGICAL & AGRICULTURAL ENCYCLOPEDIA -->
-  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
-    <h2 style="font-size:22px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:8px;">
-      💧 ಹಾರಂಗಿ ಜಲಾಶಯ (Harangi Dam - Kushalnagar) — ಸಮಗ್ರ ಇತಿಹಾಸ, ಸಂಗ್ರಹ ಮತ್ತು ಕೃಷಿ ಮಹತ್ವ
+<!-- COMPREHENSIVE EDITORIAL DOSSIER & ARTICLE -->
+  <div class="card-box" style="margin-top:24px; padding:28px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; line-height:1.85; font-family:'Anek Kannada', sans-serif;">
+    <h2 style="font-size:23px; font-weight:800; color:#1A5276; margin-top:0; border-bottom:2px solid #EAF2F8; padding-bottom:12px; line-height:1.4;">
+      💧 ಹಾರಂಗಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ: ಕೊಡಗಿನ ಮುಂಗಾರಿನ ಮೊದಲ ಹೆಜ್ಜೆಗುರುತು, ಕಾವೇರಿಯ ಒಡಲು ಮತ್ತು ಕೃಷಿಯ ಆಸರೆ
     </h2>
-    <p style="font-size:15px; color:#334155; margin:12px 0;">ಕೊಡಗು ಜಿಲ್ಲೆಯ ಕುಶಾಲನಗರ ಸಮೀಪ ಹಾರಂಗಿ ನದಿಗೆ ಅಡ್ಡಲಾಗಿ ನಿರ್ಮಿಸಲಾದ ಈ ಜಲಾಶಯವು ಕಾವೇರಿ ಕೊಳ್ಳದ ಪ್ರಮುಖ ಅಂಗವಾಗಿದೆ.</p>
-    
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🌾 ನೀರಾವರಿ ಮತ್ತು ಕೃಷಿ ಉಪಯೋಗಗಳು:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಕೊಡಗು, ಹಾಸನ ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಗಳ 1.4 ಲಕ್ಷ ಎಕರೆ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರಾವರಿ ಸೌಲಭ್ಯ ಕಲ್ಪಿಸುತ್ತದೆ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ಪ್ರಕೃತಿ ಸೌಂದರ್ಯ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">ಕುಶಾಲನಗರದ ಬೌದ್ಧ ವಿಹಾರ (Golden Temple) ಮತ್ತು ಕಾವೇರಿ ನಿಸರ್ಗಧಾಮಕ್ಕೆ ಸಮೀಪದಲ್ಲಿರುವ ಸುಂದರ ಪ್ರವಾಸಿ ತಾಣ.</p>
-
-    <h3 style="font-size:17px; font-weight:800; color:#1A5276; margin-top:18px;">📊 KSNDMC & ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯ ಲೈವ್ ಡೇಟಾ ಮಹತ್ವ:</h3>
-    <p style="font-size:14.5px; color:#4A4A6A; margin:8px 0;">
-      ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆಯು ಪ್ರತಿ ದಿನ ಬೆಳಿಗ್ಗೆ 8:00 ಗಂಟೆಗೆ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ (Water Level in Feet), ಒಟ್ಟು ಸಂಗ್ರಹ (Gross Storage in TMC), ಒಳಹರಿವು (Inflow in Cusecs) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow in Cusecs) ನಿಖರವಾಗಿ ಪ್ರಕಟಿಸುತ್ತವೆ. ಈ ಅಧಿಕೃತ ದತ್ತಾಂಶವು ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಸ್ಥರ ಸುರಕ್ಷತೆ ಮತ್ತು ರೈತರ ಬೆಳೆ ಯೋಜನೆಯಲ್ಲಿ ನಿರ್ಣಾಯಕ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ದಕ್ಷಿಣ ಭಾರತದ ಜೀವನಾಡಿ ಕಾವೇರಿಯ ಜಲಾನಯನ ಪ್ರದೇಶದಲ್ಲಿ ಮುಂಗಾರು ಮಳೆ ಹೇಗೆ ಅಬ್ಬರಿಸುತ್ತಿದೆ ಎಂಬುದನ್ನು ಅರಿಯಲು ಮೊದಲು ನೋಡಬೇಕಾದದ್ದು ಕೊಡಗು ಜಿಲ್ಲೆಯ ‘ಹಾರಂಗಿ ಜಲಾಶಯ’ದ (Harangi Dam) ನೀರಿನ ಮಟ್ಟವನ್ನು. ಕರ್ನಾಟಕದ ಕಾವೇರಿ ಕಣಿವೆಯ ಪ್ರಮುಖ ನಾಲ್ಕು ಜಲಾಶಯಗಳ ಪೈಕಿ ಮಳೆಗಾಲದಲ್ಲಿ ಎಲ್ಲಕ್ಕಿಂತ ಮೊದಲು ಭರ್ತಿಯಾಗುವ ಹೆಗ್ಗಳಿಕೆ ಹಾರಂಗಿ ಅಣೆಕಟ್ಟಿಗೆ ಸಲ್ಲುತ್ತದೆ.
     </p>
+    <p style="font-size:15px; color:#334155; margin:12px 0;">
+      ಕೊಡಗಿನ ಹಸಿರು ಬೆಟ್ಟಗಳ ನಡುವೆ, ಸೋಮವಾರಪೇಟೆ ತಾಲೂಕಿನ ಹಡಗಲು-ಹುಡ್ಗೂರು ಗ್ರಾಮಗಳ ಸಮೀಪ ನಿರ್ಮಿಸಲಾಗಿರುವ ಈ ಸುಂದರ ಜಲಾಶಯವು ಕೇವಲ ಒಂದು ಅಣೆಕಟ್ಟಲ್ಲ; ಇದು ಕೊಡಗು, ಹಾಸನ ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಗಳ ಪಾಲಿನ ಕೃಷಿ ಸಂಜೀವಿನಿ. ಕರ್ನಾಟಕ ರಾಜ್ಯ ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಉಸ್ತುವಾರಿ ಕೇಂದ್ರ (KSNDMC) ಮತ್ತು ನೀರಾವರಿ ನಿಗಮ ಬಿಡುಗಡೆ ಮಾಡುವ ಹಾರಂಗಿಯ ದೈನಂದಿನ ನೀರಿನ ಮಟ್ಟ (Water Level), ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವಿನ ಅಂಕಿ-ಅಂಶಗಳು ಕಾವೇರಿ ಕೊಳ್ಳದ ಜಲವರ್ಷದ ದಿಕ್ಕನ್ನು ಸೂಚಿಸುವ ದಿಕ್ಸೂಚಿಯಾಗಿವೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">⛰️ ಪುಷ್ಪಗಿರಿಯಿಂದ ಹರಿದು ಬರುವ ಹಾರಂಗಿ: ನದಿಯ ಉಗಮ ಮತ್ತು ಜಲಾನಯನ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ನದಿಯು ಕಾವೇರಿ ನದಿಯ ಪ್ರಮುಖ ಉಪನದಿಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಅತ್ಯಂತ ಎತ್ತರದ ಶ್ರೇಣಿಯಾದ ಪುಷ್ಪಗಿರಿ (ಕುಮಾರಪರ್ವತ) ಬೆಟ್ಟ ಸಾಲುಗಳಲ್ಲಿ ಜನ್ಮತಾಳುವ ಈ ನದಿ, ಸೋಮವಾರಪೇಟೆ ಮತ್ತು ಮಡಿಕೇರಿ ತಾಲೂಕುಗಳ ಕಡಿದಾದ ಕಣಿವೆ-ಕಾಡುಗಳ ಮೂಲಕ ರಭಸವಾಗಿ ಹರಿದು ಬರುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಸುಮಾರು 419 ಚದರ ಕಿಲೋಮೀಟರ್‌ಗಳಷ್ಟು ದಟ್ಟ ಅರಣ್ಯ ಮತ್ತು ಕಾಫಿ ತೋಟಗಳಿಂದ ಕೂಡಿದ ಜಲಾನಯನ ಪ್ರದೇಶವನ್ನು (Catchment Area) ಹಾರಂಗಿ ಹೊಂದಿದೆ. ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಮುಂಗಾರು ಮಳೆ ಆರಂಭವಾದಾಗ, ಸೋಮವಾರಪೇಟೆ, ಶಾಂತಳ್ಳಿ, ಕೊಡ್ಲಿಪೇಟೆ ಮತ್ತು ಮಾದಾಪುರ ಭಾಗಗಳಲ್ಲಿ ಸುರಿಯುವ ಭಾರಿ ಮಳೆಯ ನೀರು ನೇರವಾಗಿ ಹಾರಂಗಿ ನದಿಯ ಒಡಲನ್ನು ಸೇರುತ್ತದೆ. ಈ ನದಿಯು ಕುಶಾಲನಗರ ಸಮೀಪದ ‘ಕೂಡುಮಂಗಳೂರು’ (ಕೂಡಿಗೆ) ಬಳಿ ಕಾವೇರಿ ನದಿಯೊಂದಿಗೆ ಸಂಗಮಗೊಳ್ಳುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">📏 ಜಲಾಶಯದ ತಾಂತ್ರಿಕ ವಿವರ, ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಮತ್ತು ನೀರಿನ ಮಟ್ಟ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಅಣೆಕಟ್ಟಿನ ನಿರ್ಮಾಣ ಕಾರ್ಯವು 1970ರ ದಶಕದಲ್ಲಿ ಆರಂಭಗೊಂಡು 1980ರ ದಶಕದ ಆರಂಭದಲ್ಲಿ ಲೋಕಾರ್ಪಣೆಗೊಂಡಿತು. ಕಲ್ಲಿನ ಕಾಂಕ್ರೀಟ್ ಹಾಗೂ ಮಣ್ಣಿನ ದಂಡೆಗಳನ್ನು (Composite Dam) ಒಳಗೊಂಡಿರುವ ಈ ಜಲಾಶಯದ ತಾಂತ್ರಿಕ ಸಾಮರ್ಥ್ಯ ಹೀಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಗರಿಷ್ಠ ನೀರಿನ ಮಟ್ಟ (Full Reservoir Level - FRL):</strong> ಸಮುದ್ರ ಮಟ್ಟದಿಂದ 2,859.00 ಅಡಿಗಳು (871.42 ಮೀಟರ್).</li>
+      <li><strong>ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ (Gross Storage):</strong> 8.50 ಟಿಎಂಸಿ (TMC).</li>
+      <li><strong>ಡೆಡ್ ಸ್ಟೋರೇಜ್ (Dead Storage):</strong> ಸುಮಾರು 0.43 ಟಿಎಂಸಿ ನೀರು ಜಲಾಶಯದ ತಳಮಟ್ಟದಲ್ಲಿದ್ದು, ಇದನ್ನು ಕಾಲುವೆಗಳಿಗೆ ಹರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಇದು ಜಲಾಶಯದ ರಚನಾತ್ಮಕ ಸಮತೋಲನಕ್ಕೆ ಬಳಕೆಯಾಗುತ್ತದೆ.</li>
+      <li><strong>ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳು:</strong> ನದಿಯ ಹೆಚ್ಚುವರಿ ಪ್ರವಾಹದ ನೀರನ್ನು ನಿಯಂತ್ರಿಸಿ ಕೆಳಭಾಗಕ್ಕೆ ಹರಿಸಲು ಜಲಾಶಯಕ್ಕೆ 4 ಬೃಹತ್ ರೇಡಿಯಲ್ ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು (Radial Crest Gates) ಅಳವಡಿಸಲಾಗಿದೆ.</li>
+    </ul>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಇತರ ಬೃಹತ್ ಅಣೆಕಟ್ಟುಗಳಿಗೆ ಹೋಲಿಸಿದರೆ ಹಾರಂಗಿಯ ಒಟ್ಟು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯ ಚಿಕ್ಕದಾಗಿದ್ದರೂ (8.5 ಟಿಎಂಸಿ), ಮಳೆಗಾಲದಲ್ಲಿ ಇಲ್ಲಿಗೆ ಹರಿದು ಬರುವ ನೀರಿನ ವೇಗ ಮತ್ತು ಪ್ರಮಾಣ ಅತ್ಯಂತ ಅಗಾಧವಾಗಿರುತ್ತದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🛡️ ಕಾವೇರಿ ಕಣಿವೆಯ ಪ್ರಥಮ ಜಲಾಶಯ: ಕೆಆರ್ಎಸ್ಗೆ ಮುಂಚೂಣಿ ರಕ್ಷಕ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಜಲಾಶಯ ಭರ್ತಿಯಾಗುವುದು ಕಾವೇರಿ ಕೊಳ್ಳದ ಮಟ್ಟಿಗೆ ಅತ್ಯಂತ ಮಹತ್ವದ ಘಟನೆ. ಜೂನ್ ಅಥವಾ ಜುಲೈ ತಿಂಗಳ ಮೊದಲ ಅಥವಾ ಎರಡನೇ ವಾರದಲ್ಲೇ ಹಾರಂಗಿ ಜಲಾಶಯವು ತನ್ನ ಗರಿಷ್ಠ ಮಟ್ಟವಾದ 2,859 ಅಡಿಯನ್ನು ತಲುಪುತ್ತದೆ.
+    </p>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾದ ನಂತರ ಜಲಾಶಯಕ್ಕೆ ಬರುವ ಒಳಹರಿವಿನ ಬಹುಪಾಲು ನೀರನ್ನು ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳ ಮೂಲಕ ನದಿಗೆ ಹರಿಸಲಾಗುತ್ತದೆ. ಈ ನೀರು ಕೂಡಿಗೆ ಬಳಿ ಕಾವೇರಿಯನ್ನು ಸೇರಿ, ನೇರವಾಗಿ ಮಂಡ್ಯದ ‘ಕೃಷ್ಣರಾಜ ಸಾಗರ’ (KRS) ಜಲಾಶಯವನ್ನು ತಲುಪುತ್ತದೆ. ಅಂದರೆ, ಕೆಆರ್ಎಸ್ ಜಲಾಶಯ ವೇಗವಾಗಿ ಭರ್ತಿಯಾಗಲು ಹಾರಂಗಿಯಿಂದ ಹೊರಬರುವ ನೀರಿನ ಕೊಡುಗೆ ಅತ್ಯಂತ ಪ್ರಮುಖವಾಗಿರುತ್ತದೆ. ಹೀಗಾಗಿ ಹಾರಂಗಿಯ ಒಳಹರಿವು ಮತ್ತು ಹೊರಹರಿವಿನ ಪ್ರಮಾಣವನ್ನು ಇಡೀ ರಾಜ್ಯದ ನೀರಾವರಿ ತಜ್ಞರು ಸೂಕ್ಷ್ಮವಾಗಿ ಗಮನಿಸುತ್ತಾರೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌾 ಕಾಲುವೆಗಳ ಜಾಲ ಮತ್ತು ಮೂರು ಜಿಲ್ಲೆಗಳ ಕೃಷಿ ಸಮೃದ್ಧಿ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಜಲಾಶಯವು ಕೇವಲ ಪ್ರವಾಹ ನಿಯಂತ್ರಣಕ್ಕಷ್ಟೇ ಅಲ್ಲದೆ, ಕೊಡಗು, ಹಾಸನ ಮತ್ತು ಮೈಸೂರು ಜಿಲ್ಲೆಗಳ ಗಡಿ ಭಾಗದ ಒಣಭೂಮಿ ಪ್ರದೇಶಗಳಿಗೆ ನೀರುಣಿಸುವ ಜೀವಧಾರೆಯಾಗಿದೆ. ಸುಮಾರು 1.35 ಲಕ್ಷಕ್ಕೂ ಅಧಿಕ ಎಕರೆ ಕೃಷಿ ಭೂಮಿ ಈ ಜಲಾಶಯದ ಕಾಲುವೆಗಳ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಎಡದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (Left Bank Canal):</strong> ಕೊಡಗಿನ ಗಡಿ ದಾಟಿ ಹಾಸನ ಜಿಲ್ಲೆಯ ಅರಕಲಗೂಡು ತಾಲೂಕಿನ ಮುಕ್ಕಾಲು ಪಾಲು ಕೃಷಿ ಭೂಮಿಗೆ ಹರಿಯುತ್ತದೆ. ತಂಬಾಕು, ಮೆಕ್ಕೆಜೋಳ, ರಾಗಿ ಮತ್ತು ಆಲೂಗಡ್ಡೆ ಬೆಳೆಯುವ ರೈತರಿಗೆ ಈ ನೀರೇ ಆಸರೆ.</li>
+      <li><strong>ಬಲದಂಡೆ ಮುಖ್ಯ ಕಾಲುವೆ (Right Bank Canal):</strong> ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಪಿರಿಯಾಪಟ್ಟಣ ಮತ್ತು ಹುಣಸೂರು ತಾಲೂಕುಗಳ ಬರಪೀಡಿತ ಹಳ್ಳಿಗಳಿಗೆ ನೀರುಣಿಸುತ್ತದೆ. ಈ ಭಾಗದ ಕೆರೆ-ಕಟ್ಟೆಗಳನ್ನು ತುಂಬಿಸಲು ಈ ಕಾಲುವೆಯ ನೀರನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</li>
+      <li><strong>ಸ್ಥಳೀಯ ಕೃಷಿ ಮತ್ತು ತೋಟಗಾರಿಕೆ:</strong> ಸೋಮವಾರಪೇಟೆ ಮತ್ತು ಕುಶಾಲನಗರ ತಾಲೂಕಿನ ಭತ್ತದ ಗದ್ದೆಗಳು, ಶುಂಠಿ ಬೆಳೆಗಳು ಹಾಗೂ ಕಾಫಿ-ಕಾಳುಮೆಣಸಿನ ತೋಟಗಳ ಅಂತರ್ಜಲ ಮಟ್ಟವನ್ನು ಹೆಚ್ಚಿಸಲು ಜಲಾಶಯದ ಹಿನ್ನೀರು ಮಹತ್ತರ ಪಾತ್ರ ವಹಿಸುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🚨 ಕುಶಾಲನಗರದ ಪ್ರವಾಹ ನಿರ್ವಹಣೆ ಮತ್ತು ಮುನ್ನೆಚ್ಚರಿಕೆ ಕ್ರಮಗಳು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಜಲಾಶಯದ ನೀರಿನ ಮಟ್ಟ ನಿರ್ವಹಣೆಯಲ್ಲಿ ಎಂಜಿನಿಯರ್‌ಗಳು ಅತ್ಯಂತ ಜಾಗರೂಕರಾಗಿರಬೇಕಾಗುತ್ತದೆ. ಜಲಾನಯನ ಪ್ರದೇಶದಲ್ಲಿ ಭಾರಿ ಮೇಘಸ್ಫೋಟ ಅಥವಾ ಧಾರಾಕಾರ ಮಳೆಯಾದಾಗ, ಕೆಲವೇ ಗಂಟೆಗಳಲ್ಲಿ ಜಲಾಶಯಕ್ಕೆ 20,000 ದಿಂದ 40,000 ಕ್ಯೂಸೆಕ್‌ಗೂ ಅಧಿಕ ಒಳಹರಿವು ನುಗ್ಗುತ್ತದೆ. ಜಲಾಶಯದ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಸೀಮಿತವಾಗಿರುವುದರಿಂದ, ನೀರಿನ ಮಟ್ಟ 2,857 ಅಡಿ ದಾಟುತ್ತಿದ್ದಂತೆಯೇ ಎಲ್ಲಾ ನಾಲ್ಕು ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ತೆರೆಯುವುದು ಅನಿವಾರ್ಯವಾಗುತ್ತದೆ.
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಕುಶಾಲನಗರದ ತಗ್ಗು ಪ್ರದೇಶಗಳು:</strong> ಹಾರಂಗಿಯಿಂದ 30,000 ಕ್ಯೂಸೆಕ್‌ಗಿಂತ ಅಧಿಕ ನೀರು ಹೊರಬಿಟ್ಟರೆ, ಕಾವೇರಿ ಮತ್ತು ಹಾರಂಗಿ ನದಿಗಳ ಸಂಗಮದ ಹಿನ್ನೀರಿನಿಂದಾಗಿ ಕುಶಾಲನಗರದ ಸಾಯಿ ಬಡಾವಣೆ, ಕುವೆಂಪು ಬಡಾವಣೆ ಮತ್ತು ಮದಪಟ್ಟಣದ ತಗ್ಗು ಪ್ರದೇಶಗಳು ಜಲಾವೃತಗೊಳ್ಳುತ್ತವೆ.</li>
+      <li><strong>ಕೂಡಿಗೆ ಸೇತುವೆ:</strong> ಕೂಡಿಗೆ ಬಳಿಯ ಸೇತುವೆಯ ಮಟ್ಟಕ್ಕೆ ನೀರು ಬಂದು ಹಾಸನ-ಕೊಡಗು ಸಂಪರ್ಕದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತದೆ.</li>
+      <li><strong>ಸೈರನ್ ಮುನ್ಸೂಚನೆ:</strong> ಅನಾಹುತಗಳನ್ನು ತಪ್ಪಿಸಲು, ಗೇಟ್‌ಗಳನ್ನು ತೆರೆಯುವ ಮುನ್ನ ನದಿ ಪಾತ್ರದ ಜನರಿಗೆ ಸೈರನ್ ಮೂಲಕ ಹಾಗೂ ಧ್ವನಿವರ್ಧಕಗಳ ಮೂಲಕ ಮುನ್ಸೂಚನೆ ನೀಡಿ, ಜನ ಜಾನುವಾರುಗಳನ್ನು ಸುರಕ್ಷಿತ ಪ್ರದೇಶಗಳಿಗೆ ಸ್ಥಳಾಂತರಿಸಲು ಜಿಲ್ಲಾಡಳಿತ ಕ್ರಮ ಕೈಗೊಳ್ಳುತ್ತದೆ.</li>
+    </ul>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🌿 ಪರಿಸರ ಸೂಕ್ಷ್ಮತೆ, ಭೂಕುಸಿತಗಳು ಮತ್ತು ನವೀನ ಜಲನಿರ್ವಹಣೆ</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಕಳೆದ ಕೆಲ ವರ್ಷಗಳಿಂದ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಹವಾಮಾನ ವೈಪರೀತ್ಯದಿಂದಾಗಿ ಅತಿಯಾದ ಮಳೆ ಮತ್ತು ಭೂಕುಸಿತಗಳು ಸಂಭವಿಸುತ್ತಿವೆ. ಸೋಮವಾರಪೇಟೆ ಮತ್ತು ಮಾದಾಪುರ ಭಾಗಗಳಲ್ಲಿ ಉಂಟಾಗುವ ಭೂಕುಸಿತಗಳಿಂದಾಗಿ ಅಪಾರ ಪ್ರಮಾಣದ ಮಣ್ಣು ಮತ್ತು ಮರದ ದಿಮ್ಮಿಗಳು ಹಾರಂಗಿ ಜಲಾಶಯಕ್ಕೆ ಹರಿದು ಬರುತ್ತವೆ. ಇದು ಜಲಾಶಯದಲ್ಲಿ ಹೂಳು ಶೇಖರಣೆಯಾಗಲು ಕಾರಣವಾಗುತ್ತಿದ್ದು, ನೀರು ಸಂಗ್ರಹಣಾ ಸಾಮರ್ಥ್ಯದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತಿದೆ. ಇದನ್ನು ತಡೆಯಲು ಮತ್ತು ಅಣೆಕಟ್ಟಿನ ಸುರಕ್ಷತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು, ಇತ್ತೀಚೆಗೆ ಅತ್ಯಾಧುನಿಕ ರಿಯಲ್-ಟೈಮ್ ಟೆಲಿಮೆಟ್ರಿ ಸೆನ್ಸರ್‌ಗಳು, ಸ್ವಯಂಚಾಲಿತ ನೀರಿನ ಮಟ್ಟ ಮಾಪಕಗಳು ಮತ್ತು ಜಲಾನಯನ ಪ್ರದೇಶದ ಮಳೆ ಮಾಪಕಗಳನ್ನು ಅಳವಡಿಸಲಾಗಿದ್ದು, ಮುಂಚಿತವಾಗಿಯೇ ಪ್ರವಾಹದ ಪ್ರಮಾಣವನ್ನು ಅಂದಾಜಿಸಲಾಗುತ್ತಿದೆ.
+    </p>
+
+    <h3 style="font-size:18px; font-weight:800; color:#1A5276; margin-top:22px;">🏞️ ಪ್ರವಾಸೋದ್ಯಮ ಮತ್ತು ನಿಸರ್ಗ ಸೊಬಗು</h3>
+    <p style="font-size:15px; color:#334155; margin:10px 0;">
+      ಹಾರಂಗಿ ಜಲಾಶಯವು ಕೇವಲ ತಾಂತ್ರಿಕ ಯೋಜನೆಯಾಗಿರದೆ, ಕೊಡಗು ಪ್ರವಾಸೋದ್ಯಮದ ಆಕರ್ಷಕ ತಾಣಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ:
+    </p>
+    <ul style="font-size:15px; color:#334155; padding-left:22px; line-height:1.8;">
+      <li><strong>ಉದ್ಯಾನವನ ಮತ್ತು ಕಾರಂಜಿ:</strong> ಅಣೆಕಟ್ಟಿನ ಕೆಳಭಾಗದಲ್ಲಿ ಸುಂದರವಾಗಿ ನಿರ್ಮಿಸಲಾದ ಹೂದೋಟ, ಹಸಿರು ಹುಲ್ಲುಹಾಸು ಮತ್ತು ಕಾರಂಜಿಗಳು ಕುಟುಂಬ ಸಮೇತ ವಿಶ್ರಾಂತಿ ಪಡೆಯಲು ಪ್ರಶಸ್ತ ಸ್ಥಳವಾಗಿದೆ.</li>
+      <li><strong>ಶ್ರೀ ಚಾಮುಂಡೇಶ್ವರಿ ದೇವಾಲಯ:</strong> ಅಣೆಕಟ್ಟಿನ ಆವರಣದಲ್ಲೇ ಇರುವ ಚಾಮುಂಡೇಶ್ವರಿ ದೇವಾಲಯವು ಸ್ಥಳೀಯರಿಗೆ ಪವಿತ್ರ ಶ್ರದ್ಧಾ ಕೇಂದ್ರವಾಗಿದೆ.</li>
+      <li><strong>ಹಿನ್ನೀರಿನ ರಮಣೀಯ ನೋಟ:</strong> ಮಳೆಗಾಲದಲ್ಲಿ ನಾಲ್ಕೂ ಗೇಟ್‌ಗಳಿಂದ ಧುಮ್ಮಿಕ್ಕುವ ನೀರಿನ ರಭಸ ಮತ್ತು ಹಿನ್ನೀರಿನ ಬೆಟ್ಟಗುಡ್ಡಗಳ ಮಂಜು ಮುಸುಕಿದ ವಾತಾವರಣ ಪ್ರಕೃತಿ ಪ್ರಿಯರನ್ನು ಮಂತ್ರಮುಗ್ಧರನ್ನಾಗಿಸುತ್ತದೆ.</li>
+      <li><strong>ಸಮೀಪದ ಪ್ರವಾಸಿ ತಾಣಗಳು:</strong> ಕುಶಾಲನಗರದ ಟಿಬೆಟಿಯನ್ ಗೋಲ್ಡನ್ ಟೆಂಪಲ್ (ಬೈಲಕುಪ್ಪೆ), ಕಾವೇರಿ ನಿಸರ್ಗಧಾಮ ಮತ್ತು ದುಬಾರೆ ಆನೆ ಶಿಬಿರಗಳು ಹಾರಂಗಿ ಜಲಾಶಯಕ್ಕೆ ಕೆಲವೇ ಕಿಲೋಮೀಟರ್‌ಗಳ ಅಂತರದಲ್ಲಿವೆ.</li>
+    </ul>
+  </div>
+
+  <!-- CREATIVE FAQS -->
+  <div class="card-box" style="margin-top:24px; padding:24px; background:#FFFFFF; border:1.5px solid #D8E4F0; border-radius:14px; font-family:'Anek Kannada', sans-serif;">
+    <h3 style="font-size:20px; font-weight:800; color:#1A5276; margin-top:0; margin-bottom:16px; border-bottom:2px solid #EAF2F8; padding-bottom:10px;">
+      💡 ಹಾರಂಗಿ ಜಲಾಶಯದ ಕುರಿತು ಸಾರ್ವಜನಿಕರ ಪ್ರಮುಖ ಪ್ರಶ್ನೋತ್ತರಗಳು (Creative FAQs)
+    </h3>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಕಾವೇರಿ ಕೊಳ್ಳದಲ್ಲಿ ಹಾರಂಗಿ ಜಲಾಶಯ ಎಲ್ಲಕ್ಕಿಂತ ಮೊದಲು ಏಕೆ ಭರ್ತಿಯಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಹಾರಂಗಿಯ ಜಲಾನಯನ ಪ್ರದೇಶವಾದ ಪುಷ್ಪಗಿರಿ ಶ್ರೇಣಿ, ಶಾಂತಳ್ಳಿ, ಸೋಮವಾರಪೇಟೆಯಲ್ಲಿ ಮುಂಗಾರು ಆರಂಭದಲ್ಲೇ ಅತಿ ಭಾರಿ ಮಳೆ ಸುರಿಯುತ್ತದೆ. ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ 8.5 ಟಿಎಂಸಿ ಇರುವುದರಿಂದ ಜೂನ್ ಅಥವಾ ಜುಲೈ ಆರಂಭದಲ್ಲೇ ಇದು ಸಂಪೂರ್ಣ ಭರ್ತಿಯಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಹಾರಂಗಿ ತುಂಬಿದ ನಂತರ ಕೆಆರ್ಎಸ್ ಜಲಾಶಯಕ್ಕೆ ಹೇಗೆ ನೆರವಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಹಾರಂಗಿಯ 4 ಕ್ರಸ್ಟ್ ಗೇಟ್‌ಗಳಿಂದ ಹೊರಬಿಡುವ ನೀರು ಕೂಡಿಗೆ ಬಳಿ ಕಾವೇರಿಯನ್ನು ಸೇರಿ ನೇರವಾಗಿ ಮಂಡ್ಯದ ಕೃಷ್ಣರಾಜ ಸಾಗರವನ್ನು ತಲುಪುತ್ತದೆ. ಇದರಿಂದ ಕೆಆರ್ಎಸ್ ವೇಗವಾಗಿ ಭರ್ತಿಯಾಗಲು ಹಾರಂಗಿ ಮುಂಚೂಣಿ ರಕ್ಷಕನಾಗಿದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಹಾರಂಗಿಯಿಂದ ನೀರು ಬಿಟ್ಟಾಗ ಕುಶಾಲನಗರದಲ್ಲಿ ಯಾವ ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಲಾಗುತ್ತದೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">30,000 ಕ್ಯೂಸೆಕ್‌ಗಿಂತ ಅಧಿಕ ನೀರು ಹೊರಬಿಟ್ಟರೆ ಕುಶಾಲನಗರದ ಸಾಯಿ ಬಡಾವಣೆ, ಕುವೆಂಪು ಬಡಾವಣೆ ಮತ್ತು ಕೂಡಿಗೆ ಸೇತುವೆ ಜಲಾವೃತವಾಗುವ ಸಾಧ್ಯತೆಯಿರುತ್ತದೆ. ಆದ್ದರಿಂದ ಸೈರನ್ ಮೂಲಕ ಮುನ್ಸೂಚನೆ ನೀಡಿ ಜನರನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳಕ್ಕೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</p>
+    </div>
+    <div style="margin-bottom:14px; background:#F8FAFC; padding:14px 18px; border-radius:10px; border-left:4px solid #1A5276;">
+      <h4 style="font-size:16px; font-weight:700; color:#1A5276; margin-top:0; margin-bottom:6px;">❓ ಹಾರಂಗಿ ಕಾಲುವೆಗಳು ಯಾವ ಜಿಲ್ಲೆಗಳ ಕೃಷಿ ಭೂಮಿಗೆ ನೀರುಣಿಸುತ್ತವೆ?</h4>
+      <p style="font-size:14.5px; line-height:1.75; color:#334155; margin:0;">ಕೊಡಗು (ಸೋಮವಾರಪೇಟೆ), ಹಾಸನ (ಅರಕಲಗೂಡು) ಮತ್ತು ಮೈಸೂರು (ಪಿರಿಯಾಪಟ್ಟಣ, ಹುಣಸೂರು) ಜಿಲ್ಲೆಗಳ ಸುಮಾರು 1.35 ಲಕ್ಷಕ್ಕೂ ಅಧಿಕ ಎಕರೆ ಒಣಭೂಮಿ ಪ್ರದೇಶಗಳಿಗೆ ನೀರುಣಿಸುತ್ತವೆ.</p>
+    </div>
   </div>
 
 </div>

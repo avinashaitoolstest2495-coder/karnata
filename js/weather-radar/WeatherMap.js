@@ -42,11 +42,11 @@ class WeatherMap {
       attributionControl: true
     });
 
-    // High-Contrast CartoDB Voyager Basemap
+    // Standard OpenStreetMap Basemap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      subdomains: 'abcd',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a> | Radar by <a href="https://www.rainviewer.com/">RainViewer</a>'
+      subdomains: 'abc',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Radar by <a href="https://www.rainviewer.com/">RainViewer</a>'
     }).addTo(this.map);
 
     // Highlight Karnataka State Boundary

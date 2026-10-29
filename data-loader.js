@@ -3,7 +3,8 @@
  * Real-time dynamic client-side loader for Gold, Petrol, Dam, APMC & Weather data
  */
 
-const SECRET_PAYLOAD_KEY = "NK_SECURE_KEY_2026_KARNATA";
+var SECRET_PAYLOAD_KEY = window.SECRET_PAYLOAD_KEY || "NK_SECURE_KEY_2026_KARNATA";
+window.SECRET_PAYLOAD_KEY = SECRET_PAYLOAD_KEY;
 
 window.decryptPayload = function decryptPayload(encodedStr) {
   if (!encodedStr || typeof encodedStr !== 'string') return null;
@@ -64,7 +65,7 @@ const NK = {
         if (data && data.payload) {
           data = decryptPayload(data.payload);
         }
-        if (data && !data.error) {
+        if (data && !data.error && (key !== 'dam' || (data.dams && Object.keys(data.dams).length >= 10))) {
           this._cache[key] = { data, ts: Date.now() };
           return data;
         }

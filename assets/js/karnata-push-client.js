@@ -84,7 +84,10 @@
   }
 
   function getUserDistrict() {
-    return localStorage.getItem(STORAGE_KEY_DISTRICT) || 'bengaluru_urban';
+    return localStorage.getItem(STORAGE_KEY_DISTRICT) || 
+           localStorage.getItem('nk_user_district_key') || 
+           localStorage.getItem('karnata_user_district') || 
+           'bengaluru_urban';
   }
 
   function getSeenPushes() {
@@ -152,13 +155,42 @@
     if (!feed.length) return;
 
     const seenList = getSeenPushes();
+    const THREE_HOURS_MS = 3 * 60 * 60 * 1000; // 3 Hours (10,800,000 ms)
 
     for (const item of feed) {
       const matchesDistrict = (item.target_district === 'all' || item.target_district === userDist);
 
-      if (matchesDistrict && !seenList.includes(item.id)) {
-        addSeenPush(item.id);
-        dispatchNotification(item, userDist);
+      if (matchesDistrict) {
+        const isWeather = (item.topic === 'weather_alert' || 
+                           (item.id && (item.id.startsWith('WEATHER-') || item.id.startsWith('FORECAST-'))));
+
+        if (isWeather) {
+          // Rule 1: Weather Notification is ONLY for yellow, orange, and red alerts
+          const lvl = (item.alert_level || '').toLowerCase().trim();
+          if (!['yellow', 'orange', 'red'].includes(lvl)) {
+            continue; // Exclude green or calm weather completely
+          }
+
+          // Rule 2: Weather Notification is ONLY once every three hours
+          const storageKey = 'karnata_last_weather_notif_ts_' + userDist;
+          const lastAlertTs = parseInt(localStorage.getItem(storageKey) || '0', 10);
+          const elapsed = Date.now() - lastAlertTs;
+
+          if (elapsed < THREE_HOURS_MS) {
+            // Suppress notification if 3 hours have not elapsed
+            const minsLeft = Math.round((THREE_HOURS_MS - elapsed) / 60000);
+            // console.log(`[WeatherPush] 3-Hour cooldown active for ${userDist}. Next in ${minsLeft}m.`);
+            continue;
+          }
+
+          // Record timestamp for 3-hour limit
+          localStorage.setItem(storageKey, Date.now().toString());
+        }
+
+        if (!seenList.includes(item.id)) {
+          addSeenPush(item.id);
+          dispatchNotification(item, userDist);
+        }
       }
     }
   }
@@ -344,6 +376,6 @@
     detectUserGeoLocation();
     setTimeout(checkLiveDistrictPushFeed, 2000);
     // Periodic check every 30 seconds
-    setInterval(checkLiveDistrictPushFeed, 30000);
+    setInterval(checkLiveDistrictPushFeed, 300000);
   });
 })();
