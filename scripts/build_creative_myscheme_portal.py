@@ -1,0 +1,1945 @@
+import sys
+
+sys.stdout.reconfigure(encoding="utf-8")
+
+HTML_CONTENT = r'''<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು | Karnataka & Central Government Schemes (885+)</title>
+    <meta name="description" content="Explore all 885+ Karnataka State and Central Government Schemes from myScheme & Seva Sindhu in Kannada and English. Filter by category, age, gender, caste, occupation, BPL, and DBT.">
+    <link rel="canonical" href="https://karnata.in/scheme-checker.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/nav-component.js" defer></script>
+
+    <style>
+        :root {
+            --bg-app: #f4f6fb;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f8fafc;
+            --text-main: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-soft: #dcfce7;
+            --state-accent: #059669;
+            --state-soft: #ecfdf5;
+            --central-accent: #2563eb;
+            --central-soft: #eff6ff;
+            --gold-accent: #d97706;
+            --gold-soft: #fef3c7;
+            --radius-xl: 18px;
+            --radius-lg: 14px;
+            --radius-md: 10px;
+            --shadow-xs: 0 1px 3px rgba(15, 23, 42, 0.04);
+            --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-app);
+            color: var(--text-main);
+            font-family: 'Noto Sans Kannada', 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 1. COMPACT COMMAND BAR (NO UNNECESSARY HERO TEXT) */
+        .command-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .command-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* Level Segmented Switcher */
+        .level-seg {
+            display: inline-flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            gap: 4px;
+        }
+
+        .level-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 9px;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.16s ease;
+            white-space: nowrap;
+        }
+
+        .level-btn:hover {
+            color: var(--text-main);
+        }
+
+        .level-btn.active {
+            background: var(--bg-surface);
+            color: var(--primary-dark);
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+        }
+
+        .level-count {
+            background: #e2e8f0;
+            color: #334155;
+            padding: 1px 7px;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            font-weight: 800;
+        }
+
+        .level-btn.active .level-count {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+        }
+
+        /* Search Box in Command Header */
+        .search-wrap {
+            flex: 1;
+            min-width: 260px;
+            max-width: 540px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 38px 10px 40px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-light);
+            background: var(--bg-subtle);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.18s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: var(--bg-surface);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 10px;
+            border: none;
+            background: #e2e8f0;
+            color: #475569;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Right Controls */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            background: #f1f5f9;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 3px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 10px;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-surface);
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .mobile-filter-trigger {
+            display: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 800;
+            cursor: pointer;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 2. VISUAL CATEGORY RIBBON (15 OFFICIAL CATEGORIES) */
+        .category-ribbon-wrap {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .category-ribbon {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .category-ribbon::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .category-ribbon::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+
+        .cat-chip {
+            border: 1px solid var(--border-light);
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .cat-chip:hover {
+            border-color: var(--primary);
+            color: var(--text-main);
+            background: #f0fdf4;
+        }
+
+        .cat-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 3px 10px rgba(22, 163, 74, 0.22);
+        }
+
+        .cat-chip-count {
+            font-size: 0.7rem;
+            padding: 1px 6px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.07);
+            font-weight: 800;
+        }
+
+        .cat-chip.active .cat-chip-count {
+            background: rgba(255, 255, 255, 0.24);
+            color: #ffffff;
+        }
+
+        /* 3. MAIN WORKSPACE LAYOUT (SIDEBAR + FEED) */
+        .workspace {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 18px 20px 60px;
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* LEFT FILTER DOCK */
+        .filter-dock {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 16px;
+            position: sticky;
+            top: 72px;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .filter-dock::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .filter-dock::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+
+        .dock-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dock-title {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reset-btn {
+            border: none;
+            background: transparent;
+            color: var(--primary-dark);
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .reset-btn:hover {
+            background: var(--primary-soft);
+        }
+
+        /* Quick Tag Toggles Grid */
+        .quick-toggles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+
+        .q-toggle {
+            border: 1px solid var(--border-light);
+            background: var(--bg-subtle);
+            border-radius: 10px;
+            padding: 7px 9px;
+            font-family: inherit;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            text-align: left;
+            transition: all 0.15s ease;
+        }
+
+        .q-toggle:hover {
+            border-color: var(--border-hover);
+            color: var(--text-main);
+        }
+
+        .q-toggle.active {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .q-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            background: rgba(15, 23, 42, 0.07);
+            padding: 1px 5px;
+            border-radius: 6px;
+        }
+
+        .q-toggle.active .q-badge {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Filter Groups */
+        .f-group {
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .f-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .f-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .f-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .f-pill {
+            border: 1px solid var(--border-light);
+            background: #ffffff;
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.14s ease;
+        }
+
+        .f-pill:hover {
+            border-color: var(--border-hover);
+            color: var(--text-main);
+        }
+
+        .f-pill.active {
+            background: #0f172a;
+            border-color: #0f172a;
+            color: #ffffff;
+        }
+
+        .f-select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 9px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-subtle);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .f-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+        }
+
+        /* RIGHT MAIN RESULTS AREA */
+        .feed-area {
+            min-width: 0;
+        }
+
+        /* Active Filters & Status Bar */
+        .feed-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .results-summary {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .results-summary strong {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 900;
+        }
+
+        .active-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .active-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .active-chip:hover {
+            background: #bae6fd;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 9px;
+            padding: 2px;
+        }
+
+        .v-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 9px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .v-btn.active {
+            background: #f1f5f9;
+            color: var(--text-main);
+            font-weight: 800;
+        }
+
+        /* SCHEMES BENTO GRID & LIST */
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 16px;
+        }
+
+        .schemes-grid.list-view {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .scheme-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .scheme-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--central-accent);
+        }
+
+        .scheme-card.state-card::before {
+            background: var(--state-accent);
+        }
+
+        .scheme-card.guarantee-card::before {
+            background: linear-gradient(90deg, #f59e0b, #16a34a);
+            height: 5px;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: #94a3b8;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .lvl-badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.01em;
+        }
+
+        .lvl-badge.state {
+            background: var(--state-soft);
+            color: var(--state-accent);
+            border: 1px solid #a7f3d0;
+        }
+
+        .lvl-badge.central {
+            background: var(--central-soft);
+            color: var(--central-accent);
+            border: 1px solid #bfdbfe;
+        }
+
+        .guar-badge {
+            background: var(--gold-soft);
+            color: #b45309;
+            border: 1px solid #fde68a;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .dbt-badge {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        .btype-badge {
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        .ministry-line {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .scheme-title-primary {
+            margin: 3px 0 0;
+            font-size: 1.04rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.38;
+        }
+
+        .scheme-title-secondary {
+            margin: 2px 0 0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .scheme-desc {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.55;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 2px;
+        }
+
+        .tag-pill {
+            font-size: 0.71rem;
+            font-weight: 700;
+            color: #0f766e;
+            background: #f0fdfa;
+            border: 1px solid #ccfbf1;
+            padding: 2px 8px;
+            border-radius: 999px;
+            transition: background 0.14s ease;
+        }
+
+        .tag-pill:hover {
+            background: #ccfbf1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .cat-small {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 62%;
+        }
+
+        .open-btn {
+            border: none;
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.76rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.14s ease;
+        }
+
+        .scheme-card:hover .open-btn {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* PAGINATION */
+        .pagination-bar {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            min-width: 38px;
+            height: 38px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-surface);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.14s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        /* SLIDE-OVER SCHEME DETAIL MODAL */
+        dialog.scheme-drawer {
+            border: none;
+            border-radius: 20px;
+            padding: 0;
+            width: min(760px, 95vw);
+            max-height: 90vh;
+            background: var(--bg-surface);
+            color: var(--text-main);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+            overflow: hidden;
+        }
+
+        dialog.scheme-drawer::backdrop {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-head {
+            padding: 20px 24px;
+            background: #0f172a;
+            color: #ffffff;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .drawer-close {
+            border: none;
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .drawer-body {
+            padding: 22px 24px;
+            overflow-y: auto;
+            max-height: calc(90vh - 155px);
+        }
+
+        .drawer-section {
+            margin-bottom: 18px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+        }
+
+        .drawer-section h4 {
+            margin: 0 0 8px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .drawer-section p, .drawer-section div {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .drawer-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .meta-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+
+        .meta-box span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .meta-box strong {
+            font-size: 0.84rem;
+            color: var(--text-main);
+        }
+
+        .drawer-foot {
+            padding: 14px 24px;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-surface);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-action {
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary-action {
+            background: #f1f5f9;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 980px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+            .mobile-filter-trigger {
+                display: inline-flex;
+            }
+            .filter-dock {
+                display: none;
+                position: fixed;
+                inset: 0;
+                z-index: 200;
+                max-height: 100vh;
+                border-radius: 0;
+                padding: 20px;
+            }
+            .filter-dock.open {
+                display: block;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .command-inner {
+                padding: 10px 14px;
+            }
+            .level-seg {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .level-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 7px 8px;
+                font-size: 0.78rem;
+            }
+            .search-wrap {
+                max-width: 100%;
+                width: 100%;
+            }
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. COMPACT COMMAND BAR (NO UNNECESSARY HERO TEXT) -->
+    <section class="command-header" aria-label="Scheme Controls">
+        <div class="command-inner">
+            <!-- State / Central / All Segmented Switcher -->
+            <div class="level-seg" role="tablist">
+                <button type="button" class="level-btn active" data-level="all" onclick="setLevelFilter('all')">
+                    <span id="lbl-tab-all">ಎಲ್ಲಾ ಯೋಜನೆಗಳು</span>
+                    <span class="level-count" id="cnt-all">885</span>
+                </button>
+                <button type="button" class="level-btn" data-level="State" onclick="setLevelFilter('State')">
+                    <span id="lbl-tab-state">🏛️ ಕರ್ನಾಟಕ ರಾಜ್ಯ</span>
+                    <span class="level-count" id="cnt-state">112</span>
+                </button>
+                <button type="button" class="level-btn" data-level="Central" onclick="setLevelFilter('Central')">
+                    <span id="lbl-tab-central">🇮🇳 ಕೇಂದ್ರ ಸರ್ಕಾರ</span>
+                    <span class="level-count" id="cnt-central">773</span>
+                </button>
+            </div>
+
+            <!-- Instant Search Input -->
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="search" id="scheme-search" class="search-input" placeholder="ಯೋಜನೆ, ಇಲಾಖೆ ಅಥವಾ ಟ್ಯಾಗ್ ಹುಡುಕಿ... (Search 885 schemes)" oninput="onSearchInput(this.value)">
+                <button type="button" id="search-clear-btn" class="search-clear" onclick="clearSearch()" title="Clear">✕</button>
+            </div>
+
+            <!-- Language, Sort & Mobile Filter Trigger -->
+            <div class="header-controls">
+                <button type="button" class="mobile-filter-trigger" onclick="toggleMobileFilters()">
+                    <span>⚙️ ಫಿಲ್ಟರ್</span>
+                </button>
+                <select id="sort-select" class="sort-select" onchange="setSortOrder(this.value)" aria-label="Sort schemes">
+                    <option value="relevance">ಆದ್ಯತೆ (Relevance)</option>
+                    <option value="state_first">ರಾಜ್ಯ ಮೊದಲು (State First)</option>
+                    <option value="az">ಹೆಸರು (A → Z)</option>
+                    <option value="za">ಹೆಸರು (Z → A)</option>
+                </select>
+                <div class="lang-switch" role="group" aria-label="Language">
+                    <button type="button" class="lang-btn active" id="lang-kn" onclick="setLang('kn')">ಕನ್ನಡ</button>
+                    <button type="button" class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. HORIZONTAL CATEGORY RIBBON (ALL 15 OFFICIAL CATEGORIES) -->
+    <section class="category-ribbon-wrap" aria-label="Scheme Categories">
+        <div class="category-ribbon" id="category-ribbon">
+            <!-- Populated dynamically with live counts -->
+        </div>
+    </section>
+
+    <!-- 3. WORKSPACE: SMART FILTER DOCK + BENTO SCHEME FEED -->
+    <main class="workspace">
+        <!-- LEFT SMART FILTER DOCK -->
+        <aside class="filter-dock" id="filter-dock" aria-label="Filter By">
+            <div class="dock-header">
+                <div class="dock-title">
+                    <span>⚡ ಫಿಲ್ಟರ್‌ಗಳು (Filter By)</span>
+                </div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <button type="button" class="reset-btn" onclick="resetAllFilters()">Reset All</button>
+                    <button type="button" class="reset-btn" id="close-mobile-dock" style="display:none;" onclick="toggleMobileFilters()">✕</button>
+                </div>
+            </div>
+
+            <!-- Quick Boolean Facets (with live counts) -->
+            <div class="quick-toggles">
+                <button type="button" class="q-toggle" id="tog-dbt" onclick="toggleBoolFilter('dbtScheme')">
+                    <span>🏦 DBT ನೇರ ನಗದು</span>
+                    <span class="q-badge" id="cnt-dbt">0</span>
+                </button>
+                <button type="button" class="q-toggle" id="tog-bpl" onclick="toggleBoolFilter('isBpl')">
+                    <span>🪪 BPL ಕಾರ್ಡ್</span>
+                    <span class="q-badge" id="cnt-bpl">0</span>
+                </button>
+                <button type="button" class="q-toggle" id="tog-student" onclick="toggleBoolFilter('isStudent')">
+                    <span>🎓 ವಿದ್ಯಾರ್ಥಿ</span>
+                    <span class="q-badge" id="cnt-student">0</span>
+                </button>
+                <button type="button" class="q-toggle" id="tog-disability" onclick="toggleBoolFilter('disability')">
+                    <span>♿ ವಿಕಲಚೇತನರು</span>
+                    <span class="q-badge" id="cnt-disability">0</span>
+                </button>
+                <button type="button" class="q-toggle" id="tog-minority" onclick="toggleBoolFilter('minority')">
+                    <span>🕌 ಅಲ್ಪಸಂಖ್ಯಾತರು</span>
+                    <span class="q-badge" id="cnt-minority">0</span>
+                </button>
+                <button type="button" class="q-toggle" id="tog-guarantee" onclick="toggleBoolFilter('is_guarantee')">
+                    <span>⭐ 5 ಗ್ಯಾರಂಟಿ</span>
+                    <span class="q-badge" id="cnt-guarantee">5</span>
+                </button>
+            </div>
+
+            <!-- Gender -->
+            <div class="f-group">
+                <div class="f-label"><span>ಲಿಂಗ / Gender</span></div>
+                <div class="f-pills" id="pills-gender">
+                    <button type="button" class="f-pill active" data-val="" onclick="setFacet('gender', '')">ಎಲ್ಲಾ (All)</button>
+                    <button type="button" class="f-pill" data-val="Female" onclick="setFacet('gender', 'Female')">ಮಹಿಳೆ (Female)</button>
+                    <button type="button" class="f-pill" data-val="Male" onclick="setFacet('gender', 'Male')">ಪುರುಷ (Male)</button>
+                    <button type="button" class="f-pill" data-val="Transgender" onclick="setFacet('gender', 'Transgender')">ತೃತೀಯ ಲಿಂಗಿ</button>
+                </div>
+            </div>
+
+            <!-- Age -->
+            <div class="f-group">
+                <div class="f-label"><span>ವಯಸ್ಸು / Age</span></div>
+                <select id="sel-age" class="f-select" onchange="setFacet('age', this.value)">
+                    <option value="">ಎಲ್ಲಾ ವಯಸ್ಸಿನವರು (All Ages)</option>
+                    <option value="0">0 – 10 ವರ್ಷ (Children)</option>
+                    <option value="10">11 – 20 ವರ್ಷ (Youth / Students)</option>
+                    <option value="20">21 – 30 ವರ್ಷ (Young Adults)</option>
+                    <option value="30">31 – 40 ವರ್ಷ (Adults)</option>
+                    <option value="40">41 – 50 ವರ್ಷ (Middle Age)</option>
+                    <option value="50">51 – 60 ವರ್ಷ (50–60 Years)</option>
+                    <option value="60">60+ ವರ್ಷ (Senior Citizens)</option>
+                </select>
+            </div>
+
+            <!-- Caste -->
+            <div class="f-group">
+                <div class="f-label"><span>ಜಾತಿ ವರ್ಗ / Caste</span></div>
+                <div class="f-pills" id="pills-caste">
+                    <button type="button" class="f-pill active" data-val="" onclick="setFacet('caste', '')">ಎಲ್ಲಾ</button>
+                    <button type="button" class="f-pill" data-val="Scheduled Caste (SC)" onclick="setFacet('caste', 'Scheduled Caste (SC)')">SC</button>
+                    <button type="button" class="f-pill" data-val="Scheduled Tribe (ST)" onclick="setFacet('caste', 'Scheduled Tribe (ST)')">ST</button>
+                    <button type="button" class="f-pill" data-val="Other Backward Class (OBC)" onclick="setFacet('caste', 'Other Backward Class (OBC)')">OBC</button>
+                    <button type="button" class="f-pill" data-val="Particularly Vulnerable Tribal Group (PVTG)" onclick="setFacet('caste', 'Particularly Vulnerable Tribal Group (PVTG)')">PVTG</button>
+                    <button type="button" class="f-pill" data-val="General" onclick="setFacet('caste', 'General')">General</button>
+                </div>
+            </div>
+
+            <!-- Residence -->
+            <div class="f-group">
+                <div class="f-label"><span>ವಾಸಸ್ಥಳ / Residence</span></div>
+                <div class="f-pills" id="pills-residence">
+                    <button type="button" class="f-pill active" data-val="" onclick="setFacet('residence', '')">ಎಲ್ಲಾ (Both)</button>
+                    <button type="button" class="f-pill" data-val="Rural" onclick="setFacet('residence', 'Rural')">🌾 ಗ್ರಾಮೀಣ (Rural)</button>
+                    <button type="button" class="f-pill" data-val="Urban" onclick="setFacet('residence', 'Urban')">🏙️ ನಗರ (Urban)</button>
+                </div>
+            </div>
+
+            <!-- Benefit Type -->
+            <div class="f-group">
+                <div class="f-label"><span>ಸೌಲಭ್ಯದ ಪ್ರಕಾರ / Benefit Type</span></div>
+                <div class="f-pills" id="pills-benefitType">
+                    <button type="button" class="f-pill active" data-val="" onclick="setFacet('benefitType', '')">ಎಲ್ಲಾ</button>
+                    <button type="button" class="f-pill" data-val="Cash" onclick="setFacet('benefitType', 'Cash')">💰 ನಗದು (Cash)</button>
+                    <button type="button" class="f-pill" data-val="Composite" onclick="setFacet('benefitType', 'Composite')">🎁 ಸಂಯೋಜಿತ (Composite)</button>
+                    <button type="button" class="f-pill" data-val="In Kind" onclick="setFacet('benefitType', 'In Kind')">📦 ವಸ್ತು ರೂಪ (In Kind)</button>
+                </div>
+            </div>
+
+            <!-- Occupation -->
+            <div class="f-group">
+                <div class="f-label"><span>ವೃತ್ತಿ / Occupation</span></div>
+                <select id="sel-occupation" class="f-select" onchange="setFacet('occupation', this.value)">
+                    <option value="">ಎಲ್ಲಾ ವೃತ್ತಿಗಳು (All Occupations)</option>
+                    <option value="Student">🎓 ವಿದ್ಯಾರ್ಥಿ (Student)</option>
+                    <option value="Farmer">🌾 ರೈತ / ಕೃಷಿಕ (Farmer)</option>
+                    <option value="Artisans, Spinners & Weavers">🧶 ಕುಶಲಕರ್ಮಿ ಮತ್ತು ನೇಕಾರ (Artisans & Weavers)</option>
+                    <option value="Construction Worker">👷 ಕಟ್ಟಡ ಕಾರ್ಮಿಕ (Construction Worker)</option>
+                    <option value="Unorganized Worker">🛠️ ಅಸಂಘಟಿತ ಕಾರ್ಮಿಕ (Unorganized Worker)</option>
+                    <option value="Sportsperson">🏅 ಕ್ರೀಡಾಪಟು (Sportsperson)</option>
+                    <option value="Ex Servicemen">🎖️ ಮಾಜಿ ಸೈನಿಕ (Ex Servicemen)</option>
+                    <option value="Safai Karamchari">🧹 ಪೌರಕಾರ್ಮಿಕ (Safai Karamchari)</option>
+                    <option value="Teacher / Faculty">👩‍🏫 ಶಿಕ್ಷಕ / ಪ್ರಾಧ್ಯಾಪಕ (Teacher / Faculty)</option>
+                    <option value="Artists">🎭 ಕಲಾವಿದರು (Artists)</option>
+                    <option value="Fishermen">🐟 ಮೀನುಗಾರರು (Fishermen)</option>
+                </select>
+            </div>
+
+            <!-- Employment Status -->
+            <div class="f-group">
+                <div class="f-label"><span>ಉದ್ಯೋಗ ಸ್ಥಿತಿ / Employment Status</span></div>
+                <select id="sel-employment" class="f-select" onchange="setFacet('employmentStatus', this.value)">
+                    <option value="">ಎಲ್ಲಾ (All)</option>
+                    <option value="Self-Employed/ Entrepreneur">ಸ್ವಯಂ ಉದ್ಯೋಗಿ / ಉದ್ಯಮಿ (Self-Employed)</option>
+                    <option value="Employed">ಉದ್ಯೋಗಿ (Employed)</option>
+                    <option value="Unemployed">ನಿರುದ್ಯೋಗಿ (Unemployed)</option>
+                </select>
+            </div>
+
+            <!-- Marital Status -->
+            <div class="f-group">
+                <div class="f-label"><span>ವೈವಾಹಿಕ ಸ್ಥಿತಿ / Marital Status</span></div>
+                <select id="sel-marital" class="f-select" onchange="setFacet('maritalStatus', this.value)">
+                    <option value="">ಎಲ್ಲಾ (All)</option>
+                    <option value="Married">ವಿವಾಹಿತ (Married)</option>
+                    <option value="Widowed">ವಿಧವೆ (Widowed)</option>
+                    <option value="Never Married">ಅವಿವಾಹಿತ (Never Married)</option>
+                    <option value="Divorced">ವಿಚ್ಛೇದಿತ (Divorced)</option>
+                    <option value="Separated">ಪ್ರತ್ಯೇಕ (Separated)</option>
+                </select>
+            </div>
+
+            <!-- Disability Percentage -->
+            <div class="f-group">
+                <div class="f-label"><span>ಅಂಗವೈಕಲ್ಯ ಶೇಕಡಾವಾರು / Disability %</span></div>
+                <select id="sel-disability-pct" class="f-select" onchange="setFacet('disabilityPercentage', this.value)">
+                    <option value="">ಯಾವುದೇ (Any)</option>
+                    <option value="40">40% ಅಥವಾ ಹೆಚ್ಚು (40%+)</option>
+                    <option value="50">50% ಅಥವಾ ಹೆಚ್ಚು (50%+)</option>
+                    <option value="60">60% ಅಥವಾ ಹೆಚ್ಚು (60%+)</option>
+                    <option value="80">80% ಅಥವಾ ಹೆಚ್ಚು (80%+)</option>
+                </select>
+            </div>
+
+            <!-- Application Mode -->
+            <div class="f-group">
+                <div class="f-label"><span>ಅರ್ಜಿ ವಿಧಾನ / Application Mode</span></div>
+                <div class="f-pills" id="pills-appMode">
+                    <button type="button" class="f-pill active" data-val="" onclick="setFacet('applicationMode', '')">ಎಲ್ಲಾ</button>
+                    <button type="button" class="f-pill" data-val="Online" onclick="setFacet('applicationMode', 'Online')">🌐 ಆನ್‌ಲೈನ್</button>
+                    <button type="button" class="f-pill" data-val="Offline" onclick="setFacet('applicationMode', 'Offline')">📄 ಆಫ್‌ಲೈನ್</button>
+                </div>
+            </div>
+
+            <!-- Ministry / Department -->
+            <div class="f-group">
+                <div class="f-label"><span>ಸಚಿವಾಲಯ / ಇಲಾಖೆ (Ministry)</span></div>
+                <select id="sel-ministry" class="f-select" onchange="setFacet('ministry', this.value)">
+                    <option value="">ಎಲ್ಲಾ ಇಲಾಖೆಗಳು (All Ministries)</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- RIGHT MAIN RESULTS AREA -->
+        <section class="feed-area">
+            <div class="feed-bar">
+                <div class="results-summary">
+                    <span id="results-count-text"><strong id="results-num">885</strong> ಯೋಜನೆಗಳು ದೊರೆತಿವೆ</span>
+                    <div class="active-chips" id="active-chips"></div>
+                </div>
+                <div class="view-toggle" role="group" aria-label="View Mode">
+                    <button type="button" class="v-btn active" id="view-grid-btn" onclick="setViewMode('grid')" title="Grid View">⊞</button>
+                    <button type="button" class="v-btn" id="view-list-btn" onclick="setViewMode('list')" title="List View">☰</button>
+                </div>
+            </div>
+
+            <div class="schemes-grid" id="schemes-grid">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="pagination-bar" id="pagination-bar"></div>
+        </section>
+    </main>
+
+    <!-- SCHEME QUICK-VIEW & LIVE MYSCHEME DETAIL MODAL -->
+    <dialog class="scheme-drawer" id="scheme-drawer" onclick="if(event.target===this) closeSchemeDrawer()">
+        <div class="drawer-head">
+            <div>
+                <div id="drawer-badges" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;"></div>
+                <h2 id="drawer-title" style="margin:0; font-size:1.22rem; font-weight:800; line-height:1.35;"></h2>
+                <div id="drawer-subtitle" style="margin-top:4px; font-size:0.84rem; color:#94a3b8;"></div>
+            </div>
+            <button type="button" class="drawer-close" onclick="closeSchemeDrawer()">✕</button>
+        </div>
+        <div class="drawer-body" id="drawer-body"></div>
+        <div class="drawer-foot" id="drawer-foot"></div>
+    </dialog>
+
+    <script>
+        let ALL_SCHEMES = [];
+        let FILTERED_SCHEMES = [];
+        let CATEGORY_MAP_KN = {};
+        let CURRENT_LANG = 'kn';
+        let VIEW_MODE = 'grid';
+        let CURRENT_PAGE = 1;
+        const PAGE_SIZE = 24;
+
+        const STATE = {
+            level: 'all',
+            category: '',
+            query: '',
+            sort: 'relevance',
+            gender: '',
+            age: '',
+            caste: '',
+            residence: '',
+            benefitType: '',
+            occupation: '',
+            employmentStatus: '',
+            maritalStatus: '',
+            disabilityPercentage: '',
+            applicationMode: '',
+            ministry: '',
+            dbtScheme: false,
+            isBpl: false,
+            isStudent: false,
+            disability: false,
+            minority: false,
+            is_guarantee: false
+        };
+
+        const CATEGORY_ICONS = {
+            "Education & Learning": "🎓",
+            "Business & Entrepreneurship": "💼",
+            "Social welfare & Empowerment": "🤝",
+            "Agriculture,Rural & Environment": "🌾",
+            "Skills & Employment": "🛠️",
+            "Banking,Financial Services and Insurance": "🏦",
+            "Science, IT & Communications": "💻",
+            "Women and Child": "👩",
+            "Sports & Culture": "🏅",
+            "Health & Wellness": "🏥",
+            "Transport & Infrastructure": "🚌",
+            "Utility & Sanitation": "💧",
+            "Housing & Shelter": "🏠",
+            "Public Safety,Law & Justice": "⚖️",
+            "Travel & Tourism": "✈️"
+        };
+
+        async function initPortal() {
+            try {
+                const res = await fetch('/data/myscheme_karnataka_all.json');
+                const data = await res.json();
+                ALL_SCHEMES = data.schemes || [];
+                CATEGORY_MAP_KN = data.category_map_kn || {};
+
+                populateMinistries();
+                applyAllFilters();
+            } catch (err) {
+                console.error('Failed to load schemes:', err);
+                document.getElementById('schemes-grid').innerHTML = '<div style="padding:32px;text-align:center;">ಡೇಟಾ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುಟವನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ.</div>';
+            }
+        }
+
+        function populateMinistries() {
+            const sel = document.getElementById('sel-ministry');
+            const counts = {};
+            ALL_SCHEMES.forEach(s => {
+                const m = s.ministry_en || 'Other';
+                counts[m] = (counts[m] || 0) + 1;
+            });
+            const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+            sel.innerHTML = `<option value="">${CURRENT_LANG === 'kn' ? 'ಎಲ್ಲಾ ಇಲಾಖೆಗಳು (All Ministries)' : 'All Ministries (' + sorted.length + ')'}</option>` +
+                sorted.map(([m, c]) => `<option value="${escapeHtml(m)}">${escapeHtml(m)} (${c})</option>`).join('');
+        }
+
+        function schemeMatches(s, ignoreKey = null) {
+            if (ignoreKey !== 'level' && STATE.level !== 'all') {
+                if (s.level !== STATE.level) return false;
+            }
+            if (ignoreKey !== 'category' && STATE.category) {
+                if (!(s.categories || []).includes(STATE.category)) return false;
+            }
+            if (ignoreKey !== 'query' && STATE.query) {
+                const q = STATE.query.toLowerCase();
+                const hay = [
+                    s.name_kn, s.name_en, s.short_title,
+                    s.ministry_kn, s.ministry_en,
+                    s.description_kn, s.description_en,
+                    ...(s.tags_kn || []), ...(s.tags_en || []),
+                    ...(s.categories || [])
+                ].join(' ').toLowerCase();
+                if (!hay.includes(q)) return false;
+            }
+            if (ignoreKey !== 'dbtScheme' && STATE.dbtScheme && !s.dbtScheme) return false;
+            if (ignoreKey !== 'isBpl' && STATE.isBpl && !s.isBpl) return false;
+            if (ignoreKey !== 'isStudent' && STATE.isStudent && !s.isStudent) return false;
+            if (ignoreKey !== 'disability' && STATE.disability && !s.disability) return false;
+            if (ignoreKey !== 'minority' && STATE.minority && !s.minority) return false;
+            if (ignoreKey !== 'is_guarantee' && STATE.is_guarantee && !s.is_guarantee) return false;
+
+            if (ignoreKey !== 'gender' && STATE.gender) {
+                const g = s.genders || [];
+                if (!g.includes(STATE.gender)) return false;
+            }
+            if (ignoreKey !== 'age' && STATE.age !== '') {
+                const ageNum = parseInt(STATE.age, 10);
+                const ab = s.ageBrackets || [];
+                if (ab.length > 0 && !ab.includes(ageNum)) return false;
+            }
+            if (ignoreKey !== 'caste' && STATE.caste) {
+                const c = s.castes || [];
+                if (!c.includes(STATE.caste)) return false;
+            }
+            if (ignoreKey !== 'residence' && STATE.residence) {
+                const r = s.residences || [];
+                if (!r.includes(STATE.residence)) return false;
+            }
+            if (ignoreKey !== 'benefitType' && STATE.benefitType) {
+                const b = s.benefitTypes || [];
+                if (!b.includes(STATE.benefitType)) return false;
+            }
+            if (ignoreKey !== 'occupation' && STATE.occupation) {
+                const o = s.occupations || [];
+                if (!o.includes(STATE.occupation)) return false;
+            }
+            if (ignoreKey !== 'employmentStatus' && STATE.employmentStatus) {
+                const e = s.employmentStatuses || [];
+                if (!e.includes(STATE.employmentStatus)) return false;
+            }
+            if (ignoreKey !== 'maritalStatus' && STATE.maritalStatus) {
+                const m = s.maritalStatuses || [];
+                if (!m.includes(STATE.maritalStatus)) return false;
+            }
+            if (ignoreKey !== 'disabilityPercentage' && STATE.disabilityPercentage !== '') {
+                const dp = parseInt(STATE.disabilityPercentage, 10);
+                const list = s.disabilityPercentages || [];
+                if (!list.includes(dp)) return false;
+            }
+            if (ignoreKey !== 'applicationMode' && STATE.applicationMode) {
+                const am = s.applicationModes || [];
+                if (!am.some(x => x.includes(STATE.applicationMode))) return false;
+            }
+            if (ignoreKey !== 'ministry' && STATE.ministry) {
+                if (s.ministry_en !== STATE.ministry) return false;
+            }
+            return true;
+        }
+
+        function applyAllFilters() {
+            FILTERED_SCHEMES = ALL_SCHEMES.filter(s => schemeMatches(s));
+
+            // Sort
+            if (STATE.sort === 'az') {
+                FILTERED_SCHEMES.sort((a, b) => (a.name_en || '').localeCompare(b.name_en || ''));
+            } else if (STATE.sort === 'za') {
+                FILTERED_SCHEMES.sort((a, b) => (b.name_en || '').localeCompare(a.name_en || ''));
+            } else if (STATE.sort === 'state_first') {
+                FILTERED_SCHEMES.sort((a, b) => (a.level === 'State' ? 0 : 1) - (b.level === 'State' ? 0 : 1));
+            } else {
+                FILTERED_SCHEMES.sort((a, b) => {
+                    const ga = a.is_guarantee ? 0 : 1;
+                    const gb = b.is_guarantee ? 0 : 1;
+                    if (ga !== gb) return ga - gb;
+                    const pa = a.priority ?? 4;
+                    const pb = b.priority ?? 4;
+                    return pa - pb;
+                });
+            }
+
+            CURRENT_PAGE = 1;
+            updateLiveCounts();
+            renderCategoryRibbon();
+            renderActiveChips();
+            renderSchemesPage();
+        }
+
+        function updateLiveCounts() {
+            // Level counts (ignoring level filter)
+            const baseForLevel = ALL_SCHEMES.filter(s => schemeMatches(s, 'level'));
+            const stateCnt = baseForLevel.filter(s => s.level === 'State').length;
+            const centralCnt = baseForLevel.filter(s => s.level === 'Central').length;
+
+            document.getElementById('cnt-all').textContent = baseForLevel.length;
+            document.getElementById('cnt-state').textContent = stateCnt;
+            document.getElementById('cnt-central').textContent = centralCnt;
+
+            // Quick boolean counts
+            document.getElementById('cnt-dbt').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'dbtScheme') && s.dbtScheme).length;
+            document.getElementById('cnt-bpl').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'isBpl') && s.isBpl).length;
+            document.getElementById('cnt-student').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'isStudent') && s.isStudent).length;
+            document.getElementById('cnt-disability').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'disability') && s.disability).length;
+            document.getElementById('cnt-minority').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'minority') && s.minority).length;
+            document.getElementById('cnt-guarantee').textContent = ALL_SCHEMES.filter(s => schemeMatches(s, 'is_guarantee') && s.is_guarantee).length;
+
+            // Total text
+            const numEl = document.getElementById('results-count-text');
+            if (CURRENT_LANG === 'kn') {
+                numEl.innerHTML = `<strong id="results-num">${FILTERED_SCHEMES.length}</strong> ಯೋಜನೆಗಳು ಲಭ್ಯವಿವೆ`;
+            } else {
+                numEl.innerHTML = `We found <strong id="results-num">${FILTERED_SCHEMES.length}</strong> schemes`;
+            }
+        }
+
+        function renderCategoryRibbon() {
+            const ribbon = document.getElementById('category-ribbon');
+            const baseForCat = ALL_SCHEMES.filter(s => schemeMatches(s, 'category'));
+            const catCounts = {};
+            baseForCat.forEach(s => {
+                (s.categories || []).forEach(c => {
+                    catCounts[c] = (catCounts[c] || 0) + 1;
+                });
+            });
+
+            const allCategories = Object.keys(CATEGORY_ICONS);
+            allCategories.sort((a, b) => (catCounts[b] || 0) - (catCounts[a] || 0));
+
+            let html = `<button type="button" class="cat-chip ${STATE.category === '' ? 'active' : ''}" onclick="setCategory('')">
+                <span>✨ ${CURRENT_LANG === 'kn' ? 'ಎಲ್ಲಾ ವಿಭಾಗಗಳು' : 'All Categories'}</span>
+                <span class="cat-chip-count">${baseForCat.length}</span>
+            </button>`;
+
+            allCategories.forEach(cat => {
+                const cnt = catCounts[cat] || 0;
+                if (cnt === 0 && STATE.category !== cat) return;
+                const icon = CATEGORY_ICONS[cat] || '📌';
+                const label = CURRENT_LANG === 'kn' ? (CATEGORY_MAP_KN[cat] || cat) : cat;
+                const active = STATE.category === cat ? 'active' : '';
+                html += `<button type="button" class="cat-chip ${active}" onclick="setCategory('${escapeAttr(cat)}')">
+                    <span>${icon} ${escapeHtml(label)}</span>
+                    <span class="cat-chip-count">${cnt}</span>
+                </button>`;
+            });
+
+            ribbon.innerHTML = html;
+        }
+
+        function renderActiveChips() {
+            const wrap = document.getElementById('active-chips');
+            const chips = [];
+
+            if (STATE.category) {
+                const lbl = CURRENT_LANG === 'kn' ? (CATEGORY_MAP_KN[STATE.category] || STATE.category) : STATE.category;
+                chips.push({ label: lbl, clear: () => setCategory('') });
+            }
+            if (STATE.query) chips.push({ label: `"${STATE.query}"`, clear: () => clearSearch() });
+            if (STATE.dbtScheme) chips.push({ label: 'DBT Scheme', clear: () => toggleBoolFilter('dbtScheme') });
+            if (STATE.isBpl) chips.push({ label: 'BPL', clear: () => toggleBoolFilter('isBpl') });
+            if (STATE.isStudent) chips.push({ label: 'Student', clear: () => toggleBoolFilter('isStudent') });
+            if (STATE.disability) chips.push({ label: 'Differently Abled', clear: () => toggleBoolFilter('disability') });
+            if (STATE.minority) chips.push({ label: 'Minority', clear: () => toggleBoolFilter('minority') });
+            if (STATE.is_guarantee) chips.push({ label: '5 Guarantees', clear: () => toggleBoolFilter('is_guarantee') });
+            if (STATE.gender) chips.push({ label: STATE.gender, clear: () => setFacet('gender', '') });
+            if (STATE.age !== '') chips.push({ label: `Age ${STATE.age}+`, clear: () => { document.getElementById('sel-age').value=''; setFacet('age', ''); } });
+            if (STATE.caste) chips.push({ label: STATE.caste, clear: () => setFacet('caste', '') });
+            if (STATE.residence) chips.push({ label: STATE.residence, clear: () => setFacet('residence', '') });
+            if (STATE.benefitType) chips.push({ label: STATE.benefitType, clear: () => setFacet('benefitType', '') });
+            if (STATE.occupation) chips.push({ label: STATE.occupation, clear: () => { document.getElementById('sel-occupation').value=''; setFacet('occupation', ''); } });
+            if (STATE.employmentStatus) chips.push({ label: STATE.employmentStatus, clear: () => { document.getElementById('sel-employment').value=''; setFacet('employmentStatus', ''); } });
+            if (STATE.maritalStatus) chips.push({ label: STATE.maritalStatus, clear: () => { document.getElementById('sel-marital').value=''; setFacet('maritalStatus', ''); } });
+            if (STATE.disabilityPercentage !== '') chips.push({ label: `Disability ${STATE.disabilityPercentage}%+`, clear: () => { document.getElementById('sel-disability-pct').value=''; setFacet('disabilityPercentage', ''); } });
+            if (STATE.applicationMode) chips.push({ label: STATE.applicationMode, clear: () => setFacet('applicationMode', '') });
+            if (STATE.ministry) chips.push({ label: STATE.ministry, clear: () => { document.getElementById('sel-ministry').value=''; setFacet('ministry', ''); } });
+
+            wrap.innerHTML = '';
+            chips.forEach(c => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'active-chip';
+                btn.innerHTML = `<span>${escapeHtml(c.label)}</span><span>✕</span>`;
+                btn.onclick = c.clear;
+                wrap.appendChild(btn);
+            });
+        }
+
+        function renderSchemesPage() {
+            const grid = document.getElementById('schemes-grid');
+            grid.className = VIEW_MODE === 'list' ? 'schemes-grid list-view' : 'schemes-grid';
+
+            if (FILTERED_SCHEMES.length === 0) {
+                grid.innerHTML = `<div style="grid-column:1/-1; background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:42px 20px; text-align:center;">
+                    <div style="font-size:2.2rem; margin-bottom:8px;">🔍</div>
+                    <h3 style="margin:0 0 6px; font-size:1.05rem;">ಯಾವುದೇ ಯೋಜನೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ (No matching schemes)</h3>
+                    <p style="margin:0 0 14px; color:#64748b; font-size:0.86rem;">ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಿ ಅಥವಾ ಎಲ್ಲಾ ಫಿಲ್ಟರ್ ಮರುಹೊಂದಿಸಿ.</p>
+                    <button type="button" class="btn-primary-action" onclick="resetAllFilters()">ಎಲ್ಲಾ 885 ಯೋಜನೆಗಳನ್ನು ತೋರಿಸಿ (Reset Filters)</button>
+                </div>`;
+                document.getElementById('pagination-bar').innerHTML = '';
+                return;
+            }
+
+            const totalPages = Math.ceil(FILTERED_SCHEMES.length / PAGE_SIZE);
+            if (CURRENT_PAGE > totalPages) CURRENT_PAGE = 1;
+
+            const start = (CURRENT_PAGE - 1) * PAGE_SIZE;
+            const slice = FILTERED_SCHEMES.slice(start, start + PAGE_SIZE);
+
+            grid.innerHTML = slice.map(s => renderCardHTML(s)).join('');
+            renderPagination(totalPages);
+        }
+
+        function renderCardHTML(s) {
+            const isState = s.level === 'State';
+            const isGuar = !!s.is_guarantee;
+            const cardClass = isGuar ? 'scheme-card guarantee-card' : (isState ? 'scheme-card state-card' : 'scheme-card');
+
+            const primaryTitle = CURRENT_LANG === 'kn' ? (s.name_kn || s.name_en) : (s.name_en || s.name_kn);
+            const secondaryTitle = CURRENT_LANG === 'kn'
+                ? (s.name_en && s.name_en !== s.name_kn ? s.name_en : '')
+                : (s.name_kn && s.name_kn !== s.name_en ? s.name_kn : '');
+
+            const desc = CURRENT_LANG === 'kn' ? (s.description_kn || s.description_en) : (s.description_en || s.description_kn);
+            const ministry = CURRENT_LANG === 'kn' ? (s.ministry_kn || s.ministry_en) : (s.ministry_en || s.ministry_kn);
+            const tags = (CURRENT_LANG === 'kn' ? (s.tags_kn && s.tags_kn.length ? s.tags_kn : s.tags_en) : (s.tags_en || [])).slice(0, 5);
+            const firstCat = (s.categories && s.categories[0]) || '';
+            const catDisplay = CURRENT_LANG === 'kn' ? (CATEGORY_MAP_KN[firstCat] || firstCat) : firstCat;
+            const bType = (s.benefitTypes && s.benefitTypes[0]) || '';
+
+            return `<article class="${cardClass}" onclick="openSchemeDrawer('${escapeAttr(s.slug)}')">
+                <div>
+                    <div class="card-top">
+                        <div class="badge-group">
+                            <span class="lvl-badge ${isState ? 'state' : 'central'}">${isState ? (CURRENT_LANG === 'kn' ? '🏛️ ಕರ್ನಾಟಕ ರಾಜ್ಯ' : '🏛️ Karnataka State') : (CURRENT_LANG === 'kn' ? '🇮🇳 ಕೇಂದ್ರ ಸರ್ಕಾರ' : '🇮🇳 Central Govt')}</span>
+                            ${isGuar ? `<span class="guar-badge">⭐ ಪಂಚ ಗ್ಯಾರಂಟಿ</span>` : ''}
+                            ${s.dbtScheme ? `<span class="dbt-badge">⚡ DBT</span>` : ''}
+                            ${bType ? `<span class="btype-badge">${escapeHtml(bType)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="ministry-line" style="margin-top:8px;">🏢 ${escapeHtml(ministry)}</div>
+                    <h3 class="scheme-title-primary">${escapeHtml(primaryTitle)}</h3>
+                    ${secondaryTitle ? `<div class="scheme-title-secondary">${escapeHtml(secondaryTitle)}</div>` : ''}
+                    <p class="scheme-desc" style="margin-top:8px;">${escapeHtml(desc)}</p>
+                </div>
+                <div>
+                    ${tags.length ? `<div class="tag-row">${tags.map(t => `<span class="tag-pill" onclick="event.stopPropagation(); filterByTag('${escapeAttr(t)}')">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+                    <div class="card-footer" style="margin-top:10px;">
+                        <span class="cat-small">${CATEGORY_ICONS[firstCat] || '📌'} ${escapeHtml(catDisplay)}</span>
+                        <button type="button" class="open-btn">${CURRENT_LANG === 'kn' ? 'ವಿವರ & ಅರ್ಜಿ →' : 'Details & Apply →'}</button>
+                    </div>
+                </div>
+            </article>`;
+        }
+
+        function renderPagination(totalPages) {
+            const bar = document.getElementById('pagination-bar');
+            if (totalPages <= 1) {
+                bar.innerHTML = '';
+                return;
+            }
+
+            let html = `<button type="button" class="page-btn" ${CURRENT_PAGE === 1 ? 'disabled' : ''} onclick="goToPage(${CURRENT_PAGE - 1})">← Prev</button>`;
+
+            const pages = [];
+            for (let p = 1; p <= totalPages; p++) {
+                if (p === 1 || p === totalPages || Math.abs(p - CURRENT_PAGE) <= 2) {
+                    pages.push(p);
+                } else if (pages[pages.length - 1] !== '...') {
+                    pages.push('...');
+                }
+            }
+
+            pages.forEach(p => {
+                if (p === '...') {
+                    html += `<span style="padding:0 6px; color:#64748b; font-weight:700;">…</span>`;
+                } else {
+                    html += `<button type="button" class="page-btn ${p === CURRENT_PAGE ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+                }
+            });
+
+            html += `<button type="button" class="page-btn" ${CURRENT_PAGE === totalPages ? 'disabled' : ''} onclick="goToPage(${CURRENT_PAGE + 1})">Next →</button>`;
+            bar.innerHTML = html;
+        }
+
+        function goToPage(p) {
+            CURRENT_PAGE = p;
+            renderSchemesPage();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* FILTER ACTIONS */
+        function setLevelFilter(lvl) {
+            STATE.level = lvl;
+            document.querySelectorAll('.level-btn').forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-level') === lvl);
+            });
+            applyAllFilters();
+        }
+
+        function setCategory(cat) {
+            STATE.category = STATE.category === cat ? '' : cat;
+            applyAllFilters();
+        }
+
+        function onSearchInput(val) {
+            STATE.query = val.trim();
+            document.getElementById('search-clear-btn').style.display = STATE.query ? 'inline-flex' : 'none';
+            applyAllFilters();
+        }
+
+        function clearSearch() {
+            const inp = document.getElementById('scheme-search');
+            inp.value = '';
+            STATE.query = '';
+            document.getElementById('search-clear-btn').style.display = 'none';
+            applyAllFilters();
+        }
+
+        function filterByTag(tag) {
+            const inp = document.getElementById('scheme-search');
+            inp.value = tag;
+            onSearchInput(tag);
+        }
+
+        function toggleBoolFilter(key) {
+            STATE[key] = !STATE[key];
+            const mapId = {
+                dbtScheme: 'tog-dbt',
+                isBpl: 'tog-bpl',
+                isStudent: 'tog-student',
+                disability: 'tog-disability',
+                minority: 'tog-minority',
+                is_guarantee: 'tog-guarantee'
+            };
+            const el = document.getElementById(mapId[key]);
+            if (el) el.classList.toggle('active', STATE[key]);
+            applyAllFilters();
+        }
+
+        function setFacet(key, val) {
+            STATE[key] = val;
+            const pillGroupMap = {
+                gender: 'pills-gender',
+                caste: 'pills-caste',
+                residence: 'pills-residence',
+                benefitType: 'pills-benefitType',
+                applicationMode: 'pills-appMode'
+            };
+            if (pillGroupMap[key]) {
+                const container = document.getElementById(pillGroupMap[key]);
+                if (container) {
+                    container.querySelectorAll('.f-pill').forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-val') === val);
+                    });
+                }
+            }
+            applyAllFilters();
+        }
+
+        function setSortOrder(val) {
+            STATE.sort = val;
+            applyAllFilters();
+        }
+
+        function setLang(lang) {
+            CURRENT_LANG = lang;
+            document.getElementById('lang-kn').classList.toggle('active', lang === 'kn');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+
+            document.getElementById('lbl-tab-all').textContent = lang === 'kn' ? 'ಎಲ್ಲಾ ಯೋಜನೆಗಳು' : 'All Schemes';
+            document.getElementById('lbl-tab-state').textContent = lang === 'kn' ? '🏛️ ಕರ್ನಾಟಕ ರಾಜ್ಯ' : '🏛️ State Schemes';
+            document.getElementById('lbl-tab-central').textContent = lang === 'kn' ? '🇮🇳 ಕೇಂದ್ರ ಸರ್ಕಾರ' : '🇮🇳 Central Schemes';
+            document.getElementById('scheme-search').placeholder = lang === 'kn'
+                ? 'ಯೋಜನೆ, ಇಲಾಖೆ ಅಥವಾ ಟ್ಯಾಗ್ ಹುಡುಕಿ... (Search 885 schemes)'
+                : 'Search scheme name, ministry, or keyword (885 schemes)...';
+
+            applyAllFilters();
+        }
+
+        function setViewMode(mode) {
+            VIEW_MODE = mode;
+            document.getElementById('view-grid-btn').classList.toggle('active', mode === 'grid');
+            document.getElementById('view-list-btn').classList.toggle('active', mode === 'list');
+            renderSchemesPage();
+        }
+
+        function resetAllFilters() {
+            STATE.level = 'all';
+            STATE.category = '';
+            STATE.query = '';
+            STATE.gender = '';
+            STATE.age = '';
+            STATE.caste = '';
+            STATE.residence = '';
+            STATE.benefitType = '';
+            STATE.occupation = '';
+            STATE.employmentStatus = '';
+            STATE.maritalStatus = '';
+            STATE.disabilityPercentage = '';
+            STATE.applicationMode = '';
+            STATE.ministry = '';
+            STATE.dbtScheme = false;
+            STATE.isBpl = false;
+            STATE.isStudent = false;
+            STATE.disability = false;
+            STATE.minority = false;
+            STATE.is_guarantee = false;
+
+            document.getElementById('scheme-search').value = '';
+            document.getElementById('search-clear-btn').style.display = 'none';
+            document.querySelectorAll('.level-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-level') === 'all'));
+            document.querySelectorAll('.q-toggle').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.f-pills').forEach(grp => {
+                grp.querySelectorAll('.f-pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-val') === ''));
+            });
+            ['sel-age', 'sel-occupation', 'sel-employment', 'sel-marital', 'sel-disability-pct', 'sel-ministry'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+
+            applyAllFilters();
+        }
+
+        function toggleMobileFilters() {
+            const dock = document.getElementById('filter-dock');
+            const closeBtn = document.getElementById('close-mobile-dock');
+            dock.classList.toggle('open');
+            closeBtn.style.display = dock.classList.contains('open') ? 'inline-block' : 'none';
+        }
+
+        /* SLIDE-OVER SCHEME DETAIL MODAL (WITH LIVE MYSCHEME API ENRICHMENT) */
+        async function openSchemeDrawer(slug) {
+            const s = ALL_SCHEMES.find(x => x.slug === slug || x.id === slug);
+            if (!s) return;
+
+            const dlg = document.getElementById('scheme-drawer');
+            const isState = s.level === 'State';
+            document.getElementById('drawer-badges').innerHTML = `
+                <span class="lvl-badge ${isState ? 'state' : 'central'}">${isState ? '🏛️ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯೋಜನೆ' : '🇮🇳 ಕೇಂದ್ರ ಸರ್ಕಾರದ ಯೋಜನೆ'}</span>
+                ${s.dbtScheme ? '<span class="dbt-badge">⚡ DBT Scheme</span>' : ''}
+                ${(s.benefitTypes || []).map(b => `<span class="btype-badge">${escapeHtml(b)}</span>`).join('')}
+            `;
+
+            const primaryTitle = CURRENT_LANG === 'kn' ? (s.name_kn || s.name_en) : (s.name_en || s.name_kn);
+            const secondaryTitle = CURRENT_LANG === 'kn' ? s.name_en : s.name_kn;
+            document.getElementById('drawer-title').textContent = primaryTitle;
+            document.getElementById('drawer-subtitle').textContent = `${secondaryTitle || ''} • ${s.ministry_kn || s.ministry_en}`;
+
+            const body = document.getElementById('drawer-body');
+            const genders = (s.genders || []).filter(x => x !== 'All').join(', ') || 'ಎಲ್ಲಾ (All)';
+            const castes = (s.castes || []).filter(x => x !== 'All').join(', ') || 'ಎಲ್ಲಾ ವರ್ಗಗಳು (All)';
+            const res = (s.residences || []).filter(x => x !== 'Both').join(', ') || 'ಗ್ರಾಮೀಣ ಮತ್ತು ನಗರ (Both)';
+
+            body.innerHTML = `
+                <div class="drawer-meta-grid">
+                    <div class="meta-box"><span>ಲಿಂಗ / Gender</span><strong>${escapeHtml(genders)}</strong></div>
+                    <div class="meta-box"><span>ವರ್ಗ / Caste</span><strong>${escapeHtml(castes)}</strong></div>
+                    <div class="meta-box"><span>ಪ್ರದೇಶ / Area</span><strong>${escapeHtml(res)}</strong></div>
+                    <div class="meta-box"><span>ಅರ್ಜಿ ವಿಧಾನ / Mode</span><strong>${escapeHtml((s.applicationModes || ['Online']).join(', '))}</strong></div>
+                </div>
+                <div class="drawer-section">
+                    <h4>📋 ಯೋಜನೆಯ ವಿವರ (Overview)</h4>
+                    <p>${escapeHtml(CURRENT_LANG === 'kn' ? (s.description_kn || s.description_en) : (s.description_en || s.description_kn))}</p>
+                </div>
+                ${s.benefits_kn || s.benefits_en ? `
+                <div class="drawer-section">
+                    <h4>🎁 ಪ್ರಮುಖ ಸೌಲಭ್ಯಗಳು (Benefits)</h4>
+                    <p>${escapeHtml(CURRENT_LANG === 'kn' ? (s.benefits_kn || s.benefits_en) : (s.benefits_en || s.benefits_kn))}</p>
+                </div>` : ''}
+                ${s.documents_kn && s.documents_kn.length ? `
+                <div class="drawer-section">
+                    <h4>📄 ಬೇಕಾಗುವ ದಾಖಲೆಗಳು (Required Documents)</h4>
+                    <p>${(CURRENT_LANG === 'kn' ? s.documents_kn : (s.documents_en || s.documents_kn)).map(d => `• ${escapeHtml(d)}`).join('<br>')}</p>
+                </div>` : ''}
+                ${s.how_to_apply_kn || s.how_to_apply_en ? `
+                <div class="drawer-section">
+                    <h4>🚀 ಅರ್ಜಿ ಸಲ್ಲಿಸುವ ವಿಧಾನ (How to Apply)</h4>
+                    <p>${escapeHtml(CURRENT_LANG === 'kn' ? (s.how_to_apply_kn || s.how_to_apply_en) : (s.how_to_apply_en || s.how_to_apply_kn))}</p>
+                </div>` : ''}
+                <div id="live-myscheme-extra"></div>
+            `;
+
+            const officialUrl = s.apply_link || `https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug)}`;
+            const detailUrl = `/scheme-detail.html?id=${encodeURIComponent(s.slug)}`;
+
+            document.getElementById('drawer-foot').innerHTML = `
+                <a href="${escapeAttr(detailUrl)}" class="btn-secondary-action">📖 ಪೂರ್ಣ ಪುಟ (Full Page)</a>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <a href="https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug)}" target="_blank" rel="noopener" class="btn-secondary-action">🔗 myScheme Portal ↗</a>
+                    <a href="${escapeAttr(officialUrl)}" target="_blank" rel="noopener" class="btn-primary-action">🚀 ಈಗಲೇ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ (Apply Now) ↗</a>
+                </div>
+            `;
+
+            dlg.showModal();
+
+            // Live fetch additional details from myScheme public API if available
+            try {
+                const apiLang = CURRENT_LANG === 'kn' ? 'kn' : 'en';
+                const r = await fetch(`https://api.myscheme.gov.in/schemes/v6/public/schemes?slug=${encodeURIComponent(s.slug)}&lang=${apiLang}`, {
+                    headers: { 'x-api-key': 'tYTy5eEhlu9rFjyxuCr7ra7ACp4dv1RH8gWuHTDc' }
+                });
+                if (r.ok) {
+                    const j = await r.json();
+                    const langObj = (j.data && (j.data[apiLang] || j.data.kn || j.data.en)) || {};
+                    const sc = langObj.schemeContent || {};
+                    const ec = langObj.eligibilityCriteria || j.data?.eligibilityCriteria || {};
+                    let extraHtml = '';
+                    if (sc.benefits_md && !s.benefits_kn) {
+                        extraHtml += `<div class="drawer-section"><h4>🎁 ಸೌಲಭ್ಯಗಳು (Benefits)</h4><div>${formatMd(sc.benefits_md)}</div></div>`;
+                    }
+                    if (ec.eligibilityDescription_md) {
+                        extraHtml += `<div class="drawer-section"><h4>✅ ಅರ್ಹತಾ ಮಾನದಂಡಗಳು (Eligibility Criteria)</h4><div>${formatMd(ec.eligibilityDescription_md)}</div></div>`;
+                    }
+                    if (sc.references && sc.references.length) {
+                        const validRefs = sc.references.filter(ref => ref.url && ref.url.startsWith('http'));
+                        if (validRefs.length) {
+                            extraHtml += `<div class="drawer-section"><h4>🔗 ಅಧಿಕೃತ ಲಿಂಕ್‌ಗಳು (Official Links)</h4><div style="display:flex;gap:10px;flex-wrap:wrap;">${
+                                validRefs.map(ref => `<a href="${escapeAttr(ref.url)}" target="_blank" rel="noopener" style="color:#16a34a;font-weight:700;">↗ ${escapeHtml(ref.title || 'Official Link')}</a>`).join('')
+                            }</div></div>`;
+                        }
+                    }
+                    const container = document.getElementById('live-myscheme-extra');
+                    if (container && extraHtml) container.innerHTML = extraHtml;
+                }
+            } catch (e) {
+                // Silent fallback to local data
+            }
+        }
+
+        function closeSchemeDrawer() {
+            const dlg = document.getElementById('scheme-drawer');
+            if (dlg && dlg.open) dlg.close();
+        }
+
+        function formatMd(md) {
+            if (!md) return '';
+            return escapeHtml(md)
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function escapeAttr(str) {
+            return String(str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        document.addEventListener('DOMContentLoaded', initPortal);
+    </script>
+</body>
+</html>
+'''
+
+with open("scheme-checker.html", "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
+
+print("Generated clean, creative scheme-checker.html, lines:", len(HTML_CONTENT.splitlines()))

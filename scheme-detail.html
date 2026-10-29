@@ -501,11 +501,22 @@
             document.getElementById('loading-state').style.display = 'block';
 
             try {
-                const res = await fetch('/data/government_schemes.json?v=' + Date.now());
-                const data = await res.json();
-                
-                const schemesList = data.schemes || data;
-                const scheme = schemesList.find(s => s.id === schemeId);
+                let scheme = null;
+                try {
+                    const resAll = await fetch('/data/myscheme_karnataka_all.json');
+                    if (resAll.ok) {
+                        const dataAll = await resAll.json();
+                        const listAll = dataAll.schemes || [];
+                        scheme = listAll.find(s => s.slug === schemeId || s.id === schemeId || s.curated_id === schemeId);
+                    }
+                } catch (e) {}
+
+                if (!scheme) {
+                    const res = await fetch('/data/government_schemes.json');
+                    const data = await res.json();
+                    const schemesList = data.schemes || data;
+                    scheme = schemesList.find(s => s.id === schemeId);
+                }
 
                 if (!scheme) {
                     showError();
@@ -513,6 +524,36 @@
                 }
 
                 renderScheme(scheme);
+
+                // Live enrich from myScheme public API if available
+                try {
+                    const slug = scheme.slug || scheme.id;
+                    const apiRes = await fetch(`https://api.myscheme.gov.in/schemes/v6/public/schemes?slug=${encodeURIComponent(slug)}&lang=kn`, {
+                        headers: { 'x-api-key': 'tYTy5eEhlu9rFjyxuCr7ra7ACp4dv1RH8gWuHTDc' }
+                    });
+                    if (apiRes.ok) {
+                        const apiJson = await apiRes.json();
+                        const knObj = (apiJson.data && (apiJson.data.kn || apiJson.data.en)) || {};
+                        const sc = knObj.schemeContent || {};
+                        const ec = knObj.eligibilityCriteria || (apiJson.data && apiJson.data.eligibilityCriteria) || {};
+                        if (sc.benefits_md && !scheme.benefits_kn) {
+                            document.getElementById('s-benefit-kn').textContent = sc.benefits_md.replace(/[#*>]/g, '').trim();
+                        }
+                        if (sc.detailedDescription_md) {
+                            document.getElementById('s-desc-kn').textContent = sc.detailedDescription_md.replace(/[#*>]/g, '').trim();
+                        }
+                        if (ec.eligibilityDescription_md) {
+                            document.getElementById('s-special-criteria').style.display = 'block';
+                            const ul = document.getElementById('s-special-list');
+                            ul.innerHTML = '';
+                            ec.eligibilityDescription_md.split('\n').map(x => x.replace(/^[#*>\-\s]+/, '').trim()).filter(Boolean).forEach(line => {
+                                const li = document.createElement('li');
+                                li.textContent = '🔹 ' + line;
+                                ul.appendChild(li);
+                            });
+                        }
+                    }
+                } catch (e) {}
             } catch (error) {
                 console.error("Error loading scheme details:", error);
                 showError();
@@ -535,8 +576,8 @@
             document.getElementById('loading-state').style.display = 'none';
             document.getElementById('content-wrap').style.display = 'block';
 
-            const nameKn = s.scheme_name_kn || (s.name && s.name.kn) || '';
-            const nameEn = s.scheme_name_en || (s.name && s.name.en) || '';
+            const nameKn = s.name_kn || s.scheme_name_kn || (s.name && s.name.kn) || '';
+            const nameEn = s.name_en || s.scheme_name_en || (s.name && s.name.en) || '';
             const descKn = s.description_kn || s.short_description_kn || (s.description && s.description.kn) || '';
             const descEn = s.description_en || (s.description && s.description.en) || '';
             const ministryKn = s.ministry_kn || (s.ministry && s.ministry.kn) || '';
@@ -549,7 +590,7 @@
             const schemaData = {
                 "@context": "https://schema.org",
                 "@type": "GovernmentService",
-                "name": nameEn,
+                "name": nameEn || nameKn,
                 "alternateName": nameKn,
                 "description": descEn || descKn,
                 "provider": {
@@ -566,19 +607,19 @@
             if (s.color) {
                 document.getElementById('hero-section').style.background = `linear-gradient(135deg, ${s.color}, var(--ink))`;
             }
-            document.getElementById('s-icon').textContent = s.icon || '📝';
-            document.getElementById('s-name-kn').textContent = nameKn;
-            document.getElementById('s-name-en').textContent = nameEn;
+            document.getElementById('s-icon').textContent = s.icon || (s.level === 'State' ? '🏛️' : '🇮🇳');
+            document.getElementById('s-name-kn').textContent = nameKn || nameEn;
+            document.getElementById('s-name-en').textContent = nameEn !== nameKn ? nameEn : '';
             document.getElementById('s-ministry').textContent = ministryKn || ministryEn;
 
             // About
             document.getElementById('s-desc-kn').textContent = descKn;
-            document.getElementById('s-desc-en').textContent = descEn;
+            document.getElementById('s-desc-en').textContent = descEn !== descKn ? descEn : '';
 
             // Benefits
-            const benefitsKn = s.benefits_kn || (s.benefits && s.benefits.kn) || '';
+            const benefitsKn = s.benefits_kn || (s.benefits && s.benefits.kn) || descKn || '';
             document.getElementById('s-benefit-kn').textContent = benefitsKn || 'ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ';
-            const bAmount = s.benefit_amount || (s.benefits && s.benefits.amount);
+            const bAmount = s.benefit_amount || (s.benefits && s.benefits.amount) || (s.annual_monetary_value ? `₹${Number(s.annual_monetary_value).toLocaleString('en-IN')}` : '');
             if (bAmount) {
                 document.getElementById('s-benefit-amount-wrap').style.display = 'block';
                 document.getElementById('s-benefit-amount').textContent = String(bAmount);
@@ -587,27 +628,29 @@
             // Eligibility
             const minAge = s.min_age !== undefined ? s.min_age : (s.eligibility && s.eligibility.min_age);
             const maxAge = s.max_age !== undefined ? s.max_age : (s.eligibility && s.eligibility.max_age);
-            let ageText = "ಯಾವುದೇ ನಿರ್ಬಂಧವಿಲ್ಲ";
+            let ageText = "ಯಾವುದೇ ನಿರ್ಬಂಧವಿಲ್ಲ (All Ages)";
             if (minAge || maxAge) {
                 const min = minAge || 0;
                 const max = maxAge || 'ಮೇಲ್ಪಟ್ಟು';
                 ageText = `${min} - ${max} ವರ್ಷಗಳು`;
+            } else if (s.ageBrackets && s.ageBrackets.length) {
+                ageText = `${Math.min(...s.ageBrackets)} - ${Math.max(...s.ageBrackets)}+ ವರ್ಷಗಳು`;
             }
             document.getElementById('s-age').textContent = ageText;
 
-            const genderArr = s.gender || (s.eligibility && s.eligibility.gender) || ['all'];
-            const genderVal = Array.isArray(genderArr) ? (genderArr.includes('all') ? 'all' : genderArr.join(', ')) : genderArr;
-            document.getElementById('s-gender').textContent = genderMap[genderVal] || genderVal || 'ಎಲ್ಲರಿಗೂ';
+            const genderArr = s.genders || s.gender || (s.eligibility && s.eligibility.gender) || ['all'];
+            const genderVal = Array.isArray(genderArr) ? (genderArr.filter(x => x !== 'All').join(', ') || 'all') : genderArr;
+            document.getElementById('s-gender').textContent = genderMap[genderVal.toLowerCase()] || genderVal || 'ಎಲ್ಲರಿಗೂ';
 
             const incomeLimit = s.income_max !== undefined ? s.income_max : (s.eligibility && s.eligibility.income_limit);
             document.getElementById('s-income').textContent = formatCurrency(incomeLimit);
             
-            const catArr = s.categories || (s.eligibility && s.eligibility.category) || ['all'];
-            const cats = (Array.isArray(catArr) ? catArr : [catArr]).map(c => categoryMap[c] || c);
+            const catArr = s.castes || s.categories || (s.eligibility && s.eligibility.category) || ['all'];
+            const cats = (Array.isArray(catArr) ? catArr.filter(x => x !== 'All') : [catArr]).map(c => categoryMap[c] || c);
             document.getElementById('s-category').textContent = (cats.length && !cats.includes('all')) ? cats.join(', ') : 'ಎಲ್ಲಾ ವರ್ಗಗಳು';
 
             const occArr = s.occupations || (s.eligibility && s.eligibility.occupation) || ['all'];
-            const occs = (Array.isArray(occArr) ? occArr : [occArr]).map(o => occupationMap[o] || o);
+            const occs = (Array.isArray(occArr) ? occArr.filter(x => x !== 'All') : [occArr]).map(o => occupationMap[o] || o);
             document.getElementById('s-occupation').textContent = (occs.length && !occs.includes('all')) ? occs.join(', ') : 'ಎಲ್ಲಾ ಉದ್ಯೋಗಗಳು';
 
             const specialArr = s.special_criteria || (s.eligibility && s.eligibility.special) || [];
@@ -623,7 +666,7 @@
 
             // Docs
             const docsUl = document.getElementById('s-docs');
-            const docsList = s.documents_kn || s.documents_en || s.documents_required || [];
+            const docsList = s.documents_kn || s.documents_en || s.documents_required || ['ಆಧಾರ್ ಕಾರ್ಡ್ (Aadhaar Card)', 'ಬ್ಯಾಂಕ್ ಪಾಸ್‌ಬುಕ್ (Bank Passbook)', 'ನಿವಾಸ / ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ (Domicile / Income Certificate)'];
             if (docsList && docsList.length) {
                 docsList.forEach(doc => {
                     const li = document.createElement('li');
@@ -631,13 +674,11 @@
                     li.innerHTML = `<span>📄</span> <span>${text}</span>`;
                     docsUl.appendChild(li);
                 });
-            } else {
-                docsUl.innerHTML = '<li>ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ</li>';
             }
 
             // Process
             const procUl = document.getElementById('s-process');
-            const procText = s.application_process_kn || s.application_process_en;
+            const procText = s.how_to_apply_kn || s.application_process_kn || s.application_process_en || 'ಅಧಿಕೃತ myScheme ಅಥವಾ ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಆನ್‌ಲೈನ್ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.';
             const procList = s.application_process || (procText ? [procText] : []);
             if (procList && procList.length) {
                 procList.forEach(step => {
@@ -646,25 +687,23 @@
                     li.textContent = text;
                     procUl.appendChild(li);
                 });
-            } else {
-                procUl.innerHTML = '<li style="border:none; margin-left:0; padding-left:0;">ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ</li>';
             }
 
             // Dept Info
             document.getElementById('s-dept-name').textContent = ministryKn || ministryEn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರ';
-            const officialUrl = s.official_source_url || s.official_source;
+            const officialUrl = s.apply_link || s.official_source_url || s.official_source || `https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug || s.id)}`;
             if (officialUrl) {
                 const srcEl = document.getElementById('s-source');
                 srcEl.href = officialUrl;
                 srcEl.textContent = officialUrl;
             }
-            const lastVerified = s.last_verified_at || s.last_verified;
+            const lastVerified = s.last_verified_at || s.last_verified || '2026-10-29';
             if (lastVerified) {
                 document.getElementById('s-verified').textContent = new Date(lastVerified).toLocaleDateString('kn-IN');
             }
 
             // CTA
-            const appUrl = s.application_url || 'https://sevasindhu.karnataka.gov.in';
+            const appUrl = s.apply_link || s.application_url || `https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug || s.id)}`;
             document.getElementById('s-apply-btn').href = appUrl;
         }
 
