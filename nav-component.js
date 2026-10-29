@@ -27,8 +27,20 @@
 
   const navHTML = `
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&display=swap');
 
+:root {
+  --font-kn: 'Anek Kannada', sans-serif !important;
+  --font-main: 'Anek Kannada', sans-serif !important;
+  --font-display: 'Anek Kannada', sans-serif !important;
+  --font-serif: 'Anek Kannada', sans-serif !important;
+  --font-sans: 'Anek Kannada', sans-serif !important;
+}
+
+/* Global Anek Kannada font & overflow protection */
+html, body, button, input, select, textarea {
+  font-family: 'Anek Kannada', system-ui, -apple-system, sans-serif !important;
+}
 /* Global overflow protection */
 html, body {
   overflow-x: hidden !important;

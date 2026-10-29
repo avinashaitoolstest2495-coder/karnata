@@ -552,6 +552,15 @@
                                 ul.appendChild(li);
                             });
                         }
+                        if (sc.references && sc.references.length) {
+                            const validRef = sc.references.find(r => r && r.url && r.url.startsWith('http') && !r.url.includes('myscheme.gov.in'));
+                            if (validRef) {
+                                const srcEl = document.getElementById('s-source');
+                                srcEl.href = validRef.url;
+                                srcEl.textContent = validRef.url;
+                                document.getElementById('s-apply-btn').href = validRef.url;
+                            }
+                        }
                     }
                 } catch (e) {}
             } catch (error) {
@@ -678,7 +687,7 @@
 
             // Process
             const procUl = document.getElementById('s-process');
-            const procText = s.how_to_apply_kn || s.application_process_kn || s.application_process_en || 'ಅಧಿಕೃತ myScheme ಅಥವಾ ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಆನ್‌ಲೈನ್ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.';
+            const procText = s.how_to_apply_kn || s.application_process_kn || s.application_process_en || 'ಸಂಬಂಧಪಟ್ಟ ಇಲಾಖೆಯ ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್ ಅಥವಾ ಸೇವಾ ಸಿಂಧು ಪೋರ್ಟಲ್ ಮೂಲಕ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.';
             const procList = s.application_process || (procText ? [procText] : []);
             if (procList && procList.length) {
                 procList.forEach(step => {
@@ -691,7 +700,10 @@
 
             // Dept Info
             document.getElementById('s-dept-name').textContent = ministryKn || ministryEn || 'ಕರ್ನಾಟಕ ಸರ್ಕಾರ';
-            const officialUrl = s.apply_link || s.official_source_url || s.official_source || `https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug || s.id)}`;
+            const fallbackPortal = s.level === 'State' ? 'https://sevasindhu.karnataka.gov.in' : 'https://www.india.gov.in/my-government/schemes';
+            const cleanApply = (s.apply_link && !s.apply_link.includes('myscheme.gov.in')) ? s.apply_link : '';
+            const cleanSource = (s.official_source_url && !s.official_source_url.includes('myscheme.gov.in')) ? s.official_source_url : '';
+            const officialUrl = cleanApply || cleanSource || fallbackPortal;
             if (officialUrl) {
                 const srcEl = document.getElementById('s-source');
                 srcEl.href = officialUrl;
@@ -703,8 +715,7 @@
             }
 
             // CTA
-            const appUrl = s.apply_link || s.application_url || `https://www.myscheme.gov.in/schemes/${encodeURIComponent(s.slug || s.id)}`;
-            document.getElementById('s-apply-btn').href = appUrl;
+            document.getElementById('s-apply-btn').href = officialUrl;
         }
 
         // Initialize

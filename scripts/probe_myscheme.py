@@ -1,17 +1,17 @@
-import json, re, sys
+import urllib.request
+import json
+import sys
+
 sys.stdout.reconfigure(encoding="utf-8")
 
-with open("data/myscheme_raw_harvest.json", "r", encoding="utf-8") as f:
-    ms = json.load(f)
-with open("data/government_schemes.json", "r", encoding="utf-8") as f:
-    cs = json.load(f)["schemes"]
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "x-api-key": "tYTy5eEhlu9rFjyxuCr7ra7ACp4dv1RH8gWuHTDc",
+    "Origin": "https://www.myscheme.gov.in",
+    "Referer": "https://www.myscheme.gov.in/"
+}
 
-def norm(s):
-    return re.sub(r'[^a-z0-9]', '', (s or '').lower())
+d = json.loads(urllib.request.urlopen(urllib.request.Request("https://api.myscheme.gov.in/schemes/v6/public/schemes?slug=iss&lang=kn", headers=HEADERS), timeout=10).read().decode("utf-8", "ignore"))["data"]
 
-ms_by_norm = {norm(s["name_en"]): s for s in ms}
-for c in cs:
-    t = c.get("scheme_name_en") or ""
-    n = norm(t)
-    if n in ms_by_norm:
-        print("EXACT:", t, "==", ms_by_norm[n]["name_en"])
+print("=== kn.schemeContent.benefits FULL ===")
+print(json.dumps(d["kn"]["schemeContent"].get("benefits"), indent=2, ensure_ascii=False))
