@@ -255,12 +255,14 @@
       <h2 style="font-size:20px; font-weight:900; margin-bottom:6px;">ಕರ್ನಾಟ ಅಡ್ಮಿನ್ ದ್ವಾರ (Admin Only)</h2>
       <p style="font-size:13px; color:#94A3B8; margin-bottom:20px;">ಪೋಸ್ಟರ್ ನಿರ್ವಹಣೆಗೆ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ.</p>
       
-      <div style="position:relative; margin-bottom:14px;">
-        <input type="password" id="gatePassInput" placeholder="ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್..." style="width:100%; background:#1E293B; border:1px solid #334155; border-radius:10px; padding:12px 42px 12px 14px; color:#FFF; font-size:15px; outline:none;" onkeydown="if(event.key==='Enter') karnataCheckGatePass();">
-        <button type="button" onclick="karnataTogglePassEye()" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94A3B8; cursor:pointer;">👁️</button>
-      </div>
-      <div id="gateErrorMsg" style="color:#F43F5E; font-size:12.5px; margin-bottom:12px; display:none;">❌ ಪಾಸ್‌ವರ್ಡ್ ತಪ್ಪಾಗಿದೆ!</div>
-      <button type="button" onclick="karnataCheckGatePass()" style="width:100%; background:var(--primary); color:#FFF; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer;">ಅನ್ಲಾಕ್ ಮಾಡಿ (Unlock)</button>
+      <form onsubmit="event.preventDefault(); karnataCheckGatePass();">
+        <div style="position:relative; margin-bottom:14px;">
+          <input type="password" id="gatePassInput" placeholder="ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್..." style="width:100%; background:#1E293B; border:1px solid #334155; border-radius:10px; padding:12px 42px 12px 14px; color:#FFF; font-size:15px; outline:none;" required autofocus>
+          <button type="button" onclick="karnataTogglePassEye()" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94A3B8; cursor:pointer;">👁️</button>
+        </div>
+        <div id="gateErrorMsg" style="color:#F43F5E; font-size:12.5px; margin-bottom:12px; display:none;">❌ ಪಾಸ್‌ವರ್ಡ್ ತಪ್ಪಾಗಿದೆ!</div>
+        <button type="submit" style="width:100%; background:var(--primary); color:#FFF; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer;">ಅನ್ಲಾಕ್ ಮಾಡಿ (Unlock)</button>
+      </form>
     </div>
   </div>
 
