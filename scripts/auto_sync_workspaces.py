@@ -27,7 +27,7 @@ def sync_directories(src: Path, dst: Path):
                 continue
             sf = Path(root) / f
             df = target_dir / f
-            if not df.exists() or (sf.stat().st_mtime > df.stat().st_mtime and sf.stat().st_size != df.stat().st_size):
+            if not df.exists() or sf.stat().st_mtime > df.stat().st_mtime:
                 try:
                     shutil.copy2(sf, df)
                     synced += 1

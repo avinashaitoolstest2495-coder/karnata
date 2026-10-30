@@ -10,6 +10,6 @@
     "sync:panchatantra": "node scratch/fast_karnataka_staff_scraper.js"
   },
   "devDependencies": {
-    "wrangler": "^4.126.0"
+    "wrangler": "^4.136.3"
   }
 }
