@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ಕನ್ನಡ ಪೋಸ್ಟರ್ & ನುಡಿಮುತ್ತು ಸ್ಟುಡಿಯೋ | Kannada Posters & Quotes Maker — Karnata.in</title>
-<meta name="description" content="ಕನ್ನಡ ನುಡಿಮುತ್ತುಗಳು, ಕಾವ್ಯ, ವಚನ, ಪ್ರೇರಣೆ, ಶುಭೋದಯ, ಹಬ್ಬ ಹಾಗೂ ರಾಜ್ಯೋತ್ಸವದ ಆಕರ್ಷಕ ಪೋಸ್ಟರ್‌ಗಳನ್ನು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋದೊಂದಿಗೆ ಸುಲಭವಾಗಿ ರಚಿಸಿ, ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ ಮತ್ತು WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಹಂಚಿಕೊಳ್ಳಿ.">
+<meta name="description" content="ಕನ್ನಡ ನುಡಿಮುತ್ತುಗಳು, ಕಾವ್ಯ, ವಚನ, ಪ್ರೇರಣೆ, ಶುಭೋದಯ, ಹಬ್ಬ ಹಾಗೂ ರಾಜ್ಯೋತ್ಸವದ ಆಕರ್ಷಕ ಪೋಸ್ಟರ್‌ಗಳನ್ನು ಸುಲಭವಾಗಿ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋದೊಂದಿಗೆ ಎಡಿಟ್ ಮಾಡಿ ಮತ್ತು WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಹಂಚಿಕೊಳ್ಳಿ.">
 <meta name="keywords" content="Kannada Posters, Kannada Quotes Maker, Kannada Poster Maker, ಕನ್ನಡ ನುಡಿಮುತ್ತು ಪೋಸ್ಟರ್, Kannada Status Maker, Kannada Daily Quotes, Kuvempu Quotes, Basavanna Vachana, WhatsApp Status Kannada, Instagram Kannada Quotes, Pinterest Kannada Posters">
 <link rel="canonical" href="https://karnata.in/kannada-posters">
 
@@ -39,7 +39,7 @@
         "price": "0",
         "priceCurrency": "INR"
       },
-      "description": "Minimalist Pinterest-style Kannada poster and quote maker. Create, edit, personalize with your name and photo, download HD and share across social media."
+      "description": "Minimalist Pinterest-style Kannada poster and quote maker. Upload your posters from any PC/phone, edit with your name and photo, download HD and share across social media."
     }
   ]
 }
@@ -89,7 +89,7 @@ html, body {
 
 /* ── PINTEREST MINIMAL HEADER & SEARCH ── */
 .pin-header {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--stone-200);
@@ -105,7 +105,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -132,9 +132,9 @@ html, body {
 
 .pin-search-wrap {
   flex: 1;
-  max-width: 560px;
+  max-width: 520px;
   position: relative;
-  min-width: 240px;
+  min-width: 220px;
 }
 
 .pin-search-input {
@@ -165,6 +165,34 @@ html, body {
   font-size: 15px;
   color: var(--stone-400);
   pointer-events: none;
+}
+
+.pin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pin-upload-btn {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1.5px solid #FDE68A;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.pin-upload-btn:hover {
+  background: #FDE68A;
+  color: #78350F;
+  transform: translateY(-1px);
 }
 
 .pin-create-btn {
@@ -500,7 +528,56 @@ html, body {
   color: var(--stone-600);
 }
 
-/* ── CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── */
+/* ── MODAL 1: UNIVERSAL UPLOAD MODAL (FROM ANY PC / PHONE) ── */
+.pin-upload-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.pin-upload-modal.active {
+  display: flex;
+}
+
+.pin-upload-content {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 580px;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  padding: 26px;
+  border: 1px solid var(--stone-200);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.pin-drop-zone {
+  border: 2px dashed #CBD5E1;
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--stone-50);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.pin-drop-zone:hover, .pin-drop-zone.dragover {
+  border-color: var(--pin-red);
+  background: #FFF1F2;
+}
+
+/* ── MODAL 2: CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── */
 .pin-modal {
   position: fixed;
   inset: 0;
@@ -888,9 +965,15 @@ html, body {
       <input type="text" id="pinSearchInput" class="pin-search-input" placeholder="ನುಡಿಮುತ್ತುಗಳು, ಕವಿಗಳು (ಕುವೆಂಪು, ಬಸವಣ್ಣ...) ಅಥವಾ ಹಬ್ಬಗಳನ್ನು ಹುಡುಕಿ..." oninput="filterPins()">
     </div>
 
-    <button class="pin-create-btn" onclick="openStudioModal(null)">
-      ➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ (Create)
-    </button>
+    <div class="pin-header-actions">
+      <!-- Direct 1-Click Upload from ANY PC or Phone -->
+      <button class="pin-upload-btn" onclick="openUploadModal()" title="ಯಾವುದೇ ಕಂಪ್ಯೂಟರ್ ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ ಹೊಸ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ">
+        ☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ (Upload)
+      </button>
+      <button class="pin-create-btn" onclick="openStudioModal(null)">
+        ➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ (Create)
+      </button>
+    </div>
   </div>
 </header>
 
@@ -898,6 +981,7 @@ html, body {
 <nav class="pin-filter-rail" aria-label="Poster Categories">
   <div class="pin-filter-inner" id="categoryRail">
     <button class="pin-chip active" onclick="selectCategory('all', this)">✨ ಎಲ್ಲಾ ಪೋಸ್ಟರ್‌ಗಳು</button>
+    <button class="pin-chip" onclick="selectCategory('community', this)">☁️ ಬಳಕೆದಾರರ ಪೋಸ್ಟರ್‌ಗಳು (User Uploads)</button>
     <button class="pin-chip" onclick="selectCategory('morning', this)">🌅 ಶುಭೋದಯ &amp; ಶುಭರಾತ್ರಿ</button>
     <button class="pin-chip" onclick="selectCategory('sahitya', this)">📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ (ಕುವೆಂಪು, ಬೇಂದ್ರೆ)</button>
     <button class="pin-chip" onclick="selectCategory('vachana', this)">📿 ವಚನ ಸಾಹಿತ್ಯ (ಬಸವಣ್ಣ)</button>
@@ -913,7 +997,7 @@ html, body {
 <div class="pin-intro">
   <div>
     <h1>ಕನ್ನಡ ನುಡಿಮುತ್ತುಗಳು &amp; ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟರ್ ಮೇಕರ್</h1>
-    <p>ನಿಮಗೆ ಇಷ್ಟವಾದ ಪೋಸ್ಟರ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ, <strong>ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋ ಸೇರಿಸಿ ಎಡಿಟ್ ಮಾಡಿ</strong> ಅಥವಾ 1-ಕ್ಲಿಕ್‌ನಲ್ಲಿ WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ.</p>
+    <p>ಯಾವುದೇ ಕಂಪ್ಯೂಟರ್ ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ <strong>"☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್"</strong> ಮಾಡಿ ನೇರವಾಗಿ ಗ್ಯಾಲರಿಗೆ ಸೇರಿಸಿ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋ ಸೇರಿಸಿ ಎಡಿಟ್ ಮಾಡಿ ಅಥವಾ 1-ಕ್ಲಿಕ್‌ನಲ್ಲಿ WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ.</p>
   </div>
   <div style="font-size:13px; font-weight:700; color:var(--stone-600);" id="pinCountLabel">
     24+ ರೆಡಿ ಪೋಸ್ಟರ್‌ಗಳು
@@ -927,7 +1011,64 @@ html, body {
   </div>
 </main>
 
-<!-- ── CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── -->
+<!-- ── MODAL 1: UNIVERSAL UPLOAD MODAL (FROM ANY PC / PHONE) ── -->
+<div class="pin-upload-modal" id="pinUploadModal" onclick="if(event.target===this) closeUploadModal()">
+  <div class="pin-upload-content">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h3 style="font-size:18px; font-weight:900; color:var(--stone-900);">☁️ ಹೊಸ ಪೋಸ್ಟರ್ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</h3>
+      <button class="pin-close-btn" onclick="closeUploadModal()">✕</button>
+    </div>
+    <p style="font-size:13px; color:var(--stone-600); margin-top:-6px;">
+      ಯಾವುದೇ PC ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ ನಿಮ್ಮ ಪೋಸ್ಟರ್ ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿ. ಇದು ತಕ್ಷಣ ವೆಬ್‌ಸೈಟ್ ಗ್ಯಾಲರಿಯಲ್ಲಿ ಪ್ರಕಟವಾಗುತ್ತದೆ!
+    </p>
+
+    <!-- Drag & Drop Zone -->
+    <div class="pin-drop-zone" id="pinDropZone" onclick="document.getElementById('directPosterFileInput').click()">
+      <input type="file" id="directPosterFileInput" accept="image/*" style="display:none" onchange="handleDirectPosterFile(event)">
+      <div id="dropZonePrompt">
+        <div style="font-size:36px; margin-bottom:8px;">📁</div>
+        <strong style="font-size:15px; color:var(--stone-900);">ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</strong>
+        <p style="font-size:12.5px; color:var(--stone-500); margin-top:4px;">ಅಥವಾ ಫೈಲ್ ಅನ್ನು ಇಲ್ಲಿಗೆ ಡ್ರ್ಯಾಗ್ &amp; ಡ್ರಾಪ್ ಮಾಡಿ (JPG, PNG, WebP)</p>
+      </div>
+      <div id="dropZonePreview" style="display:none;">
+        <img id="uploadPreviewImg" src="" alt="Preview" style="max-height:220px; border-radius:12px; margin:0 auto; display:block; box-shadow:var(--shadow-sm);">
+        <button type="button" onclick="event.stopPropagation(); resetUploadFile();" style="margin-top:10px; background:#FEE2E2; color:#DC2626; border:none; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800; cursor:pointer;">🗑️ ಬೇರೆ ಫೋಟೋ ಬದಲಾಯಿಸಿ</button>
+      </div>
+    </div>
+
+    <!-- Category & Metadata -->
+    <div class="pin-row-2">
+      <div class="pin-field">
+        <label>ವರ್ಗ (Category):</label>
+        <select id="upCategory" class="pin-select">
+          <option value="rajyotsava">💛❤️ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ</option>
+          <option value="festivals">🎉 ಹಬ್ಬ &amp; ಶುಭಾಶಯಗಳು</option>
+          <option value="sahitya">📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ</option>
+          <option value="morning">🌅 ಶುಭೋದಯ &amp; ನುಡಿಮುತ್ತು</option>
+          <option value="vachana">📿 ವಚನ ಸಾಹಿತ್ಯ</option>
+          <option value="motivation">💡 ಪ್ರೇರಣೆ &amp; ಸ್ಫೂರ್ತಿ</option>
+          <option value="love">❤️ ಪ್ರೀತಿ &amp; ಸ್ನೇಹ</option>
+        </select>
+      </div>
+      <div class="pin-field">
+        <label>ನಿಮ್ಮ ಹೆಸರು (Uploader Name):</label>
+        <input type="text" id="upAuthor" class="pin-input phonetic-input" placeholder="ಉದಾ: ಅವಿನಾಶ ವಗರ್ನಾಳ">
+      </div>
+    </div>
+
+    <div class="pin-field">
+      <label>ಶೀರ್ಷಿಕೆ ಅಥವಾ ನುಡಿಮುತ್ತು (Title / Quote):</label>
+      <input type="text" id="upQuote" class="pin-input phonetic-input" placeholder="ಉದಾ: ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು...">
+    </div>
+
+    <button type="button" class="pin-action-btn primary" id="btnSubmitUpload" style="padding:12px; font-size:15px; justify-content:center; border-radius:14px;" onclick="submitPosterUpload()">
+      🚀 ಪೋಸ್ಟರ್ ಲೈವ್ ಪ್ರಕಟಿಸಿ (Publish to Gallery)
+    </button>
+    <div id="uploadStatusMsg" style="font-size:13px; font-weight:700; text-align:center;"></div>
+  </div>
+</div>
+
+<!-- ── MODAL 2: CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── -->
 <div class="pin-modal" id="pinStudioModal" onclick="if(event.target===this) closeStudioModal()">
   <div class="pin-modal-content">
     
@@ -1146,7 +1287,7 @@ html, body {
 
 <script>
 // ── 1. COMPREHENSIVE KANNADA POSTERS & QUOTES DATABASE (ALL CATEGORIES) ──
-const PINS_DATA = [
+const BUILTIN_PINS = [
   // ── MORNING & DAILY THOUGHTS ──
   {
     id: "m1",
@@ -1389,7 +1530,7 @@ const PINS_DATA = [
     aspect: "1:1"
   },
 
-  // ── KANNADA RAJYOTSAVA & HERITAGE (5 UPLOADED HD POSTERS INCLUDED!) ──
+  // ── KANNADA RAJYOTSAVA & HERITAGE (5 UPLOADED HD POSTERS) ──
   {
     id: "raj1",
     category: "rajyotsava",
@@ -1447,15 +1588,18 @@ const PINS_DATA = [
   }
 ];
 
-// Curated Backgrounds inside Studio
+// Merged dynamic state (built-ins + Cloudflare KV / local uploads)
+let dynamicUploadedPins = [];
+let allPins = [...BUILTIN_PINS];
+
 const STUDIO_BG_PRESETS = [
-  // The 5 HD Posters
+  // 5 HD Posters
   { name: "ಹಂಪಿ ರಥ HD", type: "image", src: "/assets/images/kannada-posters/poster-1.jpg" },
   { name: "3D ಉತ್ಸವ HD", type: "image", src: "/assets/images/kannada-posters/poster-2.jpg" },
   { name: "ಅರಮನೆ ರಂಗೋಲಿ HD", type: "image", src: "/assets/images/kannada-posters/poster-3.jpg" },
   { name: "ಭುವನೇಶ್ವರಿ HD", type: "image", src: "/assets/images/kannada-posters/poster-4.jpg" },
   { name: "ಜನೋತ್ಸವ ಡೊಳ್ಳು HD", type: "image", src: "/assets/images/kannada-posters/poster-5.jpg" },
-  // Minimalist Pinterest Aesthetic Gradients
+  // Minimalist Pinterest Gradients
   { name: "ಟೆರಾಕೋಟಾ ಸಂಜೆ", type: "grad", colors: ["#7F1D1D", "#B91C1C", "#F59E0B"] },
   { name: "ಆಲಿವ್ ಗ್ರೀನ್", type: "grad", colors: ["#022C22", "#064E3B", "#047857"] },
   { name: "ಮಾರ್ನಿಂಗ್ ಸನ್", type: "grad", colors: ["#FEF3C7", "#FDE68A", "#F59E0B"] },
@@ -1465,16 +1609,63 @@ const STUDIO_BG_PRESETS = [
   { name: "ರೋಸ್ ಗೋಲ್ಡ್", type: "grad", colors: ["#881337", "#BE123C", "#FB7185"] }
 ];
 
-// ── 2. RENDER PINTEREST MASONRY PINS ──
+// ── 2. CLOUDFLARE KV & LOCALSTORAGE SYNC ENGINE ──
+const LOCAL_STORAGE_KEY = 'karnata_local_custom_posters_v1';
+
+async function syncCommunityPosters() {
+  // 1. Load from Cloudflare API if live
+  try {
+    const res = await fetch('/api/posters?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.posters) {
+        dynamicUploadedPins = data.posters;
+      }
+    }
+  } catch (e) {
+    console.log('Online posters API fallback to local cache');
+  }
+
+  // 2. Also check LocalStorage cache to ensure offline/immediate availability
+  try {
+    const rawLocal = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (rawLocal) {
+      const localList = JSON.parse(rawLocal);
+      const existingIds = new Set(dynamicUploadedPins.map(p => p.id));
+      localList.forEach(item => {
+        if (!existingIds.has(item.id)) {
+          dynamicUploadedPins.push(item);
+        }
+      });
+    }
+  } catch (e) {}
+
+  // 3. Merge: uploads first, then built-ins
+  allPins = [...dynamicUploadedPins, ...BUILTIN_PINS];
+  renderMasonry();
+}
+
+// ── 3. RENDER PINTEREST MASONRY PINS ──
 let activeCategory = "all";
 let currentSearchQuery = "";
 
 function renderMasonry() {
   const container = document.getElementById("pinMasonryGrid");
-  const filtered = PINS_DATA.filter(pin => {
-    const matchCat = activeCategory === "all" || pin.category === activeCategory;
+  const filtered = allPins.filter(pin => {
+    let matchCat = false;
+    if (activeCategory === "all") {
+      matchCat = true;
+    } else if (activeCategory === "community") {
+      matchCat = pin.id.startsWith("custom-");
+    } else {
+      matchCat = pin.category === activeCategory;
+    }
+
     const q = currentSearchQuery.toLowerCase().trim();
-    const matchSearch = !q || pin.quote.toLowerCase().includes(q) || (pin.author && pin.author.toLowerCase().includes(q)) || pin.catLabel.toLowerCase().includes(q);
+    const matchSearch = !q || 
+      (pin.quote && pin.quote.toLowerCase().includes(q)) || 
+      (pin.author && pin.author.toLowerCase().includes(q)) || 
+      (pin.catLabel && pin.catLabel.toLowerCase().includes(q));
     return matchCat && matchSearch;
   });
 
@@ -1485,8 +1676,8 @@ function renderMasonry() {
       <div style="grid-column: 1 / -1; text-align:center; padding: 60px 20px; color:var(--stone-600);">
         <div style="font-size:36px; margin-bottom:12px;">🔍</div>
         <h3 style="font-size:18px; font-weight:800; color:var(--stone-900);">ಯಾವುದೇ ಪೋಸ್ಟರ್ ಕಂಡುಬಂದಿಲ್ಲ</h3>
-        <p style="margin-top:6px;">ಬೇರೆ ಶಬ್ದಗಳನ್ನು ಹುಡುಕಿ ಅಥವಾ ಹೊಸದಾಗಿ ನೀವೇ ರಚಿಸಿ.</p>
-        <button class="pin-create-btn" style="margin-top:16px;" onclick="openStudioModal(null)">➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ</button>
+        <p style="margin-top:6px;">ಬೇರೆ ಶಬ್ದಗಳನ್ನು ಹುಡುಕಿ ಅಥವಾ ಹೊಸದಾಗಿ ನೀವೇ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.</p>
+        <button class="pin-create-btn" style="margin-top:16px;" onclick="openUploadModal()">☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</button>
       </div>
     `;
     return;
@@ -1512,6 +1703,8 @@ function renderMasonry() {
       `;
     }
 
+    const isUserUpload = pin.id.startsWith("custom-");
+
     return `
       <div class="pin-item" data-id="${pin.id}">
         <div class="pin-media-wrap" onclick="openStudioModal('${pin.id}')">
@@ -1523,7 +1716,7 @@ function renderMasonry() {
               <button class="pin-save-btn" onclick="event.stopPropagation(); quickDownloadPin('${pin.id}')" title="ಸೇವ್ ಮಾಡಿ">⬇️ ಸೇವ್</button>
             </div>
             <div class="pin-bottom-actions">
-              <span style="font-size:11.5px; font-weight:800; color:#FFF; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:999px;">${pin.catLabel}</span>
+              <span style="font-size:11.5px; font-weight:800; color:#FFF; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:999px;">${isUserUpload ? '☁️ User' : pin.catLabel}</span>
               <div class="pin-social-row">
                 <button class="pin-icon-btn wa" onclick="event.stopPropagation(); quickSharePin('${pin.id}', 'whatsapp')" title="WhatsApp">WA</button>
                 <button class="pin-icon-btn ig" onclick="event.stopPropagation(); quickSharePin('${pin.id}', 'instagram')" title="Instagram">IG</button>
@@ -1533,10 +1726,10 @@ function renderMasonry() {
           </div>
         </div>
         <div class="pin-meta">
-          <div class="pin-meta-title">${pin.quote.split('\n')[0]}</div>
+          <div class="pin-meta-title">${(pin.quote || '').split('\n')[0]}</div>
           <div class="pin-meta-sub">
             <span>${pin.author}</span>
-            <span class="pin-cat-tag">${pin.catLabel.split(' ')[0]}</span>
+            <span class="pin-cat-tag">${isUserUpload ? '☁️ ಅಪ್‌ಲೋಡ್' : (pin.catLabel || '').split(' ')[0]}</span>
           </div>
         </div>
       </div>
@@ -1556,7 +1749,181 @@ function filterPins() {
   renderMasonry();
 }
 
-// ── 3. CANVA / PINTEREST STYLE PRO POSTER MAKER LOGIC ──
+// ── 4. UNIVERSAL DIRECT UPLOAD FROM ANY PC / PHONE ──
+let currentUploadDataUrl = null;
+
+function openUploadModal() {
+  document.getElementById("pinUploadModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+  resetUploadFile();
+}
+
+function closeUploadModal() {
+  document.getElementById("pinUploadModal").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function handleDirectPosterFile(e) {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  processSelectedImage(file);
+}
+
+function resetUploadFile() {
+  currentUploadDataUrl = null;
+  document.getElementById("directPosterFileInput").value = "";
+  document.getElementById("dropZonePrompt").style.display = "block";
+  document.getElementById("dropZonePreview").style.display = "none";
+  document.getElementById("uploadStatusMsg").innerHTML = "";
+}
+
+function processSelectedImage(file) {
+  if (!file.type.startsWith("image/")) {
+    alert("ದಯವಿಟ್ಟು ಸರಿಯಾದ ಚಿತ್ರ ಫೈಲ್ (JPG, PNG, WebP) ಆಯ್ಕೆ ಮಾಡಿ");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    // Compress/resize for fast worldwide loading if large
+    const img = new Image();
+    img.onload = () => {
+      const maxDim = 1200;
+      let w = img.width;
+      let h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
+      const cvs = document.createElement("canvas");
+      cvs.width = w;
+      cvs.height = h;
+      cvs.getContext("2d").drawImage(img, 0, 0, w, h);
+      currentUploadDataUrl = cvs.toDataURL("image/jpeg", 0.88);
+
+      document.getElementById("uploadPreviewImg").src = currentUploadDataUrl;
+      document.getElementById("dropZonePrompt").style.display = "none";
+      document.getElementById("dropZonePreview").style.display = "block";
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Setup Drag & Drop listeners
+const dropZone = document.getElementById("pinDropZone");
+if (dropZone) {
+  ["dragenter", "dragover"].forEach(evt => {
+    dropZone.addEventListener(evt, e => {
+      e.preventDefault();
+      dropZone.classList.add("dragover");
+    });
+  });
+  ["dragleave", "drop"].forEach(evt => {
+    dropZone.addEventListener(evt, e => {
+      e.preventDefault();
+      dropZone.classList.remove("dragover");
+    });
+  });
+  dropZone.addEventListener("drop", e => {
+    const files = e.dataTransfer && e.dataTransfer.files;
+    if (files && files[0]) {
+      processSelectedImage(files[0]);
+    }
+  });
+}
+
+async function submitPosterUpload() {
+  if (!currentUploadDataUrl) {
+    alert("ದಯವಿಟ್ಟು ಮೊದಲು ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿ!");
+    return;
+  }
+
+  const category = document.getElementById("upCategory").value;
+  const quote = document.getElementById("upQuote").value.trim() || "ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ, ಸಿರಿಗನ್ನಡಂ ಬಾಳ್ಗೆ!";
+  const uploaderName = document.getElementById("upAuthor").value.trim() || "";
+
+  const btn = document.getElementById("btnSubmitUpload");
+  const status = document.getElementById("uploadStatusMsg");
+
+  btn.disabled = true;
+  btn.innerHTML = "⏳ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...";
+  status.innerHTML = `<span style="color:#2563EB;">⚡ ಕ್ಲೌಡ್‌ಗೆ ಸೇವ್ ಆಗುತ್ತಿದೆ...</span>`;
+
+  const payload = {
+    imageData: currentUploadDataUrl,
+    category: category,
+    catLabel: category === 'rajyotsava' ? '💛❤️ ರಾಜ್ಯೋತ್ಸವ' : '🎨 ಪೋಸ್ಟರ್',
+    quote: quote,
+    author: uploaderName ? `— ${uploaderName}` : '— ಕನ್ನಡಿಗ',
+    uploaderName: uploaderName,
+    aspect: '4:5'
+  };
+
+  try {
+    // 1. Post to Cloudflare Pages API
+    const res = await fetch('/api/posters', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    let uploadedPoster = null;
+    if (res.ok) {
+      const data = await res.json();
+      uploadedPoster = data.poster;
+    }
+
+    if (!uploadedPoster) {
+      // Fallback local poster object
+      uploadedPoster = {
+        id: 'custom-' + Date.now(),
+        category: category,
+        catLabel: '🎨 ಪೋಸ್ಟರ್',
+        quote: quote,
+        author: uploaderName ? `— ${uploaderName}` : '— ಕನ್ನಡಿಗ',
+        bgType: 'image',
+        bgImage: currentUploadDataUrl,
+        aspect: '4:5'
+      };
+    }
+
+    // Cache to LocalStorage so it persists on this PC
+    try {
+      const rawLocal = localStorage.getItem(LOCAL_STORAGE_KEY);
+      let localList = rawLocal ? JSON.parse(rawLocal) : [];
+      localList.unshift(uploadedPoster);
+      if (localList.length > 50) localList = localList.slice(0, 50);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(localList));
+    } catch (e) {}
+
+    // Add to dynamic list and re-render
+    dynamicUploadedPins.unshift(uploadedPoster);
+    allPins = [...dynamicUploadedPins, ...BUILTIN_PINS];
+    renderMasonry();
+
+    status.innerHTML = `<span style="color:#16A34A;">✅ ಪೋಸ್ಟರ್ ಯಶಸ್ವಿಯಾಗಿ ಗ್ಯಾಲರಿಗೆ ಸೇರಿದೆ!</span>`;
+    showToast("🎉 ನಿಮ್ಮ ಪೋಸ್ಟರ್ ಗ್ಯಾಲರಿಯಲ್ಲಿ ಪ್ರಕಟವಾಗಿದೆ!");
+
+    setTimeout(() => {
+      closeUploadModal();
+      btn.disabled = false;
+      btn.innerHTML = "🚀 ಪೋಸ್ಟರ್ ಲೈವ್ ಪ್ರಕಟಿಸಿ (Publish to Gallery)";
+    }, 1200);
+
+  } catch (err) {
+    status.innerHTML = `<span style="color:#DC2626;">⚠️ ದೋಷ: ${err.message}</span>`;
+    btn.disabled = false;
+    btn.innerHTML = "🚀 ಪೋಸ್ಟರ್ ಲೈವ್ ಪ್ರಕಟಿಸಿ (Publish to Gallery)";
+  }
+}
+
+// ── 5. CANVA / PINTEREST STYLE PRO POSTER MAKER LOGIC ──
 const canvas = document.getElementById("studioCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -1567,7 +1934,6 @@ let studioState = {
   bgImageSrc: null,
   bgImageObj: null,
   avatarImageObj: null,
-  // Draggable text position (normalized 0.0 to 1.0)
   quoteX: 0.5,
   quoteY: 0.68,
   isDragging: false,
@@ -1575,7 +1941,7 @@ let studioState = {
 };
 
 function preloadPinImages() {
-  PINS_DATA.forEach(pin => {
+  allPins.forEach(pin => {
     if (pin.bgType === "image" && pin.bgImage) {
       const img = new Image();
       img.crossOrigin = "anonymous";
@@ -1593,7 +1959,7 @@ function openStudioModal(pinId) {
   initStudioControls();
 
   if (pinId) {
-    const pin = PINS_DATA.find(p => p.id === pinId);
+    const pin = allPins.find(p => p.id === pinId);
     if (pin) {
       document.getElementById("inHeader").value = pin.header || "";
       document.getElementById("inQuote").value = pin.quote || "";
@@ -1664,10 +2030,10 @@ function setStudioAspect(aspect) {
 function initStudioControls() {
   // Populate Studio Quotes Accordion
   const qList = document.getElementById("studioQuotesList");
-  qList.innerHTML = PINS_DATA.map(p => `
+  qList.innerHTML = allPins.slice(0, 30).map(p => `
     <div class="pin-quote-select-item" onclick="applyQuoteToStudio('${p.id}')">
       <div style="font-size:11px; color:var(--stone-400);">${p.catLabel}</div>
-      <div>"${p.quote.split('\n')[0]}..."</div>
+      <div>"${(p.quote || '').split('\n')[0]}..."</div>
     </div>
   `).join("");
 
@@ -1690,7 +2056,7 @@ function initStudioControls() {
 }
 
 function applyQuoteToStudio(pinId) {
-  const pin = PINS_DATA.find(p => p.id === pinId);
+  const pin = allPins.find(p => p.id === pinId);
   if (!pin) return;
   document.getElementById("inHeader").value = pin.header || "";
   document.getElementById("inQuote").value = pin.quote || "";
@@ -1757,7 +2123,7 @@ function clearAvatarPhoto() {
   renderCanvas();
 }
 
-// ── 4. HIGH-DPI CANVAS RENDER ENGINE ──
+// ── 6. HIGH-DPI CANVAS RENDER ENGINE ──
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
@@ -2021,7 +2387,7 @@ function renderCanvas() {
   }
 }
 
-// ── 5. DRAG-TO-MOVE INTERACTION (MOUSE & TOUCH) ──
+// ── 7. DRAG-TO-MOVE INTERACTION (MOUSE & TOUCH) ──
 function getCanvasCoords(e) {
   const rect = canvas.getBoundingClientRect();
   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -2075,7 +2441,7 @@ canvas.addEventListener("touchend", () => {
   studioState.isDragging = false;
 });
 
-// ── 6. PHONETIC ENGLISH-TO-KANNADA AUTO-CONVERTER ON SPACEBAR ──
+// ── 8. PHONETIC ENGLISH-TO-KANNADA AUTO-CONVERTER ON SPACEBAR ──
 async function transliterateToKannada(word) {
   try {
     const url = `https://inputtools.google.com/request?text=${encodeURIComponent(word)}&itc=kn-t-i0-und&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8`;
@@ -2104,14 +2470,16 @@ document.querySelectorAll(".phonetic-input").forEach(inp => {
           this.value = newBefore + after;
           this.selectionStart = this.selectionEnd = newBefore.length;
           e.preventDefault();
-          renderCanvas();
+          if (document.getElementById("pinStudioModal").classList.contains("active")) {
+            renderCanvas();
+          }
         }
       }
     }
   });
 });
 
-// ── 7. DOWNLOAD & SOCIAL SHARE LOGIC (WEB SHARE API + CLIPBOARD) ──
+// ── 9. DOWNLOAD & SOCIAL SHARE LOGIC (WEB SHARE API + CLIPBOARD) ──
 function downloadPoster(format = "png") {
   renderCanvas();
   const mime = format === "jpg" ? "image/jpeg" : "image/png";
@@ -2175,7 +2543,7 @@ async function sharePoster(platform) {
 
 // Quick Actions on Masonry Pins
 function quickDownloadPin(pinId) {
-  const pin = PINS_DATA.find(p => p.id === pinId);
+  const pin = allPins.find(p => p.id === pinId);
   if (!pin) return;
   if (pin.bgType === "image") {
     const a = document.createElement("a");
@@ -2208,9 +2576,9 @@ function showToast(msg) {
   }, 4000);
 }
 
-// ── 8. INITIALIZE ──
+// ── 10. INITIALIZE ──
 window.addEventListener("DOMContentLoaded", () => {
-  renderMasonry();
+  syncCommunityPosters();
   preloadPinImages();
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => renderCanvas());
