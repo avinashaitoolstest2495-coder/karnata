@@ -720,7 +720,7 @@ html, body {
 .pin-modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 999999;
@@ -750,14 +750,22 @@ html, body {
 
 /* Modal Top Bar */
 .pin-modal-bar {
-  padding: 14px 22px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--stone-200);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
   background: #FFF;
+}
+
+.modal-brand-tag {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--stone-900);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .pin-aspect-pills {
@@ -790,7 +798,6 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
 .pin-action-btn {
@@ -806,6 +813,7 @@ html, body {
   align-items: center;
   gap: 6px;
   transition: all 0.15s;
+  white-space: nowrap;
 }
 
 .pin-action-btn:hover {
@@ -843,40 +851,32 @@ html, body {
   background: var(--stone-200);
 }
 
-/* Modal Body: Split View */
+/* Modal Body: Split View Desktop */
 .pin-modal-body {
   display: grid;
   grid-template-columns: 1fr 430px;
   flex: 1;
   overflow: hidden;
-  height: calc(94vh - 66px);
-}
-
-@media (max-width: 960px) {
-  .pin-modal-body {
-    grid-template-columns: 1fr;
-    overflow-y: auto;
-    height: auto;
-  }
+  height: calc(94vh - 62px);
 }
 
 /* Canvas Area */
 .pin-canvas-area {
-  background: var(--stone-100);
-  padding: 24px;
+  background: #090D16;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .pin-canvas-wrap {
   max-width: 100%;
   max-height: 64vh;
   border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   overflow: hidden;
   position: relative;
   background: #FFF;
@@ -896,17 +896,13 @@ html, body {
 }
 
 .pin-canvas-hint {
-  margin-top: 12px;
-  font-size: 12.5px;
-  color: var(--stone-600);
+  margin-top: 10px;
+  font-size: 12px;
+  color: #94A3B8;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #FFF;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
 }
 
 /* Tool Drawer / Sidebar */
@@ -918,17 +914,13 @@ html, body {
   overflow-y: auto;
 }
 
-@media (max-width: 960px) {
-  .pin-tools-sidebar {
-    border-left: none;
-    border-top: 1px solid var(--stone-200);
-  }
-}
-
 .pin-tools-tabs {
   display: flex;
-  border-bottom: 1px solid var(--stone-200);
+  border-bottom: 1.5px solid var(--stone-200);
   background: var(--stone-50);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .pin-tab-btn {
@@ -941,7 +933,7 @@ html, body {
   font-weight: 800;
   color: var(--stone-600);
   cursor: pointer;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2.5px solid transparent;
   transition: all 0.15s;
 }
 
@@ -952,13 +944,130 @@ html, body {
 }
 
 .pin-tab-content {
-  padding: 20px;
+  padding: 18px;
   display: none;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 .pin-tab-content.active {
   display: flex;
+}
+
+/* ── MOBILE-FIRST FULL-SCREEN APP-STYLE EDITOR (MAX-WIDTH 768PX) ── */
+@media (max-width: 768px) {
+  .pin-modal {
+    padding: 0 !important;
+    background: #000 !important;
+    backdrop-filter: none !important;
+  }
+  .pin-modal-content {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .pin-modal-bar {
+    padding: 10px 14px !important;
+    background: #0F172A !important;
+    color: #FFF !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  }
+  .modal-brand-tag {
+    color: #FFF !important;
+    font-size: 14.5px !important;
+  }
+  .pin-aspect-pills {
+    display: none !important;
+  }
+  .pin-modal-actions .pin-action-btn:not(.primary) {
+    display: none !important;
+  }
+  .pin-modal-actions .pin-action-btn.primary {
+    padding: 7px 14px !important;
+    font-size: 13px !important;
+    border-radius: var(--radius-pill) !important;
+  }
+  .pin-close-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
+    background: rgba(255,255,255,0.15) !important;
+    color: #FFF !important;
+    border: none !important;
+  }
+
+  .pin-modal-body {
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100vh - 54px) !important;
+    overflow: hidden !important;
+  }
+
+  .pin-canvas-area {
+    padding: 10px !important;
+    background: #090D16 !important;
+    flex: 0 0 auto !important;
+    height: 38vh !important;
+    max-height: 38vh !important;
+  }
+  .pin-canvas-wrap {
+    max-height: 35vh !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+  }
+  #studioCanvas {
+    max-height: 35vh !important;
+    width: auto !important;
+  }
+  .pin-canvas-hint {
+    display: none !important;
+  }
+
+  .pin-tools-sidebar {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    background: #FFFFFF !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.18) !important;
+    padding-bottom: 74px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .pin-tools-tabs {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+  }
+  .pin-tab-btn {
+    padding: 12px 4px !important;
+    font-size: 12.5px !important;
+  }
+  .pin-tab-content {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+
+  /* Fixed Floating Mobile Bar */
+  .pin-mobile-bottom-bar {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid var(--stone-200) !important;
+    padding: 10px 14px !important;
+    gap: 10px !important;
+    z-index: 50 !important;
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.1) !important;
+  }
+}
+@media (min-width: 769px) {
+  .pin-mobile-bottom-bar {
+    display: none !important;
+  }
 }
 
 /* Studio Form Controls */
@@ -1108,9 +1217,6 @@ html, body {
       <button class="pin-create-btn" onclick="openStudioModal(null)">
         ➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ (Create)
       </button>
-      <a href="/admin/posters.html" class="pin-upload-btn" style="text-decoration:none;" title="ಅಡ್ಮಿನ್ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ (Admin Only)">
-        🔒 ಅಡ್ಮಿನ್
-      </a>
     </div>
   </div>
 </header>
@@ -1154,9 +1260,11 @@ html, body {
     
     <!-- Modal Top Bar -->
     <div class="pin-modal-bar">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <span style="font-size:16px; font-weight:900; color:var(--stone-900);">🎨 ಪೋಸ್ಟರ್ ಎಡಿಟರ್</span>
-        <!-- Aspect Ratio Switcher -->
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="pin-close-btn" onclick="closeStudioModal()" title="ಮುಚ್ಚಿ (Close)">✕</button>
+        <span class="modal-brand-tag">🎨 ಪೋಸ್ಟರ್ ಎಡಿಟರ್</span>
+        
+        <!-- Desktop Aspect Ratio Switcher -->
         <div class="pin-aspect-pills">
           <button class="pin-aspect-btn active" id="asp-4-5" onclick="setStudioAspect('4:5')">4:5 ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್</button>
           <button class="pin-aspect-btn" id="asp-1-1" onclick="setStudioAspect('1:1')">1:1 ಚೌಕ (Post)</button>
@@ -1166,21 +1274,17 @@ html, body {
 
       <div class="pin-modal-actions">
         <button class="pin-action-btn primary" onclick="downloadPoster('png')">
-          ⬇️ HD ಸೇವ್ (Save)
+          ⬇️ HD ಸೇವ್
         </button>
-        <button class="pin-action-btn" onclick="sharePoster('whatsapp')" title="WhatsApp Status / Chat ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ">
-          📲 WhatsApp
+        <button class="pin-action-btn" onclick="sharePoster('whatsapp')" style="background:#22C55E; color:#FFF; border-color:#22C55E;" title="WhatsApp Status / Chat ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ">
+          🟢 WhatsApp
         </button>
         <button class="pin-action-btn" onclick="sharePoster('instagram')" title="Instagram ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ">
           📸 Instagram
         </button>
-        <button class="pin-action-btn" onclick="sharePoster('facebook')" title="Facebook ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ">
-          📘 Facebook
-        </button>
         <button class="pin-action-btn" onclick="copyPosterImageToClipboard()" title="ಇಮೇಜ್ ಕಾಪಿ ಮಾಡಿ">
           📋 ಕಾಪಿ
         </button>
-        <button class="pin-close-btn" onclick="closeStudioModal()" title="ಮುಚ್ಚಿ (Close)">✕</button>
       </div>
     </div>
 
@@ -1193,26 +1297,69 @@ html, body {
           <canvas id="studioCanvas" width="1080" height="1350"></canvas>
         </div>
         <div class="pin-canvas-hint">
-          <span>🖐️ ಟಿಪ್: ಪೋಸ್ಟರ್ ಮೇಲಿರುವ ಕನ್ನಡ ಬರಹವನ್ನು ಮೌಸ್ ಅಥವಾ ಬೆರಳಿನಿಂದ ಎಳೆದು (Drag) ಬೇಕಾದ ಸ್ಥಳದಲ್ಲಿ ಇಡಿ</span>
+          <span>🖐️ ಟಿಪ್: ಪೋಸ್ಟರ್ ಮೇಲಿರುವ ಕನ್ನಡ ಬರಹವನ್ನು ಮೌಸ್ ಅಥವಾ ಬೆರಳಿನಿಂದ ಎಳೆದು (Drag) ಇರಿಸಬಹುದು</span>
         </div>
       </div>
 
       <!-- Tools Sidebar -->
       <div class="pin-tools-sidebar">
-        <!-- Tabs Header -->
+        <!-- Tabs Header (3 Clear, Focused Tabs) -->
         <div class="pin-tools-tabs">
-          <button class="pin-tab-btn active" onclick="switchStudioTab('quotes', this)">✍️ ಪಠ್ಯ &amp; ಉಲ್ಲೇಖ</button>
-          <button class="pin-tab-btn" onclick="switchStudioTab('bg', this)">🎨 ಹಿನ್ನೆಲೆ (BG)</button>
-          <button class="pin-tab-btn" onclick="switchStudioTab('profile', this)">👤 ಹೆಸರು &amp; ಫೋಟೋ</button>
-          <button class="pin-tab-btn" onclick="switchStudioTab('style', this)">✨ ಸ್ಟೈಲ್</button>
+          <button class="pin-tab-btn active" id="btn-tab-profile" onclick="switchStudioTab('profile', this)">👤 ಹೆಸರು &amp; ಫೋಟೋ</button>
+          <button class="pin-tab-btn" id="btn-tab-quotes" onclick="switchStudioTab('quotes', this)">✍️ ನುಡಿಮುತ್ತು</button>
+          <button class="pin-tab-btn" id="btn-tab-bg" onclick="switchStudioTab('bg', this)">🎨 ಹಿನ್ನೆಲೆ &amp; ಸೈಜ್</button>
         </div>
 
-        <!-- TAB 1: QUOTES & TEXT -->
-        <div class="pin-tab-content active" id="tab-quotes">
+        <!-- TAB 1: PERSONAL NAME & PROFILE (Active first for instant customization) -->
+        <div class="pin-tab-content active" id="tab-profile">
+          <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; border:1.5px solid var(--stone-200); padding:10px 14px; border-radius:12px;">
+            <label style="font-size:13px; font-weight:800; color:var(--stone-900); cursor:pointer;" for="inShowProfile">
+              ✨ ಪೋಸ್ಟರ್‌ನಲ್ಲಿ ನನ್ನ ಹೆಸರು &amp; ಫೋಟೋ ತೋರಿಸಿ
+            </label>
+            <input type="checkbox" id="inShowProfile" checked onchange="renderCanvas()" style="width:20px;height:20px;accent-color:var(--pin-red); cursor:pointer;">
+          </div>
+
+          <div class="pin-field">
+            <label>🏷️ ನಿಮ್ಮ ಹೆಸರು (Your Name / Organization):</label>
+            <input type="text" id="inProfileName" class="pin-input phonetic-input" placeholder="ಉದಾ: ಅವಿನಾಶ್ ವಗರ್ನಾಳ..." oninput="renderCanvas()">
+          </div>
+
+          <div class="pin-field">
+            <label>📍 ಉಪಶೀರ್ಷಿಕೆ / ಊರು / ಸಂದೇಶ (Subtitle / City):</label>
+            <input type="text" id="inProfileRole" class="pin-input phonetic-input" placeholder="ಉದಾ: ಬೆಂಗಳೂರು · ಸಾಹಿತ್ಯಾಭಿಮಾನಿ" oninput="renderCanvas()">
+          </div>
+
+          <div class="pin-field">
+            <label>📸 ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಫೋಟೋ / ಲೋಗೋ (Circular Avatar Badge):</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <label style="flex:1; background:var(--stone-900); color:#FFF; padding:11px 14px; border-radius:12px; font-size:13px; font-weight:800; cursor:pointer; text-align:center; display:flex; align-items:center; justify-content:center; gap:6px;">
+                📁 ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ
+                <input type="file" id="inAvatarFile" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
+              </label>
+              <button type="button" onclick="clearAvatarPhoto()" style="background:#FFF; border:1.5px solid #FECACA; color:#DC2626; padding:11px 14px; border-radius:12px; font-size:12.5px; font-weight:800; cursor:pointer;">
+                🗑️ ತೆಗೆಯಿರಿ
+              </button>
+            </div>
+            <span style="font-size:11.5px; color:var(--stone-600); margin-top:2px;">ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿದರೆ ಪೋಸ್ಟರ್ ಕೆಳಗೆ ಸುಂದರ ರೌಂಡ್ ಬ್ಯಾಡ್ಜ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ.</span>
+          </div>
+
+          <div class="pin-field">
+            <label>ಬ್ಯಾಡ್ಜ್ ಶೈಲಿ (Badge Theme):</label>
+            <select id="inProfileTheme" class="pin-select" onchange="renderCanvas()">
+              <option value="minimal-pill">ಮಿನಿಮಲ್ ಸಾಫ್ಟ್ ಪಿಲ್ (Minimal Pill)</option>
+              <option value="royal-gold">ರಾಯಲ್ ಗೋಲ್ಡ್ &amp; ರೆಡ್ (Royal Gold)</option>
+              <option value="dark-glass">ಡಾರ್ಕ್ ಗ್ಲಾಸ್ (Modern Dark)</option>
+              <option value="clean-white">ಕ್ಲಾಸಿಕ್ ವೈಟ್ ಕಾರ್ಡ್ (Clean White)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TAB 2: QUOTES & TEXT -->
+        <div class="pin-tab-content" id="tab-quotes">
           <div class="pin-field">
             <label>
               <span>1-ಕ್ಲಿಕ್ ನುಡಿಮುತ್ತು ಆಯ್ಕೆ ಮಾಡಿ:</span>
-              <span style="font-size:11px; color:var(--stone-600);">50+ ಉಲ್ಲೇಖಗಳು</span>
+              <span style="font-size:11.5px; color:var(--stone-600);">50+ ಪ್ರಸಿದ್ಧ ಕಾವ್ಯಗಳು</span>
             </label>
             <div class="pin-quotes-accordion" id="studioQuotesList"></div>
           </div>
@@ -1220,21 +1367,21 @@ html, body {
           <div class="pin-field">
             <label>
               <span>ಮೇಲಿನ ಶೀರ್ಷಿಕೆ / ಬ್ಯಾಡ್ಜ್ (ಐಚ್ಛಿಕ):</span>
-              <button type="button" onclick="document.getElementById('inHeader').value=''; renderCanvas();" style="background:none;border:none;color:#DC2626;font-size:11px;cursor:pointer;font-weight:700;">ಅಳಿಸಿ</button>
+              <button type="button" onclick="document.getElementById('inHeader').value=''; renderCanvas();" style="background:none;border:none;color:#DC2626;font-size:11.5px;cursor:pointer;font-weight:700;">ಅಳಿಸಿ</button>
             </label>
-            <input type="text" id="inHeader" class="pin-input phonetic-input" placeholder="ಉದಾ: ಶುಭೋದಯ ಕರ್ನಾಟಕ..." oninput="renderCanvas()">
+            <input type="text" id="inHeader" class="pin-input phonetic-input" placeholder="ಉದಾ: ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಶುಭಾಶಯಗಳು..." oninput="renderCanvas()">
           </div>
 
           <div class="pin-field">
             <label>
-              <span>ಮುಖ್ಯ ನುಡಿಮುತ್ತು / ಕವನ (Main Text):</span>
-              <span style="font-size:11px; color:#16A34A; font-weight:800;">⌨️ ಇಂಗ್ಲಿಷ್ ಟೈಪ್ = ಕನ್ನಡ</span>
+              <span>ಮುಖ್ಯ ನುಡಿಮುತ್ತು / ಕವನ (Main Quote):</span>
+              <span style="font-size:11px; color:#16A34A; font-weight:800;">⌨️ ಇಂಗ್ಲಿಷ್ = ಕನ್ನಡ</span>
             </label>
-            <textarea id="inQuote" class="pin-textarea phonetic-input" placeholder="ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ..." oninput="renderCanvas()"></textarea>
+            <textarea id="inQuote" class="pin-textarea phonetic-input" rows="3" placeholder="ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ..." oninput="renderCanvas()"></textarea>
           </div>
 
           <div class="pin-field">
-            <label>ಕವಿ / ಲೇಖಕರ ಹೆಸರು:</label>
+            <label>ಕವಿ / ಲೇಖಕರ ಹೆಸರು (Author):</label>
             <input type="text" id="inAuthor" class="pin-input phonetic-input" placeholder="ಉದಾ: — ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು" oninput="renderCanvas()">
           </div>
 
@@ -1249,93 +1396,51 @@ html, body {
               </select>
             </div>
             <div class="pin-field">
-              <label>ಅಕ್ಷರ ಗಾತ್ರ (Font Size):</label>
-              <input type="range" id="inFontSize" min="28" max="74" value="44" style="accent-color:var(--stone-900); margin-top:8px;" oninput="renderCanvas()">
+              <label>ಅಕ್ಷರ ಬಣ್ಣ:</label>
+              <select id="inTextColor" class="pin-select" onchange="renderCanvas()">
+                <option value="#FFFFFF">⚪ ಶ್ವೇತ ಬಿಳಿ (White)</option>
+                <option value="#FDE047">🟡 ಸುವರ್ಣ ಹಳದಿ (Gold)</option>
+                <option value="#1C1917">⚫ ಕಪ್ಪು (Black)</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <!-- TAB 2: BACKGROUNDS & PHOTOS -->
+        <!-- TAB 3: BACKGROUNDS & ASPECT RATIO -->
         <div class="pin-tab-content" id="tab-bg">
+          <div class="pin-field">
+            <label>📐 ಪೋಸ್ಟರ್ ಅಳತೆ (Aspect Ratio):</label>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
+              <button type="button" class="pin-aspect-btn active" id="mob-asp-4-5" onclick="setStudioAspect('4:5')" style="border:1.5px solid var(--stone-300); padding:10px 6px; text-align:center; border-radius:12px;">
+                📱 4:5<br><span style="font-size:11px; font-weight:600;">Instagram</span>
+              </button>
+              <button type="button" class="pin-aspect-btn" id="mob-asp-1-1" onclick="setStudioAspect('1:1')" style="border:1.5px solid var(--stone-300); padding:10px 6px; text-align:center; border-radius:12px;">
+                ⏹️ 1:1<br><span style="font-size:11px; font-weight:600;">ಚೌಕ Post</span>
+              </button>
+              <button type="button" class="pin-aspect-btn" id="mob-asp-9-16" onclick="setStudioAspect('9:16')" style="border:1.5px solid var(--stone-300); padding:10px 6px; text-align:center; border-radius:12px;">
+                📲 9:16<br><span style="font-size:11px; font-weight:600;">WA Status</span>
+              </button>
+            </div>
+          </div>
+
           <div class="pin-field">
             <label>
               <span>📷 ನಿಮ್ಮ ಸ್ವಂತ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ:</span>
             </label>
-            <label style="background:var(--stone-900); color:#FFF; padding:10px 16px; border-radius:12px; font-size:13px; font-weight:800; cursor:pointer; text-align:center;">
+            <label style="background:var(--stone-900); color:#FFF; padding:11px 16px; border-radius:12px; font-size:13px; font-weight:800; cursor:pointer; text-align:center; display:block;">
               📁 ಗ್ಯಾಲರಿಯಿಂದ ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿ
               <input type="file" id="inCustomBgFile" accept="image/*" style="display:none" onchange="handleBgUpload(event)">
             </label>
           </div>
 
           <div class="pin-field">
-            <label>ಆಕರ್ಷಕ ಕ್ಯುರೇಟೆಡ್ ಹಿನ್ನೆಲೆಗಳು (Minimal &amp; Heritage):</label>
+            <label>ಆಕರ್ಷಕ ಕ್ಯುರೇಟೆಡ್ ಹಿನ್ನೆಲೆಗಳು (HD Posters &amp; Gradients):</label>
             <div class="pin-bg-swatches" id="studioBgSwatches"></div>
           </div>
 
           <div class="pin-field">
             <label>ಡಾರ್ಕ್ ಓವರ್‌ಲೇ ಶೇಡ್ (Dimmer):</label>
-            <input type="range" id="inBgDim" min="0" max="80" value="15" style="accent-color:var(--stone-900);" oninput="renderCanvas()">
-          </div>
-        </div>
-
-        <!-- TAB 3: PERSONAL NAME & PROFILE -->
-        <div class="pin-tab-content" id="tab-profile">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
-            <label style="font-size:13px; font-weight:800; color:var(--stone-800);">ನಿಮ್ಮ ಹೆಸರಿನ ಬ್ಯಾಡ್ಜ್ ಸೇರಿಸಿ</label>
-            <input type="checkbox" id="inShowProfile" checked onchange="renderCanvas()" style="width:18px;height:18px;accent-color:var(--pin-red);">
-          </div>
-
-          <div class="pin-field">
-            <label>ನಿಮ್ಮ ಹೆಸರು (Your Name):</label>
-            <input type="text" id="inProfileName" class="pin-input phonetic-input" placeholder="ಉದಾ: ಅವಿನಾಶ ವಗರ್ನಾಳ" oninput="renderCanvas()">
-          </div>
-
-          <div class="pin-field">
-            <label>ಪದವಿ / ಊರು / ಸಂದೇಶ (Subtitle):</label>
-            <input type="text" id="inProfileRole" class="pin-input phonetic-input" placeholder="ಉದಾ: ಸಾಹಿತ್ಯಾಸಕ್ತ · ಬೆಂಗಳೂರು" oninput="renderCanvas()">
-          </div>
-
-          <div class="pin-field">
-            <label>ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಫೋಟೋ / ಲೋಗೋ:</label>
-            <div style="display:flex; gap:8px;">
-              <label style="flex:1; background:var(--stone-100); border:1.5px solid var(--stone-300); padding:9px 12px; border-radius:10px; font-size:12.5px; font-weight:800; cursor:pointer; text-align:center;">
-                📸 ಫೋಟೋ ಆಯ್ಕೆ
-                <input type="file" id="inAvatarFile" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
-              </label>
-              <button type="button" onclick="clearAvatarPhoto()" style="background:transparent; border:1px solid #FECACA; color:#DC2626; padding:0 12px; border-radius:10px; font-size:12px; font-weight:800; cursor:pointer;">ತೆಗೆಯಿರಿ</button>
-            </div>
-          </div>
-
-          <div class="pin-field">
-            <label>ಬ್ಯಾಡ್ಜ್ ಶೈಲಿ (Theme):</label>
-            <select id="inProfileTheme" class="pin-select" onchange="renderCanvas()">
-              <option value="minimal-pill">ಮಿನಿಮಲ್ ಸಾಫ್ಟ್ ಪಿಲ್ (Minimal Pill)</option>
-              <option value="royal-gold">ರಾಯಲ್ ಗೋಲ್ಡ್ &amp; ರೆಡ್ (Royal)</option>
-              <option value="dark-glass">ಡಾರ್ಕ್ ಗ್ಲಾಸ್ (Modern Dark)</option>
-              <option value="clean-white">ಕ್ಲಾಸಿಕ್ ವೈಟ್ ಕಾರ್ಡ್ (Clean White)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- TAB 4: STYLING & DECORATIONS -->
-        <div class="pin-tab-content" id="tab-style">
-          <div class="pin-field">
-            <label>ಬರಹದ ಕಾರ್ಡ್ ಶೈಲಿ (Text Backdrop):</label>
-            <select id="inCardStyle" class="pin-select" onchange="renderCanvas()">
-              <option value="glass">ಗ್ಲಾಸ್‌ಮಾರ್ಫಿಸಂ (Soft Blur Glass)</option>
-              <option value="dark-pill">ಡಾರ್ಕ್ ಸಾಲಿಡ್ ಬಾಕ್ಸ್ (Dark Pill)</option>
-              <option value="none">ಬಾಕ್ಸ್ ಬೇಡ (Clean Text Only with Shadow)</option>
-            </select>
-          </div>
-
-          <div class="pin-field">
-            <label>ಅಕ್ಷರಗಳ ಬಣ್ಣ (Text Color):</label>
-            <select id="inTextColor" class="pin-select" onchange="renderCanvas()">
-              <option value="#FFFFFF">⚪ ಶ್ವೇತ ಬಿಳಿ (White)</option>
-              <option value="#FDE047">🟡 ಸುವರ್ಣ ಹಳದಿ (Gold Yellow)</option>
-              <option value="#1C1917">⚫ ಕಪ್ಪು ಅಕ್ಷರ (Charcoal Black)</option>
-              <option value="#FEF08A">✨ ಕ್ರೀಮ್ ಗೋಲ್ಡ್ (Cream)</option>
-            </select>
+            <input type="range" id="inBgDim" min="0" max="80" value="15" style="accent-color:var(--stone-900); width:100%;" oninput="renderCanvas()">
           </div>
 
           <div class="pin-field">
@@ -1345,18 +1450,20 @@ html, body {
               <option value="no">🚫 ರಿಬ್ಬನ್ ಬೇಡ (Minimal Clean)</option>
             </select>
           </div>
-
-          <div class="pin-field">
-            <label>ವಾಟರ್‌ಮಾರ್ಕ್ (Watermark):</label>
-            <select id="inWatermark" class="pin-select" onchange="renderCanvas()">
-              <option value="karnata">karnata.in (ಸೂಕ್ಷ್ಮವಾಗಿ ಕೆಳಗೆ)</option>
-              <option value="none">ಯಾವುದೂ ಬೇಡ (Clean Export)</option>
-            </select>
-          </div>
         </div>
 
       </div>
 
+    </div>
+
+    <!-- Mobile Fixed Bottom Action Bar -->
+    <div class="pin-mobile-bottom-bar">
+      <button type="button" class="pin-action-btn primary" style="flex:1; justify-content:center; padding:12px; font-size:14px; border-radius:var(--radius-pill);" onclick="downloadPoster('png')">
+        ⬇️ HD ಸೇವ್ (Download)
+      </button>
+      <button type="button" class="pin-action-btn" style="background:#22C55E; color:#FFF; border-color:#22C55E; justify-content:center; padding:12px 18px; font-size:14px; border-radius:var(--radius-pill);" onclick="sharePoster('whatsapp')">
+        🟢 WhatsApp
+      </button>
     </div>
 
   </div>
@@ -2110,6 +2217,9 @@ function openStudioModal(pinId) {
     studioState.bgColors = ["#7F1D1D", "#B91C1C", "#F59E0B"];
   }
 
+  const profBtn = document.getElementById("btn-tab-profile");
+  if (profBtn) switchStudioTab('profile', profBtn);
+
   renderCanvas();
 }
 
@@ -2122,22 +2232,26 @@ function switchStudioTab(tabId, btn) {
   document.querySelectorAll(".pin-tab-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   document.querySelectorAll(".pin-tab-content").forEach(c => c.classList.remove("active"));
-  document.getElementById(`tab-${tabId}`).classList.add("active");
+  const tabEl = document.getElementById(`tab-${tabId}`);
+  if (tabEl) tabEl.classList.add("active");
 }
 
 function setStudioAspect(aspect) {
   studioState.aspect = aspect;
   document.querySelectorAll(".pin-aspect-btn").forEach(b => b.classList.remove("active"));
   if (aspect === "4:5") {
-    document.getElementById("asp-4-5").classList.add("active");
+    const b1 = document.getElementById("asp-4-5"); if (b1) b1.classList.add("active");
+    const b2 = document.getElementById("mob-asp-4-5"); if (b2) b2.classList.add("active");
     canvas.width = 1080;
     canvas.height = 1350;
   } else if (aspect === "1:1") {
-    document.getElementById("asp-1-1").classList.add("active");
+    const b1 = document.getElementById("asp-1-1"); if (b1) b1.classList.add("active");
+    const b2 = document.getElementById("mob-asp-1-1"); if (b2) b2.classList.add("active");
     canvas.width = 1080;
     canvas.height = 1080;
   } else if (aspect === "9:16") {
-    document.getElementById("asp-9-16").classList.add("active");
+    const b1 = document.getElementById("asp-9-16"); if (b1) b1.classList.add("active");
+    const b2 = document.getElementById("mob-asp-9-16"); if (b2) b2.classList.add("active");
     canvas.width = 1080;
     canvas.height = 1920;
   }
