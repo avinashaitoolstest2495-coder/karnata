@@ -985,10 +985,6 @@ html, body {
     </div>
 
     <div class="pin-header-actions">
-      <!-- Direct 1-Click Upload from ANY PC or Phone -->
-      <button class="pin-upload-btn" onclick="openUploadModal()" title="ಯಾವುದೇ ಕಂಪ್ಯೂಟರ್ ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ ಹೊಸ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ">
-        ☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ (Upload)
-      </button>
       <button class="pin-create-btn" onclick="openStudioModal(null)">
         ➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ (Create)
       </button>
@@ -1000,7 +996,6 @@ html, body {
 <nav class="pin-filter-rail" aria-label="Poster Categories">
   <div class="pin-filter-inner" id="categoryRail">
     <button class="pin-chip active" onclick="selectCategory('all', this)">✨ ಎಲ್ಲಾ ಪೋಸ್ಟರ್‌ಗಳು</button>
-    <button class="pin-chip" onclick="selectCategory('community', this)">☁️ ಬಳಕೆದಾರರ ಪೋಸ್ಟರ್‌ಗಳು (User Uploads)</button>
     <button class="pin-chip" onclick="selectCategory('morning', this)">🌅 ಶುಭೋದಯ &amp; ಶುಭರಾತ್ರಿ</button>
     <button class="pin-chip" onclick="selectCategory('sahitya', this)">📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ (ಕುವೆಂಪು, ಬೇಂದ್ರೆ)</button>
     <button class="pin-chip" onclick="selectCategory('vachana', this)">📿 ವಚನ ಸಾಹಿತ್ಯ (ಬಸವಣ್ಣ)</button>
@@ -1016,7 +1011,7 @@ html, body {
 <div class="pin-intro">
   <div>
     <h1>ಕನ್ನಡ ನುಡಿಮುತ್ತುಗಳು &amp; ಕ್ರಿಯೇಟಿವ್ ಪೋಸ್ಟರ್ ಮೇಕರ್</h1>
-    <p>ಯಾವುದೇ ಕಂಪ್ಯೂಟರ್ ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ <strong>"☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್"</strong> ಮಾಡಿ ನೇರವಾಗಿ ಗ್ಯಾಲರಿಗೆ ಸೇರಿಸಿ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋ ಸೇರಿಸಿ ಎಡಿಟ್ ಮಾಡಿ ಅಥವಾ 1-ಕ್ಲಿಕ್‌ನಲ್ಲಿ WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ.</p>
+    <p>ನಿಮಗೆ ಇಷ್ಟವಾದ ಪೋಸ್ಟರ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ, <strong>ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋ ಸೇರಿಸಿ ಎಡಿಟ್ ಮಾಡಿ</strong> ಅಥವಾ 1-ಕ್ಲಿಕ್‌ನಲ್ಲಿ WhatsApp, Instagram, Facebook ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ.</p>
   </div>
   <div style="font-size:13px; font-weight:700; color:var(--stone-600);" id="pinCountLabel">
     24+ ರೆಡಿ ಪೋಸ್ಟರ್‌ಗಳು
@@ -1030,64 +1025,7 @@ html, body {
   </div>
 </main>
 
-<!-- ── MODAL 1: UNIVERSAL UPLOAD MODAL (FROM ANY PC / PHONE) ── -->
-<div class="pin-upload-modal" id="pinUploadModal" onclick="if(event.target===this) closeUploadModal()">
-  <div class="pin-upload-content">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h3 style="font-size:18px; font-weight:900; color:var(--stone-900);">☁️ ಹೊಸ ಪೋಸ್ಟರ್ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</h3>
-      <button class="pin-close-btn" onclick="closeUploadModal()">✕</button>
-    </div>
-    <p style="font-size:13px; color:var(--stone-600); margin-top:-6px;">
-      ಯಾವುದೇ PC ಅಥವಾ ಮೊಬೈಲ್‌ನಿಂದ ನಿಮ್ಮ ಪೋಸ್ಟರ್ ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಿ. ಇದು ತಕ್ಷಣ ವೆಬ್‌ಸೈಟ್ ಗ್ಯಾಲರಿಯಲ್ಲಿ ಪ್ರಕಟವಾಗುತ್ತದೆ!
-    </p>
-
-    <!-- Drag & Drop Zone -->
-    <div class="pin-drop-zone" id="pinDropZone" onclick="document.getElementById('directPosterFileInput').click()">
-      <input type="file" id="directPosterFileInput" accept="image/*" style="display:none" onchange="handleDirectPosterFile(event)">
-      <div id="dropZonePrompt">
-        <div style="font-size:36px; margin-bottom:8px;">📁</div>
-        <strong style="font-size:15px; color:var(--stone-900);">ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</strong>
-        <p style="font-size:12.5px; color:var(--stone-500); margin-top:4px;">ಅಥವಾ ಫೈಲ್ ಅನ್ನು ಇಲ್ಲಿಗೆ ಡ್ರ್ಯಾಗ್ &amp; ಡ್ರಾಪ್ ಮಾಡಿ (JPG, PNG, WebP)</p>
-      </div>
-      <div id="dropZonePreview" style="display:none;">
-        <img id="uploadPreviewImg" src="" alt="Preview" style="max-height:220px; border-radius:12px; margin:0 auto; display:block; box-shadow:var(--shadow-sm);">
-        <button type="button" onclick="event.stopPropagation(); resetUploadFile();" style="margin-top:10px; background:#FEE2E2; color:#DC2626; border:none; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800; cursor:pointer;">🗑️ ಬೇರೆ ಫೋಟೋ ಬದಲಾಯಿಸಿ</button>
-      </div>
-    </div>
-
-    <!-- Category & Metadata -->
-    <div class="pin-row-2">
-      <div class="pin-field">
-        <label>ವರ್ಗ (Category):</label>
-        <select id="upCategory" class="pin-select">
-          <option value="rajyotsava">💛❤️ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ</option>
-          <option value="festivals">🎉 ಹಬ್ಬ &amp; ಶುಭಾಶಯಗಳು</option>
-          <option value="sahitya">📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ</option>
-          <option value="morning">🌅 ಶುಭೋದಯ &amp; ನುಡಿಮುತ್ತು</option>
-          <option value="vachana">📿 ವಚನ ಸಾಹಿತ್ಯ</option>
-          <option value="motivation">💡 ಪ್ರೇರಣೆ &amp; ಸ್ಫೂರ್ತಿ</option>
-          <option value="love">❤️ ಪ್ರೀತಿ &amp; ಸ್ನೇಹ</option>
-        </select>
-      </div>
-      <div class="pin-field">
-        <label>ನಿಮ್ಮ ಹೆಸರು (Uploader Name):</label>
-        <input type="text" id="upAuthor" class="pin-input phonetic-input" placeholder="ಉದಾ: ಅವಿನಾಶ ವಗರ್ನಾಳ">
-      </div>
-    </div>
-
-    <div class="pin-field">
-      <label>ಶೀರ್ಷಿಕೆ ಅಥವಾ ನುಡಿಮುತ್ತು (Title / Quote):</label>
-      <input type="text" id="upQuote" class="pin-input phonetic-input" placeholder="ಉದಾ: ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು...">
-    </div>
-
-    <button type="button" class="pin-action-btn primary" id="btnSubmitUpload" style="padding:12px; font-size:15px; justify-content:center; border-radius:14px;" onclick="submitPosterUpload()">
-      🚀 ಪೋಸ್ಟರ್ ಲೈವ್ ಪ್ರಕಟಿಸಿ (Publish to Gallery)
-    </button>
-    <div id="uploadStatusMsg" style="font-size:13px; font-weight:700; text-align:center;"></div>
-  </div>
-</div>
-
-<!-- ── MODAL 2: CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── -->
+<!-- ── CANVA / PINTEREST STYLE PRO POSTER MAKER MODAL ── -->
 <div class="pin-modal" id="pinStudioModal" onclick="if(event.target===this) closeStudioModal()">
   <div class="pin-modal-content">
     
