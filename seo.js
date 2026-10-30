@@ -22,7 +22,7 @@
 
 const NKSeo = (() => {
 
-  const SITE_NAME  = 'Karnata — Universe Of Karnataka';
+  const SITE_NAME  = 'ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ — Karnata.in';
   const SITE_URL   = 'https://karnata.in';
   const LOGO_URL   = 'https://karnata.in/icons/icon-512.png';
 
@@ -38,6 +38,9 @@ const NKSeo = (() => {
     if (path.includes('salary-calc'))      return 'salary';
     if (path.includes('sip-calc'))         return 'sip';
     if (path.includes('scheme-checker'))   return 'scheme';
+    if (path.includes('kannada-posters'))  return 'posters';
+    if (path.includes('sahitya-kannada-keyboard')) return 'keyboard';
+    if (path.includes('quiz'))             return 'quiz';
     if (path.includes('karnataka-sir-voters-final-list')) return 'voter_final';
     if (path.includes('karnataka-sir-voter-roll')) return 'voter_draft';
     if (path.includes('more-tools'))       return 'tools';
@@ -209,7 +212,7 @@ const NKSeo = (() => {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'KRS dam water level today 2025',
+            name: 'KRS dam water level today 2026',
             acceptedAnswer: {
               '@type': 'Answer',
               text: `KRS (Krishna Raja Sagara) dam water level today (${date}) is ${krsPct}% full. Maximum capacity: 49.5 TMC. Live data updated daily at 8 AM IST from Karnataka Water Resources Department. Check karnata.in/dam-levels.html for current level.`,
@@ -225,7 +228,7 @@ const NKSeo = (() => {
           },
           {
             '@type': 'Question',
-            name: 'Karnataka dam levels during monsoon 2025',
+            name: 'Karnataka dam levels during monsoon 2026',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'Karnataka has 13 major dams including KRS, Kabini, Harangi, Hemavathi (Cauvery basin), Tungabhadra, Almatti (Krishna basin), Linganamakki, Supa (Sharavathi basin). Karnata tracks all dam levels daily from Karnataka Water Resources Dept API.',
@@ -323,10 +326,10 @@ const NKSeo = (() => {
           },
           {
             '@type': 'Question',
-            name: 'SBI home loan interest rate 2025 Karnataka',
+            name: 'SBI home loan interest rate 2026 Karnataka',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'SBI home loan interest rates for 2025 start from 8.50% p.a. for loans up to ₹30 lakhs. Rates vary based on CIBIL score and loan amount. Calculate your EMI at karnata.in/emi-calculator.html with current bank rates.',
+              text: 'SBI home loan interest rates for 2026 start from 8.50% p.a. for loans up to ₹30 lakhs. Rates vary based on CIBIL score and loan amount. Calculate your EMI at karnata.in/emi-calculator.html with current bank rates.',
             },
           },
         ],
@@ -340,11 +343,11 @@ const NKSeo = (() => {
       {
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'Salary Calculator Karnataka 2025 — ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್',
+        name: 'Salary Calculator Karnataka 2026 — ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್',
         url: `${SITE_URL}/salary-calculator.html`,
         applicationCategory: 'FinanceApplication',
         inLanguage: 'kn',
-        description: 'Karnataka take-home salary calculator 2025. Calculate in-hand salary after PF, TDS, ESI, professional tax. New vs old tax regime comparison in Kannada.',
+        description: 'Karnataka take-home salary calculator 2026. Calculate in-hand salary after PF, TDS, ESI, professional tax. New vs old tax regime comparison in Kannada.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
       },
       {
@@ -361,7 +364,7 @@ const NKSeo = (() => {
           },
           {
             '@type': 'Question',
-            name: 'New tax regime vs old tax regime 2025 which is better?',
+            name: 'New tax regime vs old tax regime 2026 which is better?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'For income up to ₹7 lakh: New regime is better (zero tax via 87A rebate). For income above ₹7 lakh with 80C, HRA, 80D deductions: Compare both. Use Karnata salary calculator at karnata.in/salary-calculator.html to compare both regimes instantly.',
@@ -380,7 +383,7 @@ const NKSeo = (() => {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Karnataka weather forecast today 2025',
+          name: 'Karnataka weather forecast today 2026',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Karnata provides live weather forecasts for all 31 Karnataka districts using Open-Meteo API data (updated hourly). Includes 7-day forecast, rain probability, IMD alerts, and AQI for major cities. Visit karnata.in/weather.html for your district.',
@@ -396,6 +399,96 @@ const NKSeo = (() => {
         },
       ],
     };
+  }
+
+  // ─── Posters page schema ─────────────────────────────────
+  function posterSchema() {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'ಕನ್ನಡ ಪೋಸ್ಟರ್ & ನುಡಿಮುತ್ತು ಸ್ಟುಡಿಯೋ | Kannada Posters & Quotes Maker',
+        url: `${SITE_URL}/kannada-posters`,
+        applicationCategory: 'DesignApplication',
+        operatingSystem: 'All',
+        inLanguage: 'kn',
+        description: 'ಕನ್ನಡ ನುಡಿಮುತ್ತು, ಕಾವ್ಯ, ವಚನ, ಪ್ರೇರಣೆ, ಶುಭೋದಯ ಹಾಗೂ ರಾಜ್ಯೋತ್ಸವದ ಆಕರ್ಷಕ HD ಪೋಸ್ಟರ್‌ಗಳನ್ನು ಸುಲಭವಾಗಿ ಎಡಿಟ್ ಮಾಡಿ ಶೇರ್ ಮಾಡಿ.',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+        featureList: ['Kannada Quotes', 'Basavanna Vachana', 'Kuvempu Poetry', 'Rajyotsava Posters', 'Custom Photo & Name']
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಮತ್ತು ನುಡಿಮುತ್ತು ಪೋಸ್ಟರ್ ಹೇಗೆ ರಚಿಸುವುದು?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Karnata.in/kannada-posters ನಲ್ಲಿ ಯಾವುದೇ ಪೋಸ್ಟರ್ ಆಯ್ಕೆ ಮಾಡಿ, ನಿಮ್ಮ ಹೆಸರು ಹಾಗೂ ಫೋಟೋ ಸೇರಿಸಿ ಉಚಿತವಾಗಿ HD ಗುಣಮಟ್ಟದಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ ಅಥವಾ WhatsApp/Instagram ನಲ್ಲಿ ಶೇರ್ ಮಾಡಬಹುದು.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'Where to find HD Kannada quotes and posters for WhatsApp status?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Visit https://karnata.in/kannada-posters for curated high-definition Kannada quotes, Kuvempu poems, Basavanna vachanas, festive greetings, and motivational quotes ready to share.'
+            }
+          }
+        ]
+      }
+    ];
+  }
+
+  // ─── Keyboard page schema ────────────────────────────────
+  function keyboardSchema() {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': ['MobileApplication', 'SoftwareApplication'],
+        name: 'ಸಾಹಿತ್ಯ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ (Sahitya Kannada Keyboard)',
+        url: `${SITE_URL}/sahitya-kannada-keyboard`,
+        operatingSystem: 'Android',
+        applicationCategory: 'UtilitiesApplication',
+        inLanguage: ['kn', 'en'],
+        installUrl: 'https://play.google.com/store/apps/details?id=com.sahitya.keyboard',
+        description: 'Android ಗಾಗಿ Nudi, Phonetic, ಆಫ್‌ಲೈನ್ AI ವಾಟ್ಸ್ಆಪ್ ವಾಯ್ಸ್ ನೋಟ್ ಟ್ರಾನ್ಸ್‌ಕ್ರೈಬರ್, ಕೈಬರಹ ಹಾಗೂ ಪೋಸ್ಟರ್ ಕ್ರಿಯೇಟರ್ ಒಳಗೊಂಡ ಅಧಿಕೃತ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ ಆ್ಯಪ್.'
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'Android ಮೊಬೈಲ್‌ನಲ್ಲಿ ಸುಲಭವಾಗಿ ಕನ್ನಡ ಟೈಪ್ ಮಾಡುವುದು ಹೇಗೆ?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'ಸಾಹಿತ್ಯ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ (Sahitya Kannada Keyboard) ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಿ. ಇದರಲ್ಲಿ ನುಡಿ (Nudi), ಫೋನೆಟಿಕ್ (ಇಂಗ್ಲಿಷ್‌ನಿಂದ ಕನ್ನಡ), ಆಫ್‌ಲೈನ್ AI ಧ್ವನಿ ಮುದ್ರಣ (Voice to Text) ಮತ್ತು ಕೈಬರಹ ಬೆಂಬಲವಿದೆ.'
+            }
+          }
+        ]
+      }
+    ];
+  }
+
+  // ─── Voter Final List schema ─────────────────────────────
+  function voterFinalSchema() {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'GovernmentService',
+        name: 'ಕರ್ನಾಟಕ ಅಂತಿಮ ಮತದಾರರ ಪಟ್ಟಿ 2026 (Karnataka Final Voter List 2026 & SIR Roll)',
+        url: `${SITE_URL}/karnataka-sir-voters-final-list`,
+        serviceType: 'Electoral Roll Search & PDF Download',
+        provider: {
+          '@type': 'GovernmentOrganization',
+          name: 'Election Commission of India (ECI) & CEO Karnataka',
+          url: 'https://voters.eci.gov.in'
+        },
+        areaServed: { '@type': 'State', name: 'Karnataka, India' }
+      }
+    ];
   }
 
   // ─── Update Open Graph meta tags with live data ─────────
@@ -517,6 +610,33 @@ const NKSeo = (() => {
         schemas = [orgSchema(), weatherSchema()];
         updateOGMeta({ title: 'ಕರ್ನಾಟಕ ಹವಾಮಾನ ಇಂದು — Karnataka Weather Forecast & Rain Alerts | Karnata.in', url: '/weather.html' });
         break;
+      case 'posters':
+        schemas = [orgSchema(), ...posterSchema()];
+        updateOGMeta({
+          title: 'ಕನ್ನಡ ಪೋಸ್ಟರ್ & ನುಡಿಮುತ್ತು ಸ್ಟುಡಿಯೋ | Kannada Posters & Quotes Maker — Karnata.in',
+          description: 'ಕನ್ನಡ ನುಡಿಮುತ್ತುಗಳು, ಕಾವ್ಯ, ವಚನ, ಪ್ರೇರಣೆ, ಶುಭೋದಯ ಹಾಗೂ ರಾಜ್ಯೋತ್ಸವದ ಆಕರ್ಷಕ HD ಪೋಸ್ಟರ್ ಮೇಕರ್.',
+          url: '/kannada-posters'
+        });
+        injectSchema([breadcrumbSchema([{name:'ಮುಖಪುಟ',url:'/'},{name:'ಕನ್ನಡ ಪೋಸ್ಟರ್‌ಗಳು',url:'/kannada-posters'}]), ...schemas]);
+        return;
+      case 'keyboard':
+        schemas = [orgSchema(), ...keyboardSchema()];
+        updateOGMeta({
+          title: 'ಸಾಹಿತ್ಯ ಕನ್ನಡ ಕೀಬೋರ್ಡ್ (Sahitya Kannada Keyboard) — Official App | Karnata.in',
+          description: 'Nudi & Phonetic ಕನ್ನಡ ಟೈಪಿಂಗ್, ಆಫ್‌ಲೈನ್ AI ವಾಟ್ಸ್ಆಪ್ ವಾಯ್ಸ್ ನೋಟ್ ಟ್ರಾನ್ಸ್‌ಕ್ರೈಬರ್, ಕೈಬರಹ ಹಾಗೂ ಪೋಸ್ಟರ್ ಕ್ರಿಯೇಟರ್.',
+          url: '/sahitya-kannada-keyboard'
+        });
+        injectSchema([breadcrumbSchema([{name:'ಮುಖಪುಟ',url:'/'},{name:'ಸಾಹಿತ್ಯ ಕೀಬೋರ್ಡ್',url:'/sahitya-kannada-keyboard'}]), ...schemas]);
+        return;
+      case 'voter_final':
+        schemas = [orgSchema(), ...voterFinalSchema()];
+        updateOGMeta({
+          title: 'ಕರ್ನಾಟಕ ಅಂತಿಮ ಮತದಾರರ ಪಟ್ಟಿ 2026 PDF ಡೌನ್‌ಲೋಡ್ | Karnataka Final Voter List 2026 — Karnata.in',
+          description: 'ಕರ್ನಾಟಕದ 34 ಜಿಲ್ಲೆಗಳು ಮತ್ತು 224 ಕ್ಷೇತ್ರಗಳ ಅಧಿಕೃತ SIR 2026 ಅಂತಿಮ ಮತದಾರರ ಪಟ್ಟಿ PDF ಡೌನ್‌ಲೋಡ್ ಹಾಗೂ ವೋಟರ್ ಐಡಿ ಪರಿಶೀಲನೆ.',
+          url: '/karnataka-sir-voters-final-list'
+        });
+        injectSchema([breadcrumbSchema([{name:'ಮುಖಪುಟ',url:'/'},{name:'ಮತದಾರರ ಪಟ್ಟಿ 2026',url:'/karnataka-sir-voters-final-list'}]), ...schemas]);
+        return;
       default:
         schemas = [orgSchema(), websiteSchema()];
     }

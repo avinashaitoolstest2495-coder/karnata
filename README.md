@@ -1,5 +1,5 @@
 # Karnata — Karnata.in
-## Universe Of Karnataka · ಕನ್ನಡಿಗರ ಸಂಪೂರ್ಣ ಮಾಹಿತಿ ಕೇಂದ್ರ
+## ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ · ಕನ್ನಡಿಗರ ಸಂಪೂರ್ಣ ಮಾಹಿತಿ ಕೇಂದ್ರ
 
 > Live data · Civic info · Tools · News · All in Kannada
 
@@ -360,5 +360,6 @@ bubblewrap build
 ---
 
 Built with ❤️ for ಕನ್ನಡ · Karnataka · ಕರ್ನಾಟ
-#   k a r n a t a  
+#   k a r n a t a 
+ 
  

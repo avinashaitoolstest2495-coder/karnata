@@ -310,7 +310,7 @@ html, body {
   <!-- Masthead -->
   <div class="nk-masthead">
     <div class="nk-mh-inner">
-      <a href="/" class="nk-logo" title="Karnata.in — Universe Of Karnataka">
+      <a href="/" class="nk-logo" title="ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ ಕೇಂದ್ರ — Karnata.in">
         <img src="/karnata-logo.png" alt="Karnata.in Logo" class="nk-logo-img">
         <div class="nk-logo-text-wrap">
           <span class="nk-logo-kn">ಕರ್ನಾಟ</span>
