@@ -21919,19 +21919,144 @@ Do NOT include English translations in parentheses or broken sentences. Write 10
 
     }
 
+    // ══════════════════════════════════════════════════════════
+    // Route: Kannada Posters & Quotes Studio API (GET, POST, DELETE)
+    // Backed by Cloudflare KV (NK_DATA) for 100% Global Edge Persistence
+    // ══════════════════════════════════════════════════════════
+    if (url.pathname === '/api/posters' || url.pathname === '/api/posters/') {
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
 
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders });
+      }
 
+      const kv = env && (env.NK_DATA || env.TRANSFERS_KV);
+      const KV_POSTERS_KEY = 'karnata_community_posters_v1';
 
+      // ── GET: Return all posters ──
+      if (request.method === 'GET') {
+        let posters = [];
+        if (kv) {
+          try {
+            const raw = await kv.get(KV_POSTERS_KEY);
+            if (raw) {
+              posters = JSON.parse(raw);
+            }
+          } catch (err) {
+            console.error('KV Posters GET error:', err);
+          }
+        }
+        return new Response(JSON.stringify({
+          success: true,
+          count: posters.length,
+          posters: posters
+        }), { headers: corsHeaders });
+      }
 
+      // ── POST: Add / Upload poster ──
+      if (request.method === 'POST') {
+        try {
+          const payload = await request.json();
+          if (!payload.imageData && !payload.imageUrl && !payload.bgImage) {
+            return new Response(JSON.stringify({
+              success: false,
+              error: 'ಫೋಟೋ ಅಥವಾ ಇಮೇಜ್ ಡೇಟಾ ಕಡ್ಡಾಯವಾಗಿದೆ (Image is required)'
+            }), { status: 400, headers: corsHeaders });
+          }
 
+          const posterId = 'poster_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+          const rawCat = (payload.category || 'rajyotsava').trim();
+          const catLabel = (payload.catLabel || rawCat).trim();
 
+          const newPoster = {
+            id: posterId,
+            category: rawCat,
+            catLabel: catLabel,
+            header: (payload.header || '').trim(),
+            quote: (payload.quote || 'ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ, ಸಿರಿಗನ್ನಡಂ ಬಾಳ್ಗೆ!').trim(),
+            author: (payload.author || (payload.uploaderName ? `— ${payload.uploaderName}` : '— ಕರ್ನಾಟ')).trim(),
+            bgType: 'image',
+            bgImage: payload.imageData || payload.imageUrl || payload.bgImage,
+            aspect: payload.aspect || '4:5',
+            uploaderName: (payload.uploaderName || '').trim(),
+            created_at: new Date().toISOString()
+          };
 
+          let existingPosters = [];
+          if (kv) {
+            try {
+              const raw = await kv.get(KV_POSTERS_KEY);
+              if (raw) existingPosters = JSON.parse(raw);
+            } catch (e) {}
 
+            existingPosters.unshift(newPoster);
+            if (existingPosters.length > 100) {
+              existingPosters = existingPosters.slice(0, 100);
+            }
 
+            try {
+              await kv.put(KV_POSTERS_KEY, JSON.stringify(existingPosters));
+            } catch (err) {
+              console.error('KV Posters PUT error:', err);
+              return new Response(JSON.stringify({
+                success: false,
+                error: 'KV Storage write failed: ' + (err.message || 'unknown error')
+              }), { status: 500, headers: corsHeaders });
+            }
+          }
 
+          return new Response(JSON.stringify({
+            success: true,
+            message: 'ಪೋಸ್ಟರ್ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ (Published live)!',
+            poster: newPoster,
+            count: existingPosters.length
+          }), { headers: corsHeaders });
+        } catch (err) {
+          return new Response(JSON.stringify({
+            success: false,
+            error: err.message || 'Failed to process upload'
+          }), { status: 500, headers: corsHeaders });
+        }
+      }
 
+      // ── DELETE: Remove poster by ID ──
+      if (request.method === 'DELETE') {
+        try {
+          const id = url.searchParams.get('id');
+          if (!id) {
+            return new Response(JSON.stringify({ success: false, error: 'ID is required' }), {
+              status: 400,
+              headers: corsHeaders
+            });
+          }
 
+          let count = 0;
+          if (kv) {
+            let posters = [];
+            const raw = await kv.get(KV_POSTERS_KEY);
+            if (raw) posters = JSON.parse(raw);
+            const filtered = posters.filter(p => p.id !== id);
+            await kv.put(KV_POSTERS_KEY, JSON.stringify(filtered));
+            count = filtered.length;
+          }
 
+          return new Response(JSON.stringify({ success: true, count }), { headers: corsHeaders });
+        } catch (err) {
+          return new Response(JSON.stringify({ success: false, error: err.message }), {
+            status: 500,
+            headers: corsHeaders
+          });
+        }
+      }
+
+      return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: corsHeaders });
+    }
 
     // Route 1: Ask Karnata AI Engine
 

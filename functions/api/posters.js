@@ -96,6 +96,10 @@ export async function onRequest(context) {
           await kv.put(KV_POSTERS_KEY, JSON.stringify(existingPosters));
         } catch (err) {
           console.error('KV Posters PUT error:', err);
+          return new Response(JSON.stringify({
+            success: false,
+            error: 'KV Storage write failed: ' + (err.message || 'unknown error')
+          }), { status: 500, headers: corsHeaders });
         }
       }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://karnata.in/</loc>
     <lastmod>2026-10-29</lastmod>
@@ -38,9 +38,39 @@
   </url>
   <url>
     <loc>https://karnata.in/kannada-posters</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://karnata.in/assets/images/kannada-posters/poster-1.jpg</image:loc>
+      <image:title>ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಶುಭಾಶಯ ಪೋಸ್ಟರ್ - ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ</image:title>
+      <image:caption>Kannada Rajyotsava HD Poster, Quotes, Wishes and Banner for WhatsApp and Instagram status</image:caption>
+      <image:geo_location>Karnataka, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://karnata.in/assets/images/kannada-posters/poster-2.jpg</image:loc>
+      <image:title>71ನೇ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ ಶುಭಾಶಯಗಳು 3D ಪೋಸ್ಟರ್</image:title>
+      <image:caption>71st Karnataka Rajyotsava Wishes 3D HD Poster, Karnataka Map and Heritage Banner</image:caption>
+      <image:geo_location>Karnataka, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://karnata.in/assets/images/kannada-posters/poster-3.jpg</image:loc>
+      <image:title>ಕರುನಾಡ ಸಾಂಸ್ಕೃತಿಕ ರಂಗೋಲಿ ಮೈಸೂರು ಅರಮನೆ ಪೋಸ್ಟರ್</image:title>
+      <image:caption>Mysore Palace and Kannada Rangoli Cultural Heritage Poster HD</image:caption>
+      <image:geo_location>Mysuru, Karnataka, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://karnata.in/assets/images/kannada-posters/poster-4.jpg</image:loc>
+      <image:title>ತಾಯಿ ಭುವನೇಶ್ವರಿ ದೇವಿ ಕೃಪೆ ಕನ್ನಡ ಪೋಸ್ಟರ್</image:title>
+      <image:caption>Goddess Bhuvaneshwari Kannada Rajyotsava HD Poster and Wishes</image:caption>
+      <image:geo_location>Karnataka, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://karnata.in/assets/images/kannada-posters/poster-5.jpg</image:loc>
+      <image:title>ಕರುನಾಡ ಜನೋತ್ಸವ ಡೊಳ್ಳು ಕುಣಿತ ಸಂಭ್ರಮ ಪೋಸ್ಟರ್</image:title>
+      <image:caption>Karnataka Folk Dollu Kunitha and Vidhana Soudha Celebration Poster HD</image:caption>
+      <image:geo_location>Bengaluru, Karnataka, India</image:geo_location>
+    </image:image>
   </url>
   <url>
     <loc>https://karnata.in/apmc-prices</loc>

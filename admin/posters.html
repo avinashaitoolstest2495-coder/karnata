@@ -307,19 +307,26 @@
 
         <div class="form-group" style="margin-top:14px;">
           <label class="form-label">ಪೋಸ್ಟರ್ ವರ್ಗ (Category):</label>
-          <select id="posterCategory" class="select-box">
+          <select id="posterCategory" class="select-box" onchange="handleCategoryChange(this.value)">
             <option value="rajyotsava">💛❤️ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ</option>
+            <option value="morning">🌅 ಶುಭೋದಯ &amp; ನುಡಿಮುತ್ತು</option>
             <option value="festivals">🎉 ಹಬ್ಬ &amp; ಹುಟ್ಟುಹಬ್ಬ</option>
             <option value="sahitya">📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ</option>
-            <option value="morning">🌅 ಶುಭೋದಯ &amp; ನುಡಿಮುತ್ತು</option>
             <option value="vachana">📿 ವಚನ ಸಾಹಿತ್ಯ</option>
             <option value="motivation">💡 ಪ್ರೇರಣೆ &amp; ಸ್ಫೂರ್ತಿ</option>
             <option value="love">❤️ ಪ್ರೀತಿ &amp; ಸ್ನೇಹ</option>
+            <option value="__custom__">➕ ಹೊಸ ವರ್ಗ ರಚಿಸಿ (Create Custom Category)...</option>
           </select>
         </div>
 
+        <div class="form-group" id="customCategoryGroup" style="display:none; background:#FFF1F2; border:1.5px solid #FECDD3; border-radius:12px; padding:12px;">
+          <label class="form-label" style="color:#BE123C; margin-bottom:4px;">🏷️ ಹೊಸ ವರ್ಗದ ಹೆಸರು ಬರೆಯಿರಿ (Type Any Custom Category):</label>
+          <input type="text" id="customCategoryInput" class="input-text" placeholder="ಉದಾ: ದಸರಾ ಉತ್ಸವ, ತತ್ವಪದಗಳು, ಜನ್ಮದಿನ...">
+          <span style="font-size:11.5px; color:#9F1239; margin-top:4px; display:block;">✨ ಈ ವರ್ಗವು ಸಾರ್ವಜನಿಕ ವೆಬ್‌ಸೈಟ್‌ನ ಫಿಲ್ಟರ್ ಬಟನ್‌ಗಳಲ್ಲಿ ತಕ್ಷಣವೇ ಕಾಣಿಸುತ್ತದೆ!</span>
+        </div>
+
         <div class="form-group">
-          <label class="form-label">ಪೋಸ್ಟರ್ ಶೀರ್ಷಿಕೆ / ನುಡಿಮುತ್ತು:</label>
+          <label class="form-label">ಪೋಸ್ಟರ್ ಶೀರ್ಷಿಕೆ / ನುಡಿಮುತ್ತು (Title / Quote):</label>
           <input type="text" id="posterQuote" class="input-text" placeholder="ಉದಾ: ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ, ಸಿರಿಗನ್ನಡಂ ಬಾಳ್ಗೆ!">
         </div>
 
@@ -388,7 +395,19 @@
       unlockUI();
     }
 
-    // 2. IMAGE UPLOAD & RESIZE
+    // Category Dropdown Change Handler
+    function handleCategoryChange(val) {
+      const grp = document.getElementById('customCategoryGroup');
+      const inp = document.getElementById('customCategoryInput');
+      if (val === '__custom__') {
+        grp.style.display = 'block';
+        inp.focus();
+      } else {
+        grp.style.display = 'none';
+      }
+    }
+
+    // 2. IMAGE UPLOAD & RESIZE (CRISP HIGH-DPI OPTIMIZATION)
     let selectedDataUrl = null;
 
     function handleAdminFile(e) {
@@ -402,7 +421,8 @@
       reader.onload = ev => {
         const img = new Image();
         img.onload = () => {
-          const maxDim = 1200;
+          // Standard full HD mobile/desktop poster width (crisp, not blurry, fast upload)
+          const maxDim = 1080;
           let w = img.width;
           let h = img.height;
           if (w > maxDim || h > maxDim) {
@@ -417,12 +437,17 @@
           const cvs = document.createElement('canvas');
           cvs.width = w;
           cvs.height = h;
-          cvs.getContext('2d').drawImage(img, 0, 0, w, h);
-          selectedDataUrl = cvs.toDataURL('image/jpeg', 0.88);
+          const ctx = cvs.getContext('2d');
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(img, 0, 0, w, h);
+          selectedDataUrl = cvs.toDataURL('image/jpeg', 0.82);
 
+          const sizeKb = Math.round((selectedDataUrl.length * 3 / 4) / 1024);
           document.getElementById('previewImg').src = selectedDataUrl;
           document.getElementById('dropPrompt').style.display = 'none';
           document.getElementById('dropPreview').style.display = 'block';
+          document.getElementById('uploadStatus').innerHTML = `<span style="color:#059669; font-size:12px;">📸 ಚಿತ್ರ ಸಿದ್ಧವಾಗಿದೆ (${w}x${h}px · ~${sizeKb} KB HD)</span>`;
         };
         img.src = ev.target.result;
       };
@@ -451,7 +476,9 @@
           const d = await res.json();
           uploadedPosters = d.posters || [];
         }
-      } catch (err) {}
+      } catch (err) {
+        console.error('Load posters error:', err);
+      }
       renderPostersList();
     }
 
@@ -467,10 +494,10 @@
       list.innerHTML = uploadedPosters.map(p => `
         <div class="poster-thumb-card">
           <button class="btn-del" onclick="deletePoster('${p.id}')" title="ಅಳಿಸಿ">✕</button>
-          <img src="${p.bgImage}" alt="${p.quote || 'Poster'}">
+          <img src="${p.bgImage}" alt="${p.quote || 'Poster'}" loading="lazy">
           <div class="poster-thumb-meta">
             <div style="font-size:12px; font-weight:800; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${p.quote || 'ಪೋಸ್ಟರ್'}</div>
-            <div style="font-size:11px; color:#64748B;">${p.category}</div>
+            <div style="font-size:11px; color:#64748B;">${p.catLabel || p.category}</div>
           </div>
         </div>
       `).join('');
@@ -482,7 +509,21 @@
         return;
       }
 
-      const category = document.getElementById('posterCategory').value;
+      const catSelect = document.getElementById('posterCategory');
+      let category = catSelect.value;
+      let catLabel = catSelect.selectedOptions[0] ? catSelect.selectedOptions[0].text : '🎨 ಪೋಸ್ಟರ್';
+
+      if (category === '__custom__') {
+        const customVal = (document.getElementById('customCategoryInput').value || '').trim();
+        if (!customVal) {
+          alert('ದಯವಿಟ್ಟು ಹೊಸ ವರ್ಗದ ಹೆಸರು ಬರೆಯಿರಿ (Type custom category name)!');
+          document.getElementById('customCategoryInput').focus();
+          return;
+        }
+        category = customVal.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s_-]+/g, '-') || ('cat-' + Date.now());
+        catLabel = '🏷️ ' + customVal;
+      }
+
       const quote = document.getElementById('posterQuote').value.trim() || 'ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ, ಸಿರಿಗನ್ನಡಂ ಬಾಳ್ಗೆ!';
       const author = document.getElementById('posterAuthor').value.trim() || '— ಕರ್ನಾಟ';
 
@@ -491,12 +532,12 @@
 
       btn.disabled = true;
       btn.innerHTML = '⏳ ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ...';
-      status.innerHTML = `<span style="color:#2563EB;">⚡ ಕ್ಲೌಡ್‌ಗೆ ಸೇವ್ ಆಗುತ್ತಿದೆ...</span>`;
+      status.innerHTML = `<span style="color:#2563EB;">⚡ ಕ್ಲೌಡ್‌ಗೆ ಸೇವ್ ಆಗುತ್ತಿದೆ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ...</span>`;
 
       const payload = {
         imageData: selectedDataUrl,
         category: category,
-        catLabel: category === 'rajyotsava' ? '💛❤️ ರಾಜ್ಯೋತ್ಸವ' : '🎨 ಪೋಸ್ಟರ್',
+        catLabel: catLabel,
         quote: quote,
         author: author,
         aspect: '4:5'
@@ -509,18 +550,32 @@
           body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
-          status.innerHTML = `<span style="color:#059669;">✅ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ!</span>`;
-          alert('🎉 ಪೋಸ್ಟರ್ ತಕ್ಷಣವೇ ಲೈವ್ ಆಗಿದೆ (Published Live across all devices)!');
-          selectedDataUrl = null;
-          document.getElementById('dropPrompt').style.display = 'block';
-          document.getElementById('dropPreview').style.display = 'none';
-          document.getElementById('posterQuote').value = '';
-          document.getElementById('posterAuthor').value = '';
-          loadPosters();
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || `ಸರ್ವರ್ ಪ್ರತಿಕ್ರಿಯೆ: HTTP ${res.status}`);
         }
+
+        status.innerHTML = `<span style="color:#059669; font-weight:800;">✅ ಯಶಸ್ವಿಯಾಗಿ ಕ್ಲೌಡ್‌ಗೆ ಸೇವ್ ಆಗಿದೆ! ಲೈವ್ ಆಗಿದೆ!</span>`;
+        alert('🎉 ಪೋಸ್ಟರ್ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ (Published Live across all devices)!');
+
+        // Reset inputs
+        selectedDataUrl = null;
+        document.getElementById('posterFileInput').value = '';
+        document.getElementById('dropPrompt').style.display = 'block';
+        document.getElementById('dropPreview').style.display = 'none';
+        document.getElementById('posterQuote').value = '';
+        document.getElementById('posterAuthor').value = '';
+        document.getElementById('customCategoryInput').value = '';
+        if (category === '__custom__') {
+          catSelect.value = 'rajyotsava';
+          handleCategoryChange('rajyotsava');
+        }
+
+        await loadPosters();
       } catch (err) {
-        status.innerHTML = `<span style="color:#DC2626;">⚠️ ದೋಷ: ${err.message}</span>`;
+        status.innerHTML = `<span style="color:#DC2626; font-weight:800;">❌ ದೋಷ: ${err.message}</span>`;
+        alert('ದೋಷ ಸಂಭವಿಸಿದೆ: ' + err.message);
       } finally {
         btn.disabled = false;
         btn.innerHTML = '🚀 ಪೋಸ್ಟರ್ ಲೈವ್ ಪ್ರಕಟಿಸಿ (Publish Online)';

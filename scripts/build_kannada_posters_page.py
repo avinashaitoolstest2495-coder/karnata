@@ -58,7 +58,80 @@ HTML = r"""<!DOCTYPE html>
         "price": "0",
         "priceCurrency": "INR"
       },
-      "description": "Minimalist Pinterest-style Kannada poster and quote maker. Upload your posters from any PC/phone, edit with your name and photo, download HD and share across social media."
+      "description": "Minimalist Pinterest-style Kannada poster and quote maker. Free HD Kannada Rajyotsava wishes, daily quotes, Kuvempu poetry, Basavanna vachanas and custom posters."
+    },
+    {
+      "@type": "ImageGallery",
+      "name": "ಕನ್ನಡ ಪೋಸ್ಟರ್‌ಗಳು ಮತ್ತು ನುಡಿಮುತ್ತುಗಳ ಗ್ಯಾಲರಿ | Kannada Posters & Quotes Collection HD",
+      "url": "https://karnata.in/kannada-posters",
+      "description": "High definition Kannada posters, quotes, wishes, and banners for WhatsApp status and Instagram posts.",
+      "image": [
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://karnata.in/assets/images/kannada-posters/poster-1.jpg",
+          "thumbnailUrl": "https://karnata.in/assets/images/kannada-posters/poster-1.jpg",
+          "name": "ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಶುಭಾಶಯ ಪೋಸ್ಟರ್ - ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ",
+          "description": "HD Kannada Rajyotsava wishes poster, quotes, status banner for WhatsApp and Instagram",
+          "width": 819,
+          "height": 1024,
+          "encodingFormat": "image/jpeg",
+          "author": { "@type": "Organization", "name": "Karnata" },
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "acquireLicensePage": "https://karnata.in/kannada-posters"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://karnata.in/assets/images/kannada-posters/poster-2.jpg",
+          "thumbnailUrl": "https://karnata.in/assets/images/kannada-posters/poster-2.jpg",
+          "name": "71ನೇ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ ಶುಭಾಶಯಗಳು 3D ಪೋಸ್ಟರ್",
+          "description": "71st Karnataka Rajyotsava Wishes 3D HD Poster, Karnataka Map and Heritage Banner",
+          "width": 819,
+          "height": 1024,
+          "encodingFormat": "image/jpeg",
+          "author": { "@type": "Organization", "name": "Karnata" },
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "acquireLicensePage": "https://karnata.in/kannada-posters"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://karnata.in/assets/images/kannada-posters/poster-3.jpg",
+          "thumbnailUrl": "https://karnata.in/assets/images/kannada-posters/poster-3.jpg",
+          "name": "ಕರುನಾಡ ಸಾಂಸ್ಕೃತಿಕ ರಂಗೋಲಿ ಮೈಸೂರು ಅರಮನೆ ಪೋಸ್ಟರ್",
+          "description": "Mysore Palace and Kannada Rangoli Cultural Heritage Poster HD",
+          "width": 819,
+          "height": 1024,
+          "encodingFormat": "image/jpeg",
+          "author": { "@type": "Organization", "name": "Karnata" },
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "acquireLicensePage": "https://karnata.in/kannada-posters"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://karnata.in/assets/images/kannada-posters/poster-4.jpg",
+          "thumbnailUrl": "https://karnata.in/assets/images/kannada-posters/poster-4.jpg",
+          "name": "ತಾಯಿ ಭುವನೇಶ್ವರಿ ದೇವಿ ಕೃಪೆ ಕನ್ನಡ ಪೋಸ್ಟರ್",
+          "description": "Goddess Bhuvaneshwari Kannada Rajyotsava HD Poster and Wishes",
+          "width": 819,
+          "height": 1024,
+          "encodingFormat": "image/jpeg",
+          "author": { "@type": "Organization", "name": "Karnata" },
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "acquireLicensePage": "https://karnata.in/kannada-posters"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://karnata.in/assets/images/kannada-posters/poster-5.jpg",
+          "thumbnailUrl": "https://karnata.in/assets/images/kannada-posters/poster-5.jpg",
+          "name": "ಕರುನಾಡ ಜನೋತ್ಸವ ಡೊಳ್ಳು ಕುಣಿತ ಸಂಭ್ರಮ ಪೋಸ್ಟರ್",
+          "description": "Karnataka Folk Dollu Kunitha and Vidhana Soudha Celebration Poster HD",
+          "width": 819,
+          "height": 1024,
+          "encodingFormat": "image/jpeg",
+          "author": { "@type": "Organization", "name": "Karnata" },
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "acquireLicensePage": "https://karnata.in/kannada-posters"
+        }
+      ]
     }
   ]
 }
@@ -314,81 +387,105 @@ html, body {
 
 .pin-masonry {
   column-count: 4;
-  column-gap: 20px;
+  column-gap: 18px;
 }
 
-@media (max-width: 1200px) {
-  .pin-masonry { column-count: 3; }
+@media (max-width: 1100px) {
+  .pin-masonry { column-count: 3; column-gap: 16px; }
 }
-@media (max-width: 860px) {
-  .pin-masonry { column-count: 2; column-gap: 14px; }
+@media (max-width: 768px) {
+  .pin-masonry { column-count: 2; column-gap: 12px; }
+  .pin-grid-container { padding: 0 12px; }
 }
-@media (max-width: 520px) {
-  .pin-masonry { column-count: 1; }
+@media (max-width: 440px) {
+  .pin-masonry { column-count: 2; column-gap: 10px; }
+  .pin-grid-container { padding: 0 8px; }
 }
 
 /* Individual Pin Item */
 .pin-item {
   break-inside: avoid;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   position: relative;
   background: var(--bg-surface);
   border-radius: var(--radius-pin);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+@media (max-width: 768px) {
+  .pin-item {
+    margin-bottom: 12px;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
 }
 
 .pin-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
 
 .pin-media-wrap {
   position: relative;
   overflow: hidden;
-  background: var(--stone-100);
+  background: #F1F5F9;
   cursor: pointer;
+  display: block;
 }
 
 .pin-media-wrap img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.35s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: transform 0.3s ease;
 }
 
 .pin-item:hover .pin-media-wrap img {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 /* Pinterest Dynamic Text Art Cards */
 .pin-quote-card {
   width: 100%;
-  padding: 26px 22px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 260px;
+  min-height: 240px;
   position: relative;
   overflow: hidden;
 }
+@media (max-width: 768px) {
+  .pin-quote-card {
+    padding: 18px 14px;
+    min-height: 200px;
+  }
+}
 
 .pin-quote-quote {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 800;
-  line-height: 1.48;
+  line-height: 1.45;
   position: relative;
   z-index: 2;
   white-space: pre-line;
 }
+@media (max-width: 768px) {
+  .pin-quote-quote { font-size: 14px; line-height: 1.4; }
+}
 
 .pin-quote-author {
-  margin-top: 18px;
-  font-size: 13.5px;
+  margin-top: 14px;
+  font-size: 13px;
   font-weight: 700;
-  opacity: 0.85;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -396,61 +493,103 @@ html, body {
   z-index: 2;
 }
 
-/* Hover Action Overlay */
-.pin-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(2px);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  padding: 14px;
+/* Clean Minimal Card Footer (Under the art - No blur, no clutter) */
+.pin-card-footer {
+  padding: 10px 14px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  z-index: 5;
-}
-
-.pin-item:hover .pin-overlay,
-.pin-item:focus-within .pin-overlay {
-  opacity: 1;
-}
-
-/* Mobile-friendly: if touch device, keep quick actions visible on tap */
-@media (hover: none) {
-  .pin-overlay {
-    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.7) 100%);
-    opacity: 1;
-    pointer-events: none;
-  }
-  .pin-overlay * { pointer-events: auto; }
-}
-
-.pin-top-actions {
-  display: flex;
-  justify-content: flex-end;
   gap: 8px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(0,0,0,0.03);
+}
+@media (max-width: 768px) {
+  .pin-card-footer {
+    padding: 8px 10px;
+  }
 }
 
-.pin-save-btn {
-  background: var(--pin-red);
-  color: #FFF;
-  border: none;
-  padding: 9px 16px;
-  border-radius: var(--radius-pill);
-  font-size: 13px;
+.pin-meta-text {
+  flex: 1;
+  min-width: 0;
+}
+.pin-meta-quote {
+  font-size: 13.5px;
   font-weight: 800;
-  cursor: pointer;
-  display: inline-flex;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+}
+@media (max-width: 768px) {
+  .pin-meta-quote { font-size: 12px; }
+}
+
+.pin-meta-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748B;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+  .pin-meta-tag { font-size: 10px; }
+}
+
+.pin-quick-actions {
+  display: flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 4px 12px rgba(230,0,35,0.4);
-  transition: all 0.15s;
+  flex-shrink: 0;
 }
 
-.pin-save-btn:hover {
-  background: var(--pin-red-hover);
-  transform: scale(1.04);
+.pin-pill-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #1E293B;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pin-pill-action:hover {
+  background: #0F172A;
+  color: #FFF;
+  border-color: #0F172A;
+  transform: scale(1.06);
+}
+.pin-pill-action.download:hover {
+  background: var(--pin-red);
+  color: #FFF;
+  border-color: var(--pin-red);
+}
+@media (max-width: 768px) {
+  .pin-pill-action {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* Screen Reader / Bot SEO Metadata */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .pin-edit-btn {
@@ -988,6 +1127,9 @@ html, body {
       <button class="pin-create-btn" onclick="openStudioModal(null)">
         ➕ ಹೊಸ ಪೋಸ್ಟರ್ ರಚಿಸಿ (Create)
       </button>
+      <a href="/admin/posters.html" class="pin-upload-btn" style="text-decoration:none;" title="ಅಡ್ಮಿನ್ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ (Admin Only)">
+        🔒 ಅಡ್ಮಿನ್
+      </a>
     </div>
   </div>
 </header>
@@ -1575,7 +1717,7 @@ async function syncCommunityPosters() {
     const res = await fetch('/api/posters?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      if (data && data.posters) {
+      if (data && data.posters && data.posters.length > 0) {
         dynamicUploadedPins = data.posters;
       }
     }
@@ -1599,10 +1741,45 @@ async function syncCommunityPosters() {
 
   // 3. Merge: uploads first, then built-ins
   allPins = [...dynamicUploadedPins, ...BUILTIN_PINS];
+  updateCategoryChips();
   renderMasonry();
 }
 
-// ── 3. RENDER PINTEREST MASONRY PINS ──
+// Dynamically populate category chips from built-ins AND any custom categories created by admin
+function updateCategoryChips() {
+  const rail = document.getElementById("categoryRail");
+  if (!rail) return;
+
+  const defaultCats = [
+    { id: 'all', label: '✨ ಎಲ್ಲಾ ಪೋಸ್ಟರ್‌ಗಳು' },
+    { id: 'rajyotsava', label: '💛❤️ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ' },
+    { id: 'morning', label: '🌅 ಶುಭೋದಯ &amp; ಶುಭರಾತ್ರಿ' },
+    { id: 'festivals', label: '🎉 ಹಬ್ಬ &amp; ಹುಟ್ಟುಹಬ್ಬ' },
+    { id: 'sahitya', label: '📜 ಕಾವ್ಯ &amp; ಸಾಹಿತ್ಯ' },
+    { id: 'vachana', label: '📿 ವಚನ ಸಾಹಿತ್ಯ' },
+    { id: 'manku', label: '✨ ಡಿವಿಜಿ ಮಂಕುತಿಮ್ಮನ ಕಗ್ಗ' },
+    { id: 'motivation', label: '💡 ಸ್ಫೂರ್ತಿ &amp; ಪ್ರೇರಣೆ' },
+    { id: 'love', label: '❤️ ಪ್ರೀತಿ &amp; ಸ್ನೇಹ' }
+  ];
+
+  const catMap = new Map();
+  defaultCats.forEach(c => catMap.set(c.id, c.label));
+
+  // Dynamically add any custom categories created by admin on upload
+  allPins.forEach(p => {
+    if (p.category && !catMap.has(p.category)) {
+      catMap.set(p.category, p.catLabel || ('🏷️ ' + p.category));
+    }
+  });
+
+  rail.innerHTML = Array.from(catMap.entries()).map(([cid, clabel]) => `
+    <button class="pin-chip ${activeCategory === cid ? 'active' : ''}" onclick="selectCategory('${cid}', this)">
+      ${clabel}
+    </button>
+  `).join('');
+}
+
+// ── 3. RENDER PINTEREST MASONRY PINS (MINIMAL & ULTRA-CRISP) ──
 let activeCategory = "all";
 let currentSearchQuery = "";
 
@@ -1612,8 +1789,6 @@ function renderMasonry() {
     let matchCat = false;
     if (activeCategory === "all") {
       matchCat = true;
-    } else if (activeCategory === "community") {
-      matchCat = pin.id.startsWith("custom-");
     } else {
       matchCat = pin.category === activeCategory;
     }
@@ -1633,8 +1808,8 @@ function renderMasonry() {
       <div style="grid-column: 1 / -1; text-align:center; padding: 60px 20px; color:var(--stone-600);">
         <div style="font-size:36px; margin-bottom:12px;">🔍</div>
         <h3 style="font-size:18px; font-weight:800; color:var(--stone-900);">ಯಾವುದೇ ಪೋಸ್ಟರ್ ಕಂಡುಬಂದಿಲ್ಲ</h3>
-        <p style="margin-top:6px;">ಬೇರೆ ಶಬ್ದಗಳನ್ನು ಹುಡುಕಿ ಅಥವಾ ಹೊಸದಾಗಿ ನೀವೇ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.</p>
-        <button class="pin-create-btn" style="margin-top:16px;" onclick="openUploadModal()">☁️ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</button>
+        <p style="margin-top:6px;">ಬೇರೆ ಶಬ್ದಗಳನ್ನು ಹುಡುಕಿ ಅಥವಾ ಎಲ್ಲಾ ಪೋಸ್ಟರ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ.</p>
+        <button class="pin-create-btn" style="margin-top:16px;" onclick="selectCategory('all', document.querySelector('.pin-chip'))">✨ ಎಲ್ಲಾ ಪೋಸ್ಟರ್ ನೋಡಿ</button>
       </div>
     `;
     return;
@@ -1644,14 +1819,32 @@ function renderMasonry() {
     const isImage = pin.bgType === "image";
     let mediaHTML = "";
 
+    const cleanQuote = (pin.quote || pin.header || 'ಕನ್ನಡ ಪೋಸ್ಟರ್').replace(/\n/g, ' ').trim();
+    const cleanAuthor = (pin.author || '— ಕರ್ನಾಟ').trim();
+    const catLabel = pin.catLabel || pin.category || '🎨 ಪೋಸ್ಟರ್';
+
+    // Rich SEO Alt and Title for Google Image indexing
+    const seoTitle = `${cleanQuote} | ${catLabel} - Kannada Poster HD`;
+    const seoAlt = `ಕನ್ನಡ ಪೋಸ್ಟರ್ - ${cleanQuote} ${cleanAuthor} (${catLabel}) | Kannada Quotes Poster Free Download`;
+
     if (isImage) {
-      mediaHTML = `<img src="${pin.bgImage}" alt="${pin.header || pin.catLabel}" loading="lazy">`;
+      mediaHTML = `
+        <figure itemscope itemtype="https://schema.org/ImageObject" style="margin:0; padding:0; position:relative;">
+          <img src="${pin.bgImage}" 
+               alt="${seoAlt.replace(/"/g, '&quot;')}" 
+               title="${seoTitle.replace(/"/g, '&quot;')}" 
+               loading="lazy" 
+               decoding="async"
+               itemprop="contentUrl">
+          <figcaption class="sr-only" itemprop="caption">${seoTitle}</figcaption>
+        </figure>
+      `;
     } else {
       const grad = `linear-gradient(135deg, ${pin.bgColors[0]}, ${pin.bgColors[1]}, ${pin.bgColors[2] || pin.bgColors[1]})`;
       mediaHTML = `
         <div class="pin-quote-card" style="background: ${grad}; color: ${pin.textColor};">
           <div style="display:flex; justify-content:space-between; align-items:center; z-index:2;">
-            <span style="font-size:11.5px; font-weight:800; background:rgba(0,0,0,0.25); padding:3px 10px; border-radius:999px;">${pin.catLabel}</span>
+            <span style="font-size:11.5px; font-weight:800; background:rgba(0,0,0,0.25); padding:3px 10px; border-radius:999px;">${catLabel}</span>
             <span style="font-size:18px; opacity:0.8;">“</span>
           </div>
           <div class="pin-quote-quote">${pin.quote}</div>
@@ -1660,33 +1853,19 @@ function renderMasonry() {
       `;
     }
 
-    const isUserUpload = pin.id.startsWith("custom-");
-
     return `
       <div class="pin-item" data-id="${pin.id}">
-        <div class="pin-media-wrap" onclick="openStudioModal('${pin.id}')">
+        <div class="pin-media-wrap" onclick="openStudioModal('${pin.id}')" title="ಕ್ಲಿಕ್ ಮಾಡಿ ಎಡಿಟ್ ಮಾಡಿ (Customize with your Name)">
           ${mediaHTML}
-          <!-- Hover Overlay -->
-          <div class="pin-overlay">
-            <div class="pin-top-actions">
-              <button class="pin-edit-btn" onclick="event.stopPropagation(); openStudioModal('${pin.id}')" title="ಎಡಿಟ್ ಮಾಡಿ">✏️ ಎಡಿಟ್</button>
-              <button class="pin-save-btn" onclick="event.stopPropagation(); quickDownloadPin('${pin.id}')" title="ಸೇವ್ ಮಾಡಿ">⬇️ ಸೇವ್</button>
-            </div>
-            <div class="pin-bottom-actions">
-              <span style="font-size:11.5px; font-weight:800; color:#FFF; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:999px;">${isUserUpload ? '☁️ User' : pin.catLabel}</span>
-              <div class="pin-social-row">
-                <button class="pin-icon-btn wa" onclick="event.stopPropagation(); quickSharePin('${pin.id}', 'whatsapp')" title="WhatsApp">WA</button>
-                <button class="pin-icon-btn ig" onclick="event.stopPropagation(); quickSharePin('${pin.id}', 'instagram')" title="Instagram">IG</button>
-                <button class="pin-icon-btn fb" onclick="event.stopPropagation(); quickSharePin('${pin.id}', 'facebook')" title="Facebook">FB</button>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="pin-meta">
-          <div class="pin-meta-title">${(pin.quote || '').split('\n')[0]}</div>
-          <div class="pin-meta-sub">
-            <span>${pin.author}</span>
-            <span class="pin-cat-tag">${isUserUpload ? '☁️ ಅಪ್‌ಲೋಡ್' : (pin.catLabel || '').split(' ')[0]}</span>
+        <div class="pin-card-footer">
+          <div class="pin-meta-text">
+            <div class="pin-meta-quote">${cleanQuote}</div>
+            <div class="pin-meta-tag">${catLabel} · ${cleanAuthor}</div>
+          </div>
+          <div class="pin-quick-actions">
+            <button class="pin-pill-action download" onclick="event.stopPropagation(); quickDownloadPin('${pin.id}')" title="1-ಕ್ಲಿಕ್ ಡೌನ್‌ಲೋಡ್ (Download HD)">⬇️</button>
+            <button class="pin-pill-action edit" onclick="event.stopPropagation(); openStudioModal('${pin.id}')" title="ಎಡಿಟ್ & ಶೇರ್ (Customize with your Name)">✏️</button>
           </div>
         </div>
       </div>
@@ -1697,7 +1876,7 @@ function renderMasonry() {
 function selectCategory(cat, btn) {
   activeCategory = cat;
   document.querySelectorAll(".pin-chip").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
+  if (btn) btn.classList.add("active");
   renderMasonry();
 }
 
