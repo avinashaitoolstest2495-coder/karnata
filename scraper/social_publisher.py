@@ -4,6 +4,10 @@ Automated Multi-Platform Social Media Publisher for Karnata
 Supports: X (Twitter), Facebook Pages, Instagram Graph API, and Telegram Channels.
 """
 
+import sys
+print("[STOPPED] Social media auto-posting has been permanently DISABLED by user request.")
+sys.exit(0)
+
 import os
 import json
 import logging

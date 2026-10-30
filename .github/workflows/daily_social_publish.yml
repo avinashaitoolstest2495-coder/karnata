@@ -1,39 +1,13 @@
 name: Karnataka Daily Automated 30-Min Social Media Publisher
 
+# AUTOMATIC SOCIAL POSTING SCHEDULE IS DISABLED PER USER REQUEST
+# To re-enable, restore the schedule crons below.
+# schedule:
+#   - cron: '45 1 * * *'
+#   - cron: '15 2 * * *'
+#   ...
+
 on:
-  schedule:
-    # 07:15 AM IST (01:45 UTC): ಶುಭೋದಯ ಚಿಂತನೆ (quote)
-    - cron: '45 1 * * *'
-    # 07:45 AM IST (02:15 UTC): ಪೆಟ್ರೋಲ್ & ಡೀಸೆಲ್ ದರ (petrol_diesel)
-    - cron: '15 2 * * *'
-    # 08:30 AM IST (03:00 UTC): ಹವಾಮಾನ ಸಾರಾಂಶ (weather_summary)
-    - cron: '0 3 * * *'
-    # 09:15 AM IST (03:45 UTC): APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ (apmc_rates)
-    - cron: '45 3 * * *'
-    # 09:45 AM IST (04:15 UTC): 13 ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (dam_levels)
-    - cron: '15 4 * * *'
-    # 10:15 AM IST (04:45 UTC): ಚಿನ್ನ & ಬೆಳ್ಳಿ ಲೈವ್ ದರ (gold_rate)
-    - cron: '45 4 * * *'
-    # 10:45 AM IST (05:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 1 (weather_nowcast_1)
-    - cron: '15 5 * * *'
-    # 11:30 AM IST (06:00 UTC): ರಸಪ್ರಶ್ನೆ 1 (quiz_1)
-    - cron: '0 6 * * *'
-    # 12:30 PM IST (07:00 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 1 (doyouknow_1)
-    - cron: '0 7 * * *'
-    # 01:45 PM IST (08:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 2 (weather_nowcast_2)
-    - cron: '15 8 * * *'
-    # 02:30 PM IST (09:00 UTC): ರಸಪ್ರಶ್ನೆ 2 (quiz_2)
-    - cron: '0 9 * * *'
-    # 04:00 PM IST (10:30 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 2 (doyouknow_2)
-    - cron: '30 10 * * *'
-    # 04:45 PM IST (11:15 UTC): IMD ಮಳೆ ನಕ್ಷೆ 3 (weather_nowcast_3)
-    - cron: '15 11 * * *'
-    # 05:45 PM IST (12:15 UTC): ರಸಪ್ರಶ್ನೆ 3 (quiz_3)
-    - cron: '15 12 * * *'
-    # 07:15 PM IST (13:45 UTC): IMD ಮಳೆ ನಕ್ಷೆ 4 (weather_nowcast_4)
-    - cron: '45 13 * * *'
-    # 08:00 PM IST (14:30 UTC): ನಿಮಗೆ ತಿಳಿದಿದೆಯೇ? 3 (doyouknow_3)
-    - cron: '30 14 * * *'
   workflow_dispatch:
     inputs:
       slot:

@@ -20,10 +20,10 @@ Executes the exact 16 slots throughout the day based on IST time:
 15. 07:15 PM — weather_nowcast_4
 16. 08:00 PM — doyouknow_3
 """
-
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
-import os
+print("[STOPPED] Social media auto-posting has been permanently DISABLED by user request.")
+sys.exit(0)
+
 import json
 import subprocess
 from pathlib import Path

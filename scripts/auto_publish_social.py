@@ -22,7 +22,9 @@ Automated Social Media Publisher for Instagram & Facebook (Meta Graph API) v3.0
 """
 
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+print("[STOPPED] Social media auto-posting has been permanently DISABLED by user request.")
+sys.exit(0)
+
 import os
 import json
 import time
