@@ -269,6 +269,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 
 
+
 /**
 
 
@@ -9715,20 +9716,22 @@ async function handleAskAI(request, env) {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // TIER 0: Grounded Financial & Gold Decision Intelligence (Jos Alukkas Karnataka Live)
+    const groundedGold = generateGroundedGoldAnswer(rawQuery);
+    if (groundedGold) {
+      return new Response(JSON.stringify({
+        success: true,
+        prompt: rawQuery,
+        answer: groundedGold.answer,
+        cards: groundedGold.cards,
+        sources: groundedGold.sources,
+        provider: groundedGold.provider || 'Jos Alukkas Karnataka Telemetry',
+        tier: 0
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
 
     // TIER 1: Verified Certified Knowledge FAQ (Always 100% Accurate)
 
@@ -9891,126 +9894,6 @@ async function handleAskAI(request, env) {
 
 
     // TIER 2: High-Speed Edge Cache Lookup (D1 / KV)
-
-
-
-
-
-
-
-        // TIER 0.5: Grounded Financial & Gold Decision Intelligence (100% Fluent Kannada)
-
-
-
-
-
-
-
-    const groundedGold = generateGroundedGoldAnswer(rawQuery);
-
-
-
-
-
-
-
-    if (groundedGold) {
-
-
-
-
-
-
-
-      return new Response(JSON.stringify({
-
-
-
-
-
-
-
-        success: true,
-
-
-
-
-
-
-
-        prompt: rawQuery,
-
-
-
-
-
-
-
-        answer: groundedGold.answer,
-
-
-
-
-
-
-
-        cards: groundedGold.cards,
-
-
-
-
-
-
-
-        sources: groundedGold.sources,
-
-
-
-
-
-
-
-        provider: groundedGold.provider
-
-
-
-
-
-
-
-      }), {
-
-
-
-
-
-
-
-        status: 200,
-
-
-
-
-
-
-
-        headers: { 'Content-Type': 'application/json', ...corsHeaders }
-
-
-
-
-
-
-
-      });
-
-
-
-
-
-
-
-    }
 
 
 
