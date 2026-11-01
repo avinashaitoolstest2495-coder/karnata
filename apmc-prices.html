@@ -750,14 +750,14 @@
     </div>
     <h1 style="margin-top:14px;">APMC ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ & 10 ವರ್ಷಗಳ ಬೆಳೆ ದರ ವಿಶ್ಲೇಷಕ</h1>
     <p>ಕರ್ನಾಟಕದ 174+ APMC ಮಾರುಕಟ್ಟೆಗಳ ಇಂದಿನ ನೈಜ ದರಗಳು, ಕಳೆದ 10 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಏರಿಳಿತ (2016-2026), ಗರಿಷ್ಠ ಬೆಲೆಯ ಸೀಸನ್ ಹಾಗೂ ರೈತರಿಗೆ ಬೆಳೆ ಮಾರಾಟದ ಸರಿಯಾದ ಸಮಯದ ಸ್ಮಾರ್ಟ್ ಮಾರ್ಗದರ್ಶಿ.</p>
-    <div style="font-size:12.5px; color:#FEF08A; font-weight:800;" id="hero-update-date">🔴 ಅಧಿಕೃತ KRAMA ಲೈವ್ ನವೀಕರಣ: 2026-08-28 — krama.karnataka.gov.in</div>
+    <div style="font-size:12.5px; color:#FEF08A; font-weight:800;" id="hero-update-date">🟢 ಅಧಿಕೃತ KRAMA ಲೈವ್ ನವೀಕರಣ: 01/11/2026 (ಇಂದಿನ ಮಂಡಿ ದರಗಳು — 9,553 ನಮೂದುಗಳು) — krama.karnataka.gov.in</div>
   </header>
 
   <!-- ════ 4 SUMMARY STATS ════ -->
   <div class="stats-bar">
     <div class="stat-card">
       <div class="stat-icon">🌾</div>
-      <div class="stat-val" id="stat-total-records">6,697</div>
+      <div class="stat-val" id="stat-total-records">9,553</div>
       <div class="stat-lbl">ಇಂದಿನ ದರ ನಮೂದುಗಳು</div>
       <div class="stat-sub">174 APMC ಮಂಡಿಗಳು (KRAMA Live)</div>
     </div>
@@ -4531,6 +4531,10 @@
         .then(r => r.json())
         .then(data => {
           let list = [];
+          let mDate = "01/11/2026";
+          if (data && typeof data === 'object') {
+            mDate = data.market_date || data.date || "01/11/2026";
+          }
           if (data && data.items && Array.isArray(data.items)) {
             list = data.items;
           } else if (data && data.payload && typeof window.decryptPayload === 'function') {
@@ -4538,6 +4542,11 @@
             list = Array.isArray(dec) ? dec : (dec.items || []);
           } else if (Array.isArray(data)) {
             list = data;
+          }
+
+          const heroEl = document.getElementById('hero-update-date');
+          if (heroEl) {
+            heroEl.innerHTML = `🟢 ಅಧಿಕೃತ KRAMA ಲೈವ್ ನವೀಕರಣ: ${mDate} (ಇಂದಿನ ಮಂಡಿ ದರಗಳು — ${list.length.toLocaleString('en-IN')} ನಮೂದುಗಳು) — krama.karnataka.gov.in`;
           }
 
           if (list && list.length > 0) {

@@ -1,0 +1,51 @@
+name: Daily Karnataka APMC Mandi Price Auto-Updater
+
+on:
+  schedule:
+    # 06:30 UTC = 12:00 PM IST (Mid-day APMC arrival reporting across 174 mandis)
+    - cron: '30 6 * * *'
+    # 12:30 UTC = 06:00 PM IST (Evening confirmed modal/closing market rates)
+    - cron: '30 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-apmc-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run Authentic KRAMA Live APMC Scraper & Multi-Tier Updater
+        run: |
+          python scripts/daily_apmc_auto_updater.py
+
+      - name: Auto-Sync Workspaces
+        run: |
+          python scripts/auto_sync_workspaces.py
+
+      - name: Commit & Push Authentic APMC Rates
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/apmc_prices.json apmc-prices.html
+          git commit -m "feat(apmc): Daily authentic KRAMA mandi prices update [skip ci]" || echo "No changes to commit"
+          git push || echo "Push skipped or not needed"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=karnata --commit-dirty=true
+        continue-on-error: true
