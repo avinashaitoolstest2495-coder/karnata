@@ -15,12 +15,17 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 ROOT_DIR = Path(__file__).resolve().parent.parent
 NK_DIR = ROOT_DIR / "namma-karnataka"
 
 def run_gold_pipeline():
     now_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print(f"[{now_str}] 🥇 Executing Authentic Jos Alukkas Gold Rate Daily Update...")
+    print(f"[{now_str}] [GOLD] Executing Authentic Jos Alukkas Gold Rate Daily Update...")
     
     # 1. Scrape latest gold rates from official Jos Alukkas API (Zero mock/random data)
     print("Step 1: Scraping fresh rates from Jos Alukkas official API...")
@@ -54,15 +59,15 @@ def run_gold_pipeline():
             commit_msg = f"chore(gold): daily authentic Jos Alukkas rates update [{datetime.now().strftime('%d-%m-%Y')}]"
             subprocess.run(["git", "-C", str(NK_DIR), "commit", "-m", commit_msg], check=False)
             subprocess.run(["git", "-C", str(NK_DIR), "push", "origin", "main"], check=False)
-            print("  ✓ GitHub repository updated.")
+            print("  [OK] GitHub repository updated.")
     except Exception as e:
         print("GitHub sync notice (non-fatal):", e)
     
     # 7. Direct Deploy to Cloudflare Pages
     print("Step 7: Deploying live to Cloudflare Pages...")
-    subprocess.run(["npx", "wrangler", "pages", "deploy", ".", "--project-name=karnata", "--commit-dirty=true"], cwd=ROOT_DIR, shell=True, check=True)
+    subprocess.run(["npx.cmd" if sys.platform == "win32" else "npx", "wrangler", "pages", "deploy", ".", "--project-name=karnata", "--commit-dirty=true"], cwd=ROOT_DIR, shell=(sys.platform == "win32"), check=True)
     
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] ✅ Daily Gold Rate Update & Live Deployment Complete!")
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] [SUCCESS] Daily Gold Rate Update & Live Deployment Complete!")
 
 if __name__ == "__main__":
     run_gold_pipeline()
