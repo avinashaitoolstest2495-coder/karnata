@@ -84,6 +84,7 @@ def sync_gold_ecosystem():
     ch22_kn = format_change_kn(ch22)
     ch18_kn = format_change_kn(ch18)
     ch_sil_kn = f"-₹{abs(ch_sil):.2f} 🔴" if ch_sil < 0 else (f"+₹{ch_sil:.2f} 🟢" if ch_sil > 0 else "ಸ್ಥಿರ")
+    action_advice = "✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ." if ch24 <= 0 else "⚠️ ಬೆಲೆ ಏರಿಕೆಯಾಗಿದೆ - ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಖರೀದಿಸಿ (SIP)."
 
     # ══════════════════════════════════════════════════════════════════
     # 2. UPDATE GOLD-RATE.HTML
@@ -294,7 +295,7 @@ def sync_gold_ecosystem():
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${{matchedCity.hub}}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (${{timestamp_text}}).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ ({timestamp_text}).`,
       cards: [
         {{ title: `📍 ${{matchedCity.kn}} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" }},
         {{ title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }}
@@ -345,7 +346,7 @@ def sync_gold_ecosystem():
   * **1 ಕಿಲೋಗ್ರಾಂ:** **₹{(sil925 * 1000):,.2f}**
 
 ---
-💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (${{timestamp_text}}).`,
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ ({timestamp_text}).`,
       cards: [{{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }}],
       sources: [{{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }}],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -383,7 +384,7 @@ def sync_gold_ecosystem():
   * ಹಂತ ಹಂತವಾಗಿ (SIP) ಖರೀದಿಸಿ.
   * ಎಲ್ಲಾ ಆಭರಣಗಳ ಮೇಲೆ **BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು 6-ಅಂಕಿಯ HUID ಸಂಖ್ಯೆ** ಪರಿಶೀಲಿಸಿ.
 
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ${{actionAdvice}}`,
+* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** {action_advice}`,
       cards: [{{ title: "🟢 ಲೈವ್ ಗೋಲ್ಡ್ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🟢" }}],
       sources: [{{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }}],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -431,7 +432,7 @@ def sync_gold_ecosystem():
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹{sil999:.2f} / ಗ್ರಾಂ** (₹{int(sil999 * 1000):,} / 1 ಕೆಜಿ)
 
 ---
-🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (${{timestamp_text}})
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ({timestamp_text})
 💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹{g22:,}) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
       cards: [
         {{ title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" }},

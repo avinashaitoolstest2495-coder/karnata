@@ -98,7 +98,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (${timestamp_text}).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-10-31T09:40:55 (Jos Alukkas Official)).`,
       cards: [
         { title: `📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
@@ -149,7 +149,7 @@ function generateGroundedGoldAnswer(rawQuery) {
   * **1 ಕಿಲೋಗ್ರಾಂ:** **₹245,000.00**
 
 ---
-💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (${timestamp_text}).`,
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-10-31T09:40:55 (Jos Alukkas Official)).`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
       sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -187,7 +187,7 @@ function generateGroundedGoldAnswer(rawQuery) {
   * ಹಂತ ಹಂತವಾಗಿ (SIP) ಖರೀದಿಸಿ.
   * ಎಲ್ಲಾ ಆಭರಣಗಳ ಮೇಲೆ **BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು 6-ಅಂಕಿಯ HUID ಸಂಖ್ಯೆ** ಪರಿಶೀಲಿಸಿ.
 
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ${actionAdvice}`,
+* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ.`,
       cards: [{ title: "🟢 ಲೈವ್ ಗೋಲ್ಡ್ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🟢" }],
       sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -235,7 +235,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹264.86 / ಗ್ರಾಂ** (₹264,860 / 1 ಕೆಜಿ)
 
 ---
-🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (${timestamp_text})
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-10-31T09:40:55 (Jos Alukkas Official))
 💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹12,730) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
       cards: [
         { title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
@@ -249,6 +249,8 @@ function generateGroundedGoldAnswer(rawQuery) {
 
   return null;
 }
+
+
 
 
 
