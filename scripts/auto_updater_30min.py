@@ -32,24 +32,25 @@ try:
 except Exception as e:
     print("[WARN] Weather baking notice:", e)
 
-# 2b. Scrape latest Gold & Silver rates (Runs strictly at 10:00 AM, 10:30 AM, and 11:00 AM only)
+# 2b. Scrape latest Gold & Silver rates (Active between 9:00 AM and 1:00 PM IST or on forced flag)
 now = datetime.now()
-is_gold_update_time = (now.hour == 10 and now.minute in range(0, 36)) or \
-                      (now.hour == 11 and now.minute in range(0, 15)) or \
-                      (os.environ.get('FORCE_GOLD_UPDATE') == '1')
+is_gold_update_time = (now.hour in range(9, 13)) or (os.environ.get('FORCE_GOLD_UPDATE') == '1')
 
 if is_gold_update_time:
     try:
-        print(f"[{now.strftime('%H:%M')}] Step 2b: Gold update window active (10:00 AM / 10:30 AM / 11:00 AM). Scraping latest rates...")
+        print(f"[{now.strftime('%H:%M')}] Step 2b: Gold update window active (Jos Alukkas Live). Scraping latest rates...")
         subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from gold_scraper import run; run()"], cwd=ROOT_DIR, check=True)
         print("[OK] Gold rates scraped.")
+        subprocess.run([sys.executable, "scripts/sync_gold_ecosystem.py"], cwd=ROOT_DIR, check=True)
+        print("[OK] Gold ecosystem synchronized.")
         # Publish Creative Gold Push Notification
-        subprocess.run([sys.executable, "scripts/publish_gold_push.py"], cwd=ROOT_DIR, check=True)
-        print("[OK] Gold push notification published.")
+        if os.path.exists(os.path.join(ROOT_DIR, "scripts", "publish_gold_push.py")):
+            subprocess.run([sys.executable, "scripts/publish_gold_push.py"], cwd=ROOT_DIR, check=False)
+            print("[OK] Gold push notification published.")
     except Exception as e:
         print("[WARN] Gold scraper notice:", e)
 else:
-    print(f"[{now.strftime('%H:%M')}] Notice: Gold rates update only once daily at 10:00 AM, 10:30 AM, and 11:00 AM. Skipping gold scrape.")
+    print(f"[{now.strftime('%H:%M')}] Notice: Gold update window is 9:00 AM - 1:00 PM IST. Skipping gold scrape.")
 
 # 2c. Generate Daily Karnataka Quiz
 try:

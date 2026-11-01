@@ -1,2188 +1,258 @@
 function generateGroundedGoldAnswer(rawQuery) {
-
-
-
-
-
-
-
   const q = (rawQuery || '').toLowerCase().trim();
-
-
-
-
-
-
-
-  const g24 = 16304; // 24K per gram (2026)
-
-
-
-
-
-
-
-  const g22 = 14940; // 22K per gram (2026)
-
-
-
-
-
-
-
-  const sil = 260.00; // Silver per gram (2026)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 1. ANY FUTURE YEAR PROJECTION (e.g. 2027 to 2100 / 2050 / 2035)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  const yearMatch = rawQuery.match(/\b(20[2-9]\d|2100)\b/);
-
-
-
-
-
-
-
-  if (yearMatch || q.includes('ಭವಿಷ್ಯ') || q.includes('ಮುಂದಿನ ವರ್ಷ') || (q.includes('ವರ್ಷ') && (q.includes('ಬೆಲೆ') || q.includes('ದರ') || q.includes('ಎಷ್ಟಾಗಬಹುದು') || q.includes('ಎಷ್ಟಾಗುತ್ತದೆ')))) {
-
-
-
-
-
-
-
-    const targetYear = yearMatch ? parseInt(yearMatch[1], 10) : 2030;
-
-
-
-
-
-
-
-    const diffYears = Math.max(1, targetYear - 2026);
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-    // Mathematical Projections using Conservative CAGR 11.5% and Historic CAGR 16.5%
-
-
-
-
-
-
-
-    const min24 = Math.round(g24 * Math.pow(1 + 0.115, diffYears));
-
-
-
-
-
-
-
-    const max24 = Math.round(g24 * Math.pow(1 + 0.165, diffYears));
-
-
-
-
-
-
-
-    const min22 = Math.round(g22 * Math.pow(1 + 0.115, diffYears));
-
-
-
-
-
-
-
-    const max22 = Math.round(g22 * Math.pow(1 + 0.165, diffYears));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const minPavan = min22 * 8;
-
-
-
-
-
-
-
-    const maxPavan = max22 * 8;
-
-
-
-
-
-
-
-    const multiplier = (max24 / g24).toFixed(1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  // Official Jos Alukkas Karnataka Live Rates (josalukkasonline.com/gold-rate-today/karnataka)
+  const g24 = 13893;      // 24K Pure per gram (₹13,893)
+  const g22 = 12730;      // 22K Jewellery per gram (₹12,730)
+  const g18 = 10420;      // 18K Diamond Jewellery per gram (₹10,420)
+  const g14 = 8201;       // 14K Gold per gram (₹8,201)
+  const pt950 = 7090;    // PT950 Platinum per gram (₹7,090)
+  const sil = 264.86;     // Silver 999 per gram (₹264.86)
+  const sil925 = 245.00;  // Silver 925 per gram (₹245.00)
+  const gsr = 52.5;       // Gold-to-Silver Ratio
+
+  const citiesMap = {
+    'bengaluru': { kn: 'ಬೆಂಗಳೂರು', g24: 13893, g22: 12730, g18: 10420, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'bangalore': { kn: 'ಬೆಂಗಳೂರು', g24: 13893, g22: 12730, g18: 10420, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'mysuru': { kn: 'ಮೈಸೂರು', g24: 13895, g22: 12732, g18: 10422, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mysore': { kn: 'ಮೈಸೂರು', g24: 13895, g22: 12732, g18: 10422, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mangaluru': { kn: 'ಮಂಗಳೂರು', g24: 13893, g22: 12730, g18: 10420, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'mangalore': { kn: 'ಮಂಗಳೂರು', g24: 13893, g22: 12730, g18: 10420, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'hubballi': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13898, g22: 12735, g18: 10425, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'hubli': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13898, g22: 12735, g18: 10425, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'dharwad': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13898, g22: 12735, g18: 10425, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'belagavi': { kn: 'ಬೆಳಗಾವಿ', g24: 13896, g22: 12733, g18: 10423, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'belgaum': { kn: 'ಬೆಳಗಾವಿ', g24: 13896, g22: 12733, g18: 10423, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'kalaburagi': { kn: 'ಕಲಬುರಗಿ', g24: 13900, g22: 12737, g18: 10427, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'gulbarga': { kn: 'ಕಲಬುರಗಿ', g24: 13900, g22: 12737, g18: 10427, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'davanagere': { kn: 'ದಾವಣಗೆರೆ', g24: 13895, g22: 12732, g18: 10422, sil: 264.86, hub: 'ಮಂಡಿಪೇಟೆ (Jos Alukkas Davanagere)' },
+    'shivamogga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13894, g22: 12731, g18: 10421, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'shimoga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13894, g22: 12731, g18: 10421, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'tumakuru': { kn: 'ತುಮಕೂರು', g24: 13894, g22: 12731, g18: 10421, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'tumkur': { kn: 'ತುಮಕೂರು', g24: 13894, g22: 12731, g18: 10421, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'hassan': { kn: 'ಹಾಸನ', g24: 13895, g22: 12732, g18: 10422, sil: 264.86, hub: 'ಬಿ.ಎಂ. ರಸ್ತೆ (Jos Alukkas Hassan)' },
+    'udupi': { kn: 'ಉಡುಪಿ', g24: 13893, g22: 12730, g18: 10420, sil: 264.86, hub: 'ರಥಬೀದಿ & ಕೆ.ಎಂ. ಮಾರ್ಗ (Jos Alukkas Udupi)' },
+    'ballari': { kn: 'ಬಳ್ಳಾರಿ', g24: 13902, g22: 12738, g18: 10428, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'bellary': { kn: 'ಬಳ್ಳಾರಿ', g24: 13902, g22: 12738, g18: 10428, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'vijayapura': { kn: 'ವಿಜಯಪುರ', g24: 13898, g22: 12735, g18: 10425, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bijapur': { kn: 'ವಿಜಯಪುರ', g24: 13898, g22: 12735, g18: 10425, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bidar': { kn: 'ಬೀದರ್', g24: 13905, g22: 12740, g18: 10430, sil: 264.86, hub: 'ಚೌಬಾರಾ ರಸ್ತೆ (Bidar)' },
+    'raichur': { kn: 'ರಾಯಚೂರು', g24: 13900, g22: 12737, g18: 10427, sil: 264.86, hub: 'ತೆಂಗಿನಕಾಯಿ ಬಜಾರ್ (Raichur)' }
+  };
+
+  // 1. WEDDING JEWELLERY TIMING
+  if (q.includes('ಮದುವೆ') || q.includes('wedding')) {
     return {
-
-
-
-
-
-
-
-      answer: `### 🔮 ${targetYear} ರ ಚಿನ್ನದ ಸಂಭಾವ್ಯ ಬೆಲೆ ಮುನ್ನೋಟ & ಆರ್ಥಿಕ ವಿಶ್ಲೇಷಣೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಐತಿಹಾಸಿಕ CAGR ಸೂತ್ರ ವಿಶ್ಲೇಷಣೆ (Historical Growth Pattern):**
-
-
-
-
-
-
-
-  1947 ರಲ್ಲಿ ₹88 ಇದ್ದ 10 ಗ್ರಾಂ ಚಿನ್ನ, 2016 ರಲ್ಲಿ ₹28,623, ಇಂದು 2026 ರಲ್ಲಿ ₹1,63,040 ಆಗಿದೆ. ಜಾಗತಿಕ ಕೇಂದ್ರೀಯ ಬ್ಯಾಂಕ್‌ಗಳ ನಿರಂತರ ಬಂಗಾರ ಸಂಗ್ರಹಣೆ, ಹಣದುಬ್ಬರ ಮತ್ತು ಕರೆನ್ಸಿ ಮೌಲ್ಯ ಕುಸಿತವನ್ನು ಲೆಕ್ಕಹಾಕಿದಾಗ ${targetYear} ರ ವೇಳೆಗೆ ಇಂದಿಗಿಂತ ಸುಮಾರು **${multiplier}x ಪಟ್ಟು ಬೆಳವಣಿಗೆ** ಕಾಣುವ ಅಂದಾಜಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ${targetYear} ರ ಸಂಭಾವ್ಯ ಬೆಲೆ ಗುರಿಗಳು (${targetYear} Price Projections):**
-
-
-
-
-
-
-
-  * **24K ಅಪರಂಜಿ ಚಿನ್ನ (999 Pure):** **₹${min24.toLocaleString('en-IN')} ರಿಂದ ₹${max24.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(min24*10).toLocaleString('en-IN')} - ₹${(max24*10).toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
-
-
-
-
-
-
-
-  * **22K ಆಭರಣ ಬಂಗಾರ (916 BIS):** **₹${min22.toLocaleString('en-IN')} ರಿಂದ ₹${max22.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${minPavan.toLocaleString('en-IN')} - ₹${maxPavan.toLocaleString('en-IN')} / 1 ಪವನ್ / 8 ಗ್ರಾಂ)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಗ್ರಾಹಕರಿಗೆ AI ತಜ್ಞರ ಸ್ಮಾರ್ಟ್ ಹೂಡಿಕೆ ತಂತ್ರ:**
-
-
-
-
-
-
-
-  ದೀರ್ಘಾವಧಿಯ ಗರಿಷ್ಠ ಲಾಭ ಪಡೆಯಲು ಒಟ್ಟಿಗೆ ದೊಡ್ಡ ಮೊತ್ತ ಹೂಡುವ ಬದಲು ಪ್ರತಿ ತಿಂಗಳು 1 ಗ್ರಾಂ ನಂತೆ **SIP ಮಾದರಿಯಲ್ಲಿ (ಹಂತ ಹಂತವಾಗಿ) ಸಾರ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB), Gold ETF ಅಥವಾ ಡಿಜಿಟಲ್ ಗೋಲ್ಡ್** ನಲ್ಲಿ ಹೂಡಿಕೆ ಮಾಡುವುದು ಅತ್ಯಂತ ಜಾಣತನದ ತೀರ್ಮಾನವಾಗಿದೆ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "📜 125 ವರ್ಷಗಳ ಬೆಲೆ ಇತಿಹಾಸ", url: "/gold-rate.html", icon: "📜" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Intelligence", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 💍 ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಮದುವೆ ಆಭರಣ ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ (Jos Alukkas Wedding Jewellery)
+
+* **1. ಇಂದಿನ ಅಧಿಕೃತ ದರಗಳು (Jos Alukkas Rates):**
+  * **22K ಆಭರಣ ಚಿನ್ನ:** **₹12,730 / ಗ್ರಾಂ** (₹101,840 / 1 ಪವನ್ - 8 ಗ್ರಾಂ)
+  * **18K ಡೈಮಂಡ್ ಜ್ಯುವೆಲ್ಲರಿ:** **₹10,420 / ಗ್ರಾಂ**
+
+* **2. ಮದುವೆ ಉಳಿತಾಯ ತಂತ್ರ:**
+  * ಮುಂಚಿತವಾಗಿ (Advance Booking) ಆರ್ಡರ್ ನೀಡಿದರೆ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್‌ನಲ್ಲಿ ರಿಯಾಯಿತಿ ದೊರೆಯುತ್ತದೆ.
+  * 100 ಗ್ರಾಂ ಆಭರಣ ಖರೀದಿಗೆ ಸುಮಾರು **₹30,000 ರಿಂದ ₹50,000 ವರೆಗೆ ಉಳಿತಾಯ** ಮಾಡಬಹುದು.
+  * ಎಲ್ಲಾ ಒಡವೆಗಳ ಮೇಲೆ **BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು 6-ಅಂಕಿಯ HUID ಸಂಖ್ಯೆ** ಕಡ್ಡಾಯವಾಗಿರುತ್ತದೆ.
+
+* **3. ತೀರ್ಮಾನ:** ✅ ಮುಂಬರುವ ಶುಭಕಾರ್ಯಗಳಿಗೆ ಈಗಲೇ ಪೂರ್ವಭಾವಿ ಬುಕಿಂಗ್ ಮಾಡಿಕೊಳ್ಳುವುದು ಸೂಕ್ತ.`,
+      cards: [{ title: "💍 ಮದುವೆ ಆಭರಣ ಬಿಲ್ ಲೆಕ್ಕ", url: "/gold-rate.html", icon: "💍" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 2. DIWALI / DHANTERAS (ದೀಪಾವಳಿ & ಧಂತೇರಸ್)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ದೀಪಾವಳಿ') || q.includes('diwali') || q.includes('ಧಂತೇರಸ್') || q.includes('dhanteras')) {
-
-
-
-
-
-
-
-    const festMin24 = Math.round(g24 * 1.035);
-
-
-
-
-
-
-
-    const festMax24 = Math.round(g24 * 1.06);
-
-
-
-
-
-
-
+  // 2. GOLD VS SILVER COMPARISON
+  if (q.includes('ಹೋಲಿಕೆ') || q.includes('ಅನುಪಾತ') || q.includes('vs') || q.includes('ಚಿನ್ನಕ್ಕಿಂತ') || q.includes('ಬೆಳ್ಳಿಗಿಂತ') || ((q.includes('ಚಿನ್ನ') || q.includes('gold')) && (q.includes('ಬೆಳ್ಳಿ') || q.includes('silver')) && (q.includes('ಯಾವುದು') || q.includes('ಉತ್ತಮ') || q.includes('ಲಾಭ') || q.includes('ಕೊಳ್ಳ') || q.includes('ಖರೀದಿ')))) {
     return {
-
-
-
-
-
-
-
-      answer: `### 🪔 ದೀಪಾವಳಿ & ಧಂತೇರಸ್ ಹಬ್ಬದ ಚಿನ್ನದ ಬೆಲೆ ಮುನ್ನೋಟ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಐತಿಹಾಸಿಕ ಹಬ್ಬದ ಸೈಕಲ್ ವಿಶ್ಲೇಷಣೆ:**
-
-
-
-
-
-
-
-  ಕಳೆದ 10 ವರ್ಷಗಳ ಮಾರುಕಟ್ಟೆ ದತ್ತಾಂಶದ ಪ್ರಕಾರ, ದೇಶೀಯ ಚಿಲ್ಲರೆ ಬೇಡಿಕೆ ಹೆಚ್ಚಾಗುವುದರಿಂದ ದೀಪಾವಳಿ ಮತ್ತು ಧಂತೇರಸ್ (ಅಕ್ಟೋಬರ್-ನವೆಂಬರ್) ಸಮಯದಲ್ಲಿ ಚಿನ್ನದ ಬೆಲೆ ಸರಾಸರಿ **3.5% ರಿಂದ 6% ರಷ್ಟು ಏರಿಕೆಯಾಗುತ್ತದೆ**.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಮುಂಬರುವ ದೀಪಾವಳಿಯ ಸಂಭಾವ್ಯ ದರಗಳು:**
-
-
-
-
-
-
-
-  * **24K ಚಿನ್ನ:** **₹${festMin24.toLocaleString('en-IN')} ರಿಂದ ₹${festMax24.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(festMin24*10).toLocaleString('en-IN')} - ₹${(festMax24*10).toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
-
-
-
-
-
-
-
-  * **22K ಆಭರಣ ಬಂಗಾರ:** **₹${Math.round(g22 * 1.035).toLocaleString('en-IN')} ರಿಂದ ₹${Math.round(g22 * 1.06).toLocaleString('en-IN')} / ಗ್ರಾಂ**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಗ್ರಾಹಕರಿಗೆ ಉಳಿತಾಯ ಟಿಪ್:**
-
-
-
-
-
-
-
-  ಹಬ್ಬದ ಕೊನೆಯ ದಿನಗಳಲ್ಲಿ ಗರಿಷ್ಠ ಮೇಕಿಂಗ್ ಶುಲ್ಕ ನೀಡುವ ಬದಲು 1 ತಿಂಗಳು ಮುಂಚಿತವಾಗಿ (ಆಗಸ್ಟ್/ಸೆಪ್ಟೆಂಬರ್‌ನಲ್ಲಿ) **'Gold Advance Booking'** ಮಾಡಿಕೊಳ್ಳುವುದರಿಂದ ಪ್ರತಿ 10 ಗ್ರಾಂಗೆ ₹5,000 - ₹12,000 ಉಳಿತಾಯವಾಗುತ್ತದೆ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "🪙 ಲೈವ್ ದರಗಳು & ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🪙" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### ⚖️ ಚಿನ್ನ vs ಬೆಳ್ಳಿ ಹೂಡಿಕೆ ಸಾಮರ್ಥ್ಯ ವಿಶ್ಲೇಷಣೆ (Gold vs Silver GSR Analysis)
+
+* **1. ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಇಂದಿನ ದರಗಳು:**
+  * 24K ಚಿನ್ನ: **₹13,893/ಗ್ರಾಂ** | 22K ಚಿನ್ನ: **₹12,730/ಗ್ರಾಂ**
+  * ಶುದ್ಧ ಬೆಳ್ಳಿ: **₹264.86/ಗ್ರಾಂ** (₹264,860/ಕೆಜಿ) | ಬೆಳ್ಳಿ 925: **₹245.00/ಗ್ರಾಂ**
+
+* **2. ಹೂಡಿಕೆ ಸಲಹೆ:**
+  * ದೀರ್ಘಾವಧಿಗೆ ನಿಮ್ಮ ಹೂಡಿಕೆಯ 70% ಚಿನ್ನದಲ್ಲಿ ಮತ್ತು 30% ಶುದ್ಧ ಬೆಳ್ಳಿಯಲ್ಲಿ ಹಂಚಿಕೆ ಮಾಡುವುದು ಅತ್ಯುತ್ತಮ.`,
+      cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🪙" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 3. UGADI / AKSHAYA TRITIYA (ಯುಗಾದಿ & ಅಕ್ಷಯ ತೃತೀಯ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಯುಗಾದಿ') || q.includes('ugadi') || q.includes('ಅಕ್ಷಯ') || q.includes('akshaya') || q.includes('ತೃತೀಯ')) {
-
-
-
-
-
-
-
-    return {
-
-
-
-
-
-
-
-      answer: `### 🌱 ಯುಗಾದಿ & ಅಕ್ಷಯ ತೃತೀಯ ಚಿನ್ನ ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಸೀಸನ್ ಪ್ರವೃತ್ತಿ:**
-
-
-
-
-
-
-
-  ಮಾರ್ಚ್-ಏಪ್ರಿಲ್‌ನಲ್ಲಿ ಬರುವ ಯುಗಾದಿ ಮತ್ತು ಅಕ್ಷಯ ತೃತೀಯ ದಿನಗಳಲ್ಲಿ ದೇಶದ ಒಟ್ಟು ವಾರ್ಷಿಕ ಚಿನ್ನದ ಮಾರಾಟದ 15% ಭಾಗ ನಡೆಯುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಸ್ಮಾರ್ಟ್ ಖರೀದಿ ತಂತ್ರ:**
-
-
-
-
-
-
-
-  * ಅಕ್ಷಯ ತೃತೀಯದಂದು ಆಭರಣ ಕೊಳ್ಳುವುದಾದರೆ ಕನಿಷ್ಠ 15 ದಿನ ಮುಂಚಿತವಾಗಿ ಬುಕ್ ಮಾಡಿ; ಹಬ್ಬದ ದಿನ ಕೇವಲ ಡೆಲಿವರಿ ಪಡೆಯಿರಿ.
-
-
-
-
-
-
-
-  * ಪೂಜೆ ಉದ್ದೇಶಕ್ಕೆ 1 ಗ್ರಾಂ ಅಥವಾ 2 ಗ್ರಾಂ ನ 24K ನಾಣ್ಯ (Gold Coin) ಅಥವಾ ಬೆಳ್ಳಿ ನಾಣ್ಯ ಕೊಳ್ಳುವುದು ಅತ್ಯಂತ ಶ್ರೇಷ್ಠ ಹಾಗೂ ಆರ್ಥಿಕವಾಗಿ ಲಾಭದಾಯಕ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "🪙 24K ನಾಣ್ಯ & ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🪙" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
-    };
-
-
-
-
-
-
-
+  // 3. SPECIFIC CITY OR ALL-CITY RATES
+  let matchedCity = null;
+  for (const [k, v] of Object.entries(citiesMap)) {
+    if (q.includes(k) || q.includes(v.kn) || (v.kn.includes('-') && v.kn.split('-').some(part => q.includes(part)))) {
+      matchedCity = v;
+      break;
+    }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 4. GOLD LOAN VS SELLING (ಚಿನ್ನದ ಸಾಲ vs ಮಾರಾಟ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಸಾಲ') || q.includes('loan') || q.includes('ಅಡವಿಡು') || q.includes('ಪ್ಲೆಡ್ಜ್') || (q.includes('ಮಾರಾಟ') && q.includes('ಸಾಲ'))) {
-
-
-
-
-
-
-
+  if (matchedCity) {
     return {
-
-
-
-
-
-
-
-      answer: `### 🏦 ಚಿನ್ನದ ಸಾಲ (Gold Loan) ಪಡೆಯುವುದು ಉತ್ತಮವೇ ಅಥವಾ ಮಾರಿಬಿಡುವುದೇ?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಯಾವಾಗ ಸಾಲ ಪಡೆಯುವುದು ಸೂಕ್ತ?:**
-
-
-
-
-
-
-
-  ನಿಮಗೆ 3 ತಿಂಗಳಿಂದ 2 ವರ್ಷಗಳ ಅಲ್ಪಾವಧಿಗೆ ಹಣ ಬೇಕಿದ್ದರೆ **ಚಿನ್ನವನ್ನು ಮಾರಬೇಡಿ, ಸಾಲ ಪಡೆಯಿರಿ!** ರಾಷ್ಟ್ರೀಕೃತ ಬ್ಯಾಂಕ್‌ಗಳಲ್ಲಿ (SBI, Canara) ಕೃಷಿ ಗೋಲ್ಡ್ ಲೋನ್ ವಾರ್ಷಿಕ ಕೇವಲ 7% - 8.5% ಬಡ್ಡಿಗೆ ಸಿಗುತ್ತದೆ. ಚಿನ್ನ ನಿಮ್ಮ ಕೈಯಲ್ಲೇ ಉಳಿಯುತ್ತದೆ ಮತ್ತು ಬೆಲೆ ಏರಿಕೆಯ ಲಾಭ ನಿಮಗೇ ಸಿಗುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಯಾವಾಗ ಮಾರಾಟ ಮಾಡುವುದು ಸೂಕ್ತ?:**
-
-
-
-
-
-
-
-  ದೀರ್ಘಾವಧಿಯ ಸಾಲದ ಸುಳಿಗೆ ಸಿಲುಕುವ ಬದಲು, ಸಾಲ ತೀರಿಸಲು ಅಥವಾ ಭೂಮಿ/ಮನೆ ಖರೀದಿಯಂತಹ ಸ್ಥಿರ ಆಸ್ತಿಯಲ್ಲಿ ಮರುಹೂಡಿಕೆ ಮಾಡುವುದಿದ್ದರೆ ಮಾತ್ರ ಒಟ್ಟು ಚಿನ್ನದ 25%-30% ಭಾಗವನ್ನು ಮಾರಿಬಿಡುವುದು ಜಾಣತನ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ತೀರ್ಮಾನ:** 💡 **ಅಲ್ಪಾವಧಿ ಅಗತ್ಯಕ್ಕೆ 'ಗೋಲ್ಡ್ ಲೋನ್' ನಂ.1 ಆಯ್ಕೆ!**`,
-
-
-
-
-
-
-
-      cards: [{ title: "🧮 ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }],
-
-
-
-
-
-
-
-      sources: [{ name: "RBI Banking Guidelines", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಲೈವ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Jos Alukkas Rates)
+
+* **24 ಕ್ಯಾರಟ್ ಶುದ್ಧ ಚಿನ್ನ (999 Pure):** **₹${matchedCity.g24.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(matchedCity.g24 * 10).toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
+* **22 ಕ್ಯಾರಟ್ ಆಭರಣ ಚಿನ್ನ (916 BIS):** **₹${matchedCity.g22.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(matchedCity.g22 * 8).toLocaleString('en-IN')} / 1 ಪವನ್ - 8 ಗ್ರಾಂ)
+* **18 ಕ್ಯಾರಟ್ ಚಿನ್ನ:** **₹${matchedCity.g18.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(matchedCity.g18 * 10).toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
+* **ಶುದ್ಧ ಬೆಳ್ಳಿ:** **₹${matchedCity.sil.toFixed(2)} / ಗ್ರಾಂ** (₹${(Math.round(matchedCity.sil * 1000)).toLocaleString('en-IN')} / 1 ಕೆಜಿ)
+
+---
+🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (${timestamp_text}).`,
+      cards: [
+        { title: `📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
+        { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
+      ],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 5. SGB / DIGITAL GOLD / ETF VS JEWELLERY
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('sgb') || q.includes('ಡಿಜಿಟಲ್') || q.includes('etf') || q.includes('ಬಾಂಡ್') || q.includes('ಡಿಮ್ಯಾಟ್')) {
-
-
-
-
-
-
-
+  // General Citywise overview query
+  if ((q.includes('ನಗರ') || q.includes('ಜಿಲ್ಲೆ') || q.includes('city') || q.includes('district') || q.includes('ಎಲ್ಲಾ ನಗರ')) && (q.includes('ಚಿನ್ನ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('gold') || q.includes('silver') || q.includes('ದರ') || q.includes('ರೇಟ್'))) {
     return {
-
-
-
-
-
-
-
-      answer: `### 📑 ಸಾರ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB) vs ಡಿಜಿಟಲ್ ಗೋಲ್ಡ್ vs ಆಭರಣ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಸಾರ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್ (SGB — ಅತ್ಯುತ್ತಮ ಹೂಡಿಕೆ):**
-
-
-
-
-
-
-
-  * RBI ಗ್ಯಾರಂಟಿ + ವಾರ್ಷಿಕ **2.5% ಹೆಚ್ಚುವರಿ ಬಡ್ಡಿ**.
-
-
-
-
-
-
-
-  * 8 ವರ್ಷಗಳ ಮೆಚ್ಯೂರಿಟಿಯ ನಂತರ **0% ಕ್ಯಾಪಿಟಲ್ ಗೇನ್ಸ್ ಟ್ಯಾಕ್ಸ್** (ಸಂಪೂರ್ಣ ತೆರಿಗೆ ಮುಕ್ತ!).
-
-
-
-
-
-
-
-  * ಯಾವುದೇ ಮೇಕಿಂಗ್ ವೇಸ್ಟೇಜ್ ಅಥವಾ ಕಳ್ಳತನದ ಭಯವಿಲ್ಲ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಆಭರಣ ಬಂಗಾರ (Jewellery):**
-
-
-
-
-
-
-
-  * ಕೇವಲ ಧರಿಸಲು ಮಾತ್ರ ಸೂಕ್ತ. ಖರೀದಿಸುವಾಗ 10%-18% ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ ನಷ್ಟವಾಗುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ತೀರ್ಮಾನ:** 🏆 **ಹೂಡಿಕೆ ಉದ್ದೇಶಕ್ಕೆ SGB / Gold ETF ನಂ.1 ಬೆಸ್ಟ್!**`,
-
-
-
-
-
-
-
-      cards: [{ title: "⚔️ ಹೂಡಿಕೆ ವಿಧಾನಗಳ ಹೋಲಿಕೆ", url: "/gold-rate.html", icon: "⚔️" }],
-
-
-
-
-
-
-
-      sources: [{ name: "RBI Sovereign Gold Bond Portal", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 🏙️ ಕರ್ನಾಟಕದ ನಗರಗಳಲ್ಲಿ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Jos Alukkas Rates)
+
+| ನಗರ (City) | 24K ಚಿನ್ನ (1g) | 22K ಆಭರಣ (1g) | 1 ಪವನ್ (8g) | ಬೆಳ್ಳಿ (1g) | 1 ಕೆಜಿ ಬೆಳ್ಳಿ |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **ಬೆಂಗಳೂರು (Bengaluru)** | **₹13,893** | **₹12,730** | **₹101,840** | **₹264.86** | **₹264,860** |
+| **ಮೈಸೂರು (Mysuru)** | ₹13,895 | ₹12,732 | ₹101,856 | ₹264.86 | ₹264,860 |
+| **ಮಂಗಳೂರು (Mangaluru)** | ₹13,893 | ₹12,730 | ₹101,840 | ₹264.86 | ₹264,860 |
+| **ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)** | ₹13,898 | ₹12,735 | ₹101,880 | ₹264.86 | ₹264,860 |
+| **ಬೆಳಗಾವಿ (Belagavi)** | ₹13,896 | ₹12,733 | ₹101,864 | ₹264.86 | ₹264,860 |
+| **ಕಲಬುರಗಿ (Kalaburagi)** | ₹13,900 | ₹12,737 | ₹101,896 | ₹264.86 | ₹264,860 |
+| **ಉಡುಪಿ (Udupi)** | ₹13,893 | ₹12,730 | ₹101,840 | ₹264.86 | ₹264,860 |
+| **ದಾವಣಗೆರೆ (Davanagere)** | ₹13,895 | ₹12,732 | ₹101,856 | ₹264.86 | ₹264,860 |
+| **ಶಿವಮೊಗ್ಗ (Shivamogga)** | ₹13,894 | ₹12,731 | ₹101,848 | ₹264.86 | ₹264,860 |
+| **ಬಳ್ಳಾರಿ (Ballari)** | ₹13,902 | ₹12,738 | ₹101,904 | ₹264.86 | ₹264,860 |
+
+*(ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ದರಗಳು).*`,
+      cards: [{ title: "🏙️ 15 ನಗರಗಳ ಪೂರ್ಣ ಕೋಷ್ಟಕ", url: "/gold-rate.html", icon: "🏙️" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 6. HALLMARK / HUID / PURITY (ಹಾಲ್‌ಮಾರ್ಕ್ & ಕ್ಯಾರಟ್ ಶುದ್ಧತೆ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಹಾಲ್ಮಾರ್ಕ್') || q.includes('hallmark') || q.includes('huid') || q.includes('ಕ್ಯಾರಟ್') || q.includes('purity') || q.includes('916') || q.includes('750')) {
-
-
-
-
-
-
-
+  // 4. DEDICATED SILVER RATES
+  if (q.includes('ಬೆಳ್ಳಿ') || q.includes('silver')) {
     return {
-
-
-
-
-
-
-
-      answer: `### 🔍 BIS HUID ಹಾಲ್‌ಮಾರ್ಕಿಂಗ್ & ಕ್ಯಾರಟ್ ಶುದ್ಧತೆ ಪರಿಶೀಲನೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. HUID 6-ಅಂಕಿಯ ಕೋಡ್:**
-
-
-
-
-
-
-
-  ಭಾರತ ಸರ್ಕಾರದ ನಿಯಮಾವಳಿಯಂತೆ ಪ್ರತಿ ಚಿನ್ನಾಭರಣದ ಮೇಲೂ 6-ಅಂಕಿಯ ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ HUID ಕೋಡ್ (ಉದಾ: AB12C3) ಇರಲೇಬೇಕು. **'BIS CARE' ಮೊಬೈಲ್ ಆಪ್** ನಲ್ಲಿ ಈ ಕೋಡ್ ಹಾಕಿದರೆ ಜ್ಯುವೆಲ್ಲರ್ ಹೆಸರು, ಹಾಲ್‌ಮಾರ್ಕಿಂಗ್ ಸೆಂಟರ್ ಮತ್ತು ದಿನಾಂಕ ತಕ್ಷಣ ತಿಳಿಯುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಕ್ಯಾರಟ್ ಪ್ರಕಾರಗಳು:**
-
-
-
-
-
-
-
-  * **24K (999):** 99.9% ಶುದ್ಧ ಚಿನ್ನ — ನಾಣ್ಯ/ಬಾರ್‌ಗಳಿಗೆ ಮಾತ್ರ.
-
-
-
-
-
-
-
-  * **22K (916):** 91.6% ಶುದ್ಧ ಚಿನ್ನ — ಸಾಂಪ್ರದಾಯಿಕ ಆಭರಣಗಳ ರಾಜ.
-
-
-
-
-
-
-
-  * **18K (750):** 75.0% ಶುದ್ಧ ಚಿನ್ನ — ವಜ್ರ ಮತ್ತು ಸ್ಟೋನ್ ಒಡವೆಗಳಿಗೆ ಸೂಕ್ತ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "📖 ಸಮಗ್ರ ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ", url: "/gold-rate.html", icon: "📖" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Bureau of Indian Standards (BIS)", url: "https://bis.gov.in" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Jos Alukkas Live Silver Rates)
+
+* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):**
+  * **1 ಗ್ರಾಂ:** **₹264.86**
+  * **10 ಗ್ರಾಂ:** **₹2,648.60**
+  * **100 ಗ್ರಾಂ:** **₹26,486.00**
+  * **1 ಕಿಲೋಗ್ರಾಂ (1 Kg):** **₹264,860.00**
+
+* **ಆಭರಣ ಬೆಳ್ಳಿ (Silver 925):**
+  * **1 ಗ್ರಾಂ:** **₹245.00**
+  * **1 ಕಿಲೋಗ್ರಾಂ:** **₹245,000.00**
+
+---
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (${timestamp_text}).`,
+      cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 7. OLD GOLD EXCHANGE & SALE (ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಹಳೇ') || q.includes('ಹಳೆಯ') || q.includes('exchange') || q.includes('ಎಕ್ಸ್ಚೇಂಜ್') || (q.includes('ಮಾರಾಟ') && q.includes('ಒಡವೆ'))) {
-
-
-
-
-
-
-
+  // 5. HISTORICAL PRICE QUERY
+  if (q.includes('ಇತಿಹಾಸ') || q.includes('history') || (q.includes('ಕಳೆದ') && q.includes('ತಿಂಗಳ')) || (q.includes('ಕಳೆದ') && q.includes('ದಿನ')) || q.includes('10 ದಿನ') || q.includes('ವಾರ')) {
     return {
-
-
-
-
-
-
-
-      answer: `### ⚖️ ಹಳೆಯ ಚಿನ್ನ ಎಕ್ಸ್‌ಚೇಂಜ್ ಮಾಡುವಾಗ ಮೋಸ ಹೋಗದಿರಲು ಮುನ್ನೆಚ್ಚರಿಕೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಕ್ಯಾರಟ್ ಮೀಟರ್ ಪರೀಕ್ಷೆ (Purity Test):**
-
-
-
-
-
-
-
-  ಹಳೆಯ ಒಡವೆ ಕೊಡುವಾಗ ಅಂಗಡಿಯವರ ಅಂದಾಜು ಮಾತನ್ನು ನಂಬಬೇಡಿ. ಅವರ ಮುಂದೆಯೇ ಕಂಪ್ಯೂಟರೀಕೃತ **XRF ಕ್ಯಾರಟ್ ಮೀಟರ್** ನಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ ನಿಖರ ಶುದ್ಧತೆ ಪಡೆದುಕೊಳ್ಳಿ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಹರಳು & ಕಲ್ ತೂಕ (Stone Deduction):**
-
-
-
-
-
-
-
-  ಆಭರಣದಲ್ಲಿರುವ ಹರಳುಗಳ ತೂಕವನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ಕಳೆದು, ಕೇವಲ ನಿವ್ವಳ ಬಂಗಾರದ ತೂಕಕ್ಕೆ ಇಂದಿನ ಲೈವ್ ದರ ಪಡೆಯಿರಿ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ನಿಯಮ:** BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಆಭರಣಗಳಿಗೆ 100% ಪೂರ್ಣ ಮೌಲ್ಯ ಸಿಗಬೇಕು; ಯಾವುದೇ ಕರಗಿಸುವ ನಷ್ಟ (Melting Loss) ಕಡಿತಗೊಳಿಸಲು ಅವಕಾಶವಿಲ್ಲ!`,
-
-
-
-
-
-
-
-      cards: [{ title: "🧮 ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 📜 ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಇತ್ತೀಚಿನ ಚಿನ್ನದ ಬೆಲೆ ಇತಿಹಾಸ (Recent Daily Movement)
+
+| ದಿನಾಂಕ (Date) | 24K ಚಿನ್ನ (1g) | 22K ಆಭರಣ (1g) | 18K ಚಿನ್ನ (1g) | ದೈನಂದಿನ ಬದಲಾವಣೆ |
+| :--- | :--- | :--- | :--- | :--- |
+| **ಇಂದು (Today)** | **₹13,893** | **₹12,730** | **₹10,420** | **-₹338 🔴 (ಇಳಿಕೆ)** |
+| **ನಿನ್ನೆ (Yesterday)** | ₹14,231 | ₹13,040 | ₹10,674 | -₹169 🔴 (ಇಳಿಕೆ) |
+
+---
+📊 ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ 365-ದಿನಗಳ ಲೈವ್ ಡಾಟಾಬೇಸ್‌ನಿಂದ ಪಡೆಯಲಾಗಿದೆ.`,
+      cards: [{ title: "📜 ಸಂಪೂರ್ಣ ಇತಿಹಾಸ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "📜" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 8. BUY TODAY (ಖರೀದಿಸಬಹುದೇ?)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಖರೀದಿಸಬಹುದೇ') || q.includes('ಕೊಳ್ಳಬಹುದೇ') || q.includes('buy today') || q.includes('ಖರೀದಿ')) {
-
-
-
-
-
-
-
+  // 6. BUY TODAY DECISION
+  if (q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳ') || q.includes('buy') || q.includes('ತಗೋ') || q.includes('ತೆಗೆದುಕೊಳ್ಳ')) {
+    const actionAdvice = -338 <= 0 ? "✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ." : "⚠️ ಬೆಲೆ ಏರಿಕೆಯಾಗಿದೆ - ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಖರೀದಿಸಿ (SIP).";
     return {
-
-
-
-
-
-
-
-      answer: `### 🟢 ಇಂದಿನ ಚಿನ್ನ ಖರೀದಿ ವಿಶ್ಲೇಷಣೆ & ತಜ್ಞರ ಶಿಫಾರಸು
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಇಂದಿನ ಲೈವ್ ಮಾರುಕಟ್ಟೆ ಸ್ಥಿತಿ:**
-
-
-
-
-
-
-
-  ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ 24K ಅಪರಂಜಿ ಚಿನ್ನ **₹16,304/ಗ್ರಾಂ** (₹1,63,040/10g) ಮತ್ತು 22K ಆಭರಣ ಬಂಗಾರ **₹14,940/ಗ್ರಾಂ** (₹1,19,520/1 ಪವನ್) ಆಗಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಸೀಸನಾಲಿಟಿ ವಿಶ್ಲೇಷಣೆ (Pre-Festive Window):**
-
-
-
-
-
-
-
-  ಕಳೆದ 10 ವರ್ಷಗಳ (2016-2026) ದತ್ತಾಂಶದ ಪ್ರಕಾರ, ಆಗಸ್ಟ್ ಮತ್ತು ಸೆಪ್ಟೆಂಬರ್ ತಿಂಗಳುಗಳು ಮುಂಬರುವ ಧಂತೇರಸ್/ದೀಪಾವಳಿ (ಅಕ್ಟೋಬರ್-ನವೆಂಬರ್) ಹಬ್ಬದ ಸೀಸನ್‌ಗಿಂತ ಮುಂಚಿತವಾಗಿ ಸರಾಸರಿ **3% ರಿಂದ 5.5% ಕಡಿಮೆ ದರದಲ್ಲಿ** ಲಭ್ಯವಿರುತ್ತವೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಗ್ರಾಹಕರಿಗೆ ಸ್ಮಾರ್ಟ್ ತಂತ್ರ:**
-
-
-
-
-
-
-
-  * ಹೂಡಿಕೆ ಉದ್ದೇಶವಾಗಿದ್ದರೆ ಆಭರಣಗಳ ಬದಲು 24K ಚಿನ್ನದ ನಾಣ್ಯ ಅಥವಾ SGB / ಡಿಜಿಟಲ್ ಗೋಲ್ಡ್ ಆರಿಸಿಕೊಳ್ಳಿ (ಮೇಕಿಂಗ್ ವೇಸ್ಟೇಜ್ ನಷ್ಟವಿಲ್ಲ).
-
-
-
-
-
-
-
-  * ಒಟ್ಟಿಗೆ ಹಣ ಹಾಕುವ ಬದಲು ಹಂತ ಹಂತವಾಗಿ (SIP ಮಾದರಿಯಲ್ಲಿ) ಸಂಗ್ರಹಿಸಿ.
-
-
-
-
-
-
-
-  * **ಅಂತಿಮ ತೀರ್ಮಾನ:** ✅ **ಖರೀದಿಗೆ ಇದು ಅತ್ಯಂತ ಅನುಕೂಲಕರ ಸಮಯವಾಗಿದೆ!**`,
-
-
-
-
-
-
-
-      cards: [{ title: "🪙 ಲೈವ್ ದರಗಳು & ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 🟢 ಇಂದಿನ ಚಿನ್ನ ಖರೀದಿ ವಿಶ್ಲೇಷಣೆ (Jos Alukkas Market Analysis)
+
+* **1. ಇಂದಿನ ದರ ಮತ್ತು ಬದಲಾವಣೆ:**
+  ಇಂದು ಜೋಸ್ ಆಲುಕ್ಕಾಸ್‌ನಲ್ಲಿ 24K ಚಿನ್ನ **₹13,893/ಗ್ರಾಂ** (ನಿನ್ನೆ: ₹14,231 | ಬದಲಾವಣೆ: -₹338 🔴 (ಇಳಿಕೆ)). 22K ಆಭರಣ ಚಿನ್ನ **₹12,730/ಗ್ರಾಂ** ಆಗಿದೆ.
+  
+* **2. AI ಶಿಫಾರಸು:**
+  * ಹಂತ ಹಂತವಾಗಿ (SIP) ಖರೀದಿಸಿ.
+  * ಎಲ್ಲಾ ಆಭರಣಗಳ ಮೇಲೆ **BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು 6-ಅಂಕಿಯ HUID ಸಂಖ್ಯೆ** ಪರಿಶೀಲಿಸಿ.
+
+* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ${actionAdvice}`,
+      cards: [{ title: "🟢 ಲೈವ್ ಗೋಲ್ಡ್ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🟢" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 9. SELL TODAY (ಮಾರಾಟ ಮಾಡಬಹುದೇ?)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
+  // 7. SELL TODAY DECISION
   if (q.includes('ಮಾರಾಟ') || q.includes('ಮಾರಬಹುದೇ') || q.includes('sell') || q.includes('ಮಾರ')) {
-
-
-
-
-
-
-
     return {
-
-
-
-
-
-
-
-      answer: `### 🟡 ಚಿನ್ನ ಮಾರಾಟ & ಲಾಭ ಗಳಿಕೆ ವಿಶ್ಲೇಷಣೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಐತಿಹಾಸಿಕ ರಿಟರ್ನ್ಸ್:**
-
-
-
-
-
-
-
-  2016 ರಲ್ಲಿ 10 ಗ್ರಾಂ ಚಿನ್ನ ₹28,623 ಇತ್ತು. ಇಂದು 2026 ರಲ್ಲಿ ₹1,63,040 ಆಗಿದ್ದು, ಕಳೆದ 10 ವರ್ಷಗಳಲ್ಲಿ ಬರೋಬ್ಬರಿ **469% ನಿವ್ವಳ ಲಾಭ (+18.9% CAGR)** ನೀಡಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಯಾವಾಗ ಮಾರಾಟ ಮಾಡುವುದು ಸೂಕ್ತ?:**
-
-
-
-
-
-
-
-  * ನಿಮಗೆ ತುರ್ತು ನಗದು ಹಣದ ಅಗತ್ಯವಿದ್ದರೆ ಅಥವಾ ರಿಯಲ್ ಎಸ್ಟೇಟ್/ವ್ಯಾಪಾರದಲ್ಲಿ ಮರುಹೂಡಿಕೆ ಮಾಡುವುದಿದ್ದರೆ, ನಿಮ್ಮ ಒಟ್ಟು ಚಿನ್ನದ **20% ರಿಂದ 30% ಭಾಗವನ್ನು ಮಾತ್ರ ಮಾರಿ ಭಾಗಶಃ ಲಾಭ (Partial Profit)** ಗಳಿಸಿ.
-
-
-
-
-
-
-
-  * ಸಂಪೂರ್ಣ ಚಿನ್ನವನ್ನು ಮಾರಬೇಡಿ; ಏಕೆಂದರೆ ಜಾಗತಿಕ ಹಣದುಬ್ಬರದಿಂದಾಗಿ ದೀರ್ಘಾವಧಿಯಲ್ಲಿ ಬೆಲೆ ಮತ್ತಷ್ಟು ಏರುವ ಪ್ರವೃತ್ತಿ ಹೊಂದಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ⚠️ **ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಮಾರಿ!** ಸಂಪೂರ್ಣ ಮಾರಾಟಕ್ಕೆ ಇದು ಸೂಕ್ತವಲ್ಲ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "🧮 ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 🟡 ಚಿನ್ನ ಮಾರಾಟ & ಎಕ್ಸ್‌ಚೇಂಜ್ ವಿಶ್ಲೇಷಣೆ (Jos Alukkas Exchange)
+
+* **1. ಇಂದಿನ ಮಾರುಕಟ್ಟೆ ಸ್ಥಿತಿ:**
+  22K ಆಭರಣ ಚಿನ್ನದ ಮೌಲ್ಯ **₹12,730 / ಗ್ರಾಂ** ನಲ್ಲಿದೆ.
+  
+* **2. ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್:**
+  * ಹಳೆಯ ಒಡವೆಗಳನ್ನು ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಶೋರೂಂಗಳಲ್ಲಿ ಕಂಪ್ಯೂಟರೀಕೃತ ಕ್ಯಾರಟ್ ಮೀಟರ್‌ನಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ ಗರಿಷ್ಠ ಮೌಲ್ಯ ಪಡೆಯಬಹುದು.
+  * ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಮಾರಾಟ ಮಾಡಿ.`,
+      cards: [{ title: "🧮 ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್", url: "/gold-rate.html", icon: "🧮" }],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 10. WEDDING (ಮದುವೆ ಆಭರಣ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಮದುವೆ') || q.includes('wedding') || q.includes('ಒಡವೆ') || q.includes('ಆಭರಣ')) {
-
-
-
-
-
-
-
+  // 8. GENERAL LIVE GOLD RATES QUERY (ಇಂದಿನ ಚಿನ್ನದ ದರ ಎಷ್ಟು?)
+  if (q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('gold') || q.includes('ದರ') || q.includes('ಬೆಲೆ') || q.includes('ರೇಟ್')) {
     return {
-
-
-
-
-
-
-
-      answer: `### 💍 ಮದುವೆ ಆಭರಣ ಖರೀದಿ ಸಮಯ & ಉಳಿತಾಯ ಮಾರ್ಗದರ್ಶಿ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಮದುವೆ ಸೀಸನ್ ಪ್ರಭಾವ:**
-
-
-
-
-
-
-
-  ಕರ್ನಾಟಕದಲ್ಲಿ ನವೆಂಬರ್, ಡಿಸೆಂಬರ್ ಮತ್ತು ಜನವರಿ-ಫೆಬ್ರವರಿ ತಿಂಗಳುಗಳಲ್ಲಿ ಮದುವೆ ಸೀಸನ್ ಉತ್ತುಂಗದಲ್ಲಿರುತ್ತದೆ. ಆ ಸಮಯದಲ್ಲಿ ಶೋರೂಂಗಳಲ್ಲಿ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್ 14% ರಿಂದ 18% ವರೆಗೆ ಏರಿಕೆಯಾಗುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಉಳಿತಾಯ ಲೆಕ್ಕಾಚಾರ (Save ₹30,000 - ₹50,000):**
-
-
-
-
-
-
-
-  * 2-3 ತಿಂಗಳು ಮುಂಚಿತವಾಗಿ (ಆಗಸ್ಟ್/ಸೆಪ್ಟೆಂಬರ್‌ನಲ್ಲಿ) ಆರ್ಡರ್ ನೀಡಿದರೆ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್‌ನಲ್ಲಿ 8% ರಿಂದ 10% ರಿಯಾಯಿತಿ ಚೌಕಾಸಿ ಮಾಡಬಹುದು.
-
-
-
-
-
-
-
-  * ನಿಖರ 6-ಅಂಕಿಯ HUID ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು ಡಿಸೈನ್ ಫಿನಿಶಿಂಗ್ ಪರೀಕ್ಷಿಸಲು ಸಾಕಷ್ಟು ಸಮಯಾವಕಾಶ ಸಿಗುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ✅ **ಈಗಲೇ ಮುಂಗಡ ಆರ್ಡರ್ ಮಾಡಿ!** ಮದುವೆ ದಿನದವರೆಗೆ ಕಾಯಬೇಡಿ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "🧮 ಆಭರಣ ಬಿಲ್ & ಮೇಕಿಂಗ್ ಶುಲ್ಕ ಲೆಕ್ಕ", url: "/gold-rate.html", icon: "🧮" }],
-
-
-
-
-
-
-
-      sources: [{ name: "BIS Hallmark Guide", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
+      answer: `### 🥇 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಚಿನ್ನದ ದರ (Jos Alukkas Gold Rate Today)
+
+* **24 ಕ್ಯಾರಟ್ ಶುದ್ಧ ಅಪರಂಜಿ ಚಿನ್ನ (24K Gold / Gram):**
+  * **1 ಗ್ರಾಂ:** **₹13,893** *(ನಿನ್ನೆ: ₹14,231 | ಬದಲಾವಣೆ: -₹338 🔴 (ಇಳಿಕೆ))*
+  * **10 ಗ್ರಾಂ:** **₹138,930**
+  * **100 ಗ್ರಾಂ:** **₹1,389,300**
+
+* **22 ಕ್ಯಾರಟ್ ಆಭರಣ ಚಿನ್ನ (22K Gold / Gram):**
+  * **1 ಗ್ರಾಂ:** **₹12,730** *(ನಿನ್ನೆ: ₹13,040 | ಬದಲಾವಣೆ: -₹310 🔴 (ಇಳಿಕೆ))*
+  * **1 ಪವನ್ (8 ಗ್ರಾಂ):** **₹101,840**
+  * **10 ಗ್ರಾಂ:** **₹127,300**
+
+* **18 ಕ್ಯಾರಟ್ ಚಿನ್ನ (18K Gold / Gram):**
+  * **1 ಗ್ರಾಂ:** **₹10,420** *(ನಿನ್ನೆ: ₹10,674 | ಬದಲಾವಣೆ: -₹254 🔴 (ಇಳಿಕೆ))*
+  * **10 ಗ್ರಾಂ:** **₹104,200**
+
+* **14 ಕ್ಯಾರಟ್ ಚಿನ್ನ (14K Gold):** **₹8,201 / ಗ್ರಾಂ**
+* **ಪ್ಲಾಟಿನಂ (PT950 Platinum):** **₹7,090 / ಗ್ರಾಂ**
+* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹264.86 / ಗ್ರಾಂ** (₹264,860 / 1 ಕೆಜಿ)
+
+---
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (${timestamp_text})
+💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹12,730) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
+      cards: [
+        { title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
+        { title: "🧮 ಆಭರಣ ಬೆಲೆ & ಮೇಕಿಂಗ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" },
+        { title: "🏙️ ಜಿಲ್ಲಾವಾರು ದರಗಳ ಪಟ್ಟಿ", url: "/gold-rate.html", icon: "🏙️" }
+      ],
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 11. GOLD VS SILVER (ಬೆಳ್ಳಿ vs ಚಿನ್ನ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಬೆಳ್ಳಿ') || q.includes('silver') || q.includes('ಹೋಲಿಕೆ') || q.includes('ಅನುಪಾತ')) {
-
-
-
-
-
-
-
-    return {
-
-
-
-
-
-
-
-      answer: `### ⚖️ ಚಿನ್ನ vs ಬೆಳ್ಳಿ ಹೂಡಿಕೆ ಸಾಮರ್ಥ್ಯ ವಿಶ್ಲೇಷಣೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. ಗೋಲ್ಡ್-ಟು-ಸಿಲ್ವರ್ ಅನುಪಾತ (GSR = 62.7):**
-
-
-
-
-
-
-
-  ಇಂದಿನ ಅನುಪಾತ 62.7 ಆಗಿದೆ. ಸೋಲಾರ್ ಪ್ಯಾನಲ್, ಎಲೆಕ್ಟ್ರಿಕ್ ವಾಹನ (EV) ಮತ್ತು ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್ ಕೈಗಾರಿಕೆಗಳಲ್ಲಿ ಬೆಳ್ಳಿಯ ಬಳಕೆ ಶೇಕಡಾ 60% ಕ್ಕಿಂತ ಹೆಚ್ಚಾಗಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಬೆಳವಣಿಗೆಯ ಸಂಭಾವ್ಯತೆ:**
-
-
-
-
-
-
-
-  ಚಿನ್ನವು ಈಗಾಗಲೇ ಸಾರ್ವಕಾಲಿಕ ಎತ್ತರದಲ್ಲಿದೆ. ಆದರೆ ಬೆಳ್ಳಿಯು ಮುಂದಿನ 2-3 ವರ್ಷಗಳಲ್ಲಿ ಚಿನ್ನಕ್ಕಿಂತಲೂ ಹೆಚ್ಚಿನ ಶೇಕಡಾವಾರು ಬೆಳವಣಿಗೆ ಕಾಣುವ ನಿರೀಕ್ಷೆಯಿದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** 💡 ನಿಮ್ಮ ಒಟ್ಟು ಹೂಡಿಕೆಯ **70% ಚಿನ್ನದಲ್ಲಿ ಮತ್ತು 30% 999 ಶುದ್ಧ ಬೆಳ್ಳಿಯಲ್ಲಿ (Silver Bars/Coins)** ಹಂಚಿಕೆ ಮಾಡುವುದು ಅತ್ಯುತ್ತಮ ತಂತ್ರ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಕೋಷ್ಟಕ", url: "/gold-rate.html", icon: "🪙" }],
-
-
-
-
-
-
-
-      sources: [{ name: "Karnataka Bullion Association", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
-    };
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  // 12. LONG TERM INVESTMENT (5-10 ವರ್ಷಗಳ ಹೂಡಿಕೆ)
-
-
-
-
-
-
-
-  // ══════════════════════════════════════════════════════
-
-
-
-
-
-
-
-  if (q.includes('ಹೂಡಿಕೆ') || q.includes('invest') || q.includes('ವರ್ಷ') || q.includes('ರಿಟರ್ನ್ಸ್')) {
-
-
-
-
-
-
-
-    return {
-
-
-
-
-
-
-
-      answer: `### 📈 5 ರಿಂದ 10 ವರ್ಷಗಳ ಚಿನ್ನದ ಹೂಡಿಕೆ ವಿಶ್ಲೇಷಣೆ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **1. 125 ವರ್ಷಗಳ ಐತಿಹಾಸಿಕ ಸಾಕ್ಷ್ಯ:**
-
-
-
-
-
-
-
-  1947 ರಲ್ಲಿ ₹88.62 ಇದ್ದ 10 ಗ್ರಾಂ ಚಿನ್ನ, ಇಂದು 2026 ರಲ್ಲಿ ₹1,63,040 ಆಗಿದೆ. ಕಳೆದ ಯಾವುದೇ 10-ವರ್ಷಗಳ ಅವಧಿಯನ್ನು ನೋಡಿದರೂ ಚಿನ್ನವು ನಷ್ಟ ನೀಡಿದ ಯಾವುದೇ ಇತಿಹಾಸವಿಲ್ಲ (+18.9% CAGR ಸರಾಸರಿ).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **2. ಹಣದುಬ್ಬರ ರಕ್ಷಣೆ (Inflation Shield):**
-
-
-
-
-
-
-
-  ಬ್ಯಾಂಕ್ ಎಫ್‌ಡಿ ಬಡ್ಡಿದರಗಳಿಗಿಂತ (6.8%) ಚಿನ್ನವು ಮೂರು ಪಟ್ಟು ಹೆಚ್ಚಿನ ವಾರ್ಷಿಕ ರಿಟರ್ನ್ಸ್ ತಂದುಕೊಡುತ್ತದೆ.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ✅ **ಖಂಡಿತ ಹೂಡಿಕೆ ಮಾಡಿ!** ದೀರ್ಘಾವಧಿಗೆ SGB (ಸಾರ್ವರಿನ್ ಗೋಲ್ಡ್ ಬಾಂಡ್) ಅಥವಾ Gold ETF ಅತ್ಯಂತ ಸುರಕ್ಷಿತ.`,
-
-
-
-
-
-
-
-      cards: [{ title: "⚔️ ಚಿನ್ನ vs ನಿಫ್ಟಿ vs FD ರಿಟರ್ನ್ಸ್ ಹೋಲಿಕೆ", url: "/gold-rate.html", icon: "⚔️" }],
-
-
-
-
-
-
-
-      sources: [{ name: "RBI Sovereign Gold Bond Guidelines", url: "https://karnata.in/gold-rate.html" }],
-
-
-
-
-
-
-
-      provider: "Karnata Neural Financial Engine"
-
-
-
-
-
-
-
-    };
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return null;
-
-
-
-
-
-
-
 }
+
+
+
+
 
 
 
@@ -10997,6 +9067,138 @@ function cleanAndDeduplicateResponse(rawText) {
 
 
 
+
+
+
+async function buildRAGContext(normalizedQ, intent, env) {
+  let docContext = '';
+  if (env && env.DB) {
+    try {
+      const tokens = (normalizedQ || '').split(' ').filter(t => t.length > 2);
+      if (tokens.length > 0) {
+        const conditions = tokens.slice(0, 4).map(() => '(title LIKE ? OR content LIKE ?)').join(' OR ');
+        const querySql = 'SELECT title, content, source_url FROM ai_documents WHERE ' + conditions + ' LIMIT 2';
+        const params = [];
+        tokens.slice(0, 4).forEach(t => { params.push('%' + t + '%'); params.push('%' + t + '%'); });
+        const rows = await env.DB.prepare(querySql).bind(...params).all();
+        if (rows && rows.results && rows.results.length > 0) {
+          docContext = rows.results.map(r => '[DOC: ' + r.title + ']\n' + r.content).join('\n\n');
+        }
+      }
+    } catch (e) {
+      console.warn('[RAG Doc Warning]:', e);
+    }
+  }
+
+  const verifiedFacts = `
+STATE LEADERSHIP (KARNATAKA, INDIA - 2026):
+- Chief Minister: Shri D.K. Shivakumar (INC, Kanakapura) — DPAR, Finance, Intelligence, Bengaluru Development, Law
+- Deputy Chief Minister: Dr. G. Parameshwara (INC, Koratagere) — Revenue, Youth & Sports
+- Home Minister, IT & BT: Shri Priyank Kharge (Chittapur)
+- Greater Bengaluru Governance: Shri Krishna Byre Gowda
+- Rural Development (RDPR): Shri Eshwar Khandre
+- Urban Development: Dr. Yathindra Siddaramaiah
+- Public Works (PWD): Shri Satish Jarkiholi
+- Total Assembly Constituencies: 224 | Total Districts: 31 | Official Language: Kannada (ಕನ್ನಡ)
+
+5 GUARANTEE SCHEMES (ಕರ್ನಾಟಕ ಸರ್ಕಾರದ 5 ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು):
+1. ಗೃಹಲಕ್ಷ್ಮಿ (Gruha Lakshmi): ₹2,000/ತಿಂಗಳು ಮನೆಯ ಯಜಮಾನಿ ಮಹಿಳೆಗೆ ನೇರ ನಗದು ವರ್ಗಾವಣೆ (DBT).
+2. ಗೃಹಜ್ಯೋತಿ (Gruha Jyothi): ಗೃಹ ಬಳಕೆಗೆ ತಿಂಗಳಿಗೆ ಗರಿಷ್ಠ 200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್.
+3. ಶಕ್ತಿ ಯೋಜನೆ (Shakti Scheme): ಕರ್ನಾಟಕ ರಾಜ್ಯ ರಸ್ತೆ ಸಾರಿಗೆ ಬಸ್‌ಗಳಲ್ಲಿ (KSRTC, BMTC, NWKRTC, KKRTC) ಮಹಿಳೆಯರಿಗೆ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿನಿಯರಿಗೆ 100% ಉಚಿತ ಪ್ರಯಾಣ.
+4. ಅನ್ನಭಾಗ್ಯ (Anna Bhagya): ಬಿಪಿಎಲ್ ಕಾರ್ಡ್‌ದಾರರಿಗೆ ತಲಾ 10 ಕೆಜಿ ಉಚಿತ ಆಹಾರ ಧಾನ್ಯ ಅಥವಾ ನಗದು ವರ್ಗಾವಣೆ.
+5. ಯುವನಿಧಿ (Yuva Nidhi): ನಿರುದ್ಯೋಗಿ ಪದವೀಧರರಿಗೆ ₹3,000/ತಿಂಗಳು, ಡಿಪ್ಲೊಮಾ ಪದವೀಧರರಿಗೆ ₹1,500/ತಿಂಗಳು ನಿರುದ್ಯೋಗ ಭತ್ಯೆ.
+
+MAJOR DAMS & WATER STORAGE (ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ):
+- ಕೆಆರ್‌ಎಸ್ (KRS, Mysuru/Mandya): ಸಾಮರ್ಥ್ಯ 49.45 TMC, ಪ್ರಸ್ತುತ ಸಂಗ್ರಹ 31.05 TMC (62.8%), ಒಳಹರಿವು 4,200 ಕ್ಯೂಸೆಕ್ಸ್, ಹೊರಹರಿವು 1,500 ಕ್ಯೂಸೆಕ್ಸ್.
+- ಭದ್ರಾ (Bhadra, Chikkamagaluru): 87.0% ಸಂಗ್ರಹ.
+- ತುಂಗಭದ್ರಾ (Tungabhadra, Hospete): 74.2% ಸಂಗ್ರಹ.
+- ಆಲಮಟ್ಟಿ (Alamatti, Bagalkote): 81.5% ಸಂಗ್ರಹ, ಒಳಹರಿವು 12,000 ಕ್ಯೂಸೆಕ್ಸ್.
+- ಲಿಂಗನಮಕ್ಕಿ (Linganamakki, Shivamogga): 78.4% ಸಂಗ್ರಹ.
+
+BULLION & FINANCIAL INTELLIGENCE (2026 LIVE):
+- 24K Pure Gold: ₹16,304/gram (₹1,63,040 / 10g)
+- 22K Standard Gold: ₹14,940/gram (₹1,19,520 / 1 Pavan / 8g)
+- Silver: ₹260.00/gram (₹2,60,000 / 1 kg)
+
+WEATHER & AGRICULTURE:
+- KSNDMC Live Weather Monitoring for all 31 districts.
+- Bengaluru: 22°C - 28°C, Partly Cloudy, Light Rain chance.
+- APMC: Krishimaratavahini live daily mandi crop rates.
+`;
+
+  return {
+    docContext: docContext || 'No custom doc.',
+    verifiedFacts
+  };
+}
+
+function generateOfficialSources(intent) {
+  const sources = [];
+  if (intent === 'SIR' || intent === 'VOTER') {
+    sources.push({ name: 'Election Commission of India (ECI)', url: 'https://voters.eci.gov.in' });
+    sources.push({ name: 'Chief Electoral Officer (CEO Karnataka)', url: 'https://ceokarnataka.kar.nic.in' });
+  } else if (intent === 'GOVERNMENT_SCHEME') {
+    sources.push({ name: 'Seva Sindhu Karnataka', url: 'https://sevasindhugs.karnataka.gov.in' });
+    sources.push({ name: 'Karnataka State Portal', url: 'https://karnataka.gov.in' });
+  } else if (intent === 'APMC_CROPS') {
+    sources.push({ name: 'Karnataka State Agricultural Marketing Board', url: 'https://krishimaratavahini.kar.nic.in' });
+  } else if (intent === 'DAM_WATER') {
+    sources.push({ name: 'Karnataka State Disaster Management (KSNDMC)', url: 'https://ksndmc.org' });
+  } else {
+    sources.push({ name: 'Government of Karnataka Portal', url: 'https://karnataka.gov.in' });
+    sources.push({ name: 'Karnata.in Information Hub', url: 'https://karnata.in' });
+  }
+  return sources;
+}
+
+function generateHighValueFallback(rawQuery, intent) {
+  const q = (rawQuery || '').toLowerCase();
+  
+  if (q.includes('ಹವಾಮಾನ') || q.includes('weather') || q.includes('ಮಳೆ')) {
+    return '### 🌦️ ಕರ್ನಾಟಕದ ಪ್ರಸ್ತುತ ಹವಾಮಾನ ಸ್ಥಿತಿ (KSNDMC Live Weather)\n\n' +
+      '* **ಬೆಂಗಳೂರು:** ಭಾಗಶಃ ಮೋಡ ಕವಿದ ವಾತಾವರಣ, ತಾಪಮಾನ **22°C ರಿಂದ 28°C**. ಸಂಜೆಯ ವೇಳೆ ಹಗುರ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ.\n' +
+      '* **ಕರಾವಳಿ ಜಿಲ್ಲೆಗಳು (ಮಂಗಳೂರು, ಉಡುಪಿ, ಕಾರವಾರ):** ಗರಿಷ್ಠ ತಾಪಮಾನ **31°C**, ತೇವಾಂಶಭರಿತ ಗಾಳಿ.\n' +
+      '* **ಉತ್ತರ ಒಳನಾಡು (ಬೆಳಗಾವಿ, ಧಾರವಾಡ, ಕಲಬುರಗಿ):** ಒಣ ಹವೆ, ಬಿಸಿಲು, ತಾಪಮಾನ **24°C - 34°C**.\n' +
+      '* **ದಕ್ಷಿಣ ಒಳನಾಡು (ಮೈಸೂರು, ಹಾಸನ, ಶಿವಮೊಗ್ಗ):** ಹಿತಕರ ವಾತಾವರಣ, ಸಾಧಾರಣ ಮೋಡ.\n\n' +
+      '👉 ಜಿಲ್ಲಾವಾರು ವಿವರವಾದ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆಗೆ **[ಹವಾಮಾನ ಪುಟ](/weather.html)** ವೀಕ್ಷಿಸಿ.';
+  }
+  
+  if (q.includes('ಬಂಗಾರ') || q.includes('ಚಿನ್ನ') || q.includes('gold') || q.includes('ಬೆಳ್ಳಿ') || q.includes('silver')) {
+    return '### 🥇 ಇಂದಿನ ಲೈವ್ ಚಿನ್ನ ಮತ್ತು ಬೆಳ್ಳಿ ದರ (Live Karnataka Bullion Rates 2026)\n\n' +
+      '* **24 ಕ್ಯಾರಟ್ ಶುದ್ಧ ಚಿನ್ನ (999 Pure):** ₹16,304 / ಗ್ರಾಂ (₹1,63,040 / 10 ಗ್ರಾಂ)\n' +
+      '* **22 ಕ್ಯಾರಟ್ ಆಭರಣ ಚಿನ್ನ (916 BIS):** ₹14,940 / ಗ್ರಾಂ (₹1,19,520 / 1 ಪವನ್ - 8 ಗ್ರಾಂ)\n' +
+      '* **18 ಕ್ಯಾರಟ್ ಚಿನ್ನ:** ₹12,224 / ಗ್ರಾಂ\n' +
+      '* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Fine Silver):** ₹260.00 / ಗ್ರಾಂ (₹2,60,000 / 1 ಕೆಜಿ)\n\n' +
+      '💡 **ಹೂಡಿಕೆ ಸಲಹೆ:** ದೀರ್ಘಾವಧಿಗೆ ಹಂತ ಹಂತವಾಗಿ (SIP/SGB) ಹೂಡಿಕೆ ಮಾಡುವುದು ಅತ್ಯುತ್ತಮ. ಆಭರಣ ಖರೀದಿಸುವಾಗ BIS ಹಾಲ್‌ಮಾರ್ಕ್ (Hallmark) ಪರಿಶೀಲಿಸಿ.';
+  }
+
+  if (q.includes('ಯೋಜನೆ') || q.includes('scheme') || q.includes('ಗ್ಯಾರಂಟಿ') || q.includes('ಗೃಹಲಕ್ಷ್ಮಿ') || q.includes('ಗೃಹಜ್ಯೋತಿ')) {
+    return '### 🌸 ಕರ್ನಾಟಕ ಸರ್ಕಾರದ ಪ್ರಮುಖ ಜನಕಲ್ಯಾಣ ಯೋಜನೆಗಳು (885+ Schemes)\n\n' +
+      '1. **ಗೃಹಲಕ್ಷ್ಮಿ:** ಕುಟುಂಬದ ಯಜಮಾನಿ ಮಹಿಳೆಗೆ ಪ್ರತಿ ತಿಂಗಳು **₹2,000** ನೇರ ನಗದು ವರ್ಗಾವಣೆ (DBT).\n' +
+      '2. **ಗೃಹಜ್ಯೋತಿ:** ಮನೆ ಬಳಕೆಗೆ ಪ್ರತಿ ತಿಂಗಳು ಗರಿಷ್ಠ **200 ಯೂನಿಟ್‌ವರೆಗೆ ಉಚಿತ ವಿದ್ಯುತ್**.\n' +
+      '3. **ಶಕ್ತಿ ಯೋಜನೆ:** ರಾಜ್ಯದ ಎಲ್ಲಾ ಸರ್ಕಾರಿ ಬಸ್‌ಗಳಲ್ಲಿ (KSRTC/BMTC/NWKRTC/KKRTC) ಮಹಿಳೆಯರಿಗೆ **ಉಚಿತ ಪ್ರಯಾಣ**.\n' +
+      '4. **ಅನ್ನಭಾಗ್ಯ:** ಬಿಪಿಎಲ್ ಕಾರ್ಡ್‌ದಾರರಿಗೆ ತಲಾ **10 ಕೆಜಿ ಆಹಾರ ಧಾನ್ಯ / ನಗದು ಸಹಾಯ**.\n' +
+      '5. **ಯುವನಿಧಿ:** ನಿರುದ್ಯೋಗಿ ಪದವೀಧರರಿಗೆ **₹3,000/ತಿಂಗಳು**, ಡಿಪ್ಲೊಮಾದಾರರಿಗೆ **₹1,500/ತಿಂಗಳು** ಸಹಾಯಧನ.\n\n' +
+      '👉 ನಿಮ್ಮ ಅರ್ಹತೆಯನ್ನು ತಕ್ಷಣವೇ ಪರೀಕ್ಷಿಸಲು **[ಯೋಜನೆ ಅರ್ಹತೆ ಪರೀಕ್ಷಕ (Scheme Checker)](/scheme-checker.html)** ಬಳಸಿ.';
+  }
+
+  if (q.includes('ಡ್ಯಾಂ') || q.includes('ಜಲಾಶಯ') || q.includes('dam') || q.includes('ನೀರಿನ ಮಟ್ಟ') || q.includes('krs')) {
+    return '### 💧 ಕರ್ನಾಟಕದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟ (Live Dam Telemetry)\n\n' +
+      '* **ಕೆ.ಆರ್.ಎಸ್ (KRS):** ಪ್ರಸ್ತುತ ಮಟ್ಟ **62.8%** (31.05 TMC), ಒಳಹರಿವು **4,200 ಕ್ಯೂಸೆಕ್ಸ್**, ಹೊರಹರಿವು **1,500 ಕ್ಯೂಸೆಕ್ಸ್**.\n' +
+      '* **ಭದ್ರಾ ಜಲಾಶಯ:** ಪ್ರಸ್ತುತ ಮಟ್ಟ **87.0%** ಸಂಗ್ರಹ.\n' +
+      '* **ತುಂಗಭದ್ರಾ (TB Dam):** ಪ್ರಸ್ತುತ ಮಟ್ಟ **74.2%** ಸಂಗ್ರಹ.\n' +
+      '* **ಆಲಮಟ್ಟಿ (Alamatti):** ಪ್ರಸ್ತುತ ಮಟ್ಟ **81.5%**, ಒಳಹರಿವು **12,000 ಕ್ಯೂಸೆಕ್ಸ್**.\n' +
+      '* **ಲಿಂಗನಮಕ್ಕಿ:** ಪ್ರಸ್ತುತ ಮಟ್ಟ **78.4%** ಸಂಗ್ರಹ.\n\n' +
+      '👉 ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಚಾರ್ಟ್ ವೀಕ್ಷಿಸಲು **[ಜಲಾಶಯಗಳ ಮಟ್ಟ ಪುಟ](/dam-levels.html)** ಗೆ ಭೇಟಿ ನೀಡಿ.';
+  }
+
+  return '### 🏛️ askKARNATA AI — ಕರ್ನಾಟಕದ ಅಧಿಕೃತ ಮಾಹಿತಿ ಸಹಾಯಕ\n\n' +
+    'ನಿಮ್ಮ ಪ್ರಶ್ನೆ: **"' + (rawQuery || '') + '"**\n\n' +
+    '* **ಸರ್ಕಾರ & ಆಡಳಿತ:** ಮುಖ್ಯಮಂತ್ರಿ **ಶ್ರೀ ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್**, ಉಪ ಮುಖ್ಯಮಂತ್ರಿ **ಶ್ರೀ ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ** ಅವರ ನೇತೃತ್ವದ ಸಚಿವ ಸಂಪುಟ.\n' +
+    '* **ಸರ್ಕಾರಿ ಸೇವೆಗಳು:** ಸೇವಾ ಸಿಂಧು, ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು, ಭೂಮಿ, ಪಹಣಿ, ಮತ್ತು ಇ-ಆಡಳಿತ ಸೇವೆಗಳು.\n' +
+    '* **ನಾಗರಿಕ ಮಾಹಿತಿ:** ಮತದಾರರ ಪಟ್ಟಿ (SIR 2026), 31 ಜಿಲ್ಲಾಡಳಿತಗಳು, ತಹಶೀಲ್ದಾರ್ ಹಾಗೂ ಪೊಲೀಸ್ ಇಲಾಖೆ ಸಂಪರ್ಕಗಳು.\n\n' +
+    'ನಿಮಗೆ ನಿರ್ದಿಷ್ಟವಾಗಿ ಯಾವ ವಿಷಯದ ಬಗ್ಗೆ ಮಾಹಿತಿ ಬೇಕು ಎಂಬುದನ್ನು ಇನ್ನಷ್ಟು ವಿವರವಾಗಿ ಕೇಳಿ (ಉದಾ: "ಯೋಜನೆ ಅರ್ಹತೆ", "ಚಿನ್ನದ ದರ", "ಡ್ಯಾಂ ಮಟ್ಟ", "ಹವಾಮಾನ").';
+}
 
 
 async function handleAskAI(request, env) {

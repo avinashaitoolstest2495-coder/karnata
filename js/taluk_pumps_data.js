@@ -9,7 +9,7 @@ const TALUK_FUEL_PUMPS = {
     districtEn: "Bagalkot",
     pumps: [
       { taluk: "Bagalkot", talukKn: "ಬಾಗಲಕೋಟೆ", outlet_id: "390716", outlet_name: "M/s Shri Siddarameswar Petroleums", lat: 16.200178, lng: 75.613475, petrol: 103.45, diesel: 89.52, cng: 79.50, power: 110.30 },
-      { taluk: "Mudhol", talukKn: "ಮುಧೋಳ", outlet_id: "390304", outlet_name: "Jai Malhar Petroleums", lat: 16.340437, lng: 75.27353,1, petrol: 103.48, diesel: 89.55, cng: 79.50, power: 110.33 },
+      { taluk: "Mudhol", talukKn: "ಮುಧೋಳ", outlet_id: "390304", outlet_name: "Jai Malhar Petroleums", lat: 16.340437, lng: 75.273531, petrol: 103.48, diesel: 89.55, cng: 79.50, power: 110.33 },
       { taluk: "Jamkhandi", talukKn: "ಜಮಖಂಡಿ", outlet_id: "399844", outlet_name: "Triveni Shree Sangam Petroleums", lat: 16.548377, lng: 75.182388, petrol: 103.46, diesel: 89.53, cng: 79.50, power: 110.31 },
       { taluk: "Badami", talukKn: "ಬಾದಾಮಿ", outlet_id: "391642", outlet_name: "Aivalli & Co", lat: 15.909709, lng: 75.686254, petrol: 103.44, diesel: 89.50, cng: 79.50, power: 110.28 },
       { taluk: "Bilgi", talukKn: "ಬೀಳಗಿ", outlet_id: "390877", outlet_name: "Angadi Petroleum", lat: 16.416765, lng: 75.434959, petrol: 103.47, diesel: 89.54, cng: 79.50, power: 110.32 },

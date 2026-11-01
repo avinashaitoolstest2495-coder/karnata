@@ -644,6 +644,56 @@
       background: #047857;
       transform: translateY(-1px);
     }
+    .role-pills-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+      width: 100%;
+    }
+    .role-pills-bar::-webkit-scrollbar { display: none; }
+    .role-chip {
+      padding: 7px 15px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1.5px solid var(--border-card);
+      background: #FFF;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .role-chip.active, .role-chip:hover {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.2);
+    }
+    .load-more-container {
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 20px;
+    }
+    .btn-load-more {
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      background: var(--primary);
+      color: #FFF;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+    }
+    .btn-load-more:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.35);
+    }
   </style>
 
   <script src="/seo.js" defer></script>
@@ -734,6 +784,16 @@
       <select id="district-filter" class="filter-select" onchange="handleSearch()">
         <option value="ALL">ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳು (All Districts)</option>
       </select>
+    </div>
+
+    <!-- Quick Role Filter Chips -->
+    <div class="role-pills-bar" id="officer-role-chips">
+      <button class="role-chip active" onclick="setRoleFilter('ALL', this)">ಎಲ್ಲಾ ಅಧಿಕಾರಿಗಳು (All)</button>
+      <button class="role-chip" onclick="setRoleFilter('DC', this)">🏛️ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳು (DCs)</button>
+      <button class="role-chip" onclick="setRoleFilter('SP', this)">👮 ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿಗಳು (SPs)</button>
+      <button class="role-chip" onclick="setRoleFilter('CEO', this)">🌾 ಜಿ.ಪಂ ಸಿಇಒ (ZP CEOs)</button>
+      <button class="role-chip" onclick="setRoleFilter('SEC', this)">🏢 ಸರ್ಕಾರದ ಕಾರ್ಯದರ್ಶಿಗಳು (Secretaries / ACS)</button>
+      <button class="role-chip" onclick="setRoleFilter('POLICE', this)">🚔 ಆಯುಕ್ತರು & DIG / ADGP</button>
     </div>
 
     <!-- VIEW 1: OFFICERS DIRECTORY -->
@@ -1596,6 +1656,22 @@
       else if (currentTab === 'transfers') renderTransfers();
     }
 
+    let currentRole = 'ALL';
+    let currentLimit = 60;
+
+    function setRoleFilter(role, btn) {
+      currentRole = role;
+      document.querySelectorAll('#officer-role-chips .role-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      currentLimit = 60;
+      renderOfficers();
+    }
+
+    function loadMoreOfficers() {
+      currentLimit += 60;
+      renderOfficers();
+    }
+
     function renderOfficers() {
       const container = document.getElementById('officers-container');
       const search = document.getElementById('main-search').value.toLowerCase().trim();
@@ -1603,6 +1679,21 @@
       const district = document.getElementById('district-filter').value;
 
       const filtered = rawOfficers.filter(o => {
+        const desig = (o.designation || '').toLowerCase();
+        
+        let matchRole = true;
+        if (currentRole === 'DC') {
+          matchRole = desig.includes('deputy commissioner') && !desig.includes('assistant') && !desig.includes('deputy commissioner of police');
+        } else if (currentRole === 'SP') {
+          matchRole = desig.includes('superintendent of police') && !desig.includes('assistant') && !desig.includes('deputy');
+        } else if (currentRole === 'CEO') {
+          matchRole = desig.includes('chief executive officer') && desig.includes('zilla panchayat');
+        } else if (currentRole === 'SEC') {
+          matchRole = desig.includes('secretary') || desig.includes('principal secretary') || desig.includes('additional chief secretary');
+        } else if (currentRole === 'POLICE') {
+          matchRole = o.cadre === 'IPS' && (desig.includes('director general') || desig.includes('inspector general') || desig.includes('commissioner of police') || desig.includes('adgp'));
+        }
+
         const matchSearch = !search || 
           (o.name_kn && o.name_kn.toLowerCase().includes(search)) ||
           (o.name_en && o.name_en.toLowerCase().includes(search)) ||
@@ -1613,15 +1704,16 @@
         const matchCadre = cadre === 'ALL' || o.cadre === cadre;
         const matchDistrict = district === 'ALL' || o.district_key === district;
 
-        return matchSearch && matchCadre && matchDistrict;
+        return matchRole && matchSearch && matchCadre && matchDistrict;
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:60px 20px; background:#FFF; border-radius:16px; border:1.5px dashed var(--border-card); color:var(--text-light);"><div style="font-size:36px; margin-bottom:10px;">🔍</div><div style="font-size:16px; font-weight:800; color:var(--text-main);">ಯಾವುದೇ ಅಧಿಕಾರಿಗಳ ವಿವರ ಕಂಡುಬಂದಿಲ್ಲ.</div><div style="font-size:13.5px; margin-top:4px;">ದಯವಿಟ್ಟು ಬೇರೆ ಹೆಸರು ಅಥವಾ ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ.</div></div>';
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:60px 20px; background:#FFF; border-radius:16px; border:1.5px dashed var(--border-card); color:var(--text-light);"><div style="font-size:36px; margin-bottom:10px;">🔍</div><div style="font-size:16px; font-weight:800; color:var(--text-main);">ಯಾವುದೇ ಅಧಿಕಾರಿಗಳ ವಿವರ ಕಂಡುಬಂದಿಲ್ಲ.</div><div style="font-size:13.5px; margin-top:4px;">ದಯವಿಟ್ಟು ಬೇರೆ ಶೋಧನೆ ಅಥವಾ ಫಿಲ್ಟರ್ ಆಯ್ಕೆಮಾಡಿ.</div></div>';
         return;
       }
 
-      container.innerHTML = filtered.slice(0, 150).map(o => {
+      const visibleList = filtered.slice(0, currentLimit);
+      const cardsHtml = visibleList.map(o => {
         const hasAddCharge = o.additional_charge && o.additional_charge.trim() !== '-' && o.additional_charge.trim() !== '' && o.additional_charge.trim() !== 'null';
         const addChargeHtml = hasAddCharge ? `<div class="additional-charge-box">📌 <strong>ಹೆಚ್ಚುವರಿ ಹೊಣೆ:</strong> ${o.additional_charge}</div>` : '';
         const cadreClass = o.cadre === 'IPS' ? 'tag-IPS' : o.cadre === 'KAS' ? 'tag-KAS' : o.cadre === 'IFS' ? 'tag-IFS' : 'tag-IAS';
@@ -1658,6 +1750,16 @@
           </div>
         </div>`;
       }).join('');
+
+      const loadMoreHtml = filtered.length > currentLimit ? `
+        <div class="load-more-container" style="grid-column: 1/-1;">
+          <button class="btn-load-more" onclick="loadMoreOfficers()">
+            ಇನ್ನಷ್ಟು ಅಧಿಕಾರಿಗಳು (+60 ಲೋಡ್ ಮಾಡಿ) [${visibleList.length} / ${filtered.length}]
+          </button>
+        </div>
+      ` : '';
+
+      container.innerHTML = cardsHtml + loadMoreHtml;
     }
 
     function renderTahsildars() {

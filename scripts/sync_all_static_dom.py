@@ -141,32 +141,19 @@ def sync_static_dom():
         g_content = re.sub(r'id="card-22k-10g">₹[0-9,]+<', f'id="card-22k-10g">₹{gold_22k * 10:,}<', g_content)
         g_content = re.sub(r'id="card-22k-100g">₹[0-9,]+<', f'id="card-22k-100g">₹{gold_22k * 100:,}<', g_content)
 
-        # Sync district rows
-        cities_list = [
-            {"name": "ಬೆಂಗಳೂರು (Bangalore)", "offset": 0},
-            {"name": "ಮೈಸೂರು (Mysore)", "offset": -5},
-            {"name": "ಮಂಗಳೂರು (Mangalore)", "offset": -3},
-            {"name": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubli-Dharwad)", "offset": -8},
-            {"name": "ಬೆಳಗಾವಿ (Belgaum)", "offset": -10},
-            {"name": "ಕಲಬುರಗಿ (Kalaburagi)", "offset": -12},
-            {"name": "ದಾವಣಗೆರೆ (Davangere)", "offset": -7},
-            {"name": "ಶಿವಮೊಗ್ಗ (Shimoga)", "offset": -6},
-            {"name": "ತುಮಕೂರು (Tumkur)", "offset": -4},
-            {"name": "ಹಾಸನ (Hassan)", "offset": -9},
-            {"name": "ಉಡುಪಿ (Udupi)", "offset": -2},
-            {"name": "ಬಳ್ಳಾರಿ (Ballari)", "offset": -8}
-        ]
+        # Sync district rows from authentic gold_data['cities']
+        cities_dict = gold_data.get('cities', {})
         city_table_rows = ""
-        for c in cities_list:
-            off = c["offset"]
-            c_24 = gold_24k + off
-            c_22 = gold_22k + off
-            c_18 = round((gold_24k * 0.75)) + round(off * 0.75)
-            c_sil = silver_g
-            c_sil_kg = round(silver_g * 1000)
+        for cid, c in cities_dict.items():
+            c_name = f"{c.get('name_kn', cid)} ({c.get('name_en', cid)})"
+            c_24 = c.get('gold_24k_per_gram', gold_24k)
+            c_22 = c.get('gold_22k_per_gram', gold_22k)
+            c_18 = c.get('gold_18k_per_gram', round(gold_24k * 0.75))
+            c_sil = c.get('silver_per_gram', silver_g)
+            c_sil_kg = c.get('silver_1kg', round(silver_g * 1000))
             city_table_rows += f"""
               <tr>
-                <td style="font-weight:800; color:#0F172A;">{c['name']}</td>
+                <td style="font-weight:800; color:#0F172A;">{c_name}</td>
                 <td style="font-weight:900; font-family:'Inter',sans-serif; color:#B45309;">₹{c_24:,}</td>
                 <td style="font-weight:900; font-family:'Inter',sans-serif; color:#D97706;">₹{c_22:,}</td>
                 <td style="font-weight:800; font-family:'Inter',sans-serif; color:#64748B;">₹{c_18:,}</td>

@@ -353,7 +353,7 @@ html, body {
             <a href="/mla-mp" class="nk-drop-item ${isActive('/mla-mp') ? 'active' : ''}">🏛️ ಶಾಸಕರು, MLC & ಸಂಸದರು (MLA / MLC / MP)</a>
             <a href="/karnataka-sir-voters-final-list" class="nk-drop-item ${isActive('/karnataka-sir-voters-final-list') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಅಂತಿಮ ಪಟ್ಟಿ (Final List)</a>
             <a href="/karnataka-sir-voter-roll" class="nk-drop-item ${isActive('/karnataka-sir-voter-roll') ? 'active' : ''}">🗳️ SIR 2026 ಮತದಾರರ ಕರಡು ಪಟ್ಟಿ (Draft Roll)</a>
-            <a href="/karnataka-sir-voters-final-list" class="nk-drop-item ${isActive('/karnataka-elections') ? 'active' : ''}">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
+            <a href="/karnataka-elections" class="nk-drop-item ${isActive('/karnataka-elections') ? 'active' : ''}">🗳️ ಕರ್ನಾಟಕ ಚುನಾವಣೆ ಫಲಿತಾಂಶ</a>
           </div>
         </div>
 

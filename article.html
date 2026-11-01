@@ -84,7 +84,10 @@
     "name": "Karnata",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://karnata.in/karnata-logo.png"
+      "url": "https://karnata.in/karnata-logo.png",
+      "creator": { "@type": "Organization", "name": "Karnata.in" },
+      "creditText": "Karnata.in",
+      "copyrightNotice": "© 2026 Karnata.in. All rights reserved."
     }
   }
 }
@@ -486,7 +489,13 @@ function slugify(text) {
       "publisher": {
         "@type": "Organization",
         "name": "Karnata",
-        "logo": { "@type": "ImageObject", "url": "https://karnata.in/karnata-logo.png" }
+        "logo": { 
+          "@type": "ImageObject", 
+          "url": "https://karnata.in/karnata-logo.png",
+          "creator": { "@type": "Organization", "name": "Karnata.in" },
+          "creditText": "Karnata.in",
+          "copyrightNotice": "© 2026 Karnata.in. All rights reserved."
+        }
       }
     };
     document.getElementById('article-schema').textContent = JSON.stringify(schemaData);

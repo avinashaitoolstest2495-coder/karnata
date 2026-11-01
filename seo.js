@@ -72,7 +72,15 @@ const NKSeo = (() => {
       name: 'Karnata',
       alternateName: 'ಕರ್ನಾಟ',
       url: SITE_URL,
-      logo: LOGO_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: LOGO_URL,
+        creator: { '@type': 'Organization', name: 'Karnata.in', url: SITE_URL },
+        creditText: 'Karnata.in',
+        copyrightNotice: '© 2026 Karnata.in. All rights reserved.',
+        license: 'https://creativecommons.org/licenses/by/4.0/',
+        acquireLicensePage: `${SITE_URL}/terms.html`
+      },
       description: 'ಕರ್ನಾಟಕದ ಕನ್ನಡಿಗರಿಗಾಗಿ ಲೈವ್ ಮಾಹಿತಿ — ಚಿನ್ನ ಬೆಲೆ, ಅಣೆಕಟ್ಟು, MLA, ಹವಾಮಾನ, APMC',
       inLanguage: 'kn',
       areaServed: { '@type': 'State', name: 'Karnataka', containedIn: 'India' },
