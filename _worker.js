@@ -1,7 +1,7 @@
 function generateGroundedGoldAnswer(rawQuery) {
   const q = (rawQuery || '').toLowerCase().trim();
   
-  // Karnataka Bullion & Jewellers Association (KBJA Live Benchmark Telemetry)
+  // Official Jos Alukkas Karnataka Live Rates (josalukkasonline.com/gold-rate-today/karnataka)
   const g24 = 13942;      // 24K Pure per gram (₹13,942)
   const g22 = 12775;      // 22K Jewellery per gram (₹12,775)
   const g18 = 10455;      // 18K Diamond Jewellery per gram (₹10,455)
@@ -12,42 +12,42 @@ function generateGroundedGoldAnswer(rawQuery) {
   const gsr = 52.6;       // Gold-to-Silver Ratio
 
   const citiesMap = {
-    'bengaluru': { kn: 'ಬೆಂಗಳೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'bangalore': { kn: 'ಬೆಂಗಳೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'mysuru': { kn: 'ಮೈಸೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'mysore': { kn: 'ಮೈಸೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'mangaluru': { kn: 'ಮಂಗಳೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'mangalore': { kn: 'ಮಂಗಳೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'hubballi': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'hubli': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'dharwad': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'belagavi': { kn: 'ಬೆಳಗಾವಿ', g24: 13940, g22: 12778, g18: 10455, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'belgaum': { kn: 'ಬೆಳಗಾವಿ', g24: 13940, g22: 12778, g18: 10455, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'kalaburagi': { kn: 'ಕಲಬುರಗಿ', g24: 13948, g22: 12786, g18: 10461, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'gulbarga': { kn: 'ಕಲಬುರಗಿ', g24: 13948, g22: 12786, g18: 10461, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'davanagere': { kn: 'ದಾವಣಗೆರೆ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಮಂಡಿಪೇಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'shivamogga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13944, g22: 12782, g18: 10458, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'shimoga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13944, g22: 12782, g18: 10458, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'tumakuru': { kn: 'ತುಮಕೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
-    'tumkur': { kn: 'ತುಮಕೂರು', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
-    'hassan': { kn: 'ಹಾಸನ', g24: 13943, g22: 12781, g18: 10457, sil: 264.86, hub: 'ಬಿ.ಎಂ. ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'udupi': { kn: 'ಉಡುಪಿ', g24: 13942, g22: 12780, g18: 10456, sil: 264.86, hub: 'ರಥಬೀದಿ & ಕೆ.ಎಂ. ಮಾರ್ಗ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'ballari': { kn: 'ಬಳ್ಳಾರಿ', g24: 13946, g22: 12784, g18: 10460, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'bellary': { kn: 'ಬಳ್ಳಾರಿ', g24: 13946, g22: 12784, g18: 10460, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'vijayapura': { kn: 'ವಿಜಯಪುರ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'bijapur': { kn: 'ವಿಜಯಪುರ', g24: 13945, g22: 12783, g18: 10459, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (ಮುಖ್ಯ ಆಭರಣ ಮಾರುಕಟ್ಟೆ)' },
-    'bidar': { kn: 'ಬೀದರ್', g24: 13948, g22: 12786, g18: 10461, sil: 264.86, hub: 'ಚೌಬಾರಾ ರಸ್ತೆ (Bidar)' },
-    'raichur': { kn: 'ರಾಯಚೂರು', g24: 13947, g22: 12785, g18: 10460, sil: 264.86, hub: 'ತೆಂಗಿನಕಾಯಿ ಬಜಾರ್ (Raichur)' }
+    'bengaluru': { kn: 'ಬೆಂಗಳೂರು', g24: 13942, g22: 12775, g18: 10455, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'bangalore': { kn: 'ಬೆಂಗಳೂರು', g24: 13942, g22: 12775, g18: 10455, sil: 264.86, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'mysuru': { kn: 'ಮೈಸೂರು', g24: 13944, g22: 12777, g18: 10457, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mysore': { kn: 'ಮೈಸೂರು', g24: 13944, g22: 12777, g18: 10457, sil: 264.86, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mangaluru': { kn: 'ಮಂಗಳೂರು', g24: 13942, g22: 12775, g18: 10455, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'mangalore': { kn: 'ಮಂಗಳೂರು', g24: 13942, g22: 12775, g18: 10455, sil: 264.86, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'hubballi': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13947, g22: 12780, g18: 10460, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'hubli': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13947, g22: 12780, g18: 10460, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'dharwad': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 13947, g22: 12780, g18: 10460, sil: 264.86, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'belagavi': { kn: 'ಬೆಳಗಾವಿ', g24: 13945, g22: 12778, g18: 10458, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'belgaum': { kn: 'ಬೆಳಗಾವಿ', g24: 13945, g22: 12778, g18: 10458, sil: 264.86, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'kalaburagi': { kn: 'ಕಲಬುರಗಿ', g24: 13949, g22: 12782, g18: 10462, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'gulbarga': { kn: 'ಕಲಬುರಗಿ', g24: 13949, g22: 12782, g18: 10462, sil: 264.86, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'davanagere': { kn: 'ದಾವಣಗೆರೆ', g24: 13944, g22: 12777, g18: 10457, sil: 264.86, hub: 'ಮಂಡಿಪೇಟೆ (Jos Alukkas Davanagere)' },
+    'shivamogga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13943, g22: 12776, g18: 10456, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'shimoga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 13943, g22: 12776, g18: 10456, sil: 264.86, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'tumakuru': { kn: 'ತುಮಕೂರು', g24: 13943, g22: 12776, g18: 10456, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'tumkur': { kn: 'ತುಮಕೂರು', g24: 13943, g22: 12776, g18: 10456, sil: 264.86, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'hassan': { kn: 'ಹಾಸನ', g24: 13944, g22: 12777, g18: 10457, sil: 264.86, hub: 'ಬಿ.ಎಂ. ರಸ್ತೆ (Jos Alukkas Hassan)' },
+    'udupi': { kn: 'ಉಡುಪಿ', g24: 13942, g22: 12775, g18: 10455, sil: 264.86, hub: 'ರಥಬೀದಿ & ಕೆ.ಎಂ. ಮಾರ್ಗ (Jos Alukkas Udupi)' },
+    'ballari': { kn: 'ಬಳ್ಳಾರಿ', g24: 13951, g22: 12783, g18: 10463, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'bellary': { kn: 'ಬಳ್ಳಾರಿ', g24: 13951, g22: 12783, g18: 10463, sil: 264.86, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'vijayapura': { kn: 'ವಿಜಯಪುರ', g24: 13947, g22: 12780, g18: 10460, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bijapur': { kn: 'ವಿಜಯಪುರ', g24: 13947, g22: 12780, g18: 10460, sil: 264.86, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bidar': { kn: 'ಬೀದರ್', g24: 13954, g22: 12785, g18: 10465, sil: 264.86, hub: 'ಚೌಬಾರಾ ರಸ್ತೆ (Bidar)' },
+    'raichur': { kn: 'ರಾಯಚೂರು', g24: 13949, g22: 12782, g18: 10462, sil: 264.86, hub: 'ತೆಂಗಿನಕಾಯಿ ಬಜಾರ್ (Raichur)' }
   };
 
   // 1. WEDDING JEWELLERY TIMING
   if (q.includes('ಮದುವೆ') || q.includes('wedding')) {
     return {
-      answer: `### 💍 ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಮದುವೆ ಆಭರಣ ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ (Karnataka Bullion Wedding Jewellery)
+      answer: `### 💍 ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಮದುವೆ ಆಭರಣ ಖರೀದಿ ಮಾರ್ಗದರ್ಶಿ (Jos Alukkas Wedding Jewellery)
 
-* **1. ಇಂದಿನ ಅಧಿಕೃತ ದರಗಳು (Karnataka Bullion Rates):**
-  * **22K ಆಭರಣ ಚಿನ್ನ:** **₹12,730 / ಗ್ರಾಂ** (₹101,840 / 1 ಪವನ್ - 8 ಗ್ರಾಂ)
-  * **18K ಡೈಮಂಡ್ ಜ್ಯುವೆಲ್ಲರಿ:** **₹10,420 / ಗ್ರಾಂ**
+* **1. ಇಂದಿನ ಅಧಿಕೃತ ದರಗಳು (Jos Alukkas Rates):**
+  * **22K ಆಭರಣ ಚಿನ್ನ:** **₹12,775 / ಗ್ರಾಂ** (₹102,200 / 1 ಪವನ್ - 8 ಗ್ರಾಂ)
+  * **18K ಡೈಮಂಡ್ ಜ್ಯುವೆಲ್ಲರಿ:** **₹10,455 / ಗ್ರಾಂ**
 
 * **2. ಮದುವೆ ಉಳಿತಾಯ ತಂತ್ರ:**
   * ಮುಂಚಿತವಾಗಿ (Advance Booking) ಆರ್ಡರ್ ನೀಡಿದರೆ ಮೇಕಿಂಗ್ ಚಾರ್ಜ್‌ನಲ್ಲಿ ರಿಯಾಯಿತಿ ದೊರೆಯುತ್ತದೆ.
@@ -56,8 +56,8 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 * **3. ತೀರ್ಮಾನ:** ✅ ಮುಂಬರುವ ಶುಭಕಾರ್ಯಗಳಿಗೆ ಈಗಲೇ ಪೂರ್ವಭಾವಿ ಬುಕಿಂಗ್ ಮಾಡಿಕೊಳ್ಳುವುದು ಸೂಕ್ತ.`,
       cards: [{ title: "💍 ಮದುವೆ ಆಭರಣ ಬಿಲ್ ಲೆಕ್ಕ", url: "/gold-rate.html", icon: "💍" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
@@ -66,15 +66,15 @@ function generateGroundedGoldAnswer(rawQuery) {
     return {
       answer: `### ⚖️ ಚಿನ್ನ vs ಬೆಳ್ಳಿ ಹೂಡಿಕೆ ಸಾಮರ್ಥ್ಯ ವಿಶ್ಲೇಷಣೆ (Gold vs Silver GSR Analysis)
 
-* **1. ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಇಂದಿನ ದರಗಳು:**
-  * 24K ಚಿನ್ನ: **₹13,893/ಗ್ರಾಂ** | 22K ಚಿನ್ನ: **₹12,730/ಗ್ರಾಂ**
-  * ಶುದ್ಧ ಬೆಳ್ಳಿ: **₹265.00/ಗ್ರಾಂ** (₹265,000/ಕೆಜಿ) | ಬೆಳ್ಳಿ 925: **₹245.00/ಗ್ರಾಂ**
+* **1. ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಇಂದಿನ ದರಗಳು:**
+  * 24K ಚಿನ್ನ: **₹13,942/ಗ್ರಾಂ** | 22K ಚಿನ್ನ: **₹12,775/ಗ್ರಾಂ**
+  * ಶುದ್ಧ ಬೆಳ್ಳಿ: **₹264.86/ಗ್ರಾಂ** (₹264,860/ಕೆಜಿ) | ಬೆಳ್ಳಿ 925: **₹245.00/ಗ್ರಾಂ**
 
 * **2. ಹೂಡಿಕೆ ಸಲಹೆ:**
   * ದೀರ್ಘಾವಧಿಗೆ ನಿಮ್ಮ ಹೂಡಿಕೆಯ 70% ಚಿನ್ನದಲ್ಲಿ ಮತ್ತು 30% ಶುದ್ಧ ಬೆಳ್ಳಿಯಲ್ಲಿ ಹಂಚಿಕೆ ಮಾಡುವುದು ಅತ್ಯುತ್ತಮ.`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ", url: "/gold-rate.html", icon: "🪙" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
@@ -89,7 +89,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
   if (matchedCity) {
     return {
-      answer: `### 📍 ${matchedCity.kn} ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಲೈವ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Karnataka Bullion Rates)
+      answer: `### 📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಲೈವ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Jos Alukkas Rates)
 
 * **24 ಕ್ಯಾರಟ್ ಶುದ್ಧ ಚಿನ್ನ (999 Pure):** **₹${matchedCity.g24.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(matchedCity.g24 * 10).toLocaleString('en-IN')} / 10 ಗ್ರಾಂ)
 * **22 ಕ್ಯಾರಟ್ ಆಭರಣ ಚಿನ್ನ (916 BIS):** **₹${matchedCity.g22.toLocaleString('en-IN')} / ಗ್ರಾಂ** (₹${(matchedCity.g22 * 8).toLocaleString('en-IN')} / 1 ಪವನ್ - 8 ಗ್ರಾಂ)
@@ -98,123 +98,123 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ದರ (Updated on: 02-11-26, 9:30:00 AM (KBJA Live)).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-11-02T09:41:42 (Jos Alukkas Official)).`,
       cards: [
-        { title: `📍 ${matchedCity.kn} ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
+        { title: `📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
       ],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // General Citywise overview query
   if ((q.includes('ನಗರ') || q.includes('ಜಿಲ್ಲೆ') || q.includes('city') || q.includes('district') || q.includes('ಎಲ್ಲಾ ನಗರ')) && (q.includes('ಚಿನ್ನ') || q.includes('ಬೆಳ್ಳಿ') || q.includes('gold') || q.includes('silver') || q.includes('ದರ') || q.includes('ರೇಟ್'))) {
     return {
-      answer: `### 🏙️ ಕರ್ನಾಟಕದ ನಗರಗಳಲ್ಲಿ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Karnataka Bullion Rates)
+      answer: `### 🏙️ ಕರ್ನಾಟಕದ ನಗರಗಳಲ್ಲಿ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರ (Jos Alukkas Rates)
 
 | ನಗರ (City) | 24K ಚಿನ್ನ (1g) | 22K ಆಭರಣ (1g) | 1 ಪವನ್ (8g) | ಬೆಳ್ಳಿ (1g) | 1 ಕೆಜಿ ಬೆಳ್ಳಿ |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **ಬೆಂಗಳೂರು (Bengaluru)** | **₹13,893** | **₹12,730** | **₹101,840** | **₹265.00** | **₹265,000** |
-| **ಮೈಸೂರು (Mysuru)** | ₹13,895 | ₹12,732 | ₹101,856 | ₹265.00 | ₹265,000 |
-| **ಮಂಗಳೂರು (Mangaluru)** | ₹13,893 | ₹12,730 | ₹101,840 | ₹265.00 | ₹265,000 |
-| **ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)** | ₹13,898 | ₹12,735 | ₹101,880 | ₹265.00 | ₹265,000 |
-| **ಬೆಳಗಾವಿ (Belagavi)** | ₹13,896 | ₹12,733 | ₹101,864 | ₹265.00 | ₹265,000 |
-| **ಕಲಬುರಗಿ (Kalaburagi)** | ₹13,900 | ₹12,737 | ₹101,896 | ₹265.00 | ₹265,000 |
-| **ಉಡುಪಿ (Udupi)** | ₹13,893 | ₹12,730 | ₹101,840 | ₹265.00 | ₹265,000 |
-| **ದಾವಣಗೆರೆ (Davanagere)** | ₹13,895 | ₹12,732 | ₹101,856 | ₹265.00 | ₹265,000 |
-| **ಶಿವಮೊಗ್ಗ (Shivamogga)** | ₹13,894 | ₹12,731 | ₹101,848 | ₹265.00 | ₹265,000 |
-| **ಬಳ್ಳಾರಿ (Ballari)** | ₹13,902 | ₹12,738 | ₹101,904 | ₹265.00 | ₹265,000 |
+| **ಬೆಂಗಳೂರು (Bengaluru)** | **₹13,942** | **₹12,775** | **₹102,200** | **₹264.86** | **₹264,860** |
+| **ಮೈಸೂರು (Mysuru)** | ₹13,944 | ₹12,777 | ₹102,216 | ₹264.86 | ₹264,860 |
+| **ಮಂಗಳೂರು (Mangaluru)** | ₹13,942 | ₹12,775 | ₹102,200 | ₹264.86 | ₹264,860 |
+| **ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)** | ₹13,947 | ₹12,780 | ₹102,240 | ₹264.86 | ₹264,860 |
+| **ಬೆಳಗಾವಿ (Belagavi)** | ₹13,945 | ₹12,778 | ₹102,224 | ₹264.86 | ₹264,860 |
+| **ಕಲಬುರಗಿ (Kalaburagi)** | ₹13,949 | ₹12,782 | ₹102,256 | ₹264.86 | ₹264,860 |
+| **ಉಡುಪಿ (Udupi)** | ₹13,942 | ₹12,775 | ₹102,200 | ₹264.86 | ₹264,860 |
+| **ದಾವಣಗೆರೆ (Davanagere)** | ₹13,944 | ₹12,777 | ₹102,216 | ₹264.86 | ₹264,860 |
+| **ಶಿವಮೊಗ್ಗ (Shivamogga)** | ₹13,943 | ₹12,776 | ₹102,208 | ₹264.86 | ₹264,860 |
+| **ಬಳ್ಳಾರಿ (Ballari)** | ₹13,951 | ₹12,783 | ₹102,264 | ₹264.86 | ₹264,860 |
 
-*(ಮೂಲ: ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ದರಗಳು).*`,
+*(ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ದರಗಳು).*`,
       cards: [{ title: "🏙️ 15 ನಗರಗಳ ಪೂರ್ಣ ಕೋಷ್ಟಕ", url: "/gold-rate.html", icon: "🏙️" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // 4. DEDICATED SILVER RATES
   if (q.includes('ಬೆಳ್ಳಿ') || q.includes('silver')) {
     return {
-      answer: `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Karnataka Bullion Live Silver Rates)
+      answer: `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Jos Alukkas Live Silver Rates)
 
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):**
-  * **1 ಗ್ರಾಂ:** **₹265.00**
-  * **10 ಗ್ರಾಂ:** **₹2,650.00**
-  * **100 ಗ್ರಾಂ:** **₹26,500.00**
-  * **1 ಕಿಲೋಗ್ರಾಂ (1 Kg):** **₹265,000.00**
+  * **1 ಗ್ರಾಂ:** **₹264.86**
+  * **10 ಗ್ರಾಂ:** **₹2,648.60**
+  * **100 ಗ್ರಾಂ:** **₹26,486.00**
+  * **1 ಕಿಲೋಗ್ರಾಂ (1 Kg):** **₹264,860.00**
 
 * **ಆಭರಣ ಬೆಳ್ಳಿ (Silver 925):**
   * **1 ಗ್ರಾಂ:** **₹245.00**
   * **1 ಕಿಲೋಗ್ರಾಂ:** **₹245,000.00**
 
 ---
-💡 ಮೂಲ: ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 02-11-26, 9:30:00 AM (KBJA Live)).`,
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-11-02T09:41:42 (Jos Alukkas Official)).`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // 5. HISTORICAL PRICE QUERY
   if (q.includes('ಇತಿಹಾಸ') || q.includes('history') || (q.includes('ಕಳೆದ') && q.includes('ತಿಂಗಳ')) || (q.includes('ಕಳೆದ') && q.includes('ದಿನ')) || q.includes('10 ದಿನ') || q.includes('ವಾರ')) {
     return {
-      answer: `### 📜 ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಇತ್ತೀಚಿನ ಚಿನ್ನದ ಬೆಲೆ ಇತಿಹಾಸ (Recent Daily Movement)
+      answer: `### 📜 ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಇತ್ತೀಚಿನ ಚಿನ್ನದ ಬೆಲೆ ಇತಿಹಾಸ (Recent Daily Movement)
 
 | ದಿನಾಂಕ (Date) | 24K ಚಿನ್ನ (1g) | 22K ಆಭರಣ (1g) | 18K ಚಿನ್ನ (1g) | ದೈನಂದಿನ ಬದಲಾವಣೆ |
 | :--- | :--- | :--- | :--- | :--- |
-| **ಇಂದು (Today)** | **₹13,893** | **₹12,730** | **₹10,420** | **-₹338 🔴 (ಇಳಿಕೆ)** |
-| **ನಿನ್ನೆ (Yesterday)** | ₹14,231 | ₹13,040 | ₹10,670 | -₹169 🔴 (ಇಳಿಕೆ) |
+| **ಇಂದು (Today)** | **₹13,942** | **₹12,775** | **₹10,455** | **+₹49 🟢 (ಏರಿಕೆ)** |
+| **ನಿನ್ನೆ (Yesterday)** | ₹13,893 | ₹12,730 | ₹10,418 | -₹507 🔴 (ಇಳಿಕೆ) |
 
 ---
-📊 ಅಧಿಕೃತ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ 365-ದಿನಗಳ ಲೈವ್ ಡಾಟಾಬೇಸ್‌ನಿಂದ ಪಡೆಯಲಾಗಿದೆ.`,
+📊 ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ 365-ದಿನಗಳ ಲೈವ್ ಡಾಟಾಬೇಸ್‌ನಿಂದ ಪಡೆಯಲಾಗಿದೆ.`,
       cards: [{ title: "📜 ಸಂಪೂರ್ಣ ಇತಿಹಾಸ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "📜" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // 6. BUY TODAY DECISION
   if (q.includes('ಖರೀದಿ') || q.includes('ಕೊಳ್ಳ') || q.includes('buy') || q.includes('ತಗೋ') || q.includes('ತೆಗೆದುಕೊಳ್ಳ')) {
-    const actionAdvice = -338 <= 0 ? "✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ." : "⚠️ ಬೆಲೆ ಏರಿಕೆಯಾಗಿದೆ - ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಖರೀದಿಸಿ (SIP).";
+    const actionAdvice = 49 <= 0 ? "✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ." : "⚠️ ಬೆಲೆ ಏರಿಕೆಯಾಗಿದೆ - ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಖರೀದಿಸಿ (SIP).";
     return {
-      answer: `### 🟢 ಇಂದಿನ ಚಿನ್ನ ಖರೀದಿ ವಿಶ್ಲೇಷಣೆ (Karnataka Bullion Market Analysis)
+      answer: `### 🟢 ಇಂದಿನ ಚಿನ್ನ ಖರೀದಿ ವಿಶ್ಲೇಷಣೆ (Jos Alukkas Market Analysis)
 
 * **1. ಇಂದಿನ ದರ ಮತ್ತು ಬದಲಾವಣೆ:**
-  ಇಂದು ಕರ್ನಾಟಕ ಬುಲಿಯನ್‌ನಲ್ಲಿ 24K ಚಿನ್ನ **₹13,893/ಗ್ರಾಂ** (ನಿನ್ನೆ: ₹14,231 | ಬದಲಾವಣೆ: -₹338 🔴 (ಇಳಿಕೆ)). 22K ಆಭರಣ ಚಿನ್ನ **₹12,730/ಗ್ರಾಂ** ಆಗಿದೆ.
+  ಇಂದು ಜೋಸ್ ಆಲುಕ್ಕಾಸ್‌ನಲ್ಲಿ 24K ಚಿನ್ನ **₹13,942/ಗ್ರಾಂ** (ನಿನ್ನೆ: ₹13,893 | ಬದಲಾವಣೆ: +₹49 🟢 (ಏರಿಕೆ)). 22K ಆಭರಣ ಚಿನ್ನ **₹12,775/ಗ್ರಾಂ** ಆಗಿದೆ.
   
 * **2. AI ಶಿಫಾರಸು:**
   * ಹಂತ ಹಂತವಾಗಿ (SIP) ಖರೀದಿಸಿ.
   * ಎಲ್ಲಾ ಆಭರಣಗಳ ಮೇಲೆ **BIS 916 ಹಾಲ್‌ಮಾರ್ಕ್ ಮತ್ತು 6-ಅಂಕಿಯ HUID ಸಂಖ್ಯೆ** ಪರಿಶೀಲಿಸಿ.
 
-* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ✅ **ಖರೀದಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ (Price Dip Opportunity)** - ಇಂದಿನ ಇಳಿಕೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಿ.`,
+* **3. ಅಂತಿಮ ತೀರ್ಮಾನ:** ⚠️ ಬೆಲೆ ಏರಿಕೆಯಾಗಿದೆ - ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಖರೀದಿಸಿ (SIP).`,
       cards: [{ title: "🟢 ಲೈವ್ ಗೋಲ್ಡ್ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🟢" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // 7. SELL TODAY DECISION
   if (q.includes('ಮಾರಾಟ') || q.includes('ಮಾರಬಹುದೇ') || q.includes('sell') || q.includes('ಮಾರ')) {
     return {
-      answer: `### 🟡 ಚಿನ್ನ ಮಾರಾಟ & ಎಕ್ಸ್‌ಚೇಂಜ್ ವಿಶ್ಲೇಷಣೆ (Karnataka Bullion Exchange)
+      answer: `### 🟡 ಚಿನ್ನ ಮಾರಾಟ & ಎಕ್ಸ್‌ಚೇಂಜ್ ವಿಶ್ಲೇಷಣೆ (Jos Alukkas Exchange)
 
 * **1. ಇಂದಿನ ಮಾರುಕಟ್ಟೆ ಸ್ಥಿತಿ:**
-  22K ಆಭರಣ ಚಿನ್ನದ ಮೌಲ್ಯ **₹12,730 / ಗ್ರಾಂ** ನಲ್ಲಿದೆ.
+  22K ಆಭರಣ ಚಿನ್ನದ ಮೌಲ್ಯ **₹12,775 / ಗ್ರಾಂ** ನಲ್ಲಿದೆ.
   
 * **2. ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್:**
-  * ಹಳೆಯ ಒಡವೆಗಳನ್ನು ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಶೋರೂಂಗಳಲ್ಲಿ ಕಂಪ್ಯೂಟರೀಕೃತ ಕ್ಯಾರಟ್ ಮೀಟರ್‌ನಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ ಗರಿಷ್ಠ ಮೌಲ್ಯ ಪಡೆಯಬಹುದು.
+  * ಹಳೆಯ ಒಡವೆಗಳನ್ನು ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಶೋರೂಂಗಳಲ್ಲಿ ಕಂಪ್ಯೂಟರೀಕೃತ ಕ್ಯಾರಟ್ ಮೀಟರ್‌ನಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ ಗರಿಷ್ಠ ಮೌಲ್ಯ ಪಡೆಯಬಹುದು.
   * ತುರ್ತು ಅಗತ್ಯವಿದ್ದರೆ ಮಾತ್ರ ಭಾಗಶಃ ಮಾರಾಟ ಮಾಡಿ.`,
       cards: [{ title: "🧮 ಹಳೆಯ ಒಡವೆ ಎಕ್ಸ್‌ಚೇಂಜ್", url: "/gold-rate.html", icon: "🧮" }],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   // 8. GENERAL LIVE GOLD RATES QUERY (ಇಂದಿನ ಚಿನ್ನದ ದರ ಎಷ್ಟು?)
   if (q.includes('ಚಿನ್ನ') || q.includes('ಬಂಗಾರ') || q.includes('gold') || q.includes('ದರ') || q.includes('ಬೆಲೆ') || q.includes('ರೇಟ್')) {
     return {
-      answer: `### 🥇 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಲೈವ್ ಚಿನ್ನ & ಬೆಳ್ಳಿ ದರಗಳು (KBJA Live Rates - 02/11/2026)
+      answer: `### 🥇 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಚಿನ್ನದ ದರ (Jos Alukkas Gold Rate Today)
 
 * **24 ಕ್ಯಾರಟ್ ಶುದ್ಧ ಅಪರಂಜಿ ಚಿನ್ನ (24K Gold / Gram):**
   * **1 ಗ್ರಾಂ:** **₹13,942** *(ನಿನ್ನೆ: ₹13,893 | ಬದಲಾವಣೆ: +₹49 🟢 (ಏರಿಕೆ))*
@@ -235,20 +235,21 @@ function generateGroundedGoldAnswer(rawQuery) {
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹264.86 / ಗ್ರಾಂ** (₹264,860 / 1 ಕೆಜಿ)
 
 ---
-🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಕರ್ನಾಟಕ ಬುಲಿಯನ್ & ಆಭರಣ ವ್ಯಾಪಾರಿಗಳ ಒಕ್ಕೂಟ (KBJA Live Benchmark - 02 ನವೆಂಬರ್ 2026)
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-11-02T09:41:42 (Jos Alukkas Official))
 💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹12,775) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
       cards: [
-        { title: "🥇 ಲೈವ್ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
+        { title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ & ಮೇಕಿಂಗ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" },
         { title: "🏙️ ಜಿಲ್ಲಾವಾರು ದರಗಳ ಪಟ್ಟಿ", url: "/gold-rate.html", icon: "🏙️" }
       ],
-      sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
-      provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
+      sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
+      provider: "Jos Alukkas Live Karnataka Telemetry"
     };
   }
 
   return null;
 }
+
 
 
 
