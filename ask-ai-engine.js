@@ -935,23 +935,23 @@ ${d.cp ? `* **🚓 ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರ್ (CP):** **
   // --- 4. PERFECT 1:1 LIVE & HISTORICAL GOLD & SILVER INTELLIGENCE ENGINE ---
   function answerGoldQuery(q) {
     const goldData = db.gold || {};
-    const baseGold = goldData.baseGold || { 24: 13942, 22: 12775, 18: 10455, 14: 8230 };
-    const yesterdayGold = goldData.yesterdayGold || { 24: 13893, 22: 12730, 18: 10418, 14: 8415 };
-    const baseSilver = goldData.baseSilver || { 999: 264.86, 925: 245.00 };
-    const yesterdaySilver = goldData.yesterdaySilver || { 999: 258.50, 925: 239.00 };
-    const changes = goldData.changes || { '24k': -1, '22k': -1, 'silver_999': -0.10 };
+    const baseGold = goldData.baseGold || { '24': 13942, '22': 12775, '18': 10455, '14': 8230 };
+    const yesterdayGold = goldData.yesterdayGold || { '24': 13893, '22': 12730, '18': 10418, '14': 8415 };
+    const baseSilver = goldData.baseSilver || { '999': 264.86, '925': 245.00 };
+    const yesterdaySilver = goldData.yesterdaySilver || { '999': 263.97, '925': 244.18 };
+    const changes = goldData.changes || { '24k': 49, '22k': 45, '18k': 37, 'silver_999': 0.89, 'silver_925': 0.82 };
     const yearlyList = goldData.yearly_1901_2026 || [];
 
-    const r24k_1g = baseGold[24] || 15496;
-    const r22k_1g = baseGold[22] || 14204;
-    const r18k_1g = baseGold[18] || 11622;
-    const r14k_1g = baseGold[14] || 9050;
-    const rSilver_1g = baseSilver[999] || 244.90;
-    const rSilver925_1g = baseSilver[925] || 226.53;
+    const r24k_1g = baseGold['24'] || baseGold[24] || 13942;
+    const r22k_1g = baseGold['22'] || baseGold[22] || 12775;
+    const r18k_1g = baseGold['18'] || baseGold[18] || 10455;
+    const r14k_1g = baseGold['14'] || baseGold[14] || 8230;
+    const rSilver_1g = baseSilver['999'] || baseSilver[999] || 264.86;
+    const rSilver925_1g = baseSilver['925'] || baseSilver[925] || 245.00;
 
-    const y24k_1g = yesterdayGold[24] || 15497;
-    const y22k_1g = yesterdayGold[22] || 14205;
-    const ySilver_1g = yesterdaySilver[999] || 245.00;
+    const y24k_1g = yesterdayGold['24'] || yesterdayGold[24] || 13893;
+    const y22k_1g = yesterdayGold['22'] || yesterdayGold[22] || 12730;
+    const ySilver_1g = yesterdaySilver['999'] || yesterdaySilver[999] || 263.97;
 
     const r24k_10g = (r24k_1g * 10).toLocaleString('en-IN');
     const r22k_10g = (r22k_1g * 10).toLocaleString('en-IN');
@@ -1302,7 +1302,7 @@ ${d.cp ? `* **🚓 ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರ್ (CP):** **
     }
 
     // 11. DEFAULT LIVE GOLD & SILVER RATES
-    const markdownText = `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಸಜೀವ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರಗಳು (Live Gold & Silver Rates)
+    const markdownText = `### 💰 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಸಜೀವ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ದರಗಳು (Live Gold & Silver Rates - 02/11/2026)
 
 * **24K ಶುದ್ಧ ಚಿನ್ನ (99.9% Pure Gold):** **₹${r24k_1g.toLocaleString('en-IN')}** / 1 ಗ್ರಾಂ | **₹${r24k_10g}** / 10 ಗ್ರಾಂ
   *(ನಿನ್ನೆಯ ದರ: ₹${y24k_1g.toLocaleString('en-IN')} | ಬದಲಾವಣೆ: ${changes['24k'] >= 0 ? '+' : ''}${changes['24k']} ರೂ)*
