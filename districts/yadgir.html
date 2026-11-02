@@ -953,8 +953,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
                 ಲೈವ್ ಮಾರುಕಟ್ಟೆ &amp; ಜಲಾಶಯ
               </h2>
             </div>
-            <span style="font-size:11.5px; font-weight:800; color:#B91C1C; background:#FEF2F2; padding:3px 10px; border-radius:20px; border:1px solid #FECACA;">
-              ಇಂದಿನ ದರಗಳು
+            <span style="font-size:11.5px; font-weight:800; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:20px; border:1px solid #86EFAC;">
+              🟢 ಲೈವ್ ದರಗಳು
             </span>
           </div>
 
@@ -963,13 +963,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
               <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#D97706;">🥇 ಚಿನ್ನ (24K/22K)</div>
-                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;">₹14,080 /g</div>
-                <div style="font-size:10.5px; color:#B45309;">ಬೆಳ್ಳಿ: ₹239.90 /g</div>
+                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;" id="dist-gold-24k">₹13,893 /g</div>
+                <div style="font-size:10.5px; color:#B45309;" id="dist-silver">ಬೆಳ್ಳಿ: ₹264.86 /g</div>
               </div>
               <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#15803D;">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್</div>
-                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;">₹102.86</div>
-                <div style="font-size:10.5px; color:#15803D;">ಡೀಸೆಲ್: ₹88.94</div>
+                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;" id="dist-petrol">₹111.23</div>
+                <div style="font-size:10.5px; color:#15803D;" id="dist-diesel">ಡೀಸೆಲ್: ₹99.15</div>
               </div>
             </div>
 
@@ -978,21 +978,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <div style="display:flex; align-items:center; gap:6px;">
                   <span style="font-size:18px;">🌊</span>
-                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;">
-                    ನಾರಾಯಣಪುರ (ಬಸವಸಾಗರ)
+                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;" id="dist-dam-name">
+                    ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು
                   </div>
                 </div>
-                <span style="background:#0284C7; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;">
-                  87.2% ಭರ್ತಿ
+                <span style="background:#16A34A; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;" id="dist-dam-pct">
+                  99.7% ಭರ್ತಿ
                 </span>
               </div>
               <!-- Storage Bar -->
               <div style="background:#334155; border-radius:10px; height:8px; overflow:hidden; margin-bottom:8px;">
-                <div style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:87.2%; height:100%; border-radius:10px;"></div>
+                <div id="dist-dam-bar" style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:99.7%; height:100%; border-radius:10px;"></div>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
-                <span>ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">29.1 TMC</strong> / 33.31 TMC</span>
-                <span>ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">24,500 cusecs</strong></span>
+                <span id="dist-dam-storage">ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">33.22 TMC</strong> / 33.31 TMC</span>
+                <span id="dist-dam-inflow">ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">15,019 cusecs</strong></span>
               </div>
             </div>
 
@@ -1263,6 +1263,19 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     </section>
 
     <!-- 2. REPRESENTATIVES: MPS & MLAS -->
+    <div style="background:linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%); border:1.5px solid #86EFAC; border-radius:14px; padding:12px 18px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <div style="font-size:14.5px; font-weight:900; color:#14532D; display:flex; align-items:center; gap:6px;">
+          <span>📋</span> ಯಾದಗಿರಿ ಜಿಲ್ಲೆಯ ಜನಪ್ರತಿನಿಧಿಗಳ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026)
+        </div>
+        <div style="font-size:12px; color:#166534; margin-top:2px;">
+          1 ಲೋಕಸಭಾ ಸಂಸದರು &amp; 4 ವಿಧಾನಸಭಾ ಶಾಸಕರ ಪೂರ್ಣ ವಿವರಗಳು
+        </div>
+      </div>
+      <button onclick="copyDistrictRepsList()" id="btn-copy-reps" style="background:#15803D; color:#FFF; border:none; border-radius:10px; padding:8px 16px; font-size:12.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 3px 10px rgba(21,128,61,0.25); transition:all 0.2s ease;">
+        📋 ಪಟ್ಟಿ ಕಾಪಿ ಮಾಡಿ (Copy List)
+      </button>
+    </div>
     <section class="d-sec">
       <div class="d-sec-title">
         <span>🗳️ ಯಾದಗಿರಿ ಲೋಕಸಭಾ ಸಂಸದರು (1 MP)</span>
@@ -1278,17 +1291,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/6.jpg" alt="ಜಿ. ಕುಮಾರ್ ನಾಯಕ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಜಿ. ಕುಮಾರ್ ನಾಯಕ್</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಜಿ. ಕುಮಾರ್ ನಾಯಕ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #6</strong></span>
@@ -1313,17 +1322,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/36.jpg" alt="ರಾಜಾ ವೇಣುಗೋಪಾಲ ನಾಯಕ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಜಾ ವೇಣುಗೋಪಾಲ ನಾಯಕ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Shorapur Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಜಾ ವೇಣುಗೋಪಾಲ ನಾಯಕ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Shorapur Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #36</strong></span>
@@ -1339,17 +1344,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/37.jpg" alt="ಶರಣಬಸಪ್ಪ ದರ್ಶನಾಪುರ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಬಸಪ್ಪ ದರ್ಶನಾಪುರ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Shahapur Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಬಸಪ್ಪ ದರ್ಶನಾಪುರ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Shahapur Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #37</strong></span>
@@ -1365,17 +1366,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/38.jpg" alt="ಚನ್ನರೆಡ್ಡಿ ಪಾಟೀಲ್ ತುನ್ನೂರು" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಚನ್ನರೆಡ್ಡಿ ಪಾಟೀಲ್ ತುನ್ನೂರು</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Yadgir Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಚನ್ನರೆಡ್ಡಿ ಪಾಟೀಲ್ ತುನ್ನೂರು</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Yadgir Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #38</strong></span>
@@ -1391,17 +1388,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-JDS">JD(S)</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/39.jpg" alt="ಶರಣಗೌಡ ಕಂದಕೂರ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಗೌಡ ಕಂದಕೂರ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Gurmitkal Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಗೌಡ ಕಂದಕೂರ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Gurmitkal Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #39</strong></span>
@@ -1414,7 +1407,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     <!-- 3. APMC RATES -->
     <section class="d-sec">
       <div class="d-sec-title">
-        <span>🌾 ಯಾದಗಿರಿ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (42 ಸರಕುಗಳು)</span>
+        <span>🌾 ಯಾದಗಿರಿ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (13 ಸರಕುಗಳು)</span>
         <a href="/apmc-prices.html" style="font-size:13.5px; font-weight:800; color:var(--k-crimson); text-decoration:none;">ಸಂಪೂರ್ಣ APMC ಪಟ್ಟಿ →</a>
       </div>
       <div class="d-apmc-table-wrap">
@@ -1435,196 +1428,182 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸಜ್ಜೆ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Bajra (Other)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,250</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,320</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,278</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸಜ್ಜೆ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Bajra (Other)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,250</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,320</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,278</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸಜ್ಜೆ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Bajra (Other)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,250</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,320</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,278</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸೂರ್ಯ ಕಾಂತಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Sunflower (Sunflower)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹7,902</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,609</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,241</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸೂರ್ಯ ಕಾಂತಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Sunflower (Sunflower)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹7,902</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,609</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,241</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸೂರ್ಯ ಕಾಂತಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Sunflower (Sunflower)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹7,902</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,609</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,241</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಸೂರ್ಯ ಕಾಂತಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Sunflower (Sunflower)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹7,902</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,609</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,241</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಹೆಸರುಕಾಳು</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Greengram (Green Gram (Whole))</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,159</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,652</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,364</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಹೆಸರುಕಾಳು</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Greengram (Green Gram (Whole))</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,159</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,652</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,364</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ಹೆಸರುಕಾಳು</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Greengram (Green Gram (Whole))</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,159</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹8,652</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹8,364</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ತೊಗರಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Tur (Red)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹9,679</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ತೊಗರಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Tur (Red)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹9,679</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
+              <div>ತೊಗರಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Tur (Red)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
-          <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
-        </tr>
-        <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
-          <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
-            <span style="font-size:18px;">🌾</span>
-            <div>
-              <div>ಭತ್ತ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Paddy (Paddy Sona)</div>
-            </div>
-          </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">SHAHAPUR</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,267</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,930</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,930</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">YADGIR</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹9,679</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹9,679</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
           </tbody>
@@ -1640,8 +1619,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-news-list" id="news-list">
         
-        <a href="https://www.prajavani.net/district/yadagiri/kannada-rajyotsava-yadgir-sharanprakash-patil-vachana-dasa-sahitya-4367110" class="d-news-card">
-          <div class="d-news-head">ವಚನ ಮತ್ತು ದಾಸ ಸಾಹಿತ್ಯ ಕನ್ನಡ ಭಾಷೆಯ ಕಣ್ಣುಗಳು: ಡಾ.ಶರಣಪ್ರಕಾಶ</div>
+        <a href="https://www.prajavani.net/district/yadagiri/hunasagi-kannada-language-rajyotsava-celebration-4368624" class="d-news-card">
+          <div class="d-news-head">‘ಕನ್ನಡ: ಅವ್ವನ ನುಡಿ, ಚೆಂದದ ನುಡಿ’</div>
           
           <div class="d-news-meta">
             <span>📡 ಪ್ರಜಾವಾಣಿ</span>
@@ -1650,8 +1629,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           </div>
         </a>
 
-        <a href="https://www.prajavani.net/district/yadagiri/yadagiri-vadagera-art-camp-children-talent-promotion-4366634" class="d-news-card">
-          <div class="d-news-head">ಯಾದಗಿರಿ ಜಿಲ್ಲೆಯ ಅಪರೂಪದ ಕಲೆ ಗರುಡಾದ್ರಿ</div>
+        <a href="https://www.prajavani.net/district/yadagiri/yadagiri-sugoor-untouchability-allegations-peace-meeting-4368463" class="d-news-card">
+          <div class="d-news-head">ಸುಗೂರಿನಲ್ಲಿ ಅಸ್ಪೃಶ್ಯತೆ ಆಚರಣೆ ಆರೋಪ: ಶಾಂತಿಸಭೆ</div>
           
           <div class="d-news-meta">
             <span>📡 ಪ್ರಜಾವಾಣಿ</span>
@@ -1660,8 +1639,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           </div>
         </a>
 
-        <a href="https://www.prajavani.net/district/yadagiri/shahapur-parents-increase-child-mental-strength-safety-awareness-4366586" class="d-news-card">
-          <div class="d-news-head">ಮಕ್ಕಳಲ್ಲಿ ಪಾಲಕರು ಮನೋಸ್ಥೈರ್ಯ ಹೆಚ್ಚಿಸಿ</div>
+        <a href="https://www.prajavani.net/district/yadagiri/surapura-kannada-rajyotsava-tahsildar-sarakavas-message-4368594" class="d-news-card">
+          <div class="d-news-head">‘ಕನ್ನಡ ನಾಡು, ನುಡಿಯ ಅಭಿಮಾನ ಬೆಳೆಸಿ’ - ತಹಶೀಲ್ದಾರ್ ಎಚ್.ಎ.ಸರಕಾವಸ್</div>
           
           <div class="d-news-meta">
             <span>📡 ಪ್ರಜಾವಾಣಿ</span>
@@ -1670,8 +1649,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           </div>
         </a>
 
-        <a href="https://www.prajavani.net/district/yadagiri/surapura-jds-protest-electricity-supply-gescom-cleanliness-4366572" class="d-news-card">
-          <div class="d-news-head">ವಿದ್ಯುತ್ ಪೂರೈಕೆಗೆ ಆಗ್ರಹಿಸಿ ಜೆಡಿಎಸ್ ಪ್ರತಿಭಟನೆ</div>
+        <a href="https://www.prajavani.net/district/yadagiri/yadagiri-sharana-prakash-patil-modi-shah-anarchy-allegations-4368777" class="d-news-card">
+          <div class="d-news-head">‘ಇಬ್ಬರು ಗುಜರಾತಿಗರಿಂದ ಅರಾಜಕತೆ’ ಎಂದು ಸಚಿವ ಶರಣಪ್ರಕಾಶ ಪಾಟೀಲ ವಾಗ್ದಾಳಿ</div>
           
           <div class="d-news-meta">
             <span>📡 ಪ್ರಜಾವಾಣಿ</span>
@@ -1918,5 +1897,96 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
   </div>
 </footer>
 
+<!-- DYNAMIC DISTRICT LIVE RATES & CLIPBOARD SCRIPT -->
+<script>
+window.CURRENT_DISTRICT_DAM_KEY = "narayanapura";
+window.DISTRICT_REPS_TEXT = "ಯಾದಗಿರಿ ಜಿಲ್ಲೆಯ ಪ್ರಸ್ತುತ ಸಂಸದರು & ಶಾಸಕರ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026):\n\n🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP):\n  1. ಜಿ. ಕುಮಾರ್ ನಾಯಕ್ () - ರಾಯಚೂರು (Raichur)\n\n🏛️ ವಿಧಾನಸಭಾ ಶಾಸಕರು (MLAs):\n  1. ರಾಜಾ ವೇಣುಗೋಪಾಲ ನಾಯಕ (INC) - ಶಾಸಕರು\n  2. ಶರಣಬಸಪ್ಪ ದರ್ಶನಾಪುರ (INC) - ಇತರ ಪ್ರಮುಖ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಅಧಿಕಾರಿಗಳು (Key District Officers)\n  3. ಚನ್ನರೆಡ್ಡಿ ಪಾಟೀಲ್ ತುನ್ನೂರು (INC) - ಶೋರಾಪುರ\n  4. ಶರಣಗೌಡ ಕಂದಕೂರ್ (INC) - ಶಹಾಪುರ\n\nಮೂಲ: ಕರ್ನಾಟ — https://karnata.in";
+
+function copyDistrictRepsList() {
+  if (navigator.clipboard && window.DISTRICT_REPS_TEXT) {
+    navigator.clipboard.writeText(window.DISTRICT_REPS_TEXT).then(() => {
+      const btn = document.getElementById('btn-copy-reps');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ ಪಟ್ಟಿ ಕಾಪಿ ಆಯಿತು!';
+        btn.style.background = '#047857';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#15803D'; }, 2500);
+      }
+    }).catch(() => {
+      alert(window.DISTRICT_REPS_TEXT);
+    });
+  }
+}
+
+async function syncDistrictRates() {
+  try {
+    // 1. Gold & Silver
+    const gRes = await fetch('/data/gold_rates.json?v=' + Date.now()).catch(() => null);
+    if (gRes && gRes.ok) {
+      const g = await gRes.json();
+      if (g && g.baseGold && g.baseGold['24']) {
+        const g24 = g.baseGold['24'];
+        const silv = (g.baseSilver && g.baseSilver['999']) ? g.baseSilver['999'] : (g.silver && g.silver['999_per_gram']) || 264.86;
+        const elG = document.getElementById('dist-gold-24k');
+        if (elG) elG.textContent = `₹${g24.toLocaleString('en-IN')} /g`;
+        const elS = document.getElementById('dist-silver');
+        if (elS) elS.textContent = `ಬೆಳ್ಳಿ: ₹${typeof silv === 'number' ? silv.toFixed(2) : silv} /g`;
+      }
+    }
+
+    // 2. Petrol & Diesel
+    const pRes = await fetch('/data/petrol_rates.json?v=' + Date.now()).catch(() => null);
+    if (pRes && pRes.ok) {
+      const p = await pRes.json();
+      const slug = window.location.pathname.split('/').pop().replace('.html', '').replace(/-/g, '_');
+      let pet = null, die = null;
+      if (p.districts && p.districts[slug]) {
+        const taluks = p.districts[slug].taluks || {};
+        const first = Object.values(taluks)[0];
+        if (first) { pet = first.petrol; die = first.diesel; }
+      }
+      if (pet) {
+        const elP = document.getElementById('dist-petrol');
+        if (elP) elP.textContent = `₹${pet.toFixed(2)}`;
+      }
+      if (die) {
+        const elD = document.getElementById('dist-diesel');
+        if (elD) elD.textContent = `ಡೀಸೆಲ್: ₹${die.toFixed(2)}`;
+      }
+    }
+
+    // 3. Dam Level
+    const dRes = await fetch('/data/dam_levels.json?v=' + Date.now()).catch(() => null);
+    if (dRes && dRes.ok) {
+      const d = await dRes.json();
+      const damKey = window.CURRENT_DISTRICT_DAM_KEY;
+      if (damKey && d.dams && d.dams[damKey]) {
+        const dm = d.dams[damKey];
+        const pct = dm.storage_pct || 0;
+        const curTmc = (dm.present_storage_tmc || dm.storage_tmc || dm.gross_storage_tmc || 0).toFixed(2);
+        const maxTmc = (dm.max_storage_tmc || dm.design_capacity || 0).toFixed(2);
+        const inflow = (dm.inflow_cusecs || 0).toLocaleString('en-IN');
+        
+        const elPct = document.getElementById('dist-dam-pct');
+        if (elPct) elPct.textContent = `${pct}% ಭರ್ತಿ`;
+        const elBar = document.getElementById('dist-dam-bar');
+        if (elBar) elBar.style.width = `${pct}%`;
+        const elStore = document.getElementById('dist-dam-storage');
+        if (elStore) elStore.innerHTML = `ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">${curTmc} TMC</strong> / ${maxTmc} TMC`;
+        const elInf = document.getElementById('dist-dam-inflow');
+        if (elInf) elInf.innerHTML = `ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">${inflow} cusecs</strong>`;
+      }
+    }
+  } catch (e) {
+    console.warn('Live rates sync:', e);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', syncDistrictRates);
+} else {
+  syncDistrictRates();
+}
+</script>
 </body>
 </html>

@@ -953,8 +953,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
                 ಲೈವ್ ಮಾರುಕಟ್ಟೆ &amp; ಜಲಾಶಯ
               </h2>
             </div>
-            <span style="font-size:11.5px; font-weight:800; color:#B91C1C; background:#FEF2F2; padding:3px 10px; border-radius:20px; border:1px solid #FECACA;">
-              ಇಂದಿನ ದರಗಳು
+            <span style="font-size:11.5px; font-weight:800; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:20px; border:1px solid #86EFAC;">
+              🟢 ಲೈವ್ ದರಗಳು
             </span>
           </div>
 
@@ -963,13 +963,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
               <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#D97706;">🥇 ಚಿನ್ನ (24K/22K)</div>
-                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;">₹14,080 /g</div>
-                <div style="font-size:10.5px; color:#B45309;">ಬೆಳ್ಳಿ: ₹239.90 /g</div>
+                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;" id="dist-gold-24k">₹13,893 /g</div>
+                <div style="font-size:10.5px; color:#B45309;" id="dist-silver">ಬೆಳ್ಳಿ: ₹264.86 /g</div>
               </div>
               <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#15803D;">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್</div>
-                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;">₹102.86</div>
-                <div style="font-size:10.5px; color:#15803D;">ಡೀಸೆಲ್: ₹88.94</div>
+                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;" id="dist-petrol">₹110.89</div>
+                <div style="font-size:10.5px; color:#15803D;" id="dist-diesel">ಡೀಸೆಲ್: ₹98.80</div>
               </div>
             </div>
 
@@ -978,21 +978,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <div style="display:flex; align-items:center; gap:6px;">
                   <span style="font-size:18px;">🌊</span>
-                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;">
-                    ಕೃಷ್ಣರಾಜ ಸಾಗರ (KRS)
+                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;" id="dist-dam-name">
+                    K.R.Sagara Dam (ಕೃಷ್ಣರಾಜ ಸಾಗರ)
                   </div>
                 </div>
-                <span style="background:#0284C7; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;">
-                  96.2% ಭರ್ತಿ
+                <span style="background:#0284C7; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;" id="dist-dam-pct">
+                  48.9% ಭರ್ತಿ
                 </span>
               </div>
               <!-- Storage Bar -->
               <div style="background:#334155; border-radius:10px; height:8px; overflow:hidden; margin-bottom:8px;">
-                <div style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:96.2%; height:100%; border-radius:10px;"></div>
+                <div id="dist-dam-bar" style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:48.9%; height:100%; border-radius:10px;"></div>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
-                <span>ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">47.52 TMC</strong> / 49.45 TMC</span>
-                <span>ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">18,450 cusecs</strong></span>
+                <span id="dist-dam-storage">ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">24.20 TMC</strong> / 49.45 TMC</span>
+                <span id="dist-dam-inflow">ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">397 cusecs</strong></span>
               </div>
             </div>
 
@@ -1284,6 +1284,19 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     </section>
 
     <!-- 2. REPRESENTATIVES: MPS & MLAS -->
+    <div style="background:linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%); border:1.5px solid #86EFAC; border-radius:14px; padding:12px 18px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <div style="font-size:14.5px; font-weight:900; color:#14532D; display:flex; align-items:center; gap:6px;">
+          <span>📋</span> ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆಯ ಜನಪ್ರತಿನಿಧಿಗಳ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026)
+        </div>
+        <div style="font-size:12px; color:#166534; margin-top:2px;">
+          4 ಲೋಕಸಭಾ ಸಂಸದರು &amp; 27 ವಿಧಾನಸಭಾ ಶಾಸಕರ ಪೂರ್ಣ ವಿವರಗಳು
+        </div>
+      </div>
+      <button onclick="copyDistrictRepsList()" id="btn-copy-reps" style="background:#15803D; color:#FFF; border:none; border-radius:10px; padding:8px 16px; font-size:12.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 3px 10px rgba(21,128,61,0.25); transition:all 0.2s ease;">
+        📋 ಪಟ್ಟಿ ಕಾಪಿ ಮಾಡಿ (Copy List)
+      </button>
+    </div>
     <section class="d-sec">
       <div class="d-sec-title">
         <span>🗳️ ಬೆಂಗಳೂರು ನಗರ ಲೋಕಸಭಾ ಸಂಸದರು (4 MPs)</span>
@@ -1299,17 +1312,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/24.jpg" alt="ಶೋಭಾ ಕರಂದ್ಲಾಜೆ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶೋಭಾ ಕರಂದ್ಲಾಜೆ</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶೋಭಾ ಕರಂದ್ಲಾಜೆ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #24</strong></span>
@@ -1325,17 +1334,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/25.jpg" alt="ಪಿ. ಸಿ. ಮೋಹನ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪಿ. ಸಿ. ಮೋಹನ್</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪಿ. ಸಿ. ಮೋಹನ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #25</strong></span>
@@ -1351,17 +1356,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/26.jpg" alt="ತೇಜಸ್ವಿ ಸೂರ್ಯ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ತೇಜಸ್ವಿ ಸೂರ್ಯ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #26</strong></span>
@@ -1377,17 +1378,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/23.jpg" alt="ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #23</strong></span>
@@ -1412,17 +1409,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/157.jpg" alt="ಎಸ್ ಆರ್ ವಿಶ್ವನಾಥ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಆರ್ ವಿಶ್ವನಾಥ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Yelahanka Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಆರ್ ವಿಶ್ವನಾಥ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Yelahanka Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #157</strong></span>
@@ -1438,17 +1431,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/158.jpg" alt="ಬಿ ಎ ಬಸವರಾಜ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿ ಎ ಬಸವರಾಜ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">KR Puram Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿ ಎ ಬಸವರಾಜ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">KR Puram Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #158</strong></span>
@@ -1464,17 +1453,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/159.jpg" alt="ಕೃಷ್ಣ ಬೈರೇಗೌಡ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೃಷ್ಣ ಬೈರೇಗೌಡ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Byatarayanapura Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೃಷ್ಣ ಬೈರೇಗೌಡ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Byatarayanapura Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #159</strong></span>
@@ -1490,17 +1475,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/160.jpg" alt="ಎಸ್ ಟಿ ಸೋಮಶೇಖರ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಟಿ ಸೋಮಶೇಖರ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Yashwanthpur Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಟಿ ಸೋಮಶೇಖರ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Yashwanthpur Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #160</strong></span>
@@ -1516,17 +1497,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/161.jpg" alt="ಮುನಿರತ್ನ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಮುನಿರತ್ನ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Rajarajeshwari Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಮುನಿರತ್ನ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Rajarajeshwari Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #161</strong></span>
@@ -1542,17 +1519,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/162.jpg" alt="ಎಸ್ ಮುನಿರಾಜು" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಮುನಿರಾಜು</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Dasarahalli Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಮುನಿರಾಜು</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Dasarahalli Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #162</strong></span>
@@ -1568,17 +1541,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/163.jpg" alt="ಕೆ ಗೋಪಾಲಯ್ಯ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೆ ಗೋಪಾಲಯ್ಯ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Mahalakshmi Layout Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೆ ಗೋಪಾಲಯ್ಯ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Mahalakshmi Layout Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #163</strong></span>
@@ -1594,17 +1563,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/164.jpg" alt="ಡಾ. ಸಿ ಎನ್ ಅಶ್ವತ್ಥನಾರಾಯಣ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಸಿ ಎನ್ ಅಶ್ವತ್ಥನಾರಾಯಣ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Malleshwaram Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಸಿ ಎನ್ ಅಶ್ವತ್ಥನಾರಾಯಣ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Malleshwaram Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #164</strong></span>
@@ -1620,17 +1585,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/165.jpg" alt="ಸುರೇಶ್ ಬಿ ಎಸ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಸುರೇಶ್ ಬಿ ಎಸ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Hebbal Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಸುರೇಶ್ ಬಿ ಎಸ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Hebbal Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #165</strong></span>
@@ -1646,17 +1607,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/166.jpg" alt="ಎ ಸಿ ಶ್ರೀನಿವಾಸ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎ ಸಿ ಶ್ರೀನಿವಾಸ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Pulakeshinagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎ ಸಿ ಶ್ರೀನಿವಾಸ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Pulakeshinagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #166</strong></span>
@@ -1672,17 +1629,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/167.jpg" alt="ಕೆ ಕೆ ಜಾರ್ಜ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೆ ಕೆ ಜಾರ್ಜ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Sarvagnanagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕೆ ಕೆ ಜಾರ್ಜ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Sarvagnanagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #167</strong></span>
@@ -1698,17 +1651,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/168.jpg" alt="ಎಸ್ ರಘು" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ರಘು</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">CV Raman Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ರಘು</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">CV Raman Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #168</strong></span>
@@ -1724,17 +1673,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/169.jpg" alt="ರಿಜ್ವಾನ್ ಅರ್ಷದ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಿಜ್ವಾನ್ ಅರ್ಷದ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Shivajinagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಿಜ್ವಾನ್ ಅರ್ಷದ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Shivajinagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #169</strong></span>
@@ -1750,17 +1695,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/170.jpg" alt="ಎನ್ ಎ ಹ್ಯಾರಿಸ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎನ್ ಎ ಹ್ಯಾರಿಸ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Shanti Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎನ್ ಎ ಹ್ಯಾರಿಸ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Shanti Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #170</strong></span>
@@ -1776,17 +1717,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/171.jpg" alt="ದಿನೇಶ್ ಗುಂಡೂರಾವ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ದಿನೇಶ್ ಗುಂಡೂರಾವ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Gandhi Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ದಿನೇಶ್ ಗುಂಡೂರಾವ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Gandhi Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #171</strong></span>
@@ -1802,17 +1739,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/172.jpg" alt="ಎಸ್ ಸುರೇಶ್ ಕುಮಾರ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಸುರೇಶ್ ಕುಮಾರ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Rajaji Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಸ್ ಸುರೇಶ್ ಕುಮಾರ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Rajaji Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #172</strong></span>
@@ -1828,17 +1761,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/173.jpg" alt="ಪ್ರಿಯಾ ಕೃಷ್ಣ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪ್ರಿಯಾ ಕೃಷ್ಣ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Govindraj Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪ್ರಿಯಾ ಕೃಷ್ಣ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Govindraj Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #173</strong></span>
@@ -1854,17 +1783,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/174.jpg" alt="ಎಂ ಕೃಷ್ಣಪ್ಪ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಕೃಷ್ಣಪ್ಪ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Vijay Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಕೃಷ್ಣಪ್ಪ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Vijay Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #174</strong></span>
@@ -1880,17 +1805,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/175.jpg" alt="ಉದಯ್ ಬಿ ಗರುಡಾಚಾರ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಉದಯ್ ಬಿ ಗರುಡಾಚಾರ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Chickpet Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಉದಯ್ ಬಿ ಗರುಡಾಚಾರ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Chickpet Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #175</strong></span>
@@ -1906,17 +1827,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/176.jpg" alt="ಎಲ್ ಎ ರವಿ ಸುಬ್ರಹ್ಮಣ್ಯ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಲ್ ಎ ರವಿ ಸುಬ್ರಹ್ಮಣ್ಯ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Basavanagudi Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಲ್ ಎ ರವಿ ಸುಬ್ರಹ್ಮಣ್ಯ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Basavanagudi Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #176</strong></span>
@@ -1932,17 +1849,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/177.jpg" alt="ಆರ್ ಅಶೋಕ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಆರ್ ಅಶೋಕ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Padmanaba Nagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಆರ್ ಅಶೋಕ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Padmanaba Nagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #177</strong></span>
@@ -1958,17 +1871,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/178.jpg" alt="ರಾಮಲಿಂಗಾರೆಡ್ಡಿ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಮಲಿಂಗಾರೆಡ್ಡಿ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">B.T.M. Layout Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಮಲಿಂಗಾರೆಡ್ಡಿ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">B.T.M. Layout Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #178</strong></span>
@@ -1984,17 +1893,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/179.jpg" alt="ಸಿ ಕೆ ರಾಮಮೂರ್ತಿ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಸಿ ಕೆ ರಾಮಮೂರ್ತಿ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Jayanagar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಸಿ ಕೆ ರಾಮಮೂರ್ತಿ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Jayanagar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #179</strong></span>
@@ -2010,17 +1915,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/180.jpg" alt="ಮಂಜುಳಾ ಎಸ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಮಂಜುಳಾ ಎಸ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Mahadevapura Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಮಂಜುಳಾ ಎಸ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Mahadevapura Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #180</strong></span>
@@ -2036,17 +1937,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/181.jpg" alt="ಎಂ ಸತೀಶ್ ರೆಡ್ಡಿ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಸತೀಶ್ ರೆಡ್ಡಿ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Bommanahalli Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಸತೀಶ್ ರೆಡ್ಡಿ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Bommanahalli Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #181</strong></span>
@@ -2062,17 +1959,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/182.jpg" alt="ಎಂ ಕೃಷ್ಣಪ್ಪ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಕೃಷ್ಣಪ್ಪ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Bangalore South Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಂ ಕೃಷ್ಣಪ್ಪ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Bangalore South Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #182</strong></span>
@@ -2088,17 +1981,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/183.jpg" alt="ಬಿ ಶಿವಣ್ಣ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿ ಶಿವಣ್ಣ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Anekal Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿ ಶಿವಣ್ಣ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Anekal Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #183</strong></span>
@@ -2111,7 +2000,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     <!-- 3. APMC RATES -->
     <section class="d-sec">
       <div class="d-sec-title">
-        <span>🌾 ಬೆಂಗಳೂರು ನಗರ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (185 ಸರಕುಗಳು)</span>
+        <span>🌾 ಬೆಂಗಳೂರು ನಗರ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (184 ಸರಕುಗಳು)</span>
         <a href="/apmc-prices.html" style="font-size:13.5px; font-weight:800; color:var(--k-crimson); text-decoration:none;">ಸಂಪೂರ್ಣ APMC ಪಟ್ಟಿ →</a>
       </div>
       <div class="d-apmc-table-wrap">
@@ -2337,8 +2226,18 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-news-list" id="news-list">
         
-        <a href="https://publictv.in/skipping-rajyotsava-for-delhi-protest-govind-karjol-slams-karnataka-congress-leaders/" class="d-news-card">
-          <div class="d-news-head">ರಾಜ್ಯೋತ್ಸವ ಬಿಟ್ಟು ದೆಹಲಿ ಪ್ರತಿಭಟನೆಗೆ ತೆರಳಿದ ಕೈ ನಾಯಕರು: ಗೋವಿಂದ ಕಾರಜೋಳ ಖಂಡನೆ</div>
+        <a href="https://www.kannadaprabha.com/karnataka/2026/Nov/02/2nd-bengaluru-mumbai-vb-sleeper-will-touch-hubballi-says-vaishnaw" class="d-news-card">
+          <div class="d-news-head">ಹುಬ್ಬಳ್ಳಿ ಮೂಲಕ ಬೆಂಗಳೂರು-ಮುಂಬೈ ನಡುವೆ 2ನೇ Vande Bharat Sleeper Train ಸಂಚಾರ: ರೈಲ್ವೆ ಇಲಾಖೆ ಗ್ರೀನ್ ಸಿಗ್ನಲ್..!</div>
+          
+          <div class="d-news-meta">
+            <span>📡 ಕನ್ನಡ ಪ್ರಭ</span>
+            <span>🕒 ಇಂದು</span>
+            <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
+          </div>
+        </a>
+
+        <a href="https://publictv.in/renukaswamy-murder-case-spp-to-cross-examine-hostile-witness-puneeth-darshans-medical-plea-hearing-today/" class="d-news-card">
+          <div class="d-news-head">ಉಲ್ಟಾ ಹೊಡೆದ ಐ ವಿಟ್ನೆಸ್‌ ಪುನೀತ್‌ಗೆ ಇಂದು ಎಸ್‌ಪಿಪಿ ಪ್ರಶ್ನೆ – ದರ್ಶನ್‌ಗೆ ಮತ್ತೆ ಸಂಕಷ್ಟ?</div>
           
           <div class="d-news-meta">
             <span>📡 ಪಬ್ಲಿಕ್ ಟಿವಿ</span>
@@ -2347,31 +2246,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           </div>
         </a>
 
-        <a href="https://eesanje.com/health-and-lifestyle/vardhan-fertility-inaugurates-fourth-branch-near-itpl/" class="d-news-card">
-          <div class="d-news-head">ಐಟಿಪಿಎಲ್‌ನಲ್ಲಿ ವರ್ಧನ್ ಫರ್ಟಿಲಿಟಿಯ ನಾಲ್ಕನೇ ಶಾಖೆ ಉದ್ಘಾಟನೆ</div>
+        <a href="https://www.prajavani.net/news/india-news/bengaluru-mumbai-vande-bharat-sleeper-express-modi-4368902" class="d-news-card">
+          <div class="d-news-head">ಬೆಂಗಳೂರು-ಮುಂಬೈ ವಂದೇ ಭಾರತ್ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಗೇಮ್ ಚೇಂಜರ್ ಆಗಲಿದೆ: ಮೋದಿ</div>
           
           <div class="d-news-meta">
-            <span>📡 ಈ ಸಂಜೆ</span>
+            <span>📡 ಪ್ರಜಾವಾಣಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
         </a>
 
-        <a href="https://kannada.asianetnews.com/bengaluru-urban/retired-bsf-soldier-from-bengaluru-yelahanka-finds-success-raising-sheep-on-his-terrace-what-is-his-monthly-income-sns/articleshow-lgx9ygq" class="d-news-card">
-          <div class="d-news-head">Bengaluru: ಟೆರೇಸ್‌ನಲ್ಲಿ ಕುರಿ ಸಾಕಿ ಯಶಸ್ವಿಯಾದ ನಿವೃತ್ತ BSF ಯೋಧ, ಯಲಹಂಕ ನಿವಾಸಿಯ ತಿಂಗಳ ಆದಾಯ ಎಷ್ಟು?</div>
+        <a href="https://publictv.in/major-twist-in-siddaramaiah-sting-row-ccb-may-inspect-hdks-delhi-residence-kumaraswamy-calls-key-press-meet-today/" class="d-news-card">
+          <div class="d-news-head">ಸ್ಟಿಂಗ್ ಕೇಸ್‌ಗೆ ಬಿಗ್ ಟ್ವಿಸ್ಟ್: ಹೆಚ್‌ಡಿಕೆ ದೆಹಲಿ ನಿವಾಸ ಮಹಜರ್‌ಗೆ ಸಿಸಿಬಿ ತಯಾರಿ?</div>
           
           <div class="d-news-meta">
-            <span>📡 ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ</span>
-            <span>🕒 ಇಂದು</span>
-            <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
-          </div>
-        </a>
-
-        <a href="https://samyuktakarnataka.in/news/karnataka/dk-shivakumar-issues-a-stern-warning-following-mes-black-day-observance/" class="d-news-card">
-          <div class="d-news-head">ಎಂಇಎಸ್ ಕರಾಳ ದಿನಾಚರಣೆ ಬೆನ್ನಲ್ಲೇ ಡಿಕೆಶಿ ಖಡಕ್ ಎಚ್ಚರಿಕೆ</div>
-          
-          <div class="d-news-meta">
-            <span>📡 ಸಂಯುಕ್ತ ಕರ್ನಾಟಕ</span>
+            <span>📡 ಪಬ್ಲಿಕ್ ಟಿವಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
@@ -2643,5 +2532,96 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
   </div>
 </footer>
 
+<!-- DYNAMIC DISTRICT LIVE RATES & CLIPBOARD SCRIPT -->
+<script>
+window.CURRENT_DISTRICT_DAM_KEY = "krs";
+window.DISTRICT_REPS_TEXT = "ಬೆಂಗಳೂರು ನಗರ ಜಿಲ್ಲೆಯ ಪ್ರಸ್ತುತ ಸಂಸದರು & ಶಾಸಕರ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026):\n\n🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP):\n  1. ಶೋಭಾ ಕರಂದ್ಲಾಜೆ () - ಬೆಂಗಳೂರು ಉತ್ತರ (Bangalore North)\n  2. ಪಿ. ಸಿ. ಮೋಹನ್ () - ಬೆಂಗಳೂರು ಕೇಂದ್ರ (Bangalore Central)\n  3. ತೇಜಸ್ವಿ ಸೂರ್ಯ () - ಬೆಂಗಳೂರು ದಕ್ಷಿಣ (Bangalore South)\n  4. ಡಾ. ಸಿ. ಎನ್. ಮಂಜುನಾಥ್ () - ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ (Bangalore Rural)\n\n🏛️ ವಿಧಾನಸಭಾ ಶಾಸಕರು (MLAs):\n  1. ಎಸ್ ಆರ್ ವಿಶ್ವನಾಥ್ (BJP) - ಶಾಸಕರು\n  2. ಬಿ ಎ ಬಸವರಾಜ್ (BJP) - ಇತರ ಪ್ರಮುಖ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಅಧಿಕಾರಿಗಳು (Key District Officers)\n  3. ಕೃಷ್ಣ ಬೈರೇಗೌಡ (BJP) - ಯಲಹಂಕ\n  4. ಎಸ್ ಟಿ ಸೋಮಶೇಖರ್ (BJP) - ಕೆ.ಆರ್. ಪುರಂ\n  5. ಮುನಿರತ್ನ (BJP) - ಬ್ಯಾಟರಾಯನಪುರ\n  6. ಎಸ್ ಮುನಿರಾಜು (BJP) - ಯಶವಂತಪುರ\n  7. ಕೆ ಗೋಪಾಲಯ್ಯ (INC) - ರಾಜರಾಜೇಶ್ವರಿ ನಗರ\n  8. ಡಾ. ಸಿ ಎನ್ ಅಶ್ವತ್ಥನಾರಾಯಣ (BJP) - ದಾಸರಹಳ್ಳಿ\n  9. ಸುರೇಶ್ ಬಿ ಎಸ್ (BJP) - ಮಹಾಲಕ್ಷ್ಮಿ ಲೇಔಟ್\n  10. ಎ ಸಿ ಶ್ರೀನಿವಾಸ (BJP) - ಮಲ್ಲೇಶ್ವರಂ\n  11. ಕೆ ಕೆ ಜಾರ್ಜ್ (BJP) - ಹೆಬ್ಬಾಳ\n  12. ಎಸ್ ರಘು (BJP) - ಪುಲಕೇಶಿನಗರ\n  13. ರಿಜ್ವಾನ್ ಅರ್ಷದ್ (INC) - ಸರ್ವಜ್ಞನಗರ\n  14. ಎನ್ ಎ ಹ್ಯಾರಿಸ್ (INC) - ಸಿ. ವಿ. ರಾಮನ್ ನಗರ\n  15. ದಿನೇಶ್ ಗುಂಡೂರಾವ್ (INC) - ಶಿವಾಜಿನಗರ\n  16. ಎಸ್ ಸುರೇಶ್ ಕುಮಾರ್ (BJP) - ಶಾಂತಿ ನಗರ\n  17. ಪ್ರಿಯಾ ಕೃಷ್ಣ (INC) - ಗಾಂಧಿ ನಗರ\n  18. ಎಂ ಕೃಷ್ಣಪ್ಪ (INC) - ರಾಜಾಜಿ ನಗರ\n  19. ಉದಯ್ ಬಿ ಗರುಡಾಚಾರ್ (INC) - ಗೋವಿಂದರಾಜ ನಗರ\n  20. ಎಲ್ ಎ ರವಿ ಸುಬ್ರಹ್ಮಣ್ಯ (BJP) - ವಿಜಯ ನಗರ\n  21. ಆರ್ ಅಶೋಕ್ (INC) - ಚಿಕ್ಕಪೇಟೆ\n  22. ರಾಮಲಿಂಗಾರೆಡ್ಡಿ (INC) - ಬಸವನಗುಡಿ\n  23. ಸಿ ಕೆ ರಾಮಮೂರ್ತಿ (BJP) - ಪದ್ಮನಾಭ ನಗರ\n  24. ಮಂಜುಳಾ ಎಸ್ (BJP) - ಬಿ.ಟಿ.ಎಂ ಲೇಔಟ್\n  25. ಎಂ ಸತೀಶ್ ರೆಡ್ಡಿ (BJP) - ಜಯನಗರ\n  26. ಎಂ ಕೃಷ್ಣಪ್ಪ (INC) - ಮಹದೇವಪುರ\n  27. ಬಿ ಶಿವಣ್ಣ (BJP) - ಬೊಮ್ಮನಹಳ್ಳಿ\n\nಮೂಲ: ಕರ್ನಾಟ — https://karnata.in";
+
+function copyDistrictRepsList() {
+  if (navigator.clipboard && window.DISTRICT_REPS_TEXT) {
+    navigator.clipboard.writeText(window.DISTRICT_REPS_TEXT).then(() => {
+      const btn = document.getElementById('btn-copy-reps');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ ಪಟ್ಟಿ ಕಾಪಿ ಆಯಿತು!';
+        btn.style.background = '#047857';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#15803D'; }, 2500);
+      }
+    }).catch(() => {
+      alert(window.DISTRICT_REPS_TEXT);
+    });
+  }
+}
+
+async function syncDistrictRates() {
+  try {
+    // 1. Gold & Silver
+    const gRes = await fetch('/data/gold_rates.json?v=' + Date.now()).catch(() => null);
+    if (gRes && gRes.ok) {
+      const g = await gRes.json();
+      if (g && g.baseGold && g.baseGold['24']) {
+        const g24 = g.baseGold['24'];
+        const silv = (g.baseSilver && g.baseSilver['999']) ? g.baseSilver['999'] : (g.silver && g.silver['999_per_gram']) || 264.86;
+        const elG = document.getElementById('dist-gold-24k');
+        if (elG) elG.textContent = `₹${g24.toLocaleString('en-IN')} /g`;
+        const elS = document.getElementById('dist-silver');
+        if (elS) elS.textContent = `ಬೆಳ್ಳಿ: ₹${typeof silv === 'number' ? silv.toFixed(2) : silv} /g`;
+      }
+    }
+
+    // 2. Petrol & Diesel
+    const pRes = await fetch('/data/petrol_rates.json?v=' + Date.now()).catch(() => null);
+    if (pRes && pRes.ok) {
+      const p = await pRes.json();
+      const slug = window.location.pathname.split('/').pop().replace('.html', '').replace(/-/g, '_');
+      let pet = null, die = null;
+      if (p.districts && p.districts[slug]) {
+        const taluks = p.districts[slug].taluks || {};
+        const first = Object.values(taluks)[0];
+        if (first) { pet = first.petrol; die = first.diesel; }
+      }
+      if (pet) {
+        const elP = document.getElementById('dist-petrol');
+        if (elP) elP.textContent = `₹${pet.toFixed(2)}`;
+      }
+      if (die) {
+        const elD = document.getElementById('dist-diesel');
+        if (elD) elD.textContent = `ಡೀಸೆಲ್: ₹${die.toFixed(2)}`;
+      }
+    }
+
+    // 3. Dam Level
+    const dRes = await fetch('/data/dam_levels.json?v=' + Date.now()).catch(() => null);
+    if (dRes && dRes.ok) {
+      const d = await dRes.json();
+      const damKey = window.CURRENT_DISTRICT_DAM_KEY;
+      if (damKey && d.dams && d.dams[damKey]) {
+        const dm = d.dams[damKey];
+        const pct = dm.storage_pct || 0;
+        const curTmc = (dm.present_storage_tmc || dm.storage_tmc || dm.gross_storage_tmc || 0).toFixed(2);
+        const maxTmc = (dm.max_storage_tmc || dm.design_capacity || 0).toFixed(2);
+        const inflow = (dm.inflow_cusecs || 0).toLocaleString('en-IN');
+        
+        const elPct = document.getElementById('dist-dam-pct');
+        if (elPct) elPct.textContent = `${pct}% ಭರ್ತಿ`;
+        const elBar = document.getElementById('dist-dam-bar');
+        if (elBar) elBar.style.width = `${pct}%`;
+        const elStore = document.getElementById('dist-dam-storage');
+        if (elStore) elStore.innerHTML = `ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">${curTmc} TMC</strong> / ${maxTmc} TMC`;
+        const elInf = document.getElementById('dist-dam-inflow');
+        if (elInf) elInf.innerHTML = `ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">${inflow} cusecs</strong>`;
+      }
+    }
+  } catch (e) {
+    console.warn('Live rates sync:', e);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', syncDistrictRates);
+} else {
+  syncDistrictRates();
+}
+</script>
 </body>
 </html>

@@ -953,8 +953,8 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
                 ಲೈವ್ ಮಾರುಕಟ್ಟೆ &amp; ಜಲಾಶಯ
               </h2>
             </div>
-            <span style="font-size:11.5px; font-weight:800; color:#B91C1C; background:#FEF2F2; padding:3px 10px; border-radius:20px; border:1px solid #FECACA;">
-              ಇಂದಿನ ದರಗಳು
+            <span style="font-size:11.5px; font-weight:800; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:20px; border:1px solid #86EFAC;">
+              🟢 ಲೈವ್ ದರಗಳು
             </span>
           </div>
 
@@ -963,13 +963,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
               <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#D97706;">🥇 ಚಿನ್ನ (24K/22K)</div>
-                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;">₹14,080 /g</div>
-                <div style="font-size:10.5px; color:#B45309;">ಬೆಳ್ಳಿ: ₹239.90 /g</div>
+                <div style="font-size:15.5px; font-weight:900; color:#92400E; font-family:var(--font-en); margin-top:2px;" id="dist-gold-24k">₹13,893 /g</div>
+                <div style="font-size:10.5px; color:#B45309;" id="dist-silver">ಬೆಳ್ಳಿ: ₹264.86 /g</div>
               </div>
               <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:10px 12px;">
                 <div style="font-size:11.5px; font-weight:900; color:#15803D;">⛽ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್</div>
-                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;">₹102.86</div>
-                <div style="font-size:10.5px; color:#15803D;">ಡೀಸೆಲ್: ₹88.94</div>
+                <div style="font-size:15.5px; font-weight:900; color:#14532D; font-family:var(--font-en); margin-top:2px;" id="dist-petrol">₹110.64</div>
+                <div style="font-size:10.5px; color:#15803D;" id="dist-diesel">ಡೀಸೆಲ್: ₹98.60</div>
               </div>
             </div>
 
@@ -978,21 +978,21 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <div style="display:flex; align-items:center; gap:6px;">
                   <span style="font-size:18px;">🌊</span>
-                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;">
-                    ನಾರಾಯಣಪುರ (ಬಸವಸಾಗರ)
+                  <div style="font-size:13.5px; font-weight:800; color:#F8FAFC;" id="dist-dam-name">
+                    ನಾರಾಯಣಪುರ ಅಣೆಕಟ್ಟು
                   </div>
                 </div>
-                <span style="background:#0284C7; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;">
-                  87.2% ಭರ್ತಿ
+                <span style="background:#16A34A; color:#FFF; font-size:11px; font-weight:900; padding:2px 8px; border-radius:12px;" id="dist-dam-pct">
+                  99.7% ಭರ್ತಿ
                 </span>
               </div>
               <!-- Storage Bar -->
               <div style="background:#334155; border-radius:10px; height:8px; overflow:hidden; margin-bottom:8px;">
-                <div style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:87.2%; height:100%; border-radius:10px;"></div>
+                <div id="dist-dam-bar" style="background:linear-gradient(90deg, #38BDF8, #0284C7); width:99.7%; height:100%; border-radius:10px;"></div>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8;">
-                <span>ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">29.1 TMC</strong> / 33.31 TMC</span>
-                <span>ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">24,500 cusecs</strong></span>
+                <span id="dist-dam-storage">ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">33.22 TMC</strong> / 33.31 TMC</span>
+                <span id="dist-dam-inflow">ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">15,019 cusecs</strong></span>
               </div>
             </div>
 
@@ -1204,6 +1204,19 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     </section>
 
     <!-- 2. REPRESENTATIVES: MPS & MLAS -->
+    <div style="background:linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%); border:1.5px solid #86EFAC; border-radius:14px; padding:12px 18px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <div style="font-size:14.5px; font-weight:900; color:#14532D; display:flex; align-items:center; gap:6px;">
+          <span>📋</span> ಕಲಬುರಗಿ ಜಿಲ್ಲೆಯ ಜನಪ್ರತಿನಿಧಿಗಳ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026)
+        </div>
+        <div style="font-size:12px; color:#166534; margin-top:2px;">
+          1 ಲೋಕಸಭಾ ಸಂಸದರು &amp; 9 ವಿಧಾನಸಭಾ ಶಾಸಕರ ಪೂರ್ಣ ವಿವರಗಳು
+        </div>
+      </div>
+      <button onclick="copyDistrictRepsList()" id="btn-copy-reps" style="background:#15803D; color:#FFF; border:none; border-radius:10px; padding:8px 16px; font-size:12.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 3px 10px rgba(21,128,61,0.25); transition:all 0.2s ease;">
+        📋 ಪಟ್ಟಿ ಕಾಪಿ ಮಾಡಿ (Copy List)
+      </button>
+    </div>
     <section class="d-sec">
       <div class="d-sec-title">
         <span>🗳️ ಕಲಬುರಗಿ ಲೋಕಸಭಾ ಸಂಸದರು (1 MP)</span>
@@ -1219,17 +1232,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 82px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:82px; height:82px; flex-shrink:0;">
-              <img src="/assets/images/mps/5.jpg" alt="ರಾಧಾಕೃಷ್ಣ ದೊಡ್ಡೆಮನಿ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:82px; height:82px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:82px; height:82px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಧಾಕೃಷ್ಣ ದೊಡ್ಡೆಮನಿ</div>
-              <div style="font-size:13px; font-weight:800; color:#0284C7; margin-bottom:3px;">ಲೋಕಸಭಾ ಸಂಸದರು (MP)</div>
-              <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:18px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ರಾಧಾಕೃಷ್ಣ ದೊಡ್ಡೆಮನಿ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP)</span>
+    <div style="font-size:12px; color:#64748B;">18ನೇ ಲೋಕಸಭೆ ಸದಸ್ಯರು (ಭಾರತೀಯ ಸಂಸತ್ತು)</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಲೋಕಸಭಾ ಸಂಖ್ಯೆ: <strong>PC #5</strong></span>
@@ -1254,17 +1263,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/34.jpg" alt="ಎಮ್ ವೈ ಪಾಟೀಲ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಮ್ ವೈ ಪಾಟೀಲ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Afzalpur Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಎಮ್ ವೈ ಪಾಟೀಲ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Afzalpur Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #34</strong></span>
@@ -1280,17 +1285,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/35.jpg" alt="ಡಾ. ಅಜಯ್ ಸಿಂಗ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಅಜಯ್ ಸಿಂಗ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Jevargi Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಡಾ. ಅಜಯ್ ಸಿಂಗ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Jevargi Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #35</strong></span>
@@ -1306,17 +1307,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/40.jpg" alt="ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Chittapur Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Chittapur Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #40</strong></span>
@@ -1332,17 +1329,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/41.jpg" alt="ಶರಣಪ್ರಕಾಶ್ ಪಾಟೀಲ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಪ್ರಕಾಶ್ ಪಾಟೀಲ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Sedam Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಶರಣಪ್ರಕಾಶ್ ಪಾಟೀಲ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Sedam Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #41</strong></span>
@@ -1358,17 +1351,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/42.jpg" alt="ಅವಿನಾಶ್ ಜಾದವ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಅವಿನಾಶ್ ಜಾದವ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Chincholi Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಅವಿನಾಶ್ ಜಾದವ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Chincholi Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #42</strong></span>
@@ -1384,17 +1373,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-BJP">BJP</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/43.jpg" alt="ಬಸವರಾಜ್ ಮತ್ತಿಮೂಡ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಸವರಾಜ್ ಮತ್ತಿಮೂಡ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Gulbarga Rural Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಸವರಾಜ್ ಮತ್ತಿಮೂಡ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Gulbarga Rural Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #43</strong></span>
@@ -1410,17 +1395,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/44.jpg" alt="ಅಲ್ಲಮಪ್ರಭು ಪಾಟೀಲ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಅಲ್ಲಮಪ್ರಭು ಪಾಟೀಲ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Gulbarga Dakshin Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಅಲ್ಲಮಪ್ರಭು ಪಾಟೀಲ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Gulbarga Dakshin Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #44</strong></span>
@@ -1436,17 +1417,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/45.jpg" alt="ಕನೀಜ್ ಫಾತಿಮಾ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕನೀಜ್ ಫಾತಿಮಾ</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Gulbarga Uttar Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಕನೀಜ್ ಫಾತಿಮಾ</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Gulbarga Uttar Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #45</strong></span>
@@ -1462,17 +1439,13 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
             <span class="d-party-tag party-INC">INC</span>
           </div>
 
-          <div style="display:grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; margin-bottom:12px;">
-            <div style="position:relative; width:78px; height:78px; flex-shrink:0;">
-              <img src="/assets/images/mlas/46.jpg" alt="ಬಿಆರ್ ಪಾಟೀಲ್" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:78px; height:78px; border-radius:14px; object-fit:cover; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.06); display:block;" />
-              <div style="width:78px; height:78px; border-radius:14px; background:#F1F5F9; border:2px solid #E2E8F0; display:none; align-items:center; justify-content:center; font-size:30px;">👤</div>
-            </div>
-            <div>
-              <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿಆರ್ ಪಾಟೀಲ್</div>
-              <div style="font-size:12.5px; font-weight:800; color:#0284C7; margin-bottom:3px;">ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</div>
-              <div style="font-size:11.5px; color:#64748B;">Aland Assembly</div>
-            </div>
-          </div>
+          <div style="margin-bottom:12px;">
+  <div style="font-size:17.5px; font-weight:900; color:#0F172A; line-height:1.3; margin-bottom:3px;">ಬಿಆರ್ ಪಾಟೀಲ್</div>
+  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;">
+    <span style="font-size:12px; font-weight:800; color:#0284C7; background:#E0F2FE; border:1px solid #BAE6FD; padding:3px 10px; border-radius:6px;">🏛️ ವಿಧಾನಸಭಾ ಸದಸ್ಯರು (MLA)</span>
+    <div style="font-size:11.5px; color:#64748B;">Aland Assembly</div>
+  </div>
+</div>
 
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:7px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#475569;">
             <span>ಕ್ಷೇತ್ರ ಸಂಖ್ಯೆ: <strong>AC #46</strong></span>
@@ -1485,7 +1458,7 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
     <!-- 3. APMC RATES -->
     <section class="d-sec">
       <div class="d-sec-title">
-        <span>🌾 ಕಲಬುರಗಿ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (151 ಸರಕುಗಳು)</span>
+        <span>🌾 ಕಲಬುರಗಿ APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು (161 ಸರಕುಗಳು)</span>
         <a href="/apmc-prices.html" style="font-size:13.5px; font-weight:800; color:var(--k-crimson); text-decoration:none;">ಸಂಪೂರ್ಣ APMC ಪಟ್ಟಿ →</a>
       </div>
       <div class="d-apmc-table-wrap">
@@ -1510,10 +1483,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1538,10 +1511,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1566,10 +1539,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1594,10 +1567,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1622,10 +1595,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1650,10 +1623,10 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
               <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
@@ -1674,28 +1647,28 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಅಕ್ಕಿ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Rice (Broken Rice)</div>
+              <div>ಗೋಧಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
-          <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,500</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,750</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,600</td>
+          <td style="padding:12px 14px; color:#475569; font-size:13px;">JEVARGI</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,700</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,700</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
         <tr style="border-bottom:1px solid #F1F5F9; transition:background 0.15s ease;">
           <td style="padding:12px 14px; font-weight:800; color:#0F172A; display:flex; align-items:center; gap:8px;">
             <span style="font-size:18px;">🌾</span>
             <div>
-              <div>ಅಕ್ಕಿ</div>
-              <div style="font-size:11px; color:#64748B; font-weight:600;">Rice (Coarse)</div>
+              <div>ಗೋಧಿ</div>
+              <div style="font-size:11px; color:#64748B; font-weight:600;">Wheat (Sharabathi)</div>
             </div>
           </td>
           <td style="padding:12px 14px; color:#475569; font-size:13px;">KALABURAGI</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,320</td>
-          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹4,250</td>
-          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹3,650</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹2,100</td>
+          <td style="padding:12px 14px; color:#64748B; font-family:var(--font-en); font-weight:700;">₹3,200</td>
+          <td style="padding:12px 14px; color:#059669; font-family:var(--font-en); font-weight:900; font-size:15px;">₹2,800</td>
           <td style="padding:12px 14px; font-family:var(--font-en); font-weight:800; font-size:12px; color:#059669;">ಸ್ಥಿರ</td>
         </tr>
           </tbody>
@@ -1711,41 +1684,41 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
       </div>
       <div class="d-news-list" id="news-list">
         
-        <a href="https://kannada.news18.com/news/sports/cricket-glenn-phillips-world-record-in-t20-series-against-new-zealand-ssr-ws-bl-2518232.html" class="d-news-card">
-          <div class="d-news-head">Glenn Phillips: 341 ರನ್, 20 ಸಿಕ್ಸರ್ಸ್ ಬಾರಿಸಿ ಗ್ಲೆನ್ ಫಿಲಿಪ್ಸ್ ವಿಶ್ವ ದಾಖಲೆ! ಟಿ20 ಕ್ರಿಕೆಟ್​ನಲ್ಲಿ ಇತಿಹಾಸ ಸೃಷ್ಟಿಸಿದ ಕಿವೀಸ್ ಸ್ಟಾರ್!</div>
+        <a href="https://www.prajavani.net/district/kalaburagi/kalaburagi-sting-operation-kumaraswamy-involvement-alleged-4368456" class="d-news-card">
+          <div class="d-news-head">‘ಸ್ಟಿಂಗ್‌ನಲ್ಲಿ ಕುಮಾರಸ್ವಾಮಿ, ಆಪ್ತರ ನಂಟು’ - ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ ಆರೋಪ</div>
           
           <div class="d-news-meta">
-            <span>📡 ನ್ಯೂಸ್18 ಕನ್ನಡ</span>
+            <span>📡 ಪ್ರಜಾವಾಣಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
         </a>
 
-        <a href="https://tv9kannada.com/karnataka/kalaburagi/kalaburagi-crime-news-woman-tragically-killed-by-husband-over-infidelity-suspicion-1257591.html" class="d-news-card">
-          <div class="d-news-head">ಕಲಬುರಗಿಯಲ್ಲಿ ಶೀಲ ಶಂಕಿಸಿ ಪತಿಯಿಂದ ಪತ್ನಿಯ ಹತ್ಯೆ: ಕೊಡಲಿಯಿಂದ ಕೊಚ್ಚಿ ಪರಾರಿ</div>
+        <a href="https://www.prajavani.net/district/kalaburagi/afzalpur-kannada-rajyotsava-my-patil-speech-culture-4368665" class="d-news-card">
+          <div class="d-news-head">‘ಕನ್ನಡದ ಕಂಪನ್ನು ಮುಂದಿನ ಪೀಳಿಗೆಗೂ ಪಸರಿಸಿ’</div>
           
           <div class="d-news-meta">
-            <span>📡 TV9 ಕನ್ನಡ</span>
+            <span>📡 ಪ್ರಜಾವಾಣಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
         </a>
 
-        <a href="https://samyuktakarnataka.in/districts/kalburgi/rainfall-deficit-proposal-submitted-for-rs-504-crore-relief/" class="d-news-card">
-          <div class="d-news-head">ಮಳೆ ಕೊರತೆ: 504 ಕೋಟಿ ರೂ. ಪರಿಹಾರಕ್ಕೆ ಪ್ರಸ್ತಾವನೆ ಸಲ್ಲಿಕೆ</div>
+        <a href="https://www.prajavani.net/district/kalaburagi/kalaburagi-sharanabasavappa-appa-karnataka-ratna-demand-4368483" class="d-news-card">
+          <div class="d-news-head">ಶರಣಬಸವಪ್ಪ ಅಪ್ಪಗೆ ಮರಣೋತ್ತರವಾಗಿ ಕರ್ನಾಟಕ ರತ್ನ ಪ್ರಶಸ್ತಿ ಕೊಡಲಿ</div>
           
           <div class="d-news-meta">
-            <span>📡 ಸಂಯುಕ್ತ ಕರ್ನಾಟಕ</span>
+            <span>📡 ಪ್ರಜಾವಾಣಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
         </a>
 
-        <a href="https://www.kannadaprabha.com/karnataka/2026/Nov/01/kalaburagi-kannada-is-blend-of-emotion-history-culture-priyank-kharge-on-71st-karnataka-rajyotsava" class="d-news-card">
-          <div class="d-news-head">ಕಲಬುರಗಿಯ ಸಮಗ್ರ ಅಭಿವೃದ್ಧಿಗೆ ನೀಲನಕ್ಷೆ ಸಿದ್ಧ: ಸುಸ್ಥಿರ - ಉದ್ಯೋಗ ಸೃಷ್ಟಿಯ ನಗರವನ್ನಾಗಿ ರೂಪಿಸಲು ಸಂಕಲ್ಪ: ಪ್ರಿಯಾಂಕ್</div>
+        <a href="https://www.prajavani.net/district/kalaburagi/kalaburagi-karnataka-economic-progress-priyank-kharge-4368579" class="d-news-card">
+          <div class="d-news-head">‘ಕರ್ನಾಟಕ ಆರ್ಥಿಕ ಪ್ರಗತಿಯ ಕಾಮಧೇನು’ – ಪ್ರಿಯಾಂಕ್‌ ಖರ್ಗೆ</div>
           
           <div class="d-news-meta">
-            <span>📡 ಕನ್ನಡ ಪ್ರಭ</span>
+            <span>📡 ಪ್ರಜಾವಾಣಿ</span>
             <span>🕒 ಇಂದು</span>
             <span style="color:var(--k-red); margin-left:auto; font-weight:800;">ಓದಿ →</span>
           </div>
@@ -1992,5 +1965,96 @@ body { font-family: var(--font-kn); background: var(--bg); color: #0F172A; margi
   </div>
 </footer>
 
+<!-- DYNAMIC DISTRICT LIVE RATES & CLIPBOARD SCRIPT -->
+<script>
+window.CURRENT_DISTRICT_DAM_KEY = "narayanapura";
+window.DISTRICT_REPS_TEXT = "ಕಲಬುರಗಿ ಜಿಲ್ಲೆಯ ಪ್ರಸ್ತುತ ಸಂಸದರು & ಶಾಸಕರ ಅಧಿಕೃತ ಪಟ್ಟಿ (2026):\n\n🗳️ ಲೋಕಸಭಾ ಸಂಸದರು (MP):\n  1. ರಾಧಾಕೃಷ್ಣ ದೊಡ್ಡೆಮನಿ () - ಕಲಬುರಗಿ (Gulbarga)\n\n🏛️ ವಿಧಾನಸಭಾ ಶಾಸಕರು (MLAs):\n  1. ಎಮ್ ವೈ ಪಾಟೀಲ್ (INC) - ಶಾಸಕರು\n  2. ಡಾ. ಅಜಯ್ ಸಿಂಗ್ (INC) - ಇತರ ಪ್ರಮುಖ ಜಿಲ್ಲಾ ಮಟ್ಟದ ಅಧಿಕಾರಿಗಳು (Key District Officers)\n  3. ಪ್ರಿಯಾಂಕ್ ಖರ್ಗೆ (INC) - ಅಫಜಲಪುರ\n  4. ಶರಣಪ್ರಕಾಶ್ ಪಾಟೀಲ್ (INC) - ಜೇವರ್ಗಿ\n  5. ಅವಿನಾಶ್ ಜಾದವ್ (INC) - ಚಿತ್ತಾಪುರ\n  6. ಬಸವರಾಜ್ ಮತ್ತಿಮೂಡ (BJP) - ಸೇಡಂ\n  7. ಅಲ್ಲಮಪ್ರಭು ಪಾಟೀಲ್ (BJP) - ಚಿಂಚೋಳಿ\n  8. ಕನೀಜ್ ಫಾತಿಮಾ (INC) - ಕಲಬುರಗಿ ಗ್ರಾಮೀಣ\n  9. ಬಿಆರ್ ಪಾಟೀಲ್ (INC) - ಕಲಬುರಗಿ ದಕ್ಷಿಣ\n\nಮೂಲ: ಕರ್ನಾಟ — https://karnata.in";
+
+function copyDistrictRepsList() {
+  if (navigator.clipboard && window.DISTRICT_REPS_TEXT) {
+    navigator.clipboard.writeText(window.DISTRICT_REPS_TEXT).then(() => {
+      const btn = document.getElementById('btn-copy-reps');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ ಪಟ್ಟಿ ಕಾಪಿ ಆಯಿತು!';
+        btn.style.background = '#047857';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#15803D'; }, 2500);
+      }
+    }).catch(() => {
+      alert(window.DISTRICT_REPS_TEXT);
+    });
+  }
+}
+
+async function syncDistrictRates() {
+  try {
+    // 1. Gold & Silver
+    const gRes = await fetch('/data/gold_rates.json?v=' + Date.now()).catch(() => null);
+    if (gRes && gRes.ok) {
+      const g = await gRes.json();
+      if (g && g.baseGold && g.baseGold['24']) {
+        const g24 = g.baseGold['24'];
+        const silv = (g.baseSilver && g.baseSilver['999']) ? g.baseSilver['999'] : (g.silver && g.silver['999_per_gram']) || 264.86;
+        const elG = document.getElementById('dist-gold-24k');
+        if (elG) elG.textContent = `₹${g24.toLocaleString('en-IN')} /g`;
+        const elS = document.getElementById('dist-silver');
+        if (elS) elS.textContent = `ಬೆಳ್ಳಿ: ₹${typeof silv === 'number' ? silv.toFixed(2) : silv} /g`;
+      }
+    }
+
+    // 2. Petrol & Diesel
+    const pRes = await fetch('/data/petrol_rates.json?v=' + Date.now()).catch(() => null);
+    if (pRes && pRes.ok) {
+      const p = await pRes.json();
+      const slug = window.location.pathname.split('/').pop().replace('.html', '').replace(/-/g, '_');
+      let pet = null, die = null;
+      if (p.districts && p.districts[slug]) {
+        const taluks = p.districts[slug].taluks || {};
+        const first = Object.values(taluks)[0];
+        if (first) { pet = first.petrol; die = first.diesel; }
+      }
+      if (pet) {
+        const elP = document.getElementById('dist-petrol');
+        if (elP) elP.textContent = `₹${pet.toFixed(2)}`;
+      }
+      if (die) {
+        const elD = document.getElementById('dist-diesel');
+        if (elD) elD.textContent = `ಡೀಸೆಲ್: ₹${die.toFixed(2)}`;
+      }
+    }
+
+    // 3. Dam Level
+    const dRes = await fetch('/data/dam_levels.json?v=' + Date.now()).catch(() => null);
+    if (dRes && dRes.ok) {
+      const d = await dRes.json();
+      const damKey = window.CURRENT_DISTRICT_DAM_KEY;
+      if (damKey && d.dams && d.dams[damKey]) {
+        const dm = d.dams[damKey];
+        const pct = dm.storage_pct || 0;
+        const curTmc = (dm.present_storage_tmc || dm.storage_tmc || dm.gross_storage_tmc || 0).toFixed(2);
+        const maxTmc = (dm.max_storage_tmc || dm.design_capacity || 0).toFixed(2);
+        const inflow = (dm.inflow_cusecs || 0).toLocaleString('en-IN');
+        
+        const elPct = document.getElementById('dist-dam-pct');
+        if (elPct) elPct.textContent = `${pct}% ಭರ್ತಿ`;
+        const elBar = document.getElementById('dist-dam-bar');
+        if (elBar) elBar.style.width = `${pct}%`;
+        const elStore = document.getElementById('dist-dam-storage');
+        if (elStore) elStore.innerHTML = `ಸಂಗ್ರಹ: <strong style="color:#FFF; font-family:var(--font-en);">${curTmc} TMC</strong> / ${maxTmc} TMC`;
+        const elInf = document.getElementById('dist-dam-inflow');
+        if (elInf) elInf.innerHTML = `ಒಳಹರಿವು: <strong style="color:#34D399; font-family:var(--font-en);">${inflow} cusecs</strong>`;
+      }
+    }
+  } catch (e) {
+    console.warn('Live rates sync:', e);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', syncDistrictRates);
+} else {
+  syncDistrictRates();
+}
+</script>
 </body>
 </html>
