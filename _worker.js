@@ -98,7 +98,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ದರ (Updated on: 31-10-26, 9:40:55 AM (Karnataka Bullion Live)).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ದರ (Updated on: 02-11-26, 9:30:00 AM (KBJA Live)).`,
       cards: [
         { title: `📍 ${matchedCity.kn} ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
@@ -149,7 +149,7 @@ function generateGroundedGoldAnswer(rawQuery) {
   * **1 ಕಿಲೋಗ್ರಾಂ:** **₹245,000.00**
 
 ---
-💡 ಮೂಲ: ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 31-10-26, 9:40:55 AM (Karnataka Bullion Live)).`,
+💡 ಮೂಲ: ಕರ್ನಾಟಕ ಬುಲಿಯನ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 02-11-26, 9:30:00 AM (KBJA Live)).`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
       sources: [{ name: "Karnataka Bullion & Jewellers Association (KBJA)", url: "/gold-rate.html" }],
       provider: "Karnataka Bullion & Jewellers Association (KBJA Live)"
