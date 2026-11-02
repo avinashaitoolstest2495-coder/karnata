@@ -935,8 +935,8 @@ ${d.cp ? `* **🚓 ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರ್ (CP):** **
   // --- 4. PERFECT 1:1 LIVE & HISTORICAL GOLD & SILVER INTELLIGENCE ENGINE ---
   function answerGoldQuery(q) {
     const goldData = db.gold || {};
-    const baseGold = goldData.baseGold || { 24: 13893, 22: 12730, 18: 10420, 14: 8201 };
-    const yesterdayGold = goldData.yesterdayGold || { 24: 14231, 22: 13040, 18: 10674, 14: 8415 };
+    const baseGold = goldData.baseGold || { 24: 13942, 22: 12775, 18: 10455, 14: 8230 };
+    const yesterdayGold = goldData.yesterdayGold || { 24: 13893, 22: 12730, 18: 10418, 14: 8415 };
     const baseSilver = goldData.baseSilver || { 999: 264.86, 925: 245.00 };
     const yesterdaySilver = goldData.yesterdaySilver || { 999: 258.50, 925: 239.00 };
     const changes = goldData.changes || { '24k': -1, '22k': -1, 'silver_999': -0.10 };
