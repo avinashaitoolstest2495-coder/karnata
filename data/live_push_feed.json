@@ -1,24 +1,11 @@
 {
-  "updated_at": "2026-11-03T11:00:04.766292",
-  "total_active_alerts": 8,
+  "updated_at": "2026-11-05T10:06:20.214851",
+  "total_active_alerts": 14,
   "feed": [
     {
-      "id": "GOLD-RATE-2026110310",
-      "alert_level": "gold_surge",
-      "target_district": "all",
-      "target_district_kn": "ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ",
-      "title": "👑 ಇಂದಿನ ಚಿನ್ನದ ದರದಲ್ಲಿ ಭಾರಿ ಜಿಗಿತ! 24K ₹13,969, 22K ₹12,800ಕ್ಕೆ ಏರಿಕೆ",
-      "body": "10 AM ಲೈವ್ ಅಪ್ಡೇಟ್: ಇಂದು ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಗ್ರಾಂಗೆ ₹27 ಏರಿಕೆ ಕಂಡಿದೆ. 8 ಗ್ರಾಂ (1 ಪವನ್) ಬೆಲೆ ₹102,400. ಇಂದಿನ ಲೈವ್ ದರ ಮತ್ತು ಟ್ರೆಂಡ್ ವಿಶ್ಲೇಷಿಸಿ ➔",
-      "url": "https://karnata.in/gold-rate",
-      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
-      "badge": "https://karnata.in/assets/icons/icon-192x192.png",
-      "topic": "gold_rate_alert",
-      "created_at": "2026-11-03T11:00:04.755714"
-    },
-    {
-      "id": "WEATHER-YELLOW-bengaluru_urban-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-bengaluru_urban-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
       "alert_level": "yellow",
       "target_district": "bengaluru_urban",
       "target_district_kn": "ಬೆಂಗಳೂರು ನಗರ",
@@ -27,12 +14,12 @@
       "url": "https://karnata.in/weather?district=bengaluru_urban",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296670"
+      "created_at": "2026-11-05T10:06:20.214760"
     },
     {
-      "id": "WEATHER-YELLOW-bengaluru_rural-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-bengaluru_rural-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
       "alert_level": "yellow",
       "target_district": "bengaluru_rural",
       "target_district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
@@ -41,12 +28,68 @@
       "url": "https://karnata.in/weather?district=bengaluru_rural",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296684"
+      "created_at": "2026-11-05T10:06:20.214772"
     },
     {
-      "id": "WEATHER-YELLOW-dakshina_kannada-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-mysuru-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "mysuru",
+      "target_district_kn": "ಮೈಸೂರು",
+      "title": "🌦️ ಮೈಸೂರು: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಮೈಸೂರು ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=mysuru",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214776"
+    },
+    {
+      "id": "WEATHER-YELLOW-mandya-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "mandya",
+      "target_district_kn": "ಮಂಡ್ಯ",
+      "title": "🌦️ ಮಂಡ್ಯ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಮಂಡ್ಯ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=mandya",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214782"
+    },
+    {
+      "id": "WEATHER-YELLOW-hassan-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "hassan",
+      "target_district_kn": "ಹಾಸನ",
+      "title": "🌦️ ಹಾಸನ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಹಾಸನ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=hassan",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214785"
+    },
+    {
+      "id": "WEATHER-YELLOW-kodagu-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "kodagu",
+      "target_district_kn": "ಕೊಡಗು",
+      "title": "🌦️ ಕೊಡಗು: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಕೊಡಗು ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=kodagu",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214788"
+    },
+    {
+      "id": "WEATHER-YELLOW-dakshina_kannada-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
       "alert_level": "yellow",
       "target_district": "dakshina_kannada",
       "target_district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
@@ -55,40 +98,54 @@
       "url": "https://karnata.in/weather?district=dakshina_kannada",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296692"
+      "created_at": "2026-11-05T10:06:20.214791"
     },
     {
-      "id": "WEATHER-YELLOW-udupi-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-chikkamagaluru-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
       "alert_level": "yellow",
-      "target_district": "udupi",
-      "target_district_kn": "ಉಡುಪಿ",
-      "title": "🌦️ ಉಡುಪಿ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
-      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಉಡುಪಿ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
-      "url": "https://karnata.in/weather?district=udupi",
+      "target_district": "chikkamagaluru",
+      "target_district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+      "title": "🌦️ ಚಿಕ್ಕಮಗಳೂರು: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಚಿಕ್ಕಮಗಳೂರು ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=chikkamagaluru",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296696"
+      "created_at": "2026-11-05T10:06:20.214799"
     },
     {
-      "id": "WEATHER-YELLOW-uttara_kannada-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-belagavi-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
       "alert_level": "yellow",
-      "target_district": "uttara_kannada",
-      "target_district_kn": "ಉತ್ತರ ಕನ್ನಡ",
-      "title": "🌦️ ಉತ್ತರ ಕನ್ನಡ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
-      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಉತ್ತರ ಕನ್ನಡ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
-      "url": "https://karnata.in/weather?district=uttara_kannada",
+      "target_district": "belagavi",
+      "target_district_kn": "ಬೆಳಗಾವಿ",
+      "title": "🌦️ ಬೆಳಗಾವಿ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಬೆಳಗಾವಿ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=belagavi",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296700"
+      "created_at": "2026-11-05T10:06:20.214805"
     },
     {
-      "id": "WEATHER-YELLOW-chikkaballapura-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-haveri-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "haveri",
+      "target_district_kn": "ಹಾವೇರಿ",
+      "title": "🌦️ ಹಾವೇರಿ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಹಾವೇರಿ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=haveri",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214810"
+    },
+    {
+      "id": "WEATHER-YELLOW-chikkaballapura-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
       "alert_level": "yellow",
       "target_district": "chikkaballapura",
       "target_district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
@@ -97,12 +154,12 @@
       "url": "https://karnata.in/weather?district=chikkaballapura",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296724"
+      "created_at": "2026-11-05T10:06:20.214830"
     },
     {
-      "id": "WEATHER-YELLOW-kolar-20261103-B06TO09",
+      "id": "WEATHER-YELLOW-kolar-20261105-B09TO12",
       "interval_hours": 3,
-      "block": "B06TO09",
+      "block": "B09TO12",
       "alert_level": "yellow",
       "target_district": "kolar",
       "target_district_kn": "ಕೋಲಾರ",
@@ -111,7 +168,35 @@
       "url": "https://karnata.in/weather?district=kolar",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-03T08:06:54.296727"
+      "created_at": "2026-11-05T10:06:20.214833"
+    },
+    {
+      "id": "WEATHER-YELLOW-ramanagara-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "ramanagara",
+      "target_district_kn": "ರಾಮನಗರ",
+      "title": "🌦️ ರಾಮನಗರ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ರಾಮನಗರ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=ramanagara",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214836"
+    },
+    {
+      "id": "WEATHER-YELLOW-chamarajanagara-20261105-B09TO12",
+      "interval_hours": 3,
+      "block": "B09TO12",
+      "alert_level": "yellow",
+      "target_district": "chamarajanagara",
+      "target_district_kn": "ಚಾಮರಾಜನಗರ",
+      "title": "🌦️ ಚಾಮರಾಜನಗರ: ಜಿಟಿಜಿಟಿ ಮಳೆ ಸಂಭವ! ಹೊರಡುವ ಮುನ್ನ ಗಮನಿಸಿ",
+      "body": "ಲೈವ್ ನೌಕಾಸ್ಟ್ 🌧️: ಚಾಮರಾಜನಗರ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಹಗುರ ಅಥವಾ ಸಾಧಾರಣ ತುಂತುರು ಮಳೆ ನಿರೀಕ್ಷೆ (ಮುಂದಿನ 2-3 ಗಂಟೆಗಳಲ್ಲಿ). ಹೊರಡುವಾಗ ಛತ್ರಿ ಜತೆಗಿರಲಿ! ಲೈವ್ ರೇಡಾರ್ ನೋಡಿ ➔",
+      "url": "https://karnata.in/weather?district=chamarajanagara",
+      "icon": "https://karnata.in/assets/icons/icon-512x512.png",
+      "topic": "weather_alert",
+      "created_at": "2026-11-05T10:06:20.214840"
     }
   ]
 }

@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-11-03 10:52:46 IST  
+> **Generated:** 2026-11-05 01:51:35 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1715,10 +1715,10 @@
 
 # 💰 ಕರ್ನಾಟಕ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ಲೈವ್ ದರ & 125 ವರ್ಷಗಳ ಇತಿಹಾಸ (Gold & Silver Analytics)
 
-* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-03
-* **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹13969 / 1 ಗ್ರಾಂ (₹139,690 / 10 ಗ್ರಾಂ)
-* **22K ಆಭರಣ ಚಿನ್ನ:** ₹12800 / 1 ಗ್ರಾಂ (₹102,400 / 8 ಗ್ರಾಂ 1 ಪವನ್)
-* **ಬೆಳ್ಳಿ (Silver 999):** ₹264.86 / 1 ಗ್ರಾಂ (₹264,860 / 1 ಕೆಜಿ)
+* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-05
+* **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹14285 / 1 ಗ್ರಾಂ (₹142,850 / 10 ಗ್ರಾಂ)
+* **22K ಆಭರಣ ಚಿನ್ನ:** ₹13090 / 1 ಗ್ರಾಂ (₹104,720 / 8 ಗ್ರಾಂ 1 ಪವನ್)
+* **ಬೆಳ್ಳಿ (Silver 999):** ₹216.22 / 1 ಗ್ರಾಂ (₹216,220 / 1 ಕೆಜಿ)
 
 ---
 
@@ -1730,7 +1730,7 @@
 * **2000:** ₹4,400.00 / 10g
 * **2010:** ₹18,500.00 / 10g
 * **2020:** ₹48,651.00 / 10g
-* **2026 (ಇಂದು):** ₹139,690 / 10g (**8,270 ಪಟ್ಟು ಏರಿಕೆ**)
+* **2026 (ಇಂದು):** ₹142,850 / 10g (**8,270 ಪಟ್ಟು ಏರಿಕೆ**)
 
 
 ---
@@ -1907,6 +1907,7 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **02-11-2026:** Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru (ಆದೇಶ: e-DPAR 406 SAS 2026) — Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru
 * **30-10-2026:** Shri. SURALKAR VIKAS KISHOR (RR 2012), Commissioner for Backward Classes. (ಆದೇಶ: DPAR 341 SAS 2026) — Shri. SURALKAR VIKAS KISHOR (RR 2012), Commissioner for Backward Classes.
 
 Shri. DAYANANDA K A (SCS 2012), Commissioner, Karnataka Housing Board.
@@ -2160,6 +2161,5 @@ Sri. Shubham Suresh Pawar, IPS (KN: 2024) Assistant Superintendent of Police, Ho
 * **03-09-2026:** M S N Babu, KAS (KN:2016), Controller, Department for legal Metrology, Bengaluru is transferred with immediate effect and posted until further orders as Joint Commissioner, Rajarajeshwari Nagar Zone, Bruhat Bengaluru Mahanagara Palike, Bengaluru vice Dr. Arathi Anand, KAS transferred. (ಆದೇಶ: DPAR 126 SKT 2026) — M S N Babu, KAS (KN:2016), Controller, Department for legal Metrology, Bengaluru is transferred with immediate effect and posted until further orders as Joint Commissioner, Rajarajeshwari Nagar Zone, Bruhat Bengaluru Mahanagara Palike, Bengaluru vice Dr. Arathi Anand, KAS transferred.
 * **02-09-2026:** Sri. Srinivas K. IAS., (KN: 2012) concurrent charge of the post of Managing Director, Karnataka State Medical Supplies Corporation Limited, Bengaluru (ಆದೇಶ: e-DPAR 298 SAS 2026) — Sri. Srinivas K. IAS., (KN: 2012) concurrent charge of the post of Managing Director, Karnataka State Medical Supplies Corporation Limited, Bengaluru
 * **31-08-2026:** Sri. Bharath S. IAS., (KN: 2017) concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation, Bengaluru (ಆದೇಶ: e-DPAR 297 SAS 2026) — Sri. Bharath S. IAS., (KN: 2017) concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation, Bengaluru
-* **31-08-2026:** Smt. Ramya S., IAS (KN:2013), Deputy Commissioner, Chitradurga District, Chitradurga (ಆದೇಶ: e-DPAR 208 SAS 2026) — Smt. Ramya S., IAS (KN:2013), Deputy Commissioner, Chitradurga District, Chitradurga
 
 ---

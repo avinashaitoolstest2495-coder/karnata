@@ -159,6 +159,7 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **02-11-2026:** Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru (ಆದೇಶ: e-DPAR 406 SAS 2026) — Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru
 * **30-10-2026:** Shri. SURALKAR VIKAS KISHOR (RR 2012), Commissioner for Backward Classes. (ಆದೇಶ: DPAR 341 SAS 2026) — Shri. SURALKAR VIKAS KISHOR (RR 2012), Commissioner for Backward Classes.
 Shri. DAYANANDA K A (SCS 2012), Commissioner, Karnataka Housing Board.
 Shri. VENKAT RAJA (RR 2013), Commissioner for Panchayath Raj, Bengaluru.
@@ -310,4 +311,3 @@ Sri. Shubham Suresh Pawar, IPS (KN: 2024) Assistant Superintendent of Police, Ho
 * **03-09-2026:** M S N Babu, KAS (KN:2016), Controller, Department for legal Metrology, Bengaluru is transferred with immediate effect and posted until further orders as Joint Commissioner, Rajarajeshwari Nagar Zone, Bruhat Bengaluru Mahanagara Palike, Bengaluru vice Dr. Arathi Anand, KAS transferred. (ಆದೇಶ: DPAR 126 SKT 2026) — M S N Babu, KAS (KN:2016), Controller, Department for legal Metrology, Bengaluru is transferred with immediate effect and posted until further orders as Joint Commissioner, Rajarajeshwari Nagar Zone, Bruhat Bengaluru Mahanagara Palike, Bengaluru vice Dr. Arathi Anand, KAS transferred.
 * **02-09-2026:** Sri. Srinivas K. IAS., (KN: 2012) concurrent charge of the post of Managing Director, Karnataka State Medical Supplies Corporation Limited, Bengaluru (ಆದೇಶ: e-DPAR 298 SAS 2026) — Sri. Srinivas K. IAS., (KN: 2012) concurrent charge of the post of Managing Director, Karnataka State Medical Supplies Corporation Limited, Bengaluru
 * **31-08-2026:** Sri. Bharath S. IAS., (KN: 2017) concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation, Bengaluru (ಆದೇಶ: e-DPAR 297 SAS 2026) — Sri. Bharath S. IAS., (KN: 2017) concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation, Bengaluru
-* **31-08-2026:** Smt. Ramya S., IAS (KN:2013), Deputy Commissioner, Chitradurga District, Chitradurga (ಆದೇಶ: e-DPAR 208 SAS 2026) — Smt. Ramya S., IAS (KN:2013), Deputy Commissioner, Chitradurga District, Chitradurga
