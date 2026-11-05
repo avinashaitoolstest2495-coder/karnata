@@ -1,20 +1,20 @@
 {
-  "last_updated": "2026-11-05T10:06:14+05:30",
+  "last_updated": "2026-11-05T10:30:03+05:30",
   "date": "2026-11-05",
   "source": "ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Jos Alukkas Karnataka Official Rate)",
-  "timestamp_display": "Updated on: 2026-11-05T09:43:45 (Jos Alukkas Official)",
+  "timestamp_display": "Updated on: 2026-11-05T10:17:52 (Jos Alukkas Official)",
   "base": {
     "24k_per_gram": 14607,
     "22k_per_gram": 13385,
     "18k_per_gram": 10955,
     "14k_per_gram": 8618,
     "pt950_per_gram": 7090,
-    "silver_per_gram": 216.22,
-    "silver_925_per_gram": 200.0,
+    "silver_per_gram": 243.24,
+    "silver_925_per_gram": 225.0,
     "rate_24k": 14607,
     "rate_22k": 13385,
     "rate_18k": 10955,
-    "silver_999": 216.22
+    "silver_999": 243.24
   },
   "baseGold": {
     "24": 14607,
@@ -28,32 +28,32 @@
     "18": 10583
   },
   "baseSilver": {
-    "999": 216.22,
-    "925": 200.0
+    "999": 243.24,
+    "925": 225.0
   },
   "yesterdaySilver": {
     "999": 268.13,
     "925": 248.02
   },
   "silver": {
-    "999_per_gram": 216.22,
-    "925_per_gram": 200.0,
-    "999_1kg": 216220,
-    "925_1kg": 200000
+    "999_per_gram": 243.24,
+    "925_per_gram": 225.0,
+    "999_1kg": 243240,
+    "925_1kg": 225000
   },
   "changes": {
     "24k": 495,
     "22k": 454,
     "18k": 372,
-    "silver_999": -51.91,
-    "silver_925": -51.91
+    "silver_999": -24.89,
+    "silver_925": -24.89
   },
   "change": {
     "24k": 495,
     "22k": 454,
     "18k": 372,
-    "silver_999": -51.91,
-    "silver_925": -51.91
+    "silver_999": -24.89,
+    "silver_925": -24.89
   },
   "cities": {
     "bangalore": {
@@ -67,13 +67,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "mysore": {
       "name_kn": "ಮೈಸೂರು",
@@ -86,13 +86,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "mangalore": {
       "name_kn": "ಮಂಗಳೂರು",
@@ -105,13 +105,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "hubli_dharwad": {
       "name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
@@ -124,13 +124,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "belgaum": {
       "name_kn": "ಬೆಳಗಾವಿ",
@@ -143,13 +143,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "kalaburagi": {
       "name_kn": "ಕಲಬುರಗಿ",
@@ -162,13 +162,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "davangere": {
       "name_kn": "ದಾವಣಗೆರೆ",
@@ -181,13 +181,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "shivamogga": {
       "name_kn": "ಶಿವಮೊಗ್ಗ",
@@ -200,13 +200,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "tumakuru": {
       "name_kn": "ತುಮಕೂರು",
@@ -219,13 +219,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "hassan": {
       "name_kn": "ಹಾಸನ",
@@ -238,13 +238,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "udupi": {
       "name_kn": "ಉಡುಪಿ",
@@ -257,13 +257,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "ballari": {
       "name_kn": "ಬಳ್ಳಾರಿ",
@@ -276,13 +276,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "vijayapura": {
       "name_kn": "ವಿಜಯಪುರ",
@@ -295,13 +295,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "bidar": {
       "name_kn": "ಬೀದರ್",
@@ -314,13 +314,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     },
     "raichur": {
       "name_kn": "ರಾಯಚೂರು",
@@ -333,13 +333,13 @@
       "gold_24k_yesterday": 14112,
       "gold_22k_10g": 133850,
       "gold_24k_10g": 146070,
-      "silver_per_gram": 216.22,
+      "silver_per_gram": 243.24,
       "silver_yesterday": 268.13,
-      "silver_per_kg": 216220,
+      "silver_per_kg": 243240,
       "change_24k": 495,
       "change_22k": 454,
       "change_18k": 372,
-      "change_silver": -51.91
+      "change_silver": -24.89
     }
   },
   "history": [
