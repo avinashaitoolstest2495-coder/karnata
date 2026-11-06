@@ -529,8 +529,17 @@
     <div class="search-wrapper">
       <div class="search-bar">
         <span style="font-size:20px;">🔍</span>
-        <input type="text" id="gpSearchInput" placeholder="ಗ್ರಾಮ ಪಂಚಾಯತ್ ಹೆಸರು, ತಾಲೂಕು ಅಥವಾ ಜಿಲ್ಲೆ ಟೈಪ್ ಮಾಡಿ..." oninput="handleSearch(this.value)">
+        <input type="text" id="gpSearchInput" placeholder="ಗ್ರಾಮ ಪಂಚಾಯತ್ ಹೆಸರು, ತಾಲೂಕು, ಜಿಲ್ಲೆ, ಪಿನ್ ಕೋಡ್ ಅಥವಾ PDO ಹೆಸರು ಟೈಪ್ ಮಾಡಿ..." oninput="handleSearch(this.value)">
         <button class="search-btn" onclick="applyFilters()">ಹುಡುಕಿ</button>
+      </div>
+
+      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+        <button id="btnDetectMyGp" onclick="detectUserGramPanchayat()" style="background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color:#0F172A; border:none; padding:9px 20px; border-radius:24px; font-family:var(--font-kn); font-weight:900; font-size:14px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(245,158,11,0.35);">
+          📍 ನನ್ನ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಪತ್ತೆ ಮಾಡಿ (GPS)
+        </button>
+        <a href="/nanna-sthala" style="background:rgba(255,255,255,0.16); color:#FFF; border:1px solid rgba(255,255,255,0.35); padding:9px 18px; border-radius:24px; text-decoration:none; font-weight:800; font-size:13.5px; display:inline-flex; align-items:center; gap:6px;">
+          🗺️ K-GIS ಗ್ರಾಮ ನಕ್ಷೆಯಲ್ಲಿ ಹುಡುಕಿ →
+        </a>
       </div>
 
       <!-- Quick District Chips -->
@@ -1606,25 +1615,114 @@
         }
 
         if (data && data.gram_panchayats) {
-          allGps = data.gram_panchayats;
+          allGps = data.gram_panchayats.map(g => ({
+            ...g,
+            district_id: g.district_id || String(g.gp_id || '').slice(0, 4),
+            taluk_id: g.taluk_id || String(g.gp_id || '').slice(0, 7)
+          }));
           
           // Safe check for ribbon elements
           const rGps = document.getElementById('ribbonGps');
           const rDist = document.getElementById('ribbonDistricts');
           const rTal = document.getElementById('ribbonTaluks');
+          if (rGps) rGps.textContent = allGps.length.toLocaleString();
           if (data.telemetry) {
-            if (rGps) rGps.textContent = Number(data.telemetry.total_gram_panchayats).toLocaleString();
             if (rDist) rDist.textContent = data.telemetry.total_districts;
             if (rTal) rTal.textContent = data.telemetry.total_taluks;
           }
           populateDistricts();
           applyFilters();
+          handleUrlDeepLink();
         } else {
           document.getElementById('gpGrid').innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px;"><h3>ದತ್ತಾಂಶ ಲೋಡ್ ಆಗಿಲ್ಲ. ದಯವಿಟ್ಟು ರಿಫ್ರೆಶ್ ಮಾಡಿ.</h3></div>';
         }
       } catch(e) {
         console.error('Master data load error:', e);
       }
+    }
+
+    function handleUrlDeepLink() {
+      const params = new URLSearchParams(window.location.search);
+      const gpParam = params.get('gp') || params.get('lgd');
+      if (!gpParam || !allGps.length) return;
+      const found = allGps.find(g => String(g.gp_id) === gpParam || String(g.lgd_code) === gpParam);
+      if (found) {
+        const searchInput = document.getElementById('gpSearchInput');
+        if (searchInput) searchInput.value = found.gp_name_kn || found.gp_name_en;
+        currentSearch = (found.gp_name_kn || found.gp_name_en || '').toLowerCase();
+        applyFilters();
+        openGpModal(found.gp_id);
+      }
+    }
+
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    async function detectUserGramPanchayat() {
+      if (!navigator.geolocation) {
+        alert('ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಸ್ಥಳ ಪತ್ತೆ (Geolocation) ಲಭ್ಯವಿಲ್ಲ.');
+        return;
+      }
+      const btn = document.getElementById('btnDetectMyGp');
+      const origHtml = btn ? btn.innerHTML : '';
+      if (btn) btn.innerHTML = '⏳ ನಿಮ್ಮ ಗ್ರಾ.ಪಂ. ಪತ್ತೆ ಮಾಡಲಾಗುತ್ತಿದೆ...';
+
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          if (btn) btn.innerHTML = origHtml;
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+          let matched = null;
+
+          // 1. Try K-GIS GP_Boundary & Village_Cached by exact point intersect
+          try {
+            const geom = encodeURIComponent(JSON.stringify({ x: lng, y: lat, spatialReference: { wkid: 4326 } }));
+            const gpUrl = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/GP_Boundary/MapServer/0/query?geometry=${geom}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=KGISGP_DeptCode,KGISGPName&returnGeometry=false&f=json`;
+            const res = await fetch(gpUrl);
+            if (res.ok) {
+              const d = await res.json();
+              const lgd = String(d?.features?.[0]?.attributes?.KGISGP_DeptCode || '').trim();
+              if (lgd) matched = allGps.find(g => String(g.lgd_code) === lgd);
+            }
+          } catch(e){}
+
+          // 2. Fallback: Nearest GP by Haversine distance against all 5,935 GP coordinates
+          if (!matched && allGps.length > 0) {
+            let bestDist = Infinity;
+            for (const g of allGps) {
+              if (typeof g.lat !== 'number' || typeof g.lng !== 'number') continue;
+              const d = haversineKm(lat, lng, g.lat, g.lng);
+              if (d < bestDist) {
+                bestDist = d;
+                matched = g;
+              }
+            }
+          }
+
+          if (matched) {
+            const searchInput = document.getElementById('gpSearchInput');
+            if (searchInput) searchInput.value = matched.gp_name_kn || matched.gp_name_en;
+            currentDistrict = 'ALL';
+            currentTaluk = 'ALL';
+            currentSearch = (matched.gp_name_kn || matched.gp_name_en || '').toLowerCase();
+            applyFilters();
+            openGpModal(matched.gp_id);
+          } else {
+            alert('ನಿಮ್ಮ ಸ್ಥಳಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಕಂಡುಬಂದಿಲ್ಲ.');
+          }
+        },
+        (err) => {
+          if (btn) btn.innerHTML = origHtml;
+          alert('ಸ್ಥಳ ಪತ್ತೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಹುಡುಕಾಟ ಪೆಟ್ಟಿಗೆಯಲ್ಲಿ ನಿಮ್ಮ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಹೆಸರು ಟೈಪ್ ಮಾಡಿ.');
+        },
+        { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+      );
     }
 
     function populateDistricts() {
@@ -1708,7 +1806,11 @@
             (g.taluk_name_kn || '') + ' ' +
             (g.taluk_name_en || '') + ' ' +
             (g.district_name_kn || '') + ' ' +
-            (g.district_name_en || '')
+            (g.district_name_en || '') + ' ' +
+            (g.pin_code || '') + ' ' +
+            (g.lgd_code || '') + ' ' +
+            (g.pdo_name || '') + ' ' +
+            (g.ac_name_kn || '')
           ).toLowerCase();
           if (!str.includes(currentSearch)) return false;
         }
@@ -1754,17 +1856,23 @@
               ${g.total_staff ? `<span class="staff-count-pill">👥 ${g.total_staff} ಸಿಬ್ಬಂದಿ</span>` : ''}
             </div>
 
-            <h3 class="gp-title">${titleName}</h3>
+            <h3 class="gp-title">${titleName} <span style="font-size:13px; font-weight:700; color:#64748B;">(${g.gp_name_en || ''})</span></h3>
 
             <div class="gp-meta">
               <div class="gp-meta-row">
-                <span class="meta-lbl">ಜಿಲ್ಲೆ:</span>
-                <span class="meta-val">${distName}</span>
+                <span class="meta-lbl">ಜಿಲ್ಲೆ / ತಾಲೂಕು:</span>
+                <span class="meta-val">${distName} · ${talukName}</span>
               </div>
+              ${g.ac_name_kn ? `
               <div class="gp-meta-row">
-                <span class="meta-lbl">ತಾಲೂಕು:</span>
-                <span class="meta-val">${talukName}</span>
-              </div>
+                <span class="meta-lbl">ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ:</span>
+                <span class="meta-val">${g.ac_name_kn} (AC ${g.ac_no || ''})</span>
+              </div>` : ''}
+              ${g.pin_code ? `
+              <div class="gp-meta-row">
+                <span class="meta-lbl">ಪಿನ್ ಕೋಡ್ / LGD:</span>
+                <span class="meta-val">${g.pin_code} · LGD ${g.lgd_code || ''}</span>
+              </div>` : ''}
               ${g.pdo_name ? `
               <div class="gp-meta-row" style="margin-top:2px;">
                 <span class="meta-lbl">PDO ಅಧಿಕಾರಿ:</span>
@@ -1772,9 +1880,14 @@
               </div>` : ''}
             </div>
 
-            <button class="btn-profile" onclick="openGpModal('${g.gp_id}')">
-              👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ ನೋಡಿ →
-            </button>
+            <div style="display:flex; gap:8px; margin-top:auto;">
+              <button class="btn-profile" style="flex:1;" onclick="openGpModal('${g.gp_id}')">
+                👤 PDO & ಸಿಬ್ಬಂದಿ ವಿವರ →
+              </button>
+              <a href="/nanna-sthala?gp=${g.gp_id}" title="K-GIS ನಕ್ಷೆಯಲ್ಲಿ ಗಡಿ ನೋಡಿ" style="background:#ECFDF5; color:#047857; border:1px solid #A7F3D0; padding:10px 12px; border-radius:12px; text-decoration:none; font-weight:800; font-size:13.5px; display:inline-flex; align-items:center; justify-content:center;">
+                🗺️ ನಕ್ಷೆ
+              </a>
+            </div>
           </div>
         `;
       }).join('');
@@ -1812,8 +1925,13 @@
 
         const gpMeta = allGps.find(g => g.gp_id === gpId) || {};
         const nameKn = data?.gp_name_kn || gpMeta.gp_name_kn || gpMeta.gp_name_en || 'ಗ್ರಾಮ ಪಂಚಾಯತ್';
+        const nameEn = data?.gp_name_en || gpMeta.gp_name_en || '';
         const distName = data?.district_name_kn || gpMeta.district_name_kn || 'ಕರ್ನಾಟಕ';
         const talukName = data?.taluk_name_kn || gpMeta.taluk_name_kn || '';
+        const pinCode = data?.pin_code || gpMeta.pin_code || '';
+        const lgdCode = data?.lgd_code || gpMeta.lgd_code || '';
+        const acNameKn = gpMeta.ac_name_kn ? `${gpMeta.ac_name_kn} (AC ${gpMeta.ac_no})` : '';
+        const pcNameKn = gpMeta.pc_name_kn ? `${gpMeta.pc_name_kn} (PC ${gpMeta.pc_no})` : '';
         const staffList = data?.staff || [];
 
         function cleanPhone(raw) {
@@ -1822,15 +1940,16 @@
         }
 
         content.innerHTML = `
-          <div style="margin-bottom:18px; border-bottom:1px solid #F1F5F9; padding-bottom:14px;">
-            <span class="gp-badge" style="margin-bottom:8px;">🌾 ಅಧಿಕೃತ ಗ್ರಾಮ ಪಂಚಾಯತ್ ದಾಖಲೆ</span>
-            <h2 style="font-size:26px; font-weight:900; color:#0F172A; margin:4px 0 2px;">${nameKn} ಗ್ರಾಮ ಪಂಚಾಯತ್</h2>
-            <div style="font-size:15px; font-weight:800; color:#059669;">${distName} ಜಿಲ್ಲೆ · ${talukName} ತಾಲೂಕು</div>
+          <div style="margin-bottom:16px; border-bottom:1px solid #F1F5F9; padding-bottom:14px;">
+            <span class="gp-badge" style="margin-bottom:8px;">🌾 ಅಧಿಕೃತ ಗ್ರಾಮ ಪಂಚಾಯತ್ ದಾಖಲೆ (LGD: ${lgdCode || '-'})</span>
+            <h2 style="font-size:25px; font-weight:900; color:#0F172A; margin:4px 0 2px;">${nameKn} ಗ್ರಾಮ ಪಂಚಾಯತ್ ${nameEn ? `<span style="font-size:15px; color:#64748B;">(${nameEn})</span>` : ''}</h2>
+            <div style="font-size:14.5px; font-weight:800; color:#059669;">${distName} ಜಿಲ್ಲೆ · ${talukName} ತಾಲೂಕು ${pinCode ? `· ಪಿನ್: ${pinCode}` : ''}</div>
+            ${acNameKn ? `<div style="font-size:13px; font-weight:700; color:#475569; margin-top:4px;">🗳️ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ: ${acNameKn} ${pcNameKn ? `· ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ: ${pcNameKn}` : ''}</div>` : ''}
           </div>
 
           <!-- Staff Directory & Direct Call Action -->
-          <h4 style="font-size:16px; font-weight:900; margin:18px 0 12px; color:#1E293B; display:flex; align-items:center; gap:6px;">
-            👥 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಅಧಿಕೃತ ಸಿಬ್ಬಂದಿ ವರ್ಗ:
+          <h4 style="font-size:16px; font-weight:900; margin:16px 0 12px; color:#1E293B; display:flex; align-items:center; gap:6px;">
+            👥 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಅಧಿಕೃತ ಸಿಬ್ಬಂದಿ ವರ್ಗ (${staffList.length}):
           </h4>
           ${staffList.length > 0 ? `
             <div style="display:flex; flex-direction:column; gap:10px; max-height:320px; overflow-y:auto; padding-right:4px;">
@@ -1869,9 +1988,12 @@
             </div>
           `}
 
-          <div style="margin-top:22px; display:flex; gap:10px;">
+          <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="/nanna-sthala?gp=${gpId}" style="flex:1; background:#ECFDF5; color:#047857; border:1.5px solid #6EE7B7; padding:12px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; text-align:center;">
+              🗺️ ನಕ್ಷೆಯಲ್ಲಿ K-GIS ಗಡಿ & ಶಾಸಕರ ವಿವರ ನೋಡಿ →
+            </a>
             <a href="https://panchatantra.karnataka.gov.in/USER_MODULE" target="_blank" rel="noopener" style="flex:1; background:linear-gradient(135deg, #059669 0%, #047857 100%); color:#FFF; padding:12px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; text-align:center; box-shadow:0 4px 12px rgba(5,150,105,0.25);">
-              🌾 ಪಂಚತಂತ್ರ ಅಧಿಕೃತ ಪೋರ್ಟಲ್ ಭೇಟಿ ನೀಡಿ →
+              🌾 ಪಂಚತಂತ್ರ ಪೋರ್ಟಲ್ ಭೇಟಿ ನೀಡಿ →
             </a>
           </div>
         `;

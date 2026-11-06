@@ -530,9 +530,13 @@
           <span class="h-lbl">🗺️ ಜಿಲ್ಲೆ:</span>
           <span class="h-val" id="resDistrict">ಬೆಂಗಳೂರು ನಗರ (Bengaluru Urban)</span>
         </div>
+        <div class="h-row" id="resPinRow" style="display:none;">
+          <span class="h-lbl">📮 ಪಿನ್ ಕೋಡ್ / LGD ಕೋಡ್:</span>
+          <span class="h-val" id="resPinLgd">-</span>
+        </div>
       </div>
 
-      <!-- PDO Officer Info Box -->
+      <!-- PDO Officer & Full GP Staff Box -->
       <div class="pdo-info-box" id="resPdoBox" style="display:none;">
         <div class="pdo-title">
           <span id="resPdoRoleLabel">👤 ಗ್ರಾಮ ಪಂಚಾಯತ್ PDO ಅಧಿಕಾರಿ:</span>
@@ -543,24 +547,28 @@
             📞 ಕರೆ ಮಾಡಿ
           </a>
         </div>
+        <div id="resGpStaffContainer" style="display:none; margin-top:8px; padding-top:8px; border-top:1px dashed #6EE7B7;">
+          <div style="font-size:12.5px; font-weight:800; color:#065F46; margin-bottom:6px;" id="resGpStaffHeader">👥 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಎಲ್ಲಾ ಸಿಬ್ಬಂದಿ ವಿವರ:</div>
+          <div id="resGpStaffList" style="display:flex; flex-direction:column; gap:6px; max-height:210px; overflow-y:auto; padding-right:4px;"></div>
+        </div>
       </div>
 
       <div class="ward-highlight-box" id="resHighlightMsg" style="display:none;">
-        <span>✅ ಈ ಸ್ಥಳವು ಅಧಿಕೃತ K-GIS ಗಡಿ ಹಾಗೂ ಪಂಚತಂತ್ರ ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ.</span>
+        <span id="resHighlightText">✅ ಈ ಸ್ಥಳವು ಅಧಿಕೃತ K-GIS ಗಡಿ ಹಾಗೂ ಪಂಚತಂತ್ರ ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ.</span>
       </div>
 
       <div class="action-buttons">
         <a href="/gram-panchayat" class="btn-action" id="btnActionGp">
-          <span>🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಪೋರ್ಟಲ್</span>
+          <span id="btnActionGpText">🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಪೋರ್ಟಲ್</span>
         </a>
         <a href="/mla-mp" class="btn-action" id="btnActionMla">
-          <span>👥 MLA & MP ಪಟ್ಟಿ</span>
+          <span id="btnActionMlaText">👥 MLA & MP ಪಟ್ಟಿ</span>
         </a>
       </div>
 
       <div class="source-tag">
         <span id="resSource">ಮಾಹಿತಿ ಮೂಲ: ಅಧಿಕೃತ K-GIS (KSRSAC) & ಪಂಚತಂತ್ರ 2.0</span>
-        <span id="resDate">ನವೀಕರಣ: 23-08-2026</span>
+        <span id="resDate">ನವೀಕರಣ: 2026</span>
       </div>
     </div>
   </main>
@@ -573,6 +581,7 @@
     let map = null;
     let userMarker = null;
     let selectedPolygonLayer = null;
+    let secondaryPolygonLayer = null;
     let kgisGpLayer = null;
     let kgisVillageLayer = null;
     let wardsGeoData = null;
@@ -587,12 +596,15 @@
       'GADAG': 'ಗದಗ', 'DHARWAD': 'ಧಾರವಾಡ', 'UTTARA KANNADA': 'ಉತ್ತರ ಕನ್ನಡ', 'HAVERI': 'ಹಾವೇರಿ',
       'BELLARY': 'ಬಳ್ಳಾರಿ', 'BALLARI': 'ಬಳ್ಳಾರಿ', 'VIJAYANAGARA': 'ವಿಜಯನಗರ', 'CHITRADURGA': 'ಚಿತ್ರದುರ್ಗ',
       'DAVANAGERE': 'ದಾವಣಗೆರೆ', 'SHIMOGA': 'ಶಿವಮೊಗ್ಗ', 'SHIVAMOGGA': 'ಶಿವಮೊಗ್ಗ', 'UDUPI': 'ಉಡುಪಿ',
-      'CHIKMAGALUR': 'ಚಿಕ್ಕಮಗಳೂರು', 'CHIKKAMAGALURU': 'ಚಿಕ್ಕಮಗಳೂರು', 'DAKSHINA KANNADA': 'ದಕ್ಷಿಣ ಕನ್ನಡ',
-      'TUMKUR': 'ತುಮಕೂರು', 'TUMAKURU': 'ತುಮಕೂರು', 'KOLAR': 'ಕೋಲಾರ', 'CHIKKABALLAPURA': 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ',
+      'CHIKMAGALUR': 'ಚಿಕ್ಕಮಗಳೂರು', 'CHIKKAMAGALURU': 'ಚಿಕ್ಕಮಗಳೂರು', 'CHIKKMAGALUR': 'ಚಿಕ್ಕಮಗಳೂರು',
+      'DAKSHINA KANNADA': 'ದಕ್ಷಿಣ ಕನ್ನಡ', 'TUMKUR': 'ತುಮಕೂರು', 'TUMAKURU': 'ತುಮಕೂರು',
+      'KOLAR': 'ಕೋಲಾರ', 'CHIKKABALLAPURA': 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ', 'CHIKKABALLAPUR': 'ಚಿಕ್ಕಬಳ್ಳಾಪುರ',
       'BANGALORE RURAL': 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ', 'BENGALURU RURAL': 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ',
-      'BANGALORE': 'ಬೆಂಗಳೂರು ನಗರ', 'BENGALURU URBAN': 'ಬೆಂಗಳೂರು ನಗರ', 'MANDYA': 'ಮಂಡ್ಯ',
-      'HASSAN': 'ಹಾಸನ', 'KODAGU': 'ಕೊಡಗು', 'MYSORE': 'ಮೈಸೂರು', 'MYSURU': 'ಮೈಸೂರು',
-      'CHAMARAJANAGAR': 'ಚಾಮರಾಜನಗರ', 'CHAMARAJANAGARA': 'ಚಾಮರಾಜನಗರ', 'RAMANAGARA': 'ರಾಮನಗರ'
+      'BANGALORE': 'ಬೆಂಗಳೂರು ನಗರ', 'BENGALURU URBAN': 'ಬೆಂಗಳೂರು ನಗರ',
+      'B.B.M.P(NORTH)': 'ಬೆಂಗಳೂರು ನಗರ', 'B.B.M.P(CENTRAL)': 'ಬೆಂಗಳೂರು ನಗರ', 'B.B.M.P(SOUTH)': 'ಬೆಂಗಳೂರು ನಗರ',
+      'MANDYA': 'ಮಂಡ್ಯ', 'HASSAN': 'ಹಾಸನ', 'KODAGU': 'ಕೊಡಗು', 'MYSORE': 'ಮೈಸೂರು', 'MYSURU': 'ಮೈಸೂರು',
+      'CHAMARAJANAGAR': 'ಚಾಮರಾಜನಗರ', 'CHAMARAJANAGARA': 'ಚಾಮರಾಜನಗರ', 'CHAMARAJNAGAR': 'ಚಾಮರಾಜನಗರ',
+      'RAMANAGARA': 'ರಾಮನಗರ', 'RAMANAGARAM': 'ರಾಮನಗರ'
     };
 
     function normalizeStr(s) {
@@ -603,37 +615,23 @@
     function normalizeKn(s) {
       if (!s) return '';
       return s
-        .replace(/[\u0CBE\u0CBF\u0CC0\u0CC1\u0CC2\u0CC3\u0CC4\u0CC6\u0CC7\u0CC8\u0CCA\u0CCB\u0CCC\u0CCD]/g, '')
+        .replace(/[\u0CBE\u0CBF\u0CC0\u0CC1\u0CC2\u0CC3\u0CC4\u0CC6\u0CC7\u0CC8\u0CCA\u0CCB\u0CCC\u0CCD\u200C\u200D]/g, '')
         .replace(/\s+/g, '');
     }
 
-    function levenshtein(a, b) {
-      const an = a ? a.length : 0;
-      const bn = b ? b.length : 0;
-      if (an === 0) return bn;
-      if (bn === 0) return an;
-      const matrix = [];
-      for (let i = 0; i <= bn; i++) matrix[i] = [i];
-      for (let j = 0; j <= an; j++) matrix[0][j] = j;
-      for (let i = 1; i <= bn; i++) {
-        for (let j = 1; j <= an; j++) {
-          if (b.charAt(i - 1) === a.charAt(j - 1)) {
-            matrix[i][j] = matrix[i - 1][j - 1];
-          } else {
-            matrix[i][j] = Math.min(
-              matrix[i - 1][j - 1] + 1,
-              matrix[i][j - 1] + 1,
-              matrix[i - 1][j] + 1
-            );
-          }
-        }
-      }
-      return matrix[bn][an];
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
       initLeafletMap();
       await preloadDatasets();
+      handleInitialUrlOrDefault();
     });
 
     function initLeafletMap() {
@@ -678,37 +676,39 @@
 
       map.on('click', (e) => {
         const { lat, lng } = e.latlng;
-        resolveLocation(lat, lng, 'ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾದ ಸ್ಥಳ');
+        resolveLocation(lat, lng, 'ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾದ ಸ್ಥಳ', null, null, 'map');
       });
     }
 
     async function preloadDatasets() {
-      try {
-        const res = await fetch('/data/gis/bengaluru_wards.geojson');
-        if (res.ok) wardsGeoData = await res.json();
-      } catch(e){}
+      await Promise.all([
+        fetch('/data/gis/bengaluru_wards.geojson').then(r => r.ok ? r.json() : null).then(d => { if (d) wardsGeoData = d; }).catch(() => {}),
+        fetch('/data/gis/assembly_constituencies.geojson').then(r => r.ok ? r.json() : null).then(d => { if (d) acGeoData = d; }).catch(() => {}),
+        fetch('/data/gis/representatives_catalog.json?v=20261106').then(r => r.ok ? r.json() : null).then(d => { if (d) repsCatalog = d; }).catch(() => {}),
+        fetch('/data/panchatantra/panchatantra_master.json?v=20261106').then(r => r.ok ? r.json() : null).then(d => { if (d && d.gram_panchayats) gpMasterData = d.gram_panchayats; }).catch(() => {})
+      ]);
+    }
 
-      try {
-        const res = await fetch('/data/gis/assembly_constituencies.geojson');
-        if (res.ok) acGeoData = await res.json();
-      } catch(e){}
+    function handleInitialUrlOrDefault() {
+      const params = new URLSearchParams(window.location.search);
+      const gpParam = params.get('gp') || params.get('lgd');
+      const latParam = parseFloat(params.get('lat'));
+      const lngParam = parseFloat(params.get('lng'));
 
-      try {
-        const res = await fetch('/data/gis/representatives_catalog.json');
-        if (res.ok) repsCatalog = await res.json();
-      } catch(e){}
-
-      try {
-        const res = await fetch('/data/panchatantra/panchatantra_master.json');
-        if (res.ok) {
-          const d = await res.json();
-          gpMasterData = d.gram_panchayats || [];
+      if (gpParam && gpMasterData.length > 0) {
+        const found = gpMasterData.find(g => String(g.gp_id) === gpParam || String(g.lgd_code) === gpParam);
+        if (found) {
+          selectGpFromMaster(found);
+          return;
         }
-      } catch(e){}
+      }
+      if (!isNaN(latParam) && !isNaN(lngParam)) {
+        resolveLocation(latParam, lngParam, params.get('label') || 'ಆಯ್ಕೆಮಾಡಿದ ಸ್ಥಳ', null, null, 'url');
+      }
     }
 
     // ─────────────────────────────────────────────────────────────
-    // Universal Multi-Source Search (5,935 GPs + Wards + Places)
+    // Universal Multi-Source Search (5,935 GPs + 224 ACs + 369 Wards + Villages)
     // ─────────────────────────────────────────────────────────────
     let searchDebounce = null;
 
@@ -734,38 +734,57 @@
       const qNorm = normalizeStr(q);
       const qKn = normalizeKn(q);
 
-      // 1. Search 5,935 Gram Panchayats Master
-      const matchedGps = [];
+      // 1. Search 5,935 Gram Panchayats Master (prioritizing exact/prefix GP name matches, then taluk/pincode)
+      const exactGps = [];
+      const partialGps = [];
       if (gpMasterData.length > 0) {
         for (const gp of gpMasterData) {
           const en = normalizeStr(gp.gp_name_en);
           const kn = normalizeKn(gp.gp_name_kn);
           const tEn = normalizeStr(gp.taluk_name_en);
           const tKn = normalizeKn(gp.taluk_name_kn);
+          const pin = String(gp.pin_code || '');
 
-          if (en.includes(qNorm) || kn.includes(qKn) || 
-              (qNorm.length >= 4 && (tEn.includes(qNorm) || tKn.includes(qKn)))) {
-            matchedGps.push(gp);
-            if (matchedGps.length >= 8) break;
+          if ((qNorm && (en === qNorm || en.startsWith(qNorm))) || (qKn && (kn === qKn || kn.startsWith(qKn))) || (q.length === 6 && pin === q)) {
+            exactGps.push(gp);
+          } else if ((qNorm && en.includes(qNorm)) || (qKn && kn.includes(qKn)) ||
+                     (qNorm.length >= 4 && tEn.includes(qNorm)) || (qKn.length >= 3 && tKn.includes(qKn))) {
+            partialGps.push(gp);
+          }
+          if (exactGps.length >= 8) break;
+        }
+      }
+      const matchedGps = [...exactGps, ...partialGps].slice(0, 8);
+
+      // 2. Search 224 Assembly Constituencies
+      const matchedACs = [];
+      if (repsCatalog && repsCatalog.mlas) {
+        for (const mla of Object.values(repsCatalog.mlas)) {
+          const acEn = normalizeStr(mla.ac_name_en);
+          const acKn = normalizeKn(mla.ac_name_kn);
+          const mlaKn = normalizeKn(mla.mla_name_kn);
+          if ((qNorm && acEn.includes(qNorm)) || (qKn && (acKn.includes(qKn) || mlaKn.includes(qKn))) || String(mla.ac_no) === q) {
+            matchedACs.push(mla);
+            if (matchedACs.length >= 3) break;
           }
         }
       }
 
-      // 2. Search Bengaluru Wards
+      // 3. Search Bengaluru Wards
       const matchedWards = [];
       if (wardsGeoData && wardsGeoData.features) {
         for (const w of wardsGeoData.features) {
           const p = w.properties;
           const wNameEn = normalizeStr(p.ward_name_en);
           const wNameKn = normalizeKn(p.ward_name_kn);
-          if (wNameEn.includes(qNorm) || wNameKn.includes(qKn) || String(p.ward_number) === q) {
+          if ((qNorm && wNameEn.includes(qNorm)) || (qKn && wNameKn.includes(qKn)) || String(p.ward_number) === q) {
             matchedWards.push(w);
             if (matchedWards.length >= 4) break;
           }
         }
       }
 
-      // Render Suggestions
+      // Render GP Suggestions
       if (matchedGps.length > 0) {
         const cat = document.createElement('div');
         cat.className = 'sug-category';
@@ -775,10 +794,11 @@
         matchedGps.forEach(gp => {
           const item = document.createElement('div');
           item.className = 'suggestion-item';
+          const acLabel = gp.ac_name_kn ? ` · ${gp.ac_name_kn} ಕ್ಷೇತ್ರ` : '';
           item.innerHTML = `
             <div class="sug-left">
               <span class="sug-title">🌾 ${gp.gp_name_kn} (${gp.gp_name_en})</span>
-              <span class="sug-sub">${gp.taluk_name_kn} ತಾಲೂಕು · ${gp.district_name_kn} ಜಿಲ್ಲೆ · ${gp.pdo_role}: ${gp.pdo_name || 'ಲಭ್ಯವಿದೆ'} (${gp.pdo_phone || '-'})</span>
+              <span class="sug-sub">${gp.taluk_name_kn} ತಾಲೂಕು · ${gp.district_name_kn} ಜಿಲ್ಲೆ${acLabel} · PDO: ${gp.pdo_name || 'ಲಭ್ಯವಿದೆ'} (${gp.pdo_phone || '-'})</span>
             </div>
             <span class="sug-tag sug-tag-gp">GP</span>
           `;
@@ -790,6 +810,32 @@
         });
       }
 
+      // Render AC Suggestions
+      if (matchedACs.length > 0) {
+        const cat = document.createElement('div');
+        cat.className = 'sug-category';
+        cat.textContent = '🗳️ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳು (Assembly Constituencies)';
+        sugBox.appendChild(cat);
+
+        matchedACs.forEach(mla => {
+          const item = document.createElement('div');
+          item.className = 'suggestion-item';
+          item.innerHTML = `
+            <div class="sug-left">
+              <span class="sug-title">🗳️ ${mla.ac_name_kn} (${mla.ac_name_en} - AC ${mla.ac_no})</span>
+              <span class="sug-sub">ಶಾಸಕರು: ${mla.mla_name_kn} (${mla.party_kn}) · ${mla.district_kn} ಜಿಲ್ಲೆ</span>
+            </div>
+            <span class="sug-tag">AC ${mla.ac_no}</span>
+          `;
+          item.onclick = () => {
+            sugBox.style.display = 'none';
+            selectAcByNumber(mla.ac_no);
+          };
+          sugBox.appendChild(item);
+        });
+      }
+
+      // Render Ward Suggestions
       if (matchedWards.length > 0) {
         const cat = document.createElement('div');
         cat.className = 'sug-category';
@@ -815,14 +861,14 @@
         });
       }
 
-      // 3. Fallback OpenStreetMap Nominatim Geocoding item
+      // 4. Fallback K-GIS Village / OpenStreetMap Search item
       const geoItem = document.createElement('div');
       geoItem.className = 'suggestion-item';
       geoItem.style.background = '#F8FAFC';
       geoItem.innerHTML = `
         <div class="sug-left">
-          <span class="sug-title" style="color:#0F172A;">🔍 "${q}" ನಕ್ಷೆಯಲ್ಲಿ ಹುಡುಕಿ (OpenStreetMap)</span>
-          <span class="sug-sub">ರಸ್ತೆ, ಕಟ್ಟಡ ಅಥವಾ ಇತರ ಸ್ಥಳದ ಹೆಸರು</span>
+          <span class="sug-title" style="color:#0F172A;">🔍 "${q}" ಗ್ರಾಮ / ಸ್ಥಳವನ್ನು ನಕ್ಷೆಯಲ್ಲಿ ಹುಡುಕಿ (K-GIS & OSM)</span>
+          <span class="sug-sub">ಯಾವುದೇ ಕಂದಾಯ ಗ್ರಾಮ, ರಸ್ತೆ ಅಥವಾ ಬಡಾವಣೆಯ ಹೆಸರು</span>
         </div>
         <span class="sug-tag">MAP</span>
       `;
@@ -842,7 +888,7 @@
 
       const qNorm = normalizeStr(q);
       const qKn = normalizeKn(q);
-      const foundGp = gpMasterData.find(g => normalizeStr(g.gp_name_en) === qNorm || normalizeKn(g.gp_name_kn) === qKn);
+      const foundGp = gpMasterData.find(g => (qNorm && normalizeStr(g.gp_name_en) === qNorm) || (qKn && normalizeKn(g.gp_name_kn) === qKn));
       
       if (foundGp) {
         selectGpFromMaster(foundGp);
@@ -853,21 +899,36 @@
     }
 
     async function selectGpFromMaster(gp) {
-      document.getElementById('gisSearchInput').value = `${gp.gp_name_kn} (${gp.taluk_name_kn} ತಾಲೂಕು)`;
-      
-      const qStr = `${gp.gp_name_en}, ${gp.taluk_name_en}, Karnataka, India`;
+      document.getElementById('gisSearchInput').value = `${gp.gp_name_kn} (${gp.taluk_name_kn} ತಾಲೂಕು, ${gp.district_name_kn} ಜಿಲ್ಲೆ)`;
+
+      // Use authoritative K-GIS GP centroid stored directly in panchatantra_master.json
+      if (typeof gp.lat === 'number' && typeof gp.lng === 'number' && !isNaN(gp.lat) && !isNaN(gp.lng)) {
+        resolveLocation(gp.lat, gp.lng, gp.gp_name_kn, null, gp, 'gp');
+        return;
+      }
+
+      // Secondary fallback: query K-GIS GP_Boundary by LGD code
+      if (gp.lgd_code) {
+        const kgisFeat = await queryKgisGpByLgd(gp.lgd_code);
+        if (kgisFeat && kgisFeat.geometry && kgisFeat.geometry.rings && kgisFeat.geometry.rings[0]) {
+          const ring = kgisFeat.geometry.rings[0];
+          const lng = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+          const lat = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+          resolveLocation(lat, lng, gp.gp_name_kn, null, gp, 'gp');
+          return;
+        }
+      }
+
+      // Tertiary fallback: OpenStreetMap Nominatim by taluk + district
+      const qStr = `${gp.taluk_name_en}, ${gp.district_name_en}, Karnataka, India`;
       try {
         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(qStr)}&limit=1`);
         const data = await res.json();
         if (data && data.length > 0) {
-          const lat = parseFloat(data[0].lat);
-          const lng = parseFloat(data[0].lon);
-          resolveLocation(lat, lng, gp.gp_name_kn, null, gp);
+          resolveLocation(parseFloat(data[0].lat), parseFloat(data[0].lon), gp.gp_name_kn, null, gp, 'gp');
           return;
         }
       } catch(e){}
-
-      resolveLocation(15.4326, 76.5312, gp.gp_name_kn, null, gp);
     }
 
     function selectGpByName(gpEn, talukEn) {
@@ -879,34 +940,82 @@
       }
     }
 
+    function selectAcByNumber(acNo) {
+      if (!acGeoData || !acGeoData.features) return;
+      const feat = acGeoData.features.find(f => Number(f.properties.AC_NO) === Number(acNo));
+      if (!feat) return;
+      const geom = feat.geometry;
+      const coords = geom.type === 'MultiPolygon' ? geom.coordinates[0][0] : geom.coordinates[0];
+      const lng = coords.reduce((s, p) => s + p[0], 0) / coords.length;
+      const lat = coords.reduce((s, p) => s + p[1], 0) / coords.length;
+      const mla = repsCatalog?.mlas?.[String(acNo)];
+      resolveLocation(lat, lng, mla?.ac_name_kn || feat.properties.AC_NAME, null, null, 'ac');
+    }
+
     function selectWardDirect(w) {
       const p = w.properties;
       const geom = w.geometry;
       let centerLat = 12.9716, centerLng = 77.5946;
       if (geom && geom.coordinates && geom.coordinates[0]) {
-        const coords = geom.coordinates[0];
-        centerLng = (coords[0][0] + coords[2][0]) / 2;
-        centerLat = (coords[0][1] + coords[2][1]) / 2;
+        const coords = geom.type === 'MultiPolygon' ? geom.coordinates[0][0] : geom.coordinates[0];
+        centerLng = coords.reduce((s, pt) => s + pt[0], 0) / coords.length;
+        centerLat = coords.reduce((s, pt) => s + pt[1], 0) / coords.length;
       }
-      resolveLocation(centerLat, centerLng, p.ward_name_kn);
+      resolveLocation(centerLat, centerLng, p.ward_name_kn, null, null, 'ward');
     }
 
     async function executeNominatimSearch(q) {
+      // 1. Try K-GIS Village_Cached search first for English village names
+      const qClean = q.replace(/[^a-zA-Z0-9\s]/g, '').trim().toUpperCase();
+      if (qClean.length >= 3) {
+        try {
+          const vUrl = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/Village_Cached/MapServer/0/query?where=${encodeURIComponent(`UPPER(KGISVillageName) LIKE '%${qClean}%'`)}&outFields=KGISVillageName,LGDGPCode,LGD_VillageCode&returnGeometry=true&maxAllowableOffset=0.002&outSR=4326&resultRecordCount=1&f=json`;
+          const vRes = await fetch(vUrl);
+          if (vRes.ok) {
+            const vData = await vRes.json();
+            if (vData && vData.features && vData.features.length > 0) {
+              const vf = vData.features[0];
+              const ring = vf.geometry?.rings?.[0];
+              if (ring && ring.length > 0) {
+                const lng = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+                const lat = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+                const lgd = String(vf.attributes?.LGDGPCode || '').trim();
+                const matchedGp = lgd ? gpMasterData.find(g => String(g.lgd_code) === lgd) : null;
+                resolveLocation(lat, lng, vf.attributes?.KGISVillageName || q, null, matchedGp, 'search');
+                return;
+              }
+            }
+          }
+        } catch(e){}
+      }
+
+      // 2. Try OpenStreetMap Nominatim with Karnataka bounding box
       try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q + ', Karnataka, India')}&addressdetails=1&limit=1`);
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q + ', Karnataka, India')}&addressdetails=1&accept-language=kn,en&limit=1`);
         const data = await res.json();
         if (data && data.length > 0) {
           const lat = parseFloat(data[0].lat);
           const lng = parseFloat(data[0].lon);
           const addr = data[0].address || {};
           const locName = addr.village || addr.suburb || addr.town || addr.city || data[0].display_name.split(',')[0];
-          resolveLocation(lat, lng, locName, addr);
-        } else {
-          alert('ಈ ಸ್ಥಳ ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು ಸರಿಯಾದ ಗ್ರಾಮ ಪಂಚಾಯತ್ ಅಥವಾ ನಗರದ ಹೆಸರು ನಮೂದಿಸಿ.');
+          resolveLocation(lat, lng, locName, addr, null, 'search');
+          return;
         }
-      } catch (err) {
-        alert('ಹುಡುಕಾಟದಲ್ಲಿ ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ನಕ್ಷೆಯ ಮೇಲೆ ನೇರವಾಗಿ ಕ್ಲಿಕ್ ಮಾಡಿ.');
+      } catch (err) {}
+
+      // 3. Fallback fuzzy GP/Taluk search across gpMasterData
+      const qNorm = normalizeStr(q);
+      const qKn = normalizeKn(q);
+      const fuzzyGp = gpMasterData.find(g =>
+        (qNorm && (normalizeStr(g.gp_name_en).includes(qNorm) || normalizeStr(g.taluk_name_en).includes(qNorm))) ||
+        (qKn && (normalizeKn(g.gp_name_kn).includes(qKn) || normalizeKn(g.taluk_name_kn).includes(qKn)))
+      );
+      if (fuzzyGp) {
+        selectGpFromMaster(fuzzyGp);
+        return;
       }
+
+      alert('ಈ ಸ್ಥಳ ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು ಸರಿಯಾದ ಗ್ರಾಮ ಪಂಚಾಯತ್, ಗ್ರಾಮ ಅಥವಾ ನಗರದ ಹೆಸರು ನಮೂದಿಸಿ.');
     }
 
     function getUserGPSLocation() {
@@ -917,14 +1026,14 @@
 
       const btn = document.querySelector('.btn-gps');
       const origText = btn.innerHTML;
-      btn.innerHTML = '<span>⏳ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗುತ್ತಿದೆ...</span>';
+      btn.innerHTML = '<span>⏳ ನಿಮ್ಮ ನಿಖರ GPS ಸ್ಥಳ ಮತ್ತು ಗ್ರಾ.ಪಂ. ಪತ್ತೆ ಮಾಡಲಾಗುತ್ತಿದೆ...</span>';
 
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           btn.innerHTML = origText;
           const lat = pos.coords.latitude;
           const lng = pos.coords.longitude;
-          resolveLocation(lat, lng, '📍 ನಿಮ್ಮ ಪ್ರಸ್ತುತ GPS ಸ್ಥಳ');
+          resolveLocation(lat, lng, 'ನಿಮ್ಮ ಪ್ರಸ್ತುತ GPS ಸ್ಥಳ', null, null, 'gps');
         },
         (err) => {
           btn.innerHTML = origText;
@@ -934,13 +1043,13 @@
             alert('ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸ್ಥಳ ಪತ್ತೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.');
           }
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
       );
     }
 
     function searchCoordinates(lat, lng, label) {
       document.getElementById('searchSuggestions').style.display = 'none';
-      resolveLocation(lat, lng, label);
+      resolveLocation(lat, lng, label, null, null, 'chip');
     }
 
     function pointInRing(pt, ring) {
@@ -949,7 +1058,7 @@
       for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
         const xi = ring[i][0], yi = ring[i][1];
         const xj = ring[j][0], yj = ring[j][1];
-        const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / ((yj - yi) || 1e-12) + xi);
         if (intersect) inside = !inside;
       }
       return inside;
@@ -968,11 +1077,11 @@
       return false;
     }
 
-    // Query Official K-GIS Village Boundaries (Village_Cached)
+    // Query Official K-GIS Village Boundaries (Village_Cached Layer 0)
     async function queryKgisVillageBoundary(lat, lng) {
       try {
         const geom = encodeURIComponent(JSON.stringify({ x: lng, y: lat, spatialReference: { wkid: 4326 } }));
-        const url = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/Village_Cached/MapServer/0/query?geometry=${geom}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json`;
+        const url = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/Village_Cached/MapServer/0/query?geometry=${geom}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID,KGISVillageID,KGISVillageName,LGDGPCode,LGDGPCode_Secondary,BhoomiVillageCode,LGD_VillageCode&returnGeometry=true&outSR=4326&f=json`;
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json();
@@ -984,11 +1093,11 @@
       return null;
     }
 
-    // Query Official K-GIS GP Boundaries (GP_Boundary)
+    // Query Official K-GIS GP Boundaries by Point (GP_Boundary Layer 0)
     async function queryKgisGpBoundary(lat, lng) {
       try {
         const geom = encodeURIComponent(JSON.stringify({ x: lng, y: lat, spatialReference: { wkid: 4326 } }));
-        const url = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/GP_Boundary/MapServer/0/query?geometry=${geom}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json`;
+        const url = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/GP_Boundary/MapServer/0/query?geometry=${geom}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID,KGISGPID,KGISDistrictCode,KGISGP_DeptCode,KGISGPName&returnGeometry=true&outSR=4326&f=json`;
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json();
@@ -1000,31 +1109,66 @@
       return null;
     }
 
-    async function resolveLocation(lat, lng, label, optAddr = null, optGp = null) {
+    // Query Official K-GIS GP Boundaries by LGD Code (KGISGP_DeptCode)
+    async function queryKgisGpByLgd(lgdCode) {
+      if (!lgdCode) return null;
+      try {
+        const where = encodeURIComponent(`KGISGP_DeptCode='${String(lgdCode).trim()}'`);
+        const url = `https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/GP_Boundary/MapServer/0/query?where=${where}&outFields=OBJECTID,KGISGPID,KGISDistrictCode,KGISGP_DeptCode,KGISGPName&returnGeometry=true&outSR=4326&f=json`;
+        const res = await fetch(url);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.features && data.features.length > 0) {
+            // Merge rings if GP has multiple polygons
+            const allRings = [];
+            data.features.forEach(f => {
+              if (f.geometry && f.geometry.rings) {
+                allRings.push(...f.geometry.rings);
+              }
+            });
+            return {
+              attributes: data.features[0].attributes,
+              geometry: { rings: allRings }
+            };
+          }
+        }
+      } catch(err){}
+      return null;
+    }
+
+    // Find nearest Gram Panchayat from gpMasterData using Haversine distance
+    function findNearestGp(lat, lng, maxKm = 25, filterDistrictEn = '') {
+      if (!gpMasterData || gpMasterData.length === 0) return null;
+      let bestGp = null;
+      let bestDist = Infinity;
+      const distPrefix = filterDistrictEn ? filterDistrictEn.slice(0, 4).toUpperCase() : '';
+
+      for (const g of gpMasterData) {
+        if (typeof g.lat !== 'number' || typeof g.lng !== 'number') continue;
+        if (distPrefix && g.district_name_en && !g.district_name_en.toUpperCase().includes(distPrefix)) continue;
+        const d = haversineKm(lat, lng, g.lat, g.lng);
+        if (d < bestDist) {
+          bestDist = d;
+          bestGp = g;
+        }
+      }
+      if (!bestGp && distPrefix) {
+        return findNearestGp(lat, lng, maxKm, '');
+      }
+      return bestDist <= maxKm ? bestGp : null;
+    }
+
+    async function resolveLocation(lat, lng, label, optAddr = null, optGp = null, sourceType = 'map') {
       if (userMarker) map.removeLayer(userMarker);
       userMarker = L.marker([lat, lng], { title: label || 'ಆಯ್ಕೆಮಾಡಿದ ಸ್ಥಳ' }).addTo(map);
       userMarker.bindPopup(`<div style="font-weight:800; font-size:14px; font-family:'Anek Kannada',sans-serif; color:#064E3B; padding:2px 4px;">📍 ${label || 'ಆಯ್ಕೆಮಾಡಿದ ಸ್ಥಳ'}</div>`).openPopup();
       map.setView([lat, lng], 13);
 
-      let addressDetails = optAddr;
-      if (!addressDetails && !optGp) {
-        try {
-          const revRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1`);
-          if (revRes.ok) {
-            const revData = await revRes.json();
-            addressDetails = revData.address || {};
-            if (revData.display_name && (!label || label === 'ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾದ ಸ್ಥಳ')) {
-              label = addressDetails.village || addressDetails.suburb || addressDetails.town || addressDetails.county || revData.display_name.split(',')[0];
-            }
-          }
-        } catch(e){}
-      }
-
       const pt = [lng, lat];
 
-      // 1. Check Bengaluru Delimited Wards
+      // 1. Check Bengaluru Delimited Wards (369 GBA Wards)
       let matchedWard = null;
-      if (wardsGeoData && wardsGeoData.features) {
+      if (!optGp && wardsGeoData && wardsGeoData.features) {
         for (const feat of wardsGeoData.features) {
           if (isPointInGeometry(pt, feat.geometry)) {
             matchedWard = feat;
@@ -1036,64 +1180,192 @@
       // 2. Check 224 Assembly Constituencies
       let matchedAC = null;
       if (acGeoData && acGeoData.features) {
-        for (const feat of acGeoData.features) {
-          if (isPointInGeometry(pt, feat.geometry)) {
-            matchedAC = feat;
-            break;
+        if (optGp && optGp.ac_no) {
+          matchedAC = acGeoData.features.find(f => Number(f.properties.AC_NO) === Number(optGp.ac_no)) || null;
+        }
+        if (!matchedAC) {
+          for (const feat of acGeoData.features) {
+            if (isPointInGeometry(pt, feat.geometry)) {
+              matchedAC = feat;
+              break;
+            }
           }
         }
       }
 
-      // 3. Query Official K-GIS Village & GP Boundary APIs concurrently
+      // 3. Query Official K-GIS Village & GP Boundary APIs + Reverse Geocoding concurrently
       let villageFeature = null;
       let gpFeature = null;
-      if (!matchedWard && !optGp) {
-        [villageFeature, gpFeature] = await Promise.all([
-          queryKgisVillageBoundary(lat, lng),
-          queryKgisGpBoundary(lat, lng)
-        ]);
-      }
+      let addressDetails = optAddr;
 
-      // Highlight Boundary Polygon on Leaflet
-      if (selectedPolygonLayer) map.removeLayer(selectedPolygonLayer);
-      
-      const activeFeature = villageFeature || gpFeature;
-      if (activeFeature && activeFeature.geometry && activeFeature.geometry.rings) {
-        const geoJsonGeom = {
-          type: 'Feature',
-          properties: activeFeature.attributes,
-          geometry: {
-            type: 'Polygon',
-            coordinates: activeFeature.geometry.rings
-          }
-        };
-        selectedPolygonLayer = L.geoJSON(geoJsonGeom, {
-          style: { color: '#059669', weight: 3.5, fillColor: '#10B981', fillOpacity: 0.28 }
-        }).addTo(map);
-      } else {
-        const highlightGeom = matchedWard ? matchedWard : (matchedAC ? matchedAC : null);
-        if (highlightGeom) {
-          selectedPolygonLayer = L.geoJSON(highlightGeom, {
-            style: { color: '#059669', weight: 3, fillColor: '#10B981', fillOpacity: 0.22 }
-          }).addTo(map);
+      const tasks = [];
+      if (!matchedWard) {
+        tasks.push(queryKgisVillageBoundary(lat, lng).then(v => { villageFeature = v; }));
+        if (optGp && optGp.lgd_code) {
+          tasks.push(queryKgisGpByLgd(optGp.lgd_code).then(g => { gpFeature = g; }));
+        } else {
+          tasks.push(queryKgisGpBoundary(lat, lng).then(g => { gpFeature = g; }));
         }
       }
+      if (!addressDetails && !optGp && !matchedWard) {
+        tasks.push(
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1&accept-language=kn,en`)
+            .then(r => r.ok ? r.json() : null)
+            .then(revData => {
+              if (revData) {
+                addressDetails = revData.address || {};
+                if (revData.display_name && (!label || label === 'ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾದ ಸ್ಥಳ' || label === 'ನಿಮ್ಮ ಪ್ರಸ್ತುತ GPS ಸ್ಥಳ')) {
+                  label = addressDetails.village || addressDetails.hamlet || addressDetails.suburb || addressDetails.town || revData.display_name.split(',')[0];
+                }
+              }
+            })
+            .catch(() => {})
+        );
+      }
+      await Promise.all(tasks);
 
-      renderDetails(lat, lng, label, matchedWard, matchedAC, addressDetails, gpFeature, villageFeature, optGp);
+      // If K-GIS LGD query didn't return a feature for optGp, try spatial point query at (lat, lng)
+      if (!matchedWard && !gpFeature) {
+        gpFeature = await queryKgisGpBoundary(lat, lng);
+      }
+
+      // 4. Highlight Official Boundary Polygons on Leaflet Map
+      if (selectedPolygonLayer) { map.removeLayer(selectedPolygonLayer); selectedPolygonLayer = null; }
+      if (secondaryPolygonLayer) { map.removeLayer(secondaryPolygonLayer); secondaryPolygonLayer = null; }
+
+      if (gpFeature && gpFeature.geometry && gpFeature.geometry.rings) {
+        const gpGeoJson = {
+          type: 'Feature',
+          properties: gpFeature.attributes,
+          geometry: {
+            type: 'Polygon',
+            coordinates: gpFeature.geometry.rings
+          }
+        };
+        selectedPolygonLayer = L.geoJSON(gpGeoJson, {
+          style: { color: '#059669', weight: 3.5, fillColor: '#10B981', fillOpacity: 0.24 }
+        }).addTo(map);
+
+        if (villageFeature && villageFeature.geometry && villageFeature.geometry.rings) {
+          const vilGeoJson = {
+            type: 'Feature',
+            properties: villageFeature.attributes,
+            geometry: {
+              type: 'Polygon',
+              coordinates: villageFeature.geometry.rings
+            }
+          };
+          secondaryPolygonLayer = L.geoJSON(vilGeoJson, {
+            style: { color: '#D97706', weight: 2.5, dashArray: '5, 5', fillColor: '#F59E0B', fillOpacity: 0.14 }
+          }).addTo(map);
+        }
+        try {
+          map.fitBounds(selectedPolygonLayer.getBounds(), { padding: [28, 28], maxZoom: 14 });
+        } catch(e){}
+      } else if (villageFeature && villageFeature.geometry && villageFeature.geometry.rings) {
+        const vilGeoJson = {
+          type: 'Feature',
+          properties: villageFeature.attributes,
+          geometry: {
+            type: 'Polygon',
+            coordinates: villageFeature.geometry.rings
+          }
+        };
+        selectedPolygonLayer = L.geoJSON(vilGeoJson, {
+          style: { color: '#059669', weight: 3.5, fillColor: '#10B981', fillOpacity: 0.26 }
+        }).addTo(map);
+        try {
+          map.fitBounds(selectedPolygonLayer.getBounds(), { padding: [28, 28], maxZoom: 14 });
+        } catch(e){}
+      } else if (matchedWard) {
+        selectedPolygonLayer = L.geoJSON(matchedWard, {
+          style: { color: '#059669', weight: 3.5, fillColor: '#10B981', fillOpacity: 0.25 }
+        }).addTo(map);
+        try {
+          map.fitBounds(selectedPolygonLayer.getBounds(), { padding: [28, 28], maxZoom: 15 });
+        } catch(e){}
+      } else if (sourceType === 'ac' && matchedAC) {
+        selectedPolygonLayer = L.geoJSON(matchedAC, {
+          style: { color: '#059669', weight: 3, fillColor: '#10B981', fillOpacity: 0.18 }
+        }).addTo(map);
+        try {
+          map.fitBounds(selectedPolygonLayer.getBounds(), { padding: [24, 24], maxZoom: 12 });
+        } catch(e){}
+      } else {
+        // Clean local GP radius highlight when K-GIS tile/polygon is loading
+        selectedPolygonLayer = L.circle([lat, lng], {
+          radius: 2400,
+          color: '#059669',
+          weight: 3,
+          dashArray: '6, 4',
+          fillColor: '#10B981',
+          fillOpacity: 0.18
+        }).addTo(map);
+      }
+
+      renderDetails(lat, lng, label, matchedWard, matchedAC, addressDetails, gpFeature, villageFeature, optGp, sourceType);
     }
 
-    function renderDetails(lat, lng, label, matchedWard, matchedAC, addressDetails, gpFeature, villageFeature, optGp) {
+    async function loadAndRenderGpFullStaff(gpId) {
+      const container = document.getElementById('resGpStaffContainer');
+      const header = document.getElementById('resGpStaffHeader');
+      const listEl = document.getElementById('resGpStaffList');
+      if (!container || !listEl || !gpId) return;
+
+      try {
+        const res = await fetch(`/data/panchatantra/gps/${gpId}.json`);
+        if (!res.ok) {
+          container.style.display = 'none';
+          return;
+        }
+        const gpDetail = await res.json();
+        const staff = gpDetail.staff || [];
+        if (staff.length === 0) {
+          container.style.display = 'none';
+          return;
+        }
+
+        header.textContent = `👥 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಎಲ್ಲಾ ಸಿಬ್ಬಂದಿ ವಿವರ (${staff.length} ಸಿಬ್ಬಂದಿ):`;
+        listEl.innerHTML = staff.map(s => {
+          const name = (s.emp_name_kn || s.emp_name_en || '-').trim();
+          const role = (s.designation_kn || 'ಸಿಬ್ಬಂದಿ').trim();
+          const phone = (s.mobile_no || '').replace(/[^0-9+]/g, '');
+          return `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.75); border:1px solid #A7F3D0; border-radius:8px; padding:6px 10px; gap:8px;">
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-size:13.5px; font-weight:800; color:#064E3B;">${name}</span>
+                <span style="font-size:11.5px; font-weight:700; color:#047857;">${role}</span>
+              </div>
+              ${phone ? `<a href="tel:${phone}" style="background:#059669; color:#FFF; text-decoration:none; padding:4px 9px; border-radius:6px; font-size:12px; font-weight:800; white-space:nowrap;">📞 ${phone}</a>` : ''}
+            </div>
+          `;
+        }).join('');
+        container.style.display = 'block';
+      } catch (e) {
+        container.style.display = 'none';
+      }
+    }
+
+    function renderDetails(lat, lng, label, matchedWard, matchedAC, addressDetails, gpFeature, villageFeature, optGp, sourceType = 'map') {
+      const badgeEl = document.getElementById('resBadge');
       const titleEl = document.getElementById('resLocationTitle');
       const subEl = document.getElementById('resLocationSub');
       const localBodyEl = document.getElementById('resLocalBody');
       const wardEl = document.getElementById('resWard');
       const zoneEl = document.getElementById('resZone');
       const distEl = document.getElementById('resDistrict');
+      const pinRow = document.getElementById('resPinRow');
+      const pinLgdEl = document.getElementById('resPinLgd');
       const pdoBox = document.getElementById('resPdoBox');
       const pdoRoleLabel = document.getElementById('resPdoRoleLabel');
       const pdoNameEl = document.getElementById('resPdoName');
       const pdoPhoneLink = document.getElementById('resPdoPhoneLink');
+      const gpStaffContainer = document.getElementById('resGpStaffContainer');
       const highlightBox = document.getElementById('resHighlightMsg');
+      const highlightText = document.getElementById('resHighlightText');
+      const btnActionGp = document.getElementById('btnActionGp');
+      const btnActionGpText = document.getElementById('btnActionGpText');
+      const btnActionMla = document.getElementById('btnActionMla');
 
       const repsGrid = document.getElementById('resRepsGrid');
       const mlaNameEl = document.getElementById('resMlaName');
@@ -1104,17 +1376,19 @@
       const mpPartyEl = document.getElementById('resMpParty');
 
       if (matchedWard) {
-        // GBA 5 City Corporations
+        // GBA 5 City Corporations (369 Delimited Wards)
         const p = matchedWard.properties;
+        if (badgeEl) badgeEl.textContent = sourceType === 'gps' ? '📍 ನಿಮ್ಮ ಪ್ರಸ್ತುತ GPS ಸ್ಥಳ (ಬೆಂಗಳೂರು ವಾರ್ಡ್)' : '🏛️ ಬೆಂಗಳೂರು ವಾರ್ಡ್ ಮಾಹಿತಿ (GBA GIS)';
         titleEl.textContent = `${label || p.ward_name_kn}`;
-        subEl.textContent = `${p.district_name_kn} ಜಿಲ್ಲೆ · ${p.taluk_name_kn} ತಾಲೂಕು`;
+        subEl.textContent = `${p.district_name_kn} ಜಿಲ್ಲೆ · ${p.taluk_name_kn} ತಾಲೂಕು · ವಾರ್ಡ್ ಸಂಖ್ಯೆ ${p.ward_number}`;
         localBodyEl.textContent = p.corporation_name_kn;
         wardEl.textContent = `ವಾರ್ಡ್ ${p.ward_number}: ${p.ward_name_kn}`;
         zoneEl.textContent = p.zone_name_kn || '-';
         distEl.textContent = p.district_name_kn;
+        if (pinRow) pinRow.style.display = 'none';
 
         const BENGALURU_AC_TO_PC = {
-          '151': '24', '152': '24', '153': '24', '155': '24', '156': '24', '157': '24', '158': '24', '159': '24',
+          '150': '22', '151': '24', '152': '24', '153': '24', '155': '24', '156': '24', '157': '24', '158': '24', '159': '24',
           '160': '25', '161': '25', '162': '25', '163': '25', '164': '25', '165': '25', '168': '25', '174': '25',
           '166': '26', '167': '26', '169': '26', '170': '26', '171': '26', '172': '26', '173': '26', '175': '26',
           '154': '23', '176': '23', '177': '23'
@@ -1127,120 +1401,166 @@
 
         repsGrid.style.display = 'grid';
         mlaNameEl.textContent = mlaInfo?.mla_name_kn || 'ಶಾಸಕರು';
-        mlaConstEl.textContent = `${p.ac_name_kn} ಕ್ಷೇತ್ರ`;
+        mlaConstEl.textContent = `${mlaInfo?.ac_name_kn || p.ac_name_kn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (AC ${acNo})`;
         mlaPartyEl.textContent = `ಪಕ್ಷ: ${mlaInfo?.party_kn || 'ಕಾಂಗ್ರೆಸ್ (INC)'}`;
         mlaPartyEl.className = 'rep-party ' + ((mlaInfo?.party_en === 'BJP' || mlaInfo?.party_kn?.includes('ಬಿಜೆಪಿ')) ? 'party-bjp' : 'party-inc');
 
         const mpConstName = mpInfo?.name_kn || (pcNo === '24' ? 'ಬೆಂಗಳೂರು ಉತ್ತರ' : pcNo === '25' ? 'ಬೆಂಗಳೂರು ಕೇಂದ್ರ' : pcNo === '26' ? 'ಬೆಂಗಳೂರು ದಕ್ಷಿಣ' : 'ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ');
         mpNameEl.textContent = mpInfo?.mp_kn || 'ಸಂಸದರು';
-        mpConstEl.textContent = `${mpConstName} ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ`;
+        mpConstEl.textContent = `${mpConstName} ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ (PC ${pcNo})`;
         mpPartyEl.textContent = `ಪಕ್ಷ: ${mpInfo?.party_kn || 'ಬಿಜೆಪಿ (BJP)'}`;
         mpPartyEl.className = 'rep-party ' + ((mpInfo?.party_en === 'BJP' || mpInfo?.party_kn?.includes('ಬಿಜೆಪಿ')) ? 'party-bjp' : 'party-inc');
 
         pdoBox.style.display = 'none';
+        if (gpStaffContainer) gpStaffContainer.style.display = 'none';
         highlightBox.style.display = 'flex';
+        if (highlightText) highlightText.textContent = `✅ ಗ್ರೇಟರ್ ಬೆಂಗಳೂರು ಪ್ರಾಧಿಕಾರ (GBA) ಅಧಿಕೃತ ವಾರ್ಡ್ ${p.ward_number} (${p.ward_name_kn}) ಗಡಿ ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ.`;
+        if (btnActionGp) btnActionGp.href = '/civic-finder';
+        if (btnActionGpText) btnActionGpText.textContent = '🏛️ ಬೆಂಗಳೂರು ವಾರ್ಡ್ ಪೋರ್ಟಲ್';
+        if (btnActionMla && mlaInfo?.link) btnActionMla.href = mlaInfo.link;
         return;
       }
 
       if (matchedAC || optGp) {
-        // State-Wide AC + K-GIS / Panchatantra Resolution
         const ap = matchedAC?.properties || {};
         const rawDist = (optGp ? optGp.district_name_en : (ap.DIST_NAME || '')).replace(/[*_]/g, '').trim().toUpperCase();
-        const distKn = DISTRICT_KN_MAP[rawDist] || optGp?.district_name_kn || ap.DIST_NAME;
-        const acName = ap.AC_NAME || optGp?.taluk_name_kn || '';
-        const acNo = String(ap.AC_NO || '62');
-        const pcNo = String(ap.PC_NO || '8');
 
-        // Extract village name from K-GIS Village Boundary or address
-        const villageName = villageFeature?.attributes?.KGISVillageName || label || addressDetails?.village || addressDetails?.suburb || addressDetails?.town || 'ಕರ್ನಾಟಕ ಸ್ಥಳ';
+        // ─────────────────────────────────────────────────────────────
+        // 5-Tier Authoritative Gram Panchayat Resolution
+        // ─────────────────────────────────────────────────────────────
+        let matchedGp = optGp || null;
 
-        let determinedTaluk = optGp?.taluk_name_en || addressDetails?.county || addressDetails?.subdistrict || addressDetails?.town || '';
-        if (determinedTaluk.includes('taluk') || determinedTaluk.includes('Taluk')) {
-          determinedTaluk = determinedTaluk.replace(/taluk/gi, '').trim();
+        // Tier 1: Exact LGD Code from K-GIS GP_Boundary (KGISGP_DeptCode)
+        const kgisDeptCode = String(gpFeature?.attributes?.KGISGP_DeptCode || '').trim();
+        if (!matchedGp && kgisDeptCode && kgisDeptCode !== '0' && gpMasterData.length > 0) {
+          matchedGp = gpMasterData.find(g => String(g.lgd_code) === kgisDeptCode) || null;
         }
 
-        // Match Gram Panchayat:
-        // Priority 1: optGp from direct search
-        let matchedGp = optGp;
-
-        // Priority 2: LGDGPCode from K-GIS Village Boundary
+        // Tier 2: Exact LGD Code from K-GIS Village_Cached (LGDGPCode or LGDGPCode_Secondary)
         const lgdGpCode = String(villageFeature?.attributes?.LGDGPCode || '').trim();
+        const lgdGpSec = String(villageFeature?.attributes?.LGDGPCode_Secondary || '').trim();
         if (!matchedGp && lgdGpCode && lgdGpCode !== '0' && gpMasterData.length > 0) {
-          matchedGp = gpMasterData.find(g => String(g.lgd_code) === lgdGpCode);
+          matchedGp = gpMasterData.find(g => String(g.lgd_code) === lgdGpCode) || null;
+        }
+        if (!matchedGp && lgdGpSec && lgdGpSec !== '0' && gpMasterData.length > 0) {
+          matchedGp = gpMasterData.find(g => String(g.lgd_code) === lgdGpSec) || null;
         }
 
-        // Priority 3: KGISGPName from GP_Boundary
+        // Tier 3: KGISGPName from GP_Boundary (choosing closest by Haversine if multiple share a name)
         const kgisGpName = gpFeature?.attributes?.KGISGPName || '';
         if (!matchedGp && kgisGpName && gpMasterData.length > 0) {
           const kgisNorm = normalizeStr(kgisGpName);
-          matchedGp = gpMasterData.find(g => {
-            return normalizeStr(g.gp_name_en) === kgisNorm && 
-                   g.district_name_en && g.district_name_en.toUpperCase().includes(rawDist.slice(0, 4));
-          });
-        }
-
-        // Priority 4: Phonetic match
-        if (!matchedGp && gpMasterData.length > 0) {
-          const districtGps = gpMasterData.filter(g => g.district_name_en && g.district_name_en.toUpperCase().includes(rawDist.slice(0, 4)));
-
-          if (districtGps.length > 0) {
-            const qNormEn = normalizeStr(villageName);
-            const qNormKn = normalizeKn(villageName);
-
-            matchedGp = districtGps.find(g => {
-              const gNormEn = normalizeStr(g.gp_name_en);
-              const gNormKn = normalizeKn(g.gp_name_kn);
-              return gNormEn === qNormEn || gNormKn === qNormKn ||
-                     (gNormEn && qNormEn && (gNormEn.includes(qNormEn) || qNormEn.includes(gNormEn))) ||
-                     (gNormKn && qNormKn && (gNormKn.includes(qNormKn) || qNormKn.includes(gNormKn)));
-            });
-
-            if (!matchedGp && determinedTaluk) {
-              matchedGp = districtGps.find(g => g.taluk_name_en && g.taluk_name_en.toLowerCase().includes(determinedTaluk.toLowerCase()));
-            }
-
-            if (!matchedGp) matchedGp = districtGps[0];
+          const candidates = gpMasterData.filter(g => normalizeStr(g.gp_name_en) === kgisNorm);
+          if (candidates.length === 1) {
+            matchedGp = candidates[0];
+          } else if (candidates.length > 1) {
+            matchedGp = candidates.reduce((best, cur) =>
+              haversineKm(lat, lng, cur.lat || 0, cur.lng || 0) < haversineKm(lat, lng, best.lat || 0, best.lng || 0) ? cur : best
+            );
           }
         }
 
-        const finalTalukKn = (matchedGp && matchedGp.taluk_name_kn) || (determinedTaluk ? determinedTaluk : acName);
-        const finalGpKn = (matchedGp && matchedGp.gp_name_kn) || (kgisGpName ? kgisGpName : villageName);
+        // Extract village name from K-GIS Village Boundary or reverse geocoding
+        const kgisVillageName = villageFeature?.attributes?.KGISVillageName || '';
+        const villageName = (optGp ? optGp.gp_name_kn : '') || kgisVillageName || label || addressDetails?.village || addressDetails?.hamlet || addressDetails?.suburb || addressDetails?.town || 'ಕರ್ನಾಟಕ ಸ್ಥಳ';
 
-        titleEl.textContent = `${villageName}`;
-        if (userMarker) userMarker.setPopupContent(`<div style="font-weight:800; font-size:14px; font-family:'Anek Kannada',sans-serif; color:#064E3B; padding:2px 4px;">📍 ${villageName}</div>`);
-        subEl.textContent = `${distKn} ಜಿಲ್ಲೆ · ${finalTalukKn} ತಾಲೂಕು`;
-        
-        localBodyEl.textContent = `${finalGpKn} ಗ್ರಾಮ ಪಂಚಾಯತ್`;
-        wardEl.textContent = `${villageName} ಗ್ರಾಮ / ವಾರ್ಡ್ ವ್ಯಾಪ್ತಿ`;
+        // Tier 4: Exact/Fuzzy name match within 20 km radius
+        if (!matchedGp && gpMasterData.length > 0) {
+          const qNormEn = normalizeStr(villageName);
+          const qNormKn = normalizeKn(villageName);
+          const nearbyGps = gpMasterData.filter(g => typeof g.lat === 'number' && haversineKm(lat, lng, g.lat, g.lng) <= 20);
+          if (nearbyGps.length > 0 && (qNormEn || qNormKn)) {
+            matchedGp = nearbyGps.find(g =>
+              (qNormEn && normalizeStr(g.gp_name_en) === qNormEn) ||
+              (qNormKn && normalizeKn(g.gp_name_kn) === qNormKn)
+            ) || null;
+          }
+        }
+
+        // Tier 5: Nearest Gram Panchayat by Haversine distance (within 25 km)
+        if (!matchedGp && gpMasterData.length > 0) {
+          matchedGp = findNearestGp(lat, lng, 25, rawDist);
+        }
+
+        // Resolve Constituency Numbers (AC & PC) accurately
+        const acNo = String((matchedGp && matchedGp.ac_no && optGp) ? matchedGp.ac_no : (ap.AC_NO || matchedGp?.ac_no || '62'));
+        const mlaInfo = repsCatalog?.mlas?.[acNo];
+        const pcNo = String(mlaInfo?.pc_no || (matchedGp && matchedGp.pc_no) || ap.PC_NO || '8');
+        const mpInfo = repsCatalog?.mps?.[pcNo];
+
+        const distKn = (matchedGp && matchedGp.district_name_kn) || mlaInfo?.district_kn || DISTRICT_KN_MAP[rawDist] || ap.DIST_NAME || 'ಕರ್ನಾಟಕ';
+        const finalTalukKn = (matchedGp && matchedGp.taluk_name_kn) || addressDetails?.county?.replace(/taluk/gi, '').trim() || mlaInfo?.ac_name_kn || ap.AC_NAME || '';
+        const finalGpKn = (matchedGp && matchedGp.gp_name_kn) || kgisGpName || villageName;
+        const finalGpEn = (matchedGp && matchedGp.gp_name_en) || kgisGpName || '';
+        const acNameKn = mlaInfo?.ac_name_kn || matchedGp?.ac_name_kn || ap.AC_NAME || '';
+        const pcNameKn = mpInfo?.name_kn || mlaInfo?.pc_name_kn || matchedGp?.pc_name_kn || ap.PC_NAME || '';
+
+        // Update Status Badge dynamically
+        if (badgeEl) {
+          if (sourceType === 'gps') {
+            badgeEl.textContent = '📍 ನಿಮ್ಮ ಪ್ರಸ್ತುತ GPS ಸ್ಥಳ (Live GPS Location)';
+          } else if (sourceType === 'gp' || optGp) {
+            badgeEl.textContent = `🌾 ${finalGpKn} ಗ್ರಾಮ ಪಂಚಾಯತ್ (K-GIS & ಪಂಚತಂತ್ರ 2.0)`;
+          } else if (sourceType === 'ac') {
+            badgeEl.textContent = `🗳️ ${acNameKn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (AC ${acNo})`;
+          } else {
+            badgeEl.textContent = '📍 ಆಯ್ಕೆಮಾಡಿದ ಸ್ಥಳದ ಅಧಿಕೃತ ಮಾಹಿತಿ (K-GIS)';
+          }
+        }
+
+        const displayTitle = (kgisVillageName && matchedGp && normalizeStr(kgisVillageName) !== normalizeStr(matchedGp.gp_name_en))
+          ? `${kgisVillageName} (${finalGpKn} ಗ್ರಾ.ಪಂ.)`
+          : (optGp ? `${finalGpKn} (${finalGpEn})` : `${villageName}`);
+
+        titleEl.textContent = displayTitle;
+        subEl.textContent = `${distKn} ಜಿಲ್ಲೆ · ${finalTalukKn} ತಾಲೂಕು · ${acNameKn} ಕ್ಷೇತ್ರ (AC ${acNo})`;
+
+        if (userMarker) {
+          userMarker.setPopupContent(`
+            <div style="font-family:'Anek Kannada',sans-serif; padding:4px 6px; line-height:1.4;">
+              <div style="font-weight:900; font-size:15px; color:#064E3B;">📍 ${displayTitle}</div>
+              <div style="font-weight:700; font-size:12.5px; color:#047857;">🌾 ${finalGpKn} ಗ್ರಾ.ಪಂ. · ${finalTalukKn} ತಾಲೂಕು · ${distKn} ಜಿಲ್ಲೆ</div>
+              <div style="font-weight:700; font-size:12px; color:#475569; margin-top:2px;">🗳️ ${acNameKn} (AC ${acNo}) · ಶಾಸಕರು: ${mlaInfo?.mla_name_kn || '-'}</div>
+            </div>
+          `);
+          userMarker.openPopup();
+        }
+
+        localBodyEl.textContent = `${finalGpKn} ಗ್ರಾಮ ಪಂಚಾಯತ್${finalGpEn ? ` (${finalGpEn})` : ''}`;
+        wardEl.textContent = kgisVillageName ? `${kgisVillageName} ಕಂದಾಯ ಗ್ರಾಮ (${finalGpKn} ಗ್ರಾ.ಪಂ. ವ್ಯಾಪ್ತಿ)` : `${finalGpKn} ಗ್ರಾಮ / ವಾರ್ಡ್ ವ್ಯಾಪ್ತಿ`;
         zoneEl.textContent = `${finalTalukKn} ತಾಲೂಕು ಪಂಚಾಯತ್`;
         distEl.textContent = `${distKn} ಜಿಲ್ಲೆ`;
 
-        // Render MLA & MP from Authoritative Catalog
-        const mlaInfo = repsCatalog?.mlas?.[acNo];
-        const mpInfo = repsCatalog?.mps?.[pcNo];
+        if (pinRow && pinLgdEl && matchedGp) {
+          pinRow.style.display = 'flex';
+          pinLgdEl.textContent = `${matchedGp.pin_code || '-'} · LGD: ${matchedGp.lgd_code || '-'} · ನಿರ್ದೇಶಾಂಕ: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+        } else if (pinRow) {
+          pinRow.style.display = 'none';
+        }
 
+        // Render MLA & MP from Authoritative Catalog (100% Pure Kannada)
         repsGrid.style.display = 'grid';
         mlaNameEl.textContent = mlaInfo?.mla_name_kn || 'ಶಾಸಕರು';
-        mlaConstEl.textContent = `${acName} (AC ${acNo})`;
+        mlaConstEl.textContent = `${acNameKn} ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರ (AC ${acNo})`;
         mlaPartyEl.textContent = `ಪಕ್ಷ: ${mlaInfo?.party_kn || mlaInfo?.party_en || 'ಇತರೆ'}`;
         mlaPartyEl.className = 'rep-party ' + ((mlaInfo?.party_en === 'BJP' || mlaInfo?.party_kn?.includes('ಬಿಜೆಪಿ')) ? 'party-bjp' : ((mlaInfo?.party_en === 'INC' || mlaInfo?.party_kn?.includes('ಕಾಂಗ್ರೆಸ್')) ? 'party-inc' : ((mlaInfo?.party_en === 'KRPP' || mlaInfo?.party_kn?.includes('ಕೆಆರ್')) ? 'party-krpp' : 'party-jds')));
 
         mpNameEl.textContent = mpInfo?.mp_kn || mpInfo?.mp_name_kn || 'ಸಂಸದರು';
-        mpConstEl.textContent = `${mpInfo?.name_kn || ap.PC_NAME || 'ಲೋಕಸಭಾ'} (PC ${pcNo})`;
+        mpConstEl.textContent = `${pcNameKn} ಲೋಕಸಭಾ ಕ್ಷೇತ್ರ (PC ${pcNo})`;
         mpPartyEl.textContent = `ಪಕ್ಷ: ${mpInfo?.party_kn || mpInfo?.party_en || 'ಇತರೆ'}`;
         mpPartyEl.className = 'rep-party ' + ((mpInfo?.party_en === 'BJP' || mpInfo?.party_kn?.includes('ಬಿಜೆಪಿ')) ? 'party-bjp' : 'party-inc');
 
-        // Render PDO / Officer info from Panchatantra
-        if (matchedGp && (matchedGp.pdo_name || matchedGp.pdo_phone)) {
+        // Render PDO + Full GP Staff from Panchatantra
+        if (matchedGp) {
           pdoBox.style.display = 'flex';
           const pdoRole = matchedGp.pdo_role || 'ಪಂಚಾಯತ್ ಅಭಿವೃದ್ಧಿ ಅಧಿಕಾರಿ (PDO)';
           pdoRoleLabel.textContent = `👤 ${pdoRole}:`;
-          
-          const pdoN = matchedGp.pdo_name || 'ಅಧಿಕಾರಿ ಲಭ್ಯ';
-          const pdoP = matchedGp.pdo_phone || '';
+
+          const pdoN = matchedGp.pdo_name || 'ಅಧಿಕಾರಿ ವಿವರ ಲಭ್ಯವಿದೆ';
+          const pdoP = (matchedGp.pdo_phone || '').replace(/[^0-9+]/g, '');
           const staffC = matchedGp.total_staff || 0;
           pdoNameEl.textContent = `${pdoN} (${staffC} ಸಿಬ್ಬಂದಿ ವರ್ಗ)`;
-          
+
           if (pdoP) {
             pdoPhoneLink.href = `tel:${pdoP}`;
             pdoPhoneLink.textContent = `📞 ${pdoP} ಕರೆ ಮಾಡಿ`;
@@ -1248,34 +1568,58 @@
           } else {
             pdoPhoneLink.style.display = 'none';
           }
+
+          // Load all GP staff (Secretary, Bill Collector, DEO, Water Operators, etc.)
+          loadAndRenderGpFullStaff(matchedGp.gp_id);
+
+          if (btnActionGp) btnActionGp.href = `/gram-panchayat?gp=${matchedGp.gp_id}`;
+          if (btnActionGpText) btnActionGpText.textContent = `🌾 ${finalGpKn} ಗ್ರಾ.ಪಂ. ಪೂರ್ಣ ವಿವರ`;
         } else {
           pdoBox.style.display = 'none';
+          if (gpStaffContainer) gpStaffContainer.style.display = 'none';
+          if (btnActionGp) btnActionGp.href = '/gram-panchayat';
+          if (btnActionGpText) btnActionGpText.textContent = '🌾 ಗ್ರಾಮ ಪಂಚಾಯತ್ ಪೋರ್ಟಲ್';
+        }
+
+        if (btnActionMla) {
+          btnActionMla.href = mlaInfo?.link || '/mla-mp';
         }
 
         highlightBox.style.display = 'flex';
+        if (highlightText) {
+          highlightText.textContent = matchedGp
+            ? `✅ ${finalGpKn} ಗ್ರಾಮ ಪಂಚಾಯತ್ (LGD: ${matchedGp.lgd_code}) ಅಧಿಕೃತ K-GIS ಗಡಿ ಹಾಗೂ ಪಂಚತಂತ್ರ 2.0 ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ.`
+            : '✅ ಈ ಸ್ಥಳವು ಅಧಿಕೃತ K-GIS ಗಡಿ ಹಾಗೂ ಪಂಚತಂತ್ರ ವ್ಯಾಪ್ತಿಯಲ್ಲಿದೆ.';
+        }
 
-        // Persist context
+        // Persist context for site-wide personalization
         localStorage.setItem('karnata_selected_location', JSON.stringify({
           latitude: lat,
           longitude: lng,
           district: distKn,
           taluk: finalTalukKn,
-          ac: acName,
-          pc: ap.PC_NAME,
-          gp: finalGpKn
+          ac: acNameKn,
+          ac_no: acNo,
+          pc: pcNameKn,
+          pc_no: pcNo,
+          gp: finalGpKn,
+          gp_id: matchedGp?.gp_id || ''
         }));
         return;
       }
 
-      // Outside
+      // Outside Karnataka boundary
+      if (badgeEl) badgeEl.textContent = '⚠️ ಕರ್ನಾಟಕ ಗಡಿಯಾಚೆ (Outside Karnataka)';
       titleEl.textContent = label || 'ಕರ್ನಾಟಕ ಗಡಿಯಾಚೆ';
       subEl.textContent = `ನಿರ್ದೇಶಾಂಕ: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
       localBodyEl.textContent = '-';
       wardEl.textContent = '-';
       zoneEl.textContent = '-';
       distEl.textContent = '-';
+      if (pinRow) pinRow.style.display = 'none';
       repsGrid.style.display = 'none';
       pdoBox.style.display = 'none';
+      if (gpStaffContainer) gpStaffContainer.style.display = 'none';
       highlightBox.style.display = 'none';
     }
   </script>
