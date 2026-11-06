@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-11-06T10:00:04.468753",
+  "updated_at": "2026-11-06T10:30:04.411004",
   "total_active_alerts": 14,
   "feed": [
     {
       "id": "GOLD-RATE-2026110610",
-      "alert_level": "gold_surge",
+      "alert_level": "gold_drop",
       "target_district": "all",
       "target_district_kn": "ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ",
-      "title": "👑 ಇಂದಿನ ಚಿನ್ನದ ದರದಲ್ಲಿ ಭಾರಿ ಜಿಗಿತ! 24K ₹14,607, 22K ₹13,385ಕ್ಕೆ ಏರಿಕೆ",
-      "body": "10 AM ಲೈವ್ ಅಪ್ಡೇಟ್: ಇಂದು ಬುಲಿಯನ್ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಗ್ರಾಂಗೆ ₹495 ಏರಿಕೆ ಕಂಡಿದೆ. 8 ಗ್ರಾಂ (1 ಪವನ್) ಬೆಲೆ ₹107,080. ಇಂದಿನ ಲೈವ್ ದರ ಮತ್ತು ಟ್ರೆಂಡ್ ವಿಶ್ಲೇಷಿಸಿ ➔",
+      "title": "🪙 ಇಂದಿನ ಚಿನ್ನದ ದರದಲ್ಲಿ ಭಾರಿ ಇಳಿಕೆ! ₹256 ಕುಸಿತ — ಖರೀದಿಗೆ ಸುವರ್ಣಾವಕಾಶ?",
+      "body": "10 AM ಲೈವ್ ಅಪ್ಡೇಟ್: 24K ಚಿನ್ನ ಗ್ರಾಂಗೆ ₹256 ಇಳಿಕೆಯಾಗಿ ₹14,350 ಆಗಿದೆ! 22K ಆಭರಣ ಬಂಗಾರ ₹13,150 (1 ಪವನ್‌ಗೆ ₹1,880 ಉಳಿತಾಯ). ನಿಮ್ಮ ಜಿಲ್ಲೆಯ ದರ ನೋಡಿ ➔",
       "url": "https://karnata.in/gold-rate",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "badge": "https://karnata.in/assets/icons/icon-192x192.png",
       "topic": "gold_rate_alert",
-      "created_at": "2026-11-06T10:00:04.462463"
+      "created_at": "2026-11-06T10:30:04.399581"
     },
     {
       "id": "WEATHER-YELLOW-bengaluru_urban-20261106-B09TO12",
