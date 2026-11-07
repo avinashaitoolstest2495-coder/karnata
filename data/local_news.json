@@ -1,10 +1,20 @@
 {
   "date": "2026-11-07",
-  "updated_at": "2026-11-07T09:51:23+05:30",
+  "updated_at": "2026-11-07T10:22:13+05:30",
   "total": 7034,
   "districts_count": 31,
   "district_buckets": {
     "bengaluru-urban": [
+      {
+        "title": "Bengaluru Murder Horror | ಮೈಸೂರಿನ ಚಾಮುಂಡಿಬೆಟ್ಟ, ಚಾರ್ಮಾಡಿ ಘಾಟ್‌ನಲ್ಲಿ ಮೃತದೇಹ ಎಸೆದಿರೋ ಶಂಕೆ!",
+        "url": "https://publictv.in/bengaluru-murder-horror-suspicion-that-a-dead-body-has-been-dumped-at-chamundi-hill-or-charmadi-ghat/",
+        "published": "Sat, 07 Nov 2026 03:59:14 +0000",
+        "summary": "– 6 ಪೊಲೀಸ್ ತಂಡಗಳಿಂದ ತನಿಖೆ ಬೆಂಗಳೂರು: ರಾಜ್ಯ ರಾಜಧಾನಿಯಲ್ಲಿ ಭಾರೀ ಆತಂಕ ಮೂಡಿಸಿರುವ ಸರಣಿ ಕೊಲೆ (Bengaluru Murder Horror) ಪ್ರಕರಣದ ತನಿಖೆ ಮತ್ತಷ್ಟು ಚುರುಕುಗೊಂಡಿದೆ. ಇನ್ನಷ್ಟು ಸ್ಫೋಟಕ ರಹಸ್ಯಗಳನ್ನ ಪೊಲೀ",
+        "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+        "forced_district": null,
+        "district": "bengaluru-urban",
+        "districtKey": "bengaluru-urban"
+      },
       {
         "title": "ಬೆಲೆ ಇಳಿಕೆ; ಒಂದೇ ದಿನ ಮಾರಾಟವಾಯ್ತು 60 ಸಾವಿರ ಕೋಟಿ ಮೌಲ್ಯದ ಚಿನ್ನ, ಬೆಳ್ಳಿ Dhan Trayodashi",
         "url": "https://kannada.asianetnews.com/gallery/business/due-to-a-reduction-in-rates-gold-silver-worth-rs-60000-crore-was-sold-across-the-country-on-dhan-trayodashi-mrq-gnnnuff",
@@ -1985,16 +1995,6 @@
         "summary": "ವಿಜಯಪ್ರಸಾದ್ ಅವರ ಹಿಂದಿನ ಸಿನಿಮಾಗಳ ಚಿತ್ರೀಕರಣ ಸಾಮಾನ್ಯವಾಗಿ ಬೆಂಗಳೂರು ಹಾಗೂ ಸುತ್ತಮುತ್ತಲಿನ ಪ್ರದೇಶಗಳಲ್ಲಿ ನಡೆದಿತ್ತು. ಆದರೆ ಈ ಬಾರಿ ಕಥೆಯ ಅಗತ್ಯಕ್ಕೆ ತಕ್ಕಂತೆ ವಿಭಿನ್ನ ಸ್ಥಳಗಳಲ್ಲಿ ಚಿತ್ರೀಕರಣ ನಡೆಸಲು ಯೋಜ",
         "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
         "forced_district": null,
-        "district": "bengaluru-urban",
-        "districtKey": "bengaluru-urban"
-      },
-      {
-        "title": "ಸ್ವಂತ ಗಳಿಕೆ ಇದ್ದು, ಸ್ವಾವಲಂಬಿಯಾಗಿರೋ ಹೆಂಡತಿಗೆ ಜೀವನಾಂಶ ಪಡೆಯುವ ಹಕ್ಕಿಲ್ಲ: ಕರ್ನಾಟಕ ಹೈಕೋರ್ಟ್ ಮಹತ್ವದ ತೀರ್ಪು",
-        "url": "https://tv9kannada.com/karnataka/bengaluru/karnataka-hc-no-maintenance-for-self-reliant-wives-earning-good-income-1258759.html",
-        "published": "Wed, 04 Nov 2026 09:57:17 +0530",
-        "summary": "ಉತ್ತಮ ಶಿಕ್ಷಣ ಪಡೆದು, ಸ್ವಂತ ದುಡಿಮೆಯಿಂದ ಜೀವನ ನಿರ್ವಹಣೆ ಮಾಡುವ ಸಾಮರ್ಥ್ಯವಿರುವ ಹಾಗೂ ಸ್ವಾವಲಂಬಿ ಹೆಂಡತಿಗೆ ಗಂಡನಿಂದ ಜೀವನಾಂಶ ಪಡೆಯುವ ಅರ್ಹತೆಯಿರುವುದಿಲ್ಲ ಎಂದು ಕರ್ನಾಟಕ ಹೈಕೋರ್ಟ್ ಮಹತ್ವದ ತೀರ್ಪು ನೀಡಿದೆ. ",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": "bengaluru-urban",
         "district": "bengaluru-urban",
         "districtKey": "bengaluru-urban"
       }
@@ -9216,6 +9216,16 @@
     ],
     "tumakuru": [
       {
+        "title": "ದೆಹಲಿಯಲ್ಲಿ ವಿಷವಾಗುತ್ತಿದೆ ಉಸಿರಾಡುವ ಗಾಳಿ – ದೀಪಾವಳಿಗೂ ಮುನ್ನವೇ ವಾಯುಗುಣಮಟ್ಟ ಕಳಪೆ!",
+        "url": "https://publictv.in/no-relief-from-toxic-air-delhi-aqi-remains-very-poor-ahead-of-diwali-22-stations-cross-400/",
+        "published": "Sat, 07 Nov 2026 03:31:16 +0000",
+        "summary": "– 22 ಕೇಂದ್ರಗಳಲ್ಲಿ 400ರ ಗಡಿ ದಾಟಿದ ಎಕ್ಯೂಐ ನವದೆಹಲಿ: ರಾಷ್ಟ್ರ ರಾಜಧಾನಿಯಲ್ಲಿ ಉಸಿರಾಡುವ ಗಾಳಿ ವಿಷವಾಗಿತ್ತಿದ್ದು, ದೀಪಾವಳಿ ಹಬ್ಬಕ್ಕೂ (Deepavali Festival) ಮುನ್ನವೇ ಗಾಳಿಯ ಗುಣಮಟ್ಟ ಅತ್ಯಂತ ಕಳಪೆಯಾಗಿದೆ ಎ",
+        "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+        "forced_district": null,
+        "district": "tumakuru",
+        "districtKey": "tumakuru"
+      },
+      {
         "title": "ಮಾಧ್ಯಮ ರತ್ನ ಪ್ರಶಸ್ತಿಗೆ ತುಮಕೂರಿನ ಪತ್ರಕರ್ತ ಎಚ್.ಆರ್.ಶ್ರೀಶ ಆಯ್ಕೆ",
         "url": "https://www.prajavani.net/district/uttara-kannada/uttara-kannada-madhyama-ratna-award-hr-shrisha-selected-4380993",
         "published": "Sat, 07 Nov 2026 06:30:00 +0530",
@@ -11199,16 +11209,6 @@
         "url": "https://www.prajavani.net/district/tumakuru/shira-pattanayakanahalli-literature-dialogue-today-4229055",
         "published": "Sun, 30 Aug 2026 06:46:50 +0530",
         "summary": "ಶಿರಾ: ತಾಲ್ಲೂಕಿನ ಪಟ್ಟನಾಯಕನಹಳ್ಳಿಯ ಶಾಂತಿನಿಕೇತನ ಪಬ್ಲಿಕ್ ಸ್ಕೂಲ್ ಆವರಣದಲ್ಲಿ ಆ.30ರ ಬೆಳಗ್ಗೆ 10.30ಕ್ಕೆ ಸಾಹಿತ್ಯ ಸಂವಾದ ಹಮ್ಮಿಕೊಳ್ಳಲಾಗಿದೆ.",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "tumakuru",
-        "districtKey": "tumakuru"
-      },
-      {
-        "title": "ಪಾವಗಡದಲ್ಲಿ ನಾಡಬಾಂಬ್ ಸ್ಫೋಟ ಪ್ರಕರಣ 8 ಮಂದಿ ವಿರುದ್ಧ ದೂರು ದಾಖಲು",
-        "url": "https://www.prajavani.net/district/tumakuru/pavgada-bomb-blast-case-eight-accused-filed-complaint-4229019",
-        "published": "Sun, 30 Aug 2026 06:46:50 +0530",
-        "summary": "ಪಾವಗಡ: ತಾಲ್ಲೂಕಿನ ಕನಿಕಲ ಬಂಡೆ ಬಳಿಯ ಗಿರಿಯಪ್ಪ ಎಂಬವರಿಗೆ ಸೇರಿದ ಜಮೀನಿನಲ್ಲಿ ಶುಕ್ರವಾರ ನಾಡಬಾಂಬ್ ಸ್ಫೋಟ ಪ್ರಕರಣಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ಪಟ್ಟಣ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ 8 ಮಂದಿ ವಿರುದ್ಧ ಪ್ರಕರಣ ದಾಖಲಾಗಿದೆ.",
         "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "tumakuru",
@@ -15218,6 +15218,16 @@
     ],
     "shivamogga": [
       {
+        "title": "ಶಿವಮೊಗ್ಗದಲ್ಲಿ ವಿದ್ಯುತ್‌ ಶಾಕ್‌ಗೆ ಕಾಡಾನೆ ಬಲಿ, ಎಲ್ಲಿ? ಹೇಗಾಯ್ತು ಘಟನೆ?",
+        "url": "https://shivamoggalive.com/taluk-news/shivamogga/elephant-electrocuted-to-death/",
+        "published": "Sat, 07 Nov 2026 04:22:52 +0000",
+        "summary": "Wild elephant electrocuted to death by illegal fence wire in Ichalavadi near Shivamogga; forest officials detain farmland owner. The post ಶಿವಮೊಗ್ಗದಲ್ಲಿ ವಿದ್ಯುತ್‌ ಶಾಕ್‌ಗೆ ಕಾಡಾನೆ ಬಲಿ",
+        "source": "ಶಿವಮೊಗ್ಗ ಲೈವ್",
+        "forced_district": "shivamogga",
+        "district": "shivamogga",
+        "districtKey": "shivamogga"
+      },
+      {
         "title": "ಬೆಳೆ ವಿಮೆ, ಅವೈಜ್ಞಾನಿಕವಾಗಿ ಅಂದಾಜು, ತಕ್ಷಣ ಸರಿಪಡಿಸುವಂತೆ ಸಂಸದ ರಾಘವೇಂದ್ರ ಸೂಚನೆ",
         "url": "https://shivamoggalive.com/news/shivamogga-city/unscientific-loss-assessment/",
         "published": "Sat, 07 Nov 2026 04:05:35 +0000",
@@ -17206,19 +17216,29 @@
         "forced_district": null,
         "district": "shivamogga",
         "districtKey": "shivamogga"
-      },
-      {
-        "title": "ಕನ್ನಡ ಭಾಷೆ, ಸಾಹಿತ್ಯದ ಹಿರಿಮೆ ಬಗ್ಗೆ ಅರಿವು ಮೂಡಿಸಿ",
-        "url": "https://www.prajavani.net/district/shivamogga/bhadravati-kannada-language-literature-awareness-sangameshwar-4368598",
-        "published": "Mon, 02 Nov 2026 06:30:00 +0530",
-        "summary": "ಭದ್ರಾವತಿ: ‘ಕನ್ನಡ ಭಾಷೆ ಹಾಗೂ ಸಾಹಿತ್ಯಕ್ಕಿರುವ ಶ್ರೀಮಂತ ಪರಂಪರೆಯ ಬಗ್ಗೆ ಮಕ್ಕಳಲ್ಲಿ ಅರಿವು ಮೂಡಿಸಲು ಪೋಷಕರು ಹಾಗೂ ಶಿಕ್ಷಕರು ಶ್ರಮಿಸಬೇಕು’ ಎಂದು ಶಾಸಕ ಬಿ.ಕೆ. ಸಂಗಮೇಶ್ವರ್ ಹೇಳಿದರು.",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "shivamogga",
-        "districtKey": "shivamogga"
       }
     ],
     "mysuru": [
+      {
+        "title": "ದೇವಿರಮ್ಮ ಬೆಟ್ಟದಲ್ಲಿ ಅದ್ಧೂರಿ ಜಾತ್ರೆ ಶುರು :Deviramma Temple",
+        "url": "https://kannada.news18.com/videos/chikkamagaluru/-deviramma-temple-svc-2521714.html?utm_source=District Widget&utm_medium=Desktop&utm_campaign=kannada",
+        "published": "2026-11-07T10:01:29+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": "mysuru",
+        "district": "mysuru",
+        "districtKey": "mysuru"
+      },
+      {
+        "title": "ಕರ್ನಾಟಕದಲ್ಲಿ ಮುಂದಿನ ಎರಡು ದಿನ ಮಳೆ ಪಕ್ಕಾ! ಬೆಂಗಳೂರು, ಕರಾವಳಿ ಸೇರಿ ಹಲವು ಜಿಲ್ಲೆಗಳ ಮಳೆ ಮುನ್ಸೂಚನೆ ಹೀಗಿದೆ",
+        "url": "https://kannada.asianetnews.com/state/karnataka-weather-forecast-heavy-rain-alert-for-bengaluru-mysuru-kodagu-chikkamagaluru-and-coastal-karnataka-gdp/articleshow-ncpo4ad",
+        "published": "Sat, 07 Nov 2026 09:48:01 +0530",
+        "summary": "ಕರ್ನಾಟಕದಲ್ಲಿ ನವೆಂಬರ್ 7 ಮತ್ತು 8ರಂದು ಬೆಂಗಳೂರು ಸೇರಿದಂತೆ ದಕ್ಷಿಣ ಒಳನಾಡಿನ ಹಲವು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹಗುರದಿಂದ ಸಾಧಾರಣ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ. ಕರಾವಳಿಯ ಕೆಲವು ಭಾಗಗಳಲ್ಲೂ ಮಳೆಯ ಮುನ್ಸೂಚನೆ ಇದ್ದು, ಉತ್ತರ ಒಳನಾ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "mysuru",
+        "districtKey": "mysuru"
+      },
       {
         "title": "ಹುಣಸೂರಿನಲ್ಲಿ ಕುರಿಗಾಹಿಗಳ ಮೇಲೆ ಗುಂಡಿನ ದಾಳಿ, ಮೂವರಿಗೆ ಗಾಯ: ಕುರಿ ಕದಿಯಲು ಬಂದಿದ್ದ ಖದೀಮರಿಂದ ದುಷ್ಕೃತ್ಯ",
         "url": "https://vijaykarnataka.com/news/mysuru/gun-attack-by-on-shepherds-in-mysurus-hunsuru-by-theives-leaving-3-injured/articleshow/135625868.cms",
@@ -19195,29 +19215,19 @@
         "forced_district": null,
         "district": "mysuru",
         "districtKey": "mysuru"
-      },
-      {
-        "title": "ನಂದಿನಿ ಮೊಸರಿನ ದರ ಕೊಂಚ ಇಳಿಕೆಗೆ ಸಿಎಂ ಡಿಕೆ ಶಿವಕುಮಾರ್ ಸೂಚನೆ",
-        "url": "https://www.justkannada.in/price-nandini-curd/",
-        "published": "Tue, 03 Nov 2026 06:31:37 +0000",
-        "summary": "ಬೆಂಗಳೂರು,ನವೆಂಬರ್,3,2026 (www.justkannada.in): ರಾಜ್ಯದಲ್ಲಿ ಪ್ರತಿ ಲೀಟರ್ ನಂದಿನಿ ಹಾಲಿಗೆ 8 ರೂ. ಮತ್ತು ಮೊಸರಿಗೆ 14 ರೂ. ಏರಿಕೆ ಮಾಡಿರುವ ರಾಜ್ಯ ಸರ್ಕಾರದ ವಿರುದ್ದ ತೀವ್ರ ಆಕ್ರೋಶ ವ್ಯಕ್ತವಾಗಿದ್ದು ಈ ಬೆನ್",
-        "source": "ಜಸ್ಟ್ ಕನ್ನಡ",
-        "forced_district": "mysuru",
-        "district": "mysuru",
-        "districtKey": "mysuru"
-      },
-      {
-        "title": "ಮೈಸೂರಿನಲ್ಲಿ ಪ್ರಿ ವೆಡ್ಡಿಂಗ್ ಶೂಟ್‌ ಗೆ ಕಡಿವಾಣವಿಲ್ಲವೇ? ಬಸ್ ಹರಿದು ಶಾಲಾ ವಿದ್ಯಾರ್ಥಿ ದಾರುಣ ಸಾವು!",
-        "url": "https://www.justkannada.in/mysuru-bus-accident/",
-        "published": "Tue, 03 Nov 2026 05:43:51 +0000",
-        "summary": "ಮೈಸೂರು,ನವೆಂಬರ್,3,2026 (www.justkannada.in): ಸಾಂಸ್ಕೃತಿಕ ನಗರಿ ಮೈಸೂರಿನ ಪಾರಂಪರಿಕ ಸ್ಮಾರಕಗಳು, ಅರಮನೆ ಸುತ್ತಮುತ್ತಲಿನ ವೃತ್ತಗಳು ಹಾಗೂ ಐತಿಹಾಸಿಕ ಕಟ್ಟಡಗಳ ಸೌಂದರ್ಯವನ್ನು ಕಾಪಾಡಬೇಕಾದ ಜಾಗಗಳೇ ಇದೀಗ ಅಪಾಯಕ",
-        "source": "ಜಸ್ಟ್ ಕನ್ನಡ",
-        "forced_district": "mysuru",
-        "district": "mysuru",
-        "districtKey": "mysuru"
       }
     ],
     "mandya": [
+      {
+        "title": "10 ದಿನಗಳಲ್ಲಿ 6 ಅಡಿ ಕುಸಿತ, 98 ಅಡಿಗೆ ಇಳಿದ ಕೆಆರ್‌ಎಸ್ ನೀರಿನ ಮಟ್ಟ – ಸಂಕಷ್ಟದಲ್ಲಿ ಅನ್ನದಾತ",
+        "url": "https://publictv.in/krs-water-level-drops-by-6-feet-in-10-days-falls-to-98-feet/",
+        "published": "Sat, 07 Nov 2026 04:08:19 +0000",
+        "summary": "– ಇಂದಿನಿಂದ ತಮಿಳುನಾಡಿಗೆ ನಿತ್ಯ 3,000 ಕ್ಯೂಸೆಕ್‌ ನೀರು ಮಂಡ್ಯ: ಮಳೆಯ ಕೊರತೆ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ನಿರಂತರವಾಗಿ ನೀರು ಹರಿಸುತ್ತಿರುವ ಪರಿಣಾಮ ಮಂಡ್ಯ ಜಿಲ್ಲೆ ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲೂಕಿನ ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯದ ನೀರಿನ ಮ",
+        "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+        "forced_district": null,
+        "district": "mandya",
+        "districtKey": "mandya"
+      },
       {
         "title": "ಮಂಡ್ಯದಿಂದ ಪೋಲೆಂಡ್‌ವರೆಗೆ: ಜಾಗತಿಕ ವೇದಿಕೆಯಲ್ಲಿ ಸಚಿನ್ ಪಾರ್ಥ ಸಾಧನೆ",
         "url": "https://www.prajavani.net/news/nrk/sachin-partha-success-story-mandya-to-poland-4380285",
@@ -21202,19 +21212,18 @@
         "forced_district": "mandya",
         "district": "mandya",
         "districtKey": "mandya"
-      },
-      {
-        "title": "ಶಾರ್ಟ್​ ಸರ್ಕ್ಯೂಟ್​ಗೆ ಸಿಲಿಂಡರ್​ ಸ್ಫೋಟ; 21 ಲಕ್ಷ ರೂ. ಮೌಲ್ಯದ ವಸ್ತುಗಳು ಸುಟ್ಟು ಕರಕಲು!",
-        "url": "https://tv9kannada.com/videos/devastating-blaze-at-mandyas-tea-day-shop-short-circuit-triggers-explosion-destroys-rs21-lakh-worth-of-goods-1237314.html",
-        "published": "Sat, 12 Sep 2026 12:20:47 +0530",
-        "summary": "ಮಂಡ್ಯದ ಅಶೋಕ ನಗರದಲ್ಲಿರುವ ಟೀ ಡೇ ಅಂಗಡಿಯಲ್ಲಿ ಶಾರ್ಟ್ ಸರ್ಕ್ಯೂಟ್‌ನಿಂದ ಅಗ್ನಿ ಅವಘಡ ಸಂಭವಿಸಿದೆ. ಸಿಲಿಂಡರ್ ಸ್ಫೋಟಗೊಂಡ ಪರಿಣಾಮ ಅಂಗಡಿಯಲ್ಲಿದ್ದ 21 ಲಕ್ಷ ರೂಪಾಯಿ ಮೌಲ್ಯದ ವಸ್ತುಗಳು ಸುಟ್ಟು ಕರಕಲಾಗಿವೆ. ತಿಮ್ಮೇ",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": "mandya",
-        "district": "mandya",
-        "districtKey": "mandya"
       }
     ],
     "hassan": [
+      {
+        "title": "ದೀಪಾವಳಿ ಹಬ್ಬ: KSRTCಯಿಂದ ಬೆಂಗಳೂರಿನಿಂದ ವಿವಿಧ ಊರುಗಳಿಗೆ 908 ವಿಶೇಷ ಬಸ್‌ಗಳ ಸಂಚಾರ",
+        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/07/ksrtc-operates-908-special-buses-from-bengaluru-for-deepavali-on-nov-6-and-7",
+        "published": "2026-11-07T09:55:27+05:30",
+        "summary": "",
+        "source": "ಕನ್ನಡ ಪ್ರಭ",
+        "district": "hassan",
+        "districtKey": "hassan"
+      },
       {
         "title": "ಇದು ಬೇಲಿಯೇ ಎದ್ದು ಹೊ ಮೇಯ್ದ ಕಥೆ! ಹೊಯ್ಸಳ ವಾಹನದಲ್ಲಿ ಬಂದು ವಸೂಲಿ ಆರೋಪದಲ್ಲಿ ಇಬ್ಬರು ಪೊಲೀಸರ ಬಂಧನ",
         "url": "https://tv9kannada.com/karnataka/dakshina-kannada/mangaluru-police-extortion-case-two-hoysala-vehicle-cops-arrested-over-assault-and-cash-robbery-allegations-1259997.html",
@@ -23197,19 +23206,19 @@
         "forced_district": null,
         "district": "hassan",
         "districtKey": "hassan"
-      },
-      {
-        "title": "ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ; ಕ್ರಮಕ್ಕೆ ಒತ್ತಾಯಿಸಿ ಮನವಿ",
-        "url": "https://www.prajavani.net/district/hasana/hassan-defamatory-statement-neha-bora-action-demand-4378374",
-        "published": "Fri, 06 Nov 2026 06:30:00 +0530",
-        "summary": "ಹಾಸನ: ಬ್ರಾಹ್ಮಣ ಸಮಾಜದ ಮಹಿಳೆಯರು ಹಾಗೂ ಹಿಂದೂ ದೇವಾಲಯಗಳ ಅರ್ಚಕರ ಕುರಿತು ಸಾಮಾಜಿಕ ಜಾಲತಾಣದಲ್ಲಿ ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ ನೀಡಿದ್ದಾರೆ ಎನ್ನಲಾದ ನೇಹಾ ಬೋರಾ ಅವರ ವಿರುದ್ಧ ಸೂಕ್ತ ಕಾನೂನು ಕ್ರಮ ಕೈಗೊಳ್ಳುವಂತೆ ಆಗ್ರಹಿ",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "hassan",
-        "districtKey": "hassan"
       }
     ],
     "kodagu": [
+      {
+        "title": "2 ಹೆಕ್ಟೇರ್‌ನಲ್ಲಿ ನಿಂಬೆ ತೋಟ ನಿರ್ಮಿಸಿದ ರೈತ ರಾಮನಗೌಡ; ಕಡಿಮೆ ಖರ್ಚು, ಉತ್ತಮ ಆದಾಯ",
+        "url": "https://kannada.asianetnews.com/karnataka-districts/koppal-kushtagi-farmer-establishes-a-lemon-orchard-on-2-hectares-low-costs-good-income-mrq/articleshow-hnukh0a",
+        "published": "Sat, 07 Nov 2026 10:10:03 +0530",
+        "summary": "ಕುಷ್ಟಗಿ ತಾಲೂಕಿನ ಮಡಿಕೇರಿ ಗ್ರಾಮದ ರೈತ ರಾಮನಗೌಡ ಪಾಟೀಲ ಅವರು 2 ಹೆಕ್ಟೇರ್‌ನಲ್ಲಿ ನಿಂಬೆ ಬೆಳೆದು ಮಾದರಿಯಾಗಿದ್ದಾರೆ. ಕಡಿಮೆ ನಿರ್ವಹಣಾ ವೆಚ್ಚ ಮತ್ತು ಮಾರುಕಟ್ಟೆಯ ನಿರಂತರ ಬೇಡಿಕೆಯಿಂದಾಗಿ ನಿಂಬೆ ಕೃಷಿಯು ರೈತರಿಗೆ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "kodagu",
+        "districtKey": "kodagu"
+      },
       {
         "title": "ಅಂಚೆ ಕಚೇರಿ ಆವರಣದಲ್ಲಿ ಅನುಮತಿ ಇಲ್ಲದೆ ಮರಗಳ ಕಡಿತ",
         "url": "https://www.prajavani.net/district/kodagu/kushalnagar-post-office-illegal-tree-cutting-protest-4380947",
@@ -25198,19 +25207,29 @@
         "forced_district": "kodagu",
         "district": "kodagu",
         "districtKey": "kodagu"
-      },
-      {
-        "title": "ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೊಡಗು ಜಿಲ್ಲೆಯಲ್ಲಿ ಉತ್ತಮ ಮಳೆ, ಯಾವ ಭಾಗದಲ್ಲಿ ಎಷ್ಟು?",
-        "url": "https://www.prajavani.net/agriculture/climate/dakshina-kannada-kodagu-rain-report-karnataka-weather-update-4225124",
-        "published": "Fri, 28 Aug 2026 11:17:02 +0530",
-        "summary": "",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "kodagu",
-        "districtKey": "kodagu"
       }
     ],
     "chamarajanagara": [
+      {
+        "title": "Monkey Rescue: ಹತ್ತು ದಿನಗಳ ಕಾಲ ನಿರಂತರ ಚಿಕಿತ್ಸೆ, ತಾಯಿಯಂತೆ ಮಮತೆ ಕೊಟ್ಟ ಮಹಿಳೆ; ಕೋತಿಗೆ ಸಿಕ್ತು ಮತ್ತೊಂದು ಬದುಕು!",
+        "url": "https://kannada.news18.com/news/chamarajanagar/hanuma-seva-samithi-saves-injured-monkey-scs-svl-local18-ws-kl-2521698.html",
+        "published": "2026-11-07T10:02:12+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "chamarajanagara",
+        "districtKey": "chamarajanagara"
+      },
+      {
+        "title": "Male Mahadeshwara Hill: ಮಾದಪ್ಪನ ಭಕ್ತರಿಗೆ ಗುಡ್‌ ನ್ಯೂಸ್‌, ಜಾತ್ರೆಗೆ ಬಂತು 350 ಬಸ್;‌ ಆದರೆ ಈ ನಿಯಮ ಪಾಲಿಸದಿದ್ದರೆ ಅಪಾಯ ಖಂಡಿತ!",
+        "url": "https://kannada.news18.com/news/astrology/night-trekking-ban-imposed-for-male-mahadeshwara-hills-diwali-fair-chamarajanagara-mng-abn-local18-ws-bk-2521687.html",
+        "published": "2026-11-07T09:55:06+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "chamarajanagara",
+        "districtKey": "chamarajanagara"
+      },
       {
         "title": "ದೀಪಾವಳಿ ಜಾತ್ರೆ – ನ.11ರವರೆಗೆ ಮಲೆ ಮಹದೇಶ್ವರ ಬೆಟ್ಟಕ್ಕೆ ಕಾಲ್ನಡಿಗೆ, ಪಾದಯಾತ್ರೆ ನಿಷೇಧ",
         "url": "https://publictv.in/mahadeshwara-hills-trekking-and-walking-banned-until-november-11-due-to-deepavali-fair/",
@@ -27183,26 +27202,6 @@
         "url": "https://www.prajavani.net/district/chamarajanagara/chamarajanagara-hospital-doctors-absent-poor-patients-4219976",
         "published": "Wed, 26 Aug 2026 06:25:39 +0530",
         "summary": "ಚಾಮರಾಜನಗರ: ವೈದ್ಯಕೀಯ ವಿಜ್ಞಾನಗಳ ಸಂಸ್ಥೆ ಹಾಗೂ ಭೋಧನಾ ಆಸ್ಪತ್ರೆಗೆ (ಸಿಮ್ಸ್‌) ವೈದ್ಯರು ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಬಾರದೆ ಬಡ ರೋಗಿಗಳಿಗೆ ಸಮರ್ಪಕ ಚಿಕಿತ್ಸೆ ದೊರೆಯುತ್ತಿಲ್ಲ ಎಂಬ ದೂರುಗಳು ವ್ಯಾಪಕವಾಗಿದ್ದು,ಕರ್ತವ್ಯಲೋಪ ",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "chamarajanagara",
-        "districtKey": "chamarajanagara"
-      },
-      {
-        "title": "ಮಹದೇಶ್ವರ ಬೆಟ್ಟದಲ್ಲಿ ಹಡಪದ ಅಪ್ಪಣ್ಣ ಜಯಂತ್ಯುತ್ಸವ ಆಚರಣೆ",
-        "url": "https://www.prajavani.net/district/chamarajanagara/chamarajanagara-hadapada-appanna-jayanti-celebration-4220238",
-        "published": "Wed, 26 Aug 2026 06:25:39 +0530",
-        "summary": "ಮಹದೇಶ್ವರ ಬೆಟ್ಟ: ಮಲೆ ಮಹದೇಶ್ವರ ಸವಿತಾ ಸಮಾಜ ಸಂಘದಿಂದ ಮಹದೇಶ್ವರಬೆಟ್ಟದಲ್ಲಿ ಮಂಗಳವಾರ ಶಿವಶರಣ ಹಡಪದ ಅಪ್ಪಣ್ಣ ಅವರ ಜಯಂತ್ಯುತ್ಸವವನ್ನು ವಿಜೃಂಭಣೆಯಿಂದ ಆಚರಿಸಲಾಯಿತು.",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "chamarajanagara",
-        "districtKey": "chamarajanagara"
-      },
-      {
-        "title": "ಮಲೆನಾಡು ಪ್ರದೇಶಾಭಿವೃದ್ಧಿ ಮಂಡಳಿಗೆ ಯಳಂದೂರು ಶೀಘ್ರ ಸೇರ್ಪಡೆ",
-        "url": "https://www.prajavani.net/district/chamarajanagara/chamarajanagara-yalandur-malenadu-development-board-inclusion-4220237",
-        "published": "Wed, 26 Aug 2026 06:25:39 +0530",
-        "summary": "ಚಾಮರಾಜನಗರ: ಮಲೆನಾಡು ಪ್ರದೇಶಾಭಿವೃದ್ಧಿ ಮಂಡಳಿ ವ್ಯಾಪ್ತಿಗೆ ಯಳಂದೂರು ತಾಲ್ಲೂಕು ಸೇರ್ಪಡೆಯಾಗದ ಬಗ್ಗೆ ಕೊಳ್ಳೇಗಾಲ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಶಾಸಕ ಎ.ಆರ್‌.ಕೃಷ್ಣಮೂರ್ತಿ ಸದನದಲ್ಲಿ ಪ್ರಶ್ನಿಸಿದ್ದಾರೆ.",
         "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "chamarajanagara",
@@ -35214,6 +35213,16 @@
     ],
     "belagavi": [
       {
+        "title": "Belagavi: ಚಳಿಗಾಲದ ಅಧಿವೇಶನಕ್ಕೆ ಮುಹೂರ್ತ ಫಿಕ್ಸ್​​! ಆದ್ರೆ ಈ ಬಾರಿ 10 ದಿನದ ಬದಲಿಗೆ 9 ದಿನಕ್ಕೆ ನಿರ್ಧಾರ",
+        "url": "https://kannada.news18.com/news/state/belagavi-winter-session-dates-finalised-nine-days-instead-of-ten-karnataka-legislature-session-hmg-2521684.html",
+        "published": "2026-11-07T10:08:32+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "belagavi",
+        "districtKey": "belagavi"
+      },
+      {
         "title": "ಮಹಿಳಾ ಶಾಸಕಿಯರಿಗೆ ಸಿಹಿಸುದ್ದಿ! ಸಂಪುಟಕ್ಕೆ ಮಹಿಳಾ ಸಚಿವೆ ಸೇರ್ಪಡೆ: ಡಿ ಕೆ ಶಿವಕುಮಾರ್ ಮಹತ್ವದ ಘೋಷಣೆ",
         "url": "https://kannada.oneindia.com/news/karnataka/dk-shivakumar-woman-minister-to-join-karnataka-cabinet-before-belagavi-session-cm-makes-key-anno-473745.html",
         "published": "Sat, 07 Nov 2026 08:53:55 +0530",
@@ -37191,16 +37200,6 @@
         "url": "https://www.prajavani.net/district/belagavi/ramdurg-kannada-language-preservation-tahsildar-advice-4368742",
         "published": "Mon, 02 Nov 2026 06:25:00 +0530",
         "summary": "ರಾಮದುರ್ಗ: ‘ಬೇರೆ ಭಾಷೆಯ ಜನರನ್ನು ಮೆಚ್ಚಿಸಲು ಹೋಗಿ ಕನ್ನಡಿಗರು ಕನ್ನಡತನ ಮರೆಯುತ್ತಿದ್ದಾರೆ. ಕನ್ನಡ ಮಾತನಾಡುವವರ ಸಂಖ್ಯೆ ಕಡಿಮೆಯಾಗುತ್ತಿದೆ. ಅನ್ನದ ಭಾಷೆಯಾಗಿರುವ ಕನ್ನಡದ ಉಳಿವಿಗೆ ಎಲ್ಲರೂ ಶ್ರಮಿಸಬೇಕು’ ಎಂದು ತಹ",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "belagavi",
-        "districtKey": "belagavi"
-      },
-      {
-        "title": "ಗೋಕಾಕ್ ಚಳವಳಿಗಾರರಿಂದ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವದಲ್ಲಿ ಧ್ವಜಾರೋಹಣ",
-        "url": "https://www.prajavani.net/district/bangaluru-rural/doddaballapur-gokak-movement-activists-flag-hoisting-rajyotsava-4368737",
-        "published": "Mon, 02 Nov 2026 06:25:00 +0530",
-        "summary": "ದೊಡ್ಡಬಳ್ಳಾಪುರ: ನಗರದ ಎಂ.ಎಸ್.ವಿ.ಪಬ್ಲಿಕ್ ಶಾಲೆಯಲ್ಲಿ ಭಾನುವಾರ ನಡೆದ 71ನೇ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ ಗೋಕಾಕ್‌ ಚಳವಳಿಯಲ್ಲಿ ಸಕ್ರಿಯವಾಗಿ ತೊಡಗಿಸಿಕೊಂಡಿದ್ದ ಎಲ್.ಸಿ.ರಾಜು, ಸಿ.ರುದ್ರೇಶ್ ಅವರಿಂದ ಕನ್ನಡ ಧ್ವಜಾರೋಹಣ ನ",
         "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "belagavi",
@@ -45208,6 +45207,16 @@
     ],
     "vijayapura": [
       {
+        "title": "ವಂದೇ ಭಾರತ್ ಸ್ಲೀಪರ್ ರೈಲಿನಲ್ಲಿ ಸಾಕು ನಾಯಿಗಳಿಗೆ 'ಡಾಗ್ ಬಾಕ್ಸ್': ಪೆಟ್ ಪೇರೆಂಟ್ಸ್‌ಗೆ ಸಿಹಿಸುದ್ದಿ",
+        "url": "https://kannada.asianetnews.com/india-news/vande-bharat-sleeper-train-pet-box-facility-suh/articleshow-kktocuk",
+        "published": "Sat, 07 Nov 2026 09:57:17 +0530",
+        "summary": "ಸಾಕು ನಾಯಿಗಳನ್ನು ಮನೆಯ ಸದಸ್ಯರಂತೆ ಪ್ರೀತಿಸುವವರಿಗೆ ರೈಲಿನಲ್ಲಿ ಪ್ರಯಾಣ ಮಾಡುವುದು ಕೆಲವೊಮ್ಮೆ ದೊಡ್ಡ ಸವಾಲಾಗಿರುತ್ತದೆ. ನಾಯಿಗಳನ್ನು ತಮ್ಮೊಂದಿಗೆ ಕರೆದೊಯ್ಯಲು ಸೂಕ್ತ ವ್ಯವಸ್ಥೆ ಇಲ್ಲದೆ ಹಲವರು ಪ್ರವಾಸವನ್ನೇ ಮುಂ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "vijayapura",
+        "districtKey": "vijayapura"
+      },
+      {
         "title": "ಪಾಠವಷ್ಟೇ ಅಲ್ಲ, ಕನಸುಗಳಿಗೂ ಜೀವ ನೀಡಿದ ಗುರು: ಸರ್ಕಾರಿ ಶಾಲಾ ಮಕ್ಕಳ ವಿಮಾನ ಪ್ರವಾಸ",
         "url": "https://kannada.asianetnews.com/karnataka-districts/vijayapura-flight-opportunity-for-govt-school-children-exemplary-teacher-funds-air-travel-by-donating-3-month-salary-mrq/articleshow-ooig3gf",
         "published": "Sat, 07 Nov 2026 09:28:49 +0530",
@@ -47190,16 +47199,6 @@
         "url": "https://www.prajavani.net/news/india-news/election-commission-voter-list-revision-states-4377461",
         "published": "Thu, 05 Nov 2026 20:24:05 +0530",
         "summary": "ಕೆಲ ರಾಜ್ಯಗಳಲ್ಲಿ ಎಸ್‌ಎಸ್‌ಆರ್‌: ಆಯೋಗ",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "vijayapura",
-        "districtKey": "vijayapura"
-      },
-      {
-        "title": "ಮತ ಹಕ್ಕಿನ ರಕ್ಷಣೆಗೆ ನಿರಂತರ ಹೋರಾಟ: ‘ಇಂಡಿಯಾ’",
-        "url": "https://www.prajavani.net/news/karnataka-news/india-alliance-protest-voter-list-revision-bengaluru-4377544",
-        "published": "Thu, 05 Nov 2026 20:18:45 +0530",
-        "summary": "‘ಮತ ಹಕ್ಕಿನ ರಕ್ಷಣೆಗೆ ನಿರಂತರ ಹೋರಾಟ’",
         "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "vijayapura",
@@ -58331,6 +58330,115 @@
       }
     ],
     "_statewide": [
+      {
+        "title": "ಕರ್ನಾಟಕ ಸೇರಿ ಐದು ದಕ್ಷಿಣ ರಾಜ್ಯಗಳಿಗೆ ಹೆಚ್ಚು ಭಾರತ್ ರೈಸ್: ಸಚಿವ ಪ್ರಲ್ಹಾದ್ ಜೋಶಿ ಘೋಷಣೆ",
+        "url": "https://tv9kannada.com/national/bharat-rice-allocation-increased-for-karnataka-and-4-southern-states-stock-limits-allowed-until-january-31-says-pralhad-joshi-1260005.html",
+        "published": "Sat, 07 Nov 2026 10:15:13 +0530",
+        "summary": "ಕರ್ನಾಟಕ ಸೇರಿದಂತೆ ಐದು ದಕ್ಷಿಣ ರಾಜ್ಯಗಳಲ್ಲಿ ಅಕ್ಕಿ ಬೆಲೆ ಸ್ಥಿರತೆ ಹಾಗೂ ಪೂರೈಕೆ ಹೆಚ್ಚಿಸಲು ಕೇಂದ್ರ ಸರ್ಕಾರ ಹೆಚ್ಚುವರಿ ಭಾರತ್ ರೈಸ್ ಹಂಚಿಕೆ ಮಾಡಿದೆ. ಜತೆಗೆ 2027ರ ಜನವರಿ 31ರವರೆಗೆ ಅಕ್ಕಿ ಮತ್ತು ಭತ್ತದ ದಾಸ್",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಸಬ್ಸಿಡಿ, ಉಚಿತ ಕೊಡುಗೆಗಳಿಂದ ಕುತ್ತು: ಬೊಕ್ಕಸಕ್ಕೆ ಹೆಚ್ಚುತ್ತಿರುವ ಆರ್ಥಿಕ ಹೊರೆ; ಸರ್ಕಾರಕ್ಕೆ ಹಣಕಾಸು ಇಲಾಖೆಯ ವಾರ್ನಿಂಗ್!",
+        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/07/subsidies-freebies-finance-dept-cautions-govt-over-rising-burden",
+        "published": "2026-11-07T10:11:44+05:30",
+        "summary": "",
+        "source": "ಕನ್ನಡ ಪ್ರಭ",
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ತಾಯಿ ಎದುರಲ್ಲೇ ಗರ್ಲ್‌ಫ್ರೆಂಡ್ ಜೊತೆ ಮಾಧುರಿ ಮಗ: Madhuri Dixit's Son",
+        "url": "https://kannada.news18.com/short-videos/entertainment/-madhuri-dixit-s-son-with-his-girl-friend-svc-2521718.html",
+        "published": "2026-11-07T10:05:50+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಮಗನಿಗೆ ಕಾಸ್ಟ್ಲಿ ಬೈಕ್ ಗಿಫ್ಟ್ ಕೊಟ್ಟ ಪ್ರೇಮ್-ರಕ್ಷಿತಾ: Jogi Prem & Rakshitha Surprise",
+        "url": "https://kannada.news18.com/short-videos/entertainment/-jogi-prem-rakshitha-surprise-svc-2521716.html",
+        "published": "2026-11-07T10:03:49+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಸಿಎಂ ವಿಜಯ್ ಜೊತೆ ಕಾಣಿಸಿಕೊಂಡ ತ್ರಿಶಾ; ಪಿಂಕ್ ಸೀರೆಯಲ್ಲಿ ಸಿಂಪಲ್ ಆ್ಯಂಡ್ ಕ್ಲಾಸಿ ಲುಕ್",
+        "url": "https://vijaykarnataka.com/lifestyle/fashion/trisha-pink-saree-look-full-sleeve-blouse-statement-jewellery-fashion/articleshow/135626519.cms",
+        "published": "2026-11-07T10:03:45+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಶಿಕ್ಷಣ, ಸಂಶೋಧನೆ... ಬಹರೇನ್‌ನಲ್ಲಿ ಉಪ್ಪಿನಂಗಡಿಯ ಹಬೀಬ್ ಅವರ ಹೆಜ್ಜೆಗುರುತು",
+        "url": "https://www.prajavani.net/news/nrk/habib-ur-rehman-bahrain-education-research-karnataka-4380315",
+        "published": "Sat, 07 Nov 2026 10:00:00 +0530",
+        "summary": "",
+        "source": "ಪ್ರಜಾವಾಣಿ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ನೈಸರ್ಗಿಕಶಕ್ತಿ, ಜಲಮೂಲ ತಾಣ ನಮ್ಮ ಕರುನಾಡ ಎತ್ತರದ ಬೆಟ್ಟಗಳು;ಇದರ ಮಹತ್ವ ಗೊತ್ತೆ?",
+        "url": "https://www.prajavani.net/agriculture/farming/karnataka-hills-and-western-ghats-significance-4379113",
+        "published": "Sat, 07 Nov 2026 10:00:00 +0530",
+        "summary": "",
+        "source": "ಪ್ರಜಾವಾಣಿ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ನಾವೆಲ್ಲಾ ಸೇರಿನೇ ಕಳ್ಳಾಟ ಆಡಿದ್ದು: ಆಸ್ಟ್ರೇಲಿಯಾದ ಮೋಸದಾಟ ಬಯಲು!",
+        "url": "https://tv9kannada.com/sports/cricket-news/all-of-us-involved-usman-khawaja-blasts-sandpapergate-truth-1259994.html",
+        "published": "Sat, 07 Nov 2026 09:57:11 +0530",
+        "summary": "ಕ್ರಿಕೆಟ್ ಜಗತ್ತನ್ನೇ ತಲ್ಲಣಗೊಳಿಸಿದ್ದ 2018ರ 'ಸ್ಯಾಂಡ್‌ಪೇಪರ್ ಗೇಟ್' ಹಗರಣದ ಅಸಲಿ ಮುಖವಾಡವನ್ನು ಆಸ್ಟ್ರೇಲಿಯಾದ ಮಾಜಿ ಬ್ಯಾಟರ್ ಉಸ್ಮಾನ್ ಖ್ವಾಜಾ ಈಗ ಸಂಪೂರ್ಣವಾಗಿ ಕಳಚಿ ಬಿಚ್ಚಿಟ್ಟಿದ್ದಾರೆ. ಅಂದು ಕೇವಲ ಮೂವರು ಆ",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಬಾಸ್ಮತಿ ಸೇರಿ ಅಕ್ಕಿ ದಾಸ್ತಾನು ಅಡಗಿಸಿಟ್ಟರೆ ಕ್ರಮ : ಕೇಂದ್ರದ ಹೊಸ ನಿಯಮ - ಪ್ರತಿ ಶುಕ್ರವಾರ ಲೆಕ್ಕ ಸಲ್ಲಿಕೆ ಕಡ್ಡಾಯ",
+        "url": "https://vijaykarnataka.com/business/news/explainer-all-types-of-rice-including-basmati-stock-reporting-mandate/articleshow/135626271.cms",
+        "published": "2026-11-07T09:47:31+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಎರಡೇ ದಿನದಲ್ಲಿ 220 ಕೋಟಿ ಬಾಚಿದ ರಾಮಾಯಣ! ಅನಿಮಲ್‌ ರೆಕಾರ್ಡ್‌ ಬ್ರೇಕ್‌, RRR, ಬಾಹುಬಲಿ ಎಷ್ಟು ಗಳಿಸಿದ್ದವು?",
+        "url": "https://kannada.asianetnews.com/entertainment/ramayana-box-office-rs-220-crore-in-just-2-days-breaks-animal-record-how-much-did-rrr-and-baahubali-earn/articleshow-oix1w2z",
+        "published": "Sat, 07 Nov 2026 09:46:39 +0530",
+        "summary": "ಯಶ್, ರಣಬೀರ್ ಕಪೂರ್ ಮತ್ತು ಸಾಯಿ ಪಲ್ಲವಿ ನಟನೆಯ 'ರಾಮಾಯಣ' ಸಿನಿಮಾ ಬಿಡುಗಡೆಯಾದ ಕೇವಲ ಎರಡು ದಿನಗಳಲ್ಲಿ ವಿಶ್ವದಾದ್ಯಂತ 220 ಕೋಟಿ ರೂ. ಕಲೆಕ್ಷನ್ ಮಾಡಿದೆ. ನಿತೇಶ್ ತಿವಾರಿ ನಿರ್ದೇಶನದ ಈ ಚಿತ್ರವು ಅಂತಾರಾಷ್ಟ್ರೀಯ ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "30 ವರ್ಷದ ಬಳಿಕ ಮೀನ ಸೇರಿ ಈ 5 ರಾಶಿಯವರಿಗೆ ಬಯಸಿದ ಅದೃಷ್ಟ, ತಿಂಗಳು ಪೂರ್ತಿ ಗುರುವಿನಿಂದ ರಾಜಯೋಗ",
+        "url": "https://vijaykarnataka.com/astrology/planets-in-retrograde/jupiter-transit-in-ashlesha-nakshatra-2027-zodiac-signs-that-may-benefit-from-jupiters-aspects/articleshow/135626267.cms",
+        "published": "2026-11-07T09:43:37+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
       {
         "title": "'ಬಲಿತ ದಲಿತ ತುಳಿತ; ನನ್ನ ಜನ ಅನಾಥ: ಮೀಸಲಾತಿ ಅನುಕೂಲ ಪಡೆದವರಿಗೆ ಮತ್ತೆ ಮತ್ತೆ ಸೌಲಭ್ಯ; ಎಚ್.ಡಿ ಕುಮಾರಸ್ವಾಮಿ",
         "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/07/hd-kumaraswamy-participated-in-balita-dalitha-tulitha-book-release-event",
@@ -70157,119 +70265,208 @@
         "forced_district": null,
         "district": "_statewide",
         "districtKey": "_statewide"
-      },
-      {
-        "title": "ದೀಪಾವಳಿಗೆ ಟ್ರೆಂಡಿಂಗ್‌ನಲ್ಲಿದೆ ಈ 7 ಬಣ್ಣಗಳ ಬಟ್ಟೆಗಳು, ಪ್ರತಿಯೊಂದಕ್ಕೂ ಇದೆ ವಿಶೇಷ ಅರ್ಥ!",
-        "url": "https://kannada.news18.com/news/lifestyle/deepawali-outfit-colours-auspicious-shades-to-wear-details-in-kannada-msy-ws-l-2519087.html",
-        "published": "2026-11-03T10:29:10+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ಜನಪ್ರತಿನಿಧಿಗಳು ಬದ್ಧತೆ ಪ್ರದರ್ಶಿಸಿ: ಬೇಡ್ತಿ–ಅಘನಾಶಿನಿ ಕೊಳ್ಳ ಸಂರಕ್ಷಣಾ ಸಮಿತಿ",
-        "url": "https://www.prajavani.net/district/uttara-kannada/bedti-aghanashini-committee-urges-representatives-to-oppose-river-linking-project-4369934",
-        "published": "Tue, 03 Nov 2026 10:25:48 +0530",
-        "summary": "ನದಿ ಜೋಡಣೆ: ಜನಪ್ರತಿನಿಧಿಗಳು ಬದ್ಧತೆ ಪ್ರದರ್ಶಿಸಲಿ",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Amit Shah: 'ಆ ದುಷ್ಟರಿಗೆ ಶಿಕ್ಷೆಯಾಗ್ಬೇಕು' ಟಾಲಿವುಡ್​ನ ಸ್ಟಾರ್ ಅಪ್ಪ-ಮಗ ಅಮಿತ್​ ಶಾಗೆ ಮನವಿ ಮಾಡಿದ್ದೇನು?",
-        "url": "https://kannada.news18.com/news/entertainment/ram-charan-chiranjeevi-meets-amit-shah-what-is-the-reason-dvp-2519086.html",
-        "published": "2026-11-03T10:23:51+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Brahma Yoga: ಶತ್ರುನಾಶ, ಧನಪ್ರಾಪ್ತಿ; ವೃಷಭ, ಮಿಥುನ ಸೇರಿದಂತೆ ಈ 5 ರಾಶಿಯವರಿಗೆ ರಾಜಯೋಗ ಫಿಕ್ಸ್!",
-        "url": "https://kannada.news18.com/news/astrology/todays-horoscope-blessings-of-lord-hanuman-and-good-luck-for-five-zodiac-signs-avh-ws-l-2519085.html",
-        "published": "2026-11-03T10:16:15+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "‘ನನಗೆ ಮದುವೆಗೆ ಕರೆಯೇ ಬಂದಿರಲಿಲ್ಲ!’: ಅರ್ಜುನ್ ಸರ್ಜಾ 2ನೇ ಮಗಳ ಮದುವೆಗೆ ಹೋಗದಿರುವ ಬಗ್ಗೆ ನಟಿ ಮೇಘನಾ ರಾಜ್ ಸ್ಪಷ್ಟನೆ",
-        "url": "https://kannada.asianetnews.com/entertainment/arjun-sarja-daughter-anjana-wedding-meghana-raj-not-invited-suh/articleshow-15m090d",
-        "published": "Tue, 03 Nov 2026 10:11:49 +0530",
-        "summary": "ಸ್ಯಾಂಡಲ್‌ವುಡ್‌ನಲ್ಲಿ ಇತ್ತೀಚೆಗೆ ನಡೆದ ನಟ ಅರ್ಜುನ್ ಸರ್ಜಾ ಅವರ ಕಿರಿಯ ಪುತ್ರಿ ಅಂಜನಾ ಅರ್ಜುನ್ ಅವರ ಮದುವೆ ಸಾಕಷ್ಟು ಗಮನ ಸೆಳೆದಿತ್ತು. ಆದರೆ, ಈ ಮದುವೆಯಲ್ಲಿ ನಟಿ ಮೇಘನಾ ರಾಜ್ ಕಾಣಿಸಿಕೊಳ್ಳದಿರುವುದು ಚರ್ಚೆಗೆ ಕ",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Suriya: 'ಹೀರೋನಾ, ವಿಲನ್ನಾ? ವಿಲನ್ ಬೆಟರ್ ಅಲ್ವಾ?' ರೋಲೆಕ್ಸ್ ಬಗ್ಗೆ ಸೂರ್ಯನಿಂದ ಬಿಗ್ ಅಪ್ಡೇಟ್",
-        "url": "https://kannada.news18.com/news/entertainment/suriya-gives-an-update-about-rolex-movie-by-lokesh-kanagaraj-dvp-2519042.html",
-        "published": "2026-11-03T10:08:22+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ಪೊಲೀಸರ ನೋಟಿಸ್​​ಗೆ ಧನ್ವೀರ್ ಡೋಂಟ್ ಕೇರ್; ವಿಚಾರಣೆಗೆ ಗೈರು",
-        "url": "https://tv9kannada.com/entertainment/sandalwood/actor-dhanveer-ignored-police-notice-chamarajpet-police-prepare-second-notice-over-zaid-khan-case-1258283.html",
-        "published": "Tue, 03 Nov 2026 10:04:12 +0530",
-        "summary": "ನಟ ಝೈದ್ ಖಾನ್ ವಿರುದ್ಧ ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ ನೀಡಿದ ಆರೋಪದ ಮೇರೆಗೆ ಚಾಮರಾಜಪೇಟೆ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ ದಾಖಲಾಗಿರುವ ಪ್ರಕರಣದಲ್ಲಿ ವಿಚಾರಣೆಗೆ ಹಾಜರಾಗುವಂತೆ ನೀಡಿದ್ದ ನೋಟಿಸ್‌ಗೆ ನಟ ಧನ್ವೀರ್ ಗೈರಾಗಿದ್ದಾರೆ. ಈ ಹಿನ್",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ನವೆಂಬರ್ 2, 17, 23: ಐಪಿಎಲ್ ಮಿನಿ ಹರಾಜಿನ ಬಿಗ್ ಅಪ್​ಡೇಟ್",
-        "url": "https://tv9kannada.com/sports/cricket-news/ipl-2027-auction-key-dates-and-major-trades-revealed-1258271.html",
-        "published": "Tue, 03 Nov 2026 10:04:03 +0530",
-        "summary": "ವಿಶ್ವದ ಅತ್ಯಂತ ಜನಪ್ರಿಯ ಟಿ20 ಲೀಗ್‌ ಆದ ಐಪಿಎಲ್ ಹರಾಜು ಪ್ರಕ್ರಿಯೆಗಾಗಿ ಇಡೀ ಕ್ರಿಕೆಟ್ ಲೋಕವೇ ಕಾತರದಿಂದ ಕಾಯುತ್ತಿದೆ. ಅದಕ್ಕೂ, ನಡೆಯಲಿರುವ ಮಿನಿ ಆಕ್ಷನ್ ಪ್ರಕ್ರಿಯೆಗಾಗಿ ಬಿಸಿಸಿಐ ದಿನಾಂಕಗಳನ್ನು ನಿಗದಿ ಮಾಡಿದೆ",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ತಿಂಗಳಿಗೆ ಲಕ್ಷಾಂತರ ರೂ. ಲಾಭದ ಆಮಿಷ: ಹೂಡಿಕೆದಾರರಿಗೆ ₹11.46 ಕೋಟಿ ಪಂಗನಾಮ; ದಂಪತಿ ವಿರುದ್ಧ ಪ್ರಕರಣ ದಾಖಲು..!",
-        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/03/karnataka-couple-cheats-investors-of-rs-1146-crore-booked",
-        "published": "2026-11-03T10:01:58+05:30",
-        "summary": "",
-        "source": "ಕನ್ನಡ ಪ್ರಭ",
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Helicopters Crash: ಎರಡು ಹೆಲಿಕಾಪ್ಟರ್‌ಗಳ ನಡುವೆ ಭೀಕರ ಅಪಘಾತ! ಓರ್ವ ಪ್ರಯಾಣಿಕ ಸಾವು, ಮತ್ತೋರ್ವನಿಗೆ ಗಂಭೀರ ಗಾಯ",
-        "url": "https://kannada.news18.com/news/national-international/two-helicopters-crash-at-pheriche-in-everest-region-one-dead-akd-2519069.html",
-        "published": "2026-11-03T10:01:53+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ಕರುನಾಡೋತ್ಸವ: ಕರ್ನಾಟಕದ ಸಮುದ್ರ ತಟದ ಬೆವರುಪ್ಪು ಮತ್ತು ಸಾಮರಸ್ಯದ ಸಂಸ್ಕೃತಿ",
-        "url": "https://www.prajavani.net/agriculture/farming/coastal-karnataka-culture-traditions-and-lifestyle-4370078",
-        "published": "Tue, 03 Nov 2026 10:00:00 +0530",
-        "summary": "",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
       }
     ]
   },
   "articles": [
+    {
+      "title": "ಕರ್ನಾಟಕ ಸೇರಿ ಐದು ದಕ್ಷಿಣ ರಾಜ್ಯಗಳಿಗೆ ಹೆಚ್ಚು ಭಾರತ್ ರೈಸ್: ಸಚಿವ ಪ್ರಲ್ಹಾದ್ ಜೋಶಿ ಘೋಷಣೆ",
+      "url": "https://tv9kannada.com/national/bharat-rice-allocation-increased-for-karnataka-and-4-southern-states-stock-limits-allowed-until-january-31-says-pralhad-joshi-1260005.html",
+      "published": "Sat, 07 Nov 2026 10:15:13 +0530",
+      "summary": "ಕರ್ನಾಟಕ ಸೇರಿದಂತೆ ಐದು ದಕ್ಷಿಣ ರಾಜ್ಯಗಳಲ್ಲಿ ಅಕ್ಕಿ ಬೆಲೆ ಸ್ಥಿರತೆ ಹಾಗೂ ಪೂರೈಕೆ ಹೆಚ್ಚಿಸಲು ಕೇಂದ್ರ ಸರ್ಕಾರ ಹೆಚ್ಚುವರಿ ಭಾರತ್ ರೈಸ್ ಹಂಚಿಕೆ ಮಾಡಿದೆ. ಜತೆಗೆ 2027ರ ಜನವರಿ 31ರವರೆಗೆ ಅಕ್ಕಿ ಮತ್ತು ಭತ್ತದ ದಾಸ್",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಸಬ್ಸಿಡಿ, ಉಚಿತ ಕೊಡುಗೆಗಳಿಂದ ಕುತ್ತು: ಬೊಕ್ಕಸಕ್ಕೆ ಹೆಚ್ಚುತ್ತಿರುವ ಆರ್ಥಿಕ ಹೊರೆ; ಸರ್ಕಾರಕ್ಕೆ ಹಣಕಾಸು ಇಲಾಖೆಯ ವಾರ್ನಿಂಗ್!",
+      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/07/subsidies-freebies-finance-dept-cautions-govt-over-rising-burden",
+      "published": "2026-11-07T10:11:44+05:30",
+      "summary": "",
+      "source": "ಕನ್ನಡ ಪ್ರಭ",
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "2 ಹೆಕ್ಟೇರ್‌ನಲ್ಲಿ ನಿಂಬೆ ತೋಟ ನಿರ್ಮಿಸಿದ ರೈತ ರಾಮನಗೌಡ; ಕಡಿಮೆ ಖರ್ಚು, ಉತ್ತಮ ಆದಾಯ",
+      "url": "https://kannada.asianetnews.com/karnataka-districts/koppal-kushtagi-farmer-establishes-a-lemon-orchard-on-2-hectares-low-costs-good-income-mrq/articleshow-hnukh0a",
+      "published": "Sat, 07 Nov 2026 10:10:03 +0530",
+      "summary": "ಕುಷ್ಟಗಿ ತಾಲೂಕಿನ ಮಡಿಕೇರಿ ಗ್ರಾಮದ ರೈತ ರಾಮನಗೌಡ ಪಾಟೀಲ ಅವರು 2 ಹೆಕ್ಟೇರ್‌ನಲ್ಲಿ ನಿಂಬೆ ಬೆಳೆದು ಮಾದರಿಯಾಗಿದ್ದಾರೆ. ಕಡಿಮೆ ನಿರ್ವಹಣಾ ವೆಚ್ಚ ಮತ್ತು ಮಾರುಕಟ್ಟೆಯ ನಿರಂತರ ಬೇಡಿಕೆಯಿಂದಾಗಿ ನಿಂಬೆ ಕೃಷಿಯು ರೈತರಿಗೆ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "kodagu",
+      "districtKey": "kodagu"
+    },
+    {
+      "title": "Belagavi: ಚಳಿಗಾಲದ ಅಧಿವೇಶನಕ್ಕೆ ಮುಹೂರ್ತ ಫಿಕ್ಸ್​​! ಆದ್ರೆ ಈ ಬಾರಿ 10 ದಿನದ ಬದಲಿಗೆ 9 ದಿನಕ್ಕೆ ನಿರ್ಧಾರ",
+      "url": "https://kannada.news18.com/news/state/belagavi-winter-session-dates-finalised-nine-days-instead-of-ten-karnataka-legislature-session-hmg-2521684.html",
+      "published": "2026-11-07T10:08:32+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "belagavi",
+      "districtKey": "belagavi"
+    },
+    {
+      "title": "ತಾಯಿ ಎದುರಲ್ಲೇ ಗರ್ಲ್‌ಫ್ರೆಂಡ್ ಜೊತೆ ಮಾಧುರಿ ಮಗ: Madhuri Dixit's Son",
+      "url": "https://kannada.news18.com/short-videos/entertainment/-madhuri-dixit-s-son-with-his-girl-friend-svc-2521718.html",
+      "published": "2026-11-07T10:05:50+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಮಗನಿಗೆ ಕಾಸ್ಟ್ಲಿ ಬೈಕ್ ಗಿಫ್ಟ್ ಕೊಟ್ಟ ಪ್ರೇಮ್-ರಕ್ಷಿತಾ: Jogi Prem & Rakshitha Surprise",
+      "url": "https://kannada.news18.com/short-videos/entertainment/-jogi-prem-rakshitha-surprise-svc-2521716.html",
+      "published": "2026-11-07T10:03:49+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಸಿಎಂ ವಿಜಯ್ ಜೊತೆ ಕಾಣಿಸಿಕೊಂಡ ತ್ರಿಶಾ; ಪಿಂಕ್ ಸೀರೆಯಲ್ಲಿ ಸಿಂಪಲ್ ಆ್ಯಂಡ್ ಕ್ಲಾಸಿ ಲುಕ್",
+      "url": "https://vijaykarnataka.com/lifestyle/fashion/trisha-pink-saree-look-full-sleeve-blouse-statement-jewellery-fashion/articleshow/135626519.cms",
+      "published": "2026-11-07T10:03:45+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "Monkey Rescue: ಹತ್ತು ದಿನಗಳ ಕಾಲ ನಿರಂತರ ಚಿಕಿತ್ಸೆ, ತಾಯಿಯಂತೆ ಮಮತೆ ಕೊಟ್ಟ ಮಹಿಳೆ; ಕೋತಿಗೆ ಸಿಕ್ತು ಮತ್ತೊಂದು ಬದುಕು!",
+      "url": "https://kannada.news18.com/news/chamarajanagar/hanuma-seva-samithi-saves-injured-monkey-scs-svl-local18-ws-kl-2521698.html",
+      "published": "2026-11-07T10:02:12+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "chamarajanagara",
+      "districtKey": "chamarajanagara"
+    },
+    {
+      "title": "ದೇವಿರಮ್ಮ ಬೆಟ್ಟದಲ್ಲಿ ಅದ್ಧೂರಿ ಜಾತ್ರೆ ಶುರು :Deviramma Temple",
+      "url": "https://kannada.news18.com/videos/chikkamagaluru/-deviramma-temple-svc-2521714.html?utm_source=District Widget&utm_medium=Desktop&utm_campaign=kannada",
+      "published": "2026-11-07T10:01:29+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": "mysuru",
+      "district": "mysuru",
+      "districtKey": "mysuru"
+    },
+    {
+      "title": "ಶಿಕ್ಷಣ, ಸಂಶೋಧನೆ... ಬಹರೇನ್‌ನಲ್ಲಿ ಉಪ್ಪಿನಂಗಡಿಯ ಹಬೀಬ್ ಅವರ ಹೆಜ್ಜೆಗುರುತು",
+      "url": "https://www.prajavani.net/news/nrk/habib-ur-rehman-bahrain-education-research-karnataka-4380315",
+      "published": "Sat, 07 Nov 2026 10:00:00 +0530",
+      "summary": "",
+      "source": "ಪ್ರಜಾವಾಣಿ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ನೈಸರ್ಗಿಕಶಕ್ತಿ, ಜಲಮೂಲ ತಾಣ ನಮ್ಮ ಕರುನಾಡ ಎತ್ತರದ ಬೆಟ್ಟಗಳು;ಇದರ ಮಹತ್ವ ಗೊತ್ತೆ?",
+      "url": "https://www.prajavani.net/agriculture/farming/karnataka-hills-and-western-ghats-significance-4379113",
+      "published": "Sat, 07 Nov 2026 10:00:00 +0530",
+      "summary": "",
+      "source": "ಪ್ರಜಾವಾಣಿ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ವಂದೇ ಭಾರತ್ ಸ್ಲೀಪರ್ ರೈಲಿನಲ್ಲಿ ಸಾಕು ನಾಯಿಗಳಿಗೆ 'ಡಾಗ್ ಬಾಕ್ಸ್': ಪೆಟ್ ಪೇರೆಂಟ್ಸ್‌ಗೆ ಸಿಹಿಸುದ್ದಿ",
+      "url": "https://kannada.asianetnews.com/india-news/vande-bharat-sleeper-train-pet-box-facility-suh/articleshow-kktocuk",
+      "published": "Sat, 07 Nov 2026 09:57:17 +0530",
+      "summary": "ಸಾಕು ನಾಯಿಗಳನ್ನು ಮನೆಯ ಸದಸ್ಯರಂತೆ ಪ್ರೀತಿಸುವವರಿಗೆ ರೈಲಿನಲ್ಲಿ ಪ್ರಯಾಣ ಮಾಡುವುದು ಕೆಲವೊಮ್ಮೆ ದೊಡ್ಡ ಸವಾಲಾಗಿರುತ್ತದೆ. ನಾಯಿಗಳನ್ನು ತಮ್ಮೊಂದಿಗೆ ಕರೆದೊಯ್ಯಲು ಸೂಕ್ತ ವ್ಯವಸ್ಥೆ ಇಲ್ಲದೆ ಹಲವರು ಪ್ರವಾಸವನ್ನೇ ಮುಂ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "vijayapura",
+      "districtKey": "vijayapura"
+    },
+    {
+      "title": "ನಾವೆಲ್ಲಾ ಸೇರಿನೇ ಕಳ್ಳಾಟ ಆಡಿದ್ದು: ಆಸ್ಟ್ರೇಲಿಯಾದ ಮೋಸದಾಟ ಬಯಲು!",
+      "url": "https://tv9kannada.com/sports/cricket-news/all-of-us-involved-usman-khawaja-blasts-sandpapergate-truth-1259994.html",
+      "published": "Sat, 07 Nov 2026 09:57:11 +0530",
+      "summary": "ಕ್ರಿಕೆಟ್ ಜಗತ್ತನ್ನೇ ತಲ್ಲಣಗೊಳಿಸಿದ್ದ 2018ರ 'ಸ್ಯಾಂಡ್‌ಪೇಪರ್ ಗೇಟ್' ಹಗರಣದ ಅಸಲಿ ಮುಖವಾಡವನ್ನು ಆಸ್ಟ್ರೇಲಿಯಾದ ಮಾಜಿ ಬ್ಯಾಟರ್ ಉಸ್ಮಾನ್ ಖ್ವಾಜಾ ಈಗ ಸಂಪೂರ್ಣವಾಗಿ ಕಳಚಿ ಬಿಚ್ಚಿಟ್ಟಿದ್ದಾರೆ. ಅಂದು ಕೇವಲ ಮೂವರು ಆ",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ದೀಪಾವಳಿ ಹಬ್ಬ: KSRTCಯಿಂದ ಬೆಂಗಳೂರಿನಿಂದ ವಿವಿಧ ಊರುಗಳಿಗೆ 908 ವಿಶೇಷ ಬಸ್‌ಗಳ ಸಂಚಾರ",
+      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/07/ksrtc-operates-908-special-buses-from-bengaluru-for-deepavali-on-nov-6-and-7",
+      "published": "2026-11-07T09:55:27+05:30",
+      "summary": "",
+      "source": "ಕನ್ನಡ ಪ್ರಭ",
+      "district": "hassan",
+      "districtKey": "hassan"
+    },
+    {
+      "title": "Male Mahadeshwara Hill: ಮಾದಪ್ಪನ ಭಕ್ತರಿಗೆ ಗುಡ್‌ ನ್ಯೂಸ್‌, ಜಾತ್ರೆಗೆ ಬಂತು 350 ಬಸ್;‌ ಆದರೆ ಈ ನಿಯಮ ಪಾಲಿಸದಿದ್ದರೆ ಅಪಾಯ ಖಂಡಿತ!",
+      "url": "https://kannada.news18.com/news/astrology/night-trekking-ban-imposed-for-male-mahadeshwara-hills-diwali-fair-chamarajanagara-mng-abn-local18-ws-bk-2521687.html",
+      "published": "2026-11-07T09:55:06+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "chamarajanagara",
+      "districtKey": "chamarajanagara"
+    },
+    {
+      "title": "ಶಿವಮೊಗ್ಗದಲ್ಲಿ ವಿದ್ಯುತ್‌ ಶಾಕ್‌ಗೆ ಕಾಡಾನೆ ಬಲಿ, ಎಲ್ಲಿ? ಹೇಗಾಯ್ತು ಘಟನೆ?",
+      "url": "https://shivamoggalive.com/taluk-news/shivamogga/elephant-electrocuted-to-death/",
+      "published": "Sat, 07 Nov 2026 04:22:52 +0000",
+      "summary": "Wild elephant electrocuted to death by illegal fence wire in Ichalavadi near Shivamogga; forest officials detain farmland owner. The post ಶಿವಮೊಗ್ಗದಲ್ಲಿ ವಿದ್ಯುತ್‌ ಶಾಕ್‌ಗೆ ಕಾಡಾನೆ ಬಲಿ",
+      "source": "ಶಿವಮೊಗ್ಗ ಲೈವ್",
+      "forced_district": "shivamogga",
+      "district": "shivamogga",
+      "districtKey": "shivamogga"
+    },
+    {
+      "title": "ಕರ್ನಾಟಕದಲ್ಲಿ ಮುಂದಿನ ಎರಡು ದಿನ ಮಳೆ ಪಕ್ಕಾ! ಬೆಂಗಳೂರು, ಕರಾವಳಿ ಸೇರಿ ಹಲವು ಜಿಲ್ಲೆಗಳ ಮಳೆ ಮುನ್ಸೂಚನೆ ಹೀಗಿದೆ",
+      "url": "https://kannada.asianetnews.com/state/karnataka-weather-forecast-heavy-rain-alert-for-bengaluru-mysuru-kodagu-chikkamagaluru-and-coastal-karnataka-gdp/articleshow-ncpo4ad",
+      "published": "Sat, 07 Nov 2026 09:48:01 +0530",
+      "summary": "ಕರ್ನಾಟಕದಲ್ಲಿ ನವೆಂಬರ್ 7 ಮತ್ತು 8ರಂದು ಬೆಂಗಳೂರು ಸೇರಿದಂತೆ ದಕ್ಷಿಣ ಒಳನಾಡಿನ ಹಲವು ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಹಗುರದಿಂದ ಸಾಧಾರಣ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ. ಕರಾವಳಿಯ ಕೆಲವು ಭಾಗಗಳಲ್ಲೂ ಮಳೆಯ ಮುನ್ಸೂಚನೆ ಇದ್ದು, ಉತ್ತರ ಒಳನಾ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "mysuru",
+      "districtKey": "mysuru"
+    },
+    {
+      "title": "ಬಾಸ್ಮತಿ ಸೇರಿ ಅಕ್ಕಿ ದಾಸ್ತಾನು ಅಡಗಿಸಿಟ್ಟರೆ ಕ್ರಮ : ಕೇಂದ್ರದ ಹೊಸ ನಿಯಮ - ಪ್ರತಿ ಶುಕ್ರವಾರ ಲೆಕ್ಕ ಸಲ್ಲಿಕೆ ಕಡ್ಡಾಯ",
+      "url": "https://vijaykarnataka.com/business/news/explainer-all-types-of-rice-including-basmati-stock-reporting-mandate/articleshow/135626271.cms",
+      "published": "2026-11-07T09:47:31+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಎರಡೇ ದಿನದಲ್ಲಿ 220 ಕೋಟಿ ಬಾಚಿದ ರಾಮಾಯಣ! ಅನಿಮಲ್‌ ರೆಕಾರ್ಡ್‌ ಬ್ರೇಕ್‌, RRR, ಬಾಹುಬಲಿ ಎಷ್ಟು ಗಳಿಸಿದ್ದವು?",
+      "url": "https://kannada.asianetnews.com/entertainment/ramayana-box-office-rs-220-crore-in-just-2-days-breaks-animal-record-how-much-did-rrr-and-baahubali-earn/articleshow-oix1w2z",
+      "published": "Sat, 07 Nov 2026 09:46:39 +0530",
+      "summary": "ಯಶ್, ರಣಬೀರ್ ಕಪೂರ್ ಮತ್ತು ಸಾಯಿ ಪಲ್ಲವಿ ನಟನೆಯ 'ರಾಮಾಯಣ' ಸಿನಿಮಾ ಬಿಡುಗಡೆಯಾದ ಕೇವಲ ಎರಡು ದಿನಗಳಲ್ಲಿ ವಿಶ್ವದಾದ್ಯಂತ 220 ಕೋಟಿ ರೂ. ಕಲೆಕ್ಷನ್ ಮಾಡಿದೆ. ನಿತೇಶ್ ತಿವಾರಿ ನಿರ್ದೇಶನದ ಈ ಚಿತ್ರವು ಅಂತಾರಾಷ್ಟ್ರೀಯ ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "30 ವರ್ಷದ ಬಳಿಕ ಮೀನ ಸೇರಿ ಈ 5 ರಾಶಿಯವರಿಗೆ ಬಯಸಿದ ಅದೃಷ್ಟ, ತಿಂಗಳು ಪೂರ್ತಿ ಗುರುವಿನಿಂದ ರಾಜಯೋಗ",
+      "url": "https://vijaykarnataka.com/astrology/planets-in-retrograde/jupiter-transit-in-ashlesha-nakshatra-2027-zodiac-signs-that-may-benefit-from-jupiters-aspects/articleshow/135626267.cms",
+      "published": "2026-11-07T09:43:37+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
     {
       "title": "ಇದು ಬೇಲಿಯೇ ಎದ್ದು ಹೊ ಮೇಯ್ದ ಕಥೆ! ಹೊಯ್ಸಳ ವಾಹನದಲ್ಲಿ ಬಂದು ವಸೂಲಿ ಆರೋಪದಲ್ಲಿ ಇಬ್ಬರು ಪೊಲೀಸರ ಬಂಧನ",
       "url": "https://tv9kannada.com/karnataka/dakshina-kannada/mangaluru-police-extortion-case-two-hoysala-vehicle-cops-arrested-over-assault-and-cash-robbery-allegations-1259997.html",
@@ -70310,6 +70507,16 @@
       "districtKey": "_statewide"
     },
     {
+      "title": "10 ದಿನಗಳಲ್ಲಿ 6 ಅಡಿ ಕುಸಿತ, 98 ಅಡಿಗೆ ಇಳಿದ ಕೆಆರ್‌ಎಸ್ ನೀರಿನ ಮಟ್ಟ – ಸಂಕಷ್ಟದಲ್ಲಿ ಅನ್ನದಾತ",
+      "url": "https://publictv.in/krs-water-level-drops-by-6-feet-in-10-days-falls-to-98-feet/",
+      "published": "Sat, 07 Nov 2026 04:08:19 +0000",
+      "summary": "– ಇಂದಿನಿಂದ ತಮಿಳುನಾಡಿಗೆ ನಿತ್ಯ 3,000 ಕ್ಯೂಸೆಕ್‌ ನೀರು ಮಂಡ್ಯ: ಮಳೆಯ ಕೊರತೆ ಮತ್ತು ತಮಿಳುನಾಡಿಗೆ ನಿರಂತರವಾಗಿ ನೀರು ಹರಿಸುತ್ತಿರುವ ಪರಿಣಾಮ ಮಂಡ್ಯ ಜಿಲ್ಲೆ ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲೂಕಿನ ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯದ ನೀರಿನ ಮ",
+      "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+      "forced_district": null,
+      "district": "mandya",
+      "districtKey": "mandya"
+    },
+    {
       "title": "ಬೆಳೆ ವಿಮೆ, ಅವೈಜ್ಞಾನಿಕವಾಗಿ ಅಂದಾಜು, ತಕ್ಷಣ ಸರಿಪಡಿಸುವಂತೆ ಸಂಸದ ರಾಘವೇಂದ್ರ ಸೂಚನೆ",
       "url": "https://shivamoggalive.com/news/shivamogga-city/unscientific-loss-assessment/",
       "published": "Sat, 07 Nov 2026 04:05:35 +0000",
@@ -70338,6 +70545,16 @@
       "forced_district": null,
       "district": "mysuru",
       "districtKey": "mysuru"
+    },
+    {
+      "title": "Bengaluru Murder Horror | ಮೈಸೂರಿನ ಚಾಮುಂಡಿಬೆಟ್ಟ, ಚಾರ್ಮಾಡಿ ಘಾಟ್‌ನಲ್ಲಿ ಮೃತದೇಹ ಎಸೆದಿರೋ ಶಂಕೆ!",
+      "url": "https://publictv.in/bengaluru-murder-horror-suspicion-that-a-dead-body-has-been-dumped-at-chamundi-hill-or-charmadi-ghat/",
+      "published": "Sat, 07 Nov 2026 03:59:14 +0000",
+      "summary": "– 6 ಪೊಲೀಸ್ ತಂಡಗಳಿಂದ ತನಿಖೆ ಬೆಂಗಳೂರು: ರಾಜ್ಯ ರಾಜಧಾನಿಯಲ್ಲಿ ಭಾರೀ ಆತಂಕ ಮೂಡಿಸಿರುವ ಸರಣಿ ಕೊಲೆ (Bengaluru Murder Horror) ಪ್ರಕರಣದ ತನಿಖೆ ಮತ್ತಷ್ಟು ಚುರುಕುಗೊಂಡಿದೆ. ಇನ್ನಷ್ಟು ಸ್ಫೋಟಕ ರಹಸ್ಯಗಳನ್ನ ಪೊಲೀ",
+      "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+      "forced_district": null,
+      "district": "bengaluru-urban",
+      "districtKey": "bengaluru-urban"
     },
     {
       "title": "ಪಾಠವಷ್ಟೇ ಅಲ್ಲ, ಕನಸುಗಳಿಗೂ ಜೀವ ನೀಡಿದ ಗುರು: ಸರ್ಕಾರಿ ಶಾಲಾ ಮಕ್ಕಳ ವಿಮಾನ ಪ್ರವಾಸ",
@@ -70436,6 +70653,16 @@
       "forced_district": null,
       "district": "hassan",
       "districtKey": "hassan"
+    },
+    {
+      "title": "ದೆಹಲಿಯಲ್ಲಿ ವಿಷವಾಗುತ್ತಿದೆ ಉಸಿರಾಡುವ ಗಾಳಿ – ದೀಪಾವಳಿಗೂ ಮುನ್ನವೇ ವಾಯುಗುಣಮಟ್ಟ ಕಳಪೆ!",
+      "url": "https://publictv.in/no-relief-from-toxic-air-delhi-aqi-remains-very-poor-ahead-of-diwali-22-stations-cross-400/",
+      "published": "Sat, 07 Nov 2026 03:31:16 +0000",
+      "summary": "– 22 ಕೇಂದ್ರಗಳಲ್ಲಿ 400ರ ಗಡಿ ದಾಟಿದ ಎಕ್ಯೂಐ ನವದೆಹಲಿ: ರಾಷ್ಟ್ರ ರಾಜಧಾನಿಯಲ್ಲಿ ಉಸಿರಾಡುವ ಗಾಳಿ ವಿಷವಾಗಿತ್ತಿದ್ದು, ದೀಪಾವಳಿ ಹಬ್ಬಕ್ಕೂ (Deepavali Festival) ಮುನ್ನವೇ ಗಾಳಿಯ ಗುಣಮಟ್ಟ ಅತ್ಯಂತ ಕಳಪೆಯಾಗಿದೆ ಎ",
+      "source": "ಪಬ್ಲಿಕ್ ಟಿವಿ",
+      "forced_district": null,
+      "district": "tumakuru",
+      "districtKey": "tumakuru"
     },
     {
       "title": "ಮಂಡ್ಯದಿಂದ ಪೋಲೆಂಡ್‌ವರೆಗೆ: ಜಾಗತಿಕ ವೇದಿಕೆಯಲ್ಲಿ ಸಚಿನ್ ಪಾರ್ಥ ಸಾಧನೆ",
@@ -85087,16 +85314,6 @@
       "districtKey": "hassan"
     },
     {
-      "title": "ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ; ಕ್ರಮಕ್ಕೆ ಒತ್ತಾಯಿಸಿ ಮನವಿ",
-      "url": "https://www.prajavani.net/district/hasana/hassan-defamatory-statement-neha-bora-action-demand-4378374",
-      "published": "Fri, 06 Nov 2026 06:30:00 +0530",
-      "summary": "ಹಾಸನ: ಬ್ರಾಹ್ಮಣ ಸಮಾಜದ ಮಹಿಳೆಯರು ಹಾಗೂ ಹಿಂದೂ ದೇವಾಲಯಗಳ ಅರ್ಚಕರ ಕುರಿತು ಸಾಮಾಜಿಕ ಜಾಲತಾಣದಲ್ಲಿ ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ ನೀಡಿದ್ದಾರೆ ಎನ್ನಲಾದ ನೇಹಾ ಬೋರಾ ಅವರ ವಿರುದ್ಧ ಸೂಕ್ತ ಕಾನೂನು ಕ್ರಮ ಕೈಗೊಳ್ಳುವಂತೆ ಆಗ್ರಹಿ",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "hassan",
-      "districtKey": "hassan"
-    },
-    {
       "title": "ನೂರಾರು ಮಕ್ಕಳ ಪ್ರತಿಭೆ ಅನಾವರಣ, ಮಡಿಕೇರಿ ಗಾಂಧಿ ಭವನದಲ್ಲಿ ಕಾರ್ಯಕ್ರಮ",
       "url": "https://www.prajavani.net/district/kodagu/madikeri-children-talent-showcase-gandhi-bhavan-festival-4378435",
       "published": "Fri, 06 Nov 2026 06:30:00 +0530",
@@ -91122,16 +91339,6 @@
       "forced_district": null,
       "district": "_statewide",
       "districtKey": "_statewide"
-    },
-    {
-      "title": "ಮತ ಹಕ್ಕಿನ ರಕ್ಷಣೆಗೆ ನಿರಂತರ ಹೋರಾಟ: ‘ಇಂಡಿಯಾ’",
-      "url": "https://www.prajavani.net/news/karnataka-news/india-alliance-protest-voter-list-revision-bengaluru-4377544",
-      "published": "Thu, 05 Nov 2026 20:18:45 +0530",
-      "summary": "‘ಮತ ಹಕ್ಕಿನ ರಕ್ಷಣೆಗೆ ನಿರಂತರ ಹೋರಾಟ’",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "vijayapura",
-      "districtKey": "vijayapura"
     },
     {
       "title": "Big Gift For Karnataka Farmers | ರೈತರಿಗೆ ದೀಪಾವಳಿ ಗಿಫ್ಟ್! | CM DK Shivakumar Govt",
@@ -105170,16 +105377,6 @@
       "districtKey": "dakshina-kannada"
     },
     {
-      "title": "ಸ್ವಂತ ಗಳಿಕೆ ಇದ್ದು, ಸ್ವಾವಲಂಬಿಯಾಗಿರೋ ಹೆಂಡತಿಗೆ ಜೀವನಾಂಶ ಪಡೆಯುವ ಹಕ್ಕಿಲ್ಲ: ಕರ್ನಾಟಕ ಹೈಕೋರ್ಟ್ ಮಹತ್ವದ ತೀರ್ಪು",
-      "url": "https://tv9kannada.com/karnataka/bengaluru/karnataka-hc-no-maintenance-for-self-reliant-wives-earning-good-income-1258759.html",
-      "published": "Wed, 04 Nov 2026 09:57:17 +0530",
-      "summary": "ಉತ್ತಮ ಶಿಕ್ಷಣ ಪಡೆದು, ಸ್ವಂತ ದುಡಿಮೆಯಿಂದ ಜೀವನ ನಿರ್ವಹಣೆ ಮಾಡುವ ಸಾಮರ್ಥ್ಯವಿರುವ ಹಾಗೂ ಸ್ವಾವಲಂಬಿ ಹೆಂಡತಿಗೆ ಗಂಡನಿಂದ ಜೀವನಾಂಶ ಪಡೆಯುವ ಅರ್ಹತೆಯಿರುವುದಿಲ್ಲ ಎಂದು ಕರ್ನಾಟಕ ಹೈಕೋರ್ಟ್ ಮಹತ್ವದ ತೀರ್ಪು ನೀಡಿದೆ. ",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": "bengaluru-urban",
-      "district": "bengaluru-urban",
-      "districtKey": "bengaluru-urban"
-    },
-    {
       "title": "‘ಪುಟ್ನಂಜ’ ಚಿತ್ರದಿಂದ ದೊಡ್ಡ ಸಂಭಾವನೆ; ಕಷ್ಟದ ದಿನಗಳನ್ನು ನೆನಪಿಸಿಕೊಂಡು ಮಕ್ಕಳ ಬೆಳವಣಿಗೆಯ ಬಗ್ಗೆ ಮನಬಿಚ್ಚಿ ಮಾತನಾಡಿದ ಉಮಾಶ್ರೀ!",
       "url": "https://kannada.asianetnews.com/entertainment/actress-umashree-75-thousand-remuneration-savings-for-children-suh/articleshow-6bnpn94",
       "published": "Wed, 04 Nov 2026 09:56:07 +0530",
@@ -110449,16 +110646,6 @@
       "districtKey": "chikkamagaluru"
     },
     {
-      "title": "ನಂದಿನಿ ಮೊಸರಿನ ದರ ಕೊಂಚ ಇಳಿಕೆಗೆ ಸಿಎಂ ಡಿಕೆ ಶಿವಕುಮಾರ್ ಸೂಚನೆ",
-      "url": "https://www.justkannada.in/price-nandini-curd/",
-      "published": "Tue, 03 Nov 2026 06:31:37 +0000",
-      "summary": "ಬೆಂಗಳೂರು,ನವೆಂಬರ್,3,2026 (www.justkannada.in): ರಾಜ್ಯದಲ್ಲಿ ಪ್ರತಿ ಲೀಟರ್ ನಂದಿನಿ ಹಾಲಿಗೆ 8 ರೂ. ಮತ್ತು ಮೊಸರಿಗೆ 14 ರೂ. ಏರಿಕೆ ಮಾಡಿರುವ ರಾಜ್ಯ ಸರ್ಕಾರದ ವಿರುದ್ದ ತೀವ್ರ ಆಕ್ರೋಶ ವ್ಯಕ್ತವಾಗಿದ್ದು ಈ ಬೆನ್",
-      "source": "ಜಸ್ಟ್ ಕನ್ನಡ",
-      "forced_district": "mysuru",
-      "district": "mysuru",
-      "districtKey": "mysuru"
-    },
-    {
       "title": "ತೀರ್ಥಹಳ್ಳಿಯಲ್ಲಿ ತುಂಗಾ ನದಿಯಲ್ಲಿ ದಾವಣಗೆರೆಯ ಇಬ್ಬರು ಯುವಕರು ನಾಪತ್ತೆ ಶಂಕೆ",
       "url": "https://shivamoggalive.com/taluk-news/thirthahalli/youths-feared-drowned/",
       "published": "Tue, 03 Nov 2026 06:30:00 +0000",
@@ -110879,16 +111066,6 @@
       "districtKey": "chikkaballapura"
     },
     {
-      "title": "ಮೈಸೂರಿನಲ್ಲಿ ಪ್ರಿ ವೆಡ್ಡಿಂಗ್ ಶೂಟ್‌ ಗೆ ಕಡಿವಾಣವಿಲ್ಲವೇ? ಬಸ್ ಹರಿದು ಶಾಲಾ ವಿದ್ಯಾರ್ಥಿ ದಾರುಣ ಸಾವು!",
-      "url": "https://www.justkannada.in/mysuru-bus-accident/",
-      "published": "Tue, 03 Nov 2026 05:43:51 +0000",
-      "summary": "ಮೈಸೂರು,ನವೆಂಬರ್,3,2026 (www.justkannada.in): ಸಾಂಸ್ಕೃತಿಕ ನಗರಿ ಮೈಸೂರಿನ ಪಾರಂಪರಿಕ ಸ್ಮಾರಕಗಳು, ಅರಮನೆ ಸುತ್ತಮುತ್ತಲಿನ ವೃತ್ತಗಳು ಹಾಗೂ ಐತಿಹಾಸಿಕ ಕಟ್ಟಡಗಳ ಸೌಂದರ್ಯವನ್ನು ಕಾಪಾಡಬೇಕಾದ ಜಾಗಗಳೇ ಇದೀಗ ಅಪಾಯಕ",
-      "source": "ಜಸ್ಟ್ ಕನ್ನಡ",
-      "forced_district": "mysuru",
-      "district": "mysuru",
-      "districtKey": "mysuru"
-    },
-    {
       "title": "‘ಜೈಲರ್’ ಸಿನಿಮಾ 1000 ಕೋಟಿ ಕಲೆಕ್ಷನ್ ದಾಟಲ್ಲ, ವಿತರಕನ ವಿಶ್ಲೇಷಣೆ",
       "url": "https://tv9kannada.com/entertainment/jailer-2-will-not-collect-1000-cr-rs-at-box-office-says-distributer-1258340.html",
       "published": "Tue, 03 Nov 2026 11:09:18 +0530",
@@ -111109,16 +111286,6 @@
       "districtKey": "_statewide"
     },
     {
-      "title": "ದೀಪಾವಳಿಗೆ ಟ್ರೆಂಡಿಂಗ್‌ನಲ್ಲಿದೆ ಈ 7 ಬಣ್ಣಗಳ ಬಟ್ಟೆಗಳು, ಪ್ರತಿಯೊಂದಕ್ಕೂ ಇದೆ ವಿಶೇಷ ಅರ್ಥ!",
-      "url": "https://kannada.news18.com/news/lifestyle/deepawali-outfit-colours-auspicious-shades-to-wear-details-in-kannada-msy-ws-l-2519087.html",
-      "published": "2026-11-03T10:29:10+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
       "title": "ಕಮಲಾಪುರ ರೈತರ ಸಮಸ್ಯೆಗೆ ಕೊನೆಗೂ ಸಿಕ್ಕ ನ್ಯಾಯ: 95 ರೈತರಿಗೆ ₹54 ಕೋಟಿ ಪರಿಹಾರ",
       "url": "https://www.prajavani.net/district/belagavi/ballari-nala-project-farmers-compensation-belagavi-4370046",
       "published": "Tue, 03 Nov 2026 10:28:40 +0530",
@@ -111147,26 +111314,6 @@
       "forced_district": null,
       "district": "gadag",
       "districtKey": "gadag"
-    },
-    {
-      "title": "ಜನಪ್ರತಿನಿಧಿಗಳು ಬದ್ಧತೆ ಪ್ರದರ್ಶಿಸಿ: ಬೇಡ್ತಿ–ಅಘನಾಶಿನಿ ಕೊಳ್ಳ ಸಂರಕ್ಷಣಾ ಸಮಿತಿ",
-      "url": "https://www.prajavani.net/district/uttara-kannada/bedti-aghanashini-committee-urges-representatives-to-oppose-river-linking-project-4369934",
-      "published": "Tue, 03 Nov 2026 10:25:48 +0530",
-      "summary": "ನದಿ ಜೋಡಣೆ: ಜನಪ್ರತಿನಿಧಿಗಳು ಬದ್ಧತೆ ಪ್ರದರ್ಶಿಸಲಿ",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "Amit Shah: 'ಆ ದುಷ್ಟರಿಗೆ ಶಿಕ್ಷೆಯಾಗ್ಬೇಕು' ಟಾಲಿವುಡ್​ನ ಸ್ಟಾರ್ ಅಪ್ಪ-ಮಗ ಅಮಿತ್​ ಶಾಗೆ ಮನವಿ ಮಾಡಿದ್ದೇನು?",
-      "url": "https://kannada.news18.com/news/entertainment/ram-charan-chiranjeevi-meets-amit-shah-what-is-the-reason-dvp-2519086.html",
-      "published": "2026-11-03T10:23:51+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
     },
     {
       "title": "ಶಿರಸಿ | 6,802 ಹೆಕ್ಟೇರ್ ಭತ್ತ ಕ್ಷೇತ್ರಕ್ಕೆ ಪರಿಹಾರ: ಮಧುಕರ ನಾಯ್ಕ",
@@ -111209,16 +111356,6 @@
       "districtKey": "kolar"
     },
     {
-      "title": "Brahma Yoga: ಶತ್ರುನಾಶ, ಧನಪ್ರಾಪ್ತಿ; ವೃಷಭ, ಮಿಥುನ ಸೇರಿದಂತೆ ಈ 5 ರಾಶಿಯವರಿಗೆ ರಾಜಯೋಗ ಫಿಕ್ಸ್!",
-      "url": "https://kannada.news18.com/news/astrology/todays-horoscope-blessings-of-lord-hanuman-and-good-luck-for-five-zodiac-signs-avh-ws-l-2519085.html",
-      "published": "2026-11-03T10:16:15+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
       "title": "ಕೋಲಾರ | ಅಧಿಕಾರಿಗಳ ಕರ್ತವ್ಯಲೋಪ: ತ್ರೈಮಾಸಿಕ ಸಭೆಯಲ್ಲಿ ಜನಪ್ರತಿನಿಧಿಗಳಿಂದ ಚಾಟಿ",
       "url": "https://www.prajavani.net/district/kolar/kolar-disha-meeting-officials-negligence-mp-mallesha-babu-warning-4370034",
       "published": "Tue, 03 Nov 2026 10:16:06 +0530",
@@ -111239,16 +111376,6 @@
       "districtKey": "chamarajanagara"
     },
     {
-      "title": "‘ನನಗೆ ಮದುವೆಗೆ ಕರೆಯೇ ಬಂದಿರಲಿಲ್ಲ!’: ಅರ್ಜುನ್ ಸರ್ಜಾ 2ನೇ ಮಗಳ ಮದುವೆಗೆ ಹೋಗದಿರುವ ಬಗ್ಗೆ ನಟಿ ಮೇಘನಾ ರಾಜ್ ಸ್ಪಷ್ಟನೆ",
-      "url": "https://kannada.asianetnews.com/entertainment/arjun-sarja-daughter-anjana-wedding-meghana-raj-not-invited-suh/articleshow-15m090d",
-      "published": "Tue, 03 Nov 2026 10:11:49 +0530",
-      "summary": "ಸ್ಯಾಂಡಲ್‌ವುಡ್‌ನಲ್ಲಿ ಇತ್ತೀಚೆಗೆ ನಡೆದ ನಟ ಅರ್ಜುನ್ ಸರ್ಜಾ ಅವರ ಕಿರಿಯ ಪುತ್ರಿ ಅಂಜನಾ ಅರ್ಜುನ್ ಅವರ ಮದುವೆ ಸಾಕಷ್ಟು ಗಮನ ಸೆಳೆದಿತ್ತು. ಆದರೆ, ಈ ಮದುವೆಯಲ್ಲಿ ನಟಿ ಮೇಘನಾ ರಾಜ್ ಕಾಣಿಸಿಕೊಳ್ಳದಿರುವುದು ಚರ್ಚೆಗೆ ಕ",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
       "title": "ಹಾಸನಾಂಬೆ ದರ್ಶನಕ್ಕೆ ಹರಿದುಬಂತು ಭಕ್ತಸಾಗರ: ವಿವಿಐಪಿ, ಗೋಲ್ಡ್ ಪಾಸ್ ಸಮಯ ಕಡಿತ; ದಾಖಲೆಯ ಆದಾಯ",
       "url": "https://tv9kannada.com/videos/hasanamba-jatramahotsava-2026-fifth-day-sees-massive-devotee-turnout-and-record-income-1258296.html",
       "published": "Tue, 03 Nov 2026 10:11:28 +0530",
@@ -111267,16 +111394,6 @@
       "forced_district": null,
       "district": "chikkamagaluru",
       "districtKey": "chikkamagaluru"
-    },
-    {
-      "title": "Suriya: 'ಹೀರೋನಾ, ವಿಲನ್ನಾ? ವಿಲನ್ ಬೆಟರ್ ಅಲ್ವಾ?' ರೋಲೆಕ್ಸ್ ಬಗ್ಗೆ ಸೂರ್ಯನಿಂದ ಬಿಗ್ ಅಪ್ಡೇಟ್",
-      "url": "https://kannada.news18.com/news/entertainment/suriya-gives-an-update-about-rolex-movie-by-lokesh-kanagaraj-dvp-2519042.html",
-      "published": "2026-11-03T10:08:22+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
     },
     {
       "title": "ಚುನಾವಣೆ ಹೊಸ್ತಿಲಲ್ಲಿ ಮುಖ್ಯಮಂತ್ರಿ ಡಿ.ಕೆ. ಶಿವಕುಮಾರ್‌ ಹಿರಿಯೂರು ಪ್ರವಾಸ",
@@ -111307,26 +111424,6 @@
       "districtKey": "belagavi"
     },
     {
-      "title": "ಪೊಲೀಸರ ನೋಟಿಸ್​​ಗೆ ಧನ್ವೀರ್ ಡೋಂಟ್ ಕೇರ್; ವಿಚಾರಣೆಗೆ ಗೈರು",
-      "url": "https://tv9kannada.com/entertainment/sandalwood/actor-dhanveer-ignored-police-notice-chamarajpet-police-prepare-second-notice-over-zaid-khan-case-1258283.html",
-      "published": "Tue, 03 Nov 2026 10:04:12 +0530",
-      "summary": "ನಟ ಝೈದ್ ಖಾನ್ ವಿರುದ್ಧ ಅವಹೇಳನಕಾರಿ ಹೇಳಿಕೆ ನೀಡಿದ ಆರೋಪದ ಮೇರೆಗೆ ಚಾಮರಾಜಪೇಟೆ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ ದಾಖಲಾಗಿರುವ ಪ್ರಕರಣದಲ್ಲಿ ವಿಚಾರಣೆಗೆ ಹಾಜರಾಗುವಂತೆ ನೀಡಿದ್ದ ನೋಟಿಸ್‌ಗೆ ನಟ ಧನ್ವೀರ್ ಗೈರಾಗಿದ್ದಾರೆ. ಈ ಹಿನ್",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "ನವೆಂಬರ್ 2, 17, 23: ಐಪಿಎಲ್ ಮಿನಿ ಹರಾಜಿನ ಬಿಗ್ ಅಪ್​ಡೇಟ್",
-      "url": "https://tv9kannada.com/sports/cricket-news/ipl-2027-auction-key-dates-and-major-trades-revealed-1258271.html",
-      "published": "Tue, 03 Nov 2026 10:04:03 +0530",
-      "summary": "ವಿಶ್ವದ ಅತ್ಯಂತ ಜನಪ್ರಿಯ ಟಿ20 ಲೀಗ್‌ ಆದ ಐಪಿಎಲ್ ಹರಾಜು ಪ್ರಕ್ರಿಯೆಗಾಗಿ ಇಡೀ ಕ್ರಿಕೆಟ್ ಲೋಕವೇ ಕಾತರದಿಂದ ಕಾಯುತ್ತಿದೆ. ಅದಕ್ಕೂ, ನಡೆಯಲಿರುವ ಮಿನಿ ಆಕ್ಷನ್ ಪ್ರಕ್ರಿಯೆಗಾಗಿ ಬಿಸಿಸಿಐ ದಿನಾಂಕಗಳನ್ನು ನಿಗದಿ ಮಾಡಿದೆ",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
       "title": "ಚಿತ್ರದುರ್ಗ | ಬೆಲೆ ಏರಿಕೆ ಹಿಂಪಡೆಯದಿದ್ದರೆ ಹೋರಾಟ: ಬಿಜೆಪಿ ಮಹಿಳಾ ಮೋರ್ಚಾ",
       "url": "https://www.prajavani.net/district/chitradurga/bjp-women-protest-milk-price-hike-chitradurga-4370339",
       "published": "Tue, 03 Nov 2026 10:03:53 +0530",
@@ -111345,35 +111442,6 @@
       "forced_district": null,
       "district": "uttara-kannada",
       "districtKey": "uttara-kannada"
-    },
-    {
-      "title": "ತಿಂಗಳಿಗೆ ಲಕ್ಷಾಂತರ ರೂ. ಲಾಭದ ಆಮಿಷ: ಹೂಡಿಕೆದಾರರಿಗೆ ₹11.46 ಕೋಟಿ ಪಂಗನಾಮ; ದಂಪತಿ ವಿರುದ್ಧ ಪ್ರಕರಣ ದಾಖಲು..!",
-      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/03/karnataka-couple-cheats-investors-of-rs-1146-crore-booked",
-      "published": "2026-11-03T10:01:58+05:30",
-      "summary": "",
-      "source": "ಕನ್ನಡ ಪ್ರಭ",
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "Helicopters Crash: ಎರಡು ಹೆಲಿಕಾಪ್ಟರ್‌ಗಳ ನಡುವೆ ಭೀಕರ ಅಪಘಾತ! ಓರ್ವ ಪ್ರಯಾಣಿಕ ಸಾವು, ಮತ್ತೋರ್ವನಿಗೆ ಗಂಭೀರ ಗಾಯ",
-      "url": "https://kannada.news18.com/news/national-international/two-helicopters-crash-at-pheriche-in-everest-region-one-dead-akd-2519069.html",
-      "published": "2026-11-03T10:01:53+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "ಕರುನಾಡೋತ್ಸವ: ಕರ್ನಾಟಕದ ಸಮುದ್ರ ತಟದ ಬೆವರುಪ್ಪು ಮತ್ತು ಸಾಮರಸ್ಯದ ಸಂಸ್ಕೃತಿ",
-      "url": "https://www.prajavani.net/agriculture/farming/coastal-karnataka-culture-traditions-and-lifestyle-4370078",
-      "published": "Tue, 03 Nov 2026 10:00:00 +0530",
-      "summary": "",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
     },
     {
       "title": "ಪರಿಷತ್ತು ನಾವೇ; ಅದು ಕೆಲಸ ಮಾಡದಿದ್ದರೆ ತಪ್ಪು ನಮ್ಮದೇ; ಸಮ್ಮೇಳನಾಧ್ಯಕ್ಷ ಮಾಸ್ತಿ",
@@ -116363,16 +116431,6 @@
       "districtKey": "davanagere"
     },
     {
-      "title": "ಕನ್ನಡ ಭಾಷೆ, ಸಾಹಿತ್ಯದ ಹಿರಿಮೆ ಬಗ್ಗೆ ಅರಿವು ಮೂಡಿಸಿ",
-      "url": "https://www.prajavani.net/district/shivamogga/bhadravati-kannada-language-literature-awareness-sangameshwar-4368598",
-      "published": "Mon, 02 Nov 2026 06:30:00 +0530",
-      "summary": "ಭದ್ರಾವತಿ: ‘ಕನ್ನಡ ಭಾಷೆ ಹಾಗೂ ಸಾಹಿತ್ಯಕ್ಕಿರುವ ಶ್ರೀಮಂತ ಪರಂಪರೆಯ ಬಗ್ಗೆ ಮಕ್ಕಳಲ್ಲಿ ಅರಿವು ಮೂಡಿಸಲು ಪೋಷಕರು ಹಾಗೂ ಶಿಕ್ಷಕರು ಶ್ರಮಿಸಬೇಕು’ ಎಂದು ಶಾಸಕ ಬಿ.ಕೆ. ಸಂಗಮೇಶ್ವರ್ ಹೇಳಿದರು.",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "shivamogga",
-      "districtKey": "shivamogga"
-    },
-    {
       "title": "ನಾಡಿನ ಎಲ್ಲರೂ ಕನ್ನಡ ಕಲಿಯಲಿ ಎಂದು ಉಪ ವಿಭಾಗಾಧಿಕಾರಿ ಎಂ.ಶಿವಮೂರ್ತಿ ಹೇಳಿದರು",
       "url": "https://www.prajavani.net/district/mandya/mandya-kannada-language-promotion-rajyotsava-celebration-4368519",
       "published": "2026-11-02T06:30:00+05:30",
@@ -117927,16 +117985,6 @@
       "url": "https://www.prajavani.net/district/belagavi/ramdurg-kannada-language-preservation-tahsildar-advice-4368742",
       "published": "Mon, 02 Nov 2026 06:25:00 +0530",
       "summary": "ರಾಮದುರ್ಗ: ‘ಬೇರೆ ಭಾಷೆಯ ಜನರನ್ನು ಮೆಚ್ಚಿಸಲು ಹೋಗಿ ಕನ್ನಡಿಗರು ಕನ್ನಡತನ ಮರೆಯುತ್ತಿದ್ದಾರೆ. ಕನ್ನಡ ಮಾತನಾಡುವವರ ಸಂಖ್ಯೆ ಕಡಿಮೆಯಾಗುತ್ತಿದೆ. ಅನ್ನದ ಭಾಷೆಯಾಗಿರುವ ಕನ್ನಡದ ಉಳಿವಿಗೆ ಎಲ್ಲರೂ ಶ್ರಮಿಸಬೇಕು’ ಎಂದು ತಹ",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "belagavi",
-      "districtKey": "belagavi"
-    },
-    {
-      "title": "ಗೋಕಾಕ್ ಚಳವಳಿಗಾರರಿಂದ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವದಲ್ಲಿ ಧ್ವಜಾರೋಹಣ",
-      "url": "https://www.prajavani.net/district/bangaluru-rural/doddaballapur-gokak-movement-activists-flag-hoisting-rajyotsava-4368737",
-      "published": "Mon, 02 Nov 2026 06:25:00 +0530",
-      "summary": "ದೊಡ್ಡಬಳ್ಳಾಪುರ: ನಗರದ ಎಂ.ಎಸ್.ವಿ.ಪಬ್ಲಿಕ್ ಶಾಲೆಯಲ್ಲಿ ಭಾನುವಾರ ನಡೆದ 71ನೇ ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ ಗೋಕಾಕ್‌ ಚಳವಳಿಯಲ್ಲಿ ಸಕ್ರಿಯವಾಗಿ ತೊಡಗಿಸಿಕೊಂಡಿದ್ದ ಎಲ್.ಸಿ.ರಾಜು, ಸಿ.ರುದ್ರೇಶ್ ಅವರಿಂದ ಕನ್ನಡ ಧ್ವಜಾರೋಹಣ ನ",
       "source": "ಪ್ರಜಾವಾಣಿ",
       "forced_district": null,
       "district": "belagavi",
@@ -126241,16 +126289,6 @@
       "districtKey": "mandya"
     },
     {
-      "title": "ಶಾರ್ಟ್​ ಸರ್ಕ್ಯೂಟ್​ಗೆ ಸಿಲಿಂಡರ್​ ಸ್ಫೋಟ; 21 ಲಕ್ಷ ರೂ. ಮೌಲ್ಯದ ವಸ್ತುಗಳು ಸುಟ್ಟು ಕರಕಲು!",
-      "url": "https://tv9kannada.com/videos/devastating-blaze-at-mandyas-tea-day-shop-short-circuit-triggers-explosion-destroys-rs21-lakh-worth-of-goods-1237314.html",
-      "published": "Sat, 12 Sep 2026 12:20:47 +0530",
-      "summary": "ಮಂಡ್ಯದ ಅಶೋಕ ನಗರದಲ್ಲಿರುವ ಟೀ ಡೇ ಅಂಗಡಿಯಲ್ಲಿ ಶಾರ್ಟ್ ಸರ್ಕ್ಯೂಟ್‌ನಿಂದ ಅಗ್ನಿ ಅವಘಡ ಸಂಭವಿಸಿದೆ. ಸಿಲಿಂಡರ್ ಸ್ಫೋಟಗೊಂಡ ಪರಿಣಾಮ ಅಂಗಡಿಯಲ್ಲಿದ್ದ 21 ಲಕ್ಷ ರೂಪಾಯಿ ಮೌಲ್ಯದ ವಸ್ತುಗಳು ಸುಟ್ಟು ಕರಕಲಾಗಿವೆ. ತಿಮ್ಮೇ",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": "mandya",
-      "district": "mandya",
-      "districtKey": "mandya"
-    },
-    {
       "title": "5 ತಿಂಗಳ ಬಳಿಕ ಪ್ರವಾಸಿಗರಿಗೆ ಓಪನ್ ಆಯ್ತು ಹಾರಂಗಿ, ಮತ್ತಿಗೋಡು ಆನೆ ಶಿಬಿರ: ಕಟ್ಟುನಿಟ್ಟಿನ ರೂಲ್ಸ್ ಜಾರಿ!",
       "url": "https://tv9kannada.com/karnataka/kodagu/kodagu-harangi-and-mattigodu-elephant-camps-reopen-after-dubare-tragedy-1237285.html",
       "published": "Sat, 12 Sep 2026 10:59:42 +0530",
@@ -133881,16 +133919,6 @@
       "districtKey": "tumakuru"
     },
     {
-      "title": "ಪಾವಗಡದಲ್ಲಿ ನಾಡಬಾಂಬ್ ಸ್ಫೋಟ ಪ್ರಕರಣ 8 ಮಂದಿ ವಿರುದ್ಧ ದೂರು ದಾಖಲು",
-      "url": "https://www.prajavani.net/district/tumakuru/pavgada-bomb-blast-case-eight-accused-filed-complaint-4229019",
-      "published": "Sun, 30 Aug 2026 06:46:50 +0530",
-      "summary": "ಪಾವಗಡ: ತಾಲ್ಲೂಕಿನ ಕನಿಕಲ ಬಂಡೆ ಬಳಿಯ ಗಿರಿಯಪ್ಪ ಎಂಬವರಿಗೆ ಸೇರಿದ ಜಮೀನಿನಲ್ಲಿ ಶುಕ್ರವಾರ ನಾಡಬಾಂಬ್ ಸ್ಫೋಟ ಪ್ರಕರಣಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ಪಟ್ಟಣ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ 8 ಮಂದಿ ವಿರುದ್ಧ ಪ್ರಕರಣ ದಾಖಲಾಗಿದೆ.",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "tumakuru",
-      "districtKey": "tumakuru"
-    },
-    {
       "title": "ದಾವಣಗೆರೆ ಬಾಡ ಗ್ರಾಮದಲ್ಲಿ ಪ್ರತಿಭಾ ಪುರಸ್ಕಾರ ಕಾರ್ಯಕ್ರಮ",
       "url": "https://www.prajavani.net/district/davanagere/davanagere-baada-village-pratibha-puraskara-event-4229057",
       "published": "Sun, 30 Aug 2026 06:46:50 +0530",
@@ -136307,16 +136335,6 @@
       "forced_district": null,
       "district": "bidar",
       "districtKey": "bidar"
-    },
-    {
-      "title": "ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೊಡಗು ಜಿಲ್ಲೆಯಲ್ಲಿ ಉತ್ತಮ ಮಳೆ, ಯಾವ ಭಾಗದಲ್ಲಿ ಎಷ್ಟು?",
-      "url": "https://www.prajavani.net/agriculture/climate/dakshina-kannada-kodagu-rain-report-karnataka-weather-update-4225124",
-      "published": "Fri, 28 Aug 2026 11:17:02 +0530",
-      "summary": "",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "kodagu",
-      "districtKey": "kodagu"
     },
     {
       "title": "ಹೊಸಪೇಟೆ-ಅರಸೀಕೆರೆ ಡೆಮು ವಿಶೇಷ ರೈಲು ಆರಂಭಕ್ಕೆ ಜನರ ಸಂಭ್ರಮ; ಮತ್ತೊಂದು ಬೇಡಿಕೆಯಿಟ್ಟ ಸ್ಥಳೀಯರು!",
@@ -140013,26 +140031,6 @@
       "districtKey": "chamarajanagara"
     },
     {
-      "title": "ಮಹದೇಶ್ವರ ಬೆಟ್ಟದಲ್ಲಿ ಹಡಪದ ಅಪ್ಪಣ್ಣ ಜಯಂತ್ಯುತ್ಸವ ಆಚರಣೆ",
-      "url": "https://www.prajavani.net/district/chamarajanagara/chamarajanagara-hadapada-appanna-jayanti-celebration-4220238",
-      "published": "Wed, 26 Aug 2026 06:25:39 +0530",
-      "summary": "ಮಹದೇಶ್ವರ ಬೆಟ್ಟ: ಮಲೆ ಮಹದೇಶ್ವರ ಸವಿತಾ ಸಮಾಜ ಸಂಘದಿಂದ ಮಹದೇಶ್ವರಬೆಟ್ಟದಲ್ಲಿ ಮಂಗಳವಾರ ಶಿವಶರಣ ಹಡಪದ ಅಪ್ಪಣ್ಣ ಅವರ ಜಯಂತ್ಯುತ್ಸವವನ್ನು ವಿಜೃಂಭಣೆಯಿಂದ ಆಚರಿಸಲಾಯಿತು.",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "chamarajanagara",
-      "districtKey": "chamarajanagara"
-    },
-    {
-      "title": "ಮಲೆನಾಡು ಪ್ರದೇಶಾಭಿವೃದ್ಧಿ ಮಂಡಳಿಗೆ ಯಳಂದೂರು ಶೀಘ್ರ ಸೇರ್ಪಡೆ",
-      "url": "https://www.prajavani.net/district/chamarajanagara/chamarajanagara-yalandur-malenadu-development-board-inclusion-4220237",
-      "published": "Wed, 26 Aug 2026 06:25:39 +0530",
-      "summary": "ಚಾಮರಾಜನಗರ: ಮಲೆನಾಡು ಪ್ರದೇಶಾಭಿವೃದ್ಧಿ ಮಂಡಳಿ ವ್ಯಾಪ್ತಿಗೆ ಯಳಂದೂರು ತಾಲ್ಲೂಕು ಸೇರ್ಪಡೆಯಾಗದ ಬಗ್ಗೆ ಕೊಳ್ಳೇಗಾಲ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದ ಶಾಸಕ ಎ.ಆರ್‌.ಕೃಷ್ಣಮೂರ್ತಿ ಸದನದಲ್ಲಿ ಪ್ರಶ್ನಿಸಿದ್ದಾರೆ.",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "chamarajanagara",
-      "districtKey": "chamarajanagara"
-    },
-    {
       "title": "‘ಗೃಹಜ್ಯೋತಿ’ ಸಮೀಕ್ಷೆ: ಜೆಸ್ಕಾಂ ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಶೇ 66ರಷ್ಟು ಪ್ರಗತಿ",
       "url": "https://www.prajavani.net/district/yadagiri/yadagiri-gruhajyothi-scheme-survey-jescom-progress-4220121",
       "published": "Wed, 26 Aug 2026 06:25:39 +0530",
@@ -140481,12 +140479,12 @@
       "count": 216
     },
     {
-      "tag": "ಹೈಕೋರ್ಟ್",
+      "tag": "ಸಿದ್ದರಾಮಯ್ಯ",
       "count": 60
     },
     {
-      "tag": "ಸಿದ್ದರಾಮಯ್ಯ",
-      "count": 60
+      "tag": "ಹೈಕೋರ್ಟ್",
+      "count": 59
     },
     {
       "tag": "ಚನ್ನಪಟ್ಟಣ",
@@ -140497,12 +140495,12 @@
       "count": 36
     },
     {
-      "tag": "ಡಿಕೆ ಶಿವಕುಮಾರ್",
+      "tag": "ಜೆಡಿಎಸ್",
       "count": 35
     },
     {
-      "tag": "ಜೆಡಿಎಸ್",
-      "count": 35
+      "tag": "ಡಿಕೆ ಶಿವಕುಮಾರ್",
+      "count": 34
     },
     {
       "tag": "ಗ್ಯಾರಂಟಿ ಯೋಜನೆ",
