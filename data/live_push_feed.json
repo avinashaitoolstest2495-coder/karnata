@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T10:30:04.984342",
+  "updated_at": "2026-11-08T11:00:03.544798",
   "total_active_alerts": 4,
   "feed": [
     {
@@ -13,7 +13,7 @@
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "badge": "https://karnata.in/assets/icons/icon-192x192.png",
       "topic": "gold_rate_alert",
-      "created_at": "2026-11-08T10:30:04.976061"
+      "created_at": "2026-11-08T11:00:03.537021"
     },
     {
       "id": "WEATHER-YELLOW-kodagu-20261108-B09TO12",
@@ -27,7 +27,7 @@
       "url": "https://karnata.in/weather?district=kodagu",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-08T10:19:48.422210"
+      "created_at": "2026-11-08T10:36:35.087790"
     },
     {
       "id": "WEATHER-YELLOW-raichur-20261108-B09TO12",
@@ -41,7 +41,7 @@
       "url": "https://karnata.in/weather?district=raichur",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-08T10:19:48.422232"
+      "created_at": "2026-11-08T10:36:35.087818"
     },
     {
       "id": "WEATHER-YELLOW-ballari-20261108-B09TO12",
@@ -55,7 +55,7 @@
       "url": "https://karnata.in/weather?district=ballari",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-08T10:19:48.422236"
+      "created_at": "2026-11-08T10:36:35.087821"
     }
   ]
 }
