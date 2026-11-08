@@ -159,6 +159,13 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **06-11-2026:** Sri. Prabhuling Kavalikatti, IAS (KN: 2013), Commissioner, Department of School Education, Bengaluru (ಆದೇಶ: e-DPAR 415 SAS 2026) — Sri. Prabhuling Kavalikatti, IAS (KN: 2013), Commissioner, Department of School Education, Bengaluru
+
+Smt. Lakshmipriya K., IAS (KN: 2015), Special Commissioner (FECC, Elections, Disaster Management, Public Relations and Co-ordination), Greater Bengaluru Authority, Bengaluru
+
+Sri. Bhoyar Marshal Narayanrao, IAS (KN: 2016), Deputy Commissioner, Uttara Kannada District, Karwar
+
+Sri. Prakash G.T. Nittali, IAS (KN:2018), Deputy Commissioner, Shivamogga District
 * **02-11-2026:** Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru (ಆದೇಶ: e-DPAR 406 SAS 2026) — Dr. Nandhinidevi K., IAS (KN:2017), Additional Director, National Health Mission, Directorate of Health and Family Welfare Services, Bengaluru
 * **31-10-2026:** Shri. Sangappa, KAS (KN:2012), Zonal Joint Commissioner, Bengaluru West, Bruhat Bengaluru Mahanagara Palike (BBMP), Bengaluru is transferred with immediate effect and posted until further orders as Joint Director (Accreditation &Grants), Department of School Education (Pre Universitty), Bengaluru  vice Shri. Harshavardhana S J, KAS transferred. (ಆದೇಶ: DPAR 160 SKT 2026) — Shri. Sangappa, KAS (KN:2012), Zonal Joint Commissioner, Bengaluru West, Bruhat Bengaluru Mahanagara Palike (BBMP), Bengaluru is transferred with immediate effect and posted until further orders as Joint Director (Accreditation &Grants), Department of School Education (Pre Universitty), Bengaluru  vice Shri. Harshavardhana S J, KAS transferred.
     Roopa B R, KAS (KN:2012), Project Director, District Urban Development Cell (DUDC), Mysuru  is transferred with immediate effect and posted until further orders as Deputy Collector Mandya District Mandya vice B C Shivananda Murthy, KAS transferred.
@@ -335,6 +342,3 @@ Sri. Sam Varghese, IPS (KN: 2022) Deputy Commissioner of Police, Law & Order, Ma
 3.	Shri. Mahesh Babu N, KAS (KN:2012), Managing Director, Karnataka State Woman Development Corporation Limited, Bengaluru is placed in additional charge with immediate effect and until further orders as Managing Director, Karnataka State Woman Development Corporation Limited, Bengaluru vice Shri. Mahesh Babu N, KAS transferred.
 4.	Shri. Shankargouda S Somanal, KAS (KN:2012),  is transferred with immediate effect and posted until further orders as Deputy General Manager, Upper Krishna Project, Bagalkot.
 5.	Dr. N R Geetha, KAS (KN:2016), Joint Director (Admin), Directorate of Muncipal Administration, Bengaluru is transferred with immediate effect and posted until further orders as Special land Acquisition Officer, NHAI, Nelamangala-Kunigal Section, Kunigal vice Apeksha Satish Pawar, KAS transferred.
-* **03-09-2026:** Ms. Megha Aggarwal, IPS (KN: 2024) Assistant Superintendent of Police, Koppa Sub-Division, Chikkamagaluru District. (ಆದೇಶ: DPAR 179 SPS 2026) — Ms. Megha Aggarwal, IPS (KN: 2024) Assistant Superintendent of Police, Koppa Sub-Division, Chikkamagaluru District.
-
-Sri. Shubham Suresh Pawar, IPS (KN: 2024) Assistant Superintendent of Police, Holenarasipura Sub-Division, Hassan District.
