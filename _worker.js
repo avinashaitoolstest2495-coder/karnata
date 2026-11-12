@@ -6,7 +6,7 @@ function generateGroundedGoldAnswer(rawQuery) {
   const g22 = 13015;      // 22K Jewellery per gram (₹13,015)
   const g18 = 10650;      // 18K Diamond Jewellery per gram (₹10,650)
   const g14 = 8382;       // 14K Gold per gram (₹8,382)
-  const pt950 = 7090;    // PT950 Platinum per gram (₹7,090)
+  const pt950 = 6890;    // PT950 Platinum per gram (₹6,890)
   const sil = 248.65;     // Silver 999 per gram (₹248.65)
   const sil925 = 230.00;  // Silver 925 per gram (₹230.00)
   const gsr = 57.1;       // Gold-to-Silver Ratio
@@ -98,7 +98,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-11-11T09:49:32 (Jos Alukkas Official)).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-11-11T12:25:20 (Jos Alukkas Official)).`,
       cards: [
         { title: `📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
@@ -149,7 +149,7 @@ function generateGroundedGoldAnswer(rawQuery) {
   * **1 ಕಿಲೋಗ್ರಾಂ:** **₹230,000.00**
 
 ---
-💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-11-11T09:49:32 (Jos Alukkas Official)).`,
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-11-11T12:25:20 (Jos Alukkas Official)).`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
       sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -231,11 +231,11 @@ function generateGroundedGoldAnswer(rawQuery) {
   * **10 ಗ್ರಾಂ:** **₹106,500**
 
 * **14 ಕ್ಯಾರಟ್ ಚಿನ್ನ (14K Gold):** **₹8,382 / ಗ್ರಾಂ**
-* **ಪ್ಲಾಟಿನಂ (PT950 Platinum):** **₹7,090 / ಗ್ರಾಂ**
+* **ಪ್ಲಾಟಿನಂ (PT950 Platinum):** **₹6,890 / ಗ್ರಾಂ**
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹248.65 / ಗ್ರಾಂ** (₹248,650 / 1 ಕೆಜಿ)
 
 ---
-🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-11-11T09:49:32 (Jos Alukkas Official))
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-11-11T12:25:20 (Jos Alukkas Official))
 💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹13,015) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
       cards: [
         { title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
@@ -249,6 +249,58 @@ function generateGroundedGoldAnswer(rawQuery) {
 
   return null;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

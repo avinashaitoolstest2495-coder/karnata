@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-11-11T11:00:04.867982",
+  "updated_at": "2026-11-12T09:45:04.785395",
   "total_active_alerts": 1,
   "feed": [
     {
-      "id": "GOLD-RATE-2026111110",
+      "id": "GOLD-RATE-2026111210",
       "alert_level": "gold_drop",
       "target_district": "all",
       "target_district_kn": "ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ",
@@ -13,7 +13,7 @@
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "badge": "https://karnata.in/assets/icons/icon-192x192.png",
       "topic": "gold_rate_alert",
-      "created_at": "2026-11-11T11:00:04.858235"
+      "created_at": "2026-11-12T09:45:04.778050"
     }
   ]
 }

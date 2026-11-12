@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-11-11 10:51:44 IST  
+> **Generated:** 2026-11-12 09:22:08 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1715,7 +1715,7 @@
 
 # 💰 ಕರ್ನಾಟಕ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ಲೈವ್ ದರ & 125 ವರ್ಷಗಳ ಇತಿಹಾಸ (Gold & Silver Analytics)
 
-* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-11
+* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-12
 * **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹14203 / 1 ಗ್ರಾಂ (₹142,030 / 10 ಗ್ರಾಂ)
 * **22K ಆಭರಣ ಚಿನ್ನ:** ₹13015 / 1 ಗ್ರಾಂ (₹104,120 / 8 ಗ್ರಾಂ 1 ಪವನ್)
 * **ಬೆಳ್ಳಿ (Silver 999):** ₹248.65 / 1 ಗ್ರಾಂ (₹248,650 / 1 ಕೆಜಿ)
@@ -1907,6 +1907,13 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **11-11-2026:** Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge (ಆದೇಶ: e-DPAR 417 SAS 2026) — Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge
+
+of the post of Director of Public Instruction (Mid-Day Meal), Bengaluru
+
+
+
+Sri. Bharath S., IAS., (KN: 2017), concurrent charge of the post of Chairman, Karnataka School Examination and Evaluation Board, Bengaluru
 * **06-11-2026:** Sri. Prabhuling Kavalikatti, IAS (KN: 2013), Commissioner, Department of School Education, Bengaluru (ಆದೇಶ: e-DPAR 415 SAS 2026) — Sri. Prabhuling Kavalikatti, IAS (KN: 2013), Commissioner, Department of School Education, Bengaluru
 
 
@@ -2214,14 +2221,5 @@ Sri. Lakshimi Ganesh K, IPS (KN: 2020) Deputy Commissioner of Police, South West
 
 Sri. Sam Varghese, IPS (KN: 2022) Deputy Commissioner of Police, Law & Order, Mangaluru City.
 * **05-09-2026:** Shri. Hasanasaheb Tahashildar, KAS (KN:2011), Deputy Secretary, Karnataka Real Estate Control Authority (RERA), Bangalore is transferred with immediate effect and posted until further orders as OSD to Hon'ble Minister for Housing. (ಆದೇಶ: DPAR 269 SKT 2025) — Shri. Hasanasaheb Tahashildar, KAS (KN:2011), Deputy Secretary, Karnataka Real Estate Control Authority (RERA), Bangalore is transferred with immediate effect and posted until further orders as OSD to Hon'ble Minister for Housing.
-* **04-09-2026:** 1.	Dr. Sneha C V, KAS (KN:2010), Director, Women and Child Development Department, Bengaluru. is transferred with immediate effect and posted until further orders as Joint Director (Admin), Department of Agriculture, Bengaluru. (ಆದೇಶ: DPAR 122 SKT 2026) — 1.	Dr. Sneha C V, KAS (KN:2010), Director, Women and Child Development Department, Bengaluru. is transferred with immediate effect and posted until further orders as Joint Director (Admin), Department of Agriculture, Bengaluru.
-
-2.	Shri. Mahesh Babu N, KAS (KN:2012), Managing Director, Karnataka State Woman Development Corporation Limited, Bengaluru is transferred with immediate effect and posted until further orders as Director, Women and Child Development Department, Bengaluru. vice Dr. Sneha C V, KAS transferred.
-
-3.	Shri. Mahesh Babu N, KAS (KN:2012), Managing Director, Karnataka State Woman Development Corporation Limited, Bengaluru is placed in additional charge with immediate effect and until further orders as Managing Director, Karnataka State Woman Development Corporation Limited, Bengaluru vice Shri. Mahesh Babu N, KAS transferred.
-
-4.	Shri. Shankargouda S Somanal, KAS (KN:2012),  is transferred with immediate effect and posted until further orders as Deputy General Manager, Upper Krishna Project, Bagalkot.
-
-5.	Dr. N R Geetha, KAS (KN:2016), Joint Director (Admin), Directorate of Muncipal Administration, Bengaluru is transferred with immediate effect and posted until further orders as Special land Acquisition Officer, NHAI, Nelamangala-Kunigal Section, Kunigal vice Apeksha Satish Pawar, KAS transferred.
 
 ---
