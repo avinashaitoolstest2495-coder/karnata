@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T10:51:33.552778",
+  "updated_at": "2026-11-17T09:21:45.824085",
   "source": "https://niyukthi.karnataka.gov.in",
   "total_districts": 31,
   "districts": {
@@ -2820,23 +2820,6 @@
           "additional_charge": "-",
           "languages": "Kannada",
           "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/IASOfficers/Vinayak%20photo23554043.jpg",
-          "district_key": "dakshina_kannada",
-          "source": "https://niyukthi.karnataka.gov.in"
-        },
-        {
-          "id": "IAS-249",
-          "name_kn": "ಕು|| ಮಿನಾಕ್ಷಿ ಆರ್ಯ",
-          "name_en": "Ms. MEENAKSHI ARYA",
-          "cadre": "IAS",
-          "cadre_kn": "ಭಾರತೀಯ ಆಡಳಿತ ಸೇವೆ",
-          "batch": "2023",
-          "qualification": "B.Tech (CSE)",
-          "designation": "Assistant Commissioner, Mangaluru Sub Division, Dakshina Kannada District.",
-          "address": "Mangaluru.",
-          "joining_date": "06/08/2025",
-          "additional_charge": "-",
-          "languages": "Hindi",
-          "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/IASOfficers/122K0425221074.jpg",
           "district_key": "dakshina_kannada",
           "source": "https://niyukthi.karnataka.gov.in"
         },
@@ -6055,7 +6038,23 @@
         "district_key": "chikkamagaluru",
         "source": "https://niyukthi.karnataka.gov.in"
       },
-      "zp_ceo": null,
+      "zp_ceo": {
+        "id": "IAS-249",
+        "name_kn": "ಕು|| ಮಿನಾಕ್ಷಿ ಆರ್ಯ",
+        "name_en": "Ms. MEENAKSHI ARYA",
+        "cadre": "IAS",
+        "cadre_kn": "ಭಾರತೀಯ ಆಡಳಿತ ಸೇವೆ",
+        "batch": "2023",
+        "qualification": "B.Tech (CSE)",
+        "designation": "Chief Executive Officer, Zilla Panchayat, Chikkamagaluru",
+        "address": "Chikkamagaluru - 577 101",
+        "joining_date": "28/09/2026",
+        "additional_charge": "-",
+        "languages": "Hindi",
+        "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/IASOfficers/122K0425221074.jpg",
+        "district_key": "chikkamagaluru",
+        "source": "https://niyukthi.karnataka.gov.in"
+      },
       "officers": [
         {
           "id": "IAS-189",
@@ -6071,6 +6070,23 @@
           "additional_charge": "-",
           "languages": "Hindi, Kannada",
           "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/IASOfficers/bhanwarsingh.jpg",
+          "district_key": "chikkamagaluru",
+          "source": "https://niyukthi.karnataka.gov.in"
+        },
+        {
+          "id": "IAS-249",
+          "name_kn": "ಕು|| ಮಿನಾಕ್ಷಿ ಆರ್ಯ",
+          "name_en": "Ms. MEENAKSHI ARYA",
+          "cadre": "IAS",
+          "cadre_kn": "ಭಾರತೀಯ ಆಡಳಿತ ಸೇವೆ",
+          "batch": "2023",
+          "qualification": "B.Tech (CSE)",
+          "designation": "Chief Executive Officer, Zilla Panchayat, Chikkamagaluru",
+          "address": "Chikkamagaluru - 577 101",
+          "joining_date": "28/09/2026",
+          "additional_charge": "-",
+          "languages": "Hindi",
+          "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/IASOfficers/122K0425221074.jpg",
           "district_key": "chikkamagaluru",
           "source": "https://niyukthi.karnataka.gov.in"
         },
@@ -6617,9 +6633,9 @@
           "cadre_kn": "ಕರ್ನಾಟಕ ಆಡಳಿತ ಸೇವೆ",
           "batch": "2012",
           "qualification": "BA., M.Ed",
-          "designation": "Deputy Collector Mandya District Mandya",
+          "designation": "Additional Deputy Commissioner and Additonal District Magistrate, Mandya District",
           "address": ".",
-          "joining_date": "02/11/2026",
+          "joining_date": "12/11/2026",
           "additional_charge": "-",
           "languages": "",
           "photo": "https://niyukthi.karnataka.gov.in/Content/Uploading/KASOfficers/image09322565453.jpg",
