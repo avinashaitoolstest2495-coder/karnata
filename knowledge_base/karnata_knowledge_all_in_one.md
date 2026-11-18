@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-11-17 10:51:47 IST  
+> **Generated:** 2026-11-18 09:22:20 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1715,7 +1715,7 @@
 
 # 💰 ಕರ್ನಾಟಕ ಚಿನ್ನ ಹಾಗೂ ಬೆಳ್ಳಿ ಲೈವ್ ದರ & 125 ವರ್ಷಗಳ ಇತಿಹಾಸ (Gold & Silver Analytics)
 
-* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-17
+* **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-18
 * **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹13609 / 1 ಗ್ರಾಂ (₹136,090 / 10 ಗ್ರಾಂ)
 * **22K ಆಭರಣ ಚಿನ್ನ:** ₹12470 / 1 ಗ್ರಾಂ (₹99,760 / 8 ಗ್ರಾಂ 1 ಪವನ್)
 * **ಬೆಳ್ಳಿ (Silver 999):** ₹248.65 / 1 ಗ್ರಾಂ (₹248,650 / 1 ಕೆಜಿ)
@@ -1907,6 +1907,13 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **17-11-2026:** Dr. Girish Dilip Badole, IAS., (KN: 2018), concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru (ಆದೇಶ: e-DPAR 422 SAS 2026) — Dr. Girish Dilip Badole, IAS., (KN: 2018), concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru
+
+
+
+Smt. Aparna Ramesh, IAS., (KN: 2021), concurrent
+
+charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru
 * **11-11-2026:** Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge (ಆದೇಶ: e-DPAR 417 SAS 2026) — Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge
 
 of the post of Director of Public Instruction (Mid-Day Meal), Bengaluru
@@ -2220,6 +2227,5 @@ Sri. Lakshimi Ganesh K, IPS (KN: 2020) Deputy Commissioner of Police, South West
 
 
 Sri. Sam Varghese, IPS (KN: 2022) Deputy Commissioner of Police, Law & Order, Mangaluru City.
-* **05-09-2026:** Shri. Hasanasaheb Tahashildar, KAS (KN:2011), Deputy Secretary, Karnataka Real Estate Control Authority (RERA), Bangalore is transferred with immediate effect and posted until further orders as OSD to Hon'ble Minister for Housing. (ಆದೇಶ: DPAR 269 SKT 2025) — Shri. Hasanasaheb Tahashildar, KAS (KN:2011), Deputy Secretary, Karnataka Real Estate Control Authority (RERA), Bangalore is transferred with immediate effect and posted until further orders as OSD to Hon'ble Minister for Housing.
 
 ---
