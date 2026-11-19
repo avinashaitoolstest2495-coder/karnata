@@ -159,10 +159,8 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
-* **17-11-2026:** Dr. Girish Dilip Badole, IAS., (KN: 2018), concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru (ಆದೇಶ: e-DPAR 422 SAS 2026) — Dr. Girish Dilip Badole, IAS., (KN: 2018), concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru
-
-Smt. Aparna Ramesh, IAS., (KN: 2021), concurrent
-charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru
+* **17-11-2026:** Dr. Girish Dilip Badole, IAS., (KN: 2018),  is placed in the concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru. (ಆದೇಶ: DPAR 422 SAS 2026) — Dr. Girish Dilip Badole, IAS., (KN: 2018),  is placed in the concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru.
+Smt. Aparna Ramesh, IAS., (KN: 2021),  is placed in the concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru
 * **11-11-2026:** Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge (ಆದೇಶ: e-DPAR 417 SAS 2026) — Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge
 of the post of Director of Public Instruction (Mid-Day Meal), Bengaluru
 
