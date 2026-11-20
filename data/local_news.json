@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "updated_at": "2026-11-20T09:21:36+05:30",
+  "updated_at": "2026-11-20T09:51:53+05:30",
   "total": 7290,
   "districts_count": 31,
   "district_buckets": {
@@ -828,6 +828,16 @@
         "summary": "ಬೆಂಗಳೂರು: ರಾಜ್ಯ ರಾಜಧಾನಿ ಬೆಂಗಳೂರಿನ ಪೊಲೀಸ್ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ಮಹತ್ವದ ಆಡಳಿತಾತ್ಮಕ ಬದಲಾವಣೆ ಮಾಡಿರುವ ರಾಜ್ಯ ಸರ್ಕಾರ, ನಗರದ ನೂತನ ಮುಖ್ಯ ಪೊಲೀಸ್ ಆಯುಕ್ತರಾಗಿ ಹಿರಿಯ ಐಪಿಎಸ್ ಅಧಿಕಾರಿ ಆರ್. ಹಿತೇಂದ್ರ ಅವರನ್ನು ",
         "source": "ಸಂಯುಕ್ತ ಕರ್ನಾಟಕ",
         "forced_district": null,
+        "district": "bengaluru-urban",
+        "districtKey": "bengaluru-urban"
+      },
+      {
+        "title": "ಜಿಬಿಎ ರೀತಿ ಬೆಂಗಳೂರನ್ನು 5 ಕಮಿಷನರೇಟ್ ಮಾಡಿದ ಸರ್ಕಾರ, 5 ವಲಯಗಳಿಗೆ ಪೊಲೀಸ್ ಆಯುಕ್ತರ ನೇಮಕ",
+        "url": "https://tv9kannada.com/karnataka/bengaluru/karnataka-governmnet-appoints-commissioners-to-five-bengaluru-police-commissionerate-here-is-34-ips-officers-transfer-details-1263862.html",
+        "published": "Wed, 18 Nov 2026 17:09:07 +0530",
+        "summary": "ಬಿಬಿಎಂಪಿಯನ್ನು ಐದು ವಲಯಗಳಾಗಿ ಜಿಬಿಎ ಎಂದು ರಾಜ್ಯ ಸರ್ಕಾರ ರಚನೆ ಮಾಡಿದ್ದು, ಇದೀಗ ಇದೇ ರೀತಿ ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರೇಟ್ ರಚನೆ ಮಾಡಿದೆ. ಒಟ್ಟು ಐದು ಪೊಲೀಸ್ ಕಮಿಷನರೇಟ್ ಗಳನ್ನಾಗಿ ಮಾಡಿ ಆಯುಕ್ತರನ್ನು ನೇಮಕ",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": "bengaluru-urban",
         "district": "bengaluru-urban",
         "districtKey": "bengaluru-urban"
       },
@@ -1984,16 +1994,6 @@
         "published": "Tue, 17 Nov 2026 05:30:00 +0530",
         "summary": "ಮೆಟ್ರೊ ಸೌಲಭ್ಯ: ಪಕ್ಷಪಾತದ ದೂಷಣೆ ಬಿಡಿ, ಜನರಿಗಾಗಿ ಒಟ್ಟಾಗಿ ಕೆಲಸ ಮಾಡಿ",
         "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "bengaluru-urban",
-        "districtKey": "bengaluru-urban"
-      },
-      {
-        "title": "ಮಂಗಳೂರಿನಿಂದ ಬೆಂಗಳೂರಿಗೆ ತೆರಳುತ್ತಿದ್ದ ವಿಮಾನದಲ್ಲಿ ತಾಂತ್ರಿಕ ದೋಷ: ಪೈಲಟ್ ಸಮಯಪ್ರಜ್ಞೆಯಿಂದ ತಪ್ಪಿದ ಭಾರೀ ದುರಂತ",
-        "url": "https://vijaykarnataka.com/news/mangaluru/technical-glitch-in-mangaluru-bengaluru-flight-major-disaster-averted-pilots-presence-of-mind/articleshow/135899661.cms",
-        "published": "2026-11-16T23:54:56+05:30",
-        "summary": "",
-        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
         "forced_district": null,
         "district": "bengaluru-urban",
         "districtKey": "bengaluru-urban"
@@ -11995,6 +11995,16 @@
     ],
     "chitradurga": [
       {
+        "title": "ಅಮಿತ್ ಶಾ ಭೇಟಿಯಾದ ವಿಜಯೇಂದ್ರ, HDK: ಪ್ರತ್ಯೇಕ ಭೇಟಿಯ ಹಿಂದಿನ ಆ 2 ರಹಸ್ಯ ಕಾರಣಗಳೇನು?",
+        "url": "https://vijaykarnataka.com/news/karnataka/explainer-vijayendra-kumaraswamy-meet-amit-shah-hiriyur-bypoll-karnataka-bjp-leadership/articleshow/136012538.cms",
+        "published": "2026-11-20T09:34:42+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "chitradurga",
+        "districtKey": "chitradurga"
+      },
+      {
         "title": "ಮೈತ್ರಿ ಧರ್ಮ ಪಾಲಿಸಿ ಹಿರಿಯೂರು ಉಪಚುನಾವಣೆ ಎದುರಿಸೋಣ: ಕುಮಾರಸ್ವಾಮಿ ಬಳಿ ಅಮಿತ್​ ಶಾ ಚರ್ಚೆ",
         "url": "https://tv9kannada.com/videos/hiriyur-by-election-amit-shah-discusses-jds-candidate-demand-with-hd-kumaraswamy-stresses-alliance-unity-1264421.html",
         "published": "Fri, 20 Nov 2026 07:59:21 +0530",
@@ -13978,16 +13988,6 @@
         "published": "Thu, 12 Nov 2026 06:05:00 +0530",
         "summary": "ಹಿರಿಯೂರು: ತಾಲ್ಲೂಕಿನ ದಿಂಡಾವರ ಗ್ರಾಮದಲ್ಲಿ ಭಕ್ತರ ದೇಣಿಗೆಯಿಂದ ನೂತನವಾಗಿ ನಿರ್ಮಿಸಿರುವ ಆಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನದ ಕಳಸ ಪ್ರತಿಷ್ಠಾಪನೆ ಕಾರ್ಯಕ್ರಮ ನ. 12ರಂದು ಬೆಳಿಗ್ಗೆ 9 ಗಂಟೆಯಿಂದ 11ರವರೆಗೆ ನಡೆಯಲಿದೆ ಎಂದು ",
         "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "chitradurga",
-        "districtKey": "chitradurga"
-      },
-      {
-        "title": "Deepavali: ಚಿತ್ರದುರ್ಗದ ದೀಪಾವಳಿಗೆ 'ಮೇರಾ' ಸಂಭ್ರಮ, ಹಬ್ಬದ ನಡುವೆಯೇ ಯುವತಿಯರು ಕಣ್ಣೀರಿಟ್ಟಿದ್ದೇಕೆ ಗೊತ್ತಾ?",
-        "url": "https://kannada.news18.com/news/chitradurga/mera-festival-celebrated-uniquely-by-lambani-community-in-madakaripura-hosa-lambanihatti-chitradurga-bmp-svl-local18-ws-kl-2523778.html",
-        "published": "2026-11-10T16:55:36+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
         "forced_district": null,
         "district": "chitradurga",
         "districtKey": "chitradurga"
@@ -15995,6 +15995,16 @@
     ],
     "shivamogga": [
       {
+        "title": "ಕುಂಸಿಯಲ್ಲಿ ಪ್ರಜಾಸೇವೆ ಅಭಿಯಾನ ಸಭೆ, ಎಲ್ಲಿ? ಯಾವಾಗ?",
+        "url": "https://shivamoggalive.com/taluk-news/shivamogga/kumsi-hobli-level-praja-seva/",
+        "published": "Fri, 20 Nov 2026 04:10:00 +0000",
+        "summary": "MLA Sharada Puryanaik to lead the Kumsi hobli-level Praja Seva Abhiyana meeting at Veerabhadreshwara Community Hall on Nov 21 at 10 AM for public grievances. The post ಕುಂಸಿಯಲ್ಲಿ ಪ್",
+        "source": "ಶಿವಮೊಗ್ಗ ಲೈವ್",
+        "forced_district": "shivamogga",
+        "district": "shivamogga",
+        "districtKey": "shivamogga"
+      },
+      {
         "title": "ಅಧ್ಯಾಪಕ, ಸಹಾಯಕ ಪ್ರಾಧ್ಯಾಪಕರ ನೇಮಕ, ಅಧಿಸೂಚನೆ ಯಾವಾಗ?",
         "url": "https://shivamoggalive.com/news/college-news/university-faculty-notification/",
         "published": "Fri, 20 Nov 2026 03:50:00 +0000",
@@ -17981,19 +17991,19 @@
         "forced_district": null,
         "district": "shivamogga",
         "districtKey": "shivamogga"
-      },
-      {
-        "title": "ಪ್ರಜಾಪ್ರಭುತ್ವ ಬುಡಮೇಲು ಮಾಡಲು ಬಿಜೆಪಿ ಯತ್ನ: ಶಾಸಕ ಗೋಪಾಲಕೃಷ್ಣ ಬೇಳೂರು ಆರೋಪ",
-        "url": "https://www.prajavani.net/district/shivamogga/gopalakrishna-belur-criticizes-bjp-on-voter-list-revision-4395242",
-        "published": "2026-11-14T20:18:06+05:30",
-        "summary": "",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": "shivamogga",
-        "district": "shivamogga",
-        "districtKey": "shivamogga"
       }
     ],
     "mysuru": [
+      {
+        "title": "ಮೈಸೂರಿನ ಜನತೆ ಗಮನಕ್ಕೆ, ನಾಳೆ ಈ ಎಲ್ಲಾ ಕಡೆ 7 ಗಂಟೆಗೂ ಹೆಚ್ಚು ಕಾಲ ಕರೆಂಟ್ ಇರಲ್ಲ!",
+        "url": "https://kannada.news18.com/news/mysuru/power-outage-for-seven-hours-tomorrow-in-mysuru-scs-svl-local18-ws-kl-2529841.html",
+        "published": "2026-11-20T09:25:07+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "mysuru",
+        "districtKey": "mysuru"
+      },
       {
         "title": "ಇಂದಿನಿಂದಲೇ ಹತ್ತು ಹಲವು ರೈಲುಗಳ ಸಂಚಾರ ಬದಲು; ಕೆಲವಕ್ಕೆ ಬ್ರೇಕ್!‌ ಟಿಕೆಟ್‌ ಬುಕ್‌ ಮಾಡ್ತಿದೀರಾ? ಈ ವಿಷಯ ನೆನಪಿರಲಿ!",
         "url": "https://kannada.news18.com/news/mysuru/train-services-disrupted-on-mysuru-hassan-and-bellary-routes-due-to-engineering-works-mysuru-mng-abn-local18-ws-bk-2529819.html",
@@ -19979,16 +19989,6 @@
         "published": "Mon, 16 Nov 2026 21:03:33 +0530",
         "summary": "ಮೈಸೂರಿನ ಜೆಪಿ ನಗರದಲ್ಲಿ ಚೈನ್ ಸ್ನ್ಯಾಚಿಂಗ್ ಆರೋಪದ ಮೇಲೆ ಆರಂಭವಾದ ಗಲಾಟೆ ಇದೀಗ ಗುಂಪು ಘರ್ಷಣೆಗೆ ತಿರುಗಿದೆ. ಒಂದೇ ಪ್ರಕರಣಕ್ಕೆ ಸಂಬಂಧಿಸಿ ವಿದ್ಯಾರಣ್ಯಪುರಂ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ ಎರಡು ಪ್ರತ್ಯೇಕ ಎಫ್‌ಐಆರ್‌ಗಳು ದಾ",
         "source": "TV9 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "mysuru",
-        "districtKey": "mysuru"
-      },
-      {
-        "title": "ಲಂಡನ್‌ನಲ್ಲಿದೆ ಬೆಂಗಳೂರು, ಮತ್ತೊಂದು ಮೈಸೂರು!",
-        "url": "https://www.prajavani.net/news/nrk/bangalore-and-mysore-road-names-in-london-4398790",
-        "published": "Mon, 16 Nov 2026 18:35:35 +0530",
-        "summary": "",
-        "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "mysuru",
         "districtKey": "mysuru"
@@ -21995,11 +21995,40 @@
     ],
     "hassan": [
       {
+        "title": "ವಾರ್ಡ್ ಒನ್ ಅಭಿಯಾನಕ್ಕೆ ವೇಗ; ಬೆಂಗಳೂರು ಸ್ವಚ್ಛತೆಗೆ ಹೈಟೆಕ್ ಸ್ಪರ್ಶ, ಜೆಟ್ಟಿಂಗ್ ಯಂತ್ರಗಳ ಬಳಕೆ..!",
+        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/bengaluru-gba-to-deploy-jetting-machines-to-deep-clean-public-spaces",
+        "published": "2026-11-20T09:30:56+05:30",
+        "summary": "",
+        "source": "ಕನ್ನಡ ಪ್ರಭ",
+        "district": "hassan",
+        "districtKey": "hassan"
+      },
+      {
+        "title": "ಮತ್ತೆ ಶುರುವಾಯ್ತು HMT ಕ್ರೇಜ್: ‘ಕನ್ನಡಿಗ’ ವಾಚ್‌ಗೆ ಭಾರಿ ಡಿಮ್ಯಾಂಡ್, ಉತ್ಪಾದನಾ ಸಾಮರ್ಥ್ಯ ಹೆಚ್ಚಿಸಲು ನಿರ್ಧಾರ",
+        "url": "https://kannada.asianetnews.com/bengaluru-urban/hmt-kannadiga-watch-craze-high-demand-production-increase/articleshow-befrssx",
+        "published": "Fri, 20 Nov 2026 09:26:24 +0530",
+        "summary": "ದೇಶಾದ್ಯಂತ ಮತ್ತೆ ಶುರುವಾಗಿದೆ ಹೆಮ್ಮೆಯ ಎಚ್‌ಎಮ್‌ಟಿ (HMT) ವಾಚ್‌ಗಳ ಕ್ರೇಜ್! ಕನ್ನಡಿಗರ ನೆಚ್ಚಿನ ‘ಕನ್ನಡಿಗ’ ಮಾದರಿಯ ವಾಚ್‌ಗೆ ಭಾರಿ ಬೇಡಿಕೆ ವ್ಯಕ್ತವಾಗಿದ್ದು, ಗ್ರಾಹಕರ ಡಿಮ್ಯಾಂಡ್ ಪೂರೈಸಲು ಸಂಸ್ಥೆಯು ಉತ್ಪಾದನ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "hassan",
+        "districtKey": "hassan"
+      },
+      {
         "title": "ಬೆಂಗಳೂರು ಒನ್, ಕರ್ನಾಟಕ ಒನ್ ಮತ್ತು ಗ್ರಾಮ ಒನ್ ಕೇಂದ್ರಗಳ ಹೆಸರು ಚೇಂಜ್​; ತಕ್ಷಣವೇ ಹೊಸ ಹೆಸರು ಜಾರಿ!",
         "url": "https://kannada.news18.com/news/state/names-of-bengaluru-one-karnataka-one-and-grama-one-centers-changed-new-names-assigned-pvn-2529833.html",
         "published": "2026-11-20T09:19:49+05:30",
         "summary": "",
         "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "hassan",
+        "districtKey": "hassan"
+      },
+      {
+        "title": "ಬೆಂಗಳೂರಿನ ಐಷಾರಾಮಿ ಸಂಕೀರ್ಣ ಯುಬಿ ಸಿಟಿಯ 21 ಸ್ವತ್ತುಗಳಿಂದ ₹2.65 ಕೋಟಿ ತೆರಿಗೆ ವಸೂಲಿ",
+        "url": "https://kannada.asianetnews.com/bengaluru-urban/bengaluru-civic-body-recovers-rd-2-65-crore-property-tax-from-21-ub-city-properties-gdp/articleshow-h7o8i0n",
+        "published": "Fri, 20 Nov 2026 09:17:45 +0530",
+        "summary": "ಐಷಾರಾಮಿ ಸಂಕೀರ್ಣಗಳಲ್ಲಿ ಒಂದಾಗಿರುವ ಯುಬಿ ಸಿಟಿಯಲ್ಲಿ ಬಾಕಿ ಉಳಿದಿದ್ದ ಆಸ್ತಿ ತೆರಿಗೆಯನ್ನು ವಸೂಲಿ ಮಾಡುವಲ್ಲಿ ಕೇಂದ್ರ ನಗರ ಪಾಲಿಕೆ ಮಹತ್ವದ ಪ್ರಗತಿ ಸಾಧಿಸಿದೆ. ಸಂಕೀರ್ಣಕ್ಕೆ ಸೇರಿದ 21 ಸ್ವತ್ತುಗಳಿಂದ ಒಟ್ಟು ₹2.",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
         "forced_district": null,
         "district": "hassan",
         "districtKey": "hassan"
@@ -23959,36 +23988,6 @@
         "published": "Wed, 18 Nov 2026 18:28:31 +0530",
         "summary": "",
         "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "hassan",
-        "districtKey": "hassan"
-      },
-      {
-        "title": "ಕನ್ನಡ ಪುಸ್ತಕಲೋಕದ ಅತಿದೊಡ್ಡ ಹಬ್ಬ: ನ.20ರಿಂದ 'ವೀರಲೋಕ ಪುಸ್ತಕ ಸಂತೆ - 6'; ರಾಜ್ಯಪಾಲರ ಉಪಸ್ಥಿತಿ!",
-        "url": "https://kannada.asianetnews.com/bengaluru-urban/veeraloka-pustaka-santhe-6-bengaluru-jayanagar-shalini-ground-november-20-to-22-sudha-yadav-sat/articleshow-xf6weoc",
-        "published": "Wed, 18 Nov 2026 18:20:51 +0530",
-        "summary": "ಜಯನಗರದ ಶಾಲಿನಿ ಮೈದಾನದಲ್ಲಿ ನವೆಂಬರ್ 20 ರಿಂದ 22ರವರೆಗೆ 6ನೇ ಆವೃತ್ತಿಯ 'ವೀರಲೋಕ ಪುಸ್ತಕ ಸಂತೆ' ನಡೆಯಲಿದೆ. ಈ ಮೂರು ದಿನಗಳ ಸಾಹಿತ್ಯ ಹಬ್ಬದಲ್ಲಿ ಹೊಸ ಪುಸ್ತಕಗಳ ಬಿಡುಗಡೆ, ಸಾಹಿತ್ಯ ಸಂವಾದ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಕಾ",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "hassan",
-        "districtKey": "hassan"
-      },
-      {
-        "title": "ಬೆಂಗಳೂರಿಗೆ ಹೊಸ 5 ಪೊಲೀಸ್ ಕಮಿಷನರ್‌ಗಳ ನೇಮಕಕ್ಕೆ ಮಾಜಿ IPS ಭಾಸ್ಕರ್ ರಾವ್ ಕಿಡಿ; ಸರ್ಕಾರಕ್ಕೆ 6 ನೇರ ಪ್ರಶ್ನೆಗಳು",
-        "url": "https://vijaykarnataka.com/news/bengaluru-city/former-ips-officer-bhaskar-rao-lashes-out-appointment-of-5-new-police-commissioners-for-bengaluru/articleshow/135962512.cms",
-        "published": "2026-11-18T17:51:15+05:30",
-        "summary": "",
-        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
-        "forced_district": null,
-        "district": "hassan",
-        "districtKey": "hassan"
-      },
-      {
-        "title": "ಅಡುಗೆ ಎಣ್ಣೆಗೆ ಡಿಜಿಟಲ್‌ ಕಣ್ಗಾವಲು, ಹೋಟೆಲ್ ಮಾಲೀಕರಿಗೆ ಖಡಕ್‌ ರೂಲ್ಸ್;‌ ಸಚಿವ ಯು.ಟಿ.ಖಾದರ್‌ ಅವರ ತೀರ್ಮಾನ!",
-        "url": "https://kannada.news18.com/news/mangaluru/used-cooking-oil-app-karnataka-mangaluru-ruco-dakshina-kannada-shk-abn-local18-ws-bk-2528975.html",
-        "published": "2026-11-18T17:43:49+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
         "forced_district": null,
         "district": "hassan",
         "districtKey": "hassan"
@@ -45998,6 +45997,16 @@
     ],
     "vijayapura": [
       {
+        "title": "EPFO ಹೊಸ ನಿಯಮ: ಇನ್ಮುಂದೆ 90% ಹಣ ವಿತ್‌ಡ್ರಾಗೆ ಅವಕಾಶ, ಖಾತೆದಾರರು ಮೃತಪಟ್ಟರೇ?",
+        "url": "https://kannada.oneindia.com/news/india/epfo-new-rules-90-pf-withdrawal-allowed-final-settlement-redused-swp-scheme-introduced-for-retir-474975.html",
+        "published": "Fri, 20 Nov 2026 09:35:07 +0530",
+        "summary": "ನವದೆಹಲಿ: ದೇಶದ ಕೋಟ್ಯಂತರ ಉದ್ಯೋಗಿಗಳಿಗೆ ಹಾಗೂ ನಿವೃತ್ತರಿಗೆ ಉದ್ಯೋಗಿಗಳ ಭವಿಷ್ಯ ನಿಧಿ ಸಂಸ್ಥೆ (EPFO) ಭರ್ಜರಿ ಸಿಹಿಸುದ್ದಿ ನೀಡಿದೆ. ಪಿಎಫ್ ಹಣವನ್ನ ಅಗತ್ಯವಿದ್ದಾಗ ಸುಲಭವಾಗಿ ಪಡೆದುಕೊಳ್ಳಲು ಅನುಕೂಲವಾಗುವಂತೆ ಹಲ",
+        "source": "ಒನ್‌ಇಂಡಿಯಾ",
+        "forced_district": null,
+        "district": "vijayapura",
+        "districtKey": "vijayapura"
+      },
+      {
         "title": "ಸೆಂಚುರಿ, ಶತಕ, ಹಂಡ್ರೆಡ್… ಟೀಮ್ ಇಂಡಿಯಾ ವಿರುದ್ಧ ಗ್ಲೆನ್ ಫಿಲಿಪ್ಸ್ ಭರ್ಜರಿ ದಾಖಲೆ",
         "url": "https://tv9kannada.com/photo-gallery/cricket-photos/glenn-phillips-hits-historic-all-format-tons-vs-india-1264441.html",
         "published": "Fri, 20 Nov 2026 08:51:57 +0530",
@@ -47981,16 +47990,6 @@
         "url": "https://www.prajavani.net/news/india-news/supreme-court-notice-to-lawyer-for-criticizing-cji-surya-kant-4404068",
         "published": "Wed, 18 Nov 2026 21:19:06 +0530",
         "summary": "ಸಿಜೆಐ ವಿರುದ್ಧ ಟೀಕೆ: ವಕೀಲನಿಗೆ ನೋಟಿಸ್",
-        "source": "ಪ್ರಜಾವಾಣಿ",
-        "forced_district": null,
-        "district": "vijayapura",
-        "districtKey": "vijayapura"
-      },
-      {
-        "title": "ಪೌರತ್ವಕ್ಕೂ ಮೊದಲು ಮತದಾರರ ಪಟ್ಟಿ ಸೇರ್ಪಡೆಯಾದ ಸೋನಿಯಾ: ವರದಿ ಕೇಳಿದ ನ್ಯಾಯಾಲಯ",
-        "url": "https://www.prajavani.net/news/india-news/sonia-gandhi-citizenship-voter-list-case-court-report-4404135",
-        "published": "Wed, 18 Nov 2026 21:18:12 +0530",
-        "summary": "",
         "source": "ಪ್ರಜಾವಾಣಿ",
         "forced_district": null,
         "district": "vijayapura",
@@ -60897,6 +60896,94 @@
     ],
     "_statewide": [
       {
+        "title": "ಇಲಾಖೆಯಲ್ಲಿ ಶಿಸ್ತು ಉಲ್ಲಂಘನೆಗೆ ಅವಕಾಶವಿಲ್ಲ, ಭ್ರಷ್ಟಾಚಾರ, ರೌಡಿಗಳ ಜೊತೆ ನಂಟು ಕಂಡುಬಂದರೆ ಕಠಿಣ ಕ್ರಮ; ಪೊಲೀಸರಿಗೆ ನೂತನ ಆಯುಕ್ತರ ಎಚ್ಚರಿಕೆ..!",
+        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/citys-new-top-cop-warns-tough-action-against-errant-officers",
+        "published": "2026-11-20T09:42:47+05:30",
+        "summary": "",
+        "source": "ಕನ್ನಡ ಪ್ರಭ",
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಬೃಂದಾವಿಹಾರಿ ಸಿನಿಮಾ ಅಬ್ಬರ, ಹೇಗಿದೆ ಗಣಿ ಹಲ್‌ಚಲ್?",
+        "url": "https://kannada.news18.com/news/entertainment/brundavihari-movie-release-ganesh-fans-celebration-details-rvj-dvp-2529835.html",
+        "published": "2026-11-20T09:38:20+05:30",
+        "summary": "",
+        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "‘ಬಸವ ಮಂಟಪ’ ಕೃತಿ ವಿವಾದ: ಎಫ್‌ಐಆರ್ ದಾಖಲಾದ ಬೆನ್ನಲ್ಲೇ ಲೇಖಕ ರವಿ ಹಂಜ್ ಕ್ಷಮೆಯಾಚನೆ",
+        "url": "https://tv9kannada.com/videos/basava-mantapa-book-controversy-author-ravi-hanj-apologises-after-fir-announces-district-wise-re-release-1264462.html",
+        "published": "Fri, 20 Nov 2026 09:37:38 +0530",
+        "summary": "ಬಸವಣ್ಣ ಕುರಿತ ಹೇಳಿಕೆಗಳಿಂದ ವೀರಶೈವ ಲಿಂಗಾಯತ ಸಮುದಾಯಕ್ಕೆ ನೋವಾಗಿದ್ದಕ್ಕೆ ಲೇಖಕ ರವಿ ಹಂಜ್ ಕ್ಷಮೆಯಾಚಿಸಿದ್ದಾರೆ. ಎಫ್‌ಐಆರ್ ದಾಖಲಾದ ಬೆನ್ನಲ್ಲೇ ವಿಷಾದ ವ್ಯಕ್ತಪಡಿಸಿದ ಅವರು, ಬಸವ ಮಂಟಪ ಕೃತಿಯನ್ನು ಪ್ರತಿ ಜಿಲ್ಲೆ",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ವಿಷ್ಣು ಪೂಜೆಯಲ್ಲಿ ತುಳಸಿ ಎಲೆಗಳನ್ನು ಕಡ್ಡಾಯವಾಗಿ ಬಳಸುವುದೇಕೆ? ಇದರ ಹಿಂದಿದೆ ಪೌರಾಣಿಕ ರಹಸ್ಯ!",
+        "url": "https://tv9kannada.com/spiritual/tulasi-in-vishnu-puja-sacred-significance-pauranic-story-and-benefits-1264461.html",
+        "published": "Fri, 20 Nov 2026 09:34:49 +0530",
+        "summary": "ಹಿಂದೂ ಧರ್ಮದಲ್ಲಿ ತುಳಸಿ ಎಲೆಗಳಿಗೆ ವಿಶೇಷ ಸ್ಥಾನವಿದೆ. ಅದರಲ್ಲೂ ಶ್ರೀಮಹಾವಿಷ್ಣುವಿನ ಪೂಜೆಯಲ್ಲಿ ತುಳಸಿ ದಳವನ್ನು ಕಡ್ಡಾಯವಾಗಿ ಅರ್ಪಿಸುವ ಸಂಪ್ರದಾಯವಿದೆ. ಹಾಗಾದರೆ ವಿಷ್ಣುವಿಗೆ ತುಳಸಿ ಎಂದರೆ ಏಕೆ ಅಚ್ಚುಮೆಚ್ಚು? ವ",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಬಾಲಿವುಡ್​​ಗಿಂತಲೂ ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರೋದ್ಯಮ ಗ್ರೇಟ್: ನಟಿ ಸಮೀರಾ ರೆಡ್ಡಿ",
+        "url": "https://tv9kannada.com/entertainment/bollywood/sameera-reddy-south-cinema-superior-to-bollywood-actress-shares-experience-1264460.html",
+        "published": "Fri, 20 Nov 2026 09:32:53 +0530",
+        "summary": "ಇತ್ತೀಚೆಗೆ ನಟಿ ರಾಧಿಕಾ ಆಪ್ಟೆ, ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರರಂಗದ ಬಗ್ಗೆ ಸಾಕಷ್ಟು ಋಣಾತ್ಮಕ ಹೇಳಿಕೆಗಳನ್ನು ನೀಡಿದ್ದು, ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರರಂಗ ಕೆಟ್ಟದ್ದು ಎಂಬ ಭಾವನೆ ಬಿತ್ತುವ ಪ್ರಯತ್ನ ಮಾಡಿದ್ದರು. ಅದಕ್ಕೆ ಪ್ರತಿಯಾಗಿ ",
+        "source": "TV9 ಕನ್ನಡ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ನಿಮಗೆ ಬೇಸರವಾದರೆ ಅದು ಒಳ್ಳೆಯದಕ್ಕೇ ಇರಬಹುದು-ಗುರುದೇವ ಶ್ರೀ ಶ್ರೀ ರವಿಶಂಕರ್",
+        "url": "https://vijaykarnataka.com/lifestyle/health/how-to-overcome-boredom-meditation-and-mindfulness-tips-by-sri-sri-ravi-shankar/articleshow/136010194.cms",
+        "published": "2026-11-20T09:30:00+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "BBK 13: ತಪ್ಪು ಮಾಡಿದ ಮಹಾರಾಣಿ ಗಾನವಿ, ಆಸಿಯಾ ತಂಡಕ್ಕೆ ಅನ್ಯಾಯ",
+        "url": "https://vijaykarnataka.com/tv/bigg-boss-kannada/bbk-13-queen-ganavi-gowda-who-made-a-mistake-in-luxury-task/articleshow/136011348.cms",
+        "published": "2026-11-20T09:28:35+05:30",
+        "summary": "",
+        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ವಿಷ್ಣುವರ್ಧನ್ ಮೇಲಿನ ಗೌರವಕ್ಕೆ ಶೂಟಿಂಗ್ ಅನ್ನೇ ನಿಲ್ಲಿಸಿದ್ದ ಜೈ ಜಗದೀಶ್! 'ಬಂಧನ' ಸೆಟ್‌ನಲ್ಲಿ ನಡೆದಿತ್ತು ಸ್ವಾರಸ್ಯಕರ ಘಟನೆ",
+        "url": "https://kannada.asianetnews.com/sandalwood/when-jai-jagadish-halted-bandhana-shooting-out-of-respect-for-dr-vishnuvardhan/articleshow-ydzncmg",
+        "published": "Fri, 20 Nov 2026 09:26:31 +0530",
+        "summary": "1984ರಲ್ಲಿ ತೆರೆಕಂಡ 'ಬಂಧನ' ಚಿತ್ರದ ಶೂಟಿಂಗ್ ವೇಳೆ ನಟ ಜೈ ಜಗದೀಶ್ ಅವರು ಡಾ. ವಿಷ್ಣುವರ್ಧನ್ ವಿರುದ್ಧ ಬೈಗುಳದ ಡೈಲಾಗ್ ಹೇಳಲು ನಿರಾಕರಿಸಿದ್ದರು. ಅಭಿಮಾನಿಗಳ ಆಕ್ರೋಶಕ್ಕೆ ಹೆದರಿ ಶೂಟಿಂಗ್ ನಿಲ್ಲಿಸಿದ್ದ ಜಗದೀಶ್‌ಗೆ",
+        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+        "forced_district": null,
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
+        "title": "ಕಬ್ಬಿನ ಬೆಲೆ ನಿಗದಿ, ಬೆಳೆ ನಷ್ಟ ಪರಿಹಾರಕ್ಕೆ ಆಗ್ರಹ; ಚಳಿಗಾಲದ ಅಧಿವೇಶನದಲ್ಲಿ ರೈತರ ಪ್ರತಿಭಟನೆ ತೀವ್ರ ಸಾಧ್ಯತೆ..!",
+        "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/cane-price-crop-losses-to-fuel-protests-during-winter-session",
+        "published": "2026-11-20T09:21:39+05:30",
+        "summary": "",
+        "source": "ಕನ್ನಡ ಪ್ರಭ",
+        "district": "_statewide",
+        "districtKey": "_statewide"
+      },
+      {
         "title": "ಮನಮೋಹನ್ ಸಿಂಗ್ - ಸೋನಿಯಾರಿಂದ ಆಹಾರ ಭದ್ರತಾ ಕಾಯ್ದೆ: SM ಕೃಷ್ಣರಿಂದ ಬಿಸಿಯೂಟ; ಇಂದಿರಾ ಅಂದರೆ ಹಸಿವು ದೂರ- ಬಡತನ ದೂರ'",
         "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/new-road-grid-system-planned-to-ease-traffic-says-cm-dk-shivakumar",
         "published": "2026-11-20T09:15:42+05:30",
@@ -72747,100 +72834,157 @@
         "forced_district": null,
         "district": "_statewide",
         "districtKey": "_statewide"
-      },
-      {
-        "title": "‘ನನ್ನ ಕುಟುಂಬದ ಕುರಿತ ಸುಳ್ಳು ಸಂಗತಿಗಳಿಂದ ನೋವಾಗಿತ್ತು’; ಆತ್ಮಕತೆ ಬರೆಯಲು ಕಾರಣ ಬಿಚ್ಚಿಟ್ಟ ಸೋನಿಯಾ ಗಾಂಧಿ",
-        "url": "https://tv9kannada.com/national/hurt-by-unreal-stories-about-my-family-sonia-gandhi-reveals-why-she-wrote-belonging-memoir-1263203.html",
-        "published": "Mon, 16 Nov 2026 20:45:03 +0530",
-        "summary": "ತಮ್ಮ ಕುಟುಂಬದ ಸದಸ್ಯರ ಕುರಿತು ಪ್ರಚಲಿತದಲ್ಲಿದ್ದ 'ಅವಾಸ್ತವಿಕ' ಮತ್ತು ಸತ್ಯಕ್ಕೆ ದೂರವಾದ ಕತೆಗಳಿಂದ ತನಗೆ ತೀವ್ರ ನೋವಾಗಿತ್ತು. ಹೀಗಾಗಿ, ಸತ್ಯಾಂಶವನ್ನು ದಾಖಲಿಸುವ ಉದ್ದೇಶದಿಂದಲೇ ತಾನು ‘ಬಿಲಾಂಗಿಂಗ್: ಎ ಜರ್ನಿ ಆಫ",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "'ವಾರೆ ಮೇರಿ ಲಡ್ಕಿ' ಎಂದೇ ಫೇಮಸ್ ಆಗಿದ್ದ ನಟಿ ದಾಮಿನಿ ಚಿತ್ರರಂಗದಿಂದ ದೂರ ಉಳಿದಿದ್ದೇಕೆ? ಅಷ್ಟಕ್ಕೂ ಏನಾಯ್ತು?",
-        "url": "https://kannada.asianetnews.com/sandalwood/kannada-heroine-damini-the-actress-who-won-hearts-with-her-innocent-role-in-upendra-film-gvd/articleshow-gtkr02r",
-        "published": "Mon, 16 Nov 2026 20:45:02 +0530",
-        "summary": "1999ರ ಉಪೇಂದ್ರ ಸಿನಿಮಾದಲ್ಲಿ ಮುಗ್ಧ ಹುಡುಗಿಯಾಗಿ ನಟಿಸಿ ಜನಪ್ರಿಯತೆ ಗಳಿಸಿದ್ದ ನಟಿ ದಾಮಿನಿ ಈಗ ಎಲ್ಲಿದ್ದಾರೆ? ಸಾಲು ಸಾಲು ಸಿನಿಮಾಗಳಲ್ಲಿ ನಟಿಸಿದ್ದ ಅವರು ಚಿತ್ರರಂಗದಿಂದ ದೂರವಾದ ಸಿನಿ ಪಯಣದ ಮಾಹಿತಿ ಇಲ್ಲಿದೆ.",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ಸಹೋದರನ ಮದುವೆಯಲ್ಲಿ ನಟ ಉಪೇಂದ್ರ ಮಕ್ಕಳ ಸ್ಟನ್ನಿಂಗ್​ ಲುಕ್​: ಆಯುಷ್​-ಐಶ್ವರ್ಯ ಫೋಟೋಗಳು ವೈರಲ್​",
-        "url": "https://kannada.asianetnews.com/sandalwood/ayush-and-aishwarya-upendra-stunning-look-in-brother-niranjans-marriage-suc/articleshow-bb09mcn",
-        "published": "Mon, 16 Nov 2026 20:41:02 +0530",
-        "summary": "ನಟ ಉಪೇಂದ್ರ ಅವರ ಸಹೋದರನ ಪುತ್ರ ನಿರಂಜನ್ ಅವರ ವಿವಾಹದಲ್ಲಿ ಉಪೇಂದ್ರ ಮಕ್ಕಳಾದ ಆಯುಷ್ ಮತ್ತು ಐಶ್ವರ್ಯ ಅವರ ಸ್ಟನ್ನಿಂಗ್ ಲುಕ್ ಎಲ್ಲರ ಗಮನ ಸೆಳೆದಿದೆ. ಆಯುಷ್ ಮೊದಲ ಸಿನಿಮಾಗೆ ತಯಾರಾಗುತ್ತಿದ್ದರೆ, ಐಶ್ವರ್ಯ ಚಿತ್ರರಂ",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Self Respect Wedding…ಕೋರ್ಟ್ ಅಲೆಯೋದು ಬೇಡ, ಪುರೋಹಿತರೂ ಬೇಡ… ಏನಿದು ಹೊಸ ಟ್ರೆಂಡು?",
-        "url": "https://kannada.asianetnews.com/relationship/no-priests-no-rituals-know-the-history-of-trending-self-respect-wedding/articleshow-499nze2",
-        "published": "Mon, 16 Nov 2026 20:40:58 +0530",
-        "summary": "Self Respect Wedding: ಪುರೋಹಿತರಿಲ್ಲ, ಮಂತ್ರಗಳಿಲ್ಲ, ಸಾಂಪ್ರದಾಯಿಕ ಆಚರಣೆಗಳೂ ಇಲ್ಲ! ಏನಿದು ಸೆಲ್ಫ್ ರೆಸ್ಪೆಕ್ಟ್ ವೆಡ್ಡಿಂಗ್? ಈ ಪದ್ಧತಿಯ ಇತಿಹಾಸ, ಮದುವೆ ವಿಧಾನ ಮತ್ತು ಕಾನೂನು ಮಾನ್ಯತೆಯ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ.",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ನಟ ಧನ್ವೀರ್‌ಗೆ ಹೈಕೋರ್ಟ್ ಬಿಗ್ ರಿಲೀಫ್! ದರ್ಶನ್ ಪತ್ನಿ ವಿಜಯಲಕ್ಷ್ಮಿ ಜೊತೆಗಿನ ವಿವಾದದ ಬಗ್ಗೆ ನ್ಯಾಯಪೀಠ ಹೇಳಿದ್ದೇನು?",
-        "url": "https://kannada.news18.com/news/entertainment/high-court-stays-fir-against-actor-dhanveer-kes-ws-l-2527923.html",
-        "published": "2026-11-16T20:31:21+05:30",
-        "summary": "",
-        "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ರಾಜ್ಯ ಸರ್ಕಾರಿ ನೌಕರರಿಗೆ ಹೊಸ ನಿಯಮ: ನಿತ್ಯ ನಗದು ಘೋಷಣೆ, ಚಲನವಲನ ನಮೂದು ಕಡ್ಡಾಯ; ಡಿಸೆಂಬರ್ 1 ರಿಂದ ಅನ್ವಯ",
-        "url": "https://vijaykarnataka.com/news/karnataka/new-rule-for-karnataka-government-employees-daily-cash-declaration-mandatory-effective-from-december-1/articleshow/135893407.cms",
-        "published": "2026-11-16T20:28:13+05:30",
-        "summary": "",
-        "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "ಬಿಗ್ ಬಾಸ್ ಟಾಪ್ 5 ಯಾರು? ಗೆಲ್ಲೋದು ಯಾರು? ಭವಿಷ್ಯ ನುಡಿದ ಸೋನಿಕಾ",
-        "url": "https://tv9kannada.com/videos/bigg-boss-kannada-season-13-sonika-gowda-predicts-top-5-and-winner-of-bbk-13-1263198.html",
-        "published": "Mon, 16 Nov 2026 20:19:56 +0530",
-        "summary": "ಸೋನಿಕಾ ಗೌಡ ‘ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ ಸೀಸನ್ 13’ ಶೋನಿಂದ ಎಲಿಮಿನೇಟ್ ಆಗಿದ್ದಾರೆ. ದೊಡ್ಮನೆಯಿಂದ ಹೊರಬಂದ ಬಳಿಕ ಟಿವಿ9 ಜತೆ ಮಾತನಾಡಿರುವ ಅವರು ಒಂದಷ್ಟು ವಿಚಾರಗಳನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದಾರೆ. ಈ ಸೀಸನ್​ನಲ್ಲಿ ಯಾರು ಟಾಪ್ 5 ಸ",
-        "source": "TV9 ಕನ್ನಡ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Bangle Designs: ಬಳೆಗಳಲ್ಲೇ ಇದೆ ನಿಮ್ಮ ಸೌಂದರ್ಯದ ಸೀಕ್ರೆಟ್; ಈ ಡಿಸೈನ್ಸ್ ಮಿಸ್ ಮಾಡ್ಬೇಡಿ!",
-        "url": "https://kannada.asianetnews.com/webstories/fashion/trending-bangle-designs-that-enhance-your-hand-beauty-ultimate-festive-jewellery-trends-gvd-ykacfnu",
-        "published": "Mon, 16 Nov 2026 20:16:06 +0530",
-        "summary": "Bangle Designs: ಸೀರೆ ಅಥವಾ ಲೆಹೆಂಗಾ ಧರಿಸಿದಾಗ, ಕೈಗಳಿಗೆ ಬಳೆಗಳು ಇಲ್ಲದಿದ್ದರೆ ಆ ಲುಕ್ ಕಂಪ್ಲೀಟ್ ಆಗಲ್ಲ. ಹಾಗಂತ ಬರೀ ನಾರ್ಮಲ್ ಬಳೆಗಳನ್ನೇ ಹಾಕಿಕೊಳ್ಳುವ ಬದಲು, ನಿಮ್ಮ ಕೈಗಳ ಅಂದವನ್ನು ಇಮ್ಮಡಿಗೊಳಿಸುವ ಕೆಲವು ",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
-      },
-      {
-        "title": "Viral Kid: ಜಸ್ಟ್ ಒಂದು ವಿಡಿಯೋ, 26 ತಿಂಗಳ ಮಗುವಿಗೆ ಒಲಿದ ಅದೃಷ್ಟ; ಬದಲಾಯ್ತು ಬದುಕು!",
-        "url": "https://kannada.asianetnews.com/viral/maharashtra-yavatmal-23-months-rudransh-mangesh-sisodiya-sai-honda-point-viral-story-sns/articleshow-42umat6",
-        "published": "Mon, 16 Nov 2026 20:14:55 +0530",
-        "summary": "ಹೊಸ ಹೋಂಡಾ ಸ್ಕೂಟರ್ ಖರೀದಿಸುವಾಗ 23 ತಿಂಗಳ ಮಗುವಿನ ಸ್ವಾಗ್ ಮತ್ತು ಮುಗ್ಧತೆಯ ವಿಡಿಯೋ ಸಾಮಾಜಿಕ ಜಾಲತಾಣದಲ್ಲಿ ವೈರಲ್ ಆಗಿದೆ. ವಿಡಿಯೋ ವೈರಲ್ ಆಗುತ್ತಿದ್ದಂತೆ, ಹೋಂಡಾ ಶೋ ರೂಮ್ ಮಾಲೀಕರು ಮಗುವಿನ ಶಿಕ್ಷಣದ ಸಂಪೂರ್ಣ ",
-        "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-        "forced_district": null,
-        "district": "_statewide",
-        "districtKey": "_statewide"
       }
     ]
   },
   "articles": [
+    {
+      "title": "ಇಲಾಖೆಯಲ್ಲಿ ಶಿಸ್ತು ಉಲ್ಲಂಘನೆಗೆ ಅವಕಾಶವಿಲ್ಲ, ಭ್ರಷ್ಟಾಚಾರ, ರೌಡಿಗಳ ಜೊತೆ ನಂಟು ಕಂಡುಬಂದರೆ ಕಠಿಣ ಕ್ರಮ; ಪೊಲೀಸರಿಗೆ ನೂತನ ಆಯುಕ್ತರ ಎಚ್ಚರಿಕೆ..!",
+      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/citys-new-top-cop-warns-tough-action-against-errant-officers",
+      "published": "2026-11-20T09:42:47+05:30",
+      "summary": "",
+      "source": "ಕನ್ನಡ ಪ್ರಭ",
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಕುಂಸಿಯಲ್ಲಿ ಪ್ರಜಾಸೇವೆ ಅಭಿಯಾನ ಸಭೆ, ಎಲ್ಲಿ? ಯಾವಾಗ?",
+      "url": "https://shivamoggalive.com/taluk-news/shivamogga/kumsi-hobli-level-praja-seva/",
+      "published": "Fri, 20 Nov 2026 04:10:00 +0000",
+      "summary": "MLA Sharada Puryanaik to lead the Kumsi hobli-level Praja Seva Abhiyana meeting at Veerabhadreshwara Community Hall on Nov 21 at 10 AM for public grievances. The post ಕುಂಸಿಯಲ್ಲಿ ಪ್",
+      "source": "ಶಿವಮೊಗ್ಗ ಲೈವ್",
+      "forced_district": "shivamogga",
+      "district": "shivamogga",
+      "districtKey": "shivamogga"
+    },
+    {
+      "title": "ಬೃಂದಾವಿಹಾರಿ ಸಿನಿಮಾ ಅಬ್ಬರ, ಹೇಗಿದೆ ಗಣಿ ಹಲ್‌ಚಲ್?",
+      "url": "https://kannada.news18.com/news/entertainment/brundavihari-movie-release-ganesh-fans-celebration-details-rvj-dvp-2529835.html",
+      "published": "2026-11-20T09:38:20+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "‘ಬಸವ ಮಂಟಪ’ ಕೃತಿ ವಿವಾದ: ಎಫ್‌ಐಆರ್ ದಾಖಲಾದ ಬೆನ್ನಲ್ಲೇ ಲೇಖಕ ರವಿ ಹಂಜ್ ಕ್ಷಮೆಯಾಚನೆ",
+      "url": "https://tv9kannada.com/videos/basava-mantapa-book-controversy-author-ravi-hanj-apologises-after-fir-announces-district-wise-re-release-1264462.html",
+      "published": "Fri, 20 Nov 2026 09:37:38 +0530",
+      "summary": "ಬಸವಣ್ಣ ಕುರಿತ ಹೇಳಿಕೆಗಳಿಂದ ವೀರಶೈವ ಲಿಂಗಾಯತ ಸಮುದಾಯಕ್ಕೆ ನೋವಾಗಿದ್ದಕ್ಕೆ ಲೇಖಕ ರವಿ ಹಂಜ್ ಕ್ಷಮೆಯಾಚಿಸಿದ್ದಾರೆ. ಎಫ್‌ಐಆರ್ ದಾಖಲಾದ ಬೆನ್ನಲ್ಲೇ ವಿಷಾದ ವ್ಯಕ್ತಪಡಿಸಿದ ಅವರು, ಬಸವ ಮಂಟಪ ಕೃತಿಯನ್ನು ಪ್ರತಿ ಜಿಲ್ಲೆ",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "EPFO ಹೊಸ ನಿಯಮ: ಇನ್ಮುಂದೆ 90% ಹಣ ವಿತ್‌ಡ್ರಾಗೆ ಅವಕಾಶ, ಖಾತೆದಾರರು ಮೃತಪಟ್ಟರೇ?",
+      "url": "https://kannada.oneindia.com/news/india/epfo-new-rules-90-pf-withdrawal-allowed-final-settlement-redused-swp-scheme-introduced-for-retir-474975.html",
+      "published": "Fri, 20 Nov 2026 09:35:07 +0530",
+      "summary": "ನವದೆಹಲಿ: ದೇಶದ ಕೋಟ್ಯಂತರ ಉದ್ಯೋಗಿಗಳಿಗೆ ಹಾಗೂ ನಿವೃತ್ತರಿಗೆ ಉದ್ಯೋಗಿಗಳ ಭವಿಷ್ಯ ನಿಧಿ ಸಂಸ್ಥೆ (EPFO) ಭರ್ಜರಿ ಸಿಹಿಸುದ್ದಿ ನೀಡಿದೆ. ಪಿಎಫ್ ಹಣವನ್ನ ಅಗತ್ಯವಿದ್ದಾಗ ಸುಲಭವಾಗಿ ಪಡೆದುಕೊಳ್ಳಲು ಅನುಕೂಲವಾಗುವಂತೆ ಹಲ",
+      "source": "ಒನ್‌ಇಂಡಿಯಾ",
+      "forced_district": null,
+      "district": "vijayapura",
+      "districtKey": "vijayapura"
+    },
+    {
+      "title": "ವಿಷ್ಣು ಪೂಜೆಯಲ್ಲಿ ತುಳಸಿ ಎಲೆಗಳನ್ನು ಕಡ್ಡಾಯವಾಗಿ ಬಳಸುವುದೇಕೆ? ಇದರ ಹಿಂದಿದೆ ಪೌರಾಣಿಕ ರಹಸ್ಯ!",
+      "url": "https://tv9kannada.com/spiritual/tulasi-in-vishnu-puja-sacred-significance-pauranic-story-and-benefits-1264461.html",
+      "published": "Fri, 20 Nov 2026 09:34:49 +0530",
+      "summary": "ಹಿಂದೂ ಧರ್ಮದಲ್ಲಿ ತುಳಸಿ ಎಲೆಗಳಿಗೆ ವಿಶೇಷ ಸ್ಥಾನವಿದೆ. ಅದರಲ್ಲೂ ಶ್ರೀಮಹಾವಿಷ್ಣುವಿನ ಪೂಜೆಯಲ್ಲಿ ತುಳಸಿ ದಳವನ್ನು ಕಡ್ಡಾಯವಾಗಿ ಅರ್ಪಿಸುವ ಸಂಪ್ರದಾಯವಿದೆ. ಹಾಗಾದರೆ ವಿಷ್ಣುವಿಗೆ ತುಳಸಿ ಎಂದರೆ ಏಕೆ ಅಚ್ಚುಮೆಚ್ಚು? ವ",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಅಮಿತ್ ಶಾ ಭೇಟಿಯಾದ ವಿಜಯೇಂದ್ರ, HDK: ಪ್ರತ್ಯೇಕ ಭೇಟಿಯ ಹಿಂದಿನ ಆ 2 ರಹಸ್ಯ ಕಾರಣಗಳೇನು?",
+      "url": "https://vijaykarnataka.com/news/karnataka/explainer-vijayendra-kumaraswamy-meet-amit-shah-hiriyur-bypoll-karnataka-bjp-leadership/articleshow/136012538.cms",
+      "published": "2026-11-20T09:34:42+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "chitradurga",
+      "districtKey": "chitradurga"
+    },
+    {
+      "title": "ಬಾಲಿವುಡ್​​ಗಿಂತಲೂ ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರೋದ್ಯಮ ಗ್ರೇಟ್: ನಟಿ ಸಮೀರಾ ರೆಡ್ಡಿ",
+      "url": "https://tv9kannada.com/entertainment/bollywood/sameera-reddy-south-cinema-superior-to-bollywood-actress-shares-experience-1264460.html",
+      "published": "Fri, 20 Nov 2026 09:32:53 +0530",
+      "summary": "ಇತ್ತೀಚೆಗೆ ನಟಿ ರಾಧಿಕಾ ಆಪ್ಟೆ, ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರರಂಗದ ಬಗ್ಗೆ ಸಾಕಷ್ಟು ಋಣಾತ್ಮಕ ಹೇಳಿಕೆಗಳನ್ನು ನೀಡಿದ್ದು, ದಕ್ಷಿಣ ಭಾರತ ಚಿತ್ರರಂಗ ಕೆಟ್ಟದ್ದು ಎಂಬ ಭಾವನೆ ಬಿತ್ತುವ ಪ್ರಯತ್ನ ಮಾಡಿದ್ದರು. ಅದಕ್ಕೆ ಪ್ರತಿಯಾಗಿ ",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ವಾರ್ಡ್ ಒನ್ ಅಭಿಯಾನಕ್ಕೆ ವೇಗ; ಬೆಂಗಳೂರು ಸ್ವಚ್ಛತೆಗೆ ಹೈಟೆಕ್ ಸ್ಪರ್ಶ, ಜೆಟ್ಟಿಂಗ್ ಯಂತ್ರಗಳ ಬಳಕೆ..!",
+      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/bengaluru-gba-to-deploy-jetting-machines-to-deep-clean-public-spaces",
+      "published": "2026-11-20T09:30:56+05:30",
+      "summary": "",
+      "source": "ಕನ್ನಡ ಪ್ರಭ",
+      "district": "hassan",
+      "districtKey": "hassan"
+    },
+    {
+      "title": "ನಿಮಗೆ ಬೇಸರವಾದರೆ ಅದು ಒಳ್ಳೆಯದಕ್ಕೇ ಇರಬಹುದು-ಗುರುದೇವ ಶ್ರೀ ಶ್ರೀ ರವಿಶಂಕರ್",
+      "url": "https://vijaykarnataka.com/lifestyle/health/how-to-overcome-boredom-meditation-and-mindfulness-tips-by-sri-sri-ravi-shankar/articleshow/136010194.cms",
+      "published": "2026-11-20T09:30:00+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "BBK 13: ತಪ್ಪು ಮಾಡಿದ ಮಹಾರಾಣಿ ಗಾನವಿ, ಆಸಿಯಾ ತಂಡಕ್ಕೆ ಅನ್ಯಾಯ",
+      "url": "https://vijaykarnataka.com/tv/bigg-boss-kannada/bbk-13-queen-ganavi-gowda-who-made-a-mistake-in-luxury-task/articleshow/136011348.cms",
+      "published": "2026-11-20T09:28:35+05:30",
+      "summary": "",
+      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ವಿಷ್ಣುವರ್ಧನ್ ಮೇಲಿನ ಗೌರವಕ್ಕೆ ಶೂಟಿಂಗ್ ಅನ್ನೇ ನಿಲ್ಲಿಸಿದ್ದ ಜೈ ಜಗದೀಶ್! 'ಬಂಧನ' ಸೆಟ್‌ನಲ್ಲಿ ನಡೆದಿತ್ತು ಸ್ವಾರಸ್ಯಕರ ಘಟನೆ",
+      "url": "https://kannada.asianetnews.com/sandalwood/when-jai-jagadish-halted-bandhana-shooting-out-of-respect-for-dr-vishnuvardhan/articleshow-ydzncmg",
+      "published": "Fri, 20 Nov 2026 09:26:31 +0530",
+      "summary": "1984ರಲ್ಲಿ ತೆರೆಕಂಡ 'ಬಂಧನ' ಚಿತ್ರದ ಶೂಟಿಂಗ್ ವೇಳೆ ನಟ ಜೈ ಜಗದೀಶ್ ಅವರು ಡಾ. ವಿಷ್ಣುವರ್ಧನ್ ವಿರುದ್ಧ ಬೈಗುಳದ ಡೈಲಾಗ್ ಹೇಳಲು ನಿರಾಕರಿಸಿದ್ದರು. ಅಭಿಮಾನಿಗಳ ಆಕ್ರೋಶಕ್ಕೆ ಹೆದರಿ ಶೂಟಿಂಗ್ ನಿಲ್ಲಿಸಿದ್ದ ಜಗದೀಶ್‌ಗೆ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
+    {
+      "title": "ಮತ್ತೆ ಶುರುವಾಯ್ತು HMT ಕ್ರೇಜ್: ‘ಕನ್ನಡಿಗ’ ವಾಚ್‌ಗೆ ಭಾರಿ ಡಿಮ್ಯಾಂಡ್, ಉತ್ಪಾದನಾ ಸಾಮರ್ಥ್ಯ ಹೆಚ್ಚಿಸಲು ನಿರ್ಧಾರ",
+      "url": "https://kannada.asianetnews.com/bengaluru-urban/hmt-kannadiga-watch-craze-high-demand-production-increase/articleshow-befrssx",
+      "published": "Fri, 20 Nov 2026 09:26:24 +0530",
+      "summary": "ದೇಶಾದ್ಯಂತ ಮತ್ತೆ ಶುರುವಾಗಿದೆ ಹೆಮ್ಮೆಯ ಎಚ್‌ಎಮ್‌ಟಿ (HMT) ವಾಚ್‌ಗಳ ಕ್ರೇಜ್! ಕನ್ನಡಿಗರ ನೆಚ್ಚಿನ ‘ಕನ್ನಡಿಗ’ ಮಾದರಿಯ ವಾಚ್‌ಗೆ ಭಾರಿ ಬೇಡಿಕೆ ವ್ಯಕ್ತವಾಗಿದ್ದು, ಗ್ರಾಹಕರ ಡಿಮ್ಯಾಂಡ್ ಪೂರೈಸಲು ಸಂಸ್ಥೆಯು ಉತ್ಪಾದನ",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
+      "forced_district": null,
+      "district": "hassan",
+      "districtKey": "hassan"
+    },
+    {
+      "title": "ಮೈಸೂರಿನ ಜನತೆ ಗಮನಕ್ಕೆ, ನಾಳೆ ಈ ಎಲ್ಲಾ ಕಡೆ 7 ಗಂಟೆಗೂ ಹೆಚ್ಚು ಕಾಲ ಕರೆಂಟ್ ಇರಲ್ಲ!",
+      "url": "https://kannada.news18.com/news/mysuru/power-outage-for-seven-hours-tomorrow-in-mysuru-scs-svl-local18-ws-kl-2529841.html",
+      "published": "2026-11-20T09:25:07+05:30",
+      "summary": "",
+      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "mysuru",
+      "districtKey": "mysuru"
+    },
+    {
+      "title": "ಕಬ್ಬಿನ ಬೆಲೆ ನಿಗದಿ, ಬೆಳೆ ನಷ್ಟ ಪರಿಹಾರಕ್ಕೆ ಆಗ್ರಹ; ಚಳಿಗಾಲದ ಅಧಿವೇಶನದಲ್ಲಿ ರೈತರ ಪ್ರತಿಭಟನೆ ತೀವ್ರ ಸಾಧ್ಯತೆ..!",
+      "url": "https://www.kannadaprabha.com/karnataka/2026/Nov/20/cane-price-crop-losses-to-fuel-protests-during-winter-session",
+      "published": "2026-11-20T09:21:39+05:30",
+      "summary": "",
+      "source": "ಕನ್ನಡ ಪ್ರಭ",
+      "district": "_statewide",
+      "districtKey": "_statewide"
+    },
     {
       "title": "ಅಧ್ಯಾಪಕ, ಸಹಾಯಕ ಪ್ರಾಧ್ಯಾಪಕರ ನೇಮಕ, ಅಧಿಸೂಚನೆ ಯಾವಾಗ?",
       "url": "https://shivamoggalive.com/news/college-news/university-faculty-notification/",
@@ -72857,6 +73001,16 @@
       "published": "2026-11-20T09:19:49+05:30",
       "summary": "",
       "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
+      "forced_district": null,
+      "district": "hassan",
+      "districtKey": "hassan"
+    },
+    {
+      "title": "ಬೆಂಗಳೂರಿನ ಐಷಾರಾಮಿ ಸಂಕೀರ್ಣ ಯುಬಿ ಸಿಟಿಯ 21 ಸ್ವತ್ತುಗಳಿಂದ ₹2.65 ಕೋಟಿ ತೆರಿಗೆ ವಸೂಲಿ",
+      "url": "https://kannada.asianetnews.com/bengaluru-urban/bengaluru-civic-body-recovers-rd-2-65-crore-property-tax-from-21-ub-city-properties-gdp/articleshow-h7o8i0n",
+      "published": "Fri, 20 Nov 2026 09:17:45 +0530",
+      "summary": "ಐಷಾರಾಮಿ ಸಂಕೀರ್ಣಗಳಲ್ಲಿ ಒಂದಾಗಿರುವ ಯುಬಿ ಸಿಟಿಯಲ್ಲಿ ಬಾಕಿ ಉಳಿದಿದ್ದ ಆಸ್ತಿ ತೆರಿಗೆಯನ್ನು ವಸೂಲಿ ಮಾಡುವಲ್ಲಿ ಕೇಂದ್ರ ನಗರ ಪಾಲಿಕೆ ಮಹತ್ವದ ಪ್ರಗತಿ ಸಾಧಿಸಿದೆ. ಸಂಕೀರ್ಣಕ್ಕೆ ಸೇರಿದ 21 ಸ್ವತ್ತುಗಳಿಂದ ಒಟ್ಟು ₹2.",
+      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
       "forced_district": null,
       "district": "hassan",
       "districtKey": "hassan"
@@ -92731,16 +92885,6 @@
       "districtKey": "_statewide"
     },
     {
-      "title": "ಪೌರತ್ವಕ್ಕೂ ಮೊದಲು ಮತದಾರರ ಪಟ್ಟಿ ಸೇರ್ಪಡೆಯಾದ ಸೋನಿಯಾ: ವರದಿ ಕೇಳಿದ ನ್ಯಾಯಾಲಯ",
-      "url": "https://www.prajavani.net/news/india-news/sonia-gandhi-citizenship-voter-list-case-court-report-4404135",
-      "published": "Wed, 18 Nov 2026 21:18:12 +0530",
-      "summary": "",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "vijayapura",
-      "districtKey": "vijayapura"
-    },
-    {
       "title": "ಕಾಲು ಕಳೆದುಕೊಂಡವನ ಬದುಕಿಗೆ ಊರುಗೋಲಾದ ಹೈಕೋರ್ಟ್‌",
       "url": "https://www.prajavani.net/news/karnataka-news/karnataka-high-court-order-alternative-job-disabled-police-constable-aspirant-4404182",
       "published": "Wed, 18 Nov 2026 21:17:25 +0530",
@@ -93948,16 +94092,6 @@
       "districtKey": "gadag"
     },
     {
-      "title": "ಕನ್ನಡ ಪುಸ್ತಕಲೋಕದ ಅತಿದೊಡ್ಡ ಹಬ್ಬ: ನ.20ರಿಂದ 'ವೀರಲೋಕ ಪುಸ್ತಕ ಸಂತೆ - 6'; ರಾಜ್ಯಪಾಲರ ಉಪಸ್ಥಿತಿ!",
-      "url": "https://kannada.asianetnews.com/bengaluru-urban/veeraloka-pustaka-santhe-6-bengaluru-jayanagar-shalini-ground-november-20-to-22-sudha-yadav-sat/articleshow-xf6weoc",
-      "published": "Wed, 18 Nov 2026 18:20:51 +0530",
-      "summary": "ಜಯನಗರದ ಶಾಲಿನಿ ಮೈದಾನದಲ್ಲಿ ನವೆಂಬರ್ 20 ರಿಂದ 22ರವರೆಗೆ 6ನೇ ಆವೃತ್ತಿಯ 'ವೀರಲೋಕ ಪುಸ್ತಕ ಸಂತೆ' ನಡೆಯಲಿದೆ. ಈ ಮೂರು ದಿನಗಳ ಸಾಹಿತ್ಯ ಹಬ್ಬದಲ್ಲಿ ಹೊಸ ಪುಸ್ತಕಗಳ ಬಿಡುಗಡೆ, ಸಾಹಿತ್ಯ ಸಂವಾದ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಕಾ",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "hassan",
-      "districtKey": "hassan"
-    },
-    {
       "title": "ರೇಣುಕಾಸ್ವಾಮಿ ಕೇಸ್‌ಗೆ ಬಿಗ್ ಟ್ವಿಸ್ಟ್; ಇಬ್ಬರು ಪ್ರಮುಖ ಸಾಕ್ಷಿಗಳಿಗೆ ಕೋರ್ಟ್ ಸಮನ್ಸ್!",
       "url": "https://kannada.news18.com/news/entertainment/renukaswamy-case-summons-issued-to-two-witnesses-kes-ws-l-2528983.html",
       "published": "2026-11-18T18:18:57+05:30",
@@ -94167,16 +94301,6 @@
       "districtKey": "chikkaballapura"
     },
     {
-      "title": "ಬೆಂಗಳೂರಿಗೆ ಹೊಸ 5 ಪೊಲೀಸ್ ಕಮಿಷನರ್‌ಗಳ ನೇಮಕಕ್ಕೆ ಮಾಜಿ IPS ಭಾಸ್ಕರ್ ರಾವ್ ಕಿಡಿ; ಸರ್ಕಾರಕ್ಕೆ 6 ನೇರ ಪ್ರಶ್ನೆಗಳು",
-      "url": "https://vijaykarnataka.com/news/bengaluru-city/former-ips-officer-bhaskar-rao-lashes-out-appointment-of-5-new-police-commissioners-for-bengaluru/articleshow/135962512.cms",
-      "published": "2026-11-18T17:51:15+05:30",
-      "summary": "",
-      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
-      "forced_district": null,
-      "district": "hassan",
-      "districtKey": "hassan"
-    },
-    {
       "title": "ಬುಮ್ರಾಗಿಂತ ಸಚಿನ್ ವಿಕೆಟ್ ಜಾಸ್ತಿ, ಧೋನಿಗೆ ಏಷ್ಯಾದ ಹೊರಗೆ ಶತಕವೇ ನಾಸ್ತಿ; ಕ್ರಿಕೆಟ್ ಲೋಕದ 4 ವಿಚಿತ್ರ ರೆಕಾರ್ಡ್ಸ!",
       "url": "https://kannada.asianetnews.com/cricket-sports/weird-cricket-records-sachin-dhoni-miller-cook/articleshow-rpi1opg",
       "published": "Wed, 18 Nov 2026 17:48:52 +0530",
@@ -94215,16 +94339,6 @@
       "forced_district": null,
       "district": "_statewide",
       "districtKey": "_statewide"
-    },
-    {
-      "title": "ಅಡುಗೆ ಎಣ್ಣೆಗೆ ಡಿಜಿಟಲ್‌ ಕಣ್ಗಾವಲು, ಹೋಟೆಲ್ ಮಾಲೀಕರಿಗೆ ಖಡಕ್‌ ರೂಲ್ಸ್;‌ ಸಚಿವ ಯು.ಟಿ.ಖಾದರ್‌ ಅವರ ತೀರ್ಮಾನ!",
-      "url": "https://kannada.news18.com/news/mangaluru/used-cooking-oil-app-karnataka-mangaluru-ruco-dakshina-kannada-shk-abn-local18-ws-bk-2528975.html",
-      "published": "2026-11-18T17:43:49+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "hassan",
-      "districtKey": "hassan"
     },
     {
       "title": "ಶಂಕರ್ ನಿರ್ದೇಶನದ ಈ ಸಿನಿಮಾವನ್ನು ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ 5 ಬಾರಿ ಥಿಯೇಟರ್‌ನಲ್ಲಿ ನೋಡಿದ್ದರಂತೆ!",
@@ -94435,6 +94549,16 @@
       "forced_district": null,
       "district": "udupi",
       "districtKey": "udupi"
+    },
+    {
+      "title": "ಜಿಬಿಎ ರೀತಿ ಬೆಂಗಳೂರನ್ನು 5 ಕಮಿಷನರೇಟ್ ಮಾಡಿದ ಸರ್ಕಾರ, 5 ವಲಯಗಳಿಗೆ ಪೊಲೀಸ್ ಆಯುಕ್ತರ ನೇಮಕ",
+      "url": "https://tv9kannada.com/karnataka/bengaluru/karnataka-governmnet-appoints-commissioners-to-five-bengaluru-police-commissionerate-here-is-34-ips-officers-transfer-details-1263862.html",
+      "published": "Wed, 18 Nov 2026 17:09:07 +0530",
+      "summary": "ಬಿಬಿಎಂಪಿಯನ್ನು ಐದು ವಲಯಗಳಾಗಿ ಜಿಬಿಎ ಎಂದು ರಾಜ್ಯ ಸರ್ಕಾರ ರಚನೆ ಮಾಡಿದ್ದು, ಇದೀಗ ಇದೇ ರೀತಿ ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್ ಕಮಿಷನರೇಟ್ ರಚನೆ ಮಾಡಿದೆ. ಒಟ್ಟು ಐದು ಪೊಲೀಸ್ ಕಮಿಷನರೇಟ್ ಗಳನ್ನಾಗಿ ಮಾಡಿ ಆಯುಕ್ತರನ್ನು ನೇಮಕ",
+      "source": "TV9 ಕನ್ನಡ",
+      "forced_district": "bengaluru-urban",
+      "district": "bengaluru-urban",
+      "districtKey": "bengaluru-urban"
     },
     {
       "title": "Cow Milk vs Buffalo Milk: ಯಾವ ಹಾಲಿನಲ್ಲಿ ಹೆಚ್ಚು ಪ್ರೋಟೀನ್, ಕ್ಯಾಲ್ಸಿಯಂ ಇದೆ ತಿಳಿದುಕೊಳ್ಳಿ",
@@ -113096,16 +113220,6 @@
       "districtKey": "mysuru"
     },
     {
-      "title": "ಮಂಗಳೂರಿನಿಂದ ಬೆಂಗಳೂರಿಗೆ ತೆರಳುತ್ತಿದ್ದ ವಿಮಾನದಲ್ಲಿ ತಾಂತ್ರಿಕ ದೋಷ: ಪೈಲಟ್ ಸಮಯಪ್ರಜ್ಞೆಯಿಂದ ತಪ್ಪಿದ ಭಾರೀ ದುರಂತ",
-      "url": "https://vijaykarnataka.com/news/mangaluru/technical-glitch-in-mangaluru-bengaluru-flight-major-disaster-averted-pilots-presence-of-mind/articleshow/135899661.cms",
-      "published": "2026-11-16T23:54:56+05:30",
-      "summary": "",
-      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
-      "forced_district": null,
-      "district": "bengaluru-urban",
-      "districtKey": "bengaluru-urban"
-    },
-    {
       "title": "ಅತ್ತೆಯನ್ನು ನೋಡಿದಾಗ ಭಯವಾಗ್ತಿತ್ತು – ಸೋನಿಯಾ ಗಾಂಧಿ",
       "url": "https://publictv.in/sonia-gandhi-unveils-her-memoir-belonging-a-journey-of-love/",
       "published": "Mon, 16 Nov 2026 17:48:48 +0000",
@@ -113556,56 +113670,6 @@
       "districtKey": "uttara-kannada"
     },
     {
-      "title": "‘ನನ್ನ ಕುಟುಂಬದ ಕುರಿತ ಸುಳ್ಳು ಸಂಗತಿಗಳಿಂದ ನೋವಾಗಿತ್ತು’; ಆತ್ಮಕತೆ ಬರೆಯಲು ಕಾರಣ ಬಿಚ್ಚಿಟ್ಟ ಸೋನಿಯಾ ಗಾಂಧಿ",
-      "url": "https://tv9kannada.com/national/hurt-by-unreal-stories-about-my-family-sonia-gandhi-reveals-why-she-wrote-belonging-memoir-1263203.html",
-      "published": "Mon, 16 Nov 2026 20:45:03 +0530",
-      "summary": "ತಮ್ಮ ಕುಟುಂಬದ ಸದಸ್ಯರ ಕುರಿತು ಪ್ರಚಲಿತದಲ್ಲಿದ್ದ 'ಅವಾಸ್ತವಿಕ' ಮತ್ತು ಸತ್ಯಕ್ಕೆ ದೂರವಾದ ಕತೆಗಳಿಂದ ತನಗೆ ತೀವ್ರ ನೋವಾಗಿತ್ತು. ಹೀಗಾಗಿ, ಸತ್ಯಾಂಶವನ್ನು ದಾಖಲಿಸುವ ಉದ್ದೇಶದಿಂದಲೇ ತಾನು ‘ಬಿಲಾಂಗಿಂಗ್: ಎ ಜರ್ನಿ ಆಫ",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "'ವಾರೆ ಮೇರಿ ಲಡ್ಕಿ' ಎಂದೇ ಫೇಮಸ್ ಆಗಿದ್ದ ನಟಿ ದಾಮಿನಿ ಚಿತ್ರರಂಗದಿಂದ ದೂರ ಉಳಿದಿದ್ದೇಕೆ? ಅಷ್ಟಕ್ಕೂ ಏನಾಯ್ತು?",
-      "url": "https://kannada.asianetnews.com/sandalwood/kannada-heroine-damini-the-actress-who-won-hearts-with-her-innocent-role-in-upendra-film-gvd/articleshow-gtkr02r",
-      "published": "Mon, 16 Nov 2026 20:45:02 +0530",
-      "summary": "1999ರ ಉಪೇಂದ್ರ ಸಿನಿಮಾದಲ್ಲಿ ಮುಗ್ಧ ಹುಡುಗಿಯಾಗಿ ನಟಿಸಿ ಜನಪ್ರಿಯತೆ ಗಳಿಸಿದ್ದ ನಟಿ ದಾಮಿನಿ ಈಗ ಎಲ್ಲಿದ್ದಾರೆ? ಸಾಲು ಸಾಲು ಸಿನಿಮಾಗಳಲ್ಲಿ ನಟಿಸಿದ್ದ ಅವರು ಚಿತ್ರರಂಗದಿಂದ ದೂರವಾದ ಸಿನಿ ಪಯಣದ ಮಾಹಿತಿ ಇಲ್ಲಿದೆ.",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "ಸಹೋದರನ ಮದುವೆಯಲ್ಲಿ ನಟ ಉಪೇಂದ್ರ ಮಕ್ಕಳ ಸ್ಟನ್ನಿಂಗ್​ ಲುಕ್​: ಆಯುಷ್​-ಐಶ್ವರ್ಯ ಫೋಟೋಗಳು ವೈರಲ್​",
-      "url": "https://kannada.asianetnews.com/sandalwood/ayush-and-aishwarya-upendra-stunning-look-in-brother-niranjans-marriage-suc/articleshow-bb09mcn",
-      "published": "Mon, 16 Nov 2026 20:41:02 +0530",
-      "summary": "ನಟ ಉಪೇಂದ್ರ ಅವರ ಸಹೋದರನ ಪುತ್ರ ನಿರಂಜನ್ ಅವರ ವಿವಾಹದಲ್ಲಿ ಉಪೇಂದ್ರ ಮಕ್ಕಳಾದ ಆಯುಷ್ ಮತ್ತು ಐಶ್ವರ್ಯ ಅವರ ಸ್ಟನ್ನಿಂಗ್ ಲುಕ್ ಎಲ್ಲರ ಗಮನ ಸೆಳೆದಿದೆ. ಆಯುಷ್ ಮೊದಲ ಸಿನಿಮಾಗೆ ತಯಾರಾಗುತ್ತಿದ್ದರೆ, ಐಶ್ವರ್ಯ ಚಿತ್ರರಂ",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "Self Respect Wedding…ಕೋರ್ಟ್ ಅಲೆಯೋದು ಬೇಡ, ಪುರೋಹಿತರೂ ಬೇಡ… ಏನಿದು ಹೊಸ ಟ್ರೆಂಡು?",
-      "url": "https://kannada.asianetnews.com/relationship/no-priests-no-rituals-know-the-history-of-trending-self-respect-wedding/articleshow-499nze2",
-      "published": "Mon, 16 Nov 2026 20:40:58 +0530",
-      "summary": "Self Respect Wedding: ಪುರೋಹಿತರಿಲ್ಲ, ಮಂತ್ರಗಳಿಲ್ಲ, ಸಾಂಪ್ರದಾಯಿಕ ಆಚರಣೆಗಳೂ ಇಲ್ಲ! ಏನಿದು ಸೆಲ್ಫ್ ರೆಸ್ಪೆಕ್ಟ್ ವೆಡ್ಡಿಂಗ್? ಈ ಪದ್ಧತಿಯ ಇತಿಹಾಸ, ಮದುವೆ ವಿಧಾನ ಮತ್ತು ಕಾನೂನು ಮಾನ್ಯತೆಯ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ.",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "ನಟ ಧನ್ವೀರ್‌ಗೆ ಹೈಕೋರ್ಟ್ ಬಿಗ್ ರಿಲೀಫ್! ದರ್ಶನ್ ಪತ್ನಿ ವಿಜಯಲಕ್ಷ್ಮಿ ಜೊತೆಗಿನ ವಿವಾದದ ಬಗ್ಗೆ ನ್ಯಾಯಪೀಠ ಹೇಳಿದ್ದೇನು?",
-      "url": "https://kannada.news18.com/news/entertainment/high-court-stays-fir-against-actor-dhanveer-kes-ws-l-2527923.html",
-      "published": "2026-11-16T20:31:21+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
       "title": "ಪ್ರವಾಸಿಗರನ್ನು ಆಕರ್ಷಿಸುತ್ತಿರುವ ಬೀಚ್‌ನಲ್ಲಿರೋ ಯುದ್ಧನೌಕೆ: ಕಾರವಾರಕ್ಕೆ ಹೋದ್ರೆ ಈ ಜಾಗ ಮಿಸ್ ಮಾಡ್ಬೇಡಿ!",
       "url": "https://tv9kannada.com/karnataka/uttara-kannada/ins-chapel-warship-museum-karwar-a-naval-marvel-and-top-tourist-attraction-1263190.html",
       "published": "Mon, 16 Nov 2026 20:28:41 +0530",
@@ -113614,46 +113678,6 @@
       "forced_district": null,
       "district": "uttara-kannada",
       "districtKey": "uttara-kannada"
-    },
-    {
-      "title": "ರಾಜ್ಯ ಸರ್ಕಾರಿ ನೌಕರರಿಗೆ ಹೊಸ ನಿಯಮ: ನಿತ್ಯ ನಗದು ಘೋಷಣೆ, ಚಲನವಲನ ನಮೂದು ಕಡ್ಡಾಯ; ಡಿಸೆಂಬರ್ 1 ರಿಂದ ಅನ್ವಯ",
-      "url": "https://vijaykarnataka.com/news/karnataka/new-rule-for-karnataka-government-employees-daily-cash-declaration-mandatory-effective-from-december-1/articleshow/135893407.cms",
-      "published": "2026-11-16T20:28:13+05:30",
-      "summary": "",
-      "source": "ವಿಜಯ ಕರ್ನಾಟಕ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "ಬಿಗ್ ಬಾಸ್ ಟಾಪ್ 5 ಯಾರು? ಗೆಲ್ಲೋದು ಯಾರು? ಭವಿಷ್ಯ ನುಡಿದ ಸೋನಿಕಾ",
-      "url": "https://tv9kannada.com/videos/bigg-boss-kannada-season-13-sonika-gowda-predicts-top-5-and-winner-of-bbk-13-1263198.html",
-      "published": "Mon, 16 Nov 2026 20:19:56 +0530",
-      "summary": "ಸೋನಿಕಾ ಗೌಡ ‘ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ ಸೀಸನ್ 13’ ಶೋನಿಂದ ಎಲಿಮಿನೇಟ್ ಆಗಿದ್ದಾರೆ. ದೊಡ್ಮನೆಯಿಂದ ಹೊರಬಂದ ಬಳಿಕ ಟಿವಿ9 ಜತೆ ಮಾತನಾಡಿರುವ ಅವರು ಒಂದಷ್ಟು ವಿಚಾರಗಳನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದಾರೆ. ಈ ಸೀಸನ್​ನಲ್ಲಿ ಯಾರು ಟಾಪ್ 5 ಸ",
-      "source": "TV9 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "Bangle Designs: ಬಳೆಗಳಲ್ಲೇ ಇದೆ ನಿಮ್ಮ ಸೌಂದರ್ಯದ ಸೀಕ್ರೆಟ್; ಈ ಡಿಸೈನ್ಸ್ ಮಿಸ್ ಮಾಡ್ಬೇಡಿ!",
-      "url": "https://kannada.asianetnews.com/webstories/fashion/trending-bangle-designs-that-enhance-your-hand-beauty-ultimate-festive-jewellery-trends-gvd-ykacfnu",
-      "published": "Mon, 16 Nov 2026 20:16:06 +0530",
-      "summary": "Bangle Designs: ಸೀರೆ ಅಥವಾ ಲೆಹೆಂಗಾ ಧರಿಸಿದಾಗ, ಕೈಗಳಿಗೆ ಬಳೆಗಳು ಇಲ್ಲದಿದ್ದರೆ ಆ ಲುಕ್ ಕಂಪ್ಲೀಟ್ ಆಗಲ್ಲ. ಹಾಗಂತ ಬರೀ ನಾರ್ಮಲ್ ಬಳೆಗಳನ್ನೇ ಹಾಕಿಕೊಳ್ಳುವ ಬದಲು, ನಿಮ್ಮ ಕೈಗಳ ಅಂದವನ್ನು ಇಮ್ಮಡಿಗೊಳಿಸುವ ಕೆಲವು ",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
-    },
-    {
-      "title": "Viral Kid: ಜಸ್ಟ್ ಒಂದು ವಿಡಿಯೋ, 26 ತಿಂಗಳ ಮಗುವಿಗೆ ಒಲಿದ ಅದೃಷ್ಟ; ಬದಲಾಯ್ತು ಬದುಕು!",
-      "url": "https://kannada.asianetnews.com/viral/maharashtra-yavatmal-23-months-rudransh-mangesh-sisodiya-sai-honda-point-viral-story-sns/articleshow-42umat6",
-      "published": "Mon, 16 Nov 2026 20:14:55 +0530",
-      "summary": "ಹೊಸ ಹೋಂಡಾ ಸ್ಕೂಟರ್ ಖರೀದಿಸುವಾಗ 23 ತಿಂಗಳ ಮಗುವಿನ ಸ್ವಾಗ್ ಮತ್ತು ಮುಗ್ಧತೆಯ ವಿಡಿಯೋ ಸಾಮಾಜಿಕ ಜಾಲತಾಣದಲ್ಲಿ ವೈರಲ್ ಆಗಿದೆ. ವಿಡಿಯೋ ವೈರಲ್ ಆಗುತ್ತಿದ್ದಂತೆ, ಹೋಂಡಾ ಶೋ ರೂಮ್ ಮಾಲೀಕರು ಮಗುವಿನ ಶಿಕ್ಷಣದ ಸಂಪೂರ್ಣ ",
-      "source": "ಏಷ್ಯಾನೆಟ್ ಸುವರ್ಣ",
-      "forced_district": null,
-      "district": "_statewide",
-      "districtKey": "_statewide"
     },
     {
       "title": "ವಿಶ್ಲೇಷಣೆ | ಬಿಡದಿ ಟೌನ್‌ಶಿಪ್: ಅಭಿವೃದ್ಧಿ ಮತ್ತು ಪರಿಸರದ ನಡುವಿನ ಸಂಘರ್ಷ",
@@ -113763,16 +113787,6 @@
       "forced_district": null,
       "district": "belagavi",
       "districtKey": "belagavi"
-    },
-    {
-      "title": "ಲಂಡನ್‌ನಲ್ಲಿದೆ ಬೆಂಗಳೂರು, ಮತ್ತೊಂದು ಮೈಸೂರು!",
-      "url": "https://www.prajavani.net/news/nrk/bangalore-and-mysore-road-names-in-london-4398790",
-      "published": "Mon, 16 Nov 2026 18:35:35 +0530",
-      "summary": "",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": null,
-      "district": "mysuru",
-      "districtKey": "mysuru"
     },
     {
       "title": "30 ಅಡಿ ಆಳದ ಬಾವಿಗೆ ಬಿದ್ದ ಆಕಳಿಗೆ ಅಗ್ನಿಶಾಮಕ ಸಿಬ್ಬಂದಿಯಿಂದ ಮರುಜೀವ",
@@ -120691,16 +120705,6 @@
       "summary": "ನಾಲ್ವರು ಲೇಖಕರಿಗೆ ‘ಪರಸ್ಪರ’ ಸಾಹಿತ್ಯ ಪ್ರಶಸ್ತಿ",
       "source": "ಪ್ರಜಾವಾಣಿ",
       "forced_district": null,
-      "district": "shivamogga",
-      "districtKey": "shivamogga"
-    },
-    {
-      "title": "ಪ್ರಜಾಪ್ರಭುತ್ವ ಬುಡಮೇಲು ಮಾಡಲು ಬಿಜೆಪಿ ಯತ್ನ: ಶಾಸಕ ಗೋಪಾಲಕೃಷ್ಣ ಬೇಳೂರು ಆರೋಪ",
-      "url": "https://www.prajavani.net/district/shivamogga/gopalakrishna-belur-criticizes-bjp-on-voter-list-revision-4395242",
-      "published": "2026-11-14T20:18:06+05:30",
-      "summary": "",
-      "source": "ಪ್ರಜಾವಾಣಿ",
-      "forced_district": "shivamogga",
       "district": "shivamogga",
       "districtKey": "shivamogga"
     },
@@ -135327,16 +135331,6 @@
       "districtKey": "chamarajanagara"
     },
     {
-      "title": "Deepavali: ಚಿತ್ರದುರ್ಗದ ದೀಪಾವಳಿಗೆ 'ಮೇರಾ' ಸಂಭ್ರಮ, ಹಬ್ಬದ ನಡುವೆಯೇ ಯುವತಿಯರು ಕಣ್ಣೀರಿಟ್ಟಿದ್ದೇಕೆ ಗೊತ್ತಾ?",
-      "url": "https://kannada.news18.com/news/chitradurga/mera-festival-celebrated-uniquely-by-lambani-community-in-madakaripura-hosa-lambanihatti-chitradurga-bmp-svl-local18-ws-kl-2523778.html",
-      "published": "2026-11-10T16:55:36+05:30",
-      "summary": "",
-      "source": "ನ್ಯೂಸ್18 ಕನ್ನಡ",
-      "forced_district": null,
-      "district": "chitradurga",
-      "districtKey": "chitradurga"
-    },
-    {
       "title": "ವಿದ್ಯುತ್ ಅವಘಡದಲ್ಲಿ ಯುವಕ ಸಾವು – ಕುಟುಂಬಕ್ಕೆ 5 ಲಕ್ಷ ಪರಿಹಾರದ ಚೆಕ್ ವಿತರಿಸಿದ ಶಾಸಕ ಬೆಲ್ದಾಳೆ",
       "url": "https://publictv.in/youth-dies-in-electric-accident-in-bidar-mla-beldale-distributes-rs-5-lakh-compensation-check-to-family/",
       "published": "Tue, 10 Nov 2026 11:21:43 +0000",
@@ -145620,7 +145614,7 @@
     },
     {
       "tag": "ಬಿಜೆಪಿ",
-      "count": 128
+      "count": 127
     },
     {
       "tag": "ಜೆಡಿಎಸ್",
@@ -145636,7 +145630,7 @@
     },
     {
       "tag": "ಹೈಕೋರ್ಟ್",
-      "count": 42
+      "count": 41
     },
     {
       "tag": "ಗ್ಯಾರಂಟಿ ಯೋಜನೆ",
