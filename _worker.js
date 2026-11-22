@@ -6,38 +6,38 @@ function generateGroundedGoldAnswer(rawQuery) {
   const g22 = 11465;      // 22K Jewellery per gram (₹11,465)
   const g18 = 9330;      // 18K Diamond Jewellery per gram (₹9,330)
   const g14 = 7396;       // 14K Gold per gram (₹7,396)
-  const pt950 = 6700;    // PT950 Platinum per gram (₹6,700)
-  const sil = 248.65;     // Silver 999 per gram (₹248.65)
-  const sil925 = 230.00;  // Silver 925 per gram (₹230.00)
-  const gsr = 50.3;       // Gold-to-Silver Ratio
+  const pt950 = 6000;    // PT950 Platinum per gram (₹6,000)
+  const sil = 216.22;     // Silver 999 per gram (₹216.22)
+  const sil925 = 200.00;  // Silver 925 per gram (₹200.00)
+  const gsr = 57.9;       // Gold-to-Silver Ratio
 
   const citiesMap = {
-    'bengaluru': { kn: 'ಬೆಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 248.65, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
-    'bangalore': { kn: 'ಬೆಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 248.65, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
-    'mysuru': { kn: 'ಮೈಸೂರು', g24: 12515, g22: 11467, g18: 9332, sil: 248.65, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
-    'mysore': { kn: 'ಮೈಸೂರು', g24: 12515, g22: 11467, g18: 9332, sil: 248.65, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
-    'mangaluru': { kn: 'ಮಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 248.65, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
-    'mangalore': { kn: 'ಮಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 248.65, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
-    'hubballi': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 248.65, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
-    'hubli': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 248.65, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
-    'dharwad': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 248.65, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
-    'belagavi': { kn: 'ಬೆಳಗಾವಿ', g24: 12516, g22: 11468, g18: 9333, sil: 248.65, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
-    'belgaum': { kn: 'ಬೆಳಗಾವಿ', g24: 12516, g22: 11468, g18: 9333, sil: 248.65, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
-    'kalaburagi': { kn: 'ಕಲಬುರಗಿ', g24: 12520, g22: 11472, g18: 9337, sil: 248.65, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
-    'gulbarga': { kn: 'ಕಲಬುರಗಿ', g24: 12520, g22: 11472, g18: 9337, sil: 248.65, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
-    'davanagere': { kn: 'ದಾವಣಗೆರೆ', g24: 12515, g22: 11467, g18: 9332, sil: 248.65, hub: 'ಮಂಡಿಪೇಟೆ (Jos Alukkas Davanagere)' },
-    'shivamogga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 12514, g22: 11466, g18: 9331, sil: 248.65, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
-    'shimoga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 12514, g22: 11466, g18: 9331, sil: 248.65, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
-    'tumakuru': { kn: 'ತುಮಕೂರು', g24: 12514, g22: 11466, g18: 9331, sil: 248.65, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
-    'tumkur': { kn: 'ತುಮಕೂರು', g24: 12514, g22: 11466, g18: 9331, sil: 248.65, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
-    'hassan': { kn: 'ಹಾಸನ', g24: 12515, g22: 11467, g18: 9332, sil: 248.65, hub: 'ಬಿ.ಎಂ. ರಸ್ತೆ (Jos Alukkas Hassan)' },
-    'udupi': { kn: 'ಉಡುಪಿ', g24: 12513, g22: 11465, g18: 9330, sil: 248.65, hub: 'ರಥಬೀದಿ & ಕೆ.ಎಂ. ಮಾರ್ಗ (Jos Alukkas Udupi)' },
-    'ballari': { kn: 'ಬಳ್ಳಾರಿ', g24: 12522, g22: 11473, g18: 9338, sil: 248.65, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
-    'bellary': { kn: 'ಬಳ್ಳಾರಿ', g24: 12522, g22: 11473, g18: 9338, sil: 248.65, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
-    'vijayapura': { kn: 'ವಿಜಯಪುರ', g24: 12518, g22: 11470, g18: 9335, sil: 248.65, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
-    'bijapur': { kn: 'ವಿಜಯಪುರ', g24: 12518, g22: 11470, g18: 9335, sil: 248.65, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
-    'bidar': { kn: 'ಬೀದರ್', g24: 12525, g22: 11475, g18: 9340, sil: 248.65, hub: 'ಚೌಬಾರಾ ರಸ್ತೆ (Bidar)' },
-    'raichur': { kn: 'ರಾಯಚೂರು', g24: 12520, g22: 11472, g18: 9337, sil: 248.65, hub: 'ತೆಂಗಿನಕಾಯಿ ಬಜಾರ್ (Raichur)' }
+    'bengaluru': { kn: 'ಬೆಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 216.22, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'bangalore': { kn: 'ಬೆಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 216.22, hub: 'ನಗರತ್‌ಪೇಟೆ & ಚಿಕ್ಕಪೇಟೆ (Jos Alukkas Showrooms)' },
+    'mysuru': { kn: 'ಮೈಸೂರು', g24: 12515, g22: 11467, g18: 9332, sil: 216.22, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mysore': { kn: 'ಮೈಸೂರು', g24: 12515, g22: 11467, g18: 9332, sil: 216.22, hub: 'ಅಶೋಕ ರಸ್ತೆ (Jos Alukkas Mysuru)' },
+    'mangaluru': { kn: 'ಮಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 216.22, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'mangalore': { kn: 'ಮಂಗಳೂರು', g24: 12513, g22: 11465, g18: 9330, sil: 216.22, hub: 'ಕಾರ್ ಸ್ಟ್ರೀಟ್ & ಹಂಪನಕಟ್ಟೆ (Jos Alukkas Mangaluru)' },
+    'hubballi': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 216.22, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'hubli': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 216.22, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'dharwad': { kn: 'ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', g24: 12518, g22: 11470, g18: 9335, sil: 216.22, hub: 'ಕೊಪ್ಪಿಕರ್ ರಸ್ತೆ (Jos Alukkas Hubballi)' },
+    'belagavi': { kn: 'ಬೆಳಗಾವಿ', g24: 12516, g22: 11468, g18: 9333, sil: 216.22, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'belgaum': { kn: 'ಬೆಳಗಾವಿ', g24: 12516, g22: 11468, g18: 9333, sil: 216.22, hub: 'ಸರಾಫ್ ಗಲ್ಲಿ & ಖಡೇಬಜಾರ್ (Jos Alukkas Belagavi)' },
+    'kalaburagi': { kn: 'ಕಲಬುರಗಿ', g24: 12520, g22: 11472, g18: 9337, sil: 216.22, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'gulbarga': { kn: 'ಕಲಬುರಗಿ', g24: 12520, g22: 11472, g18: 9337, sil: 216.22, hub: 'ಸೂಪರ್ ಮಾರ್ಕೆಟ್ (Jos Alukkas Kalaburagi)' },
+    'davanagere': { kn: 'ದಾವಣಗೆರೆ', g24: 12515, g22: 11467, g18: 9332, sil: 216.22, hub: 'ಮಂಡಿಪೇಟೆ (Jos Alukkas Davanagere)' },
+    'shivamogga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 12514, g22: 11466, g18: 9331, sil: 216.22, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'shimoga': { kn: 'ಶಿವಮೊಗ್ಗ', g24: 12514, g22: 11466, g18: 9331, sil: 216.22, hub: 'ಗಾಂಧಿ ಬಜಾರ್ (Jos Alukkas Shivamogga)' },
+    'tumakuru': { kn: 'ತುಮಕೂರು', g24: 12514, g22: 11466, g18: 9331, sil: 216.22, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'tumkur': { kn: 'ತುಮಕೂರು', g24: 12514, g22: 11466, g18: 9331, sil: 216.22, hub: 'ಎಂ.ಜಿ. ರಸ್ತೆ (Tumakuru)' },
+    'hassan': { kn: 'ಹಾಸನ', g24: 12515, g22: 11467, g18: 9332, sil: 216.22, hub: 'ಬಿ.ಎಂ. ರಸ್ತೆ (Jos Alukkas Hassan)' },
+    'udupi': { kn: 'ಉಡುಪಿ', g24: 12513, g22: 11465, g18: 9330, sil: 216.22, hub: 'ರಥಬೀದಿ & ಕೆ.ಎಂ. ಮಾರ್ಗ (Jos Alukkas Udupi)' },
+    'ballari': { kn: 'ಬಳ್ಳಾರಿ', g24: 12522, g22: 11473, g18: 9338, sil: 216.22, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'bellary': { kn: 'ಬಳ್ಳಾರಿ', g24: 12522, g22: 11473, g18: 9338, sil: 216.22, hub: 'ಬ್ರೂಸ್‌ಪೇಟೆ (Jos Alukkas Ballari)' },
+    'vijayapura': { kn: 'ವಿಜಯಪುರ', g24: 12518, g22: 11470, g18: 9335, sil: 216.22, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bijapur': { kn: 'ವಿಜಯಪುರ', g24: 12518, g22: 11470, g18: 9335, sil: 216.22, hub: 'ಸಿದ್ಧೇಶ್ವರ ರಸ್ತೆ (Jos Alukkas Vijayapura)' },
+    'bidar': { kn: 'ಬೀದರ್', g24: 12525, g22: 11475, g18: 9340, sil: 216.22, hub: 'ಚೌಬಾರಾ ರಸ್ತೆ (Bidar)' },
+    'raichur': { kn: 'ರಾಯಚೂರು', g24: 12520, g22: 11472, g18: 9337, sil: 216.22, hub: 'ತೆಂಗಿನಕಾಯಿ ಬಜಾರ್ (Raichur)' }
   };
 
   // 1. WEDDING JEWELLERY TIMING
@@ -68,7 +68,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 * **1. ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಇಂದಿನ ದರಗಳು:**
   * 24K ಚಿನ್ನ: **₹12,513/ಗ್ರಾಂ** | 22K ಚಿನ್ನ: **₹11,465/ಗ್ರಾಂ**
-  * ಶುದ್ಧ ಬೆಳ್ಳಿ: **₹248.65/ಗ್ರಾಂ** (₹248,650/ಕೆಜಿ) | ಬೆಳ್ಳಿ 925: **₹230.00/ಗ್ರಾಂ**
+  * ಶುದ್ಧ ಬೆಳ್ಳಿ: **₹216.22/ಗ್ರಾಂ** (₹216,220/ಕೆಜಿ) | ಬೆಳ್ಳಿ 925: **₹200.00/ಗ್ರಾಂ**
 
 * **2. ಹೂಡಿಕೆ ಸಲಹೆ:**
   * ದೀರ್ಘಾವಧಿಗೆ ನಿಮ್ಮ ಹೂಡಿಕೆಯ 70% ಚಿನ್ನದಲ್ಲಿ ಮತ್ತು 30% ಶುದ್ಧ ಬೆಳ್ಳಿಯಲ್ಲಿ ಹಂಚಿಕೆ ಮಾಡುವುದು ಅತ್ಯುತ್ತಮ.`,
@@ -98,7 +98,7 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 ---
 🏛️ **ಶೋರೂಂ & ಮಾರುಕಟ್ಟೆ ಕೇಂದ್ರ:** ${matchedCity.hub}
-💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-11-21T09:35:28 (Jos Alukkas Official)).`,
+💡 **ಮಾಹಿತಿ:** ಅಧಿಕೃತ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ದರ (Updated on: 2026-11-21T12:32:19 (Jos Alukkas Official)).`,
       cards: [
         { title: `📍 ${matchedCity.kn} ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ`, url: "/gold-rate.html", icon: "📍" },
         { title: "🧮 ಆಭರಣ ಬೆಲೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್", url: "/gold-rate.html", icon: "🧮" }
@@ -115,16 +115,16 @@ function generateGroundedGoldAnswer(rawQuery) {
 
 | ನಗರ (City) | 24K ಚಿನ್ನ (1g) | 22K ಆಭರಣ (1g) | 1 ಪವನ್ (8g) | ಬೆಳ್ಳಿ (1g) | 1 ಕೆಜಿ ಬೆಳ್ಳಿ |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **ಬೆಂಗಳೂರು (Bengaluru)** | **₹12,513** | **₹11,465** | **₹91,720** | **₹248.65** | **₹248,650** |
-| **ಮೈಸೂರು (Mysuru)** | ₹12,515 | ₹11,467 | ₹91,736 | ₹248.65 | ₹248,650 |
-| **ಮಂಗಳೂರು (Mangaluru)** | ₹12,513 | ₹11,465 | ₹91,720 | ₹248.65 | ₹248,650 |
-| **ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)** | ₹12,518 | ₹11,470 | ₹91,760 | ₹248.65 | ₹248,650 |
-| **ಬೆಳಗಾವಿ (Belagavi)** | ₹12,516 | ₹11,468 | ₹91,744 | ₹248.65 | ₹248,650 |
-| **ಕಲಬುರಗಿ (Kalaburagi)** | ₹12,520 | ₹11,472 | ₹91,776 | ₹248.65 | ₹248,650 |
-| **ಉಡುಪಿ (Udupi)** | ₹12,513 | ₹11,465 | ₹91,720 | ₹248.65 | ₹248,650 |
-| **ದಾವಣಗೆರೆ (Davanagere)** | ₹12,515 | ₹11,467 | ₹91,736 | ₹248.65 | ₹248,650 |
-| **ಶಿವಮೊಗ್ಗ (Shivamogga)** | ₹12,514 | ₹11,466 | ₹91,728 | ₹248.65 | ₹248,650 |
-| **ಬಳ್ಳಾರಿ (Ballari)** | ₹12,522 | ₹11,473 | ₹91,784 | ₹248.65 | ₹248,650 |
+| **ಬೆಂಗಳೂರು (Bengaluru)** | **₹12,513** | **₹11,465** | **₹91,720** | **₹216.22** | **₹216,220** |
+| **ಮೈಸೂರು (Mysuru)** | ₹12,515 | ₹11,467 | ₹91,736 | ₹216.22 | ₹216,220 |
+| **ಮಂಗಳೂರು (Mangaluru)** | ₹12,513 | ₹11,465 | ₹91,720 | ₹216.22 | ₹216,220 |
+| **ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi)** | ₹12,518 | ₹11,470 | ₹91,760 | ₹216.22 | ₹216,220 |
+| **ಬೆಳಗಾವಿ (Belagavi)** | ₹12,516 | ₹11,468 | ₹91,744 | ₹216.22 | ₹216,220 |
+| **ಕಲಬುರಗಿ (Kalaburagi)** | ₹12,520 | ₹11,472 | ₹91,776 | ₹216.22 | ₹216,220 |
+| **ಉಡುಪಿ (Udupi)** | ₹12,513 | ₹11,465 | ₹91,720 | ₹216.22 | ₹216,220 |
+| **ದಾವಣಗೆರೆ (Davanagere)** | ₹12,515 | ₹11,467 | ₹91,736 | ₹216.22 | ₹216,220 |
+| **ಶಿವಮೊಗ್ಗ (Shivamogga)** | ₹12,514 | ₹11,466 | ₹91,728 | ₹216.22 | ₹216,220 |
+| **ಬಳ್ಳಾರಿ (Ballari)** | ₹12,522 | ₹11,473 | ₹91,784 | ₹216.22 | ₹216,220 |
 
 *(ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ದರಗಳು).*`,
       cards: [{ title: "🏙️ 15 ನಗರಗಳ ಪೂರ್ಣ ಕೋಷ್ಟಕ", url: "/gold-rate.html", icon: "🏙️" }],
@@ -139,17 +139,17 @@ function generateGroundedGoldAnswer(rawQuery) {
       answer: `### 🥈 ಇಂದು ಕರ್ನಾಟಕದಲ್ಲಿ ಅಧಿಕೃತ ಬೆಳ್ಳಿ ದರ (Jos Alukkas Live Silver Rates)
 
 * **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):**
-  * **1 ಗ್ರಾಂ:** **₹248.65**
-  * **10 ಗ್ರಾಂ:** **₹2,486.50**
-  * **100 ಗ್ರಾಂ:** **₹24,865.00**
-  * **1 ಕಿಲೋಗ್ರಾಂ (1 Kg):** **₹248,650.00**
+  * **1 ಗ್ರಾಂ:** **₹216.22**
+  * **10 ಗ್ರಾಂ:** **₹2,162.20**
+  * **100 ಗ್ರಾಂ:** **₹21,622.00**
+  * **1 ಕಿಲೋಗ್ರಾಂ (1 Kg):** **₹216,220.00**
 
 * **ಆಭರಣ ಬೆಳ್ಳಿ (Silver 925):**
-  * **1 ಗ್ರಾಂ:** **₹230.00**
-  * **1 ಕಿಲೋಗ್ರಾಂ:** **₹230,000.00**
+  * **1 ಗ್ರಾಂ:** **₹200.00**
+  * **1 ಕಿಲೋಗ್ರಾಂ:** **₹200,000.00**
 
 ---
-💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-11-21T09:35:28 (Jos Alukkas Official)).`,
+💡 ಮೂಲ: ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಬೆಲೆ (Updated on: 2026-11-21T12:32:19 (Jos Alukkas Official)).`,
       cards: [{ title: "🪙 ಲೈವ್ ಬೆಳ್ಳಿ ದರ ಚಾರ್ಟ್", url: "/gold-rate.html", icon: "🪙" }],
       sources: [{ name: "Jos Alukkas Karnataka", url: "https://www.josalukkasonline.com/gold-rate-today/karnataka" }],
       provider: "Jos Alukkas Live Karnataka Telemetry"
@@ -231,11 +231,11 @@ function generateGroundedGoldAnswer(rawQuery) {
   * **10 ಗ್ರಾಂ:** **₹93,300**
 
 * **14 ಕ್ಯಾರಟ್ ಚಿನ್ನ (14K Gold):** **₹7,396 / ಗ್ರಾಂ**
-* **ಪ್ಲಾಟಿನಂ (PT950 Platinum):** **₹6,700 / ಗ್ರಾಂ**
-* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹248.65 / ಗ್ರಾಂ** (₹248,650 / 1 ಕೆಜಿ)
+* **ಪ್ಲಾಟಿನಂ (PT950 Platinum):** **₹6,000 / ಗ್ರಾಂ**
+* **ಶುದ್ಧ ಬೆಳ್ಳಿ (Silver 999):** **₹216.22 / ಗ್ರಾಂ** (₹216,220 / 1 ಕೆಜಿ)
 
 ---
-🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-11-21T09:35:28 (Jos Alukkas Official))
+🕒 **ಅಧಿಕೃತ ಮೂಲ:** ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Updated on: 2026-11-21T12:32:19 (Jos Alukkas Official))
 💡 **ಬಿಲ್ ಸೂತ್ರ:** ಆಭರಣ ಮೊತ್ತ = (ತೂಕ × ₹11,465) + ಮೇಕಿಂಗ್ ಶುಲ್ಕ + 3% GST + ₹45 BIS ಹಾಲ್‌ಮಾರ್ಕ್ ಶುಲ್ಕ.`,
       cards: [
         { title: "🥇 ಲೈವ್ ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ದರ ಪೋರ್ಟಲ್", url: "/gold-rate.html", icon: "🥇" },
@@ -249,6 +249,58 @@ function generateGroundedGoldAnswer(rawQuery) {
 
   return null;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

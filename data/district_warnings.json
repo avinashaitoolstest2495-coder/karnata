@@ -2,7 +2,7 @@
   "Day_1": {
     "day_id": "Day_1",
     "day_label_kn": "ಇಂದು",
-    "date": "2026-11-21",
+    "date": "2026-11-22",
     "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_1",
     "total_districts": 31,
     "districts": {
@@ -445,7 +445,7 @@
   "Day_2": {
     "day_id": "Day_2",
     "day_label_kn": "ನಾಳೆ",
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_2",
     "total_districts": 31,
     "districts": {
@@ -888,7 +888,7 @@
   "Day_3": {
     "day_id": "Day_3",
     "day_label_kn": "ನಾಳಿದ್ದು",
-    "date": "2026-11-23",
+    "date": "2026-11-24",
     "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_3",
     "total_districts": 31,
     "districts": {
@@ -897,13 +897,13 @@
         "district_kn": "ಬೆಂಗಳೂರು ನಗರ",
         "district_en": "Bengaluru Urban",
         "imd_id": 81,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BANGLORE URBAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "bengaluru_rural": {
@@ -911,13 +911,13 @@
         "district_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
         "district_en": "Bengaluru Rural",
         "imd_id": 612,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BANGLORE RURAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "mysuru": {
@@ -925,13 +925,13 @@
         "district_kn": "ಮೈಸೂರು",
         "district_en": "Mysuru",
         "imd_id": 71,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "MYSORE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "mandya": {
@@ -939,13 +939,13 @@
         "district_kn": "ಮಂಡ್ಯ",
         "district_en": "Mandya",
         "imd_id": 77,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "MANDHYA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "hassan": {
@@ -953,13 +953,13 @@
         "district_kn": "ಹಾಸನ",
         "district_en": "Hassan",
         "imd_id": 83,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "HASSAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "kodagu": {
@@ -967,13 +967,13 @@
         "district_kn": "ಕೊಡಗು",
         "district_en": "Kodagu",
         "imd_id": 73,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "KODAGU : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "dakshina_kannada": {
@@ -1023,13 +1023,13 @@
         "district_kn": "ಶಿವಮೊಗ್ಗ",
         "district_en": "Shivamogga",
         "imd_id": 88,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "SHIMOGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "chikkamagaluru": {
@@ -1037,13 +1037,13 @@
         "district_kn": "ಚಿಕ್ಕಮಗಳೂರು",
         "district_en": "Chikkamagaluru",
         "imd_id": 84,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHIKMAGALUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "tumakuru": {
@@ -1051,13 +1051,13 @@
         "district_kn": "ತುಮಕೂರು",
         "district_en": "Tumakuru",
         "imd_id": 87,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "TUMKUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "chitradurga": {
@@ -1065,13 +1065,13 @@
         "district_kn": "ಚಿತ್ರದುರ್ಗ",
         "district_en": "Chitradurga",
         "imd_id": 90,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHITRADURGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "davanagere": {
@@ -1079,13 +1079,13 @@
         "district_kn": "ದಾವಣಗೆರೆ",
         "district_en": "Davanagere",
         "imd_id": 89,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "DAVANGERE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "belagavi": {
@@ -1233,13 +1233,13 @@
         "district_kn": "ಬಳ್ಳಾರಿ",
         "district_en": "Ballari",
         "imd_id": 100,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BELLARY : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "vijayanagara": {
@@ -1247,13 +1247,13 @@
         "district_kn": "ವಿಜಯನಗರ",
         "district_en": "Vijayanagara",
         "imd_id": 807,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "VIJAYANAGARA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "chikkaballapura": {
@@ -1261,13 +1261,13 @@
         "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
         "district_en": "Chikkaballapura",
         "imd_id": 725,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHIKBALLAPUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "kolar": {
@@ -1275,13 +1275,13 @@
         "district_kn": "ಕೋಲಾರ",
         "district_en": "Kolar",
         "imd_id": 659,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "KOLAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "ramanagara": {
@@ -1289,13 +1289,13 @@
         "district_kn": "ರಾಮನಗರ",
         "district_en": "Ramanagara",
         "imd_id": 82,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "RAMNAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "chamarajanagara": {
@@ -1303,13 +1303,13 @@
         "district_kn": "ಚಾಮರಾಜನಗರ",
         "district_en": "Chamarajanagar",
         "imd_id": 67,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHAMARAJANAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_3)"
       },
       "bidar": {
@@ -1331,7 +1331,7 @@
   "Day_4": {
     "day_id": "Day_4",
     "day_label_kn": "4ನೇ ದಿನ",
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_4",
     "total_districts": 31,
     "districts": {
@@ -1346,7 +1346,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "BANGLORE URBAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "BANGLORE URBAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "bengaluru_rural": {
@@ -1360,7 +1360,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "BANGLORE RURAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "BANGLORE RURAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "mysuru": {
@@ -1374,7 +1374,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "MYSORE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "MYSORE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "mandya": {
@@ -1388,7 +1388,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "MANDHYA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "MANDHYA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "hassan": {
@@ -1402,7 +1402,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "HASSAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "HASSAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "kodagu": {
@@ -1416,7 +1416,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "KODAGU : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "KODAGU : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "dakshina_kannada": {
@@ -1424,13 +1424,13 @@
         "district_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
         "district_en": "Dakshina Kannada",
         "imd_id": 80,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "DAKSHIN KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "udupi": {
@@ -1438,13 +1438,13 @@
         "district_kn": "ಉಡುಪಿ",
         "district_en": "Udupi",
         "imd_id": 86,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "UDUPI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "uttara_kannada": {
@@ -1452,13 +1452,13 @@
         "district_kn": "ಉತ್ತರ ಕನ್ನಡ",
         "district_en": "Uttara Kannada",
         "imd_id": 96,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "UTTAR KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "shivamogga": {
@@ -1472,7 +1472,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "SHIMOGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "SHIMOGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "chikkamagaluru": {
@@ -1486,7 +1486,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHIKMAGALUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHIKMAGALUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "tumakuru": {
@@ -1500,7 +1500,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "TUMKUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "TUMKUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "chitradurga": {
@@ -1514,7 +1514,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHITRADURGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHITRADURGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "davanagere": {
@@ -1528,7 +1528,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "DAVANGERE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "DAVANGERE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "belagavi": {
@@ -1536,13 +1536,13 @@
         "district_kn": "ಬೆಳಗಾವಿ",
         "district_en": "Belagavi",
         "imd_id": 111,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BELGAUM : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "dharwad": {
@@ -1550,13 +1550,13 @@
         "district_kn": "ಧಾರವಾಡ",
         "district_en": "Dharwad",
         "imd_id": 97,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "DHARWAD : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "gadag": {
@@ -1564,13 +1564,13 @@
         "district_kn": "ಗದಗ",
         "district_en": "Gadag",
         "imd_id": 99,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "GADAG : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "haveri": {
@@ -1578,13 +1578,13 @@
         "district_kn": "ಹಾವೇರಿ",
         "district_en": "Haveri",
         "imd_id": 93,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "HAVERI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "bagalkote": {
@@ -1676,13 +1676,13 @@
         "district_kn": "ಬಳ್ಳಾರಿ",
         "district_en": "Ballari",
         "imd_id": 100,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BELLARY : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "vijayanagara": {
@@ -1690,13 +1690,13 @@
         "district_kn": "ವಿಜಯನಗರ",
         "district_en": "Vijayanagara",
         "imd_id": 807,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "VIJAYANAGARA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "chikkaballapura": {
@@ -1704,13 +1704,13 @@
         "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
         "district_en": "Chikkaballapura",
         "imd_id": 725,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHIKBALLAPUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "kolar": {
@@ -1724,7 +1724,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "KOLAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "KOLAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "ramanagara": {
@@ -1738,7 +1738,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "RAMNAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "RAMNAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "chamarajanagara": {
@@ -1752,7 +1752,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHAMARAJANAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHAMARAJANAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_4)"
       },
       "bidar": {
@@ -1774,7 +1774,7 @@
   "Day_5": {
     "day_id": "Day_5",
     "day_label_kn": "5ನೇ ದಿನ",
-    "date": "2026-11-25",
+    "date": "2026-11-26",
     "url": "https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning_mc.php?id=13&day=Day_5",
     "total_districts": 31,
     "districts": {
@@ -1789,7 +1789,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "BANGLORE URBAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "BANGLORE URBAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "bengaluru_rural": {
@@ -1803,7 +1803,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "BANGLORE RURAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "BANGLORE RURAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "mysuru": {
@@ -1817,7 +1817,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "MYSORE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "MYSORE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "mandya": {
@@ -1831,7 +1831,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "MANDHYA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "MANDHYA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "hassan": {
@@ -1845,7 +1845,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "HASSAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "HASSAN : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "kodagu": {
@@ -1859,7 +1859,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "KODAGU : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "KODAGU : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "dakshina_kannada": {
@@ -1873,7 +1873,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "DAKSHIN KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "DAKSHIN KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "udupi": {
@@ -1887,7 +1887,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "UDUPI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "UDUPI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "uttara_kannada": {
@@ -1901,7 +1901,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "UTTAR KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "UTTAR KANNADA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "shivamogga": {
@@ -1915,7 +1915,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "SHIMOGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "SHIMOGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "chikkamagaluru": {
@@ -1929,7 +1929,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHIKMAGALUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHIKMAGALUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "tumakuru": {
@@ -1943,7 +1943,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "TUMKUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "TUMKUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "chitradurga": {
@@ -1957,7 +1957,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHITRADURGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHITRADURGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "davanagere": {
@@ -1971,7 +1971,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "DAVANGERE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "DAVANGERE : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "belagavi": {
@@ -1985,7 +1985,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "BELGAUM : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "BELGAUM : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "dharwad": {
@@ -1999,7 +1999,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "DHARWAD : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "DHARWAD : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "gadag": {
@@ -2013,7 +2013,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "GADAG : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "GADAG : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "haveri": {
@@ -2027,7 +2027,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "HAVERI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "HAVERI : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "bagalkote": {
@@ -2063,62 +2063,6 @@
         "district_kn": "ಕಲಬುರಗಿ",
         "district_en": "Kalaburagi",
         "imd_id": 124,
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "GULBARGA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
-        "source": "IMD 5-Day Forecast (Day_5)"
-      },
-      "yadgir": {
-        "key": "yadgir",
-        "district_kn": "ಯಾದಗಿರಿ",
-        "district_en": "Yadgir",
-        "imd_id": 590,
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "YADGIR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
-        "source": "IMD 5-Day Forecast (Day_5)"
-      },
-      "raichur": {
-        "key": "raichur",
-        "district_kn": "ರಾಯಚೂರು",
-        "district_en": "Raichur",
-        "imd_id": 105,
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "RAICHUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
-        "source": "IMD 5-Day Forecast (Day_5)"
-      },
-      "koppal": {
-        "key": "koppal",
-        "district_kn": "ಕೊಪ್ಪಳ",
-        "district_en": "Koppal",
-        "imd_id": 101,
-        "level": "yellow",
-        "alert_level": "YELLOW",
-        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
-        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
-        "icon": "🌧️",
-        "color": "#FFFF00",
-        "warning_info": "KOPPAL : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
-        "source": "IMD 5-Day Forecast (Day_5)"
-      },
-      "ballari": {
-        "key": "ballari",
-        "district_kn": "ಬಳ್ಳಾರಿ",
-        "district_en": "Ballari",
-        "imd_id": 100,
         "level": "green",
         "alert_level": "GREEN",
         "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
@@ -2126,6 +2070,62 @@
         "icon": "🟢",
         "color": "#008000",
         "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "yadgir": {
+        "key": "yadgir",
+        "district_kn": "ಯಾದಗಿರಿ",
+        "district_en": "Yadgir",
+        "imd_id": 590,
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "raichur": {
+        "key": "raichur",
+        "district_kn": "ರಾಯಚೂರು",
+        "district_en": "Raichur",
+        "imd_id": 105,
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "koppal": {
+        "key": "koppal",
+        "district_kn": "ಕೊಪ್ಪಳ",
+        "district_en": "Koppal",
+        "imd_id": 101,
+        "level": "green",
+        "alert_level": "GREEN",
+        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
+        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
+        "icon": "🟢",
+        "color": "#008000",
+        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "source": "IMD 5-Day Forecast (Day_5)"
+      },
+      "ballari": {
+        "key": "ballari",
+        "district_kn": "ಬಳ್ಳಾರಿ",
+        "district_en": "Ballari",
+        "imd_id": 100,
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "BELLARY : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "vijayanagara": {
@@ -2139,7 +2139,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "VIJAYANAGARA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "VIJAYANAGARA : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "chikkaballapura": {
@@ -2147,13 +2147,13 @@
         "district_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
         "district_en": "Chikkaballapura",
         "imd_id": 725,
-        "level": "green",
-        "alert_level": "GREEN",
-        "alert_level_kn": "ಸಾಮಾನ್ಯ / ಶುಭ ಹವೆ",
-        "hazard_kn": "ಶಾಂತ ವಾತಾವರಣ (No Warning)",
-        "icon": "🟢",
-        "color": "#008000",
-        "warning_info": "ಯಾವುದೇ ಮಳೆ ಅಥವಾ ಗಂಭೀರ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ ಇಲ್ಲ (ಶಾಂತ ವಾತಾವರಣ).",
+        "level": "yellow",
+        "alert_level": "YELLOW",
+        "alert_level_kn": "ಹಳದಿ ನಿಗಾ (Yellow Watch)",
+        "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
+        "icon": "🌧️",
+        "color": "#FFFF00",
+        "warning_info": "CHIKBALLAPUR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "kolar": {
@@ -2167,7 +2167,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "KOLAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "KOLAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "ramanagara": {
@@ -2181,7 +2181,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "RAMNAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "RAMNAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "chamarajanagara": {
@@ -2195,7 +2195,7 @@
         "hazard_kn": "ಸಾಧಾರಣ / ಉತ್ತಮ ಮಳೆ",
         "icon": "🌧️",
         "color": "#FFFF00",
-        "warning_info": "CHAMARAJANAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-20",
+        "warning_info": "CHAMARAJANAGAR : Thunderstorm & Lightning, Squall etc Updated on:2026-11-21",
         "source": "IMD 5-Day Forecast (Day_5)"
       },
       "bidar": {
