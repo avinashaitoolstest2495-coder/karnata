@@ -9,7 +9,7 @@
 
 ### mysuru ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀ ಲಕ್ಷ್ಮೀಕಾಂತ ರೆಡ್ಡಿ ಜಿ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ಎಂ.ಬಿ. ಬೋರಲಿಂಗಯ್ಯ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಎಮ್. ಪುಟ್ಟಮಾದಯ್ಯ
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಚಂದ್ರಶೇಖರ್‌ ಎನ್.
 
 ### bengaluru_urban ಜಿಲ್ಲೆ:
@@ -44,7 +44,7 @@
 
 ### kalaburagi ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ರಾಯಪ್ಪ ಹುಣಸಗಿ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಡಾ|| ಶರಣಪ್ಪ ಎಸ್.ಡಿ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಕುಲದೀಪ್ ಕುಮಾರ್ ಆರ್. ಜೈನ್
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ರಾಹುಲ್ ಶರಣಪ್ಪ ಸಂಕನೂರ್
 
 ### ballari ಜಿಲ್ಲೆ:
@@ -69,7 +69,7 @@
 
 ### vijayapura ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಡಾ|| ಆನಂದ್ ಕೆ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಲಕ್ಷ್ಮಣ್ ನಿಂಬರಗಿ
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಎಂ.ಬಿ.ನಾಗಠಾಣ
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಆನಂದ್ ಪ್ರಕಾಶ್ ಮೀನಾ
 
 ### bidar ಜಿಲ್ಲೆ:
@@ -80,7 +80,7 @@
 ### yadgir ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಲಭ್ಯವಿಲ್ಲ
 * **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಪೃಥ್ವಿಕ್ ಶಂಕರ್
-* **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಲಭ್ಯವಿಲ್ಲ
+* **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀ ಜುಬಿನ್‌ ಮಹಾಪಾತ್ರ
 
 ### raichur ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀಮತಿ ಪೂವಿತ ಎಸ್
@@ -124,7 +124,7 @@
 
 ### tumakuru ಜಿಲ್ಲೆ:
 * **ಜಿಲ್ಲಾಧಿಕಾರಿ (DC & DM):** ಶ್ರೀಮತಿ ಸುಭ ಕಲ್ಯಾಣ
-* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಶ್ರೀ ಅಶೋಕ್ ಕೆ.ವಿ.
+* **ಜಿಲ್ಲಾ ಪೊಲೀಸ್ ವರಿಷ್ಠಾಧಿಕಾರಿ (SP):** ಮಮತಾದೇವಿ.ಜಿ.ಎಸ್‌
 * **ಜಿ.ಪಂ ಮುಖ್ಯ ಕಾರ್ಯನಿರ್ವಾಹಕ ಅಧಿಕಾರಿ (ZP CEO):** ಶ್ರೀಮತಿ ಆಶ್ವಿಜ ಬಿ ವಿ
 
 ### chitradurga ಜಿಲ್ಲೆ:
@@ -159,6 +159,8 @@
 
 ## 🔄 ಇತ್ತೀಚಿನ ಪ್ರಮುಖ ವರ್ಗಾವಣೆ ಆದೇಶಗಳು (Recent Transfer Orders):
 
+* **20-11-2026:** Smt. Shilpa M. IAS., (KN: 2017), concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru (ಆದೇಶ: e-DPAR 422 SAS 2026) — Smt. Shilpa M. IAS., (KN: 2017), concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru
+* **19-11-2026:** Sri. Iswar Kumar Kandoo, IAS., (KN: 2018), concurrent charge of the post of Commissioner, Raichur City Corporation, Raichur (ಆದೇಶ: e-DPAR 435 SAS 2026) — Sri. Iswar Kumar Kandoo, IAS., (KN: 2018), concurrent charge of the post of Commissioner, Raichur City Corporation, Raichur
 * **17-11-2026:** Dr. Girish Dilip Badole, IAS., (KN: 2018),  is placed in the concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru. (ಆದೇಶ: DPAR 422 SAS 2026) — Dr. Girish Dilip Badole, IAS., (KN: 2018),  is placed in the concurrent charge of the post of Director (Science and Technology), Department of Electronics, IT, BT and S & T., Bengaluru.
 Smt. Aparna Ramesh, IAS., (KN: 2021),  is placed in the concurrent charge of the post of Director (IT), Bengaluru Metropolitan Transport Corporation (BMTC), Bengaluru
 * **11-11-2026:** Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge (ಆದೇಶ: e-DPAR 417 SAS 2026) — Smt. Vidyakumari K., IAS., (KN: 2014), concurrent charge
@@ -331,14 +333,3 @@ Ms. Ramya R, IAS (KN: 2024), Assistant Commissioner, Karwar Sub Division, Uttara
 Sri. Nagendra Babu Kumar, IAS (KN: 2024), Assistant Commissioner, Lingasugur Sub Division, Raichuru District.
 * **07-09-2026:** Sri. Shinde Avinash Sanjeevan, IAS (KN: 2020), Additional Commissioner (Development), Bengaluru West City Corporation, Greater Bengaluru Area, Bengaluru. (ಆದೇಶ: DPAR 220 SAS 2026) — Sri. Shinde Avinash Sanjeevan, IAS (KN: 2020), Additional Commissioner (Development), Bengaluru West City Corporation, Greater Bengaluru Area, Bengaluru.
 Sri. P Sravan Kumar, LAS (KN: 2023), Commissioner, Kalaburgi City Corporation, Kalaburagi.
-* **07-09-2026:** Dr. Rakesh Kumar K, IAS (KN: 2012), Commissioner, Bengaluru South City Corporation, Greater Bengaluru Area, Bengaluru. (ಆದೇಶ: DPAR 220 SAS 2026) — Dr. Rakesh Kumar K, IAS (KN: 2012), Commissioner, Bengaluru South City Corporation, Greater Bengaluru Area, Bengaluru.
-Sri. Ramesh K N., IAS (KN: 2012),  Special Commissioner (Health and Education), Greater Bengaluru Authority, Bengaluru.
-Smt. Shilpa Nag C.T., IAS (KN: 2014), Special Commissioner (FECC, Elections, Disaster Management, Public Relations and Co-ordination), Greater Bengaluru Authority, Bengaluru.
-Sri. Venkatachalapathy R, IAS (KN: 2019),  Additional Commissioner (Development), Bengaluru Central City Corporation, Greater Bengaluru Area, Bengaluru.
-* **07-09-2026:** Smt. Anita Bhimappa Haddannavar, IPS (KN: 2014) Superintendent of Police, Criminal Investigation Deprtment. (ಆದೇಶ: e-DPAR 106 SPS 2026) — Smt. Anita Bhimappa Haddannavar, IPS (KN: 2014) Superintendent of Police, Criminal Investigation Deprtment.
-
-Dr. Ram L Arasiddi, IPS (KN: 2018) Deputy Commissioner of Police, Intelligence, Bengaluru City.
-
-Sri. Lakshimi Ganesh K, IPS (KN: 2020) Deputy Commissioner of Police, South West, Bengaluru.
-
-Sri. Sam Varghese, IPS (KN: 2022) Deputy Commissioner of Police, Law & Order, Mangaluru City.
