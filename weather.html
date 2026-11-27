@@ -680,6 +680,64 @@
     .wx-dt-temp { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 900; color: #0369A1; }
     .wx-dt-meta { font-size: 12px; color: #64748B; display: flex; justify-content: space-between; }
 
+    /* ═══ 27 MALE NAKSHATRAGALU (RAIN NAKSHATRAS) SECTION ═══ */
+    .wx-nak-spotlight {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0C4A6E 100%);
+      color: #F8FAFC;
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+      gap: 16px;
+      align-items: center;
+    }
+    @media (max-width: 780px) { .wx-nak-spotlight { grid-template-columns: 1fr; } }
+    .wx-nak-live-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(74, 222, 128, 0.45);
+      color: #86EFAC; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .wx-nak-spot-name { font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem); font-weight: 900; color: #FDE047; line-height: 1.2; }
+    .wx-nak-spot-dates { font-size: 13px; color: #BAE6FD; font-weight: 700; margin: 4px 0 8px; }
+    .wx-nak-spot-proverb { font-size: 13.5px; color: #E2E8F0; font-style: italic; background: rgba(255,255,255,0.08); padding: 9px 12px; border-radius: 10px; border-left: 3px solid #FACC15; }
+    .wx-nak-next-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .wx-nak-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+      gap: 11px;
+    }
+    .wx-nak-card {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 13px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .wx-nak-card:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07); }
+    .wx-nak-card.active-nak {
+      background: linear-gradient(145deg, #FEFCE8 0%, #FFFFFF 60%, #E0F2FE 100%);
+      border: 2px solid #0284C7;
+      box-shadow: 0 8px 22px rgba(2, 132, 199, 0.16);
+    }
+    .wx-nak-head { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+    .wx-nak-num { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 900; background: #E2E8F0; color: #0F172A; padding: 2px 7px; border-radius: 999px; }
+    .wx-nak-card.active-nak .wx-nak-num { background: #16A34A; color: #FFFFFF; }
+    .wx-nak-name { font-size: 15.5px; font-weight: 900; color: #0F172A; }
+    .wx-nak-date { font-size: 12px; font-weight: 700; color: #0369A1; font-family: 'Inter', 'Anek Kannada', sans-serif; }
+    .wx-nak-meta { font-size: 12px; color: #475569; font-weight: 600; }
+    .wx-nak-quote { font-size: 11.8px; color: #334155; border-top: 1px dashed #CBD5E1; padding-top: 6px; }
+
     /* ═══ EDITORIAL KANNADA WEATHER ARTICLE SECTION ═══ */
     .wx-article {
       background: var(--wx-card);
@@ -1633,6 +1691,37 @@
 </div>
 <div class="wx-dist-telemetry-grid" id="district-grid"></div>
 </section>
+<!-- ═══ 27 MALE NAKSHATRAGALU (ಕರ್ನಾಟಕದ 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು) ═══ -->
+<section class="wx-section" id="male-nakshatra-section">
+<div class="wx-sec-header">
+<div>
+<h2 class="wx-sec-title">🌧️ ಕರ್ನಾಟಕದ 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು (27 Rain Nakshatras Calendar)</h2>
+<p class="wx-sec-sub">ಇಂದು ಚಾಲ್ತಿಯಲ್ಲಿರುವ ಮಳೆ ನಕ್ಷತ್ರ, ದಿನಾಂಕ, ವಾಹನ, ಜನಪದ ಗಾದೆ ಮತ್ತು ಕೃಷಿ ಮಾರ್ಗದರ್ಶಿ.</p>
+</div>
+</div>
+<div class="wx-nak-spotlight" id="activeNakshatraSpotlight">
+<div>
+<span class="wx-nak-live-pill">🟢 ಈಗ ಚಾಲ್ತಿಯಲ್ಲಿರುವ ಮಳೆ ನಕ್ಷತ್ರ (Active Today)</span>
+<div class="wx-nak-spot-name" id="nak-active-name">--</div>
+<div class="wx-nak-spot-dates" id="nak-active-dates">--</div>
+<div class="wx-nak-spot-proverb" id="nak-active-proverb">--</div>
+</div>
+<div class="wx-nak-next-box">
+<div style="font-size:11.5px; color:#94A3B8; font-weight:700; margin-bottom:4px;">⏭️ ಮುಂಬರುವ ಮಳೆ ನಕ್ಷತ್ರ (Next Rain Nakshatra)</div>
+<div id="nak-next-name" style="font-size:18px; font-weight:900; color:#FFFFFF;">--</div>
+<div id="nak-next-dates" style="font-size:12.5px; color:#38BDF8; font-weight:700; margin-top:2px;">--</div>
+<div id="nak-active-agri" style="font-size:12px; color:#CBD5E1; margin-top:6px;">--</div>
+</div>
+</div>
+<div class="wx-region-pills" id="nakSeasonTabs" style="margin-bottom:14px;">
+<button class="wx-reg-btn active" onclick="filterNakshatraSeason('all', this)" type="button">ಎಲ್ಲಾ 27 ನಕ್ಷತ್ರಗಳು</button>
+<button class="wx-reg-btn" onclick="filterNakshatraSeason('pre', this)" type="button">🌱 ಮುಂಗಾರು ಪೂರ್ವ (Apr–May)</button>
+<button class="wx-reg-btn" onclick="filterNakshatraSeason('monsoon', this)" type="button">🌧️ ಮುಂಗಾರು (Jun–Sep)</button>
+<button class="wx-reg-btn" onclick="filterNakshatraSeason('post', this)" type="button">🌾 ಹಿಂಗಾರು (Oct–Dec)</button>
+<button class="wx-reg-btn" onclick="filterNakshatraSeason('winter', this)" type="button">❄️ ಚಳಿಗಾಲ (Jan–Mar)</button>
+</div>
+<div class="wx-nak-grid" id="male-nakshatra-grid"></div>
+</section>
 <!-- ═══ EDITORIAL KANNADA WEATHER ARTICLE & SCIENTIFIC GUIDE ═══ -->
 <article class="wx-article" id="weather-editorial-article">
 <h2>📚 ಕರ್ನಾಟಕ ಹವಾಮಾನ ಮಾರ್ಗದರ್ಶಿ — IMD ಎಚ್ಚರಿಕೆಗಳು, AQI, KSNDMC ಮಳೆ ಮಾಪನ &amp; ಕೃಷಿ ಸಲಹೆ</h2>
@@ -2345,7 +2434,102 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', initWeatherDashboard);
+    // ═══ 27 MALE NAKSHATRAGALU (KARNATAKA RAIN NAKSHATRAS CALENDAR) ═══
+    const MALE_NAKSHATRAS = [
+      { id: 1, kn: 'ಅಶ್ವಿನಿ ಮಳೆ', en: 'Ashwini', sm: 4, sd: 14, em: 4, ed: 27, season: 'pre', rain: 'ಸಾಧಾರಣ ತುಂತುರು 🌦️', proverb: 'ಅಶ್ವಿನಿ ಮಳೆ ಬಂದರೆ ಅನ್ನಕ್ಕೆ ಕೊರತೆಯಿಲ್ಲ — ಉಳುಮೆ ಆರಂಭಕ್ಕೆ ಶುಭ.', agri: 'ಭೂಮಿ ಹಸನುಗೊಳಿಸಲು ಮತ್ತು ಬೇಸಿಗೆ ಉಳುಮೆಗೆ ಸೂಕ್ತ.' },
+      { id: 2, kn: 'ಭರಣಿ ಮಳೆ', en: 'Bharani', sm: 4, sd: 28, em: 5, ed: 10, season: 'pre', rain: 'ಗುಡುಗು ಸಹಿತ ಮಳೆ ⛈️', proverb: 'ಭರಣಿ ಮಳೆ ಸುರಿದರೆ ಧರಣಿಯೆಲ್ಲಾ ಬಂಗಾರ.', agri: 'ಮಾವು, ಹಲಸು ಕೊಯ್ಲು ಮತ್ತು ಮಣ್ಣಿನ ತೇವಾಂಶ ಹೆಚ್ಚಳ.' },
+      { id: 3, kn: 'ಕೃತ್ತಿಕಾ ಮಳೆ', en: 'Krittika', sm: 5, sd: 11, em: 5, ed: 24, season: 'pre', rain: 'ಬೇಸಿಗೆ ಗುಡುಗು ಮಳೆ ⚡', proverb: 'ಕೃತ್ತಿಕಾ ಮಳೆ ಬಂದರೆ ಕತ್ತೆಗೂ ಕಾಯಿ ಸಿಗುತ್ತದೆ.', agri: 'ಹೆಸರು, ಉದ್ದು, ಎಳ್ಳು ಪೂರ್ವ ಮುಂಗಾರು ಬಿತ್ತನೆಗೆ ಅನುಕೂಲ.' },
+      { id: 4, kn: 'ರೋಹಿಣಿ ಮಳೆ', en: 'Rohini', sm: 5, sd: 25, em: 6, ed: 7, season: 'pre', rain: 'ಉತ್ತಮ ಪೂರ್ವ ಮುಂಗಾರು 🌧️', proverb: 'ರೋಹಿಣಿ ಮಳೆಗೆ ಓಣಿಯೆಲ್ಲಾ ಕೆಸರು.', agri: 'ಭತ್ತದ ಸಸಿಮಡಿ ಹಾಗೂ ಮುಂಗಾರು ಬಿತ್ತನೆಗೆ ಶ್ರೇಷ್ಠ ಕಾಲ.' },
+      { id: 5, kn: 'ಮೃಗಶಿರ ಮಳೆ', en: 'Mrigashira', sm: 6, sd: 8, em: 6, ed: 21, season: 'monsoon', rain: 'ಮುಂಗಾರು ಆರಂಭ 🌧️', proverb: 'ಮೃಗಶಿರ ಮಳೆ ಬಂದರೆ ಮನೆ ತುಂಬಾ ಧಾನ್ಯ.', agri: 'ನೈಋತ್ಯ ಮುಂಗಾರು ಪ್ರವೇಶ — ರಾಗಿ, ಜೋಳ, ಮೆಕ್ಕೆಜೋಳ ಬಿತ್ತನೆ.' },
+      { id: 6, kn: 'ಆರ್ದ್ರಾ ಮಳೆ', en: 'Ardra', sm: 6, sd: 22, em: 7, ed: 5, season: 'monsoon', rain: 'ಧಾರಾಕಾರ ಮಳೆ 🌊', proverb: 'ಆರಿದ್ರಾ ಮಳೆ ಅಬ್ಬರಿಸಿದರೆ ಕೆರೆ-ಕಟ್ಟೆ ತುಂಬುತ್ತವೆ.', agri: 'ಮಲೆನಾಡು & ಕರಾವಳಿಯಲ್ಲಿ ಭಾರೀ ಮಳೆ — ಭತ್ತದ ನಾಟಿ ಆರಂಭ.' },
+      { id: 7, kn: 'ಪುನರ್ವಸು ಮಳೆ', en: 'Punarvasu', sm: 7, sd: 6, em: 7, ed: 19, season: 'monsoon', rain: 'ನಿರಂತರ ಮಳೆ 🌧️', proverb: 'ಪುನರ್ವಸು ಮಳೆ ಪುನಃ ಪುನಃ ಸುರಿಯುತ್ತದೆ.', agri: 'ಜಲಾಶಯಗಳಿಗೆ ಒಳಹರಿವು ಹೆಚ್ಚಳ — ಅಡಿಕೆ ತೋಟಗಳಿಗೆ ಬೋರ್ಡೋ ದ್ರಾವಣ.' },
+      { id: 8, kn: 'ಪುಷ್ಯ ಮಳೆ', en: 'Pushya', sm: 7, sd: 20, em: 8, ed: 2, season: 'monsoon', rain: 'ಭಾರೀ ಮಳೆ 🌊', proverb: 'ಪುಷ್ಯ ಮಳೆ ಬಂದರೆ ಪೈರು ಪುಷ್ಟಿಯಾಗುತ್ತದೆ.', agri: 'ಭತ್ತ, ಕಬ್ಬು ಮತ್ತು ರಾಗಿ ಬೆಳೆಗಳಿಗೆ ಅತ್ಯಂತ ಪೋಷಕ ಮಳೆ.' },
+      { id: 9, kn: 'ಆಶ್ಲೇಷ ಮಳೆ', en: 'Ashlesha', sm: 8, sd: 3, em: 8, ed: 16, season: 'monsoon', rain: 'ಜಡಿಮಳೆ 🌧️', proverb: 'ಆಶ್ಲೇಷ ಮಳೆ ಭೂಮಿಗೆ ಅಮೃತ ಸಮಾನ.', agri: 'ಬೆಳೆಗಳ ಬೇರುಗಳಿಗೆ ಆಳವಾದ ತೇವಾಂಶ ಒದಗಿಸುವ ಜಡಿಮಳೆ.' },
+      { id: 10, kn: 'ಮಘಾ ಮಳೆ', en: 'Magha', sm: 8, sd: 17, em: 8, ed: 30, season: 'monsoon', rain: 'ಉತ್ತಮ ಮಳೆ 🌧️', proverb: 'ಮಘಾ ಮಳೆ ಬಂದರೆ ಮನೆ ತುಂಬಾ ಬಂಗಾರ.', agri: 'ರಾಗಿ, ಶೇಂಗಾ ಮತ್ತು ತೊಗರಿ ಬೆಳೆಗಳ ಹೂವು-ಕಾಯಿ ಕಟ್ಟುವ ಕಾಲ.' },
+      { id: 11, kn: 'ಹುಬ್ಬಾ (ಪೂರ್ವ ಫಲ್ಗುಣಿ)', en: 'Purva Phalguni', sm: 8, sd: 31, em: 9, ed: 12, season: 'monsoon', rain: 'ಸಾಧಾರಣ-ಉತ್ತಮ ಮಳೆ 🌦️', proverb: 'ಹುಬ್ಬಾ ಮಳೆ ಅಬ್ಬರಿಸಿದರೆ ಹಳ್ಳ-ಕೊಳ್ಳ ತುಂಬುತ್ತವೆ.', agri: 'ಕೆರೆ ತುಂಬುವ ಮಳೆ — ಮುಂಗಾರು ಬೆಳೆಗಳ ಪೋಷಣೆ.' },
+      { id: 12, kn: 'ಉತ್ತರಾ ಮಳೆ', en: 'Uttara Phalguni', sm: 9, sd: 13, em: 9, ed: 26, season: 'monsoon', rain: 'ಗುಡುಗು ಸಹಿತ ಮಳೆ ⛈️', proverb: 'ಉತ್ತರಾ ಮಳೆ ಬಂದರೆ ಉತ್ತಮ ಫಸಲು ಖಚಿತ.', agri: 'ಹಿಂಗಾರು ಬಿತ್ತನೆಗೆ ಭೂಮಿ ಸಿದ್ಧಪಡಿಸಲು ಅನುಕೂಲ.' },
+      { id: 13, kn: 'ಹಸ್ತ ಮಳೆ', en: 'Hasta', sm: 9, sd: 27, em: 10, ed: 10, season: 'monsoon', rain: 'ಭಾರೀ ಗುಡುಗು ಮಳೆ ⛈️', proverb: 'ಹಸ್ತ ಮಳೆ ಹಚ್ಚಿದರೆ ಹಸಿರು ತುಂಬುತ್ತದೆ.', agri: 'ದಕ್ಷಿಣ ಒಳನಾಡಿನಲ್ಲಿ ವ್ಯಾಪಕ ಮಳೆ — ಹಿಂಗಾರು ಜೋಳ, ಕಡಲೆ ಬಿತ್ತನೆ.' },
+      { id: 14, kn: 'ಚಿತ್ತಾ ಮಳೆ', en: 'Chitra', sm: 10, sd: 11, em: 10, ed: 23, season: 'post', rain: 'ಹಿಂಗಾರು ಮಳೆ 🌧️', proverb: 'ಚಿತ್ತಾ ಮಳೆ ಬಂದರೆ ಚಿಂತೆ ಇಲ್ಲ.', agri: 'ಈಶಾನ್ಯ ಮುಂಗಾರು (ಹಿಂಗಾರು) ಚುರುಕು — ಕಡಲೆ, ಕುಸುಬೆ ಬಿತ್ತನೆ.' },
+      { id: 15, kn: 'ಸ್ವಾತಿ ಮಳೆ', en: 'Swati', sm: 10, sd: 24, em: 11, ed: 5, season: 'post', rain: 'ಸಾಧಾರಣ ಮಳೆ 🌦️', proverb: 'ಸ್ವಾತಿ ಮಳೆ ಮುತ್ತಿನ ಹನಿ — ಬೆಳೆಗೆ ಜೀವಕಳೆ.', agri: 'ಹಿಂಗಾರು ಬೆಳೆಗಳ ಬೆಳವಣಿಗೆಗೆ ಅತ್ಯುತ್ತಮ ಹದ ಮಳೆ.' },
+      { id: 16, kn: 'ವಿಶಾಖ ಮಳೆ', en: 'Vishakha', sm: 11, sd: 6, em: 11, ed: 18, season: 'post', rain: 'ಚದುರಿದ ಮಳೆ 🌦️', proverb: 'ವಿಶಾಖ ಮಳೆ ಬಂದರೆ ಬೆಳೆಗೆ ವಿಷಕೀಟ ಬಾಧೆ ಕಡಿಮೆ.', agri: 'ಮುಂಗಾರು ರಾಗಿ, ಭತ್ತ ಕೊಯ್ಲು ಆರಂಭದ ಎಚ್ಚರಿಕೆ.' },
+      { id: 17, kn: 'ಅನುರಾಧ ಮಳೆ', en: 'Anuradha', sm: 11, sd: 19, em: 12, ed: 2, season: 'post', rain: 'ಲಘು ಮಳೆ & ಮಂಜು 🌫️', proverb: 'ಅನುರಾಧ ಮಳೆ ಚಳಿಗಾಲದ ಮುನ್ಸೂಚನೆ.', agri: 'ತಂಪಾದ ಹವೆ — ಕಡಲೆ, ಗೋಧಿ, ಜೋಳ ಬೆಳೆಗಳಿಗೆ ಮಂಜಿನ ಪೋಷಣೆ.' },
+      { id: 18, kn: 'ಜ್ಯೇಷ್ಠ ಮಳೆ', en: 'Jyeshtha', sm: 12, sd: 3, em: 12, ed: 15, season: 'post', rain: 'ಚಳಿ & ತುಂತುರು 🌤️', proverb: 'ಜ್ಯೇಷ್ಠದಲ್ಲಿ ಮಂಜು ಹೆಚ್ಚಾದರೆ ಹಿಂಗಾರು ಫಸಲು ಸಮೃದ್ಧ.', agri: 'ಭತ್ತ, ರಾಗಿ ಕೊಯ್ಲು ಮತ್ತು ಒಣಗಿಸಲು ಸೂಕ್ತ ವಾತಾವರಣ.' },
+      { id: 19, kn: 'ಮೂಲಾ ಮಳೆ', en: 'Moola', sm: 12, sd: 16, em: 12, ed: 28, season: 'post', rain: 'ಶುಷ್ಕ ಚಳಿ ಹವೆ ❄️', proverb: 'ಮೂಲಾ ನಕ್ಷತ್ರದಲ್ಲಿ ಚಳಿ ತೀವ್ರವಾಗಿರುತ್ತದೆ.', agri: 'ಬೆಳಗಿನ ಇಬ್ಬನಿ — ತರಕಾರಿ ಮತ್ತು ಹೂವಿನ ಬೆಳೆಗಳ ರಕ್ಷಣೆ.' },
+      { id: 20, kn: 'ಪೂರ್ವಾಷಾಢ', en: 'Purva Ashadha', sm: 12, sd: 29, em: 1, ed: 10, season: 'winter', rain: 'ಚಳಿ & ಒಣ ಹವೆ ❄️', proverb: 'ಪೂರ್ವಾಷಾಢದ ಚಳಿ ಗೋಧಿ-ಕಡಲೆಗೆ ಬಲ ನೀಡುತ್ತದೆ.', agri: 'ಹಿಂಗಾರು ಬೆಳೆಗಳ ಕಾಳು ಕಟ್ಟುವ ಹಂತ.' },
+      { id: 21, kn: 'ಉತ್ತರಾಷಾಢ', en: 'Uttara Ashadha', sm: 1, sd: 11, em: 1, ed: 23, season: 'winter', rain: 'ಸಂಕ್ರಾಂತಿ ಶುಭ ಹವೆ ☀️', proverb: 'ಮಕರ ಸಂಕ್ರಾಂತಿ — ಸುಗ್ಗಿ ಮತ್ತು ಕೊಯ್ಲಿನ ಸಂಭ್ರಮ.', agri: 'ಕಬ್ಬು, ರಾಗಿ, ಅವರೆ ಮತ್ತು ಹಿಂಗಾರು ಬೆಳೆಗಳ ಸುಗ್ಗಿ ಕಾಲ.' },
+      { id: 22, kn: 'ಶ್ರವಣ', en: 'Shravana', sm: 1, sd: 24, em: 2, ed: 5, season: 'winter', rain: 'ಶುಭ್ರ ಆಕಾಶ ☀️', proverb: 'ಶ್ರವಣದ ಒಣ ಹವೆ ಧಾನ್ಯ ಸಂಗ್ರಹಕ್ಕೆ ಶ್ರೇಷ್ಠ.', agri: 'ಬೇಸಿಗೆ ಬೆಳೆಗಳಿಗೆ ನೀರಾವರಿ ಸಿದ್ಧತೆ.' },
+      { id: 23, kn: 'ಧನಿಷ್ಠ', en: 'Dhanishta', sm: 2, sd: 6, em: 2, ed: 18, season: 'winter', rain: 'ಬಿಸಿಲು ಆರಂಭ 🌤️', proverb: 'ಧನಿಷ್ಠದಲ್ಲಿ ಚಳಿ ಇಳಿದು ಬಿಸಿಲು ಹೆಚ್ಚಾಗುತ್ತದೆ.', agri: 'ತೋಟಗಾರಿಕೆ ಬೆಳೆಗಳಿಗೆ ಮಲ್ಚಿಂಗ್ ಮತ್ತು ನೀರು ನಿರ್ವಹಣೆ.' },
+      { id: 24, kn: 'ಶತಭಿಷ', en: 'Shatabhisha', sm: 2, sd: 19, em: 3, ed: 3, season: 'winter', rain: 'ಒಣ ಹವೆ ☀️', proverb: 'ಶತಭಿಷದ ಗಾಳಿ ಮಾವಿನ ಹೂವಿಗೆ ಅನುಕೂಲ.', agri: 'ಮಾವು ಹೂವು ಬಿಡುವ ಮತ್ತು ಕಾಯಿ ಕಟ್ಟುವ ಸಮಯ.' },
+      { id: 25, kn: 'ಪೂರ್ವಾಭಾದ್ರ', en: 'Purva Bhadrapada', sm: 3, sd: 4, em: 3, ed: 17, season: 'winter', rain: 'ಬೇಸಿಗೆ ತಾಪ ☀️', proverb: 'ಪೂರ್ವಾಭಾದ್ರದಲ್ಲಿ ಬೇಸಿಗೆ ಬಿಸಿಲು ಚುರುಕಾಗುತ್ತದೆ.', agri: 'ಬೇಸಿಗೆ ತರಕಾರಿ, ಕಲ್ಲಂಗಡಿ ಮತ್ತು ನೀರಾವರಿ ಬೆಳೆಗಳ ಪಾಲನೆ.' },
+      { id: 26, kn: 'ಉತ್ತರಾಭಾದ್ರ', en: 'Uttara Bhadrapada', sm: 3, sd: 18, em: 3, ed: 30, season: 'winter', rain: 'ವಿರಳ ಬೇಸಿಗೆ ಮಳೆ 🌤️', proverb: 'ಉತ್ತರಾಭಾದ್ರದಲ್ಲಿ ಮೋಡ ಕಾಣಿಸಿದರೆ ಬೇಗ ಮುಂಗಾರು.', agri: 'ಕಾಫಿ ತೋಟಗಳಲ್ಲಿ ಹೂವಿನ ಮಳೆ (Blossom Shower) ನಿರೀಕ್ಷೆ.' },
+      { id: 27, kn: 'ರೇವತಿ ಮಳೆ', en: 'Revati', sm: 3, sd: 31, em: 4, ed: 13, season: 'pre', rain: 'ಯುಗಾದಿ ಪೂರ್ವ ಮಳೆ 🌦️', proverb: 'ರೇವತಿ ಮಳೆ ಬಂದರೆ ವರ್ಷವಿಡೀ ಸಮೃದ್ಧಿ.', agri: 'ಕಾಫಿ, ಮೆಣಸು ಮತ್ತು ಬೇಸಿಗೆ ಉಳುಮೆಗೆ ಅತ್ಯುತ್ತಮ ಹೂಮಳೆ.' }
+    ];
+
+    const KN_MONTH_SHORT = { 1:'ಜನ', 2:'ಫೆಬ್ರ', 3:'ಮಾರ್ಚ್', 4:'ಏಪ್ರಿಲ್', 5:'ಮೇ', 6:'ಜೂನ್', 7:'ಜುಲೈ', 8:'ಆಗ', 9:'ಸೆಪ್', 10:'ಅಕ್ಟೋ', 11:'ನವೆಂ', 12:'ಡಿಸೆಂ' };
+    let ACTIVE_NAK_SEASON = 'all';
+
+    function isDateInNakshatra(n, month, day) {
+      const cur = month * 100 + day;
+      const start = n.sm * 100 + n.sd;
+      const end = n.em * 100 + n.ed;
+      if (start <= end) return cur >= start && cur <= end;
+      return cur >= start || cur <= end; // wraps Dec -> Jan (Purva Ashadha)
+    }
+
+    function fmtNakDates(n) {
+      return `${n.sd} ${KN_MONTH_SHORT[n.sm]} – ${n.ed} ${KN_MONTH_SHORT[n.em]}`;
+    }
+
+    function filterNakshatraSeason(season, btnEl) {
+      ACTIVE_NAK_SEASON = season;
+      document.querySelectorAll('#nakSeasonTabs .wx-reg-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderMaleNakshatras();
+    }
+
+    function renderMaleNakshatras() {
+      const now = new Date();
+      const m = now.getMonth() + 1;
+      const d = now.getDate();
+      let activeIdx = MALE_NAKSHATRAS.findIndex(n => isDateInNakshatra(n, m, d));
+      if (activeIdx < 0) activeIdx = 0;
+      const activeNak = MALE_NAKSHATRAS[activeIdx];
+      const nextNak = MALE_NAKSHATRAS[(activeIdx + 1) % MALE_NAKSHATRAS.length];
+
+      document.getElementById('nak-active-name').textContent = `${activeNak.id}. ${activeNak.kn} (${activeNak.en})`;
+      document.getElementById('nak-active-dates').textContent = `📅 ಅವಧಿ: ${fmtNakDates(activeNak)} · ${activeNak.rain}`;
+      document.getElementById('nak-active-proverb').textContent = `“${activeNak.proverb}”`;
+      document.getElementById('nak-next-name').textContent = `${nextNak.id}. ${nextNak.kn} (${nextNak.en})`;
+      document.getElementById('nak-next-dates').textContent = `📅 ಆರಂಭ: ${fmtNakDates(nextNak)}`;
+      document.getElementById('nak-active-agri').textContent = `🌾 ಕೃಷಿ ಸಲಹೆ: ${activeNak.agri}`;
+
+      const grid = document.getElementById('male-nakshatra-grid');
+      if (!grid) return;
+      const list = ACTIVE_NAK_SEASON === 'all'
+        ? MALE_NAKSHATRAS
+        : MALE_NAKSHATRAS.filter(n => n.season === ACTIVE_NAK_SEASON);
+
+      grid.innerHTML = list.map(n => {
+        const isAct = n.id === activeNak.id;
+        return `
+          <div class="wx-nak-card ${isAct ? 'active-nak' : ''}">
+            <div>
+              <div class="wx-nak-head">
+                <span class="wx-nak-num">${isAct ? '🟢 ಚಾಲ್ತಿ #' + n.id : '#' + n.id}</span>
+                <span class="wx-nak-date">${fmtNakDates(n)}</span>
+              </div>
+              <div class="wx-nak-name" style="margin-top:5px;">${n.kn} <span style="font-size:11.5px; color:#64748B; font-weight:600;">(${n.en})</span></div>
+              <div class="wx-nak-meta">${n.rain}</div>
+            </div>
+            <div class="wx-nak-quote">💬 ${n.proverb}</div>
+          </div>`;
+      }).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMaleNakshatras();
+      initWeatherDashboard();
+    });
   </script>
 </body>
 </html>
