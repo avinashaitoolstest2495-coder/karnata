@@ -165,6 +165,10 @@ def sync_gold_ecosystem():
         html = re.sub(r'id="card-22k-10g">₹[0-9,]+<', f'id="card-22k-10g">₹{g22 * 10:,}<', html)
         html = re.sub(r'id="card-22k-100g">₹[0-9,]+<', f'id="card-22k-100g">₹{g22 * 100:,}<', html)
 
+        html = re.sub(r'id="card-silver-10g">₹[0-9,.]+<', f'id="card-silver-10g">₹{round(sil999 * 10, 2):,.2f}<', html)
+        html = re.sub(r'id="card-silver-100g">₹[0-9,.]+<', f'id="card-silver-100g">₹{round(sil999 * 100, 2):,.2f}<', html)
+        html = re.sub(r'id="card-silver-1kg">₹[0-9,.]+<', f'id="card-silver-1kg">₹{round(sil999 * 1000):,}<', html)
+
         # Update source timestamp badge
         html = re.sub(r'Updated on:\s*[^<]+', timestamp_text, html)
 

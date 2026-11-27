@@ -84,10 +84,71 @@ for item in YEARLY_DATA_1901_2026:
     item["silver_per_gram"] = round(s10 / 10, 2)
     item["gold_growth_x"] = round((g10 / 18.75), 1)
 
+def scrape_dhan_silver():
+    """
+    Scrapes authentic live & historical Silver rates (999 per gram, Bangalore)
+    directly from https://dhan.co/silver-rates/ and Dhan's official historical daily API.
+    Does NOT touch Gold rates.
+    """
+    dhan_headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        "Origin": "https://dhan.co",
+        "Referer": "https://dhan.co/silver-rates/",
+    }
+    ist_tz = timezone(timedelta(hours=5, minutes=30))
+    live_sil999 = None
+    live_date = None
+    silver_by_date = {}
+
+    # 1. Fetch live Bangalore silver snapshot from https://dhan.co/silver-rates/ (__NEXT_DATA__)
+    try:
+        r = requests.get("https://dhan.co/silver-rates/", headers=dhan_headers, timeout=15)
+        if r.status_code == 200:
+            m = re.search(r'<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)</script>', r.text)
+            if m:
+                nd = json.loads(m.group(1))
+                pp = nd.get("props", {}).get("pageProps", {})
+                items = pp.get("apiData", {}).get("data", [])
+                blr = next((x for x in items if str(x.get("city", "")).lower() in ("bangalore", "bengaluru")), None)
+                if not blr and items:
+                    blr = items[0]
+                if blr and blr.get("close"):
+                    live_sil999 = round(float(blr["close"]), 2)
+                    ts = blr.get("timestamp") or pp.get("snapshotTimestamp")
+                    if ts:
+                        live_date = datetime.fromtimestamp(ts / 1000 if ts > 1e12 else ts, tz=ist_tz).strftime("%Y-%m-%d")
+                        silver_by_date[live_date] = live_sil999
+                    log.info(f"✓ Scraped live Bangalore Silver from Dhan.co: ₹{live_sil999:.2f}/g (₹{round(live_sil999 * 1000):,}/kg) [{live_date}]")
+    except Exception as e:
+        log.warning(f"Dhan live silver page notice: {e}")
+
+    # 2. Fetch full historical daily Silver series for Bangalore from Dhan API
+    try:
+        hist_url = "https://commodity-prices.dhan.co/historical/daily?city=bangalore&timeframe=all&product=silver"
+        rh = requests.get(hist_url, headers=dhan_headers, timeout=15)
+        if rh.status_code == 200:
+            hd = rh.json().get("data", {})
+            ts_list = hd.get("t", [])
+            close_list = hd.get("c", [])
+            for ts, cl in zip(ts_list, close_list):
+                if ts and cl:
+                    d_str = datetime.fromtimestamp(ts / 1000 if ts > 1e12 else ts, tz=ist_tz).strftime("%Y-%m-%d")
+                    if d_str not in silver_by_date:
+                        silver_by_date[d_str] = round(float(cl), 2)
+            log.info(f"✓ Scraped {len(silver_by_date)} real historical Silver days from Dhan.co (Bangalore)")
+            if live_sil999 is None and close_list:
+                live_sil999 = round(float(close_list[0]), 2)
+    except Exception as e:
+        log.warning(f"Dhan historical silver API notice: {e}")
+
+    return live_sil999, silver_by_date
+
+
 def scrape_jos_alukkas_all():
     """
-    Directly scrapes Jos Alukkas official backend API for live rates AND authentic historical data.
-    NO random, mock, or simulated data. Everything is 100% genuine Jos Alukkas figures.
+    Directly scrapes Jos Alukkas official backend API for live Gold rates AND authentic Gold historical data,
+    and scrapes Dhan.co (https://dhan.co/silver-rates/) for live & historical Silver rates.
+    NO random, mock, or simulated data.
     """
     today_24k = 13893
     today_22k = 12730
@@ -98,7 +159,7 @@ def scrape_jos_alukkas_all():
     today_sil999 = 265.00
     timestamp_str = "Updated on: 31-10-26, 9:40:55 AM (Jos Alukkas Live)"
 
-    # 1. Fetch Latest Rates from Jos Alukkas API
+    # 1. Fetch Latest Gold Rates from Jos Alukkas API (DO NOT TOUCH GOLD LOGIC)
     try:
         url = "https://backend.josalukkasonline.com/api/Master/GetLatestGoldRate/"
         r = requests.post(url, headers=API_HEADERS, json={}, timeout=10)
@@ -125,6 +186,25 @@ def scrape_jos_alukkas_all():
     except Exception as e:
         log.warning(f"Jos Alukkas GetLatestGoldRate API notice: {e}")
 
+    # 1b. Override ONLY Silver rates with live & historical Bangalore Silver from Dhan.co
+    dhan_sil999, dhan_silver_by_date = scrape_dhan_silver()
+    if dhan_sil999 is not None and dhan_sil999 > 0:
+        today_sil999 = round(float(dhan_sil999), 2)
+        today_sil925 = round(today_sil999 * 0.925, 2)
+
+    sorted_dhan_dates = sorted(dhan_silver_by_date.keys())
+
+    def lookup_dhan_silver(date_str: str, fallback: float) -> float:
+        if not dhan_silver_by_date:
+            return fallback
+        if date_str in dhan_silver_by_date:
+            return dhan_silver_by_date[date_str]
+        # Nearest prior trading day from Dhan historical silver
+        prior = [d for d in sorted_dhan_dates if d <= date_str]
+        if prior:
+            return dhan_silver_by_date[prior[-1]]
+        return fallback
+
     # 2. Fetch Authentic Historical Series from Jos Alukkas API
     history_items = []
     try:
@@ -145,7 +225,7 @@ def scrape_jos_alukkas_all():
                     r_22 = float(pt.get("rate") or today_22k)
                     r_24 = round(r_22 * ratio_24)
                     r_18 = round(r_22 * ratio_18)
-                    r_sil = round(r_24 * 0.019, 2)
+                    r_sil = lookup_dhan_silver(d_str, round(r_24 * 0.019, 2))
 
                     history_items.append({
                         "date": d_str,
@@ -207,6 +287,16 @@ def scrape_jos_alukkas_all():
         yesterday_18k = 10670
         yesterday_sil = 267.50
 
+    # Use exact Dhan previous trading day for Silver change if available
+    if len(sorted_dhan_dates) >= 2:
+        # Pick the latest Dhan date strictly before the live Dhan snapshot date
+        latest_dhan_dt = sorted_dhan_dates[-1]
+        prev_dhan_dt = sorted_dhan_dates[-2]
+        if dhan_silver_by_date.get(latest_dhan_dt) == today_sil999:
+            yesterday_sil = float(dhan_silver_by_date[prev_dhan_dt])
+        else:
+            yesterday_sil = float(dhan_silver_by_date[latest_dhan_dt])
+
     ch24 = int(today_24k - yesterday_24k)
     ch22 = int(today_22k - yesterday_22k)
     ch18 = int(today_18k - yesterday_18k)
@@ -239,12 +329,17 @@ def scrape_jos_alukkas_all():
         "silver_925": ch_sil
     }
 
-    return today_rates, yesterday_rates, changes, history_items
+    silver_history = [
+        {"date": d_str, "silver999": dhan_silver_by_date[d_str], "silver_per_kg": round(dhan_silver_by_date[d_str] * 1000)}
+        for d_str in sorted_dhan_dates
+    ]
+
+    return today_rates, yesterday_rates, changes, history_items, silver_history
 
 def run() -> dict:
-    log.info("🥇 Starting Jos Alukkas Official Scraper...")
+    log.info("🥇 Starting Jos Alukkas (Gold) + Dhan.co (Silver) Official Scraper...")
 
-    today_rates, yesterday_rates, changes, history_items = scrape_jos_alukkas_all()
+    today_rates, yesterday_rates, changes, history_items, silver_history = scrape_jos_alukkas_all()
     today_date = ist_date()
 
     city_rates = {}
@@ -263,6 +358,7 @@ def run() -> dict:
             "silver_per_gram": today_rates["silver_999"],
             "silver_yesterday": yesterday_rates["silver_999"],
             "silver_per_kg": round(today_rates["silver_999"] * 1000),
+            "silver_1kg": round(today_rates["silver_999"] * 1000),
             "change_24k": changes["24k"],
             "change_22k": changes["22k"],
             "change_18k": changes["18k"],
@@ -272,7 +368,8 @@ def run() -> dict:
     output = {
         "last_updated": ist_now(),
         "date": today_date,
-        "source": "ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Jos Alukkas Karnataka Official Rate)",
+        "source": "ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ (Jos Alukkas Gold) & Dhan.co (Silver Live)",
+        "silver_source": "https://dhan.co/silver-rates/",
         "timestamp_display": today_rates.get("timestamp"),
         "base": {
             "24k_per_gram": today_rates["24k"],
@@ -324,8 +421,10 @@ def run() -> dict:
 
     hist_output = {
         "updated_at": ist_now(),
-        "source": "ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಲೈವ್ ಬುಲಿಯನ್ & ಐತಿಹಾಸಿಕ ಮಾಹಿತಿ (1901-2026)",
+        "source": "ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ (Gold) & Dhan.co (Silver) ಲೈವ್ & ಐತಿಹಾಸಿಕ ಮಾಹಿತಿ (1901-2026)",
+        "silver_source": "https://dhan.co/silver-rates/",
         "history": history_items,
+        "silver_history": silver_history,
         "yearly_1901_2026": YEARLY_DATA_1901_2026
     }
     save_json("historical_rates.json", hist_output)
