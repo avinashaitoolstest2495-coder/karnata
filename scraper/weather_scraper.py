@@ -352,7 +352,7 @@ def fetch_telemetry():
         try:
             url = f"https://api.open-meteo.com/v1/forecast?latitude={d['lat']}&longitude={d['lon']}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,precipitation_probability&hourly=temperature_2m,precipitation_probability,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&past_days=1&forecast_days=7&timezone=Asia%2FKolkata"
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req, timeout=8) as resp:
+            with urllib.request.urlopen(req, context=ctx, timeout=10) as resp:
                 data = json.loads(resp.read().decode('utf-8'))
 
             cur = data.get('current', {})

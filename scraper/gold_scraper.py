@@ -163,6 +163,37 @@ def scrape_jos_alukkas_all():
 
     history_items.sort(key=lambda x: x["date"])
 
+    # Ensure today's exact live rate from GetLatestGoldRate is synced as the latest historical entry
+    today_date_str = ist_date()
+    today_hist_entry = {
+        "date": today_date_str,
+        "gold22": float(today_22k),
+        "gold24": int(today_24k),
+        "gold18": int(today_18k),
+        "silver999": float(today_sil999),
+        "22k_per_gram": float(today_22k),
+        "24k_per_gram": int(today_24k),
+        "18k_per_gram": int(today_18k),
+        "silver_per_gram": float(today_sil999),
+    }
+    if history_items and history_items[-1].get("date") == today_date_str:
+        history_items[-1] = today_hist_entry
+    else:
+        history_items.append(today_hist_entry)
+
+    # Dynamically update 2026 benchmark row in YEARLY_DATA_1901_2026
+    for y_item in YEARLY_DATA_1901_2026:
+        if y_item.get("year") == 2026:
+            y_item["gold_10g"] = round(today_24k * 10, 2)
+            y_item["silver_10g"] = round(today_sil999 * 10, 2)
+            y_item["gold_24k_per_gram"] = round(today_24k, 2)
+            y_item["gold_22k_per_gram"] = round(today_22k, 2)
+            y_item["gold_18k_per_gram"] = round(today_18k, 2)
+            y_item["silver_per_gram"] = round(today_sil999, 2)
+            y_item["gold_growth_x"] = round((y_item["gold_10g"] / 18.75), 1)
+            y_item["milestone"] = f"🌟 ಜೋಸ್ ಆಲುಕ್ಕಾಸ್ ಕರ್ನಾಟಕ ಅಧಿಕೃತ ದರ ({today_date_str} · 24K: ₹{today_24k:,}/g · 22K: ₹{today_22k:,}/g · ಬೆಳ್ಳಿ: ₹{today_sil999:.2f}/g)"
+            break
+
     # 3. Determine Authentic Previous Trading Session Rates
     if len(history_items) >= 2:
         prev_entry = history_items[-2]

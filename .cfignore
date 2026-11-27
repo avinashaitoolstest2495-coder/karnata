@@ -1,0 +1,10 @@
+*.log
+logs/
+scripts/updater.log
+namma-karnataka/
+node_modules/
+.git/
+.wrangler/
+__pycache__/
+scratch/
+scripts_archive/

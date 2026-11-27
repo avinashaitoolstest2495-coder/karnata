@@ -94,12 +94,59 @@ def sync_gold_ecosystem():
         with open(g_path, "r", encoding="utf-8") as f:
             html = f.read()
 
-        # Update script variables
-        html = re.sub(r"'24k':\s*\d+", f"'24k': {g24}", html)
-        html = re.sub(r"'22k':\s*\d+", f"'22k': {g22}", html)
-        html = re.sub(r"'18k':\s*\d+", f"'18k': {g18}", html)
-        html = re.sub(r"'silver_999':\s*[\d\.]+", f"'silver_999': {sil999:.2f}", html)
-        html = re.sub(r"'silver_925':\s*[\d\.]+", f"'silver_925': {sil925:.2f}", html)
+        # Update script variables (supports both single and double quotes)
+        html = re.sub(r'["\']24k["\']:\s*\d+', f'"24k": {g24}', html)
+        html = re.sub(r'["\']22k["\']:\s*\d+', f'"22k": {g22}', html)
+        html = re.sub(r'["\']18k["\']:\s*\d+', f'"18k": {g18}', html)
+        html = re.sub(r'["\']silver["\']:\s*[\d\.]+', f'"silver": {sil999:.2f}', html)
+        html = re.sub(r'["\']silver_999["\']:\s*[\d\.]+', f'"silver_999": {sil999:.2f}', html)
+        html = re.sub(r'["\']silver_925["\']:\s*[\d\.]+', f'"silver_925": {sil925:.2f}', html)
+
+        gold_date = gold_data.get("date") or datetime.now().strftime("%Y-%m-%d")
+        html = re.sub(r"let GOLD_LIVE_DATE\s*=\s*['\"][^'\"]+['\"];", f"let GOLD_LIVE_DATE = '{gold_date}';", html)
+
+        # Regenerate fresh social card PNG so mobile/WhatsApp share preview ALWAYS shows today's real gold rate
+        date_compact = gold_date.replace("-", "")
+        cache_ver = f"{date_compact}_{g24}_{g22}"
+        try:
+            import importlib.util, shutil as _shutil
+            gfx_path = ROOT_DIR / "scripts" / "generate_daily_social_graphics.py"
+            if gfx_path.exists():
+                spec = importlib.util.spec_from_file_location("gen_social_gfx", str(gfx_path))
+                gfx_mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(gfx_mod)
+                if hasattr(gfx_mod, "render_gold_card"):
+                    gfx_mod.render_gold_card()
+                    src_card = ROOT_DIR / "assets" / "social-cards" / "gold_rate_today.png"
+                    dst_card = ROOT_DIR / "namma-karnataka" / "assets" / "social-cards" / "gold_rate_today.png"
+                    if src_card.exists() and dst_card.parent.exists():
+                        _shutil.copy2(src_card, dst_card)
+                    print("  ✓ Regenerated fresh assets/social-cards/gold_rate_today.png for mobile share")
+        except Exception as gfx_err:
+            print(f"  [WARN] Social card regeneration notice: {gfx_err}")
+
+        # Update OG / Twitter / Meta tags with TODAY'S REAL live gold rate + cache-busted og:image
+        og_title_val = f"ಇಂದಿನ ಚಿನ್ನದ ದರ ({gold_date}): 24K ₹{g24:,} | 22K ₹{g22:,} | ಬೆಳ್ಳಿ ₹{sil999:.2f}/g — Karnata.in"
+        og_desc_val = f"ಕರ್ನಾಟಕ ಇಂದಿನ ಲೈವ್ ಚಿನ್ನ-ಬೆಳ್ಳಿ ದರ ({gold_date}): 24K ₹{g24:,}/ಗ್ರಾಂ, 22K ₹{g22:,}/ಗ್ರಾಂ (1 ಪವನ್ ₹{g22*8:,}), 18K ₹{g18:,}/ಗ್ರಾಂ, ಬೆಳ್ಳಿ ₹{sil999:.2f}/ಗ್ರಾಂ. ಜಿಲ್ಲಾವಾರು ದರ & ಐತಿಹಾಸಿಕ ಚಾರ್ಟ್."
+        og_img_url = f"https://karnata.in/assets/social-cards/gold_rate_today.png?v={cache_ver}"
+
+        html = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{og_title_val}">', html)
+        html = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{og_desc_val}">', html)
+        html = re.sub(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{og_img_url}">', html)
+        html = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{og_title_val}">', html)
+        html = re.sub(r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{og_desc_val}">', html)
+        html = re.sub(r'<meta name="twitter:image" content="[^"]*">', f'<meta name="twitter:image" content="{og_img_url}">', html)
+        html = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{og_desc_val}">', html)
+
+        # Update embedded GOLD_HIST_FULL array so historical table & chart are 100% live even before JS fetch
+        if history:
+            hist_json_str = json.dumps(history, ensure_ascii=False)
+            html = re.sub(
+                r'(?:const|let)\s+GOLD_HIST_FULL\s*=\s*\[[\s\S]*?\];',
+                lambda _m: f'let GOLD_HIST_FULL = {hist_json_str};',
+                html,
+                count=1
+            )
 
         # Update static KPI and summary cards
         html = re.sub(r'id="stat-24k-rate">₹[0-9,]+<', f'id="stat-24k-rate">₹{g24:,}<', html)

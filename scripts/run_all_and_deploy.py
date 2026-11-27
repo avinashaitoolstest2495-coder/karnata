@@ -49,7 +49,7 @@ def main():
     run_step("4. Weather Scraper (KSNDMC & IMD)", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from weather_scraper import run; run()"])
     run_step("4b. Sync Weather Page HTML & DOM", [sys.executable, "scripts/sync_weather_page.py"])
     run_step("4c. Sync Static DOM Telemetry", [sys.executable, "scripts/sync_all_static_dom.py"])
-    run_step("5. APMC Market Prices Scraper", [sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from apmc_scraper import run; run()"])
+    run_step("5. APMC Market Prices Scraper & Static DOM Updater", [sys.executable, "scripts/daily_apmc_auto_updater.py"])
     run_step("5b. Generate Daily Karnataka Quiz (20 Fresh Questions)", [sys.executable, "scripts/generate_daily_quiz.py"])
     
     # 2. Scrape Multi-Source Kannada News, Schemes & Officers Directory
@@ -71,7 +71,16 @@ def main():
     # 5. Bake Live Scraper Data directly into Static HTML
     run_step("16. Bake Live Scraper Data into Static HTML", ["node", "scripts/bake_live_data_to_html.js"])
     
-    # 6. Direct Live Cloudflare Deployment (Zero GitHub dependency)
+    # 6. Cap oversized log files before Cloudflare Pages deploy (25 MiB limit)
+    for _log_rel in ['scripts/updater.log', 'logs/auto_scrape.log', 'scraper.log', 'namma-karnataka/logs/auto_scrape.log', 'namma-karnataka/scraper.log']:
+        _lp = ROOT_DIR / _log_rel
+        try:
+            if _lp.exists() and _lp.stat().st_size > 2 * 1024 * 1024:
+                _lp.write_text("", encoding="utf-8")
+        except Exception:
+            pass
+
+    # 7. Direct Live Cloudflare Deployment (Zero GitHub dependency)
     deploy_cmd = ["npx.cmd", "--yes", "wrangler", "pages", "deploy", ".", "--project-name=karnata", "--commit-dirty=true"] if sys.platform == "win32" else ["npx", "--yes", "wrangler", "pages", "deploy", ".", "--project-name=karnata", "--commit-dirty=true"]
     run_step("17. Direct Live Deploy to Cloudflare Pages", deploy_cmd)
 

@@ -70,6 +70,23 @@ try:
 except Exception as e:
     print("[WARN] Dam scraper notice:", e)
 
+# 2e. Scrape latest Petrol & Diesel prices (GoodReturns Karnataka Live)
+try:
+    print("Step 2e: Scraping latest Karnataka Petrol & Diesel prices...")
+    subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, 'scraper'); from petrol_scraper import run; run()"], cwd=ROOT_DIR, check=True)
+    print("[OK] Petrol & Diesel rates scraped.")
+except Exception as e:
+    print("[WARN] Petrol scraper notice:", e)
+
+# 2f. Scrape latest Karnataka APMC Market Rates (KRAMA Live)
+try:
+    print("Step 2f: Updating Karnataka APMC live market rates...")
+    apmc_py = os.path.join(ROOT_DIR, 'scripts', 'daily_apmc_auto_updater.py')
+    subprocess.run([sys.executable, apmc_py], cwd=ROOT_DIR, check=True)
+    print("[OK] APMC rates scraped and synced.")
+except Exception as e:
+    print("[WARN] APMC updater notice:", e)
+
 # 3. Sync static telemetry metrics into DOMs
 try:
     print("Step 3: Syncing static DOM telemetry metrics (Index, Weather, Gold-Rate)...")
@@ -90,9 +107,19 @@ except Exception as e:
 # 5. Social media auto-publishing is DISABLED per user request.
 # (Removed social_scheduler_runner execution)
 
-# 5. Deploy to Cloudflare Pages
+# 5. Cap oversized log files before Cloudflare Pages deploy (25 MiB limit)
+for _log_rel in ['scripts/updater.log', 'logs/auto_scrape.log', 'scraper.log', 'namma-karnataka/logs/auto_scrape.log', 'namma-karnataka/scraper.log']:
+    _lp = os.path.join(ROOT_DIR, _log_rel)
+    try:
+        if os.path.exists(_lp) and os.path.getsize(_lp) > 2 * 1024 * 1024:
+            with open(_lp, 'w', encoding='utf-8') as _lf:
+                _lf.truncate(0)
+    except Exception:
+        pass
+
+# 6. Deploy to Cloudflare Pages
 try:
-    print("Step 5: Deploying updated weather and site to Cloudflare Pages...")
+    print("Step 6: Deploying updated site to Cloudflare Pages...")
     subprocess.run(['npx', '--yes', 'wrangler', 'pages', 'deploy', '.', '--project-name=karnata', '--commit-dirty=true'], cwd=ROOT_DIR, shell=True, check=True)
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] [SUCCESS] Karnata.in deployed successfully!")
 except Exception as e:

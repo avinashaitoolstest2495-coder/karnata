@@ -63,7 +63,16 @@ def run_gold_pipeline():
     except Exception as e:
         print("GitHub sync notice (non-fatal):", e)
     
-    # 7. Direct Deploy to Cloudflare Pages
+    # 7. Cap oversized log files before Cloudflare Pages deploy (25 MiB limit)
+    for _log_rel in ['scripts/updater.log', 'logs/auto_scrape.log', 'scraper.log', 'namma-karnataka/logs/auto_scrape.log', 'namma-karnataka/scraper.log']:
+        _lp = ROOT_DIR / _log_rel
+        try:
+            if _lp.exists() and _lp.stat().st_size > 2 * 1024 * 1024:
+                _lp.write_text("", encoding="utf-8")
+        except Exception:
+            pass
+
+    # 8. Direct Deploy to Cloudflare Pages
     print("Step 7: Deploying live to Cloudflare Pages...")
     subprocess.run(["npx.cmd" if sys.platform == "win32" else "npx", "wrangler", "pages", "deploy", ".", "--project-name=karnata", "--commit-dirty=true"], cwd=ROOT_DIR, shell=(sys.platform == "win32"), check=True)
     

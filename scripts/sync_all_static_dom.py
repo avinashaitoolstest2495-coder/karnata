@@ -37,26 +37,32 @@ def sync_static_dom():
 
     # Extract Key Metric Values
     # Weather
-    rain_val = f"{weather_data.get('state_extremes', {}).get('highest_past_24h_rain', {}).get('rain_mm', 57.4):.1f} mm"
-    rain_loc = f"{weather_data.get('state_extremes', {}).get('highest_past_24h_rain', {}).get('name_kn', 'ಶಿವಮೊಗ್ಗ')} (ಆಗುಂಬೆ)"
-    max_t_val = f"{weather_data.get('state_extremes', {}).get('max_temp_district', {}).get('temp_c', 36.1):.1f}°C"
-    max_t_loc = f"{weather_data.get('state_extremes', {}).get('max_temp_district', {}).get('name_kn', 'ದಕ್ಷಿಣ ಕನ್ನಡ')} (ಕೊಕ್ಕಡ)"
-    min_t_val = f"{weather_data.get('state_extremes', {}).get('min_temp_district', {}).get('temp_c', 12.2):.1f}°C"
-    min_t_loc = f"{weather_data.get('state_extremes', {}).get('min_temp_district', {}).get('name_kn', 'ಉತ್ತರ ಕನ್ನಡ')} (ಶಿರಸಿ)"
-    bng_temp = round(weather_data.get('districts', {}).get('bengaluru_urban', {}).get('current', {}).get('temp_c', 24.8), 1)
+    se = weather_data.get('state_extremes') or {}
+    rain_obj = se.get('highest_past_24h_rain') or {}
+    max_t_obj = se.get('max_temp_district') or {}
+    min_t_obj = se.get('min_temp_district') or {}
+    rain_val = f"{rain_obj.get('rain_mm', 57.4):.1f} mm"
+    rain_loc = f"{rain_obj.get('name_kn', 'ಶಿವಮೊಗ್ಗ')} ({rain_obj.get('station', 'ಆಗುಂಬೆ')})"
+    max_t_val = f"{max_t_obj.get('temp_c', 36.1):.1f}°C"
+    max_t_loc = f"{max_t_obj.get('name_kn', 'ದಕ್ಷಿಣ ಕನ್ನಡ')} ({max_t_obj.get('station', 'ಕೊಕ್ಕಡ')})"
+    min_t_val = f"{min_t_obj.get('temp_c', 12.2):.1f}°C"
+    min_t_loc = f"{min_t_obj.get('name_kn', 'ಉತ್ತರ ಕನ್ನಡ')} ({min_t_obj.get('station', 'ಶಿರಸಿ')})"
+    bng_temp = round((weather_data.get('districts') or {}).get('bengaluru_urban', {}).get('current', {}).get('temp_c', 24.8), 1)
 
     # Gold
     gold_24k = gold_data.get('baseGold', {}).get('24') or gold_data.get('base', {}).get('24k_per_gram', 15207)
     gold_22k = gold_data.get('baseGold', {}).get('22') or gold_data.get('base', {}).get('22k_per_gram', 13935)
     silver_g = gold_data.get('baseSilver', {}).get('999') or gold_data.get('base', {}).get('silver_per_gram', 260.0)
 
-    # Petrol
-    bng_petrol = 102.86
+    # Petrol & Diesel
+    bng_petrol = 111.68
+    bng_diesel = 99.56
     districts_fuel = petrol_data.get('districts', {})
     bng_f = districts_fuel.get('bengaluru_urban') or districts_fuel.get('bengaluru')
     if bng_f and 'taluks' in bng_f:
         first_t = list(bng_f['taluks'].values())[0]
-        bng_petrol = first_t.get('petrol', 102.86)
+        bng_petrol = first_t.get('petrol', bng_petrol)
+        bng_diesel = first_t.get('diesel', bng_diesel)
 
     # Dam (KRS)
     krs_dam = dam_data.get('dams', {}).get('krs', {})
@@ -165,6 +171,34 @@ def sync_static_dom():
         g_path.write_text(g_content, encoding='utf-8')
         (ROOT_DIR / "namma-karnataka" / "gold-rate.html").write_text(g_content, encoding='utf-8')
         print("  OK gold-rate.html synced")
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # 5. SYNC PETROL-PRICE.HTML
+    # ══════════════════════════════════════════════════════════════════════════
+    p_path = ROOT_DIR / "petrol-price.html"
+    if p_path.exists():
+        p_content = p_path.read_text(encoding='utf-8', errors='ignore')
+        p_content = re.sub(r'id="hero-petrol">₹[0-9,.]+<', f'id="hero-petrol">₹{bng_petrol:.2f}<', p_content)
+        p_content = re.sub(r'id="hero-diesel">₹[0-9,.]+<', f'id="hero-diesel">₹{bng_diesel:.2f}<', p_content)
+        fuel_rows = ""
+        for dk, dv in districts_fuel.items():
+            d_kn = dv.get("name_kn", dk)
+            taluks = dv.get("taluks", {})
+            ft = list(taluks.values())[0] if taluks else {}
+            dp = ft.get("petrol", bng_petrol)
+            dd = ft.get("diesel", bng_diesel)
+            fuel_rows += f"""
+    <tr class="dist-row" onclick="toggleDistrict('{dk}')">
+      <td><span class="acc-arrow" id="arr-{dk}">▶</span><span class="d-kn">{d_kn}</span></td>
+      <td>₹{dp:.2f}</td>
+      <td>₹{dd:.2f}</td>
+    </tr>"""
+        if fuel_rows:
+            p_content = re.sub(r'<tbody id="fuel-tbody">[\s\S]*?<\/tbody>', f'<tbody id="fuel-tbody">{fuel_rows}\n            </tbody>', p_content, count=1)
+        p_path.write_text(p_content, encoding='utf-8')
+        if (ROOT_DIR / "namma-karnataka").exists():
+            (ROOT_DIR / "namma-karnataka" / "petrol-price.html").write_text(p_content, encoding='utf-8')
+        print(f"  OK petrol-price.html synced (Bengaluru Petrol=₹{bng_petrol:.2f}, Diesel=₹{bng_diesel:.2f}, {len(districts_fuel)} districts)")
 
     print("=== SUCCESS: ALL STATIC DOMS PRE-RENDERED WITH 100% REAL DATA ===")
 

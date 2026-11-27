@@ -16,6 +16,12 @@ LOGS_DIR.mkdir(exist_ok=True)
 LOG_FILE = LOGS_DIR / "auto_scrape.log"
 
 def main():
+    # Cap log file at 2 MB so Cloudflare Pages 25 MiB limit is never exceeded
+    if LOG_FILE.exists() and LOG_FILE.stat().st_size > 2 * 1024 * 1024:
+        try:
+            LOG_FILE.write_text("", encoding="utf-8")
+        except Exception:
+            pass
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(f"\n=======================================================\n")
         f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Starting Karnata Scheduled Auto-Run...\n")

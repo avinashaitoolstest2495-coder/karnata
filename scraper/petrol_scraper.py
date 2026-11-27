@@ -397,7 +397,104 @@ KARNATAKA_DISTRICTS_TALUKS = {
             {"key": "bhalki", "kn": "ಭಾಲ್ಕಿ", "outlet_id": 392476, "lat": 18.066095, "lng": 77.156305, "has_cng": False},
         ],
     },
+    "dharwad": {
+        "name_en": "Dharwad",
+        "name_kn": "ಧಾರವಾಡ",
+        "taluks": [
+            {"key": "dharwad", "kn": "ಧಾರವಾಡ", "outlet_id": 390739, "lat": 15.458924, "lng": 75.007808, "has_cng": False},
+            {"key": "hubballi", "kn": "ಹುಬ್ಬಳ್ಳಿ", "outlet_id": 390740, "lat": 15.364708, "lng": 75.123955, "has_cng": True},
+            {"key": "kalghatgi", "kn": "ಕಲಘಟಗಿ", "outlet_id": 390741, "lat": 15.183300, "lng": 74.972200, "has_cng": False},
+            {"key": "kundgol", "kn": "ಕುಂದಗೋಳ", "outlet_id": 390742, "lat": 15.256400, "lng": 75.249400, "has_cng": False},
+            {"key": "navalgund", "kn": "ನವಲಗುಂದ", "outlet_id": 390743, "lat": 15.565300, "lng": 75.357800, "has_cng": False},
+        ],
+    },
 }
+
+GOODRETURNS_DISTRICT_MAP = {
+    "bagalkot": "bagalkot",
+    "bangalore": "bengaluru_urban",
+    "bengaluru": "bengaluru_urban",
+    "bangalore rural": "bengaluru_rural",
+    "bengaluru rural": "bengaluru_rural",
+    "belgaum": "belagavi",
+    "belagavi": "belagavi",
+    "bellary": "ballari",
+    "ballari": "ballari",
+    "bidar": "bidar",
+    "bijapur": "vijayapura",
+    "vijayapura": "vijayapura",
+    "chamrajnagar": "chamarajanagar",
+    "chamarajanagar": "chamarajanagar",
+    "chikkaballapura": "chikkaballapur",
+    "chikkaballapur": "chikkaballapur",
+    "chikmagalur": "chikkamagaluru",
+    "chikkamagaluru": "chikkamagaluru",
+    "chitradurga": "chitradurga",
+    "dakshina kannada": "dakshina_kannada",
+    "davangere": "davanagere",
+    "davanagere": "davanagere",
+    "dharwad": "dharwad",
+    "gadag": "gadag",
+    "gulbarga": "kalaburagi",
+    "kalaburagi": "kalaburagi",
+    "hassan": "hassan",
+    "haveri": "haveri",
+    "kodagu": "kodagu",
+    "kolar": "kolar",
+    "koppal": "koppal",
+    "mandya": "mandya",
+    "mysore": "mysuru",
+    "mysuru": "mysuru",
+    "raichur": "raichur",
+    "ramanagara": "ramanagara",
+    "shimoga": "shivamogga",
+    "shivamogga": "shivamogga",
+    "tumkur": "tumakuru",
+    "tumakuru": "tumakuru",
+    "udupi": "udupi",
+    "uttara kannada": "uttara_kannada",
+    "vijayanagara": "vijayanagara",
+    "yadgir": "yadgir",
+}
+
+
+def _fetch_goodreturns_karnataka() -> dict:
+    """Scrapes live petrol & diesel prices for all 31 Karnataka districts from GoodReturns."""
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    }
+    dist_prices = {}
+    for fuel in ("petrol", "diesel"):
+        url = f"https://www.goodreturns.in/{fuel}-price-in-karnataka-s17.html"
+        try:
+            r = requests.get(url, headers=headers, timeout=15)
+            r.raise_for_status()
+            soup = BeautifulSoup(r.text, "html.parser")
+            for tbl in soup.find_all("table"):
+                for rw in tbl.find_all("tr"):
+                    cols = [c.get_text(strip=True) for c in rw.find_all("td")]
+                    if len(cols) >= 2 and "₹" in cols[1]:
+                        city_raw = cols[0].strip().lower()
+                        dkey = GOODRETURNS_DISTRICT_MAP.get(city_raw)
+                        m = re.search(r"([\d]+\.[\d]+)", cols[1])
+                        if dkey and m:
+                            val = round(float(m.group(1)), 2)
+                            chg = 0.0
+                            if len(cols) >= 3:
+                                cm = re.search(r"([+-]?[\d]+\.[\d]+)", cols[2])
+                                if cm:
+                                    chg = round(float(cm.group(1)), 2)
+                            entry = dist_prices.setdefault(dkey, {})
+                            entry[fuel] = val
+                            if fuel == "petrol":
+                                entry["change"] = chg
+        except Exception as e:
+            log.warning(f"GoodReturns {fuel} fetch notice: {e}")
+    return dist_prices
 
 
 def _fetch_hpcl_outlet(item: dict) -> tuple[str, dict]:
@@ -455,10 +552,14 @@ def _fetch_hpcl_outlet(item: dict) -> tuple[str, dict]:
 
 
 def run() -> dict:
-    """Main execution: Scrapes petrol & diesel prices across Karnataka Districts & Taluks."""
+    """Main execution: Scrapes live petrol & diesel prices across all 31 Karnataka Districts & Taluks."""
     log.info("⛽ Starting Karnataka District & Taluk level petrol/diesel scraper...")
 
-    # Flatten list of all taluk outlets for concurrent execution
+    # Primary live source: GoodReturns Karnataka District Table (31/31 districts)
+    gr_district_prices = _fetch_goodreturns_karnataka()
+    log.info(f"✓ GoodReturns live Karnataka districts fetched: {len(gr_district_prices)}/31")
+
+    # Flatten list of all taluk outlets
     all_taluk_items = []
     for dist_key, dist_data in KARNATAKA_DISTRICTS_TALUKS.items():
         for taluk in dist_data["taluks"]:
@@ -466,25 +567,26 @@ def run() -> dict:
             item["district_key"] = dist_key
             all_taluk_items.append(item)
 
-    log.info(f"🔍 Fetching live HPCL rates for {len(all_taluk_items)} Taluks/Cities across Karnataka...")
-
-    # Parallel scraping using ThreadPoolExecutor for fast execution
+    # Secondary fallback: HPCL outlets only if GoodReturns returned < 10 districts
     scraped_results = {}
-    with ThreadPoolExecutor(max_workers=20) as executor:
-        futures = [executor.submit(_fetch_hpcl_outlet, item) for item in all_taluk_items]
-        for future in as_completed(futures):
-            key, res = future.result()
-            scraped_results[key] = res
+    if len(gr_district_prices) < 10:
+        log.info(f"🔍 Falling back to HPCL API for {len(all_taluk_items)} Taluks/Cities...")
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = [executor.submit(_fetch_hpcl_outlet, item) for item in all_taluk_items]
+            for future in as_completed(futures):
+                key, res = future.result()
+                scraped_results[key] = res
 
     # Establish Bangalore base anchor rates with Sticky Fallback from existing data
     from utils import load_json
     existing_petrol_data = load_json("petrol_rates.json", {})
     existing_cities = existing_petrol_data.get("cities", {})
-    existing_blr = existing_cities.get("bangalore", {}) or existing_cities.get("bengaluru", {})
+    existing_blr = existing_cities.get("bengaluru", {}) or existing_cities.get("bangalore", {})
 
-    blr_res = scraped_results.get("bangalore", {})
-    base_petrol = blr_res.get("petrol") or existing_blr.get("petrol") or 110.89
-    base_diesel = blr_res.get("diesel") or existing_blr.get("diesel") or 90.00
+    gr_blr = gr_district_prices.get("bengaluru_urban", {})
+    blr_res = scraped_results.get("bengaluru", {}) or scraped_results.get("bangalore", {})
+    base_petrol = gr_blr.get("petrol") or blr_res.get("petrol") or existing_blr.get("petrol") or 111.68
+    base_diesel = gr_blr.get("diesel") or blr_res.get("diesel") or existing_blr.get("diesel") or 99.56
     base_cng = blr_res.get("cng") or existing_blr.get("cng") or 83.00
 
     districts_output = {}
@@ -493,18 +595,20 @@ def run() -> dict:
 
     for dist_key, dist_data in KARNATAKA_DISTRICTS_TALUKS.items():
         dist_taluks_output = {}
+        gr_d = gr_district_prices.get(dist_key, {})
 
         for taluk in dist_data["taluks"]:
             key = taluk["key"]
             res = scraped_results.get(key, {})
             existing_taluk = existing_cities.get(key, {})
 
-            # Sticky Fallback: Use live scraped > existing saved rate > base anchor
-            petrol = res.get("petrol") or existing_taluk.get("petrol") or base_petrol
-            diesel = res.get("diesel") or existing_taluk.get("diesel") or base_diesel
+            # Priority: GoodReturns live district > HPCL live outlet > existing saved rate > base anchor
+            petrol = gr_d.get("petrol") or res.get("petrol") or existing_taluk.get("petrol") or base_petrol
+            diesel = gr_d.get("diesel") or res.get("diesel") or existing_taluk.get("diesel") or base_diesel
             cng = (res.get("cng") or existing_taluk.get("cng") or base_cng) if taluk.get("has_cng") else None
+            is_live_entry = bool(gr_d.get("petrol") and gr_d.get("diesel")) or bool(res.get("is_live"))
 
-            if res.get("is_live"):
+            if is_live_entry:
                 live_count += 1
 
             taluk_data = {
@@ -517,8 +621,8 @@ def run() -> dict:
                 "petrol": petrol,
                 "diesel": diesel,
                 "cng": cng,
-                "change": 0.00,
-                "is_live": res.get("is_live", False),
+                "change": gr_d.get("change", 0.00),
+                "is_live": is_live_entry,
             }
 
             dist_taluks_output[key] = taluk_data
@@ -531,14 +635,17 @@ def run() -> dict:
         }
 
     # Alias for bengaluru/bangalore
-    if "bangalore" in cities_output:
+    if "bengaluru" in cities_output:
+        cities_output["bangalore"] = cities_output["bengaluru"]
+    elif "bangalore" in cities_output:
         cities_output["bengaluru"] = cities_output["bangalore"]
 
     output = {
         "date": ist_date(),
         "updated_at": ist_now(),
-        "source": "HP Retail Live Outlet API",
+        "source": "GoodReturns Karnataka Live Fuel Rates" if gr_district_prices else "HP Retail Live Outlet API",
         "live_outlets_scraped": live_count,
+        "live_districts_scraped": len(gr_district_prices),
         "total_taluks": len(all_taluk_items),
         "total_districts": len(districts_output),
         "districts": districts_output,

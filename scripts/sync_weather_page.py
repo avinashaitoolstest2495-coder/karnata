@@ -60,7 +60,7 @@ def sync_weather():
     nowcast_dists = weather_data.get('nowcast', {}).get('districts', {})
     forecast_5d = weather_data.get('forecast_5days', {})
     districts = weather_data.get('districts', {})
-    bengaluru = districts.get('bengaluru_urban', list(districts.values())[0])
+    bengaluru = districts.get('bengaluru_urban') or (list(districts.values())[0] if districts else {})
 
     # 1. Build master_d5
     master_d5 = {}
@@ -335,6 +335,28 @@ def sync_weather():
     if warn_grid:
         warn_grid.clear()
         warn_grid.append(BeautifulSoup(grid_cards_html, 'html.parser'))
+
+    # Update #forecast-h-scroll with fresh 7-day forecast for Bengaluru
+    forecast_scroll = soup.find(id='forecast-h-scroll')
+    bng_f7 = bengaluru.get('forecast_7d', []) if isinstance(bengaluru, dict) else []
+    if forecast_scroll and bng_f7:
+        f7_cards = ""
+        for idx_f, fday in enumerate(bng_f7):
+            cls = "forecast-h-card today" if idx_f == 0 else "forecast-h-card"
+            f7_cards += f"""
+<div class="{cls}">
+<div class="fhc-day">{fday.get('day_kn', '')}</div>
+<div class="fhc-date">{fday.get('date', '')}</div>
+<div class="fhc-icon">{fday.get('icon', '⛅')}</div>
+<div class="fhc-desc">{fday.get('desc_kn', '')}</div>
+<div class="fhc-rain-pill">💧 {fday.get('precip_prob', 0)}%</div>
+<div class="fhc-temp-row">
+<span class="fhc-max">{round(fday.get('temp_max', 28))}°</span>
+<span class="fhc-min">{round(fday.get('temp_min', 18))}°</span>
+</div>
+</div>"""
+        forecast_scroll.clear()
+        forecast_scroll.append(BeautifulSoup(f7_cards, 'html.parser'))
 
     # Update #warningDayTabs buttons with current dynamic dates
     day_tabs_el = soup.find(id='warningDayTabs')
