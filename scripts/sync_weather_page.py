@@ -358,19 +358,26 @@ def sync_weather():
         forecast_scroll.clear()
         forecast_scroll.append(BeautifulSoup(f7_cards, 'html.parser'))
 
-    # Update #warningDayTabs buttons with current dynamic dates
+    # Update #warningDayTabs buttons with current dynamic dates (accessible tablist)
     day_tabs_el = soup.find(id='warningDayTabs')
     if day_tabs_el:
         tabs_html = f"""
-      <button class="wd-tab active" onclick="switchWarningDay('Nowcast', this)">⚡ 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</button>
-      <button class="wd-tab" onclick="switchWarningDay('Day_1', this)">{day_kn_labels['Day_1']}</button>
-      <button class="wd-tab" onclick="switchWarningDay('Day_2', this)">{day_kn_labels['Day_2']}</button>
-      <button class="wd-tab" onclick="switchWarningDay('Day_3', this)">{day_kn_labels['Day_3']}</button>
-      <button class="wd-tab" onclick="switchWarningDay('Day_4', this)">{day_kn_labels['Day_4']}</button>
-      <button class="wd-tab" onclick="switchWarningDay('Day_5', this)">{day_kn_labels['Day_5']}</button>
+      <button type="button" role="tab" aria-selected="true" class="wd-tab active" onclick="switchWarningDay('Nowcast', this)">⚡ 3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್</button>
+      <button type="button" role="tab" aria-selected="false" class="wd-tab" onclick="switchWarningDay('Day_1', this)">{day_kn_labels['Day_1']}</button>
+      <button type="button" role="tab" aria-selected="false" class="wd-tab" onclick="switchWarningDay('Day_2', this)">{day_kn_labels['Day_2']}</button>
+      <button type="button" role="tab" aria-selected="false" class="wd-tab" onclick="switchWarningDay('Day_3', this)">{day_kn_labels['Day_3']}</button>
+      <button type="button" role="tab" aria-selected="false" class="wd-tab" onclick="switchWarningDay('Day_4', this)">{day_kn_labels['Day_4']}</button>
+      <button type="button" role="tab" aria-selected="false" class="wd-tab" onclick="switchWarningDay('Day_5', this)">{day_kn_labels['Day_5']}</button>
 """
         day_tabs_el.clear()
         day_tabs_el.append(BeautifulSoup(tabs_html, 'html.parser'))
+
+    # Update initial SVG map path classes for Nowcast so colors appear before JS runs
+    for k, d in master_d5['Nowcast']['districts'].items():
+        path_el = soup.find(id=f'map-dist-{k}')
+        if path_el:
+            lvl = d.get('level', 'green')
+            path_el['class'] = ['ka-dist-path', f'level-{lvl}']
 
     # Update window.districtWarnings5D in script
     for s in soup.find_all('script'):
