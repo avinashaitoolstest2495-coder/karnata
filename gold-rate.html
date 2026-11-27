@@ -1092,6 +1092,56 @@
           </div>
         </div>
 
+        <!-- ════ SILVER HISTORICAL INTERACTIVE CHART (DHAN.CO LIVE & FULL HISTORY) ════ -->
+        <div id="silver-hist-chart-wrapper" style="margin-bottom: 20px; background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%); border: 1.5px solid #CBD5E1; border-radius: 14px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+            <div>
+              <h4 style="font-size: 16px; font-weight: 900; color: #0F172A; margin: 0;">🥈 ಬೆಳ್ಳಿ ದರ ಐತಿಹಾಸಿಕ ಚಾರ್ಟ್ (Silver 999 Price Trend — Bengaluru Live)</h4>
+              <div style="font-size: 11.5px; color: #64748B; font-weight: 600;">ದೈನಂದಿನ ನೈಜ ಬೆಳ್ಳಿ ದರ ವಿಶ್ಲೇಷಣೆ (2015–2026 · Dhan.co Live Data)</div>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;" id="silver-range-pills">
+              <button class="time-pill" onclick="switchSilverChartRange('7d', this)">7 ದಿನ</button>
+              <button class="time-pill active" onclick="switchSilverChartRange('30d', this)">30 ದಿನ</button>
+              <button class="time-pill" onclick="switchSilverChartRange('3m', this)">3 ತಿಂಗಳು</button>
+              <button class="time-pill" onclick="switchSilverChartRange('6m', this)">6 ತಿಂಗಳು</button>
+              <button class="time-pill" onclick="switchSilverChartRange('1y', this)">1 ವರ್ಷ</button>
+              <button class="time-pill" onclick="switchSilverChartRange('5y', this)">5 ವರ್ಷ</button>
+              <button class="time-pill" onclick="switchSilverChartRange('all', this)">ಎಲ್ಲಾ</button>
+              <button class="time-pill" id="silver-unit-toggle" onclick="toggleSilverChartUnit()" style="background:#0F172A; color:#FFFFFF; border-color:#0F172A;">₹/ಗ್ರಾಂ ⇄ ₹/ಕೆಜಿ</button>
+            </div>
+          </div>
+
+          <!-- SILVER SUMMARY METRICS BAR -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 14px;">
+            <div style="background: #FFFFFF; padding: 10px 12px; border-radius: 10px; border: 1px solid #CBD5E1; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: #64748B;">🥈 ಇಂದಿನ ಬೆಳ್ಳಿ ದರ (Today)</div>
+              <div id="silver-stat-today" style="font-size: 16px; font-weight: 900; color: #2563EB; font-family: 'Inter', sans-serif;">-</div>
+            </div>
+            <div style="background: #FFFFFF; padding: 10px 12px; border-radius: 10px; border: 1px solid #CBD5E1; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: #64748B;">🔺 ಆಯ್ದ ಅವಧಿಯ ಗರಿಷ್ಠ (High)</div>
+              <div id="silver-stat-high" style="font-size: 16px; font-weight: 900; color: #0F172A; font-family: 'Inter', sans-serif;">-</div>
+            </div>
+            <div style="background: #FFFFFF; padding: 10px 12px; border-radius: 10px; border: 1px solid #CBD5E1; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: #64748B;">🔻 ಆಯ್ದ ಅವಧಿಯ ಕನಿಷ್ಠ (Low)</div>
+              <div id="silver-stat-low" style="font-size: 16px; font-weight: 900; color: #0F172A; font-family: 'Inter', sans-serif;">-</div>
+            </div>
+            <div style="background: #FFFFFF; padding: 10px 12px; border-radius: 10px; border: 1px solid #CBD5E1; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: #64748B;">📊 ಅವಧಿಯ ಬದಲಾವಣೆ (Delta)</div>
+              <div id="silver-stat-change" style="font-size: 15px; font-weight: 900; font-family: 'Inter', sans-serif;">-</div>
+            </div>
+          </div>
+
+          <!-- SILVER CHART CANVAS -->
+          <div style="position: relative; width: 100%; height: 260px;" class="hist-canvas-container">
+            <canvas id="silverHistChart"></canvas>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 10px; font-size: 12px; font-weight: 800; color: #475569; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 12px; background: #2563EB; border-radius: 3px; display: inline-block;"></span> 999 ಶುದ್ಧ ಬೆಳ್ಳಿ (Pure Silver)</span>
+            <span id="silver-chart-unit-label" style="color: #64748B;">ಘಟಕ: ಪ್ರತಿ ಗ್ರಾಂ (₹ / g)</span>
+          </div>
+        </div>
+
         <div style="overflow-x: auto; max-height: 480px; overflow-y: auto; border: 1px solid #F1F5F9; border-radius: 12px;">
           <table class="hist-table" id="gold-history-table" style="width: 100%; border-collapse: collapse;">
             <thead style="position: sticky; top: 0; background: #F8FAFC; z-index: 2;">
@@ -3673,6 +3723,184 @@
 
       tbody.innerHTML = html;
     }
+
+    // ══════════════════════════════════════════════════════
+    // SILVER HISTORICAL INTERACTIVE CHART (DHAN.CO LIVE + FULL HISTORY)
+    // ══════════════════════════════════════════════════════
+    let SILVER_HIST_FULL = [];
+    let silverChartInstance = null;
+    let CURRENT_SILVER_RANGE = '30d';
+    let SILVER_UNIT_KG = false;
+
+    function initSilverHistoryChart() {
+      // Immediate render from embedded GOLD_HIST_FULL silver999 values
+      SILVER_HIST_FULL = (GOLD_HIST_FULL || []).map(d => ({
+        date: d.date,
+        silver999: parseFloat(d.silver999 || d['silver_per_gram'] || GOLD_RATES['silver'] || 157.46)
+      }));
+      switchSilverChartRange(CURRENT_SILVER_RANGE);
+
+      // Load full 3,800+ day Dhan Bangalore silver history from /data/historical_rates.json
+      fetch('/data/historical_rates.json?v=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
+          if (data && Array.isArray(data.silver_history) && data.silver_history.length > 0) {
+            SILVER_HIST_FULL = data.silver_history;
+            switchSilverChartRange(CURRENT_SILVER_RANGE);
+          }
+        })
+        .catch(e => console.warn('Silver history fetch fallback:', e));
+    }
+
+    function toggleSilverChartUnit() {
+      SILVER_UNIT_KG = !SILVER_UNIT_KG;
+      const lbl = document.getElementById('silver-chart-unit-label');
+      if (lbl) lbl.textContent = SILVER_UNIT_KG ? 'ಘಟಕ: ಪ್ರತಿ ಕಿಲೋಗ್ರಾಂ (₹ / Kg)' : 'ಘಟಕ: ಪ್ರತಿ ಗ್ರಾಂ (₹ / g)';
+      switchSilverChartRange(CURRENT_SILVER_RANGE);
+    }
+
+    function switchSilverChartRange(range, btn) {
+      CURRENT_SILVER_RANGE = range || '30d';
+      if (btn) {
+        document.querySelectorAll('#silver-range-pills .time-pill').forEach(b => {
+          if (b.id !== 'silver-unit-toggle') b.classList.remove('active');
+        });
+        btn.classList.add('active');
+      }
+
+      const source = (SILVER_HIST_FULL && SILVER_HIST_FULL.length > 0) ? SILVER_HIST_FULL : GOLD_HIST_FULL;
+      if (!source || source.length === 0) return;
+
+      let count = 30;
+      if (range === '7d') count = 7;
+      else if (range === '30d') count = 30;
+      else if (range === '3m') count = 90;
+      else if (range === '6m') count = 180;
+      else if (range === '1y') count = 365;
+      else if (range === '5y') count = 1825;
+      else if (range === 'all') count = source.length;
+
+      let chron = source.slice(-count);
+      // Downsample smoothly for very long multi-year views (> 365 pts)
+      if (chron.length > 365) {
+        const step = Math.ceil(chron.length / 260);
+        chron = chron.filter((_, i) => i % step === 0 || i === chron.length - 1);
+      }
+
+      renderSilverInteractiveChart(chron);
+    }
+
+    function renderSilverInteractiveChart(chronData) {
+      if (!chronData || chronData.length === 0) return;
+      const canvas = document.getElementById('silverHistChart');
+      if (!canvas) return;
+
+      const mult = SILVER_UNIT_KG ? 1000 : 1;
+      const fmtVal = (v) => SILVER_UNIT_KG
+        ? '₹' + Math.round(v).toLocaleString('en-IN')
+        : '₹' + v.toFixed(2);
+
+      const labels = chronData.map(d => {
+        const p = (d.date || '').split('-');
+        return chronData.length > 180 ? `${p[1]}/${p[0].slice(2)}` : `${p[2]}/${p[1]}`;
+      });
+      const vals = chronData.map(d => parseFloat(d.silver999 || d['silver_per_gram'] || 0) * mult);
+
+      const maxV = Math.max(...vals);
+      const minV = Math.min(...vals);
+      const firstV = vals[0];
+      const lastV = vals[vals.length - 1];
+      const delta = lastV - firstV;
+      const pct = firstV > 0 ? ((delta / firstV) * 100).toFixed(2) : '0.00';
+
+      const todayEl = document.getElementById('silver-stat-today');
+      const highEl = document.getElementById('silver-stat-high');
+      const lowEl = document.getElementById('silver-stat-low');
+      const chgEl = document.getElementById('silver-stat-change');
+
+      if (todayEl) todayEl.textContent = fmtVal(lastV);
+      if (highEl) highEl.textContent = fmtVal(maxV);
+      if (lowEl) lowEl.textContent = fmtVal(minV);
+      if (chgEl) {
+        if (delta > 0) {
+          chgEl.style.color = '#15803D';
+          chgEl.textContent = `▲ +${fmtVal(delta)} (+${pct}%)`;
+        } else if (delta < 0) {
+          chgEl.style.color = '#DC2626';
+          chgEl.textContent = `▼ -${fmtVal(Math.abs(delta))} (${pct}%)`;
+        } else {
+          chgEl.style.color = '#64748B';
+          chgEl.textContent = '0 (ಸ್ಥಿರ)';
+        }
+      }
+
+      if (silverChartInstance) silverChartInstance.destroy();
+
+      const ctx = canvas.getContext('2d');
+      const gradSil = ctx.createLinearGradient(0, 0, 0, 240);
+      gradSil.addColorStop(0, 'rgba(37, 99, 235, 0.28)');
+      gradSil.addColorStop(1, 'rgba(37, 99, 235, 0.00)');
+
+      silverChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: SILVER_UNIT_KG ? '999 ಬೆಳ್ಳಿ (₹/Kg)' : '999 ಬೆಳ್ಳಿ (₹/g)',
+            data: vals,
+            borderColor: '#2563EB',
+            backgroundColor: gradSil,
+            borderWidth: 2.5,
+            pointRadius: chronData.length <= 15 ? 4 : (chronData.length <= 35 ? 2.5 : 0),
+            pointHoverRadius: 6,
+            pointBackgroundColor: '#1D4ED8',
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(15, 23, 42, 0.94)',
+              titleColor: '#F8FAFC',
+              titleFont: { size: 13, weight: 'bold' },
+              bodyFont: { size: 12 },
+              padding: 10,
+              cornerRadius: 8,
+              callbacks: {
+                title: (items) => '📅 ' + chronData[items[0].dataIndex].date,
+                label: (item) => {
+                  const perG = parseFloat(chronData[item.dataIndex].silver999 || 0);
+                  return ` 999 ಬೆಳ್ಳಿ: ₹${perG.toFixed(2)}/g (₹${Math.round(perG * 1000).toLocaleString('en-IN')}/Kg)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 11, family: 'Inter, sans-serif' }, maxTicksLimit: 8, color: '#64748B' }
+            },
+            y: {
+              grid: { color: '#E2E8F0' },
+              ticks: {
+                font: { size: 11, family: 'Inter, sans-serif' },
+                color: '#64748B',
+                callback: (val) => SILVER_UNIT_KG ? '₹' + Math.round(val).toLocaleString('en-IN') : '₹' + Number(val).toFixed(0)
+              }
+            }
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initSilverHistoryChart();
+    });
 
 </script>
 </body>
