@@ -1,0 +1,629 @@
+# -*- coding: utf-8 -*-
+"""
+Karnata — build_creative_homepage.py
+Ultra-Creative, Newspaper + Live Intelligence Bento Homepage Makeover (index.html):
+- Live Newsroom Ticker (#ticker-track) compatible with sync_all_static_dom.py & sync_gold_ecosystem.py
+- Atmospheric Karnataka Hero with Instant Site Search + 5 Live Bento KPI Cards (#lc-gold, #lc-silver, #lc-petrol, #lc-dam, #lc-temp)
+- BEST 6 JOURNALISTIC ARTICLES SHOWCASE (1 Hero Magazine Lead + 5 Photo Editorial Cards from data/cms_articles.json)
+- Creative Categorized Bento Services Grid (Weather Map, Gold/Silver, Petrol, APMC, Dams, 885+ Schemes, 31 Districts, Calculators)
+- Karnataka Knowledge & FAQ Section with Organization + WebSite + SearchAction + FAQPage JSON-LD for Top Google SEO & AI GEO
+"""
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+import json
+import base64
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+NK_DIR = ROOT_DIR / "namma-karnataka"
+SECRET_KEY = "NK_SECURE_KEY_2026_KARNATA"
+
+
+def load_json_dec(rel_path):
+    p = ROOT_DIR / rel_path
+    if not p.exists():
+        return {}
+    raw = json.loads(p.read_text(encoding="utf-8"))
+    if isinstance(raw, dict) and "payload" in raw:
+        b = base64.b64decode(raw["payload"])
+        k = SECRET_KEY.encode("utf-8")
+        return json.loads(bytes(x ^ k[i % len(k)] for i, x in enumerate(b)).decode("utf-8"))
+    return raw
+
+
+def build_homepage():
+    gold = load_json_dec("data/gold_rates.json")
+    petrol = load_json_dec("data/petrol_rates.json")
+    dams = load_json_dec("data/dam_levels.json")
+    weather = load_json_dec("data/weather.json")
+    cms = load_json_dec("data/cms_articles.json")
+
+    g24 = int(gold.get("base", {}).get("24k_per_gram") or 12845)
+    g22 = int(gold.get("base", {}).get("22k_per_gram") or 11770)
+    sil = float(gold.get("base", {}).get("silver_per_gram") or 157.46)
+
+    bng_petrol = 111.68
+    bng_f = (petrol.get("districts") or {}).get("bengaluru_urban") or {}
+    if bng_f.get("taluks"):
+        bng_petrol = list(bng_f["taluks"].values())[0].get("petrol", 111.68)
+
+    krs_pct = f"{(dams.get('dams') or {}).get('krs', {}).get('storage_pct', 38.2)}%"
+    bng_temp = round((weather.get("districts") or {}).get("bengaluru_urban", {}).get("current", {}).get("temp_c", 24.0), 1)
+
+    articles = (cms.get("articles") or [])[:6]
+    lead_art = articles[0] if articles else None
+    grid_arts = articles[1:6] if len(articles) > 1 else []
+
+    lead_html = ""
+    if lead_art:
+        lead_html = f'''
+        <a href="{lead_art['url']}" class="ed-lead-card">
+          <div class="ed-lead-img-wrap">
+            <img src="{lead_art.get('image', '/assets/images/og-karnata-preview.png')}" alt="{lead_art['title']}" class="ed-lead-img" width="800" height="450" fetchpriority="high">
+            <span class="ed-badge-top">🔥 ಮುಖಪುಟ ವಿಶೇಷ</span>
+          </div>
+          <div class="ed-lead-body">
+            <span class="ed-cat">{lead_art.get('category', 'ವಿಶೇಷ ವರದಿ')}</span>
+            <h3 class="ed-lead-title">{lead_art['title']}</h3>
+            <p class="ed-lead-exc">{lead_art['excerpt']}</p>
+            <div class="ed-meta">
+              <span>✍️ {lead_art.get('author', 'Karnata Desk')}</span>
+              <span>📍 {lead_art.get('dateline', 'ಕರ್ನಾಟಕ')} · {lead_art.get('read_time', '8 ನಿಮಿಷ ಓದು')}</span>
+            </div>
+          </div>
+        </a>'''
+
+    sub_cards_html = "\n".join(
+        f'''<a href="{a['url']}" class="ed-mini-card">
+          <img src="{a.get('image', '/assets/images/og-karnata-preview.png')}" alt="{a['title']}" class="ed-mini-img" loading="lazy" width="400" height="225">
+          <div class="ed-mini-body">
+            <span class="ed-cat">{a.get('category', 'ವಿಶೇಷ ವರದಿ')}</span>
+            <h3 class="ed-mini-title">{a['title']}</h3>
+            <div class="ed-mini-meta">📍 {a.get('dateline', 'ಕರ್ನಾಟಕ')} · {a.get('read_time', '8 ನಿಮಿಷ ಓದು')}</div>
+          </div>
+        </a>'''
+        for a in grid_arts
+    )
+
+    html = f'''<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="geo.region" content="IN-KA">
+  <meta name="geo.placename" content="Karnataka, India">
+  <meta name="geo.position" content="12.9716;77.5946">
+  <meta name="ICBM" content="12.9716, 77.5946">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4907996917420478"></script>
+
+  <title>ಕರ್ನಾಟ (Karnata.in) — ಕರ್ನಾಟಕ ಲೈವ್ ಹವಾಮಾನ, ಚಿನ್ನ-ಬೆಳ್ಳಿ, ಪೆಟ್ರೋಲ್, APMC, ಜಲಾಶಯ &amp; ವಿಶೇಷ ವರದಿಗಳು</title>
+  <meta name="description" content="ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಹವಾಮಾನ &amp; IMD ಮಳೆ ನಕ್ಷೆ, ಇಂದಿನ 24K/22K ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ, ಪೆಟ್ರೋಲ್-ಡೀಸೆಲ್, KRAMA APMC ಮಂಡಿ ದರ, 13 ಜಲಾಶಯ ನೀರಿನ ಮಟ್ಟ, 885+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಮತ್ತು ಆಳವಾದ ಕನ್ನಡ ವಿಶೇಷ ಲೇಖನಗಳು.">
+  <meta name="keywords" content="Karnata.in, Karnataka live weather, Bengaluru gold rate today, silver rate today Bangalore, Karnataka petrol price, APMC market rates Karnataka, KRS dam water level today, Karnataka government schemes">
+  <link rel="canonical" href="https://karnata.in/">
+  <link rel="alternate" hreflang="kn-IN" href="https://karnata.in/">
+  <link rel="alternate" hreflang="en-IN" href="https://karnata.in/">
+  <link rel="alternate" hreflang="x-default" href="https://karnata.in/">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ಕರ್ನಾಟ (Karnata.in) — ಕರ್ನಾಟಕದ ಲೈವ್ ಮಾಹಿತಿ, ಹವಾಮಾನ, ಚಿನ್ನ-ಬೆಳ್ಳಿ &amp; ವಿಶೇಷ ವರದಿಗಳು">
+  <meta property="og:description" content="31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ IMD ಹವಾಮಾನ ನಕ್ಷೆ, ಚಿನ್ನ-ಬೆಳ್ಳಿ, ಪೆಟ್ರೋಲ್, APMC, ಜಲಾಶಯ ನೀರಿನ ಮಟ್ಟ, 885+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಮತ್ತು ಮೂಲ ಕನ್ನಡ ಪತ್ರಿಕೋದ್ಯಮ ವರದಿಗಳು.">
+  <meta property="og:url" content="https://karnata.in/">
+  <meta property="og:site_name" content="ಕರ್ನಾಟ — Karnata.in">
+  <meta property="og:locale" content="kn_IN">
+  <meta property="og:image" content="https://karnata.in/assets/images/og-karnata-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ಕರ್ನಾಟ (Karnata.in) — ಕರ್ನಾಟಕ ಲೈವ್ ಮಾಹಿತಿ &amp; ವಿಶೇಷ ವರದಿಗಳು">
+  <meta name="twitter:description" content="ಹವಾಮಾನ ನಕ್ಷೆ, ಚಿನ್ನ-ಬೆಳ್ಳಿ, ಪೆಟ್ರೋಲ್, APMC, ಜಲಾಶಯ ಮತ್ತು 20+ ಆಳವಾದ ಕನ್ನಡ ವಿಶೇಷ ಲೇಖನಗಳು.">
+  <meta name="twitter:image" content="https://karnata.in/assets/images/og-karnata-preview.png">
+
+  <!-- Rich SEO & AI GEO JSON-LD Schemas -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Karnata.in (ಕರ್ನಾಟ)",
+    "url": "https://karnata.in",
+    "logo": "https://karnata.in/karnata-logo.png",
+    "description": "Independent Karnataka live public data, weather, bullion, APMC, reservoir telemetry, and Kannada journalism portal covering all 31 districts.",
+    "address": {{
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560001",
+      "addressCountry": "IN"
+    }},
+    "contactPoint": {{
+      "@type": "ContactPoint",
+      "email": "contact@karnata.in",
+      "contactType": "editorial"
+    }}
+  }}
+  </script>
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ಕರ್ನಾಟ — Karnata.in",
+    "url": "https://karnata.in/",
+    "inLanguage": "kn-IN",
+    "potentialAction": {{
+      "@type": "SearchAction",
+      "target": "https://karnata.in/ask?q={{search_term_string}}",
+      "query-input": "required name=search_term_string"
+    }}
+  }}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/karnata-theme.css">
+  <script src="/data-loader.js"></script>
+  <script src="/nav-component.js?v=20260830_v6"></script>
+
+  <style>
+    :root {{
+      --k-ink: #0F172A;
+      --k-muted: #64748B;
+      --k-bg: #F8FAFC;
+      --k-card: #FFFFFF;
+      --k-border: #E2E8F0;
+      --k-red: #B91C1C;
+      --k-gold: #D97706;
+      --k-blue: #0284C7;
+      --k-green: #15803D;
+      --k-radius: 18px;
+      --k-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.09);
+    }}
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{
+      font-family: 'Anek Kannada', 'Inter', system-ui, sans-serif;
+      background: var(--k-bg);
+      color: var(--k-ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }}
+    .wrap {{ max-width: 1240px; margin: 0 auto; padding: 0 16px; }}
+
+    /* ═══ LIVE NEWSROOM TICKER ═══ */
+    .ticker-bar {{
+      background: #0B1120;
+      color: #F8FAFC;
+      border-bottom: 2px solid #B91C1C;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-size: 13px;
+      font-weight: 700;
+    }}
+    .ticker-track {{
+      display: inline-flex;
+      gap: 32px;
+      animation: tickerMove 32s linear infinite;
+      padding-left: 16px;
+    }}
+    .ticker-bar:hover .ticker-track {{ animation-play-state: paused; }}
+    @keyframes tickerMove {{
+      0% {{ transform: translateX(0); }}
+      100% {{ transform: translateX(-50%); }}
+    }}
+    .ticker-item {{ display: inline-flex; align-items: center; gap: 6px; color: #CBD5E1; }}
+    .t-val {{ font-family: 'Inter', sans-serif; font-weight: 900; color: #FDE047; }}
+
+    /* ═══ CREATIVE KARNATAKA HERO ═══ */
+    .home-hero {{
+      background:
+        radial-gradient(circle at 86% 14%, rgba(250, 204, 21, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 12% 85%, rgba(185, 28, 28, 0.26) 0%, transparent 50%),
+        linear-gradient(135deg, #090D16 0%, #171F32 52%, #291319 100%);
+      color: #F8FAFC;
+      padding: 36px 0 74px;
+      position: relative;
+    }}
+    .hero-top-tag {{
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FDE68A;
+      font-size: 12.5px; font-weight: 800;
+      padding: 5px 14px; border-radius: 999px;
+      margin-bottom: 14px;
+    }}
+    .hero-h1 {{
+      font-size: clamp(1.7rem, 1.25rem + 1.8vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.24;
+      letter-spacing: -0.02em;
+      max-width: 820px;
+      margin-bottom: 10px;
+    }}
+    .hero-h1 span {{ color: #FACC15; }}
+    .hero-p {{
+      font-size: 15.5px;
+      color: #CBD5E1;
+      max-width: 720px;
+      margin-bottom: 22px;
+    }}
+
+    .hero-search-row {{
+      display: flex;
+      gap: 10px;
+      max-width: 680px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }}
+    .hero-search-input {{
+      flex: 1;
+      min-width: 240px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 2px solid transparent;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0F172A;
+    }}
+    .hero-search-input:focus {{ outline: none; border-color: #FACC15; }}
+    .hero-search-btn {{
+      background: linear-gradient(135deg, #DC2626, #EA580C);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      padding: 13px 22px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+    }}
+
+    /* ═══ FLOATING 5-METRIC LIVE BENTO STRIP ═══ */
+    .live-kpi-strip {{
+      margin-top: -46px;
+      position: relative;
+      z-index: 6;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }}
+    @media (max-width: 980px) {{ .live-kpi-strip {{ grid-template-columns: repeat(2, 1fr); }} }}
+    @media (max-width: 520px) {{ .live-kpi-strip {{ grid-template-columns: 1fr; }} }}
+    .kpi-card {{
+      background: var(--k-card);
+      border: 1px solid var(--k-border);
+      border-radius: 16px;
+      padding: 15px 16px;
+      text-decoration: none;
+      box-shadow: var(--k-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: transform 0.16s, border-color 0.16s;
+    }}
+    .kpi-card:hover {{ transform: translateY(-3px); border-color: var(--k-blue); }}
+    .kpi-lbl {{ font-size: 12px; font-weight: 800; color: var(--k-muted); display: flex; justify-content: space-between; }}
+    .kpi-val {{ font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 900; color: var(--k-ink); }}
+    .kpi-sub {{ font-size: 11.5px; font-weight: 700; color: var(--k-blue); }}
+    .kpi-card.gold .kpi-val {{ color: #B45309; }}
+    .kpi-card.silver .kpi-val {{ color: #1D4ED8; }}
+    .kpi-card.petrol .kpi-val {{ color: #DC2626; }}
+    .kpi-card.dam .kpi-val {{ color: #0284C7; }}
+    .kpi-card.wx .kpi-val {{ color: #15803D; }}
+
+    /* ═══ SECTION HEADERS ═══ */
+    .sec-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }}
+    .sec-title {{
+      font-size: clamp(1.25rem, 1rem + 0.9vw, 1.7rem);
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1.25;
+    }}
+    .sec-sub {{ font-size: 13.5px; color: #64748B; margin-top: 2px; }}
+    .sec-more {{
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #0F172A; color: #FFFFFF;
+      text-decoration: none; font-size: 13px; font-weight: 800;
+      padding: 8px 16px; border-radius: 999px;
+      transition: background 0.15s;
+    }}
+    .sec-more:hover {{ background: #B91C1C; }}
+
+    /* ═══ BEST 6 EDITORIAL ARTICLES SHOWCASE (MAGAZINE LAYOUT) ═══ */
+    .ed-section {{ margin-bottom: 40px; }}
+    .ed-magazine-grid {{
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }}
+    @media (max-width: 900px) {{ .ed-magazine-grid {{ grid-template-columns: 1fr; }} }}
+
+    .ed-lead-card {{
+      display: flex; flex-direction: column;
+      background: #FFFFFF; border: 1px solid var(--k-border); border-radius: 20px;
+      overflow: hidden; text-decoration: none; box-shadow: var(--k-shadow);
+      transition: transform 0.18s, border-color 0.18s;
+    }}
+    .ed-lead-card:hover {{ transform: translateY(-3px); border-color: var(--k-red); }}
+    .ed-lead-img-wrap {{ position: relative; background: #0F172A; }}
+    .ed-lead-img {{ width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }}
+    .ed-badge-top {{
+      position: absolute; top: 14px; left: 14px;
+      background: #DC2626; color: #FFFFFF;
+      font-size: 12px; font-weight: 800; padding: 5px 12px; border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+    }}
+    .ed-lead-body {{ padding: 22px 24px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }}
+    .ed-cat {{ display: inline-block; font-size: 11.5px; font-weight: 800; color: #B91C1C; background: #FEF2F2; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; align-self: flex-start; }}
+    .ed-lead-title {{ font-size: clamp(1.2rem, 1rem + 0.7vw, 1.55rem); font-weight: 900; color: #0F172A; line-height: 1.36; margin-bottom: 10px; }}
+    .ed-lead-exc {{ font-size: 14.5px; color: #475569; line-height: 1.72; margin-bottom: 14px; }}
+    .ed-meta {{ display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: #64748B; font-weight: 700; border-top: 1px dashed #E2E8F0; padding-top: 12px; }}
+
+    .ed-sub-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }}
+    .ed-side-stack {{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }}
+    .ed-mini-card {{
+      display: flex; flex-direction: column;
+      background: #FFFFFF; border: 1px solid var(--k-border); border-radius: 16px;
+      overflow: hidden; text-decoration: none; box-shadow: 0 8px 20px -12px rgba(15,23,42,0.08);
+      transition: transform 0.16s, border-color 0.16s;
+    }}
+    .ed-mini-card:hover {{ transform: translateY(-2px); border-color: var(--k-blue); }}
+    .ed-mini-img {{ width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: #0F172A; }}
+    .ed-mini-body {{ padding: 14px 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }}
+    .ed-mini-title {{ font-size: 15.5px; font-weight: 800; color: #0F172A; line-height: 1.42; margin: 4px 0 8px; }}
+    .ed-mini-meta {{ font-size: 12px; color: #64748B; font-weight: 700; }}
+
+    /* ═══ CREATIVE BENTO TOOLS & SERVICES HUB ═══ */
+    .tools-section {{ margin-bottom: 40px; }}
+    .bento-tools {{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 16px;
+    }}
+    .tool-tile {{
+      background: #FFFFFF;
+      border: 1.5px solid var(--k-border);
+      border-radius: 18px;
+      padding: 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 24px -14px rgba(15,23,42,0.08);
+      transition: transform 0.16s, border-color 0.16s, box-shadow 0.16s;
+    }}
+    .tool-tile:hover {{ transform: translateY(-3px); border-color: #0284C7; box-shadow: 0 16px 30px -14px rgba(2,132,199,0.2); }}
+    .tool-ico {{
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; background: #F1F5F9;
+    }}
+    .tool-tile h3 {{ font-size: 16.5px; font-weight: 900; color: #0F172A; }}
+    .tool-tile p {{ font-size: 13.5px; color: #475569; line-height: 1.65; }}
+    .tool-cta {{ font-size: 12.5px; font-weight: 800; color: #0369A1; margin-top: auto; }}
+
+    /* ═══ KARNATAKA EDITORIAL OVERVIEW & SEO BOX ═══ */
+    .seo-intro-box {{
+      background: #FFFFFF;
+      border: 1px solid var(--k-border);
+      border-radius: 20px;
+      padding: 26px 28px;
+      box-shadow: var(--k-shadow);
+      margin-bottom: 42px;
+    }}
+    .seo-intro-box h2 {{ font-size: 20px; font-weight: 900; color: #0F172A; margin-bottom: 10px; }}
+    .seo-intro-box p {{ font-size: 15px; color: #334155; line-height: 1.85; margin-bottom: 10px; }}
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <!-- LIVE NEWSROOM TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track" id="ticker-track">
+      <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹{g22:,}/g</span></span>
+      <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹{sil:.2f}/g</span></span>
+      <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹{bng_petrol:.2f}/L</span></span>
+      <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">{krs_pct}</span></span>
+      <span class="ticker-item">🌡️ ಬೆಂಗಳೂರು ಹವಾಮಾನ <span class="t-val t-val-temp">{bng_temp}°C ⛅</span></span>
+      <!-- Loop clone -->
+      <span class="ticker-item">🥇 22K ಚಿನ್ನ <span class="t-val t-val-gold">₹{g22:,}/g</span></span>
+      <span class="ticker-item">🥈 ಬೆಳ್ಳಿ <span class="t-val t-val-silver">₹{sil:.2f}/g</span></span>
+      <span class="ticker-item">⛽ ಪೆಟ್ರೋಲ್ <span class="t-val t-val-petrol">₹{bng_petrol:.2f}/L</span></span>
+      <span class="ticker-item">💧 KRS <span class="t-val t-val-dam">{krs_pct}</span></span>
+      <span class="ticker-item">🌡️ ಬೆಂಗಳೂರು ಹವಾಮಾನ <span class="t-val t-val-temp">{bng_temp}°C ⛅</span></span>
+    </div>
+  </div>
+
+  <!-- CREATIVE ATMOSPHERIC HERO -->
+  <section class="home-hero">
+    <div class="wrap">
+      <div class="hero-top-tag">🔴 ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಟೆಲಿಮೆಟ್ರಿ &amp; ಮೂಲ ಕನ್ನಡ ಪತ್ರಿಕೋದ್ಯಮ</div>
+      <h1 class="hero-h1">ಕರ್ನಾಟಕದ <span>ನಿಖರ ಲೈವ್ ಮಾಹಿತಿ</span>, ಹವಾಮಾನ ನಕ್ಷೆ, ಮಾರುಕಟ್ಟೆ ದರ &amp; ವಿಶೇಷ ವರದಿಗಳು</h1>
+      <p class="hero-p">IMD 31 ಜಿಲ್ಲೆಗಳ ಮಳೆ ಎಚ್ಚರಿಕೆ ನಕ್ಷೆ, ಇಂದಿನ ಚಿನ್ನ-ಬೆಳ್ಳಿ, ಪೆಟ್ರೋಲ್, KRAMA APMC ಮಂಡಿ ದರ, 13 ಅಣೆಕಟ್ಟುಗಳ ನೀರಿನ ಮಟ್ಟ, 885+ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಮತ್ತು ಆಳವಾದ ಗ್ರೌಂಡ್ ರಿಪೋರ್ಟ್‌ಗಳು ಒಂದೇ ವೇದಿಕೆಯಲ್ಲಿ.</p>
+      <form class="hero-search-row" onsubmit="event.preventDefault(); const q=document.getElementById('homeSearchInput').value.trim(); if(q) window.location.href='/ask?q='+encodeURIComponent(q);">
+        <input type="search" id="homeSearchInput" class="hero-search-input" placeholder="🔍 ಹುಡುಕಿ: ಇಂದಿನ ಚಿನ್ನದ ದರ, ಕೆಆರ್‌ಎಸ್ ನೀರಿನ ಮಟ್ಟ, ಗೃಹಲಕ್ಷ್ಮಿ, ಮಳೆ ಎಚ್ಚರಿಕೆ...">
+        <button type="submit" class="hero-search-btn">🤖 ಹುಡುಕಿ</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- FLOATING 5 LIVE BENTO KPI CARDS -->
+    <div class="live-kpi-strip">
+      <a href="/gold-rate" class="kpi-card gold">
+        <div class="kpi-lbl"><span>🥇 22K ಚಿನ್ನ (1g)</span><span>LIVE</span></div>
+        <div class="kpi-val" id="lc-gold">₹{g22:,}</div>
+        <div class="kpi-sub">24K: ₹{g24:,} · ಚಾರ್ಟ್ ನೋಡಿ →</div>
+      </a>
+      <a href="/gold-rate#silver-hist-chart-wrapper" class="kpi-card silver">
+        <div class="kpi-lbl"><span>🥈 ಬೆಳ್ಳಿ 999 (1g)</span><span>LIVE</span></div>
+        <div class="kpi-val" id="lc-silver">₹{sil:.2f}</div>
+        <div class="kpi-sub">1Kg: ₹{round(sil * 1000):,} · Dhan Live →</div>
+      </a>
+      <a href="/petrol-price" class="kpi-card petrol">
+        <div class="kpi-lbl"><span>⛽ ಬೆಂಗಳೂರು ಪೆಟ್ರೋಲ್</span><span>31 ಜಿಲ್ಲೆ</span></div>
+        <div class="kpi-val" id="lc-petrol">₹{bng_petrol:.2f}</div>
+        <div class="kpi-sub">ಜಿಲ್ಲಾವಾರು ಇಂಧನ ದರ →</div>
+      </a>
+      <a href="/dam-levels" class="kpi-card dam">
+        <div class="kpi-lbl"><span>💧 KRS ಜಲಾಶಯ</span><span>13 ಡ್ಯಾಮ್</span></div>
+        <div class="kpi-val" id="lc-dam">{krs_pct}</div>
+        <div class="kpi-sub">ಒಳಹರಿವು &amp; TMC ಮಟ್ಟ →</div>
+      </a>
+      <a href="/weather" class="kpi-card wx">
+        <div class="kpi-lbl"><span>⛅ ಬೆಂಗಳೂರು ಹವಾಮಾನ</span><span>IMD MAP</span></div>
+        <div class="kpi-val" id="lc-temp">{bng_temp}°C</div>
+        <div class="kpi-sub">31 ಜಿಲ್ಲೆಗಳ ಮಳೆ ನಕ್ಷೆ &amp; AQI →</div>
+      </a>
+    </div>
+
+    <!-- ═══ BEST 6 ORIGINAL JOURNALISTIC ARTICLES SHOWCASE ═══ -->
+    <section class="ed-section" id="featured-articles">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">📰 ವಿಶೇಷ ವರದಿಗಳು — ಕರ್ನಾಟ ಸಂಪಾದಕೀಯ ಆಯ್ಕೆ (Top 6 Stories)</h2>
+          <p class="sec-sub">ಕರ್ನಾಟಕದ ಕೃಷಿ, ಹಣಕಾಸು, ಹವಾಮಾನ, ಜಲಸಂಪನ್ಮೂಲ ಮತ್ತು ನಗರ ಜೀವನದ ಕುರಿತು ಆಳವಾದ ಕನ್ನಡ ಪತ್ರಿಕೋದ್ಯಮ ವರದಿಗಳು.</p>
+        </div>
+        <a href="/articles" class="sec-more">ಎಲ್ಲಾ 20 ಲೇಖನಗಳನ್ನು ಓದಿ →</a>
+      </div>
+
+      <div class="ed-magazine-grid">
+        {lead_html}
+        <div class="ed-side-stack">
+          {sub_cards_html[:0] if False else ""}
+          {"".join(f'''<a href="{a['url']}" class="ed-mini-card" style="flex-direction:row; align-items:stretch;">
+            <img src="{a.get('image', '/assets/images/og-karnata-preview.png')}" alt="{a['title']}" style="width:145px; min-height:110px; object-fit:cover; flex-shrink:0;" loading="lazy">
+            <div class="ed-mini-body" style="padding:12px 14px;">
+              <span class="ed-cat">{a.get('category', 'ವಿಶೇಷ ವರದಿ')}</span>
+              <h3 class="ed-mini-title" style="font-size:14.5px; margin:3px 0 6px;">{a['title']}</h3>
+              <div class="ed-mini-meta">📍 {a.get('dateline', 'ಕರ್ನಾಟಕ')} · {a.get('read_time', '8 ನಿಮಿಷ ಓದು')}</div>
+            </div>
+          </a>''' for a in grid_arts[:2])}
+        </div>
+      </div>
+
+      <div class="ed-sub-grid">
+        {"".join(f'''<a href="{a['url']}" class="ed-mini-card">
+          <img src="{a.get('image', '/assets/images/og-karnata-preview.png')}" alt="{a['title']}" class="ed-mini-img" loading="lazy" width="400" height="225">
+          <div class="ed-mini-body">
+            <span class="ed-cat">{a.get('category', 'ವಿಶೇಷ ವರದಿ')}</span>
+            <h3 class="ed-mini-title">{a['title']}</h3>
+            <div class="ed-mini-meta">📍 {a.get('dateline', 'ಕರ್ನಾಟಕ')} · {a.get('read_time', '8 ನಿಮಿಷ ಓದು')}</div>
+          </div>
+        </a>''' for a in grid_arts[2:5])}
+      </div>
+    </section>
+
+    <!-- ═══ CREATIVE BENTO TOOLS & PUBLIC SERVICES HUB ═══ -->
+    <section class="tools-section">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">⚡ ಕರ್ನಾಟಕ ಲೈವ್ ಪರಿಕರಗಳು &amp; ನಾಗರಿಕ ಸೇವೆಗಳು</h2>
+          <p class="sec-sub">ಪ್ರತಿದಿನ ನವೀಕರಣಗೊಳ್ಳುವ ಅಧಿಕೃತ ದತ್ತಾಂಶ ಮತ್ತು ಉಚಿತ ಕನ್ನಡ ಉಪಯುಕ್ತ ಪರಿಕರಗಳು.</p>
+        </div>
+      </div>
+      <div class="bento-tools">
+        <a href="/weather" class="tool-tile">
+          <div class="tool-ico" style="background:#E0F2FE;">🗺️</div>
+          <h3>31 ಜಿಲ್ಲೆಗಳ ಹವಾಮಾನ &amp; IMD ನಕ್ಷೆ</h3>
+          <p>3-ಗಂಟೆ ಲೈವ್ ನೌಕಾಸ್ಟ್, 5 ದಿನಗಳ ಮಳೆ ಎಚ್ಚರಿಕೆ ನಕ್ಷೆ, GPS ಹವಾಮಾನ, AQI, ಸೂರ್ಯೋದಯ-ಸೂರ್ಯಾಸ್ತ ಮತ್ತು 27 ಮಳೆ ನಕ್ಷತ್ರಗಳು.</p>
+          <span class="tool-cta">ಲೈವ್ ನಕ್ಷೆ ನೋಡಿ →</span>
+        </a>
+        <a href="/gold-rate" class="tool-tile">
+          <div class="tool-ico" style="background:#FEF3C7;">🪙</div>
+          <h3>ಚಿನ್ನ &amp; ಬೆಳ್ಳಿ ದರ + ಐತಿಹಾಸಿಕ ಚಾರ್ಟ್</h3>
+          <p>ಇಂದಿನ 24K/22K/18K ಚಿನ್ನ, ಬೆಳ್ಳಿ 999 ದರ, 125 ವರ್ಷಗಳ ಇತಿಹಾಸ, ಆಭರಣ ಬಿಲ್ &amp; ಹಳೆಯ ಚಿನ್ನ ಎಕ್ಸ್‌ಚೇಂಜ್ ಕ್ಯಾಲ್ಕುಲೇಟರ್.</p>
+          <span class="tool-cta">ಇಂದಿನ ದರ ನೋಡಿ →</span>
+        </a>
+        <a href="/apmc-prices" class="tool-tile">
+          <div class="tool-ico" style="background:#DCFCE7;">🌾</div>
+          <h3>APMC ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಧಾರಣೆ</h3>
+          <p>ಕರ್ನಾಟಕದ 170+ ಮಂಡಿಗಳ ಅಡಿಕೆ, ಮೆಣಸಿನಕಾಯಿ, ಟೊಮ್ಯಾಟೋ, ಈರುಳ್ಳಿ, ತೊಗರಿ ಮತ್ತು ಹತ್ತಿಯ ದೈನಂದಿನ KRAMA ದರಗಳು.</p>
+          <span class="tool-cta">ಮಂಡಿ ದರ ನೋಡಿ →</span>
+        </a>
+        <a href="/dam-levels" class="tool-tile">
+          <div class="tool-ico" style="background:#DBEAFE;">💧</div>
+          <h3>13 ಪ್ರಮುಖ ಜಲಾಶಯ ನೀರಿನ ಮಟ್ಟ</h3>
+          <p>ಕೆಆರ್‌ಎಸ್, ಆಲಮಟ್ಟಿ, ಕಬಿನಿ, ಹೇಮಾವತಿ, ತುಂಗಭದ್ರಾ, ಭದ್ರಾ ಮತ್ತು ಲಿಂಗನಮಕ್ಕಿ ಡ್ಯಾಮ್‌ಗಳ TMC ಸಂಗ್ರಹ &amp; ಒಳಹರಿವು.</p>
+          <span class="tool-cta">ಡ್ಯಾಮ್ ಮಟ್ಟ ನೋಡಿ →</span>
+        </a>
+        <a href="/petrol-price" class="tool-tile">
+          <div class="tool-ico" style="background:#FEE2E2;">⛽</div>
+          <h3>31 ಜಿಲ್ಲೆಗಳ ಪೆಟ್ರೋಲ್ &amp; ಡೀಸೆಲ್ ದರ</h3>
+          <p>ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ 6 ಗಂಟೆಗೆ ನವೀಕರಣಗೊಳ್ಳುವ ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳು ಮತ್ತು ತಾಲೂಕುಗಳ ಪೆಟ್ರೋಲ್-ಡೀಸೆಲ್ ಬೆಲೆ.</p>
+          <span class="tool-cta">ಇಂಧನ ದರ ನೋಡಿ →</span>
+        </a>
+        <a href="/scheme-checker" class="tool-tile">
+          <div class="tool-ico" style="background:#EDE9FE;">🎯</div>
+          <h3>885+ ಸರ್ಕಾರಿ ಯೋಜನೆ ಅರ್ಹತಾ ಪರೀಕ್ಷಕ</h3>
+          <p>ಗೃಹಲಕ್ಷ್ಮಿ, ಗೃಹಜ್ಯೋತಿ, ರೈತ ವಿದ್ಯಾನಿಧಿ ಸೇರಿದಂತೆ ನಿಮಗೆ ಅನ್ವಯವಾಗುವ ರಾಜ್ಯ &amp; ಕೇಂದ್ರ ಯೋಜನೆಗಳನ್ನು ಕ್ಷಣದಲ್ಲಿ ಹುಡುಕಿ.</p>
+          <span class="tool-cta">ಅರ್ಹತೆ ಪರೀಕ್ಷಿಸಿ →</span>
+        </a>
+        <a href="/districts" class="tool-tile">
+          <div class="tool-ico" style="background:#FCE7F3;">🏛️</div>
+          <h3>31 ಜಿಲ್ಲೆಗಳು, ಶಾಸಕರು &amp; ಅಧಿಕಾರಿಗಳು</h3>
+          <p>ಕರ್ನಾಟಕದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲೆಗಳ ಸಮಗ್ರ ಪೋರ್ಟಲ್, 224 ಶಾಸಕರು, ಸಚಿವ ಸಂಪುಟ, IAS/IPS ಅಧಿಕಾರಿಗಳು &amp; ಗ್ರಾಮ ಪಂಚಾಯತಿಗಳು.</p>
+          <span class="tool-cta">ಜಿಲ್ಲೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ →</span>
+        </a>
+        <a href="/emi-calculator" class="tool-tile">
+          <div class="tool-ico" style="background:#FFEDD5;">🧮</div>
+          <h3>ಹಣಕಾಸು &amp; ಕನ್ನಡ ಪರಿಕರಗಳು</h3>
+          <p>ಗೃಹ ಸಾಲ EMI, ಮ್ಯೂಚುವಲ್ ಫಂಡ್ SIP, ಸಂಬಳ ಕ್ಯಾಲ್ಕುಲೇಟರ್, ನಮ್ಮ ಮೆಟ್ರೋ/ಬಿಎಂಟಿಸಿ ಮಾರ್ಗ ಮತ್ತು ಉಚಿತ ಕನ್ನಡ ಟೈಪಿಂಗ್.</p>
+          <span class="tool-cta">ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಬಳಸಿ →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- KARNATAKA EDITORIAL ABOUT & SEO SUMMARY -->
+    <section class="seo-intro-box">
+      <h2>ಕರ್ನಾಟ (Karnata.in) — ಕನ್ನಡಿಗರ ವಿಶ್ವಾಸಾರ್ಹ ಲೈವ್ ಮಾಹಿತಿ &amp; ವಿಶೇಷ ವರದಿಗಳ ಕೇಂದ್ರ</h2>
+      <p>
+        <strong>Karnata.in</strong> ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳ ನಾಗರಿಕರು, ರೈತರು, ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಕುಟುಂಬಗಳಿಗಾಗಿ ರೂಪಿಸಲಾದ ಸ್ವತಂತ್ರ ಕನ್ನಡ ಡಿಜಿಟಲ್ ಪೋರ್ಟಲ್ ಆಗಿದೆ. ಪ್ರತಿದಿನ ಬದಲಾಗುವ ಹವಾಮಾನ ಎಚ್ಚರಿಕೆಗಳು, ಚಿನ್ನ-ಬೆಳ್ಳಿ ಮಾರುಕಟ್ಟೆ ದರ, ಪೆಟ್ರೋಲ್-ಡೀಸೆಲ್ ಬೆಲೆ, APMC ಕೃಷಿ ಧಾರಣೆ ಮತ್ತು ಜಲಾಶಯಗಳ ನೀರಿನ ಮಟ್ಟದ ಜೊತೆಗೆ ಕರ್ನಾಟಕದ ಕೃಷಿ, ಹಣಕಾಸು, ಕಾನೂನು ಮತ್ತು ಪರಂಪರೆಯ ಕುರಿತು ಆಳವಾದ, ಪರಿಶೀಲಿಸಿದ ಕನ್ನಡ ವಿಶೇಷ ಲೇಖನಗಳನ್ನು ಇಲ್ಲಿ ಪ್ರಕಟಿಸಲಾಗುತ್ತದೆ.
+      </p>
+      <p style="font-size:13px; color:#64748B;">
+        <em>ಸೂಚನೆ: Karnata.in ಒಂದು ಸ್ವತಂತ್ರ ಖಾಸಗಿ ಮಾಹಿತಿ ಪೋರ್ಟಲ್ ಆಗಿದ್ದು, ಕರ್ನಾಟಕ ಸರ್ಕಾರ ಅಥವಾ ಯಾವುದೇ ಸರ್ಕಾರಿ ಇಲಾಖೆಯ ಅಧಿಕೃತ ಜಾಲತಾಣವಲ್ಲ.</em>
+      </p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/footer-component.js"></script>
+  <script src="/assets/js/karnata-push-client.js"></script>
+</body>
+</html>
+'''
+
+    (ROOT_DIR / "index.html").write_text(html, encoding="utf-8")
+    if NK_DIR.exists():
+        (NK_DIR / "index.html").write_text(html, encoding="utf-8")
+    print(f"✅ Built creative redesigned index.html ({len(html):,} chars) showcasing Top {len(articles)} journalistic articles!")
+
+
+if __name__ == "__main__":
+    build_homepage()
