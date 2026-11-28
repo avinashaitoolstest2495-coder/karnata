@@ -63,6 +63,7 @@
             <span>ℹ️</span> ಮಾಹಿತಿ & ಸಂಪರ್ಕ
           </h4>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; font-size:13.5px;">
+            <li><a href="/articles" style="color:#FDE047; font-weight:800; text-decoration:none;">📰 ವಿಶೇಷ ಲೇಖನಗಳು (Articles)</a></li>
             <li><a href="/about" style="color:#CBD5E1; text-decoration:none;">ನಮ್ಮ ಬಗ್ಗೆ (About Us)</a></li>
             <li><a href="/contact" style="color:#CBD5E1; text-decoration:none;">ಸಂಪರ್ಕಿಸಿ (Contact Us)</a></li>
             <li><a href="/privacy-policy" style="color:#CBD5E1; text-decoration:none;">ಗೌಪ್ಯತೆ ನೀತಿ (Privacy Policy)</a></li>
