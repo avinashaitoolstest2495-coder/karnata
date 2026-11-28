@@ -487,15 +487,16 @@ SIM_JS = r"""
       const lc = METRO_DATA.lines[lk];
       if (!stn || !lc) continue;
 
-      if (stops.length > 0) {
-        const prev = stops[stops.length - 1];
-        if (prev.line !== lk) {
-          // Mark previous stop as interchange to this new line
+      if (stops.length > 0 && i > 0) {
+        const prevRawLine = rawKeys[i - 1].split(':')[0];
+        if (prevRawLine !== lk) {
+          // Exact single interchange transfer step (e.g., purple:23 -> green:17 at Majestic)
+          const prev = stops[stops.length - 1];
           prev.isInterchangeTransfer = true;
           prev.nextLine = lk;
           prev.nextLineColor = lc.color;
           prev.nextLineNameKn = lc.name_kn.split('(')[0].trim();
-          // Skip adding duplicate coordinate if same station, just continue on new line
+          // Skip duplicate physical station coordinate; subsequent stations on new line will be added normally
           continue;
         }
       }
