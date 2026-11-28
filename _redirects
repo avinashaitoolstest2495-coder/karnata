@@ -68,13 +68,16 @@
 /exact_yesterday*           /gold-rate                        301
 /*yesterday_gold*           /gold-rate                        301
 
-# Legacy News & Article Slugs -> Official Hubs
-/news/explainer*            /                                 301
-/news/politics*             /                                 301
-/news/*                     /                                 301
-/news                       /                                 301
-/article/gruha-lakshmi*     /scheme-checker                   301
-/article/*                  /                                 301
+# Legacy News & Removed Old 5 Article Slugs -> Editorial Hub
+/news/explainer*            /articles                         301
+/news/politics*             /articles                         301
+/news/*                     /articles                         301
+/news                       /articles                         301
+/article/gruha-lakshmi-status-check-2026      /articles       301
+/article/karnataka-bhoomi-rtc-pahani-online   /articles       301
+/article/karnataka-dam-water-storage-analysis /articles       301
+/article/karnataka-gba-5-corporations-guide   /articles       301
+/article/panchatantra-village-budget-grants   /articles       301
 
 # Duplicate District Redirect
 /districts/davangere.html   /districts/davanagere             301
