@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T09:45:06.554430",
+  "updated_at": "2026-11-28T10:00:07.570934",
   "total_active_alerts": 22,
   "feed": [
     {
@@ -13,7 +13,7 @@
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "badge": "https://karnata.in/assets/icons/icon-192x192.png",
       "topic": "gold_rate_alert",
-      "created_at": "2026-11-28T09:45:06.547075"
+      "created_at": "2026-11-28T10:00:07.562028"
     },
     {
       "id": "WEATHER-YELLOW-bengaluru_urban-20261128-B09TO12",
@@ -27,7 +27,7 @@
       "url": "https://karnata.in/weather?district=bengaluru_urban",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649792"
+      "created_at": "2026-11-28T09:49:30.504342"
     },
     {
       "id": "WEATHER-YELLOW-bengaluru_rural-20261128-B09TO12",
@@ -41,7 +41,7 @@
       "url": "https://karnata.in/weather?district=bengaluru_rural",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649804"
+      "created_at": "2026-11-28T09:49:30.504355"
     },
     {
       "id": "WEATHER-YELLOW-mysuru-20261128-B09TO12",
@@ -55,7 +55,7 @@
       "url": "https://karnata.in/weather?district=mysuru",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649808"
+      "created_at": "2026-11-28T09:49:30.504360"
     },
     {
       "id": "WEATHER-YELLOW-mandya-20261128-B09TO12",
@@ -69,7 +69,7 @@
       "url": "https://karnata.in/weather?district=mandya",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649817"
+      "created_at": "2026-11-28T09:49:30.504369"
     },
     {
       "id": "WEATHER-YELLOW-hassan-20261128-B09TO12",
@@ -83,7 +83,7 @@
       "url": "https://karnata.in/weather?district=hassan",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649820"
+      "created_at": "2026-11-28T09:49:30.504372"
     },
     {
       "id": "WEATHER-YELLOW-kodagu-20261128-B09TO12",
@@ -97,7 +97,7 @@
       "url": "https://karnata.in/weather?district=kodagu",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649824"
+      "created_at": "2026-11-28T09:49:30.504375"
     },
     {
       "id": "WEATHER-YELLOW-dakshina_kannada-20261128-B09TO12",
@@ -111,7 +111,7 @@
       "url": "https://karnata.in/weather?district=dakshina_kannada",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649828"
+      "created_at": "2026-11-28T09:49:30.504379"
     },
     {
       "id": "WEATHER-YELLOW-udupi-20261128-B09TO12",
@@ -125,7 +125,7 @@
       "url": "https://karnata.in/weather?district=udupi",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649831"
+      "created_at": "2026-11-28T09:49:30.504382"
     },
     {
       "id": "WEATHER-YELLOW-uttara_kannada-20261128-B09TO12",
@@ -139,7 +139,7 @@
       "url": "https://karnata.in/weather?district=uttara_kannada",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649833"
+      "created_at": "2026-11-28T09:49:30.504385"
     },
     {
       "id": "WEATHER-YELLOW-shivamogga-20261128-B09TO12",
@@ -153,7 +153,7 @@
       "url": "https://karnata.in/weather?district=shivamogga",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649836"
+      "created_at": "2026-11-28T09:49:30.504388"
     },
     {
       "id": "WEATHER-YELLOW-chikkamagaluru-20261128-B09TO12",
@@ -167,7 +167,7 @@
       "url": "https://karnata.in/weather?district=chikkamagaluru",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649840"
+      "created_at": "2026-11-28T09:49:30.504391"
     },
     {
       "id": "WEATHER-YELLOW-tumakuru-20261128-B09TO12",
@@ -181,7 +181,7 @@
       "url": "https://karnata.in/weather?district=tumakuru",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649842"
+      "created_at": "2026-11-28T09:49:30.504393"
     },
     {
       "id": "WEATHER-YELLOW-belagavi-20261128-B09TO12",
@@ -195,7 +195,7 @@
       "url": "https://karnata.in/weather?district=belagavi",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649846"
+      "created_at": "2026-11-28T09:49:30.504397"
     },
     {
       "id": "WEATHER-YELLOW-dharwad-20261128-B09TO12",
@@ -209,7 +209,7 @@
       "url": "https://karnata.in/weather?district=dharwad",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649849"
+      "created_at": "2026-11-28T09:49:30.504400"
     },
     {
       "id": "WEATHER-YELLOW-gadag-20261128-B09TO12",
@@ -223,7 +223,7 @@
       "url": "https://karnata.in/weather?district=gadag",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649851"
+      "created_at": "2026-11-28T09:49:30.504402"
     },
     {
       "id": "WEATHER-YELLOW-haveri-20261128-B09TO12",
@@ -237,7 +237,7 @@
       "url": "https://karnata.in/weather?district=haveri",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649854"
+      "created_at": "2026-11-28T09:49:30.504405"
     },
     {
       "id": "WEATHER-YELLOW-bagalkote-20261128-B09TO12",
@@ -251,7 +251,7 @@
       "url": "https://karnata.in/weather?district=bagalkote",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649856"
+      "created_at": "2026-11-28T09:49:30.504407"
     },
     {
       "id": "WEATHER-YELLOW-chikkaballapura-20261128-B09TO12",
@@ -265,7 +265,7 @@
       "url": "https://karnata.in/weather?district=chikkaballapura",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649863"
+      "created_at": "2026-11-28T09:49:30.504415"
     },
     {
       "id": "WEATHER-YELLOW-kolar-20261128-B09TO12",
@@ -279,7 +279,7 @@
       "url": "https://karnata.in/weather?district=kolar",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649866"
+      "created_at": "2026-11-28T09:49:30.504417"
     },
     {
       "id": "WEATHER-YELLOW-ramanagara-20261128-B09TO12",
@@ -293,7 +293,7 @@
       "url": "https://karnata.in/weather?district=ramanagara",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649868"
+      "created_at": "2026-11-28T09:49:30.504419"
     },
     {
       "id": "WEATHER-YELLOW-chamarajanagara-20261128-B09TO12",
@@ -307,7 +307,7 @@
       "url": "https://karnata.in/weather?district=chamarajanagara",
       "icon": "https://karnata.in/assets/icons/icon-512x512.png",
       "topic": "weather_alert",
-      "created_at": "2026-11-28T09:36:22.649871"
+      "created_at": "2026-11-28T09:49:30.504422"
     }
   ]
 }
