@@ -54,8 +54,8 @@
       "status_type": "operational",
       "stations_count": 16,
       "opened_kn": "2025",
-      "train_interval_kn": "ಪ್ರತಿ 10 ನಿಮಿಷಕ್ಕೆ",
-      "daily_riders_kn": "~1.5 ಲಕ್ಷ"
+      "train_interval_kn": "ಪ್ರತಿ 7–10 ನಿಮಿಷಕ್ಕೆ (CBTC)",
+      "daily_riders_kn": "~1.5+ ಲಕ್ಷ"
     },
     "pink": {
       "id": "pink",
@@ -65,16 +65,20 @@
       "badge_bg": "#F472B6",
       "badge_text": "#FFFFFF",
       "code": "PK",
-      "terminals_kn": "ಕಾಳೇನ ಅಗ್ರಹಾರ ↔ ನಾಗವಾರ",
-      "terminals_en": "Kalena Agrahara ↔ Nagawara",
-      "length": "21.26 ಕಿ.ಮೀ",
-      "status_kn": "ಹಂತ 1 ಶೀಘ್ರವೇ ಪ್ರಾರಂಭ (2026)",
-      "status_en": "Under Construction",
-      "status_type": "construction",
+      "terminals_kn": "ಕಾಳೇನ ಅಗ್ರಹಾರ ↔ ತಾವರೆಕೆರೆ (ಸಕ್ರಿಯ) · ನಾಗವಾರ (2027)",
+      "terminals_en": "Kalena Agrahara ↔ Tavarekere (Running) · Nagawara (2027)",
+      "length": "7.5 ಕಿ.ಮೀ ಸಕ್ರಿಯ / 21.26 ಕಿ.ಮೀ",
+      "status_kn": "ಭಾಗಶಃ ಸಕ್ರಿಯ (6 ನಿಲ್ದಾಣಗಳು · ನವೆಂಬರ್ 14, 2026)",
+      "status_en": "Partially Operational (6 Stations)",
+      "status_type": "partial",
       "stations_count": 18,
-      "opened_kn": "ಹಂತ 1: 2026 / ಹಂತ 2: 2027",
-      "train_interval_kn": "ಮುಕ್ತಾಯ ಹಂತದಲ್ಲಿದೆ",
-      "daily_riders_kn": "ನಿರೀಕ್ಷಿತ ~3.5 ಲಕ್ಷ"
+      "opened_kn": "ಹಂತ 1: 14 ನವೆಂಬರ್ 2026 · ಭೂಗತ: 2027",
+      "train_interval_kn": "ಪೀಕ್: 8 ನಿಮಿಷ · ಆಫ್-ಪೀಕ್: 10 ನಿಮಿಷ",
+      "daily_riders_kn": "ಹಂತ 1 ಸಕ್ರಿಯ",
+      "operational_stations": 6,
+      "first_train_kn": "ಸೋಮ 04:55 AM · ಮಂಗಳ–ಶನಿ 06:00 AM · ಭಾನು 07:00 AM",
+      "last_train_kn": "10:50 PM (ಕಾಳೇನ ಅಗ್ರಹಾರ) · 10:54 PM (ತಾವರೆಕೆರೆ)",
+      "fare_range_kn": "₹10 – ₹30 (ಹಂತ 1)"
     },
     "blue": {
       "id": "blue",
@@ -1044,198 +1048,216 @@
         "name_en": "Kalena Agrahara",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated",
-        "note_kn": "ಟರ್ಮಿನಲ್, ಬನ್ನೇರುಘಟ್ಟ ರಸ್ತೆ",
+        "note_kn": "✅ ಸಕ್ರಿಯ · ಟರ್ಮಿನಲ್, ಬನ್ನೇರುಘಟ್ಟ ರಸ್ತೆ",
         "note_en": "Terminal, Bannerghatta Road",
         "lat": 12.8685,
         "lon": 77.5888,
-        "interchange": false
+        "interchange": false,
+        "operational": true
       },
       {
         "name_kn": "ಹುಳಿಮಾವು",
         "name_en": "Hulimavu",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated",
-        "note_kn": "ಮೀನಾಕ್ಷಿ ಮಾಲ್ ಸಮೀಪ",
+        "note_kn": "✅ ಸಕ್ರಿಯ · ಮೀನಾಕ್ಷಿ ಮಾಲ್ ಸಮೀಪ",
         "note_en": "Hulimavu Gate",
         "lat": 12.8792,
         "lon": 77.5932,
-        "interchange": false
+        "interchange": false,
+        "operational": true
       },
       {
         "name_kn": "ಐಐಎಂಬಿ (IIM Bangalore)",
         "name_en": "IIMB",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated",
-        "note_kn": "ಇಂಡಿಯನ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್ ಆಫ್ ಮ್ಯಾನೇಜ್‌ಮೆಂಟ್",
+        "note_kn": "✅ ಸಕ್ರಿಯ · ಇಂಡಿಯನ್ ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್ ಆಫ್ ಮ್ಯಾನೇಜ್‌ಮೆಂಟ್",
         "note_en": "IIM Bangalore",
         "lat": 12.8945,
         "lon": 77.5971,
-        "interchange": false
+        "interchange": false,
+        "operational": true
       },
       {
         "name_kn": "ಜೆ.ಪಿ. ನಗರ 4ನೇ ಹಂತ",
         "name_en": "JP Nagar 4th Phase",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated",
-        "note_kn": "ಆರೆಂಜ್ ಲೈನ್ (ಅನುಮೋದಿತ) ಇಂಟರ್‌ಚೇಂಜ್",
+        "note_kn": "✅ ಸಕ್ರಿಯ · ಆರೆಂಜ್ ಲೈನ್ (ಅನುಮೋದಿತ) ಇಂಟರ್‌ಚೇಂಜ್",
         "note_en": "JP Nagar 4th Phase",
         "lat": 12.9062,
         "lon": 77.5985,
-        "interchange": false
+        "interchange": false,
+        "operational": true
       },
       {
         "name_kn": "ಜಯದೇವ ಆಸ್ಪತ್ರೆ",
         "name_en": "Jayadeva Hospital",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated Multi-tier",
-        "note_kn": "🌟 ಗುಲಾಬಿ ↔ ಹಳದಿ (Yellow) ಇಂಟರ್‌ಚೇಂಜ್",
-        "note_en": "Pink↔Yellow Interchange",
+        "note_kn": "🌟 ಗುಲಾಬಿ ↔ ಹಳದಿ ಇಂಟರ್‌ಚೇಂಜ್ (ಸಕ್ರಿಯ)",
+        "note_en": "Pink↔Yellow Interchange (Operational)",
         "lat": 12.9167,
         "lon": 77.6,
-        "interchange": true
+        "interchange": true,
+        "operational": true
       },
       {
         "name_kn": "ತಾವರೆಕೆರೆ",
         "name_en": "Tavarekere",
         "type_kn": "ಮೇಲ್ಸೇತುವೆ",
         "type_en": "Elevated",
-        "note_kn": "ತಾವರೆಕೆರೆ ಜಂಕ್ಷನ್",
-        "note_en": "Tavarekere",
+        "note_kn": "✅ ಹಂತ 1 ಉತ್ತರ ಟರ್ಮಿನಲ್ (S.G. ಪಾಳ್ಯ · ಸಕ್ರಿಯ)",
+        "note_en": "Phase-1 Northern Terminus (Operational)",
         "lat": 12.9262,
         "lon": 77.6045,
-        "interchange": false
+        "interchange": false,
+        "operational": true
       },
       {
         "name_kn": "ಡೈರಿ ಸರ್ಕಲ್",
         "name_en": "Dairy Circle",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಡೈರಿ ವೃತ್ತ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಡೈರಿ ವೃತ್ತ",
         "note_en": "Dairy Circle",
         "lat": 12.9365,
         "lon": 77.6012,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಲಕ್ಕಸಂದ್ರ",
         "name_en": "Lakkasandra",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ವಿಲ್ಸನ್ ಗಾರ್ಡನ್ ಹತ್ತಿರ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ವಿಲ್ಸನ್ ಗಾರ್ಡನ್ ಹತ್ತಿರ",
         "note_en": "Wilson Garden",
         "lat": 12.9468,
         "lon": 77.5998,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಲ್ಯಾಂಗ್‌ಫೋರ್ಡ್ ಟೌನ್",
         "name_en": "Langford Town",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಶಾಂತಿನಗರ ಸಮೀಪ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಶಾಂತಿನಗರ ಸಮೀಪ",
         "note_en": "Langford Town",
         "lat": 12.9575,
         "lon": 77.6015,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ರಾಷ್ಟ್ರೀಯ ಮಿಲಿಟರಿ ಶಾಲೆ",
         "name_en": "National Military School",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಜಾನ್ಸನ್ ಮಾರ್ಕೆಟ್",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಜಾನ್ಸನ್ ಮಾರ್ಕೆಟ್",
         "note_en": "Johnson Market",
         "lat": 12.9665,
         "lon": 77.6052,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಮಹಾತ್ಮ ಗಾಂಧಿ ರಸ್ತೆ (MG Road)",
         "name_en": "Mahatma Gandhi Road",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "🌟 ಗುಲಾಬಿ ↔ ನೇರಳೆ (Purple) ಇಂಟರ್‌ಚೇಂಜ್",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · 🌟 ಗುಲಾಬಿ ↔ ನೇರಳೆ (Purple) ಇಂಟರ್‌ಚೇಂಜ್",
         "note_en": "Pink↔Purple Interchange",
         "lat": 12.9754,
         "lon": 77.6067,
-        "interchange": true
+        "interchange": true,
+        "operational": false
       },
       {
         "name_kn": "ಶಿವಾಜಿನಗರ",
         "name_en": "Shivajinagar",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಶಿವಾಜಿನಗರ ಬಸ್ ನಿಲ್ದಾಣ (TTMC)",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಶಿವಾಜಿನಗರ ಬಸ್ ನಿಲ್ದಾಣ (TTMC)",
         "note_en": "Shivajinagar TTMC",
         "lat": 12.986,
         "lon": 77.6042,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಕಂಟೋನ್ಮೆಂಟ್ ರೈಲ್ವೆ ನಿಲ್ದಾಣ",
         "name_en": "Cantonment Railway Station",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಬೆಂಗಳೂರು ಕಂಟೋನ್ಮೆಂಟ್ ರೈಲ್ವೆ ಇಂಟರ್‌ಚೇಂಜ್",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಬೆಂಗಳೂರು ಕಂಟೋನ್ಮೆಂಟ್ ರೈಲ್ವೆ ಇಂಟರ್‌ಚೇಂಜ್",
         "note_en": "Bangalore Cantt Railway",
         "lat": 12.9934,
         "lon": 77.6001,
-        "interchange": true
+        "interchange": true,
+        "operational": false
       },
       {
         "name_kn": "ಪಾಟ್ರಿ ಟೌನ್",
         "name_en": "Pottery Town",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಫ್ರೇಜರ್ ಟೌನ್ ಸಮೀಪ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಫ್ರೇಜರ್ ಟೌನ್ ಸಮೀಪ",
         "note_en": "Near Frazer Town",
         "lat": 13.0035,
         "lon": 77.6055,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಟ್ಯಾನರಿ ರಸ್ತೆ",
         "name_en": "Tannery Road",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಟ್ಯಾನರಿ ರಸ್ತೆ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಟ್ಯಾನರಿ ರಸ್ತೆ",
         "note_en": "Tannery Road",
         "lat": 13.0132,
         "lon": 77.612,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ವೆಂಕಟೇಶಪುರ",
         "name_en": "Venkateshpura",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ವೆಂಕಟೇಶಪುರ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ವೆಂಕಟೇಶಪುರ",
         "note_en": "Venkateshpura",
         "lat": 13.021,
         "lon": 77.6185,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ಕಾಡುಗುಂಡನಹಳ್ಳಿ (KG Halli)",
         "name_en": "Kadugundanahalli",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "ಕೆ.ಜಿ. ಹಳ್ಳಿ",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · ಕೆ.ಜಿ. ಹಳ್ಳಿ",
         "note_en": "KG Halli",
         "lat": 13.0315,
         "lon": 77.621,
-        "interchange": false
+        "interchange": false,
+        "operational": false
       },
       {
         "name_kn": "ನಾಗವಾರ",
         "name_en": "Nagawara",
         "type_kn": "ಭೂಗತ",
         "type_en": "Underground",
-        "note_kn": "🌟 ಗುಲಾಬಿ ↔ ನೀಲಿ (Blue Airport) ಇಂಟರ್‌ಚೇಂಜ್",
+        "note_kn": "🚧 ಭೂಗತ ನಿರ್ಮಾಣ (2027) · 🌟 ಗುಲಾಬಿ ↔ ನೀಲಿ (Blue Airport) ಇಂಟರ್‌ಚೇಂಜ್",
         "note_en": "Pink↔Blue Interchange",
         "lat": 13.0423,
         "lon": 77.6249,
-        "interchange": true
+        "interchange": true,
+        "operational": false
       }
     ],
     "blue": [
