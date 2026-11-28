@@ -1,5 +1,5 @@
 # 🌟 SAMAGRA KARNATA & INDIA KNOWLEDGE BASE (ಸಮಗ್ರ ಕರ್ನಾಟಕ & ಭಾರತ ಜ್ಞಾನಕೋಶ)
-> **Generated:** 2026-11-28 04:51:24 IST  
+> **Generated:** 2026-11-28 05:21:28 IST  
 > **Source:** Karnata.in Official AI Knowledge Engine  
 > **Modules Included:** 7 Modules | 31 Districts | 240+ Taluks | 13 Dams | 1901-2026 Gold | 8 Jnanpith | 5 Guarantees  
 
@@ -1718,7 +1718,7 @@
 * **ಅಧಿಕೃತ ದಿನಾಂಕ:** 2026-11-28
 * **24K ಶುದ್ಧ ಚಿನ್ನ:** ₹12845 / 1 ಗ್ರಾಂ (₹128,450 / 10 ಗ್ರಾಂ)
 * **22K ಆಭರಣ ಚಿನ್ನ:** ₹11770 / 1 ಗ್ರಾಂ (₹94,160 / 8 ಗ್ರಾಂ 1 ಪವನ್)
-* **ಬೆಳ್ಳಿ (Silver 999):** ₹216.22 / 1 ಗ್ರಾಂ (₹216,220 / 1 ಕೆಜಿ)
+* **ಬೆಳ್ಳಿ (Silver 999):** ₹157.46 / 1 ಗ್ರಾಂ (₹157,460 / 1 ಕೆಜಿ)
 
 ---
 

@@ -63,24 +63,30 @@
             <span>ℹ️</span> ಮಾಹಿತಿ & ಸಂಪರ್ಕ
           </h4>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; font-size:13.5px;">
-            <li><a href="/about.html" style="color:#CBD5E1; text-decoration:none;">ನಮ್ಮ ಬಗ್ಗೆ (About Us)</a></li>
-            <li><a href="/contact.html" style="color:#CBD5E1; text-decoration:none;">ಸಂಪರ್ಕಿಸಿ (Contact Us)</a></li>
-            <li><a href="/privacy-policy.html" style="color:#CBD5E1; text-decoration:none;">ಗೌಪ್ಯತೆ ನೀತಿ (Privacy Policy)</a></li>
-            <li><a href="/terms.html" style="color:#CBD5E1; text-decoration:none;">ನಿಯಮಗಳು (Terms of Service)</a></li>
-            <li><a href="/disclaimer.html" style="color:#CBD5E1; text-decoration:none;">ಹಕ್ಕುತ್ಯಾಗ (Disclaimer)</a></li>
+            <li><a href="/about" style="color:#CBD5E1; text-decoration:none;">ನಮ್ಮ ಬಗ್ಗೆ (About Us)</a></li>
+            <li><a href="/contact" style="color:#CBD5E1; text-decoration:none;">ಸಂಪರ್ಕಿಸಿ (Contact Us)</a></li>
+            <li><a href="/privacy-policy" style="color:#CBD5E1; text-decoration:none;">ಗೌಪ್ಯತೆ ನೀತಿ (Privacy Policy)</a></li>
+            <li><a href="/terms" style="color:#CBD5E1; text-decoration:none;">ನಿಯಮಗಳು (Terms of Service)</a></li>
+            <li><a href="/disclaimer" style="color:#CBD5E1; text-decoration:none;">ಹಕ್ಕುತ್ಯಾಗ (Disclaimer)</a></li>
           </ul>
         </div>
       </div>
 
+      <!-- Independent Non-Government Portal Disclosure -->
+      <div style="max-width:1240px; margin:0 auto 18px; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(148,163,184,0.2); border-radius:10px; font-size:12px; color:#CBD5E1; line-height:1.6;">
+        ℹ️ <strong>ಸ್ವತಂತ್ರ ಮಾಹಿತಿ ಪೋರ್ಟಲ್ (Non-Government Portal):</strong> Karnata.in ಒಂದು ಖಾಸಗಿ ಸಾರ್ವಜನಿಕ ಮಾಹಿತಿ ವೇದಿಕೆಯಾಗಿದ್ದು, ಕರ್ನಾಟಕ ಸರ್ಕಾರ ಅಥವಾ ಯಾವುದೇ ಸರ್ಕಾರಿ ಇಲಾಖೆಯ ಅಧಿಕೃತ ಜಾಲತಾಣವಲ್ಲ.
+      </div>
+
       <!-- Bottom Bar -->
-      <div style="max-width:1240px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; font-size:12.5px; color:#64748B;">
+      <div style="max-width:1240px; margin:0 auto; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; font-size:12.5px; color:#64748B;">
         <div>
           © 2026 Karnata.in. All rights reserved. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.
         </div>
         <div style="display:flex; gap:16px;">
-          <a href="/privacy-policy.html" style="color:inherit; text-decoration:none;">Privacy</a>
-          <a href="/terms.html" style="color:inherit; text-decoration:none;">Terms</a>
-          <a href="/contact.html" style="color:inherit; text-decoration:none;">Contact</a>
+          <a href="/privacy-policy" style="color:inherit; text-decoration:none;">Privacy</a>
+          <a href="/terms" style="color:inherit; text-decoration:none;">Terms</a>
+          <a href="/disclaimer" style="color:inherit; text-decoration:none;">Disclaimer</a>
+          <a href="/contact" style="color:inherit; text-decoration:none;">Contact</a>
           <a href="/sitemap.xml" style="color:inherit; text-decoration:none;">Sitemap</a>
         </div>
       </div>
