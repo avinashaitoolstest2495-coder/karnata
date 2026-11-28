@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Builds a creative, hydro-telemetry Karnataka Dam Water Levels page (dam-levels.html):
-- Animated SVG Liquid-Wave State Storage Sphere in Hero
-- Live KPI Bento Strip (Total TMC, 90%+ Flood Alerts, Peak Inflow Dam, Total Outflow)
-- 3 River Basin Interactive Summary Cards (Cauvery, Krishna, Sharavathi & Kali)
-- Interactive Leaflet GPS Hydro Map of all 13 Karnataka Reservoirs with liquid-fill markers
-- Basin Filter + Sort + Search Bar
-- 13 Showstopper Dam Cards: High-res dam photo header + Animated SVG Liquid Tank +
-  Inflow/Outflow Cusecs Flow Bar + 1D/7D TMC change badges + Trend Chart & Detail Page links
-- Interactive Historical Storage Trend Chart (Chart.js) reading decrypted /data/history/dam_history.json
+Builds the creative Hydro-Telemetry Karnataka Dam Water Levels page (dam-levels.html):
+- Zero heavy dam photos — every reservoir card features a custom animated SVG
+  Dam Cross-Section & Spillway Visualizer (live water level, dual parallax waves,
+  rising bubbles, FRL ruler ticks, and live animated spillway outflow streams!).
+- Deep-aqua hero with animated Liquid-Wave State Storage Sphere
+- Live KPI Bento Strip + 3 River Basin Summary Cards
+- Interactive Leaflet GPS Hydro Map of all 13 Karnataka Reservoirs
+- Basin Filter + Search + Sort toolbar
+- Interactive Chart.js Historical Storage Trend Chart (/data/history/dam_history.json)
 - Full 13-Dam Comparison Matrix (#dam-profile-tbody compatible with bake_live_data_to_html.js)
-- Original Kannada Hydro Engineering Guide (TMC, Cusecs, FRL, River Basins) + FAQPage JSON-LD
+- Rich, original journalistic Kannada editorial article below + FAQPage JSON-LD
 """
 import html
 import json
@@ -78,8 +78,7 @@ DAM_PAGE_SLUG = {
 
 def fmt_num(n):
     try:
-        v = int(round(float(n or 0)))
-        return f"{v:,}"
+        return f"{int(round(float(n or 0))):,}"
     except Exception:
         return "0"
 
@@ -128,7 +127,6 @@ def main():
     top_inflow_name = (top_inflow_dam.get("name_kn") or "ಲಿಂಗನಮಕ್ಕಿ").split("(")[0].strip()
     top_inflow_val = fmt_num(top_inflow_dam.get("inflow_cusecs"))
 
-    # Embedded fallback JSON (stripped of encrypted payload to keep HTML light & fast)
     embedded_data = {
         "date": raw.get("date"),
         "updated_at": updated_at,
@@ -229,9 +227,8 @@ def main():
       --ink: #0F172A;
       --ink2: #334155;
       --muted: #64748B;
-      --surface: #F1F6FA;
+      --surface: #EEF4F9;
       --card: #FFFFFF;
-      --border: rgba(15, 23, 42, 0.08);
       --font-kn: 'Anek Kannada', sans-serif;
       --font-en: 'Plus Jakarta Sans', sans-serif;
     }}
@@ -239,7 +236,7 @@ def main():
     body {{
       font-family: var(--font-kn);
       background:
-        radial-gradient(circle at 12% 0%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 12% 0%, rgba(14, 165, 233, 0.085) 0%, transparent 40%),
         radial-gradient(circle at 88% 8%, rgba(16, 185, 129, 0.07) 0%, transparent 38%),
         var(--surface);
       color: var(--ink);
@@ -249,7 +246,7 @@ def main():
     /* TOPNAV */
     .topnav {{
       position: sticky; top: 0; z-index: 60;
-      background: rgba(4, 19, 34, 0.92);
+      background: rgba(4, 19, 34, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(56, 189, 248, 0.16);
@@ -314,9 +311,7 @@ def main():
     .hero-sub {{
       font-size: 14.5px; color: #CBD5E1; line-height: 1.6; max-width: 660px; margin-bottom: 16px;
     }}
-    .hero-meta-row {{
-      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
-    }}
+    .hero-meta-row {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }}
     .hero-chip {{
       font-size: 12px; font-weight: 700; color: #E0F2FE;
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
@@ -327,12 +322,10 @@ def main():
     }}
 
     /* LIQUID SPHERE GAUGE */
-    .hero-sphere-wrap {{
-      position: relative; width: 196px; height: 196px; flex-shrink: 0;
-    }}
+    .hero-sphere-wrap {{ position: relative; width: 196px; height: 196px; flex-shrink: 0; }}
     .sphere-ring {{
       position: absolute; inset: -8px; border-radius: 50%;
-      border: 2px dashed rgba(56, 189, 248, 0.4);
+      border: 2px dashed rgba(56, 189, 248, 0.42);
       animation: spinSlow 28s linear infinite;
     }}
     @keyframes spinSlow {{ to {{ transform: rotate(360deg); }} }}
@@ -367,10 +360,7 @@ def main():
     .sphere-lbl {{ font-size: 11.5px; font-weight: 800; color: #E0F2FE; margin-top: 4px; }}
     .sphere-tmc {{ font-family: var(--font-en); font-size: 11.5px; font-weight: 700; color: #BAE6FD; margin-top: 2px; }}
 
-    /* HERO BOTTOM WAVE */
-    .hero-waves {{
-      position: absolute; left: 0; right: 0; bottom: 0; height: 68px; pointer-events: none;
-    }}
+    .hero-waves {{ position: absolute; left: 0; right: 0; bottom: 0; height: 68px; pointer-events: none; }}
     .hero-waves svg {{ width: 100%; height: 100%; display: block; }}
 
     /* MAIN CONTAINER */
@@ -441,10 +431,7 @@ def main():
     .sec-sub {{ font-size: 13px; color: var(--muted); font-weight: 600; margin-top: 2px; }}
 
     /* MAP */
-    #damHydroMap {{
-      width: 100%; height: 420px; border-radius: 16px;
-      border: 1.5px solid #D8E4F0; z-index: 1;
-    }}
+    #damHydroMap {{ width: 100%; height: 410px; border-radius: 16px; border: 1.5px solid #D8E4F0; z-index: 1; }}
     .hydro-pin {{
       width: 44px; height: 44px; border-radius: 50%;
       background: #061C31; border: 3px solid #FFFFFF;
@@ -456,12 +443,10 @@ def main():
     .hydro-pin.flood {{ border-color: #FCA5A5; box-shadow: 0 0 0 6px rgba(239,68,68,0.28), 0 4px 14px rgba(0,0,0,0.4); }}
     .hydro-pin-fill {{ position: absolute; left: 0; right: 0; bottom: 0; opacity: 0.85; }}
     .hydro-pin span {{ position: relative; z-index: 2; text-shadow: 0 1px 4px rgba(0,0,0,0.85); }}
-    .map-legend {{
-      display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; font-weight: 700; color: var(--ink2);
-    }}
+    .map-legend {{ display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; font-weight: 700; color: var(--ink2); }}
     .leg-dot {{ display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }}
 
-    /* FILTER / SORT TOOLBAR */
+    /* TOOLBAR */
     .toolbar {{
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
       margin-bottom: 18px;
@@ -485,7 +470,7 @@ def main():
     }}
     .search-in:focus, .sort-sel:focus {{ border-color: var(--aqua); }}
 
-    /* SHOWSTOPPER CREATIVE DAM CARDS GRID */
+    /* ULTRA-CREATIVE ANIMATED SPILLWAY DAM CARDS (ZERO PHOTOS!) */
     .dam-cards-grid {{
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;
     }}
@@ -493,106 +478,99 @@ def main():
     @media (max-width: 660px) {{ .dam-cards-grid {{ grid-template-columns: 1fr; }} }}
 
     .dam-tile {{
-      background: #FFFFFF; border: 1px solid rgba(15, 23, 42, 0.085);
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.055);
+      background: #FFFFFF; border: 1.5px solid rgba(15, 23, 42, 0.085);
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
       display: flex; flex-direction: column;
-      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease, border-color 0.24s ease;
     }}
     .dam-tile:hover {{
-      transform: translateY(-5px);
-      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
-      border-color: rgba(14, 165, 233, 0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 22px 42px rgba(9, 37, 64, 0.14);
+      border-color: rgba(14, 165, 233, 0.45);
     }}
-    .dam-tile.flood-card {{ border-color: rgba(239, 68, 68, 0.45); }}
+    .dam-tile.flood-card {{ border-color: rgba(239, 68, 68, 0.5); box-shadow: 0 10px 28px rgba(239, 68, 68, 0.12); }}
 
-    /* Real Photo Header */
-    .dt-photo {{
-      position: relative; height: 144px; background: #07223B; overflow: hidden;
+    /* Interactive Animated SVG Dam Cross-Section Header */
+    .dam-stage {{
+      position: relative;
+      height: 196px;
+      background: linear-gradient(180deg, #041526 0%, #092642 52%, #0C3559 100%);
+      overflow: hidden;
     }}
-    .dt-photo img {{
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.45s ease;
+    .dam-stage-top {{
+      position: relative; z-index: 5;
+      padding: 12px 14px 0;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
     }}
-    .dam-tile:hover .dt-photo img {{ transform: scale(1.06); }}
-    .dt-photo::after {{
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(4,19,34,0.18) 0%, rgba(4,19,34,0.82) 100%);
-    }}
-    .dt-badges {{
-      position: absolute; top: 10px; left: 10px; right: 10px; z-index: 2;
-      display: flex; justify-content: space-between; align-items: center; gap: 6px;
-    }}
-    .dt-basin-tag {{
-      background: rgba(4, 19, 34, 0.78); backdrop-filter: blur(6px);
+    .ds-basin {{
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px);
+      border: 1px solid rgba(125, 211, 252, 0.28);
       color: #BAE6FD; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
     }}
-    .dt-status-tag {{
-      font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px;
-      background: rgba(16, 185, 129, 0.9); color: #FFFFFF;
+    .ds-status {{
+      font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 999px;
+      color: #FFFFFF; background: rgba(16, 185, 129, 0.9);
     }}
-    .dt-status-tag.flood {{ background: #DC2626; animation: pulseDot 1.6s infinite; }}
-    .dt-status-tag.mid {{ background: #D97706; }}
-    .dt-status-tag.low {{ background: #EA580C; }}
-    .dt-title-overlay {{
-      position: absolute; left: 14px; right: 14px; bottom: 11px; z-index: 2;
-      display: flex; justify-content: space-between; align-items: flex-end; gap: 8px;
+    .ds-status.flood {{ background: #DC2626; animation: pulseDot 1.5s infinite; }}
+    .ds-status.mid {{ background: #0284C7; }}
+    .ds-status.low {{ background: #D97706; }}
+
+    .dam-stage-title {{
+      position: relative; z-index: 5;
+      padding: 8px 14px 0;
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 10px;
     }}
-    .dt-name {{ font-size: 17px; font-weight: 800; color: #FFFFFF; line-height: 1.25; }}
-    .dt-loc {{ font-size: 11.5px; color: #CBD5E1; font-weight: 600; }}
-    .dt-pct-big {{
-      font-family: var(--font-en); font-size: 24px; font-weight: 800; color: #FFFFFF;
-      line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    .ds-name {{ font-size: 17px; font-weight: 800; color: #FFFFFF; line-height: 1.25; text-shadow: 0 2px 8px rgba(0,0,0,0.45); }}
+    .ds-loc {{ font-size: 11.5px; color: #94A3B8; font-weight: 700; margin-top: 2px; }}
+    .ds-pct {{
+      font-family: var(--font-en); font-size: 28px; font-weight: 800; color: #FFFFFF;
+      line-height: 1; text-shadow: 0 2px 12px rgba(14, 165, 233, 0.55);
+      flex-shrink: 0;
     }}
 
-    /* Animated Liquid Reservoir Cross-Section Tank */
-    .dt-body {{ padding: 14px 15px 15px; display: flex; flex-direction: column; gap: 12px; flex: 1; }}
-    .tank-wrap {{
-      position: relative; height: 74px; border-radius: 13px;
-      background: linear-gradient(180deg, #EFF6FF 0%, #E0F2FE 100%);
-      border: 1.5px solid #BAE6FD; overflow: hidden;
+    /* Animated SVG Reservoir + Concrete Dam Wall + Live Spillway */
+    .dam-svg-scene {{
+      position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 118px;
+      z-index: 2; pointer-events: none;
     }}
-    .tank-frl-line {{
-      position: absolute; top: 8px; left: 0; right: 0;
-      border-top: 1.5px dashed rgba(15, 23, 42, 0.25); z-index: 2;
+    .wave-anim-1 {{ animation: svgWaveMove 4.5s linear infinite; }}
+    .wave-anim-2 {{ animation: svgWaveMoveRev 7s linear infinite; }}
+    @keyframes svgWaveMove {{ 0% {{ transform: translateX(0); }} 100% {{ transform: translateX(-120px); }} }}
+    @keyframes svgWaveMoveRev {{ 0% {{ transform: translateX(-120px); }} 100% {{ transform: translateX(0); }} }}
+    .spill-stream {{
+      stroke-dasharray: 8 6;
+      animation: spillFall 0.7s linear infinite;
     }}
-    .tank-frl-lbl {{
-      position: absolute; top: 3px; right: 8px; z-index: 3;
-      font-family: var(--font-en); font-size: 9.5px; font-weight: 800; color: #475569;
-      background: rgba(255,255,255,0.75); padding: 1px 6px; border-radius: 999px;
-    }}
-    .tank-water {{
-      position: absolute; left: 0; right: 0; bottom: 0;
-      transition: height 1s cubic-bezier(0.22, 1, 0.36, 1);
-    }}
-    .tank-wave-svg {{
-      position: absolute; left: 0; top: -11px; width: 200%; height: 14px;
-      animation: tankWaveSlide 5s linear infinite;
-    }}
-    @keyframes tankWaveSlide {{ 0%{{ transform: translateX(0); }} 100%{{ transform: translateX(-50%); }} }}
-    .tank-overlay {{
-      position: relative; z-index: 3; height: 100%;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 13px;
-    }}
-    .tank-tmc {{
-      font-family: var(--font-en); font-size: 16px; font-weight: 800; color: #0F172A;
-      background: rgba(255, 255, 255, 0.84); backdrop-filter: blur(4px);
-      padding: 4px 10px; border-radius: 9px;
-    }}
-    .tank-lvl {{
-      font-family: var(--font-en); font-size: 12px; font-weight: 800; color: #0F172A;
-      background: rgba(255, 255, 255, 0.84); padding: 4px 9px; border-radius: 9px;
+    @keyframes spillFall {{ from {{ stroke-dashoffset: 14; }} to {{ stroke-dashoffset: 0; }} }}
+    .bubble-rise {{ animation: bubbleUp 3.6s ease-in infinite; }}
+    @keyframes bubbleUp {{
+      0% {{ transform: translateY(0); opacity: 0; }}
+      20% {{ opacity: 0.7; }}
+      100% {{ transform: translateY(-48px); opacity: 0; }}
     }}
 
-    /* Inflow vs Outflow Hydro Strip */
-    .flow-grid {{
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    .stage-bottom-pill {{
+      position: absolute; left: 12px; bottom: 10px; z-index: 6;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(4, 19, 34, 0.78); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 5px 11px; border-radius: 10px;
+      font-family: var(--font-en); font-size: 12.5px; font-weight: 800; color: #FFFFFF;
     }}
+    .stage-lvl-pill {{
+      position: absolute; right: 12px; bottom: 10px; z-index: 6;
+      background: rgba(255, 255, 255, 0.92);
+      color: #092540; padding: 4px 9px; border-radius: 9px;
+      font-family: var(--font-en); font-size: 11.5px; font-weight: 800;
+    }}
+
+    /* Card Body */
+    .dt-body {{ padding: 14px 15px 15px; display: flex; flex-direction: column; gap: 11px; flex: 1; }}
+    .flow-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }}
     .flow-box {{
-      border-radius: 12px; padding: 9px 11px;
-      border: 1px solid rgba(15, 23, 42, 0.07);
+      border-radius: 12px; padding: 9px 11px; border: 1px solid rgba(15, 23, 42, 0.07);
     }}
     .flow-box.inflow {{ background: #ECFDF5; border-color: #A7F3D0; }}
     .flow-box.outflow {{ background: #FFF7ED; border-color: #FED7AA; }}
@@ -655,16 +633,37 @@ def main():
     .outflow-txt {{ color: #C2410C; font-weight: 800; }}
     .tbl-go {{ font-size: 12px; font-weight: 800; color: #0284C7; text-decoration: none; white-space: nowrap; }}
 
-    /* EDITORIAL GUIDE */
-    .guide-grid {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }}
-    @media (max-width: 800px) {{ .guide-grid {{ grid-template-columns: 1fr; }} }}
-    .guide-box {{
-      background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 15px; padding: 16px;
+    /* EDITORIAL ARTICLE SECTION */
+    .article-card {{
+      background: #FFFFFF; border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 22px; padding: 28px 30px; margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
     }}
-    .guide-box h3 {{ font-size: 15.5px; font-weight: 800; color: var(--ocean); margin-bottom: 7px; }}
-    .guide-box p {{ font-size: 13.5px; color: var(--ink2); line-height: 1.65; }}
+    @media (max-width: 640px) {{ .article-card {{ padding: 20px 18px; }} }}
+    .art-kicker {{
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #E0F2FE; color: #0369A1; font-size: 12px; font-weight: 800;
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 12px;
+    }}
+    .article-card h2 {{
+      font-size: clamp(21px, 3vw, 27px); font-weight: 800; color: var(--ocean);
+      line-height: 1.35; margin-bottom: 14px;
+    }}
+    .article-card h3 {{
+      font-size: 18px; font-weight: 800; color: var(--ink);
+      margin: 24px 0 10px; padding-left: 12px; border-left: 4px solid var(--aqua);
+    }}
+    .article-card p {{
+      font-size: 15.5px; color: var(--ink2); line-height: 1.85; margin-bottom: 14px;
+    }}
+    .article-callout {{
+      background: linear-gradient(135deg, #F0F9FF 0%, #ECFDF5 100%);
+      border: 1px solid #BAE6FD; border-radius: 16px; padding: 18px 20px; margin: 20px 0;
+    }}
+    .article-callout h4 {{ font-size: 15.5px; font-weight: 800; color: #092540; margin-bottom: 8px; }}
+    .article-callout ul {{ padding-left: 20px; color: var(--ink2); font-size: 14.5px; line-height: 1.75; }}
     .disclaimer-note {{
-      margin-top: 16px; padding: 12px 15px; border-radius: 12px;
+      margin-top: 18px; padding: 13px 16px; border-radius: 12px;
       background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E;
       font-size: 12.5px; line-height: 1.55; font-weight: 600;
     }}
@@ -708,8 +707,8 @@ def main():
 
   <div class="hero-waves">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
-      <path fill="rgba(241,246,250,0.35)" d="M0,36 C240,68 480,4 720,36 C960,68 1200,10 1440,38 L1440,70 L0,70 Z"></path>
-      <path fill="#F1F6FA" d="M0,48 C300,12 600,72 900,36 C1140,8 1320,44 1440,34 L1440,70 L0,70 Z"></path>
+      <path fill="rgba(238,244,249,0.35)" d="M0,36 C240,68 480,4 720,36 C960,68 1200,10 1440,38 L1440,70 L0,70 Z"></path>
+      <path fill="#EEF4F9" d="M0,48 C300,12 600,72 900,36 C1140,8 1320,44 1440,34 L1440,70 L0,70 Z"></path>
     </svg>
   </div>
 </header>
@@ -760,12 +759,12 @@ def main():
     </div>
   </section>
 
-  <!-- FILTER / SORT & CREATIVE DAM CARDS -->
+  <!-- FILTER / SORT & ANIMATED SPILLWAY DAM CARDS -->
   <section class="sec-card">
     <div class="sec-head">
       <div>
-        <h2 class="sec-title">🏞️ ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ನೀರಿನ ಟ್ಯಾಂಕ್ ಸ್ಥಿತಿ</h2>
-        <div class="sec-sub">ಪ್ರತಿ ಜಲಾಶಯದ ನೈಜ ನೀರಿನ ಮಟ್ಟ, ಒಳಹರಿವು–ಹೊರಹರಿವು ಮತ್ತು 7 ದಿನದ ಬದಲಾವಣೆ</div>
+        <h2 class="sec-title">🏞️ ಎಲ್ಲಾ 13 ಜಲಾಶಯಗಳ ಲೈವ್ ಅಣೆಕಟ್ಟು &amp; ಸ್ಪಿಲ್‌ವೇ ದೃಶ್ಯ</h2>
+        <div class="sec-sub">ಪ್ರತಿ ಅಣೆಕಟ್ಟಿನ ನೈಜ ನೀರಿನ ಮಟ್ಟ, ಅಲೆಗಳು, ಹೊರಹರಿವು ಸ್ಪಿಲ್‌ವೇ ಹಾಗೂ 7 ದಿನದ ಬದಲಾವಣೆ</div>
       </div>
     </div>
 
@@ -839,27 +838,49 @@ def main():
     </div>
   </section>
 
-  <!-- ORIGINAL KANNADA HYDRO GUIDE -->
-  <section class="sec-card">
-    <h2 class="sec-title">📚 ಜಲಾಶಯದ ಅಳತೆಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ (TMC, Cusecs &amp; FRL)</h2>
-    <div class="guide-grid">
-      <div class="guide-box">
-        <h3>💧 1 TMC ಎಂದರೆ ಎಷ್ಟು ನೀರು?</h3>
-        <p>TMC ಎಂದರೆ <b>Thousand Million Cubic Feet</b> (100 ಕೋಟಿ ಘನ ಅಡಿ). 1 TMC ನೀರು ಅಂದಾಜು <b>2,831.68 ಕೋಟಿ ಲೀಟರ್</b> ನೀರಿಗೆ ಸಮನಾಗಿರುತ್ತದೆ. ಬೆಂಗಳೂರಿನಂತಹ ಮಹಾನಗರಕ್ಕೆ ತಿಂಗಳಿಗೆ ಸುಮಾರು 1.5–1.8 TMC ಕುಡಿಯುವ ನೀರು ಅಗತ್ಯವಿರುತ್ತದೆ.</p>
-      </div>
-      <div class="guide-box">
-        <h3>🌊 ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs) ಲೆಕ್ಕಾಚಾರ</h3>
-        <p>ಒಳಹರಿವು (Inflow) ಮತ್ತು ಹೊರಹರಿವನ್ನು (Outflow) <b>Cusecs</b> (Cubic Feet per Second) ನಲ್ಲಿ ಅಳೆಯಲಾಗುತ್ತದೆ. 1 ಕ್ಯೂಸೆಕ್ ಎಂದರೆ ಪ್ರತಿ ಸೆಕೆಂಡಿಗೆ 28.317 ಲೀಟರ್ ನೀರಿನ ಹರಿವು. <b>11,574 ಕ್ಯೂಸೆಕ್ಸ್</b> ನೀರು 24 ಗಂಟೆ ನಿರಂತರ ಹರಿದರೆ 1 TMC ಸಂಗ್ರಹವಾಗುತ್ತದೆ.</p>
-      </div>
-      <div class="guide-box">
-        <h3>📏 FRL ಮತ್ತು ಲೈವ್ ಸ್ಟೋರೇಜ್</h3>
-        <p><b>FRL (Full Reservoir Level)</b> ಎಂದರೆ ಅಣೆಕಟ್ಟಿನ ಗರಿಷ್ಠ ಸುರಕ್ಷಿತ ನೀರಿನ ಮಟ್ಟ. ಒಟ್ಟು ಸಂಗ್ರಹದಲ್ಲಿ (Gross Storage) ಕಾಲುವೆ ಹಾಗೂ ವಿದ್ಯುತ್ ಉತ್ಪಾದನೆಗೆ ಬಳಸಬಹುದಾದ ನೀರನ್ನು <b>Live Storage</b> ಎನ್ನುತ್ತಾರೆ; ಅದರ ಕೆಳಗಿನದನ್ನು Dead Storage ಎನ್ನುತ್ತಾರೆ.</p>
-      </div>
+  <!-- IN-DEPTH JOURNALISTIC KANNADA EDITORIAL ARTICLE -->
+  <article class="article-card" id="dam-editorial-article">
+    <span class="art-kicker">📰 ಕರ್ನಾಟ ವಿಶೇಷ ವಿಶ್ಲೇಷಣೆ · ಜಲಸಂಪನ್ಮೂಲ ಮಾರ್ಗದರ್ಶಿ</span>
+    <h2>ಕರ್ನಾಟಕದ 13 ಜಲಾಶಯಗಳು: ಕಾವೇರಿಯಿಂದ ಕೃಷ್ಣಾವರೆಗೆ ರಾಜ್ಯದ ಜೀವನಾಡಿಯ ಒಳನೋಟ</h2>
+
+    <p>
+      ಕರ್ನಾಟಕದ ಕೃಷಿ, ಕುಡಿಯುವ ನೀರು ಮತ್ತು ವಿದ್ಯುತ್ ಉತ್ಪಾದನೆ — ಈ ಮೂರೂ ಸ್ತಂಭಗಳು ನಿಂತಿರುವುದು ರಾಜ್ಯದ 13 ಪ್ರಮುಖ ಜಲಾಶಯಗಳ ನೀರಿನ ಸಂಗ್ರಹದ ಮೇಲೆ. ಒಟ್ಟು <b>866.3 TMC</b> ಗೂ ಅಧಿಕ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯ ಹೊಂದಿರುವ ಈ ಅಣೆಕಟ್ಟುಗಳು ಕೇವಲ ಕಾಂಕ್ರೀಟ್ ಗೋಡೆಗಳಲ್ಲ; ಇವು ಮಂಡ್ಯದ ಕಬ್ಬಿನ ಗದ್ದೆಗಳಿಂದ ಹಿಡಿದು ವಿಜಯಪುರದ ದ್ರಾಕ್ಷಿ ತೋಟಗಳವರೆಗೆ, ಬೆಂಗಳೂರಿನ ಕೋಟಿಗೂ ಹೆಚ್ಚು ನಾಗರಿಕರ ನಲ್ಲಿಯಿಂದ ಹಿಡಿದು ಶರಾವತಿಯ ಜಲವಿದ್ಯುತ್ ಟರ್ಬೈನ್‌ಗಳವರೆಗೆ ಇಡೀ ರಾಜ್ಯದ ಆರ್ಥಿಕ ಚಕ್ರವನ್ನು ತಿರುಗಿಸುವ ಜೀವನಾಡಿಗಳು.
+    </p>
+
+    <h3>🌊 ಕಾವೇರಿ ಕೊಳ್ಳ: ಬೆಂಗಳೂರು ಮತ್ತು ಹಳೆ ಮೈಸೂರಿನ ಜೀವಜಲ</h3>
+    <p>
+      ಕೊಡಗು ಮತ್ತು ಚಿಕ್ಕಮಗಳೂರಿನ ಪಶ್ಚಿಮ ಘಟ್ಟಗಳಲ್ಲಿ ಸುರಿಯುವ ಮುಂಗಾರು ಮಳೆಯೇ <b>ಕೆಆರ್‌ಎಸ್ (ಕೃಷ್ಣರಾಜ ಸಾಗರ), ಕಬಿನಿ, ಹೇಮಾವತಿ ಮತ್ತು ಹಾರಂಗಿ</b> ಜಲಾಶಯಗಳ ಪ್ರಮುಖ ಆಧಾರ. ಇದರಲ್ಲಿ ಕೇರಳದ ವಯನಾಡು ಭಾಗದಲ್ಲಿ ಮಳೆಯಾದ ತಕ್ಷಣ ಮೊದಲು ಭರ್ತಿಯಾಗುವುದು ಮೈಸೂರು ಜಿಲ್ಲೆಯ ಕಬಿನಿ ಜಲಾಶಯ (19.52 TMC). ಆದರೆ 49.45 TMC ಸಾಮರ್ಥ್ಯದ ಕೆಆರ್‌ಎಸ್ ಜಲಾಶಯವು ಮಂಡ್ಯ-ಮೈಸೂರು ರೈತರ ಎರಡು ಬೆಳೆಗಳ ಜೊತೆಗೆ ಬೆಂಗಳೂರಿನ 1.4 ಕೋಟಿ ಜನರ ಕುಡಿಯುವ ನೀರಿನ ಹೊಣೆಯನ್ನೂ ಹೊತ್ತಿದೆ. ಮಳೆಗಾಲದಲ್ಲಿ ಈ ನಾಲ್ಕೂ ಜಲಾಶಯಗಳ ಒಟ್ಟು ಸಂಗ್ರಹ 114.57 TMC ತಲುಪಿದರೆ ಮಾತ್ರ ಬೇಸಿಗೆಯಲ್ಲಿ ಕುಡಿಯುವ ನೀರಿನ ಸಂಕಷ್ಟ ಎದುರಾಗುವುದಿಲ್ಲ.
+    </p>
+
+    <h3>💧 ಕೃಷ್ಣಾ ಕೊಳ್ಳ: ಉತ್ತರ ಮತ್ತು ಮಧ್ಯ ಕರ್ನಾಟಕದ ಹಸಿರು ಕ್ರಾಂತಿ</h3>
+    <p>
+      ಉತ್ತರ ಕರ್ನಾಟಕದ ಬರದ ನಾಡನ್ನು ಹಸಿರು ತೋಟಗಳನ್ನಾಗಿ ಬದಲಿಸಿದ ಶ್ರೇಯಸ್ಸು <b>ಆಲಮಟ್ಟಿ (ಲಾಲ್ ಬಹದ್ದೂರ್ ಶಾಸ್ತ್ರಿ ಸಾಗರ — 123.08 TMC)</b> ಮತ್ತು <b>ನಾರಾಯಣಪುರ (ಬಸವಸಾಗರ — 33.31 TMC)</b> ಜಲಾಶಯಗಳಿಗೆ ಸಲ್ಲುತ್ತದೆ. ಮಹಾರಾಷ್ಟ್ರದ ಕೊಯ್ನಾ ಮತ್ತು ಮಹಾಬಳೇಶ್ವರ ಭಾಗದಲ್ಲಿ ಭಾರಿ ಮಳೆಯಾದಾಗ ಕೃಷ್ಣಾ ನದಿಯಲ್ಲಿ ಲಕ್ಷಾಂತರ ಕ್ಯೂಸೆಕ್ಸ್ ನೀರು ಹರಿದುಬಂದು ಆಲಮಟ್ಟಿ-ನಾರಾಯಣಪುರ ಕ್ಷಣಾರ್ಧದಲ್ಲಿ ಭರ್ತಿಯಾಗುತ್ತವೆ. ಇದೇ ಕೊಳ್ಳದಲ್ಲಿರುವ <b>ತುಂಗಭದ್ರಾ (105.79 TMC)</b> ಜಲಾಶಯವು ಕೊಪ್ಪಳ, ಬಳ್ಳಾರಿ, ವಿಜಯನಗರ ಮತ್ತು ರಾಯಚೂರು ಜಿಲ್ಲೆಗಳ ಲಕ್ಷಾಂತರ ಎಕರೆ ಭತ್ತದ ಕಣಜಕ್ಕೆ ನೀರುಣಿಸುತ್ತದೆ; ಆದರೆ ದಶಕಗಳಿಂದ ತುಂಬಿರುವ ಹೂಳು (Siltation) ತುಂಗಭದ್ರಾದ ನಿಜವಾದ ಸಂಗ್ರಹ ಸಾಮರ್ಥ್ಯವನ್ನು ಕಡಿಮೆ ಮಾಡಿರುವುದು ಇಂದಿನ ದೊಡ್ಡ ಸವಾಲಾಗಿದೆ. ಇನ್ನು <b>ಭದ್ರಾ, ಘಟಪ್ರಭಾ (ಹಿಡ್ಕಲ್), ಮಲಪ್ರಭಾ (ರೇಣುಕಾಸಾಗರ) ಮತ್ತು ವಾಣಿವಿಲಾಸ ಸಾಗರ</b> ಜಲಾಶಯಗಳು ಮಧ್ಯ ಹಾಗೂ ಕಿತ್ತೂರು ಕರ್ನಾಟಕದ ನೀರಾವರಿ ಮತ್ತು ಕುಡಿಯುವ ನೀರಿಗೆ ಆಸರೆಯಾಗಿವೆ.
+    </p>
+
+    <h3>⚡ ಶರಾವತಿ &amp; ಕಾಳಿ ಕೊಳ್ಳ: ರಾಜ್ಯದ ವಿದ್ಯುತ್ ಬೆನ್ನೆಲುಬು</h3>
+    <p>
+      ನೀರಾವರಿಗಿಂತ ಮುಖ್ಯವಾಗಿ ಕರ್ನಾಟಕದ ವಿದ್ಯುತ್ ಬೇಡಿಕೆಯನ್ನು ಪೂರೈಸುವ ಎರಡು ಬೃಹತ್ ಜಲಾಶಯಗಳೆಂದರೆ ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲೆಯ <b>ಲಿಂಗನಮಕ್ಕಿ (151.75 TMC)</b> ಮತ್ತು ಉತ್ತರ ಕನ್ನಡ ಜಿಲ್ಲೆಯ <b>ಸೂಪ (147.54 TMC)</b>. ರಾಜ್ಯದ ಒಟ್ಟು 13 ಜಲಾಶಯಗಳ ಸಾಮರ್ಥ್ಯದಲ್ಲಿ ಸುಮಾರು ಮೂರನೇ ಒಂದು ಭಾಗ ಈ ಎರಡೇ ಜಲಾಶಯಗಳಲ್ಲಿದೆ! ಮಲೆನಾಡಿನಲ್ಲಿ ಉತ್ತಮ ಮಳೆಯಾಗಿ ಲಿಂಗನಮಕ್ಕಿ ಮತ್ತು ಸೂಪ ತುಂಬಿದರೆ ಬೇಸಿಗೆಯಲ್ಲಿ ಲೋಡ್ ಶೆಡ್ಡಿಂಗ್ ತಪ್ಪಿ, ಕಡಿಮೆ ವೆಚ್ಚದ ಜಲವಿದ್ಯುತ್ ರಾಜ್ಯಕ್ಕೆ ಲಭಿಸುತ್ತದೆ.
+    </p>
+
+    <div class="article-callout">
+      <h4>📏 ಸಾಮಾನ್ಯ ನಾಗರಿಕರು ತಿಳಿಯಲೇಬೇಕಾದ 4 ಪ್ರಮುಖ ಅಳತೆಗಳು</h4>
+      <ul>
+        <li><b>1 TMC (Thousand Million Cubic Feet):</b> 100 ಕೋಟಿ ಘನ ಅಡಿ ನೀರು — ಅಂದರೆ ಅಂದಾಜು <b>2,831.68 ಕೋಟಿ ಲೀಟರ್</b>. ಬೆಂಗಳೂರಿಗೆ ತಿಂಗಳಿಗೆ ಸುಮಾರು 1.5 ರಿಂದ 1.8 TMC ಕುಡಿಯುವ ನೀರು ಬೇಕಾಗುತ್ತದೆ.</li>
+        <li><b>ಕ್ಯೂಸೆಕ್ಸ್ (Cusecs):</b> ಪ್ರತಿ ಸೆಕೆಂಡಿಗೆ ಹರಿಯುವ ಘನ ಅಡಿ ನೀರು (1 ಕ್ಯೂಸೆಕ್ = 28.317 ಲೀಟರ್/ಸೆಕೆಂಡ್). 24 ಗಂಟೆಗಳ ಕಾಲ <b>11,574 ಕ್ಯೂಸೆಕ್ಸ್</b> ನೀರು ಹರಿದರೆ 1 TMC ಆಗುತ್ತದೆ.</li>
+        <li><b>FRL (Full Reservoir Level):</b> ಜಲಾಶಯದ ಗರಿಷ್ಠ ಸುರಕ್ಷಿತ ನೀರಿನ ಮಟ್ಟ (ಅಡಿಗಳಲ್ಲಿ). ನೀರು FRL ಹತ್ತಿರ ತಲುಪಿದಾಗ ಕ್ರೆಸ್ಟ್ ಗೇಟ್‌ಗಳನ್ನು ತೆರೆದು ಹೆಚ್ಚುವರಿ ನೀರನ್ನು ನದಿಗೆ ಬಿಡಲಾಗುತ್ತದೆ.</li>
+        <li><b>Live vs Dead Storage:</b> ಕಾಲುವೆ, ಕುಡಿಯುವ ನೀರು ಮತ್ತು ವಿದ್ಯುತ್ ಉತ್ಪಾದನೆಗೆ ಬಳಸಬಹುದಾದ ನೀರು <i>Live Storage</i>; ತಳಭಾಗದಲ್ಲಿ ಹೂಳು ಹಾಗೂ ಸುರಕ್ಷತೆಗಾಗಿ ಉಳಿಯುವ ನೀರು <i>Dead Storage</i>.</li>
+      </ul>
     </div>
+
+    <h3>🌾 ರೈತರು ಮತ್ತು ನಾಗರಿಕರು ಪ್ರತಿದಿನ ನೀರಿನ ಮಟ್ಟವನ್ನು ಏಕೆ ಗಮನಿಸಬೇಕು?</h3>
+    <p>
+      ಮುಂಗಾರು (Kharif) ಮತ್ತು ಹಿಂಗಾರು (Rabi) ಬೆಳೆಗಳ ಬಿತ್ತನೆಗೂ ಮುನ್ನ ಜಲಾಶಯದ ಲೈವ್ ಸ್ಟೋರೇಜ್ ಮತ್ತು 7 ದಿನದ ಒಳಹರಿವು ಟ್ರೆಂಡ್ ನೋಡುವುದರಿಂದ ನೀರಾವರಿ ಕಾಲುವೆಗೆ ಎಷ್ಟು ದಿನ ನೀರು ಸಿಗಬಹುದು ಎಂಬ ಸ್ಪಷ್ಟ ಅಂದಾಜು ರೈತರಿಗೆ ದೊರೆಯುತ್ತದೆ. ಹಾಗೆಯೇ ಮಳೆಗಾಲದಲ್ಲಿ ಯಾವುದೇ ಜಲಾಶಯವು <b>90% ದಾಟಿ ಭಾರಿ ಹೊರಹರಿವು (Outflow)</b> ದಾಖಲಿಸಿದಾಗ, ನದಿ ಪಾತ್ರದ ಗ್ರಾಮಗಳ ಜನರು ಪ್ರವಾಹ ಎಚ್ಚರಿಕೆ ವಹಿಸಲು ಈ ಲೈವ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ನೆರವಾಗುತ್ತದೆ.
+    </p>
+
     <div class="disclaimer-note">
       ℹ️ <b>ಮಾಹಿತಿ ಸೂಚನೆ:</b> Karnata.in ಒಂದು ಸ್ವತಂತ್ರ ನಾಗರಿಕ ಮಾಹಿತಿ ವೇದಿಕೆಯಾಗಿದ್ದು, ಯಾವುದೇ ಸರ್ಕಾರಿ ಇಲಾಖೆಯ ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್ ಅಲ್ಲ. ಇಲ್ಲಿನ ಜಲಾಶಯಗಳ ಅಂಕಿಅಂಶಗಳನ್ನು ಕರ್ನಾಟಕ ಜಲಸಂಪನ್ಮೂಲ ಇಲಾಖೆ (WRD) ಮತ್ತು KSNDMC ಸಾರ್ವಜನಿಕ ಬುಲೆಟಿನ್‌ಗಳಿಂದ ನಿಯಮಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ.
     </div>
-  </section>
+  </article>
 
 </main>
 
@@ -900,10 +921,10 @@ def main():
   }}
 
   function getWaterColor(pct) {{
-    if (pct >= 90) return {{ fill: 'linear-gradient(180deg,#F87171 0%,#DC2626 100%)', solid: '#DC2626', wave: '#FCA5A5', badge: 'flood', label: '🚨 ತುಂಬಿದೆ / ಎಚ್ಚರಿಕೆ' }};
-    if (pct >= 70) return {{ fill: 'linear-gradient(180deg,#34D399 0%,#059669 100%)', solid: '#10B981', wave: '#6EE7B7', badge: 'good', label: '🟢 ಉತ್ತಮ ಸಂಗ್ರಹ' }};
-    if (pct >= 45) return {{ fill: 'linear-gradient(180deg,#38BDF8 0%,#0284C7 100%)', solid: '#0EA5E9', wave: '#7DD3FC', badge: 'mid', label: '🔵 ಮಧ್ಯಮ' }};
-    return {{ fill: 'linear-gradient(180deg,#FBBF24 0%,#D97706 100%)', solid: '#F59E0B', wave: '#FDE68A', badge: 'low', label: '🟠 ಕಡಿಮೆ' }};
+    if (pct >= 90) return {{ top: '#FB7185', bot: '#BE123C', solid: '#DC2626', wave: '#FDA4AF', badge: 'flood', label: '🚨 ತುಂಬಿದೆ / ಎಚ್ಚರಿಕೆ' }};
+    if (pct >= 70) return {{ top: '#34D399', bot: '#047857', solid: '#10B981', wave: '#6EE7B7', badge: 'good', label: '🟢 ಉತ್ತಮ ಸಂಗ್ರಹ' }};
+    if (pct >= 45) return {{ top: '#38BDF8', bot: '#0369A1', solid: '#0EA5E9', wave: '#7DD3FC', badge: 'mid', label: '🔵 ಮಧ್ಯಮ' }};
+    return {{ top: '#FBBF24', bot: '#B45309', solid: '#F59E0B', wave: '#FDE68A', badge: 'low', label: '🟠 ಕಡಿಮೆ' }};
   }}
 
   function getDamsArray() {{
@@ -966,11 +987,72 @@ def main():
     }}).join('');
   }}
 
-  function setBasinFilter(basin, btn) {{
+  function setBasinFilter(basin) {{
     currentBasin = basin;
     document.querySelectorAll('.fpill').forEach(p => p.classList.toggle('active', p.dataset.basin === basin));
     renderBasinCards();
     renderDamCards();
+  }}
+
+  // Generates custom animated SVG Dam Wall + Reservoir Water + Live Spillway
+  function buildDamSvgScene(key, pct, outflow, wc) {{
+    const clamped = Math.min(98, Math.max(12, pct));
+    // Water surface Y inside 118px viewBox (100% -> y=16, 0% -> y=110)
+    const waterY = Math.round(110 - (clamped / 100) * 92);
+    const hasSpill = Number(outflow || 0) > 50;
+    const spillWidth = outflow > 5000 ? 6 : (outflow > 1000 ? 4.5 : 3);
+    const gradId = `wg_${{key}}`;
+
+    return `
+      <svg class="dam-svg-scene" viewBox="0 0 360 118" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="${{gradId}}" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="${{wc.top}}" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="${{wc.bot}}" stop-opacity="0.98"/>
+          </linearGradient>
+          <clipPath id="clip_${{key}}">
+            <rect x="0" y="0" width="268" height="118"/>
+          </clipPath>
+        </defs>
+
+        <!-- FRL & Gauge Ruler Ticks on Left -->
+        <line x1="0" y1="18" x2="262" y2="18" stroke="rgba(186,230,253,0.28)" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="6" y="14" fill="rgba(186,230,253,0.65)" font-size="8.5" font-weight="700" font-family="Plus Jakarta Sans">FRL 100%</text>
+        <line x1="0" y1="64" x2="12" y2="64" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        <line x1="0" y1="88" x2="8" y2="88" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+        <!-- Reservoir Animated Water Body -->
+        <g clip-path="url(#clip_${{key}})">
+          <!-- Back Wave -->
+          <path class="wave-anim-2" fill="${{wc.wave}}" fill-opacity="0.38"
+            d="M0,${{waterY}} Q30,${{waterY - 7}} 60,${{waterY}} T120,${{waterY}} T180,${{waterY}} T240,${{waterY}} T300,${{waterY}} T360,${{waterY}} T420,${{waterY}} L420,118 L0,118 Z"/>
+          <!-- Main Water Body + Front Wave -->
+          <path class="wave-anim-1" fill="url(#${{gradId}})"
+            d="M0,${{waterY + 2}} Q30,${{waterY + 8}} 60,${{waterY + 2}} T120,${{waterY + 2}} T180,${{waterY + 2}} T240,${{waterY + 2}} T300,${{waterY + 2}} T360,${{waterY + 2}} T420,${{waterY + 2}} L420,118 L0,118 Z"/>
+          <!-- Rising Micro Bubbles -->
+          <circle class="bubble-rise" cx="48" cy="112" r="2.2" fill="#FFFFFF" fill-opacity="0.55"/>
+          <circle class="bubble-rise" cx="128" cy="114" r="1.8" fill="#FFFFFF" fill-opacity="0.45" style="animation-delay:1.1s;"/>
+          <circle class="bubble-rise" cx="204" cy="110" r="2.5" fill="#FFFFFF" fill-opacity="0.5" style="animation-delay:2.2s;"/>
+        </g>
+
+        <!-- Concrete Dam Wall Silhouette (Right Side) -->
+        <polygon points="258,14 286,14 334,118 258,118" fill="#1E293B" stroke="rgba(148,163,184,0.35)" stroke-width="1.2"/>
+        <polygon points="258,14 274,14 274,118 258,118" fill="#334155"/>
+        <!-- Crest Gate Tower -->
+        <rect x="262" y="5" width="20" height="10" rx="2" fill="#475569" stroke="rgba(226,232,240,0.4)" stroke-width="1"/>
+        <circle cx="272" cy="10" r="2.2" fill="${{hasSpill ? '#38BDF8' : '#64748B'}}"/>
+
+        ${{hasSpill ? `
+          <!-- Live Animated Spillway Outflow Streams -->
+          <path class="spill-stream" d="M283,24 Q306,62 332,112" fill="none" stroke="#38BDF8" stroke-width="${{spillWidth}}" stroke-linecap="round"/>
+          <path class="spill-stream" d="M286,28 Q312,68 340,114" fill="none" stroke="#E0F2FE" stroke-width="${{Math.max(2, spillWidth - 1.5)}}" stroke-linecap="round" style="animation-delay:0.25s;"/>
+          <!-- Downstream Splash Foam -->
+          <ellipse cx="338" cy="114" rx="18" ry="5" fill="#7DD3FC" fill-opacity="0.55"/>
+        ` : `
+          <rect x="318" y="112" width="42" height="6" fill="rgba(56,189,248,0.22)"/>
+        `}}
+      </svg>
+    `;
   }}
 
   function renderDamCards() {{
@@ -1013,7 +1095,6 @@ def main():
       const stor = Number(d.storage_tmc || d.present_storage_tmc || 0);
       const cap = Number(d.max_storage_tmc || d.design_capacity || 1);
       const lvl = Number(d.level_ft || 0);
-      const frl = DAM_FRL_FT[key] || 0;
       const inflow = Number(d.inflow_cusecs || 0);
       const outflow = Number(d.outflow_cusecs || 0);
       const ch7 = Number(d.storage_change_7d || 0);
@@ -1021,44 +1102,30 @@ def main():
       const bMeta = BASIN_META[d.basin] || {{ kn: 'ಕರ್ನಾಟಕ', icon: '💧' }};
       const distKn = DISTRICT_KN[d.district_en] || d.district_en || '';
       const slug = DAM_PAGE_SLUG[key] || `${{key}}-dam.html`;
-      const imgUrl = `/images/${{key}}_dam.jpg`;
       const netFlow = inflow > outflow + 50 ? '📈 ನೀರು ಏರಿಕೆ' : (outflow > inflow + 50 ? '📉 ಹೊರಹರಿವು ಹೆಚ್ಚು' : '⚖️ ಸ್ಥಿರ');
       const d7Cls = ch7 > 0.05 ? 'up' : (ch7 < -0.05 ? 'down' : 'flat');
       const d7Txt = ch7 > 0.05 ? `▲ +${{ch7.toFixed(2)}} TMC (7D)` : (ch7 < -0.05 ? `▼ ${{ch7.toFixed(2)}} TMC (7D)` : `● ಸ್ಥಿರ (7D)`);
-      const waterH = Math.min(96, Math.max(12, pct));
 
       return `
         <article class="dam-tile ${{pct >= 90 ? 'flood-card' : ''}}" id="dam-card-${{key}}">
-          <div class="dt-photo">
-            <img src="${{imgUrl}}" alt="${{d.name_kn}}" loading="lazy" onerror="this.style.display='none'">
-            <div class="dt-badges">
-              <span class="dt-basin-tag">${{bMeta.icon}} ${{bMeta.kn}}</span>
-              <span class="dt-status-tag ${{wc.badge}}">${{wc.label}}</span>
+          <div class="dam-stage">
+            <div class="dam-stage-top">
+              <span class="ds-basin">${{bMeta.icon}} ${{bMeta.kn}}</span>
+              <span class="ds-status ${{wc.badge}}">${{wc.label}}</span>
             </div>
-            <div class="dt-title-overlay">
+            <div class="dam-stage-title">
               <div>
-                <div class="dt-name">${{d.name_kn}}</div>
-                <div class="dt-loc">🌊 ${{d.river_kn || ''}} ನದಿ · 📍 ${{distKn}}</div>
+                <div class="ds-name">${{d.name_kn}}</div>
+                <div class="ds-loc">🌊 ${{d.river_kn || ''}} ನದಿ · 📍 ${{distKn}}</div>
               </div>
-              <div class="dt-pct-big">${{pct.toFixed(1)}}%</div>
+              <div class="ds-pct">${{pct.toFixed(1)}}%</div>
             </div>
+            ${{buildDamSvgScene(key, pct, outflow, wc)}}
+            <div class="stage-bottom-pill">💧 ${{stor.toFixed(2)}} / ${{cap.toFixed(2)}} TMC</div>
+            <div class="stage-lvl-pill">📏 ${{lvl.toFixed(1)}} ft</div>
           </div>
 
           <div class="dt-body">
-            <div class="tank-wrap">
-              <div class="tank-frl-line"></div>
-              <span class="tank-frl-lbl">FRL ${{frl ? frl.toFixed(0) + ' ft' : '100%'}}</span>
-              <div class="tank-water" style="height:${{waterH}}%; background:${{wc.fill}};">
-                <svg class="tank-wave-svg" viewBox="0 0 1200 28" preserveAspectRatio="none">
-                  <path fill="${{wc.wave}}" fill-opacity="0.7" d="M0,14 C150,28 300,0 450,14 C600,28 750,0 900,14 C1050,28 1150,4 1200,14 L1200,28 L0,28 Z"></path>
-                </svg>
-              </div>
-              <div class="tank-overlay">
-                <span class="tank-tmc">${{stor.toFixed(2)}} / ${{cap.toFixed(2)}} TMC</span>
-                <span class="tank-lvl">📏 ${{lvl.toFixed(1)}} ft</span>
-              </div>
-            </div>
-
             <div class="flow-grid">
               <div class="flow-box inflow">
                 <div class="flow-lbl">↓ ಒಳಹರಿವು (Inflow)</div>
@@ -1141,7 +1208,7 @@ def main():
     if (sec) sec.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
   }}
 
-  function setChartDays(days, btn) {{
+  function setChartDays(days) {{
     currentChartDays = days;
     document.querySelectorAll('.tf-btn').forEach(b => b.classList.toggle('active', Number(b.dataset.days) === days));
     renderTrendChart();
@@ -1155,7 +1222,6 @@ def main():
     let points = [];
 
     if (HISTORY_DATA) {{
-      // Support both {{ krs: [...] }} and [{{ date, dams: {{ krs: ... }} }}] history formats
       if (Array.isArray(HISTORY_DATA[key])) {{
         points = HISTORY_DATA[key].map(p => ({{ date: p.date, val: Number(p.storage_tmc ?? p.present_storage_tmc ?? p.tmc ?? 0) }}));
       }} else if (Array.isArray(HISTORY_DATA.records || HISTORY_DATA)) {{
@@ -1264,7 +1330,7 @@ def main():
 '''
 
     OUT_HTML.write_text(page_html, encoding="utf-8")
-    print(f"SUCCESS: Built creative dam-levels.html ({len(page_html):,} bytes, 13 reservoirs, live Leaflet map, liquid tanks & Chart.js history).")
+    print(f"SUCCESS: Built photo-free animated spillway dam-levels.html ({len(page_html):,} bytes) with in-depth Kannada article.")
 
 
 if __name__ == "__main__":
